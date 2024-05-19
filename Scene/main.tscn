@@ -1,0 +1,210 @@
+[gd_scene load_steps=23 format=3 uid="uid://s5nlht40cbgw"]
+
+[ext_resource type="PackedScene" uid="uid://dqpklssxni160" path="res://Scene/prefab/clickBlock.tscn" id="1_1yudk"]
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_di8p8"]
+[ext_resource type="Resource" uid="uid://bte38wl3etklk" path="res://dialogues/灵堂.dialogue" id="2_cebyh"]
+[ext_resource type="AudioStream" uid="uid://brg1ltppwfyim" path="res://Asset/sound/闪电.mp3" id="3_pm2r8"]
+[ext_resource type="Texture2D" uid="uid://bpafr0afqfvx8" path="res://Asset/城镇建筑/灵堂.jpg" id="4_ymf5o"]
+[ext_resource type="Texture2D" uid="uid://c6v5d1k5o1tl3" path="res://Asset/人物/陶谦.jpg" id="5_18b4b"]
+[ext_resource type="Texture2D" uid="uid://cale1h2nqfdrh" path="res://Asset/ui/circle.png" id="5_o5px7"]
+[ext_resource type="Texture2D" uid="uid://yf6vhcbrjowo" path="res://Asset/蜡烛.png" id="5_qjidl"]
+[ext_resource type="Shader" path="res://shader/light.gdshader" id="5_yxgd7"]
+[ext_resource type="Script" path="res://Scripts/flashLight.gd" id="7_tfp5g"]
+[ext_resource type="PackedScene" uid="uid://bhu5hq8kx8pov" path="res://addons/inventory_example/inventories/simple/InventoryUI.tscn" id="8_2jw10"]
+[ext_resource type="Texture2D" uid="uid://yxnjmxcqgl2u" path="res://addons/inventory_example/textures/inventories/Chest.png" id="9_0v21a"]
+[ext_resource type="PackedScene" uid="uid://bx77tf2wbqmk0" path="res://Scene/prefab/blink.tscn" id="10_qif51"]
+[ext_resource type="PackedScene" uid="uid://bv5ycsl0a50uq" path="res://Scene/prefab/btnList.tscn" id="11_j50k8"]
+[ext_resource type="PackedScene" uid="uid://cw66yiofu8q6f" path="res://Scene/prefab/RuleBook.tscn" id="12_phx3k"]
+[ext_resource type="FontFile" uid="uid://qv74ebpr4i31" path="res://Scene/VonwaonBitmap-16px.ttf" id="14_vuyqr"]
+
+[sub_resource type="Animation" id="Animation_0bk4q"]
+resource_name = "闪烁"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.6, 0.7, 1.1, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.752941), Color(1, 1, 1, 0), Color(1, 1, 1, 0.882353), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_44lps"]
+_data = {
+"闪烁": SubResource("Animation_0bk4q")
+}
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_flxm5"]
+blend_mode = 3
+
+[sub_resource type="Gradient" id="Gradient_sgdlq"]
+offsets = PackedFloat32Array(0.993976, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_uoxgf"]
+gradient = SubResource("Gradient_sgdlq")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_21veu"]
+shader = ExtResource("5_yxgd7")
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_di8p8")
+dontTrutShizu = "不要相信士族!
+不要相信士族!!
+不要相信士族!!!"
+dialogue_resource = ExtResource("2_cebyh")
+dialogue_start = "this_is_a_node_title"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="Canvas闪电" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="Canvas闪电"]
+offset_left = 8.0
+offset_top = -34.0
+offset_right = 1981.0
+offset_bottom = 1165.0
+color = Color(1, 1, 1, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Canvas闪电/ColorRect"]
+libraries = {
+"": SubResource("AnimationLibrary_44lps")
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Canvas闪电/ColorRect/AnimationPlayer"]
+stream = ExtResource("3_pm2r8")
+
+[node name="内屋" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_flxm5")
+position = Vector2(958, 539)
+scale = Vector2(3.22, 2.57957)
+texture = ExtResource("4_ymf5o")
+
+[node name="灯" parent="." instance=ExtResource("1_1yudk")]
+visible = false
+position = Vector2(265, 168)
+scale = Vector2(2.68435, 2.68435)
+showName = ""
+showborder = false
+txt2d = null
+dialogue_resource = ExtResource("2_cebyh")
+dialogue_start = "开灯"
+
+[node name="GPUParticles2D" parent="." instance=ExtResource("10_qif51")]
+position = Vector2(252, 103)
+scale = Vector2(1.45455, 1.59)
+
+[node name="bgs" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(895, 333)
+scale = Vector2(1.6384, 1.6384)
+
+[node name="陶谦" parent="." instance=ExtResource("1_1yudk")]
+visible = false
+position = Vector2(1000, 421)
+scale = Vector2(1.6384, 1.6384)
+showName = ""
+dialogue_doubleclick = "second"
+txt2d = ExtResource("5_18b4b")
+dialogue_resource = ExtResource("2_cebyh")
+dialogue_start = ""
+
+[node name="蜡烛" parent="." instance=ExtResource("1_1yudk")]
+position = Vector2(1004, 773)
+scale = Vector2(1.28, 1.28)
+showName = ""
+txt2d = ExtResource("5_qjidl")
+dialogue_resource = ExtResource("2_cebyh")
+dialogue_start = "蜡烛"
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+copy_mode = 2
+
+[node name="blank" type="Sprite2D" parent="BackBufferCopy"]
+position = Vector2(1353.04, 746.926)
+scale = Vector2(10.7865, 1508.76)
+texture = SubResource("GradientTexture1D_uoxgf")
+
+[node name="mask2" type="Sprite2D" parent="BackBufferCopy"]
+material = SubResource("ShaderMaterial_21veu")
+position = Vector2(1010, 774)
+scale = Vector2(8, 8.114)
+texture = ExtResource("5_o5px7")
+offset = Vector2(-0.59, 1.16)
+script = ExtResource("7_tfp5g")
+
+[node name="mask" type="Sprite2D" parent="BackBufferCopy"]
+material = SubResource("ShaderMaterial_21veu")
+position = Vector2(-295, 455)
+scale = Vector2(6.951, 7)
+texture = ExtResource("5_o5px7")
+offset = Vector2(-0.59, 1.16)
+script = ExtResource("7_tfp5g")
+
+[node name="CanvasButton" type="CanvasLayer" parent="."]
+
+[node name="TextureButton" type="TextureButton" parent="CanvasButton"]
+self_modulate = Color(0.776471, 0.776471, 0.776471, 1)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -100.0
+offset_bottom = 100.0
+grow_horizontal = 0
+texture_normal = ExtResource("9_0v21a")
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="CanvasInventory" type="CanvasLayer" parent="."]
+
+[node name="InventoryAny" parent="CanvasInventory" instance=ExtResource("8_2jw10")]
+visible = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -300.0
+offset_top = 100.0
+offset_right = 0.0
+offset_bottom = 400.0
+grow_horizontal = 0
+inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
+metadata/_edit_use_anchors_ = true
+
+[node name="CanvasBook" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ruleBook" parent="CanvasBook" instance=ExtResource("12_phx3k")]
+context = "士族生存法则
+1.士族必须和控制家乡的军阀合作,士族如果对军阀感到不满，有可能会让军阀“自然”死亡...
+
+2.士族和军阀合作的目的是为了得到更多政治资源
+
+3.士族个体虽然很弱小，但是士族的族的范围很广大，他有强大的包容性，不限于跟军阀和达官显贵联姻，将他们变成我们
+
+4.士族会跟学阀进行合作，掌控一个地区的商业资源
+5.士族只有牢牢把控资源才能得到他人的信任
+6.如果一个地方存在本地/士族，本地士族如果吞并不成就会将外来士族干掉，士族对外论派，对内论系，当士族解决掉外部矛盾时，自身会因为内部矛盾分成多股势力"
+dialogue_resource = ExtResource("2_cebyh")
+
+[node name="title" type="RichTextLabel" parent="."]
+visible = false
+offset_left = -9.0
+offset_top = 76.0
+offset_right = 1906.0
+offset_bottom = 312.0
+theme_override_fonts/normal_font = ExtResource("14_vuyqr")
+theme_override_font_sizes/normal_font_size = 200
+bbcode_enabled = true
+text = "[center][rainbow]阴[/rainbow][wave amp=50 frep=100]三国[/wave][rainbow]谋论[/rainbow]-[tornado]徐州篇[/tornado][/center]"
+tab_size = 6
+
+[node name="Control2" parent="." instance=ExtResource("11_j50k8")]
+visible = false
+
+[connection signal="ready" from="." to="蜡烛" method="_on_node_2d_ready"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

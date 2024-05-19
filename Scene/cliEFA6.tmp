@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqpklssxni160"]
+
+[ext_resource type="Texture2D" uid="uid://vkvgsvn02les" path="res://Asset/城镇.jpg" id="1_acw88"]
+[ext_resource type="Script" path="res://Scripts/clickBlock.gd" id="1_es4xp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eqsn2"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_es4xp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 2.38419e-07)
+scale = Vector2(0.119, 0.214)
+texture = ExtResource("1_acw88")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(5.72, 5.72)
+shape = SubResource("RectangleShape2D_eqsn2")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

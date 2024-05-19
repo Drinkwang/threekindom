@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_12"
+type="Resource"
+uid="uid://bte38wl3etklk"
+path="res://.godot/imported/灵堂.dialogue-5362fef89ab9407503d62b1a9686e332.tres"
+
+[deps]
+
+source_file="res://dialogues/灵堂.dialogue"
+dest_files=["res://.godot/imported/灵堂.dialogue-5362fef89ab9407503d62b1a9686e332.tres"]
+
+[params]
+
+defaults=true

@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://bv5ycsl0a50uq"]
+
+[ext_resource type="Texture2D" uid="uid://7lnklxgva7pn" path="res://Asset/ui/panel_Example1.png" id="1_5n3ky"]
+[ext_resource type="Script" path="res://Scripts/btnList.gd" id="1_mss1w"]
+[ext_resource type="Texture2D" uid="uid://cvj2dqgiwoear" path="res://Asset/ui/panel_Example2.png" id="2_rt01u"]
+[ext_resource type="Texture2D" uid="uid://dp2lyn4tdcil" path="res://Asset/ui/panel_Example3.png" id="3_j6x1g"]
+[ext_resource type="Texture2D" uid="uid://caf0on0gq3ssp" path="res://Asset/ui/panel_Example4.png" id="4_acbtn"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_mss1w")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 450.0
+offset_bottom = 1000.0
+
+[node name="TextureButton2" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("1_5n3ky")
+texture_pressed = ExtResource("2_rt01u")
+texture_hover = ExtResource("3_j6x1g")
+texture_disabled = ExtResource("4_acbtn")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/TextureButton2"]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0.521569, 0, 0.396078, 1)
+layout_mode = 0
+offset_left = 144.0
+offset_top = 52.0
+offset_right = 184.0
+offset_bottom = 92.0
+text = "2222"

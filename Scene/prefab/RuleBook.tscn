@@ -1,0 +1,98 @@
+[gd_scene load_steps=4 format=3 uid="uid://cw66yiofu8q6f"]
+
+[ext_resource type="Script" path="res://Scripts/RuleBook.gd" id="1_c2y7g"]
+[ext_resource type="Texture2D" uid="uid://d31ve0oihgf7g" path="res://Asset/ui/paper_panel_1286_x_819.png" id="1_pig3i"]
+[ext_resource type="FontFile" uid="uid://j7hxj2vlcx5l" path="res://Asset/YanShiXiaXingKai-2.ttf" id="2_5k6li"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_c2y7g")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 285.0
+offset_top = 86.0
+offset_right = 1571.0
+offset_bottom = 905.0
+texture = ExtResource("1_pig3i")
+
+[node name="翻页按钮" type="Button" parent="TextureRect"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.294
+anchor_bottom = 0.212
+offset_left = 482.0
+offset_top = 838.0
+offset_right = 303.916
+offset_bottom = 729.372
+scale = Vector2(1.555, 1.555)
+theme_override_font_sizes/font_size = 31
+text = "翻页"
+
+[node name="读完了按钮" type="Button" parent="TextureRect"]
+visible = false
+layout_mode = 0
+offset_left = 482.0
+offset_top = 839.0
+offset_right = 682.0
+offset_bottom = 904.0
+scale = Vector2(1.555, 1.555)
+theme_override_font_sizes/font_size = 31
+text = "读完了"
+
+[node name="Label" type="Label" parent="TextureRect"]
+layout_mode = 2
+offset_left = 23.0
+offset_top = 22.0
+offset_right = 1273.0
+offset_bottom = 880.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_5k6li")
+theme_override_font_sizes/font_size = 40
+autowrap_mode = 3
+
+[node name="realBox" type="Control" parent="TextureRect"]
+visible = false
+anchors_preset = 0
+offset_left = -285.0
+offset_top = -86.0
+offset_right = -245.0
+offset_bottom = -46.0
+
+[node name="ColorRect" type="ColorRect" parent="TextureRect/realBox"]
+layout_mode = 0
+offset_left = 304.0
+offset_top = 96.0
+offset_right = 344.0
+offset_bottom = 136.0
+scale = Vector2(31.32, 20.04)
+color = Color(0.560784, 0.560784, 0.560784, 1)
+
+[node name="正常文本" type="Label" parent="TextureRect/realBox"]
+layout_mode = 0
+offset_left = 308.0
+offset_top = 114.0
+offset_right = 1558.0
+offset_bottom = 972.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "士族生存法则
+1.士族必须和控制家乡的军阀合作,士族如果对军阀感到不满，有可能会让军阀“自然”死亡...
+
+2.士族和军阀合作的目的是为了得到更多政治资源
+3.士族个体虽然很弱小，但是士族的族的范围很广大，他有强大的包容性，不限于跟军阀和达官显贵联姻，将他们变成我们
+
+4.士族会跟学阀进行合作，掌控一个地区的商业资源
+5.士族只有牢牢把控资源才能得到他人的信任
+6.如果一个地方存在本地/士族，本地士族如果吞并不成就会将外来士族干掉，士族对外论派，对内论系，当士族解决掉外部矛盾时，自身会因为内部矛盾分成多股势力"
+autowrap_mode = 3
+
+[connection signal="gui_input" from="TextureRect" to="." method="_on_texture_rect_gui_input"]
+[connection signal="button_down" from="TextureRect/翻页按钮" to="." method="_on_翻页按钮_button_down"]
+[connection signal="button_down" from="TextureRect/读完了按钮" to="." method="_on_读完了按钮_button_down"]

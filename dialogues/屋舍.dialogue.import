@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_12"
+type="Resource"
+uid="uid://bmuiri1yjrdba"
+path="res://.godot/imported/屋舍.dialogue-d96b65a6f00faec818194ce9f429aa7f.tres"
+
+[deps]
+
+source_file="res://dialogues/屋舍.dialogue"
+dest_files=["res://.godot/imported/屋舍.dialogue-d96b65a6f00faec818194ce9f429aa7f.tres"]
+
+[params]
+
+defaults=true

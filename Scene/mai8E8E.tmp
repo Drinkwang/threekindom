@@ -1,0 +1,66 @@
+[gd_scene load_steps=12 format=3 uid="uid://s5nlht40cbgw"]
+
+[ext_resource type="PackedScene" uid="uid://dqpklssxni160" path="res://Scene/clickBlock.tscn" id="1_1yudk"]
+[ext_resource type="Script" path="res://Scene/main.gd" id="1_di8p8"]
+[ext_resource type="Texture2D" uid="uid://dubpvnajhiul8" path="res://Asset/内屋.jpg" id="2_4arps"]
+[ext_resource type="Resource" uid="uid://bte38wl3etklk" path="res://dialogues/灵堂.dialogue" id="2_cebyh"]
+[ext_resource type="Texture2D" uid="uid://cale1h2nqfdrh" path="res://Scene/circle.png" id="5_o5px7"]
+[ext_resource type="Shader" path="res://shader/light.gdshader" id="5_yxgd7"]
+[ext_resource type="Script" path="res://Scripts/flashLight.gd" id="7_tfp5g"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_flxm5"]
+blend_mode = 3
+
+[sub_resource type="Gradient" id="Gradient_sgdlq"]
+offsets = PackedFloat32Array(0.993976, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_uoxgf"]
+gradient = SubResource("Gradient_sgdlq")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_21veu"]
+shader = ExtResource("5_yxgd7")
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_di8p8")
+dialogue_resource = ExtResource("2_cebyh")
+dialogue_start = "this_is_a_node_title"
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="内屋" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_flxm5")
+position = Vector2(972.202, 549.169)
+scale = Vector2(0.479899, 0.364554)
+texture = ExtResource("2_4arps")
+
+[node name="陶谦" parent="." instance=ExtResource("1_1yudk")]
+position = Vector2(913, 336)
+scale = Vector2(2.355, 2.355)
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+copy_mode = 2
+
+[node name="blank" type="Sprite2D" parent="BackBufferCopy"]
+position = Vector2(1353.04, 746.926)
+scale = Vector2(10.7865, 1508.76)
+texture = SubResource("GradientTexture1D_uoxgf")
+
+[node name="mask2" type="Sprite2D" parent="BackBufferCopy"]
+material = SubResource("ShaderMaterial_21veu")
+position = Vector2(906, 814)
+scale = Vector2(8, 8.114)
+texture = ExtResource("5_o5px7")
+offset = Vector2(-0.59, 1.16)
+script = ExtResource("7_tfp5g")
+
+[node name="mask" type="Sprite2D" parent="BackBufferCopy"]
+material = SubResource("ShaderMaterial_21veu")
+position = Vector2(-295, 455)
+scale = Vector2(6.951, 7)
+texture = ExtResource("5_o5px7")
+offset = Vector2(-0.59, 1.16)
+script = ExtResource("7_tfp5g")
+
+[connection signal="ready" from="." to="陶谦" method="_on_node_2d_ready"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
