@@ -27,10 +27,15 @@ GameManager="*res://Scripts/game_manager.gd"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/inventory_editor/plugin.cfg", "res://addons/transitions/plugin.cfg")
+
+[gui]
+
+theme/custom="res://global_theme.tres"
 
 [input]
 
@@ -52,7 +57,7 @@ move_left={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://dialogues/灵堂.dialogue", "res://dialogues/屋舍.dialogue")
+locale/translations_pot_files=PackedStringArray("res://dialogues/灵堂.dialogue", "res://dialogues/屋舍.dialogue", "res://dialogues/街道.dialogue")
 
 [rendering]
 

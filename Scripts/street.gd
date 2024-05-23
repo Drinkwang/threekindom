@@ -1,6 +1,8 @@
-extends Node2D
-
+extends baseComponent
 @onready var control = $Control
+const GOVERNMENT_BUILDING = preload("res://Scene/government_building.tscn")
+
+@onready var chenqun = $"陈群"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -38,20 +40,34 @@ func _ready():
 	control._processList(initData)
 
 	control.buttonClick.connect(_buttonListClick)
-
-		
+	if GameManager.story_point==0 :
+		GameManager.story_point=GameManager.story_point+1
+		control.hide()
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
+	
 	pass # Replace with function body.
 
 func _buttonListClick(item):
+	if GameManager.story_point<1:
+		#if item.context == "府邸":
+			#const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
+			#FancyFade.new().custom_fade(GOVERNMENT_BUILDING.instantiate(), 7, DISSOLVE_IMAGE)
+		#else:
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"tip")
+			return
+	
 	if item.context == "外出":
 		pass
 	elif item.context == "今日政务":
-		pass
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"tip")
 	elif item.context == "属性面板":
-		pass
-	print(item)
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"tip")
+	elif item.context == "属性面板":
+		print(item)
 	pass
 	 # Replace with function body.
+
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

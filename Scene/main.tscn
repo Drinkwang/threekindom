@@ -88,16 +88,15 @@ texture = ExtResource("4_ymf5o")
 
 [node name="灯" parent="." instance=ExtResource("1_1yudk")]
 visible = false
-position = Vector2(265, 168)
+position = Vector2(526, 186)
 scale = Vector2(2.68435, 2.68435)
-showName = ""
 showborder = false
 txt2d = null
 dialogue_resource = ExtResource("2_cebyh")
 dialogue_start = "开灯"
 
 [node name="GPUParticles2D" parent="." instance=ExtResource("10_qif51")]
-position = Vector2(252, 103)
+position = Vector2(513, 121)
 scale = Vector2(1.45455, 1.59)
 
 [node name="bgs" type="AudioStreamPlayer2D" parent="."]
@@ -108,7 +107,7 @@ scale = Vector2(1.6384, 1.6384)
 visible = false
 position = Vector2(1000, 421)
 scale = Vector2(1.6384, 1.6384)
-showName = ""
+showName = "陶谦的牌位"
 dialogue_doubleclick = "second"
 txt2d = ExtResource("5_18b4b")
 dialogue_resource = ExtResource("2_cebyh")
@@ -117,12 +116,14 @@ dialogue_start = ""
 [node name="蜡烛" parent="." instance=ExtResource("1_1yudk")]
 position = Vector2(1004, 773)
 scale = Vector2(1.28, 1.28)
-showName = ""
+showName = "蜡烛"
+dialogue_doubleclick = "蜡烛"
 txt2d = ExtResource("5_qjidl")
 dialogue_resource = ExtResource("2_cebyh")
 dialogue_start = "蜡烛"
 
 [node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+visible = false
 copy_mode = 2
 
 [node name="blank" type="Sprite2D" parent="BackBufferCopy"]
@@ -176,7 +177,6 @@ inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
 metadata/_edit_use_anchors_ = true
 
 [node name="CanvasBook" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="ruleBook" parent="CanvasBook" instance=ExtResource("12_phx3k")]
 context = "士族生存法则

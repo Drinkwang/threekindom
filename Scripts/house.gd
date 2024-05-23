@@ -51,13 +51,21 @@ func _buttonListClick(item):
 		FancyFade.new().custom_fade(STREET.instantiate(), 2, DISSOLVE_IMAGE)
 		pass
 	elif item.context == "今日政务":
+		#显示接下来要点击啥
 		pass
 	elif item.context == "属性面板":
+		#显示金钱 民心 xx 武将面板
 		pass
 	print(item)
 	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	pass
+	
+func showFirstGuild():
+	control.show()
+	control._show_button_5_yellow(0)
+	$"陈群".hide()
 	pass
 	
 func showchenqun():

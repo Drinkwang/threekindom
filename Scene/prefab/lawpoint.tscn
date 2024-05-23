@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=3 uid="uid://dpw77mhy77404"]
+
+[ext_resource type="Theme" uid="uid://bklmr3xmk4m5u" path="res://global_theme.tres" id="1_3g5oo"]
+[ext_resource type="Texture2D" uid="uid://c5r4mlgrv40u8" path="res://Scene/prefab/8_white.png" id="1_f371e"]
+[ext_resource type="Script" path="res://Scripts/lawpoint.gd" id="1_itafg"]
+[ext_resource type="Texture2D" uid="uid://dtoxi05wcq0xa" path="res://Scene/prefab/9_black.png" id="2_dx1ki"]
+
+[node name="Control" type="Control"]
+custom_minimum_size = Vector2(16.91, 61)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 169.0
+offset_bottom = 61.0
+script = ExtResource("1_itafg")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 17.0
+offset_right = 162.0
+offset_bottom = 49.0
+theme = ExtResource("1_3g5oo")
+theme_type_variation = &"PanelContainer_new"
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+text = "建设国家"
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 65.0
+offset_bottom = 65.0
+texture = ExtResource("2_dx1ki")
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect2"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 11.0
+offset_right = 52.0
+offset_bottom = 51.0
+texture = ExtResource("1_f371e")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 28.0
+offset_right = 168.0
+offset_bottom = 37.0
+color = Color(0, 0, 0, 1)
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

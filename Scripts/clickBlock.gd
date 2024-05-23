@@ -49,6 +49,8 @@ func _ready():
 	if $Panel!=null and showName.length()>0:
 		$Panel.show()
 		$Panel/Label.text=showName;
+	else:
+		$Panel.hide()
 	#const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
 	#$TextureRect.texture=preload('res://addons/transitions/images/blurry-noise.png')
 	#$Sprite2D.texture=load("res://Asset/内屋.jpg")

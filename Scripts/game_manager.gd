@@ -9,12 +9,13 @@ var intellectual_support #士族支持度 一开始为100 当议会中 会出现
 var people_surrport #群众支持度 数值
 var  coin #金钱 数值
 var labor_force #劳动力 可以当作军队进行使用 劳动力转换成军队需要消耗值 骑兵 步兵 弓兵
-
+var story_point:int
 
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	story_point=0
 	pass # Replace with function body.
 
 

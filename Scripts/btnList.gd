@@ -2,12 +2,14 @@ extends Control
 const normalbtn = preload("res://Asset/ui/panel_Example1.png")
 const pressbtn =preload("res://Asset/ui/panel_Example2.png")
 const hoverbtn = preload("res://Asset/ui/panel_Example3.png")
+@onready var node_2d = $Node2D
 
 signal buttonClick
 const focusbtn = preload("res://Asset/ui/panel_Example4.png")
-
+var guilds:Sprite2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	guilds = $"Node2D/5Yellow" as Sprite2D
 		#"id":"3",
 		#"context":"外出",#前往大街
 		#"visible":"false"
@@ -20,6 +22,7 @@ func _process(_delta):
 	pass
 
 func _processList(data):
+	var index=0;
 	for item in data:
 		if item.visible=="false":
 			continue
@@ -34,7 +37,7 @@ func _processList(data):
 		richTxt.clip_contents=true
 		richTxt.scroll_active=false
 		richTxt.set_modulate(Color.WHITE)
-		richTxt.set_position(Vector2(50,35))
+		richTxt.set_position(Vector2(50,45))
 		#richTxt.add_theme_font_override("")
 		#richTxt.horizontal_alignment = CENTER
 		#richTxt.outline_color=Color.BLACK
@@ -44,13 +47,26 @@ func _processList(data):
 		buttton.texture_pressed=pressbtn
 		buttton.texture_hover=hoverbtn
 		buttton.texture_focused=focusbtn
-		buttton.pressed.connect(_button_ation.bind(item))
+		buttton.pressed.connect(_button_ation.bind(item,index))
+		buttton.name="button"+var_to_str(index)
+		index=index+1
 		$VBoxContainer.add_child(buttton)		
 	
 	
 	pass
+@onready var animation_player = $"Node2D/5Yellow/AnimationPlayer"
+	
+func _show_button_5_yellow(index):
+	var findpattern="button"+var_to_str(index)
+	var groups=$VBoxContainer.get_node(findpattern)
+	var texbtn:TextureButton=groups
+	print(texbtn.position)
+	node_2d.position=texbtn.position+Vector2(472,65)
+	animation_player.play("YELLOWGUILD")
+	pass
 
-func _button_ation(item):
+func _button_ation(item,index):
+	_show_button_5_yellow(index)
 	buttonClick.emit(item)
 	if item.context=="":
 		pass

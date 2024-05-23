@@ -1,4 +1,4 @@
-extends Node2D
+extends Node2D 
 
 
 @onready var control= $Control2
@@ -30,6 +30,13 @@ func _ready():
 
 
 func _buttonListClick(item):
+	if item.context=="离开此地":
+		pass
+	elif item.context=="操练士兵":
+		pass
+	elif item.context=="军事行动":
+		pass
+
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

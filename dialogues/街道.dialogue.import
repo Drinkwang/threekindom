@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_12"
+type="Resource"
+uid="uid://qopivlttvt12"
+path="res://.godot/imported/街道.dialogue-0674859b69b1167b0bd4d10550cb023d.tres"
+
+[deps]
+
+source_file="res://dialogues/街道.dialogue"
+dest_files=["res://.godot/imported/街道.dialogue-0674859b69b1167b0bd4d10550cb023d.tres"]
+
+[params]
+
+defaults=true

@@ -1,11 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://cehg7t1h5f2ei"]
+[gd_scene load_steps=5 format=3 uid="uid://cehg7t1h5f2ei"]
 
 [ext_resource type="Script" path="res://Scripts/street.gd" id="1_jskmv"]
 [ext_resource type="Texture2D" uid="uid://vkvgsvn02les" path="res://Asset/城镇建筑/城镇.jpg" id="1_r2skq"]
+[ext_resource type="Resource" uid="uid://qopivlttvt12" path="res://dialogues/街道.dialogue" id="2_a3tl4"]
 [ext_resource type="PackedScene" uid="uid://bv5ycsl0a50uq" path="res://Scene/prefab/btnList.tscn" id="2_eoq3e"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_jskmv")
+dialogue_resource = ExtResource("2_a3tl4")
+dialogue_start = "init_street"
 
 [node name="内屋" type="Sprite2D" parent="."]
 position = Vector2(963, 543)
