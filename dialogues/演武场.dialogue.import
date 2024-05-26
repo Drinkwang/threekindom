@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_12"
+type="Resource"
+uid="uid://d2qoinuor12dq"
+path="res://.godot/imported/演武场.dialogue-0a4854632dbad9a6e3e9505716102cae.tres"
+
+[deps]
+
+source_file="res://dialogues/演武场.dialogue"
+dest_files=["res://.godot/imported/演武场.dialogue-0a4854632dbad9a6e3e9505716102cae.tres"]
+
+[params]
+
+defaults=true

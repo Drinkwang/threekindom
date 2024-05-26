@@ -22,6 +22,21 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vilmr")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1408.0
+offset_top = -884.0
+offset_right = 1584.0
+offset_bottom = 728.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2, 0.2, 0.2, 0.827451)
+
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -78,7 +93,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="PanelContainer/orderPanel/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 31
-text = "详细内容:"
+text = "请点击政策获取施政的详细信息"
 autowrap_mode = 2
 
 [node name="Control" type="Control" parent="PanelContainer/orderPanel/VBoxContainer"]
@@ -133,7 +148,7 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Control1-1" parent="lawPanel" instance=ExtResource("6_0wkqx")]
+[node name="Control1-1" parent="lawPanel" groups=["lawpoints"] instance=ExtResource("6_0wkqx")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -146,6 +161,7 @@ offset_right = -425.0
 offset_bottom = -220.0
 grow_horizontal = 2
 grow_vertical = 2
+_color = 2
 detail = "建设"
 context = "农田开坑"
 
@@ -169,7 +185,7 @@ joint_mode = 2
 end_cap_mode = 2
 antialiased = true
 
-[node name="Control1-2" parent="lawPanel" instance=ExtResource("6_0wkqx")]
+[node name="Control1-2" parent="lawPanel" node_paths=PackedStringArray("lawpoins") groups=["lawpoints"] instance=ExtResource("6_0wkqx")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -182,6 +198,8 @@ offset_right = -168.0
 offset_bottom = -289.0
 grow_horizontal = 2
 grow_vertical = 2
+_color = 2
+lawpoins = [NodePath("../Control1-1")]
 context = "兴办教育"
 
 [node name="Line2D4" type="Line2D" parent="lawPanel/Control1-2"]
@@ -194,7 +212,7 @@ joint_mode = 2
 end_cap_mode = 2
 antialiased = true
 
-[node name="Control1-3" parent="lawPanel" instance=ExtResource("6_0wkqx")]
+[node name="Control1-3" parent="lawPanel" node_paths=PackedStringArray("lawpoins") groups=["lawpoints"] instance=ExtResource("6_0wkqx")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -207,6 +225,8 @@ offset_right = -171.0
 offset_bottom = -165.0
 grow_horizontal = 2
 grow_vertical = 2
+_color = 2
+lawpoins = [NodePath("../Control1-1")]
 context = "整治街容"
 
 [node name="Line2D4" type="Line2D" parent="lawPanel/Control1-3"]
@@ -219,7 +239,7 @@ joint_mode = 2
 end_cap_mode = 2
 antialiased = true
 
-[node name="Control1-4" parent="lawPanel" instance=ExtResource("6_0wkqx")]
+[node name="Control1-4" parent="lawPanel" node_paths=PackedStringArray("lawpoins") groups=["lawpoints"] instance=ExtResource("6_0wkqx")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -232,6 +252,8 @@ offset_right = 62.0
 offset_bottom = -232.0
 grow_horizontal = 2
 grow_vertical = 2
+_color = 2
+lawpoins = [NodePath("../Control1-2"), NodePath("../Control1-3")]
 context = "重农抑商"
 
 [node name="Line2D4" type="Line2D" parent="lawPanel/Control1-4"]
@@ -254,7 +276,7 @@ joint_mode = 2
 end_cap_mode = 2
 antialiased = true
 
-[node name="Control1-5" parent="lawPanel" instance=ExtResource("6_0wkqx")]
+[node name="Control1-5" parent="lawPanel" node_paths=PackedStringArray("lawpoins") groups=["lawpoints"] instance=ExtResource("6_0wkqx")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -267,6 +289,8 @@ offset_right = 299.0
 offset_bottom = -285.0
 grow_horizontal = 2
 grow_vertical = 2
+_color = 2
+lawpoins = [NodePath("../Control1-4")]
 detail = "士族优先"
 context = "士族优先"
 
@@ -300,7 +324,7 @@ joint_mode = 2
 end_cap_mode = 2
 antialiased = true
 
-[node name="Control1-6" parent="lawPanel" instance=ExtResource("6_0wkqx")]
+[node name="Control1-6" parent="lawPanel" node_paths=PackedStringArray("lawpoins") groups=["lawpoints"] instance=ExtResource("6_0wkqx")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -313,6 +337,8 @@ offset_right = 295.0
 offset_bottom = -179.0
 grow_horizontal = 2
 grow_vertical = 2
+_color = 2
+lawpoins = [NodePath("../Control1-4")]
 context = "物价稳定"
 
 [node name="Line2D4" type="Line2D" parent="lawPanel/Control1-6"]
@@ -345,7 +371,7 @@ joint_mode = 2
 end_cap_mode = 2
 antialiased = true
 
-[node name="Control1-7" parent="lawPanel" instance=ExtResource("6_0wkqx")]
+[node name="Control1-7" parent="lawPanel" node_paths=PackedStringArray("lawpoins") groups=["lawpoints"] instance=ExtResource("6_0wkqx")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -358,9 +384,11 @@ offset_right = 518.0
 offset_bottom = -308.0
 grow_horizontal = 2
 grow_vertical = 2
+_color = 2
+lawpoins = [NodePath("../Control1-5"), NodePath("../Control1-6")]
 context = "屯田制"
 
-[node name="Control1-8" parent="lawPanel" instance=ExtResource("6_0wkqx")]
+[node name="Control1-8" parent="lawPanel" node_paths=PackedStringArray("lawpoins") groups=["lawpoints"] instance=ExtResource("6_0wkqx")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -373,9 +401,11 @@ offset_right = 517.0
 offset_bottom = -240.0
 grow_horizontal = 2
 grow_vertical = 2
+_color = 2
+lawpoins = [NodePath("../Control1-5"), NodePath("../Control1-6")]
 context = "府兵制"
 
-[node name="Control1-9" parent="lawPanel" instance=ExtResource("6_0wkqx")]
+[node name="Control1-9" parent="lawPanel" node_paths=PackedStringArray("lawpoins") groups=["lawpoints"] instance=ExtResource("6_0wkqx")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -388,9 +418,11 @@ offset_right = 516.0
 offset_bottom = -170.0
 grow_horizontal = 2
 grow_vertical = 2
+_color = 2
+lawpoins = [NodePath("../Control1-5"), NodePath("../Control1-6")]
 context = "品级制"
 
-[node name="Control2-1" parent="lawPanel" instance=ExtResource("6_0wkqx")]
+[node name="Control2-1" parent="lawPanel" groups=["lawpoints"] instance=ExtResource("6_0wkqx")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -403,6 +435,7 @@ offset_right = -428.0
 offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
+_color = 2
 context = "促进商贸"
 
 [node name="Line2D3" type="Line2D" parent="lawPanel/Control2-1"]
@@ -425,7 +458,7 @@ joint_mode = 2
 end_cap_mode = 2
 antialiased = true
 
-[node name="Control2-2" parent="lawPanel" instance=ExtResource("6_0wkqx")]
+[node name="Control2-2" parent="lawPanel" node_paths=PackedStringArray("lawpoins") groups=["lawpoints"] instance=ExtResource("6_0wkqx")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -438,6 +471,8 @@ offset_right = -169.0
 offset_bottom = -35.0
 grow_horizontal = 2
 grow_vertical = 2
+_color = 2
+lawpoins = [NodePath("../Control2-1")]
 context = "诚信经营"
 
 [node name="Line2D4" type="Line2D" parent="lawPanel/Control2-2"]
@@ -450,7 +485,7 @@ joint_mode = 2
 end_cap_mode = 2
 antialiased = true
 
-[node name="Control2-3" parent="lawPanel" instance=ExtResource("6_0wkqx")]
+[node name="Control2-3" parent="lawPanel" node_paths=PackedStringArray("lawpoins") groups=["lawpoints"] instance=ExtResource("6_0wkqx")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -463,6 +498,8 @@ offset_right = -173.0
 offset_bottom = 60.0
 grow_horizontal = 2
 grow_vertical = 2
+_color = 2
+lawpoins = [NodePath("../Control2-1")]
 context = "行业准则"
 
 [node name="Line2D4" type="Line2D" parent="lawPanel/Control2-3"]
@@ -475,7 +512,7 @@ joint_mode = 2
 end_cap_mode = 2
 antialiased = true
 
-[node name="Control2-4" parent="lawPanel" instance=ExtResource("6_0wkqx")]
+[node name="Control2-4" parent="lawPanel" node_paths=PackedStringArray("lawpoins") groups=["lawpoints"] instance=ExtResource("6_0wkqx")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -488,6 +525,8 @@ offset_right = 69.0
 offset_bottom = 5.0
 grow_horizontal = 2
 grow_vertical = 2
+_color = 2
+lawpoins = [NodePath("../Control2-2"), NodePath("../Control2-3")]
 context = "禁止军商"
 
 [node name="Line2D4" type="Line2D" parent="lawPanel/Control2-4"]
@@ -510,7 +549,7 @@ joint_mode = 2
 end_cap_mode = 2
 antialiased = true
 
-[node name="Control2-5" parent="lawPanel" instance=ExtResource("6_0wkqx")]
+[node name="Control2-5" parent="lawPanel" node_paths=PackedStringArray("lawpoins") groups=["lawpoints"] instance=ExtResource("6_0wkqx")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -523,6 +562,8 @@ offset_right = 293.0
 offset_bottom = -68.0
 grow_horizontal = 2
 grow_vertical = 2
+_color = 2
+lawpoins = [NodePath("../Control2-4")]
 context = "商业税收法"
 
 [node name="Line2D4" type="Line2D" parent="lawPanel/Control2-5"]
@@ -555,7 +596,7 @@ joint_mode = 2
 end_cap_mode = 2
 antialiased = true
 
-[node name="Control2-6" parent="lawPanel" instance=ExtResource("6_0wkqx")]
+[node name="Control2-6" parent="lawPanel" node_paths=PackedStringArray("lawpoins") groups=["lawpoints"] instance=ExtResource("6_0wkqx")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -568,6 +609,8 @@ offset_right = 296.0
 offset_bottom = 54.0
 grow_horizontal = 2
 grow_vertical = 2
+_color = 2
+lawpoins = [NodePath("../Control2-4")]
 context = "货币法"
 
 [node name="Line2D4" type="Line2D" parent="lawPanel/Control2-6"]
@@ -600,7 +643,7 @@ joint_mode = 2
 end_cap_mode = 2
 antialiased = true
 
-[node name="Control2-7" parent="lawPanel" instance=ExtResource("6_0wkqx")]
+[node name="Control2-7" parent="lawPanel" node_paths=PackedStringArray("lawpoins") groups=["lawpoints"] instance=ExtResource("6_0wkqx")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -613,10 +656,12 @@ offset_right = 513.0
 offset_bottom = -101.0
 grow_horizontal = 2
 grow_vertical = 2
+_color = 2
+lawpoins = [NodePath("../Control2-5"), NodePath("../Control2-6")]
 detail = "竞商兼并，或致市场垄断，朝廷须干预，以保市场竞争。"
 context = "商业竞争法"
 
-[node name="Control2-8" parent="lawPanel" instance=ExtResource("6_0wkqx")]
+[node name="Control2-8" parent="lawPanel" node_paths=PackedStringArray("lawpoins") groups=["lawpoints"] instance=ExtResource("6_0wkqx")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -629,10 +674,12 @@ offset_right = 515.0
 offset_bottom = -24.0
 grow_horizontal = 2
 grow_vertical = 2
+_color = 2
+lawpoins = [NodePath("../Control2-5"), NodePath("../Control2-6")]
 detail = "商货流通，或生纷争，权宜之计，当有施为。"
 context = "商品流通法"
 
-[node name="Control2-9" parent="lawPanel" instance=ExtResource("6_0wkqx")]
+[node name="Control2-9" parent="lawPanel" node_paths=PackedStringArray("lawpoins") groups=["lawpoints"] instance=ExtResource("6_0wkqx")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -645,10 +692,12 @@ offset_right = 515.0
 offset_bottom = 58.0
 grow_horizontal = 2
 grow_vertical = 2
+_color = 2
+lawpoins = [NodePath("../Control2-5"), NodePath("../Control2-6")]
 detail = "商德不正，损人利己，须重立诚信，以保商业之长久发展。"
 context = "商业诚信法"
 
-[node name="Control3-1" parent="lawPanel" instance=ExtResource("6_0wkqx")]
+[node name="Control3-1" parent="lawPanel" groups=["lawpoints"] instance=ExtResource("6_0wkqx")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -683,7 +732,7 @@ joint_mode = 2
 end_cap_mode = 2
 antialiased = true
 
-[node name="Control3-2" parent="lawPanel" instance=ExtResource("6_0wkqx")]
+[node name="Control3-2" parent="lawPanel" node_paths=PackedStringArray("lawpoins") groups=["lawpoints"] instance=ExtResource("6_0wkqx")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -696,6 +745,7 @@ offset_right = -173.0
 offset_bottom = 169.0
 grow_horizontal = 2
 grow_vertical = 2
+lawpoins = [NodePath("../Control3-1")]
 context = "战备法"
 
 [node name="Line2D4" type="Line2D" parent="lawPanel/Control3-2"]
@@ -708,7 +758,7 @@ joint_mode = 2
 end_cap_mode = 2
 antialiased = true
 
-[node name="Control3-3" parent="lawPanel" instance=ExtResource("6_0wkqx")]
+[node name="Control3-3" parent="lawPanel" node_paths=PackedStringArray("lawpoins") groups=["lawpoints"] instance=ExtResource("6_0wkqx")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -721,6 +771,7 @@ offset_right = -174.0
 offset_bottom = 270.0
 grow_horizontal = 2
 grow_vertical = 2
+lawpoins = [NodePath("../Control3-1")]
 context = "边防法"
 
 [node name="Line2D4" type="Line2D" parent="lawPanel/Control3-3"]
@@ -733,7 +784,7 @@ joint_mode = 2
 end_cap_mode = 2
 antialiased = true
 
-[node name="Control3-4" parent="lawPanel" instance=ExtResource("6_0wkqx")]
+[node name="Control3-4" parent="lawPanel" node_paths=PackedStringArray("lawpoins") groups=["lawpoints"] instance=ExtResource("6_0wkqx")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -746,6 +797,7 @@ offset_right = 76.0
 offset_bottom = 207.0
 grow_horizontal = 2
 grow_vertical = 2
+lawpoins = [NodePath("../Control3-2"), NodePath("../Control3-3")]
 context = "军事训诂"
 
 [node name="Line2D4" type="Line2D" parent="lawPanel/Control3-4"]
@@ -768,7 +820,7 @@ joint_mode = 2
 end_cap_mode = 2
 antialiased = true
 
-[node name="Control3-5" parent="lawPanel" instance=ExtResource("6_0wkqx")]
+[node name="Control3-5" parent="lawPanel" node_paths=PackedStringArray("lawpoins") groups=["lawpoints"] instance=ExtResource("6_0wkqx")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -781,6 +833,7 @@ offset_right = 305.0
 offset_bottom = 158.0
 grow_horizontal = 2
 grow_vertical = 2
+lawpoins = [NodePath("../Control3-4")]
 detail = "军事装备法"
 context = "军事装备法"
 
@@ -814,7 +867,7 @@ joint_mode = 2
 end_cap_mode = 2
 antialiased = true
 
-[node name="Control3-6" parent="lawPanel" instance=ExtResource("6_0wkqx")]
+[node name="Control3-6" parent="lawPanel" node_paths=PackedStringArray("lawpoins") groups=["lawpoints"] instance=ExtResource("6_0wkqx")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -827,6 +880,7 @@ offset_right = 300.0
 offset_bottom = 249.0
 grow_horizontal = 2
 grow_vertical = 2
+lawpoins = [NodePath("../Control3-4")]
 context = "军事训练法"
 
 [node name="Line2D4" type="Line2D" parent="lawPanel/Control3-6"]
@@ -859,7 +913,7 @@ joint_mode = 2
 end_cap_mode = 2
 antialiased = true
 
-[node name="Control3-7" parent="lawPanel" instance=ExtResource("6_0wkqx")]
+[node name="Control3-7" parent="lawPanel" node_paths=PackedStringArray("lawpoins") groups=["lawpoints"] instance=ExtResource("6_0wkqx")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -872,10 +926,11 @@ offset_right = 521.0
 offset_bottom = 135.0
 grow_horizontal = 2
 grow_vertical = 2
+lawpoins = [NodePath("../Control3-5"), NodePath("../Control3-6")]
 detail = "存在着干部选拔不公平、腐败现象等问题，影响军队的建设和战斗力。"
 context = "军事优拔法"
 
-[node name="Control3-8" parent="lawPanel" instance=ExtResource("6_0wkqx")]
+[node name="Control3-8" parent="lawPanel" node_paths=PackedStringArray("lawpoins") groups=["lawpoints"] instance=ExtResource("6_0wkqx")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -888,10 +943,11 @@ offset_right = 521.0
 offset_bottom = 216.0
 grow_horizontal = 2
 grow_vertical = 2
+lawpoins = [NodePath("../Control3-5"), NodePath("../Control3-6")]
 detail = "法度之下，或生疑端，朝廷须审，以抚士心。"
 context = "律令兵制"
 
-[node name="Control3-9" parent="lawPanel" instance=ExtResource("6_0wkqx")]
+[node name="Control3-9" parent="lawPanel" node_paths=PackedStringArray("lawpoins") groups=["lawpoints"] instance=ExtResource("6_0wkqx")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -904,6 +960,7 @@ offset_right = 518.0
 offset_bottom = 309.0
 grow_horizontal = 2
 grow_vertical = 2
+lawpoins = [NodePath("../Control3-5"), NodePath("../Control3-6")]
 detail = "计策施行，或或难合，明智谋略，当得民心。"
 context = "国防策略法"
 
@@ -927,13 +984,23 @@ offset_bottom = 397.0
 
 [node name="Label2" type="Label" parent="lawPanel/DetailPanel"]
 layout_mode = 0
-offset_left = 4.0
-offset_right = 1267.0
+offset_left = 13.0
+offset_top = 12.0
+offset_right = 1111.0
 offset_bottom = 80.0
 theme_override_font_sizes/font_size = 30
-text = "详细：该政策会英雄
-"
-autowrap_mode = 2
+autowrap_mode = 1
+
+[node name="Button" type="Button" parent="lawPanel/DetailPanel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -164.0
+offset_top = -11.0
+offset_bottom = 96.0
+grow_horizontal = 0
+text = "确认"
 
 [connection signal="gui_input" from="PanelContainer/orderPanel/VBoxContainer/orderVbox/Control_1" to="." method="_on_control_1_gui_input"]
 [connection signal="gui_input" from="PanelContainer/orderPanel/VBoxContainer/orderVbox/Control_2" to="." method="_on_control_2_gui_input"]
@@ -941,3 +1008,4 @@ autowrap_mode = 2
 [connection signal="button_down" from="PanelContainer/orderPanel/VBoxContainer/HBoxContainer/Button" to="." method="_on_button_button_down"]
 [connection signal="tab_button_pressed" from="TabBar" to="." method="_on_tab_bar_tab_button_pressed"]
 [connection signal="tab_changed" from="TabBar" to="." method="_on_tab_bar_tab_changed"]
+[connection signal="button_down" from="lawPanel/DetailPanel/Button" to="." method="_on_law_confire_button_down"]

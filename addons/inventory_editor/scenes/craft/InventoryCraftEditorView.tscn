@@ -16,29 +16,12 @@ script = ExtResource("1")
 
 [node name="Split" type="HSplitContainer" parent="."]
 layout_mode = 2
-offset_right = 1920.0
-offset_bottom = 1080.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 split_offset = -745
 
 [node name="CraftItems" parent="Split" instance=ExtResource("2")]
 layout_mode = 2
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_right = 209.0
-offset_bottom = 1080.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="CraftItemsData" parent="Split" instance=ExtResource("3")]
 layout_mode = 2
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 221.0
-offset_right = 1920.0
-offset_bottom = 1080.0
-grow_horizontal = 1
-grow_vertical = 1

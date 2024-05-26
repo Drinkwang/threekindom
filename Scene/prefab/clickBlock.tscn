@@ -31,6 +31,7 @@ scale = Vector2(5.72, 5.72)
 shape = SubResource("RectangleShape2D_eqsn2")
 
 [node name="Panel" type="Panel" parent="."]
+visible = false
 offset_left = -63.0
 offset_top = 42.0
 offset_right = 63.0

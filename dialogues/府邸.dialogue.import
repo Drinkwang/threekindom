@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_12"
+type="Resource"
+uid="uid://cqlt2sgkuk3na"
+path="res://.godot/imported/府邸.dialogue-d627882b76ced65a0a856d5d94524b77.tres"
+
+[deps]
+
+source_file="res://dialogues/府邸.dialogue"
+dest_files=["res://.godot/imported/府邸.dialogue-d627882b76ced65a0a856d5d94524b77.tres"]
+
+[params]
+
+defaults=true

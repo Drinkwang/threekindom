@@ -5,10 +5,10 @@ extends baseComponent
 @onready var texture_button = $CanvasButton/TextureButton
 var inventoryManager
 const FancyFade = preload("res://addons/transitions/FancyFade.gd")
-const DestinationScene = preload("res://Destination.tscn")
+#const DestinationScene = preload("res://Destination.tscn")
 @export var clear_inventory:bool = true
 
-
+const HOUSE = preload("res://Scene/house.tscn")
 @onready var rule_book = $CanvasBook/ruleBook
 
 
@@ -135,7 +135,7 @@ func final():
 func end():
 	#$title.show()
 	const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
-	FancyFade.new().custom_fade(DestinationScene.instantiate(), 7, DISSOLVE_IMAGE)
+	FancyFade.new().custom_fade(HOUSE.instantiate(), 7, DISSOLVE_IMAGE)
 	pass
 
 func _on_timer_timeout():

@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bit5bobykh81y"]
+[gd_scene load_steps=5 format=3 uid="uid://bit5bobykh81y"]
 
 [ext_resource type="Texture2D" uid="uid://bye5cypeps08s" path="res://Asset/ui/4.png" id="1_5bar7"]
 [ext_resource type="Script" path="res://Scripts/policyItem.gd" id="1_n03eq"]
+[ext_resource type="Texture2D" uid="uid://dkan2jd08uc4p" path="res://addons/inventory_editor/test/test_model/icons/Fail.svg" id="3_7uqjx"]
+[ext_resource type="Texture2D" uid="uid://diy7vtqj0dsb6" path="res://addons/inventory_editor/test/test_model/icons/Success.svg" id="3_c7qtg"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -25,6 +27,24 @@ offset_left = 37.0
 offset_top = 33.0
 offset_right = 348.0
 offset_bottom = 328.0
+expand_mode = 1
+
+[node name="succuss" type="TextureRect" parent="TextureRect"]
+visible = false
+offset_left = 123.0
+offset_top = 116.0
+offset_right = 179.0
+offset_bottom = 172.0
+texture = ExtResource("3_c7qtg")
+expand_mode = 1
+
+[node name="discard" type="TextureRect" parent="TextureRect"]
+visible = false
+offset_left = 122.0
+offset_top = 114.0
+offset_right = 178.0
+offset_bottom = 170.0
+texture = ExtResource("3_7uqjx")
 expand_mode = 1
 
 [node name="CheckBox" type="CheckBox" parent="TextureRect"]

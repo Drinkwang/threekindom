@@ -5,7 +5,15 @@ const STREET = preload("res://Scene/street.tscn")
 const FancyFade = preload("res://addons/transitions/FancyFade.gd")
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
+	
+
+	Transitions.post_transition.connect(post_transition)
+	control.buttonClick.connect(_buttonListClick)
+	_initData()
+		
+	pass # Replace with function body.
+
+func _initData():
 	var initData=[
 	{	
 		"id":"1",
@@ -39,13 +47,25 @@ func _ready():
 	}
 	]
 	control._processList(initData)
+	GameManager.currenceScene=self
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
+	pass
 
-	control.buttonClick.connect(_buttonListClick)
+func post_transition():
+	print("fadedone")
+	_initData()
 
-		
-	pass # Replace with function body.
+	pass
 
 func _buttonListClick(item):
+	if GameManager.story_point<1:
+		#if item.context == "府邸":
+			#const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
+			#FancyFade.new().custom_fade(GOVERNMENT_BUILDING.instantiate(), 7, DISSOLVE_IMAGE)
+		#else:
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"tip")
+			return
+	
 	if item.context == "外出":
 		const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
 		FancyFade.new().custom_fade(STREET.instantiate(), 2, DISSOLVE_IMAGE)
@@ -66,6 +86,7 @@ func showFirstGuild():
 	control.show()
 	control._show_button_5_yellow(0)
 	$"陈群".hide()
+
 	pass
 	
 func showchenqun():

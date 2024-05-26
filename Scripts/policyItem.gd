@@ -1,4 +1,5 @@
 @tool
+class_name policyItem
 extends Control
 @onready var contextUI = $Panel/context
 @onready var check_box = $TextureRect/CheckBox
@@ -40,6 +41,36 @@ func _ready():
 	else:
 		panel.hide()
 
+func setBanStatus(boolvalue):
+	if boolvalue==true:
+		$TextureRect/discard.show()
+		$TextureRect/CheckBox.hide()
+	else:
+		$TextureRect/discard.hide()
+		$TextureRect/CheckBox.show()		
+	pass
+
+var _status
+var canclick:bool=true
+func setStatus(statusvalue):
+	var parent:policyPanel=get_parent() as policyPanel
+	_status=statusvalue
+	if statusvalue==parent.itemStatus.ban:
+		$TextureRect/discard.show()
+		$TextureRect/CheckBox.hide()
+		$TextureRect/succuss.hide()	
+		canclick=false		
+	elif  statusvalue==parent.itemStatus.select:
+		$TextureRect/discard.hide()
+		$TextureRect/CheckBox.hide()	
+		$TextureRect/succuss.show()	
+		canclick=false		
+	else:
+		$TextureRect/discard.hide()
+		$TextureRect/CheckBox.show()
+		$TextureRect/succuss.hide()
+		canclick=true					
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

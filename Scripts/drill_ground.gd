@@ -1,4 +1,4 @@
-extends Node2D 
+extends baseComponent 
 
 
 @onready var control= $Control2
@@ -28,6 +28,10 @@ func _ready():
 
 	control.buttonClick.connect(_buttonListClick)
 
+
+func _initdata():
+	GameManager.currenceScene=self
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
 
 func _buttonListClick(item):
 	if item.context=="离开此地":
