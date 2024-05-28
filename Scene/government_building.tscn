@@ -50,7 +50,6 @@ grow_horizontal = 1
 grow_vertical = 1
 size_flags_horizontal = 4
 size_flags_vertical = 4
-index = 0
 
 [node name="政府文书" parent="." instance=ExtResource("6_ibudm")]
 visible = false

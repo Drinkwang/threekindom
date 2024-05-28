@@ -31,6 +31,7 @@ expand_mode = 1
 
 [node name="succuss" type="TextureRect" parent="TextureRect"]
 visible = false
+layout_mode = 0
 offset_left = 123.0
 offset_top = 116.0
 offset_right = 179.0
@@ -40,6 +41,7 @@ expand_mode = 1
 
 [node name="discard" type="TextureRect" parent="TextureRect"]
 visible = false
+layout_mode = 0
 offset_left = 122.0
 offset_top = 114.0
 offset_right = 178.0

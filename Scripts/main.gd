@@ -136,6 +136,7 @@ func end():
 	#$title.show()
 	const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
 	FancyFade.new().custom_fade(HOUSE.instantiate(), 7, DISSOLVE_IMAGE)
+	
 	pass
 
 func _on_timer_timeout():

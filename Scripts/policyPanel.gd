@@ -4,10 +4,12 @@ extends Control
 class_name policyPanel
 @export var index=0
 @onready var button = $PanelContainer/orderPanel/VBoxContainer/HBoxContainer/Button
+@onready var tab_bar = $TabBar
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+
 	pass # Replace with function body.
 
 
@@ -17,6 +19,10 @@ func _process(delta):
 
 func _initData():
 	index=0
+	if GameManager.have_event["firstLawExecute"]==false:
+		$TextureButton.hide()
+	else:
+		$TextureButton.show()
 	pass
 
 
@@ -111,6 +117,7 @@ func agreelaw():
 	
 	if GameManager.have_event["firstLawExecute"]==false:
 		GameManager.have_event["firstLawExecute"]=true
+		_initData()
 		DialogueManager.show_example_dialogue_balloon(GameManager.currenceScene.dialogue_resource,"第一次指定法律完成")
 	#第一次执行完 执行额外操作
 	#后续法律生效写在这里
@@ -121,7 +128,14 @@ func agreelaw():
 
 enum itemStatus{ban,select,normal}
 
-
+func arrangeDone():
+	_on_exit_button_button_down()
+	
 func _on_law_confire_button_down():
 	excuteLaw(selectLawPoint)
+	pass # Replace with function body.
+
+
+func _on_exit_button_button_down():
+	self.hide()
 	pass # Replace with function body.

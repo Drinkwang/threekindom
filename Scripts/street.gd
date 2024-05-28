@@ -2,19 +2,20 @@ extends baseComponent
 @onready var control = $Control
 const GOVERNMENT_BUILDING = preload("res://Scene/government_building.tscn")
 
-@onready var chenqun = $"陈群"
+const FancyFade = preload("res://addons/transitions/FancyFade.gd")
+var destination:String
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 
 
-
+	_initData()
 	Transitions.post_transition.connect(post_transition)
 	control.buttonClick.connect(_buttonListClick)
-	if GameManager.story_point==0 :
-		GameManager.story_point=GameManager.story_point+1
-		control.hide()
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
+	#if GameManager.story_point==0 :
+	#	GameManager.story_point=GameManager.story_point+1
+	#	control.hide()
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
 	
 	pass # Replace with function body.
 
@@ -59,29 +60,38 @@ func _initData():
 	}]
 	control._processList(initData)
 	
-
-
+const HOUSE = preload("res://Scene/house.tscn")
+const BOULEUTERION = preload("res://Scene/Bouleuterion.tscn")
 func _buttonListClick(item):
-	if GameManager.story_point<1:
+	#if GameManager.story_point<1:
 		#if item.context == "府邸":
 			#const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
 			#FancyFade.new().custom_fade(GOVERNMENT_BUILDING.instantiate(), 7, DISSOLVE_IMAGE)
 		#else:
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"tip")
-			return
-	
+	#		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"tip")
+	#		return
+	if(destination.length()>0):
+		if(destination!=item.context):
+			if(destination=="府邸"):
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"tip")
+			return 
+			
+	const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
+	var scene
 	if item.context == "府邸":
-		const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
-		FancyFade.new().custom_fade(GOVERNMENT_BUILDING.instantiate(), 2, DISSOLVE_IMAGE)
+		scene=GOVERNMENT_BUILDING
 	elif item.context == "自宅":
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"tip")
+		scene=HOUSE
 	elif item.context == "议事厅":
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"tip")
+		scene=BOULEUTERION
 	elif item.context == "商店":
-		print(item)
+		pass
+		#打开商店ui
+		#scene=GOVERNMENT_BUILDING
 	elif item.context == "军事商店":
 		pass
-	
+		##打开商店ui换皮或者换页
+	FancyFade.new().custom_fade(scene.instantiate(), 2, DISSOLVE_IMAGE)
 	pass
 	 # Replace with function body.
 

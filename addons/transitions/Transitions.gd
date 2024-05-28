@@ -155,14 +155,21 @@ func _set_scene(new_scene:Node):
 	# Dispose old scene so we don't get any camera jitters or wierdness.
 	var previous_scene = _get_current_scene() if (_current_scene == null) else _current_scene
 	previous_scene.queue_free()
-	
+	#scene_container.remove_child(previous_scene)
+	#new_scene.request_ready()
+
+	#new_scene.request_ready()
 	if new_scene.get_parent() != scene_container:
 		scene_container.call_deferred("add_child", new_scene)
-		
+	
 	if scene_container == _root:
 		get_tree().call_deferred("set_current_scene", new_scene)
-	
+
 	_current_scene = new_scene
+
+
+	#get_tree().call_deferred("InitBind", new_scene)
+	#可能在这里调用ready或者initData
 
 # Necessary for those buttery-smooth jitter-free fades
 func _take_screenshot():

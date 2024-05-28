@@ -1,0 +1,46 @@
+[gd_scene load_steps=10 format=3 uid="uid://bwooyxcd4m6xs"]
+
+[ext_resource type="Script" path="res://Scripts/house.gd" id="1_52ud4"]
+[ext_resource type="Resource" uid="uid://bmuiri1yjrdba" path="res://dialogues/屋舍.dialogue" id="2_t3ckw"]
+[ext_resource type="Texture2D" uid="uid://cw3r2ypus8512" path="res://Asset/城镇建筑/府邸.jpg" id="3_ys54c"]
+[ext_resource type="Texture2D" uid="uid://dubpvnajhiul8" path="res://Asset/城镇建筑/内屋.jpg" id="4_8lv6j"]
+[ext_resource type="PackedScene" uid="uid://bv5ycsl0a50uq" path="res://Scene/prefab/btnList.tscn" id="5_7heuk"]
+[ext_resource type="PackedScene" uid="uid://dqpklssxni160" path="res://Scene/prefab/clickBlock.tscn" id="6_vd3gv"]
+[ext_resource type="Texture2D" uid="uid://dvaflkru5cks0" path="res://Asset/人物/徐州士族.png" id="7_j3p1s"]
+[ext_resource type="PackedScene" uid="uid://bw52ymer7ngwu" path="res://Scene/prefab/gapanel.tscn" id="8_6j5bg"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_nm4j8"]
+blend_mode = 3
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_52ud4")
+dialogue_resource = ExtResource("2_t3ckw")
+
+[node name="内屋" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_nm4j8")
+position = Vector2(3232, 329)
+scale = Vector2(1.51751, 1.47844)
+texture = ExtResource("3_ys54c")
+
+[node name="内屋2" type="Sprite2D" parent="."]
+position = Vector2(970.125, 522.375)
+scale = Vector2(0.481438, 0.396417)
+texture = ExtResource("4_8lv6j")
+
+[node name="Control" parent="." instance=ExtResource("5_7heuk")]
+metadata/_edit_use_anchors_ = true
+
+[node name="陈群" parent="." instance=ExtResource("6_vd3gv")]
+visible = false
+position = Vector2(1151, 835)
+scale = Vector2(1.6384, 1.6384)
+showName = "陈群"
+dialogue_doubleclick = "second"
+txt2d = ExtResource("7_j3p1s")
+dialogue_resource = ExtResource("2_t3ckw")
+dialogue_start = "点击陈群"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="政务面板" parent="CanvasLayer" instance=ExtResource("8_6j5bg")]
+visible = false

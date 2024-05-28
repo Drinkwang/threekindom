@@ -23,6 +23,8 @@ func _process(_delta):
 
 func _processList(data):
 	var index=0;
+	if($VBoxContainer.get_child_count()>0):
+		return
 	for item in data:
 		if item.visible=="false":
 			continue

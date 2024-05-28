@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 class_name baseComponent
 @export var dialogue_resource:DialogueResource
@@ -7,7 +7,8 @@ class_name baseComponent
 func _ready():
 	pass # Replace with function body.
 
-
+func _enter_tree():
+	self.request_ready()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://n73q2fqj4htr"]
+[gd_scene load_steps=9 format=3 uid="uid://n73q2fqj4htr"]
 
 [ext_resource type="Theme" uid="uid://bklmr3xmk4m5u" path="res://global_theme.tres" id="1_q7yni"]
 [ext_resource type="Script" path="res://Scripts/policyPanel.gd" id="1_vilmr"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://prkfphd2t68q" path="res://Asset/人物/曹豹.png" id="4_ng6dk"]
 [ext_resource type="FontFile" uid="uid://j7hxj2vlcx5l" path="res://Asset/YanShiXiaXingKai-2.ttf" id="5_i8b5x"]
 [ext_resource type="PackedScene" uid="uid://dpw77mhy77404" path="res://Scene/prefab/lawpoint.tscn" id="6_0wkqx"]
+[ext_resource type="Texture2D" uid="uid://dahuc8gb2blc" path="res://0_red.png" id="7_ogak8"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4sj3t"]
 
@@ -117,6 +118,7 @@ layout_mode = 2
 size_flags_horizontal = 10
 
 [node name="TabBar" type="TabBar" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1002,6 +1004,26 @@ offset_bottom = 96.0
 grow_horizontal = 0
 text = "确认"
 
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 643.0
+offset_top = -447.0
+offset_right = 707.0
+offset_bottom = -383.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("7_ogak8")
+texture_pressed = ExtResource("7_ogak8")
+texture_hover = ExtResource("7_ogak8")
+texture_disabled = ExtResource("7_ogak8")
+texture_focused = ExtResource("7_ogak8")
+stretch_mode = 0
+
 [connection signal="gui_input" from="PanelContainer/orderPanel/VBoxContainer/orderVbox/Control_1" to="." method="_on_control_1_gui_input"]
 [connection signal="gui_input" from="PanelContainer/orderPanel/VBoxContainer/orderVbox/Control_2" to="." method="_on_control_2_gui_input"]
 [connection signal="gui_input" from="PanelContainer/orderPanel/VBoxContainer/orderVbox/Control_3" to="." method="_on_control_3_gui_input"]
@@ -1009,3 +1031,4 @@ text = "确认"
 [connection signal="tab_button_pressed" from="TabBar" to="." method="_on_tab_bar_tab_button_pressed"]
 [connection signal="tab_changed" from="TabBar" to="." method="_on_tab_bar_tab_changed"]
 [connection signal="button_down" from="lawPanel/DetailPanel/Button" to="." method="_on_law_confire_button_down"]
+[connection signal="button_down" from="TextureButton" to="." method="_on_exit_button_button_down"]
