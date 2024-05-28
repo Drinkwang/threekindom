@@ -84,7 +84,7 @@ func openLight():
 
 @onready var audio_stream_player_2d = $"Canvas闪电/ColorRect/AnimationPlayer/AudioStreamPlayer2D"
 @onready var canvas_book = $CanvasBook
-@onready var control = $CanvasBook/Control
+
 
 @onready var bgs = $bgs
 func getBook():

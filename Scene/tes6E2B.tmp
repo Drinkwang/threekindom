@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://opkg15c0jmpb"]
+
+[ext_resource type="Script" path="res://Scene/testStreet.gd" id="1_0t2wl"]
+[ext_resource type="Texture2D" uid="uid://vkvgsvn02les" path="res://Asset/城镇建筑/城镇.jpg" id="3_rjssj"]
+[ext_resource type="PackedScene" uid="uid://bv5ycsl0a50uq" path="res://Scene/prefab/btnList.tscn" id="4_p7uys"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_0t2wl")
+dialogue_start = null
+
+[node name="内屋" type="Sprite2D" parent="."]
+position = Vector2(963, 543)
+scale = Vector2(1.91016, 2.02206)
+texture = ExtResource("3_rjssj")
+
+[node name="Control" parent="." instance=ExtResource("4_p7uys")]
+metadata/_edit_use_anchors_ = true

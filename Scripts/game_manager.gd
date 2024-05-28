@@ -2,9 +2,9 @@ extends Node
 
 #GameManager
 var day
-
+const DESTINATION = preload("res://Destination.tscn")
 var intellectual_support #士族支持度 一开始为100 当议会中 会出现支持和不支持以及摇摆 
-
+const MANUAL_TEST = preload("res://ManualTest.tscn")
 #以下三个值均为三股不同力量士族可以篡改的值 其中士族可以把控群众支持度，商贾可以把控金钱，丹阳派系的军官可以把控劳动力
 var people_surrport #群众支持度 数值
 var  coin #金钱 数值

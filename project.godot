@@ -22,6 +22,7 @@ FancyFade="*res://addons/transitions/FancyFade.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 InventoryManager="*res://addons/inventory_editor/InventoryManager.gd"
 GameManager="*res://Scripts/game_manager.gd"
+SceneManager="*res://Scripts/scene_manager.gd"
 
 [display]
 

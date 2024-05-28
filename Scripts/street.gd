@@ -1,6 +1,6 @@
 extends baseComponent
 @onready var control = $Control
-const GOVERNMENT_BUILDING = preload("res://Scene/government_building.tscn")
+#const GOVERNMENT_BUILDING = preload("res://Scene/government_building.tscn")
 
 const FancyFade = preload("res://addons/transitions/FancyFade.gd")
 var destination:String
@@ -12,9 +12,7 @@ func _ready():
 	_initData()
 	Transitions.post_transition.connect(post_transition)
 	control.buttonClick.connect(_buttonListClick)
-	#if GameManager.story_point==0 :
-	#	GameManager.story_point=GameManager.story_point+1
-	#	control.hide()
+
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
 	
 	pass # Replace with function body.
@@ -60,8 +58,8 @@ func _initData():
 	}]
 	control._processList(initData)
 	
-const HOUSE = preload("res://Scene/house.tscn")
-const BOULEUTERION = preload("res://Scene/Bouleuterion.tscn")
+#const HOUSE = preload("res://Scene/house.tscn")
+#const BOULEUTERION = preload("res://Scene/Bouleuterion.tscn")
 func _buttonListClick(item):
 	#if GameManager.story_point<1:
 		#if item.context == "府邸":
@@ -79,11 +77,14 @@ func _buttonListClick(item):
 	const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
 	var scene
 	if item.context == "府邸":
-		scene=GOVERNMENT_BUILDING
+		pass
+		#scene=GOVERNMENT_BUILDING
 	elif item.context == "自宅":
-		scene=HOUSE
+		pass
+		#scene=HOUSE
 	elif item.context == "议事厅":
-		scene=BOULEUTERION
+		pass
+		#scene=BOULEUTERION
 	elif item.context == "商店":
 		pass
 		#打开商店ui

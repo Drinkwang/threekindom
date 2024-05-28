@@ -1,7 +1,7 @@
 extends baseComponent
 
 @onready var control = $Control
-const STREET = preload("res://Scene/street.tscn")
+
 const FancyFade = preload("res://addons/transitions/FancyFade.gd")
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -10,6 +10,10 @@ func _ready():
 	control.buttonClick.connect(_buttonListClick)
 	_initData()
 	
+
+func ban():
+	print("xxxx")
+	pass
 
 func _initData():
 	var initData=[
@@ -53,12 +57,12 @@ func post_transition():
 	print("fadedone")
 	_initData()
 
-#const SLEEP_BLANK = preload("res://Scene/sleepBlank.tscn")
+
 func _buttonListClick(item):
 
 	if item.context == "外出":
 		const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
-		FancyFade.new().custom_fade(STREET.instantiate(), 2, DISSOLVE_IMAGE)
+		FancyFade.new().custom_fade(SceneManager.STREET.instantiate(), 2, DISSOLVE_IMAGE)
 		pass
 	elif item.context == "今日政务":
 		#显示接下来要点击啥
@@ -69,7 +73,9 @@ func _buttonListClick(item):
 	elif item.context == "休息":
 		
 		const DISSOLVE_IMAGE = preload("res://addons/transitions/images/circle-inverted.png")
-		FancyFade.new().custom_fade(load("res://Scene/sleepBlank.tscn").instantiate(), 2, DISSOLVE_IMAGE)
+		Transitions.change_scene_to_instance( SceneManager.SLEEP_BLANK.instantiate(), Transitions.FadeType.Instant)
+	
+		#FancyFade.new().custom_fade(load("res://Scene/sleepBlank.tscn").instantiate(), 2, DISSOLVE_IMAGE)
 	print(item)
 	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.

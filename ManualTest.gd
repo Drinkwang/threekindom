@@ -8,14 +8,14 @@ func _ready():
 	print("xxxx")
 
 func _on_instant_button_pressed():
-	Transitions.change_scene_to_instance( load("res://Destination.tscn").instantiate(), Transitions.FadeType.Instant)
+	Transitions.change_scene_to_instance( GameManager.DESTINATION.instantiate(), Transitions.FadeType.Instant)
 	
 func _on_cross_fade_button_pressed():
-	Transitions.change_scene_to_instance( load("res://Destination.tscn").instantiate(), Transitions.FadeType.CrossFade)
+	Transitions.change_scene_to_instance(  GameManager.DESTINATION.instantiate(), Transitions.FadeType.CrossFade)
 
 func _on_blend_button_pressed():
 	#FancyFade.new().blurry_noise( load("res://Destination.tscn").instantiate())
 	
 	
 	const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
-	FancyFade.new().custom_fade(load("res://Destination.tscn").instantiate(), 2, DISSOLVE_IMAGE)
+	FancyFade.new().custom_fade( GameManager.DESTINATION.instantiate(), 2, DISSOLVE_IMAGE)

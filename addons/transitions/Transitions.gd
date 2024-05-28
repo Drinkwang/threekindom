@@ -161,7 +161,7 @@ func _set_scene(new_scene:Node):
 	#new_scene.request_ready()
 	if new_scene.get_parent() != scene_container:
 		scene_container.call_deferred("add_child", new_scene)
-	
+	#	new_scene.ban()
 	if scene_container == _root:
 		get_tree().call_deferred("set_current_scene", new_scene)
 
