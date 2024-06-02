@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://qv74ebpr4i31"
-path="res://.godot/imported/VonwaonBitmap-16px.ttf-c286484fce477d30a0e555789a647774.fontdata"
+uid="uid://cun6m123qy35r"
+path="res://.godot/imported/VonwaonBitmap-12px.ttf-89761debeaf7e2f54b5e536118d748f7.fontdata"
 
 [deps]
 
-source_file="res://Scene/VonwaonBitmap-16px.ttf"
-dest_files=["res://.godot/imported/VonwaonBitmap-16px.ttf-c286484fce477d30a0e555789a647774.fontdata"]
+source_file="res://Asset/Font/VonwaonBitmap-12px.ttf"
+dest_files=["res://.godot/imported/VonwaonBitmap-12px.ttf-89761debeaf7e2f54b5e536118d748f7.fontdata"]
 
 [params]
 

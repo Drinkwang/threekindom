@@ -12,9 +12,7 @@ func _ready():
 
 @onready var label = $CanvasLayer/Label
 
-func ban():
-	print("xxxx")
-	pass
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
@@ -22,8 +20,14 @@ func _process(delta):
 func post_transition():
 	print("fadedone")
 	$Timer.start()
+	changeAndSave()
+	#存档，数据变化
 	#_initData()
 
+	pass
+
+func changeAndSave():
+	GameManager.Merit_points=GameManager.Merit_points+1;
 	pass
 
 func _on_timer_timeout():

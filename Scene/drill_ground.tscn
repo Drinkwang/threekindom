@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cqtqwhkut2gk2" path="res://Asset/城镇建筑/演武场.jpg" id="2_h7yqs"]
 [ext_resource type="Texture2D" uid="uid://yxnjmxcqgl2u" path="res://addons/inventory_example/textures/inventories/Chest.png" id="3_dk3wi"]
 [ext_resource type="PackedScene" uid="uid://bhu5hq8kx8pov" path="res://addons/inventory_example/inventories/simple/InventoryUI.tscn" id="4_me56b"]
-[ext_resource type="FontFile" uid="uid://qv74ebpr4i31" path="res://Scene/VonwaonBitmap-16px.ttf" id="7_7hivm"]
+[ext_resource type="FontFile" uid="uid://qv74ebpr4i31" path="res://Asset/Font/VonwaonBitmap-16px.ttf" id="7_7hivm"]
 [ext_resource type="PackedScene" uid="uid://bv5ycsl0a50uq" path="res://Scene/prefab/btnList.tscn" id="8_68nqe"]
 
 [sub_resource type="Animation" id="Animation_0bk4q"]

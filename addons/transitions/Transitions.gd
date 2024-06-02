@@ -157,7 +157,9 @@ func _set_scene(new_scene:Node):
 	previous_scene.queue_free()
 	#scene_container.remove_child(previous_scene)
 	#new_scene.request_ready()
-
+	if(new_scene.readyInitData!=null):
+		new_scene.readyInitData=false
+	#还是有必要的，不让其没加载完就出来
 	#new_scene.request_ready()
 	if new_scene.get_parent() != scene_container:
 		scene_container.call_deferred("add_child", new_scene)
@@ -166,7 +168,6 @@ func _set_scene(new_scene:Node):
 		get_tree().call_deferred("set_current_scene", new_scene)
 
 	_current_scene = new_scene
-
 
 	#get_tree().call_deferred("InitBind", new_scene)
 	#可能在这里调用ready或者initData

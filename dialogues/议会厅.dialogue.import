@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_12"
+type="Resource"
+uid="uid://cjbqxteqnpnrd"
+path="res://.godot/imported/议会厅.dialogue-e3988c0b5147964813b0abe944c965f0.tres"
+
+[deps]
+
+source_file="res://dialogues/议会厅.dialogue"
+dest_files=["res://.godot/imported/议会厅.dialogue-e3988c0b5147964813b0abe944c965f0.tres"]
+
+[params]
+
+defaults=true

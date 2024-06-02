@@ -10,9 +10,10 @@ var people_surrport #群众支持度 数值
 var  coin #金钱 数值
 var labor_force #劳动力 可以当作军队进行使用 劳动力转换成军队需要消耗值 骑兵 步兵 弓兵
 
-var Merit_points:int
+var Merit_points:int=3
 var currenceScene
 var have_event = {
+	"firstmeetchenqun":false,
 	"firsthouse": false,
 	"firststreet": false,
 	"firstgovernment":false,

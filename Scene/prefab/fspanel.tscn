@@ -1,0 +1,77 @@
+[gd_scene load_steps=8 format=3 uid="uid://ervc6220fre7"]
+
+[ext_resource type="Script" path="res://Scripts/fspanel.gd" id="1_k5460"]
+[ext_resource type="Theme" uid="uid://bklmr3xmk4m5u" path="res://global_theme.tres" id="2_k7um3"]
+[ext_resource type="Script" path="res://clData.gd" id="2_wmksk"]
+[ext_resource type="PackedScene" uid="uid://dbcgqhwyxtbf5" path="res://Scene/prefab/Factionalsupport.tscn" id="3_lh6lm"]
+
+[sub_resource type="Resource" id="Resource_7rcap"]
+script = ExtResource("2_wmksk")
+_name = "外地派(丹阳)"
+_num_all = 5
+_num_rt = 0
+isshow = true
+
+[sub_resource type="Resource" id="Resource_cfyui"]
+script = ExtResource("2_wmksk")
+_name = "本土派(徐州)"
+_num_all = 5
+_num_rt = 0
+isshow = true
+
+[sub_resource type="Resource" id="Resource_o2h3y"]
+script = ExtResource("2_wmksk")
+_name = "豪族派(糜家)"
+_num_all = 0
+_num_rt = 0
+isshow = false
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -7.0
+offset_right = -1.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k5460")
+datas = Array[ExtResource("2_wmksk")]([SubResource("Resource_7rcap"), SubResource("Resource_cfyui"), SubResource("Resource_o2h3y")])
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -207.0
+offset_right = 259.0
+grow_vertical = 0
+pivot_offset = Vector2(630.615, 267.699)
+theme = ExtResource("2_k7um3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 19
+text = "议政人数面板"
+horizontal_alignment = 1
+text_overrun_behavior = 4
+
+[node name="Label2" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 12
+text = "(括弧内为摇摆人数)"
+horizontal_alignment = 1
+text_overrun_behavior = 4
+
+[node name="Control" parent="PanelContainer/VBoxContainer" instance=ExtResource("3_lh6lm")]
+layout_mode = 2
+
+[node name="Control" parent="PanelContainer/VBoxContainer/Control" instance=ExtResource("3_lh6lm")]
+layout_mode = 2

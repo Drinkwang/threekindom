@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://prkfphd2t68q" path="res://Asset/人物/曹豹.png" id="4_ng6dk"]
 [ext_resource type="FontFile" uid="uid://j7hxj2vlcx5l" path="res://Asset/YanShiXiaXingKai-2.ttf" id="5_i8b5x"]
 [ext_resource type="PackedScene" uid="uid://dpw77mhy77404" path="res://Scene/prefab/lawpoint.tscn" id="6_0wkqx"]
-[ext_resource type="Texture2D" uid="uid://dahuc8gb2blc" path="res://0_red.png" id="7_ogak8"]
+[ext_resource type="Texture2D" uid="uid://dahuc8gb2blc" path="res://Asset/other/0_red.png" id="7_ogak8"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4sj3t"]
 
@@ -437,7 +437,7 @@ offset_right = -428.0
 offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
-_color = 2
+_color = 1
 context = "促进商贸"
 
 [node name="Line2D3" type="Line2D" parent="lawPanel/Control2-1"]
@@ -473,7 +473,7 @@ offset_right = -169.0
 offset_bottom = -35.0
 grow_horizontal = 2
 grow_vertical = 2
-_color = 2
+_color = 1
 lawpoins = [NodePath("../Control2-1")]
 context = "诚信经营"
 
@@ -500,7 +500,7 @@ offset_right = -173.0
 offset_bottom = 60.0
 grow_horizontal = 2
 grow_vertical = 2
-_color = 2
+_color = 1
 lawpoins = [NodePath("../Control2-1")]
 context = "行业准则"
 
@@ -527,7 +527,7 @@ offset_right = 69.0
 offset_bottom = 5.0
 grow_horizontal = 2
 grow_vertical = 2
-_color = 2
+_color = 1
 lawpoins = [NodePath("../Control2-2"), NodePath("../Control2-3")]
 context = "禁止军商"
 
@@ -564,7 +564,7 @@ offset_right = 293.0
 offset_bottom = -68.0
 grow_horizontal = 2
 grow_vertical = 2
-_color = 2
+_color = 1
 lawpoins = [NodePath("../Control2-4")]
 context = "商业税收法"
 
@@ -611,7 +611,7 @@ offset_right = 296.0
 offset_bottom = 54.0
 grow_horizontal = 2
 grow_vertical = 2
-_color = 2
+_color = 1
 lawpoins = [NodePath("../Control2-4")]
 context = "货币法"
 
@@ -658,7 +658,7 @@ offset_right = 513.0
 offset_bottom = -101.0
 grow_horizontal = 2
 grow_vertical = 2
-_color = 2
+_color = 1
 lawpoins = [NodePath("../Control2-5"), NodePath("../Control2-6")]
 detail = "竞商兼并，或致市场垄断，朝廷须干预，以保市场竞争。"
 context = "商业竞争法"
@@ -676,7 +676,7 @@ offset_right = 515.0
 offset_bottom = -24.0
 grow_horizontal = 2
 grow_vertical = 2
-_color = 2
+_color = 1
 lawpoins = [NodePath("../Control2-5"), NodePath("../Control2-6")]
 detail = "商货流通，或生纷争，权宜之计，当有施为。"
 context = "商品流通法"
@@ -694,7 +694,7 @@ offset_right = 515.0
 offset_bottom = 58.0
 grow_horizontal = 2
 grow_vertical = 2
-_color = 2
+_color = 1
 lawpoins = [NodePath("../Control2-5"), NodePath("../Control2-6")]
 detail = "商德不正，损人利己，须重立诚信，以保商业之长久发展。"
 context = "商业诚信法"
@@ -966,7 +966,7 @@ lawpoins = [NodePath("../Control3-5"), NodePath("../Control3-6")]
 detail = "计策施行，或或难合，明智谋略，当得民心。"
 context = "国防策略法"
 
-[node name="Label" type="Label" parent="lawPanel"]
+[node name="PointLabel" type="Label" parent="lawPanel"]
 layout_mode = 0
 offset_left = -604.0
 offset_top = -355.0

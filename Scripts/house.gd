@@ -8,12 +8,15 @@ func _ready():
 
 	Transitions.post_transition.connect(post_transition)
 	control.buttonClick.connect(_buttonListClick)
-	_initData()
+	if GameManager.have_event["firstmeetchenqun"]==false:
+		control.hide()
+	else:
+		control.show()
+	super._ready()
 	
+	#如果没见过陈登把control隐藏，如果见过了陈登 control不隐藏
 
-func ban():
-	print("xxxx")
-	pass
+
 
 func _initData():
 	var initData=[
@@ -50,7 +53,10 @@ func _initData():
 	]
 	control._processList(initData)
 	GameManager.currenceScene=self
-	DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
+	
+	if(GameManager.have_event["firstmeetchenqun"]==false):
+		GameManager.have_event["firstmeetchenqun"]=true
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
 	
 
 func post_transition():

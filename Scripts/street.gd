@@ -1,7 +1,5 @@
 extends baseComponent
 @onready var control = $Control
-#const GOVERNMENT_BUILDING = preload("res://Scene/government_building.tscn")
-
 const FancyFade = preload("res://addons/transitions/FancyFade.gd")
 var destination:String
 
@@ -9,19 +7,21 @@ var destination:String
 func _ready():
 
 
-	_initData()
+	super._ready()
 	Transitions.post_transition.connect(post_transition)
 	control.buttonClick.connect(_buttonListClick)
 
-	DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
+
 	
 	pass # Replace with function body.
 
 
 func post_transition():
-	print("fadedone")
+	#print("fadedone")
 	_initData()
-
+	if(GameManager.have_event["firststreet"]==false):
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
+		GameManager.have_event["firststreet"]=true
 	pass
 
 func _initData():
@@ -75,24 +75,25 @@ func _buttonListClick(item):
 			return 
 			
 	const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
-	var scene
+
 	if item.context == "府邸":
-		pass
-		#scene=GOVERNMENT_BUILDING
+		SceneManager.changeScene(SceneManager.roomNode.GOVERNMENT_BUILDING,2)
 	elif item.context == "自宅":
-		pass
+		SceneManager.changeScene(SceneManager.roomNode.HOUSE,2)
 		#scene=HOUSE
 	elif item.context == "议事厅":
+		SceneManager.changeScene(SceneManager.roomNode.BOULEUTERION,2)
 		pass
 		#scene=BOULEUTERION
 	elif item.context == "商店":
+	
 		pass
 		#打开商店ui
 		#scene=GOVERNMENT_BUILDING
 	elif item.context == "军事商店":
 		pass
 		##打开商店ui换皮或者换页
-	FancyFade.new().custom_fade(scene.instantiate(), 2, DISSOLVE_IMAGE)
+	#FancyFade.new().custom_fade(scene, 2, DISSOLVE_IMAGE)
 	pass
 	 # Replace with function body.
 

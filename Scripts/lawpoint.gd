@@ -7,6 +7,7 @@ var isUnlock:bool=false
 const _0_RED = preload("res://Scene/0_red.png")
 const _1_BLUE = preload("res://Scene/1_blue.png")
 const _2_GREEN = preload("res://Scene/2_green.png")
+@export var costPoint:int=3
 @export var _color:lawcolor
 @export var lawpoins:Array[lawpoint]
 @export var detail:String

@@ -28,6 +28,7 @@ scale = Vector2(0.481438, 0.396417)
 texture = ExtResource("3_fgjbl")
 
 [node name="Control" parent="." instance=ExtResource("4_ixb7g")]
+visible = false
 metadata/_edit_use_anchors_ = true
 
 [node name="陈群" parent="." instance=ExtResource("7_7mriv")]

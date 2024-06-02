@@ -1,0 +1,21 @@
+class_name factionalsupport
+extends Control
+
+@onready var label = $PanelContainer/MarginContainer/Label
+@onready var panel_container = $PanelContainer
+@onready var texture_rect_2 = $TextureRect2
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+	
+	
+func init(data:cldata):
+	pass
+	label.text=data._name+":%d"%data._num_all+"(%d)"%data._num_rt
+	#self._set_size(Vector2(panel_container.size.x+texture_rect_2.size.x,texture_rect_2.size.y+20))
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass

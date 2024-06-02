@@ -5,6 +5,7 @@ class_name policyPanel
 @export var index=0
 @onready var button = $PanelContainer/orderPanel/VBoxContainer/HBoxContainer/Button
 @onready var tab_bar = $TabBar
+@onready var point_label = $lawPanel/PointLabel
 
 
 # Called when the node enters the scene tree for the first time.
@@ -24,7 +25,12 @@ func _initData():
 	else:
 		$TextureButton.show()
 	pass
+	point_label.text="点数:%s"%GameManager.Merit_points
+	refreshLawPoint()
 
+func refreshLawPoint():
+	get_tree().call_group("lawpoints","_initData")
+	
 
 func _on_tab_bar_tab_changed(tab):
 	if tab==0:
@@ -106,12 +112,17 @@ func preLaw(value:lawpoint):
 	pass
 	
 func excuteLaw(value:lawpoint):
+	if(GameManager.Merit_points<value.costPoint):
+		DialogueManager.show_example_dialogue_balloon(GameManager.currenceScene.dialogue_resource,"你的政策点不够")	
+		return
+		
 	if selectLawPoint!=null:
 		DialogueManager.show_example_dialogue_balloon(GameManager.currenceScene.dialogue_resource,"确认法律")
 	else:
 		DialogueManager.show_example_dialogue_balloon(GameManager.currenceScene.dialogue_resource,"当前没有法律可执行")
 
 func agreelaw():
+	GameManager.Merit_points=GameManager.Merit_points-selectLawPoint.costPoint
 	selectLawPoint.isUnlock=true
 	selectLawPoint._initData()
 	

@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://bx77tf2wbqmk0" path="res://Scene/prefab/blink.tscn" id="10_qif51"]
 [ext_resource type="PackedScene" uid="uid://bv5ycsl0a50uq" path="res://Scene/prefab/btnList.tscn" id="11_j50k8"]
 [ext_resource type="PackedScene" uid="uid://cw66yiofu8q6f" path="res://Scene/prefab/RuleBook.tscn" id="12_phx3k"]
-[ext_resource type="FontFile" uid="uid://qv74ebpr4i31" path="res://Scene/VonwaonBitmap-16px.ttf" id="14_vuyqr"]
+[ext_resource type="FontFile" uid="uid://qv74ebpr4i31" path="res://Asset/Font/VonwaonBitmap-16px.ttf" id="14_vuyqr"]
 
 [sub_resource type="Animation" id="Animation_0bk4q"]
 resource_name = "闪烁"
@@ -123,7 +123,6 @@ dialogue_resource = ExtResource("2_cebyh")
 dialogue_start = "蜡烛"
 
 [node name="BackBufferCopy" type="BackBufferCopy" parent="."]
-visible = false
 copy_mode = 2
 
 [node name="blank" type="Sprite2D" parent="BackBufferCopy"]
