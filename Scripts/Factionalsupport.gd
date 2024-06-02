@@ -1,5 +1,5 @@
 class_name factionalsupport
-extends Control
+extends PanelContainer
 
 @onready var label = $PanelContainer/MarginContainer/Label
 @onready var panel_container = $PanelContainer
