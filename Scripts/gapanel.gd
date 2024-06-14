@@ -1,0 +1,49 @@
+@tool
+extends Control
+
+@export_multiline var contextEX:String:
+	get:
+		return contextEX
+	set(value): 
+		contextEX=value
+		if(context!=null):
+			context.text=contextEX
+
+@export var titleEX:String:
+	get:
+		return titleEX
+	set(value):
+		titleEX=value
+		if(title!=null):
+			title.text=titleEX
+		
+@onready var title = $PanelContainer/MarginContainer/VBoxContainer/title
+@onready var context = $PanelContainer/MarginContainer/VBoxContainer/context
+
+
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	if(context!=null):
+		context.text=contextEX
+	if(title!=null):
+		title.text=titleEX		
+	pass # Replace with function body.
+
+
+
+func showContext():
+	title.text=context
+	
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+
+
+func _on_button_button_down():
+	self.hide()
+	pass # Replace with function body.

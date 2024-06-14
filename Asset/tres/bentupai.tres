@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="cldata" load_steps=2 format=3 uid="uid://dh6qm466adpma"]
+
+[ext_resource type="Script" path="res://clData.gd" id="1_wkftk"]
+
+[resource]
+script = ExtResource("1_wkftk")
+_name = "本土派(徐州)"
+_num_all = 5
+_num_rt = 0
+_support_rate = 100
+isshow = true
+index = 1

@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://bw52ymer7ngwu"]
+[gd_scene load_steps=3 format=3 uid="uid://bw52ymer7ngwu"]
 
+[ext_resource type="Script" path="res://Scripts/gapanel.gd" id="1_5p17t"]
 [ext_resource type="Theme" uid="uid://bklmr3xmk4m5u" path="res://global_theme.tres" id="2_3oumb"]
 
 [node name="Control" type="Control"]
@@ -9,6 +10,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_5p17t")
+contextEX = "1.前往xxx并
+2.前往xxx并
+3.前往xxx并
+4.前往xxx并
+5.前往xxx并"
+titleEX = "当前还需要处理的政务："
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -43,7 +51,7 @@ text = "当前还需要处理的政务："
 [node name="Control2" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="title2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="context" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"HeaderLarge"
 theme_override_font_sizes/font_size = 48
@@ -73,3 +81,5 @@ text = "确认信息"
 [node name="Control3" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
+
+[connection signal="button_down" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Button" to="." method="_on_button_button_down"]

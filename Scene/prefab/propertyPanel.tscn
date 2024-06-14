@@ -1,0 +1,62 @@
+[gd_scene load_steps=5 format=3 uid="uid://ghiim2lkqkbe"]
+
+[ext_resource type="Script" path="res://Scripts/propertyPanel.gd" id="1_jagoj"]
+[ext_resource type="Texture2D" uid="uid://bsfu73v0tfsj" path="res://Asset/coin.png" id="1_twhjh"]
+[ext_resource type="Texture2D" uid="uid://dhma0tmf7e0l5" path="res://Asset/heart.png" id="2_uwbjd"]
+[ext_resource type="Texture2D" uid="uid://civ08hwkg8mpx" path="res://Asset/labor.png" id="3_6df8f"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_jagoj")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 254.0
+offset_bottom = 289.0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 10
+columns = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+texture = ExtResource("1_twhjh")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="coinNum" type="Label" parent="PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 66
+text = "0"
+
+[node name="TextureRect2" type="TextureRect" parent="PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+texture = ExtResource("2_uwbjd")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="heartNum" type="Label" parent="PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 66
+text = "0"
+
+[node name="TextureRect3" type="TextureRect" parent="PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+texture = ExtResource("3_6df8f")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="laborNum" type="Label" parent="PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 66
+text = "0"

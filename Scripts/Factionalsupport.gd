@@ -1,9 +1,9 @@
 class_name factionalsupport
 extends PanelContainer
+@onready var label = $MarginContainer/Label
 
-@onready var label = $PanelContainer/MarginContainer/Label
-@onready var panel_container = $PanelContainer
-@onready var texture_rect_2 = $TextureRect2
+
+@onready var texture_rect_2 = $MarginContainer/Label/TextureRect2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

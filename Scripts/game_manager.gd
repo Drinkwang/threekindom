@@ -10,6 +10,14 @@ var people_surrport #群众支持度 数值
 var  coin #金钱 数值
 var labor_force #劳动力 可以当作军队进行使用 劳动力转换成军队需要消耗值 骑兵 步兵 弓兵
 
+@export var datas:Array[cldata] 
+
+
+const HAOZUPAI = preload("res://Asset/tres/haozupai.tres")
+const BENTUPAI = preload("res://Asset/tres/bentupai.tres")
+const WAIDIPAI = preload("res://Asset/tres/waidipai.tres")
+
+
 var Merit_points:int=3
 var currenceScene
 var have_event = {
@@ -47,6 +55,8 @@ var policy_Item=[
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#HAOZUPAI._name="ddd"
+	#添加三个元素
 	pass
 
 

@@ -192,15 +192,14 @@ context = "士族生存法则
 dialogue_resource = ExtResource("2_cebyh")
 
 [node name="title" type="RichTextLabel" parent="."]
-visible = false
 offset_left = -9.0
 offset_top = 76.0
 offset_right = 1906.0
-offset_bottom = 312.0
+offset_bottom = 555.0
 theme_override_fonts/normal_font = ExtResource("14_vuyqr")
 theme_override_font_sizes/normal_font_size = 200
 bbcode_enabled = true
-text = "[center][rainbow]阴[/rainbow][wave amp=50 frep=100]三国[/wave][rainbow]谋论[/rainbow]-[tornado]徐州篇[/tornado][/center]"
+text = "[center][rainbow]阴[/rainbow][wave amp=50 frep=100]三国[/wave][rainbow]谋论[/rainbow]-[tornado]徐州篇[/tornado][/center][color=#ff0000]Red Text[/color]"
 tab_size = 6
 
 [node name="Control2" parent="." instance=ExtResource("11_j50k8")]

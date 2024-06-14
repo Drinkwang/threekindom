@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddo166anpds0n"]
+
+[ext_resource type="Script" path="res://Scripts/FactionalNum.gd" id="1_wdq5u"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yq7q3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2mory"]
+bg_color = Color(0.996078, 0.317647, 0.470588, 1)
+
+[node name="PanelContainer" type="PanelContainer"]
+offset_right = 235.0
+offset_bottom = 65.0
+theme_type_variation = &"PanelContainer_new"
+theme_override_styles/panel = SubResource("StyleBoxFlat_yq7q3")
+script = ExtResource("1_wdq5u")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "外地派系(丹阳)-支持度："
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_2mory")
+value = 100.0

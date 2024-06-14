@@ -10,27 +10,10 @@ extends Control
 #var _num_rt:int 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
+	var d:cldata=cldata.new()
+	#d.
 	_processList()
-	var initData=[
-	{	
-		"id":"1",
-		"context":"执行政策", #前往小道通向议事厅 
-		"visible":"true"
-	},
-	{
-		"id":"2",
-		"context":"召见手下", #前往花园并通向小道
-		"visible":"true"
-	},
-	{
-		"id":"3",
-		"context":"离开",#前往大街
-		"visible":"true"
-	},
 
-	]
-	pass # Replace with function body.
 @onready var v_box_container = $PanelContainer/VBoxContainer
 
 func _processList():

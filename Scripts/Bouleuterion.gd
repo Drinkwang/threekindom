@@ -1,10 +1,14 @@
 extends baseComponent
 
 @onready var faction = $CanvasBook/faction
+@onready var control =$CanvasBook/Control
+@onready var yishimianban = $CanvasBook/yishimianban
 
-@onready var control = $Control
 const FancyFade = preload("res://addons/transitions/FancyFade.gd")
 
+
+#议事详细
+@onready var parliamentary_detail = $CanvasBook/parliamentaryDetail
 
 	#var initData=[
 	#{	
@@ -34,7 +38,7 @@ func post_transition():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
 
 	Transitions.post_transition.connect(post_transition)
 	control.buttonClick.connect(_buttonListClick)
@@ -69,17 +73,18 @@ func _initData():
 	},
 
 	]
-	if GameManager.have_event["firstPolicyOpShow"]==true:
-		control._processList(initData)
+	#if GameManager.have_event["firstBoleuterion"]==true:
+	control._processList(initData)
 		
 
 
 func _buttonListClick(item):
-	if item.context == "执行政策":
+	if item.context == "开始议事":
 		if(GameManager.have_event["firstgovermentTip"]==false):
 			GameManager.have_event["firstgovermentTip"]=true
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"enterpolicy")
-	elif item.context == "召见手下":
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"开始议事")
+	elif item.context == "议事说明":
+		yishimianban.show()
 		#显示接下来要点击啥
 		pass
 	elif item.context == "离开":
@@ -94,6 +99,16 @@ func _buttonListClick(item):
 
 
 
+func showGuild():
+	$CanvasBook/Node2D.show()
+	$"CanvasBook/Node2D/5Yellow/AnimationPlayer".play("YELLOWGUILD")
+func hideGuild():
+	$CanvasBook/Node2D.hide()
+
+func showResult():
+	parliamentary_detail.show()
+	parliamentary_detail.enter()
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

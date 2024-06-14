@@ -1,14 +1,18 @@
-[gd_scene load_steps=13 format=3 uid="uid://v5b54ln6hhwc"]
+[gd_scene load_steps=20 format=3 uid="uid://v5b54ln6hhwc"]
 
 [ext_resource type="Script" path="res://Scripts/Bouleuterion.gd" id="1_q6noc"]
 [ext_resource type="Texture2D" uid="uid://bd7pbsoaqxx8c" path="res://Asset/城镇建筑/议事厅.jpg" id="2_7y48q"]
 [ext_resource type="Resource" uid="uid://bte38wl3etklk" path="res://dialogues/灵堂.dialogue" id="2_56kjn"]
+[ext_resource type="Resource" uid="uid://cjbqxteqnpnrd" path="res://dialogues/议会厅.dialogue" id="2_who4l"]
 [ext_resource type="AudioStream" uid="uid://brg1ltppwfyim" path="res://Asset/sound/闪电.mp3" id="3_2bulx"]
 [ext_resource type="PackedScene" uid="uid://ervc6220fre7" path="res://Scene/prefab/fspanel.tscn" id="6_mjg5e"]
+[ext_resource type="PackedScene" uid="uid://cda4765v12icm" path="res://Scene/prefab/parliamentary.tscn" id="7_1m0jr"]
+[ext_resource type="PackedScene" uid="uid://v5uv2iy3evkb" path="res://Scene/prefab/numPanel.tscn" id="7_3iegf"]
+[ext_resource type="Texture2D" uid="uid://rmaibsw1yjqd" path="res://Asset/城镇建筑/5_yellow.png" id="10_o7uio"]
+[ext_resource type="PackedScene" uid="uid://bw52ymer7ngwu" path="res://Scene/prefab/gapanel.tscn" id="11_gm57k"]
 [ext_resource type="Texture2D" uid="uid://yxnjmxcqgl2u" path="res://addons/inventory_example/textures/inventories/Chest.png" id="12_h1k1t"]
 [ext_resource type="PackedScene" uid="uid://bhu5hq8kx8pov" path="res://addons/inventory_example/inventories/simple/InventoryUI.tscn" id="13_2g6k4"]
 [ext_resource type="PackedScene" uid="uid://cw66yiofu8q6f" path="res://Scene/prefab/RuleBook.tscn" id="14_7v3lb"]
-[ext_resource type="FontFile" uid="uid://qv74ebpr4i31" path="res://Asset/Font/VonwaonBitmap-16px.ttf" id="15_sj2q8"]
 [ext_resource type="PackedScene" uid="uid://bv5ycsl0a50uq" path="res://Scene/prefab/btnList.tscn" id="16_ba2uq"]
 
 [sub_resource type="Animation" id="Animation_0bk4q"]
@@ -32,8 +36,47 @@ _data = {
 "闪烁": SubResource("Animation_0bk4q")
 }
 
+[sub_resource type="Animation" id="Animation_s45lu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -283.11)]
+}
+
+[sub_resource type="Animation" id="Animation_rms3s"]
+resource_name = "YELLOWGUILD"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -5), Vector2(0, 10), Vector2(0, 6.66666), Vector2(0, 3.33331), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4gull"]
+_data = {
+"RESET": SubResource("Animation_s45lu"),
+"YELLOWGUILD": SubResource("Animation_rms3s")
+}
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_q6noc")
+dialogue_resource = ExtResource("2_who4l")
+dialogue_start = "第一次开始议事"
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 1.5
@@ -97,7 +140,16 @@ metadata/_edit_use_anchors_ = true
 
 [node name="CanvasBook" type="CanvasLayer" parent="."]
 
+[node name="parliamentaryDetail" parent="CanvasBook" instance=ExtResource("7_1m0jr")]
+
+[node name="Control2" parent="CanvasBook" instance=ExtResource("7_3iegf")]
+
 [node name="faction" parent="CanvasBook" instance=ExtResource("6_mjg5e")]
+offset_left = 5.0
+offset_top = -180.0
+offset_right = 5.0
+offset_bottom = -180.0
+size_flags_horizontal = 4
 
 [node name="ruleBook" parent="CanvasBook" instance=ExtResource("14_7v3lb")]
 visible = false
@@ -113,19 +165,39 @@ context = "士族生存法则
 6.如果一个地方存在本地/士族，本地士族如果吞并不成就会将外来士族干掉，士族对外论派，对内论系，当士族解决掉外部矛盾时，自身会因为内部矛盾分成多股势力"
 dialogue_resource = ExtResource("2_56kjn")
 
-[node name="title" type="RichTextLabel" parent="."]
+[node name="yishimianban" parent="CanvasBook" instance=ExtResource("11_gm57k")]
 visible = false
-offset_left = -9.0
-offset_top = 76.0
-offset_right = 1906.0
-offset_bottom = 312.0
-theme_override_fonts/normal_font = ExtResource("15_sj2q8")
-theme_override_font_sizes/normal_font_size = 200
-bbcode_enabled = true
-text = "[center][rainbow]阴[/rainbow][wave amp=50 frep=100]三国[/wave][rainbow]谋论[/rainbow]-[tornado]徐州篇[/tornado][/center]"
-tab_size = 6
+offset_left = 9.0
+offset_top = 5.0
+offset_right = 9.0
+offset_bottom = 5.0
+contextEX = "仪事是主公和管辖地代表以及臣子商议的过程，根据手下各大派系的支持度得出该法案是否通过的重要流程！
+所以此处根据面板数据，知道大体会支持自己的人数和反对自己的人数来确定法案是否通过，而摇摆人数指的是可能会支持，也可能会反对的人
 
-[node name="Control" parent="." instance=ExtResource("16_ba2uq")]
+虽然说在三国时代，主公有权决定一切，是绝对的独裁者，但实际上如果想要政策完美落实，主公在外宣布一项‘独裁’的政策时，其实政策已经在内部经过充分的协商，并得到派系大多数人的支持和认同，当然，主公有权在政策发布之前约见那些派系领袖，用利益或者威压逼迫他们做出符合自己认知的决策！
+
+主公可以在自己的府邸约见代表，来让政策更容易通过！"
+titleEX = "议事面板说明:"
+
+[node name="Control" parent="CanvasBook" instance=ExtResource("16_ba2uq")]
+offset_left = -1.0
+offset_top = -3.0
+offset_right = 39.0
+offset_bottom = 37.0
+
+[node name="Node2D" type="Node2D" parent="CanvasBook"]
 visible = false
+position = Vector2(400, 811)
+
+[node name="5Yellow" type="Sprite2D" parent="CanvasBook/Node2D"]
+position = Vector2(0, -283.11)
+rotation = -1.5708
+scale = Vector2(4, 4)
+texture = ExtResource("10_o7uio")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasBook/Node2D/5Yellow"]
+libraries = {
+"": SubResource("AnimationLibrary_4gull")
+}
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

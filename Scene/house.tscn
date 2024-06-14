@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bwooyxcd4m6xs"]
+[gd_scene load_steps=11 format=3 uid="uid://bwooyxcd4m6xs"]
 
 [ext_resource type="Script" path="res://Scripts/house.gd" id="1_5nyes"]
 [ext_resource type="Resource" uid="uid://bmuiri1yjrdba" path="res://dialogues/屋舍.dialogue" id="2_6rtve"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dvaflkru5cks0" path="res://Asset/人物/徐州士族.png" id="6_ado0c"]
 [ext_resource type="PackedScene" uid="uid://dqpklssxni160" path="res://Scene/prefab/clickBlock.tscn" id="7_7mriv"]
 [ext_resource type="PackedScene" uid="uid://bw52ymer7ngwu" path="res://Scene/prefab/gapanel.tscn" id="8_2ady6"]
+[ext_resource type="PackedScene" uid="uid://ghiim2lkqkbe" path="res://Scene/prefab/propertyPanel.tscn" id="9_mf3v8"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_nm4j8"]
 blend_mode = 3
@@ -45,3 +46,10 @@ dialogue_start = "点击陈群"
 
 [node name="政务面板" parent="CanvasLayer" instance=ExtResource("8_2ady6")]
 visible = false
+
+[node name="Control2" parent="." instance=ExtResource("9_mf3v8")]
+visible = false
+offset_left = 1657.0
+offset_top = 11.0
+offset_right = 1697.0
+offset_bottom = 51.0

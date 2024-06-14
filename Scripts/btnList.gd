@@ -67,6 +67,7 @@ func _show_button_5_yellow(index):
 	animation_player.play("YELLOWGUILD")
 	pass
 
+
 func _button_ation(item,index):
 	_show_button_5_yellow(index)
 	buttonClick.emit(item)
