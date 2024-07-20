@@ -1,0 +1,130 @@
+[gd_scene load_steps=4 format=3 uid="uid://dcydwatjg50hl"]
+
+[ext_resource type="Script" path="res://Scripts/DiskInBattle.gd" id="1_0q3sx"]
+[ext_resource type="Texture2D" uid="uid://cale1h2nqfdrh" path="res://Asset/ui/circle.png" id="1_upy2s"]
+[ext_resource type="Texture2D" uid="uid://dmqvx1ja8yft7" path="res://Asset/other/剪刀.png" id="3_8nnbh"]
+
+[node name="Control" type="Control" node_paths=PackedStringArray("datas")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 300.0
+offset_bottom = 182.0
+script = ExtResource("1_0q3sx")
+datas = [NodePath("NoDamage"), NodePath("LitterDamage"), NodePath("MiddleDamage"), NodePath("BigDamage")]
+
+[node name="NoDamage" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+scale = Vector2(5, 5)
+value = 100.0
+fill_mode = 5
+texture_progress = ExtResource("1_upy2s")
+tint_under = Color(0.981098, 0.850573, 0.852089, 1)
+tint_progress = Color(0, 0.962223, 0.342341, 1)
+radial_initial_angle = 108.3
+radial_fill_degrees = 47.9
+
+[node name="LitterDamage" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+scale = Vector2(5, 5)
+value = 100.0
+fill_mode = 5
+texture_progress = ExtResource("1_upy2s")
+tint_under = Color(0.981098, 0.850573, 0.852089, 1)
+tint_progress = Color(0.926972, 0.873791, 0.33644, 1)
+radial_initial_angle = 108.3
+radial_fill_degrees = 47.9
+
+[node name="MiddleDamage" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+scale = Vector2(5, 5)
+value = 100.0
+fill_mode = 5
+texture_progress = ExtResource("1_upy2s")
+tint_under = Color(0.981098, 0.850573, 0.852089, 1)
+tint_progress = Color(0.850816, 0.507731, 0.0825511, 1)
+radial_initial_angle = 108.3
+radial_fill_degrees = 47.9
+
+[node name="BigDamage" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+scale = Vector2(5, 5)
+value = 100.0
+fill_mode = 5
+texture_progress = ExtResource("1_upy2s")
+tint_under = Color(0.981098, 0.850573, 0.852089, 1)
+tint_progress = Color(0.851983, 0, 0.257883, 1)
+radial_initial_angle = 60.5
+radial_fill_degrees = 47.9
+
+[node name="background-player" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 0.999985
+offset_right = 63.0
+offset_bottom = 65.0
+scale = Vector2(5, 5)
+value = 100.0
+fill_mode = 5
+texture_progress = ExtResource("1_upy2s")
+tint_under = Color(0.981098, 0.850573, 0.852089, 1)
+tint_progress = Color(0.137255, 0.458824, 0.807843, 0.505882)
+radial_initial_angle = 90.0
+radial_fill_degrees = 8.7
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 2
+offset_left = 317.0
+offset_top = 1.0
+offset_right = 357.0
+offset_bottom = 40.0
+color = Color(0.529067, 0.529067, 0.529067, 1)
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 38.0
+offset_bottom = 37.0
+texture = ExtResource("3_8nnbh")
+expand_mode = 1
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 2
+offset_left = 317.0
+offset_top = 41.0
+offset_right = 357.0
+offset_bottom = 80.0
+color = Color(0.529067, 0.529067, 0.529067, 1)
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect2"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 38.0
+offset_bottom = 37.0
+texture = ExtResource("3_8nnbh")
+expand_mode = 1
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+offset_left = 317.0
+offset_top = 81.0
+offset_right = 357.0
+offset_bottom = 120.0
+color = Color(0.529067, 0.529067, 0.529067, 1)
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect3"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 38.0
+offset_bottom = 37.0
+texture = ExtResource("3_8nnbh")
+expand_mode = 1

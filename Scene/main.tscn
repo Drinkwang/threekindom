@@ -192,10 +192,12 @@ context = "士族生存法则
 dialogue_resource = ExtResource("2_cebyh")
 
 [node name="title" type="RichTextLabel" parent="."]
+visible = false
 offset_left = -9.0
 offset_top = 76.0
 offset_right = 1906.0
 offset_bottom = 555.0
+scale = Vector2(0.993691, 1.04365)
 theme_override_fonts/normal_font = ExtResource("14_vuyqr")
 theme_override_font_sizes/normal_font_size = 200
 bbcode_enabled = true

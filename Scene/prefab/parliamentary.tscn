@@ -170,6 +170,7 @@ grow_vertical = 2
 text = "确认"
 
 [node name="TextureButton" type="TextureButton" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -189,5 +190,6 @@ texture_disabled = ExtResource("7_pjis2")
 texture_focused = ExtResource("7_pjis2")
 stretch_mode = 0
 
+[connection signal="button_down" from="lawPanel/DetailPanel/Button" to="." method="_on_button_button_down"]
 [connection signal="button_down" from="lawPanel/DetailPanel/Button" to="." method="_on_law_confire_button_down"]
 [connection signal="button_down" from="TextureButton" to="." method="_on_exit_button_button_down"]

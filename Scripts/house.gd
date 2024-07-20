@@ -13,7 +13,7 @@ func _ready():
 	else:
 		control.show()
 	super._ready()
-	
+	GameManager._enterDay()#每次睡眠起床都调用这个选项
 	#如果没见过陈登把control隐藏，如果见过了陈登 control不隐藏
 
 

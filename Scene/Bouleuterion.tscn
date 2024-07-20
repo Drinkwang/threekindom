@@ -140,14 +140,23 @@ metadata/_edit_use_anchors_ = true
 
 [node name="CanvasBook" type="CanvasLayer" parent="."]
 
+[node name="Control" parent="CanvasBook" instance=ExtResource("16_ba2uq")]
+offset_left = -1.0
+offset_top = -3.0
+offset_right = 39.0
+offset_bottom = 37.0
+
 [node name="parliamentaryDetail" parent="CanvasBook" instance=ExtResource("7_1m0jr")]
+visible = false
 
 [node name="Control2" parent="CanvasBook" instance=ExtResource("7_3iegf")]
+offset_top = 741.0
+offset_right = -1579.0
 
 [node name="faction" parent="CanvasBook" instance=ExtResource("6_mjg5e")]
 offset_left = 5.0
-offset_top = -180.0
-offset_right = 5.0
+offset_top = 737.0
+offset_right = -1584.0
 offset_bottom = -180.0
 size_flags_horizontal = 4
 
@@ -166,7 +175,6 @@ context = "士族生存法则
 dialogue_resource = ExtResource("2_56kjn")
 
 [node name="yishimianban" parent="CanvasBook" instance=ExtResource("11_gm57k")]
-visible = false
 offset_left = 9.0
 offset_top = 5.0
 offset_right = 9.0
@@ -178,12 +186,6 @@ contextEX = "仪事是主公和管辖地代表以及臣子商议的过程，根�
 
 主公可以在自己的府邸约见代表，来让政策更容易通过！"
 titleEX = "议事面板说明:"
-
-[node name="Control" parent="CanvasBook" instance=ExtResource("16_ba2uq")]
-offset_left = -1.0
-offset_top = -3.0
-offset_right = 39.0
-offset_bottom = 37.0
 
 [node name="Node2D" type="Node2D" parent="CanvasBook"]
 visible = false

@@ -11,9 +11,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	coin_num.text=GameManager.coin
-	heart_num.text=GameManager.people_surrport
-	labor_num.text=GameManager.labor_force
+	coin_num.text=var_to_str(GameManager.coin)
+	heart_num.text=var_to_str(GameManager.people_surrport)
+	labor_num.text=var_to_str(GameManager.labor_force)
 	pass
 
 

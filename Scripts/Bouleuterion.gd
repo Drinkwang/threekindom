@@ -6,7 +6,6 @@ extends baseComponent
 
 const FancyFade = preload("res://addons/transitions/FancyFade.gd")
 
-
 #议事详细
 @onready var parliamentary_detail = $CanvasBook/parliamentaryDetail
 
@@ -88,7 +87,7 @@ func _buttonListClick(item):
 		#显示接下来要点击啥
 		pass
 	elif item.context == "离开":
-		if(GameManager.have_event["firstLawExecute"]==true):
+		if(GameManager.have_event["firstParliamentary"]==true):
 			const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
 			FancyFade.new().custom_fade(SceneManager.STREET.instantiate(), 2, DISSOLVE_IMAGE)
 		else:
@@ -102,6 +101,10 @@ func _buttonListClick(item):
 func showGuild():
 	$CanvasBook/Node2D.show()
 	$"CanvasBook/Node2D/5Yellow/AnimationPlayer".play("YELLOWGUILD")
+	
+func meetingEnd():
+	control._show_button_5_yellow(2)
+
 func hideGuild():
 	$CanvasBook/Node2D.hide()
 

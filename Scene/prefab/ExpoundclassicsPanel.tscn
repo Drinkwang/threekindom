@@ -1,0 +1,249 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxw67mtklk4w5"]
+
+[ext_resource type="Theme" uid="uid://bklmr3xmk4m5u" path="res://global_theme.tres" id="2_a1oci"]
+[ext_resource type="Texture2D" uid="uid://c8217n5l3n1vd" path="res://Scene/prefab/辩论.png" id="8_8qym1"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -7.0
+offset_right = -1.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1408.0
+offset_top = -884.0
+offset_right = 1584.0
+offset_bottom = 728.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2, 0.2, 0.2, 0.827451)
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -669.0
+offset_top = -411.0
+offset_right = 669.0
+offset_bottom = 411.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(630.615, 267.699)
+theme = ExtResource("2_a1oci")
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/TextureRect"]
+offset_left = 73.0
+offset_top = 47.0
+offset_right = 329.0
+offset_bottom = 303.0
+texture = ExtResource("8_8qym1")
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/TextureRect/TextureRect"]
+offset_left = 144.0
+offset_top = 66.0
+offset_right = 400.0
+offset_bottom = 322.0
+texture = ExtResource("8_8qym1")
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/TextureRect/TextureRect/TextureRect"]
+offset_left = 138.0
+offset_top = 61.0
+offset_right = 394.0
+offset_bottom = 317.0
+texture = ExtResource("8_8qym1")
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/TextureRect/TextureRect/TextureRect/TextureRect"]
+offset_left = 144.0
+offset_top = 68.0
+offset_right = 400.0
+offset_bottom = 324.0
+texture = ExtResource("8_8qym1")
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect"]
+offset_left = 138.0
+offset_top = 53.0
+offset_right = 394.0
+offset_bottom = 309.0
+texture = ExtResource("8_8qym1")
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect"]
+offset_left = -403.0
+offset_top = -284.0
+offset_right = -147.0
+offset_bottom = -28.0
+texture = ExtResource("8_8qym1")
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect"]
+offset_left = 123.0
+offset_top = 64.0
+offset_right = 379.0
+offset_bottom = 320.0
+texture = ExtResource("8_8qym1")
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect"]
+offset_left = 117.0
+offset_top = 51.0
+offset_right = 373.0
+offset_bottom = 307.0
+texture = ExtResource("8_8qym1")
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect"]
+offset_left = 123.0
+offset_top = 59.0
+offset_right = 379.0
+offset_bottom = 315.0
+texture = ExtResource("8_8qym1")
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect"]
+offset_left = 131.0
+offset_top = 66.0
+offset_right = 387.0
+offset_bottom = 322.0
+texture = ExtResource("8_8qym1")
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect"]
+offset_left = 121.0
+offset_top = 66.0
+offset_right = 377.0
+offset_bottom = 322.0
+texture = ExtResource("8_8qym1")
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect"]
+offset_left = -81.0
+offset_top = 87.0
+offset_right = 175.0
+offset_bottom = 343.0
+texture = ExtResource("8_8qym1")
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect"]
+offset_left = -167.0
+offset_top = 20.0
+offset_right = 89.0
+offset_bottom = 276.0
+texture = ExtResource("8_8qym1")
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect"]
+offset_left = -116.0
+offset_top = -40.0
+offset_right = 140.0
+offset_bottom = 216.0
+texture = ExtResource("8_8qym1")
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect"]
+offset_left = -123.0
+offset_top = -55.0
+offset_right = 133.0
+offset_bottom = 201.0
+texture = ExtResource("8_8qym1")
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect"]
+offset_left = -98.0
+offset_top = -48.0
+offset_right = 158.0
+offset_bottom = 208.0
+texture = ExtResource("8_8qym1")
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect"]
+offset_left = -119.0
+offset_top = -56.0
+offset_right = 137.0
+offset_bottom = 200.0
+texture = ExtResource("8_8qym1")
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect"]
+offset_left = -80.0
+offset_top = -38.0
+offset_right = 176.0
+offset_bottom = 218.0
+texture = ExtResource("8_8qym1")
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect"]
+offset_left = 850.0
+offset_top = 1.0
+offset_right = 1106.0
+offset_bottom = 257.0
+texture = ExtResource("8_8qym1")
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect"]
+offset_left = -129.0
+offset_top = -67.0
+offset_right = 127.0
+offset_bottom = 189.0
+texture = ExtResource("8_8qym1")
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect"]
+offset_left = -135.0
+offset_top = -60.0
+offset_right = 121.0
+offset_bottom = 196.0
+texture = ExtResource("8_8qym1")
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect"]
+offset_left = -136.0
+offset_top = -57.0
+offset_right = 120.0
+offset_bottom = 199.0
+texture = ExtResource("8_8qym1")
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect"]
+offset_left = -90.0
+offset_top = 15.0
+offset_right = 166.0
+offset_bottom = 271.0
+texture = ExtResource("8_8qym1")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+offset_left = 366.0
+offset_top = 188.0
+offset_right = 1509.0
+offset_bottom = 270.0
+theme_override_font_sizes/font_size = 81
+text = "大儒辩论正式开始"
+
+[node name="Label3" type="Label" parent="Label"]
+offset_left = 473.0
+offset_top = 1.0
+offset_right = 1214.0
+offset_bottom = 168.0
+theme_override_font_sizes/font_size = 81
+text = "倒计时：60"
+horizontal_alignment = 2
+
+[node name="Label" type="Label" parent="Label"]
+offset_left = 34.0
+offset_top = 543.0
+offset_right = 1177.0
+offset_bottom = 710.0
+theme_override_font_sizes/font_size = 81
+text = "你的得分：
+100"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Label"]
+offset_left = 189.0
+offset_top = 261.0
+offset_right = 1006.0
+offset_bottom = 343.0
+theme_override_font_sizes/font_size = 81
+text = "请点击图书并获得积分"
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

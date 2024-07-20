@@ -1,5 +1,14 @@
 @tool
 extends Control
+@onready var img = $PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/img
+
+@export var txt:Texture2D:
+	get:
+		return txt
+	set(value):
+		txt=value
+		if(img!=null):
+			img.texture=txt
 
 @export_multiline var contextEX:String:
 	get:
@@ -29,6 +38,9 @@ func _ready():
 		context.text=contextEX
 	if(title!=null):
 		title.text=titleEX		
+		
+	if(txt!=null):
+		img.texture=txt
 	pass # Replace with function body.
 
 

@@ -1,7 +1,7 @@
 extends baseComponent
 @onready var control = $Control
 const FancyFade = preload("res://addons/transitions/FancyFade.gd")
-var destination:String
+#var destination:String #放在gameins里面
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,14 +15,26 @@ func _ready():
 	
 	pass # Replace with function body.
 
+func streetTwo():
+	pass
+
 
 func post_transition():
 	#print("fadedone")
 	_initData()
+	if(GameManager.have_event["firststreet"]==true):
+		if(GameManager.have_event["secondStreet"]==false):
+			GameManager.destination="自宅"
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第二次街道")
+			GameManager.have_event["secondStreet"]=true
+			
+	
 	if(GameManager.have_event["firststreet"]==false):
+		GameManager.destination="府邸"
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
 		GameManager.have_event["firststreet"]=true
 	pass
+	
 
 func _initData():
 	var initData=[
@@ -68,12 +80,13 @@ func _buttonListClick(item):
 		#else:
 	#		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"tip")
 	#		return
-	if(destination.length()>0):
-		if(destination!=item.context):
-			if(destination=="府邸"):
+	if(GameManager.destination.length()>0):
+		if(GameManager.destination!=item.context):
+			if(GameManager.destination=="府邸"):
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"tip")
 			return 
-			
+			if(GameManager.destination=="自宅"):
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"ImustGoHome")
 	const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
 
 	if item.context == "府邸":

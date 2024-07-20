@@ -1,12 +1,17 @@
-[gd_scene load_steps=10 format=3 uid="uid://00xr1q336bgu"]
+[gd_scene load_steps=15 format=3 uid="uid://00xr1q336bgu"]
 
 [ext_resource type="AudioStream" uid="uid://brg1ltppwfyim" path="res://Asset/sound/闪电.mp3" id="1_ljeo0"]
 [ext_resource type="Script" path="res://Scripts/drill_ground.gd" id="1_u56un"]
+[ext_resource type="Resource" uid="uid://d2qoinuor12dq" path="res://dialogues/演武场.dialogue" id="2_d357o"]
 [ext_resource type="Texture2D" uid="uid://cqtqwhkut2gk2" path="res://Asset/城镇建筑/演武场.jpg" id="2_h7yqs"]
 [ext_resource type="Texture2D" uid="uid://yxnjmxcqgl2u" path="res://addons/inventory_example/textures/inventories/Chest.png" id="3_dk3wi"]
 [ext_resource type="PackedScene" uid="uid://bhu5hq8kx8pov" path="res://addons/inventory_example/inventories/simple/InventoryUI.tscn" id="4_me56b"]
 [ext_resource type="FontFile" uid="uid://qv74ebpr4i31" path="res://Asset/Font/VonwaonBitmap-16px.ttf" id="7_7hivm"]
+[ext_resource type="PackedScene" uid="uid://bw52ymer7ngwu" path="res://Scene/prefab/gapanel.tscn" id="7_t3pu2"]
 [ext_resource type="PackedScene" uid="uid://bv5ycsl0a50uq" path="res://Scene/prefab/btnList.tscn" id="8_68nqe"]
+[ext_resource type="Texture2D" uid="uid://doqmi4o6negde" path="res://Asset/other/聚餐.jpg" id="8_v1h3f"]
+[ext_resource type="PackedScene" uid="uid://ditcwds6nu8ga" path="res://Scene/prefab/soilderUpdatePanel.tscn" id="9_awe6v"]
+[ext_resource type="PackedScene" uid="uid://cjsb43uugkud4" path="res://Scene/prefab/battlePanel.tscn" id="10_w3oo5"]
 
 [sub_resource type="Animation" id="Animation_0bk4q"]
 resource_name = "闪烁"
@@ -31,6 +36,8 @@ _data = {
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_u56un")
+dialogue_resource = ExtResource("2_d357o")
+dialogue_start = "初入演武场"
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 1.5
@@ -92,6 +99,23 @@ grow_horizontal = 0
 inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
 metadata/_edit_use_anchors_ = true
 
+[node name="oldsoildereat" parent="CanvasInventory" instance=ExtResource("7_t3pu2")]
+visible = false
+offset_left = 9.0
+offset_top = 5.0
+offset_right = 9.0
+offset_bottom = 5.0
+txt = ExtResource("8_v1h3f")
+contextEX = "关羽、张飞、赵云现在可以被你调用！
+(或许将军可以试试练兵功能来快速提升武将等级）"
+titleEX = "老兵饭局："
+
+[node name="Control" parent="CanvasInventory" instance=ExtResource("9_awe6v")]
+visible = false
+
+[node name="Control2" parent="CanvasInventory" instance=ExtResource("10_w3oo5")]
+visible = false
+
 [node name="title" type="RichTextLabel" parent="."]
 visible = false
 offset_left = -9.0
@@ -105,5 +129,7 @@ text = "[center][rainbow]阴[/rainbow][wave amp=50 frep=100]三国[/wave][rainbo
 tab_size = 6
 
 [node name="Control2" parent="." instance=ExtResource("8_68nqe")]
+offset_right = 106.0
+offset_bottom = 82.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
