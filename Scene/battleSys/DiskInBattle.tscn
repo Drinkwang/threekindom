@@ -1,8 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://dcydwatjg50hl"]
+[gd_scene load_steps=8 format=3 uid="uid://dcydwatjg50hl"]
 
 [ext_resource type="Script" path="res://Scripts/DiskInBattle.gd" id="1_0q3sx"]
 [ext_resource type="Texture2D" uid="uid://cale1h2nqfdrh" path="res://Asset/ui/circle.png" id="1_upy2s"]
 [ext_resource type="Texture2D" uid="uid://dmqvx1ja8yft7" path="res://Asset/other/剪刀.png" id="3_8nnbh"]
+[ext_resource type="PackedScene" uid="uid://dxj1s2d4grxwj" path="res://Scene/prefab/SoilderItem.tscn" id="4_px0mi"]
+[ext_resource type="Texture2D" uid="uid://cbs1ut2w7lnuy" path="res://Asset/人物/关羽.jpg" id="5_dprbg"]
+
+[sub_resource type="Animation" id="Animation_whhn8"]
+resource_name = "c1"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uhe5w"]
+_data = {
+"c1": SubResource("Animation_whhn8")
+}
 
 [node name="Control" type="Control" node_paths=PackedStringArray("datas")]
 layout_mode = 3
@@ -10,7 +20,7 @@ anchors_preset = 0
 offset_right = 300.0
 offset_bottom = 182.0
 script = ExtResource("1_0q3sx")
-datas = [NodePath("NoDamage"), NodePath("LitterDamage"), NodePath("MiddleDamage"), NodePath("BigDamage")]
+datas = [NodePath("NoDamage"), NodePath("LitterDamage"), NodePath("MiddleDamage"), NodePath("BigDamage"), NodePath("background-player")]
 
 [node name="NoDamage" type="TextureProgressBar" parent="."]
 layout_mode = 0
@@ -114,6 +124,7 @@ texture = ExtResource("3_8nnbh")
 expand_mode = 1
 
 [node name="ColorRect3" type="ColorRect" parent="."]
+layout_mode = 0
 offset_left = 317.0
 offset_top = 81.0
 offset_right = 357.0
@@ -128,3 +139,28 @@ offset_right = 38.0
 offset_bottom = 37.0
 texture = ExtResource("3_8nnbh")
 expand_mode = 1
+
+[node name="C3-dis" type="AnimationPlayer" parent="."]
+root_node = NodePath("../C2-dis")
+
+[node name="C2-dis" type="AnimationPlayer" parent="."]
+root_node = NodePath("../C1")
+
+[node name="Control_4" parent="." instance=ExtResource("4_px0mi")]
+custom_minimum_size = Vector2(380, 0)
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 105.0
+offset_top = 419.0
+offset_right = 485.0
+offset_bottom = 867.0
+scale = Vector2(0.465, 0.465)
+canSelect = false
+headImg = ExtResource("5_dprbg")
+namelv = "关羽:lv1"
+
+[node name="C1" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_uhe5w")
+}

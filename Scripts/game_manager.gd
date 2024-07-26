@@ -12,15 +12,48 @@ var labor_force=100 #劳动力 可以当作军队进行使用 劳动力转换成
 var destination:String #放在gameins里面
 @export var datas:Array[cldata] 
 
+enum RspEnum{
+	ROCK=1,
+	PAPER=0,
+	SCISSORS=2
+	
+	
+}
 
+
+enum opcost{
+	greater,
+	less,
+	equal
+	
+	
+}
 # 声明变量
-var generals = [
-	{"name": "关羽", "level": 1, "max_level": 10},
-	{"name": "张飞", "level": 1, "max_level": 10},
-	{"name": "赵云", "level": 1, "max_level": 10}
+var generals:Dictionary = {RspEnum.ROCK:{"name": "关羽", "level": 1, "max_level": 10, "randominit": -1},
+
+RspEnum.PAPER:{"name": "张飞", "level": 1, "max_level": 10, "randominit": -1},
+
+RspEnum.SCISSORS:{"name": "赵云", "level": 1, "max_level": 10, "randominit": -1}
+}
+
+# [
+# 	{"name": "关羽", "level": 1, "max_level": 10, "randominit": -1},
+# 	{"name": "张飞", "level": 1, "max_level": 10, "randominit": -1},
+# 	{"name": "赵云", "level": 1, "max_level": 10, "randominit": -1}
+# ]
+var battleTasks={}
+
+
+
+var battleCircle=[
+	{"name":"无风险","initPos":0,"radian":90,"index":0},
+	{"name":"小风险","initPos":0,"radian":90,"index":1},
+	{"name":"中风险","initPos":0,"radian":90,"index":2},
+	{"name":"高风险","initPos":0,"radian":90,"index":3},
+	{"name":"成功率","initPos":-1,"radian":60,"index":4}
+	
+	#初始值会带有一些随机元素，但会根据优势更偏进好的 初始成功率不大于30  做任务降低损失增大成功率 
 ]
-
-
 const HAOZUPAI = preload("res://Asset/tres/haozupai.tres")
 const BENTUPAI = preload("res://Asset/tres/bentupai.tres")
 const WAIDIPAI = preload("res://Asset/tres/waidipai.tres")
@@ -68,14 +101,143 @@ var policy_Item=[
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#HAOZUPAI._name="ddd"
-	#添加三个元素
-	pass
+	var count = 4  # 你可以在这里设置需要的数字数量
+	var numbers = generate_random_numbers(100, count)
+	print(numbers)
+	print("Sum: ", array_sum(numbers))
 
+func array_sum(arr: Array) -> int:
+	var sum = 0
+	for i in arr:
+		sum += i
+	return sum
 
 func _enterDay():
 	initPaixi(BENTUPAI)
 	initPaixi(WAIDIPAI)
+	initBattleCircle()
+	
+	
+#		{"name":"高风险","initPos":0,"radian":90},
+var completeTask:int=0	
+	
+func intBattleTask():
+	nums={}
+
+	for battleTarget in range(3):
+		battleTasks[battleTarget]={}
+		battleTasks[battleTarget].index=completeTask+battleTarget+1
+		var taskNum:int=randi_range(1, 2)
+		if taskNum==1:
+			var resTyoe=randi_range(1, 2)
+			var res
+			var costNum
+			if(resTyoe==1):
+				res="coin"
+				costNum=15*battleTasks[battleTarget].index
+			else:
+				res="human"
+				costNum=50*battleTasks[battleTarget].index
+			var syTyoe:int=randi_range(0, 2)
+			var sy =opcost.values()[syTyoe]
+			nums=generate_random_numbers(100,2)
+			battleTasks[battleTarget].task=[{"res":res,"symbol":sy,"value":costNum,"reward":nums[0]}]
+			battleTasks[battleTarget].reward=num[1]
+		elif taskNum==2:
+			var syTyoe1=randi_range(0, 2)
+			nums=generate_random_numbers(100,3)
+			var sy1 =opcost.values()[syTyoe1]
+			var syTyoe2=randi_range(0, 2)
+			var sy2=opcost.values()[syTyoe2]
+			battleTasks[battleTarget].task=[{"res":"coin","symbol":sy1,"value":15*battleTasks[battleTarget].index,"reward":nums[0]},{"res":"human","symbol":sy2,"value":50*battleTasks[battleTarget].index,"reward":nums[1]}]
+			battleTasks[battleTarget].reward=num[2]
+		var sdType:int=randf_range(0, 3)
+		battleTasks[battleTarget].sdType=RspEnum.values()[sdType-1]
+
+#func _ready():
+	#var numbers = generate_random_numbers(100, 2, 3)
+	#print(numbers)
+	#print("Sum: ", numbers.sum())
+func generate_random_numbers(total: int, count: int) -> Array:
+	var numbers = []
+	
+	# Generate (count - 1) random numbers
+	for i in range(count - 1):
+		var num = randi() % (total - (count - i - 1)) + 1  # Ensure non-zero and space for remaining numbers
+		num = max(num, 10)  # Ensure the minimum value is 10
+		numbers.append(num)
+		total -= num
+	
+	# The last number is the remainder
+	numbers.append(total)
+	
+	# Shuffle the list to ensure randomness
+	numbers.shuffle()
+	
+	return numbers
+
+
+var israndom=false
+func initBattleCircle():
+	initGenerlRandom()
+	var indexs=[0,1,2,3]
+	var initValue:int=-1	
+	var randomInitValue:int=0
+	intBattleTask()
+	#battleCircle[4].initPos=
+	var seq=0
+	while indexs.size()>0:
+		var randomcircle=randi_range(10,(360-randomInitValue)/2)	
+		var index=indexs.pick_random()
+		indexs.remove_at(indexs.find(index))
+		if initValue==-1:
+			initValue=randi_range(0,360)
+			randomInitValue=randi_range(0,360)
+			battleCircle[index].index=0
+
+		else:
+			initValue=initValue+90
+			if(indexs.size()!=1):
+				randomInitValue=randomInitValue+randomcircle
+			else:
+				randomInitValue=360-randomInitValue
+		
+		#var randomcircle=randi_range(10,(360-initValue)/2)		
+		if(israndom==true):
+			battleCircle[index].radian=randomcircle 
+			battleCircle[index].initPos=randomInitValue
+		else:
+			battleCircle[index].radian=90  #最多占剩余的一半，比如说0-180 1 359/2=179.5+ 
+			battleCircle[index].initPos=initValue
+		battleCircle[index].index=seq
+		seq=seq+1
+		
+		
+		
+
+func initGenerlRandom():
+	for value in generals:
+		value.randominit=randi_range(0,360)
+
+
+
+func MoreBackGround():
+	pass
+
+
+func LessDamage():
+	pass
+#	var cloneData=datas.duplicate() #复制一份，然后随机选
+
+	#while cloneData.size()>0:
+		#var item:TextureProgressBar=cloneData.pick_random();
+	
+
+		#item.radial_initial_angle=initValue
+		#item.radial_fill_degrees=90
+		#cloneData.remove_at(cloneData.find(item))
+
+#	pass
 	
 func initPaixi(data:cldata):
 	

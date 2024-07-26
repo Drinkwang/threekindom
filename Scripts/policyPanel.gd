@@ -84,11 +84,11 @@ func _on_control_3_gui_input(event):
 		control_3.check_box.button_pressed=true
 		label.text=control_3.context+":"+control_3.detail	
 
-func bancontrol(index,status):
+func bancontrol(_index,status):
 	#get("ban%d"%index)=boolvalue
 	#set("ban%d"%index,boolvalue)
 	#var value=get("ban%d"%index)
-	var item= get("control_%d"%index) as policyItem
+	var item= get("control_%d"%_index) as policyItem
 	item.setStatus(status)
 
 

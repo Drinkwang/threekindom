@@ -5,6 +5,24 @@ extends Control
 const scissor= preload("res://Asset/other/剪刀.png")
 const paper= preload("res://Asset/other/布.png")
 const stone = preload("res://Asset/other/石头.png")
+@onready var check_box = $TextureRect/CheckBox
+
+
+
+#@export var heroIndex:int
+#
+
+@export var canSelect:bool=true:
+	get:
+		return canSelect
+	set(value):
+		canSelect=value
+		if(check_box!=null):
+			if(canSelect==true):
+				check_box.show()
+			else: 
+				check_box.hide()
+
 @export var headImg:Texture2D:
 	get:
 		return headImg
@@ -23,17 +41,17 @@ const stone = preload("res://Asset/other/石头.png")
 			$TextureRect/Label2.text=namelv
 
 
-@export var repImg:RspEnum:
+@export var repImg:GameManager.RspEnum:
 	get:
 		return repImg
 	set(value):
 		if(repImg!=null):
 			repImg=value
-			if repImg==RspEnum.ROCK:
+			if repImg==GameManager.RspEnum.ROCK:
 				$TextureRect/rsp.texture=stone
-			elif repImg==RspEnum.PAPER:
+			elif repImg==GameManager.RspEnum.PAPER:
 				$TextureRect/rsp.texture=paper				
-			elif repImg==RspEnum.SCISSORS:
+			elif repImg==GameManager.RspEnum.SCISSORS:
 				$TextureRect/rsp.texture=scissor	
 			else:
 				$TextureRect/rsp.texture=null
@@ -46,15 +64,20 @@ func _ready():
 		$TextureRect/Label2.text=namelv	
 		
 		
-	if repImg==RspEnum.ROCK:
+	if repImg==GameManager.RspEnum.ROCK:
 		$TextureRect/rsp.texture=stone
-	elif repImg==RspEnum.PAPER:
+	elif repImg==GameManager.RspEnum.PAPER:
 		$TextureRect/rsp.texture=paper				
-	elif repImg==RspEnum.SCISSORS:
+	elif repImg==GameManager.RspEnum.SCISSORS:
 		$TextureRect/rsp.texture=scissor	
 	else:
 		$TextureRect/rsp.texture=null
-
+		
+	if(canSelect==true):
+		check_box.show()
+	else: 
+		check_box.hide()
+		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
@@ -62,10 +85,4 @@ func _process(delta):
 func updateContext(value):
 	pass
 
-enum RspEnum{
-	ROCK,
-	PAPER,
-	SCISSORS
-	
-	
-}
+

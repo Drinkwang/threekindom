@@ -2,6 +2,8 @@ extends baseComponent
 
 @onready var control= $Control2
 @onready var oldsoildereat = $CanvasInventory/oldsoildereat
+@onready var train_panel = $CanvasInventory/trainPanel
+@onready var battle_pane:battlePanel = $CanvasInventory/battlePane
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -49,8 +51,10 @@ func _buttonListClick(item):
 		#判断条件
 		pass
 	elif item.context=="操练士兵":
+		train_panel.show()
 		pass
 	elif item.context=="军事行动":
+		battle_pane.show()
 		#暂时不能发动军事行动
 		pass
 

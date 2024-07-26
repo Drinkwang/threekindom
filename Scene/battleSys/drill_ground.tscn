@@ -1,17 +1,17 @@
 [gd_scene load_steps=15 format=3 uid="uid://00xr1q336bgu"]
 
-[ext_resource type="AudioStream" uid="uid://brg1ltppwfyim" path="res://Asset/sound/闪电.mp3" id="1_ljeo0"]
-[ext_resource type="Script" path="res://Scripts/drill_ground.gd" id="1_u56un"]
-[ext_resource type="Resource" uid="uid://d2qoinuor12dq" path="res://dialogues/演武场.dialogue" id="2_d357o"]
-[ext_resource type="Texture2D" uid="uid://cqtqwhkut2gk2" path="res://Asset/城镇建筑/演武场.jpg" id="2_h7yqs"]
-[ext_resource type="Texture2D" uid="uid://yxnjmxcqgl2u" path="res://addons/inventory_example/textures/inventories/Chest.png" id="3_dk3wi"]
-[ext_resource type="PackedScene" uid="uid://bhu5hq8kx8pov" path="res://addons/inventory_example/inventories/simple/InventoryUI.tscn" id="4_me56b"]
-[ext_resource type="FontFile" uid="uid://qv74ebpr4i31" path="res://Asset/Font/VonwaonBitmap-16px.ttf" id="7_7hivm"]
-[ext_resource type="PackedScene" uid="uid://bw52ymer7ngwu" path="res://Scene/prefab/gapanel.tscn" id="7_t3pu2"]
-[ext_resource type="PackedScene" uid="uid://bv5ycsl0a50uq" path="res://Scene/prefab/btnList.tscn" id="8_68nqe"]
-[ext_resource type="Texture2D" uid="uid://doqmi4o6negde" path="res://Asset/other/聚餐.jpg" id="8_v1h3f"]
-[ext_resource type="PackedScene" uid="uid://ditcwds6nu8ga" path="res://Scene/prefab/soilderUpdatePanel.tscn" id="9_awe6v"]
-[ext_resource type="PackedScene" uid="uid://cjsb43uugkud4" path="res://Scene/prefab/battlePanel.tscn" id="10_w3oo5"]
+[ext_resource type="Script" path="res://Scripts/drill_ground.gd" id="1_bhlt2"]
+[ext_resource type="Resource" uid="uid://d2qoinuor12dq" path="res://dialogues/演武场.dialogue" id="2_j02vm"]
+[ext_resource type="AudioStream" uid="uid://brg1ltppwfyim" path="res://Asset/sound/闪电.mp3" id="3_et4pg"]
+[ext_resource type="Texture2D" uid="uid://cqtqwhkut2gk2" path="res://Asset/城镇建筑/演武场.jpg" id="4_vq7vu"]
+[ext_resource type="Texture2D" uid="uid://yxnjmxcqgl2u" path="res://addons/inventory_example/textures/inventories/Chest.png" id="5_g5flv"]
+[ext_resource type="PackedScene" uid="uid://bhu5hq8kx8pov" path="res://addons/inventory_example/inventories/simple/InventoryUI.tscn" id="6_cu7sp"]
+[ext_resource type="PackedScene" uid="uid://bw52ymer7ngwu" path="res://Scene/prefab/gapanel.tscn" id="7_fpvim"]
+[ext_resource type="Texture2D" uid="uid://doqmi4o6negde" path="res://Asset/other/聚餐.jpg" id="8_nik30"]
+[ext_resource type="PackedScene" uid="uid://ditcwds6nu8ga" path="res://Scene/prefab/soilderUpdatePanel.tscn" id="9_02127"]
+[ext_resource type="PackedScene" uid="uid://cjsb43uugkud4" path="res://Scene/battleSys/battlePanel.tscn" id="10_gfhv4"]
+[ext_resource type="FontFile" uid="uid://qv74ebpr4i31" path="res://Asset/Font/VonwaonBitmap-16px.ttf" id="11_014y5"]
+[ext_resource type="PackedScene" uid="uid://bv5ycsl0a50uq" path="res://Scene/prefab/btnList.tscn" id="12_g1aky"]
 
 [sub_resource type="Animation" id="Animation_0bk4q"]
 resource_name = "闪烁"
@@ -35,8 +35,8 @@ _data = {
 }
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_u56un")
-dialogue_resource = ExtResource("2_d357o")
+script = ExtResource("1_bhlt2")
+dialogue_resource = ExtResource("2_j02vm")
 dialogue_start = "初入演武场"
 
 [node name="Timer" type="Timer" parent="."]
@@ -59,12 +59,12 @@ libraries = {
 }
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Canvas闪电/ColorRect/AnimationPlayer"]
-stream = ExtResource("1_ljeo0")
+stream = ExtResource("3_et4pg")
 
 [node name="演武场" type="Sprite2D" parent="."]
 position = Vector2(953.95, 533.5)
 scale = Vector2(4.06308, 3.46984)
-texture = ExtResource("2_h7yqs")
+texture = ExtResource("4_vq7vu")
 
 [node name="bgs" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(895, 333)
@@ -80,13 +80,13 @@ anchor_right = 1.0
 offset_left = -100.0
 offset_bottom = 100.0
 grow_horizontal = 0
-texture_normal = ExtResource("3_dk3wi")
+texture_normal = ExtResource("5_g5flv")
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
 [node name="CanvasInventory" type="CanvasLayer" parent="."]
 
-[node name="InventoryAny" parent="CanvasInventory" instance=ExtResource("4_me56b")]
+[node name="InventoryAny" parent="CanvasInventory" instance=ExtResource("6_cu7sp")]
 visible = false
 anchors_preset = 1
 anchor_left = 1.0
@@ -99,21 +99,21 @@ grow_horizontal = 0
 inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
 metadata/_edit_use_anchors_ = true
 
-[node name="oldsoildereat" parent="CanvasInventory" instance=ExtResource("7_t3pu2")]
+[node name="oldsoildereat" parent="CanvasInventory" instance=ExtResource("7_fpvim")]
 visible = false
 offset_left = 9.0
 offset_top = 5.0
 offset_right = 9.0
 offset_bottom = 5.0
-txt = ExtResource("8_v1h3f")
+txt = ExtResource("8_nik30")
 contextEX = "关羽、张飞、赵云现在可以被你调用！
 (或许将军可以试试练兵功能来快速提升武将等级）"
 titleEX = "老兵饭局："
 
-[node name="Control" parent="CanvasInventory" instance=ExtResource("9_awe6v")]
+[node name="trainPanel" parent="CanvasInventory" instance=ExtResource("9_02127")]
 visible = false
 
-[node name="Control2" parent="CanvasInventory" instance=ExtResource("10_w3oo5")]
+[node name="battlePane" parent="CanvasInventory" instance=ExtResource("10_gfhv4")]
 visible = false
 
 [node name="title" type="RichTextLabel" parent="."]
@@ -122,13 +122,13 @@ offset_left = -9.0
 offset_top = 76.0
 offset_right = 1906.0
 offset_bottom = 312.0
-theme_override_fonts/normal_font = ExtResource("7_7hivm")
+theme_override_fonts/normal_font = ExtResource("11_014y5")
 theme_override_font_sizes/normal_font_size = 200
 bbcode_enabled = true
 text = "[center][rainbow]阴[/rainbow][wave amp=50 frep=100]三国[/wave][rainbow]谋论[/rainbow]-[tornado]徐州篇[/tornado][/center]"
 tab_size = 6
 
-[node name="Control2" parent="." instance=ExtResource("8_68nqe")]
+[node name="Control2" parent="." instance=ExtResource("12_g1aky")]
 offset_right = 106.0
 offset_bottom = 82.0
 

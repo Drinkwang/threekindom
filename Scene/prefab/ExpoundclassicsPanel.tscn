@@ -50,6 +50,7 @@ theme = ExtResource("2_a1oci")
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/TextureRect"]
+layout_mode = 0
 offset_left = 73.0
 offset_top = 47.0
 offset_right = 329.0
@@ -57,6 +58,7 @@ offset_bottom = 303.0
 texture = ExtResource("8_8qym1")
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/TextureRect/TextureRect"]
+layout_mode = 0
 offset_left = 144.0
 offset_top = 66.0
 offset_right = 400.0
@@ -64,6 +66,7 @@ offset_bottom = 322.0
 texture = ExtResource("8_8qym1")
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/TextureRect/TextureRect/TextureRect"]
+layout_mode = 0
 offset_left = 138.0
 offset_top = 61.0
 offset_right = 394.0
@@ -71,6 +74,7 @@ offset_bottom = 317.0
 texture = ExtResource("8_8qym1")
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/TextureRect/TextureRect/TextureRect/TextureRect"]
+layout_mode = 0
 offset_left = 144.0
 offset_top = 68.0
 offset_right = 400.0
@@ -78,6 +82,7 @@ offset_bottom = 324.0
 texture = ExtResource("8_8qym1")
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect"]
+layout_mode = 0
 offset_left = 138.0
 offset_top = 53.0
 offset_right = 394.0
@@ -85,6 +90,7 @@ offset_bottom = 309.0
 texture = ExtResource("8_8qym1")
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect"]
+layout_mode = 0
 offset_left = -403.0
 offset_top = -284.0
 offset_right = -147.0
@@ -92,6 +98,7 @@ offset_bottom = -28.0
 texture = ExtResource("8_8qym1")
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect"]
+layout_mode = 0
 offset_left = 123.0
 offset_top = 64.0
 offset_right = 379.0
@@ -99,6 +106,7 @@ offset_bottom = 320.0
 texture = ExtResource("8_8qym1")
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect"]
+layout_mode = 0
 offset_left = 117.0
 offset_top = 51.0
 offset_right = 373.0
@@ -106,6 +114,7 @@ offset_bottom = 307.0
 texture = ExtResource("8_8qym1")
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect"]
+layout_mode = 0
 offset_left = 123.0
 offset_top = 59.0
 offset_right = 379.0
@@ -113,6 +122,7 @@ offset_bottom = 315.0
 texture = ExtResource("8_8qym1")
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect"]
+layout_mode = 0
 offset_left = 131.0
 offset_top = 66.0
 offset_right = 387.0
@@ -120,6 +130,7 @@ offset_bottom = 322.0
 texture = ExtResource("8_8qym1")
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect"]
+layout_mode = 0
 offset_left = 121.0
 offset_top = 66.0
 offset_right = 377.0
@@ -127,6 +138,7 @@ offset_bottom = 322.0
 texture = ExtResource("8_8qym1")
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect"]
+layout_mode = 0
 offset_left = -81.0
 offset_top = 87.0
 offset_right = 175.0
@@ -134,6 +146,7 @@ offset_bottom = 343.0
 texture = ExtResource("8_8qym1")
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect"]
+layout_mode = 0
 offset_left = -167.0
 offset_top = 20.0
 offset_right = 89.0
@@ -141,6 +154,7 @@ offset_bottom = 276.0
 texture = ExtResource("8_8qym1")
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect"]
+layout_mode = 0
 offset_left = -116.0
 offset_top = -40.0
 offset_right = 140.0
@@ -148,6 +162,7 @@ offset_bottom = 216.0
 texture = ExtResource("8_8qym1")
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect"]
+layout_mode = 0
 offset_left = -123.0
 offset_top = -55.0
 offset_right = 133.0
@@ -155,6 +170,7 @@ offset_bottom = 201.0
 texture = ExtResource("8_8qym1")
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect"]
+layout_mode = 0
 offset_left = -98.0
 offset_top = -48.0
 offset_right = 158.0
@@ -162,6 +178,7 @@ offset_bottom = 208.0
 texture = ExtResource("8_8qym1")
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect"]
+layout_mode = 0
 offset_left = -119.0
 offset_top = -56.0
 offset_right = 137.0
@@ -169,6 +186,7 @@ offset_bottom = 200.0
 texture = ExtResource("8_8qym1")
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect"]
+layout_mode = 0
 offset_left = -80.0
 offset_top = -38.0
 offset_right = 176.0
@@ -176,6 +194,7 @@ offset_bottom = 218.0
 texture = ExtResource("8_8qym1")
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect"]
+layout_mode = 0
 offset_left = 850.0
 offset_top = 1.0
 offset_right = 1106.0
@@ -183,6 +202,7 @@ offset_bottom = 257.0
 texture = ExtResource("8_8qym1")
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect"]
+layout_mode = 0
 offset_left = -129.0
 offset_top = -67.0
 offset_right = 127.0
@@ -190,6 +210,7 @@ offset_bottom = 189.0
 texture = ExtResource("8_8qym1")
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect"]
+layout_mode = 0
 offset_left = -135.0
 offset_top = -60.0
 offset_right = 121.0
@@ -197,6 +218,7 @@ offset_bottom = 196.0
 texture = ExtResource("8_8qym1")
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect"]
+layout_mode = 0
 offset_left = -136.0
 offset_top = -57.0
 offset_right = 120.0
@@ -204,6 +226,7 @@ offset_bottom = 199.0
 texture = ExtResource("8_8qym1")
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect/TextureRect"]
+layout_mode = 0
 offset_left = -90.0
 offset_top = 15.0
 offset_right = 166.0
@@ -220,6 +243,7 @@ theme_override_font_sizes/font_size = 81
 text = "大儒辩论正式开始"
 
 [node name="Label3" type="Label" parent="Label"]
+layout_mode = 0
 offset_left = 473.0
 offset_top = 1.0
 offset_right = 1214.0
@@ -229,6 +253,7 @@ text = "倒计时：60"
 horizontal_alignment = 2
 
 [node name="Label" type="Label" parent="Label"]
+layout_mode = 0
 offset_left = 34.0
 offset_top = 543.0
 offset_right = 1177.0
@@ -239,6 +264,7 @@ text = "你的得分：
 horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="Label"]
+layout_mode = 0
 offset_left = 189.0
 offset_top = 261.0
 offset_right = 1006.0

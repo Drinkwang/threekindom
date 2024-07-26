@@ -1,13 +1,13 @@
 [gd_scene load_steps=9 format=3 uid="uid://cjsb43uugkud4"]
 
-[ext_resource type="Script" path="res://Scripts/battlePanel.gd" id="1_ur6vi"]
-[ext_resource type="Theme" uid="uid://bklmr3xmk4m5u" path="res://global_theme.tres" id="2_equ0m"]
-[ext_resource type="PackedScene" uid="uid://dxj1s2d4grxwj" path="res://Scene/prefab/SoilderItem.tscn" id="3_twap7"]
-[ext_resource type="Texture2D" uid="uid://cbs1ut2w7lnuy" path="res://Asset/人物/关羽.jpg" id="4_tdnyw"]
-[ext_resource type="Texture2D" uid="uid://xt3xohrjhgbd" path="res://Asset/人物/ZhangFei.jpg" id="5_cu44b"]
-[ext_resource type="Texture2D" uid="uid://dpyahly4tlu7a" path="res://Asset/人物/ZhaoYun.jpg" id="6_rvi4i"]
-[ext_resource type="PackedScene" uid="uid://dcydwatjg50hl" path="res://Scene/DiskInBattle.tscn" id="8_78fmo"]
-[ext_resource type="Texture2D" uid="uid://dahuc8gb2blc" path="res://Asset/other/0_red.png" id="9_ipmtn"]
+[ext_resource type="Script" path="res://Scripts/battlePanel.gd" id="1_uyier"]
+[ext_resource type="Theme" uid="uid://bklmr3xmk4m5u" path="res://global_theme.tres" id="2_syp0e"]
+[ext_resource type="PackedScene" uid="uid://dxj1s2d4grxwj" path="res://Scene/prefab/SoilderItem.tscn" id="3_3ya2h"]
+[ext_resource type="Texture2D" uid="uid://dpyahly4tlu7a" path="res://Asset/人物/ZhaoYun.jpg" id="4_v76eo"]
+[ext_resource type="Texture2D" uid="uid://xt3xohrjhgbd" path="res://Asset/人物/ZhangFei.jpg" id="5_7n0ga"]
+[ext_resource type="Texture2D" uid="uid://cbs1ut2w7lnuy" path="res://Asset/人物/关羽.jpg" id="6_1axxs"]
+[ext_resource type="Texture2D" uid="uid://dahuc8gb2blc" path="res://Asset/other/0_red.png" id="7_fydxo"]
+[ext_resource type="PackedScene" uid="uid://dcydwatjg50hl" path="res://Scene/battleSys/DiskInBattle.tscn" id="8_75jyp"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -20,7 +20,7 @@ offset_right = -1.0
 offset_bottom = -7.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_ur6vi")
+script = ExtResource("1_uyier")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -51,7 +51,7 @@ offset_bottom = 411.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(630.615, 267.699)
-theme = ExtResource("2_equ0m")
+theme = ExtResource("2_syp0e")
 
 [node name="orderPanel" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2
@@ -122,7 +122,7 @@ tab_count = 2
 tab_0/title = "命令面板"
 tab_1/title = "法律法规"
 
-[node name="Control_3" parent="." instance=ExtResource("3_twap7")]
+[node name="Control_3" parent="." instance=ExtResource("3_3ya2h")]
 custom_minimum_size = Vector2(380, 0)
 layout_mode = 2
 anchors_preset = 0
@@ -133,11 +133,11 @@ offset_top = 295.0
 offset_right = 736.0
 offset_bottom = 745.0
 scale = Vector2(0.5, 0.5)
-headImg = ExtResource("6_rvi4i")
+headImg = ExtResource("4_v76eo")
 namelv = "关羽：lv1"
 repImg = 1
 
-[node name="Control_2" parent="." instance=ExtResource("3_twap7")]
+[node name="Control_2" parent="." instance=ExtResource("3_3ya2h")]
 custom_minimum_size = Vector2(380, 0)
 layout_mode = 2
 anchors_preset = 0
@@ -148,11 +148,11 @@ offset_top = 299.0
 offset_right = 949.0
 offset_bottom = 749.0
 scale = Vector2(0.5, 0.5)
-headImg = ExtResource("5_cu44b")
+headImg = ExtResource("5_7n0ga")
 namelv = "张飞:lv1"
 repImg = 2
 
-[node name="Control_1" parent="." instance=ExtResource("3_twap7")]
+[node name="Control_1" parent="." instance=ExtResource("3_3ya2h")]
 custom_minimum_size = Vector2(380, 0)
 layout_mode = 2
 anchors_preset = 0
@@ -163,7 +163,7 @@ offset_top = 303.0
 offset_right = 1178.0
 offset_bottom = 751.0
 scale = Vector2(0.465, 0.465)
-headImg = ExtResource("4_tdnyw")
+headImg = ExtResource("6_1axxs")
 namelv = "关羽:lv1"
 
 [node name="Label" type="Label" parent="."]
@@ -179,6 +179,7 @@ text = "任务条件：
 autowrap_mode = 2
 
 [node name="sliderlabel1" type="Label" parent="."]
+layout_mode = 0
 offset_left = 390.0
 offset_top = 516.0
 offset_right = 875.0
@@ -186,6 +187,24 @@ offset_bottom = 660.0
 theme_override_font_sizes/font_size = 31
 text = "士兵人数：
 "
+autowrap_mode = 2
+
+[node name="soildNum" type="Label" parent="sliderlabel1"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.5
+offset_top = -74.0
+offset_right = 273.5
+offset_bottom = -52.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 21
+text = "0"
+horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="sliderlabel2" type="Label" parent="."]
@@ -206,27 +225,35 @@ text = "资金数：
 "
 autowrap_mode = 2
 
-[node name="HSlider2" type="HSlider" parent="."]
-layout_mode = 0
-offset_left = 544.0
-offset_top = 573.0
-offset_right = 907.0
-offset_bottom = 589.0
+[node name="coinNum" type="Label" parent="sliderlabel2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -97.5
+offset_top = -73.0
+offset_right = 264.5
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 21
+text = "0"
+horizontal_alignment = 1
+autowrap_mode = 2
 
-[node name="Control_4" parent="." instance=ExtResource("3_twap7")]
-custom_minimum_size = Vector2(380, 0)
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 1241.0
-offset_top = 563.0
-offset_right = 1621.0
-offset_bottom = 1011.0
-scale = Vector2(0.465, 0.465)
-headImg = ExtResource("4_tdnyw")
-namelv = "关羽:lv1"
+[node name="coinSlider" type="HSlider" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.283333
+anchor_top = 0.530556
+anchor_right = 0.472
+anchor_bottom = 0.545
+offset_right = 0.759949
+offset_bottom = 0.399963
 
-[node name="HSlider" type="HSlider" parent="."]
+[node name="soildSlider" type="HSlider" parent="."]
 layout_mode = 2
 offset_left = 544.0
 offset_top = 531.0
@@ -248,14 +275,14 @@ offset_right = 707.0
 offset_bottom = -383.0
 grow_horizontal = 2
 grow_vertical = 2
-texture_normal = ExtResource("9_ipmtn")
-texture_pressed = ExtResource("9_ipmtn")
-texture_hover = ExtResource("9_ipmtn")
-texture_disabled = ExtResource("9_ipmtn")
-texture_focused = ExtResource("9_ipmtn")
+texture_normal = ExtResource("7_fydxo")
+texture_pressed = ExtResource("7_fydxo")
+texture_hover = ExtResource("7_fydxo")
+texture_disabled = ExtResource("7_fydxo")
+texture_focused = ExtResource("7_fydxo")
 stretch_mode = 0
 
-[node name="Control" parent="." instance=ExtResource("8_78fmo")]
+[node name="battleCircle" parent="." instance=ExtResource("8_75jyp")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -276,5 +303,6 @@ grow_vertical = 2
 [connection signal="gui_input" from="Control_3" to="." method="_on_control_3_gui_input"]
 [connection signal="gui_input" from="Control_2" to="." method="_on_control_2_gui_input"]
 [connection signal="gui_input" from="Control_1" to="." method="_on_control_1_gui_input"]
-[connection signal="gui_input" from="Control_4" to="." method="_on_control_1_gui_input"]
+[connection signal="value_changed" from="coinSlider" to="." method="_on_coin_slider_value_changed"]
+[connection signal="value_changed" from="soildSlider" to="." method="_soilderNum_changed"]
 [connection signal="button_down" from="TextureButton" to="." method="_on_exit_button_button_down"]

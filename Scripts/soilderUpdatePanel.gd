@@ -6,9 +6,6 @@ extends Control
 
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
 
 
@@ -34,7 +31,7 @@ func _ready():
 #]
 
 func update_ui():
-	var selected_general = GameManager.generals[selected_general_index]
+	var selected_general = GameManager.generals.values()[selected_general_index]
 	control_1.updateContext(0)
 	control_2.updateContext(1)	
 	control_3.updateContext(2)	
@@ -46,7 +43,7 @@ func update_ui():
 
 # 升级按钮被按下时运行
 func _on_upgrade_button_pressed():
-	var selected_general = GameManager.generals[selected_general_index]
+	var selected_general = GameManager.generals.values()[selected_general_index]
 	if gold >= upgrade_cost and selected_general["level"] < selected_general["max_level"]:
 		gold -= upgrade_cost
 		selected_general["level"] += 1

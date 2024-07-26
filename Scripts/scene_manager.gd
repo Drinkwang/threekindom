@@ -3,7 +3,7 @@ class_name  scenemanager
 var SLEEP_BLANK = preload("res://Scene/sleepBlank.tscn")
 var STREET = preload("res://Scene/street.tscn")
 var BOULEUTERION = preload("res://Scene/Bouleuterion.tscn")
-var DRILL_GROUND = preload("res://Scene/drill_ground.tscn")
+var DRILL_GROUND = preload("res://Scene/battleSys/drill_ground.tscn")
 var GOVERNMENT_BUILDING = preload("res://Scene/government_building.tscn")
 var HOUSE = preload("res://Scene/house.tscn")
 const FancyFade = preload("res://addons/transitions/FancyFade.gd")
