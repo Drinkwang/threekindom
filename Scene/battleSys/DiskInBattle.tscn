@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dcydwatjg50hl"]
+[gd_scene load_steps=9 format=3 uid="uid://dcydwatjg50hl"]
 
 [ext_resource type="Script" path="res://Scripts/DiskInBattle.gd" id="1_0q3sx"]
 [ext_resource type="Texture2D" uid="uid://cale1h2nqfdrh" path="res://Asset/ui/circle.png" id="1_upy2s"]
 [ext_resource type="Texture2D" uid="uid://dmqvx1ja8yft7" path="res://Asset/other/剪刀.png" id="3_8nnbh"]
 [ext_resource type="PackedScene" uid="uid://dxj1s2d4grxwj" path="res://Scene/prefab/SoilderItem.tscn" id="4_px0mi"]
 [ext_resource type="Texture2D" uid="uid://cbs1ut2w7lnuy" path="res://Asset/人物/关羽.jpg" id="5_dprbg"]
+[ext_resource type="Texture2D" uid="uid://cc2retfuupgvb" path="res://Asset/pointer_scifi_b.png" id="6_cexsq"]
 
 [sub_resource type="Animation" id="Animation_whhn8"]
 resource_name = "c1"
@@ -164,3 +165,21 @@ namelv = "关羽:lv1"
 libraries = {
 "": SubResource("AnimationLibrary_uhe5w")
 }
+
+[node name="background-player2" type="TextureProgressBar" parent="."]
+offset_left = 1.00002
+offset_top = 1.52588e-05
+offset_right = 65.0
+offset_bottom = 64.0
+scale = Vector2(5, 5)
+value = 100.0
+fill_mode = 5
+texture_progress = ExtResource("1_upy2s")
+tint_under = Color(0.981098, 0.850573, 0.852089, 1)
+tint_progress = Color(0.137255, 0.458824, 0.807843, 0.505882)
+radial_fill_degrees = 8.7
+
+[node name="PointerScifiB" type="Sprite2D" parent="."]
+position = Vector2(162, 139)
+rotation = 0.785398
+texture = ExtResource("6_cexsq")

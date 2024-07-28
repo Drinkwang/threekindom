@@ -122,7 +122,7 @@ func _enterDay():
 var completeTask:int=0	
 	
 func intBattleTask():
-	nums={}
+	var nums={}
 
 	for battleTarget in range(3):
 		battleTasks[battleTarget]={}
@@ -142,7 +142,7 @@ func intBattleTask():
 			var sy =opcost.values()[syTyoe]
 			nums=generate_random_numbers(100,2)
 			battleTasks[battleTarget].task=[{"res":res,"symbol":sy,"value":costNum,"reward":nums[0]}]
-			battleTasks[battleTarget].reward=num[1]
+			battleTasks[battleTarget].reward=nums[1]
 		elif taskNum==2:
 			var syTyoe1=randi_range(0, 2)
 			nums=generate_random_numbers(100,3)
@@ -150,7 +150,7 @@ func intBattleTask():
 			var syTyoe2=randi_range(0, 2)
 			var sy2=opcost.values()[syTyoe2]
 			battleTasks[battleTarget].task=[{"res":"coin","symbol":sy1,"value":15*battleTasks[battleTarget].index,"reward":nums[0]},{"res":"human","symbol":sy2,"value":50*battleTasks[battleTarget].index,"reward":nums[1]}]
-			battleTasks[battleTarget].reward=num[2]
+			battleTasks[battleTarget].reward=nums[2]
 		var sdType:int=randf_range(0, 3)
 		battleTasks[battleTarget].sdType=RspEnum.values()[sdType-1]
 

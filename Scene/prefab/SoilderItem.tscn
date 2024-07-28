@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/SoilderItem.gd" id="1_t53yr"]
 [ext_resource type="Texture2D" uid="uid://7lnklxgva7pn" path="res://Asset/ui/panel_Example1.png" id="2_fwr36"]
-[ext_resource type="Texture2D" uid="uid://bc1p7mltmkvs8" path="res://Asset/other/石头.png" id="3_8isa3"]
+[ext_resource type="Texture2D" uid="uid://b7bkrdisoj606" path="res://Asset/other/布.png" id="3_qrcr8"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -39,7 +39,7 @@ layout_mode = 0
 offset_left = 255.0
 offset_right = 311.0
 offset_bottom = 56.0
-texture = ExtResource("3_8isa3")
+texture = ExtResource("3_qrcr8")
 expand_mode = 1
 
 [node name="CheckBox" type="CheckBox" parent="TextureRect"]
