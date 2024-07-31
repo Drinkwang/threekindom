@@ -33,8 +33,7 @@ fill_mode = 5
 texture_progress = ExtResource("1_upy2s")
 tint_under = Color(0.981098, 0.850573, 0.852089, 1)
 tint_progress = Color(0, 0.962223, 0.342341, 1)
-radial_initial_angle = 108.3
-radial_fill_degrees = 47.9
+radial_fill_degrees = 90.0
 
 [node name="LitterDamage" type="TextureProgressBar" parent="."]
 layout_mode = 0
@@ -46,8 +45,8 @@ fill_mode = 5
 texture_progress = ExtResource("1_upy2s")
 tint_under = Color(0.981098, 0.850573, 0.852089, 1)
 tint_progress = Color(0.926972, 0.873791, 0.33644, 1)
-radial_initial_angle = 108.3
-radial_fill_degrees = 47.9
+radial_initial_angle = 270.0
+radial_fill_degrees = 88.3
 
 [node name="MiddleDamage" type="TextureProgressBar" parent="."]
 layout_mode = 0
@@ -59,8 +58,8 @@ fill_mode = 5
 texture_progress = ExtResource("1_upy2s")
 tint_under = Color(0.981098, 0.850573, 0.852089, 1)
 tint_progress = Color(0.850816, 0.507731, 0.0825511, 1)
-radial_initial_angle = 108.3
-radial_fill_degrees = 47.9
+radial_initial_angle = 180.0
+radial_fill_degrees = 90.0
 
 [node name="BigDamage" type="TextureProgressBar" parent="."]
 layout_mode = 0
@@ -72,33 +71,110 @@ fill_mode = 5
 texture_progress = ExtResource("1_upy2s")
 tint_under = Color(0.981098, 0.850573, 0.852089, 1)
 tint_progress = Color(0.851983, 0, 0.257883, 1)
-radial_initial_angle = 60.5
-radial_fill_degrees = 47.9
+radial_initial_angle = 90.0
+radial_fill_degrees = 90.0
 
 [node name="background-player" type="TextureProgressBar" parent="."]
 layout_mode = 0
-offset_left = -1.0
-offset_top = 0.999985
-offset_right = 63.0
-offset_bottom = 65.0
+offset_top = -1.49608e-05
+offset_right = 64.0
+offset_bottom = 64.0
 scale = Vector2(5, 5)
 value = 100.0
 fill_mode = 5
 texture_progress = ExtResource("1_upy2s")
 tint_under = Color(0.981098, 0.850573, 0.852089, 1)
-tint_progress = Color(0.137255, 0.458824, 0.807843, 0.505882)
+tint_progress = Color(0.137255, 0.458824, 0.807843, 0.211765)
 radial_initial_angle = 90.0
-radial_fill_degrees = 8.7
+radial_fill_degrees = 0.0
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="PointerScifiB" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 111.0
+offset_top = 113.0
+offset_right = 175.0
+offset_bottom = 177.0
+rotation = 2.39285
+pivot_offset = Vector2(49.75, 48.42)
+texture = ExtResource("6_cexsq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_left = -100.0
+offset_top = 1.0
+offset_right = -80.0
+offset_bottom = 77.0
+scale = Vector2(1.5, 1.5)
+
+[node name="无风险" type="ColorRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(20, 16)
+layout_mode = 2
+color = Color(0, 0.960784, 0.341176, 1)
+
+[node name="Label" type="Label" parent="VBoxContainer/无风险"]
+layout_mode = 0
+offset_left = 24.0
+offset_right = 72.0
+offset_bottom = 16.0
+text = "无伤亡"
+
+[node name="低风险" type="ColorRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(20, 16)
+layout_mode = 2
+color = Color(0.92549, 0.87451, 0.337255, 1)
+
+[node name="Label" type="Label" parent="VBoxContainer/低风险"]
+layout_mode = 0
+offset_left = 24.0
+offset_right = 72.0
+offset_bottom = 16.0
+text = "低伤亡"
+
+[node name="低风险2" type="ColorRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(20, 16)
+layout_mode = 2
+color = Color(0.85098, 0.505882, 0.0823529, 1)
+
+[node name="Label" type="Label" parent="VBoxContainer/低风险2"]
+layout_mode = 0
+offset_left = 24.0
+offset_right = 72.0
+offset_bottom = 16.0
+text = "中伤亡"
+
+[node name="低风险3" type="ColorRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(20, 16)
+layout_mode = 2
+color = Color(0.85098, 0, 0.258824, 1)
+
+[node name="Label" type="Label" parent="VBoxContainer/低风险3"]
+layout_mode = 0
+offset_left = 24.0
+offset_right = 72.0
+offset_bottom = 16.0
+text = "高伤亡"
+
+[node name="成功率" type="ColorRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(20, 16)
+layout_mode = 2
+color = Color(0.137255, 0.458824, 0.807843, 0.211765)
+
+[node name="Label" type="Label" parent="VBoxContainer/成功率"]
+layout_mode = 0
+offset_left = 24.0
+offset_right = 72.0
+offset_bottom = 16.0
+text = "成功率"
+
+[node name="ColorRect_1" type="ColorRect" parent="."]
 layout_mode = 2
 offset_left = 317.0
-offset_top = 1.0
+offset_top = 2.0
 offset_right = 357.0
-offset_bottom = 40.0
+offset_bottom = 41.0
 color = Color(0.529067, 0.529067, 0.529067, 1)
 
-[node name="TextureRect" type="TextureRect" parent="ColorRect"]
+[node name="TextureRect" type="TextureRect" parent="ColorRect_1"]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
@@ -107,7 +183,7 @@ offset_bottom = 37.0
 texture = ExtResource("3_8nnbh")
 expand_mode = 1
 
-[node name="ColorRect2" type="ColorRect" parent="."]
+[node name="ColorRect_2" type="ColorRect" parent="."]
 layout_mode = 2
 offset_left = 317.0
 offset_top = 41.0
@@ -115,7 +191,7 @@ offset_right = 357.0
 offset_bottom = 80.0
 color = Color(0.529067, 0.529067, 0.529067, 1)
 
-[node name="TextureRect" type="TextureRect" parent="ColorRect2"]
+[node name="TextureRect" type="TextureRect" parent="ColorRect_2"]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
@@ -124,7 +200,7 @@ offset_bottom = 37.0
 texture = ExtResource("3_8nnbh")
 expand_mode = 1
 
-[node name="ColorRect3" type="ColorRect" parent="."]
+[node name="ColorRect_3" type="ColorRect" parent="."]
 layout_mode = 0
 offset_left = 317.0
 offset_top = 81.0
@@ -132,7 +208,7 @@ offset_right = 357.0
 offset_bottom = 120.0
 color = Color(0.529067, 0.529067, 0.529067, 1)
 
-[node name="TextureRect" type="TextureRect" parent="ColorRect3"]
+[node name="TextureRect" type="TextureRect" parent="ColorRect_3"]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
@@ -161,25 +237,24 @@ canSelect = false
 headImg = ExtResource("5_dprbg")
 namelv = "关羽:lv1"
 
+[node name="ColorRect_0" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 226.0
+offset_top = 433.0
+offset_right = 266.0
+offset_bottom = 472.0
+color = Color(0.529067, 0.529067, 0.529067, 1)
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect_0"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 38.0
+offset_bottom = 37.0
+texture = ExtResource("3_8nnbh")
+expand_mode = 1
+
 [node name="C1" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_uhe5w")
 }
-
-[node name="background-player2" type="TextureProgressBar" parent="."]
-offset_left = 1.00002
-offset_top = 1.52588e-05
-offset_right = 65.0
-offset_bottom = 64.0
-scale = Vector2(5, 5)
-value = 100.0
-fill_mode = 5
-texture_progress = ExtResource("1_upy2s")
-tint_under = Color(0.981098, 0.850573, 0.852089, 1)
-tint_progress = Color(0.137255, 0.458824, 0.807843, 0.505882)
-radial_fill_degrees = 8.7
-
-[node name="PointerScifiB" type="Sprite2D" parent="."]
-position = Vector2(162, 139)
-rotation = 0.785398
-texture = ExtResource("6_cexsq")

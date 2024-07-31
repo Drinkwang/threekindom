@@ -2,14 +2,24 @@ extends Control
 class_name DiskInBattle
 @export var datas:Array[TextureProgressBar]
 @onready var selectHero=$"../"
+
+@onready var control = $".."
+const jiandao = preload("res://Asset/other/剪刀.png")
+const bu = preload("res://Asset/other/布.png")
+const shitou = preload("res://Asset/other/石头.png")
 #var battleCircle=[
 #	{"name":"无风险","initPos":0,"radian":90},
 # Called when the node enters the scene tree for the first time.
 var selectgeneral
 func _ready():
+	_on_SpinButton_pressed()
+	_initBattleTypePng(0,GameManager.battleTasks[taskIndex].sdType)
+	for i in range(1,3):
+		var sd=GameManager.battleTasks[i-1].sdType
+		_initBattleTypePng(i,sd)
 	#初始化其中一个，然后随机获取一个 初始化按照gamemanager数据来
 	var btdatas=GameManager.battleCircle
-	for i in range(0,3):
+	for i in range(0,4):
 		var btdata=btdatas[i]
 		datas[i].radial_initial_angle=btdata.initPos
 		datas[i].radial_fill_degrees=btdata.radian
@@ -22,7 +32,11 @@ func _ready():
 	
 	
 	
+var taskIndex:int=0
 
+func _initPanel():
+	_on_SpinButton_pressed()
+	pass
 	
 func _juideCompeleteTask():
 	#用100减去安全区的值
@@ -33,9 +47,9 @@ func _juideCompeleteTask():
 	var mustHave=rewardMax*(generalLevel+10)/20     #+generalLevel*rewardMax/20
 	#var mustHave=rewardMax/2
 	var targetGet=0
-	 
+	print("befoer"+str(targetGet))
 	#等级 （reward/100）*mustrewad
-	var btdatas=GameManager.battleTasks
+	var btdatas=GameManager.battleTasks[taskIndex]
 	var tasks=btdatas.task
 	var haveRes
 	
@@ -45,7 +59,7 @@ func _juideCompeleteTask():
 			haveRes=curCoin	
 		else:
 			haveRes=curSoilder		
-		var sybol=task.sybol
+		var sybol=task.symbol
 		var iscomplete=false
 		if sybol==GameManager.opcost.greater:
 			if(haveRes>value):
@@ -57,44 +71,50 @@ func _juideCompeleteTask():
 			if(haveRes==value):
 				iscomplete=true
 		if iscomplete==true:
-			targetGet=targetGet+ (task.reward/100)*mustHave
-
+			targetGet=targetGet+ ((task.reward/100.0)*mustHave)
+	
 
  	
-		#battleTasks[battleTarget].task=[{"res":"coin","symbol":sy1,"value":15*battleTasks[battleTarget].index,"reward":nums[0]},{"res":"human","symbol":sy2,"value":50*battleTasks[battleTarget].index,"reward":nums[1]}]
-	
+
 	# 	{"name": "赵云", "level": 1, "max_level": 10, "randominit": -1}
 # 判断选择武将的石头剪刀布
 #首先获取选择的武将
 	#btdatas.sdType
 	var type = GameManager.generals.find_key(selectgeneral)
 	
-	if btdatas.sdType+1%3==type:
-		targetGet=targetGet-  (btdatas.reward/100)*mustHave
-		 #玩家失败
+	if (btdatas.sdType==GameManager.RspEnum.SCISSORS&&type==GameManager.RspEnum.PAPER) or\
+	(btdatas.sdType==GameManager.RspEnum.PAPER&&type==GameManager.RspEnum.ROCK) or\
+	(btdatas.sdType==GameManager.RspEnum.ROCK&&type==GameManager.RspEnum.SCISSORS):
+		#print("失败"+str(btdatas.reward))
+		targetGet=targetGet-  ((btdatas.reward/100.0)*mustHave)
+		 #玩家失败 暂时不扣 免得有bug
 	elif btdatas.sdType==type:
+		#print("平局")
 		pass
 		 #平局
 	else: 
-		targetGet=targetGet+  (btdatas.reward/100)*mustHave
+		targetGet=targetGet+  ((btdatas.reward/100.0)*mustHave)
+		#print("获胜")
 		#玩家获胜
 			
 	pass
-
+	#可加入每次完成任务，成功率提升10%
 	#当玩家的值大于basevalue时，每提升10% 会有5%的提升 上部封顶 但是最多玩家将会获得100%的和平区域 也就是最多为rewardMax
-	var levelup= int(floor(curCoin /(btdatas.index*30)))*2+int(floor(curSoilder/(btdatas.index*50)))*5
+	var levelup= int(floor(curCoin /(btdatas.index)))*8+int(floor(curSoilder/(btdatas.index)))*10+(generalLevel*18)
+	GameManager.battleCircle[4].radian=levelup;
 	#targetGet=targetGet+levelup
 	#if(targetGet>rewardMax):
 	#	targetGet=rewardMax
 	#看情况开启注释代码
 	#封顶
 	#当玩家的coin值大于basevalue 每提升10% 会有3%提升
+	print("after"+str(targetGet))
 	_changeCircle(targetGet)
 		
 	pass # Replace with function body.
 
-var curCoin
-var curSoilder
+var curCoin=0
+var curSoilder=0
 
 func _processSuccussCircle(coin,soilder):
 	curCoin=coin
@@ -103,12 +123,12 @@ func _processSuccussCircle(coin,soilder):
 	pass
 	
 
-
+var battleCircleClone:Array;
 func _changeCircle(rewardGet):
 	#获取的reward去由高到底转换
 	
 
-	var btdatas:Array=GameManager.battleCircle
+	battleCircleClone=GameManager.battleCircle.duplicate(true)
 	
 	
 	#{"name":"无风险","initPos":0,"radian":90,"index":0},#
@@ -118,79 +138,81 @@ func _changeCircle(rewardGet):
 	#{"name":"成功率","initPos":-1,"radian":60,"index":4}
 	var cost=rewardGet
 	
+	if(battleCircleClone[0].radian+rewardGet<0):
+		rewardGet=0-battleCircleClone[0].radian
 
-	
 	
 	for i in range(3,0,-1):
 		
-		if(cost>btdatas[i].radian):	
-			cost=cost-btdatas[i].radian
-			btdatas[i].radian=0
+		if(cost>battleCircleClone[i].radian):	
+			cost=cost-battleCircleClone[i].radian
+			battleCircleClone[i].radian=0
 			#修复二边初始角度
 			
 		else:
-			datas[i].radial_fill_degrees=datas[i].radial_fill_degrees-cost
-			#修复二边初始角度
-			
+			battleCircleClone[i].radian=battleCircleClone[i].radian-cost
+			cost=0;
 			break;	
 			
-		var btdata=btdatas[i]
-		datas[i].radial_initial_angle=btdata.initPos
-		datas[i].item.radial_fill_degrees=btdata.radian
 	
-		#不能直接改data
-	btdatas[0].radian=btdatas[0].radian+rewardGet
+	#这玩意不能改动，有二个方法
+	battleCircleClone[0].radian=battleCircleClone[0].radian+rewardGet
 	
 	
 	
 
 	#从起始initindex开始围绕一圈
-	var initindex=btdatas[0].index
+	var initindex=battleCircleClone[0].index
 	var nextInitIndex
 	
-	
-	
-	var calradian=btdatas[0].radian
-	
-	if(initindex>3):
+	var calradian=0
+	#下面逻辑会导致旋转图出现混乱，并且没有做保护措施
+	if battleCircleClone[0].radian>0:
+		calradian=battleCircleClone[0].radian
+	if calradian<0:
+		calradian=0
+	if(initindex+1>3):
 		nextInitIndex=0
 	else:
-		nextInitIndex=btdatas[0].index+1
+		nextInitIndex=initindex+1
 
 	while(nextInitIndex!=initindex):
-		var e#=btdatas.find(item=>item.index==nextInitIndex)#()
-		for i in range(datas.size()):
-			if datas[i]==nextInitIndex:
-				e=datas[i]
+		var e
+		for i in range(battleCircleClone.size()):
+			if battleCircleClone[i].index==nextInitIndex:
+				e=battleCircleClone[i]
 				break
+		#有bug待修复
+
+		#此处不能用加法
+		e.initPos=battleCircleClone[0].initPos-calradian
+		if e.radian>0:
+			calradian=calradian+e.radian
 		
-		
-		nextInitIndex.initPos=calradian
-		calradian=calradian+nextInitIndex.radian
-		if(initindex>3):
+		if(nextInitIndex+1>3):
 			nextInitIndex=0
 		else:
-			nextInitIndex=btdatas[0].index+1
+			nextInitIndex=nextInitIndex+1
 		
 	
 	
 	refresh()
 
-	#datas[4].radial_initial_angle=btdatas[4].initPos
-	#datas[4].item.radial_fill_degrees=btdatas[4].radian
+	datas[4].radial_initial_angle=battleCircleClone[4].initPos
+	datas[4].radial_fill_degrees=battleCircleClone[4].radian
 
 	
 func refresh():
-	var btdatas=GameManager.battleCircle
-	for i in range(0,3):
-		var btdata=btdatas[i]
-		datas[i].radial_initial_angle=btdata.initPos
-		datas[i].item.radial_fill_degrees=btdata.radian
+	
+	for i in range(0,4):
+		var btdata=battleCircleClone[i]
+		datas[i].radial_initial_angle=fmod(btdata.initPos,360.0)
+		datas[i].radial_fill_degrees=fmod(btdata.radian,360.0)
 		
 		
 	#初始化玩家坐标系
-	datas[4].radial_initial_angle=btdatas[4].initPos
-	datas[4].item.radial_fill_degrees=btdatas[4].radian
+	#datas[4].radial_initial_angle=btdatas[4].initPos
+	#datas[4].radial_fill_degrees=btdatas[4].radian
 	#玩家坐标只会受到二个影响 一个是coin 一个是soilder
 	
 
@@ -224,22 +246,50 @@ var stop_angle
 
 func _on_SpinButton_pressed():
 	# 开始旋转动画
-	var tween = Tween.new()
-	add_child(tween)
-	tween.interpolate_property(self, "rotation_degrees", 360 * ROTATION_DURATION, ROTATION_DURATION, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$PointerScifiB.show()
+	var tween = get_tree().create_tween()
+	#add_child(tween)
+	#tween.interpolate_property(self, "rotation_degrees", 360 * ROTATION_DURATION, ROTATION_DURATION, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 #	tween.start()
+	stop_angle = randf_range(0, 360)
+	tween.tween_property($PointerScifiB, "rotation_degrees", 360 * ROTATION_DURATION+stop_angle, 2)
 
 
 	tween.tween_callback(_on_Tween_tween_all_completed)
 	
 	
 # 在旋转动画开始之前生成一个随机角度
-	stop_angle = randf_range(0, 360)
 
+
+# 实例化四张石头剪刀布图片
+func _initBattleTypePng(index,type):
+	if(type==GameManager.RspEnum.PAPER):
+		find_child("ColorRect_"+str(index)).get_child(0).texture=bu
+	elif type== GameManager.RspEnum.ROCK:
+		find_child("ColorRect_"+str(index)).get_child(0).texture=shitou
+	else:
+		find_child("ColorRect_"+str(index)).get_child(0).texture=jiandao
+	#this["ColorRect_0"].hidden()$ColorRect_0
+	pass
 
 
 func _on_Tween_tween_all_completed():
 	await 2
+	var real_angle=stop_angle-45 #减去图片偏差的45度
+	if(real_angle<0):
+		real_angle=real_angle+360
+	for data in battleCircleClone:
+		if(data.radian>0):
+			var lowerValue=data.radian-data.initPos
+			var upperValue=data.initPos
+			if(real_angle> fmod(lowerValue,360.0) and real_angle<fmod(upperValue,360.0)):
+				print(data.name)
+				
+				pass
+			
+
+	
+	print(real_angle)
 	
 	
 	# 计算停止位置

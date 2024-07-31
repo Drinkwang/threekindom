@@ -13,8 +13,8 @@ var destination:String #放在gameins里面
 @export var datas:Array[cldata] 
 
 enum RspEnum{
-	ROCK=1,
 	PAPER=0,
+	ROCK=1,
 	SCISSORS=2
 	
 	
@@ -50,7 +50,7 @@ var battleCircle=[
 	{"name":"小风险","initPos":0,"radian":90,"index":1},
 	{"name":"中风险","initPos":0,"radian":90,"index":2},
 	{"name":"高风险","initPos":0,"radian":90,"index":3},
-	{"name":"成功率","initPos":-1,"radian":60,"index":4}
+	{"name":"成功率","initPos":90,"radian":0,"index":4}
 	
 	#初始值会带有一些随机元素，但会根据优势更偏进好的 初始成功率不大于30  做任务降低损失增大成功率 
 ]
@@ -101,10 +101,9 @@ var policy_Item=[
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var count = 4  # 你可以在这里设置需要的数字数量
-	var numbers = generate_random_numbers(100, count)
-	print(numbers)
-	print("Sum: ", array_sum(numbers))
+	initPaixi(BENTUPAI)
+	initPaixi(WAIDIPAI)
+	initBattleCircle()
 
 func array_sum(arr: Array) -> int:
 	var sum = 0
@@ -216,7 +215,7 @@ func initBattleCircle():
 		
 
 func initGenerlRandom():
-	for value in generals:
+	for value in generals.values():
 		value.randominit=randi_range(0,360)
 
 
