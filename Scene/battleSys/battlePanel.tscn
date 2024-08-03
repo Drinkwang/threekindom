@@ -71,16 +71,13 @@ text = "请选择你的出征将领：
 autowrap_mode = 2
 
 [node name="orderVbox" type="HBoxContainer" parent="PanelContainer/orderPanel/VBoxContainer"]
-custom_minimum_size = Vector2(2.05, 450)
+custom_minimum_size = Vector2(2.05, 411.895)
 layout_mode = 2
 
-[node name="Control2" type="Control" parent="PanelContainer/orderPanel/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="PanelContainer/orderPanel/VBoxContainer"]
+[node name="selectDetail" type="Label" parent="PanelContainer/orderPanel/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 31
-text = "选择赵云进行练兵升级，这大概需要花费50金，升级成功率100%"
+text = "选择将领进行出征，你可以自由调节士兵数量和资金数量，注意完成右侧任务和猜拳，可以降低伤亡和提高成功率！"
 autowrap_mode = 2
 
 [node name="Control" type="Control" parent="PanelContainer/orderPanel/VBoxContainer"]
@@ -97,6 +94,7 @@ size_flags_horizontal = 10
 [node name="Button" type="Button" parent="PanelContainer/orderPanel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+disabled = true
 text = "出征"
 
 [node name="Control3" type="Control" parent="PanelContainer/orderPanel/VBoxContainer/HBoxContainer"]
@@ -121,7 +119,7 @@ tab_count = 2
 tab_0/title = "命令面板"
 tab_1/title = "法律法规"
 
-[node name="Control_3" parent="." instance=ExtResource("3_3ya2h")]
+[node name="Control_1" parent="." instance=ExtResource("3_3ya2h")]
 custom_minimum_size = Vector2(380, 0)
 layout_mode = 2
 anchors_preset = 0
@@ -151,7 +149,7 @@ headImg = ExtResource("5_7n0ga")
 namelv = "张飞:lv1"
 repImg = 2
 
-[node name="Control_1" parent="." instance=ExtResource("3_3ya2h")]
+[node name="Control_3" parent="." instance=ExtResource("3_3ya2h")]
 custom_minimum_size = Vector2(380, 0)
 layout_mode = 2
 anchors_preset = 0
@@ -297,12 +295,11 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [connection signal="button_down" from="PanelContainer/orderPanel/VBoxContainer/HBoxContainer/Button" to="." method="_on_button_button_down"]
-[connection signal="pressed" from="PanelContainer/orderPanel/VBoxContainer/HBoxContainer/Button" to="." method="_on_upgrade_button_pressed"]
 [connection signal="tab_button_pressed" from="TabBar" to="." method="_on_tab_bar_tab_button_pressed"]
 [connection signal="tab_changed" from="TabBar" to="." method="_on_tab_bar_tab_changed"]
-[connection signal="gui_input" from="Control_3" to="." method="_on_control_3_gui_input"]
-[connection signal="gui_input" from="Control_2" to="." method="_on_control_2_gui_input"]
 [connection signal="gui_input" from="Control_1" to="." method="_on_control_1_gui_input"]
+[connection signal="gui_input" from="Control_2" to="." method="_on_control_2_gui_input"]
+[connection signal="gui_input" from="Control_3" to="." method="_on_control_3_gui_input"]
 [connection signal="value_changed" from="coinSlider" to="." method="_on_coin_slider_value_changed"]
 [connection signal="value_changed" from="soildSlider" to="." method="_soilderNum_changed"]
 [connection signal="button_down" from="TextureButton" to="." method="_on_exit_button_button_down"]

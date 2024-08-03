@@ -7,12 +7,22 @@ class_name DiskInBattle
 const jiandao = preload("res://Asset/other/剪刀.png")
 const bu = preload("res://Asset/other/布.png")
 const shitou = preload("res://Asset/other/石头.png")
+const Success=preload("res://.godot/imported/Success.svg-af58d452c13e928b2a282a117f5e080e.ctex")
+const fail=preload("res://Asset/other/0_red.png")
+
+
 #var battleCircle=[
 #	{"name":"无风险","initPos":0,"radian":90},
 # Called when the node enters the scene tree for the first time.
 var selectgeneral
+#ne
+func _endReward():
+	$PointerScifiB.hide()
+	pass
+@onready var enemy = $enemy
+
 func _ready():
-	_on_SpinButton_pressed()
+	SignalManager.endReward.connect(_endReward)
 	_initBattleTypePng(0,GameManager.battleTasks[taskIndex].sdType)
 	for i in range(1,3):
 		var sd=GameManager.battleTasks[i-1].sdType
@@ -29,21 +39,24 @@ func _ready():
 	datas[4].radial_initial_angle=btdatas[4].initPos
 	datas[4].radial_fill_degrees=btdatas[4].radian
 	
+	refreshPage()
 	
 	
 	
 var taskIndex:int=0
 
-func _initPanel():
-	_on_SpinButton_pressed()
-	pass
+
 	
 func _juideCompeleteTask():
 	#用100减去安全区的值
 	#
 	var rewardMax=360-GameManager.battleCircle[0].radian
 	#所有风险区的变化最后都会改成无风险值变大
-	var generalLevel=selectgeneral.level
+	var generalLevel
+	if(selectgeneral!=null):
+		generalLevel=selectgeneral.level
+	else:
+		generalLevel=0
 	var mustHave=rewardMax*(generalLevel+10)/20     #+generalLevel*rewardMax/20
 	#var mustHave=rewardMax/2
 	var targetGet=0
@@ -55,17 +68,20 @@ func _juideCompeleteTask():
 	
 	for task in tasks:
 		var value=task.value
+		var minValue
 		if task.res=="coin":
 			haveRes=curCoin	
+			minValue=int(floor(value*2/3))
 		else:
 			haveRes=curSoilder		
+			minValue=int(floor(value*3/5))
 		var sybol=task.symbol
 		var iscomplete=false
 		if sybol==GameManager.opcost.greater:
 			if(haveRes>value):
 				iscomplete=true
 		elif sybol==GameManager.opcost.less:
-			if(haveRes<value):
+			if(haveRes<value and haveRes>minValue):
 				iscomplete=true
 		elif sybol==GameManager.opcost.equal:
 			if(haveRes==value):
@@ -100,7 +116,7 @@ func _juideCompeleteTask():
 	pass
 	#可加入每次完成任务，成功率提升10%
 	#当玩家的值大于basevalue时，每提升10% 会有5%的提升 上部封顶 但是最多玩家将会获得100%的和平区域 也就是最多为rewardMax
-	var levelup= int(floor(curCoin /(btdatas.index)))*8+int(floor(curSoilder/(btdatas.index)))*10+(generalLevel*18)
+	var levelup= int(floor(curCoin /(btdatas.index)))*2+int(floor(curSoilder/(btdatas.index)))*10+(generalLevel*18)
 	GameManager.battleCircle[4].radian=levelup;
 	#targetGet=targetGet+levelup
 	#if(targetGet>rewardMax):
@@ -150,13 +166,13 @@ func _changeCircle(rewardGet):
 			#修复二边初始角度
 			
 		else:
-			battleCircleClone[i].radian=battleCircleClone[i].radian-cost
+			battleCircleClone[i].radian=fmod(battleCircleClone[i].radian-cost,360)
 			cost=0;
 			break;	
 			
 	
 	#这玩意不能改动，有二个方法
-	battleCircleClone[0].radian=battleCircleClone[0].radian+rewardGet
+	battleCircleClone[0].radian=fmod(battleCircleClone[0].radian+rewardGet,360)
 	
 	
 	
@@ -185,7 +201,7 @@ func _changeCircle(rewardGet):
 		#有bug待修复
 
 		#此处不能用加法
-		e.initPos=battleCircleClone[0].initPos-calradian
+		e.initPos=fmod((battleCircleClone[0].initPos-calradian),360.0)
 		if e.radian>0:
 			calradian=calradian+e.radian
 		
@@ -198,36 +214,31 @@ func _changeCircle(rewardGet):
 	
 	refresh()
 
-	datas[4].radial_initial_angle=battleCircleClone[4].initPos
-	datas[4].radial_fill_degrees=battleCircleClone[4].radian
+
 
 	
 func refresh():
 	
 	for i in range(0,4):
 		var btdata=battleCircleClone[i]
-		datas[i].radial_initial_angle=fmod(btdata.initPos,360.0)
-		datas[i].radial_fill_degrees=fmod(btdata.radian,360.0)
+		datas[i].radial_initial_angle=btdata.initPos
+		datas[i].radial_fill_degrees=btdata.radian
 		
 		
 	#初始化玩家坐标系
-	#datas[4].radial_initial_angle=btdatas[4].initPos
-	#datas[4].radial_fill_degrees=btdatas[4].radian
+	datas[4].radial_initial_angle=battleCircleClone[4].initPos
+	datas[4].radial_fill_degrees=battleCircleClone[4].radian
 	#玩家坐标只会受到二个影响 一个是coin 一个是soilder
 	
 
 var isBoot:bool=false
 
 func lauchProgress():
-	isBoot=true
-	pass
+	if isBoot ==false:
+		isBoot=true
+		_on_SpinButton_pressed()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if(isBoot==true):
-		#此处不断转动转盘，直到时间平均 1秒转动一圈，
-		pass
-		#开始转转转
 
 
 
@@ -252,6 +263,21 @@ func _on_SpinButton_pressed():
 	#tween.interpolate_property(self, "rotation_degrees", 360 * ROTATION_DURATION, ROTATION_DURATION, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 #	tween.start()
 	stop_angle = randf_range(0, 360)
+	
+	
+	for data in battleCircleClone:
+		if(data.radian>0):
+			var lowerValue=data.initPos-data.radian
+			var upperValue=data.initPos
+			if(lowerValue<0):
+				lowerValue=lowerValue+360
+			if(upperValue<0):
+				upperValue=upperValue+360	
+			if(stop_angle-45== lowerValue and stop_angle-45<upperValue):
+				stop_angle+5
+				
+			
+	
 	tween.tween_property($PointerScifiB, "rotation_degrees", 360 * ROTATION_DURATION+stop_angle, 2)
 
 
@@ -275,26 +301,112 @@ func _initBattleTypePng(index,type):
 
 func _on_Tween_tween_all_completed():
 	await 2
+	$PointerScifiB.rotation_degrees=fmod(stop_angle,360)
 	var real_angle=stop_angle-45 #减去图片偏差的45度
+	var issuccess=false;
+	var selectPart
 	if(real_angle<0):
 		real_angle=real_angle+360
 	for data in battleCircleClone:
 		if(data.radian>0):
-			var lowerValue=data.radian-data.initPos
+			var lowerValue=data.initPos-data.radian
 			var upperValue=data.initPos
-			if(real_angle> fmod(lowerValue,360.0) and real_angle<fmod(upperValue,360.0)):
+			if(lowerValue<0):
+				lowerValue=lowerValue+360
+			if(upperValue<0):
+				upperValue=upperValue+360	
+			if(real_angle> lowerValue and real_angle<upperValue):
 				print(data.name)
+				if data.name=="成功率":
+					issuccess=true
+				else:
+					selectPart=data.name
 				
 				pass
 			
-
-	
+	settleGame(selectPart,issuccess)
+	#将风险值和成功率一起输入
 	print(real_angle)
-	
+	isBoot=false
 	
 	# 计算停止位置
+	
+	#
+		#{"name":"无风险","initPos":0,"radian":90,"index":0},
+	#{"name":"小风险","initPos":0,"radian":90,"index":1},
+	#{"name":"中风险","initPos":0,"radian":90,"index":2},
+	#{"name":"高风险","initPos":0,"radian":90,"index":3},
+	#{"name":"成功率
 
+func settleGame(end,issuccess):
+	#扣除消耗 只会消耗士兵
+	#无风险 无扣除
+	#小风险 扣除10-20%
+	#中风险 扣除30-40%
+	#高风险 扣除50-100%
+	
+	if issuccess==true:
+		GameManager.battleResults[taskIndex]=GameManager.BattleResult.win
+		print("你win了")
+		GameManager.completeTask=GameManager.completeTask+1
+	else:
+		GameManager.battleResults[taskIndex]=GameManager.BattleResult.fail
+		print("你输了")
+	var cost=10000
+	var percentage=0
+	if end =="无风险":
+		cost=0
+		percentage=0
+	elif end=="小风险":
+		percentage=randi_range(10,20)
+		pass
+	elif end=="中风险":
+		percentage=randi_range(30,40)
+		pass
+	elif end=="高风险":
+		percentage=randi_range(50,100)
+		pass
+	if cost!=0:
+		cost= int(floor(curSoilder*percentage)/100)
+	#删除cost
+	GameManager.coin=GameManager.coin-curCoin
+	GameManager.labor_force=GameManager.labor_force-cost
+	curCoin=0
+	curSoilder=0
+	var _rewardPanel:rewardPanel=PanelManager.show_reward()
+	_rewardPanel.showReward()
+	
+	GameManager.currenceTask=GameManager.currenceTask+1
+	refreshPage()
+	if(selectgeneral!=null):
+		GameManager.UseGeneral.push_front(selectgeneral)
+	taskIndex=taskIndex+1
+	if(taskIndex>=3):
+		GameManager.initBattleCircle()
+		taskIndex=0
+	Txtcount.text=str(GameManager.completeTask)+"/"+str(GameManager.currenceTask)
 
-
+	
+@onready var Txtcount = $count
+	
+func refreshPage():
+	enemy.namelv="(当前战力:{targetValue})".format({"targetValue": GameManager.battleTasks[taskIndex].index*50}) 
+	var btresult= GameManager.BattleResult
+	var txt
+	for i in range(0,GameManager.battleResults.size()):
+		if(GameManager.battleResults[i]==btresult.win):
+			txt=Success
+		elif (GameManager.battleResults[i]==btresult.fail):
+			txt=fail
+		var _ColorRect=find_child("ColorRect_"+str(taskIndex+1))
+		var tag:TextureRect=_ColorRect.get_node("tag")
+		tag.show()
+	
+		tag.texture=txt
+	
+		pass
+	#将下面的结果和石头剪刀布都进行修改
 	# 显示结果
+#定义一个枚举，然后显示当前win还是false
+#得保存
 

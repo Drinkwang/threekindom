@@ -16,38 +16,26 @@ script = ExtResource("3")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 2
-offset_right = 1920.0
-offset_bottom = 1080.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HBox" type="HBoxContainer" parent="."]
 layout_mode = 2
-offset_right = 1920.0
-offset_bottom = 31.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
 
 [node name="Texture" type="TextureRect" parent="HBox"]
 custom_minimum_size = Vector2(16, 0)
 layout_mode = 2
-offset_right = 16.0
-offset_bottom = 31.0
 texture = ExtResource("2")
-ignore_texture_size = true
+expand_mode = 1
 stretch_mode = 5
 
 [node name="Name" type="LineEdit" parent="HBox"]
 layout_mode = 2
-offset_left = 20.0
-offset_right = 1898.0
-offset_bottom = 31.0
 size_flags_horizontal = 3
 
 [node name="Del" type="Button" parent="HBox"]
 layout_mode = 2
-offset_left = 1902.0
-offset_right = 1920.0
-offset_bottom = 31.0
 icon = ExtResource("1")
 icon_alignment = 1

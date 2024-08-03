@@ -1,4 +1,5 @@
 @tool
+class_name SoilderItem
 extends Control
 @onready var head = $TextureRect
 @onready var rsp = $TextureRect/rsp
@@ -80,6 +81,23 @@ func _ready():
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	pass
+@onready var already_use = $alreadyUse
+
+var alreadyUse:bool=false:
+	get:
+		return alreadyUse
+	set(value):
+		alreadyUse=value
+		if(check_box!=null):
+			if(alreadyUse==true):
+				check_box.hide()
+				already_use.show()
+			else: 
+				check_box.show()
+				already_use.hide()
+func Use():
+	alreadyUse=true
 	pass
 
 func updateContext(value):

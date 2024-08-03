@@ -19,7 +19,18 @@ enum RspEnum{
 	
 	
 }
+enum BattleResult{
+	none=0,
+	win=1,
+	fail=2
+	
+	
+}
 
+#寄存使用过的将军
+var UseGeneral:Array
+
+var battleResults:Array[BattleResult]=[]
 
 enum opcost{
 	greater,
@@ -28,12 +39,15 @@ enum opcost{
 	
 	
 }
+
+var hp=100
+var _rewardPanel:rewardPanel
 # 声明变量
-var generals:Dictionary = {RspEnum.ROCK:{"name": "关羽", "level": 1, "max_level": 10, "randominit": -1},
+var generals:Dictionary = {RspEnum.ROCK:{"name": "关羽", "level": 1, "max_level": 10, "randominit": -1,"isBattle":false},
 
-RspEnum.PAPER:{"name": "张飞", "level": 1, "max_level": 10, "randominit": -1},
+RspEnum.SCISSORS:{"name": "张飞", "level": 1, "max_level": 10, "randominit": -1,"isBattle":false},
 
-RspEnum.SCISSORS:{"name": "赵云", "level": 1, "max_level": 10, "randominit": -1}
+RspEnum.PAPER:{"name": "赵云", "level": 1, "max_level": 10, "randominit": -1,"isBattle":false}
 }
 
 # [
@@ -103,7 +117,19 @@ var policy_Item=[
 func _ready():
 	initPaixi(BENTUPAI)
 	initPaixi(WAIDIPAI)
-	initBattleCircle()
+	initBattle()
+func initBattle():
+	UseGeneral=[]
+	if(battleResults.size()!=3 or battleResults.all(func(e):e!=BattleResult.none)):
+		battleResults=[
+		BattleResult.none,
+		BattleResult.none,
+		BattleResult.none
+	#初始值会带有一些随机元素，但会根据优势更偏进好的 初始成功率不大于30  做任务降低损失增大成功率 
+		]
+		
+		initBattleCircle()
+	#同时初始化3个将军攻克面板	
 
 func array_sum(arr: Array) -> int:
 	var sum = 0
@@ -114,18 +140,24 @@ func array_sum(arr: Array) -> int:
 func _enterDay():
 	initPaixi(BENTUPAI)
 	initPaixi(WAIDIPAI)
-	initBattleCircle()
+	initBattle()
 	
 	
+#利用上这个把taskindex局限于0-3 选样，并把这个数量和攻克
+#用task的index用作当前任务数
+#失败惩罚
+#每次通关3关将taskindex回复为0
+#并重新计算copletetask
 #		{"name":"高风险","initPos":0,"radian":90},
-var completeTask:int=0	
-	
+var completeTask:int=0
+#若通关 则completeTask	
+var currenceTask:int=0	
 func intBattleTask():
 	var nums={}
 
 	for battleTarget in range(3):
 		battleTasks[battleTarget]={}
-		battleTasks[battleTarget].index=completeTask+battleTarget+1
+		battleTasks[battleTarget].index=currenceTask+battleTarget+1
 		var taskNum:int=randi_range(1, 2)
 		if taskNum==1:
 			var resTyoe=randi_range(1, 2)
@@ -134,9 +166,13 @@ func intBattleTask():
 			if(resTyoe==1):
 				res="coin"
 				costNum=15*battleTasks[battleTarget].index
+				#最小值是10*xxx
+				#*10/15
 			else:
 				res="human"
 				costNum=50*battleTasks[battleTarget].index
+				#最小值是30*xxx
+				#*3/5
 			var syTyoe:int=randi_range(0, 2)
 			var sy =opcost.values()[syTyoe]
 			nums=generate_random_numbers(100,2)

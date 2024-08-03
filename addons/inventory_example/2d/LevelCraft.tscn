@@ -1,19 +1,19 @@
 [gd_scene load_steps=17 format=3 uid="uid://radbs7vnaua6"]
 
 [ext_resource type="Texture2D" uid="uid://dgset6q225exm" path="res://addons/inventory_example/textures/Background.png" id="1"]
-[ext_resource type="PackedScene" path="res://addons/inventory_example/2d/player/Player.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://bh0ag5yruf5pt" path="res://addons/inventory_example/2d/player/Player.tscn" id="2"]
 [ext_resource type="Script" path="res://addons/inventory_example/2d/Level1.gd" id="3"]
 [ext_resource type="Texture2D" uid="uid://yc0j01w34y78" path="res://addons/inventory_example/textures/BackgroundSide.png" id="4"]
 [ext_resource type="Script" path="res://addons/inventory_editor/InventoryItem2D.gd" id="5"]
 [ext_resource type="FontFile" uid="uid://dk0uyb3ayyxtk" path="res://addons/inventory_editor/default/fonts/Pangolin-Regular.ttf" id="6"]
 [ext_resource type="PackedScene" path="res://addons/inventory_example/2d/items/Metal.tscn" id="7"]
 [ext_resource type="PackedScene" path="res://addons/inventory_example/2d/items/RecipeHelmetViking.tscn" id="8"]
-[ext_resource type="PackedScene" path="res://addons/inventory_example/2d/items/Horn.tscn" id="9"]
-[ext_resource type="PackedScene" path="res://addons/inventory_example/2d/items/HelmetKnight.tscn" id="10"]
+[ext_resource type="PackedScene" uid="uid://c0pkbj27uf2i" path="res://addons/inventory_example/2d/items/Horn.tscn" id="9"]
+[ext_resource type="PackedScene" uid="uid://d30quumwerirw" path="res://addons/inventory_example/2d/items/HelmetKnight.tscn" id="10"]
 [ext_resource type="PackedScene" uid="uid://bhu5hq8kx8pov" path="res://addons/inventory_example/inventories/simple/InventoryUI.tscn" id="13"]
 [ext_resource type="Texture2D" uid="uid://yxnjmxcqgl2u" path="res://addons/inventory_example/textures/inventories/Chest.png" id="14"]
 [ext_resource type="PackedScene" path="res://addons/inventory_example/2d/items/RecipeHelmetKnight.tscn" id="15"]
-[ext_resource type="PackedScene" path="res://addons/inventory_example/2d/items/Gold.tscn" id="16"]
+[ext_resource type="PackedScene" uid="uid://qji8suywfuj2" path="res://addons/inventory_example/2d/items/Gold.tscn" id="16"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(1916.35, 60.3882)
@@ -168,13 +168,13 @@ to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
 [node name="CanvasInventory" type="CanvasLayer" parent="."]
 
 [node name="InventoryAny" parent="CanvasInventory" instance=ExtResource("13")]
-layout_mode = 3
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -300.0
 offset_top = 100.0
 offset_right = 0.0
+grow_horizontal = 0
 inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
 
 [node name="CanvasButton" type="CanvasLayer" parent="."]
