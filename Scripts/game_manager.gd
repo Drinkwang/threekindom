@@ -39,9 +39,18 @@ enum opcost{
 	
 	
 }
+var _engerge:energe
 
-var hp=100
-var _rewardPanel:rewardPanel
+var hp=100:
+	get:
+		return hp
+	set(value):
+		hp=value
+		if _engerge!=null:
+			_engerge.changerate(hp)
+		
+
+#var _rewardPanel:rewardPanel
 # 声明变量
 var generals:Dictionary = {RspEnum.ROCK:{"name": "关羽", "level": 1, "max_level": 10, "randominit": -1,"isBattle":false},
 

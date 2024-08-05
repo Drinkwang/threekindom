@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://00xr1q336bgu"]
+[gd_scene load_steps=17 format=3 uid="uid://00xr1q336bgu"]
 
 [ext_resource type="Script" path="res://Scripts/drill_ground.gd" id="1_bhlt2"]
 [ext_resource type="Resource" uid="uid://d2qoinuor12dq" path="res://dialogues/演武场.dialogue" id="2_j02vm"]
@@ -13,6 +13,7 @@
 [ext_resource type="FontFile" uid="uid://qv74ebpr4i31" path="res://Asset/Font/VonwaonBitmap-16px.ttf" id="11_014y5"]
 [ext_resource type="PackedScene" uid="uid://bv5ycsl0a50uq" path="res://Scene/prefab/btnList.tscn" id="12_g1aky"]
 [ext_resource type="PackedScene" uid="uid://ghiim2lkqkbe" path="res://Scene/prefab/propertyPanel.tscn" id="13_4p7r8"]
+[ext_resource type="PackedScene" uid="uid://dfolt063spdso" path="res://Scene/prefab/energy.tscn" id="14_hgva0"]
 
 [sub_resource type="Animation" id="Animation_0bk4q"]
 resource_name = "闪烁"
@@ -78,7 +79,8 @@ self_modulate = Color(0.776471, 0.776471, 0.776471, 1)
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -100.0
+offset_left = -105.0
+offset_right = -5.0
 offset_bottom = 100.0
 grow_horizontal = 0
 texture_normal = ExtResource("5_g5flv")
@@ -91,9 +93,9 @@ metadata/_edit_use_anchors_ = true
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -302.0
+offset_left = -307.0
 offset_top = 97.0
-offset_right = -2.0
+offset_right = -7.0
 offset_bottom = 397.0
 grow_horizontal = 0
 inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
@@ -137,5 +139,12 @@ offset_left = 1638.0
 offset_top = 694.0
 offset_right = 1678.0
 offset_bottom = 734.0
+
+[node name="Control3" parent="." instance=ExtResource("14_hgva0")]
+offset_left = 1610.0
+offset_top = -14.0
+offset_right = 1610.0
+offset_bottom = -14.0
+scale = Vector2(0.1, 0.1)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

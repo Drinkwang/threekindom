@@ -44,7 +44,7 @@ func _ready():
 	if(txt!=null):
 		img.texture=txt
 	#hide()
-	GameManager._rewardPanel=self
+	#GameManager._rewardPanel=self
 	pass # Replace with function body.
 
 func showReward():
@@ -81,5 +81,6 @@ func _on_button_button_down():
 	SignalManager.endReward.emit()
 	#结算完了
 	#endbattle.emit()
-	self.hide()
+	queue_free()
+	
 	pass # Replace with function body.

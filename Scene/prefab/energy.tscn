@@ -1,22 +1,28 @@
-[gd_scene load_steps=14 format=3 uid="uid://dfolt063spdso"]
+[gd_scene load_steps=8 format=3 uid="uid://dfolt063spdso"]
 
-[ext_resource type="Texture2D" uid="uid://cpn5vd7vkre12" path="res://Asset/blue/参考图.png" id="1_uu01u"]
+[ext_resource type="Script" path="res://Scripts/energy.gd" id="1_jga5a"]
 [ext_resource type="Texture2D" uid="uid://cpx3dc1mppace" path="res://Asset/blue/edgeblue.png" id="2_2gdco"]
-[ext_resource type="Texture2D" uid="uid://ltqnd8tc3w56" path="res://Asset/blue/meter_bar_holder_center-repeating_blue.png" id="2_yccla"]
-[ext_resource type="Texture2D" uid="uid://buqi4lfjsna2b" path="res://Asset/blue/meter_bar_center-repeating_blue.png" id="3_3c1kj"]
-[ext_resource type="Texture2D" uid="uid://ujpavoyds4se" path="res://Asset/blue/meter_bar_holder_left_edge_blue.png" id="4_q6de3"]
-[ext_resource type="Texture2D" uid="uid://dhj7jqahib2fe" path="res://Asset/blue/meter_bar_holder_right_edge_blue.png" id="5_se8qg"]
-[ext_resource type="Texture2D" uid="uid://cfj328geqbqyt" path="res://Asset/blue/meter_bar_left_edge_blue.png" id="6_gphgj"]
-[ext_resource type="Texture2D" uid="uid://cs5irhu3kpiqy" path="res://Asset/blue/meter_bar_right_edge_blue.png" id="7_isvob"]
 [ext_resource type="Texture2D" uid="uid://dxg4rn2x2mnw6" path="res://Asset/blue/meter_text_background_blue.png" id="8_k83a2"]
 [ext_resource type="Texture2D" uid="uid://chlh86v3ynxre" path="res://Asset/blue/bluehold.png" id="9_ggo0n"]
 [ext_resource type="Texture2D" uid="uid://dy3bhyc470by4" path="res://Asset/blue/meter_icon_holder_blue.png" id="9_qjdqi"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gfnad"]
 texture = ExtResource("9_ggo0n")
+texture_margin_left = 110.0
+texture_margin_top = 85.0
+texture_margin_right = 145.0
+texture_margin_bottom = 35.0
+expand_margin_left = 85.0
+expand_margin_top = 83.0
+expand_margin_right = 95.0
+expand_margin_bottom = 89.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xmc7k"]
 texture = ExtResource("2_2gdco")
+texture_margin_left = 80.0
+texture_margin_top = 80.0
+texture_margin_right = 80.0
+texture_margin_bottom = 80.0
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -25,71 +31,32 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_jga5a")
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
-layout_mode = 0
-offset_left = 116.0
-offset_top = 1.0
-offset_right = 1258.0
-offset_bottom = 626.0
-texture_over = ExtResource("2_2gdco")
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 682.0
+offset_top = 362.0
+offset_right = 1862.0
+offset_bottom = 835.0
+texture = ExtResource("8_k83a2")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.449
-anchor_bottom = 0.175
-offset_left = 352.0
-offset_top = -327.0
-offset_right = 760.92
-offset_bottom = -54.0
+offset_left = 416.0
+offset_top = 355.0
+offset_right = 1770.0
+offset_bottom = 515.0
 theme_override_styles/background = SubResource("StyleBoxTexture_gfnad")
 theme_override_styles/fill = SubResource("StyleBoxTexture_xmc7k")
+value = 60.0
 
-[node name="参考图" type="Sprite2D" parent="."]
-position = Vector2(951, 552)
-texture = ExtResource("1_uu01u")
-
-[node name="MeterBarHolderCenter-repeatingBlue" type="Sprite2D" parent="."]
-position = Vector2(-292, 673)
-texture = ExtResource("2_yccla")
-
-[node name="MeterBarCenter-repeatingBlue" type="Sprite2D" parent="."]
-position = Vector2(-398, 349)
-texture = ExtResource("3_3c1kj")
-
-[node name="MeterBarHolderLeftEdgeBlue" type="Sprite2D" parent="."]
-position = Vector2(-513, 677)
-texture = ExtResource("4_q6de3")
-
-[node name="MeterBarHolderRightEdgeBlue" type="Sprite2D" parent="."]
-position = Vector2(14, 687)
-texture = ExtResource("5_se8qg")
-
-[node name="MeterBarLeftEdgeBlue" type="Sprite2D" parent="."]
-position = Vector2(-1044, 327)
-scale = Vector2(1.01456, 1)
-texture = ExtResource("6_gphgj")
-
-[node name="MeterBarRightEdgeBlue" type="Sprite2D" parent="."]
-position = Vector2(-284, 349)
-texture = ExtResource("7_isvob")
-
-[node name="MeterTextBackgroundBlue" type="Sprite2D" parent="."]
-position = Vector2(1230.5, 624)
-scale = Vector2(0.902542, 1)
-texture = ExtResource("8_k83a2")
-
-[node name="MeterBarCenter-repeatingBlue2" type="Sprite2D" parent="."]
-position = Vector2(-658, 346)
-texture = ExtResource("3_3c1kj")
-
-[node name="Bluehold" type="Sprite2D" parent="."]
-position = Vector2(1026.75, 477)
-scale = Vector2(2.33043, 1)
-texture = ExtResource("9_ggo0n")
-
-[node name="MeterIconHolderBlue" type="Sprite2D" parent="."]
-position = Vector2(358, 556)
-scale = Vector2(0.808492, 0.816695)
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+offset_left = 22.0
+offset_top = 255.0
+offset_right = 599.0
+offset_bottom = 836.0
 texture = ExtResource("9_qjdqi")
