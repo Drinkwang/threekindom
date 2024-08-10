@@ -1,7 +1,7 @@
 extends Node
 
 #GameManager
-var day
+var day=0
 const DESTINATION = preload("res://Destination.tscn")
 var intellectual_support #士族支持度 一开始为100 当议会中 会出现支持和不支持以及摇摆 
 const MANUAL_TEST = preload("res://ManualTest.tscn")
@@ -11,6 +11,7 @@ var  coin=100 #金钱 数值
 var labor_force=100 #劳动力 可以当作军队进行使用 劳动力转换成军队需要消耗值 骑兵 步兵 弓兵
 var destination:String #放在gameins里面
 @export var datas:Array[cldata] 
+var isLevelUp=false
 
 enum RspEnum{
 	PAPER=0,
@@ -66,6 +67,17 @@ RspEnum.PAPER:{"name": "赵云", "level": 1, "max_level": 10, "randominit": -1,"
 # ]
 var battleTasks={}
 
+var triedResult=false
+signal triedPanelDone
+func isTried(costNum)->bool:
+	if(hp-costNum<0):
+		#显示累了框
+		triedResult=true
+		PanelManager.show_Tied()
+		await triedPanelDone
+	else:
+		triedResult=false
+	return	triedResult
 
 
 var battleCircle=[
@@ -99,6 +111,8 @@ var have_event = {
 	"secondStreet":false,
 	"firstTraining":false,
 	"firstWar":false,
+	"firstTrain":false,
+	"threeStree":false
 }
 
 var policy_Item=[
@@ -124,9 +138,7 @@ var policy_Item=[
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	initPaixi(BENTUPAI)
-	initPaixi(WAIDIPAI)
-	initBattle()
+	_enterDay()
 func initBattle():
 	UseGeneral=[]
 	if(battleResults.size()!=3 or battleResults.all(func(e):e!=BattleResult.none)):
@@ -147,9 +159,12 @@ func array_sum(arr: Array) -> int:
 	return sum
 
 func _enterDay():
+	GameManager.day=GameManager.day+1
 	initPaixi(BENTUPAI)
 	initPaixi(WAIDIPAI)
 	initBattle()
+	hp=100
+	isLevelUp=false;
 	
 	
 #利用上这个把taskindex局限于0-3 选样，并把这个数量和攻克
@@ -297,6 +312,10 @@ func extractByGroup(index):
 func extractById(id):
 	return policy_Item.filter(func(item): item.group== id)[0]
 
+func _rest():
+	const DISSOLVE_IMAGE = preload("res://addons/transitions/images/circle-inverted.png")
+	Transitions.change_scene_to_instance( SceneManager.SLEEP_BLANK.instantiate(), Transitions.FadeType.Instant)
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

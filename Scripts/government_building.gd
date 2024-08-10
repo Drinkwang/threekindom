@@ -82,14 +82,21 @@ func _initData():
 		policy_panel.tab_bar.hide()
 	policy_panel._initData()
 #
-
+var costHp_SummonOne=50
+var costHp_policy=35
 func _buttonListClick(item):
+	#35点
 	if item.context == "执行政策":
+		if await GameManager.isTried(costHp_policy):
+			return 
 		policy_panel.show()
 		if(GameManager.have_event["firstgovermentTip"]==false):
 			GameManager.have_event["firstgovermentTip"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"enterpolicy")
+	#50点	
 	elif item.context == "召见手下":
+		if await GameManager.isTried(costHp_SummonOne):
+			return 
 		#显示接下来要点击啥
 		pass
 	elif item.context == "离开":

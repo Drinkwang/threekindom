@@ -7,6 +7,7 @@ var inventoryManager
 const FancyFade = preload("res://addons/transitions/FancyFade.gd")
 #const DestinationScene = preload("res://Destination.tscn")
 @export var clear_inventory:bool = true
+@onready var tu_label = $CanvasInventory/tuLabel
 
 const HOUSE = preload("res://Scene/house.tscn")
 @onready var rule_book = $CanvasBook/ruleBook
@@ -69,7 +70,11 @@ func _input(event):
 func _process(delta):
 	pass
 
+func setTuLabel(la):
+	tu_label.text=la
+
 func getcandle():
+	tu_label.text=""
 	$"蜡烛".hide()
 	mask.show()
 	$"灯".show()
@@ -77,6 +82,7 @@ func getcandle():
 	pass
 
 func openLight():
+	$"灯".hide()
 	$"Canvas闪电/ColorRect/AnimationPlayer".play("闪烁")
 	$GPUParticles2D.hide()
 	$BackBufferCopy/blank.hide()

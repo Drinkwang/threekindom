@@ -46,6 +46,7 @@ dialogue_start = "点击陈群"
 
 [node name="政务面板" parent="CanvasLayer" instance=ExtResource("8_2ady6")]
 visible = false
+clickEvent = "start"
 
 [node name="Control2" parent="." instance=ExtResource("9_mf3v8")]
 visible = false

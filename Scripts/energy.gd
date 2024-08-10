@@ -5,6 +5,7 @@ class_name energe
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GameManager._engerge=self
+	changerate(GameManager.hp)
 	pass # Replace with function body.
 
 

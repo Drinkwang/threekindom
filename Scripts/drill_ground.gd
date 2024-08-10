@@ -19,6 +19,7 @@ func post_transition():
 
 func enterOldSoilderEat():
 	oldsoildereat.show()
+	
 	pass
 	
 func _initData():
@@ -38,7 +39,7 @@ func _initData():
 	{
 		"id":"3",
 		"context":"军事行动",#前往大街
-		"visible":"true"
+		"visible":"false"
 	},
 
 	]
@@ -59,6 +60,16 @@ func _buttonListClick(item):
 		pass
 
 	pass
+
+#练兵结束调用这个 初次练兵
+
+func trainBegin():
+	control._show_button_5_yellow(1)	
+	pass
+	
+func endtrain():
+	control._show_button_5_yellow(0)
+	pass	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

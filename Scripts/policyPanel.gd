@@ -8,6 +8,8 @@ class_name policyPanel
 @onready var point_label = $lawPanel/PointLabel
 
 
+var costhp=35
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 
@@ -53,6 +55,8 @@ func _on_tab_bar_tab_changed(tab):
 @onready var label = $PanelContainer/orderPanel/VBoxContainer/Label
 
 func _on_control_1_gui_input(event):
+	if await GameManager.isTried(costhp):
+		return
 	if control_1.canclick==false:
 		return
 	if(event is InputEventMouseButton and event.button_index==1):
@@ -64,6 +68,8 @@ func _on_control_1_gui_input(event):
 
 
 func _on_control_2_gui_input(event):
+	if await GameManager.isTried(costhp):
+		return
 	if control_2.canclick==false:
 		return
 	if(event is InputEventMouseButton and event.button_index==1):	
@@ -75,6 +81,8 @@ func _on_control_2_gui_input(event):
 
 
 func _on_control_3_gui_input(event):
+	if await GameManager.isTried(costhp):
+		return
 	if control_3.canclick==false:
 		return
 	if(event is InputEventMouseButton and event.button_index==1):
@@ -98,6 +106,8 @@ func _disableAll():
 	control_3.canclick=false
 
 func _on_button_button_down():
+	if await GameManager.isTried(costhp):
+		return
 	#var context="story"+index
 	#根据选项判断影响，并同时让施政选项不再显示
 	#get_tree().get_root().get_node("")
@@ -107,11 +117,16 @@ func _on_button_button_down():
 
 var selectLawPoint:lawpoint
 func preLaw(value:lawpoint):
+	if await GameManager.isTried(costhp):
+		return
 	selectLawPoint=value
 	$lawPanel/DetailPanel/Label2.text=value.detail
 	pass
 	
 func excuteLaw(value:lawpoint):
+	if await GameManager.isTried(costhp):
+		return
+	
 	if(GameManager.Merit_points<value.costPoint):
 		DialogueManager.show_example_dialogue_balloon(GameManager.currenceScene.dialogue_resource,"你的政策点不够")	
 		return
@@ -122,6 +137,8 @@ func excuteLaw(value:lawpoint):
 		DialogueManager.show_example_dialogue_balloon(GameManager.currenceScene.dialogue_resource,"当前没有法律可执行")
 
 func agreelaw():
+	if await GameManager.isTried(costhp):
+		return
 	GameManager.Merit_points=GameManager.Merit_points-selectLawPoint.costPoint
 	selectLawPoint.isUnlock=true
 	selectLawPoint._initData()

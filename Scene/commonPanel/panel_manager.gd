@@ -15,6 +15,29 @@ func show_example_dialogue_balloon(title: String = "", extra_game_states: Array 
 
 	return balloon
 
+## Show the configured dialogue balloon
+func show_Tied( ) -> TiredPanel:
+	var balloon_path: String# = DialogueSettings.get_setting(&"balloon_path", _get_example_balloon_path())
+	if not ResourceLoader.exists(balloon_path):
+		balloon_path = _get_tied_example_balloon_path()
+	return show_tied_scene(balloon_path)
+
+
+func _get_tied_example_balloon_path() -> String:
+	var balloon_path: String = "/TriedPanel.tscn" #if is_small_window else "/example_balloon/example_balloon.tscn"
+	return get_script().resource_path.get_base_dir() + balloon_path
+
+
+func show_tied_scene(tied_scene) -> TiredPanel:
+	if tied_scene is String:
+		tied_scene = load(tied_scene)
+	if tied_scene is PackedScene:
+		tied_scene = tied_scene.instantiate()
+
+	var balloon: Node = tied_scene
+	get_current_scene.call().add_child(balloon)
+
+	return balloon
 
 
 

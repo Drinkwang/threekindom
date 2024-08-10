@@ -53,6 +53,7 @@ offset_right = 669.0
 offset_bottom = 411.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1, 0.974243)
 pivot_offset = Vector2(630.615, 267.699)
 theme = ExtResource("2_3ru2r")
 
@@ -83,6 +84,7 @@ custom_minimum_size = Vector2(380, 0)
 layout_mode = 2
 headImg = ExtResource("3_5ceg6")
 namelv = "关羽:lv1"
+repImg = 1
 
 [node name="Control_2" parent="PanelContainer/orderPanel/VBoxContainer/orderVbox" instance=ExtResource("2_7lggh")]
 custom_minimum_size = Vector2(380, 0)
@@ -95,8 +97,7 @@ repImg = 2
 custom_minimum_size = Vector2(380, 0)
 layout_mode = 2
 headImg = ExtResource("5_ejb3c")
-namelv = "关羽：lv1"
-repImg = 1
+namelv = "赵云：lv1"
 
 [node name="Control2" type="Control" parent="PanelContainer/orderPanel/VBoxContainer"]
 layout_mode = 2

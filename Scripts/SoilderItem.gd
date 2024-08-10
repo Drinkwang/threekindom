@@ -99,8 +99,11 @@ var alreadyUse:bool=false:
 func Use():
 	alreadyUse=true
 	pass
-
+#赵云：lv1	
+#{"name": "张飞", "level": 1, "max_level": 10, "randominit": -1,"isBattle":false}
 func updateContext(value):
-	pass
+	var general=GameManager.generals[repImg]
+	namelv=str(general.name)+":"+"LV"+str(general.level)
+
 
 

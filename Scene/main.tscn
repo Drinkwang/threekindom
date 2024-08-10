@@ -149,6 +149,7 @@ script = ExtResource("7_tfp5g")
 [node name="CanvasButton" type="CanvasLayer" parent="."]
 
 [node name="TextureButton" type="TextureButton" parent="CanvasButton"]
+visible = false
 self_modulate = Color(0.776471, 0.776471, 0.776471, 1)
 anchors_preset = 1
 anchor_left = 1.0
@@ -174,6 +175,13 @@ offset_bottom = 400.0
 grow_horizontal = 0
 inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
 metadata/_edit_use_anchors_ = true
+
+[node name="tuLabel" type="Label" parent="CanvasInventory"]
+offset_top = 3.0
+offset_right = 1919.0
+offset_bottom = 111.0
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 2
 
 [node name="CanvasBook" type="CanvasLayer" parent="."]
 visible = false

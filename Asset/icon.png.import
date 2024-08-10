@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8217n5l3n1vd"
-path="res://.godot/imported/辩论.png-a9d7003cfdfde7692a0845cfbcd6a360.ctex"
+uid="uid://nysd0uqbrrlq"
+path="res://.godot/imported/icon.png-4e7e2c97505a421e6c47e787196852f6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scene/prefab/辩论.png"
-dest_files=["res://.godot/imported/辩论.png-a9d7003cfdfde7692a0845cfbcd6a360.ctex"]
+source_file="res://Asset/icon.png"
+dest_files=["res://.godot/imported/icon.png-4e7e2c97505a421e6c47e787196852f6.ctex"]
 
 [params]
 

@@ -75,12 +75,14 @@ func _initData():
 	#if GameManager.have_event["firstBoleuterion"]==true:
 	control._processList(initData)
 		
-
+var costhp=50
 
 func _buttonListClick(item):
 	if item.context == "开始议事":
 		if(GameManager.have_event["firstgovermentTip"]==false):
 			GameManager.have_event["firstgovermentTip"]=true
+			if(await GameManager.isTried(costhp)):
+				return
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"开始议事")
 	elif item.context == "议事说明":
 		yishimianban.show()
@@ -108,7 +110,11 @@ func meetingEnd():
 func hideGuild():
 	$CanvasBook/Node2D.hide()
 
+
 func showResult():
+	if await GameManager.isTried(costhp):
+		return 
+	GameManager.hp=GameManager.hp-costhp
 	parliamentary_detail.show()
 	parliamentary_detail.enter()
 	pass

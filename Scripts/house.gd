@@ -14,6 +14,10 @@ func _ready():
 		control.show()
 	super._ready()
 	GameManager._enterDay()#每次睡眠起床都调用这个选项
+	
+	if GameManager.day==2:
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新的一天")
+		#将政务面板更新 里面列举了一堆list
 	#如果没见过陈登把control隐藏，如果见过了陈登 control不隐藏
 
 
@@ -77,10 +81,8 @@ func _buttonListClick(item):
 		#显示金钱 民心 xx 武将面板
 		pass
 	elif item.context == "休息":
-		
-		const DISSOLVE_IMAGE = preload("res://addons/transitions/images/circle-inverted.png")
-		Transitions.change_scene_to_instance( SceneManager.SLEEP_BLANK.instantiate(), Transitions.FadeType.Instant)
-	
+		GameManager._rest()
+
 		#FancyFade.new().custom_fade(load("res://Scene/sleepBlank.tscn").instantiate(), 2, DISSOLVE_IMAGE)
 	print(item)
 	pass

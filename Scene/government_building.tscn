@@ -36,6 +36,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Control" parent="CanvasLayer" instance=ExtResource("8_ca5ns")]
 visible = false
+clickEvent = "start"
 
 [node name="policyPanel" parent="CanvasLayer" instance=ExtResource("9_fdrkw")]
 visible = false

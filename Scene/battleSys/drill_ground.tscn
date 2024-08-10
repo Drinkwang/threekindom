@@ -90,6 +90,7 @@ metadata/_edit_use_anchors_ = true
 [node name="CanvasInventory" type="CanvasLayer" parent="."]
 
 [node name="InventoryAny" parent="CanvasInventory" instance=ExtResource("6_cu7sp")]
+visible = false
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -111,9 +112,24 @@ txt = ExtResource("8_nik30")
 contextEX = "关羽、张飞、赵云现在可以被你调用！
 (或许将军可以试试练兵功能来快速提升武将等级）"
 titleEX = "老兵饭局："
+dialogue_resource = ExtResource("2_j02vm")
+clickEvent = "饭局结束"
 
 [node name="trainPanel" parent="CanvasInventory" instance=ExtResource("9_02127")]
 visible = false
+
+[node name="Control" parent="CanvasInventory" instance=ExtResource("13_4p7r8")]
+offset_left = 1638.0
+offset_top = 694.0
+offset_right = 1678.0
+offset_bottom = 734.0
+
+[node name="Control3" parent="CanvasInventory" instance=ExtResource("14_hgva0")]
+offset_left = 1610.0
+offset_top = -14.0
+offset_right = 1610.0
+offset_bottom = -14.0
+scale = Vector2(0.1, 0.1)
 
 [node name="battlePane" parent="CanvasInventory" instance=ExtResource("10_gfhv4")]
 visible = false
@@ -133,18 +149,5 @@ tab_size = 6
 [node name="Control2" parent="." instance=ExtResource("12_g1aky")]
 offset_right = 106.0
 offset_bottom = 82.0
-
-[node name="Control" parent="." instance=ExtResource("13_4p7r8")]
-offset_left = 1638.0
-offset_top = 694.0
-offset_right = 1678.0
-offset_bottom = 734.0
-
-[node name="Control3" parent="." instance=ExtResource("14_hgva0")]
-offset_left = 1610.0
-offset_top = -14.0
-offset_right = 1610.0
-offset_bottom = -14.0
-scale = Vector2(0.1, 0.1)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

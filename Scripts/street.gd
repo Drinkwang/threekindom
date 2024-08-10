@@ -16,15 +16,20 @@ func _ready():
 	pass # Replace with function body.
 
 func streetTwo():
+	control.show()
+	control._show_button_5_yellow(5)	
 	pass
 
-
+func streetThree():
+	pass
+	
 func post_transition():
 	#print("fadedone")
 	_initData()
 	if(GameManager.have_event["firststreet"]==true):
 		if(GameManager.have_event["secondStreet"]==false):
-			GameManager.destination="自宅"
+			#GameManager.destination="自宅"
+			GameManager.destination="校场"
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第二次街道")
 			GameManager.have_event["secondStreet"]=true
 			
@@ -33,7 +38,10 @@ func post_transition():
 		GameManager.destination="府邸"
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
 		GameManager.have_event["firststreet"]=true
-	pass
+	if GameManager.have_event["firstTrain"]==true:
+		if GameManager.have_event["threeStree"]==false:
+			GameManager.have_event["threeStree"]=true
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"ImustGoHome")
 	
 
 func _initData():
@@ -84,9 +92,11 @@ func _buttonListClick(item):
 		if(GameManager.destination!=item.context):
 			if(GameManager.destination=="府邸"):
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"tip")
-			return 
-			if(GameManager.destination=="自宅"):
+			#return 
+			elif(GameManager.destination=="自宅"):
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"ImustGoHome")
+			elif GameManager.destination=="校场":
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"校场")	
 	const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
 
 	if item.context == "府邸":
@@ -116,6 +126,7 @@ func showFirstGuild():
 	control._show_button_5_yellow(0)
 	#$"陈群".hide()
 	pass
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
