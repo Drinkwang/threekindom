@@ -112,7 +112,10 @@ var have_event = {
 	"firstTraining":false,
 	"firstWar":false,
 	"firstTrain":false,
-	"threeStree":false
+	"threeStree":false,
+	"firstMeetingEnd":false,
+	"streetBeginBouleuterion":false, #第一次前往议会，新手教程
+	"firstBattle":false
 }
 
 var policy_Item=[

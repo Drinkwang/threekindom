@@ -17,7 +17,6 @@ contextEX = "1.前往xxx并
 4.前往xxx并
 5.前往xxx并"
 titleEX = "当前还需要处理的政务："
-clickEvent = null
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1

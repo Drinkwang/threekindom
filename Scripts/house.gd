@@ -1,6 +1,7 @@
 extends baseComponent
 
 @onready var control = $Control
+@onready var policyPanel = $"CanvasLayer/政务面板"
 
 const FancyFade = preload("res://addons/transitions/FancyFade.gd")
 # Called when the node enters the scene tree for the first time.
@@ -17,6 +18,21 @@ func _ready():
 	
 	if GameManager.day==2:
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新的一天")
+		policyPanel.contextEX="1.前往府邸回见不同派系的领导人\n2.前往议会通过昨天立的法律"
+	elif GameManager.day==3:
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第三天")
+		policyPanel.contextEX="1.前往城外军事驻地，讨伐土匪"
+		
+		pass
+		#军事行动 镇压土匪
+		#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新的一天")
+		#policyPanel.contextEX="1.前往府邸回见不同派系的领导人\n2.前往议会通过昨天立的法律"
+
+	elif GameManager.day==4:
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第四天")
+		#大儒辩经文 今天结束时，展示最终对话
+		
+		
 		#将政务面板更新 里面列举了一堆list
 	#如果没见过陈登把control隐藏，如果见过了陈登 control不隐藏
 

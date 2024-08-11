@@ -186,7 +186,7 @@ contextEX = "仪事是主公和管辖地代表以及臣子商议的过程，根�
 
 主公可以在自己的府邸约见代表，来让政策更容易通过！"
 titleEX = "议事面板说明:"
-clickEvent = null
+clickEvent = "start"
 
 [node name="Node2D" type="Node2D" parent="CanvasBook"]
 visible = false

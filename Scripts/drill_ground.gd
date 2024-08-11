@@ -7,8 +7,10 @@ extends baseComponent
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
-
+	if(GameManager.day==1):
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
+	elif GameManager.day==3:
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"初次派遣")
 	Transitions.post_transition.connect(post_transition)
 	control.buttonClick.connect(_buttonListClick)
 	super._ready()
@@ -22,6 +24,10 @@ func enterOldSoilderEat():
 	
 	pass
 	
+	
+	
+var battleNum=0
+
 func _initData():
 	GameManager.currenceScene=self
 
@@ -71,6 +77,25 @@ func endtrain():
 	control._show_button_5_yellow(0)
 	pass	
 
+
+func showtutorial(num):
+	if(num==1):
+		pass
+	elif num==2:
+		pass
+	elif num==3:
+		pass
+	elif num==4:
+		pass
+	elif num==5:
+		pass
+	elif num==6:
+		pass
+	elif num==7:
+		pass
+	elif num==8:
+		pass
+	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass

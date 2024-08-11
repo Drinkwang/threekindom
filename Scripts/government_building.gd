@@ -5,6 +5,7 @@ extends baseComponent
 const FancyFade = preload("res://addons/transitions/FancyFade.gd")
 @onready var policyBook = $"政府文书"
 @onready var policy_panel = $CanvasLayer/policyPanel
+@onready var rule_book = $CanvasLayer/ruleBook
 
 	#var initData=[
 	#{	
@@ -64,7 +65,7 @@ func _initData():
 	{
 		"id":"2",
 		"context":"召见手下", #前往花园并通向小道
-		"visible":"true"
+		"visible":"false"
 	},
 	{
 		"id":"3",
@@ -73,6 +74,10 @@ func _initData():
 	},
 
 	]
+
+	if(GameManager.day>=2):
+		initData[1].visible=true
+	
 	if GameManager.have_event["firstPolicyOpShow"]==true:
 		control._processList(initData)
 		
@@ -96,7 +101,7 @@ func _buttonListClick(item):
 	#50点	
 	elif item.context == "召见手下":
 		if await GameManager.isTried(costHp_SummonOne):
-			return 
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"召见手下1")
 		#显示接下来要点击啥
 		pass
 	elif item.context == "离开":
@@ -144,6 +149,22 @@ func hidePolicy():
 func arrangeDone():
 	#无操作
 	pass
+
+func meeting():
+	rule_book.visible=true
+	if GameManager.have_event["firstMeetingEnd"]==false:
+		GameManager.have_event["firstMeetingEnd"]=true
+		rule_book.clickEvent="宴会结束"
+	else:
+		rule_book.clickEvent=""
+	
+
+func meetingEnd():
+	control._show_button_5_yellow(1)	
+	
+
+func cancel():
+	pass	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

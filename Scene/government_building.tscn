@@ -34,9 +34,11 @@ metadata/_edit_use_anchors_ = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Control" parent="CanvasLayer" instance=ExtResource("8_ca5ns")]
-visible = false
-clickEvent = "start"
+[node name="ruleBook" parent="CanvasLayer" instance=ExtResource("8_ca5ns")]
+contextEX = "
+在您举办的饭局中，各大派系忠诚度都提高了"
+titleEX = "宴会完美举办成功！"
+dialogue_resource = ExtResource("8_ct1l0")
 
 [node name="policyPanel" parent="CanvasLayer" instance=ExtResource("9_fdrkw")]
 visible = false

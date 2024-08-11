@@ -40,10 +40,24 @@ func post_transition():
 		GameManager.have_event["firststreet"]=true
 	if GameManager.have_event["firstTrain"]==true:
 		if GameManager.have_event["threeStree"]==false:
+			GameManager.destination="自宅"
 			GameManager.have_event["threeStree"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"ImustGoHome")
 	
-
+	if GameManager.have_event["firstMeetingEnd"]==true:
+		if GameManager.have_event["streetBeginBouleuterion"]==false:
+			GameManager.have_event["streetBeginBouleuterion"]=true
+			control._show_button_5_yellow(2)
+			GameManager.destination="议会"
+	if GameManager.day==3:
+		if GameManager.have_event["firstBattle"]==false:
+			GameManager.have_event["firstBattle"]=true
+			control._show_button_5_yellow(5)
+	if GameManager.day==4:
+		#拜访大儒
+		pass		
+	
+	
 func _initData():
 	var initData=[
 	{	
@@ -97,6 +111,9 @@ func _buttonListClick(item):
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"ImustGoHome")
 			elif GameManager.destination=="校场":
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"校场")	
+			elif GameManager.destination=="议会":
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"tip_bouleuterion")	
+	
 	const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
 
 	if item.context == "府邸":
