@@ -14,7 +14,8 @@ func _ready():
 	else:
 		control.show()
 	super._ready()
-	GameManager._enterDay()#每次睡眠起床都调用这个选项
+	#目前没有调用新一天开始重置选项，放在了休息
+	#每次睡眠起床都调用这个选项
 	
 	if GameManager.day==2:
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新的一天")
@@ -29,15 +30,33 @@ func _ready():
 		#policyPanel.contextEX="1.前往府邸回见不同派系的领导人\n2.前往议会通过昨天立的法律"
 
 	elif GameManager.day==4:
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第四天")
-		#大儒辩经文 今天结束时，展示最终对话
+		#条件没写，只会触发一次
+		if GameManager.have_event["firstVisitScholars"]==false:
+			GameManager.have_event["firstVisitScholars"]=true
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第四天")
+			policyPanel.contextEX="1.前往城外及军事驻地，选择拜见大儒郑玄"
 		
+		if GameManager.have_event["firstVisitScholarsEnd"]==true:	
+			if GameManager.have_event["firstNewEnd"]==false:
+				GameManager.have_event["firstNewEnd"]=true
+				GameManager.restFadeScene=SceneManager.BOULEUTERION
+				GameManager.restLabel="与此同时"
+				GameManager._rest()
+				#跳转到议会厅触发剧情 先跳转到rest，然后跳转议会厅触发剧情
+				#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第四天")
+		#并且结束时 触发终极对话，弹出一个类似那样的框 并写着如此同时 xxxxx
+		#大儒辩经文 今天结束时，展示最终对话
+	elif GameManager.day==5:
+		if GameManager.have_event["DemoFinish"]==false:
+			GameManager.have_event["DemoFinish"]=true
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新手关结束")	
 		
 		#将政务面板更新 里面列举了一堆list
 	#如果没见过陈登把control隐藏，如果见过了陈登 control不隐藏
 
 
-
+func demoFinish():
+	pass
 func _initData():
 	var initData=[
 	{
@@ -97,6 +116,8 @@ func _buttonListClick(item):
 		#显示金钱 民心 xx 武将面板
 		pass
 	elif item.context == "休息":
+	 	#如果休息时=4天，则触发阴谋论剧情
+		
 		GameManager._rest()
 
 		#FancyFade.new().custom_fade(load("res://Scene/sleepBlank.tscn").instantiate(), 2, DISSOLVE_IMAGE)

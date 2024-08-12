@@ -190,6 +190,6 @@ texture_disabled = ExtResource("7_pjis2")
 texture_focused = ExtResource("7_pjis2")
 stretch_mode = 0
 
-[connection signal="button_down" from="lawPanel/DetailPanel/Button" to="." method="_on_law_confire_button_down"]
 [connection signal="button_down" from="lawPanel/DetailPanel/Button" to="." method="_on_button_button_down"]
+[connection signal="button_down" from="lawPanel/DetailPanel/Button" to="." method="_on_law_confire_button_down"]
 [connection signal="button_down" from="TextureButton" to="." method="_on_exit_button_button_down"]

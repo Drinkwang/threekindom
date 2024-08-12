@@ -35,7 +35,9 @@ func _process(delta):
 
 func over():
 	isboot=false
-	
+	#reward弹出
+	PanelManager.show_reward_scene("您获得了奖励")
+	$Button/TextureButton.show()
 	pass
 
 @onready var audio_stream_player = $Timer/AudioStreamPlayer
@@ -67,4 +69,9 @@ func _on_button_button_down():
 
 func _on_timer_timeout():
 	title.text="请点击图书并获得积分"
+	pass # Replace with function body.
+
+
+func _on_exit_button_button_down():
+	self.hide()
 	pass # Replace with function body.

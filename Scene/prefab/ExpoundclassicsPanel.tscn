@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bxw67mtklk4w5"]
+[gd_scene load_steps=9 format=3 uid="uid://bxw67mtklk4w5"]
 
 [ext_resource type="Script" path="res://Scripts/ExpoundclassicsPanel.gd" id="1_5g43j"]
 [ext_resource type="Theme" uid="uid://bklmr3xmk4m5u" path="res://global_theme.tres" id="2_a1oci"]
 [ext_resource type="AudioStream" uid="uid://daxlyrk7pr0bu" path="res://Asset/sound/翻阅.mp3" id="2_cvcn1"]
+[ext_resource type="Texture2D" uid="uid://dahuc8gb2blc" path="res://Asset/other/0_red.png" id="5_g5bwt"]
 [ext_resource type="Texture2D" uid="uid://c8217n5l3n1vd" path="res://Asset/辩论.png" id="8_8qym1"]
 
 [sub_resource type="Animation" id="Animation_g5rj7"]
@@ -70,10 +71,6 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -1.0
-offset_top = -7.0
-offset_right = -1.0
-offset_bottom = -7.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5g43j")
@@ -351,6 +348,20 @@ offset_bottom = 270.0
 theme_override_font_sizes/font_size = 81
 text = "大儒辩论启动中..."
 
+[node name="TextureButton" type="TextureButton" parent="."]
+visible = false
+layout_mode = 1
+offset_left = 1597.0
+offset_top = 85.0
+offset_right = 1661.0
+offset_bottom = 149.0
+texture_normal = ExtResource("5_g5bwt")
+texture_pressed = ExtResource("5_g5bwt")
+texture_hover = ExtResource("5_g5bwt")
+texture_disabled = ExtResource("5_g5bwt")
+texture_focused = ExtResource("5_g5bwt")
+stretch_mode = 0
+
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
 offset_left = 599.0
@@ -362,4 +373,5 @@ text = "点击开始游戏"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="gui_input" from="PanelContainer" to="." method="_on_panel_container_gui_input"]
+[connection signal="button_down" from="TextureButton" to="." method="_on_exit_button_button_down"]
 [connection signal="button_down" from="Button" to="." method="_on_button_button_down"]

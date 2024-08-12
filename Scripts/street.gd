@@ -2,6 +2,7 @@ extends baseComponent
 @onready var control = $Control
 const FancyFade = preload("res://addons/transitions/FancyFade.gd")
 #var destination:String #放在gameins里面
+@onready var scholar = $scholar
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -54,6 +55,8 @@ func post_transition():
 			GameManager.have_event["firstBattle"]=true
 			control._show_button_5_yellow(5)
 	if GameManager.day==4:
+		GameManager.destination="拜访大儒"
+		control._show_button_5_yellow(5)
 		#拜访大儒
 		pass		
 	
@@ -133,6 +136,13 @@ func _buttonListClick(item):
 	elif item.context == "军事商店":
 		pass
 		##打开商店ui换皮或者换页
+	elif item.context=="城门-军事驻地":
+		if(GameManager.day>4):
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"selectOutSide")
+			pass #给选项，可跳可不跳
+		else:
+			visitDrill()
+		pass
 	#FancyFade.new().custom_fade(scene, 2, DISSOLVE_IMAGE)
 	pass
 	 # Replace with function body.
@@ -141,11 +151,27 @@ func _buttonListClick(item):
 func showFirstGuild():
 	control.show()
 	control._show_button_5_yellow(0)
+	
 	#$"陈群".hide()
 	pass
 
 
 
+
+func visitDrill():
+	if GameManager.destination=="拜访大儒":
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"tip_scholar")
+	else:
+		SceneManager.changeScene(SceneManager.roomNode.DRILL_GROUND,2)
+	
+
+func visitScholar():
+	
+	#给个黑屏过度，剧情结束，黑屏过度取消，并弹出辩经框
+	
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大儒辩经的剧情")
+	#SceneManager.changeScene(SceneManager.roomNode.DRILL_GROUND,2)
+	scholar.visible=true
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass

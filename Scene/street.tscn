@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cehg7t1h5f2ei"]
+[gd_scene load_steps=6 format=3 uid="uid://cehg7t1h5f2ei"]
 
 [ext_resource type="Script" path="res://Scripts/street.gd" id="1_jskmv"]
 [ext_resource type="Texture2D" uid="uid://vkvgsvn02les" path="res://Asset/城镇建筑/城镇.jpg" id="1_r2skq"]
 [ext_resource type="Resource" uid="uid://qopivlttvt12" path="res://dialogues/街道.dialogue" id="2_a3tl4"]
 [ext_resource type="PackedScene" uid="uid://bv5ycsl0a50uq" path="res://Scene/prefab/btnList.tscn" id="2_eoq3e"]
+[ext_resource type="PackedScene" uid="uid://bxw67mtklk4w5" path="res://Scene/prefab/ExpoundclassicsPanel.tscn" id="5_jclo7"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_jskmv")
@@ -17,3 +18,15 @@ texture = ExtResource("1_r2skq")
 
 [node name="Control" parent="." instance=ExtResource("2_eoq3e")]
 metadata/_edit_use_anchors_ = true
+
+[node name="scholar" parent="." instance=ExtResource("5_jclo7")]
+visible = false
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 11.0
+offset_top = 1.0
+offset_right = 1931.0
+offset_bottom = 1081.0
+grow_horizontal = 1
+grow_vertical = 1

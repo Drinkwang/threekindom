@@ -12,7 +12,7 @@ var labor_force=100 #劳动力 可以当作军队进行使用 劳动力转换成
 var destination:String #放在gameins里面
 @export var datas:Array[cldata] 
 var isLevelUp=false
-
+var restLabel:String=""
 enum RspEnum{
 	PAPER=0,
 	ROCK=1,
@@ -96,6 +96,7 @@ const WAIDIPAI = preload("res://Asset/tres/waidipai.tres")
 
 var Merit_points:int=3
 var currenceScene
+var restFadeScene
 var have_event = {
 	"firstmeetchenqun":false,
 	"firsthouse": false,
@@ -115,7 +116,12 @@ var have_event = {
 	"threeStree":false,
 	"firstMeetingEnd":false,
 	"streetBeginBouleuterion":false, #第一次前往议会，新手教程
-	"firstBattle":false
+	"firstBattle":false,
+	"firstVisitScholars":false, #第一次在房间里触发即将拜访大儒的剧情
+	"firstVisitScholarsEnd":false,
+	"firstNewEnd":false, #新手剧情结束么？No
+	"DemoFinish":false
+
 }
 
 var policy_Item=[
@@ -317,6 +323,7 @@ func extractById(id):
 
 func _rest():
 	const DISSOLVE_IMAGE = preload("res://addons/transitions/images/circle-inverted.png")
+	_enterDay()
 	Transitions.change_scene_to_instance( SceneManager.SLEEP_BLANK.instantiate(), Transitions.FadeType.Instant)
 	
 

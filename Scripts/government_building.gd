@@ -76,7 +76,7 @@ func _initData():
 	]
 
 	if(GameManager.day>=2):
-		initData[1].visible=true
+		initData[1].visible="true"
 	
 	if GameManager.have_event["firstPolicyOpShow"]==true:
 		control._processList(initData)

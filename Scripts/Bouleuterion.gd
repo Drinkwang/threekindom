@@ -5,6 +5,8 @@ extends baseComponent
 @onready var yishimianban = $CanvasBook/yishimianban
 
 const FancyFade = preload("res://addons/transitions/FancyFade.gd")
+@onready var mizhu = $"糜竺"
+@onready var chendeng = $"陈登"
 
 #议事详细
 @onready var parliamentary_detail = $CanvasBook/parliamentaryDetail
@@ -37,10 +39,17 @@ func post_transition():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if GameManager.day==4:
+		if GameManager.have_event["firstNewEnd"]==true:
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新手教程结束_阴谋论")
+			return
+	
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
 
 	Transitions.post_transition.connect(post_transition)
 	control.buttonClick.connect(_buttonListClick)
+	
+
 	super._ready()
 	#initData()
 		
@@ -121,4 +130,16 @@ func showResult():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	pass
+	
+	
+func ymlShow():
+	mizhu.show()
+	chendeng.show()
+	pass
+	
+	
+func ymlShowEnd():
+	GameManager.restLabel="没过多久，刘备也收到了来自徐州的密信"
+	GameManager._rest()
 	pass
