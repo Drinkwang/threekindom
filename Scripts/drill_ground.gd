@@ -7,10 +7,6 @@ extends baseComponent
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if(GameManager.day==1):
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
-	elif GameManager.day==3:
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"初次派遣")
 	Transitions.post_transition.connect(post_transition)
 	control.buttonClick.connect(_buttonListClick)
 	super._ready()
@@ -18,6 +14,7 @@ func _ready():
 func post_transition():
 	print("fadedone")
 	_initData()
+
 
 func enterOldSoilderEat():
 	oldsoildereat.show()
@@ -30,6 +27,10 @@ var battleNum=0
 
 func _initData():
 	GameManager.currenceScene=self
+	if(GameManager.day==1):
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
+	elif GameManager.day==3:
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"初次派遣")
 
 	var initData=[
 	{	
@@ -55,8 +56,8 @@ func _initData():
 
 func _buttonListClick(item):
 	if item.context=="离开此地":
-		#判断条件
-		pass
+		SceneManager.changeScene(SceneManager.roomNode.STREET,2)#判断条件
+		#pass
 	elif item.context=="操练士兵":
 		train_panel.show()
 		pass

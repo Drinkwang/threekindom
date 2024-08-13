@@ -57,6 +57,7 @@ func _process(delta):
 @export var clickEvent:String="start"
 func _on_button_button_down():
 	self.hide()
-	DialogueManager.show_example_dialogue_balloon(dialogue_resource,clickEvent)
+	if clickEvent.length()>0 and dialogue_resource!=null:
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,clickEvent)
 		
 	pass # Replace with function body.

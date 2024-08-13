@@ -52,9 +52,12 @@ func _ready():
 	pass # Replace with function body.
 
 func _initData():
-	if	GameManager.have_event["firstgovernment"]==false:
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
-		GameManager.have_event["firstgovernment"]=true
+	if GameManager.day==1:
+		if	GameManager.have_event["firstgovernment"]==false:
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
+			GameManager.have_event["firstgovernment"]=true
+	#elif GameManager.day==2:
+	
 	GameManager.currenceScene=self
 	var initData=[
 	{	
@@ -78,14 +81,17 @@ func _initData():
 	if(GameManager.day>=2):
 		initData[1].visible="true"
 	
-	if GameManager.have_event["firstPolicyOpShow"]==true:
+	if GameManager.have_event["firstPolicyOpShow"]==true||GameManager.day>1:
 		control._processList(initData)
-		
+
 	if GameManager.have_event["firstTabLaw"]==true:
 		policy_panel.tab_bar.show()
 	else:
 		policy_panel.tab_bar.hide()
 	policy_panel._initData()
+
+	if GameManager.day==2:
+		control._show_button_5_yellow(1)
 #
 var costHp_SummonOne=50
 var costHp_policy=35
@@ -94,18 +100,27 @@ func _buttonListClick(item):
 	if item.context == "执行政策":
 		if await GameManager.isTried(costHp_policy):
 			return 
-		policy_panel.show()
-		if(GameManager.have_event["firstgovermentTip"]==false):
-			GameManager.have_event["firstgovermentTip"]=true
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"enterpolicy")
+		
+		if(GameManager.day==1):
+			policy_panel.show()
+			if(GameManager.have_event["firstgovermentTip"]==false):
+				GameManager.have_event["firstgovermentTip"]=true
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"enterpolicy")
+		elif(GameManager.day==2):
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第二天的提示")
+		else:
+			policy_panel.show()
+			#后续逻辑，但
+			pass			
 	#50点	
 	elif item.context == "召见手下":
 		if await GameManager.isTried(costHp_SummonOne):
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"召见手下1")
+			return
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"召见手下1")
 		#显示接下来要点击啥
 		pass
 	elif item.context == "离开":
-		if(GameManager.have_event["firstLawExecute"]==true):
+		if(GameManager.have_event["firstLawExecute"]==true||GameManager.have_event["firstMeetingEnd"]==true):
 			const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
 			FancyFade.new().custom_fade(SceneManager.STREET.instantiate(), 2, DISSOLVE_IMAGE)
 		else:
@@ -160,7 +175,8 @@ func meeting():
 	
 
 func meetingEnd():
-	control._show_button_5_yellow(1)	
+	pass
+	#control._show_button_5_yellow(1)	
 	
 
 func cancel():

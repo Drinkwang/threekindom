@@ -21,6 +21,7 @@ func _ready():
 func _process(_delta):
 	pass
 
+
 func _processList(data):
 	var index=0;
 	if($VBoxContainer.get_child_count()>0):
@@ -54,16 +55,19 @@ func _processList(data):
 		index=index+1
 		$VBoxContainer.add_child(buttton)		
 	
-	
-	pass
+
 @onready var animation_player = $"Node2D/5Yellow/AnimationPlayer"
 	
 func _show_button_5_yellow(index):
+	#await $VBoxContainer.get_node("button1").position.y>0
 	var findpattern="button"+var_to_str(index)
 	var groups=$VBoxContainer.get_node(findpattern)
 	var texbtn:TextureButton=groups
 	print(texbtn.position)
-	node_2d.position=texbtn.position+Vector2(472,65)
+	if(index>0 and texbtn.position.y==0):
+		node_2d.position=texbtn.position+Vector2(472,65)+Vector2(0,155*index)
+	else:
+		node_2d.position=texbtn.position+Vector2(472,65)#+Vector2(0,155*index)
 	animation_player.play("YELLOWGUILD")
 	pass
 

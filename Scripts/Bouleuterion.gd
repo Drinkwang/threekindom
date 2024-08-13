@@ -39,12 +39,6 @@ func post_transition():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if GameManager.day==4:
-		if GameManager.have_event["firstNewEnd"]==true:
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新手教程结束_阴谋论")
-			return
-	
-	DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
 
 	Transitions.post_transition.connect(post_transition)
 	control.buttonClick.connect(_buttonListClick)
@@ -83,7 +77,13 @@ func _initData():
 	]
 	#if GameManager.have_event["firstBoleuterion"]==true:
 	control._processList(initData)
-		
+	if GameManager.day==4:
+		if GameManager.have_event["firstNewEnd"]==true:
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新手教程结束_阴谋论")
+			return
+	elif GameManager.day==2:
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
+	
 var costhp=50
 
 func _buttonListClick(item):

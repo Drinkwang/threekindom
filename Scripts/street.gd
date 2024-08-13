@@ -7,6 +7,9 @@ const FancyFade = preload("res://addons/transitions/FancyFade.gd")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 
+	#方便测试
+	GameManager.have_event["firstmeetchenqun"]=true
+
 
 	super._ready()
 	Transitions.post_transition.connect(post_transition)
@@ -41,7 +44,7 @@ func post_transition():
 		GameManager.have_event["firststreet"]=true
 	if GameManager.have_event["firstTrain"]==true:
 		if GameManager.have_event["threeStree"]==false:
-			GameManager.destination="自宅"
+			GameManager.destination="自宅"#只要把这段逻辑打开，就能那啥
 			GameManager.have_event["threeStree"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"ImustGoHome")
 	
@@ -116,7 +119,8 @@ func _buttonListClick(item):
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"校场")	
 			elif GameManager.destination=="议会":
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"tip_bouleuterion")	
-	
+		else:
+			GameManager.destination=""	#如果去的是目的地，则将目的地滞空	
 	const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
 
 	if item.context == "府邸":
@@ -166,12 +170,19 @@ func visitDrill():
 	
 
 func visitScholar():
+	#PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeInAndOut)
+	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeIn)
 	
-	#给个黑屏过度，剧情结束，黑屏过度取消，并弹出辩经框
-	
+	await 0.5
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大儒辩经的剧情")
 	#SceneManager.changeScene(SceneManager.roomNode.DRILL_GROUND,2)
+	
+	
+func showbianji():
+	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeOut)
 	scholar.visible=true
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+

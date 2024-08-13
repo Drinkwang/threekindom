@@ -7,7 +7,7 @@ const DialogueSettings = preload("./settings.gd")
 @onready var title: String = DialogueSettings.get_user_value("run_title")
 @onready var resource: DialogueResource = load(DialogueSettings.get_user_value("run_resource_path"))
 
-
+var canclick=true
 func _ready():
 	var screen_index: int = DisplayServer.get_primary_screen()
 	DisplayServer.window_set_position(Vector2(DisplayServer.screen_get_position(screen_index)) + (DisplayServer.screen_get_size(screen_index) - DisplayServer.window_get_size()) * 0.5)
@@ -29,3 +29,4 @@ func _enter_tree() -> void:
 
 func _on_dialogue_ended(_resource: DialogueResource):
 	get_tree().quit()
+	true

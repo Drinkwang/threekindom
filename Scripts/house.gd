@@ -9,14 +9,59 @@ func _ready():
 
 	Transitions.post_transition.connect(post_transition)
 	control.buttonClick.connect(_buttonListClick)
-	if GameManager.have_event["firstmeetchenqun"]==false:
-		control.hide()
+	if GameManager.day==1||GameManager.day==0:
+		if GameManager.have_event["firstmeetchenqun"]==false:
+			control.hide()
+		else:
+			control.show()
 	else:
 		control.show()
 	super._ready()
 	#目前没有调用新一天开始重置选项，放在了休息
 	#每次睡眠起床都调用这个选项
 	
+	
+
+
+func _initData():
+	var initData=[
+	{
+		"id":"1",
+		"context":"(议事厅)", #前往小道通向议事z
+		"visible":"false"
+	},
+	{
+		"id":"2",
+		"context":"(府邸)", #前往花园并通向小道
+		"visible":"false"
+	},
+	{
+		"id":"3",
+		"context":"外出",#前往大街
+		"visible":"true"
+	},
+	{
+		"id":"4",
+		"context":"今日政务",#打开人物面板
+		"visible":"true"
+	},
+	{
+		"id":"5",
+		"context":"属性面板",#打开属性ui
+		"visible":"true"
+	},
+	{
+		"id":"6",
+		"context":"休息", #天数加1 进入过度
+		"visible":"true"
+	}
+	]
+	control._processList(initData)
+	GameManager.currenceScene=self
+	if GameManager.day==1:
+		if(GameManager.have_event["firstmeetchenqun"]==false):
+			GameManager.have_event["firstmeetchenqun"]=true
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
 	if GameManager.day==2:
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新的一天")
 		policyPanel.contextEX="1.前往府邸回见不同派系的领导人\n2.前往议会通过昨天立的法律"
@@ -53,49 +98,6 @@ func _ready():
 		
 		#将政务面板更新 里面列举了一堆list
 	#如果没见过陈登把control隐藏，如果见过了陈登 control不隐藏
-
-
-func demoFinish():
-	pass
-func _initData():
-	var initData=[
-	{
-		"id":"1",
-		"context":"(议事厅)", #前往小道通向议事z
-		"visible":"false"
-	},
-	{
-		"id":"2",
-		"context":"(府邸)", #前往花园并通向小道
-		"visible":"false"
-	},
-	{
-		"id":"3",
-		"context":"外出",#前往大街
-		"visible":"true"
-	},
-	{
-		"id":"4",
-		"context":"今日政务",#打开人物面板
-		"visible":"true"
-	},
-	{
-		"id":"5",
-		"context":"属性面板",#打开属性ui
-		"visible":"true"
-	},
-	{
-		"id":"6",
-		"context":"休息", #天数加1 进入过度
-		"visible":"true"
-	}
-	]
-	control._processList(initData)
-	GameManager.currenceScene=self
-	
-	if(GameManager.have_event["firstmeetchenqun"]==false):
-		GameManager.have_event["firstmeetchenqun"]=true
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
 	
 
 func post_transition():
@@ -110,7 +112,7 @@ func _buttonListClick(item):
 		FancyFade.new().custom_fade(SceneManager.STREET.instantiate(), 2, DISSOLVE_IMAGE)
 		pass
 	elif item.context == "今日政务":
-		#显示接下来要点击啥
+		policyPanel.show()
 		pass
 	elif item.context == "属性面板":
 		#显示金钱 民心 xx 武将面板
@@ -137,3 +139,24 @@ func showFirstGuild():
 func showchenqun():
 	$"陈群".show()
 	pass
+
+func demoFinishChenQunShow():
+	$"陈群".show()
+	$"文官".hide()
+	fadeInAndOut()
+	pass
+
+func demoFinishWenGuanShow():
+	fadeInAndOut()
+	$"陈群".hide()
+	$"文官".show()
+	pass
+@onready var title = $title
+
+func demoFinish():
+	$"陈群".hide()
+	$"文官".hide()
+	title.show()
+
+func fadeInAndOut():
+	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeInAndOut)

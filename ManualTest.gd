@@ -3,7 +3,7 @@ extends Control
 
 #const DestinationScene = load("res://Destination.tscn")
 const FancyFade = preload("res://addons/transitions/FancyFade.gd")
-
+var readyInitData
 func _ready():
 	print("xxxx")
 

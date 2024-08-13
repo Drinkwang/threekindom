@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://58bhlv38xrc"]
+
+[ext_resource type="Script" path="res://Scene/commonPanel/blankPanel.gd" id="1_xegfr"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_xegfr")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_left = -256.0
+offset_top = -232.0
+offset_right = 2139.0
+offset_bottom = 1483.0
+color = Color(0, 0, 0, 0)

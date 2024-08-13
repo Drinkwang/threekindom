@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://ditcwds6nu8ga"]
+[gd_scene load_steps=12 format=3 uid="uid://ditcwds6nu8ga"]
 
 [ext_resource type="Script" path="res://Scripts/soilderUpdatePanel.gd" id="1_gnfkv"]
 [ext_resource type="Theme" uid="uid://bklmr3xmk4m5u" path="res://global_theme.tres" id="2_3ru2r"]
 [ext_resource type="PackedScene" uid="uid://dxj1s2d4grxwj" path="res://Scene/prefab/SoilderItem.tscn" id="2_7lggh"]
+[ext_resource type="Resource" uid="uid://d2qoinuor12dq" path="res://dialogues/演武场.dialogue" id="2_qb106"]
 [ext_resource type="Texture2D" uid="uid://cbs1ut2w7lnuy" path="res://Asset/人物/关羽.jpg" id="3_5ceg6"]
 [ext_resource type="Texture2D" uid="uid://xt3xohrjhgbd" path="res://Asset/人物/ZhangFei.jpg" id="4_hf1p0"]
 [ext_resource type="Texture2D" uid="uid://dpyahly4tlu7a" path="res://Asset/人物/ZhaoYun.jpg" id="5_ejb3c"]
@@ -24,6 +25,7 @@ offset_bottom = -7.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_gnfkv")
+dialogue_resource = ExtResource("2_qb106")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1

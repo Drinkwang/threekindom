@@ -263,6 +263,7 @@ func create_resource_from_text(text: String) -> Resource:
 ## Show the example balloon
 func show_example_dialogue_balloon(resource: DialogueResource, title: String = "", extra_game_states: Array = []) -> CanvasLayer:
 	var balloon: Node = load(_get_example_balloon_path()).instantiate()
+	GameManager.dialogBegin=true
 	get_current_scene.call().add_child(balloon)
 	balloon.start(resource, title, extra_game_states)
 

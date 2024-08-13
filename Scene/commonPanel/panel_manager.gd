@@ -85,3 +85,34 @@ var get_current_scene: Callable = func():
 ### Dotnet bridge
 
 
+enum fadeType{
+	fadeIn,
+	fadeOut,
+	fadeInAndOut
+}
+
+## Show the configured dialogue balloon
+func Fade_Blank(color:Color,time,state):
+	var balloon_path: String# = DialogueSettings.get_setting(&"balloon_path", _get_example_balloon_path())
+	if not ResourceLoader.exists(balloon_path):
+		balloon_path = _get_Fade_Blank_path()
+	var use:blankPanel= show_Fade_Blank_scene(balloon_path)
+	use.fade(color,time,state)
+
+func _get_Fade_Blank_path() -> String:
+	var balloon_path: String = "/blankPanel.tscn" #if is_small_window else "/example_balloon/example_balloon.tscn"
+	return get_script().resource_path.get_base_dir() + balloon_path
+
+
+func show_Fade_Blank_scene(tied_scene) -> blankPanel:
+	if tied_scene is String:
+		tied_scene = load(tied_scene)
+	if tied_scene is PackedScene:
+		tied_scene = tied_scene.instantiate()
+
+	var balloon: Node = tied_scene
+	get_current_scene.call().add_child(balloon)
+
+	return balloon
+
+

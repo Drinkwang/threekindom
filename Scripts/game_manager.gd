@@ -1,7 +1,7 @@
 extends Node
 
 #GameManager
-var day=0
+var day=1
 const DESTINATION = preload("res://Destination.tscn")
 var intellectual_support #士族支持度 一开始为100 当议会中 会出现支持和不支持以及摇摆 
 const MANUAL_TEST = preload("res://ManualTest.tscn")
@@ -145,9 +145,15 @@ var policy_Item=[
 	},	
 ]
 
+var dialogBegin=false
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
 	_enterDay()
+	
+func _on_dialogue_ended():
+	dialogBegin=false
+	pass
 func initBattle():
 	UseGeneral=[]
 	if(battleResults.size()!=3 or battleResults.all(func(e):e!=BattleResult.none)):
@@ -327,6 +333,3 @@ func _rest():
 	Transitions.change_scene_to_instance( SceneManager.SLEEP_BLANK.instantiate(), Transitions.FadeType.Instant)
 	
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
