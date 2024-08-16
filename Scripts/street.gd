@@ -30,35 +30,36 @@ func streetThree():
 func post_transition():
 	#print("fadedone")
 	_initData()
-	if(GameManager.have_event["firststreet"]==true):
-		if(GameManager.have_event["secondStreet"]==false):
-			#GameManager.destination="自宅"
-			GameManager.destination="校场"
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第二次街道")
-			GameManager.have_event["secondStreet"]=true
+	if GameManager.day==1:
+		if(GameManager.have_event["firststreet"]==true):
+			if(GameManager.have_event["secondStreet"]==false):
+				#GameManager.destination="自宅"
+				GameManager.destination="城门-军事驻地"
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第二次街道")
+				GameManager.have_event["secondStreet"]=true
 			
 	
-	if(GameManager.have_event["firststreet"]==false):
-		GameManager.destination="府邸"
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
-		GameManager.have_event["firststreet"]=true
-	if GameManager.have_event["firstTrain"]==true:
-		if GameManager.have_event["threeStree"]==false:
-			GameManager.destination="自宅"#只要把这段逻辑打开，就能那啥
-			GameManager.have_event["threeStree"]=true
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"ImustGoHome")
+		if(GameManager.have_event["firststreet"]==false):
+			GameManager.destination="府邸"
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
+			GameManager.have_event["firststreet"]=true
+		if GameManager.have_event["firstTrain"]==true:
+			if GameManager.have_event["threeStree"]==false:
+				GameManager.destination="自宅"#只要把这段逻辑打开，就能那啥
+				GameManager.have_event["threeStree"]=true
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"ImustGoHome")
 	
 	if GameManager.have_event["firstMeetingEnd"]==true:
 		if GameManager.have_event["streetBeginBouleuterion"]==false:
 			GameManager.have_event["streetBeginBouleuterion"]=true
 			control._show_button_5_yellow(2)
-			GameManager.destination="议会"
+			GameManager.destination="议事厅"
 	if GameManager.day==3:
 		if GameManager.have_event["firstBattle"]==false:
 			GameManager.have_event["firstBattle"]=true
 			control._show_button_5_yellow(5)
 	if GameManager.day==4:
-		GameManager.destination="拜访大儒"
+		GameManager.destination="城门-军事驻地"
 		control._show_button_5_yellow(5)
 		#拜访大儒
 		pass		
@@ -115,10 +116,14 @@ func _buttonListClick(item):
 			#return 
 			elif(GameManager.destination=="自宅"):
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"ImustGoHome")
-			elif GameManager.destination=="校场":
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"校场")	
-			elif GameManager.destination=="议会":
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"tip_bouleuterion")	
+			elif GameManager.destination=="城门-军事驻地":
+				if GameManager.day!=4:
+					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"校场")	
+				else:
+					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"tip_scholar")	
+			elif GameManager.destination=="议事厅":
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"tip_bouleuterion")
+			return
 		else:
 			GameManager.destination=""	#如果去的是目的地，则将目的地滞空	
 	const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
@@ -163,7 +168,7 @@ func showFirstGuild():
 
 
 func visitDrill():
-	if GameManager.destination=="拜访大儒":
+	if GameManager.day==4:
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"tip_scholar")
 	else:
 		SceneManager.changeScene(SceneManager.roomNode.DRILL_GROUND,2)

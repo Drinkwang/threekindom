@@ -115,6 +115,7 @@ func showGuild():
 	
 func meetingEnd():
 	control._show_button_5_yellow(2)
+	GameManager.destination="自宅"
 
 func hideGuild():
 	$CanvasBook/Node2D.hide()

@@ -63,13 +63,18 @@ func _initData():
 			GameManager.have_event["firstmeetchenqun"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
 	if GameManager.day==2:
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新的一天")
-		policyPanel.contextEX="1.前往府邸回见不同派系的领导人\n2.前往议会通过昨天立的法律"
+		if GameManager.have_event["dayTwoInit"]==false:
+			GameManager.have_event["dayTwoInit"]=true
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新的一天")
+			policyPanel.contextEX="1.前往府邸回见不同派系的领导人\n2.前往议会通过昨天立的法律"
+			GameManager.destination="府邸"
+		#设置des
 	elif GameManager.day==3:
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第三天")
-		policyPanel.contextEX="1.前往城外军事驻地，讨伐土匪"
-		
-		pass
+		if GameManager.have_event["dayThreeInit"]==false:
+			GameManager.have_event["dayThreeInit"]=true
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第三天")
+			policyPanel.contextEX="1.前往城外军事驻地，讨伐土匪"
+			GameManager.destination="城门-军事驻地"
 		#军事行动 镇压土匪
 		#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新的一天")
 		#policyPanel.contextEX="1.前往府邸回见不同派系的领导人\n2.前往议会通过昨天立的法律"

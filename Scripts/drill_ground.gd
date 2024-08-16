@@ -50,21 +50,37 @@ func _initData():
 	},
 
 	]
+	
+	if(GameManager.day>=3):
+		initData[2].visible="true"
 	control._processList(initData)
 
 
 
 func _buttonListClick(item):
 	if item.context=="离开此地":
+		if(GameManager.day==1):
+			if GameManager.isLevelUp==false:
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"训练还没有结束")
+				return
+		if(GameManager.day==3):
+			if GameManager.hp>10:
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"三场战斗还没有结束")
+				return 
 		SceneManager.changeScene(SceneManager.roomNode.STREET,2)#判断条件
 		#pass
 	elif item.context=="操练士兵":
 		train_panel.show()
 		pass
 	elif item.context=="军事行动":
+		#第一次军事行动应该告诉你教程
+		if GameManager.day==3:
+			if GameManager.have_event["firstBattleTutorial"]==false:
+				GameManager.have_event["firstBattleTutorial"]=true
+				DialogueManager.show_dialogue_balloon(dialogue_resource,"第一次军事行动教程")
 		battle_pane.show()
 		#暂时不能发动军事行动
-		pass
+
 
 	pass
 

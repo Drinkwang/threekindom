@@ -132,7 +132,6 @@ offset_bottom = -14.0
 scale = Vector2(0.1, 0.1)
 
 [node name="battlePane" parent="CanvasInventory" instance=ExtResource("10_gfhv4")]
-visible = false
 
 [node name="title" type="RichTextLabel" parent="."]
 visible = false

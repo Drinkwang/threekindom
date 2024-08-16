@@ -1,7 +1,7 @@
 extends Node
 
 #GameManager
-var day=1
+var day=2
 const DESTINATION = preload("res://Destination.tscn")
 var intellectual_support #士族支持度 一开始为100 当议会中 会出现支持和不支持以及摇摆 
 const MANUAL_TEST = preload("res://ManualTest.tscn")
@@ -109,6 +109,8 @@ var have_event = {
 	"firstLawExecute":false,#为false 不显示close选项 只触发一次对话
 	"firstParliamentary":false,
 	#second事件 
+	"dayTwoInit":false,#2024-8-15
+	"dayThreeInit":false,
 	"secondStreet":false,
 	"firstTraining":false,
 	"firstWar":false,
@@ -116,7 +118,9 @@ var have_event = {
 	"threeStree":false,
 	"firstMeetingEnd":false,
 	"streetBeginBouleuterion":false, #第一次前往议会，新手教程
-	"firstBattle":false,
+	"firstBattle":false,#第一次从大厅前往演武场进行军事行动
+	"firstBattleTutorial":false,
+	"firstBattleEnd":false,
 	"firstVisitScholars":false, #第一次在房间里触发即将拜访大儒的剧情
 	"firstVisitScholarsEnd":false,
 	"firstNewEnd":false, #新手剧情结束么？No

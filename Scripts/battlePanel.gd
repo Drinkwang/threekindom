@@ -197,9 +197,14 @@ func _on_button_button_down():
 
 	
 	pass # Replace with function body.
-var dialogue_resource
+@export var dialogue_resource:DialogueResource
 #推出按钮，同时调用结束
 func _on_exit_button_button_down():
 	self.hide()
-	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"正确决策0之后引导")
-	pass # Replace with function body.
+	#大人
+	if GameManager.day==3:
+		if GameManager.hp<=10:
+			if GameManager.have_event["firstBattleEnd"]==false:
+				GameManager.have_event["firstBattleEnd"]=true
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"军事行动结束")
+	 # Replace with function body.

@@ -169,13 +169,14 @@ func meeting():
 	rule_book.visible=true
 	if GameManager.have_event["firstMeetingEnd"]==false:
 		GameManager.have_event["firstMeetingEnd"]=true
-		rule_book.clickEvent="宴会结束"
+		rule_book.clickEvent="宴会结束"	
 	else:
 		rule_book.clickEvent=""
 	
 
 func meetingEnd():
-	pass
+	GameManager.destination="议事厅"
+	
 	#control._show_button_5_yellow(1)	
 	
 
