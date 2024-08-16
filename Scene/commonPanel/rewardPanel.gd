@@ -1,8 +1,10 @@
 @tool
 extends InventoryUI
 class_name rewardPanel
-@onready var img = $PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/img
-@onready var grid = $PanelContainer/MarginContainer/VBoxContainer/Margin/Grid
+
+
+@onready var img =$Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/img
+@onready var grid = $Control/PanelContainer/MarginContainer/VBoxContainer/Margin/Grid
 
 @export var txt:Texture2D:
 	get:
@@ -28,9 +30,9 @@ class_name rewardPanel
 		if(title!=null):
 			title.text=titleEX
 		
-@onready var context = $PanelContainer/MarginContainer/VBoxContainer/context
+@onready var context = $Control/PanelContainer/MarginContainer/VBoxContainer/context
 
-@onready var title = $PanelContainer/MarginContainer/VBoxContainer/title
+@onready var title = $Control/PanelContainer/MarginContainer/VBoxContainer/title
 
 
 

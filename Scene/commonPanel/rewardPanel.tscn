@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://ccwfks8124pm0"]
+[gd_scene load_steps=3 format=3 uid="uid://ccwfks8124pm0"]
 
-[ext_resource type="Theme" uid="uid://bklmr3xmk4m5u" path="res://global_theme.tres" id="2_4jpmt"]
+[ext_resource type="Script" path="res://Scene/commonPanel/rewardPanel.gd" id="1_nbkq4"]
+[ext_resource type="Theme" uid="uid://bklmr3xmk4m5u" path="res://global_theme.tres" id="2_gh1tc"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_nbkq4")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -32,7 +34,7 @@ offset_bottom = 116.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(630.615, 267.699)
-theme = ExtResource("2_4jpmt")
+theme = ExtResource("2_gh1tc")
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer"]
 layout_mode = 2
