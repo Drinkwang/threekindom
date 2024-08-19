@@ -32,12 +32,18 @@ func _process(delta):
 	pass
 
 @onready var reside_txt = $resideTxt
-
+@onready var texture_button = $TextureButton
+@export var dialogue_resource:DialogueResource
 func over():
 	isboot=false
 	#reward弹出
-	PanelManager.show_reward_scene("您获得了奖励")
-	$Button/TextureButton.show()
+	var _reward:rewardPanel=PanelManager.new_reward()
+	_reward.showTitileReward("你从郑玄哪里受益良多")
+	texture_button.show()
+	await  SignalManager.endReward
+	if GameManager.have_event["firstVisitScholarsEnd"]==false:
+		GameManager.have_event["firstVisitScholarsEnd"]=true
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大儒辩经结束")
 	pass
 
 @onready var audio_stream_player = $Timer/AudioStreamPlayer

@@ -18,6 +18,7 @@ blend_mode = 3
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_5nyes")
 dialogue_resource = ExtResource("2_6rtve")
+dialogue_start = null
 
 [node name="内屋" type="Sprite2D" parent="."]
 material = SubResource("CanvasItemMaterial_nm4j8")
@@ -60,15 +61,6 @@ dialogue_start = "点击陈群"
 visible = false
 clickEvent = ""
 
-[node name="DemoEnd" type="Button" parent="CanvasLayer"]
-visible = false
-offset_left = 586.0
-offset_top = 323.0
-offset_right = 900.0
-offset_bottom = 430.0
-scale = Vector2(2, 2)
-text = "demo结束，感谢试玩"
-
 [node name="Control2" parent="." instance=ExtResource("9_mf3v8")]
 visible = false
 offset_left = 1657.0
@@ -87,5 +79,3 @@ theme_override_font_sizes/normal_font_size = 200
 bbcode_enabled = true
 text = "[center][rainbow]阴[/rainbow][wave amp=50 frep=100]三国[/wave][rainbow]谋论[/rainbow]-[tornado]徐州篇[/tornado][/center]"
 tab_size = 6
-
-[connection signal="button_down" from="CanvasLayer/DemoEnd" to="." method="_on_demo_end_button_down"]

@@ -91,7 +91,7 @@ func _initData():
 				GameManager.have_event["firstNewEnd"]=true
 				GameManager.restFadeScene=SceneManager.BOULEUTERION
 				GameManager.restLabel="与此同时"
-				GameManager._rest()
+				GameManager._rest(false)
 				#跳转到议会厅触发剧情 先跳转到rest，然后跳转议会厅触发剧情
 				#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第四天")
 		#并且结束时 触发终极对话，弹出一个类似那样的框 并写着如此同时 xxxxx
@@ -99,6 +99,7 @@ func _initData():
 	elif GameManager.day==5:
 		if GameManager.have_event["DemoFinish"]==false:
 			GameManager.have_event["DemoFinish"]=true
+			control.hide()
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新手关结束")	
 		
 		#将政务面板更新 里面列举了一堆list
@@ -148,20 +149,27 @@ func showchenqun():
 func demoFinishChenQunShow():
 	$"陈群".show()
 	$"文官".hide()
-	fadeInAndOut()
+	
 	pass
 
 func demoFinishWenGuanShow():
-	fadeInAndOut()
+
 	$"陈群".hide()
 	$"文官".show()
 	pass
 @onready var title = $title
+@onready var demo_end = $CanvasLayer/DemoEnd
 
 func demoFinish():
 	$"陈群".hide()
 	$"文官".hide()
 	title.show()
+	demo_end.show()
 
 func fadeInAndOut():
-	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeInAndOut)
+	PanelManager.Fade_Blank(Color.BLACK,1,PanelManager.fadeType.fadeInAndOut)
+
+
+func _on_demo_end_button_down():
+	get_tree().quit()
+	pass # Replace with function body.

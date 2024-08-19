@@ -14,6 +14,19 @@ class_name battlePanel
 @onready var control_2 = $Control_2
 @onready var control_1 = $Control_1
 
+@onready var point_group = $pointGroup
+
+@onready var guild_1 = $"pointGroup/1"
+@onready var guild_2 = $"pointGroup/2"
+@onready var guild_3 = $"pointGroup/3"
+@onready var guild_4 = $"pointGroup/4"
+@onready var guild_5 = $"pointGroup/5"
+@onready var guild_6 = $"pointGroup/6"
+@onready var guild_7 = $"pointGroup/7"
+@onready var guild_8 = $"pointGroup/8"
+
+
+
 
 var costhp=30
 # Called when the node enters the scene tree for the first time.
@@ -27,8 +40,6 @@ func _ready():
 
 
 func endBattle():
-	print("reward 已测试完")
-	
 	battle_circle.selectgeneral=null
 	soild_slider.value=0
 	coin_slider.value=0
@@ -118,9 +129,8 @@ var costsoild:int
 func _soilderNum_changed(value):
 	if battle_circle.isBoot==true:
 		return
-	print (GameManager.labor_force)
-	costsoild=(GameManager.labor_force/100*value)
-	
+	#print (GameManager.labor_force)
+	costsoild=(GameManager.labor_force*value/100)
 	soild_num.set_text(str(costsoild))  #报错没有找到 先屏蔽，后续开启
 	if(battle_circle.selectgeneral):
 		_changeProgress()
@@ -129,7 +139,7 @@ func _soilderNum_changed(value):
 func _on_coin_slider_value_changed(value):
 	if battle_circle.isBoot==true:
 		return
-	costcoin=(GameManager.coin/100*value)
+	costcoin=(GameManager.coin*value/100)
 	coin_num.text=str(costcoin)
 	if(battle_circle.selectgeneral):
 		_changeProgress()
@@ -191,7 +201,7 @@ func _on_button_button_down():
 	if await GameManager.isTried(costhp):
 		return 
 	if battle_circle.isBoot==false:
-		battle_circle.lauchProgress()
+		battle_circle.lauchProgress(costhp)
 
 
 

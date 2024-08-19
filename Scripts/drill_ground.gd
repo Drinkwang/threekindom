@@ -94,25 +94,21 @@ func endtrain():
 	control._show_button_5_yellow(0)
 	pass	
 
+@onready var point = $CanvasInventory/point
 
 func showtutorial(num):
-	if(num==1):
-		pass
-	elif num==2:
-		pass
-	elif num==3:
-		pass
-	elif num==4:
-		pass
-	elif num==5:
-		pass
-	elif num==6:
-		pass
-	elif num==7:
-		pass
-	elif num==8:
-		pass
-	pass
+
+	if(num<8):
+		battle_pane["guild_"+str(num)].show()
+	if(num>=2 and num<=8):
+		battle_pane["guild_"+str(num-1)].hide()
+		#battle_pane["guild_"+str(num)].Get# AnimationPlayer".play("YELLOWGUILD")
+
+	if num==8:
+		point.show()
+	elif num==9:
+		point.hide()
+		battle_pane.point_group.hide()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass

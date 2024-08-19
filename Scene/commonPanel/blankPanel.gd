@@ -29,19 +29,22 @@ func fade(color:Color,time:float,type:PanelManager.fadeType):
 	elif type==PanelManager.fadeType.fadeOut:
 		color_rect.color=color
 		tcolor=Color(tcolor,0)
+		
 		tween.tween_property(color_rect, "color",tcolor, time)
+		tween.tween_callback(_on_Tween_tween_all_completed)
 		pass
 	elif type==PanelManager.fadeType.fadeInAndOut:
 		
 		tcolor=Color(tcolor,1)
-		tween.tween_callback(_on_Tween_tween_all_completed)
+		
 		tween.tween_property(color_rect, "color",tcolor, time)
 		tcolor=Color(tcolor,0)
+		tween.tween_callback(_on_Tween_tween_all_completed)
 		tween.tween_property(color_rect, "color",tcolor, time)
 		pass
 	pass
 
 
 func _on_Tween_tween_all_completed():
-	#self.queue_free()
+	self.queue_free()
 	pass

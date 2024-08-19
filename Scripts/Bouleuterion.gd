@@ -5,8 +5,9 @@ extends baseComponent
 @onready var yishimianban = $CanvasBook/yishimianban
 
 const FancyFade = preload("res://addons/transitions/FancyFade.gd")
-@onready var mizhu = $"糜竺"
-@onready var chendeng = $"陈登"
+
+@onready var mizhu = $"CanvasBook/糜竺"
+@onready var chendeng = $"CanvasBook/陈登"
 
 #议事详细
 @onready var parliamentary_detail = $CanvasBook/parliamentaryDetail
@@ -43,7 +44,8 @@ func _ready():
 	Transitions.post_transition.connect(post_transition)
 	control.buttonClick.connect(_buttonListClick)
 	
-
+	if GameManager.day==4:
+		ymlShow()
 	super._ready()
 	#initData()
 		
@@ -76,14 +78,14 @@ func _initData():
 
 	]
 	#if GameManager.have_event["firstBoleuterion"]==true:
-	control._processList(initData)
+	
 	if GameManager.day==4:
 		if GameManager.have_event["firstNewEnd"]==true:
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新手教程结束_阴谋论")
 			return
 	elif GameManager.day==2:
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
-	
+	control._processList(initData)
 var costhp=50
 
 func _buttonListClick(item):
@@ -134,6 +136,35 @@ func _process(delta):
 	pass
 	
 	
+const _chendenhecha = preload("res://Asset/人物/陈登睁眼.png")
+const _chendenhechaOpen = preload("res://Asset/人物/陈登睁眼喝茶.png")
+const _chendenOpen = preload("res://Asset/人物/陈登闭喝茶.png")
+
+func chendenhecha():
+	chendeng.img=_chendenhecha
+
+
+func chendenhechaOpen():
+	chendeng.img=_chendenhechaOpen
+
+
+func chendenOpen():
+	chendeng.img=_chendenOpen
+
+
+const _mizhuCLOSE = preload("res://Asset/人物/糜竺眨眼.png")
+const _mizhuOpen = preload("res://Asset/人物/糜竺睁眼.png")
+const _mizhuxiao = preload("res://Asset/人物/糜竺笑.png")
+func mizhuClose():
+	mizhu.img=_mizhuCLOSE
+
+func mizhuOpen():
+	mizhu.img=_mizhuOpen
+	
+
+func mizhuxiao():
+	mizhu.img=_mizhuxiao
+
 func ymlShow():
 	mizhu.show()
 	chendeng.show()
@@ -142,5 +173,6 @@ func ymlShow():
 	
 func ymlShowEnd():
 	GameManager.restLabel="没过多久，刘备也收到了来自徐州的密信"
+	GameManager.restFadeScene=null
 	GameManager._rest()
 	pass

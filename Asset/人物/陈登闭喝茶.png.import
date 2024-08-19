@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://fa2ux7rdw6mn"
-path="res://.godot/imported/陈登.png-81160046a05a4218f78d7682e88a68fa.ctex"
+uid="uid://blon4n24qobkv"
+path="res://.godot/imported/陈登闭喝茶.png-5fa8ae28f8939c43a0f7ca75ad82e377.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Asset/人物/陈登.png"
-dest_files=["res://.godot/imported/陈登.png-81160046a05a4218f78d7682e88a68fa.ctex"]
+source_file="res://Asset/人物/陈登闭喝茶.png"
+dest_files=["res://.godot/imported/陈登闭喝茶.png-5fa8ae28f8939c43a0f7ca75ad82e377.ctex"]
 
 [params]
 

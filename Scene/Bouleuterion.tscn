@@ -1,13 +1,14 @@
-[gd_scene load_steps=24 format=3 uid="uid://v5b54ln6hhwc"]
+[gd_scene load_steps=20 format=3 uid="uid://v5b54ln6hhwc"]
 
 [ext_resource type="Script" path="res://Scripts/Bouleuterion.gd" id="1_q6noc"]
-[ext_resource type="Texture2D" uid="uid://bd7pbsoaqxx8c" path="res://Asset/城镇建筑/议事厅.jpg" id="2_7y48q"]
 [ext_resource type="Resource" uid="uid://bte38wl3etklk" path="res://dialogues/灵堂.dialogue" id="2_56kjn"]
 [ext_resource type="Resource" uid="uid://cjbqxteqnpnrd" path="res://dialogues/议会厅.dialogue" id="2_who4l"]
-[ext_resource type="AudioStream" uid="uid://brg1ltppwfyim" path="res://Asset/sound/闪电.mp3" id="3_2bulx"]
+[ext_resource type="Texture2D" uid="uid://bl3fimimqrbnh" path="res://Asset/城镇建筑/会议室旧.png" id="4_hs6t7"]
 [ext_resource type="PackedScene" uid="uid://ervc6220fre7" path="res://Scene/prefab/fspanel.tscn" id="6_mjg5e"]
+[ext_resource type="Texture2D" uid="uid://doh7mxtgy0hm2" path="res://Asset/人物/陈登睁眼.png" id="7_0cx3q"]
 [ext_resource type="PackedScene" uid="uid://cda4765v12icm" path="res://Scene/prefab/parliamentary.tscn" id="7_1m0jr"]
 [ext_resource type="PackedScene" uid="uid://v5uv2iy3evkb" path="res://Scene/prefab/numPanel.tscn" id="7_3iegf"]
+[ext_resource type="Texture2D" uid="uid://cjgwjw0xpgmys" path="res://Asset/人物/糜竺眨眼.png" id="7_ggy3f"]
 [ext_resource type="Texture2D" uid="uid://rmaibsw1yjqd" path="res://Asset/城镇建筑/5_yellow.png" id="10_o7uio"]
 [ext_resource type="PackedScene" uid="uid://bw52ymer7ngwu" path="res://Scene/prefab/gapanel.tscn" id="11_gm57k"]
 [ext_resource type="Texture2D" uid="uid://yxnjmxcqgl2u" path="res://addons/inventory_example/textures/inventories/Chest.png" id="12_h1k1t"]
@@ -15,45 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://cw66yiofu8q6f" path="res://Scene/prefab/RuleBook.tscn" id="14_7v3lb"]
 [ext_resource type="PackedScene" uid="uid://dqpklssxni160" path="res://Scene/prefab/clickBlock.tscn" id="15_2mi3t"]
 [ext_resource type="PackedScene" uid="uid://bv5ycsl0a50uq" path="res://Scene/prefab/btnList.tscn" id="16_ba2uq"]
-[ext_resource type="Texture2D" uid="uid://wjml0u6cna03" path="res://Asset/人物/糜竺.png" id="16_cr8hx"]
 [ext_resource type="Resource" uid="uid://bmuiri1yjrdba" path="res://dialogues/屋舍.dialogue" id="17_iu3mf"]
-[ext_resource type="Texture2D" uid="uid://fa2ux7rdw6mn" path="res://Asset/人物/陈登.png" id="18_ilyoo"]
-
-[sub_resource type="Animation" id="Animation_0bk4q"]
-resource_name = "闪烁"
-length = 1.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.1, 0.6, 0.7, 1.1, 1.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.752941), Color(1, 1, 1, 0), Color(1, 1, 1, 0.882353), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_44lps"]
-_data = {
-"闪烁": SubResource("Animation_0bk4q")
-}
-
-[sub_resource type="Animation" id="Animation_s45lu"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -283.11)]
-}
 
 [sub_resource type="Animation" id="Animation_rms3s"]
 resource_name = "YELLOWGUILD"
@@ -73,7 +36,6 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4gull"]
 _data = {
-"RESET": SubResource("Animation_s45lu"),
 "YELLOWGUILD": SubResource("Animation_rms3s")
 }
 
@@ -87,27 +49,17 @@ wait_time = 1.5
 one_shot = true
 
 [node name="Canvas闪电" type="CanvasLayer" parent="."]
-visible = false
 
-[node name="ColorRect" type="ColorRect" parent="Canvas闪电"]
-offset_left = 8.0
-offset_top = -34.0
-offset_right = 1981.0
-offset_bottom = 1165.0
-color = Color(1, 1, 1, 0)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Canvas闪电/ColorRect"]
-libraries = {
-"": SubResource("AnimationLibrary_44lps")
-}
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Canvas闪电/ColorRect/AnimationPlayer"]
-stream = ExtResource("3_2bulx")
+[node name="TextureRect" type="TextureRect" parent="Canvas闪电"]
+offset_right = 1922.0
+offset_bottom = 1080.0
+texture = ExtResource("4_hs6t7")
 
 [node name="议事厅" type="Sprite2D" parent="."]
-position = Vector2(963, 531.5)
-scale = Vector2(7.39924, 5.61979)
-texture = ExtResource("2_7y48q")
+visible = false
+position = Vector2(968, 543)
+scale = Vector2(4.22174, 3.79167)
+texture = ExtResource("4_hs6t7")
 
 [node name="bgs" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(895, 333)
@@ -143,6 +95,26 @@ inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
 metadata/_edit_use_anchors_ = true
 
 [node name="CanvasBook" type="CanvasLayer" parent="."]
+
+[node name="糜竺" parent="CanvasBook" instance=ExtResource("15_2mi3t")]
+visible = false
+position = Vector2(534, 496)
+scale = Vector2(1.55, 1.55)
+showName = "糜竺"
+dialogue_doubleclick = "second"
+txt2d = ExtResource("7_ggy3f")
+dialogue_resource = ExtResource("17_iu3mf")
+dialogue_start = "点击陈群"
+
+[node name="陈登" parent="CanvasBook" instance=ExtResource("15_2mi3t")]
+visible = false
+position = Vector2(1402, 608)
+scale = Vector2(1.4, 1.4)
+showName = "陈登"
+dialogue_doubleclick = "second"
+txt2d = ExtResource("7_0cx3q")
+dialogue_resource = ExtResource("17_iu3mf")
+dialogue_start = "点击陈群"
 
 [node name="Control" parent="CanvasBook" instance=ExtResource("16_ba2uq")]
 offset_left = -1.0
@@ -207,25 +179,5 @@ texture = ExtResource("10_o7uio")
 libraries = {
 "": SubResource("AnimationLibrary_4gull")
 }
-
-[node name="糜竺" parent="." instance=ExtResource("15_2mi3t")]
-visible = false
-position = Vector2(695, 346)
-scale = Vector2(1.884, 1.884)
-showName = "糜竺"
-dialogue_doubleclick = "second"
-txt2d = ExtResource("16_cr8hx")
-dialogue_resource = ExtResource("17_iu3mf")
-dialogue_start = "点击陈群"
-
-[node name="陈登" parent="." instance=ExtResource("15_2mi3t")]
-visible = false
-position = Vector2(1116, 669)
-scale = Vector2(1.6384, 1.6384)
-showName = "陈登"
-dialogue_doubleclick = "second"
-txt2d = ExtResource("18_ilyoo")
-dialogue_resource = ExtResource("17_iu3mf")
-dialogue_start = "点击陈群"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

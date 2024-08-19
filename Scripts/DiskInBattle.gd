@@ -17,7 +17,7 @@ const fail=preload("res://Asset/other/0_red.png")
 var selectgeneral
 #ne
 func _endReward():
-	$PointerScifiB.hide()
+	#$PointerScifiB.hide()
 	pass
 @onready var enemy = $enemy
 
@@ -60,7 +60,7 @@ func _juideCompeleteTask():
 	var mustHave=rewardMax*(generalLevel+10)/20     #+generalLevel*rewardMax/20
 	#var mustHave=rewardMax/2
 	var targetGet=0
-	print("befoer"+str(targetGet))
+	#print("befoer"+str(targetGet))
 	#等级 （reward/100）*mustrewad
 	var btdatas=GameManager.battleTasks[taskIndex]
 	var tasks=btdatas.task
@@ -124,7 +124,7 @@ func _juideCompeleteTask():
 	#看情况开启注释代码
 	#封顶
 	#当玩家的coin值大于basevalue 每提升10% 会有3%提升
-	print("after"+str(targetGet))
+	#print("after"+str(targetGet))
 	_changeCircle(targetGet)
 		
 	pass # Replace with function body.
@@ -166,13 +166,13 @@ func _changeCircle(rewardGet):
 			#修复二边初始角度
 			
 		else:
-			battleCircleClone[i].radian=fmod(battleCircleClone[i].radian-cost,360)
+			battleCircleClone[i].radian=battleCircleClone[i].radian-cost
 			cost=0;
 			break;	
 			
 	
 	#这玩意不能改动，有二个方法
-	battleCircleClone[0].radian=fmod(battleCircleClone[0].radian+rewardGet,360)
+	battleCircleClone[0].radian=battleCircleClone[0].radian+rewardGet
 	
 	
 	
@@ -191,7 +191,6 @@ func _changeCircle(rewardGet):
 		nextInitIndex=0
 	else:
 		nextInitIndex=initindex+1
-
 	while(nextInitIndex!=initindex):
 		var e
 		for i in range(battleCircleClone.size()):
@@ -233,9 +232,10 @@ func refresh():
 
 var isBoot:bool=false
 
-func lauchProgress():
+func lauchProgress(hp):
 	if isBoot ==false:
 		isBoot=true
+		_hp=hp
 		_on_SpinButton_pressed()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -254,8 +254,9 @@ const ROTATION_DURATION = 5
 
 var stop_angle
 
-
+var _hp
 func _on_SpinButton_pressed():
+
 	# 开始旋转动画
 	$PointerScifiB.show()
 	var tween = get_tree().create_tween()
@@ -266,7 +267,9 @@ func _on_SpinButton_pressed():
 	
 	
 	for data in battleCircleClone:
+
 		if(data.radian>0):
+			data.initPos=fmod(data.initPos,360.0)
 			var lowerValue=data.initPos-data.radian
 			var upperValue=data.initPos
 			if(lowerValue<0):
@@ -309,14 +312,23 @@ func _on_Tween_tween_all_completed():
 		real_angle=real_angle+360
 	for data in battleCircleClone:
 		if(data.radian>0):
+			
+		
 			var lowerValue=data.initPos-data.radian
 			var upperValue=data.initPos
+			
 			if(lowerValue<0):
+				#pass
+				#var temp=upperValue
 				lowerValue=lowerValue+360
+				#lowerValue=temp#+360
 			if(upperValue<0):
-				upperValue=upperValue+360	
-			if(real_angle> lowerValue and real_angle<upperValue):
-				print(data.name)
+				print("严重错误 请检查")
+				pass
+				#upperValue=upperValue+360	
+			if(real_angle> lowerValue and real_angle<upperValue and lowerValue<upperValue) or (lowerValue>upperValue and not(real_angle> upperValue and real_angle<lowerValue ) or data.radian>=360):
+			#if(is_in_sector(real_angle,lowerValue,upperValue)):
+				#print(data.name)
 				if data.name=="成功率":
 					issuccess=true
 				else:
@@ -324,9 +336,10 @@ func _on_Tween_tween_all_completed():
 				
 				pass
 			
+	GameManager.hp=GameManager.hp-_hp
 	settleGame(selectPart,issuccess)
 	#将风险值和成功率一起输入
-	print(real_angle)
+	#print(real_angle)
 	isBoot=false
 	
 	# 计算停止位置
@@ -338,6 +351,8 @@ func _on_Tween_tween_all_completed():
 	#{"name":"高风险","initPos":0,"radian":90,"index":3},
 	#{"name":"成功率
 
+
+
 func settleGame(end,issuccess):
 	#扣除消耗 只会消耗士兵
 	#无风险 无扣除
@@ -345,36 +360,43 @@ func settleGame(end,issuccess):
 	#中风险 扣除30-40%
 	#高风险 扣除50-100%
 	
-	if issuccess==true:
-		GameManager.battleResults[taskIndex]=GameManager.BattleResult.win
-		print("你win了")
-		GameManager.completeTask=GameManager.completeTask+1
-	else:
-		GameManager.battleResults[taskIndex]=GameManager.BattleResult.fail
-		print("你输了")
+
 	var cost=10000
 	var percentage=0
 	if end =="无风险":
 		cost=0
 		percentage=0
 	elif end=="小风险":
-		percentage=randi_range(10,20)
+		percentage=randi_range(10,30)
 		pass
 	elif end=="中风险":
-		percentage=randi_range(30,40)
+		percentage=randi_range(30,70)
 		pass
 	elif end=="高风险":
-		percentage=randi_range(50,100)
+		percentage=randi_range(70,100)
 		pass
 	if cost!=0:
 		cost= int(floor(curSoilder*percentage)/100)
 	#删除cost
 	GameManager.coin=GameManager.coin-curCoin
 	GameManager.labor_force=GameManager.labor_force-cost
+
+	var _rewardPanel:rewardPanel=PanelManager.new_reward()
+	_rewardPanel.coinCost=curCoin
+	
+	_rewardPanel.soilderCost=cost
+	if issuccess==true:
+		GameManager.battleResults[taskIndex]=GameManager.BattleResult.win
+		print("你win了")
+		_rewardPanel.showReward()
+		GameManager.completeTask=GameManager.completeTask+1
+	else:
+		GameManager.battleResults[taskIndex]=GameManager.BattleResult.fail
+		print("你输了")
+		_rewardPanel.fail()
+	#bug 开始修改这里的问题
 	curCoin=0
 	curSoilder=0
-	var _rewardPanel:rewardPanel=PanelManager.show_reward()
-	_rewardPanel.showReward()
 	
 	GameManager.currenceTask=GameManager.currenceTask+1
 	refreshPage()

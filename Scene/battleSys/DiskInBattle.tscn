@@ -93,7 +93,7 @@ texture_progress = ExtResource("1_upy2s")
 tint_under = Color(0.981098, 0.850573, 0.852089, 1)
 tint_progress = Color(0.851983, 0, 0.257883, 1)
 radial_initial_angle = 90.0
-radial_fill_degrees = 90.0
+radial_fill_degrees = 293.2
 
 [node name="background-player" type="TextureProgressBar" parent="."]
 layout_mode = 0

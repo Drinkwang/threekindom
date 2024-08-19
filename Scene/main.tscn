@@ -5,10 +5,10 @@
 [ext_resource type="Resource" uid="uid://bte38wl3etklk" path="res://dialogues/灵堂.dialogue" id="2_cebyh"]
 [ext_resource type="AudioStream" uid="uid://brg1ltppwfyim" path="res://Asset/sound/闪电.mp3" id="3_pm2r8"]
 [ext_resource type="Texture2D" uid="uid://bpafr0afqfvx8" path="res://Asset/城镇建筑/灵堂.jpg" id="4_ymf5o"]
-[ext_resource type="Texture2D" uid="uid://c6v5d1k5o1tl3" path="res://Asset/人物/陶谦.jpg" id="5_18b4b"]
 [ext_resource type="Texture2D" uid="uid://cale1h2nqfdrh" path="res://Asset/ui/circle.png" id="5_o5px7"]
 [ext_resource type="Texture2D" uid="uid://yf6vhcbrjowo" path="res://Asset/蜡烛.png" id="5_qjidl"]
 [ext_resource type="Shader" path="res://shader/light.gdshader" id="5_yxgd7"]
+[ext_resource type="Texture2D" uid="uid://yuphy67p1cut" path="res://Asset/人物/陶谦.png" id="7_av8xv"]
 [ext_resource type="Script" path="res://Scripts/flashLight.gd" id="7_tfp5g"]
 [ext_resource type="PackedScene" uid="uid://bhu5hq8kx8pov" path="res://addons/inventory_example/inventories/simple/InventoryUI.tscn" id="8_2jw10"]
 [ext_resource type="Texture2D" uid="uid://yxnjmxcqgl2u" path="res://addons/inventory_example/textures/inventories/Chest.png" id="9_0v21a"]
@@ -109,7 +109,7 @@ position = Vector2(1000, 421)
 scale = Vector2(1.6384, 1.6384)
 showName = "陶谦的牌位"
 dialogue_doubleclick = "second"
-txt2d = ExtResource("5_18b4b")
+txt2d = ExtResource("7_av8xv")
 dialogue_resource = ExtResource("2_cebyh")
 dialogue_start = ""
 

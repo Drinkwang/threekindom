@@ -18,6 +18,8 @@ func _ready():
 	if(GameManager.restFadeScene!=null):
 		fadeScene=GameManager.restFadeScene
 		GameManager.restFadeScene=null
+	else:
+		fadeScene=SceneManager.HOUSE
 	# Replace with function body.
 
 @onready var label = $CanvasLayer/Label

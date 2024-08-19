@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6v5d1k5o1tl3"
-path="res://.godot/imported/陶谦.jpg-f35a0dc895b3e7dc8e4729560da2a716.ctex"
+uid="uid://doh7mxtgy0hm2"
+path="res://.godot/imported/陈登睁眼.png-81bfe85936dc932ecf785368158fce9c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Asset/人物/陶谦.jpg"
-dest_files=["res://.godot/imported/陶谦.jpg-f35a0dc895b3e7dc8e4729560da2a716.ctex"]
+source_file="res://Asset/人物/陈登睁眼.png"
+dest_files=["res://.godot/imported/陈登睁眼.png-81bfe85936dc932ecf785368158fce9c.ctex"]
 
 [params]
 

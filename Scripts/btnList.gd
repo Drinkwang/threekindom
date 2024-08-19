@@ -73,7 +73,7 @@ func _show_button_5_yellow(index):
 
 
 func _button_ation(item,index):
-	_show_button_5_yellow(index)
+	#_show_button_5_yellow(index)
 	buttonClick.emit(item)
 	if item.context=="":
 		pass

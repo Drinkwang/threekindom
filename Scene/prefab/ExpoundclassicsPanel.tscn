@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bxw67mtklk4w5"]
+[gd_scene load_steps=10 format=3 uid="uid://bxw67mtklk4w5"]
 
 [ext_resource type="Script" path="res://Scripts/ExpoundclassicsPanel.gd" id="1_5g43j"]
 [ext_resource type="Theme" uid="uid://bklmr3xmk4m5u" path="res://global_theme.tres" id="2_a1oci"]
 [ext_resource type="AudioStream" uid="uid://daxlyrk7pr0bu" path="res://Asset/sound/翻阅.mp3" id="2_cvcn1"]
+[ext_resource type="Resource" uid="uid://qopivlttvt12" path="res://dialogues/街道.dialogue" id="2_rgova"]
 [ext_resource type="Texture2D" uid="uid://dahuc8gb2blc" path="res://Asset/other/0_red.png" id="5_g5bwt"]
 [ext_resource type="Texture2D" uid="uid://c8217n5l3n1vd" path="res://Asset/辩论.png" id="8_8qym1"]
 
@@ -74,6 +75,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5g43j")
+dialogue_resource = ExtResource("2_rgova")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.25

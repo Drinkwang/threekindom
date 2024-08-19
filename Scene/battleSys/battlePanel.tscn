@@ -1,12 +1,35 @@
-[gd_scene load_steps=8 format=3 uid="uid://cjsb43uugkud4"]
+[gd_scene load_steps=12 format=3 uid="uid://cjsb43uugkud4"]
 
 [ext_resource type="Script" path="res://Scripts/battlePanel.gd" id="1_uyier"]
+[ext_resource type="Resource" uid="uid://d2qoinuor12dq" path="res://dialogues/演武场.dialogue" id="2_1p72a"]
 [ext_resource type="Theme" uid="uid://bklmr3xmk4m5u" path="res://global_theme.tres" id="2_syp0e"]
 [ext_resource type="PackedScene" uid="uid://dxj1s2d4grxwj" path="res://Scene/prefab/SoilderItem.tscn" id="3_3ya2h"]
 [ext_resource type="Texture2D" uid="uid://dpyahly4tlu7a" path="res://Asset/人物/ZhaoYun.jpg" id="4_v76eo"]
 [ext_resource type="Texture2D" uid="uid://xt3xohrjhgbd" path="res://Asset/人物/ZhangFei.jpg" id="5_7n0ga"]
+[ext_resource type="Texture2D" uid="uid://rmaibsw1yjqd" path="res://Asset/城镇建筑/5_yellow.png" id="7_5kst7"]
 [ext_resource type="Texture2D" uid="uid://dahuc8gb2blc" path="res://Asset/other/0_red.png" id="7_fydxo"]
 [ext_resource type="PackedScene" uid="uid://dcydwatjg50hl" path="res://Scene/battleSys/DiskInBattle.tscn" id="8_75jyp"]
+
+[sub_resource type="Animation" id="Animation_rms3s"]
+resource_name = "YELLOWGUILD"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -5), Vector2(0, 10), Vector2(0, 6.66666), Vector2(0, 3.33331), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4gull"]
+_data = {
+"YELLOWGUILD": SubResource("Animation_rms3s")
+}
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -20,6 +43,7 @@ offset_bottom = -7.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_uyier")
+dialogue_resource = ExtResource("2_1p72a")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -279,6 +303,185 @@ texture_hover = ExtResource("7_fydxo")
 texture_disabled = ExtResource("7_fydxo")
 texture_focused = ExtResource("7_fydxo")
 stretch_mode = 0
+
+[node name="pointGroup" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.04034, 1.0033)
+
+[node name="1" type="Node2D" parent="pointGroup"]
+visible = false
+position = Vector2(702.658, 591.047)
+rotation = 1.16413
+
+[node name="5Yellow" type="Sprite2D" parent="pointGroup/1"]
+rotation = -1.5708
+scale = Vector2(4, 4)
+texture = ExtResource("7_5kst7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="pointGroup/1/5Yellow"]
+libraries = {
+"": SubResource("AnimationLibrary_4gull")
+}
+autoplay = "YELLOWGUILD"
+
+[node name="2" type="Node2D" parent="pointGroup"]
+visible = false
+position = Vector2(975.646, 315.956)
+
+[node name="5Yellow" type="Sprite2D" parent="pointGroup/2"]
+rotation = -1.5708
+scale = Vector2(4, 4)
+texture = ExtResource("7_5kst7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="pointGroup/2/5Yellow"]
+libraries = {
+"": SubResource("AnimationLibrary_4gull")
+}
+autoplay = "YELLOWGUILD"
+
+[node name="Node2D3" type="Node2D" parent="pointGroup/2"]
+position = Vector2(-192.246, 90.7003)
+
+[node name="Node2D2" type="Node2D" parent="pointGroup/2/Node2D3"]
+position = Vector2(-225.889, -90.7003)
+
+[node name="5Yellow" type="Sprite2D" parent="pointGroup/2/Node2D3/Node2D2"]
+rotation = -1.5708
+scale = Vector2(4, 4)
+texture = ExtResource("7_5kst7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="pointGroup/2/Node2D3/Node2D2/5Yellow"]
+libraries = {
+"": SubResource("AnimationLibrary_4gull")
+}
+autoplay = "YELLOWGUILD"
+
+[node name="Node2D2" type="Node2D" parent="pointGroup/2"]
+position = Vector2(-211.47, 3.98684)
+
+[node name="5Yellow" type="Sprite2D" parent="pointGroup/2/Node2D2"]
+rotation = -1.5708
+scale = Vector2(4, 4)
+texture = ExtResource("7_5kst7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="pointGroup/2/Node2D2/5Yellow"]
+libraries = {
+"": SubResource("AnimationLibrary_4gull")
+}
+autoplay = "YELLOWGUILD"
+
+[node name="3" type="Node2D" parent="pointGroup"]
+visible = false
+position = Vector2(1237.1, 831.253)
+rotation = 0.968658
+
+[node name="5Yellow" type="Sprite2D" parent="pointGroup/3"]
+rotation = -1.5708
+scale = Vector2(4, 4)
+texture = ExtResource("7_5kst7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="pointGroup/3/5Yellow"]
+libraries = {
+"": SubResource("AnimationLibrary_4gull")
+}
+autoplay = "YELLOWGUILD"
+
+[node name="4" type="Node2D" parent="pointGroup"]
+visible = false
+position = Vector2(1387.05, 456.492)
+rotation = 1.20428
+
+[node name="5Yellow" type="Sprite2D" parent="pointGroup/4"]
+rotation = -1.5708
+scale = Vector2(4, 4)
+texture = ExtResource("7_5kst7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="pointGroup/4/5Yellow"]
+libraries = {
+"": SubResource("AnimationLibrary_4gull")
+}
+autoplay = "YELLOWGUILD"
+
+[node name="5" type="Node2D" parent="pointGroup"]
+visible = false
+position = Vector2(1128, 357)
+rotation = 1.20428
+
+[node name="5Yellow" type="Sprite2D" parent="pointGroup/5"]
+position = Vector2(0, 9.25774)
+rotation = -1.5708
+scale = Vector2(4, 4)
+texture = ExtResource("7_5kst7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="pointGroup/5/5Yellow"]
+libraries = {
+"": SubResource("AnimationLibrary_4gull")
+}
+autoplay = "YELLOWGUILD"
+
+[node name="6" type="Node2D" parent="pointGroup"]
+visible = false
+position = Vector2(533.482, 803.345)
+rotation = 3.91826
+
+[node name="5Yellow" type="Sprite2D" parent="pointGroup/6"]
+rotation = -1.5708
+scale = Vector2(4, 4)
+texture = ExtResource("7_5kst7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="pointGroup/6/5Yellow"]
+libraries = {
+"": SubResource("AnimationLibrary_4gull")
+}
+autoplay = "YELLOWGUILD"
+
+[node name="7" type="Node2D" parent="pointGroup"]
+visible = false
+position = Vector2(858.377, 556.162)
+
+[node name="5Yellow" type="Sprite2D" parent="pointGroup/7"]
+rotation = -0.0349066
+scale = Vector2(4, 4)
+texture = ExtResource("7_5kst7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="pointGroup/7/5Yellow"]
+libraries = {
+"": SubResource("AnimationLibrary_4gull")
+}
+autoplay = "YELLOWGUILD"
+
+[node name="Node2D3" type="Node2D" parent="pointGroup/7"]
+position = Vector2(-213.393, 7.97363)
+
+[node name="5Yellow" type="Sprite2D" parent="pointGroup/7/Node2D3"]
+scale = Vector2(4, 4)
+texture = ExtResource("7_5kst7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="pointGroup/7/Node2D3/5Yellow"]
+libraries = {
+"": SubResource("AnimationLibrary_4gull")
+}
+autoplay = "YELLOWGUILD"
+
+[node name="Node2D2" type="Node2D" parent="pointGroup/7/Node2D3"]
+position = Vector2(-206.664, -2.99014)
+
+[node name="5Yellow" type="Sprite2D" parent="pointGroup/7/Node2D3/Node2D2"]
+rotation = -0.00872665
+scale = Vector2(4, 4)
+texture = ExtResource("7_5kst7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="pointGroup/7/Node2D3/Node2D2/5Yellow"]
+libraries = {
+"": SubResource("AnimationLibrary_4gull")
+}
+autoplay = "YELLOWGUILD"
 
 [node name="battleCircle" parent="." instance=ExtResource("8_75jyp")]
 layout_mode = 1

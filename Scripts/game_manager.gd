@@ -1,7 +1,7 @@
 extends Node
 
 #GameManager
-var day=2
+var day=0
 const DESTINATION = preload("res://Destination.tscn")
 var intellectual_support #士族支持度 一开始为100 当议会中 会出现支持和不支持以及摇摆 
 const MANUAL_TEST = preload("res://ManualTest.tscn")
@@ -177,8 +177,9 @@ func array_sum(arr: Array) -> int:
 		sum += i
 	return sum
 
-func _enterDay():
-	GameManager.day=GameManager.day+1
+func _enterDay(value=true):
+	if(value==true):
+		GameManager.day=GameManager.day+1
 	initPaixi(BENTUPAI)
 	initPaixi(WAIDIPAI)
 	initBattle()
@@ -331,9 +332,9 @@ func extractByGroup(index):
 func extractById(id):
 	return policy_Item.filter(func(item): item.group== id)[0]
 
-func _rest():
+func _rest(value=true):
 	const DISSOLVE_IMAGE = preload("res://addons/transitions/images/circle-inverted.png")
-	_enterDay()
+	_enterDay(value)
 	Transitions.change_scene_to_instance( SceneManager.SLEEP_BLANK.instantiate(), Transitions.FadeType.Instant)
 	
 

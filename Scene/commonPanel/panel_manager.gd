@@ -43,15 +43,15 @@ func show_tied_scene(tied_scene) -> TiredPanel:
 
 
 ## Show the configured dialogue balloon
-func show_reward( title: String = "", extra_game_states: Array = []) -> rewardPanel:
+func new_reward( title: String = "") -> rewardPanel:
 	var balloon_path: String# = DialogueSettings.get_setting(&"balloon_path", _get_example_balloon_path())
 	if not ResourceLoader.exists(balloon_path):
 		balloon_path = _get_example_balloon_path()
-	return show_reward_scene(balloon_path, title, extra_game_states)
+	return show_reward_scene(balloon_path, title)
 
 
 ## Show a given balloon scene
-func show_reward_scene(reward_scene, title: String = "", extra_game_states: Array = []) -> rewardPanel:
+func show_reward_scene(reward_scene, title: String = ""):
 	if reward_scene is String:
 		reward_scene = load(reward_scene)
 	if reward_scene is PackedScene:
@@ -90,14 +90,17 @@ enum fadeType{
 	fadeOut,
 	fadeInAndOut
 }
-
+var use:blankPanel
 ## Show the configured dialogue balloon
 func Fade_Blank(color:Color,time,state):
 	var balloon_path: String# = DialogueSettings.get_setting(&"balloon_path", _get_example_balloon_path())
 	if not ResourceLoader.exists(balloon_path):
 		balloon_path = _get_Fade_Blank_path()
-	var use:blankPanel= show_Fade_Blank_scene(balloon_path)
+	if(use==null):
+		use =show_Fade_Blank_scene(balloon_path)
 	use.fade(color,time,state)
+	if(state!=PanelManager.fadeType.fadeIn):
+		use=null
 
 func _get_Fade_Blank_path() -> String:
 	var balloon_path: String = "/blankPanel.tscn" #if is_small_window else "/example_balloon/example_balloon.tscn"

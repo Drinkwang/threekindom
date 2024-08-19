@@ -146,7 +146,7 @@ func _buttonListClick(item):
 		pass
 		##打开商店ui换皮或者换页
 	elif item.context=="城门-军事驻地":
-		if(GameManager.day>4):
+		if(GameManager.day>=4):
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"selectOutSide")
 			pass #给选项，可跳可不跳
 		else:
@@ -186,6 +186,10 @@ func visitScholar():
 func showbianji():
 	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeOut)
 	scholar.visible=true
+	
+func bianjiEnd():
+	control._show_button_5_yellow(5)
+	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
