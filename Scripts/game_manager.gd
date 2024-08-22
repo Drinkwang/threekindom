@@ -1,17 +1,11 @@
 extends Node
 
-#GameManager
-var day=0
+
 const DESTINATION = preload("res://Destination.tscn")
-var intellectual_support #士族支持度 一开始为100 当议会中 会出现支持和不支持以及摇摆 
+
 const MANUAL_TEST = preload("res://ManualTest.tscn")
 #以下三个值均为三股不同力量士族可以篡改的值 其中士族可以把控群众支持度，商贾可以把控金钱，丹阳派系的军官可以把控劳动力
-var people_surrport=100 #群众支持度 数值
-var  coin=100 #金钱 数值
-var labor_force=100 #劳动力 可以当作军队进行使用 劳动力转换成军队需要消耗值 骑兵 步兵 弓兵
-var destination:String #放在gameins里面
-@export var datas:Array[cldata] 
-var isLevelUp=false
+
 var restLabel:String=""
 enum RspEnum{
 	PAPER=0,
@@ -28,11 +22,9 @@ enum BattleResult{
 	
 }
 
-#寄存使用过的将军
-var UseGeneral:Array
 
-var battleResults:Array[BattleResult]=[]
 
+@export var sav:saveData=saveData.new()
 enum opcost{
 	greater,
 	less,
@@ -42,7 +34,7 @@ enum opcost{
 }
 var _engerge:energe
 
-var hp=100:
+@export var hp=100:
 	get:
 		return hp
 	set(value):
@@ -60,13 +52,9 @@ RspEnum.SCISSORS:{"name": "张飞", "level": 1, "max_level": 10, "randominit": -
 RspEnum.PAPER:{"name": "赵云", "level": 1, "max_level": 10, "randominit": -1,"isBattle":false}
 }
 
-# [
-# 	{"name": "关羽", "level": 1, "max_level": 10, "randominit": -1},
-# 	{"name": "张飞", "level": 1, "max_level": 10, "randominit": -1},
-# 	{"name": "赵云", "level": 1, "max_level": 10, "randominit": -1}
-# ]
-var battleTasks={}
 
+
+#判断是否累了的框，不用保存
 var triedResult=false
 signal triedPanelDone
 func isTried(costNum)->bool:
@@ -94,39 +82,9 @@ const BENTUPAI = preload("res://Asset/tres/bentupai.tres")
 const WAIDIPAI = preload("res://Asset/tres/waidipai.tres")
 
 
-var Merit_points:int=3
 var currenceScene
 var restFadeScene
-var have_event = {
-	"firstmeetchenqun":false,
-	"firsthouse": false,
-	"firststreet": false,
-	"firstgovernment":false,
-	"firstgovermentTip":false,	
-	"firstPolicyOpShow":false,
-	"firstPolicyCorrect":false,
-	"firstTabLaw":false,#为false不显示tab面板 只触发一次对话
-	"firstLawExecute":false,#为false 不显示close选项 只触发一次对话
-	"firstParliamentary":false,
-	#second事件 
-	"dayTwoInit":false,#2024-8-15
-	"dayThreeInit":false,
-	"secondStreet":false,
-	"firstTraining":false,
-	"firstWar":false,
-	"firstTrain":false,
-	"threeStree":false,
-	"firstMeetingEnd":false,
-	"streetBeginBouleuterion":false, #第一次前往议会，新手教程
-	"firstBattle":false,#第一次从大厅前往演武场进行军事行动
-	"firstBattleTutorial":false,
-	"firstBattleEnd":false,
-	"firstVisitScholars":false, #第一次在房间里触发即将拜访大儒的剧情
-	"firstVisitScholarsEnd":false,
-	"firstNewEnd":false, #新手剧情结束么？No
-	"DemoFinish":false
 
-}
 
 var policy_Item=[
 	{
@@ -149,19 +107,19 @@ var policy_Item=[
 	},	
 ]
 
-var dialogBegin=false
+#var dialogBegin=false
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
+	#DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
 	_enterDay()
 	
-func _on_dialogue_ended():
-	dialogBegin=false
-	pass
+#func _on_dialogue_ended():
+	#dialogBegin=false
+#	pass
 func initBattle():
-	UseGeneral=[]
-	if(battleResults.size()!=3 or battleResults.all(func(e):e!=BattleResult.none)):
-		battleResults=[
+	sav.UseGeneral=[]
+	if(sav.battleResults.size()!=3 or sav.battleResults.all(func(e):e!=BattleResult.none)):
+		sav.battleResults=[
 		BattleResult.none,
 		BattleResult.none,
 		BattleResult.none
@@ -179,12 +137,13 @@ func array_sum(arr: Array) -> int:
 
 func _enterDay(value=true):
 	if(value==true):
-		GameManager.day=GameManager.day+1
+		GameManager.sav.day=GameManager.sav.day+1
 	initPaixi(BENTUPAI)
 	initPaixi(WAIDIPAI)
 	initBattle()
 	hp=100
-	isLevelUp=false;
+	sav.isLevelUp=false;
+	sav.isMeet=false
 	
 	
 #利用上这个把taskindex局限于0-3 选样，并把这个数量和攻克
@@ -193,15 +152,13 @@ func _enterDay(value=true):
 #每次通关3关将taskindex回复为0
 #并重新计算copletetask
 #		{"name":"高风险","initPos":0,"radian":90},
-var completeTask:int=0
-#若通关 则completeTask	
-var currenceTask:int=0	
+
 func intBattleTask():
 	var nums={}
 
 	for battleTarget in range(3):
-		battleTasks[battleTarget]={}
-		battleTasks[battleTarget].index=currenceTask+battleTarget+1
+		sav.battleTasks[battleTarget]={}
+		sav.battleTasks[battleTarget].index=sav.currenceTask+battleTarget+1
 		var taskNum:int=randi_range(1, 2)
 		if taskNum==1:
 			var resTyoe=randi_range(1, 2)
@@ -209,29 +166,29 @@ func intBattleTask():
 			var costNum
 			if(resTyoe==1):
 				res="coin"
-				costNum=15*battleTasks[battleTarget].index
+				costNum=15*sav.battleTasks[battleTarget].index
 				#最小值是10*xxx
 				#*10/15
 			else:
 				res="human"
-				costNum=50*battleTasks[battleTarget].index
+				costNum=50*sav.battleTasks[battleTarget].index
 				#最小值是30*xxx
 				#*3/5
 			var syTyoe:int=randi_range(0, 2)
 			var sy =opcost.values()[syTyoe]
 			nums=generate_random_numbers(100,2)
-			battleTasks[battleTarget].task=[{"res":res,"symbol":sy,"value":costNum,"reward":nums[0]}]
-			battleTasks[battleTarget].reward=nums[1]
+			sav.battleTasks[battleTarget].task=[{"res":res,"symbol":sy,"value":costNum,"reward":nums[0]}]
+			sav.battleTasks[battleTarget].reward=nums[1]
 		elif taskNum==2:
 			var syTyoe1=randi_range(0, 2)
 			nums=generate_random_numbers(100,3)
 			var sy1 =opcost.values()[syTyoe1]
 			var syTyoe2=randi_range(0, 2)
 			var sy2=opcost.values()[syTyoe2]
-			battleTasks[battleTarget].task=[{"res":"coin","symbol":sy1,"value":15*battleTasks[battleTarget].index,"reward":nums[0]},{"res":"human","symbol":sy2,"value":50*battleTasks[battleTarget].index,"reward":nums[1]}]
-			battleTasks[battleTarget].reward=nums[2]
+			sav.battleTasks[battleTarget].task=[{"res":"coin","symbol":sy1,"value":15*sav.battleTasks[battleTarget].index,"reward":nums[0]},{"res":"human","symbol":sy2,"value":50*sav.battleTasks[battleTarget].index,"reward":nums[1]}]
+			sav.battleTasks[battleTarget].reward=nums[2]
 		var sdType:int=randf_range(0, 3)
-		battleTasks[battleTarget].sdType=RspEnum.values()[sdType-1]
+		sav.battleTasks[battleTarget].sdType=RspEnum.values()[sdType-1]
 
 #func _ready():
 	#var numbers = generate_random_numbers(100, 2, 3)

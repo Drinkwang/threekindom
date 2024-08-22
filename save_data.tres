@@ -1,0 +1,70 @@
+[gd_resource type="Resource" script_class="saveData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://Scripts/game_manager.gd" id="1_hxoum"]
+[ext_resource type="Script" path="res://Scene/SaveSys/saveData_Resource.gd" id="2_81pho"]
+
+[sub_resource type="PackedScene" id="PackedScene_4b004"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("GameManager", "script", "day", "intellectual_support", "people_surrport", "coin", "labor_force", "destination", "datas", "isLevelUp", "isMeet", "UseGeneral", "battleResults", "hp", "battleTasks", "Merit_points", "completeTask", "currenceTask", "Node"),
+"node_count": 1,
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 18, 0, -1, 17, 1, 0, 2, 1, 3, 2, 4, 2, 5, 2, 6, 2, 7, 3, 8, 4, 9, 5, 10, 5, 11, 4, 12, 6, 13, 2, 14, 7, 15, 8, 16, 9, 17, 9, 0),
+"variants": [ExtResource("1_hxoum"), 1, 100, "", Array[Resource("res://clData.gd")]([]), false, Array[int]([0, 0, 0]), {
+0: {
+"index": 1,
+"reward": 87,
+"sdType": 0,
+"task": [{
+"res": "coin",
+"reward": 3,
+"symbol": 1,
+"value": 15
+}, {
+"res": "human",
+"reward": 10,
+"symbol": 0,
+"value": 50
+}]
+},
+1: {
+"index": 2,
+"reward": 45,
+"sdType": 2,
+"task": [{
+"res": "coin",
+"reward": 38,
+"symbol": 0,
+"value": 30
+}, {
+"res": "human",
+"reward": 17,
+"symbol": 2,
+"value": 100
+}]
+},
+2: {
+"index": 3,
+"reward": 12,
+"sdType": 2,
+"task": [{
+"res": "coin",
+"reward": 18,
+"symbol": 0,
+"value": 45
+}, {
+"res": "human",
+"reward": 70,
+"symbol": 2,
+"value": 150
+}]
+}
+}, 3, 0],
+"version": 3
+}
+
+[resource]
+script = ExtResource("2_81pho")
+savegamemanager = SubResource("PackedScene_4b004")

@@ -22,12 +22,12 @@ func _process(delta):
 
 func _initData():
 	index=0
-	if GameManager.have_event["firstLawExecute"]==false:
+	if GameManager.sav.have_event["firstLawExecute"]==false:
 		$TextureButton.hide()
 	else:
 		$TextureButton.show()
 	pass
-	point_label.text="点数:%s"%GameManager.Merit_points
+	point_label.text="点数:%s"%GameManager.sav.Merit_points
 	refreshLawPoint()
 
 func refreshLawPoint():
@@ -41,8 +41,8 @@ func _on_tab_bar_tab_changed(tab):
 	else:
 		$lawPanel.show()
 		$PanelContainer/orderPanel.hide()
-		if GameManager.have_event["firstTabLaw"]==false:
-			GameManager.have_event["firstTabLaw"]=true
+		if GameManager.sav.have_event["firstTabLaw"]==false:
+			GameManager.sav.have_event["firstTabLaw"]=true
 			DialogueManager.show_example_dialogue_balloon(GameManager.currenceScene.dialogue_resource,"第一次指定法律")
 		#判断剧情是否触发，如果没触发触发剧情
 	#pass # Replace with function body.
@@ -127,7 +127,7 @@ func excuteLaw(value:lawpoint):
 	if await GameManager.isTried(costhp):
 		return
 	
-	if(GameManager.Merit_points<value.costPoint):
+	if(GameManager.sav.Merit_points<value.costPoint):
 		DialogueManager.show_example_dialogue_balloon(GameManager.currenceScene.dialogue_resource,"你的政策点不够")	
 		return
 		
@@ -139,12 +139,12 @@ func excuteLaw(value:lawpoint):
 func agreelaw():
 	if await GameManager.isTried(costhp):
 		return
-	GameManager.Merit_points=GameManager.Merit_points-selectLawPoint.costPoint
+	GameManager.sav.Merit_points=GameManager.sav.Merit_points-selectLawPoint.costPoint
 	selectLawPoint.isUnlock=true
 	selectLawPoint._initData()
 	
-	if GameManager.have_event["firstLawExecute"]==false:
-		GameManager.have_event["firstLawExecute"]=true
+	if GameManager.sav.have_event["firstLawExecute"]==false:
+		GameManager.sav.have_event["firstLawExecute"]=true
 		_initData()
 		DialogueManager.show_example_dialogue_balloon(GameManager.currenceScene.dialogue_resource,"第一次指定法律完成")
 	#第一次执行完 执行额外操作

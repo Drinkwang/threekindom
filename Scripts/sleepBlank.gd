@@ -39,7 +39,7 @@ func post_transition():
 	pass
 
 func changeAndSave():
-	GameManager.Merit_points=GameManager.Merit_points+1;
+	GameManager.sav.Merit_points=GameManager.sav.Merit_points+1;
 	pass
 
 

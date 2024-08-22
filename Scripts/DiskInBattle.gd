@@ -23,9 +23,9 @@ func _endReward():
 
 func _ready():
 	SignalManager.endReward.connect(_endReward)
-	_initBattleTypePng(0,GameManager.battleTasks[taskIndex].sdType)
+	_initBattleTypePng(0,GameManager.sav.battleTasks[taskIndex].sdType)
 	for i in range(1,3):
-		var sd=GameManager.battleTasks[i-1].sdType
+		var sd=GameManager.sav.battleTasks[i-1].sdType
 		_initBattleTypePng(i,sd)
 	#初始化其中一个，然后随机获取一个 初始化按照gamemanager数据来
 	var btdatas=GameManager.battleCircle
@@ -62,7 +62,7 @@ func _juideCompeleteTask():
 	var targetGet=0
 	#print("befoer"+str(targetGet))
 	#等级 （reward/100）*mustrewad
-	var btdatas=GameManager.battleTasks[taskIndex]
+	var btdatas=GameManager.sav.battleTasks[taskIndex]
 	var tasks=btdatas.task
 	var haveRes
 	
@@ -378,20 +378,20 @@ func settleGame(end,issuccess):
 	if cost!=0:
 		cost= int(floor(curSoilder*percentage)/100)
 	#删除cost
-	GameManager.coin=GameManager.coin-curCoin
-	GameManager.labor_force=GameManager.labor_force-cost
+	GameManager.sav.coin=GameManager.sav.coin-curCoin
+	GameManager.sav.labor_force=GameManager.sav.labor_force-cost
 
 	var _rewardPanel:rewardPanel=PanelManager.new_reward()
 	_rewardPanel.coinCost=curCoin
 	
 	_rewardPanel.soilderCost=cost
 	if issuccess==true:
-		GameManager.battleResults[taskIndex]=GameManager.BattleResult.win
+		GameManager.sav.battleResults[taskIndex]=GameManager.BattleResult.win
 		print("你win了")
 		_rewardPanel.showReward()
 		GameManager.completeTask=GameManager.completeTask+1
 	else:
-		GameManager.battleResults[taskIndex]=GameManager.BattleResult.fail
+		GameManager.sav.battleResults[taskIndex]=GameManager.BattleResult.fail
 		print("你输了")
 		_rewardPanel.fail()
 	#bug 开始修改这里的问题
@@ -412,13 +412,13 @@ func settleGame(end,issuccess):
 @onready var Txtcount = $count
 	
 func refreshPage():
-	enemy.namelv="(当前战力:{targetValue})".format({"targetValue": GameManager.battleTasks[taskIndex].index*50}) 
+	enemy.namelv="(当前战力:{targetValue})".format({"targetValue": GameManager.sav.battleTasks[taskIndex].index*50}) 
 	var btresult= GameManager.BattleResult
 	var txt
-	for i in range(0,GameManager.battleResults.size()):
-		if(GameManager.battleResults[i]==btresult.win):
+	for i in range(0,GameManager.sav.battleResults.size()):
+		if(GameManager.sav.battleResults[i]==btresult.win):
 			txt=Success
-		elif (GameManager.battleResults[i]==btresult.fail):
+		elif (GameManager.sav.battleResults[i]==btresult.fail):
 			txt=fail
 		var _ColorRect=find_child("ColorRect_"+str(taskIndex+1))
 		var tag:TextureRect=_ColorRect.get_node("tag")

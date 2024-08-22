@@ -57,7 +57,6 @@ autowrap_mode = 2
 [node name="title" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"HeaderLarge"
-text = "这次战斗你输了，你损失了300金和51个士兵"
 horizontal_alignment = 1
 
 [node name="Margin" type="MarginContainer" parent="Control/PanelContainer/MarginContainer/VBoxContainer"]

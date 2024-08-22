@@ -67,7 +67,7 @@ func _process(delta):
 const yihuiting = preload("res://dialogues/议会厅.dialogue")
 func _on_button_button_down():
 	self.hide()
-	if GameManager.have_event["firstParliamentary"]==false:
-		GameManager.have_event["firstParliamentary"]=true
+	if GameManager.sav.have_event["firstParliamentary"]==false:
+		GameManager.sav.have_event["firstParliamentary"]=true
 		DialogueManager.show_example_dialogue_balloon(yihuiting,"第一次会议结束")
 		pass # Replace with function body.

@@ -38,7 +38,7 @@ func update_ui():
 	control_2.updateContext(1)	
 	control_3.updateContext(2)	
 	
-	if(GameManager.isLevelUp==false):
+	if(GameManager.sav.isLevelUp==false):
 		control_1.canSelect=true
 		control_2.canSelect=true
 		control_3.canSelect=true
@@ -54,27 +54,27 @@ func update_ui():
 
 # 升级按钮被按下时运行
 func _on_upgrade_button_pressed():
-	if(await GameManager.isTried(costhp) or GameManager.isLevelUp==true):
+	if(await GameManager.isTried(costhp) or GameManager.sav.isLevelUp==true):
 		return 
 	
 	var selected_general = GameManager.generals.values()[selected_general_index]
-	if GameManager.coin >= upgrade_cost and selected_general["level"] < selected_general["max_level"]:
-		GameManager.coin -= upgrade_cost
+	if GameManager.sav.coin >= upgrade_cost and selected_general["level"] < selected_general["max_level"]:
+		GameManager.sav.coin -= upgrade_cost
 		selected_general["level"] += 1
 	
-		GameManager.isLevelUp=true
+		GameManager.sav.isLevelUp=true
 		update_ui()
 
 		GameManager.hp=GameManager.hp-costhp
 		print("升级成功！", selected_general["name"], "当前等级: ", selected_general["level"])
-	elif GameManager.coin<upgrade_cost:
+	elif GameManager.sav.coin<upgrade_cost:
 		label.text="你的金币不够"
 	else:
 		label.text="你已达到最大等级。"
 
 # 添加金币获取功能（可选）
 func add_gold(amount):
-	GameManager.coin += amount
+	GameManager.sav.coin += amount
 	update_ui()
 @export var dialogue_resource:DialogueResource
 
@@ -111,9 +111,9 @@ func _on_control_3_gui_input(event):
 
 func _on_exit_button_button_down():
 	self.hide()
-	if GameManager.isLevelUp==true:
-		if GameManager.have_event["firstTrain"]==false:
-			GameManager.have_event["firstTrain"]=true
+	if GameManager.sav.isLevelUp==true:
+		if GameManager.sav.have_event["firstTrain"]==false:
+			GameManager.sav.have_event["firstTrain"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"初次练兵")
 		#当升级成果时，触发这里的脚本
 	pass # Replace with function body.

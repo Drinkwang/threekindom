@@ -23,13 +23,13 @@ const FancyFade = preload("res://addons/transitions/FancyFade.gd")
 #将这个页面的操作面板显示并存档
 #dontwork
 func implementpolicy():
-	GameManager.have_event["firstPolicyOpShow"]=true
+	GameManager.sav.have_event["firstPolicyOpShow"]=true
 	_initData()
 	pass
 	
 #将施政面板显示并存档
 func showTab():
-	GameManager.have_event["firstTabLaw"]=true
+	GameManager.sav.have_event["firstTabLaw"]=true
 	_initData()
 	
 
@@ -44,7 +44,7 @@ func _ready():
 	Transitions.post_transition.connect(post_transition)
 	control.buttonClick.connect(_buttonListClick)
 	
-	if GameManager.day==4:
+	if GameManager.sav.day==4:
 		ymlShow()
 	super._ready()
 	#initData()
@@ -55,9 +55,9 @@ func _initFaction():
 	pass
 
 func _initData():
-	#if	GameManager.have_event["firstgovernment"]==false:
+	#if	GameManager.sav.have_event["firstgovernment"]==false:
 		#DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
-		#GameManager.have_event["firstgovernment"]=true
+		#GameManager.sav.have_event["firstgovernment"]=true
 	GameManager.currenceScene=self
 	var initData=[
 	{	
@@ -77,30 +77,28 @@ func _initData():
 	},
 
 	]
-	#if GameManager.have_event["firstBoleuterion"]==true:
+	#if GameManager.sav.have_event["firstBoleuterion"]==true:
 	
-	if GameManager.day==4:
-		if GameManager.have_event["firstNewEnd"]==true:
+	if GameManager.sav.day==4:
+		if GameManager.sav.have_event["firstNewEnd"]==true:
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新手教程结束_阴谋论")
 			return
-	elif GameManager.day==2:
+	elif GameManager.sav.day==2:
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
 	control._processList(initData)
 var costhp=50
 
 func _buttonListClick(item):
 	if item.context == "开始议事":
-		if(GameManager.have_event["firstgovermentTip"]==false):
-			GameManager.have_event["firstgovermentTip"]=true
-			if(await GameManager.isTried(costhp)):
-				return
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"开始议事")
+		if(await GameManager.isTried(costhp)):
+			return
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"开始议事")
 	elif item.context == "议事说明":
 		yishimianban.show()
 		#显示接下来要点击啥
 		pass
 	elif item.context == "离开":
-		if(GameManager.have_event["firstParliamentary"]==true):
+		if(GameManager.sav.have_event["firstParliamentary"]==true):
 			const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
 			FancyFade.new().custom_fade(SceneManager.STREET.instantiate(), 2, DISSOLVE_IMAGE)
 		else:
@@ -117,7 +115,7 @@ func showGuild():
 	
 func meetingEnd():
 	control._show_button_5_yellow(2)
-	GameManager.destination="自宅"
+	GameManager.sav.destination="自宅"
 
 func hideGuild():
 	$CanvasBook/Node2D.hide()

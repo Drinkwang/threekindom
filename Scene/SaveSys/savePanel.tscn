@@ -1,0 +1,129 @@
+[gd_scene load_steps=6 format=3 uid="uid://h6upne4oyuv7"]
+
+[ext_resource type="PackedScene" uid="uid://b2ecqrg18b6su" path="res://Scene/SaveSys/saveItem.tscn" id="1_6ch1t"]
+[ext_resource type="Script" path="res://Scene/SaveSys/savePanel.gd" id="1_quuf6"]
+[ext_resource type="Resource" uid="uid://6tcvrmuqikc6" path="res://dialogues/存档.dialogue" id="2_cn4gt"]
+[ext_resource type="FontFile" uid="uid://8gk1bfs3ahmh" path="res://Asset/Font/Bakudai-Bold.ttf" id="2_k8dus"]
+[ext_resource type="Texture2D" uid="uid://dahuc8gb2blc" path="res://Asset/other/0_red.png" id="3_6p4fi"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 603.0
+offset_bottom = 411.0
+mouse_filter = 2
+script = ExtResource("1_quuf6")
+dialogue_resource = ExtResource("2_cn4gt")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_top = 24.0
+offset_right = 575.0
+offset_bottom = 352.0
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 57.0
+offset_right = 543.0
+offset_bottom = 320.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 71.0
+offset_right = 529.0
+offset_bottom = 260.0
+
+[node name="file1" parent="HBoxContainer" instance=ExtResource("1_6ch1t")]
+custom_minimum_size = Vector2(157.125, 150)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="file2" parent="HBoxContainer" instance=ExtResource("1_6ch1t")]
+custom_minimum_size = Vector2(157.125, 150)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="file3" parent="HBoxContainer" instance=ExtResource("1_6ch1t")]
+custom_minimum_size = Vector2(157.125, 143.175)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="select" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 180.0
+offset_top = 237.0
+offset_right = 226.0
+offset_bottom = 284.0
+scale = Vector2(2.3, 2.16)
+theme_override_colors/font_color = Color(0.78441, 0, 0.121413, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("2_k8dus")
+theme_override_font_sizes/font_size = 46
+text = "〇"
+
+[node name="save" type="Label" parent="."]
+layout_mode = 0
+offset_left = 212.0
+offset_top = 263.0
+offset_right = 267.0
+offset_bottom = 325.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_k8dus")
+theme_override_font_sizes/font_size = 46
+text = "存"
+
+[node name="load" type="Label" parent="."]
+layout_mode = 0
+offset_left = 292.0
+offset_top = 262.0
+offset_right = 347.0
+offset_bottom = 324.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_k8dus")
+theme_override_font_sizes/font_size = 46
+text = "讀"
+
+[node name="SaveButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 209.0
+offset_top = 259.0
+offset_right = 261.0
+offset_bottom = 313.0
+
+[node name="close" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.015
+anchor_bottom = -0.015
+offset_left = 544.0
+offset_top = 0.165
+offset_right = 608.0
+offset_bottom = 64.165
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("3_6p4fi")
+texture_pressed = ExtResource("3_6p4fi")
+texture_hover = ExtResource("3_6p4fi")
+texture_disabled = ExtResource("3_6p4fi")
+texture_focused = ExtResource("3_6p4fi")
+stretch_mode = 0
+
+[node name="LoadButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 294.0
+offset_top = 258.0
+offset_right = 346.0
+offset_bottom = 312.0
+
+[connection signal="gui_input" from="HBoxContainer/file1" to="." method="_on_file_1_gui_input"]
+[connection signal="gui_input" from="HBoxContainer/file2" to="." method="_on_file_2_gui_input"]
+[connection signal="mouse_entered" from="HBoxContainer/file2" to="." method="_on_file_2_mouse_entered"]
+[connection signal="gui_input" from="HBoxContainer/file3" to="." method="_on_file_3_gui_input"]
+[connection signal="button_down" from="SaveButton" to="." method="_on_save_button_button_down"]
+[connection signal="button_down" from="close" to="." method="_on_close_button_down"]
+[connection signal="button_down" from="LoadButton" to="." method="_on_load_button_button_down"]

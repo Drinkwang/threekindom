@@ -9,8 +9,8 @@ func _ready():
 
 	Transitions.post_transition.connect(post_transition)
 	control.buttonClick.connect(_buttonListClick)
-	if GameManager.day==1||GameManager.day==0:
-		if GameManager.have_event["firstmeetchenqun"]==false:
+	if GameManager.sav.day==1||GameManager.sav.day==0:
+		if GameManager.sav.have_event["firstmeetchenqun"]==false:
 			control.hide()
 		else:
 			control.show()
@@ -58,37 +58,37 @@ func _initData():
 	]
 	control._processList(initData)
 	GameManager.currenceScene=self
-	if GameManager.day==1:
-		if(GameManager.have_event["firstmeetchenqun"]==false):
-			GameManager.have_event["firstmeetchenqun"]=true
+	if GameManager.sav.day==1:
+		if(GameManager.sav.have_event["firstmeetchenqun"]==false):
+			GameManager.sav.have_event["firstmeetchenqun"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
-	if GameManager.day==2:
-		if GameManager.have_event["dayTwoInit"]==false:
-			GameManager.have_event["dayTwoInit"]=true
+	if GameManager.sav.day==2:
+		if GameManager.sav.have_event["dayTwoInit"]==false:
+			GameManager.sav.have_event["dayTwoInit"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新的一天")
 			policyPanel.contextEX="1.前往府邸回见不同派系的领导人\n2.前往议会通过昨天立的法律"
-			GameManager.destination="府邸"
+			GameManager.sav.destination="府邸"
 		#设置des
-	elif GameManager.day==3:
-		if GameManager.have_event["dayThreeInit"]==false:
-			GameManager.have_event["dayThreeInit"]=true
+	elif GameManager.sav.day==3:
+		if GameManager.sav.have_event["dayThreeInit"]==false:
+			GameManager.sav.have_event["dayThreeInit"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第三天")
 			policyPanel.contextEX="1.前往城外军事驻地，讨伐土匪"
-			GameManager.destination="城门-军事驻地"
+			GameManager.sav.destination="城门-军事驻地"
 		#军事行动 镇压土匪
 		#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新的一天")
 		#policyPanel.contextEX="1.前往府邸回见不同派系的领导人\n2.前往议会通过昨天立的法律"
 
-	elif GameManager.day==4:
+	elif GameManager.sav.day==4:
 		#条件没写，只会触发一次
-		if GameManager.have_event["firstVisitScholars"]==false:
-			GameManager.have_event["firstVisitScholars"]=true
+		if GameManager.sav.have_event["firstVisitScholars"]==false:
+			GameManager.sav.have_event["firstVisitScholars"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第四天")
 			policyPanel.contextEX="1.前往城外及军事驻地，选择拜见大儒郑玄"
 		
-		if GameManager.have_event["firstVisitScholarsEnd"]==true:	
-			if GameManager.have_event["firstNewEnd"]==false:
-				GameManager.have_event["firstNewEnd"]=true
+		if GameManager.sav.have_event["firstVisitScholarsEnd"]==true:	
+			if GameManager.sav.have_event["firstNewEnd"]==false:
+				GameManager.sav.have_event["firstNewEnd"]=true
 				GameManager.restFadeScene=SceneManager.BOULEUTERION
 				GameManager.restLabel="与此同时"
 				GameManager._rest(false)
@@ -96,9 +96,9 @@ func _initData():
 				#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第四天")
 		#并且结束时 触发终极对话，弹出一个类似那样的框 并写着如此同时 xxxxx
 		#大儒辩经文 今天结束时，展示最终对话
-	elif GameManager.day==5:
-		if GameManager.have_event["DemoFinish"]==false:
-			GameManager.have_event["DemoFinish"]=true
+	elif GameManager.sav.day==5:
+		if GameManager.sav.have_event["DemoFinish"]==false:
+			GameManager.sav.have_event["DemoFinish"]=true
 			control.hide()
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新手关结束")	
 		

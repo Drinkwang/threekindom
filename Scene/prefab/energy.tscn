@@ -38,18 +38,18 @@ script = ExtResource("1_jga5a")
 layout_mode = 1
 anchors_preset = -1
 offset_left = 682.0
-offset_top = 362.0
+offset_top = 563.0
 offset_right = 1862.0
-offset_bottom = 835.0
+offset_bottom = 965.0
 texture = ExtResource("8_k83a2")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 layout_mode = 1
 anchors_preset = -1
 offset_left = 416.0
-offset_top = 355.0
+offset_top = 435.0
 offset_right = 1770.0
-offset_bottom = 515.0
+offset_bottom = 595.0
 theme_override_styles/background = SubResource("StyleBoxTexture_gfnad")
 theme_override_styles/fill = SubResource("StyleBoxTexture_xmc7k")
 value = 100.0

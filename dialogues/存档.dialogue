@@ -1,0 +1,17 @@
+~ SaveFile
+ : 当前位置已经存在存档，你确定在当前位置存档么?
+- 确定存档
+	do confireSaveFile()
+- 取消存档
+
+=> END
+
+
+#~ LoadFile
+
+#- 读档
+#	Nathan: You picked the first one.
+#- 取消
+	Nathan: You picked the second one.
+
+#=> END

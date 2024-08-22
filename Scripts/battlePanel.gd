@@ -65,7 +65,7 @@ func _refreshGeneral():
 @onready var lauchBtn = $PanelContainer/orderPanel/VBoxContainer/HBoxContainer/Button
 
 func _refreshSlider():
-	if GameManager.labor_force<0:
+	if GameManager.sav.labor_force<0:
 		soild_slider.editable=false
 	else:
 		soild_slider.editable=true
@@ -83,7 +83,7 @@ func _refreshSlider():
 
 func initTask():
 	
-	var currence= GameManager.battleTasks[battle_circle.taskIndex]
+	var currence= GameManager.sav.battleTasks[battle_circle.taskIndex]
 	var context="任务条件："
 	var index=1;
 	var taskcontext=""
@@ -130,7 +130,7 @@ func _soilderNum_changed(value):
 	if battle_circle.isBoot==true:
 		return
 	#print (GameManager.labor_force)
-	costsoild=(GameManager.labor_force*value/100)
+	costsoild=(GameManager.sav.labor_force*value/100)
 	soild_num.set_text(str(costsoild))  #报错没有找到 先屏蔽，后续开启
 	if(battle_circle.selectgeneral):
 		_changeProgress()
@@ -139,7 +139,7 @@ func _soilderNum_changed(value):
 func _on_coin_slider_value_changed(value):
 	if battle_circle.isBoot==true:
 		return
-	costcoin=(GameManager.coin*value/100)
+	costcoin=(GameManager.sav.coin*value/100)
 	coin_num.text=str(costcoin)
 	if(battle_circle.selectgeneral):
 		_changeProgress()
@@ -212,9 +212,9 @@ func _on_button_button_down():
 func _on_exit_button_button_down():
 	self.hide()
 	#大人
-	if GameManager.day==3:
+	if GameManager.sav.day==3:
 		if GameManager.hp<=10:
-			if GameManager.have_event["firstBattleEnd"]==false:
-				GameManager.have_event["firstBattleEnd"]=true
+			if GameManager.sav.have_event["firstBattleEnd"]==false:
+				GameManager.sav.have_event["firstBattleEnd"]=true
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"军事行动结束")
 	 # Replace with function body.

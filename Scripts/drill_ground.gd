@@ -27,9 +27,9 @@ var battleNum=0
 
 func _initData():
 	GameManager.currenceScene=self
-	if(GameManager.day==1):
+	if(GameManager.sav.day==1):
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
-	elif GameManager.day==3:
+	elif GameManager.sav.day==3:
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"初次派遣")
 
 	var initData=[
@@ -51,7 +51,7 @@ func _initData():
 
 	]
 	
-	if(GameManager.day>=3):
+	if(GameManager.sav.day>=3):
 		initData[2].visible="true"
 	control._processList(initData)
 
@@ -59,11 +59,11 @@ func _initData():
 
 func _buttonListClick(item):
 	if item.context=="离开此地":
-		if(GameManager.day==1):
-			if GameManager.isLevelUp==false:
+		if(GameManager.sav.day==1):
+			if GameManager.sav.isLevelUp==false:
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"训练还没有结束")
 				return
-		if(GameManager.day==3):
+		if(GameManager.sav.day==3):
 			if GameManager.hp>10:
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"三场战斗还没有结束")
 				return 
@@ -74,9 +74,9 @@ func _buttonListClick(item):
 		pass
 	elif item.context=="军事行动":
 		#第一次军事行动应该告诉你教程
-		if GameManager.day==3:
-			if GameManager.have_event["firstBattleTutorial"]==false:
-				GameManager.have_event["firstBattleTutorial"]=true
+		if GameManager.sav.day==3:
+			if GameManager.sav.have_event["firstBattleTutorial"]==false:
+				GameManager.sav.have_event["firstBattleTutorial"]=true
 				DialogueManager.show_dialogue_balloon(dialogue_resource,"第一次军事行动教程")
 		battle_pane.show()
 		#暂时不能发动军事行动

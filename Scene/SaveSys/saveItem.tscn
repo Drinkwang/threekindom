@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2ecqrg18b6su"]
+
+[ext_resource type="FontFile" uid="uid://8gk1bfs3ahmh" path="res://Asset/Font/Bakudai-Bold.ttf" id="1_22yfi"]
+[ext_resource type="Script" path="res://Scene/SaveSys/saveItem.gd" id="1_sxmum"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchor_right = 0.08
+anchor_bottom = 0.169
+offset_right = 0.399994
+offset_bottom = 0.47998
+script = ExtResource("1_sxmum")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = -26.0
+offset_top = -25.0
+offset_right = 180.0
+offset_bottom = 210.0
+mouse_filter = 2
+
+[node name="nodate" type="Label" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 12.0
+offset_right = 142.0
+offset_bottom = 171.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_22yfi")
+theme_override_font_sizes/font_size = 36
+text = "无数据"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 10.0
+offset_top = 12.0
+offset_right = 146.0
+offset_bottom = 175.0
+theme_override_fonts/font = ExtResource("1_22yfi")
+theme_override_font_sizes/font_size = 17
+text = "時間：2024/8/21
+/15/31
+游戲天數：5
+擁有黃金：100
+人心：80
+勞夫：90
+"
+horizontal_alignment = 1
+vertical_alignment = 1

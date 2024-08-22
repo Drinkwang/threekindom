@@ -25,13 +25,13 @@ func lookDown():
 #将这个页面的操作面板显示并存档
 #dontwork
 func implementpolicy():
-	GameManager.have_event["firstPolicyOpShow"]=true
+	GameManager.sav.have_event["firstPolicyOpShow"]=true
 	_initData()
 	pass
 	
 #将施政面板显示并存档
 func showTab():
-	GameManager.have_event["firstTabLaw"]=true
+	GameManager.sav.have_event["firstTabLaw"]=true
 	_initData()
 	
 
@@ -52,10 +52,10 @@ func _ready():
 	pass # Replace with function body.
 
 func _initData():
-	if GameManager.day==1:
-		if	GameManager.have_event["firstgovernment"]==false:
+	if GameManager.sav.day==1:
+		if	GameManager.sav.have_event["firstgovernment"]==false:
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
-			GameManager.have_event["firstgovernment"]=true
+			GameManager.sav.have_event["firstgovernment"]=true
 	#elif GameManager.day==2:
 	
 	GameManager.currenceScene=self
@@ -78,19 +78,19 @@ func _initData():
 
 	]
 
-	if(GameManager.day>=2):
+	if(GameManager.sav.day>=2):
 		initData[1].visible="true"
 	
-	if GameManager.have_event["firstPolicyOpShow"]==true||GameManager.day>1:
+	if GameManager.sav.have_event["firstPolicyOpShow"]==true||GameManager.sav.day>1:
 		control._processList(initData)
 
-	if GameManager.have_event["firstTabLaw"]==true:
+	if GameManager.sav.have_event["firstTabLaw"]==true:
 		policy_panel.tab_bar.show()
 	else:
 		policy_panel.tab_bar.hide()
 	policy_panel._initData()
 
-	if GameManager.day==2:
+	if GameManager.sav.day==2:
 		control._show_button_5_yellow(1)
 #
 var costHp_SummonOne=50
@@ -101,12 +101,12 @@ func _buttonListClick(item):
 		if await GameManager.isTried(costHp_policy):
 			return 
 		
-		if(GameManager.day==1):
+		if(GameManager.sav.day==1):
 			policy_panel.show()
-			if(GameManager.have_event["firstgovermentTip"]==false):
-				GameManager.have_event["firstgovermentTip"]=true
+			if(GameManager.sav.have_event["firstgovermentTip"]==false):
+				GameManager.sav.have_event["firstgovermentTip"]=true
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"enterpolicy")
-		elif(GameManager.day==2):
+		elif(GameManager.sav.day==2):
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第二天的提示")
 		else:
 			policy_panel.show()
@@ -116,11 +116,14 @@ func _buttonListClick(item):
 	elif item.context == "召见手下":
 		if await GameManager.isTried(costHp_SummonOne):
 			return
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"召见手下1")
+		if GameManager.sav.isMeet==false:
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"召见手下1")
 		#显示接下来要点击啥
+		else:
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"已经召见手下")
 		pass
 	elif item.context == "离开":
-		if(GameManager.have_event["firstLawExecute"]==true||GameManager.have_event["firstMeetingEnd"]==true):
+		if(GameManager.sav.have_event["firstLawExecute"]==true||GameManager.sav.have_event["firstMeetingEnd"]==true):
 			const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
 			FancyFade.new().custom_fade(SceneManager.STREET.instantiate(), 2, DISSOLVE_IMAGE)
 		else:
@@ -146,8 +149,8 @@ func selectCorrect():
 	hidePolicy()
 
 func selectCorrectBefore():
-	if GameManager.have_event["firstPolicyCorrect"]==false:
-		GameManager.have_event["firstPolicyCorrect"]=true
+	if GameManager.sav.have_event["firstPolicyCorrect"]==false:
+		GameManager.sav.have_event["firstPolicyCorrect"]=true
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"正确决策0之后引导")
 	pass
 
@@ -167,16 +170,17 @@ func arrangeDone():
 
 func meeting():
 	rule_book.visible=true
-	if GameManager.have_event["firstMeetingEnd"]==false:
-		GameManager.have_event["firstMeetingEnd"]=true
+	if GameManager.sav.have_event["firstMeetingEnd"]==false:
+		GameManager.sav.have_event["firstMeetingEnd"]=true
 		rule_book.clickEvent="宴会结束"	
 	else:
 		rule_book.clickEvent=""
 	
 
 func meetingEnd():
-	GameManager.destination="议事厅"
-	
+	GameManager.sav.destination="议事厅"
+	GameManager.hp=GameManager.hp-costHp_SummonOne
+	GameManager.sav.isMeet=true
 	#control._show_button_5_yellow(1)	
 	
 

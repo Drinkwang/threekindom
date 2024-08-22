@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://00xr1q336bgu"]
+[gd_scene load_steps=21 format=3 uid="uid://00xr1q336bgu"]
 
 [ext_resource type="Script" path="res://Scripts/drill_ground.gd" id="1_bhlt2"]
 [ext_resource type="Resource" uid="uid://d2qoinuor12dq" path="res://dialogues/演武场.dialogue" id="2_j02vm"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://ghiim2lkqkbe" path="res://Scene/prefab/propertyPanel.tscn" id="13_4p7r8"]
 [ext_resource type="PackedScene" uid="uid://dfolt063spdso" path="res://Scene/prefab/energy.tscn" id="14_hgva0"]
 [ext_resource type="Texture2D" uid="uid://rmaibsw1yjqd" path="res://Asset/城镇建筑/5_yellow.png" id="15_acxub"]
+[ext_resource type="Texture2D" uid="uid://sswcvqf8xpgs" path="res://Asset/存档.png" id="16_r5vut"]
 
 [sub_resource type="Animation" id="Animation_0bk4q"]
 resource_name = "闪烁"
@@ -96,19 +97,6 @@ scale = Vector2(1.6384, 1.6384)
 
 [node name="CanvasButton" type="CanvasLayer" parent="."]
 
-[node name="TextureButton" type="TextureButton" parent="CanvasButton"]
-self_modulate = Color(0.776471, 0.776471, 0.776471, 1)
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -105.0
-offset_right = -5.0
-offset_bottom = 100.0
-grow_horizontal = 0
-texture_normal = ExtResource("5_g5flv")
-stretch_mode = 5
-metadata/_edit_use_anchors_ = true
-
 [node name="CanvasInventory" type="CanvasLayer" parent="."]
 
 [node name="InventoryAny" parent="CanvasInventory" instance=ExtResource("6_cu7sp")]
@@ -141,20 +129,41 @@ clickEvent = "饭局结束"
 visible = false
 
 [node name="Control3" parent="CanvasInventory" instance=ExtResource("14_hgva0")]
-offset_left = 1610.0
-offset_top = -14.0
-offset_right = 1610.0
-offset_bottom = -14.0
-scale = Vector2(0.1, 0.1)
+offset_left = 1535.0
+offset_top = -46.0
+offset_right = 1535.0
+offset_bottom = -46.0
+scale = Vector2(0.2, 0.2)
 
 [node name="battlePane" parent="CanvasInventory" instance=ExtResource("10_gfhv4")]
 visible = false
 
 [node name="Control" parent="CanvasInventory" instance=ExtResource("13_4p7r8")]
 offset_left = 1638.0
-offset_top = 694.0
+offset_top = 770.0
 offset_right = 1678.0
-offset_bottom = 734.0
+offset_bottom = 810.0
+
+[node name="TextureButton2" type="TextureButton" parent="CanvasInventory"]
+self_modulate = Color(0.776471, 0.776471, 0.776471, 1)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -120.0
+offset_top = 91.0
+offset_right = -20.0
+offset_bottom = 191.0
+grow_horizontal = 0
+scale = Vector2(0.505, 0.505)
+texture_normal = ExtResource("5_g5flv")
+stretch_mode = 6
+
+[node name="TextureButton" type="TextureButton" parent="CanvasInventory"]
+offset_left = 1711.0
+offset_top = 84.0
+offset_right = 1775.0
+offset_bottom = 148.0
+texture_normal = ExtResource("16_r5vut")
 
 [node name="point" type="Node2D" parent="CanvasInventory"]
 visible = false
