@@ -63,6 +63,7 @@ offset_bottom = 836.0
 texture = ExtResource("9_qjdqi")
 
 [node name="TextureRect" type="TextureRect" parent="TextureRect"]
+visible = false
 layout_mode = 0
 offset_left = 180.0
 offset_top = 127.0

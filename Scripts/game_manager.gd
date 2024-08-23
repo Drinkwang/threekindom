@@ -5,7 +5,7 @@ const DESTINATION = preload("res://Destination.tscn")
 
 const MANUAL_TEST = preload("res://ManualTest.tscn")
 #以下三个值均为三股不同力量士族可以篡改的值 其中士族可以把控群众支持度，商贾可以把控金钱，丹阳派系的军官可以把控劳动力
-
+var _savePanel:savePanel
 var restLabel:String=""
 enum RspEnum{
 	PAPER=0,

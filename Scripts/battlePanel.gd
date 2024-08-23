@@ -51,7 +51,7 @@ func endBattle():
 
 
 func _refreshGeneral():
-	if GameManager.UseGeneral.size()>0:
+	if GameManager.sav.UseGeneral.size()>0:
 		for ele in GameManager.UseGeneral:
 			var index=GameManager.generals.values().find(ele)
 			var finde:SoilderItem=self.find_child("Control_"+str(index+1)) as SoilderItem
@@ -69,7 +69,7 @@ func _refreshSlider():
 		soild_slider.editable=false
 	else:
 		soild_slider.editable=true
-	if GameManager.coin<0:
+	if GameManager.sav.coin<0:
 		coin_slider.editable=false
 	else:
 		coin_slider.editable=true

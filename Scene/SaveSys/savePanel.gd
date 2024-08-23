@@ -1,11 +1,12 @@
 extends Control
-
+class_name savePanel
 @export var dialogue_resource:DialogueResource
 
 var state:_SaveState
 var savs:Array[saveData]=[null,null,null]
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	GameManager._savePanel=self
 	initLoad()
  # Replace with function body.
 
@@ -27,6 +28,22 @@ func saveFile():
 			confireSaveFile()
 	
 func confireSaveFile():
+	#GameManager.sav.current_datetime=Time.get_datetime_string_from_datetime_dict(Time.get_unix_time_from_system(),false)
+	#Time.get_unix_time_from_system()
+
+	var DateTime = Time.get_datetime_dict_from_system()
+	var strTime="{year}/{month}/{day}\n/{hour}/{minus}".format({"year":DateTime.year,"month":DateTime.month,"day":DateTime.day,"hour":DateTime.hour,"minus":DateTime.minute})
+
+# 格式化DateTime对象为字符串
+	#var formatted_time = DateTime.format_datetime("%Y年 %m月 %d日")
+	#print( formatted_time)
+	GameManager.sav.current_datetime=strTime
+	if(GameManager.currenceScene!=null):
+		GameManager.sav.saveScene.pack(GameManager.currenceScene)
+		pass
+	# 格式化DateTime对象为字符串
+	#var formatted_time = GameManager.sav.current_datetime.format_datetime("%Y-%m-%d %H:%M:%S")
+	#print("Formatted date and time:", current_datetime)
 	ResourceSaver.save(GameManager.sav,"user://save_data{index}.tres".format({"index":str(index)}))
 	savs[index-1]=GameManager.sav
 	refresh()	
@@ -39,7 +56,8 @@ func initLoad():
 	refresh()
 func loadFile():
 	if(savs[index-1]!=null):
-		GameManager.sav=savs[index]
+		GameManager.sav=savs[index-1]
+		get_tree().change_scene_to_packed(savs[index-1].saveScene)
 
 	refresh()
 

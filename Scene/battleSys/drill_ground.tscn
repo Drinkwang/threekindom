@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://00xr1q336bgu"]
+[gd_scene load_steps=22 format=3 uid="uid://00xr1q336bgu"]
 
 [ext_resource type="Script" path="res://Scripts/drill_ground.gd" id="1_bhlt2"]
 [ext_resource type="Resource" uid="uid://d2qoinuor12dq" path="res://dialogues/演武场.dialogue" id="2_j02vm"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://dfolt063spdso" path="res://Scene/prefab/energy.tscn" id="14_hgva0"]
 [ext_resource type="Texture2D" uid="uid://rmaibsw1yjqd" path="res://Asset/城镇建筑/5_yellow.png" id="15_acxub"]
 [ext_resource type="Texture2D" uid="uid://sswcvqf8xpgs" path="res://Asset/存档.png" id="16_r5vut"]
+[ext_resource type="PackedScene" uid="uid://h6upne4oyuv7" path="res://Scene/SaveSys/savePanel.tscn" id="17_5ngsj"]
 
 [sub_resource type="Animation" id="Animation_0bk4q"]
 resource_name = "闪烁"
@@ -99,6 +100,13 @@ scale = Vector2(1.6384, 1.6384)
 
 [node name="CanvasInventory" type="CanvasLayer" parent="."]
 
+[node name="Control3" parent="CanvasInventory" instance=ExtResource("14_hgva0")]
+offset_left = 1535.0
+offset_top = -46.0
+offset_right = 1535.0
+offset_bottom = -46.0
+scale = Vector2(0.2, 0.2)
+
 [node name="InventoryAny" parent="CanvasInventory" instance=ExtResource("6_cu7sp")]
 visible = false
 anchors_preset = 1
@@ -127,13 +135,6 @@ clickEvent = "饭局结束"
 
 [node name="trainPanel" parent="CanvasInventory" instance=ExtResource("9_02127")]
 visible = false
-
-[node name="Control3" parent="CanvasInventory" instance=ExtResource("14_hgva0")]
-offset_left = 1535.0
-offset_top = -46.0
-offset_right = 1535.0
-offset_bottom = -46.0
-scale = Vector2(0.2, 0.2)
 
 [node name="battlePane" parent="CanvasInventory" instance=ExtResource("10_gfhv4")]
 visible = false
@@ -196,5 +197,11 @@ tab_size = 6
 [node name="Control2" parent="." instance=ExtResource("12_g1aky")]
 offset_right = 106.0
 offset_bottom = 82.0
+
+[node name="Control" parent="." instance=ExtResource("17_5ngsj")]
+offset_left = 1310.0
+offset_top = 156.0
+offset_right = 1913.0
+offset_bottom = 567.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

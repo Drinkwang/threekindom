@@ -13,6 +13,9 @@ func _ready():
 
 func _initData():
 	pass
+func confireSaveFile():
+	GameManager._savePanel.confireSaveFile()
+	pass
 	
 	
 	
