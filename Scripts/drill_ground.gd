@@ -4,14 +4,16 @@ extends baseComponent
 @onready var oldsoildereat = $CanvasInventory/oldsoildereat
 @onready var train_panel = $CanvasInventory/trainPanel
 @onready var battle_pane:battlePanel = $CanvasInventory/battlePane
-
+#const _校场 = preload("res://Asset/bgm/校场.mp3")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Transitions.post_transition.connect(post_transition)
 	control.buttonClick.connect(_buttonListClick)
 	super._ready()
 
+
 func post_transition():
+#	SoundManager.play_music(_校场)
 	print("fadedone")
 	_initData()
 
@@ -28,9 +30,13 @@ var battleNum=0
 func _initData():
 	GameManager.currenceScene=self
 	if(GameManager.sav.day==1):
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
+		if GameManager.sav.have_event["firstEnterBattle"]==false:
+			GameManager.sav.have_event["firstEnterBattle"]=true
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
 	elif GameManager.sav.day==3:
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"初次派遣")
+		if GameManager.sav.have_event["dayThreeEnterBattle"]==false:
+			GameManager.sav.have_event["dayThreeEnterBattle"]=true
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"初次派遣")
 
 	var initData=[
 	{	
@@ -88,16 +94,22 @@ func _buttonListClick(item):
 
 func trainBegin():
 	control._show_button_5_yellow(1)	
-	pass
+
+
+func endtrain0():
+	control._show_button_5_yellow(-1)
+	
+	
 	
 func endtrain():
 	control._show_button_5_yellow(0)
-	pass	
+
 
 @onready var point = $CanvasInventory/point
 
 func showtutorial(num):
-
+	if num ==1:
+		control._show_button_5_yellow(-1)		
 	if(num<8):
 		battle_pane["guild_"+str(num)].show()
 	if(num>=2 and num<=8):
@@ -112,3 +124,5 @@ func showtutorial(num):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+

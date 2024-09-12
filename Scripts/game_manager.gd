@@ -292,6 +292,7 @@ func extractById(id):
 func _rest(value=true):
 	const DISSOLVE_IMAGE = preload("res://addons/transitions/images/circle-inverted.png")
 	_enterDay(value)
+	
 	Transitions.change_scene_to_instance( SceneManager.SLEEP_BLANK.instantiate(), Transitions.FadeType.Instant)
 	
 

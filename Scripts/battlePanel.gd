@@ -52,7 +52,7 @@ func endBattle():
 
 func _refreshGeneral():
 	if GameManager.sav.UseGeneral.size()>0:
-		for ele in GameManager.UseGeneral:
+		for ele in GameManager.sav.UseGeneral:
 			var index=GameManager.generals.values().find(ele)
 			var finde:SoilderItem=self.find_child("Control_"+str(index+1)) as SoilderItem
 			finde.Use()
@@ -154,6 +154,7 @@ func _on_control_3_gui_input(event):
 		return	
 	
 	if(event is InputEventMouseButton and event.button_index==1):	
+		SoundManager.play_sound(sounds.CLICKHERO)		
 		control_3.check_box.button_pressed=true
 		control_2.check_box.button_pressed=false
 		control_1.check_box.button_pressed=false
@@ -173,6 +174,7 @@ func _on_control_2_gui_input(event):
 	if battle_circle.isBoot==true||control_2.canSelect==false||control_2.alreadyUse==true:
 		return	
 	if(event is InputEventMouseButton and event.button_index==1):	
+		SoundManager.play_sound(sounds.CLICKHERO)
 		control_1.check_box.button_pressed=false
 		control_2.check_box.button_pressed=true
 		control_3.check_box.button_pressed=false
@@ -186,6 +188,7 @@ func _on_control_1_gui_input(event):
 	if battle_circle.isBoot==true||control_1.canSelect==false||control_1.alreadyUse==true:
 		return
 	if(event is InputEventMouseButton and event.button_index==1):		
+		SoundManager.play_sound(sounds.CLICKHERO)		
 		control_3.check_box.button_pressed=false
 		control_2.check_box.button_pressed=false
 		control_1.check_box.button_pressed=true
@@ -201,6 +204,7 @@ func _on_button_button_down():
 	if await GameManager.isTried(costhp):
 		return 
 	if battle_circle.isBoot==false:
+		SoundManager.play_sound(sounds.ZHUANPAN)
 		battle_circle.lauchProgress(costhp)
 
 
@@ -211,6 +215,7 @@ func _on_button_button_down():
 #推出按钮，同时调用结束
 func _on_exit_button_button_down():
 	self.hide()
+	SoundManager.play_sound(sounds.declinesound)
 	#大人
 	if GameManager.sav.day==3:
 		if GameManager.hp<=10:

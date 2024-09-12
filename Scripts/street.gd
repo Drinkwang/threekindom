@@ -2,7 +2,7 @@ extends baseComponent
 @onready var control = $Control
 const FancyFade = preload("res://addons/transitions/FancyFade.gd")
 #var destination:String #放在gameins里面
-@onready var scholar = $scholar
+@onready var scholar = $CanvasLayer/scholar
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -26,8 +26,9 @@ func streetTwo():
 
 func streetThree():
 	pass
-	
+#const 街道 = preload("res://Asset/bgm/街道.mp3")	
 func post_transition():
+	
 	#print("fadedone")
 	_initData()
 	if GameManager.sav.day==1:
@@ -116,7 +117,7 @@ func _buttonListClick(item):
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"tip")
 			#return 
 			elif(GameManager.sav.destination=="自宅"):
-				DialogueManager.sav.show_example_dialogue_balloon(dialogue_resource,"ImustGoHome")
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"ImustGoHome")
 			elif GameManager.sav.destination=="城门-军事驻地":
 				if GameManager.sav.day!=4:
 					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"校场")	

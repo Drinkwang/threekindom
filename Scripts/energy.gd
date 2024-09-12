@@ -12,3 +12,15 @@ func _ready():
 func changerate(rate):
 	progress_bar.value=rate
 
+
+
+
+
+
+func _on_item_button_button_down():
+	pass # Replace with function body.
+
+
+func _on_save_button_button_down():
+	PanelManager.show_Save_panel()
+	pass # Replace with function body.

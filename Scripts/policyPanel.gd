@@ -12,7 +12,12 @@ var costhp=35
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-
+	if GameManager.hp<costhp:
+		
+		button.disabled=true
+		
+		pass
+		
 	pass # Replace with function body.
 
 
@@ -55,12 +60,13 @@ func _on_tab_bar_tab_changed(tab):
 @onready var label = $PanelContainer/orderPanel/VBoxContainer/Label
 
 func _on_control_1_gui_input(event):
-	if await GameManager.isTried(costhp):
-		return
+	
+
 	if control_1.canclick==false:
 		return
 	if(event is InputEventMouseButton and event.button_index==1):
 		index=1
+		SoundManager.play_sound(sounds.CLICKHERO)
 		control_1.check_box.button_pressed=true
 		control_2.check_box.button_pressed=false
 		control_3.check_box.button_pressed=false
@@ -68,12 +74,13 @@ func _on_control_1_gui_input(event):
 
 
 func _on_control_2_gui_input(event):
-	if await GameManager.isTried(costhp):
-		return
+	
+
 	if control_2.canclick==false:
 		return
 	if(event is InputEventMouseButton and event.button_index==1):	
 		index=2		
+		SoundManager.play_sound(sounds.CLICKHERO)
 		control_1.check_box.button_pressed=false
 		control_2.check_box.button_pressed=true
 		control_3.check_box.button_pressed=false
@@ -81,11 +88,12 @@ func _on_control_2_gui_input(event):
 
 
 func _on_control_3_gui_input(event):
-	if await GameManager.isTried(costhp):
-		return
+	
+
 	if control_3.canclick==false:
 		return
 	if(event is InputEventMouseButton and event.button_index==1):
+		SoundManager.play_sound(sounds.CLICKHERO)
 		index=3
 		control_1.check_box.button_pressed=false
 		control_2.check_box.button_pressed=false
@@ -106,8 +114,11 @@ func _disableAll():
 	control_3.canclick=false
 
 func _on_button_button_down():
+
 	if await GameManager.isTried(costhp):
 		return
+	GameManager.hp=GameManager.hp-costhp
+	SoundManager.play_sound(sounds.SFX_FAST_UI_CLICK_MECHANICAL_03_WAV)
 	#var context="story"+index
 	#根据选项判断影响，并同时让施政选项不再显示
 	#get_tree().get_root().get_node("")
@@ -122,11 +133,12 @@ func preLaw(value:lawpoint):
 	selectLawPoint=value
 	$lawPanel/DetailPanel/Label2.text=value.detail
 	pass
-	
+
 func excuteLaw(value:lawpoint):
+
 	if await GameManager.isTried(costhp):
 		return
-	
+	#GameManager.hp=GameManager.hp-costhp
 	if(GameManager.sav.Merit_points<value.costPoint):
 		DialogueManager.show_example_dialogue_balloon(GameManager.currenceScene.dialogue_resource,"你的政策点不够")	
 		return
@@ -139,10 +151,11 @@ func excuteLaw(value:lawpoint):
 func agreelaw():
 	if await GameManager.isTried(costhp):
 		return
+	GameManager.hp=GameManager.hp-costhp
 	GameManager.sav.Merit_points=GameManager.sav.Merit_points-selectLawPoint.costPoint
 	selectLawPoint.isUnlock=true
 	selectLawPoint._initData()
-	
+	SoundManager.play_sound(sounds.confiresound)
 	if GameManager.sav.have_event["firstLawExecute"]==false:
 		GameManager.sav.have_event["firstLawExecute"]=true
 		_initData()
@@ -164,6 +177,8 @@ func _on_law_confire_button_down():
 	pass # Replace with function body.
 
 
+
 func _on_exit_button_button_down():
+	SoundManager.play_sound(sounds.declinesound)
 	self.hide()
 	pass # Replace with function body.

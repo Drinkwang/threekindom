@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://dfolt063spdso"]
+[gd_scene load_steps=11 format=3 uid="uid://dfolt063spdso"]
 
 [ext_resource type="Script" path="res://Scripts/energy.gd" id="1_jga5a"]
 [ext_resource type="Texture2D" uid="uid://cpx3dc1mppace" path="res://Asset/blue/edgeblue.png" id="2_2gdco"]
 [ext_resource type="Texture2D" uid="uid://da3yr3agvbicf" path="res://Asset/blue/power.png" id="6_565iq"]
+[ext_resource type="Texture2D" uid="uid://yxnjmxcqgl2u" path="res://addons/inventory_example/textures/inventories/Chest.png" id="7_kc6cl"]
+[ext_resource type="Texture2D" uid="uid://sswcvqf8xpgs" path="res://Asset/存档.png" id="8_k0wc5"]
 [ext_resource type="Texture2D" uid="uid://dxg4rn2x2mnw6" path="res://Asset/blue/meter_text_background_blue.png" id="8_k83a2"]
 [ext_resource type="Texture2D" uid="uid://chlh86v3ynxre" path="res://Asset/blue/bluehold.png" id="9_ggo0n"]
 [ext_resource type="Texture2D" uid="uid://dy3bhyc470by4" path="res://Asset/blue/meter_icon_holder_blue.png" id="9_qjdqi"]
@@ -38,9 +40,9 @@ script = ExtResource("1_jga5a")
 layout_mode = 1
 anchors_preset = -1
 offset_left = 682.0
-offset_top = 563.0
+offset_top = 572.0
 offset_right = 1862.0
-offset_bottom = 965.0
+offset_bottom = 974.0
 texture = ExtResource("8_k83a2")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
@@ -50,6 +52,7 @@ offset_left = 416.0
 offset_top = 435.0
 offset_right = 1770.0
 offset_bottom = 595.0
+theme_override_font_sizes/font_size = 81
 theme_override_styles/background = SubResource("StyleBoxTexture_gfnad")
 theme_override_styles/fill = SubResource("StyleBoxTexture_xmc7k")
 value = 100.0
@@ -63,11 +66,38 @@ offset_bottom = 836.0
 texture = ExtResource("9_qjdqi")
 
 [node name="TextureRect" type="TextureRect" parent="TextureRect"]
-visible = false
 layout_mode = 0
-offset_left = 180.0
-offset_top = 127.0
-offset_right = 409.0
-offset_bottom = 466.0
+offset_left = 199.0
+offset_top = 146.0
+offset_right = 428.0
+offset_bottom = 485.0
+scale = Vector2(0.835, 0.835)
 texture = ExtResource("6_565iq")
 stretch_mode = 4
+
+[node name="itemButton" type="TextureButton" parent="."]
+self_modulate = Color(0.776471, 0.776471, 0.776471, 1)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -576.0
+offset_top = 725.0
+offset_right = -476.0
+offset_bottom = 825.0
+grow_horizontal = 0
+scale = Vector2(2.5, 2.5)
+texture_normal = ExtResource("7_kc6cl")
+stretch_mode = 6
+
+[node name="saveButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 911.0
+offset_top = 698.0
+offset_right = 975.0
+offset_bottom = 762.0
+scale = Vector2(4.5, 4.5)
+texture_normal = ExtResource("8_k0wc5")
+
+[connection signal="button_down" from="itemButton" to="." method="_on_item_button_button_down"]
+[connection signal="button_down" from="saveButton" to="." method="_on_save_button_button_down"]

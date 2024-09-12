@@ -4,6 +4,7 @@
 [ext_resource type="Resource" uid="uid://bte38wl3etklk" path="res://dialogues/灵堂.dialogue" id="2_56kjn"]
 [ext_resource type="Resource" uid="uid://cjbqxteqnpnrd" path="res://dialogues/议会厅.dialogue" id="2_who4l"]
 [ext_resource type="Texture2D" uid="uid://bl3fimimqrbnh" path="res://Asset/城镇建筑/会议室旧.png" id="4_hs6t7"]
+[ext_resource type="PackedScene" uid="uid://dfolt063spdso" path="res://Scene/prefab/energy.tscn" id="4_vcm8i"]
 [ext_resource type="PackedScene" uid="uid://ervc6220fre7" path="res://Scene/prefab/fspanel.tscn" id="6_mjg5e"]
 [ext_resource type="Texture2D" uid="uid://doh7mxtgy0hm2" path="res://Asset/人物/陈登睁眼.png" id="7_0cx3q"]
 [ext_resource type="PackedScene" uid="uid://cda4765v12icm" path="res://Scene/prefab/parliamentary.tscn" id="7_1m0jr"]
@@ -11,7 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://cjgwjw0xpgmys" path="res://Asset/人物/糜竺眨眼.png" id="7_ggy3f"]
 [ext_resource type="Texture2D" uid="uid://rmaibsw1yjqd" path="res://Asset/城镇建筑/5_yellow.png" id="10_o7uio"]
 [ext_resource type="PackedScene" uid="uid://bw52ymer7ngwu" path="res://Scene/prefab/gapanel.tscn" id="11_gm57k"]
-[ext_resource type="Texture2D" uid="uid://yxnjmxcqgl2u" path="res://addons/inventory_example/textures/inventories/Chest.png" id="12_h1k1t"]
 [ext_resource type="PackedScene" uid="uid://bhu5hq8kx8pov" path="res://addons/inventory_example/inventories/simple/InventoryUI.tscn" id="13_2g6k4"]
 [ext_resource type="PackedScene" uid="uid://cw66yiofu8q6f" path="res://Scene/prefab/RuleBook.tscn" id="14_7v3lb"]
 [ext_resource type="PackedScene" uid="uid://dqpklssxni160" path="res://Scene/prefab/clickBlock.tscn" id="15_2mi3t"]
@@ -55,6 +55,13 @@ offset_right = 1922.0
 offset_bottom = 1080.0
 texture = ExtResource("4_hs6t7")
 
+[node name="hpPanel" parent="Canvas闪电" instance=ExtResource("4_vcm8i")]
+offset_left = 1535.0
+offset_top = -46.0
+offset_right = 1535.0
+offset_bottom = -46.0
+scale = Vector2(0.2, 0.2)
+
 [node name="议事厅" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(968, 543)
@@ -66,18 +73,6 @@ position = Vector2(895, 333)
 scale = Vector2(1.6384, 1.6384)
 
 [node name="CanvasButton" type="CanvasLayer" parent="."]
-
-[node name="TextureButton" type="TextureButton" parent="CanvasButton"]
-self_modulate = Color(0.776471, 0.776471, 0.776471, 1)
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -100.0
-offset_bottom = 100.0
-grow_horizontal = 0
-texture_normal = ExtResource("12_h1k1t")
-stretch_mode = 5
-metadata/_edit_use_anchors_ = true
 
 [node name="CanvasInventory" type="CanvasLayer" parent="."]
 

@@ -9,6 +9,9 @@ var readyInitData:bool=true
 func _ready():
 	if(readyInitData==true):
 		_initData()
+		if(GameManager._savePanel!=null):
+			GameManager._savePanel.hide()
+		
 	#pass # Replace with function body.
 
 func _initData():

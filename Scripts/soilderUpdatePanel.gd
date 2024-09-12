@@ -64,7 +64,7 @@ func _on_upgrade_button_pressed():
 	
 		GameManager.sav.isLevelUp=true
 		update_ui()
-
+		SoundManager.play_sound(sounds.buysellsound)
 		GameManager.hp=GameManager.hp-costhp
 		print("升级成功！", selected_general["name"], "当前等级: ", selected_general["level"])
 	elif GameManager.sav.coin<upgrade_cost:
@@ -81,6 +81,7 @@ func add_gold(amount):
 
 func _on_control_1_gui_input(event):
 	if(event is InputEventMouseButton and event.button_index==1):	
+		SoundManager.play_sound(sounds.SELECT_HERO)
 		selected_general_index=0		
 		control_1.check_box.button_pressed=true
 		control_2.check_box.button_pressed=false
@@ -91,7 +92,8 @@ func _on_control_1_gui_input(event):
 
 func _on_control_2_gui_input(event):
 	if(event is InputEventMouseButton and event.button_index==1):	
-		selected_general_index=1		
+		selected_general_index=1
+		SoundManager.play_sound(sounds.SELECT_HERO)		
 		control_1.check_box.button_pressed=false
 		control_2.check_box.button_pressed=true
 		control_3.check_box.button_pressed=false
@@ -101,7 +103,9 @@ func _on_control_2_gui_input(event):
 
 func _on_control_3_gui_input(event):
 	if(event is InputEventMouseButton and event.button_index==1):	
-		selected_general_index=2		
+		selected_general_index=2
+				
+		SoundManager.play_sound(sounds.SELECT_HERO)		
 		control_1.check_box.button_pressed=false
 		control_2.check_box.button_pressed=false
 		control_3.check_box.button_pressed=true
@@ -113,6 +117,7 @@ func _on_exit_button_button_down():
 	self.hide()
 	if GameManager.sav.isLevelUp==true:
 		if GameManager.sav.have_event["firstTrain"]==false:
+			SoundManager.play_sound(sounds.declinesound)
 			GameManager.sav.have_event["firstTrain"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"初次练兵")
 		#当升级成果时，触发这里的脚本

@@ -59,13 +59,22 @@ func show_reward_scene(reward_scene, title: String = ""):
 
 	var balloon: Node = reward_scene
 	get_current_scene.call().add_child(balloon)
-	#if balloon.has_method(&"start"):
-	#	balloon.start(resource, title, extra_game_states)
-	#elif balloon.has_method(&"Start"):
-	#	balloon.Start(resource, title, extra_game_states)
 
 	return balloon
 
+
+
+const SAVE_PANEL = preload("res://Scene/SaveSys/savePanel.tscn")
+
+func show_Save_panel():
+
+	var tied_scene = SAVE_PANEL.instantiate()
+
+	var balloon: savePanel = tied_scene
+	balloon.isHide=false
+	get_current_scene.call().add_child(balloon)
+
+	return balloon
 
 
 #下面二个方法无需变更
@@ -105,6 +114,11 @@ func Fade_Blank(color:Color,time,state):
 func _get_Fade_Blank_path() -> String:
 	var balloon_path: String = "/blankPanel.tscn" #if is_small_window else "/example_balloon/example_balloon.tscn"
 	return get_script().resource_path.get_base_dir() + balloon_path
+
+#func _get_SavePanel_path() -> String:
+	#var balloon_path: String = "/blankPanel.tscn" #if is_small_window else "/example_balloon/example_balloon.tscn"
+	#return get_script().resource_path.get_base_dir() + balloon_path
+
 
 
 func show_Fade_Blank_scene(tied_scene) -> blankPanel:

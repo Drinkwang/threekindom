@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cehg7t1h5f2ei"]
+[gd_scene load_steps=7 format=3 uid="uid://cehg7t1h5f2ei"]
 
 [ext_resource type="Script" path="res://Scripts/street.gd" id="1_jskmv"]
-[ext_resource type="Texture2D" uid="uid://vkvgsvn02les" path="res://Asset/城镇建筑/城镇.jpg" id="1_r2skq"]
 [ext_resource type="Resource" uid="uid://qopivlttvt12" path="res://dialogues/街道.dialogue" id="2_a3tl4"]
 [ext_resource type="PackedScene" uid="uid://bv5ycsl0a50uq" path="res://Scene/prefab/btnList.tscn" id="2_eoq3e"]
+[ext_resource type="Texture2D" uid="uid://byxn3pcjpah81" path="res://Asset/城镇建筑/街道,.png" id="3_mqqfl"]
 [ext_resource type="PackedScene" uid="uid://bxw67mtklk4w5" path="res://Scene/prefab/ExpoundclassicsPanel.tscn" id="5_jclo7"]
+[ext_resource type="PackedScene" uid="uid://dfolt063spdso" path="res://Scene/prefab/energy.tscn" id="6_00ynb"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_jskmv")
@@ -12,14 +13,23 @@ dialogue_resource = ExtResource("2_a3tl4")
 dialogue_start = "init_street"
 
 [node name="内屋" type="Sprite2D" parent="."]
-position = Vector2(963, 543)
-scale = Vector2(1.91016, 2.02206)
-texture = ExtResource("1_r2skq")
+position = Vector2(959.5, 579)
+scale = Vector2(4.21272, 4.04167)
+texture = ExtResource("3_mqqfl")
 
 [node name="Control" parent="." instance=ExtResource("2_eoq3e")]
 metadata/_edit_use_anchors_ = true
 
-[node name="scholar" parent="." instance=ExtResource("5_jclo7")]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="hpPanel" parent="CanvasLayer" instance=ExtResource("6_00ynb")]
+offset_left = 1535.0
+offset_top = -46.0
+offset_right = 1535.0
+offset_bottom = -46.0
+scale = Vector2(0.2, 0.2)
+
+[node name="scholar" parent="CanvasLayer" instance=ExtResource("5_jclo7")]
 visible = false
 anchors_preset = 0
 anchor_right = 0.0

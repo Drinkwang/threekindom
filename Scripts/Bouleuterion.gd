@@ -32,8 +32,9 @@ func showTab():
 	GameManager.sav.have_event["firstTabLaw"]=true
 	_initData()
 	
-
+#const 议会2 = preload("res://Asset/bgm/议会2.mp3")
 func post_transition():
+#	SoundManager.play_music(议会2)
 	print("fadedone")
 	_initData()
 
@@ -174,3 +175,5 @@ func ymlShowEnd():
 	GameManager.restFadeScene=null
 	GameManager._rest()
 	pass
+
+

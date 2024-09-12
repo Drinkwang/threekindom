@@ -1,0 +1,67 @@
+[gd_scene load_steps=5 format=3 uid="uid://d4gn0dc6c7sdk"]
+
+[ext_resource type="Texture2D" uid="uid://bwemo6ul0yagq" path="res://Scene/lake.jpg" id="1_3lq2u"]
+[ext_resource type="Script" path="res://Scene/game.gd" id="1_y5dta"]
+[ext_resource type="FontFile" uid="uid://qv74ebpr4i31" path="res://Asset/Font/VonwaonBitmap-16px.ttf" id="2_mqgpl"]
+[ext_resource type="PackedScene" uid="uid://cld4rbco4yjhr" path="res://Scene/prefab/initDetail.tscn" id="4_nv5v8"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_y5dta")
+
+[node name="主宣传画" type="Sprite2D" parent="."]
+position = Vector2(961.5, 539)
+scale = Vector2(1.41087, 1.33659)
+texture = ExtResource("1_3lq2u")
+
+[node name="title" type="RichTextLabel" parent="."]
+offset_left = 5.0
+offset_top = 253.0
+offset_right = 1920.0
+offset_bottom = 732.0
+scale = Vector2(0.993691, 1.04365)
+theme_override_fonts/normal_font = ExtResource("2_mqgpl")
+theme_override_font_sizes/normal_font_size = 200
+bbcode_enabled = true
+text = "[center][rainbow]阴[/rainbow][wave amp=50 frep=100]三国[/wave][rainbow]谋论[/rainbow]-[tornado][color=#ff0000]徐州篇[/color][/tornado][/center]"
+tab_size = 6
+
+[node name="exit" type="Button" parent="."]
+offset_left = 1448.0
+offset_top = 652.0
+offset_right = 1852.0
+offset_bottom = 783.0
+theme_override_font_sizes/font_size = 36
+text = "退出游戏"
+
+[node name="begin" type="Button" parent="."]
+offset_left = 753.0
+offset_top = 652.0
+offset_right = 1157.0
+offset_bottom = 783.0
+theme_override_font_sizes/font_size = 36
+text = "开始游戏"
+
+[node name="continue" type="Button" parent="."]
+offset_left = 110.0
+offset_top = 652.0
+offset_right = 514.0
+offset_bottom = 783.0
+theme_override_font_sizes/font_size = 36
+disabled = true
+text = "继续游戏"
+
+[node name="Control" parent="." instance=ExtResource("4_nv5v8")]
+visible = false
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -4.0
+offset_top = 9.0
+offset_right = -4.0
+offset_bottom = 9.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[connection signal="button_down" from="exit" to="." method="_on_exit_button_down"]
+[connection signal="button_down" from="begin" to="." method="_on_begin_button_down"]
+[connection signal="button_down" from="continue" to="." method="_on_continue_button_down"]

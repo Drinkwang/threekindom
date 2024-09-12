@@ -1,0 +1,355 @@
+[gd_scene load_steps=9 format=3 uid="uid://cld4rbco4yjhr"]
+
+[ext_resource type="Script" path="res://Scripts/initDetail.gd" id="1_mv83i"]
+[ext_resource type="Theme" uid="uid://bklmr3xmk4m5u" path="res://global_theme.tres" id="2_iunj6"]
+[ext_resource type="Texture2D" uid="uid://dahuc8gb2blc" path="res://Asset/other/0_red.png" id="2_j6n5d"]
+[ext_resource type="Texture2D" uid="uid://yuphy67p1cut" path="res://Asset/人物/陶谦.png" id="4_58f2c"]
+[ext_resource type="Texture2D" uid="uid://clxuefcy6a5oe" path="res://Asset/ui/paper_panel_1057_x_1067.png" id="4_pu3kb"]
+[ext_resource type="Texture2D" uid="uid://drj1r377gntrn" path="res://Asset/人物/糜竺睁眼.png" id="5_rvoul"]
+[ext_resource type="Texture2D" uid="uid://doh7mxtgy0hm2" path="res://Asset/人物/陈登睁眼.png" id="6_00m7i"]
+[ext_resource type="Texture2D" uid="uid://dgv8kx2a6722g" path="res://Asset/人物/刘备.jpg" id="7_no5te"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mv83i")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+offset_left = -454.0
+offset_top = -203.0
+offset_right = 2538.0
+offset_bottom = 1409.0
+color = Color(0.2, 0.2, 0.2, 0.827451)
+
+[node name="TextureButton" type="TextureButton" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 555.0
+offset_top = -507.0
+offset_right = 619.0
+offset_bottom = -443.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("2_j6n5d")
+texture_pressed = ExtResource("2_j6n5d")
+texture_hover = ExtResource("2_j6n5d")
+texture_disabled = ExtResource("2_j6n5d")
+texture_focused = ExtResource("2_j6n5d")
+stretch_mode = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = -1
+offset_left = 291.0
+offset_top = 129.0
+offset_right = 1629.0
+offset_bottom = 951.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(630.615, 267.699)
+theme = ExtResource("2_iunj6")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+
+[node name="Control" type="Control" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 0
+offset_left = 325.0
+offset_top = 168.0
+offset_right = 1595.0
+offset_bottom = 911.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.247
+anchor_top = -0.215
+anchor_right = -0.247
+anchor_bottom = -0.215
+offset_left = 348.69
+offset_top = 167.745
+offset_right = 1548.69
+offset_bottom = 3425.75
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="title" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+text = "进入游戏你需要了解的背景：(滑动到底部可以开始游戏)
+  游戏背景参照《三国志》和《英雄记》二本资料为主，
+尽力和史实贴切，但不免有想象和文学作品杜撰的痕迹，
+所以该游戏名字包含“阴谋论”三个字，请各位玩家将
+其当成某种演义，并参照下面的介绍
+--------------------------------------------------
+"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="Control/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="PanelExample1" type="Sprite2D" parent="Control/VBoxContainer/HBoxContainer2"]
+position = Vector2(608.25, 65.5)
+scale = Vector2(0.445556, 0.119025)
+texture = ExtResource("4_pu3kb")
+
+[node name="img" type="TextureRect" parent="Control/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("4_58f2c")
+
+[node name="Control3" type="Control" parent="Control/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="context" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 48
+text = "陶谦：
+  陶谦是东汉朝廷任命的徐州刺史，史料记载他曾带着丹阳兵进入徐州，担任刺史。在这个过程中，陶谦并未得到徐州本土士族的最大力度支持。为了稳固自己的统治，陶谦重用了徐州的中间派系，并且特别倚重了豪族糜竺，希望通过他的调节来维持各派系之间的平衡。"
+autowrap_mode = 3
+
+[node name="split" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 48
+text = "-------------------------------------------------"
+autowrap_mode = 3
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="Control/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="PanelExample1" type="Sprite2D" parent="Control/VBoxContainer/HBoxContainer3"]
+position = Vector2(608.25, 65.5)
+scale = Vector2(0.445556, 0.119025)
+texture = ExtResource("4_pu3kb")
+
+[node name="img" type="TextureRect" parent="Control/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+texture = ExtResource("5_rvoul")
+
+[node name="Control3" type="Control" parent="Control/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="context3" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 48
+text = "糜竺:
+  糜竺是徐州的豪族代表，因其商贾出身而在陶谦重用丹阳派系的过程中得以崛起。他被任命为徐州的别驾，实际上成为了陶谦的副手。糜竺清楚地认识到，他的崛起得益于陶谦的支持，因此他可能会效仿历史上的吕不韦，选择投资有潜力的人物，以期在未来继续壮大自己的家族。"
+autowrap_mode = 3
+
+[node name="split2" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 48
+text = "-------------------------------------------------"
+autowrap_mode = 3
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="Control/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="PanelExample1" type="Sprite2D" parent="Control/VBoxContainer/HBoxContainer4"]
+position = Vector2(608.25, 65.5)
+scale = Vector2(0.445556, 0.119025)
+texture = ExtResource("4_pu3kb")
+
+[node name="img" type="TextureRect" parent="Control/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+texture = ExtResource("6_00m7i")
+
+[node name="Control3" type="Control" parent="Control/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="context4" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 48
+text = "陈登:
+  陈登是陶谦的重要幕僚之一，具有卓越的政治才能，为陶谦出谋划策。作为徐州的士族之一，陈登虽然忠于陶谦，但他更关注的是徐州士族群体的整体利益。"
+autowrap_mode = 3
+
+[node name="split3" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 48
+text = "-------------------------------------------------"
+autowrap_mode = 3
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="Control/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="PanelExample1" type="Sprite2D" parent="Control/VBoxContainer/HBoxContainer5"]
+position = Vector2(608.25, 65.5)
+scale = Vector2(0.445556, 0.119025)
+texture = ExtResource("4_pu3kb")
+
+[node name="img" type="TextureRect" parent="Control/VBoxContainer/HBoxContainer5"]
+custom_minimum_size = Vector2(81.775, 128.17)
+layout_mode = 2
+texture = ExtResource("7_no5te")
+expand_mode = 1
+
+[node name="Control3" type="Control" parent="Control/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="context5" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 48
+text = "刘备:
+  刘备是玩家扮演的角色，他在游戏中初登场时，是为了调节徐州与曹操之间的矛盾。随后，刘备长期驻扎在徐州的小沛，逐渐得到了陶谦的认可。尽管刘备在初期缺乏经验，但他凭借着自己的能力和智慧逐渐崭露头角。"
+autowrap_mode = 3
+
+[node name="split4" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 48
+text = "-------------------------------------------------"
+autowrap_mode = 3
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="Control/VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="PanelExample1" type="Sprite2D" parent="Control/VBoxContainer/HBoxContainer6"]
+position = Vector2(608.25, 65.5)
+scale = Vector2(0.445556, 0.119025)
+texture = ExtResource("4_pu3kb")
+
+[node name="img" type="TextureRect" parent="Control/VBoxContainer/HBoxContainer6"]
+custom_minimum_size = Vector2(81.775, 128.17)
+layout_mode = 2
+texture = ExtResource("7_no5te")
+expand_mode = 1
+
+[node name="Control3" type="Control" parent="Control/VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="context6" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 48
+text = "曹豹:
+曹豹是陶谦的部将之一，可能属于丹阳派系。他在陶谦统治时期负责徐州的军事防务，是陶谦的重要军事支柱之一。"
+autowrap_mode = 3
+
+[node name="split5" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 48
+text = "-------------------------------------------------"
+autowrap_mode = 3
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="Control/VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="PanelExample1" type="Sprite2D" parent="Control/VBoxContainer/HBoxContainer7"]
+position = Vector2(608.25, 65.5)
+scale = Vector2(0.445556, 0.119025)
+texture = ExtResource("4_pu3kb")
+
+[node name="img" type="TextureRect" parent="Control/VBoxContainer/HBoxContainer7"]
+custom_minimum_size = Vector2(81.775, 128.17)
+layout_mode = 2
+texture = ExtResource("7_no5te")
+expand_mode = 1
+
+[node name="Control3" type="Control" parent="Control/VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="context7" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 48
+text = "地理名词：
+徐州城
+  徐州城是陶谦的权力中心，也是徐州的政治、经济和文化中心。同时徐州城也是各派系角逐的焦点。
+
+小沛
+  小沛是徐州下属的一个重要城镇，刘备在此地长期驻扎，并逐渐积累了自己的实力。小沛地理位置重要，是徐州防御的关键节点之一。"
+autowrap_mode = 3
+
+[node name="split6" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 48
+text = "-------------------------------------------------"
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="Button" type="Button" parent="Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "了解并开始游戏"
+
+[node name="Control3" type="Control" parent="Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="VSlider" type="VSlider" parent="Control"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.256
+anchor_top = -0.203
+anchor_right = -0.256
+anchor_bottom = -0.203
+offset_left = 1563.12
+offset_top = 149.829
+offset_right = 1592.12
+offset_bottom = 893.829
+value = 100.0
+
+[connection signal="button_down" from="ColorRect/TextureButton" to="." method="_on_texture_button_button_down"]
+[connection signal="button_down" from="Control/VBoxContainer/HBoxContainer/Button" to="." method="_on_button_startGame"]
+[connection signal="changed" from="Control/VSlider" to="." method="_on_v_slider_changed"]
+[connection signal="value_changed" from="Control/VSlider" to="." method="_on_v_slider_value_changed"]

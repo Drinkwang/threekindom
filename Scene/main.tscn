@@ -1,10 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://s5nlht40cbgw"]
+[gd_scene load_steps=38 format=3 uid="uid://s5nlht40cbgw"]
 
 [ext_resource type="PackedScene" uid="uid://dqpklssxni160" path="res://Scene/prefab/clickBlock.tscn" id="1_1yudk"]
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_di8p8"]
 [ext_resource type="Resource" uid="uid://bte38wl3etklk" path="res://dialogues/灵堂.dialogue" id="2_cebyh"]
 [ext_resource type="AudioStream" uid="uid://brg1ltppwfyim" path="res://Asset/sound/闪电.mp3" id="3_pm2r8"]
-[ext_resource type="Texture2D" uid="uid://bpafr0afqfvx8" path="res://Asset/城镇建筑/灵堂.jpg" id="4_ymf5o"]
+[ext_resource type="Texture2D" uid="uid://dlfbbrjp8w7nb" path="res://Asset/城镇建筑/aitestmain.png" id="4_8j8fl"]
 [ext_resource type="Texture2D" uid="uid://cale1h2nqfdrh" path="res://Asset/ui/circle.png" id="5_o5px7"]
 [ext_resource type="Texture2D" uid="uid://yf6vhcbrjowo" path="res://Asset/蜡烛.png" id="5_qjidl"]
 [ext_resource type="Shader" path="res://shader/light.gdshader" id="5_yxgd7"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://bv5ycsl0a50uq" path="res://Scene/prefab/btnList.tscn" id="11_j50k8"]
 [ext_resource type="PackedScene" uid="uid://cw66yiofu8q6f" path="res://Scene/prefab/RuleBook.tscn" id="12_phx3k"]
 [ext_resource type="FontFile" uid="uid://qv74ebpr4i31" path="res://Asset/Font/VonwaonBitmap-16px.ttf" id="14_vuyqr"]
+[ext_resource type="Texture2D" uid="uid://b0ar00as8flf" path="res://Asset/other/Siren head for games.png" id="17_ggnt5"]
 
 [sub_resource type="Animation" id="Animation_0bk4q"]
 resource_name = "闪烁"
@@ -50,6 +51,105 @@ gradient = SubResource("Gradient_sgdlq")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_21veu"]
 shader = ExtResource("5_yxgd7")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ejvyd"]
+atlas = ExtResource("17_ggnt5")
+region = Rect2(13, 16, 36, 85)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0xfev"]
+atlas = ExtResource("17_ggnt5")
+region = Rect2(53, 16, 36, 85)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_133h6"]
+atlas = ExtResource("17_ggnt5")
+region = Rect2(93, 16, 36, 85)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lxe2a"]
+atlas = ExtResource("17_ggnt5")
+region = Rect2(13, 101, 36, 85)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_enaa8"]
+atlas = ExtResource("17_ggnt5")
+region = Rect2(53, 101, 36, 85)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uw4vr"]
+atlas = ExtResource("17_ggnt5")
+region = Rect2(93, 101, 36, 85)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sq3ck"]
+atlas = ExtResource("17_ggnt5")
+region = Rect2(133, 101, 36, 85)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bc187"]
+atlas = ExtResource("17_ggnt5")
+region = Rect2(173, 101, 36, 85)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y18fm"]
+atlas = ExtResource("17_ggnt5")
+region = Rect2(13, 186, 36, 85)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_02ijr"]
+atlas = ExtResource("17_ggnt5")
+region = Rect2(53, 186, 36, 85)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5cwc2"]
+atlas = ExtResource("17_ggnt5")
+region = Rect2(93, 186, 36, 85)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dtagt"]
+atlas = ExtResource("17_ggnt5")
+region = Rect2(133, 186, 36, 85)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tfqsd"]
+atlas = ExtResource("17_ggnt5")
+region = Rect2(173, 186, 36, 85)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0bccw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ejvyd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0xfev")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_133h6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lxe2a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_enaa8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uw4vr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sq3ck")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bc187")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y18fm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_02ijr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5cwc2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dtagt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tfqsd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_di8p8")
 dontTrutShizu = "不要相信士族!
@@ -82,9 +182,9 @@ stream = ExtResource("3_pm2r8")
 
 [node name="内屋" type="Sprite2D" parent="."]
 material = SubResource("CanvasItemMaterial_flxm5")
-position = Vector2(958, 539)
-scale = Vector2(3.22, 2.57957)
-texture = ExtResource("4_ymf5o")
+position = Vector2(961.5, 539)
+scale = Vector2(3.79883, 2.14844)
+texture = ExtResource("4_8j8fl")
 
 [node name="灯" parent="." instance=ExtResource("1_1yudk")]
 visible = false
@@ -114,6 +214,7 @@ dialogue_resource = ExtResource("2_cebyh")
 dialogue_start = ""
 
 [node name="蜡烛" parent="." instance=ExtResource("1_1yudk")]
+visible = false
 position = Vector2(1004, 773)
 scale = Vector2(1.28, 1.28)
 showName = "蜡烛"
@@ -131,6 +232,7 @@ scale = Vector2(10.7865, 1508.76)
 texture = SubResource("GradientTexture1D_uoxgf")
 
 [node name="mask2" type="Sprite2D" parent="BackBufferCopy"]
+visible = false
 material = SubResource("ShaderMaterial_21veu")
 position = Vector2(1010, 774)
 scale = Vector2(8, 8.114)
@@ -214,6 +316,14 @@ tab_size = 6
 
 [node name="Control2" parent="." instance=ExtResource("11_j50k8")]
 visible = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(983, 481)
+scale = Vector2(9.285, 9.285)
+sprite_frames = SubResource("SpriteFrames_0bccw")
+autoplay = "default"
+frame_progress = 0.6705
 
 [connection signal="ready" from="." to="蜡烛" method="_on_node_2d_ready"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

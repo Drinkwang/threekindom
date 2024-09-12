@@ -74,7 +74,7 @@ text = "1.前往xxx并
 3.前往xxx并
 4.前往xxx并
 5.前往xxx并"
-autowrap_mode = 2
+autowrap_mode = 3
 
 [node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2

@@ -16,7 +16,8 @@ const FancyFade = preload("res://addons/transitions/FancyFade.gd")
 
 func showwrit():
 	policyBook.show()
-	pass
+	control._show_button_5_yellow(-1)
+	#pass
 
 func lookDown():
 	policyBook.hide()
@@ -26,16 +27,20 @@ func lookDown():
 #dontwork
 func implementpolicy():
 	GameManager.sav.have_event["firstPolicyOpShow"]=true
+	#
 	_initData()
+	control._show_button_5_yellow(0)
 	pass
 	
 #将施政面板显示并存档
 func showTab():
 	GameManager.sav.have_event["firstTabLaw"]=true
+	control._show_button_5_yellow(-1)
 	_initData()
 	
-
+#const 府邸 = preload("res://Asset/bgm/府邸.mp3")
 func post_transition():
+	#SoundManager.play_music(府邸)
 	print("fadedone")
 	_initData()
 
@@ -54,6 +59,7 @@ func _ready():
 func _initData():
 	if GameManager.sav.day==1:
 		if	GameManager.sav.have_event["firstgovernment"]==false:
+			#control._show_button_5_yellow(1)
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
 			GameManager.sav.have_event["firstgovernment"]=true
 	#elif GameManager.day==2:
@@ -83,7 +89,7 @@ func _initData():
 	
 	if GameManager.sav.have_event["firstPolicyOpShow"]==true||GameManager.sav.day>1:
 		control._processList(initData)
-
+		
 	if GameManager.sav.have_event["firstTabLaw"]==true:
 		policy_panel.tab_bar.show()
 	else:
@@ -98,9 +104,9 @@ var costHp_policy=35
 func _buttonListClick(item):
 	#35点
 	if item.context == "执行政策":
-		if await GameManager.isTried(costHp_policy):
-			return 
-		
+		#if await GameManager.isTried(costHp_policy):
+		#	return 
+		#GameManager.hp=GameManager.hp-costHp_policy
 		if(GameManager.sav.day==1):
 			policy_panel.show()
 			if(GameManager.sav.have_event["firstgovermentTip"]==false):
@@ -116,6 +122,7 @@ func _buttonListClick(item):
 	elif item.context == "召见手下":
 		if await GameManager.isTried(costHp_SummonOne):
 			return
+		GameManager.hp=GameManager.hp-costHp_SummonOne
 		if GameManager.sav.isMeet==false:
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"召见手下1")
 		#显示接下来要点击啥
@@ -161,10 +168,12 @@ func agreelaw():
 #做出可以做的决策后，对面板进行隐藏
 func hidePolicy():
 	policy_panel.button.disabled=true
+	#policy_panel.button.
 	policy_panel._disableAll()
 	policy_panel.bancontrol(policy_panel.index,policy_panel.itemStatus.select)
 
 func arrangeDone():
+	control._show_button_5_yellow(1)
 	#无操作
 	pass
 
@@ -181,7 +190,7 @@ func meetingEnd():
 	GameManager.sav.destination="议事厅"
 	GameManager.hp=GameManager.hp-costHp_SummonOne
 	GameManager.sav.isMeet=true
-	#control._show_button_5_yellow(1)	
+	control._show_button_5_yellow(-1)	
 	
 
 func cancel():
@@ -190,3 +199,6 @@ func cancel():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	pass
+
+
+

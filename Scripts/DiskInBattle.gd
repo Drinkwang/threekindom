@@ -389,7 +389,7 @@ func settleGame(end,issuccess):
 		GameManager.sav.battleResults[taskIndex]=GameManager.BattleResult.win
 		print("你win了")
 		_rewardPanel.showReward()
-		GameManager.completeTask=GameManager.completeTask+1
+		GameManager.sav.completeTask=GameManager.sav.completeTask+1
 	else:
 		GameManager.sav.battleResults[taskIndex]=GameManager.BattleResult.fail
 		print("你输了")
@@ -398,15 +398,15 @@ func settleGame(end,issuccess):
 	curCoin=0
 	curSoilder=0
 	
-	GameManager.currenceTask=GameManager.currenceTask+1
+	GameManager.sav.currenceTask=GameManager.sav.currenceTask+1
 	refreshPage()
 	if(selectgeneral!=null):
-		GameManager.UseGeneral.push_front(selectgeneral)
+		GameManager.sav.UseGeneral.push_front(selectgeneral)
 	taskIndex=taskIndex+1
 	if(taskIndex>=3):
 		GameManager.initBattleCircle()
 		taskIndex=0
-	Txtcount.text=str(GameManager.completeTask)+"/"+str(GameManager.currenceTask)
+	Txtcount.text=str(GameManager.sav.completeTask)+"/"+str(GameManager.sav.currenceTask)
 
 	
 @onready var Txtcount = $count

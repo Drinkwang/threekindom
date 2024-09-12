@@ -6,107 +6,123 @@
 [ext_resource type="FontFile" uid="uid://8gk1bfs3ahmh" path="res://Asset/Font/Bakudai-Bold.ttf" id="2_k8dus"]
 [ext_resource type="Texture2D" uid="uid://dahuc8gb2blc" path="res://Asset/other/0_red.png" id="3_6p4fi"]
 
-[node name="Control" type="Control"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 603.0
-offset_bottom = 411.0
-mouse_filter = 2
+[node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_quuf6")
 dialogue_resource = ExtResource("2_cn4gt")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
-layout_mode = 0
-offset_top = 24.0
-offset_right = 575.0
-offset_bottom = 352.0
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
 
-[node name="Panel" type="Panel" parent="."]
-layout_mode = 0
-offset_left = 35.0
-offset_top = 57.0
-offset_right = 543.0
-offset_bottom = 320.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 50.0
-offset_top = 71.0
-offset_right = 529.0
-offset_bottom = 260.0
-
-[node name="file1" parent="HBoxContainer" instance=ExtResource("1_6ch1t")]
-custom_minimum_size = Vector2(157.125, 150)
-layout_mode = 2
-size_flags_horizontal = 0
-
-[node name="file2" parent="HBoxContainer" instance=ExtResource("1_6ch1t")]
-custom_minimum_size = Vector2(157.125, 150)
-layout_mode = 2
-size_flags_horizontal = 0
-
-[node name="file3" parent="HBoxContainer" instance=ExtResource("1_6ch1t")]
-custom_minimum_size = Vector2(157.125, 143.175)
-layout_mode = 2
-size_flags_horizontal = 0
-
-[node name="select" type="Label" parent="."]
+[node name="ColorRect" type="ColorRect" parent="Control"]
 layout_mode = 1
 anchors_preset = -1
-offset_left = 180.0
-offset_top = 237.0
-offset_right = 226.0
-offset_bottom = 284.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1408.0
+offset_top = -884.0
+offset_right = 1584.0
+offset_bottom = 728.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2, 0.2, 0.2, 0.827451)
+
+[node name="PanelContainer" type="PanelContainer" parent="Control"]
+layout_mode = 0
+offset_left = 333.0
+offset_top = 183.87
+offset_right = 1544.0
+offset_bottom = 846.87
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 0
+offset_left = 368.0
+offset_top = 216.87
+offset_right = 1511.0
+offset_bottom = 812.87
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = 383.0
+offset_top = 241.87
+offset_right = 1501.0
+offset_bottom = 668.87
+
+[node name="file1" parent="Control/HBoxContainer" instance=ExtResource("1_6ch1t")]
+custom_minimum_size = Vector2(370, 150)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="file2" parent="Control/HBoxContainer" instance=ExtResource("1_6ch1t")]
+custom_minimum_size = Vector2(370, 150)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="file3" parent="Control/HBoxContainer" instance=ExtResource("1_6ch1t")]
+custom_minimum_size = Vector2(370, 143.175)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="select" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 736.0
+offset_top = 654.87
+offset_right = 827.0
+offset_bottom = 746.87
 scale = Vector2(2.3, 2.16)
 theme_override_colors/font_color = Color(0.78441, 0, 0.121413, 1)
 theme_override_constants/outline_size = 1
 theme_override_fonts/font = ExtResource("2_k8dus")
-theme_override_font_sizes/font_size = 46
+theme_override_font_sizes/font_size = 91
 text = "〇"
 
-[node name="save" type="Label" parent="."]
+[node name="save" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = 212.0
-offset_top = 263.0
-offset_right = 267.0
-offset_bottom = 325.0
+offset_left = 807.0
+offset_top = 715.87
+offset_right = 879.0
+offset_bottom = 788.87
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_k8dus")
-theme_override_font_sizes/font_size = 46
+theme_override_font_sizes/font_size = 72
 text = "存"
 
-[node name="load" type="Label" parent="."]
+[node name="load" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = 292.0
-offset_top = 262.0
-offset_right = 347.0
-offset_bottom = 324.0
+offset_left = 978.0
+offset_top = 715.87
+offset_right = 1050.0
+offset_bottom = 788.87
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_k8dus")
-theme_override_font_sizes/font_size = 46
+theme_override_font_sizes/font_size = 72
 text = "讀"
 
-[node name="SaveButton" type="TextureButton" parent="."]
+[node name="SaveButton" type="TextureButton" parent="Control"]
 layout_mode = 0
-offset_left = 209.0
-offset_top = 259.0
-offset_right = 261.0
-offset_bottom = 313.0
+offset_left = 794.0
+offset_top = 698.87
+offset_right = 887.0
+offset_bottom = 801.87
 
-[node name="close" type="TextureButton" parent="."]
+[node name="close" type="TextureButton" parent="Control"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = -0.015
 anchor_bottom = -0.015
-offset_left = 543.0
-offset_top = 20.165
-offset_right = 607.0
-offset_bottom = 84.165
+offset_left = 1523.0
+offset_top = 158.2
+offset_right = 1587.0
+offset_bottom = 222.2
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.585, 0.585)
 texture_normal = ExtResource("3_6p4fi")
 texture_pressed = ExtResource("3_6p4fi")
 texture_hover = ExtResource("3_6p4fi")
@@ -114,17 +130,16 @@ texture_disabled = ExtResource("3_6p4fi")
 texture_focused = ExtResource("3_6p4fi")
 stretch_mode = 0
 
-[node name="LoadButton" type="TextureButton" parent="."]
+[node name="LoadButton" type="TextureButton" parent="Control"]
 layout_mode = 0
-offset_left = 294.0
-offset_top = 258.0
-offset_right = 346.0
-offset_bottom = 312.0
+offset_left = 970.0
+offset_top = 699.87
+offset_right = 1063.0
+offset_bottom = 802.87
 
-[connection signal="gui_input" from="HBoxContainer/file1" to="." method="_on_file_1_gui_input"]
-[connection signal="gui_input" from="HBoxContainer/file2" to="." method="_on_file_2_gui_input"]
-[connection signal="mouse_entered" from="HBoxContainer/file2" to="." method="_on_file_2_mouse_entered"]
-[connection signal="gui_input" from="HBoxContainer/file3" to="." method="_on_file_3_gui_input"]
-[connection signal="button_down" from="SaveButton" to="." method="_on_save_button_button_down"]
-[connection signal="button_down" from="close" to="." method="_on_close_button_down"]
-[connection signal="button_down" from="LoadButton" to="." method="_on_load_button_button_down"]
+[connection signal="gui_input" from="Control/HBoxContainer/file1" to="." method="_on_file_1_gui_input"]
+[connection signal="gui_input" from="Control/HBoxContainer/file2" to="." method="_on_file_2_gui_input"]
+[connection signal="gui_input" from="Control/HBoxContainer/file3" to="." method="_on_file_3_gui_input"]
+[connection signal="button_down" from="Control/SaveButton" to="." method="_on_save_button_button_down"]
+[connection signal="button_down" from="Control/close" to="." method="_on_close_button_down"]
+[connection signal="button_down" from="Control/LoadButton" to="." method="_on_load_button_button_down"]

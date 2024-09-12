@@ -7,27 +7,27 @@
 layout_mode = 3
 anchor_right = 0.08
 anchor_bottom = 0.169
-offset_right = 0.399994
-offset_bottom = 0.47998
+offset_right = 154.4
+offset_bottom = 183.48
 script = ExtResource("1_sxmum")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 0
 offset_left = -26.0
 offset_top = -25.0
-offset_right = 180.0
-offset_bottom = 210.0
+offset_right = 386.0
+offset_bottom = 445.0
 mouse_filter = 2
 
 [node name="nodate" type="Label" parent="."]
 layout_mode = 0
-offset_left = 10.0
-offset_top = 12.0
-offset_right = 142.0
-offset_bottom = 171.0
+offset_left = 73.0
+offset_top = 135.0
+offset_right = 289.0
+offset_bottom = 294.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_22yfi")
-theme_override_font_sizes/font_size = 36
+theme_override_font_sizes/font_size = 72
 text = "无数据"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -35,12 +35,13 @@ vertical_alignment = 1
 [node name="Label" type="Label" parent="."]
 visible = false
 layout_mode = 0
-offset_left = 10.0
+offset_left = 12.0
 offset_top = 12.0
-offset_right = 146.0
-offset_bottom = 175.0
+offset_right = 348.0
+offset_bottom = 409.0
+theme_override_constants/line_spacing = 15
 theme_override_fonts/font = ExtResource("1_22yfi")
-theme_override_font_sizes/font_size = 17
+theme_override_font_sizes/font_size = 42
 text = "時間：2024/12/21
 /15/31
 游戲天數：5

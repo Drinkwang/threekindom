@@ -57,8 +57,10 @@ func _initData():
 func _process(delta):
 	pass
 
-
+const _001_HOVER_01 = preload("res://Asset/sound/ui/001_Hover_01.wav")
+const _013_CONFIRM_03 = preload("res://Asset/sound/ui/013_Confirm_03.wav")
 func _on_gui_input(event):
+	
 	if isUnlock==true:
 		return
 	if lawpoins.size()>0:
@@ -66,11 +68,17 @@ func _on_gui_input(event):
 			return
 	if event is InputEventMouseButton and event.button_index==1:
 		control.preLaw(self)
-		
+		#SoundManager.play_sound(_001_HOVER_01)
 	elif(event is InputEventMouseButton and event.double_click==true):
 		control.excuteLaw(self)
+		SoundManager.play_sound(_013_CONFIRM_03)
 	pass # Replace with function body.
 
 enum lawcolor{
 	red,blue,green
 }
+
+
+func _on_mouse_entered():
+	pass
+	#SoundManager.play_sound(_001_HOVER_01)

@@ -72,8 +72,9 @@ func _on_读完了按钮_button_down():
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,lookdoneDialog)
 	pass
 
-
+const _翻阅 = preload("res://Asset/sound/翻阅.mp3")
 func _on_翻页按钮_button_down():
+	SoundManager.play_sound(_翻阅)
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,pageDownDialog)
 	$"TextureRect/realBox/正常文本".text=context
 	$TextureRect/realBox.hide()

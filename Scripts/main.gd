@@ -16,6 +16,8 @@ const HOUSE = preload("res://Scene/house.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Transitions.post_transition.connect(post_transition)
+	SoundManager.play_music(_10__TIME_WHISTLE)
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
 	mask.hide()
 	#timer.start()
@@ -42,14 +44,19 @@ func _ready():
 			"visible":"false"
 		}
 	]
-	
+	super._ready()
 	#time2.s();
-
+@onready var mask_2 = $BackBufferCopy/mask2
 	#pass # Replace with function body.
-
+func _initData():
+	$"蜡烛".show()
+	mask_2.show()
 func _initList():
 	pass
 
+
+func post_transition():
+	_initData()
 
 
 func _on_inventory_button_pressed() -> void:
@@ -72,28 +79,34 @@ func _process(delta):
 
 func setTuLabel(la):
 	tu_label.text=la
-
+const MATCH_STRIKING = preload("res://Asset/sound/Match_striking.wav")
 func getcandle():
 	tu_label.text=""
+	SoundManager.play_sound(MATCH_STRIKING)
 	$"蜡烛".hide()
 	mask.show()
 	$"灯".show()
 	$BackBufferCopy/mask2.hide()
 	pass
-
+const FLASHLIGHT_OFF = preload("res://Asset/sound/Flashlight off.wav")
+const _04_FIRE_EXPLOSION_04_MEDIUM = preload("res://Asset/sound/04_Fire_explosion_04_medium.wav")
 func openLight():
+	SoundManager.play_sound(FLASHLIGHT_OFF)
 	$"灯".hide()
 	$"Canvas闪电/ColorRect/AnimationPlayer".play("闪烁")
 	$GPUParticles2D.hide()
 	$BackBufferCopy/blank.hide()
 	$"陶谦".show()
+	await  0.35
+	SoundManager.play_sound(_04_FIRE_EXPLOSION_04_MEDIUM)
 
 @onready var audio_stream_player_2d = $"Canvas闪电/ColorRect/AnimationPlayer/AudioStreamPlayer2D"
 @onready var canvas_book = $CanvasBook
 
-
+const BOX_SEARCHING = preload("res://Asset/sound/Box_searching.wav")
 @onready var bgs = $bgs
 func getBook():
+	SoundManager.play_sound(BOX_SEARCHING)
 	$"陶谦".hide()
 	#bgs.stream=;
 	bgs.play()
@@ -111,6 +124,7 @@ func showBook():
 
 
 func lightning():
+	SoundManager.play_music(_2__MENTAL_VORTEX)
 	$CanvasBook.hide()
 	$"Canvas闪电".show()
 	timer.start()
@@ -118,11 +132,13 @@ func lightning():
 	audio_stream_player_2d.play()
 #全屏闪电特效
 @export_multiline var dontTrutShizu:String
+
+
 #家仆: 陶x少爷,灵堂发生什么事了，需要我进来帮忙么？
 # : 我是陶x...怎么回事，我不应该名字叫刘备么？我想我应该在小沛
 #弹出规则书翻页按钮.  
 func bookToTwo():
-	
+	#SoundManager.play_sound(_翻阅)
 	$CanvasBook.show()
 	rule_book._changeBtnState(rule_book.buttonState.page)
 
@@ -133,9 +149,16 @@ func pageTwo():
 	rule_book._changeBtnState(rule_book.buttonState.readdone)
 	rule_book.lookdoneDialog="final"
 	rule_book.context=dontTrutShizu
-	
+@onready var monster = $AnimatedSprite2D
+const _2__MENTAL_VORTEX = preload("res://Asset/bgm/2- Mental Vortex.mp3")	
+const _10__TIME_WHISTLE = preload("res://Asset/bgm/10- Time Whistle.mp3")
+
+const ROBOTIC_GROAN_3 = preload("res://Asset/sound/robotic_groan_3.wav")
 func final():
 	$CanvasBook.hide()
+	monster.show()
+	SoundManager.play_sound(ROBOTIC_GROAN_3)
+	#播放恐怖音效
 	pass
 	
 func end():

@@ -8,8 +8,9 @@ var GOVERNMENT_BUILDING = preload("res://Scene/government_building.tscn")
 var HOUSE = preload("res://Scene/house.tscn")
 const FancyFade = preload("res://addons/transitions/FancyFade.gd")
 
-
+var MAIN = preload("res://Scene/main.tscn")
 enum roomNode{
+	PRE_SCENE,
 	SLEEP_BLANK,
 	STREET,
 	BOULEUTERION,
@@ -23,7 +24,9 @@ enum roomNode{
 
 func changeScene(tempnode:roomNode,time:float):
 	const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
-	if tempnode==roomNode.SLEEP_BLANK:
+	if tempnode==roomNode.PRE_SCENE:
+		FancyFade.new().custom_fade(MAIN.instantiate(), time, DISSOLVE_IMAGE)
+	elif tempnode==roomNode.SLEEP_BLANK:
 		FancyFade.new().custom_fade(SLEEP_BLANK.instantiate(), time, DISSOLVE_IMAGE)
 	elif tempnode==roomNode.STREET:
 		FancyFade.new().custom_fade(STREET.instantiate(), time, DISSOLVE_IMAGE)

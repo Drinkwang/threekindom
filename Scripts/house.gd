@@ -2,6 +2,7 @@ extends baseComponent
 
 @onready var control = $Control
 @onready var policyPanel = $"CanvasLayer/政务面板"
+@onready var hp_panel = $CanvasLayer/hpPanel
 
 const FancyFade = preload("res://addons/transitions/FancyFade.gd")
 # Called when the node enters the scene tree for the first time.
@@ -14,6 +15,7 @@ func _ready():
 			control.hide()
 		else:
 			control.show()
+			hp_panel.show()
 	else:
 		control.show()
 	super._ready()
@@ -56,21 +58,29 @@ func _initData():
 		"visible":"true"
 	}
 	]
+	const daybgm = preload("res://Asset/bgm/白天在家or办公.wav")
+	#const 街道 = preload("res://Asset/bgm/街道.mp3")
 	control._processList(initData)
 	GameManager.currenceScene=self
 	if GameManager.sav.day==1:
 		if(GameManager.sav.have_event["firstmeetchenqun"]==false):
 			GameManager.sav.have_event["firstmeetchenqun"]=true
+			policyPanel.contextEX="1.前往府邸看看堆积的工作\n2.前往演武场会见自己的老下属"
+			#daybgm.set_loop_mode(1)
+			var bgm:AudioStreamPlayer=SoundManager.play_music(daybgm)
+		
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
 	if GameManager.sav.day==2:
 		if GameManager.sav.have_event["dayTwoInit"]==false:
 			GameManager.sav.have_event["dayTwoInit"]=true
+			control._show_button_5_yellow(3)
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新的一天")
 			policyPanel.contextEX="1.前往府邸回见不同派系的领导人\n2.前往议会通过昨天立的法律"
 			GameManager.sav.destination="府邸"
 		#设置des
 	elif GameManager.sav.day==3:
 		if GameManager.sav.have_event["dayThreeInit"]==false:
+			control._show_button_5_yellow(3)
 			GameManager.sav.have_event["dayThreeInit"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第三天")
 			policyPanel.contextEX="1.前往城外军事驻地，讨伐土匪"
@@ -84,6 +94,7 @@ func _initData():
 		if GameManager.sav.have_event["firstVisitScholars"]==false:
 			GameManager.sav.have_event["firstVisitScholars"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第四天")
+			control._show_button_5_yellow(3)			
 			policyPanel.contextEX="1.前往城外及军事驻地，选择拜见大儒郑玄"
 		
 		if GameManager.sav.have_event["firstVisitScholarsEnd"]==true:	
@@ -125,7 +136,23 @@ func _buttonListClick(item):
 		pass
 	elif item.context == "休息":
 	 	#如果休息时=4天，则触发阴谋论剧情
-		
+		if(GameManager.sav.day==1):
+			if GameManager.sav.have_event["threeStree"]==false:
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"还不能休息_新手教程")	
+				return
+		elif GameManager.sav.day==2:
+			if GameManager.sav.have_event["firstParliamentary"]==false:
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"还不能休息_新手教程")	
+				return
+
+		elif GameManager.sav.day==3:
+			if GameManager.sav.have_event["firstBattleEnd"]==false:
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"还不能休息_新手教程")	
+				return		
+		elif GameManager.sav.day==5:
+			if GameManager.sav.have_event["xxxx"]==false:
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"xxxx")	
+				return		
 		GameManager._rest()
 
 		#FancyFade.new().custom_fade(load("res://Scene/sleepBlank.tscn").instantiate(), 2, DISSOLVE_IMAGE)
@@ -173,3 +200,4 @@ func fadeInAndOut():
 func _on_demo_end_button_down():
 	get_tree().quit()
 	pass # Replace with function body.
+

@@ -102,7 +102,7 @@ layout_mode = 2
 layout_mode = 2
 theme_override_font_sizes/font_size = 31
 text = "选择将领进行出征，你可以自由调节士兵数量和资金数量，注意完成右侧任务和猜拳，可以降低伤亡和提高成功率！"
-autowrap_mode = 2
+autowrap_mode = 3
 
 [node name="Control" type="Control" parent="PanelContainer/orderPanel/VBoxContainer"]
 layout_mode = 2
@@ -197,7 +197,7 @@ theme_override_font_sizes/font_size = 31
 text = "任务条件：
 1.
 2."
-autowrap_mode = 2
+autowrap_mode = 3
 
 [node name="soildNum" type="Label" parent="."]
 layout_mode = 1
@@ -305,7 +305,6 @@ texture_focused = ExtResource("7_fydxo")
 stretch_mode = 0
 
 [node name="pointGroup" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

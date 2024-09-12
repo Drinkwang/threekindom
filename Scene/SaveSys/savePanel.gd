@@ -1,9 +1,10 @@
-extends Control
+extends CanvasLayer
 class_name savePanel
 @export var dialogue_resource:DialogueResource
 
 var state:_SaveState
 var savs:Array[saveData]=[null,null,null]
+var isHide:bool=true
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GameManager._savePanel=self
@@ -15,7 +16,7 @@ func _ready():
 func _process(delta):
 	pass
 
-@onready var select = $select
+@onready var select = $Control/select
 
 var index=0
 
@@ -60,14 +61,19 @@ func loadFile():
 		get_tree().change_scene_to_packed(savs[index-1].saveScene)
 
 	refresh()
+	self.hide()
 
 
 func _on_close_button_down():
-	pass # Replace with function body.
+	if isHide==true:
+		self.hide()
+	else:
+		self.queue_free()
+	#pass # Replace with function body.
 
-@onready var file_1 = $HBoxContainer/file1
-@onready var file_2 = $HBoxContainer/file2
-@onready var file_3 = $HBoxContainer/file3
+@onready var file_1 = $Control/HBoxContainer/file1
+@onready var file_2 = $Control/HBoxContainer/file2
+@onready var file_3 = $Control/HBoxContainer/file3
 
 func refresh():
 	for i in range(1,4):
@@ -78,12 +84,12 @@ func refresh():
 	pass
 
 func _on_save_button_button_down():
-	select.position=Vector2(180,237)
+	select.position=Vector2(736,654.87)
 	
 	state=_SaveState.save
 	
 func _on_load_button_button_down():
-	select.position=Vector2(262,237)
+	select.position=Vector2(912,654.87)
 	state=_SaveState.load
 	
 enum _SaveState{

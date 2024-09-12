@@ -50,6 +50,7 @@ func _processList(data):
 		buttton.texture_pressed=pressbtn
 		buttton.texture_hover=hoverbtn
 		buttton.texture_focused=focusbtn
+		buttton.mouse_entered.connect(_buttonHover)
 		buttton.pressed.connect(_button_ation.bind(item,index))
 		buttton.name="button"+var_to_str(index)
 		index=index+1
@@ -57,8 +58,15 @@ func _processList(data):
 	
 
 @onready var animation_player = $"Node2D/5Yellow/AnimationPlayer"
+func _buttonHover():
+	SoundManager.play_sound(sounds.hoversound)
 	
 func _show_button_5_yellow(index):
+	if index==-1:
+		node_2d.hide()
+		return
+	else:
+		node_2d.show()
 	#await $VBoxContainer.get_node("button1").position.y>0
 	var findpattern="button"+var_to_str(index)
 	var groups=$VBoxContainer.get_node(findpattern)
@@ -67,12 +75,13 @@ func _show_button_5_yellow(index):
 	if(index>0 and texbtn.position.y==0):
 		node_2d.position=texbtn.position+Vector2(472,65)+Vector2(0,155*index)
 	else:
-		node_2d.position=texbtn.position+Vector2(472,65)#+Vector2(0,155*index)
+		node_2d.position=texbtn.position+Vector2(478,65)#+Vector2(0,155*index)
 	animation_player.play("YELLOWGUILD")
 	pass
 
 
 func _button_ation(item,index):
+	SoundManager.play_sound(sounds.confiresound)
 	#_show_button_5_yellow(index)
 	buttonClick.emit(item)
 	if item.context=="":
