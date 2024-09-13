@@ -18,6 +18,14 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	label.text=context;
+	var currencelanguage=TranslationServer.get_locale()
+	if currencelanguage=="en":
+		label.add_theme_font_size_override("font_size", 34)
+	elif currencelanguage=="zh":
+		label.add_theme_font_size_override("font_size", 40)
+
+		#label.font_size=36
+	print(TranslationServer.get_locale()) 
 	# Replace with function body.
 
 

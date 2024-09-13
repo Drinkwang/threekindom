@@ -1,7 +1,8 @@
 extends Node2D
 
-
-
+const ARVOSTUS = preload("res://Asset/bgm/4- Arvostus.mp3")
+func _ready():
+	SoundManager.play_music(ARVOSTUS)
 	
 
 func _on_exit_button_down():
@@ -19,4 +20,21 @@ func _on_begin_button_down():
 
 
 func _on_continue_button_down():
+	pass # Replace with function body.
+
+
+func _on_option_button_item_selected(index):
+	if index==0:
+		TranslationServer.set_locale("zh")
+		pass
+	elif index==1:
+		TranslationServer.set_locale("lzh")
+		pass
+	elif index==2:
+		TranslationServer.set_locale("en")
+		
+	elif index==3:
+		TranslationServer.set_locale("ja")
+	elif index==4:
+		TranslationServer.set_locale("ru")
 	pass # Replace with function body.
