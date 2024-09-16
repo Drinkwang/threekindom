@@ -18,7 +18,6 @@ const HOUSE = preload("res://Scene/house.tscn")
 func _ready():
 	Transitions.post_transition.connect(post_transition)
 	SoundManager.play_music(_10__TIME_WHISTLE)
-	DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
 	mask.hide()
 	#timer.start()
 	if get_tree().get_root().has_node("InventoryManager"):
@@ -57,6 +56,7 @@ func _initList():
 
 func post_transition():
 	_initData()
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
 
 
 func _on_inventory_button_pressed() -> void:

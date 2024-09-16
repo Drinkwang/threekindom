@@ -18,8 +18,9 @@ func showwrit():
 	policyBook.show()
 	control._show_button_5_yellow(-1)
 	#pass
-
+const fanyuesound = preload("res://Asset/sound/翻阅.mp3")
 func lookDown():
+	SoundManager.play_sound(fanyuesound)
 	policyBook.hide()
 	pass
 
@@ -37,10 +38,10 @@ func showTab():
 	GameManager.sav.have_event["firstTabLaw"]=true
 	control._show_button_5_yellow(-1)
 	_initData()
-	
+const 府邸 = preload("res://Asset/bgm/办公.wav")	
 #const 府邸 = preload("res://Asset/bgm/府邸.mp3")
 func post_transition():
-	#SoundManager.play_music(府邸)
+	SoundManager.play_music(府邸)
 	print("fadedone")
 	_initData()
 
@@ -122,7 +123,7 @@ func _buttonListClick(item):
 	elif item.context == "召见手下":
 		if await GameManager.isTried(costHp_SummonOne):
 			return
-		GameManager.hp=GameManager.hp-costHp_SummonOne
+		#GameManager.hp=GameManager.hp-costHp_SummonOne
 		if GameManager.sav.isMeet==false:
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"召见手下1")
 		#显示接下来要点击啥
@@ -148,6 +149,8 @@ func selectPolicy(id):
 		selectCorrect()
 	elif id==3:
 		policy_panel.bancontrol(3,policy_panel.itemStatus.ban)
+		#执行初始错误决策，体力回复
+		GameManager.hp=GameManager.hp+35
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"错误决策0")
 		#pass
 	
@@ -176,8 +179,9 @@ func arrangeDone():
 	control._show_button_5_yellow(1)
 	#无操作
 	pass
-
+const EAT_2 = preload("res://Asset/sound/eat2.mp3")
 func meeting():
+	SoundManager.play_sound(EAT_2)
 	rule_book.visible=true
 	if GameManager.sav.have_event["firstMeetingEnd"]==false:
 		GameManager.sav.have_event["firstMeetingEnd"]=true

@@ -9,14 +9,22 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+size_flags_horizontal = 4
 script = ExtResource("1_c2y7g")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 285.0
-offset_top = 86.0
-offset_right = 1571.0
-offset_bottom = 905.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -643.0
+offset_top = -409.5
+offset_right = 643.0
+offset_bottom = 409.5
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("1_pig3i")
 
 [node name="翻页按钮" type="Button" parent="TextureRect"]
@@ -29,17 +37,26 @@ offset_left = 482.0
 offset_top = 838.0
 offset_right = 303.916
 offset_bottom = 729.372
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(1.555, 1.555)
 theme_override_font_sizes/font_size = 31
 text = "翻页"
 
 [node name="读完了按钮" type="Button" parent="TextureRect"]
 visible = false
-layout_mode = 0
-offset_left = 482.0
-offset_top = 839.0
-offset_right = 682.0
-offset_bottom = 904.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -159.0
+offset_top = 402.0
+offset_right = 41.0
+offset_bottom = 514.0
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(1.555, 1.555)
 theme_override_font_sizes/font_size = 31
 text = "读完了"
@@ -50,6 +67,7 @@ offset_left = 23.0
 offset_top = 22.0
 offset_right = 1273.0
 offset_bottom = 880.0
+rotation = -0.00535072
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_5k6li")
@@ -81,11 +99,12 @@ offset_right = 1558.0
 offset_bottom = 972.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 38
 text = "士族生存法则
 1.士族必须和控制家乡的军阀合作,士族如果对军阀感到不满，有可能会让军阀“自然”死亡...
 
 2.士族和军阀合作的目的是为了得到更多政治资源
+
 3.士族个体虽然很弱小，但是士族的族的范围很广大，他有强大的包容性，不限于跟军阀和达官显贵联姻，将他们变成我们
 
 4.士族会跟学阀进行合作，掌控一个地区的商业资源

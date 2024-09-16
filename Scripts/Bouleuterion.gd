@@ -31,10 +31,10 @@ func implementpolicy():
 func showTab():
 	GameManager.sav.have_event["firstTabLaw"]=true
 	_initData()
-	
+const bgmmeet = preload("res://Asset/bgm/会议室.wav")	
 #const 议会2 = preload("res://Asset/bgm/议会2.mp3")
 func post_transition():
-#	SoundManager.play_music(议会2)
+	SoundManager.play_music(bgmmeet)
 	print("fadedone")
 	_initData()
 

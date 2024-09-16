@@ -11,16 +11,18 @@ func _ready():
 	control.buttonClick.connect(_buttonListClick)
 	super._ready()
 
-
+const bgm = preload("res://Asset/bgm/校场.wav")
 func post_transition():
-#	SoundManager.play_music(_校场)
+	SoundManager.play_music(bgm)
 	print("fadedone")
 	_initData()
 
-
+const EAT_1 = preload("res://Asset/sound/eat1.mp3")
 func enterOldSoilderEat():
 	oldsoildereat.show()
-	
+	GameManager.hp=GameManager.hp-20
+	#播放聚餐声音
+	SoundManager.play_sound(EAT_1)
 	pass
 	
 	
@@ -94,7 +96,7 @@ func _buttonListClick(item):
 
 func trainBegin():
 	control._show_button_5_yellow(1)	
-
+	
 
 func endtrain0():
 	control._show_button_5_yellow(-1)

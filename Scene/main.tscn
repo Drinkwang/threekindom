@@ -289,6 +289,10 @@ horizontal_alignment = 2
 visible = false
 
 [node name="ruleBook" parent="CanvasBook" instance=ExtResource("12_phx3k")]
+offset_left = 956.0
+offset_top = 471.0
+offset_right = 996.0
+offset_bottom = 511.0
 context = "士族生存法则
 1.士族必须和控制家乡的军阀合作,士族如果对军阀感到不满，有可能会让军阀“自然”死亡...
 

@@ -92,12 +92,21 @@ grow_vertical = 2
 layout_mode = 2
 theme_type_variation = &"HeaderLarge"
 text = "进入游戏你需要了解的背景：(滑动到底部可以开始游戏)
-  游戏背景参照《三国志》和《英雄记》二本资料为主，
-尽力和史实贴切，但不免有想象和文学作品杜撰的痕迹，
-所以该游戏名字包含“阴谋论”三个字，请各位玩家将
-其当成某种演义，并参照下面的介绍
---------------------------------------------------
+  这里以《三国志》和《英雄记》为基石，融合了丰富的
+想象力与独特的文学创作。我们邀请你从“阴谋论”的视
+角探索这段历史，体验一个充满策略与权谋的传奇时代。
+在这个世界中，历史人物与事件交织着未知的秘密与背
+后的算计。请做好准备，揭开那些隐藏在历史缝隙中的
+真相。
 "
+autowrap_mode = 3
+
+[node name="split7" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 48
+text = "-------------------------------------------------"
+autowrap_mode = 3
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Control/VBoxContainer"]
 layout_mode = 2

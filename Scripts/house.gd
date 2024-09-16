@@ -58,29 +58,28 @@ func _initData():
 		"visible":"true"
 	}
 	]
-	const daybgm = preload("res://Asset/bgm/白天在家or办公.wav")
-	#const 街道 = preload("res://Asset/bgm/街道.mp3")
+#const 街道 = preload("res://Asset/bgm/街道.mp3")
 	control._processList(initData)
 	GameManager.currenceScene=self
 	if GameManager.sav.day==1:
 		if(GameManager.sav.have_event["firstmeetchenqun"]==false):
 			GameManager.sav.have_event["firstmeetchenqun"]=true
 			policyPanel.contextEX="1.前往府邸看看堆积的工作\n2.前往演武场会见自己的老下属"
-			#daybgm.set_loop_mode(1)
-			var bgm:AudioStreamPlayer=SoundManager.play_music(daybgm)
+	
+		
 		
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
 	if GameManager.sav.day==2:
 		if GameManager.sav.have_event["dayTwoInit"]==false:
 			GameManager.sav.have_event["dayTwoInit"]=true
-			control._show_button_5_yellow(3)
+			control._show_button_5_yellow(1)
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新的一天")
 			policyPanel.contextEX="1.前往府邸回见不同派系的领导人\n2.前往议会通过昨天立的法律"
 			GameManager.sav.destination="府邸"
 		#设置des
 	elif GameManager.sav.day==3:
 		if GameManager.sav.have_event["dayThreeInit"]==false:
-			control._show_button_5_yellow(3)
+			control._show_button_5_yellow(1)
 			GameManager.sav.have_event["dayThreeInit"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第三天")
 			policyPanel.contextEX="1.前往城外军事驻地，讨伐土匪"
@@ -94,7 +93,7 @@ func _initData():
 		if GameManager.sav.have_event["firstVisitScholars"]==false:
 			GameManager.sav.have_event["firstVisitScholars"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第四天")
-			control._show_button_5_yellow(3)			
+			control._show_button_5_yellow(1)			
 			policyPanel.contextEX="1.前往城外及军事驻地，选择拜见大儒郑玄"
 		
 		if GameManager.sav.have_event["firstVisitScholarsEnd"]==true:	
@@ -115,10 +114,14 @@ func _initData():
 		
 		#将政务面板更新 里面列举了一堆list
 	#如果没见过陈登把control隐藏，如果见过了陈登 control不隐藏
-	
-
+const daybgm = preload("res://Asset/bgm/白天在家or办公.wav")	
+const nightbgm = preload("res://Asset/bgm/夜晚在家.wav")
 func post_transition():
 	print("fadedone")
+	if GameManager.hp<=20:
+		SoundManager.play_music(nightbgm)
+	else:
+		SoundManager.play_music(daybgm)
 	_initData()
 
 
@@ -153,6 +156,7 @@ func _buttonListClick(item):
 			if GameManager.sav.have_event["xxxx"]==false:
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"xxxx")	
 				return		
+		control._show_button_5_yellow(-1)
 		GameManager._rest()
 
 		#FancyFade.new().custom_fade(load("res://Scene/sleepBlank.tscn").instantiate(), 2, DISSOLVE_IMAGE)

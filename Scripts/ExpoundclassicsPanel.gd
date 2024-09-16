@@ -76,8 +76,12 @@ func _on_button_button_down():
 func _on_timer_timeout():
 	title.text="请点击图书并获得积分"
 	pass # Replace with function body.
-
-
+const STREET = preload("res://Asset/bgm/street.wav")
+const MINISTREET = preload("res://Asset/bgm/ministreet.wav")
 func _on_exit_button_button_down():
 	self.hide()
+	if GameManager.sav.day<=4:
+		SoundManager.play_music(MINISTREET)
+	else:
+		SoundManager.play_music(STREET)		
 	pass # Replace with function body.

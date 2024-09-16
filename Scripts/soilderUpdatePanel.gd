@@ -5,7 +5,7 @@ extends Control
 @onready var control_3 = $PanelContainer/orderPanel/VBoxContainer/orderVbox/Control_3
 
 
-var costhp=30
+var costhp=10
 
 
 

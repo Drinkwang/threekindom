@@ -14,7 +14,10 @@ func _on_exit_button_down():
 @onready var control = $Control
 
 func _on_begin_button_down():
+	SoundManager.play_sound(sounds.confiresound)
+
 	control.show()
+	control._initData()
 #policyPanel.show()
 
 
@@ -37,4 +40,20 @@ func _on_option_button_item_selected(index):
 		TranslationServer.set_locale("ja")
 	elif index==4:
 		TranslationServer.set_locale("ru")
+	
+	pass # Replace with function body.
+
+
+
+
+func _on_continue_mouse_entered():
+	SoundManager.play_sound(sounds.hoversound)
+
+
+func _on_begin_mouse_entered():
+	SoundManager.play_sound(sounds.hoversound)
+
+
+func _on_exit_mouse_entered():
+	SoundManager.play_sound(sounds.hoversound)
 	pass # Replace with function body.

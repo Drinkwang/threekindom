@@ -16,3 +16,4 @@ const SFX_FAST_UI_CLICK = preload("res://Asset/sound/ui/SFX_FastUiClick_13_wav.w
 const CLICKHERO = preload("res://Asset/sound/ui/clickhero.wav")
 const SFX_FAST_UI_CLICK_MECHANICAL_03_WAV = preload("res://Asset/sound/ui/SFX_FastUiClick_Mechanical_03_wav.wav")
 const ZHUANPAN = preload("res://Asset/sound/ui/zhuanpan.wav")
+const COLLECT_SMALL_JEWEL_1 = preload("res://Asset/sound/ui/Collect_Small_Jewel_1.wav")

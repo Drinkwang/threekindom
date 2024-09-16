@@ -26,11 +26,14 @@ func streetTwo():
 
 func streetThree():
 	pass
-#const 街道 = preload("res://Asset/bgm/街道.mp3")	
+	
+const MINISTREET = preload("res://Asset/bgm/ministreet.wav")
+#const 街道 = preload("res://Asset/bgm/街道.mp3")	"res://Asset/bgm/ministreet.wav"
 func post_transition():
 	
 	#print("fadedone")
 	_initData()
+	SoundManager.play_music(MINISTREET)
 	if GameManager.sav.day==1:
 		if(GameManager.sav.have_event["firststreet"]==true):
 			if(GameManager.sav.have_event["secondStreet"]==false):
@@ -175,12 +178,16 @@ func visitDrill():
 	else:
 		SceneManager.changeScene(SceneManager.roomNode.DRILL_GROUND,2)
 	
-
+const visitbgm = preload("res://Asset/bgm/拜访大儒.wav")
 func visitScholar():
+	SoundManager.play_music(visitbgm)
 	#PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeInAndOut)
 	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeIn)
 	
 	await 0.5
+	#第一次访问显示大儒辩经
+	#播放高山流水音效
+	#离开大儒辩经，取消高山流水音效
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大儒辩经的剧情")
 	#SceneManager.changeScene(SceneManager.roomNode.DRILL_GROUND,2)
 	

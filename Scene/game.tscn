@@ -85,6 +85,10 @@ popup/item_4/text = "俄语"
 popup/item_4/id = 4
 
 [connection signal="button_down" from="exit" to="." method="_on_exit_button_down"]
+[connection signal="mouse_entered" from="exit" to="." method="_on_exit_mouse_entered"]
 [connection signal="button_down" from="begin" to="." method="_on_begin_button_down"]
+[connection signal="mouse_entered" from="begin" to="." method="_on_begin_mouse_entered"]
 [connection signal="button_down" from="continue" to="." method="_on_continue_button_down"]
+[connection signal="mouse_entered" from="continue" to="." method="_on_continue_mouse_entered"]
+[connection signal="mouse_entered" from="Control" to="." method="_on_control_mouse_entered"]
 [connection signal="item_selected" from="OptionButton" to="." method="_on_option_button_item_selected"]

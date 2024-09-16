@@ -1,5 +1,6 @@
 @tool
 extends Control
+@onready var reallabel = $"TextureRect/realBox/正常文本"
 
 @onready var label = $TextureRect/Label
 
@@ -21,9 +22,10 @@ func _ready():
 	var currencelanguage=TranslationServer.get_locale()
 	if currencelanguage=="en":
 		label.add_theme_font_size_override("font_size", 34)
+		reallabel.add_theme_font_size_override("font_size", 38)
 	elif currencelanguage=="zh":
 		label.add_theme_font_size_override("font_size", 40)
-
+		reallabel.add_theme_font_size_override("font_size", 40)
 		#label.font_size=36
 	print(TranslationServer.get_locale()) 
 	# Replace with function body.
