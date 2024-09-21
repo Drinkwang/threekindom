@@ -34,7 +34,7 @@ func _on_v_slider_value_changed(value):
 	elif lan=="en":
 		baseValue=40
 	elif lan=="ru":
-		pass
+		baseValue=27
 	elif lan=="lzh":
 		baseValue=27
 	elif lan=="ja":

@@ -33,7 +33,7 @@ func _ready():
 
 func update_ui():
 	var selected_general = GameManager.generals.values()[selected_general_index]
-	label.text="选择{name}进行练兵升级，这大概需要花费{num}金，升级成功率100%".format({"name":selected_general.name,"num":selected_general.level*50})
+	label.text=tr("选择{name}进行练兵升级，这大概需要花费{num}金，升级成功率100%").format({"name":tr(selected_general.name),"num":selected_general.level*50})
 	control_1.updateContext(0)
 	control_2.updateContext(1)	
 	control_3.updateContext(2)	

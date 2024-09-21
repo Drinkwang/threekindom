@@ -412,7 +412,7 @@ func settleGame(end,issuccess):
 @onready var Txtcount = $count
 	
 func refreshPage():
-	enemy.namelv="(当前战力:{targetValue})".format({"targetValue": GameManager.sav.battleTasks[taskIndex].index*50}) 
+	enemy.namelv=tr("(当前战力:{targetValue})").format({"targetValue": GameManager.sav.battleTasks[taskIndex].index*50}) 
 	var btresult= GameManager.BattleResult
 	var txt
 	for i in range(0,GameManager.sav.battleResults.size()):

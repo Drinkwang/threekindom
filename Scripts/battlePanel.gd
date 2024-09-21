@@ -51,6 +51,9 @@ func endBattle():
 
 
 func _refreshGeneral():
+	control_1.updateContext(0)
+	control_2.updateContext(1)	
+	control_3.updateContext(2)	
 	if GameManager.sav.UseGeneral.size()>0:
 		for ele in GameManager.sav.UseGeneral:
 			var index=GameManager.generals.values().find(ele)
@@ -84,7 +87,7 @@ func _refreshSlider():
 func initTask():
 	
 	var currence= GameManager.sav.battleTasks[battle_circle.taskIndex]
-	var context="任务条件："
+	var context=tr("任务条件：")
 	var index=1;
 	var taskcontext=""
 	var targetValue
@@ -93,22 +96,22 @@ func initTask():
 		if task.res=="coin":
 			var after=str(targetValue)+"目标值)"
 			if task.symbol==GameManager.opcost.greater:
-				taskcontext="\n"+str(index)+".工程战:"+"(资金超过{targetValue})".format({"targetValue": targetValue})
+				taskcontext="\n"+str(index)+tr(".工程战:")+tr("(资金超过{targetValue})").format({"targetValue": targetValue})
 				pass
 			elif task.symbol==GameManager.opcost.equal:
-				taskcontext="\n"+str(index)+".特种战:"+"(资金等于{targetValue})".format({"targetValue": targetValue})
+				taskcontext="\n"+str(index)+tr(".特种战:")+tr("(资金等于{targetValue})").format({"targetValue": targetValue})
 				pass
 			elif task.symbol==GameManager.opcost.less:
-				taskcontext="\n"+str(index)+".游记战:"+"(资金小于{targetValue} 但大于{targetValue2})".format({"targetValue": targetValue,"targetValue2":int(floor(targetValue*2/3))})
+				taskcontext="\n"+str(index)+tr(".游击战:")+tr("(资金小于{targetValue} 但大于{targetValue2})").format({"targetValue": targetValue,"targetValue2":int(floor(targetValue*2/3))})
 				pass
 		pass
 		if task.res=="human":
 			if task.symbol==GameManager.opcost.greater:
-				taskcontext="\n"+str(index)+".遭遇战:"+"(兵力超过{targetValue})".format({"targetValue": targetValue})
+				taskcontext="\n"+str(index)+tr(".遭遇战:")+tr("(兵力超过{targetValue})").format({"targetValue": targetValue})
 			elif task.symbol==GameManager.opcost.equal:
-				taskcontext="\n"+str(index)+".奇兵任务:"+"(兵力等于{targetValue})".format({"targetValue": targetValue})
+				taskcontext="\n"+str(index)+tr(".奇兵任务:")+tr("(兵力等于{targetValue})").format({"targetValue": targetValue})
 			elif task.symbol==GameManager.opcost.less:
-				taskcontext="\n"+str(index)+".防守战:"+"(兵力小于{targetValue} 但大于{targetValue2})".format({"targetValue": targetValue,"targetValue2":int(floor(targetValue*3/5))})
+				taskcontext="\n"+str(index)+tr(".防守战:")+tr("(兵力小于{targetValue} 但大于{targetValue2})").format({"targetValue": targetValue,"targetValue2":int(floor(targetValue*3/5))})
 		pass
 		context=context+taskcontext
 	pass

@@ -54,10 +54,10 @@ button_mask = 7
 
 [node name="Label2" type="Label" parent="TextureRect"]
 layout_mode = 0
-offset_left = 4.0
+offset_left = -96.0
 offset_top = 309.0
-offset_right = 304.0
-offset_bottom = 331.0
+offset_right = 411.0
+offset_bottom = 349.0
 theme_override_font_sizes/font_size = 40
 horizontal_alignment = 1
 

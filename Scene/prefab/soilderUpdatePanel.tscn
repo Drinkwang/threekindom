@@ -72,9 +72,7 @@ layout_mode = 2
 layout_mode = 2
 theme_override_font_sizes/font_size = 31
 text = "请选择你的武将进行练兵
-（练兵有一定概率提升武将等级）
-
-"
+（练兵有一定概率提升武将等级）"
 autowrap_mode = 2
 
 [node name="orderVbox" type="HBoxContainer" parent="PanelContainer/orderPanel/VBoxContainer"]
@@ -107,7 +105,6 @@ layout_mode = 2
 [node name="Label" type="Label" parent="PanelContainer/orderPanel/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 31
-text = "选择赵云进行练兵升级，这大概需要花费50金，升级成功率100%"
 autowrap_mode = 2
 
 [node name="Control" type="Control" parent="PanelContainer/orderPanel/VBoxContainer"]

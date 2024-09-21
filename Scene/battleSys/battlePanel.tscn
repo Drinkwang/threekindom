@@ -89,9 +89,7 @@ size_flags_stretch_ratio = 0.0
 [node name="Label2" type="Label" parent="PanelContainer/orderPanel/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 31
-text = "请选择你的出征将领：
-
-"
+text = "请选择你的出征将领："
 autowrap_mode = 2
 
 [node name="orderVbox" type="HBoxContainer" parent="PanelContainer/orderPanel/VBoxContainer"]
@@ -143,56 +141,13 @@ tab_count = 2
 tab_0/title = "命令面板"
 tab_1/title = "法律法规"
 
-[node name="Control_1" parent="." instance=ExtResource("3_3ya2h")]
-custom_minimum_size = Vector2(380, 0)
-layout_mode = 2
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 356.0
-offset_top = 295.0
-offset_right = 736.0
-offset_bottom = 745.0
-scale = Vector2(0.5, 0.5)
-headImg = ExtResource("4_v76eo")
-namelv = "关羽：lv1"
-repImg = 1
-
-[node name="Control_2" parent="." instance=ExtResource("3_3ya2h")]
-custom_minimum_size = Vector2(380, 0)
-layout_mode = 2
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 569.0
-offset_top = 299.0
-offset_right = 949.0
-offset_bottom = 749.0
-scale = Vector2(0.5, 0.5)
-headImg = ExtResource("5_7n0ga")
-namelv = "张飞:lv1"
-repImg = 2
-
-[node name="Control_3" parent="." instance=ExtResource("3_3ya2h")]
-custom_minimum_size = Vector2(380, 0)
-layout_mode = 2
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 798.0
-offset_top = 303.0
-offset_right = 1178.0
-offset_bottom = 751.0
-scale = Vector2(0.465, 0.465)
-headImg = ExtResource("4_v76eo")
-namelv = "赵云:lv1"
-
 [node name="TaskLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 1109.0
+offset_left = 1041.0
 offset_top = 768.0
 offset_right = 1594.0
 offset_bottom = 912.0
+theme_override_constants/line_spacing = -1
 theme_override_font_sizes/font_size = 31
 text = "任务条件：
 1.
@@ -243,8 +198,7 @@ offset_right = 875.0
 offset_bottom = 660.0
 mouse_force_pass_scroll_events = false
 theme_override_font_sizes/font_size = 31
-text = "士兵人数：
-"
+text = "士兵人数："
 autowrap_mode = 2
 
 [node name="sliderlabel2" type="Label" parent="."]
@@ -261,9 +215,52 @@ offset_bottom = 161.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 31
-text = "资金数：
-"
+text = "资金数："
 autowrap_mode = 2
+
+[node name="Control_1" parent="." instance=ExtResource("3_3ya2h")]
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 356.0
+offset_top = 295.0
+offset_right = 736.0
+offset_bottom = 745.0
+scale = Vector2(0.5, 0.5)
+headImg = ExtResource("4_v76eo")
+namelv = "关羽：lv1"
+repImg = 1
+
+[node name="Control_2" parent="." instance=ExtResource("3_3ya2h")]
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 569.0
+offset_top = 299.0
+offset_right = 949.0
+offset_bottom = 749.0
+scale = Vector2(0.5, 0.5)
+headImg = ExtResource("5_7n0ga")
+namelv = "张飞:lv1"
+repImg = 2
+
+[node name="Control_3" parent="." instance=ExtResource("3_3ya2h")]
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 798.0
+offset_top = 303.0
+offset_right = 1178.0
+offset_bottom = 751.0
+scale = Vector2(0.465, 0.465)
+headImg = ExtResource("4_v76eo")
+namelv = "赵云:lv1"
 
 [node name="coinSlider" type="HSlider" parent="."]
 layout_mode = 1
@@ -283,26 +280,6 @@ offset_right = 907.0
 offset_bottom = 547.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="TextureButton" type="TextureButton" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 643.0
-offset_top = -447.0
-offset_right = 707.0
-offset_bottom = -383.0
-grow_horizontal = 2
-grow_vertical = 2
-texture_normal = ExtResource("7_fydxo")
-texture_pressed = ExtResource("7_fydxo")
-texture_hover = ExtResource("7_fydxo")
-texture_disabled = ExtResource("7_fydxo")
-texture_focused = ExtResource("7_fydxo")
-stretch_mode = 0
 
 [node name="pointGroup" type="Control" parent="."]
 layout_mode = 1
@@ -495,6 +472,26 @@ offset_right = 937.0
 offset_bottom = 114.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 643.0
+offset_top = -447.0
+offset_right = 707.0
+offset_bottom = -383.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("7_fydxo")
+texture_pressed = ExtResource("7_fydxo")
+texture_hover = ExtResource("7_fydxo")
+texture_disabled = ExtResource("7_fydxo")
+texture_focused = ExtResource("7_fydxo")
+stretch_mode = 0
 
 [connection signal="button_down" from="PanelContainer/orderPanel/VBoxContainer/HBoxContainer/Button" to="." method="_on_button_button_down"]
 [connection signal="tab_button_pressed" from="TabBar" to="." method="_on_tab_bar_tab_button_pressed"]

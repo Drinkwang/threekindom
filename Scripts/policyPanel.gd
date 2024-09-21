@@ -70,7 +70,7 @@ func _on_control_1_gui_input(event):
 		control_1.check_box.button_pressed=true
 		control_2.check_box.button_pressed=false
 		control_3.check_box.button_pressed=false
-		label.text=control_1.context+":"+control_1.detail
+		label.text=tr(control_1.context)+":"+tr(control_1.detail)
 
 
 func _on_control_2_gui_input(event):
@@ -84,7 +84,7 @@ func _on_control_2_gui_input(event):
 		control_1.check_box.button_pressed=false
 		control_2.check_box.button_pressed=true
 		control_3.check_box.button_pressed=false
-		label.text=control_2.context+":"+control_2.detail	
+		label.text=tr(control_2.context)+":"+tr(control_2.detail)	
 
 
 func _on_control_3_gui_input(event):
@@ -98,7 +98,7 @@ func _on_control_3_gui_input(event):
 		control_1.check_box.button_pressed=false
 		control_2.check_box.button_pressed=false
 		control_3.check_box.button_pressed=true
-		label.text=control_3.context+":"+control_3.detail	
+		label.text=tr(control_3.context)+":"+tr(control_3.detail)	
 
 func bancontrol(_index,status):
 	#get("ban%d"%index)=boolvalue

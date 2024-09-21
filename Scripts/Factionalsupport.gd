@@ -12,7 +12,7 @@ func _ready():
 	
 func init(data:cldata):
 	pass
-	label.text=data._name+":%d"%data._num_all+"(%d)"%data._num_rt
+	label.text=tr(data._name)+":%d"%data._num_all+"(%d)"%data._num_rt
 	#self._set_size(Vector2(panel_container.size.x+texture_rect_2.size.x,texture_rect_2.size.y+20))
 
 

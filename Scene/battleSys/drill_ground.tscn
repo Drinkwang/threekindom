@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bkwbm7n7vpjoj" path="res://Asset/城镇建筑/aitest2.png" id="4_x0o7l"]
 [ext_resource type="PackedScene" uid="uid://bhu5hq8kx8pov" path="res://addons/inventory_example/inventories/simple/InventoryUI.tscn" id="6_cu7sp"]
 [ext_resource type="PackedScene" uid="uid://bw52ymer7ngwu" path="res://Scene/prefab/gapanel.tscn" id="7_fpvim"]
-[ext_resource type="Texture2D" uid="uid://doqmi4o6negde" path="res://Asset/other/聚餐.jpg" id="8_nik30"]
+[ext_resource type="Texture2D" uid="uid://tyir1850nr6p" path="res://Asset/other/聚餐.png" id="8_phhxu"]
 [ext_resource type="PackedScene" uid="uid://ditcwds6nu8ga" path="res://Scene/prefab/soilderUpdatePanel.tscn" id="9_02127"]
 [ext_resource type="PackedScene" uid="uid://cjsb43uugkud4" path="res://Scene/battleSys/battlePanel.tscn" id="10_gfhv4"]
 [ext_resource type="FontFile" uid="uid://qv74ebpr4i31" path="res://Asset/Font/VonwaonBitmap-16px.ttf" id="11_014y5"]
@@ -123,7 +123,7 @@ offset_left = 9.0
 offset_top = 5.0
 offset_right = 9.0
 offset_bottom = 5.0
-txt = ExtResource("8_nik30")
+txt = ExtResource("8_phhxu")
 contextEX = "关羽、张飞、赵云现在可以被你调用！
 (或许将军可以试试练兵功能来快速提升武将等级）"
 titleEX = "老兵饭局："

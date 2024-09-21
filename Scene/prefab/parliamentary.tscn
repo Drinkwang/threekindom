@@ -57,7 +57,7 @@ text = "本地派:外来派"
 
 [node name="Label2" type="Label" parent="PanelContainer/Label"]
 layout_mode = 2
-offset_left = -287.0
+offset_left = -556.0
 offset_top = 76.0
 offset_right = -32.0
 offset_bottom = 632.0
@@ -77,39 +77,35 @@ horizontal_alignment = 2
 
 [node name="p1" type="Label" parent="PanelContainer/Label/Label2"]
 layout_mode = 0
-offset_left = 243.0
-offset_top = -1.0
-offset_right = 498.0
-offset_bottom = 555.0
+offset_left = 497.0
+offset_top = 2.0
+offset_right = 752.0
+offset_bottom = 558.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_constants/line_spacing = 20
 theme_override_font_sizes/font_size = 51
-text = "
-"
 horizontal_alignment = 1
 
 [node name="p2" type="Label" parent="PanelContainer/Label/Label2"]
 layout_mode = 0
-offset_left = 445.0
-offset_top = -5.0
-offset_right = 700.0
-offset_bottom = 551.0
+offset_left = 683.0
+offset_top = -2.0
+offset_right = 938.0
+offset_bottom = 554.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_constants/line_spacing = 20
 theme_override_font_sizes/font_size = 51
-text = "
-"
 horizontal_alignment = 1
 
 [node name="p3" type="Label" parent="PanelContainer/Label/Label2"]
 visible = false
 layout_mode = 0
-offset_left = 676.0
-offset_top = 3.0
-offset_right = 931.0
-offset_bottom = 559.0
+offset_left = 914.0
+offset_top = 6.0
+offset_right = 1169.0
+offset_bottom = 562.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_constants/line_spacing = 20
@@ -123,9 +119,9 @@ horizontal_alignment = 1
 
 [node name="o1" type="Label" parent="PanelContainer/Label/Label2"]
 layout_mode = 0
-offset_left = 243.0
+offset_left = 497.0
 offset_top = 298.0
-offset_right = 498.0
+offset_right = 752.0
 offset_bottom = 566.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
