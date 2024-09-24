@@ -38,10 +38,22 @@ func _ready():
 	#初始化玩家坐标系
 	datas[4].radial_initial_angle=btdatas[4].initPos
 	datas[4].radial_fill_degrees=btdatas[4].radian
-	
+	changeLanguage()
 	refreshPage()
-	
-	
+const NOT_JAM_UI_CONDENSED_16 = preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf")	
+func changeLanguage():
+	var currencelanguage=TranslationServer.get_locale()
+	if currencelanguage=="ja":
+		pass
+	elif currencelanguage=="ru":
+		$"VBoxContainer/无风险/Label".add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
+		$"VBoxContainer/低风险/Label".add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
+		#task_label.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
+		$"VBoxContainer/低风险2/Label".add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
+		$"VBoxContainer/低风险3/Label".add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
+		$"VBoxContainer/成功率/Label".add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
+	else:
+		pass	
 	
 var taskIndex:int=0
 

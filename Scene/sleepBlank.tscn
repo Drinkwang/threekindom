@@ -4,7 +4,7 @@
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_rbaqb")
-wisdoms = Array[String](["为学日益，为道日损", "吾曰三省吾身 为人谋而不忠乎 与朋友交而不信乎 传不习乎", "天行健，君子以自强不息", "以德服人者，中心悦而诚服也。", "以德服人者，中心悦而诚服也。", "知己知彼，百战不殆.", "大丈夫当马革裹尸还。", "勿以善小而不为，勿以恶小而为之。"])
+wisdoms = Array[String](["为学日益，为道日损", "吾曰三省吾身 为人谋而不忠乎 与朋友交而不信乎 传不习乎", "天行健，君子以自强不息", "以德服人者，中心悦而诚服也。", "‌水至清则无鱼，人至察则无徒", "知己知彼，百战不殆.", "大丈夫当马革裹尸还。", "勿以善小而不为，勿以恶小而为之。"])
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -23,6 +23,8 @@ offset_bottom = 287.0
 scale = Vector2(4, 4)
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
+text_overrun_behavior = 3
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0

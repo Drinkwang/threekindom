@@ -18,8 +18,21 @@ func _ready():
 		
 		pass
 		
-	pass # Replace with function body.
+	pass
+	changeLanguage()
+	 # Replace with function body.
 
+
+func changeLanguage():
+	var currencelanguage=TranslationServer.get_locale()
+	if currencelanguage=="ja":
+		pass
+	elif currencelanguage=="ru":
+		tab_bar.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
+		label.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
+			
+	else:
+		pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

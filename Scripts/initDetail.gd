@@ -1,10 +1,16 @@
 extends Control
 
+
 func _initData():
+	v_slider.value=100
+	
+
+	
 	_on_v_slider_value_changed(100)
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_initData()
+	pass
+#	_initData()
 
 	pass # Replace with function body.
 
@@ -34,11 +40,11 @@ func _on_v_slider_value_changed(value):
 	elif lan=="en":
 		baseValue=40
 	elif lan=="ru":
-		baseValue=27
+		baseValue=72
 	elif lan=="lzh":
-		baseValue=27
+		baseValue=32
 	elif lan=="ja":
-		baseValue=27
+		baseValue=38
 	var new_height = baseValue * (100-value)
 	v_box_container.position= Vector2(40, 20-new_height)
 

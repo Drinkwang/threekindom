@@ -64,7 +64,7 @@ func _initData():
 	if GameManager.sav.day==1:
 		if(GameManager.sav.have_event["firstmeetchenqun"]==false):
 			GameManager.sav.have_event["firstmeetchenqun"]=true
-			policyPanel.contextEX="1.前往府邸看看堆积的工作\n2.前往演武场会见自己的老下属"
+			policyPanel.contextEX=tr("1.前往府邸看看堆积的工作\n2.前往演武场会见自己的老下属")
 	
 		
 		
@@ -74,7 +74,7 @@ func _initData():
 			GameManager.sav.have_event["dayTwoInit"]=true
 			control._show_button_5_yellow(1)
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新的一天")
-			policyPanel.contextEX="1.前往府邸回见不同派系的领导人\n2.前往议会通过昨天立的法律"
+			policyPanel.contextEX=tr("1.前往府邸回见不同派系的领导人\n2.前往议会通过昨天立的法律")
 			GameManager.sav.destination="府邸"
 		#设置des
 	elif GameManager.sav.day==3:
@@ -82,7 +82,7 @@ func _initData():
 			control._show_button_5_yellow(1)
 			GameManager.sav.have_event["dayThreeInit"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第三天")
-			policyPanel.contextEX="1.前往城外军事驻地，讨伐土匪"
+			policyPanel.contextEX=tr("1.前往城外军事驻地，讨伐土匪")
 			GameManager.sav.destination="城门-军事驻地"
 		#军事行动 镇压土匪
 		#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新的一天")
@@ -94,13 +94,13 @@ func _initData():
 			GameManager.sav.have_event["firstVisitScholars"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第四天")
 			control._show_button_5_yellow(1)			
-			policyPanel.contextEX="1.前往城外及军事驻地，选择拜见大儒郑玄"
+			policyPanel.contextEX=tr("1.前往城外及军事驻地，选择拜见大儒郑玄")
 		
 		if GameManager.sav.have_event["firstVisitScholarsEnd"]==true:	
 			if GameManager.sav.have_event["firstNewEnd"]==false:
 				GameManager.sav.have_event["firstNewEnd"]=true
 				GameManager.restFadeScene=SceneManager.BOULEUTERION
-				GameManager.restLabel="与此同时"
+				GameManager.restLabel=tr("与此同时")
 				GameManager._rest(false)
 				#跳转到议会厅触发剧情 先跳转到rest，然后跳转议会厅触发剧情
 				#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第四天")

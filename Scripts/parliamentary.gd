@@ -1,9 +1,11 @@
 extends Control
 #创建3个类 代表三个派系 初始解锁2个
-@onready var p_1 = $PanelContainer/Label/Label2/p1
-@onready var p_2 = $PanelContainer/Label/Label2/p2
-@onready var p_3 = $PanelContainer/Label/Label2/p3
-@onready var o_1 = $PanelContainer/Label/Label2/o1
+@onready var p_1 = $p1
+@onready var p_2 = $p2
+@onready var p_3 = $p3
+@onready var o_1 = $o1
+@onready var label_2 = $Label2
+@onready var title = $PanelContainer/Label
 
 const BENTUPAI = preload("res://Asset/tres/bentupai.tres")
 const HAOZUPAI = preload("res://Asset/tres/haozupai.tres")
@@ -13,10 +15,28 @@ func _ready():
 	p_1.text="{NP}\n{RT}\n{SP}\n{OP}".format({"NP": "__", "RT":"__","SP":"__","OP":"__"})  #本土派
 	p_2.text="{NP}\n{RT}\n{SP}\n{OP}".format({"NP": "__", "RT":"__","SP":"__","OP":"__"})  #外来派
 	enter()
+	refreshSysLanguageFont()
 	pass # Replace with function body.
 
 #在进入瞬间判断出结果，然后做一个动画
 
+func refreshSysLanguageFont():
+	var currencelanguage=TranslationServer.get_locale()
+	if currencelanguage=="ja":
+		label_2.add_theme_constant_override("line_spacing",7)
+		
+	elif currencelanguage=="lzh":
+		label_2.add_theme_constant_override("line_spacing",4)	
+	elif currencelanguage=="ru":
+		var rufont=preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf")
+		label_2.add_theme_font_override("font",rufont)	
+		label_2.add_theme_constant_override("line_spacing",5)	
+		title.add_theme_font_override("font",rufont)	
+		label_2.position=Vector2(238,233)
+		#p_1.add_theme_font_override("font",rufont)	
+		#p_2.add_theme_font_override("font",rufont)	
+		#p_3.add_theme_font_override("font",rufont)	
+		#o_1.add_theme_font_override("font",rufont)	
 func enter():
 	o_1.text="{AS}\n{AP}\n{RATE}\n{FINAL}".format({"AS": "__", "AP":"__" ,"RATE":"__","FINAL":"__"})
 	
@@ -49,7 +69,7 @@ func enter():
 		isPass="通过"
 	else:
 		isPass="未通过"
-	o_1.text="{AS}\n{AP}\n{RATE}%\n{FINAL}".format({"AS": totalSp, "AP":totalOp ,"RATE":totalrate,"FINAL":isPass})
+	o_1.text="{AS}\n{AP}\n{RATE}%\n{FINAL}".format({"AS": totalSp, "AP":totalOp ,"RATE":totalrate,"FINAL":tr(isPass)})
 	
 	pass
 

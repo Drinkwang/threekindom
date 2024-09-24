@@ -116,9 +116,7 @@ offset_left = -1.0
 offset_top = -3.0
 offset_right = 39.0
 offset_bottom = 37.0
-
-[node name="parliamentaryDetail" parent="CanvasBook" instance=ExtResource("7_1m0jr")]
-visible = false
+metadata/_edit_use_anchors_ = true
 
 [node name="Control2" parent="CanvasBook" instance=ExtResource("7_3iegf")]
 offset_top = 741.0
@@ -130,6 +128,9 @@ offset_top = 737.0
 offset_right = -1584.0
 offset_bottom = -180.0
 size_flags_horizontal = 4
+
+[node name="parliamentaryDetail" parent="CanvasBook" instance=ExtResource("7_1m0jr")]
+visible = false
 
 [node name="ruleBook" parent="CanvasBook" instance=ExtResource("14_7v3lb")]
 visible = false

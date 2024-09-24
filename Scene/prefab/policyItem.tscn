@@ -69,7 +69,7 @@ offset_bottom = 330.0
 [node name="context" type="Label" parent="Panel"]
 layout_mode = 0
 offset_left = -1.0
-offset_top = 5.0
+offset_top = -29.0
 offset_right = 307.0
 offset_bottom = 32.0
 mouse_filter = 1

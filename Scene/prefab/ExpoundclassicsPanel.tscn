@@ -333,9 +333,9 @@ horizontal_alignment = 1
 [node name="title" type="Label" parent="."]
 visible = false
 layout_mode = 0
-offset_left = 555.0
+offset_left = 338.0
 offset_top = 449.0
-offset_right = 1372.0
+offset_right = 1590.0
 offset_bottom = 531.0
 theme_override_font_sizes/font_size = 81
 text = "请点击图书并获得积分"
@@ -365,11 +365,18 @@ texture_focused = ExtResource("5_g5bwt")
 stretch_mode = 0
 
 [node name="Button" type="Button" parent="."]
-layout_mode = 0
-offset_left = 599.0
-offset_top = 700.0
-offset_right = 1338.0
-offset_bottom = 921.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -353.0
+offset_top = 150.0
+offset_right = 386.0
+offset_bottom = 371.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_font_sizes/font_size = 76
 text = "点击开始游戏"
 

@@ -1,6 +1,6 @@
 extends baseComponent
 
-@onready var faction = $CanvasBook/faction
+
 @onready var control =$CanvasBook/Control
 @onready var yishimianban = $CanvasBook/yishimianban
 
@@ -8,6 +8,7 @@ const FancyFade = preload("res://addons/transitions/FancyFade.gd")
 
 @onready var mizhu = $"CanvasBook/糜竺"
 @onready var chendeng = $"CanvasBook/陈登"
+#@onready var context = $PanelContainer/MarginContainer/VBoxContainer/context
 
 #议事详细
 @onready var parliamentary_detail = $CanvasBook/parliamentaryDetail
@@ -19,6 +20,7 @@ const FancyFade = preload("res://addons/transitions/FancyFade.gd")
 	#	"img":"true"
 	#},
 
+@onready var faction = $CanvasBook/faction
 
 #将这个页面的操作面板显示并存档
 #dontwork
@@ -48,9 +50,24 @@ func _ready():
 	if GameManager.sav.day==4:
 		ymlShow()
 	super._ready()
+	changeLanguage()
 	#initData()
 		
+		
+		
+		
 	pass # Replace with function body.
+func changeLanguage():
+	var currencelanguage=TranslationServer.get_locale()	
+	if currencelanguage=="en":
+		pass
+	elif currencelanguage=="zh":
+		pass
+	elif currencelanguage=="ru":
+		faction.position=Vector2(5,728.545)
+		pass
+
+#@onready var faction = $CanvasBook/faction
 
 func _initFaction():
 	pass
@@ -171,7 +188,7 @@ func ymlShow():
 	
 	
 func ymlShowEnd():
-	GameManager.restLabel="没过多久，刘备也收到了来自徐州的密信"
+	GameManager.restLabel=tr("没过多久，刘备也收到了来自徐州的密信")
 	GameManager.restFadeScene=null
 	GameManager._rest()
 	pass

@@ -4,6 +4,8 @@ extends Control
 @export var datas:Array[cldata] 
 
 
+@onready var label = $PanelContainer/VBoxContainer/Label
+@onready var label_2 = $PanelContainer/VBoxContainer/Label2
 
 #var _name:String
 #var _num_all:int
@@ -13,6 +15,20 @@ func _ready():
 	var d:cldata=cldata.new()
 	#d.
 	_processList()
+	changeLanguage()
+	
+func changeLanguage():
+	var currencelanguage=TranslationServer.get_locale()
+	if currencelanguage=="ja":
+		pass
+	elif currencelanguage=="ru":
+		var newfont=preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf")
+		label.add_theme_font_override("font",newfont)
+		label_2	.add_theme_font_override("font",newfont)
+		label.add_theme_constant_override("line_spacing",-2)
+		label_2.add_theme_constant_override("line_spacing",-2)		
+	else:
+		pass
 
 @onready var v_box_container = $PanelContainer/VBoxContainer
 

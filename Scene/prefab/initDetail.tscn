@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cld4rbco4yjhr"]
+[gd_scene load_steps=11 format=3 uid="uid://cld4rbco4yjhr"]
 
 [ext_resource type="Script" path="res://Scripts/initDetail.gd" id="1_mv83i"]
 [ext_resource type="Theme" uid="uid://bklmr3xmk4m5u" path="res://global_theme.tres" id="2_iunj6"]
@@ -7,7 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://clxuefcy6a5oe" path="res://Asset/ui/paper_panel_1057_x_1067.png" id="4_pu3kb"]
 [ext_resource type="Texture2D" uid="uid://drj1r377gntrn" path="res://Asset/人物/糜竺睁眼.png" id="5_rvoul"]
 [ext_resource type="Texture2D" uid="uid://doh7mxtgy0hm2" path="res://Asset/人物/陈登睁眼.png" id="6_00m7i"]
-[ext_resource type="Texture2D" uid="uid://dgv8kx2a6722g" path="res://Asset/人物/刘备.jpg" id="7_no5te"]
+[ext_resource type="Texture2D" uid="uid://b2a42yeq66eeo" path="res://Asset/人物/刘备.png" id="7_k2fao"]
+[ext_resource type="Texture2D" uid="uid://prkfphd2t68q" path="res://Asset/人物/曹豹.png" id="8_bfamx"]
+[ext_resource type="Texture2D" uid="uid://82ywny4w3kcy" path="res://Asset/人物/小沛城池.png" id="9_vy6li"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -208,8 +210,7 @@ texture = ExtResource("4_pu3kb")
 [node name="img" type="TextureRect" parent="Control/VBoxContainer/HBoxContainer5"]
 custom_minimum_size = Vector2(81.775, 128.17)
 layout_mode = 2
-texture = ExtResource("7_no5te")
-expand_mode = 1
+texture = ExtResource("7_k2fao")
 
 [node name="Control3" type="Control" parent="Control/VBoxContainer/HBoxContainer5"]
 layout_mode = 2
@@ -245,7 +246,7 @@ texture = ExtResource("4_pu3kb")
 [node name="img" type="TextureRect" parent="Control/VBoxContainer/HBoxContainer6"]
 custom_minimum_size = Vector2(81.775, 128.17)
 layout_mode = 2
-texture = ExtResource("7_no5te")
+texture = ExtResource("8_bfamx")
 expand_mode = 1
 
 [node name="Control3" type="Control" parent="Control/VBoxContainer/HBoxContainer6"]
@@ -275,15 +276,14 @@ layout_mode = 2
 size_flags_horizontal = 10
 
 [node name="PanelExample1" type="Sprite2D" parent="Control/VBoxContainer/HBoxContainer7"]
-position = Vector2(608.25, 65.5)
-scale = Vector2(0.445556, 0.119025)
+position = Vector2(608.25, 64.2486)
+scale = Vector2(0.445556, 0.121371)
 texture = ExtResource("4_pu3kb")
 
 [node name="img" type="TextureRect" parent="Control/VBoxContainer/HBoxContainer7"]
 custom_minimum_size = Vector2(81.775, 128.17)
 layout_mode = 2
-texture = ExtResource("7_no5te")
-expand_mode = 1
+texture = ExtResource("9_vy6li")
 
 [node name="Control3" type="Control" parent="Control/VBoxContainer/HBoxContainer7"]
 layout_mode = 2

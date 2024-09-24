@@ -26,7 +26,11 @@ class_name battlePanel
 @onready var guild_8 = $"pointGroup/8"
 
 
+@onready var sliderlabel_1 = $sliderlabel1
+@onready var sliderlabel_2 = $sliderlabel2
+@onready var title = $PanelContainer/orderPanel/VBoxContainer/Label2
 
+@onready var select_detail = $PanelContainer/orderPanel/VBoxContainer/selectDetail
 
 var costhp=30
 # Called when the node enters the scene tree for the first time.
@@ -36,9 +40,21 @@ func _ready():
 	SignalManager.endReward.connect(endBattle)
 	battle_circle.isBoot=false
 	initTask()
+	changeLanguage()
 	pass # Replace with function body.
-
-
+const NOT_JAM_UI_CONDENSED_16 = preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf")
+func changeLanguage():
+	var currencelanguage=TranslationServer.get_locale()
+	if currencelanguage=="ja":
+		pass
+	elif currencelanguage=="ru":
+		sliderlabel_1.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
+		sliderlabel_2.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
+		#task_label.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
+		select_detail.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
+		title.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
+	else:
+		pass
 func endBattle():
 	battle_circle.selectgeneral=null
 	soild_slider.value=0

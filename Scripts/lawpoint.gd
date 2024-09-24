@@ -20,11 +20,28 @@ const _2_GREEN = preload("res://Scene/2_green.png")
 			$PanelContainer/MarginContainer/Label.text=value
 		
 
+var context_tr:String:
+	get:
+		return tr(context)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$PanelContainer/MarginContainer/Label.text=context
 	_initData()
+	changeLanguage()
 	pass # Replace with function body.
+
+
+func changeLanguage():
+	var currencelanguage=TranslationServer.get_locale()
+	if currencelanguage=="ja":
+		pass
+	elif currencelanguage=="ru":
+
+		$PanelContainer/MarginContainer/Label.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
+			
+	else:
+		pass
 
 @onready var texture_rect = $TextureRect2/TextureRect
 @onready var animation_player = $AnimationPlayer

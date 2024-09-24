@@ -41,9 +41,23 @@ func _ready():
 		
 	if(txt!=null):
 		img.texture=txt
-	pass # Replace with function body.
+	changeLanguage() # Replace with function body.
 
 
+func changeLanguage():
+	var currencelanguage=TranslationServer.get_locale()	
+	if currencelanguage=="en":
+		pass
+	elif currencelanguage=="zh":
+		pass
+	elif currencelanguage=="ru":
+		#label.add_theme_font_size_override("font_size", 34)
+		#reallabel.add_theme_font_size_override("font_size", 38)
+		title.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
+		context.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
+		context.add_theme_font_size_override("font_size", 38)
+		#reallabel.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
+	
 
 func showContext():
 	title.text=context

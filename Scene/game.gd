@@ -1,10 +1,23 @@
 extends Node2D
+@onready var option_button = $OptionButton
 
 const ARVOSTUS = preload("res://Asset/bgm/4- Arvostus.mp3")
 func _ready():
 	SoundManager.play_music(ARVOSTUS)
-	
-
+	var system_locale = OS.get_locale_language()
+	if system_locale=="zh_HK" or system_locale=="zh_TW":
+		#TranslationServer.set_locale("lzh")
+		option_button.select(1)
+	elif system_locale=="zh":
+		option_button.select(0)
+		#TranslationServer.set_locale(system_locale)
+	elif system_locale=="ja":
+		option_button.select(3)	
+	elif system_locale=="ru":
+		option_button.select(4)	
+	elif system_locale=="en":
+		option_button.select(2)			
+		
 func _on_exit_button_down():
 	get_tree().quit()
 	pass # Replace with function body.
@@ -15,8 +28,9 @@ func _on_exit_button_down():
 
 func _on_begin_button_down():
 	SoundManager.play_sound(sounds.confiresound)
-
+	
 	control.show()
+	#control._on_v_slider_value_changed(100)
 	control._initData()
 #policyPanel.show()
 

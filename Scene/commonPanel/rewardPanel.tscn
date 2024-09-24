@@ -58,6 +58,7 @@ autowrap_mode = 2
 layout_mode = 2
 theme_type_variation = &"HeaderLarge"
 horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="Margin" type="MarginContainer" parent="Control/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2

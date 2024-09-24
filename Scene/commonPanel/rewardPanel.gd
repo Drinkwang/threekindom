@@ -58,7 +58,7 @@ func showTitileReward(context):
 	imgTarget.texture=victoryPng
 	self.show()
 	var titleContext=context
-	titleContext=titleContext+",获得以下道具:"
+	titleContext=titleContext+tr(",获得以下道具:")
 	title.text=titleContext	
 func showReward():
 	imgTarget.texture=victoryPng
@@ -67,15 +67,15 @@ func showReward():
 
 	var titleContext=""
 	if(coinCost>0 and soilderCost>0):
-		titleContext=sucuussContext+TxtbothCost.format({"coin":str(coinCost),"soilder":str(soilderCost)})
+		titleContext=tr(sucuussContext)+tr(TxtbothCost).format({"coin":str(coinCost),"soilder":str(soilderCost)})
 		pass
 	elif coinCost>0 and soilderCost==0:
-		titleContext=sucuussContext+TxtcoinCost.format({"coin":str(coinCost)})
+		titleContext=tr(sucuussContext)+tr(TxtcoinCost).format({"coin":str(coinCost)})
 	elif coinCost==0 and soilderCost>0:
-		titleContext=sucuussContext+TxtSoiderCost.format({"soilder":str(soilderCost)})
+		titleContext=tr(sucuussContext)+tr(TxtSoiderCost).format({"soilder":str(soilderCost)})
 	elif coinCost==0 and soilderCost==0:
-		titleContext=sucuussContext+TxtNoCost
-	titleContext=titleContext+",获得以下道具:"
+		titleContext=tr(sucuussContext)+tr(TxtNoCost)
+	titleContext=titleContext+tr(",获得以下道具:")
 	title.text=titleContext
 	#播放音效，显示1-2个道具
 	#gird
@@ -94,14 +94,14 @@ func fail():
 	imgTarget.texture=failPng
 	var titleContext=""
 	if(coinCost>0 and soilderCost>0):
-		titleContext=failContext+TxtbothCost.format({"coin":str(coinCost),"soilder":str(soilderCost)})
+		titleContext=tr(failContext)+tr(TxtbothCost).format({"coin":str(coinCost),"soilder":str(soilderCost)})
 		pass
 	elif coinCost>0 and soilderCost==0:
-		titleContext=failContext+TxtcoinCost.format({"coin":str(coinCost)})
+		titleContext=tr(failContext)+tr(TxtcoinCost).format({"coin":str(coinCost)})
 	elif coinCost==0 and soilderCost>0:
-		titleContext=failContext+TxtSoiderCost.format({"soilder":str(soilderCost)})
+		titleContext=tr(failContext)+tr(TxtSoiderCost).format({"soilder":str(soilderCost)})
 	elif coinCost==0 and soilderCost==0:
-		titleContext=failContext+TxtNoCost
+		titleContext=tr(failContext)+tr(TxtNoCost)
 	title.text=titleContext
 	self.show()
 

@@ -79,6 +79,21 @@ func _ready():
 	else: 
 		check_box.hide()
 		
+		
+	changeLanguage()
+func changeLanguage():
+	var currencelanguage=TranslationServer.get_locale()
+	if currencelanguage=="ja":
+		pass
+	elif currencelanguage=="ru":
+		
+		$TextureRect/Label2.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
+		$TextureRect/Label2.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
+	else:
+		pass
+		
+		
+const NOT_JAM_UI_CONDENSED_16 = preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass

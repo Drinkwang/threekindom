@@ -55,12 +55,66 @@ size_flags_vertical = 0
 theme_override_font_sizes/font_size = 51
 text = "本地派:外来派"
 
-[node name="Label2" type="Label" parent="PanelContainer/Label"]
+[node name="p1" type="Label" parent="."]
+layout_mode = 0
+offset_left = 735.0
+offset_top = 247.0
+offset_right = 990.0
+offset_bottom = 803.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/line_spacing = 20
+theme_override_font_sizes/font_size = 51
+horizontal_alignment = 1
+
+[node name="p2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 921.0
+offset_top = 243.0
+offset_right = 1176.0
+offset_bottom = 799.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/line_spacing = 20
+theme_override_font_sizes/font_size = 51
+horizontal_alignment = 1
+
+[node name="p3" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 1152.0
+offset_top = 251.0
+offset_right = 1407.0
+offset_bottom = 807.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/line_spacing = 20
+theme_override_font_sizes/font_size = 51
+text = "1
+1
+1
+2
+"
+horizontal_alignment = 1
+
+[node name="o1" type="Label" parent="."]
+layout_mode = 0
+offset_left = 735.0
+offset_top = 543.0
+offset_right = 990.0
+offset_bottom = 811.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/line_spacing = 20
+theme_override_font_sizes/font_size = 51
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
 layout_mode = 2
-offset_left = -556.0
-offset_top = 76.0
-offset_right = -32.0
-offset_bottom = 632.0
+offset_left = 238.0
+offset_top = 233.0
+offset_right = 762.0
+offset_bottom = 789.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_constants/line_spacing = 20
@@ -74,60 +128,6 @@ text = "人数：
 通过率：
 结果："
 horizontal_alignment = 2
-
-[node name="p1" type="Label" parent="PanelContainer/Label/Label2"]
-layout_mode = 0
-offset_left = 497.0
-offset_top = 2.0
-offset_right = 752.0
-offset_bottom = 558.0
-size_flags_horizontal = 4
-size_flags_vertical = 0
-theme_override_constants/line_spacing = 20
-theme_override_font_sizes/font_size = 51
-horizontal_alignment = 1
-
-[node name="p2" type="Label" parent="PanelContainer/Label/Label2"]
-layout_mode = 0
-offset_left = 683.0
-offset_top = -2.0
-offset_right = 938.0
-offset_bottom = 554.0
-size_flags_horizontal = 4
-size_flags_vertical = 0
-theme_override_constants/line_spacing = 20
-theme_override_font_sizes/font_size = 51
-horizontal_alignment = 1
-
-[node name="p3" type="Label" parent="PanelContainer/Label/Label2"]
-visible = false
-layout_mode = 0
-offset_left = 914.0
-offset_top = 6.0
-offset_right = 1169.0
-offset_bottom = 562.0
-size_flags_horizontal = 4
-size_flags_vertical = 0
-theme_override_constants/line_spacing = 20
-theme_override_font_sizes/font_size = 51
-text = "1
-1
-1
-2
-"
-horizontal_alignment = 1
-
-[node name="o1" type="Label" parent="PanelContainer/Label/Label2"]
-layout_mode = 0
-offset_left = 497.0
-offset_top = 298.0
-offset_right = 752.0
-offset_bottom = 566.0
-size_flags_horizontal = 4
-size_flags_vertical = 0
-theme_override_constants/line_spacing = 20
-theme_override_font_sizes/font_size = 51
-horizontal_alignment = 1
 
 [node name="lawPanel" type="Control" parent="."]
 layout_mode = 1

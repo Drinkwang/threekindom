@@ -34,7 +34,32 @@ func _processList(data):
 		richTxt.set_text(btnContext)
 		richTxt.set_size(Vector2(850,80))
 		richTxt.set_mouse_filter(Control.MOUSE_FILTER_IGNORE)
-		richTxt.add_theme_font_size_override("normal_font_size",55)
+		
+		#获取语言 并获取长度
+		#如果长度大于一个区间，可以将语言字体变小
+		var currencelanguage=TranslationServer.get_locale()
+		if currencelanguage=="ja":
+			if(tr(btnContext).length()>=6 and tr(btnContext).length()<8):
+				richTxt.add_theme_font_size_override("normal_font_size",48)
+			if(tr(btnContext).length()>=8):
+				richTxt.add_theme_font_size_override("normal_font_size",46)
+			else:
+				richTxt.add_theme_font_size_override("normal_font_size",55)
+		elif currencelanguage=="ru":
+			if(tr(btnContext).length()>=9):
+				richTxt.add_theme_font_size_override("normal_font_size",36)
+			else:
+				richTxt.add_theme_font_size_override("normal_font_size",40)
+			richTxt.add_theme_font_override("normal_font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
+			
+		else:
+			if(tr(btnContext).length()>=12 and tr(btnContext).length()<14):
+				richTxt.add_theme_font_size_override("normal_font_size",48)
+			if(tr(btnContext).length()>=14):
+				richTxt.add_theme_font_size_override("normal_font_size",46)
+			else:
+				richTxt.add_theme_font_size_override("normal_font_size",55)
+
 		richTxt.add_theme_color_override("font_outline_color",Color.BLACK)
 		richTxt.add_theme_constant_override("outline_size",5)
 		richTxt.clip_contents=true

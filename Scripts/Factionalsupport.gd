@@ -7,8 +7,20 @@ extends PanelContainer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	changeLanguage()
 	pass # Replace with function body.
 	
+	
+func changeLanguage():
+	var currencelanguage=TranslationServer.get_locale()
+	if currencelanguage=="ja":
+		pass
+	elif currencelanguage=="ru":
+
+		label.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
+			
+	else:
+		pass	
 	
 func init(data:cldata):
 	pass
