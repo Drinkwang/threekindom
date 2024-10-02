@@ -4,9 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://cale1h2nqfdrh" path="res://Asset/ui/circle.png" id="1_upy2s"]
 [ext_resource type="Texture2D" uid="uid://dmqvx1ja8yft7" path="res://Asset/other/剪刀.png" id="3_8nnbh"]
 [ext_resource type="PackedScene" uid="uid://dxj1s2d4grxwj" path="res://Scene/prefab/SoilderItem.tscn" id="4_px0mi"]
-[ext_resource type="Texture2D" uid="uid://cbs1ut2w7lnuy" path="res://Asset/人物/关羽.jpg" id="5_dprbg"]
 [ext_resource type="Texture2D" uid="uid://dahuc8gb2blc" path="res://Asset/other/0_red.png" id="5_mg3wr"]
 [ext_resource type="Texture2D" uid="uid://cc2retfuupgvb" path="res://Asset/pointer_scifi_b.png" id="6_cexsq"]
+[ext_resource type="Texture2D" uid="uid://31w72gjd8mmu" path="res://Asset/人物/吕布.jpg" id="7_buuow"]
 
 [sub_resource type="Animation" id="Animation_whhn8"]
 resource_name = "c1"
@@ -286,7 +286,7 @@ offset_right = 424.0
 offset_bottom = 795.0
 scale = Vector2(0.63, 0.63)
 canSelect = false
-headImg = ExtResource("5_dprbg")
+headImg = ExtResource("7_buuow")
 namelv = "敌人战力：1000000"
 
 [node name="ColorRect_0" type="ColorRect" parent="."]

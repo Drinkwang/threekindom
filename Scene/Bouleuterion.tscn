@@ -166,7 +166,6 @@ visible = false
 position = Vector2(400, 811)
 
 [node name="5Yellow" type="Sprite2D" parent="CanvasBook/Node2D"]
-position = Vector2(0, -283.11)
 rotation = -1.5708
 scale = Vector2(4, 4)
 texture = ExtResource("10_o7uio")
@@ -175,5 +174,6 @@ texture = ExtResource("10_o7uio")
 libraries = {
 "": SubResource("AnimationLibrary_4gull")
 }
+autoplay = "YELLOWGUILD"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

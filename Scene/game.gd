@@ -5,12 +5,12 @@ const ARVOSTUS = preload("res://Asset/bgm/4- Arvostus.mp3")
 func _ready():
 	SoundManager.play_music(ARVOSTUS)
 	var system_locale = OS.get_locale_language()
+	TranslationServer.set_locale(system_locale)
 	if system_locale=="zh_HK" or system_locale=="zh_TW":
-		#TranslationServer.set_locale("lzh")
+		TranslationServer.set_locale("lzh")
 		option_button.select(1)
 	elif system_locale=="zh":
 		option_button.select(0)
-		#TranslationServer.set_locale(system_locale)
 	elif system_locale=="ja":
 		option_button.select(3)	
 	elif system_locale=="ru":

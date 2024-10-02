@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/street.gd" id="1_jskmv"]
 [ext_resource type="Resource" uid="uid://qopivlttvt12" path="res://dialogues/街道.dialogue" id="2_a3tl4"]
 [ext_resource type="PackedScene" uid="uid://bv5ycsl0a50uq" path="res://Scene/prefab/btnList.tscn" id="2_eoq3e"]
-[ext_resource type="Texture2D" uid="uid://byxn3pcjpah81" path="res://Asset/城镇建筑/街道,.png" id="3_mqqfl"]
+[ext_resource type="Texture2D" uid="uid://51ept05gln70" path="res://Asset/城镇建筑/集市1.png" id="3_ksyem"]
 [ext_resource type="PackedScene" uid="uid://bxw67mtklk4w5" path="res://Scene/prefab/ExpoundclassicsPanel.tscn" id="5_jclo7"]
 [ext_resource type="PackedScene" uid="uid://dfolt063spdso" path="res://Scene/prefab/energy.tscn" id="6_00ynb"]
 
@@ -13,9 +13,15 @@ dialogue_resource = ExtResource("2_a3tl4")
 dialogue_start = "init_street"
 
 [node name="内屋" type="Sprite2D" parent="."]
-position = Vector2(959.5, 579)
-scale = Vector2(4.21272, 4.04167)
-texture = ExtResource("3_mqqfl")
+position = Vector2(959.5, 539.5)
+scale = Vector2(4.18478, 3.76736)
+texture = ExtResource("3_ksyem")
+
+[node name="内屋2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(959.08, 542)
+scale = Vector2(4.185, 4.185)
+texture = ExtResource("3_ksyem")
 
 [node name="Control" parent="." instance=ExtResource("2_eoq3e")]
 metadata/_edit_use_anchors_ = true

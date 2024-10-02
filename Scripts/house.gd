@@ -132,6 +132,7 @@ func _buttonListClick(item):
 		FancyFade.new().custom_fade(SceneManager.STREET.instantiate(), 2, DISSOLVE_IMAGE)
 		pass
 	elif item.context == "今日政务":
+		control._show_button_5_yellow(-1)
 		policyPanel.show()
 		pass
 	elif item.context == "属性面板":

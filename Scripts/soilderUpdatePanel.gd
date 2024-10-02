@@ -60,17 +60,21 @@ func update_ui():
 	#upgrade_button.disabled = selected_general["level"] >= selected_general["max_level"] or gold < upgrade_cost
 
 
+@onready var lvbutton = $PanelContainer/orderPanel/VBoxContainer/HBoxContainer/Button
 
 # 升级按钮被按下时运行
 func _on_upgrade_button_pressed():
-	if(await GameManager.isTried(costhp) or GameManager.sav.isLevelUp==true):
+	if GameManager.sav.isLevelUp==true:
+		return
+	
+	if(await GameManager.isTried(costhp)):
 		return 
 	
 	var selected_general = GameManager.generals.values()[selected_general_index]
 	if GameManager.sav.coin >= upgrade_cost and selected_general["level"] < selected_general["max_level"]:
 		GameManager.sav.coin -= upgrade_cost
 		selected_general["level"] += 1
-	
+		lvbutton.disabled=true
 		GameManager.sav.isLevelUp=true
 		update_ui()
 		SoundManager.play_sound(sounds.buysellsound)

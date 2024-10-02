@@ -167,8 +167,7 @@ func _on_coin_slider_value_changed(value):
 #BOOT结算完后将对应的general转换成use 然后同时也结算
 #{"name": "关羽", "level": 1, "max_level": 10, "randominit": -1}
 func _on_control_3_gui_input(event):
-	if await GameManager.isTried(costhp):
-		return 
+
 	if battle_circle.isBoot==true||control_3.canSelect==false||control_3.alreadyUse==true:
 		return	
 	
@@ -188,8 +187,7 @@ func _on_control_3_gui_input(event):
 
 
 func _on_control_2_gui_input(event):
-	if await GameManager.isTried(costhp):
-		return 
+
 	if battle_circle.isBoot==true||control_2.canSelect==false||control_2.alreadyUse==true:
 		return	
 	if(event is InputEventMouseButton and event.button_index==1):	
@@ -202,8 +200,7 @@ func _on_control_2_gui_input(event):
 		_refreshSlider()
 
 func _on_control_1_gui_input(event):
-	if await GameManager.isTried(costhp):
-		return 
+
 	if battle_circle.isBoot==true||control_1.canSelect==false||control_1.alreadyUse==true:
 		return
 	if(event is InputEventMouseButton and event.button_index==1):		

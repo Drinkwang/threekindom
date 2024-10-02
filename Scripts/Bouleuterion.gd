@@ -56,14 +56,21 @@ func _ready():
 		
 		
 		
-	pass # Replace with function body.
+@onready var node_2d = $CanvasBook/Node2D
+
 func changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()	
 	if currencelanguage=="en":
-		pass
+		node_2d.position=Vector2(615,811)
 	elif currencelanguage=="zh":
-		pass
+		node_2d.position=Vector2(400,811)
+	elif currencelanguage=="lzh":
+		node_2d.position=Vector2(410,811)
+	elif currencelanguage=="ja":
+		node_2d.position=Vector2(468,811)
+		#node_2d.position=Vector2(615,811)
 	elif currencelanguage=="ru":
+		node_2d.position=Vector2(605,811)
 		faction.position=Vector2(5,728.545)
 		pass
 

@@ -56,13 +56,21 @@ RspEnum.PAPER:{"name": "赵云", "level": 1, "max_level": 10, "randominit": -1,"
 
 #判断是否累了的框，不用保存
 var triedResult=false
+var triedPanel
 signal triedPanelDone
 func isTried(costNum)->bool:
+
+
+	if triedPanel!=null:
+		return true
 	if(hp-costNum<0):
 		#显示累了框
-		triedResult=true
-		PanelManager.show_Tied()
+
+		if triedPanel==null:
+			triedResult=true
+			triedPanel=PanelManager.show_Tied()
 		await triedPanelDone
+		triedPanel=null
 	else:
 		triedResult=false
 	return	triedResult
@@ -104,6 +112,28 @@ var policy_Item=[
 		"name":"下策-物资调度违规处罚法",
 		"detail":"凡有违反调度规定者，不分情节轻重，一律拉出军营，以极刑示众。对于私自调用粮草者，立即斩首示众，家属一并流放，绝不宽贷。", #前往花园并通向小道
 		"group":0
+	},	
+	
+	
+	
+	#主线第一个计策
+	{
+		"id":4,
+		"name":"上策-以商代赈",
+		"detail":"将给与商人更多指示性目标,用行政命令迫使商业协助完成粮食问题，军队好感上升，获得一笔钱", #每天获取钱下降，任务凑钱正常
+		"group":1
+	},
+	{
+		"id":5,
+		"name":"中策-军粮自给",
+		"detail":"维持现状，继续让军队自行解决粮食问题，丹阳派好感小幅度下跌，获得资金200", #前往花园并通向小道，ps_任务凑齐的钱会少
+		"group":1
+	},
+	{
+		"id":6,
+		"name":"下策-增大消费税",
+		"detail":"增大城市人口商业来往的纳税，会增加城市居民生活开销负担，但会让城市获得日均收入上升，徐州派好感小幅度下跌，军队好感上升 ", #前往花园并通向小道#，每天获取钱上升，任务凑钱多
+		"group":1
 	},	
 ]
 

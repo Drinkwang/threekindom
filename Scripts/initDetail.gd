@@ -59,3 +59,11 @@ func _on_button_startGame():
 func _on_texture_button_button_down():
 	self.hide()
 	pass # Replace with function body.
+
+
+func _on_exploreOn_toggled(toggled_on):
+	GameManager.sav.haveGuild=toggled_on
+
+
+func _on_jumpMain_toggled(toggled_on):
+	GameManager.sav.jumpmain=toggled_on

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/energy.gd" id="1_jga5a"]
 [ext_resource type="Texture2D" uid="uid://cpx3dc1mppace" path="res://Asset/blue/edgeblue.png" id="2_2gdco"]
-[ext_resource type="Texture2D" uid="uid://da3yr3agvbicf" path="res://Asset/blue/power.png" id="6_565iq"]
+[ext_resource type="Texture2D" uid="uid://djtlal0bexgms" path="res://Asset/人物/刘备2.png" id="6_e7d3e"]
 [ext_resource type="Texture2D" uid="uid://yxnjmxcqgl2u" path="res://addons/inventory_example/textures/inventories/Chest.png" id="7_kc6cl"]
 [ext_resource type="Texture2D" uid="uid://sswcvqf8xpgs" path="res://Asset/存档.png" id="8_k0wc5"]
 [ext_resource type="Texture2D" uid="uid://dxg4rn2x2mnw6" path="res://Asset/blue/meter_text_background_blue.png" id="8_k83a2"]
@@ -67,12 +67,12 @@ texture = ExtResource("9_qjdqi")
 
 [node name="TextureRect" type="TextureRect" parent="TextureRect"]
 layout_mode = 0
-offset_left = 199.0
-offset_top = 146.0
-offset_right = 428.0
-offset_bottom = 485.0
+offset_left = 91.0
+offset_top = 87.0
+offset_right = 586.0
+offset_bottom = 562.0
 scale = Vector2(0.835, 0.835)
-texture = ExtResource("6_565iq")
+texture = ExtResource("6_e7d3e")
 stretch_mode = 4
 
 [node name="itemButton" type="TextureButton" parent="."]

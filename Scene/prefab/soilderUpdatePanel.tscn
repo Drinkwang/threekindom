@@ -4,12 +4,12 @@
 [ext_resource type="Theme" uid="uid://bklmr3xmk4m5u" path="res://global_theme.tres" id="2_3ru2r"]
 [ext_resource type="PackedScene" uid="uid://dxj1s2d4grxwj" path="res://Scene/prefab/SoilderItem.tscn" id="2_7lggh"]
 [ext_resource type="Resource" uid="uid://d2qoinuor12dq" path="res://dialogues/演武场.dialogue" id="2_qb106"]
-[ext_resource type="Texture2D" uid="uid://cbs1ut2w7lnuy" path="res://Asset/人物/关羽.jpg" id="3_5ceg6"]
-[ext_resource type="Texture2D" uid="uid://xt3xohrjhgbd" path="res://Asset/人物/ZhangFei.jpg" id="4_hf1p0"]
-[ext_resource type="Texture2D" uid="uid://dpyahly4tlu7a" path="res://Asset/人物/ZhaoYun.jpg" id="5_ejb3c"]
 [ext_resource type="PackedScene" uid="uid://dpw77mhy77404" path="res://Scene/prefab/lawpoint.tscn" id="5_l5e0h"]
+[ext_resource type="Texture2D" uid="uid://bnxitska4niyt" path="res://Asset/人物/关羽close.png" id="5_v4w5d"]
 [ext_resource type="FontFile" uid="uid://j7hxj2vlcx5l" path="res://Asset/YanShiXiaXingKai-2.ttf" id="6_7y5bj"]
+[ext_resource type="Texture2D" uid="uid://dgglf6m4jn2uc" path="res://Asset/人物/张飞open.png" id="6_gphpq"]
 [ext_resource type="Texture2D" uid="uid://dahuc8gb2blc" path="res://Asset/other/0_red.png" id="7_eqiyi"]
+[ext_resource type="Texture2D" uid="uid://cwa6dylndnoey" path="res://Asset/人物/赵云close.png" id="7_ib6jt"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4sj3t"]
 
@@ -82,21 +82,21 @@ layout_mode = 2
 [node name="Control_1" parent="PanelContainer/orderPanel/VBoxContainer/orderVbox" instance=ExtResource("2_7lggh")]
 custom_minimum_size = Vector2(380, 0)
 layout_mode = 2
-headImg = ExtResource("3_5ceg6")
+headImg = ExtResource("5_v4w5d")
 namelv = "关羽:lv1"
 repImg = 1
 
 [node name="Control_2" parent="PanelContainer/orderPanel/VBoxContainer/orderVbox" instance=ExtResource("2_7lggh")]
 custom_minimum_size = Vector2(380, 0)
 layout_mode = 2
-headImg = ExtResource("4_hf1p0")
+headImg = ExtResource("6_gphpq")
 namelv = "张飞:lv1"
 repImg = 2
 
 [node name="Control_3" parent="PanelContainer/orderPanel/VBoxContainer/orderVbox" instance=ExtResource("2_7lggh")]
 custom_minimum_size = Vector2(380, 0)
 layout_mode = 2
-headImg = ExtResource("5_ejb3c")
+headImg = ExtResource("7_ib6jt")
 namelv = "赵云：lv1"
 
 [node name="Control2" type="Control" parent="PanelContainer/orderPanel/VBoxContainer"]

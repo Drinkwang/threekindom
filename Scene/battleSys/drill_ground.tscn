@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/drill_ground.gd" id="1_bhlt2"]
 [ext_resource type="Resource" uid="uid://d2qoinuor12dq" path="res://dialogues/演武场.dialogue" id="2_j02vm"]
 [ext_resource type="AudioStream" uid="uid://brg1ltppwfyim" path="res://Asset/sound/闪电.mp3" id="3_et4pg"]
-[ext_resource type="Texture2D" uid="uid://bkwbm7n7vpjoj" path="res://Asset/城镇建筑/aitest2.png" id="4_x0o7l"]
+[ext_resource type="Texture2D" uid="uid://co4gx5oho7htc" path="res://Asset/城镇建筑/演武场1.png" id="4_n3gnp"]
 [ext_resource type="PackedScene" uid="uid://bhu5hq8kx8pov" path="res://addons/inventory_example/inventories/simple/InventoryUI.tscn" id="6_cu7sp"]
 [ext_resource type="PackedScene" uid="uid://bw52ymer7ngwu" path="res://Scene/prefab/gapanel.tscn" id="7_fpvim"]
 [ext_resource type="Texture2D" uid="uid://tyir1850nr6p" path="res://Asset/other/聚餐.png" id="8_phhxu"]
@@ -85,9 +85,9 @@ libraries = {
 stream = ExtResource("3_et4pg")
 
 [node name="演武场" type="Sprite2D" parent="."]
-position = Vector2(964, 534)
-scale = Vector2(3.78516, 2.13281)
-texture = ExtResource("4_x0o7l")
+position = Vector2(960.5, 539.5)
+scale = Vector2(4.18478, 3.74653)
+texture = ExtResource("4_n3gnp")
 
 [node name="bgs" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(895, 333)

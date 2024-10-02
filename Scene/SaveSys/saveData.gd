@@ -12,11 +12,12 @@ class_name saveData
 #@export var datas:Array[cldata] #好像没用
 @export var isLevelUp=false
 @export var isMeet=false#是否约见手下
+@export var haveLaw=false
 @export var current_datetime:String =""#0# Time.get_datetime_dict_from_system()
 #print("Current date and time:", current_datetime)
 #var formatted_time = OS.format_datetime(current_datetime, "%Y-%m-%d %H:%M:%S")
 
-
+@export var cLaw:int=-1
 #寄存使用过的将军
 @export var UseGeneral:Array
 
@@ -28,7 +29,8 @@ class_name saveData
 #若通关 则completeTask	
 @export var currenceTask:int=0	
 
-
+@export var haveGuild=true
+@export var jumpmain=false
 
 @export var have_event = {
 	"firstmeetchenqun":false,

@@ -1,14 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://dqpklssxni160"]
 
 [ext_resource type="Script" path="res://Scripts/clickBlock.gd" id="1_es4xp"]
-[ext_resource type="Texture2D" uid="uid://bpafr0afqfvx8" path="res://Asset/城镇建筑/灵堂.jpg" id="2_sendj"]
+[ext_resource type="Texture2D" uid="uid://c1o6guigf68iu" path="res://Asset/城镇建筑/灵堂亮.jpg" id="2_cxpov"]
 [ext_resource type="Texture2D" uid="uid://bye5cypeps08s" path="res://Asset/ui/4.png" id="3_gdvxu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eqsn2"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_es4xp")
-txt2d = ExtResource("2_sendj")
+txt2d = ExtResource("2_cxpov")
 metadata/_edit_vertical_guides_ = [-329.0]
 
 [node name="8" type="Sprite2D" parent="."]
@@ -21,7 +21,7 @@ offset_left = -61.105
 offset_top = -62.18
 offset_right = 54.515
 offset_bottom = 59.215
-texture = ExtResource("2_sendj")
+texture = ExtResource("2_cxpov")
 expand_mode = 2
 
 [node name="Area2D" type="Area2D" parent="."]

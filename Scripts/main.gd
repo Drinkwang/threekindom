@@ -12,7 +12,7 @@ const FancyFade = preload("res://addons/transitions/FancyFade.gd")
 const HOUSE = preload("res://Scene/house.tscn")
 @onready var rule_book = $CanvasBook/ruleBook
 
-
+const lightroom = preload("res://Asset/城镇建筑/灵堂亮.jpg")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -98,6 +98,7 @@ func openLight():
 	$BackBufferCopy/blank.hide()
 	$"陶谦".show()
 	await  0.35
+	$"内屋".texture=lightroom
 	SoundManager.play_sound(_04_FIRE_EXPLOSION_04_MEDIUM)
 
 @onready var audio_stream_player_2d = $"Canvas闪电/ColorRect/AnimationPlayer/AudioStreamPlayer2D"

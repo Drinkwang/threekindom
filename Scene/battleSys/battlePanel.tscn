@@ -1,13 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://cjsb43uugkud4"]
+[gd_scene load_steps=13 format=3 uid="uid://cjsb43uugkud4"]
 
 [ext_resource type="Script" path="res://Scripts/battlePanel.gd" id="1_uyier"]
 [ext_resource type="Resource" uid="uid://d2qoinuor12dq" path="res://dialogues/演武场.dialogue" id="2_1p72a"]
 [ext_resource type="Theme" uid="uid://bklmr3xmk4m5u" path="res://global_theme.tres" id="2_syp0e"]
 [ext_resource type="PackedScene" uid="uid://dxj1s2d4grxwj" path="res://Scene/prefab/SoilderItem.tscn" id="3_3ya2h"]
-[ext_resource type="Texture2D" uid="uid://dpyahly4tlu7a" path="res://Asset/人物/ZhaoYun.jpg" id="4_v76eo"]
-[ext_resource type="Texture2D" uid="uid://xt3xohrjhgbd" path="res://Asset/人物/ZhangFei.jpg" id="5_7n0ga"]
+[ext_resource type="Texture2D" uid="uid://j3kowe2tkoss" path="res://Asset/人物/关羽open.png" id="5_tboc2"]
+[ext_resource type="Texture2D" uid="uid://bol8v0a4a87yg" path="res://Asset/人物/张飞close.png" id="6_ffj5y"]
 [ext_resource type="Texture2D" uid="uid://rmaibsw1yjqd" path="res://Asset/城镇建筑/5_yellow.png" id="7_5kst7"]
 [ext_resource type="Texture2D" uid="uid://dahuc8gb2blc" path="res://Asset/other/0_red.png" id="7_fydxo"]
+[ext_resource type="Texture2D" uid="uid://cqveha2p8ktj6" path="res://Asset/人物/赵云open.png" id="7_xltxl"]
 [ext_resource type="PackedScene" uid="uid://dcydwatjg50hl" path="res://Scene/battleSys/DiskInBattle.tscn" id="8_75jyp"]
 
 [sub_resource type="Animation" id="Animation_rms3s"]
@@ -229,7 +230,7 @@ offset_top = 295.0
 offset_right = 736.0
 offset_bottom = 745.0
 scale = Vector2(0.5, 0.5)
-headImg = ExtResource("4_v76eo")
+headImg = ExtResource("5_tboc2")
 namelv = "关羽：lv1"
 repImg = 1
 
@@ -244,7 +245,7 @@ offset_top = 299.0
 offset_right = 949.0
 offset_bottom = 749.0
 scale = Vector2(0.5, 0.5)
-headImg = ExtResource("5_7n0ga")
+headImg = ExtResource("6_ffj5y")
 namelv = "张飞:lv1"
 repImg = 2
 
@@ -259,7 +260,7 @@ offset_top = 303.0
 offset_right = 1178.0
 offset_bottom = 751.0
 scale = Vector2(0.465, 0.465)
-headImg = ExtResource("4_v76eo")
+headImg = ExtResource("7_xltxl")
 namelv = "赵云:lv1"
 
 [node name="coinSlider" type="HSlider" parent="."]

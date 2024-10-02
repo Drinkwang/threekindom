@@ -22,6 +22,12 @@ func _ready():
 	changeLanguage()
 	 # Replace with function body.
 
+func initControls():
+	control_1.initDataByGroup(1,1)
+	control_2.initDataByGroup(1,1)
+	control_3.initDataByGroup(1,1)
+	pass
+
 
 func changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()
@@ -79,6 +85,8 @@ func _on_control_1_gui_input(event):
 		return
 	if(event is InputEventMouseButton and event.button_index==1):
 		index=1
+		
+		
 		SoundManager.play_sound(sounds.CLICKHERO)
 		control_1.check_box.button_pressed=true
 		control_2.check_box.button_pressed=false
@@ -149,13 +157,14 @@ func preLaw(value:lawpoint):
 
 func excuteLaw(value:lawpoint):
 
-	if await GameManager.isTried(costhp):
-		return
+
 	#GameManager.hp=GameManager.hp-costhp
 	if(GameManager.sav.Merit_points<value.costPoint):
-		DialogueManager.show_example_dialogue_balloon(GameManager.currenceScene.dialogue_resource,"你的政策点不够")	
+		#DialogueManager.show_example_dialogue_balloon(GameManager.currenceScene.dialogue_resource,"你的政策点不够")	
 		return
-		
+	if await GameManager.isTried(costhp):
+		return	
+
 	if selectLawPoint!=null:
 		DialogueManager.show_example_dialogue_balloon(GameManager.currenceScene.dialogue_resource,"确认法律")
 	else:
@@ -168,6 +177,7 @@ func agreelaw():
 	GameManager.sav.Merit_points=GameManager.sav.Merit_points-selectLawPoint.costPoint
 	selectLawPoint.isUnlock=true
 	selectLawPoint._initData()
+	#GameManager.haveLaw=true
 	SoundManager.play_sound(sounds.confiresound)
 	if GameManager.sav.have_event["firstLawExecute"]==false:
 		GameManager.sav.have_event["firstLawExecute"]=true

@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://drj1r377gntrn" path="res://Asset/人物/糜竺睁眼.png" id="5_rvoul"]
 [ext_resource type="Texture2D" uid="uid://doh7mxtgy0hm2" path="res://Asset/人物/陈登睁眼.png" id="6_00m7i"]
 [ext_resource type="Texture2D" uid="uid://b2a42yeq66eeo" path="res://Asset/人物/刘备.png" id="7_k2fao"]
-[ext_resource type="Texture2D" uid="uid://prkfphd2t68q" path="res://Asset/人物/曹豹.png" id="8_bfamx"]
+[ext_resource type="Texture2D" uid="uid://bkjl4axp5wn2g" path="res://Asset/人物/曹豹open.png" id="8_85rag"]
 [ext_resource type="Texture2D" uid="uid://82ywny4w3kcy" path="res://Asset/人物/小沛城池.png" id="9_vy6li"]
 
 [node name="Control" type="Control"]
@@ -48,7 +48,6 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 
 [node name="Control" type="Control" parent="."]
-clip_contents = true
 layout_mode = 1
 anchors_preset = 0
 offset_left = 325.0
@@ -246,8 +245,7 @@ texture = ExtResource("4_pu3kb")
 [node name="img" type="TextureRect" parent="Control/VBoxContainer/HBoxContainer6"]
 custom_minimum_size = Vector2(81.775, 128.17)
 layout_mode = 2
-texture = ExtResource("8_bfamx")
-expand_mode = 1
+texture = ExtResource("8_85rag")
 
 [node name="Control3" type="Control" parent="Control/VBoxContainer/HBoxContainer6"]
 layout_mode = 2
@@ -308,6 +306,35 @@ theme_override_font_sizes/font_size = 48
 text = "-------------------------------------------------"
 autowrap_mode = 3
 
+[node name="HBoxContainer8" type="HBoxContainer" parent="Control/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+
+[node name="CheckBox" type="CheckBox" parent="Control/VBoxContainer/HBoxContainer8"]
+layout_mode = 2
+mouse_filter = 2
+button_pressed = true
+button_mask = 7
+
+[node name="context8" type="Label" parent="Control/VBoxContainer/HBoxContainer8"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 48
+text = "开启序章中目的地提示-喜欢探索可关闭"
+
+[node name="CheckBox2" type="CheckBox" parent="Control/VBoxContainer/HBoxContainer8"]
+layout_mode = 2
+mouse_filter = 2
+button_mask = 7
+
+[node name="context9" type="Label" parent="Control/VBoxContainer/HBoxContainer8"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 48
+text = "跳过序章"
+
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer"]
 layout_mode = 2
 
@@ -351,6 +378,8 @@ texture_disabled = ExtResource("2_j6n5d")
 texture_focused = ExtResource("2_j6n5d")
 stretch_mode = 0
 
+[connection signal="toggled" from="Control/VBoxContainer/HBoxContainer8/CheckBox" to="." method="_on_exploreOn_toggled"]
+[connection signal="toggled" from="Control/VBoxContainer/HBoxContainer8/CheckBox2" to="." method="_on_jumpMain_toggled"]
 [connection signal="button_down" from="Control/VBoxContainer/HBoxContainer/Button" to="." method="_on_button_startGame"]
 [connection signal="changed" from="Control/VSlider" to="." method="_on_v_slider_changed"]
 [connection signal="value_changed" from="Control/VSlider" to="." method="_on_v_slider_value_changed"]
