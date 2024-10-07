@@ -24,6 +24,7 @@ texture = ExtResource("1_5bar7")
 expand_mode = 1
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 0
 offset_left = 26.0
 offset_top = 22.0
 offset_right = 361.0

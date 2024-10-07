@@ -3,7 +3,7 @@ extends baseComponent
 @onready var control = $Control
 @onready var policyPanel = $"CanvasLayer/政务面板"
 @onready var hp_panel = $CanvasLayer/hpPanel
-
+const NOT_JAM_UI_CONDENSED_16 = preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf")
 const FancyFade = preload("res://addons/transitions/FancyFade.gd")
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,6 +19,22 @@ func _ready():
 	else:
 		control.show()
 	super._ready()
+	var currencelanguage=TranslationServer.get_locale()
+	if currencelanguage=="ja":
+		title.add_theme_font_size_override("normal_font_size",200)  
+		demo_end.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
+		title.text="[center][rainbow]陰[/rainbow][wave amp=50 frep=100]三国[/wave][rainbow]謀論[/rainbow]: [tornado]徐州編[/tornado][/center]"
+	elif currencelanguage=="ru":
+		title.add_theme_font_size_override("normal_font_size",80)  
+		demo_end.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
+		title.text="[center][tornado]Тёмные [/tornado][wave amp=50 frep=100]интриги [/wave][rainbow]Троецарствия[/rainbow][/center]"
+	elif currencelanguage=="lzh":
+		title.text="[center][rainbow]陰[/rainbow][wave amp=50 frep=100]三國[/wave][rainbow]謀論[/rainbow]-[tornado]徐州篇[/tornado][/center]"
+		demo_end.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
+	elif currencelanguage=="en":
+		title.add_theme_font_size_override("normal_font_size",80)
+		demo_end.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
+		title.text="[center]The [rainbow]Three Kingdoms[/rainbow] of [wave amp=50 frep=100]Shadows[/wave]:[tornado]Xuzhou[/tornado][/center]"
 	#目前没有调用新一天开始重置选项，放在了休息
 	#每次睡眠起床都调用这个选项
 	

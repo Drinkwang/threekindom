@@ -13,7 +13,8 @@ config_version=5
 config/name="Pro"
 run/main_scene="res://Scene/game.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
-boot_splash/show_image=false
+boot_splash/bg_color=Color(0.0692378, 0, 0.450078, 1)
+boot_splash/image="res://Asset/logo設計.png"
 config/icon="res://Asset/icon.png"
 
 [autoload]

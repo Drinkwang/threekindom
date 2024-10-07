@@ -55,10 +55,13 @@ clickEvent = ""
 
 [node name="DemoEnd" type="Button" parent="CanvasLayer"]
 visible = false
-offset_left = 586.0
-offset_top = 323.0
-offset_right = 900.0
-offset_bottom = 430.0
+anchors_preset = -1
+offset_left = 657.0
+offset_top = 416.0
+offset_right = 971.0
+offset_bottom = 523.0
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(2, 2)
 text = "demo结束，感谢试玩"
 

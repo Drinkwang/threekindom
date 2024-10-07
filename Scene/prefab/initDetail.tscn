@@ -48,6 +48,7 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 
 [node name="Control" type="Control" parent="."]
+clip_contents = true
 layout_mode = 1
 anchors_preset = 0
 offset_left = 325.0
