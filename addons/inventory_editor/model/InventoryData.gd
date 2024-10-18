@@ -574,6 +574,7 @@ func save(update_script_classes = false) -> void:
 		_editor.get_editor_interface().get_resource_filesystem().scan()
 
 func _save_data_inventories() -> void:
+	print(default_path)
 	var directory:= DirAccess.open(default_path)
 	if not directory.dir_exists(default_path):
 		directory.make_dir(default_path)

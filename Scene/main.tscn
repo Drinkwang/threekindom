@@ -210,6 +210,7 @@ dialogue_resource = ExtResource("2_cebyh")
 dialogue_start = ""
 
 [node name="蜡烛" parent="." instance=ExtResource("1_1yudk")]
+visible = false
 position = Vector2(1090, 806)
 dialogue_doubleclick = "蜡烛"
 showborder = false

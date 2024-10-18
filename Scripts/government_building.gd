@@ -42,9 +42,17 @@ const 府邸 = preload("res://Asset/bgm/办公.wav")
 #const 府邸 = preload("res://Asset/bgm/府邸.mp3")
 func post_transition():
 	SoundManager.play_music(府邸)
+	policy_panel.initControls()
 	print("fadedone")
 	_initData()
 
+
+
+
+func _initGroup(group):
+	if group==2:
+		pass
+	pass
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -140,7 +148,8 @@ func _buttonListClick(item):
 	print(item)
 	pass
 
-func selectPolicy(id):
+func selectPolicy(data):
+	var id=data.id
 	if id==1:
 		#额外buff填写
 		selectCorrect()
@@ -149,11 +158,25 @@ func selectPolicy(id):
 		selectCorrect()
 	elif id==3:
 		policy_panel.bancontrol(3,policy_panel.itemStatus.ban)
+		
 		#执行初始错误决策，体力回复
 		GameManager.hp=GameManager.hp+35
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"错误决策0")
 		#pass
-	
+	elif id==policymanager.policyID.P_COMMERCIAL_INPLACE_AID:
+		GameManager.sav.targetValue=500
+		GameManager.sav.targetResType=GameManager.ResType.coin
+		GameManager.sav.targetTxt="当前凑集资金：{currence}/{target}"
+		pass
+	elif id== policymanager.policyID.P_SUPPLIES_SELF_SUFFIENCY:
+		GameManager.sav.targetResType=GameManager.ResType.coin
+		GameManager.sav.targetValue=400
+		GameManager.sav.targetTxt="当前凑集资金：{currence}/{target}"
+	elif id== policymanager.policyID.P_RAISE_TAX:
+		GameManager.sav.targetResType=GameManager.ResType.coin
+		GameManager.sav.targetValue=550
+		GameManager.sav.targetTxt="当前凑集资金：{currence}/{target}"
+		#GameManager._engerge.ref
 func selectCorrect():
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"正确决策0")
 	hidePolicy()
@@ -195,10 +218,22 @@ func meetingEnd():
 	GameManager.hp=GameManager.hp-costHp_SummonOne
 	GameManager.sav.isMeet=true
 	control._show_button_5_yellow(-1)	
-	
+@onready var mizhu = $"糜竺"
+@onready var chenden = $"陈登"
+
+func _firstPhaseBegin():
+	mizhu.show()
+	chenden.show()
+	mizhu
 
 func cancel():
 	pass	
+
+func mizhuHide():
+	mizhu.hide()
+
+func chendenHide():
+	chenden.hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

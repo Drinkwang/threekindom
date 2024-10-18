@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjotcafbgm0p8"]
+
+[ext_resource type="Texture2D" uid="uid://dai00fo8ejiu2" path="res://addons/inventory_example/textures/potions/ManaBig.png" id="1_narnc"]
+[ext_resource type="Texture2D" uid="uid://blrnq7583j0py" path="res://Asset/雌雄双股剑.png" id="2_fsfev"]
+[ext_resource type="Texture2D" uid="uid://bye5cypeps08s" path="res://Asset/ui/4.png" id="2_vm4gp"]
+
+[sub_resource type="CircleShape2D" id="1"]
+radius = 35.5069
+
+[node name="ManaBig" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-5.15906, 13.8898)
+rotation = 0.507891
+shape = SubResource("1")
+
+[node name="ManaBig" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("1_narnc")
+
+[node name="8" type="Sprite2D" parent="."]
+position = Vector2(-4, 14.5)
+scale = Vector2(0.15625, 0.146484)
+texture = ExtResource("2_vm4gp")
+
+[node name="ManaBig2" type="Sprite2D" parent="."]
+position = Vector2(-4, 13)
+texture = ExtResource("2_fsfev")

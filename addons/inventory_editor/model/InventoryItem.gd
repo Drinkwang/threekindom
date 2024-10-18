@@ -35,7 +35,7 @@ signal property_value_changed(property)
 @export var stacks: int = 1
 @export var icon: String
 @export var scene: String
-@export var properties: Array
+@export var properties: Array #可以获取数值了
 
 func change_name(new_name: String):
 	name = new_name

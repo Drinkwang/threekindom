@@ -1,14 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://cyt32awc4rwiu"]
 
-[ext_resource path="res://addons/inventory_example/3d/items/ManaBig.glb" type="PackedScene" id=1]
+[ext_resource type="PackedScene" uid="uid://dpnovkau4eqli" path="res://addons/inventory_example/3d/items/ManaBig.glb" id="1"]
 
-[sub_resource type="SphereShape" id=1]
+[sub_resource type="SphereShape3D" id="1"]
 radius = 0.951896
 
-[node name="ManaBig" type="Area"]
+[node name="ManaBig" type="Area3D"]
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.816891, 0 )
-shape = SubResource( 1 )
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.816891, 0)
+shape = SubResource("1")
 
-[node name="ManaBig" parent="." instance=ExtResource( 1 )]
+[node name="ManaBig" parent="." instance=ExtResource("1")]

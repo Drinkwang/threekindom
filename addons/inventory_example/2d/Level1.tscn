@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bnsv52fvuwmpa" path="res://addons/inventory_example/2d/items/HealthNormal.tscn" id="7"]
 [ext_resource type="PackedScene" uid="uid://dyy5kta4rpxlj" path="res://addons/inventory_example/2d/items/HealthBig.tscn" id="8"]
 [ext_resource type="PackedScene" path="res://addons/inventory_example/2d/items/ManaNormal.tscn" id="9"]
-[ext_resource type="PackedScene" path="res://addons/inventory_example/2d/items/ManaBig.tscn" id="10"]
+[ext_resource type="PackedScene" uid="uid://kf10aanvujp1" path="res://addons/inventory_example/2d/items/ManaBig.tscn" id="10"]
 [ext_resource type="PackedScene" uid="uid://bsgllkrq05ci7" path="res://addons/inventory_example/2d/items/SwordDestroyer.tscn" id="11"]
 [ext_resource type="PackedScene" uid="uid://jh4hk0kpqfv5" path="res://addons/inventory_example/2d/items/SwordDragonhunter.tscn" id="12"]
 [ext_resource type="PackedScene" uid="uid://bhu5hq8kx8pov" path="res://addons/inventory_example/inventories/simple/InventoryUI.tscn" id="13"]

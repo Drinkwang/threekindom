@@ -29,6 +29,7 @@ func _ready() -> void:
 		questManager = get_tree().get_root().get_node(questManagerName)
 
 func _process(delta: float) -> void:
+
 	if Engine.is_editor_hint() and item_put != null and not item_put.is_empty():
 		if not has_node("InventoryItem_" + item_put):
 			_remove_old_childs()
@@ -62,6 +63,7 @@ func _on_body_entered(body: Node) -> void:
 	var remainder = _inventoryManager.add_item(to_inventory, item_put, quantity, autosave)
 	if remove_collected and remainder == 0:
 		queue_free()
+		print( item_put)
 		if questManager and questManager.is_quest_started():
 			var quest = questManager.started_quest()
 			var task = questManager.get_task_and_update_quest_state(quest, item_put, quantity)

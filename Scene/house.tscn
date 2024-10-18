@@ -55,7 +55,6 @@ clickEvent = ""
 
 [node name="DemoEnd" type="Button" parent="CanvasLayer"]
 visible = false
-anchors_preset = -1
 offset_left = 657.0
 offset_top = 416.0
 offset_right = 971.0
@@ -66,12 +65,17 @@ scale = Vector2(2, 2)
 text = "demo结束，感谢试玩"
 
 [node name="hpPanel" parent="CanvasLayer" instance=ExtResource("10_vpbf8")]
-visible = false
 offset_left = 1535.0
 offset_top = -46.0
 offset_right = 1535.0
 offset_bottom = -46.0
 scale = Vector2(0.2, 0.2)
+
+[node name="resPanel" parent="CanvasLayer" instance=ExtResource("9_mf3v8")]
+offset_left = 1638.0
+offset_top = 770.0
+offset_right = 1678.0
+offset_bottom = 810.0
 
 [node name="Control2" parent="." instance=ExtResource("9_mf3v8")]
 visible = false

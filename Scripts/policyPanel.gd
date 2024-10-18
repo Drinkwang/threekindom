@@ -19,13 +19,21 @@ func _ready():
 		pass
 		
 	pass
+	#initControls()
 	changeLanguage()
 	 # Replace with function body.
 
 func initControls():
-	control_1.initDataByGroup(1,1)
-	control_2.initDataByGroup(1,1)
-	control_3.initDataByGroup(1,1)
+	var group=GameManager.getPolicyGroup()
+
+		
+		#GameManager.currenceScene.selectPolicy(self["control_"+index].data)
+		#DialogueManager.show_example_dialogue_balloon(GameManager.currenceScene.dialogue_resource,"xxx")
+		#判断自己的逻辑
+	GameManager.currenceScene._initGroup(group)
+	control_1.initDataByGroup(1,group)
+	control_2.initDataByGroup(2,group)
+	control_3.initDataByGroup(3,group)
 	pass
 
 
@@ -143,7 +151,8 @@ func _on_button_button_down():
 	#var context="story"+index
 	#根据选项判断影响，并同时让施政选项不再显示
 	#get_tree().get_root().get_node("")
-	GameManager.currenceScene.selectPolicy(index)
+	
+	GameManager.currenceScene.selectPolicy(self["control_"+index].data)
 	#每个上中下上册都有一个结构体，这边事后根据结构体对应id判断不同id点击施政的确切影响
 	pass # Replace with function body.
 

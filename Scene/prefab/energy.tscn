@@ -99,5 +99,14 @@ offset_bottom = 762.0
 scale = Vector2(4.5, 4.5)
 texture_normal = ExtResource("8_k0wc5")
 
+[node name="TargetLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 994.0
+offset_right = 1907.0
+offset_bottom = 1327.0
+theme_override_font_sizes/font_size = 130
+text = "当前任务：无"
+
 [connection signal="button_down" from="itemButton" to="." method="_on_item_button_button_down"]
 [connection signal="button_down" from="saveButton" to="." method="_on_save_button_button_down"]

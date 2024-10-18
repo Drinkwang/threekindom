@@ -92,11 +92,11 @@ func _initData():
 		"context":"商店",#打开人物面板
 		"visible":"true"
 	},
-	{
-		"id":"5",
-		"context":"军事商店",#打开属性ui
-		"visible":"true"
-	},
+	#{
+		#"id":"5",
+		#"context":"军事商店",#打开属性ui
+		#"visible":"true"
+	#},
 	{
 		"id":"6",
 		"context":"城门-军事驻地", #天数加1 进入过度

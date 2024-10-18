@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://5qxpn6avk7bx"]
+
+[ext_resource type="Script" path="res://Scripts/ShopItem.gd" id="1_h644w"]
+[ext_resource type="Texture2D" uid="uid://bye5cypeps08s" path="res://Asset/ui/4.png" id="1_wpj7r"]
+[ext_resource type="Texture2D" uid="uid://blrnq7583j0py" path="res://Asset/雌雄双股剑.png" id="2_ludia"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchor_right = 0.046
+anchor_bottom = 0.078
+offset_right = -0.320007
+offset_bottom = -0.240005
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+script = ExtResource("1_h644w")
+
+[node name="frame" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 4.0
+offset_right = 81.0
+offset_bottom = 79.0
+texture = ExtResource("1_wpj7r")
+expand_mode = 1
+
+[node name="context" type="TextureRect" parent="frame"]
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 68.0
+offset_bottom = 68.0
+texture = ExtResource("2_ludia")
+expand_mode = 1
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

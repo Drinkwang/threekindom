@@ -166,7 +166,7 @@ offset_bottom = -220.0
 grow_horizontal = 2
 grow_vertical = 2
 _color = 2
-detail = "建设"
+detail = "鼓励百姓们去开垦没有种植的土地（民心增加）"
 context = "农田开坑"
 
 [node name="Line2D3" type="Line2D" parent="lawPanel/Control1-1"]
@@ -440,6 +440,7 @@ offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
 _color = 1
+detail = "增加市集时间，鼓励民间贸易（每日获得金币+30）"
 context = "促进商贸"
 
 [node name="Line2D3" type="Line2D" parent="lawPanel/Control2-1"]
@@ -714,6 +715,7 @@ offset_right = -420.0
 offset_bottom = 221.0
 grow_horizontal = 2
 grow_vertical = 2
+detail = "增强训练，必须保证士兵有足够的纪律性（每日获得士兵+10） "
 context = "军纪法"
 
 [node name="Line2D4" type="Line2D" parent="lawPanel/Control3-1"]

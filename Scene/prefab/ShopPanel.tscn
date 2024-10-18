@@ -1,0 +1,284 @@
+[gd_scene load_steps=17 format=3 uid="uid://cy140f6kxm5ev"]
+
+[ext_resource type="Script" path="res://Scripts/ShopPanel.gd" id="1_ngsol"]
+[ext_resource type="Theme" uid="uid://bklmr3xmk4m5u" path="res://global_theme.tres" id="2_0of21"]
+[ext_resource type="Resource" uid="uid://bouswe15a440i" path="res://dialogues/商店.dialogue" id="2_gxgjo"]
+[ext_resource type="AudioStream" uid="uid://daxlyrk7pr0bu" path="res://Asset/sound/翻阅.mp3" id="3_32rtm"]
+[ext_resource type="PackedScene" uid="uid://5qxpn6avk7bx" path="res://Scene/prefab/ShopItem.tscn" id="4_iwehk"]
+[ext_resource type="Texture2D" uid="uid://cebke5xvs3qn1" path="res://Asset/精力丸.png" id="5_tok4l"]
+[ext_resource type="Texture2D" uid="uid://lxpmkfvvw5v8" path="res://Asset/threekindom6.png" id="8_7lhpg"]
+[ext_resource type="Texture2D" uid="uid://blrnq7583j0py" path="res://Asset/雌雄双股剑.png" id="8_wqq75"]
+[ext_resource type="Texture2D" uid="uid://dahuc8gb2blc" path="res://Asset/other/0_red.png" id="9_kapto"]
+[ext_resource type="Texture2D" uid="uid://c8217n5l3n1vd" path="res://Asset/辩论.png" id="9_yj1ke"]
+[ext_resource type="Texture2D" uid="uid://b25asbvrhsn4e" path="res://Asset/雌雄双股剑红.png" id="10_jeddc"]
+[ext_resource type="Texture2D" uid="uid://cst578p6y4vbo" path="res://Asset/青龙偃月刀.png" id="12_fuyo0"]
+[ext_resource type="Texture2D" uid="uid://cwannilraxnen" path="res://Asset/丈八蛇矛.png" id="13_xnv0q"]
+
+[sub_resource type="Animation" id="Animation_g5rj7"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_4k2fk"]
+resource_name = "click"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t5pam"]
+_data = {
+"RESET": SubResource("Animation_g5rj7"),
+"click": SubResource("Animation_4k2fk")
+}
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ngsol")
+dialogue_resource = ExtResource("2_gxgjo")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Timer"]
+stream = ExtResource("3_32rtm")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1408.0
+offset_top = -884.0
+offset_right = 1584.0
+offset_bottom = 728.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2, 0.2, 0.2, 0.827451)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../PanelContainer")
+libraries = {
+"": SubResource("AnimationLibrary_t5pam")
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -669.0
+offset_top = -411.0
+offset_right = 669.0
+offset_bottom = 411.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(630.615, 267.699)
+theme = ExtResource("2_0of21")
+
+[node name="ColorRect4" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 1001.0
+offset_top = 293.0
+offset_right = 1585.0
+offset_bottom = 612.0
+color = Color(0.47451, 0.435294, 0.470588, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 1001.0
+offset_top = 168.0
+offset_right = 1586.0
+offset_bottom = 290.0
+color = Color(0, 0, 0.223529, 0.498039)
+
+[node name="ColorRect4" type="ColorRect" parent="ColorRect3"]
+layout_mode = 0
+offset_top = -1.0
+offset_right = 10.0
+offset_bottom = 121.0
+color = Color(1, 1, 0, 0.45098)
+
+[node name="ZhuangBeiRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 335.0
+offset_top = 295.0
+offset_right = 919.0
+offset_bottom = 612.0
+color = Color(0.226707, 0.226707, 0.226707, 0.498039)
+
+[node name="ColorRect4" type="ColorRect" parent="ZhuangBeiRect"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 317.0
+offset_right = 585.0
+offset_bottom = 318.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="ZhuangBeiRect/ColorRect4"]
+layout_mode = 0
+offset_left = -8.0
+offset_top = 3.0
+offset_right = 1257.0
+offset_bottom = 23.0
+color = Color(0, 0, 0, 0.4)
+
+[node name="ColorRect4" type="ColorRect" parent="ZhuangBeiRect/ColorRect4/ColorRect4"]
+layout_mode = 0
+offset_left = 594.0
+offset_top = -450.0
+offset_right = 669.0
+color = Color(0, 0, 0, 0.756863)
+
+[node name="ColorRect3" type="ColorRect" parent="ZhuangBeiRect"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 585.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 334.0
+offset_top = 169.0
+offset_right = 919.0
+offset_bottom = 291.0
+color = Color(0.277528, 0.277528, 0.277528, 0.498039)
+
+[node name="ColorRect3" type="ColorRect" parent="ColorRect2"]
+layout_mode = 0
+offset_right = 10.0
+offset_bottom = 122.0
+color = Color(1, 0, 0, 0.45098)
+
+[node name="starttitle2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1023.0
+offset_top = 200.0
+offset_right = 1247.0
+offset_bottom = 688.0
+theme_override_font_sizes/font_size = 62
+text = "商品"
+autowrap_mode = 2
+
+[node name="starttitle" type="Label" parent="."]
+layout_mode = 2
+offset_left = 351.0
+offset_top = 200.0
+offset_right = 818.0
+offset_bottom = 263.0
+theme_override_font_sizes/font_size = 62
+text = "装备"
+autowrap_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="."]
+visible = false
+layout_mode = 1
+offset_left = 1597.0
+offset_top = 85.0
+offset_right = 1661.0
+offset_bottom = 149.0
+texture_normal = ExtResource("9_kapto")
+texture_pressed = ExtResource("9_kapto")
+texture_hover = ExtResource("9_kapto")
+texture_disabled = ExtResource("9_kapto")
+texture_focused = ExtResource("9_kapto")
+stretch_mode = 0
+
+[node name="buyButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 779.0
+offset_top = 810.0
+offset_right = 1140.75
+offset_bottom = 917.0
+size_flags_horizontal = 3
+text = "购买商品"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 1023.0
+offset_top = 305.0
+offset_right = 1295.0
+offset_bottom = 393.0
+
+[node name="huanyuan" parent="HBoxContainer2" instance=ExtResource("4_iwehk")]
+custom_minimum_size = Vector2(88, 88)
+layout_mode = 2
+img = ExtResource("5_tok4l")
+itemstype = 1
+
+[node name="shenzhan" parent="HBoxContainer2" instance=ExtResource("4_iwehk")]
+custom_minimum_size = Vector2(88, 88)
+layout_mode = 2
+img = ExtResource("8_7lhpg")
+itemstype = 2
+
+[node name="zhuzi" parent="HBoxContainer2" instance=ExtResource("4_iwehk")]
+custom_minimum_size = Vector2(88, 88)
+layout_mode = 2
+img = ExtResource("9_yj1ke")
+itemstype = 3
+
+[node name="zhenping" parent="HBoxContainer2" instance=ExtResource("4_iwehk")]
+custom_minimum_size = Vector2(88, 88)
+layout_mode = 2
+img = ExtResource("10_jeddc")
+itemstype = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 352.0
+offset_top = 308.0
+offset_right = 624.0
+offset_bottom = 396.0
+
+[node name="Control1" parent="HBoxContainer" instance=ExtResource("4_iwehk")]
+custom_minimum_size = Vector2(88, 88)
+layout_mode = 2
+img = ExtResource("8_wqq75")
+itemstype = 5
+
+[node name="Control2" parent="HBoxContainer" instance=ExtResource("4_iwehk")]
+custom_minimum_size = Vector2(88, 88)
+layout_mode = 2
+img = ExtResource("12_fuyo0")
+itemstype = 6
+
+[node name="Control3" parent="HBoxContainer" instance=ExtResource("4_iwehk")]
+custom_minimum_size = Vector2(88, 88)
+layout_mode = 2
+img = ExtResource("13_xnv0q")
+itemstype = 7
+
+[node name="Label2" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 332.0
+offset_top = 660.0
+offset_right = 1588.0
+offset_bottom = 698.0
+theme_override_font_sizes/font_size = 31
+text = "精力丸，能补充一定的精力"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="detail" type="Label" parent="."]
+layout_mode = 0
+offset_left = 517.0
+offset_top = 634.0
+offset_right = 1415.0
+offset_bottom = 821.0
+theme_override_font_sizes/font_size = 31
+text = "当前商品价格:0"
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 2
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="gui_input" from="PanelContainer" to="." method="_on_panel_container_gui_input"]
+[connection signal="button_down" from="TextureButton" to="." method="_on_exit_button_button_down"]
+[connection signal="button_down" from="buyButton" to="." method="_on_buy_button_down"]

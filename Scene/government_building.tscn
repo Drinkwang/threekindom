@@ -1,14 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://jfvfolr5nfj0"]
+[gd_scene load_steps=12 format=3 uid="uid://jfvfolr5nfj0"]
 
 [ext_resource type="Script" path="res://Scripts/government_building.gd" id="1_xncth"]
 [ext_resource type="Texture2D" uid="uid://dn505pu4q3c3g" path="res://Asset/城镇建筑/小沛亮.png" id="3_bo6x4"]
 [ext_resource type="PackedScene" uid="uid://bv5ycsl0a50uq" path="res://Scene/prefab/btnList.tscn" id="5_gv3ja"]
 [ext_resource type="PackedScene" uid="uid://dqpklssxni160" path="res://Scene/prefab/clickBlock.tscn" id="6_ibudm"]
-[ext_resource type="Texture2D" uid="uid://cdkio0pgefo5s" path="res://Asset/ui/文书.png" id="7_cf66h"]
 [ext_resource type="PackedScene" uid="uid://dfolt063spdso" path="res://Scene/prefab/energy.tscn" id="7_iy2fq"]
 [ext_resource type="PackedScene" uid="uid://bw52ymer7ngwu" path="res://Scene/prefab/gapanel.tscn" id="8_ca5ns"]
 [ext_resource type="Resource" uid="uid://cqlt2sgkuk3na" path="res://dialogues/府邸.dialogue" id="8_ct1l0"]
 [ext_resource type="PackedScene" uid="uid://n73q2fqj4htr" path="res://Scene/prefab/policyPanel.tscn" id="9_fdrkw"]
+[ext_resource type="Texture2D" uid="uid://dkqpav04j4kua" path="res://Asset/ui/文书2.png" id="9_qwmo3"]
+[ext_resource type="Texture2D" uid="uid://cjgwjw0xpgmys" path="res://Asset/人物/糜竺眨眼.png" id="10_73x55"]
+[ext_resource type="Texture2D" uid="uid://doh7mxtgy0hm2" path="res://Asset/人物/陈登睁眼.png" id="12_quqka"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_xncth")
@@ -16,8 +18,8 @@ dialogue_resource = ExtResource("8_ct1l0")
 dialogue_start = "init"
 
 [node name="内屋2" type="Sprite2D" parent="."]
-position = Vector2(962, 544)
-scale = Vector2(4.2, 3.79167)
+position = Vector2(961.5, 539)
+scale = Vector2(4.173, 3.782)
 texture = ExtResource("3_bo6x4")
 
 [node name="Control" parent="." instance=ExtResource("5_gv3ja")]
@@ -58,6 +60,26 @@ visible = false
 position = Vector2(984, 625)
 showName = "政府文书"
 dialogue_doubleclick = "look"
-txt2d = ExtResource("7_cf66h")
+txt2d = ExtResource("9_qwmo3")
 dialogue_resource = ExtResource("8_ct1l0")
 dialogue_start = "look"
+
+[node name="糜竺" parent="." instance=ExtResource("6_ibudm")]
+visible = false
+position = Vector2(420, 637)
+scale = Vector2(1.55, 1.55)
+showName = "糜竺"
+dialogue_doubleclick = "点击糜竺"
+txt2d = ExtResource("10_73x55")
+dialogue_resource = ExtResource("8_ct1l0")
+dialogue_start = "点击陈群"
+
+[node name="陈登" parent="." instance=ExtResource("6_ibudm")]
+visible = false
+position = Vector2(1531, 671)
+scale = Vector2(1.4, 1.4)
+showName = "陈登"
+dialogue_doubleclick = "点击陈登"
+txt2d = ExtResource("12_quqka")
+dialogue_resource = ExtResource("8_ct1l0")
+dialogue_start = "点击陈群"

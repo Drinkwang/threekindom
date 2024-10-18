@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_12"
+type="Resource"
+uid="uid://bouswe15a440i"
+path="res://.godot/imported/商店.dialogue-b89841f2f3e39d2f45aeb9a1bfa0e541.tres"
+
+[deps]
+
+source_file="res://dialogues/商店.dialogue"
+dest_files=["res://.godot/imported/商店.dialogue-b89841f2f3e39d2f45aeb9a1bfa0e541.tres"]
+
+[params]
+
+defaults=true

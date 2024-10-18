@@ -1,4 +1,5 @@
 extends baseComponent
+@onready var res_panel = $CanvasLayer/resPanel
 
 @onready var control = $Control
 @onready var policyPanel = $"CanvasLayer/政务面板"
@@ -221,4 +222,15 @@ func fadeInAndOut():
 func _on_demo_end_button_down():
 	get_tree().quit()
 	pass # Replace with function body.
+
+
+
+func _DayGet():
+	res_panel.showValue=false
+	res_panel.GetValue(GameManager.sav.coin_DayGet,0,GameManager.sav.labor_DayGet)
+
+	SoundManager.play_sound(sounds.buysellsound)
+	await 0.8
+	res_panel.showValue=false
+	GameManager._DayGet()
 
