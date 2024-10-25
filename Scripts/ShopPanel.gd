@@ -24,6 +24,7 @@ func _on_buy_button_down():
 		selectGoods.getItem()
 		GameManager.sav.coin=GameManager.sav.coin-price
 		selectGoods=null
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"欢迎光临")
 		price=0
 	else:
 		selectGoods=null

@@ -3,6 +3,7 @@ extends baseComponent
 const FancyFade = preload("res://addons/transitions/FancyFade.gd")
 #var destination:String #放在gameins里面
 @onready var scholar = $CanvasLayer/scholar
+@onready var shop_panel = $CanvasLayer/shopPanel
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

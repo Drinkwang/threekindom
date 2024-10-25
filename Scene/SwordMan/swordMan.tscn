@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://cgqf0fexq24hn"]
+
+[ext_resource type="Script" path="res://Scene/SwordMan/swordMan.gd" id="1_qdog1"]
+[ext_resource type="Texture2D" uid="uid://cale1h2nqfdrh" path="res://Asset/ui/circle.png" id="3_hb7fs"]
+[ext_resource type="Texture2D" uid="uid://vqpsuboe7qh4" path="res://Scene/sword10.png" id="4_wqwkc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cypk8"]
+radius = 7.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u4lwu"]
+radius = 3.6
+height = 22.9168
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_qdog1")
+color = Color(0.679011, 0, 0.166589, 1)
+
+[node name="body" type="Area2D" parent="."]
+position = Vector2(0, 2)
+scale = Vector2(2, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="body"]
+position = Vector2(5.96046e-08, -1)
+rotation = -0.00872703
+scale = Vector2(3, 3)
+shape = SubResource("CircleShape2D_cypk8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0.344581, 0.558201, 1)
+position = Vector2(0, 2)
+scale = Vector2(2, 2)
+texture = ExtResource("3_hb7fs")
+
+[node name="Sword9" type="Sprite2D" parent="."]
+position = Vector2(0.999998, -43)
+rotation = 0.785398
+scale = Vector2(6, 6)
+texture = ExtResource("4_wqwkc")
+offset = Vector2(-8.195, -7.71)
+
+[node name="sword" type="Area2D" parent="Sword9"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sword9/sword"]
+position = Vector2(-8, -7.6)
+rotation = -0.794125
+scale = Vector2(1, 1)
+shape = SubResource("CapsuleShape2D_u4lwu")
+
+[node name="Timer" type="Timer" parent="Sword9"]
+wait_time = 0.01
+
+[connection signal="area_entered" from="body" to="." method="_on_GetHit_area_entered"]
+[connection signal="area_entered" from="Sword9/sword" to="." method="_on_Hit_area_entered"]
+[connection signal="timeout" from="Sword9/Timer" to="." method="_on_timer_timeout"]

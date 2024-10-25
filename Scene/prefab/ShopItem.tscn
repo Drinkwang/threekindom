@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://5qxpn6avk7bx"]
+[gd_scene load_steps=3 format=3 uid="uid://5qxpn6avk7bx"]
 
 [ext_resource type="Script" path="res://Scripts/ShopItem.gd" id="1_h644w"]
 [ext_resource type="Texture2D" uid="uid://bye5cypeps08s" path="res://Asset/ui/4.png" id="1_wpj7r"]
-[ext_resource type="Texture2D" uid="uid://blrnq7583j0py" path="res://Asset/雌雄双股剑.png" id="2_ludia"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -25,11 +24,11 @@ texture = ExtResource("1_wpj7r")
 expand_mode = 1
 
 [node name="context" type="TextureRect" parent="frame"]
+layout_mode = 0
 offset_left = 7.0
 offset_top = 7.0
 offset_right = 68.0
 offset_bottom = 68.0
-texture = ExtResource("2_ludia")
 expand_mode = 1
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
