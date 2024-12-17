@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://d1pcwt2yepu6x"]
+
+[sub_resource type="Gradient" id="Gradient_f1tfn"]
+offsets = PackedFloat32Array(0.00574713, 1)
+colors = PackedColorArray(1, 0.0909427, 0.0594648, 1, 0.526622, 0.344932, 0.124214, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_7pw7x"]
+gradient = SubResource("Gradient_f1tfn")
+
+[sub_resource type="Curve" id="Curve_h0b5f"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.472527), -0.221978, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_4lnvd"]
+curve = SubResource("Curve_h0b5f")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_blvmt"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 30.0
+initial_velocity_max = 75.0
+gravity = Vector3(0, 30, 0)
+damping_min = 26.087
+damping_max = 31.304
+scale_min = 5.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_4lnvd")
+color = Color(0.682949, 0, 0.201744, 1)
+color_ramp = SubResource("GradientTexture1D_7pw7x")
+
+[sub_resource type="Environment" id="Environment_8cvcq"]
+background_mode = 3
+tonemap_mode = 3
+tonemap_exposure = 3.12
+tonemap_white = 2.59
+ssr_enabled = true
+ssao_enabled = true
+sdfgi_enabled = true
+glow_enabled = true
+glow_levels/1 = 1.0
+glow_levels/2 = 1.0
+glow_levels/4 = 1.0
+glow_levels/6 = 1.0
+glow_levels/7 = 1.0
+glow_normalized = true
+glow_intensity = 2.55
+glow_bloom = 1.0
+glow_hdr_luminance_cap = 14.15
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+modulate = Color(2.739, 0.64, 0.64, 1)
+self_modulate = Color(30.959, 0.193, 0.297, 1)
+scale = Vector2(5, 5)
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_blvmt")
+one_shot = true
+explosiveness = 1.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8cvcq")

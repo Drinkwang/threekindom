@@ -16,3 +16,9 @@ enum factionIndex{
 	haozupai
 	
 }
+func ChangeSupport(num):
+	_support_rate=_support_rate+num
+	if _support_rate>100:
+		_support_rate=100
+	elif _support_rate<0:
+		_support_rate=0

@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=3 uid="uid://3f5862xpa6su"]
+
+[ext_resource type="Texture2D" uid="uid://c3upnx5ishcmw" path="res://Asset/particle/flare_1.png" id="1_e0afm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bjaqb"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_e0afm")
+
+[sub_resource type="Curve" id="Curve_1ch4h"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.957895, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_q123e"]
+max_value = 5.0
+_data = [Vector2(0, 5), 0.0, 0.0, 0, 0, Vector2(0.994737, 0.054945), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_agdcj"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_kx8p4"]
+curve_x = SubResource("Curve_1ch4h")
+curve_y = SubResource("Curve_q123e")
+curve_z = SubResource("Curve_agdcj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bdoaj"]
+particle_flag_align_y = true
+emission_shape = 1
+emission_sphere_radius = 0.2
+spread = 180.0
+initial_velocity_min = 20.0
+initial_velocity_max = 25.0
+gravity = Vector3(0, -20, 0)
+scale_min = 0.15
+scale_max = 0.5
+scale_curve = SubResource("CurveXYZTexture_kx8p4")
+color = Color(5, 2, 1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_sf08v"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+material_override = SubResource("StandardMaterial3D_bjaqb")
+amount = 20
+lifetime = 0.6
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_bdoaj")
+draw_pass_1 = SubResource("QuadMesh_sf08v")

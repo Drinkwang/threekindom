@@ -18,7 +18,8 @@ enum RspEnum{
 enum ResType{
 	coin,
 	people,
-	
+	battle,
+	rest,
 	
 }
 
@@ -33,6 +34,13 @@ enum BattleResult{
 
 
 @export var sav:saveData=saveData.new()
+func changePeopleSupport(num):
+	sav.people_surrport=sav.people_surrport+num
+	if(sav.people_surrport>100):
+		sav.people_surrport=100
+	elif sav.sav.people_surrport<0:
+		sav.people_surrport=0
+	
 enum opcost{
 	greater,
 	less,
@@ -188,7 +196,12 @@ func _enterDay(value=true):
 	hp=100
 	sav.isLevelUp=false;
 	sav.isMeet=false
-	
+
+	if GameManager.sav.targetResType==GameManager.ResType.rest:
+		GameManager.sav.currenceValue=GameManager.sav.currenceValue+1
+		if GameManager.sav.have_event["chaosBegin"]==true:#第三个任务
+			if GameManager.sav.currenceValue==2:
+				pass#克苏鲁现象
 	
 #利用上这个把taskindex局限于0-3 选样，并把这个数量和攻克
 #用task的index用作当前任务数
@@ -351,6 +364,8 @@ func getTaskCurrenceValue():
 		cur=sav.coin
 	elif sav.targetResType==ResType.people:
 		cur=sav.labor_force
+	else:
+		cur=sav.currenceValue#暂时该值未定义
 	return cur
 
 func _DayGet():
@@ -363,4 +378,7 @@ func _rest(value=true):
 	
 	Transitions.change_scene_to_instance( SceneManager.SLEEP_BLANK.instantiate(), Transitions.FadeType.Instant)
 	
+
+
+
 

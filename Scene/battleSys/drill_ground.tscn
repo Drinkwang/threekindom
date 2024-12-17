@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://00xr1q336bgu"]
+[gd_scene load_steps=20 format=3 uid="uid://00xr1q336bgu"]
 
 [ext_resource type="Script" path="res://Scripts/drill_ground.gd" id="1_bhlt2"]
 [ext_resource type="Resource" uid="uid://d2qoinuor12dq" path="res://dialogues/演武场.dialogue" id="2_j02vm"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://ditcwds6nu8ga" path="res://Scene/prefab/soilderUpdatePanel.tscn" id="9_02127"]
 [ext_resource type="PackedScene" uid="uid://cjsb43uugkud4" path="res://Scene/battleSys/battlePanel.tscn" id="10_gfhv4"]
 [ext_resource type="FontFile" uid="uid://qv74ebpr4i31" path="res://Asset/Font/VonwaonBitmap-16px.ttf" id="11_014y5"]
+[ext_resource type="PackedScene" uid="uid://cw66yiofu8q6f" path="res://Scene/prefab/RuleBook.tscn" id="11_lkv7t"]
 [ext_resource type="PackedScene" uid="uid://bv5ycsl0a50uq" path="res://Scene/prefab/btnList.tscn" id="12_g1aky"]
 [ext_resource type="PackedScene" uid="uid://ghiim2lkqkbe" path="res://Scene/prefab/propertyPanel.tscn" id="13_4p7r8"]
 [ext_resource type="PackedScene" uid="uid://dfolt063spdso" path="res://Scene/prefab/energy.tscn" id="14_hgva0"]
@@ -135,6 +136,22 @@ visible = false
 
 [node name="battlePane" parent="CanvasInventory" instance=ExtResource("10_gfhv4")]
 visible = false
+
+[node name="caocaoLetter" parent="CanvasInventory" instance=ExtResource("11_lkv7t")]
+visible = false
+offset_left = 969.0
+offset_top = 468.0
+offset_right = 1009.0
+offset_bottom = 508.0
+context = "备弟足下：
+
+  久别重逢，感慨万千。当年你助陶谦对抗我军，此事已成过往，我不再计较。犹记当年初遇，共叙英雄之志，感怀至今。你曾助我招募军队，那份情谊我始终铭记于心。
+  闻你正忙于清剿黄巾军，虽已取得进展，但仍有余孽未除。我愿派遣一支精锐步兵协助你彻底剿灭黄巾军，确保粮道畅通无阻。袁绍势力庞大，且与我有旧交，相信他会接纳你的诚意。望你一切顺利，若有需要，随时告知。
+
+
+                               曹操敬上"
+lookdoneDialog = " 遇到曹操2"
+dialogue_resource = ExtResource("2_j02vm")
 
 [node name="Control" parent="CanvasInventory" instance=ExtResource("13_4p7r8")]
 offset_left = 1638.0

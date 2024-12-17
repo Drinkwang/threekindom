@@ -100,16 +100,6 @@ offset_bottom = 972.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 38
-text = "士族生存法则
-1.士族必须和控制家乡的军阀合作,士族如果对军阀感到不满，有可能会让军阀“自然”死亡...
-
-2.士族和军阀合作的目的是为了得到更多政治资源
-
-3.士族个体虽然很弱小，但是士族的族的范围很广大，他有强大的包容性，不限于跟军阀和达官显贵联姻，将他们变成我们
-
-4.士族会跟学阀进行合作，掌控一个地区的商业资源
-5.士族只有牢牢把控资源才能得到他人的信任
-6.如果一个地方存在本地/士族，本地士族如果吞并不成就会将外来士族干掉，士族对外论派，对内论系，当士族解决掉外部矛盾时，自身会因为内部矛盾分成多股势力"
 autowrap_mode = 3
 
 [connection signal="gui_input" from="TextureRect" to="." method="_on_texture_rect_gui_input"]

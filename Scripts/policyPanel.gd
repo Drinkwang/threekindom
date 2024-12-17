@@ -30,6 +30,7 @@ func initControls():
 		#GameManager.currenceScene.selectPolicy(self["control_"+index].data)
 		#DialogueManager.show_example_dialogue_balloon(GameManager.currenceScene.dialogue_resource,"xxx")
 		#判断自己的逻辑
+	#应该是第二天
 	GameManager.currenceScene._initGroup(group)
 	control_1.initDataByGroup(1,group)
 	control_2.initDataByGroup(2,group)
@@ -152,7 +153,7 @@ func _on_button_button_down():
 	#根据选项判断影响，并同时让施政选项不再显示
 	#get_tree().get_root().get_node("")
 	
-	GameManager.currenceScene.selectPolicy(self["control_"+index].data)
+	GameManager.currenceScene.selectPolicy(self["control_"+var_to_str(index)].data)
 	#每个上中下上册都有一个结构体，这边事后根据结构体对应id判断不同id点击施政的确切影响
 	pass # Replace with function body.
 

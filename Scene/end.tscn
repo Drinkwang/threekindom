@@ -1,20 +1,15 @@
-[gd_scene load_steps=24 format=3 uid="uid://ptclmhhv84g6"]
+[gd_scene load_steps=16 format=3 uid="uid://ptclmhhv84g6"]
 
 [ext_resource type="Script" path="res://Scene/end.gd" id="1_g32r7"]
-[ext_resource type="Resource" uid="uid://bte38wl3etklk" path="res://dialogues/灵堂.dialogue" id="2_e3y0w"]
 [ext_resource type="AudioStream" uid="uid://brg1ltppwfyim" path="res://Asset/sound/闪电.mp3" id="3_lav2d"]
 [ext_resource type="Texture2D" uid="uid://cwrhf5jbmvrep" path="res://Asset/城镇建筑/灵堂暗.png" id="4_roc22"]
-[ext_resource type="Texture2D" uid="uid://bogx6mxg0urwd" path="res://Scene/sword9.png" id="6_mfb3m"]
-[ext_resource type="Shader" path="res://shader/light.gdshader" id="9_dto48"]
 [ext_resource type="Texture2D" uid="uid://cale1h2nqfdrh" path="res://Asset/ui/circle.png" id="10_hxrec"]
-[ext_resource type="Script" path="res://Scripts/flashLight.gd" id="11_e1oi1"]
 [ext_resource type="Texture2D" uid="uid://yxnjmxcqgl2u" path="res://addons/inventory_example/textures/inventories/Chest.png" id="12_02t4n"]
 [ext_resource type="Shader" path="res://Asset/shader/obj.gdshader" id="13_ikcuw"]
-[ext_resource type="PackedScene" uid="uid://bhu5hq8kx8pov" path="res://addons/inventory_example/inventories/simple/InventoryUI.tscn" id="13_rpo1t"]
 [ext_resource type="PackedScene" uid="uid://cgqf0fexq24hn" path="res://Scene/SwordMan/swordMan.tscn" id="13_y24ds"]
-[ext_resource type="PackedScene" uid="uid://cw66yiofu8q6f" path="res://Scene/prefab/RuleBook.tscn" id="14_m3sfk"]
 [ext_resource type="Texture2D" uid="uid://vqpsuboe7qh4" path="res://Scene/sword10.png" id="14_vaajl"]
 [ext_resource type="FontFile" uid="uid://qv74ebpr4i31" path="res://Asset/Font/VonwaonBitmap-16px.ttf" id="15_rh6iw"]
+[ext_resource type="PackedScene" uid="uid://d1pcwt2yepu6x" path="res://Scene/prefab/spark2d.tscn" id="15_rjsb5"]
 [ext_resource type="PackedScene" uid="uid://bv5ycsl0a50uq" path="res://Scene/prefab/btnList.tscn" id="16_k3obk"]
 
 [sub_resource type="Animation" id="Animation_0bk4q"]
@@ -37,15 +32,6 @@ tracks/0/keys = {
 _data = {
 "闪烁": SubResource("Animation_0bk4q")
 }
-
-[sub_resource type="Gradient" id="Gradient_sgdlq"]
-offsets = PackedFloat32Array(0.993976, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_uoxgf"]
-gradient = SubResource("Gradient_sgdlq")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_21veu"]
-shader = ExtResource("9_dto48")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fw5is"]
 shader = ExtResource("13_ikcuw")
@@ -87,32 +73,8 @@ position = Vector2(960, 540)
 scale = Vector2(4.1913, 3.77778)
 texture = ExtResource("4_roc22")
 
-[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
-copy_mode = 2
-
-[node name="blank" type="Sprite2D" parent="BackBufferCopy"]
-position = Vector2(1353.04, 746.926)
-scale = Vector2(10.7865, 1508.76)
-texture = SubResource("GradientTexture1D_uoxgf")
-
-[node name="mask2" type="Sprite2D" parent="BackBufferCopy"]
-visible = false
-material = SubResource("ShaderMaterial_21veu")
-position = Vector2(1096, 774)
-scale = Vector2(6.951, 7.05)
-texture = ExtResource("10_hxrec")
-offset = Vector2(-0.59, 1.16)
-script = ExtResource("11_e1oi1")
-
-[node name="mask" type="Sprite2D" parent="BackBufferCopy"]
-material = SubResource("ShaderMaterial_21veu")
-position = Vector2(-188, 444)
-scale = Vector2(9.00812, 9.1175)
-texture = ExtResource("6_mfb3m")
-offset = Vector2(-0.59, 1.16)
-script = ExtResource("11_e1oi1")
-
 [node name="CanvasButton" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="TextureButton" type="TextureButton" parent="CanvasButton"]
 visible = false
@@ -129,45 +91,94 @@ metadata/_edit_use_anchors_ = true
 
 [node name="CanvasInventory" type="CanvasLayer" parent="."]
 
-[node name="InventoryAny" parent="CanvasInventory" instance=ExtResource("13_rpo1t")]
-visible = false
-anchors_preset = 1
-anchor_left = 1.0
+[node name="CAOCAOBox" parent="CanvasInventory" instance=ExtResource("16_k3obk")]
+anchors_preset = 15
 anchor_right = 1.0
-offset_left = -300.0
-offset_top = 100.0
+anchor_bottom = 1.0
 offset_right = 0.0
-offset_bottom = 400.0
-grow_horizontal = 0
-inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
-metadata/_edit_use_anchors_ = true
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 8
 
-[node name="tuLabel" type="Label" parent="CanvasInventory"]
-offset_top = 3.0
-offset_right = 1919.0
-offset_bottom = 111.0
-theme_override_font_sizes/font_size = 24
+[node name="Label" type="Label" parent="CanvasInventory/CAOCAOBox"]
+layout_mode = 0
+offset_left = 1433.0
+offset_top = 15.0
+offset_right = 1579.0
+offset_bottom = 103.0
+theme_override_colors/font_color = Color(0.25098, 0.0509804, 0.839216, 1)
+theme_override_font_sizes/font_size = 26
+text = "曹操："
 horizontal_alignment = 2
 
-[node name="CanvasBook" type="CanvasLayer" parent="."]
-visible = false
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasInventory/CAOCAOBox"]
+custom_minimum_size = Vector2(2.185, 0.48)
+layout_mode = 0
+offset_left = 1584.0
+offset_top = 15.0
+offset_right = 1861.0
+offset_bottom = 43.0
+theme_override_constants/separation = 15
 
-[node name="ruleBook" parent="CanvasBook" instance=ExtResource("14_m3sfk")]
-offset_left = 956.0
-offset_top = 471.0
-offset_right = 996.0
-offset_bottom = 511.0
-context = "士族生存法则
-1.士族必须和控制家乡的军阀合作,士族如果对军阀感到不满，有可能会让军阀“自然”死亡...
+[node name="ColorRect" type="ColorRect" parent="CanvasInventory/CAOCAOBox/HBoxContainer"]
+custom_minimum_size = Vector2(80, 10)
+layout_mode = 2
+color = Color(0.25098, 0.0509804, 0.839216, 1)
 
-2.士族和军阀合作的目的是为了得到更多政治资源
+[node name="ColorRect2" type="ColorRect" parent="CanvasInventory/CAOCAOBox/HBoxContainer"]
+custom_minimum_size = Vector2(80, 10)
+layout_mode = 2
+color = Color(0.25098, 0.0509804, 0.839216, 1)
 
-3.士族个体虽然很弱小，但是士族的族的范围很广大，他有强大的包容性，不限于跟军阀和达官显贵联姻，将他们变成我们
+[node name="ColorRect3" type="ColorRect" parent="CanvasInventory/CAOCAOBox/HBoxContainer"]
+custom_minimum_size = Vector2(80, 10)
+layout_mode = 2
+color = Color(0.25098, 0.0509804, 0.839216, 1)
+metadata/_edit_group_ = true
 
-4.士族会跟学阀进行合作，掌控一个地区的商业资源
-5.士族只有牢牢把控资源才能得到他人的信任
-6.如果一个地方存在本地/士族，本地士族如果吞并不成就会将外来士族干掉，士族对外论派，对内论系，当士族解决掉外部矛盾时，自身会因为内部矛盾分成多股势力"
-dialogue_resource = ExtResource("2_e3y0w")
+[node name="Control" type="Control" parent="CanvasInventory/CAOCAOBox"]
+anchors_preset = 0
+offset_left = -1475.0
+offset_top = 1009.0
+offset_right = -1435.0
+offset_bottom = 1049.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasInventory/CAOCAOBox/Control"]
+custom_minimum_size = Vector2(2.185, 0.48)
+layout_mode = 0
+offset_left = 1584.0
+offset_top = 15.0
+offset_right = 1861.0
+offset_bottom = 43.0
+theme_override_constants/separation = 15
+
+[node name="ColorRect" type="ColorRect" parent="CanvasInventory/CAOCAOBox/Control/HBoxContainer"]
+custom_minimum_size = Vector2(80, 10)
+layout_mode = 2
+color = Color(0.619608, 0, 0.152941, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasInventory/CAOCAOBox/Control/HBoxContainer"]
+custom_minimum_size = Vector2(80, 10)
+layout_mode = 2
+color = Color(0.541176, 0.0235294, 0.14902, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="CanvasInventory/CAOCAOBox/Control/HBoxContainer"]
+custom_minimum_size = Vector2(80, 10)
+layout_mode = 2
+color = Color(0.541176, 0.0235294, 0.14902, 1)
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="CanvasInventory/CAOCAOBox/Control"]
+layout_mode = 0
+offset_left = 1433.0
+offset_top = 15.0
+offset_right = 1579.0
+offset_bottom = 103.0
+theme_override_colors/font_color = Color(0.678431, 0, 0.164706, 1)
+theme_override_font_sizes/font_size = 26
+text = "刘备："
+horizontal_alignment = 2
 
 [node name="title" type="RichTextLabel" parent="."]
 visible = false
@@ -182,17 +193,22 @@ bbcode_enabled = true
 text = "[center][rainbow]阴[/rainbow][wave amp=50 frep=100]三国[/wave][rainbow]谋论[/rainbow]-[tornado]徐州篇[/tornado][/center][color=#ff0000]Red Text[/color]"
 tab_size = 6
 
-[node name="Control2" parent="." instance=ExtResource("16_k3obk")]
-visible = false
+[node name="bg" type="ColorRect" parent="."]
+offset_right = 1993.0
+offset_bottom = 1145.0
+color = Color(0, 0, 0, 1)
 
 [node name="caocao" parent="." instance=ExtResource("13_y24ds")]
 position = Vector2(1116, 281)
-rotation = 3.61283
-color = Color(0.257048, 2.61831e-05, 0.994898, 1)
+rotation = 5.93412
+color = Color(0.22331, 1.90598e-05, 0.881381, 1)
 
 [node name="liubei" parent="." instance=ExtResource("13_y24ds")]
 position = Vector2(1020, 859)
-rotation = 3.61283
+rotation = 5.93412
+
+[node name="GPUParticles2D" parent="." instance=ExtResource("15_rjsb5")]
+position = Vector2(279, 539)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false

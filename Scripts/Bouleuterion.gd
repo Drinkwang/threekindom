@@ -9,7 +9,8 @@ const FancyFade = preload("res://addons/transitions/FancyFade.gd")
 @onready var mizhu = $"CanvasBook/糜竺"
 @onready var chendeng = $"CanvasBook/陈登"
 #@onready var context = $PanelContainer/MarginContainer/VBoxContainer/context
-
+const newBuild = preload("res://Asset/城镇建筑/会议室新.png")
+const xiaopeiBuild = preload("res://Asset/城镇建筑/会议室旧.png")
 #议事详细
 @onready var parliamentary_detail = $CanvasBook/parliamentaryDetail
 
@@ -40,6 +41,7 @@ func post_transition():
 	print("fadedone")
 	_initData()
 
+@onready var bg = $"Canvas闪电/TextureRect"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -53,7 +55,10 @@ func _ready():
 	changeLanguage()
 	#initData()
 		
-		
+	if GameManager.sav.have_event["initXuzhou"]==true:
+		bg.texture=newBuild
+	else:
+		bg.texture=xiaopeiBuild		
 		
 		
 @onready var node_2d = $CanvasBook/Node2D

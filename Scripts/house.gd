@@ -128,7 +128,15 @@ func _initData():
 			GameManager.sav.have_event["DemoFinish"]=true
 			control.hide()
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新手关结束")	
-		
+	
+	#判断以下，是首日获取 还是第二次获取
+	if GameManager.sav.day>=6:
+		if(GameManager.sav.isGetCoin==false):
+			GameManager.sav.isGetCoin=true
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"今日收入为")
+	#if()
+	
+	
 		#将政务面板更新 里面列举了一堆list
 	#如果没见过陈登把control隐藏，如果见过了陈登 control不隐藏
 const daybgm = preload("res://Asset/bgm/白天在家or办公.wav")	
@@ -171,9 +179,10 @@ func _buttonListClick(item):
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"还不能休息_新手教程")	
 				return		
 		elif GameManager.sav.day==5:
-			if GameManager.sav.have_event["xxxx"]==false:
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"xxxx")	
-				return		
+			pass
+			#if GameManager.sav.have_event["xxxx"]==false:
+			#	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"xxxx")	
+			#	return		
 		control._show_button_5_yellow(-1)
 		GameManager._rest()
 
@@ -198,7 +207,7 @@ func showchenqun():
 func demoFinishChenQunShow():
 	$"陈群".show()
 	$"文官".hide()
-	
+	#跳转徐州
 	pass
 
 func demoFinishWenGuanShow():
@@ -206,14 +215,21 @@ func demoFinishWenGuanShow():
 	$"陈群".hide()
 	$"文官".show()
 	pass
-@onready var title = $title
+@onready var title = $title2
 @onready var demo_end = $CanvasLayer/DemoEnd
 
 func demoFinish():
 	$"陈群".hide()
 	$"文官".hide()
-	title.show()
-	demo_end.show()
+	#title.show()
+	#demo_end.show()
+	
+	#if day==5:
+	#demo 完结 正式版内容
+	const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
+		
+	FancyFade.new().custom_fade(SceneManager.GOVERNMENT_BUILDING.instantiate(), 2, DISSOLVE_IMAGE)
+
 
 func fadeInAndOut():
 	PanelManager.Fade_Blank(Color.BLACK,1,PanelManager.fadeType.fadeInAndOut)
@@ -228,9 +244,71 @@ func _on_demo_end_button_down():
 func _DayGet():
 	res_panel.showValue=false
 	res_panel.GetValue(GameManager.sav.coin_DayGet,0,GameManager.sav.labor_DayGet)
-
 	SoundManager.play_sound(sounds.buysellsound)
 	await 0.8
 	res_panel.showValue=false
 	GameManager._DayGet()
+	_JudgeTask()
+	# 好的我了解了，还有别的事么？
+	# 对，还有一键
+	# 很好，继续努力。如果任务没有完成 提示三选一
 
+func _JudgeTask():
+	var value=0
+	if GameManager.sav.targetResType==GameManager.ResType.coin:
+		value=GameManager.sav.coin
+	elif GameManager.sav.targetResType==GameManager.ResType.people:
+		pass
+		#value	
+	elif GameManager.sav.targetResType==GameManager.ResType.rest:
+		value=GameManager.sav.currenceValue
+		if GameManager.sav.have_event["chaosBegin"]==true:
+			if GameManager.sav.have_event["chaosEnd"]==false:
+				if value>=GameManager.sav.targetValue:
+					GameManager.sav.have_event["chaosEnd"]=true
+					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"袁术之乱结束")	
+	if(GameManager.sav.have_event["completeTask1"]==true):
+		if(GameManager.sav.have_event["initTask2"]==false):
+			if GameManager.sav.have_event["initTask2"]==true:
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"有拦路虎")
+			#显示对话
+			#任务完成
+	
+func secondMissonStart():
+	GameManager.sav.targetValue=10
+	GameManager.sav.currenceValue=0
+	GameManager.sav.targetResType=GameManager.ResType.battle
+	GameManager.sav.targetTxt="当前讨伐对象：{currence}/{target}"
+	GameManager.sav.TargetDestination="battle"
+	#win 10次90
+	#GameManager.sav.TargetDestination=="府邸"
+	pass
+	
+const BENTUPAI = preload("res://Asset/tres/bentupai.tres")
+const HAOZUPAI = preload("res://Asset/tres/haozupai.tres")
+const WAIDIPAI = preload("res://Asset/tres/waidipai.tres")	
+#准备改成5天，然后民心下降改成5点
+func yuanshuChaos(value):
+	if value==1:
+		GameManager.sav.changePeopleSupport(-10)
+		#民心下降10,改成5
+	elif value==2:
+		WAIDIPAI.ChangeSupport(-10)
+		#丹阳派下降10
+	elif value==3:
+		BENTUPAI.ChangeSupport(-10)
+		#徐州度下降10
+	elif value==4:
+		WAIDIPAI.ChangeSupport(-10)
+		BENTUPAI.ChangeSupport(-10)
+		GameManager.sav.changePeopleSupport(-10)
+		#全部下降10
+@onready var caocao_letter = $CanvasLayer/caocaoLetter
+		
+func showCaoCaoLetter():
+	caocao_letter.show()
+	
+func lookDoneCaoCaoLetter():
+	#设置目标是前往宅邸
+	GameManager.sav.TargetDestination="府邸"
+	pass

@@ -18,8 +18,8 @@ dialogue_resource = ExtResource("8_ct1l0")
 dialogue_start = "init"
 
 [node name="内屋2" type="Sprite2D" parent="."]
-position = Vector2(961.5, 539)
-scale = Vector2(4.173, 3.782)
+position = Vector2(960, 544.5)
+scale = Vector2(4.2, 3.79514)
 texture = ExtResource("3_bo6x4")
 
 [node name="Control" parent="." instance=ExtResource("5_gv3ja")]
@@ -72,7 +72,7 @@ showName = "糜竺"
 dialogue_doubleclick = "点击糜竺"
 txt2d = ExtResource("10_73x55")
 dialogue_resource = ExtResource("8_ct1l0")
-dialogue_start = "点击陈群"
+dialogue_start = "点击糜竺"
 
 [node name="陈登" parent="." instance=ExtResource("6_ibudm")]
 visible = false
@@ -82,4 +82,4 @@ showName = "陈登"
 dialogue_doubleclick = "点击陈登"
 txt2d = ExtResource("12_quqka")
 dialogue_resource = ExtResource("8_ct1l0")
-dialogue_start = "点击陈群"
+dialogue_start = "点击陈登"

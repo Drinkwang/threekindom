@@ -15,7 +15,20 @@ position = Vector2(961.5, 539)
 scale = Vector2(1.41087, 1.33659)
 texture = ExtResource("1_3lq2u")
 
+[node name="title2" type="RichTextLabel" parent="."]
+offset_left = 9.96845
+offset_top = 326.043
+offset_right = 1924.97
+offset_bottom = 805.043
+scale = Vector2(0.993691, 1.04365)
+theme_override_fonts/normal_font = ExtResource("2_mqgpl")
+theme_override_font_sizes/normal_font_size = 200
+bbcode_enabled = true
+text = "[center][rainbow]梦[/rainbow][wave amp=50 frep=100]断[/wave][rainbow][/rainbow][tornado][color=#ff0000]徐州城[/color][/tornado][/center]"
+tab_size = 6
+
 [node name="title" type="RichTextLabel" parent="."]
+visible = false
 offset_left = 5.0
 offset_top = 253.0
 offset_right = 1920.0

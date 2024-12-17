@@ -24,7 +24,18 @@ func showTargetLabel():
 	# target，currence
 	
 	if currenceValue>=currenceValue:
-		target_label.text="任务已完成，休息进入下一天推进剧情"
+		if(GameManager.sav.TargetDestination=="rest"):
+			target_label.text="任务已完成，休息进入下一天推进剧情"
+		elif GameManager.sav.TargetDestination=="自宅":
+			target_label.text="任务已完成，请返回自宅触发下一阶段剧情"
+		elif GameManager.sav.TargetDestination=="府邸":
+			target_label.text="任务已完成，请前往府邸触发下一阶段剧情"
+		elif GameManager.sav.TargetDestination=="议事厅":
+			target_label.text="任务已完成，请前往议事厅触发下一阶段剧情"
+		elif GameManager.sav.TargetDestination=="演武场":
+			target_label.text="任务已完成，请前往演武场触发下一阶段剧情"
+		elif GameManager.sav.TargetDestination=="大儒辩经":
+			target_label.text="任务已完成，请前往城外和大儒辩经触发下一阶段剧情"
 	else:
 		target_label.text=GameManager.sav.targetTxt.format({"target":targetValue,"currence":currenceValue})
 	pass

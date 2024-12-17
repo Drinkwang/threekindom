@@ -12,13 +12,10 @@ func _ready():
 		option_button.select(1)
 	elif system_locale=="zh":
 		option_button.select(0)
-		
 	elif system_locale=="ja":
 		option_button.select(3)	
-
 	elif system_locale=="ru":
 		option_button.select(4)
-
 	elif system_locale=="en":
 		option_button.select(2)			
 

@@ -56,9 +56,9 @@ func changeLanguage():
 var data
 func initDataByGroup(index,group):
 
-	data=GameManager.policy_Item.filter(func(ele): return ele.group == group and ele.index==index)[0]
-	detail=data.name
-	context=data.context
+	data=GameManager.policy_Item.filter(func(ele): return ele.group == group-1 and ele.index==index)[0]
+	detail=data.detail
+	context=data.name
 	pass
 
 func setBanStatus(boolvalue):

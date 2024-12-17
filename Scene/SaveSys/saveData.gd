@@ -4,7 +4,7 @@ class_name saveData
 
 #GameManager
 @export var day=0
-@export var intellectual_support=100 #士族支持度 一开始为100 当议会中 会出现支持和不支持以及摇摆 
+#@export var intellectual_support=100 #士族支持度 一开始为100 当议会中 会出现支持和不支持以及摇摆 
 @export var people_surrport=100 #群众支持度 数值
 @export var  coin=100 #金钱 数值
 @export var coin_DayGet=20
@@ -28,15 +28,23 @@ class_name saveData
 @export var Merit_points:int=3
 @export var battleTasks={}
 @export var completeTask:int=0
+
 #若通关 则completeTask	
 @export var currenceTask:int=0	
+#任务完成下一步目标
+@export var TargetDestination:String #放在gameins里面
+#如果是战斗，存储的数量
+@export var currenceValue:int=0
+#是否获取金钱
+@export var isGetCoin=false
 
+#资源派系没存
 @export var haveGuild=true
 @export var jumpmain=false
 @export var targetTxt=""
 @export var targetValue=0
 @export var targetResType:GameManager.ResType
-
+@export var policy_Item_index=1#政策数量
 @export var have_event = {
 	"firstmeetchenqun":false,
 	"firsthouse": false,
@@ -67,6 +75,18 @@ class_name saveData
 	"firstVisitScholarsEnd":false,
 	"firstNewEnd":false, #新手剧情结束么？No
 	"DemoFinish":false,
-	"initTask1":false
-
+	"initXuzhou":false,
+	"LiuBeiSucceed":false,
+	"initTask1":false,
+	"initTaskPolicy":false,#正式游戏第一次政策离开府邸对话
+	"completeTask1":false,
+	"firstMeetCaoCao":false,
+	"CaoBaointervene":false,
+	"initTask2":false,
+	"completeTask2":false,
+	"chaosBegin":false,
+	"chaoChendengEnd":false,
+	"chaoMizhuEnd":false,
+	"chaosEnd":false
+	
 }

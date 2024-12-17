@@ -32,6 +32,7 @@ func _processList(data):
 		var btnContext=item.context
 		var richTxt:RichTextLabel =RichTextLabel.new()
 		richTxt.set_text(btnContext)
+		#richTxt.set_size(Vector2(200,50))
 		richTxt.set_size(Vector2(850,80))
 		richTxt.set_mouse_filter(Control.MOUSE_FILTER_IGNORE)
 		
@@ -60,16 +61,19 @@ func _processList(data):
 			else:
 				richTxt.add_theme_font_size_override("normal_font_size",55)
 
-		richTxt.add_theme_color_override("font_outline_color",Color.BLACK)
-		richTxt.add_theme_constant_override("outline_size",5)
+		richTxt.add_theme_color_override("font_outline_color",Color.DARK_RED)
+		richTxt.add_theme_constant_override("outline_size",0)
 		richTxt.clip_contents=true
 		richTxt.scroll_active=false
-		richTxt.set_modulate(Color.WHITE)
+		richTxt.set_modulate(Color.DIM_GRAY)
 		richTxt.set_position(Vector2(50,45))
 		#richTxt.add_theme_font_override("")
 		#richTxt.horizontal_alignment = CENTER
 		#richTxt.outline_color=Color.BLACK
 		var buttton:=TextureButton.new()
+		#buttton.set_custom_minimum_size(Vector2(450,48))
+		#buttton.ignore_texture_size=true
+		#buttton.stretch_mode=TextureButton.STRETCH_KEEP_ASPECT
 		buttton.add_child(richTxt)
 		buttton.texture_normal=normalbtn
 		buttton.texture_pressed=pressbtn

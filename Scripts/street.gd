@@ -4,10 +4,16 @@ const FancyFade = preload("res://addons/transitions/FancyFade.gd")
 #var destination:String #放在gameins里面
 @onready var scholar = $CanvasLayer/scholar
 @onready var shop_panel = $CanvasLayer/shopPanel
+const xiaopeiBuild = preload("res://Asset/城镇建筑/集市1.png")
+const newBuild = preload("res://Asset/城镇建筑/集市2.png")
+@onready var bg = $"内屋"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-
+	if GameManager.sav.have_event["initXuzhou"]==true:
+		bg.texture=newBuild
+	else:
+		bg.texture=xiaopeiBuild
 	#方便测试
 	GameManager.sav.have_event["firstmeetchenqun"]=true
 
@@ -22,7 +28,7 @@ func _ready():
 
 func streetTwo():
 	control.show()
-	control._show_button_5_yellow(5)	
+	control._show_button_5_yellow(4)	
 	pass
 
 func streetThree():
@@ -63,10 +69,10 @@ func post_transition():
 	if GameManager.sav.day==3:
 		if GameManager.sav.have_event["firstBattle"]==false:
 			GameManager.sav.have_event["firstBattle"]=true
-			control._show_button_5_yellow(5)
+			control._show_button_5_yellow(4)
 	if GameManager.sav.day==4:
 		GameManager.sav.destination="城门-军事驻地"
-		control._show_button_5_yellow(5)
+		control._show_button_5_yellow(4)
 		#拜访大儒
 		pass		
 	

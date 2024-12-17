@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://l4m0606h4rg3"]
+
+[ext_resource type="Shader" path="res://addons/transitions/Dissolve2d.gdshader" id="1_s6nf1"]
+[ext_resource type="Texture2D" uid="uid://d3ub4lbpbvdfo" path="res://icon.png" id="2_etuxe"]
+
+[resource]
+shader = ExtResource("1_s6nf1")
+shader_parameter/dissolve_amount = 0.0
+shader_parameter/dissolve_texture = ExtResource("2_etuxe")

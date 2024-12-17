@@ -5,13 +5,13 @@
 [ext_resource type="Resource" uid="uid://bouswe15a440i" path="res://dialogues/商店.dialogue" id="2_gxgjo"]
 [ext_resource type="AudioStream" uid="uid://daxlyrk7pr0bu" path="res://Asset/sound/翻阅.mp3" id="3_32rtm"]
 [ext_resource type="PackedScene" uid="uid://5qxpn6avk7bx" path="res://Scene/prefab/ShopItem.tscn" id="4_iwehk"]
-[ext_resource type="Texture2D" uid="uid://cebke5xvs3qn1" path="res://Asset/精力丸.png" id="5_tok4l"]
-[ext_resource type="Texture2D" uid="uid://lxpmkfvvw5v8" path="res://Asset/threekindom6.png" id="8_7lhpg"]
-[ext_resource type="Texture2D" uid="uid://blrnq7583j0py" path="res://Asset/雌雄双股剑.png" id="8_wqq75"]
+[ext_resource type="Texture2D" uid="uid://cphbecia7woet" path="res://Asset/items/益气.png" id="7_ubh4f"]
+[ext_resource type="Texture2D" uid="uid://hy8jdf2wnwq" path="res://Asset/items/胜战.png" id="8_080tv"]
 [ext_resource type="Texture2D" uid="uid://dahuc8gb2blc" path="res://Asset/other/0_red.png" id="9_kapto"]
-[ext_resource type="Texture2D" uid="uid://c8217n5l3n1vd" path="res://Asset/辩论.png" id="9_yj1ke"]
-[ext_resource type="Texture2D" uid="uid://b25asbvrhsn4e" path="res://Asset/雌雄双股剑红.png" id="10_jeddc"]
-[ext_resource type="Texture2D" uid="uid://cst578p6y4vbo" path="res://Asset/青龙偃月刀.png" id="12_fuyo0"]
+[ext_resource type="Texture2D" uid="uid://d1ey12yrtc7ec" path="res://Asset/items/兵法.png" id="9_rtmou"]
+[ext_resource type="Texture2D" uid="uid://c5t4heqv3a8ff" path="res://Asset/items/礼品箱.png" id="10_bt0g7"]
+[ext_resource type="Texture2D" uid="uid://cs7ohr5y7hv61" path="res://Asset/items/雌雄双股剑.png" id="11_ysr0e"]
+[ext_resource type="Texture2D" uid="uid://dxqq4mduw6nkd" path="res://Asset/items/青龙偃月刀.png" id="12_g3hr8"]
 [ext_resource type="Texture2D" uid="uid://cwannilraxnen" path="res://Asset/丈八蛇矛.png" id="13_xnv0q"]
 
 [sub_resource type="Animation" id="Animation_g5rj7"]
@@ -208,25 +208,25 @@ offset_bottom = 393.0
 [node name="huanyuan" parent="HBoxContainer2" instance=ExtResource("4_iwehk")]
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
-img = ExtResource("5_tok4l")
+img = ExtResource("7_ubh4f")
 itemstype = 1
 
 [node name="shenzhan" parent="HBoxContainer2" instance=ExtResource("4_iwehk")]
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
-img = ExtResource("8_7lhpg")
+img = ExtResource("8_080tv")
 itemstype = 2
 
 [node name="zhuzi" parent="HBoxContainer2" instance=ExtResource("4_iwehk")]
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
-img = ExtResource("9_yj1ke")
+img = ExtResource("9_rtmou")
 itemstype = 3
 
 [node name="zhenping" parent="HBoxContainer2" instance=ExtResource("4_iwehk")]
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
-img = ExtResource("10_jeddc")
+img = ExtResource("10_bt0g7")
 itemstype = 4
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
@@ -239,13 +239,13 @@ offset_bottom = 396.0
 [node name="Control1" parent="HBoxContainer" instance=ExtResource("4_iwehk")]
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
-img = ExtResource("8_wqq75")
+img = ExtResource("11_ysr0e")
 itemstype = 5
 
 [node name="Control2" parent="HBoxContainer" instance=ExtResource("4_iwehk")]
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
-img = ExtResource("12_fuyo0")
+img = ExtResource("12_g3hr8")
 itemstype = 6
 
 [node name="Control3" parent="HBoxContainer" instance=ExtResource("4_iwehk")]

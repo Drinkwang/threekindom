@@ -11,6 +11,7 @@ extends Control
 		context=value
 		if(label!=null):
 			label.text=value
+			#reallabel=context
 @export var lookdoneDialog:String
 @export var pageDownDialog:String
 
@@ -19,6 +20,7 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	label.text=context;
+	reallabel.text=context
 	var currencelanguage=TranslationServer.get_locale()
 	if currencelanguage=="en":
 		label.add_theme_font_size_override("font_size", 34)

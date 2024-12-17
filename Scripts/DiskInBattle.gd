@@ -17,8 +17,12 @@ const fail=preload("res://Asset/other/0_red.png")
 var selectgeneral
 #ne
 func _endReward():
-	#$PointerScifiB.hide()
 	pass
+	#print(点击完毕)
+	#点击通过
+	#判断是否完成任务
+	#$PointerScifiB.hide()
+
 @onready var enemy = $enemy
 
 func _ready():
@@ -400,7 +404,10 @@ func settleGame(end,issuccess):
 	if issuccess==true:
 		GameManager.sav.battleResults[taskIndex]=GameManager.BattleResult.win
 		print("你win了")
+		if GameManager.sav.targetResType==GameManager.ResType.battle:
+			GameManager.sav.currenceValue=GameManager.sav.currenceValue+1
 		_rewardPanel.showReward()
+		#一旦完成target的数量，就令其获胜，来到府邸进行下一步操作
 		GameManager.sav.completeTask=GameManager.sav.completeTask+1
 	else:
 		GameManager.sav.battleResults[taskIndex]=GameManager.BattleResult.fail

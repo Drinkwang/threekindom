@@ -5,13 +5,43 @@ extends baseComponent
 @onready var train_panel = $CanvasInventory/trainPanel
 @onready var battle_pane:battlePanel = $CanvasInventory/battlePane
 #const _校场 = preload("res://Asset/bgm/校场.mp3")
+@onready var bg = $"演武场"
+
+const xiaopeiBuild = preload("res://Asset/城镇建筑/演武场1.png")
+const newBuild = preload("res://Asset/城镇建筑/演武场2.png")
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	SignalManager.endReward.connect(_judWin)
 	Transitions.post_transition.connect(post_transition)
 	control.buttonClick.connect(_buttonListClick)
 	super._ready()
-
+	if GameManager.sav.day>=5 or GameManager.sav.have_event["initXuzhou"]==true:
+		bg.texture=newBuild
+	else:
+		bg.texture=xiaopeiBuild
 const bgm = preload("res://Asset/bgm/校场.wav")
+
+func _judWin():
+	if GameManager.sav.targetResType==GameManager.ResType.battle:
+		if(GameManager.sav.have_event["firstMeetCaoCao"]==false):
+			if GameManager.sav.currenceValue>=3:
+				GameManager.sav.have_event["firstMeetCaoCao"]=true
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"遇到曹操")
+		if(GameManager.sav.have_event["CaoBaointervene"]==false):
+			if GameManager.sav.currenceScene>=7:
+				GameManager.sav.have_event["CaoBaointervene"]=true
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"曹豹干预")
+		if GameManager.sav.currenceValue>=GameManager.sav.targetValue:
+			_completeTask()
+func _completeTask():#将完成任务移动到外层
+	if(GameManager.sav.have_event["completeTask2"]==false):
+		GameManager.sav.have_event["completeTask2"]=true
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"征讨结束")
+@onready var caocao_letter = $CanvasInventory/caocaoLetter
+
+func meetCaoCao():
+	caocao_letter.show()
+	pass
 func post_transition():
 	SoundManager.play_music(bgm)
 	print("fadedone")
@@ -39,7 +69,10 @@ func _initData():
 		if GameManager.sav.have_event["dayThreeEnterBattle"]==false:
 			GameManager.sav.have_event["dayThreeEnterBattle"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"初次派遣")
-
+	elif GameManager.sav.day>=5:
+		if GameManager.sav.have_event["LiuBeiSucceed"]==false:
+			GameManager.sav.have_event["LiuBeiSucceed"]=true
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"刘备接任徐州之主")
 	var initData=[
 	{	
 		"id":"1",
@@ -127,4 +160,8 @@ func showtutorial(num):
 func _process(delta):
 	pass
 
-
+func quest2Complete():
+	#GameManager.sav.have_event["completeTask2"]=true
+	GameManager.sav.TargetDestination="府邸"
+	#任务目标 前往府邸
+	pass
