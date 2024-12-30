@@ -55,6 +55,10 @@ func initLoad():
 		if(FileAccess.file_exists(path)):
 			savs[i-1]=load(path)
 	refresh()
+	
+	
+#赈灾次数
+var _GrainNum=0
 func loadFile():
 	if(savs[index-1]!=null):
 		GameManager.sav=savs[index-1]

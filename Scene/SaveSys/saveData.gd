@@ -45,6 +45,9 @@ class_name saveData
 @export var targetValue=0
 @export var targetResType:GameManager.ResType
 @export var policy_Item_index=1#政策数量
+
+@export var GrainIndex=0
+
 @export var have_event = {
 	"firstmeetchenqun":false,
 	"firsthouse": false,

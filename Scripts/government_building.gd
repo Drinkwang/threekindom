@@ -372,3 +372,37 @@ func chaosTaskBegin():
 	GameManager.sav.targetResType=GameManager.ResType.rest
 	GameManager.sav.targetTxt="当前过去的天数：{currence}/{target}"
 	GameManager.sav.TargetDestination="rest"
+@onready var disater_panel = $CanvasLayer/disaterPanel
+
+func confireAllocation():
+	disater_panel.confireAllocation()
+
+
+func cancelAllocation():
+	disater_panel.cancelAllocation()
+
+func afterAllocation():
+	disater_panel.afterAllocation()
+#const BENTUPAI = preload("res://Asset/tres/bentupai.tres")
+#const HAOZUPAI = preload("res://Asset/tres/haozupai.tres")
+const WAIDIPAI = preload("res://Asset/tres/waidipai.tres")
+func FractionalDiff():
+	HAOZUPAI.isshow=true
+	BENTUPAI._name="士族派(本土)"
+	#存档
+	#派系分化成2个
+func ShowDisterPanel():
+	disater_panel.show()
+	pass
+
+func StartYuanshu():
+	if GameManager.sav.have_event["battleYuanshu"]==false:
+		GameManager.sav.have_event["battleYuanshu"]=true
+	GameManager.sav.targetValue=30
+	GameManager.sav.currenceValue=0
+	GameManager.sav.targetResType=GameManager.ResType.battle
+	GameManager.sav.targetTxt="当前讨伐对象：{currence}/{target}"
+	GameManager.sav.TargetDestination="battle"
+	#显示军事行动还有30把
+	pass
+	#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"混乱对话结束")#显示对话

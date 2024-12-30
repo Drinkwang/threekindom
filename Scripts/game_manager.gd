@@ -10,7 +10,8 @@ var restLabel:String=""
 enum RspEnum{
 	PAPER=0,
 	ROCK=1,
-	SCISSORS=2
+	SCISSORS=2,
+	None=3,
 	
 	
 }
@@ -68,7 +69,8 @@ RspEnum.SCISSORS:{"name": "张飞", "level": 1, "max_level": 10, "randominit": -
 RspEnum.PAPER:{"name": "赵云", "level": 1, "max_level": 10, "randominit": -1,"isBattle":false}
 }
 
-
+#剩余粮食_用于赈灾系统
+var resideGrain=0
 
 #判断是否累了的框，不用保存
 var triedResult=false
