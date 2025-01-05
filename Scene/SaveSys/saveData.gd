@@ -48,6 +48,8 @@ class_name saveData
 
 @export var GrainIndex=0
 
+#0-3 给与4档随机数，为忠诚度15-18 相关
+@export var randomIndex=0
 @export var have_event = {
 	"firstmeetchenqun":false,
 	"firsthouse": false,
@@ -87,9 +89,14 @@ class_name saveData
 	"CaoBaointervene":false,
 	"initTask2":false,
 	"completeTask2":false,
+	"deliverTask2":false,
 	"chaosBegin":false,
 	"chaoChendengEnd":false,
 	"chaoMizhuEnd":false,
-	"chaosEnd":false
-	
+	"chaosEnd":false,
+	"battleYuanshu":false,
+	"completebattleYuanshu":false,
+	"deliverYuanShu":false,
+	"lvbuJoin":false,
+	"canSummonLvbu":false
 }

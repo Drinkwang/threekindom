@@ -37,6 +37,10 @@ func _completeTask():#将完成任务移动到外层
 	if(GameManager.sav.have_event["completeTask2"]==false):
 		GameManager.sav.have_event["completeTask2"]=true
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"征讨结束")
+	elif GameManager.sav.have_event["battleYuanshu"]==true:
+		if(GameManager.sav.have_event["completebattleYuanshu"]==false):
+			GameManager.sav.have_event["completebattleYuanshu"]=true
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"征讨袁术结束")
 @onready var caocao_letter = $CanvasInventory/caocaoLetter
 
 func meetCaoCao():
@@ -164,4 +168,8 @@ func quest2Complete():
 	#GameManager.sav.have_event["completeTask2"]=true
 	GameManager.sav.TargetDestination="府邸"
 	#任务目标 前往府邸
+	pass
+	
+func yuanshuComplete():
+	GameManager.sav.TargetDestination="府邸"
 	pass

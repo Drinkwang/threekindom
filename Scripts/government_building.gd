@@ -68,7 +68,8 @@ func _ready():
 	control.buttonClick.connect(_buttonListClick)
 	super._ready()
 	#initData()
-		
+	
+	
 	pass # Replace with function body.
 
 func _initData():
@@ -123,6 +124,12 @@ func _initData():
 
 	if GameManager.sav.day==2:
 		control._show_button_5_yellow(1)
+		
+	#召见吕布的代码
+	if GameManager.sav.have_event["lvbuJoin"]==true:
+		if GameManager.sav.have_event["canSummonLvbu"]==false:
+			GameManager.sav.have_event["canSummonLvbu"]=true
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"可召见吕布")
 		
 	_JudgeTask()
 	#elif GameManager.sav.day==4:
@@ -318,22 +325,45 @@ func _process(_delta):
 	pass
 
 func _JudgeTask():
-	var value=0
-	if GameManager.sav.targetResType==GameManager.ResType.coin:
-		value=GameManager.sav.coin
-	elif GameManager.sav.targetResType==GameManager.ResType.people:
-		pass
-		#value	
+	var value=GameManager.getTaskCurrenceValue()
+	#if GameManager.sav.targetResType==GameManager.ResType.coin:
+	#	value=GameManager.sav.coin
+	#elif GameManager.sav.targetResType==GameManager.ResType.people:
+	#	pass
+	#判断地点	
 	
 	if value>=GameManager.sav.targetValue:
 		if(GameManager.sav.have_event["completeTask1"]==false):
+			GameManager.clearTask()
 			GameManager.sav.have_event["completeTask1"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"收集资金任务完成")#显示对话
 			#任务完成
 		elif(true):
 			pass
-		if(GameManager.sav.have_event["completeTask2"]==true):
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"打跑黄巾军")#显示对话
+		#任务完成交付任务
+		if GameManager.sav.TargetDestination.length()>0:
+
+			deliverTask()
+	#判断task 完成 所到地点
+
+			
+func deliverTask():
+	if GameManager.sav.TargetDestination=="府邸":
+		#任务2完成 来这边兑现奖励
+		#把交付任务完成
+		#任务清空
+		if GameManager.sav.have_event["deliverTask2"]==false:
+			if(GameManager.sav.have_event["completeTask2"]==true):
+				GameManager.sav.have_event["deliverTask2"]=true
+				GameManager.clearTask()
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"打跑黄巾军")#显示对话
+		elif  GameManager.sav.have_event["deliverYuanShu"]==false:
+			if(GameManager.sav.have_event["completebattleYuanshu"]==true):
+				GameManager.sav.have_event["deliverYuanShu"]=true
+				GameManager.clearTask()
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"打跑袁术")#显示对话
+			
+			
 func collectMoneyComplete():
 	mizhu.show()
 	chenden.show()
@@ -405,4 +435,75 @@ func StartYuanshu():
 	GameManager.sav.TargetDestination="battle"
 	#显示军事行动还有30把
 	pass
+	
+	
+var _faction:cldata.factionIndex=cldata.factionIndex.bentupai	
+func SummonFaction(value:cldata.factionIndex):
+	_faction=value
+	if(value==cldata.factionIndex.weidipai):
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"选项")#显示对话
+			
+	elif value==cldata.factionIndex.bentupai:
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"选项")#显示对话
+	
+	elif value==cldata.factionIndex.haozupai:
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"选项")#显示对话
+	
+	elif value==cldata.factionIndex.lvbu:
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"选项吕布")#显示对话
+	
+	
+#如果总人数达到100 则无法资助	
+func financialConfortChoice():
+	if GameManager.sav.coin>=200:
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"消耗资金")#显示对话
+	else:
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"资金不足安抚")#显示对话
+	
+#选项资金安抚
+func financialConfort():
+	var _c=getFactionByIndex()
+	var rindex=GameManager.sav.randomIndex
+	#减去资金
+	#GameManager.
+	_c.ChangeAllPeople(3+rindex)
+
+func getFactionByIndex()->cldata:
+	
+	var _confortV
+	if _faction==cldata.factionIndex.bentupai:
+		_confortV=BENTUPAI
+	elif _faction==cldata.factionIndex.weidipai:
+		_confortV=WAIDIPAI
+	elif _faction==cldata.factionIndex.haozupai:
+		_confortV=HAOZUPAI
+		
+		
+	return _confortV
+	
+#选项赠送礼物
+func sendgift():
+	var _c=getFactionByIndex()
+	var rindex=GameManager.sav.randomIndex
+	#减去资金
+	#GameManager.
+	_c.ChangeSupport(15+rindex)
+	
+func sendgiftChoice():
+	pass
+#选项政策拉拢
+func policyCo_opt():
+	pass
+	
+	
+func claim():
+	pass
+
+
+func CallingSoldier():
+	pass	
 	#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"混乱对话结束")#显示对话
+func lvbuJoin():
+	GameManager.sav.have_event["lvbuJoin"]=true
+	GameManager.sav.labor_force=GameManager.sav.labor_force+1000
+	pass

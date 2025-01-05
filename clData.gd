@@ -14,9 +14,17 @@ extends Resource
 enum factionIndex{
 	weidipai,
 	bentupai,
-	haozupai
+	haozupai,
+	lvbu
 	
 }
+func ChangeAllPeople(num):
+	_num_all=_num_all+num
+	if _num_all>100:
+		_num_all=100
+	elif _num_all<0:
+		_num_all=0
+
 func ChangeSupport(num):
 	_support_rate=_support_rate+num
 	if _support_rate>100:

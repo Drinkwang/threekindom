@@ -32,6 +32,12 @@ enum BattleResult{
 	
 }
 
+#清理任务
+func clearTask():
+	sav.targetValue=0
+	sav.targetTxt=""
+	sav.TargetDestination=""
+	sav.currenceValue=0
 
 
 @export var sav:saveData=saveData.new()
@@ -199,6 +205,7 @@ func _enterDay(value=true):
 	sav.isLevelUp=false;
 	sav.isMeet=false
 
+	sav.randomIndex=randi_range(0,3)
 	if GameManager.sav.targetResType==GameManager.ResType.rest:
 		GameManager.sav.currenceValue=GameManager.sav.currenceValue+1
 		if GameManager.sav.have_event["chaosBegin"]==true:#第三个任务
