@@ -113,7 +113,7 @@ func _initData():
 			control._show_button_5_yellow(1)			
 			policyPanel.contextEX=tr("1.前往城外及军事驻地，选择拜见大儒郑玄")
 		
-		if GameManager.sav.have_event["firstVisitScholarsEnd"]==true:	
+		if GameManager.sav.have_event["firstVisitScholarsEnd"]==true and GameManager.sav.day<=5:	
 			if GameManager.sav.have_event["firstNewEnd"]==false:
 				GameManager.sav.have_event["firstNewEnd"]=true
 				GameManager.restFadeScene=SceneManager.BOULEUTERION
@@ -164,6 +164,7 @@ func _buttonListClick(item):
 		#显示金钱 民心 xx 武将面板
 		pass
 	elif item.context == "休息":
+		GameManager.sav.isGetCoin=false
 	 	#如果休息时=4天，则触发阴谋论剧情
 		if(GameManager.sav.day==1):
 			if GameManager.sav.have_event["threeStree"]==false:
@@ -248,7 +249,8 @@ func _DayGet():
 	await 0.8
 	res_panel.showValue=false
 	GameManager._DayGet()
-	_JudgeTask()
+	if(GameManager.sav.targetTxt!=null and GameManager.sav.targetTxt.length()>0):	
+		_JudgeTask()
 	# 好的我了解了，还有别的事么？
 	# 对，还有一键
 	# 很好，继续努力。如果任务没有完成 提示三选一
@@ -269,8 +271,8 @@ func _JudgeTask():
 					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"袁术之乱结束")	
 	if(GameManager.sav.have_event["completeTask1"]==true):
 		if(GameManager.sav.have_event["initTask2"]==false):
-			if GameManager.sav.have_event["initTask2"]==true:
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"有拦路虎")
+			GameManager.sav.have_event["initTask2"]=true
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"有拦路虎")
 			#显示对话
 			#任务完成
 	

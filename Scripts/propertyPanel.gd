@@ -39,8 +39,29 @@ func GetValue(coinGet,heartGet,peopleGet):
 		labor_num.text=var_to_str(GameManager.sav.labor_force)+"-"+var_to_str(peopleGet)
 	else:
 		labor_num.text=var_to_str(GameManager.sav.labor_force)	
+	await 3
 	
+	
+	if coinGet>0:
+		GameManager.sav.coin=GameManager.sav.coin+coinGet
+	elif coinGet<0:
+		GameManager.sav.coin=GameManager.sav.coin-coinGet
 
+	if heartGet>0:
+		GameManager.sav.people_surrport=GameManager.sav.people_surrport+heartGet
+	elif heartGet<0:
+		GameManager.sav.people_surrport=GameManager.sav.people_surrport-heartGet
+
+		
+	if peopleGet>0:
+		GameManager.sav.labor_force=GameManager.sav.labor_force+peopleGet
+	elif peopleGet<0:
+		GameManager.sav.labor_force=GameManager.sav.labor_force-peopleGet
+
+
+	coin_num.text=var_to_str(GameManager.sav.coin)	
+	heart_num.text=var_to_str(GameManager.sav.people_surrport)
+	labor_num.text=var_to_str(GameManager.sav.labor_force)	
 #var people_surrport #群众支持度 数值
 #var  coin #金钱 数值
 #var labor_force #劳动力 可以当作军队进行使用 劳动力转换成军队需要消耗值 骑兵 步兵 弓兵

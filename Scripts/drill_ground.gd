@@ -22,13 +22,15 @@ func _ready():
 const bgm = preload("res://Asset/bgm/校场.wav")
 
 func _judWin():
+	if(not (GameManager.sav.targetTxt!=null and GameManager.sav.targetTxt.length()>0)):
+		return
 	if GameManager.sav.targetResType==GameManager.ResType.battle:
 		if(GameManager.sav.have_event["firstMeetCaoCao"]==false):
 			if GameManager.sav.currenceValue>=3:
 				GameManager.sav.have_event["firstMeetCaoCao"]=true
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"遇到曹操")
 		if(GameManager.sav.have_event["CaoBaointervene"]==false):
-			if GameManager.sav.currenceScene>=7:
+			if GameManager.sav.currenceValue>=7:
 				GameManager.sav.have_event["CaoBaointervene"]=true
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"曹豹干预")
 		if GameManager.sav.currenceValue>=GameManager.sav.targetValue:
@@ -45,7 +47,12 @@ func _completeTask():#将完成任务移动到外层
 
 func meetCaoCao():
 	caocao_letter.show()
-	pass
+	battle_pane.hide()
+
+	
+func caocaoLetterHide():
+	caocao_letter.hide()
+
 func post_transition():
 	SoundManager.play_music(bgm)
 	print("fadedone")
@@ -123,7 +130,13 @@ func _buttonListClick(item):
 			if GameManager.sav.have_event["firstBattleTutorial"]==false:
 				GameManager.sav.have_event["firstBattleTutorial"]=true
 				DialogueManager.show_dialogue_balloon(dialogue_resource,"第一次军事行动教程")
+			else:
+				battle_pane.point_group.hide()
+		else:
+			battle_pane.point_group.hide()
 		battle_pane.show()
+
+		#if(GameManager.sav.have_event["firstBattleTutorial"]==true)：
 		#暂时不能发动军事行动
 
 

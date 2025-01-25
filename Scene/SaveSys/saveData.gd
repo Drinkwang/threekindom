@@ -3,7 +3,7 @@ class_name saveData
 @export var saveScene:PackedScene=PackedScene.new()
 
 #GameManager
-@export var day=0
+@export var day=4
 #@export var intellectual_support=100 #士族支持度 一开始为100 当议会中 会出现支持和不支持以及摇摆 
 @export var people_surrport=100 #群众支持度 数值
 @export var  coin=100 #金钱 数值
@@ -42,14 +42,26 @@ class_name saveData
 @export var haveGuild=true
 @export var jumpmain=false
 @export var targetTxt=""
-@export var targetValue=0
+@export var targetValue=10000
 @export var targetResType:GameManager.ResType
 @export var policy_Item_index=1#政策数量
 
 @export var GrainIndex=0
+@export var laws=[[],[],[]]
+
+@export var xuzhouCD=-1
+@export var haozuCD=-1
+@export var danyangCD=-1
+@export var lvbuCD=-1
 
 #0-3 给与4档随机数，为忠诚度15-18 相关
 @export var randomIndex=0
+
+@export var curLawName=""
+@export var curLawNum1=-1
+@export var curLawNum2=-1
+
+
 @export var have_event = {
 	"firstmeetchenqun":false,
 	"firsthouse": false,
@@ -61,6 +73,7 @@ class_name saveData
 	"firstTabLaw":false,#为false不显示tab面板 只触发一次对话
 	"firstLawExecute":false,#为false 不显示close选项 只触发一次对话
 	"firstParliamentary":false,
+	"Factionalization":false,
 	#second事件 
 	"firstEnterBattle":false,#初次进入演武场 第一天
 	"dayThreeEnterBattle":false,#第三天进入演武场

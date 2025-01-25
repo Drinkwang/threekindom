@@ -6,9 +6,10 @@ class_name policyPanel
 @onready var button = $PanelContainer/orderPanel/VBoxContainer/HBoxContainer/Button
 @onready var tab_bar = $TabBar
 @onready var point_label = $lawPanel/PointLabel
-
-
+@onready var law_label = $lawPanel/DetailPanel/Label2
+#$lawPanel/DetailPanel/Label2
 var costhp=35
+#@onready var button = $PanelContainer/orderPanel/VBoxContainer/HBoxContainer/Button
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -31,11 +32,17 @@ func initControls():
 		#DialogueManager.show_example_dialogue_balloon(GameManager.currenceScene.dialogue_resource,"xxx")
 		#判断自己的逻辑
 	#应该是第二天
-	GameManager.currenceScene._initGroup(group)
-	control_1.initDataByGroup(1,group)
-	control_2.initDataByGroup(2,group)
-	control_3.initDataByGroup(3,group)
-	pass
+	if group==-1:
+		currence_no_policy.show()
+		$PanelContainer/orderPanel.hide()
+	else:
+		$PanelContainer/orderPanel.show()
+		currence_no_policy.hide()
+		GameManager.currenceScene._initGroup(group)
+		control_1.initDataByGroup(1,group)
+		control_2.initDataByGroup(2,group)
+		control_3.initDataByGroup(3,group)
+	
 
 
 func changeLanguage():
@@ -55,18 +62,21 @@ func _process(delta):
 
 func _initData():
 	index=0
-	if GameManager.sav.have_event["firstLawExecute"]==false:
+	if GameManager.sav.have_event["firstLawExecute"]==false and GameManager.sav.day<5:
 		$TextureButton.hide()
 	else:
 		$TextureButton.show()
-	pass
-	point_label.text="点数:%s"%GameManager.sav.Merit_points
+	if GameManager.sav.curLawName.length()>0:
+		law_label.text=tr("当前【%s】法案已被立项，请先在议会厅通过该法案，才能立项其他法律。")%GameManager.sav.curLawName
 	refreshLawPoint()
 
 func refreshLawPoint():
 	get_tree().call_group("lawpoints","_initData")
-	
-
+	if GameManager.sav.curLawName.length()>0 or GameManager.sav.curLawNum1!=-1 or GameManager.sav.curLawNum2!=-1:
+		$lawPanel/DetailPanel/Button.disabled=true
+	else:
+		$lawPanel/DetailPanel/Button.disabled=false
+	point_label.text="点数:%s"%GameManager.sav.Merit_points
 func _on_tab_bar_tab_changed(tab):
 	if tab==0:
 		$lawPanel.hide()
@@ -95,7 +105,7 @@ func _on_control_1_gui_input(event):
 	if(event is InputEventMouseButton and event.button_index==1):
 		index=1
 		
-		
+		button.disabled=false
 		SoundManager.play_sound(sounds.CLICKHERO)
 		control_1.check_box.button_pressed=true
 		control_2.check_box.button_pressed=false
@@ -110,6 +120,7 @@ func _on_control_2_gui_input(event):
 		return
 	if(event is InputEventMouseButton and event.button_index==1):	
 		index=2		
+		button.disabled=false
 		SoundManager.play_sound(sounds.CLICKHERO)
 		control_1.check_box.button_pressed=false
 		control_2.check_box.button_pressed=true
@@ -125,6 +136,7 @@ func _on_control_3_gui_input(event):
 	if(event is InputEventMouseButton and event.button_index==1):
 		SoundManager.play_sound(sounds.CLICKHERO)
 		index=3
+		button.disabled=false
 		control_1.check_box.button_pressed=false
 		control_2.check_box.button_pressed=false
 		control_3.check_box.button_pressed=true
@@ -162,7 +174,7 @@ func preLaw(value:lawpoint):
 	if await GameManager.isTried(costhp):
 		return
 	selectLawPoint=value
-	$lawPanel/DetailPanel/Label2.text=value.detail
+	law_label.text=value.detail
 	pass
 
 func excuteLaw(value:lawpoint):
@@ -183,10 +195,23 @@ func excuteLaw(value:lawpoint):
 func agreelaw():
 	if await GameManager.isTried(costhp):
 		return
+		
+	GameManager.sav.curLawName=selectLawPoint.context
+	GameManager.sav.curLawNum1=selectLawPoint.num1
+	GameManager.sav.curLawNum2=selectLawPoint.num2
+	#num1\num2
+	# int index	
+	#当前【民田开垦】法案已被立项，请先在议会厅通过该法案，才能立项其他法律。	
 	GameManager.hp=GameManager.hp-costhp
 	GameManager.sav.Merit_points=GameManager.sav.Merit_points-selectLawPoint.costPoint
 	selectLawPoint.isUnlock=true
 	selectLawPoint._initData()
+
+	
+	GameManager.sav.laws[selectLawPoint.num1].append(selectLawPoint.num2)
+	
+	#判断法律是否为即将达成的，如果是，则让其完成，获得好感度和目标
+	
 	#GameManager.haveLaw=true
 	SoundManager.play_sound(sounds.confiresound)
 	if GameManager.sav.have_event["firstLawExecute"]==false:
@@ -209,7 +234,16 @@ func _on_law_confire_button_down():
 	excuteLaw(selectLawPoint)
 	pass # Replace with function body.
 
+@onready var law_panel = $lawPanel
 
+func getPolicyName(lawIndex,policyIndex)->String:
+	
+	
+	
+	var lawPoint:lawpoint=law_panel.get_node("Control"+(lawIndex+1)+"-"+policyIndex)
+	return lawPoint.context
+
+@onready var currence_no_policy = $currenceNoPolicy
 
 func _on_exit_button_button_down():
 	SoundManager.play_sound(sounds.declinesound)

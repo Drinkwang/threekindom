@@ -7,6 +7,13 @@ const FancyFade = preload("res://addons/transitions/FancyFade.gd")
 @onready var policy_panel = $CanvasLayer/policyPanel
 @onready var rule_book = $CanvasLayer/ruleBook
 
+
+
+
+var waidipai=cldata.factionIndex.weidipai
+var bentupai=cldata.factionIndex.bentupai
+var haozupai=cldata.factionIndex.haozupai
+var lvbu=cldata.factionIndex.lvbu
 	#var initData=[
 	#{	
 	#	"name":"xxx",
@@ -81,7 +88,7 @@ func _initData():
 	#elif GameManager.day==2:
 	elif GameManager.sav.day==5:
 		if	GameManager.sav.have_event["initXuzhou"]==false:
-			GameManager.sav.have_event["initXuzhou"]==true
+			GameManager.sav.have_event["initXuzhou"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"府邸第一天")
 			#mizhu.show()
 	elif GameManager.sav.day>5:
@@ -116,7 +123,7 @@ func _initData():
 	if GameManager.sav.have_event["firstPolicyOpShow"]==true||GameManager.sav.day>1:
 		control._processList(initData)
 		
-	if GameManager.sav.have_event["firstTabLaw"]==true:
+	if GameManager.sav.have_event["firstTabLaw"]==true or GameManager.sav.day>=5:
 		policy_panel.tab_bar.show()
 	else:
 		policy_panel.tab_bar.hide()
@@ -130,8 +137,8 @@ func _initData():
 		if GameManager.sav.have_event["canSummonLvbu"]==false:
 			GameManager.sav.have_event["canSummonLvbu"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"可召见吕布")
-		
-	_JudgeTask()
+	if(GameManager.sav.targetTxt!=null and GameManager.sav.targetTxt.length()>0):		
+		_JudgeTask()
 	#elif GameManager.sav.day==4:
 	#	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"府邸第一天")
 #
@@ -156,6 +163,7 @@ func _buttonListClick(item):
 		elif GameManager.sav.day==5:
 			if(GameManager.sav.have_event["initTask1"]==false):
 				#pass 跳转到下一个政策
+				GameManager.sav.have_event["initTask1"]=true
 				policy_panel.show()
 				
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"主线第一次指定政策")
@@ -170,7 +178,17 @@ func _buttonListClick(item):
 			return
 		#GameManager.hp=GameManager.hp-costHp_SummonOne
 		if GameManager.sav.isMeet==false:
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"召见手下1")
+			optionSummonOnemen()
+			#if(GameManager.sav.day<5):
+			#判断显示召见手下1 还是召见手下2 还是召见手下3
+			#	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"召见手下1")
+			#elif GameManager.sav.day>=5:
+			#	if GameManager.sav.have_event["lvbuJoin"]==true:
+			#		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"召见手下4")
+			#	elif GameManager.sav.have_event["lvbuJoin"]==false and GameManager.sav.have_event["Factionalization"]==true:
+			#		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"召见手下3")
+			#	else:	
+			#		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"召见手下2")
 		#显示接下来要点击啥
 		else:
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"已经召见手下")
@@ -197,6 +215,18 @@ func _buttonListClick(item):
 		#显示金钱 民心 xx 武将面板
 	print(item)
 	pass
+
+func optionSummonOnemen():
+	if(GameManager.sav.day<5):
+		#判断显示召见手下1 还是召见手下2 还是召见手下3
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"召见手下1")
+	elif GameManager.sav.day>=5:	
+		if GameManager.sav.have_event["lvbuJoin"]==true:
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"召见手下4")
+		elif GameManager.sav.have_event["lvbuJoin"]==false and GameManager.sav.have_event["Factionalization"]==true:
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"召见手下3")
+		else:	
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"召见手下2")	
 
 func showFirstMission():
 	GameManager.sav.targetValue=200
@@ -227,8 +257,8 @@ func selectPolicy(data):
 		#pass
 	elif id==policymanager.policyID.P_COMMERCIAL_INPLACE_AID:
 		policy_panel.bancontrol(1,policy_panel.itemStatus.ban)
-		
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"xxx")
+		hidePolicy()
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"以商代赈")
 		HAOZUPAI.ChangeSupport(10)
 		BENTUPAI.ChangeSupport(-10)
 		GameManager.changePeopleSupport(-10)
@@ -237,8 +267,7 @@ func selectPolicy(data):
 		#商业促进
 	elif id== policymanager.policyID.P_SUPPLIES_SELF_SUFFIENCY:
 		policy_panel.bancontrol(2,policy_panel.itemStatus.ban)
-		#GameManager.sav.targetResType=GameManager.ResType.coin
-		#GameManager.sav.targetValue=100
+		hidePolicy()
 		GameManager.sav.have_event["initTask1"]=true
 		HAOZUPAI.ChangeSupport(-5)
 		GameManager.changePeopleSupport(5)
@@ -247,14 +276,15 @@ func selectPolicy(data):
 		#labor_DayGet
 		# people_surrport-10
 		#GameManager.sav.targetTxt="当前凑集资金：{currence}/{target}"
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"xxx")
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"军粮自给")
 		#军粮自给，维持现状
 	elif id== policymanager.policyID.P_RAISE_TAX:
 		policy_panel.bancontrol(3,policy_panel.itemStatus.ban)
+		hidePolicy()
 		#GameManager.sav.targetResType=GameManager.ResType.coin
 		#GameManager.sav.targetValue=200
 		#GameManager.sav.targetTxt="当前凑集资金：{currence}/{target}"
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"xxx")
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"增加税率")
 		HAOZUPAI.ChangeSupport(10)
 		BENTUPAI.ChangeSupport(-20)
 		GameManager.changePeopleSupport(-20)
@@ -334,7 +364,7 @@ func _JudgeTask():
 	
 	if value>=GameManager.sav.targetValue:
 		if(GameManager.sav.have_event["completeTask1"]==false):
-			GameManager.clearTask()
+			#ameManager.clearTask()
 			GameManager.sav.have_event["completeTask1"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"收集资金任务完成")#显示对话
 			#任务完成
@@ -363,12 +393,17 @@ func deliverTask():
 				GameManager.clearTask()
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"打跑袁术")#显示对话
 			
+@onready var hp_panel = $CanvasLayer/hpPanel
 			
 func collectMoneyComplete():
+	GameManager.sav.TargetDestination="rest"	
 	mizhu.show()
 	chenden.show()
 	mizhu.dialogue_start="与糜竺对话2"
 	chenden.dialogue_start="与陈登对话2"
+	#ameManager.sav.targetResType=GameManager.ResType.rest
+	hp_panel.playLabelChange()
+	
 
 func chaosBegin():
 	GameManager.sav.have_event["chaosBegin"]=true
@@ -419,6 +454,7 @@ const WAIDIPAI = preload("res://Asset/tres/waidipai.tres")
 func FractionalDiff():
 	HAOZUPAI.isshow=true
 	BENTUPAI._name="士族派(本土)"
+	GameManager.sav.have_event["Factionalization"]=true
 	#存档
 	#派系分化成2个
 func ShowDisterPanel():
@@ -436,7 +472,7 @@ func StartYuanshu():
 	#显示军事行动还有30把
 	pass
 	
-	
+
 var _faction:cldata.factionIndex=cldata.factionIndex.bentupai	
 func SummonFaction(value:cldata.factionIndex):
 	_faction=value
@@ -465,7 +501,7 @@ func financialConfort():
 	var _c=getFactionByIndex()
 	var rindex=GameManager.sav.randomIndex
 	#减去资金
-	#GameManager.
+	GameManager.sav.coin=GameManager.sav.coin-200
 	_c.ChangeAllPeople(3+rindex)
 
 func getFactionByIndex()->cldata:
@@ -488,20 +524,120 @@ func sendgift():
 	#减去资金
 	#GameManager.
 	_c.ChangeSupport(15+rindex)
+@onready var send_gift_panel = $sendGiftPanel
 	
 func sendgiftChoice():
-	pass
-#选项政策拉拢
+	var rindex=GameManager.sav.randomIndex
+	var _c=getFactionByIndex()
+	#减去资金
+	#GameManager.
+	#赠送礼物可能会改成10点好感度了  好感度改变 是否摇摆派系也会改变
+	#_c.ChangeSupport(15+rindex)
+	var to_inventory= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.珍品礼盒)
+	var _inventoryManager = get_tree().get_root().get_node("InventoryManager")
+	var quantity=_inventoryManager.has_item_quantity(to_inventory)
+	if quantity>=1:#拥有礼物
+		send_gift_panel.show()
+		send_gift_panel._initPanel(_c._name,quantity,int(15+rindex))
+		#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"消耗资金")#显示对话
+	else:
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"你没有礼物")#显示对话
+var lawName	
+#选项政策拉拢 #政策拉拢后 摇摆派系全部变成支持派系 25 50 75 100
 func policyCo_opt():
-	pass
+	#按照徐州派要求，你得在 法律法规中通过【民田开垦】这条法律，如果通过 你将提升好感度，并且使该派系摇摆人数下降
+	#获取一个即将要的政策，是否通过议会厅 通过好感度上升，没通过好感度下降
+	#当玩家选择法律通过时，才会那啥
+	if GameManager.getCDByFaction(_faction) <1:
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"当前还在cd中")
+		return
+	#显示对话
 	
+	#var index= int(_faction)  #可能需要一个转换函数进行转换
+	var lawIndex= GameManager.enablePolicyCooptCD(_faction)		
+	var maxLaw=GameManager.sav.laws[lawIndex].max()
+
 	
+	#需要将法律法规+1或者+2
+	# 有一堆bug 需要修改，到时候需要判断最大值，最大值后面2个有无元素，如果没有 从余下政策，如果余下政策没有再提示已经满格了
+	var unUseArr=[]
+	
+	var maxSize=0
+	if(maxLaw>=8):
+		#你的政策槽已满，无法添加新的拉拢政策。
+		maxSize=9
+		#你当前所有法律已经设置满格了，无法提供额外的法律去拉拢派系
+	else:
+		maxSize=maxLaw+2
+	#+1 or +2
+	for i in range(1,maxSize):
+		if GameManager.sav.laws[lawIndex].has(i)==false:
+			unUseArr.append(i)
+		pass
+	if unUseArr.size()>0:
+		
+		var pick= randi_range(0,unUseArr.size())
+		var policyIndex=unUseArr[pick]
+		lawName=policy_panel.getPolicyName(lawIndex,policyIndex) #12
+		GameManager.sav.laws[lawIndex].append(-policyIndex)
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"政策拉拢")#显示对话	
+	
+	else:
+			
+		#你的政策槽已满，无法添加新的拉拢政策。
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"法律已经满格了")#显示对话			
+		return
+		#你当前所有法律已经设置满格了，无法提供额外的法律去拉拢派系
+
+
+
+
+
+#	var _c=getFactionByIndex()
+#	var rindex=GameManager.sav.randomIndex
+
+#	_c.ChangeSupport(15+rindex)
+	
+
+
+
+	
+var ForValueCost=0
+var ForValueGet=0
+
+#你通过索取可以获得500金，但会消耗徐州派30点忠诚度，请问是否执行
+#索取可获500金，但将消耗徐州派30点忠诚度。是否执行？
 func claim():
-	pass
+	var _c=getFactionByIndex()
+	var rindex=GameManager.sav.randomIndex
+	ForValueCost=10+5*rindex
+	ForValueGet=_c._num_all*20
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"索取从派系")#显示对话
+
+func CF_CallingSoldier():
+	var _c=getFactionByIndex()
+	_c.ChangeSupport(-ForValueCost)
+	GameManager.sav.labor_force=GameManager.sav.labor_force+ForValueGet
+	
+func CF_claim():
+
+	var _c=getFactionByIndex()
+	_c.ChangeSupport(-ForValueCost)
+	#减去资金
+	GameManager.sav.coin=GameManager.sav.coin+ForValueGet
+	
 
 
+#调用可征集500名吕布士兵，但将消耗20点吕布忠诚度。是否执行？
 func CallingSoldier():
-	pass	
+	
+	var _c=getFactionByIndex()
+	var rindex=GameManager.sav.randomIndex
+	ForValueCost=10+5*rindex
+	ForValueGet=_c._num_all*100
+	
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"征兵从吕布")	
+
 	#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"混乱对话结束")#显示对话
 func lvbuJoin():
 	GameManager.sav.have_event["lvbuJoin"]=true

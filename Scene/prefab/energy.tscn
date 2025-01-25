@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dfolt063spdso"]
+[gd_scene load_steps=14 format=3 uid="uid://dfolt063spdso"]
 
 [ext_resource type="Script" path="res://Scripts/energy.gd" id="1_jga5a"]
 [ext_resource type="Texture2D" uid="uid://cpx3dc1mppace" path="res://Asset/blue/edgeblue.png" id="2_2gdco"]
@@ -26,6 +26,43 @@ texture_margin_left = 80.0
 texture_margin_top = 80.0
 texture_margin_right = 80.0
 texture_margin_bottom = 80.0
+
+[sub_resource type="Animation" id="Animation_pgtk5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.980392, 0.980392, 0.980392, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_pxcrl"]
+resource_name = "targetlabel"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.980392, 0.980392, 0.980392, 1), Color(0.909804, 0.894118, 0.180392, 0.0705882), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vsxmj"]
+_data = {
+"RESET": SubResource("Animation_pgtk5"),
+"targetlabel": SubResource("Animation_pxcrl")
+}
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -100,11 +137,12 @@ scale = Vector2(4.5, 4.5)
 texture_normal = ExtResource("8_k0wc5")
 
 [node name="TargetLabel" type="Label" parent="."]
+modulate = Color(0.980392, 0.980392, 0.980392, 1)
 layout_mode = 0
-offset_left = -72.0
+offset_left = 35.0
 offset_top = 1000.0
 offset_right = 1717.0
-offset_bottom = 1684.0
+offset_bottom = 2373.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0.494118, 0.419608, 0.341176, 1)
 theme_override_constants/shadow_offset_x = 2
@@ -115,6 +153,12 @@ theme_override_constants/line_spacing = 1
 theme_override_font_sizes/font_size = 149
 text = "当前任务：无"
 horizontal_alignment = 2
+autowrap_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TargetLabel"]
+libraries = {
+"": SubResource("AnimationLibrary_vsxmj")
+}
 
 [connection signal="button_down" from="itemButton" to="." method="_on_item_button_button_down"]
 [connection signal="button_down" from="saveButton" to="." method="_on_save_button_button_down"]

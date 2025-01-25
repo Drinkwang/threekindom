@@ -120,8 +120,13 @@ var costhp=50
 
 func _buttonListClick(item):
 	if item.context == "开始议事":
+		if GameManager.getCurLawExist()==false:
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"当前不存在法律")
+			return
+		
 		if(await GameManager.isTried(costhp)):
 			return
+			
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"开始议事")
 	elif item.context == "议事说明":
 		yishimianban.show()
@@ -157,6 +162,10 @@ func showResult():
 	GameManager.hp=GameManager.hp-costhp
 	parliamentary_detail.show()
 	parliamentary_detail.enter()
+	
+	
+	#立法通过，并执行法律,不能在这里执行，得把法律放在面板里
+
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -204,5 +213,41 @@ func ymlShowEnd():
 	GameManager.restFadeScene=null
 	GameManager._rest()
 	pass
+func SettleLawRevenue():
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"通过法案")
 
 
+@onready var claimLabel = $CanvasBook/ColorRect/Label
+
+	
+func GetLawClaimRevenue():
+	var _date=GameManager.getcldateByindex(GameManager.sav.curLawNum1)
+	var point
+	for i in GameManager.sav.laws[GameManager.sav.curLawNum1]:
+		if i<0:
+			if abs(i)==GameManager.sav.curLawNum2:
+				GameManager.sav.laws[GameManager.sav.curLawNum1].erase(i)
+				var factions=_date._name
+				var rindex=GameManager.sav.randomIndex
+				point=10+GameManager.sav.rindex
+				#暂时放在这里
+				_date.ChangeSupport(point)
+				#执行效果
+				claimLabel.text=tr("提示：成功通过拉拢{factions}需求的法律！\n({factions}好感度提升{point}点)\n(该派系摇摆人数减少)").format({"factions":factions,"point":point})
+				#下面不一定执行
+	
+				var animation_player=$CanvasBook/ColorRect/AnimationPlayer
+				animation_player.playback.speed_scale = 1.0
+				animation_player.play("colorUp")
+				await 5
+				animation_player.playback.speed_scale = -1.0
+				$CanvasBook/ColorRect/AnimationPlayer.play("colorUp")
+				
+				
+				#任务完成 获得忠诚度	
+	
+	GameManager.sav.curLawName=""
+	GameManager.sav.curLawNum1=-1
+	GameManager.sav.curLawNum2=-1
+	
+	

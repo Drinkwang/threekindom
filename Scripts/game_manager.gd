@@ -34,7 +34,7 @@ enum BattleResult{
 
 #清理任务
 func clearTask():
-	sav.targetValue=0
+	sav.targetValue=1000000
 	sav.targetTxt=""
 	sav.TargetDestination=""
 	sav.currenceValue=0
@@ -45,9 +45,15 @@ func changePeopleSupport(num):
 	sav.people_surrport=sav.people_surrport+num
 	if(sav.people_surrport>100):
 		sav.people_surrport=100
-	elif sav.sav.people_surrport<0:
+	elif sav.people_surrport<0:
 		sav.people_surrport=0
-	
+
+
+
+func getCurLawExist()->bool:
+	return sav.curLawName.lenth()>0 and sav.curLawNum1>0 and sav.curLawNum2>0
+#@export var curLawNum1=-1
+#@export var curLawNum2=-1
 enum opcost{
 	greater,
 	less,
@@ -386,8 +392,151 @@ func _rest(value=true):
 	_enterDay(value)
 	
 	Transitions.change_scene_to_instance( SceneManager.SLEEP_BLANK.instantiate(), Transitions.FadeType.Instant)
+
+
+
+func enablePolicyCooptCD(factionIndex:cldata.factionIndex)->int:
+	#index==0 士族
+	#index==1 豪族
+	#index==2 军方
+	
+	#var xuzhouCD=-1
+	#var haozuCD=-1
+	#var danyangCD=-1
+	#var lvbuCD=-1
+	var index
+	if factionIndex==cldata.factionIndex.weidipai:
+		sav.danyangCD=7
+		index=2
+	elif factionIndex==cldata.factionIndex.bentupai:
+		sav.xuzhouCD=7
+		index=0
+	elif factionIndex==cldata.factionIndex.haozupai:
+		sav.haozuCD=7
+		index=1
+	elif factionIndex==cldata.factionIndex.lvbu:
+		sav.lvbuCD=7
+		index=3	
+	
+	return index	
+
+
+var waidipai=cldata.factionIndex.weidipai
+var bentupai=cldata.factionIndex.bentupai
+var haozupai=cldata.factionIndex.haozupai
+var lvbu=cldata.factionIndex.lvbu
+
+
+func getcldateByindex(factionIndex:int)->cldata:
+	#index==0 士族
+	#index==1 豪族
+	#index==2 军方
 	
 
+	if factionIndex==2:
+		return preload("res://Asset/tres/waidipai.tres")
+		#index=2
+	elif factionIndex==0:
+		return preload("res://Asset/tres/bentupai.tres")
+		#index=0
+	elif factionIndex==1:
+		return preload("res://Asset/tres/haozupai.tres")
+		#index=1
+	elif factionIndex==cldata.factionIndex.lvbu:
+		return preload("res://Asset/tres/haozupai.tres")
+		#index=3	
+	return null
+
+
+
+#获取政策拉拢的cd  未来说不定改成每个派系操作的cd
+func getCDByFaction(factionIndex:cldata.factionIndex):
+	if factionIndex==cldata.factionIndex.weidipai:
+		return sav.danyangCD
+	elif factionIndex==cldata.factionIndex.bentupai:
+		return sav.xuzhouCD
+	elif factionIndex==cldata.factionIndex.haozupai:
+		return sav.haozuCD
+	elif factionIndex==cldata.factionIndex.lvbu:
+		return sav.lvbuCD	
+	else:
+		return -1
+
+@export var RewardLaw=""
+
+
+func excuteLaw():
+	sav.laws[sav.curLawNum1].append(sav.curLawNum2)
+	#var arr:Array
+	
+	if sav.curLawName=="农田开坑":#只有buff
+		RewardLaw="每日收入增加50 徐州好感度上升10" #收入每日增加 徐州派好感度上升
+	elif sav.curLawName=="兴办教育":#只有buff
+		RewardLaw="吸引人口入住，每日人口增长10，徐州好感度上升5" #人口每日增加 徐州派好感上升 获得道具xxx
+	elif sav.curLawName=="整治街容":#只有buff
+		RewardLaw="吸引人口入住，人口增加100，徐州好感度上升10" #人口一次性增加 徐州派好感上升
+	elif sav.curLawName=="重农抑商":
+		RewardLaw="" 
+	elif sav.curLawName=="士族优先":
+		RewardLaw=""
+	elif sav.curLawName=="物价稳定":
+		RewardLaw=""
+	elif sav.curLawName=="屯田制":
+		RewardLaw=""
+	elif sav.curLawName=="府兵制":
+		RewardLaw=""
+	elif sav.curLawName=="品级制":
+		RewardLaw=""
+		
+#豪族		
+	elif sav.curLawName=="促进商贸":#只有buff 收入每日增加 获得一笔钱财
+		RewardLaw="徐州派好感度上升5，每日收入增加10，每日可获得一个道具"
+	elif sav.curLawName=="诚信经营":#只有buff 所有派系好感度上升
+		RewardLaw="所有派系好感合计上升20点"
+	elif sav.curLawName=="行业准则":#只有buff 所有派系好感度随机上升
+		RewardLaw="所有派系好感上升5点"		
+	elif sav.curLawName=="禁止军商":
+		RewardLaw=""
+	elif sav.curLawName=="商业税收法":
+		RewardLaw=""
+	elif sav.curLawName=="货币法":
+		RewardLaw=""
+	elif sav.curLawName=="商业竞争法":
+		RewardLaw=""
+	elif sav.curLawName=="商品流通法":
+		RewardLaw=""									
+	elif sav.curLawName=="商业诚信法":
+		RewardLaw=""
+#丹阳派
+	elif sav.curLawName=="军纪法":#所有好感度上升
+		RewardLaw="所有派系好感度合计上升15点，军队战斗力上升"
+	elif sav.curLawName=="战备法":#获得若干随机道具
+		RewardLaw="随机获得3个道具"
+	elif sav.curLawName=="边防法":#获得一些人口增加
+		RewardLaw="获得100人口"
+	elif sav.curLawName=="军事训诂":
+		RewardLaw=""
+	elif sav.curLawName=="军事装备法":
+		RewardLaw=""
+	elif sav.curLawName=="军事训练法":
+		RewardLaw=""
+	elif sav.curLawName=="军事优拔法":
+		RewardLaw=""									
+	elif sav.curLawName=="律令兵制":
+		RewardLaw=""#获得银月枪
+	elif sav.curLawName=="国防策略法":
+		RewardLaw=""		
+
+
+	currenceScene.SettleLawRevenue()
+	
+	#GetLawClaimRevenue()
+	#DialogueManager.show_dialogue_balloon()
+		
+		
+	#弹出对话框，法律已经通过，并获得了什么额外效果
+	
+	
 
 
 

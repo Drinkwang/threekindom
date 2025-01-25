@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://v5b54ln6hhwc"]
+[gd_scene load_steps=24 format=3 uid="uid://v5b54ln6hhwc"]
 
 [ext_resource type="Script" path="res://Scripts/Bouleuterion.gd" id="1_q6noc"]
 [ext_resource type="Resource" uid="uid://bte38wl3etklk" path="res://dialogues/灵堂.dialogue" id="2_56kjn"]
@@ -16,7 +16,68 @@
 [ext_resource type="PackedScene" uid="uid://cw66yiofu8q6f" path="res://Scene/prefab/RuleBook.tscn" id="14_7v3lb"]
 [ext_resource type="PackedScene" uid="uid://dqpklssxni160" path="res://Scene/prefab/clickBlock.tscn" id="15_2mi3t"]
 [ext_resource type="PackedScene" uid="uid://bv5ycsl0a50uq" path="res://Scene/prefab/btnList.tscn" id="16_ba2uq"]
+[ext_resource type="FontFile" uid="uid://qv74ebpr4i31" path="res://Asset/Font/VonwaonBitmap-16px.ttf" id="17_dfqgc"]
 [ext_resource type="Resource" uid="uid://bmuiri1yjrdba" path="res://dialogues/屋舍.dialogue" id="17_iu3mf"]
+
+[sub_resource type="Animation" id="Animation_vtpf1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 59)]
+}
+
+[sub_resource type="Animation" id="Animation_lqk0e"]
+resource_name = "colorUp"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 119), Vector2(0, 59)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_22t68"]
+_data = {
+"RESET": SubResource("Animation_vtpf1"),
+"colorUp": SubResource("Animation_lqk0e")
+}
 
 [sub_resource type="Animation" id="Animation_rms3s"]
 resource_name = "YELLOWGUILD"
@@ -160,6 +221,31 @@ contextEX = "仪事是主公和管辖地代表以及臣子商议的过程，根�
 主公可以在自己的府邸约见代表，来让政策更容易通过！"
 titleEX = "议事面板说明:"
 clickEvent = ""
+
+[node name="ColorRect" type="ColorRect" parent="CanvasBook"]
+modulate = Color(1, 1, 1, 0)
+offset_top = 59.0
+offset_right = 1925.0
+offset_bottom = 293.0
+color = Color(0.109804, 0.109804, 0.109804, 0.698039)
+
+[node name="Label" type="Label" parent="CanvasBook/ColorRect"]
+layout_mode = 0
+offset_top = -4.0
+offset_right = 1919.0
+offset_bottom = 239.0
+theme_override_fonts/font = ExtResource("17_dfqgc")
+theme_override_font_sizes/font_size = 56
+text = "提示：成功通过拉拢徐州派需求的法律！
+(徐州派好感度提升15点)
+(该派系摇摆人数减少)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasBook/ColorRect"]
+libraries = {
+"": SubResource("AnimationLibrary_22t68")
+}
 
 [node name="Node2D" type="Node2D" parent="CanvasBook"]
 visible = false

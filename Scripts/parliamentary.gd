@@ -69,6 +69,7 @@ func enter():
 	var isPass:String="通过"
 	if(totalrate>50):
 		isPass="通过"
+		GameManager.excuteLaw()#在执行法律面板
 	else:
 		isPass="未通过"
 	o_1.text="{AS}\n{AP}\n{RATE}%\n{FINAL}".format({"AS": totalSp, "AP":totalOp ,"RATE":totalrate,"FINAL":tr(isPass)})

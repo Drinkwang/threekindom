@@ -99,7 +99,7 @@ do demoFinish()
  : 新的一天又开始了，幕僚们已经把该天需要处理的政务放进我的政务面板了
 => END!
 ~ 今日收入为
- : 大人今日收入为{{GameManager.sav.coin_DayGet}}，招募的士兵为{{SomeGlobal.sav.labor_DayGet}}
+ : 大人今日收入为{{GameManager.sav.coin_DayGet}}，招募的士兵为{{GameManager.sav.labor_DayGet}}
 
 do _DayGet()
 => END!

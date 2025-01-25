@@ -126,73 +126,83 @@ do meetingEnd()
 => END
 
 ~ 召见手下2
-- 设宴
-do meeting(cldate.factionIndex.bentupai)
+主簿: 主公，您想要召见哪个派系的手下呢？
+#- 设宴
+#do meeting(cldate.factionIndex.bentupai)
 - 召见徐州派
-do SummonFaction(cldate.factionIndex.bentupai)
+	do SummonFaction(bentupai)
 - 召见丹阳派
-do SummonFaction()
+	do SummonFaction(waidipai)
 - 取消
-do cancel()
+	do cancel()
 => END
 
 ~ 召见手下3
-- 设宴
-do meeting()
+主簿: 主公，您想要召见哪个派系的手下呢？
+#- 设宴
+#do meeting()
 - 召见士族派
-do SummonFaction()
+	do SummonFaction(bentupai)
 - 召见豪族派
-do SummonFaction()
+	do SummonFaction(haozupai)
 - 召见丹阳派
-do SummonFaction()
+	do SummonFaction(waidipai)
 - 取消
-do cancel()
+	do cancel()
 => END
 
 
 #有吕布入境
 ~ 召见手下4
-- 设宴
-do meeting()
+#- 设宴
+#do meeting()
+主簿: 主公，您想要召见哪个派系的手下呢？
 - 召见士族派
-do SummonFaction()
+	do SummonFaction(bentupai)
 - 召见豪族派
-do SummonFaction()
+	do SummonFaction(haozupai)
 - 召见丹阳派
-do SummonFaction()
+	do SummonFaction(waidipai)
 - 召见吕布
-do SummonFaction()
+	do SummonFaction(lvbu)
 - 取消
+	do cancel()
 => END
 
 #资金赞助 上限100 2+3-5   
 ~ 选项
+主簿: 大人，你想对该派系的人做什么呢？
 #花费xxx增加其好感度
 - 资金资助
-do financialConfortChoice()
+	do financialConfortChoice()
 - 赠送礼物  
-do sendgiftChoice()
+	do sendgiftChoice()
 #优先级a
 - 政策拉拢
-do policyCo-opt()
+	do policyCo_opt()
 #政策拉拢极难开发 优先级d
 - 索取
 #优先级b
-do claim()
+	do claim()
 
 - (重新选择)
+	do optionSummonOnemen()
+#	do SummonFaction(_faction)
+# 重新选择需要返回选项界面
 => END
 
 
 ~ 选项吕布
+主簿: 大人，你想对吕布做什么呢？
 - 资金资助
-do financialConfortChoice()
+	do financialConfortChoice()
 - 赠送礼物
-do sendgiftChoice()
+	do sendgiftChoice()
 - 调用其手中士兵
 #优先级c
-do CallingSoldier()
+	do CallingSoldier()
 - (重新选择)
+	do SummonFaction(_faction)
 => END
 
 
@@ -242,6 +252,7 @@ do SummonFaction(_faction)
 #赠礼固定恢复20
 ~ 你没有礼物
 提示: 你当前没有礼物，请到商人处购买
+do SummonFaction(_faction)
 => END
 #后续内容作为正式版本剧情
 ~ 府邸第一天
@@ -311,6 +322,7 @@ do mizhuHide()
 主簿: 将军，你可以去这个城市的任意地方，包括前往议事厅，演武场、拜访大儒..
 主簿: 说不定就在这个过程中把您所需要的资金凑齐了。
 提示: 自由探索游戏，达成凑齐资金目标
+do exit()	
 => END!
 
 ~ 以商代赈
@@ -519,7 +531,24 @@ do FractionalDiff()
 => END!
 #解决商路问题
 #解决饥荒问题
+~ 索取从派系
+你通过索取可以获得{{ForValueCost}}金，但会消耗徐州派{{ForValueGet}}点忠诚度，请问是否执行
+- 是
+	do CF_CallingSoldier()
+- 否
+	do SummonFaction(_faction)
 
+=> END!
+
+~ 征兵从吕布
+调用可征集{{ForValueCost}}名吕布士兵，但将消耗{{ForValueGet}}点吕布忠诚度。是否执行？
+- 是
+	do CF_CallingSoldier()
+- 否
+	do SummonFaction(_faction)
+
+
+=> END!
 #基建问题，清理
 
 #吕布出现
@@ -689,4 +718,12 @@ do lvbuJoin()
 陈登: 属下一定不负所托，会监督舆论宣传工作，并争取各地士族的支持。
 提示: 从现在开始，刘备可以通过召见手下，召见吕布，从其获取资源，或者赏赐提升其好感度
 do canSummonLvBu()
+=> END!
+
+~ 政策拉拢
+根据{{getFactionByIndex()._name}}的要求，你需要在7天内在法律法规中通过{{lawName}}法案。通过后，你将提升{{getFactionByIndex()._name}}的好感度，并减少该派系的摇摆人数。
+- 答应
+	do consent()
+- 拒绝
+	do SummonFaction(_faction)
 => END!

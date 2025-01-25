@@ -14,8 +14,8 @@ script = ExtResource("1_jagoj")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 0
-offset_right = 254.0
-offset_bottom = 289.0
+offset_right = 287.0
+offset_bottom = 299.0
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2

@@ -74,10 +74,10 @@ offset_bottom = -46.0
 scale = Vector2(0.2, 0.2)
 
 [node name="resPanel" parent="CanvasLayer" instance=ExtResource("9_mf3v8")]
-offset_left = 1638.0
-offset_top = 770.0
-offset_right = 1678.0
-offset_bottom = 810.0
+offset_left = 1584.0
+offset_top = 723.0
+offset_right = 1880.0
+offset_bottom = 1059.0
 
 [node name="caocaoLetter" parent="CanvasLayer" instance=ExtResource("11_1wi74")]
 visible = false

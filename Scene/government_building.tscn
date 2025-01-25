@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://jfvfolr5nfj0"]
+[gd_scene load_steps=14 format=3 uid="uid://dbk6u8kc33kq2"]
 
 [ext_resource type="Script" path="res://Scripts/government_building.gd" id="1_xncth"]
 [ext_resource type="Texture2D" uid="uid://dn505pu4q3c3g" path="res://Asset/城镇建筑/小沛亮.png" id="3_bo6x4"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bw52ymer7ngwu" path="res://Scene/prefab/gapanel.tscn" id="8_ca5ns"]
 [ext_resource type="Resource" uid="uid://cqlt2sgkuk3na" path="res://dialogues/府邸.dialogue" id="8_ct1l0"]
 [ext_resource type="PackedScene" uid="uid://bvlh16yfcevdj" path="res://Scene/DisasterSys/disasterPanel.tscn" id="8_lgypm"]
+[ext_resource type="PackedScene" uid="uid://be0m00qmu43tx" path="res://Scene/commonPanel/giftPanel.tscn" id="9_2k5hb"]
 [ext_resource type="PackedScene" uid="uid://n73q2fqj4htr" path="res://Scene/prefab/policyPanel.tscn" id="9_fdrkw"]
 [ext_resource type="Texture2D" uid="uid://dkqpav04j4kua" path="res://Asset/ui/文书2.png" id="9_qwmo3"]
 [ext_resource type="Texture2D" uid="uid://cjgwjw0xpgmys" path="res://Asset/人物/糜竺眨眼.png" id="10_73x55"]
@@ -62,6 +63,18 @@ happys = Array[int]([4, 8, 10])
 accepts = Array[int]([2, 6, 8])
 dialogue_resource = ExtResource("8_ct1l0")
 
+[node name="sendGiftPanel" parent="." instance=ExtResource("9_2k5hb")]
+visible = false
+
+[node name="糜竺" parent="." instance=ExtResource("6_ibudm")]
+visible = false
+position = Vector2(420, 686)
+showName = "糜竺"
+dialogue_doubleclick = "点击糜竺"
+txt2d = ExtResource("10_73x55")
+dialogue_resource = ExtResource("8_ct1l0")
+dialogue_start = "点击糜竺"
+
 [node name="政府文书" parent="." instance=ExtResource("6_ibudm")]
 visible = false
 position = Vector2(984, 625)
@@ -71,20 +84,9 @@ txt2d = ExtResource("9_qwmo3")
 dialogue_resource = ExtResource("8_ct1l0")
 dialogue_start = "look"
 
-[node name="糜竺" parent="." instance=ExtResource("6_ibudm")]
-visible = false
-position = Vector2(420, 637)
-scale = Vector2(1.55, 1.55)
-showName = "糜竺"
-dialogue_doubleclick = "点击糜竺"
-txt2d = ExtResource("10_73x55")
-dialogue_resource = ExtResource("8_ct1l0")
-dialogue_start = "点击糜竺"
-
 [node name="陈登" parent="." instance=ExtResource("6_ibudm")]
 visible = false
 position = Vector2(1531, 671)
-scale = Vector2(1.4, 1.4)
 showName = "陈登"
 dialogue_doubleclick = "点击陈登"
 txt2d = ExtResource("12_quqka")

@@ -76,7 +76,7 @@ func _process(delta):
 @export var isHide=true
 
 func _on_area_2d_input_event(viewport, event, shape_idx):
-	print(event)
+	print(dialogue_start)
 
 	if(event is InputEventMouseButton and event.button_index==1 and dialogue_start.length()>0):
 		SoundManager.play_sound(sounds.SFX_FAST_UI_CLICK)

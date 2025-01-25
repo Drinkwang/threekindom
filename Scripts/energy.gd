@@ -23,7 +23,7 @@ func showTargetLabel():
 	var currenceValue=GameManager.getTaskCurrenceValue()
 	# target，currence
 	
-	if currenceValue>=currenceValue:
+	if currenceValue>=targetValue:
 		if(GameManager.sav.TargetDestination=="rest"):
 			target_label.text="任务已完成，休息进入下一天推进剧情"
 		elif GameManager.sav.TargetDestination=="自宅":
@@ -39,7 +39,10 @@ func showTargetLabel():
 	else:
 		target_label.text=GameManager.sav.targetTxt.format({"target":targetValue,"currence":currenceValue})
 	pass
+@onready var animation_player = $TargetLabel/AnimationPlayer
 
+func playLabelChange():
+	animation_player.play("targetlabel")
 
 
 func _on_item_button_button_down():
