@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bwooyxcd4m6xs"]
+[gd_scene load_steps=15 format=3 uid="uid://bwooyxcd4m6xs"]
 
 [ext_resource type="Script" path="res://Scripts/house.gd" id="1_5nyes"]
 [ext_resource type="Resource" uid="uid://bmuiri1yjrdba" path="res://dialogues/屋舍.dialogue" id="2_6rtve"]
@@ -12,7 +12,6 @@
 [ext_resource type="FontFile" uid="uid://qv74ebpr4i31" path="res://Asset/Font/VonwaonBitmap-16px.ttf" id="10_fk36n"]
 [ext_resource type="PackedScene" uid="uid://dfolt063spdso" path="res://Scene/prefab/energy.tscn" id="10_vpbf8"]
 [ext_resource type="PackedScene" uid="uid://cw66yiofu8q6f" path="res://Scene/prefab/RuleBook.tscn" id="11_1wi74"]
-[ext_resource type="Resource" uid="uid://d2qoinuor12dq" path="res://dialogues/演武场.dialogue" id="12_313cv"]
 [ext_resource type="Texture2D" uid="uid://cjgwjw0xpgmys" path="res://Asset/人物/糜竺眨眼.png" id="12_siufa"]
 [ext_resource type="Texture2D" uid="uid://doh7mxtgy0hm2" path="res://Asset/人物/陈登睁眼.png" id="13_yewon"]
 
@@ -93,7 +92,7 @@ context = "备弟足下：
 
                                曹操敬上"
 lookdoneDialog = "袁术之乱看曹操信件"
-dialogue_resource = ExtResource("12_313cv")
+dialogue_resource = ExtResource("2_6rtve")
 
 [node name="Control2" parent="." instance=ExtResource("9_mf3v8")]
 visible = false

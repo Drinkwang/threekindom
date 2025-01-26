@@ -3,7 +3,7 @@ class_name saveData
 @export var saveScene:PackedScene=PackedScene.new()
 
 #GameManager
-@export var day=4
+@export var day=8
 #@export var intellectual_support=100 #士族支持度 一开始为100 当议会中 会出现支持和不支持以及摇摆 
 @export var people_surrport=100 #群众支持度 数值
 @export var  coin=100 #金钱 数值
@@ -35,6 +35,8 @@ class_name saveData
 @export var TargetDestination:String #放在gameins里面
 #如果是战斗，存储的数量
 @export var currenceValue:int=0
+#目前天数,非主线，支线进展推进变量
+@export var currenceDay:int=0
 #是否获取金钱
 @export var isGetCoin=false
 
@@ -107,7 +109,11 @@ class_name saveData
 	"chaoChendengEnd":false,
 	"chaoMizhuEnd":false,
 	"chaosEnd":false,
+	"chaoDialogEnd":false,
 	"battleYuanshu":false,
+	"firstDisaster":false,#第一次赈灾 征伐袁术后1天进入府邸 触发事件后一天
+	"secondDisaster":false,#第二次赈灾 征伐袁术后3天进入府邸 触发第一次赈灾后过了2天
+	"thirdDisaster":false,#第三次赈灾 征伐袁术后 5天进入府邸 触发第二次赈灾后过了2天  赈灾支线
 	"completebattleYuanshu":false,
 	"deliverYuanShu":false,
 	"lvbuJoin":false,

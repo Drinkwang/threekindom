@@ -206,8 +206,9 @@ func _buttonListClick(item):
 				if(GameManager.sav.have_event["initTaskPolicy"]==false):
 					GameManager.sav.have_event["initTaskPolicy"]=true
 					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"完成第一次政务离开")
-				else:
-				
+				elif GameManager.sav.have_event["chaosBegin"]==true and GameManager.sav.have_event["chaoDialogEnd"]==false:
+					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"城中混乱状况")
+				else:	
 				#先提示对话 然后
 					exit()	
 				pass
@@ -392,6 +393,23 @@ func deliverTask():
 				GameManager.sav.have_event["deliverYuanShu"]=true
 				GameManager.clearTask()
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"打跑袁术")#显示对话
+		
+		if GameManager.sav.have_event["battleYuanshu"]==true:
+			if(GameManager.sav.have_event["completebattleYuanshu"]==false):	
+				if GameManager.sav.currenceDay>=2:
+					GameManager.sav.currenceDay=0
+					if GameManager.sav.have_event["firstDisaster"]==false:
+						GameManager.sav.have_event["firstDisaster"]=true
+						DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第一次赈灾开始")#显示对话
+	#第一次赈灾启动 还没设定
+					elif GameManager.sav.have_event["secondDisaster"]==false:	
+						GameManager.sav.have_event["secondDisaster"]=true
+						DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第二次分配粮食")#显示对话
+						#第二次赈灾开始
+					elif GameManager.sav.have_event["thirdDisaster"]==false:
+						DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第三次分配粮食")#显示对话			
+						GameManager.sav.have_event["thirdDisaster"]=true
+						#第三次赈灾开始	
 			
 @onready var hp_panel = $CanvasLayer/hpPanel
 			

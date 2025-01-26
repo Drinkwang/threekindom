@@ -33,6 +33,17 @@ func _judWin():
 			if GameManager.sav.currenceValue>=7:
 				GameManager.sav.have_event["CaoBaointervene"]=true
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"曹豹干预")
+		if GameManager.sav.have_event["battleYuanshu"]==true:
+			if(GameManager.sav.have_event["completebattleYuanshu"]==false):	
+				if GameManager.sav.currenceValue>=3:
+					#内部分裂
+				elif GameManager.sav.currenceValue>=7:
+					pass
+					#内部分裂
+				elif GameManager.sav.currenceValue>=15:
+					pass
+					#吕布来了	
+				
 		if GameManager.sav.currenceValue>=GameManager.sav.targetValue:
 			_completeTask()
 func _completeTask():#将完成任务移动到外层

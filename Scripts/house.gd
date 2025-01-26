@@ -255,6 +255,7 @@ func _DayGet():
 	# 对，还有一键
 	# 很好，继续努力。如果任务没有完成 提示三选一
 
+
 func _JudgeTask():
 	var value=0
 	if GameManager.sav.targetResType==GameManager.ResType.coin:
@@ -268,13 +269,22 @@ func _JudgeTask():
 			if GameManager.sav.have_event["chaosEnd"]==false:
 				if value>=GameManager.sav.targetValue:
 					GameManager.sav.have_event["chaosEnd"]=true
+					#完成袁术之乱
+					hp_panel.playLabelChange()
+					GameManager.sav.TargetDestination="府邸"
 					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"袁术之乱结束")	
+				else:
+					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"每天袁术内应搞事")	
 	if(GameManager.sav.have_event["completeTask1"]==true):
 		if(GameManager.sav.have_event["initTask2"]==false):
 			GameManager.sav.have_event["initTask2"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"有拦路虎")
 			#显示对话
 			#任务完成
+	
+			#if GameManager.sav.have_event["battleYuanshu"]==true:
+			#if(GameManager.sav.have_event["completebattleYuanshu"]==false):	
+			
 	
 func secondMissonStart():
 	GameManager.sav.targetValue=10
@@ -310,7 +320,9 @@ func yuanshuChaos(value):
 func showCaoCaoLetter():
 	caocao_letter.show()
 	
+#完成任务不应该显示 休息进入下一天
 func lookDoneCaoCaoLetter():
 	#设置目标是前往宅邸
 	GameManager.sav.TargetDestination="府邸"
+	caocao_letter.hide()
 	pass
