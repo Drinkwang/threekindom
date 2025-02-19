@@ -116,6 +116,7 @@ class_name saveData
 	"thirdDisaster":false,#第三次赈灾 征伐袁术后 5天进入府邸 触发第二次赈灾后过了2天  赈灾支线
 	"completebattleYuanshu":false,
 	"deliverYuanShu":false,
+	""
 	"lvbuJoin":false,
 	"canSummonLvbu":false
 }

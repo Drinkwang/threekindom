@@ -35,13 +35,19 @@ func _judWin():
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"曹豹干预")
 		if GameManager.sav.have_event["battleYuanshu"]==true:
 			if(GameManager.sav.have_event["completebattleYuanshu"]==false):	
-				if GameManager.sav.currenceValue>=3:
-					#内部分裂
+				if GameManager.sav.currenceValue>=15:
+					#内部分裂 与此同时
+					if GameManager.sav.have_event["xxx"]==false:
+						GameManager.sav.have_event["xxx"]=true
+						DialogueManager.show_example_dialogue_balloon(dialogue_resource,"发现吕布")
+					pass
 				elif GameManager.sav.currenceValue>=7:
-					pass
+					GameManager.sav.have_event["xxx"]=true
+					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"内部分裂")
 					#内部分裂
-				elif GameManager.sav.currenceValue>=15:
-					pass
+				elif GameManager.sav.currenceValue>=3:
+					GameManager.sav.have_event["xxx"]=true
+					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"内部分裂")
 					#吕布来了	
 				
 		if GameManager.sav.currenceValue>=GameManager.sav.targetValue:
@@ -196,4 +202,10 @@ func quest2Complete():
 	
 func yuanshuComplete():
 	GameManager.sav.TargetDestination="府邸"
+	pass
+	
+func tempLockCaoBao():
+	pass
+	
+func fireLetter():
 	pass

@@ -16,13 +16,12 @@ _data = {
 "c1": SubResource("Animation_whhn8")
 }
 
-[node name="Control" type="Control" node_paths=PackedStringArray("datas")]
+[node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 300.0
 offset_bottom = 182.0
 script = ExtResource("1_0q3sx")
-datas = [NodePath("NoDamage"), NodePath("LitterDamage"), NodePath("MiddleDamage"), NodePath("BigDamage"), NodePath("background-player")]
 
 [node name="count" type="Label" parent="."]
 layout_mode = 0
