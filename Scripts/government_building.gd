@@ -92,8 +92,24 @@ func _initData():
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"府邸第一天")
 			#mizhu.show()
 	elif GameManager.sav.day>5:
-		if GameManager.sav.have_event["chaosEnd"]==true:
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"告知曹操信件") #征讨袁术开始*/	
+		if GameManager.sav.have_event["chaosEnd"]==true and GameManager.sav.have_event["泰山诸将曹操消息"]==false:
+				GameManager.sav.have_event["泰山诸将曹操消息"]=true
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"告知曹操信件") #征讨袁术开始*/	
+		elif GameManager.sav.have_event["findLvbu"]==true and GameManager.sav.have_event["discussLvbu"]==false:
+				GameManager.sav.have_event["discussLvbu"]=true
+				#此处需要跟曹豹将军沟通
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"商讨吕布是否留下") #征讨袁术开始*/	
+		elif  GameManager.sav.have_event["lvbuDiscussInCaoBao"]==true and GameManager.sav.have_event["lvBuFinalDiscuss"]==false:
+				GameManager.sav.have_event["lvBuFinalDiscuss"]=true
+				#此处需要跟曹豹将军沟通
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第二次商讨吕布是否留下") #征讨袁术开始*/	
+		elif GameManager.sav.have_event["lvbuJoin"]==true and GameManager.sav.have_event["canSummonLvbu"]==false:
+			if GameManager.sav.currenceDay>=1:
+				GameManager.sav.have_event["canSummonLvbu"]=true
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"可召见吕布")
+		elif GameManager.sav.have_event["completebattleTaiShan"]==true and GameManager.sav.have_event["庆功宴是否举办"]==false:
+			GameManager.sav.have_event["庆功宴是否举办"]=true
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"徐州得安")
 	GameManager.currenceScene=self
 	policy_panel.initControls()
 #	if GameManager.sav.day>=1:
@@ -132,11 +148,7 @@ func _initData():
 	if GameManager.sav.day==2:
 		control._show_button_5_yellow(1)
 		
-	#召见吕布的代码
-	if GameManager.sav.have_event["lvbuJoin"]==true:
-		if GameManager.sav.have_event["canSummonLvbu"]==false:
-			GameManager.sav.have_event["canSummonLvbu"]=true
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"可召见吕布")
+
 	if(GameManager.sav.targetTxt!=null and GameManager.sav.targetTxt.length()>0):		
 		_JudgeTask()
 	#elif GameManager.sav.day==4:
@@ -216,6 +228,15 @@ func _buttonListClick(item):
 		#显示金钱 民心 xx 武将面板
 	print(item)
 	pass
+func victoryPartyEnd():
+	GameManager.sav.have_event["战斗袁术开始"]=true
+	GameManager.sav.targetValue=15
+	GameManager.sav.currenceValue=0
+	GameManager.sav.targetResType=GameManager.ResType.battle
+	GameManager.sav.targetTxt="当前讨伐对象：{currence}/{target}"
+	GameManager.sav.TargetDestination="battle"
+
+
 
 func optionSummonOnemen():
 	if(GameManager.sav.day<5):
@@ -389,13 +410,13 @@ func deliverTask():
 				GameManager.clearTask()
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"打跑黄巾军")#显示对话
 		elif  GameManager.sav.have_event["deliverYuanShu"]==false:
-			if(GameManager.sav.have_event["completebattleYuanshu"]==true):
+			if(GameManager.sav.have_event["completebattleTaiShan"]==true):
 				GameManager.sav.have_event["deliverYuanShu"]=true
 				GameManager.clearTask()
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"打跑袁术")#显示对话
 		
-		if GameManager.sav.have_event["battleYuanshu"]==true:
-			if(GameManager.sav.have_event["completebattleYuanshu"]==false):	
+		if GameManager.sav.have_event["battleTaiShan"]==true:
+			if(GameManager.sav.have_event["completebattleTaiShan"]==false):	
 				if GameManager.sav.currenceDay>=2:
 					GameManager.sav.currenceDay=0
 					if GameManager.sav.have_event["firstDisaster"]==false:
@@ -479,10 +500,10 @@ func ShowDisterPanel():
 	disater_panel.show()
 	pass
 
-func StartYuanshu():
-	if GameManager.sav.have_event["battleYuanshu"]==false:
-		GameManager.sav.have_event["battleYuanshu"]=true
-	GameManager.sav.targetValue=30
+func StartTaishan():
+	if GameManager.sav.have_event["battleTaiShan"]==false:
+		GameManager.sav.have_event["battleTaiShan"]=true
+	GameManager.sav.targetValue=12
 	GameManager.sav.currenceValue=0
 	GameManager.sav.targetResType=GameManager.ResType.battle
 	GameManager.sav.targetTxt="当前讨伐对象：{currence}/{target}"
@@ -660,4 +681,11 @@ func CallingSoldier():
 func lvbuJoin():
 	GameManager.sav.have_event["lvbuJoin"]=true
 	GameManager.sav.labor_force=GameManager.sav.labor_force+1000
-	pass
+	
+	#1
+	GameManager.sav.targetValue=3
+	GameManager.sav.currenceValue=0
+	GameManager.sav.currenceDay=0
+	GameManager.sav.targetResType=GameManager.ResType.battle
+	GameManager.sav.targetTxt="当前讨伐对象：{currence}/{target}"
+	GameManager.sav.TargetDestination="battle"

@@ -110,13 +110,25 @@ class_name saveData
 	"chaoMizhuEnd":false,
 	"chaosEnd":false,
 	"chaoDialogEnd":false,
-	"battleYuanshu":false,
+	"battleTaiShan":false,#攻击泰山诸将
 	"firstDisaster":false,#第一次赈灾 征伐袁术后1天进入府邸 触发事件后一天
 	"secondDisaster":false,#第二次赈灾 征伐袁术后3天进入府邸 触发第一次赈灾后过了2天
 	"thirdDisaster":false,#第三次赈灾 征伐袁术后 5天进入府邸 触发第二次赈灾后过了2天  赈灾支线
-	"completebattleYuanshu":false,
+	"completebattleTaiShan":false,
+	"庆功宴是否举办":false,
 	"deliverYuanShu":false,
-	""
+	
+	"泰山诸将曹操消息":false,#未知变量
+	"臧霸首战之前":false,#泰山诸将1
+	"昌豨求饶":false,#泰山诸将2
+	"臧霸首战":false,#泰山诸将3
+	"昌豨求饶2":false,#泰山诸将3
+	"findLvbu":false,#发现吕布
+	"discussLvbu":false,
+	"lvbuDiscussInCaoBao":false,#未用
+	"lvBuFinalDiscuss":false,#未用
 	"lvbuJoin":false,
-	"canSummonLvbu":false
+	"canSummonLvbu":false,
+	"战斗袁术开始":false,
+	"战斗袁术血战模式":false
 }

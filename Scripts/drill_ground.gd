@@ -19,6 +19,13 @@ func _ready():
 		bg.texture=newBuild
 	else:
 		bg.texture=xiaopeiBuild
+	if GameManager.sav.have_event["征询曹将军意见"]==false:
+		#可改成显示曹将军立绘
+		caobao.show()
+		GameManager.sav.have_event["征询曹将军意见"]=true
+		#pass
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"征询曹将军意见")
+		#pass
 const bgm = preload("res://Asset/bgm/校场.wav")
 
 func _judWin():
@@ -33,21 +40,22 @@ func _judWin():
 			if GameManager.sav.currenceValue>=7:
 				GameManager.sav.have_event["CaoBaointervene"]=true
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"曹豹干预")
-		if GameManager.sav.have_event["battleYuanshu"]==true:
-			if(GameManager.sav.have_event["completebattleYuanshu"]==false):	
+		if GameManager.sav.have_event["battleTaiShan"]==true:
+			if(GameManager.sav.have_event["completebattleTaiShan"]==false):	
 				if GameManager.sav.currenceValue>=15:
-					#内部分裂 与此同时
-					if GameManager.sav.have_event["xxx"]==false:
-						GameManager.sav.have_event["xxx"]=true
-						DialogueManager.show_example_dialogue_balloon(dialogue_resource,"发现吕布")
 					pass
-				elif GameManager.sav.currenceValue>=7:
-					GameManager.sav.have_event["xxx"]=true
-					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"内部分裂")
+				elif GameManager.sav.currenceValue>=12:
+					pass
+				elif GameManager.sav.currenceValue>=8:
+					GameManager.sav.have_event["昌豨求饶2"]=true
+					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"昌豨求饶2")
+				elif GameManager.sav.currenceValue>=5:
+					GameManager.sav.have_event["臧霸首战"]=true
+					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"臧霸首战")
 					#内部分裂
 				elif GameManager.sav.currenceValue>=3:
-					GameManager.sav.have_event["xxx"]=true
-					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"内部分裂")
+					GameManager.sav.have_event["昌豨求饶"]=true
+					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"昌豨求饶")
 					#吕布来了	
 				
 		if GameManager.sav.currenceValue>=GameManager.sav.targetValue:
@@ -56,11 +64,21 @@ func _completeTask():#将完成任务移动到外层
 	if(GameManager.sav.have_event["completeTask2"]==false):
 		GameManager.sav.have_event["completeTask2"]=true
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"征讨结束")
-	elif GameManager.sav.have_event["battleYuanshu"]==true:
-		if(GameManager.sav.have_event["completebattleYuanshu"]==false):
-			GameManager.sav.have_event["completebattleYuanshu"]=true
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"征讨袁术结束")
+	elif GameManager.sav.have_event["lvbuJoin"]==false&&GameManager.sav.have_event["battleTaiShan"]==true:	
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"发现吕布")
+
+		
+	#在吕布帮助下取得三次军事行动	
+	elif GameManager.sav.have_event["lvbuJoin"]==true&&GameManager.sav.have_event["battleTaiShan"]==true:
+		if(GameManager.sav.have_event["completebattleTaiShan"]==false):
+			GameManager.sav.have_event["completebattleTaiShan"]=true
+			
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"温侯降伏臧霸")
 @onready var caocao_letter = $CanvasInventory/caocaoLetter
+
+func findLvbu():
+	GameManager.sav.have_event["findLvbu"]=true	
+	GameManager.sav.TargetDestination="府邸"	
 
 func meetCaoCao():
 	caocao_letter.show()
@@ -86,6 +104,7 @@ func enterOldSoilderEat():
 	
 	
 var battleNum=0
+@onready var caobao = $"CanvasInventory/曹豹"
 
 func _initData():
 	GameManager.currenceScene=self
@@ -152,7 +171,10 @@ func _buttonListClick(item):
 		else:
 			battle_pane.point_group.hide()
 		battle_pane.show()
-
+		if GameManager.sav.have_event["battleTaiShan"]==true:
+			if GameManager.sav.have_event["臧霸首战之前"]==false:
+				GameManager.sav.have_event["臧霸首战之前"]=true
+				DialogueManager.show_dialogue_balloon(dialogue_resource,"臧霸首战之前")
 		#if(GameManager.sav.have_event["firstBattleTutorial"]==true)：
 		#暂时不能发动军事行动
 
@@ -173,6 +195,9 @@ func endtrain0():
 func endtrain():
 	control._show_button_5_yellow(0)
 
+func ConsultWithCaoBaoEnd():
+	GameManager.sav.TargetDestination="府邸"	
+	GameManager.sav.have_event["lvbuDiscussInCaoBao"]=true
 
 @onready var point = $CanvasInventory/point
 
@@ -199,6 +224,17 @@ func quest2Complete():
 	GameManager.sav.TargetDestination="府邸"
 	#任务目标 前往府邸
 	pass
+
+func taishanComplete():
+	#未来此处可能改成具体文本内容
+	GameManager.sav.TargetDestination="府邸"
+	GameManager.sav.coin=GameManager.sav.coin+200
+	GameManager.sav.people_surrport=GameManager.sav.people_surrport+20
+	GameManager.sav.labor_force=GameManager.sav.labor_force+1000
+	#获得士兵1000人，钱财200，民心上升10
+	#任务完成
+	#GameManager.clearTask()
+	
 	
 func yuanshuComplete():
 	GameManager.sav.TargetDestination="府邸"

@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dfolt063spdso" path="res://Scene/prefab/energy.tscn" id="6_00ynb"]
 [ext_resource type="PackedScene" uid="uid://cy140f6kxm5ev" path="res://Scene/prefab/ShopPanel.tscn" id="7_nhhnq"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D2" type="Node2D"]
 script = ExtResource("1_jskmv")
 dialogue_resource = ExtResource("2_a3tl4")
 dialogue_start = "init_street"

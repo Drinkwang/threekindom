@@ -36,6 +36,8 @@ func showTargetLabel():
 			target_label.text="任务已完成，请前往演武场触发下一阶段剧情"
 		elif GameManager.sav.TargetDestination=="大儒辩经":
 			target_label.text="任务已完成，请前往城外和大儒辩经触发下一阶段剧情"
+		else:
+			GameManager.sav.TargetDestination=GameManager.sav.TargetDestination	
 	else:
 		target_label.text=GameManager.sav.targetTxt.format({"target":targetValue,"currence":currenceValue})
 	pass

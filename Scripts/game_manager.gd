@@ -218,9 +218,12 @@ func _enterDay(value=true):
 		if GameManager.sav.have_event["chaosBegin"]==true:#第三个任务
 			if GameManager.sav.currenceValue==2:
 				pass#克苏鲁现象
-	if GameManager.sav.have_event["battleYuanshu"]==true:
-		if(GameManager.sav.have_event["completebattleYuanshu"]==false):	
+	if GameManager.sav.have_event["battleTaiShan"]==true:
+		if(GameManager.sav.have_event["completebattleTaiShan"]==false):	
 			sav.currenceDay=sav.currenceDay+1#	
+		elif (GameManager.sav.have_event["lvbuJoin"]==true) and GameManager.sav.have_event["canSummonLvbu"]==false:
+			sav.currenceDay=sav.currenceDay+1#	
+			#判断是否能召见吕布，如果可以，依然执行这个方法
 #利用上这个把taskindex局限于0-3 选样，并把这个数量和攻克
 #用task的index用作当前任务数
 #失败惩罚

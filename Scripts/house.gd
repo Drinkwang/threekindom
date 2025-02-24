@@ -269,7 +269,7 @@ func _JudgeTask():
 			if GameManager.sav.have_event["chaosEnd"]==false:
 				if value>=GameManager.sav.targetValue:
 					GameManager.sav.have_event["chaosEnd"]=true
-					#完成袁术之乱
+					#完成城中之乱-泰山
 					hp_panel.playLabelChange()
 					GameManager.sav.TargetDestination="府邸"
 					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"袁术之乱结束")	

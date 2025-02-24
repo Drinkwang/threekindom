@@ -42,19 +42,13 @@ _data = {
 "blink": SubResource("Animation_mxadx")
 }
 
-[node name="Control" type="Control" node_paths=PackedStringArray("lawpoins")]
+[node name="Control" type="Control"]
 custom_minimum_size = Vector2(16.91, 61)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 169.0
 offset_bottom = 61.0
 script = ExtResource("1_itafg")
-costPoint = 3
-_color = 0
-lawpoins = []
-detail = ""
-context = ""
-num1 = -1
 num2 = 0
 
 [node name="ColorRect" type="ColorRect" parent="."]

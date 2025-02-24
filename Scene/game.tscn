@@ -7,7 +7,7 @@
 [ext_resource type="Theme" uid="uid://bd3x65u7e06d8" path="res://new_theme.tres" id="5_gwxjm"]
 [ext_resource type="PackedScene" uid="uid://bvg8vtc1k62f1" path="res://Scene/commonPanel/newerGuildPanel.tscn" id="6_mi3hr"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D2" type="Node2D"]
 script = ExtResource("1_y5dta")
 
 [node name="主宣传画" type="Sprite2D" parent="."]

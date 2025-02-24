@@ -43,7 +43,7 @@ shader_parameter/threshold = 0.1
 radius = 3.6
 height = 22.9168
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D2" type="Node2D"]
 script = ExtResource("1_g32r7")
 
 [node name="Timer" type="Timer" parent="."]

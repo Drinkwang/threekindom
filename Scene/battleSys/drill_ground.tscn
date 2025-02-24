@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://00xr1q336bgu"]
+[gd_scene load_steps=22 format=3 uid="uid://00xr1q336bgu"]
 
 [ext_resource type="Script" path="res://Scripts/drill_ground.gd" id="1_bhlt2"]
 [ext_resource type="Resource" uid="uid://d2qoinuor12dq" path="res://dialogues/演武场.dialogue" id="2_j02vm"]
@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://bv5ycsl0a50uq" path="res://Scene/prefab/btnList.tscn" id="12_g1aky"]
 [ext_resource type="PackedScene" uid="uid://ghiim2lkqkbe" path="res://Scene/prefab/propertyPanel.tscn" id="13_4p7r8"]
 [ext_resource type="PackedScene" uid="uid://dfolt063spdso" path="res://Scene/prefab/energy.tscn" id="14_hgva0"]
+[ext_resource type="PackedScene" uid="uid://dqpklssxni160" path="res://Scene/prefab/clickBlock.tscn" id="14_s83fw"]
+[ext_resource type="Texture2D" uid="uid://bn4xfypysa6ry" path="res://Asset/人物/曹豹close.png" id="15_1y7hu"]
 [ext_resource type="Texture2D" uid="uid://rmaibsw1yjqd" path="res://Asset/城镇建筑/5_yellow.png" id="15_acxub"]
 
 [sub_resource type="Animation" id="Animation_0bk4q"]
@@ -174,6 +176,13 @@ libraries = {
 "": SubResource("AnimationLibrary_4gull")
 }
 autoplay = "YELLOWGUILD"
+
+[node name="曹豹" parent="CanvasInventory" instance=ExtResource("14_s83fw")]
+position = Vector2(982, 546)
+showName = "曹豹"
+txt2d = ExtResource("15_1y7hu")
+dialogue_resource = ExtResource("2_j02vm")
+dialogue_start = "点击糜竺"
 
 [node name="title" type="RichTextLabel" parent="."]
 visible = false
