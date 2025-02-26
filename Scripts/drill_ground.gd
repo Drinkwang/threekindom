@@ -42,22 +42,30 @@ func _judWin():
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"曹豹干预")
 		if GameManager.sav.have_event["battleTaiShan"]==true:
 			if(GameManager.sav.have_event["completebattleTaiShan"]==false):	
-				if GameManager.sav.currenceValue>=15:
-					pass
-				elif GameManager.sav.currenceValue>=12:
-					pass
-				elif GameManager.sav.currenceValue>=8:
+
+				if GameManager.sav.currenceValue>=8 and GameManager.sav.have_event["昌豨求饶2"]==false:
 					GameManager.sav.have_event["昌豨求饶2"]=true
 					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"昌豨求饶2")
-				elif GameManager.sav.currenceValue>=5:
+				elif GameManager.sav.currenceValue>=5 and GameManager.sav.have_event["臧霸首战"]==false:
 					GameManager.sav.have_event["臧霸首战"]=true
 					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"臧霸首战")
 					#内部分裂
-				elif GameManager.sav.currenceValue>=3:
+				elif GameManager.sav.currenceValue>=3 and GameManager.sav.have_event["昌豨求饶"]==false:
 					GameManager.sav.have_event["昌豨求饶"]=true
 					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"昌豨求饶")
 					#吕布来了	
-				
+		if GameManager.sav.have_event["战斗袁术开始"]==true:
+			
+			if GameManager.sav.currenceValue>=6:
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"征讨袁公路来了使者")
+				#袁术信使
+				pass
+			elif GameManager.sav.currenceValue>=3:
+				#曹操的信
+	
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"曹操挟天子开始")
+		
+		
 		if GameManager.sav.currenceValue>=GameManager.sav.targetValue:
 			_completeTask()
 func _completeTask():#将完成任务移动到外层
@@ -75,6 +83,11 @@ func _completeTask():#将完成任务移动到外层
 			
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"温侯降伏臧霸")
 @onready var caocao_letter = $CanvasInventory/caocaoLetter
+@onready var caocao_letter_xie_tian_zi = $CanvasInventory/caocaoLetterXieTianZi
+
+func CoerceKing():
+	caocao_letter_xie_tian_zi.show()
+	battle_pane.hide()
 
 func findLvbu():
 	GameManager.sav.have_event["findLvbu"]=true	
@@ -87,7 +100,7 @@ func meetCaoCao():
 	
 func caocaoLetterHide():
 	caocao_letter.hide()
-
+	caocao_letter_xie_tian_zi.hide()
 func post_transition():
 	SoundManager.play_music(bgm)
 	print("fadedone")
@@ -105,6 +118,9 @@ func enterOldSoilderEat():
 	
 var battleNum=0
 @onready var caobao = $"CanvasInventory/曹豹"
+
+func enterBattleMode():
+	pass
 
 func _initData():
 	GameManager.currenceScene=self

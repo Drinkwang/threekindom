@@ -130,5 +130,6 @@ class_name saveData
 	"lvbuJoin":false,
 	"canSummonLvbu":false,
 	"战斗袁术开始":false,
-	"战斗袁术血战模式":false
+	"战斗袁术血战模式":false,
+	"曹操协天子以令诸侯":false,#明天开发完成
 }
