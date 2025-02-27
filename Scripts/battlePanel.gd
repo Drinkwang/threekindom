@@ -55,6 +55,9 @@ func changeLanguage():
 		title.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
 	else:
 		pass
+#可能会删除
+func initData():
+	pass		
 func endBattle():
 	battle_circle.selectgeneral=null
 	soild_slider.value=0

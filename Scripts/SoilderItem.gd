@@ -118,7 +118,18 @@ func Use():
 #{"name": "张飞", "level": 1, "max_level": 10, "randominit": -1,"isBattle":false}
 func updateContext(value):
 	var general=GameManager.generals[repImg]
-	namelv=tr(str(general.name))+":"+"LV"+str(general.level)
+	var _name=general.name
+	var _level=general.level
+	if value==1:
+		#是张飞
+
+		if GameManager.sav.have_event["战斗袁术血战模式"]==true and GameManager.sav.have_event["血战袁术完成"]==false:
+			_name="刘备"
+			_level=10
+			headImg.texture="res://Asset/人物/刘备.png"
+			#利用这个判断
+			#pass
+	namelv=tr(str(_name))+":"+"LV"+str(_level)
 
 
 

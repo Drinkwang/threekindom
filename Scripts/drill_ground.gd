@@ -12,6 +12,7 @@ const newBuild = preload("res://Asset/城镇建筑/演武场2.png")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	SignalManager.endReward.connect(_judWin)
+	#判断剧情
 	Transitions.post_transition.connect(post_transition)
 	control.buttonClick.connect(_buttonListClick)
 	super._ready()
@@ -104,6 +105,11 @@ func caocaoLetterHide():
 func post_transition():
 	SoundManager.play_music(bgm)
 	print("fadedone")
+	
+	if GameManager.sav.have_event["亲征对话结束"]==true and GameManager.sav.have_event["战斗袁术血战模式"]==false:
+		#GameManager.sav.have_event["战斗袁术血战模式"]=true
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"演武场宣战袁术")
+		return 
 	_initData()
 
 const EAT_1 = preload("res://Asset/sound/eat1.mp3")
@@ -120,7 +126,10 @@ var battleNum=0
 @onready var caobao = $"CanvasInventory/曹豹"
 
 func enterBattleMode():
-	pass
+	GameManager.sav.have_event["战斗袁术血战模式"]=true
+	GameManager.hp=100
+	_initData()
+
 
 func _initData():
 	GameManager.currenceScene=self
@@ -152,9 +161,20 @@ func _initData():
 		"context":"军事行动",#前往大街
 		"visible":"false"
 	},
+	{
+		"id":"4",
+		"context":"休息",#前往大街
+		"visible":"false"
+	},
 
 	]
-	
+
+	if GameManager.sav.have_event["战斗袁术血战模式"]==true:
+		initData[3].visible="true"
+		initData[0].visible="false"
+	else:
+		initData[3].visible="false"
+		initData[0].visible="true"
 	if(GameManager.sav.day>=3):
 		initData[2].visible="true"
 	control._processList(initData)
@@ -171,6 +191,9 @@ func _buttonListClick(item):
 			if GameManager.hp>10:
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"三场战斗还没有结束")
 				return 
+		if GameManager.sav.have_event["战斗袁术血战模式"]==true:
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"血战模式无法离开演武场")
+			return
 		SceneManager.changeScene(SceneManager.roomNode.STREET,2)#判断条件
 		#pass
 	elif item.context=="操练士兵":
@@ -187,13 +210,16 @@ func _buttonListClick(item):
 		else:
 			battle_pane.point_group.hide()
 		battle_pane.show()
+		battle_pane.initData()
 		if GameManager.sav.have_event["battleTaiShan"]==true:
 			if GameManager.sav.have_event["臧霸首战之前"]==false:
 				GameManager.sav.have_event["臧霸首战之前"]=true
 				DialogueManager.show_dialogue_balloon(dialogue_resource,"臧霸首战之前")
 		#if(GameManager.sav.have_event["firstBattleTutorial"]==true)：
 		#暂时不能发动军事行动
-
+	elif item.context=="休息":
+		#调用休息的代码，只不过休息的地点换成演武场
+		pass
 
 	pass
 
@@ -254,6 +280,7 @@ func taishanComplete():
 	
 func yuanshuComplete():
 	GameManager.sav.TargetDestination="府邸"
+
 	pass
 	
 func tempLockCaoBao():

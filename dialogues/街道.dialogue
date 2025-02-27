@@ -37,7 +37,13 @@ do streetTwo()
 ~ selectOutSide
 你想前去哪里？
 - 演武场
-	do visitDrill()
+	if GameManager.sav.have_event["亲征对话结束"]==false
+		do visitDrill()
+	else
+		系统提示: 你已选择进入演武场，将触发血战模式。在演武场内，你将不能离开，直到完成所有军事行动。请确保携带足够的物资，以应对各种挑战。
+		- 确定
+			do visitDrill()
+		- 暂时先等一等
 - 拜访大儒
 	do visitScholar()
 - 取消

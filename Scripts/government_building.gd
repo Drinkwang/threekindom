@@ -110,6 +110,10 @@ func _initData():
 		elif GameManager.sav.have_event["completebattleTaiShan"]==true and GameManager.sav.have_event["庆功宴是否举办"]==false:
 			GameManager.sav.have_event["庆功宴是否举办"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"徐州得安")
+		elif GameManager.sav.have_event["战斗袁术开始"]==true: 
+			#判断任务完成 如果任务完成，那么就开始对话指令，且不能离开
+			pass
+	
 	GameManager.currenceScene=self
 	policy_panel.initControls()
 #	if GameManager.sav.day>=1:
@@ -220,6 +224,9 @@ func _buttonListClick(item):
 					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"完成第一次政务离开")
 				elif GameManager.sav.have_event["chaosBegin"]==true and GameManager.sav.have_event["chaoDialogEnd"]==false:
 					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"城中混乱状况")
+				#elif GameManager.sav.have_event["战斗袁术开始"]==true and GameManager.sav.TargetDestination=="你需要跟糜竺和陈登分别对话":
+					
+				#	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"城中混乱状况")
 				else:	
 				#先提示对话 然后
 					exit()	
@@ -431,9 +438,48 @@ func deliverTask():
 						DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第三次分配粮食")#显示对话			
 						GameManager.sav.have_event["thirdDisaster"]=true
 						#第三次赈灾开始	
+		elif GameManager.sav.have_event["战斗袁术开始"]==true:
+			if GameManager.sav.have_event["亲征跟糜竺对话"]==false:
+				mizhu.show()
+				mizhu.dialogue_start="亲征前跟糜竺对话"
+				
+			if GameManager.sav.have_event["亲征跟陈登对话"]==false:	
+				chenden.show()
+				chenden.dialogue_start="亲征前跟陈登对话"
 			
+			if GameManager.sav.have_event["亲征跟糜竺对话"]==false and GameManager.sav.have_event["亲征跟陈登对话"]==false: 
+			
+				GameManager.sav.TargetDestination="交互提示：你需要跟糜竺和陈登分别对话"
+			elif GameManager.sav.have_event["亲征跟糜竺对话"]==true and GameManager.sav.have_event["亲征跟陈登对话"]==false: 
+				GameManager.sav.TargetDestination="交互提示：你需要跟陈登对话"
+			elif GameManager.sav.have_event["亲征跟糜竺对话"]==false and GameManager.sav.have_event["亲征跟陈登对话"]==true:
+				GameManager.sav.TargetDestination="交互提示：你需要跟糜竺对话" 
+
+func liubeiBattleAfterMizhu():
+	#GameManager.sav.TargetDestination="交互提示：你需要跟陈登对话"
+	mizhu.hide()
+	GameManager.sav.have_event["亲征跟糜竺对话"]=true
+	liubeiBattleAfterEvent()
+
+func liubeiBattleAfterChenDen():
+	#GameManager.sav.TargetDestination="交互提示：你需要跟糜竺对话"	
+	chenden.hide()
+	GameManager.sav.have_event["亲征跟陈登对话"]=true
+	liubeiBattleAfterEvent()
+	
+func liubeiBattleAfterEvent():
+	if GameManager.sav.have_event["亲征跟糜竺对话"]==true and GameManager.sav.have_event["亲征跟陈登对话"]==true:
+		#后续剧情
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"亲征对话陈登和糜竺")#显示对话			
+		#pass	
+
+func enterBattleModeBefore():
+	#任务改变去演武场
+	GameManager.sav.TargetDestination="演武场"
+	GameManager.sav.have_event["亲征对话结束"]=true
+	#
+	
 @onready var hp_panel = $CanvasLayer/hpPanel
-			
 func collectMoneyComplete():
 	GameManager.sav.TargetDestination="rest"	
 	mizhu.show()

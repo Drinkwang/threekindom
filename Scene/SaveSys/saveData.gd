@@ -130,6 +130,13 @@ class_name saveData
 	"lvbuJoin":false,
 	"canSummonLvbu":false,
 	"战斗袁术开始":false,
+	"战斗袁术任务完成":false,
+	"亲征跟糜竺对话":false,
+	"亲征跟陈登对话":false,
+	"亲征对话结束":false,
+	#"一阶段取胜"
 	"战斗袁术血战模式":false,
+	"血战袁术完成":false,
 	"曹操协天子以令诸侯":false,#明天开发完成
+	
 }
