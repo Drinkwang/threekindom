@@ -164,7 +164,7 @@ func _initData():
 	{
 		"id":"4",
 		"context":"休息",#前往大街
-		"visible":"false"
+		"visible":"true"
 	},
 
 	]
@@ -218,6 +218,9 @@ func _buttonListClick(item):
 		#if(GameManager.sav.have_event["firstBattleTutorial"]==true)：
 		#暂时不能发动军事行动
 	elif item.context=="休息":
+		GameManager.restFadeScene=SceneManager.DRILL_GROUND
+		#		GameManager.restLabel=tr("与此同时")		
+		GameManager.sav._rest()
 		#调用休息的代码，只不过休息的地点换成演武场
 		pass
 
