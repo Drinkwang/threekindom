@@ -96,6 +96,14 @@ texture = ExtResource("4_n3gnp")
 position = Vector2(895, 333)
 scale = Vector2(1.6384, 1.6384)
 
+[node name="曹豹" parent="." instance=ExtResource("14_s83fw")]
+visible = false
+position = Vector2(982, 546)
+showName = "曹豹"
+txt2d = ExtResource("15_1y7hu")
+dialogue_resource = ExtResource("2_j02vm")
+dialogue_start = "点击糜竺"
+
 [node name="CanvasButton" type="CanvasLayer" parent="."]
 
 [node name="CanvasInventory" type="CanvasLayer" parent="."]
@@ -189,13 +197,6 @@ libraries = {
 "": SubResource("AnimationLibrary_4gull")
 }
 autoplay = "YELLOWGUILD"
-
-[node name="曹豹" parent="CanvasInventory" instance=ExtResource("14_s83fw")]
-position = Vector2(982, 546)
-showName = "曹豹"
-txt2d = ExtResource("15_1y7hu")
-dialogue_resource = ExtResource("2_j02vm")
-dialogue_start = "点击糜竺"
 
 [node name="title" type="RichTextLabel" parent="."]
 visible = false

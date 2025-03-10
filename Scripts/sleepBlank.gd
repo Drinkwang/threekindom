@@ -9,7 +9,11 @@ func _ready():
 	#GameManager.currenceScene=self
 	Transitions.post_transition.connect(post_transition)
 	if GameManager.restLabel.length()<=0:
-		label.text=wisdoms[randi() % wisdoms.size()]
+		var day=GameManager.sav.currenceValue
+		if GameManager.sav.have_event["战斗袁术血战模式"]==true:
+			label.text=tr("血战模式第{n}天").format({"n":day})+"\n"+wisdoms[randi() % wisdoms.size()]
+		else:
+			label.text=wisdoms[randi() % wisdoms.size()]
 		fadeScene=SceneManager.HOUSE
 	else:
 		label.text=GameManager.restLabel

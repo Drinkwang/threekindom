@@ -117,7 +117,7 @@ class_name saveData
 	"completebattleTaiShan":false,
 	"庆功宴是否举办":false,
 	"deliverYuanShu":false,
-	
+	"征询曹将军意见":false,
 	"泰山诸将曹操消息":false,#未知变量
 	"臧霸首战之前":false,#泰山诸将1
 	"昌豨求饶":false,#泰山诸将2
