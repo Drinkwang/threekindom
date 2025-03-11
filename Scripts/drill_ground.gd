@@ -155,7 +155,7 @@ func enterOldSoilderEat():
 	
 	
 var battleNum=0
-@onready var caobao = $"CanvasInventory/曹豹"
+@onready var caobao = $"曹豹"
 
 func enterBattleMode():
 	GameManager.sav.have_event["战斗袁术血战模式"]=true

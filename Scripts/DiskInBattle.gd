@@ -339,7 +339,7 @@ func _on_Tween_tween_all_completed():
 				lowerValue=lowerValue+360
 				#lowerValue=temp#+360
 			if(upperValue<0):
-				print("严重错误 请检查")
+				print("严重错误 请检查 但可能严重错误被下面if排除")
 				pass
 				#upperValue=upperValue+360	
 			if(real_angle> lowerValue and real_angle<upperValue and lowerValue<upperValue) or (lowerValue>upperValue and not(real_angle> upperValue and real_angle<lowerValue ) or data.radian>=360):
@@ -435,12 +435,16 @@ func refreshPage():
 	var btresult= GameManager.BattleResult
 	var txt
 	for i in range(0,GameManager.sav.battleResults.size()):
+		var _ColorRect=find_child("ColorRect_"+str(i+1))
+		var tag:TextureRect=_ColorRect.get_node("tag")
+	
 		if(GameManager.sav.battleResults[i]==btresult.win):
 			txt=Success
 		elif (GameManager.sav.battleResults[i]==btresult.fail):
 			txt=fail
-		var _ColorRect=find_child("ColorRect_"+str(taskIndex+1))
-		var tag:TextureRect=_ColorRect.get_node("tag")
+		elif (GameManager.sav.battleResults[i]==btresult.none):
+			tag.hide()
+			continue
 		tag.show()
 	
 		tag.texture=txt

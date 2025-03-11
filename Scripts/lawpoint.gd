@@ -11,6 +11,10 @@ const _2_GREEN = preload("res://Scene/2_green.png")
 @export var _color:lawcolor
 @export var lawpoins:Array[lawpoint]
 @export var detail:String
+#detail 由收益理由 加收益组成 收益放在外面
+@export var IncomeBg:String
+@export var IncomeTxt:String
+
 @export var context:String:
 	get:
 		return context
@@ -29,7 +33,7 @@ var context_tr:String:
 func _ready():
 	$PanelContainer/MarginContainer/Label.text=context
 	#判断是否该解锁，通过存档数据
-	
+	detail="{bg}({Txt})".format({"bg":IncomeBg,"Txt":IncomeTxt})
 	var stringandNum=self.name.get_slice("-",0)
 	num1=-1
 	num2= int(self.name.get_slice("-",1))

@@ -23,7 +23,7 @@ class_name battlePanel
 @onready var guild_5 = $"pointGroup/5"
 @onready var guild_6 = $"pointGroup/6"
 @onready var guild_7 = $"pointGroup/7"
-@onready var guild_8 = $"pointGroup/8"
+#@onready var guild_8 = $"pointGroup/8"
 
 
 @onready var sliderlabel_1 = $sliderlabel1
@@ -57,7 +57,7 @@ func changeLanguage():
 		pass
 #可能会删除
 func initData():
-	pass		
+	battle_circle.refreshPage()
 func endBattle():
 	battle_circle.selectgeneral=null
 	soild_slider.value=0

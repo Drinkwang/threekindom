@@ -49,6 +49,8 @@ anchors_preset = 0
 offset_right = 169.0
 offset_bottom = 61.0
 script = ExtResource("1_itafg")
+IncomeBg = null
+IncomeTxt = null
 num2 = 0
 
 [node name="ColorRect" type="ColorRect" parent="."]
