@@ -50,7 +50,7 @@ class_name saveData
 
 @export var GrainIndex=0
 @export var laws=[[],[],[]]
-
+@export var RewardLaw=""
 @export var xuzhouCD=-1
 @export var haozuCD=-1
 @export var danyangCD=-1
@@ -60,6 +60,7 @@ class_name saveData
 @export var randomIndex=0
 
 @export var curLawName=""
+
 @export var curLawNum1=-1
 @export var curLawNum2=-1
 

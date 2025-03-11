@@ -195,7 +195,7 @@ func excuteLaw(value:lawpoint):
 func agreelaw():
 	if await GameManager.isTried(costhp):
 		return
-		
+	GameManager.sav.RewardLaw=selectLawPoint.IncomeTxt
 	GameManager.sav.curLawName=selectLawPoint.context
 	GameManager.sav.curLawNum1=selectLawPoint.num1
 	GameManager.sav.curLawNum2=selectLawPoint.num2

@@ -216,11 +216,17 @@ func ymlShowEnd():
 func SettleLawRevenue():
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"通过法案")
 
-
 @onready var claimLabel = $CanvasBook/ColorRect/Label
 
 	
 func GetLawClaimRevenue():
+	var action=GameManager.lawAction
+	if action.is_valid():  # 检查Callable是否有效
+		action.call()   
+		#播放获取金币的声音	
+	else:
+		print("错误：未定义行动")
+	
 	var _date=GameManager.getcldateByindex(GameManager.sav.curLawNum1)
 	var point
 	for i in GameManager.sav.laws[GameManager.sav.curLawNum1]:

@@ -69,6 +69,7 @@ do ymlShowEnd()
 => END
 
 ~ 通过法案
+#该法案可以改成实际名字，视实际情况而定
 提示: 成功通过该法案！{GameManager.RewardLaw}
 do GetLawClaimRevenue()
 #徐州派好感度提升
