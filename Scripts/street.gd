@@ -150,7 +150,20 @@ func _buttonListClick(item):
 		pass
 		#scene=BOULEUTERION
 	elif item.context == "商店":
-	
+		if GameManager.sav.day<5:
+			if GameManager.sav.have_event["小沛第一次见商人"]==false:
+				GameManager.sav.have_event["小沛第一次见商人"]=true
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大人还没有开张呢")
+			else:
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"商人已经走了")
+		else:
+			if GameManager.sav.have_event["徐州第一次见商人"]==false:
+				GameManager.sav.have_event["徐州第一次见商人"]=true
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"徐州第一次关顾")
+			else:
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"徐州多次光顾")	
+			#第一次开张
+			shop_panel.show()
 		pass
 		#打开商店ui
 		#scene=GOVERNMENT_BUILDING

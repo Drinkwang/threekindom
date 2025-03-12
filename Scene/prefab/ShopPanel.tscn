@@ -208,24 +208,28 @@ offset_bottom = 393.0
 [node name="huanyuan" parent="HBoxContainer2" instance=ExtResource("4_iwehk")]
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
+to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
 img = ExtResource("7_ubh4f")
 itemstype = 1
 
 [node name="shenzhan" parent="HBoxContainer2" instance=ExtResource("4_iwehk")]
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
+to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
 img = ExtResource("8_080tv")
 itemstype = 2
 
 [node name="zhuzi" parent="HBoxContainer2" instance=ExtResource("4_iwehk")]
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
+to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
 img = ExtResource("9_rtmou")
 itemstype = 3
 
 [node name="zhenping" parent="HBoxContainer2" instance=ExtResource("4_iwehk")]
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
+to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
 img = ExtResource("10_bt0g7")
 itemstype = 4
 
@@ -239,18 +243,21 @@ offset_bottom = 396.0
 [node name="Control1" parent="HBoxContainer" instance=ExtResource("4_iwehk")]
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
+to_inventory = ""
 img = ExtResource("11_ysr0e")
 itemstype = 5
 
 [node name="Control2" parent="HBoxContainer" instance=ExtResource("4_iwehk")]
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
+to_inventory = ""
 img = ExtResource("12_g3hr8")
 itemstype = 6
 
 [node name="Control3" parent="HBoxContainer" instance=ExtResource("4_iwehk")]
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
+to_inventory = ""
 img = ExtResource("13_xnv0q")
 itemstype = 7
 
@@ -278,7 +285,28 @@ horizontal_alignment = 1
 vertical_alignment = 2
 autowrap_mode = 2
 
+[node name="TextureButton2" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 643.0
+offset_top = -447.0
+offset_right = 707.0
+offset_bottom = -383.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("9_kapto")
+texture_pressed = ExtResource("9_kapto")
+texture_hover = ExtResource("9_kapto")
+texture_disabled = ExtResource("9_kapto")
+texture_focused = ExtResource("9_kapto")
+stretch_mode = 0
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="gui_input" from="PanelContainer" to="." method="_on_panel_container_gui_input"]
 [connection signal="button_down" from="TextureButton" to="." method="_on_exit_button_button_down"]
 [connection signal="button_down" from="buyButton" to="." method="_on_buy_button_down"]
+[connection signal="button_down" from="TextureButton2" to="." method="_on_texture_button_2_button_down"]

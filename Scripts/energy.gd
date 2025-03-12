@@ -46,9 +46,13 @@ func showTargetLabel():
 func playLabelChange():
 	animation_player.play("targetlabel")
 
+@onready var inventory_any = $TargetLabel/InventoryAny
 
 func _on_item_button_button_down():
-	pass # Replace with function body.
+	if inventory_any.visible:
+		inventory_any.hide()
+	else:
+		inventory_any.show()
 
 
 func _on_save_button_button_down():

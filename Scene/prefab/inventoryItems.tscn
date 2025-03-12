@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://cjotcafbgm0p8"]
 
 [ext_resource type="Texture2D" uid="uid://dai00fo8ejiu2" path="res://addons/inventory_example/textures/potions/ManaBig.png" id="1_narnc"]
-[ext_resource type="Texture2D" uid="uid://blrnq7583j0py" path="res://Asset/雌雄双股剑.png" id="2_fsfev"]
 [ext_resource type="Texture2D" uid="uid://bye5cypeps08s" path="res://Asset/ui/4.png" id="2_vm4gp"]
+[ext_resource type="Texture2D" uid="uid://dxqq4mduw6nkd" path="res://Asset/items/青龙偃月刀.png" id="3_edn54"]
 
 [sub_resource type="CircleShape2D" id="1"]
 radius = 35.5069
@@ -27,4 +27,4 @@ texture = ExtResource("2_vm4gp")
 
 [node name="ManaBig2" type="Sprite2D" parent="."]
 position = Vector2(-4, 13)
-texture = ExtResource("2_fsfev")
+texture = ExtResource("3_edn54")

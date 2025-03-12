@@ -5,7 +5,7 @@ extends Control
 var _inventoryManager
 const InventoryManagerName = "InventoryManager"
 @export var autosave: bool = true
-#var to_inventory: String 
+@export var to_inventory: String 
 
 @onready var context = $frame/context
 
@@ -29,7 +29,7 @@ func _ready():
 	#if get_tree().get_root().has_node(questManagerName):
 	#	questManager = get_tree().get_root().get_node(questManagerName)
 @export var quantity=1;
-var itemname
+
 @export var itemstype:InventoryManagerItem.ItemEnum:
 	
 	get:
@@ -42,7 +42,7 @@ var itemname
 #通过枚举获取值 并且将值传给txt
 func getItem():
 
-	var to_inventory= InventoryManagerItem.item_by_enum(itemstype)
+	var itemname= InventoryManagerItem.item_by_enum(itemstype)
 	var remainder = _inventoryManager.add_item(to_inventory, itemname, quantity, autosave)
 	#if remove_collected and remainder == 0:
 		#queue_free()
@@ -58,7 +58,7 @@ func _process(delta):
 func _on_gui_input(event):
 	if event is InputEventMouseButton and event.button_index==1:
 		GameManager.shopPanel.selectGoods=self;
-		itemname= InventoryManagerItem.item_by_enum(itemstype)
+		var itemname= InventoryManagerItem.item_by_enum(itemstype)
 		var properties:Array=_inventoryManager.get_item_properties(itemname)
 		var item=properties.filter(func(a):return a["name"]=="price")[0]
 		var price=item["value"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dfolt063spdso"]
+[gd_scene load_steps=15 format=3 uid="uid://dfolt063spdso"]
 
 [ext_resource type="Script" path="res://Scripts/energy.gd" id="1_jga5a"]
 [ext_resource type="Texture2D" uid="uid://cpx3dc1mppace" path="res://Asset/blue/edgeblue.png" id="2_2gdco"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://sswcvqf8xpgs" path="res://Asset/存档.png" id="8_k0wc5"]
 [ext_resource type="Texture2D" uid="uid://dxg4rn2x2mnw6" path="res://Asset/blue/meter_text_background_blue.png" id="8_k83a2"]
 [ext_resource type="Texture2D" uid="uid://chlh86v3ynxre" path="res://Asset/blue/bluehold.png" id="9_ggo0n"]
+[ext_resource type="PackedScene" uid="uid://bhu5hq8kx8pov" path="res://addons/inventory_example/inventories/simple/InventoryUI.tscn" id="9_loc21"]
 [ext_resource type="Texture2D" uid="uid://dy3bhyc470by4" path="res://Asset/blue/meter_icon_holder_blue.png" id="9_qjdqi"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gfnad"]
@@ -159,6 +160,23 @@ autowrap_mode = 1
 libraries = {
 "": SubResource("AnimationLibrary_vsxmj")
 }
+
+[node name="InventoryAny" parent="TargetLabel" instance=ExtResource("9_loc21")]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.563615
+anchor_top = -0.0866715
+anchor_right = 0.563615
+anchor_bottom = -0.0866715
+offset_left = -300.0
+offset_top = 100.0
+offset_right = 0.0
+offset_bottom = 400.0
+grow_horizontal = 0
+scale = Vector2(4, 4)
+inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
+metadata/_edit_use_anchors_ = true
 
 [connection signal="button_down" from="itemButton" to="." method="_on_item_button_button_down"]
 [connection signal="button_down" from="saveButton" to="." method="_on_save_button_button_down"]

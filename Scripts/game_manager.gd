@@ -178,7 +178,12 @@ var policy_Item=[
 func _ready():
 	#DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
 	_enterDay()
-	
+	_inventoryManager
+
+func getInventoryManager()->InventoryManager:
+	if get_tree().get_root().has_node(InventoryManagerName):
+		_inventoryManager = get_tree().get_root().get_node(InventoryManagerName) 
+	return _inventoryManager
 #func _on_dialogue_ended():
 	#dialogBegin=false
 #	pass
@@ -432,6 +437,9 @@ var bentupai=cldata.factionIndex.bentupai
 var haozupai=cldata.factionIndex.haozupai
 var lvbu=cldata.factionIndex.lvbu
 
+const _BENTUPAI = preload("res://Asset/tres/bentupai.tres")
+const _HAOZUPAI = preload("res://Asset/tres/haozupai.tres")
+const _WAIDIPAI = preload("res://Asset/tres/waidipai.tres")
 
 func getcldateByindex(factionIndex:int)->cldata:
 	#index==0 士族
@@ -469,6 +477,9 @@ func getCDByFaction(factionIndex:cldata.factionIndex):
 		return -1
 
 
+const InventoryManagerName = "InventoryManager"
+var _inventoryManager:InventoryManager
+
 
 var lawAction: Callable
 var RewardLaw
@@ -481,11 +492,22 @@ func excuteLaw():
 		#RewardLaw="每日收入+50，徐州好感度+10，一次性收入+200" #收入每日增加 徐州派好感度上升
 		
 		lawAction= func():
+			GameManager.sav.coin_DayGet=GameManager.sav.coin_DayGet+50
+			GameManager.sav.coin=GameManager.sav.coin+200
+			#徐州好感度+10
+			_BENTUPAI.ChangeSupport(10)
 			print("农田开坑")
 
 	elif sav.curLawName=="兴办教育":#只有buff
 		#RewardLaw="每日人口+10，徐州好感度+5，获得道具“诸子百家”x1 " #人口每日增加 徐州派好感上升 获得道具xxx
 		lawAction= func():
+			_BENTUPAI.ChangeSupport(5)
+			GameManager.sav.labor_DayGet=GameManager.sav.labor_DayGet+10
+			#获得诸子百家
+			var _inventory=getInventoryManager()
+			var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.诸子百家论集)
+			#var remainder = _inventory.add_item_by_name("xxx", "诸子百家论集", 1, true)
+	
 			print("兴办教育")		
 	elif sav.curLawName=="整治街容":#只有buff
 		#RewardLaw="一次性人口+100，徐州好感度+10，群众支持度+5 " #人口一次性增加 徐州派好感上升

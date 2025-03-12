@@ -12,9 +12,9 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
-var price
+var price:int
 func refreshPage(_price,_detail):
-	price=_price
+	price=_price.to_int()
 	detail.text=_detail+"\n\n"+"当前商品价格:{price}".format({"price":price})
 	# selectGoods.itemstype#通过这个获取价格
 	pass
@@ -33,3 +33,7 @@ func _on_buy_button_down():
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"小本生意，请谅解")
 		print("你买不起物品")
 	pass # Replace with function body.
+
+
+func _on_texture_button_2_button_down():
+	self.hide()

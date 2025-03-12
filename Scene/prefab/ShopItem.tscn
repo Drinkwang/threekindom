@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://5qxpn6avk7bx"]
+[gd_scene load_steps=4 format=3 uid="uid://5qxpn6avk7bx"]
 
 [ext_resource type="Script" path="res://Scripts/ShopItem.gd" id="1_h644w"]
 [ext_resource type="Texture2D" uid="uid://bye5cypeps08s" path="res://Asset/ui/4.png" id="1_wpj7r"]
+[ext_resource type="Texture2D" uid="uid://sq2pvmh6p5db" path="res://Asset/ui/8.png" id="2_smbln"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -13,6 +14,12 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 script = ExtResource("1_h644w")
+to_inventory = null
+
+[node name="8" type="Sprite2D" parent="."]
+position = Vector2(44.5, 40.5)
+scale = Vector2(0.142578, 0.146484)
+texture = ExtResource("2_smbln")
 
 [node name="frame" type="TextureRect" parent="."]
 layout_mode = 0
