@@ -39,7 +39,7 @@ func clearTask():
 	sav.TargetDestination=""
 	sav.currenceValue=0
 
-
+const inventoryPackege="e4530fc7-c5d6-41af-9b6e-35249272186a"
 @export var sav:saveData=saveData.new()
 func changePeopleSupport(num):
 	sav.people_surrport=sav.people_surrport+num

@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://corx307g07xvv"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 64.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 62.0
+offset_bottom = 42.0
+tooltip_text = "1111111111111111111111111111111"
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_right = 76.0
+offset_bottom = 41.0
+text = "11111"

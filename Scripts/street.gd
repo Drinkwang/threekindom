@@ -164,6 +164,7 @@ func _buttonListClick(item):
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"徐州多次光顾")	
 			#第一次开张
 			shop_panel.show()
+			shop_panel.initData()
 		pass
 		#打开商店ui
 		#scene=GOVERNMENT_BUILDING

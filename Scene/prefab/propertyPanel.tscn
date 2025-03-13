@@ -30,6 +30,7 @@ columns = 2
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/GridContainer"]
 layout_mode = 2
+tooltip_text = "玩家持有的金钱数量（可购买道具）"
 texture = ExtResource("1_twhjh")
 expand_mode = 2
 stretch_mode = 4
@@ -41,6 +42,7 @@ text = "0"
 
 [node name="TextureRect2" type="TextureRect" parent="PanelContainer/MarginContainer/GridContainer"]
 layout_mode = 2
+tooltip_text = "玩家当前百姓的支持度(最大值为100)"
 texture = ExtResource("2_uwbjd")
 expand_mode = 2
 stretch_mode = 4
@@ -52,6 +54,7 @@ text = "0"
 
 [node name="TextureRect3" type="TextureRect" parent="PanelContainer/MarginContainer/GridContainer"]
 layout_mode = 2
+tooltip_text = "玩家拥有空闲人口(可转换为士兵)"
 texture = ExtResource("3_6df8f")
 expand_mode = 2
 stretch_mode = 4

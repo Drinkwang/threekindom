@@ -196,6 +196,7 @@ offset_top = 810.0
 offset_right = 1140.75
 offset_bottom = 917.0
 size_flags_horizontal = 3
+disabled = true
 text = "购买商品"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="."]
@@ -243,21 +244,18 @@ offset_bottom = 396.0
 [node name="Control1" parent="HBoxContainer" instance=ExtResource("4_iwehk")]
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
-to_inventory = ""
 img = ExtResource("11_ysr0e")
 itemstype = 5
 
 [node name="Control2" parent="HBoxContainer" instance=ExtResource("4_iwehk")]
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
-to_inventory = ""
 img = ExtResource("12_g3hr8")
 itemstype = 6
 
 [node name="Control3" parent="HBoxContainer" instance=ExtResource("4_iwehk")]
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
-to_inventory = ""
 img = ExtResource("13_xnv0q")
 itemstype = 7
 

@@ -47,7 +47,7 @@ class_name saveData
 @export var targetValue=10000
 @export var targetResType:GameManager.ResType
 @export var policy_Item_index=1#政策数量
-
+var _data = InventoryInventories.new()
 @export var GrainIndex=0
 @export var laws=[[],[],[]]
 @export var RewardLaw=""

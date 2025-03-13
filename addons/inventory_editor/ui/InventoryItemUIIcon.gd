@@ -53,6 +53,10 @@ func _update_item() -> void:
 					texture = load(_item_db.icon)
 				if _item.quantity:
 					_quantity_ui.text = str(_item.quantity)
+					#var properties=_item_db.properties
+					#var item=properties.filter(func(a):return a["name"]=="detail")[0]
+					#var detail=item["value"]
+					self.tooltip_text=""+_item_db.name
 			else:
 				_item = null
 				_item_db = null

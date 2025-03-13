@@ -2,7 +2,7 @@
 class_name  ShopItem
 extends Control
 #商品信息
-var _inventoryManager
+var _inventoryManager:InventoryManager
 const InventoryManagerName = "InventoryManager"
 @export var autosave: bool = true
 @export var to_inventory: String 
@@ -23,9 +23,15 @@ const InventoryManagerName = "InventoryManager"
 #const questManagerName = "QuestManager"		
 # Called when the node enters the scene tree for the first time.
 func _ready():
+
 	if get_tree().get_root().has_node(InventoryManagerName):
 		_inventoryManager = get_tree().get_root().get_node(InventoryManagerName)
 	context.texture=img
+	
+	var itemname= InventoryManagerItem.item_by_enum(itemstype)
+	var db:InventoryItem=_inventoryManager.get_item_db(itemname)
+
+	self.tooltip_text=db.name
 	#if get_tree().get_root().has_node(questManagerName):
 	#	questManager = get_tree().get_root().get_node(questManagerName)
 @export var quantity=1;
@@ -41,9 +47,9 @@ func _ready():
 		#context.texture=_inventoryManager.get_inventory_db(itemname).icon
 #通过枚举获取值 并且将值传给txt
 func getItem():
-
+	print(to_inventory)
 	var itemname= InventoryManagerItem.item_by_enum(itemstype)
-	var remainder = _inventoryManager.add_item(to_inventory, itemname, quantity, autosave)
+	var remainder = _inventoryManager.add_item(to_inventory, itemname, quantity, false)
 	#if remove_collected and remainder == 0:
 		#queue_free()
 		#if questManager and questManager.is_quest_started():

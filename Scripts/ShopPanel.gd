@@ -13,7 +13,14 @@ func _ready():
 func _process(delta):
 	pass
 var price:int
+@onready var buy_button = $buyButton
+
+func initData():
+	detail.text="点击商品获取详细信息"
+	buy_button.disabled=true
+	selectGoods=null
 func refreshPage(_price,_detail):
+	buy_button.disabled=false
 	price=_price.to_int()
 	detail.text=_detail+"\n\n"+"当前商品价格:{price}".format({"price":price})
 	# selectGoods.itemstype#通过这个获取价格

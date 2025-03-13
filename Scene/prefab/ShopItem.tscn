@@ -14,7 +14,6 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 script = ExtResource("1_h644w")
-to_inventory = null
 
 [node name="8" type="Sprite2D" parent="."]
 position = Vector2(44.5, 40.5)

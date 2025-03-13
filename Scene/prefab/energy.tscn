@@ -125,6 +125,7 @@ offset_right = -476.0
 offset_bottom = 825.0
 grow_horizontal = 0
 scale = Vector2(2.5, 2.5)
+tooltip_text = "查看玩家持有的道具和装备"
 texture_normal = ExtResource("7_kc6cl")
 stretch_mode = 6
 
@@ -135,6 +136,7 @@ offset_top = 698.0
 offset_right = 975.0
 offset_bottom = 762.0
 scale = Vector2(4.5, 4.5)
+tooltip_text = "用于游戏存档/读档"
 texture_normal = ExtResource("8_k0wc5")
 
 [node name="TargetLabel" type="Label" parent="."]

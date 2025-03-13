@@ -227,6 +227,7 @@ modulate = Color(1, 1, 1, 0)
 offset_top = 59.0
 offset_right = 1925.0
 offset_bottom = 293.0
+mouse_filter = 2
 color = Color(0.109804, 0.109804, 0.109804, 0.698039)
 
 [node name="Label" type="Label" parent="CanvasBook/ColorRect"]

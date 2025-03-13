@@ -77,7 +77,7 @@ func _create_inventory() -> InventoryInventory:
 	inventory.uuid = UUID.v4()
 	inventory.name = _next_inventory_name()
 	return inventory
-
+#e4530fc7-c5d6-41af-9b6e-35249272186a
 func _next_inventory_name() -> String:
 	var base_name = "Inventory"
 	var value = -9223372036854775807

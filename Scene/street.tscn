@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cehg7t1h5f2ei"]
+[gd_scene load_steps=9 format=3 uid="uid://cehg7t1h5f2ei"]
 
 [ext_resource type="Script" path="res://Scripts/street.gd" id="1_jskmv"]
 [ext_resource type="Resource" uid="uid://qopivlttvt12" path="res://dialogues/街道.dialogue" id="2_a3tl4"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bxw67mtklk4w5" path="res://Scene/prefab/ExpoundclassicsPanel.tscn" id="5_jclo7"]
 [ext_resource type="PackedScene" uid="uid://dfolt063spdso" path="res://Scene/prefab/energy.tscn" id="6_00ynb"]
 [ext_resource type="PackedScene" uid="uid://cy140f6kxm5ev" path="res://Scene/prefab/ShopPanel.tscn" id="7_nhhnq"]
+[ext_resource type="PackedScene" uid="uid://ghiim2lkqkbe" path="res://Scene/prefab/propertyPanel.tscn" id="8_qssq7"]
 
 [node name="Node2D2" type="Node2D"]
 script = ExtResource("1_jskmv")
@@ -50,3 +51,9 @@ grow_vertical = 1
 
 [node name="shopPanel" parent="CanvasLayer" instance=ExtResource("7_nhhnq")]
 visible = false
+
+[node name="Control" parent="CanvasLayer" instance=ExtResource("8_qssq7")]
+offset_left = 1638.0
+offset_top = 770.0
+offset_right = 1678.0
+offset_bottom = 810.0
