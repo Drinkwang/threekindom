@@ -2,9 +2,22 @@ extends Control
 @onready var timer = $Timer
 
 @onready var animation_player = $AnimationPlayer
-var score=0;
+var score=0
+var db
+@onready var itemUseLabel = $itemUse/Label
 # Called when the node enters the scene tree for the first time.
+func refreshCount():
+	var count=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.诸子百家论集)
+	itemUseLabel.text="点击图标使用\n快速结束辩经\n（库存：{num}）".format({"num":count})
+	if count<1:
+		item_use.context.modulate = Color(0.5, 0.5, 0.5, 1.0)
+	else:
+		item_use.context.modulate = Color(1.0, 1.0, 1.0, 1.0)
 func _ready():
+#	var itemname= InventoryManagerItem.item_by_enum(InventoryManagerItem.诸子百家论集)
+	db=InventoryManager.get_item_db(InventoryManagerItem.诸子百家论集)
+	#self.tooltip_text=db.name
+	refreshCount()
 	var currencelanguage=TranslationServer.get_locale()
 	if currencelanguage=="en":
 		starttitle.add_theme_font_size_override("font_size", 60)
@@ -65,6 +78,7 @@ func _process(delta):
 @onready var texture_button = $TextureButton
 @export var dialogue_resource:DialogueResource
 func over():
+	#item_use.hide()
 	isboot=false
 	#reward弹出
 	var _reward:rewardPanel=PanelManager.new_reward()
@@ -92,14 +106,16 @@ func _on_panel_container_gui_input(event):
 @onready var starttitle = $starttitle
 @onready var title = $title
 @onready var button = $Button
+@onready var item_use = $itemUse
 
 func _on_button_button_down():
 	
 	button.hide()
 	isboot=true
-
+	refreshCount()
 	reside_txt.show()
 	title.show()
+	item_use.show()
 	starttitle.text=tr("大儒辩经已开始")
 	pass # Replace with function body.
 
@@ -116,3 +132,17 @@ func _on_exit_button_button_down():
 	else:
 		SoundManager.play_music(STREET)		
 	pass # Replace with function body.
+
+
+func _on_item_use_gui_input(event):
+	var count=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.诸子百家论集)
+
+	if event is InputEventMouseButton and event.button_index==1 and isboot==true:
+		if count>0:
+			InventoryManager._remove_item(GameManager.inventoryPackege,InventoryManagerItem.诸子百家论集,1)
+			itemUseLabel.text="点击图标使用\n快速结束辩经\n（库存：{num}）".format({"num":count-1})
+			score=9000
+			yourscore.text=tr("你的得分：")+"\n"+str(score)
+			over()
+		#判断道具数量
+		#消耗道具

@@ -179,12 +179,9 @@ var policy_Item=[
 func _ready():
 	#DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
 	_enterDay()
-	_inventoryManager
+	#_inventoryManager
 
-func getInventoryManager()->InventoryManager:
-	if get_tree().get_root().has_node(InventoryManagerName):
-		_inventoryManager = get_tree().get_root().get_node(InventoryManagerName) 
-	return _inventoryManager
+
 #func _on_dialogue_ended():
 	#dialogBegin=false
 #	pass
@@ -479,8 +476,6 @@ func getCDByFaction(factionIndex:cldata.factionIndex):
 
 
 const InventoryManagerName = "InventoryManager"
-var _inventoryManager:InventoryManager
-
 
 var lawAction: Callable
 var RewardLaw
@@ -505,10 +500,10 @@ func excuteLaw():
 			_BENTUPAI.ChangeSupport(5)
 			GameManager.sav.labor_DayGet=GameManager.sav.labor_DayGet+10
 			#获得诸子百家
-			var _inventory=getInventoryManager()
+			
 			var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.诸子百家论集)
-			var remainder = _inventory.add_item(inventoryPackege, itemid, 1, false)
-	
+			var remainder = InventoryManager.add_item(inventoryPackege, itemid, 1, false)
+
 			print("兴办教育")		
 	elif sav.curLawName=="整治街容":#只有buff
 		#RewardLaw="一次性人口+100，徐州好感度+10，群众支持度+5 " #人口一次性增加 徐州派好感上升

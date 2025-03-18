@@ -38,6 +38,7 @@ offset_bottom = -46.0
 scale = Vector2(0.2, 0.2)
 
 [node name="scholar" parent="CanvasLayer" instance=ExtResource("5_jclo7")]
+visible = false
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0

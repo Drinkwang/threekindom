@@ -212,7 +212,6 @@ layout_mode = 2
 tooltip_text = "益气丸"
 to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
 img = ExtResource("7_ubh4f")
-isShop = true
 itemstype = 1
 
 [node name="shenzhan" parent="HBoxContainer2" instance=ExtResource("4_iwehk")]
@@ -221,7 +220,6 @@ layout_mode = 2
 tooltip_text = "胜战锦囊"
 to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
 img = ExtResource("8_080tv")
-isShop = true
 itemstype = 2
 
 [node name="zhuzi" parent="HBoxContainer2" instance=ExtResource("4_iwehk")]
@@ -230,7 +228,6 @@ layout_mode = 2
 tooltip_text = "诸子百家论集"
 to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
 img = ExtResource("9_rtmou")
-isShop = true
 itemstype = 3
 
 [node name="zhenping" parent="HBoxContainer2" instance=ExtResource("4_iwehk")]
@@ -239,7 +236,6 @@ layout_mode = 2
 tooltip_text = "珍品礼盒"
 to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
 img = ExtResource("10_bt0g7")
-isShop = true
 itemstype = 4
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
@@ -254,7 +250,6 @@ custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
 tooltip_text = "雌雄双股剑"
 img = ExtResource("11_ysr0e")
-isShop = true
 itemstype = 5
 
 [node name="Control2" parent="HBoxContainer" instance=ExtResource("4_iwehk")]
@@ -262,7 +257,6 @@ custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
 tooltip_text = "青龙偃月刀"
 img = ExtResource("12_g3hr8")
-isShop = true
 itemstype = 6
 
 [node name="Control3" parent="HBoxContainer" instance=ExtResource("4_iwehk")]
@@ -270,7 +264,6 @@ custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
 tooltip_text = "丈八蛇矛"
 img = ExtResource("13_xnv0q")
-isShop = true
 itemstype = 7
 
 [node name="Label2" type="Label" parent="."]

@@ -2,7 +2,7 @@
 class_name  ShopItem
 extends Control
 #商品信息
-var _inventoryManager:InventoryManager
+
 const InventoryManagerName = "InventoryManager"
 @export var autosave: bool = true
 @export var to_inventory: String 
@@ -17,6 +17,7 @@ const InventoryManagerName = "InventoryManager"
 		img=value
 		if context!=null:
 			context.texture=img
+			context.gre
 		#if texture_rect!=null:
 		#	texture_rect.texture=img
 		
@@ -30,12 +31,12 @@ func set_Data(key,value):
 	quantity=value
 	txt_quantity.text=var_to_str(value)
 	txt_quantity.show()
-	var db:InventoryItem=_inventoryManager.get_item_db(itemname)
+	var db:InventoryItem=InventoryManager.get_item_db(itemname)
 	context.texture=load(db.icon)
 	self.tooltip_text=db.name
 	
 	#var itemname= InventoryManagerItem.item_by_enum(key)
-	var remainder = _inventoryManager.add_item(GameManager.inventoryPackege, itemname, quantity, false)
+	var remainder = InventoryManager.add_item(GameManager.inventoryPackege, itemname, quantity, false)
 
 	
 const COIN = preload("res://Asset/coin.png")
@@ -57,14 +58,14 @@ func set_Labor(_num):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 
-	if get_tree().get_root().has_node(InventoryManagerName):
-		_inventoryManager = get_tree().get_root().get_node(InventoryManagerName)
+#	if get_tree().get_root().has_node(InventoryManagerName):
+#		_inventoryManager = get_tree().get_root().get_node(InventoryManagerName)
 	if isShop==false:
 		return
 	context.texture=img
 	
 	var itemname= InventoryManagerItem.item_by_enum(itemstype)
-	var db:InventoryItem=_inventoryManager.get_item_db(itemname)
+	var db:InventoryItem=InventoryManager.get_item_db(itemname)
 
 	self.tooltip_text=db.name
 	#if get_tree().get_root().has_node(questManagerName):
@@ -84,7 +85,7 @@ func _ready():
 func getItem():
 	print(to_inventory)
 	var itemname= InventoryManagerItem.item_by_enum(itemstype)
-	var remainder = _inventoryManager.add_item(to_inventory, itemname, quantity, false)
+	var remainder = InventoryManager.add_item(to_inventory, itemname, quantity, false)
 	#if remove_collected and remainder == 0:
 		#queue_free()
 		#if questManager and questManager.is_quest_started():
@@ -99,11 +100,11 @@ func _process(delta):
 func _on_gui_input(event):
 	
 	if event is InputEventMouseButton and event.button_index==1:
-		if isShop==false:
+		if isShop==false or GameManager.shopPanel==null:
 			return;
 		GameManager.shopPanel.selectGoods=self;
 		var itemname= InventoryManagerItem.item_by_enum(itemstype)
-		var properties:Array=_inventoryManager.get_item_properties(itemname)
+		var properties:Array=InventoryManager.get_item_properties(itemname)
 		var item=properties.filter(func(a):return a["name"]=="price")[0]
 		var price=item["value"]
 		item=properties.filter(func(a):return a["name"]=="detail")[0]
