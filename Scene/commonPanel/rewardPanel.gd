@@ -55,12 +55,41 @@ func _ready():
 
 #@onready var grid = $Control/PanelContainer/MarginContainer/VBoxContainer/Margin/Grid
 
-func showTitileReward(context):
+func showTitileReward(context,item):
 	imgTarget.texture=victoryPng
 	self.show()
 	var titleContext=context
 	titleContext=titleContext+tr(",获得以下道具:")
 	title.text=titleContext	
+
+	_clear_view()
+	
+	
+	for key in item.items.keys():
+		var _count=item.items[key]
+		var item_ui:ShopItem = DaojuItem.instantiate()
+		item_ui.isShop=false
+		_grid_ui.add_child(item_ui)
+		item_ui.set_Data(key,_count)	
+		#获取道具
+
+	#var getMoney=
+	if item.money>0:
+		var itemMoney_ui:ShopItem = DaojuItem.instantiate()
+		itemMoney_ui.isShop=false
+		_grid_ui.add_child(itemMoney_ui)
+		itemMoney_ui.set_Money(item.money)	
+		GameManager.sav.coin=GameManager.sav.coin+item.money
+		#获取金钱
+		
+	if item.population>0:
+		var itempop_ui:ShopItem = DaojuItem.instantiate()
+		itempop_ui.isShop=false
+		_grid_ui.add_child(itempop_ui)
+		itempop_ui.set_Labor(item.population)	
+		#获取人口
+		GameManager.sav.labor_force=GameManager.sav.labor_force+item.population
+	title.text=titleContext
 
 @export var DaojuItem: PackedScene	
 @onready var _grid_ui = $Control/PanelContainer/MarginContainer/VBoxContainer/Margin/Grid

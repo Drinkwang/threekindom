@@ -68,7 +68,8 @@ func over():
 	isboot=false
 	#reward弹出
 	var _reward:rewardPanel=PanelManager.new_reward()
-	_reward.showTitileReward(tr("你从郑玄哪里受益良多"))
+	var items=GameManager.ScoreToItem(score/10)
+	_reward.showTitileReward(tr("你从郑玄哪里受益良多"),items)
 	texture_button.show()
 	await  SignalManager.endReward
 	if GameManager.sav.have_event["firstVisitScholarsEnd"]==false:

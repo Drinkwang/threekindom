@@ -649,14 +649,14 @@ func ScoreToItem(player_score):
 		var item = items[i]
 		# 随机决定该道具数量 (1-3)
 		var max_count=remaining_score/item.cost
-		
+		#print(max_count)
 		var item_count = min(rng.randi_range(0, max_count),3)
 		
 		# 计算道具消耗的积分 (这里假设每件道具消耗10积分，可调整)
 		var item_cost = item_count * item.cost
-		if item_cost > remaining_score and item_count!=0:
+		if item_cost < remaining_score and item_count!=0:
 			#item_count = remaining_score / 10
-			item_cost = item_count * 10
+			#item_cost = item_count * 10
 		
 			# 更新剩余积分
 			remaining_score -= item_cost
