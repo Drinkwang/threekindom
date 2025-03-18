@@ -4,9 +4,9 @@
 [ext_resource type="Resource" uid="uid://bmuiri1yjrdba" path="res://dialogues/屋舍.dialogue" id="2_6rtve"]
 [ext_resource type="Texture2D" uid="uid://c3ga4pgx4c4g" path="res://Asset/城镇建筑/内屋,.png" id="4_6fhcj"]
 [ext_resource type="PackedScene" uid="uid://bv5ycsl0a50uq" path="res://Scene/prefab/btnList.tscn" id="4_ixb7g"]
-[ext_resource type="Texture2D" uid="uid://dvaflkru5cks0" path="res://Asset/人物/徐州士族.png" id="6_ado0c"]
+[ext_resource type="Texture2D" uid="uid://dvo1grdq52jil" path="res://Asset/人物/主簿2.png" id="6_8cvew"]
+[ext_resource type="Texture2D" uid="uid://2f7rpuxteeo1" path="res://Asset/人物/主簿close.png" id="6_ys6bi"]
 [ext_resource type="PackedScene" uid="uid://dqpklssxni160" path="res://Scene/prefab/clickBlock.tscn" id="7_7mriv"]
-[ext_resource type="Texture2D" uid="uid://din1r1f7mcn7r" path="res://Asset/人物/士族.jpg" id="7_s1mm2"]
 [ext_resource type="PackedScene" uid="uid://bw52ymer7ngwu" path="res://Scene/prefab/gapanel.tscn" id="8_2ady6"]
 [ext_resource type="PackedScene" uid="uid://ghiim2lkqkbe" path="res://Scene/prefab/propertyPanel.tscn" id="9_mf3v8"]
 [ext_resource type="FontFile" uid="uid://qv74ebpr4i31" path="res://Asset/Font/VonwaonBitmap-16px.ttf" id="10_fk36n"]
@@ -30,21 +30,19 @@ metadata/_edit_use_anchors_ = true
 
 [node name="文官" parent="." instance=ExtResource("7_7mriv")]
 visible = false
-position = Vector2(1159, 348)
-scale = Vector2(1.538, 1.538)
+position = Vector2(619, 503)
 showName = "主簿"
 dialogue_doubleclick = "second"
-txt2d = ExtResource("7_s1mm2")
+txt2d = ExtResource("6_ys6bi")
 dialogue_resource = ExtResource("2_6rtve")
 dialogue_start = "点击陈群"
 
 [node name="陈群" parent="." instance=ExtResource("7_7mriv")]
 visible = false
-position = Vector2(1151, 835)
-scale = Vector2(1.6384, 1.6384)
+position = Vector2(1163, 766)
 showName = "陈群"
 dialogue_doubleclick = "second"
-txt2d = ExtResource("6_ado0c")
+txt2d = ExtResource("6_8cvew")
 dialogue_resource = ExtResource("2_6rtve")
 dialogue_start = "点击陈群"
 

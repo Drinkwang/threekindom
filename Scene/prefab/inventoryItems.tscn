@@ -1,13 +1,32 @@
-[gd_scene load_steps=5 format=3 uid="uid://cjotcafbgm0p8"]
+[gd_scene load_steps=6 format=3 uid="uid://tnye2qwijlxj"]
 
 [ext_resource type="Texture2D" uid="uid://dai00fo8ejiu2" path="res://addons/inventory_example/textures/potions/ManaBig.png" id="1_narnc"]
 [ext_resource type="Texture2D" uid="uid://bye5cypeps08s" path="res://Asset/ui/4.png" id="2_vm4gp"]
 [ext_resource type="Texture2D" uid="uid://dxqq4mduw6nkd" path="res://Asset/items/青龙偃月刀.png" id="3_edn54"]
 
+[sub_resource type="GDScript" id="GDScript_n3bd4"]
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+#核心方法，修改头像，修改数量，增加tool
+func set_Data():
+	self.tool
+	pass
+	
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
 [sub_resource type="CircleShape2D" id="1"]
 radius = 35.5069
 
 [node name="ManaBig" type="Node2D"]
+script = SubResource("GDScript_n3bd4")
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -28,3 +47,19 @@ texture = ExtResource("2_vm4gp")
 [node name="ManaBig2" type="Sprite2D" parent="."]
 position = Vector2(-4, 13)
 texture = ExtResource("3_edn54")
+
+[node name="Quantity" type="Label" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -58.0
+offset_top = 24.0
+offset_right = 26.0
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "1"
+horizontal_alignment = 2
+vertical_alignment = 2

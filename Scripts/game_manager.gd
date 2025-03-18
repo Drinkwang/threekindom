@@ -51,7 +51,8 @@ func changePeopleSupport(num):
 
 
 func getCurLawExist()->bool:
-	return sav.curLawName.lenth()>0 and sav.curLawNum1>0 and sav.curLawNum2>0
+
+	return sav.curLawName!=null and sav.curLawName.length()>0 and sav.curLawNum1!=-1 and sav.curLawNum2!=-1
 #@export var curLawNum1=-1
 #@export var curLawNum2=-1
 enum opcost{
@@ -506,16 +507,21 @@ func excuteLaw():
 			#获得诸子百家
 			var _inventory=getInventoryManager()
 			var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.诸子百家论集)
-			#var remainder = _inventory.add_item_by_name("xxx", "诸子百家论集", 1, true)
+			var remainder = _inventory.add_item(inventoryPackege, itemid, 1, false)
 	
 			print("兴办教育")		
 	elif sav.curLawName=="整治街容":#只有buff
 		#RewardLaw="一次性人口+100，徐州好感度+10，群众支持度+5 " #人口一次性增加 徐州派好感上升
+		
 		lawAction= func():
+			GameManager.sav.labor_force=GameManager.sav.labor_force+100
+			_BENTUPAI.ChangeSupport(10)
+			GameManager.changePeopleSupport(5)
 			print("整治街容")			
 	elif sav.curLawName=="重农抑商":
 		#RewardLaw="收益：每日收入+80，徐州好感度+15 冲突：豪族好感度-20 " 
 		lawAction= func():
+			GameManager.sav.labor_DayGet=GameManager.sav.labor_DayGet+80
 			print("重农抑商")	
 	elif sav.curLawName=="士族优先":
 		#RewardLaw="收益：徐州好感度+20，获得道具“珍品礼盒”x1，一次性人口+150 冲突：丹阳派好感度-15  "
@@ -620,7 +626,114 @@ func excuteLaw():
 		
 	#弹出对话框，法律已经通过，并获得了什么额外效果
 	
+var items = [
+	{"name": InventoryManagerItem.ItemEnum.益气丸, "cost": 200},
+	{"name": InventoryManagerItem.ItemEnum.胜战锦囊, "cost": 300},
+	{"name": InventoryManagerItem.ItemEnum.诸子百家论集, "cost": 250},
+	{"name": InventoryManagerItem.ItemEnum.珍品礼盒, "cost": 350}
+]
+const POPULATION_PER_POINT=2
+func ScoreToItem(player_score):
+	var gained_items: Dictionary = {}  # 使用字典记录道具和数量
+	var rng = RandomNumberGenerator.new()
+	# 随机决定获得几种道具 (1-3种)
+	var item_types = rng.randi_range(1,  items.size())
 	
+	# 随机分配道具
+	var remaining_score = player_score
+	for i in range(item_types):
+		if remaining_score <= 0:
+			break
+		rng = RandomNumberGenerator.new()	
+		# 随机选择一种道具
+		var item = items[i]
+		# 随机决定该道具数量 (1-3)
+		var max_count=remaining_score/item.cost
+		
+		var item_count = min(rng.randi_range(0, max_count),3)
+		
+		# 计算道具消耗的积分 (这里假设每件道具消耗10积分，可调整)
+		var item_cost = item_count * item.cost
+		if item_cost > remaining_score and item_count!=0:
+			#item_count = remaining_score / 10
+			item_cost = item_count * 10
+		
+			# 更新剩余积分
+			remaining_score -= item_cost
+		
+			# 记录获得的道具
+			if gained_items.has(item.name):
+				gained_items[item.name] += item_count
+			else:
+				gained_items[item.name] = item_count
+	
+	# 随机分配剩余积分到人口和金钱
+	var population = 0
+	var money = 0
+	rng = RandomNumberGenerator.new()	
+	if remaining_score > 0:
+		# 随机决定分配给人口的最大可能数量
+		var max_population = remaining_score / POPULATION_PER_POINT
+		if max_population > 0:
+			population = rng.randi_range(0, max_population)
+		# 分配给人口的积分
+		var population_cost = population * POPULATION_PER_POINT
+		# 剩余积分全转为金钱
+		money = (remaining_score - population_cost)
+		rng = RandomNumberGenerator.new()	
+		money = rng.randi_range(0, money)
+	
+	# 输出结果
+	print("结算结果:")
+	print("获得的道具:")
+	for item in gained_items:
+		print("- ", item, ": ", gained_items[item], "个")
+	print("获得的金钱: ", money)
+	print("获得的人口: ", population)
+	
+	# 返回结果（可选，方便其他节点使用）
+	return {
+		"items": gained_items,
+		"money": money,
+		"population": population
+	}
+	
+
+
+func calculate_points(enemy_strength: int, tasks_completed: int, casualty_ratio: float,general_level: int,buffMultiple:float) -> int:
+	# 战斗力得分
+	var strength_score = 0
+	if enemy_strength < 1000:
+		strength_score = enemy_strength
+	else:
+		strength_score = 1000
+	
+	# 任务得分
+	var task_score = 0
+	if tasks_completed <= 1:
+		task_score =int(enemy_strength*1/10)
+	elif tasks_completed <= 3:
+		task_score = int(enemy_strength*3/10)
+	else:
+		task_score = int(enemy_strength*5/10)
+	
+	# 战损得分（越低越好）
+	var casualty_score = 0
+	if casualty_ratio <= 0.3:
+		casualty_score = 100
+	elif casualty_ratio <= 0.7:
+		casualty_score = 50
+	else:
+		casualty_score = 0
+	var level_factor = 1.0 + (general_level - 1) / 10
+	
+   # var total_points = (base_points + strength_bonus + task_bonus - casualty_penalty) * level_factor
+	#return max(0, int(total_points))
+	# 总积分
+	var total_points = (strength_score + task_score + casualty_score)*(1-casualty_ratio)  
+	total_points= total_points* level_factor*buffMultiple
+	return max(0, int(total_points))
+		
 
 
 

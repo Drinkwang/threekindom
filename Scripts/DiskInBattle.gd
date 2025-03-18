@@ -61,11 +61,12 @@ func changeLanguage():
 	
 var taskIndex:int=0
 
-
+var taskComplete=0
 	
 func _juideCompeleteTask():
 	#用100减去安全区的值
 	#
+	taskComplete=0
 	var rewardMax=360-GameManager.battleCircle[0].radian
 	#所有风险区的变化最后都会改成无风险值变大
 	var generalLevel
@@ -81,7 +82,7 @@ func _juideCompeleteTask():
 	var btdatas=GameManager.sav.battleTasks[taskIndex]
 	var tasks=btdatas.task
 	var haveRes
-	
+
 	for task in tasks:
 		var value=task.value
 		var minValue
@@ -104,7 +105,7 @@ func _juideCompeleteTask():
 				iscomplete=true
 		if iscomplete==true:
 			targetGet=targetGet+ ((task.reward/100.0)*mustHave)
-	
+			taskComplete=taskComplete+1
 
  	
 
@@ -126,10 +127,13 @@ func _juideCompeleteTask():
 		 #平局
 	else: 
 		targetGet=targetGet+  ((btdatas.reward/100.0)*mustHave)
+		taskComplete=taskComplete+1
 		#print("获胜")
 		#玩家获胜
 			
 	pass
+
+	
 	#可加入每次完成任务，成功率提升10%
 	#当玩家的值大于basevalue时，每提升10% 会有5%的提升 上部封顶 但是最多玩家将会获得100%的和平区域 也就是最多为rewardMax
 	var levelup= int(floor(curCoin /(btdatas.index)))*2+int(floor(curSoilder/(btdatas.index)))*10+(generalLevel*18)
@@ -367,8 +371,8 @@ func _on_Tween_tween_all_completed():
 	#{"name":"高风险","initPos":0,"radian":90,"index":3},
 	#{"name":"成功率
 
-
-
+var buffMultiple=1
+var finalScore
 func settleGame(end,issuccess):
 	#扣除消耗 只会消耗士兵
 	#无风险 无扣除
@@ -406,7 +410,12 @@ func settleGame(end,issuccess):
 		print("你win了")
 		if GameManager.sav.targetResType==GameManager.ResType.battle:
 			GameManager.sav.currenceValue=GameManager.sav.currenceValue+1
-		_rewardPanel.showReward()
+		#判断胜利积分
+		var enemyPower=GameManager.sav.battleTasks[taskIndex].index*50
+
+		finalScore=GameManager.calculate_points(enemyPower,taskComplete, percentage/100,selectgeneral.level,buffMultiple)
+		var items=GameManager.ScoreToItem(finalScore)
+		_rewardPanel.showReward(items)
 		#一旦完成target的数量，就令其获胜，来到府邸进行下一步操作
 		GameManager.sav.completeTask=GameManager.sav.completeTask+1
 	else:
@@ -429,7 +438,8 @@ func settleGame(end,issuccess):
 
 	
 @onready var Txtcount = $count
-	
+
+
 func refreshPage():
 	enemy.namelv=tr("(当前战力:{targetValue})").format({"targetValue": GameManager.sav.battleTasks[taskIndex].index*50}) 
 	var btresult= GameManager.BattleResult

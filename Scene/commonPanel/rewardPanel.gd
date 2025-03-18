@@ -53,6 +53,7 @@ func _ready():
 	pass # Replace with function body.
 @onready var imgTarget = $"骷髅头"
 
+#@onready var grid = $Control/PanelContainer/MarginContainer/VBoxContainer/Margin/Grid
 
 func showTitileReward(context):
 	imgTarget.texture=victoryPng
@@ -60,7 +61,12 @@ func showTitileReward(context):
 	var titleContext=context
 	titleContext=titleContext+tr(",获得以下道具:")
 	title.text=titleContext	
-func showReward():
+
+@export var DaojuItem: PackedScene	
+@onready var _grid_ui = $Control/PanelContainer/MarginContainer/VBoxContainer/Margin/Grid
+
+
+func showReward(item):
 	imgTarget.texture=victoryPng
 	self.show()
 	
@@ -76,10 +82,50 @@ func showReward():
 	elif coinCost==0 and soilderCost==0:
 		titleContext=tr(sucuussContext)+tr(TxtNoCost)
 	titleContext=titleContext+tr(",获得以下道具:")
+	#通过item增加并实际获得之
+	_clear_view()
+	
+#	return {
+#		"items": gained_items,
+#		"money": money,
+#		"population": population
+#	}			
+	for key in item.items.keys():
+		var _count=item.items[key]
+		var item_ui:ShopItem = DaojuItem.instantiate()
+		item_ui.isShop=false
+		_grid_ui.add_child(item_ui)
+		item_ui.set_Data(key,_count)	
+		#获取道具
+
+	if item.money>0:
+		var itemMoney_ui:ShopItem = DaojuItem.instantiate()
+		itemMoney_ui.isShop=false
+		_grid_ui.add_child(itemMoney_ui)
+		itemMoney_ui.set_Money(item.money)	
+		GameManager.sav.coin=GameManager.sav.coin+item.money
+		#获取金钱
+		
+	if item.population>0:
+		var itempop_ui:ShopItem = DaojuItem.instantiate()
+		itempop_ui.isShop=false
+		_grid_ui.add_child(itempop_ui)
+		itempop_ui.set_Labor(item.population)	
+		#获取人口
+		GameManager.sav.labor_force=GameManager.sav.labor_force+item.population
 	title.text=titleContext
+	#gird.add_child()
 	#播放音效，显示1-2个道具
 	#gird
 	pass
+	
+func _clear_view() -> void:
+	var children = _grid_ui.get_children()
+	for child in children:
+		_grid_ui.remove_child(child)
+		child.queue_free()	
+		
+			
 var coinCost
 var soilderCost
 var TxtbothCost="你损失了{coin}金和{soilder}个士兵"

@@ -112,8 +112,11 @@ one_shot = true
 [node name="Canvas闪电" type="CanvasLayer" parent="."]
 
 [node name="TextureRect" type="TextureRect" parent="Canvas闪电"]
-offset_right = 1922.0
-offset_bottom = 1080.0
+offset_left = 275.0
+offset_top = 140.0
+offset_right = 735.0
+offset_bottom = 428.0
+scale = Vector2(3, 3)
 texture = ExtResource("4_hs6t7")
 
 [node name="hpPanel" parent="Canvas闪电" instance=ExtResource("4_vcm8i")]

@@ -133,11 +133,15 @@ func _buttonListClick(item):
 		#显示接下来要点击啥
 		pass
 	elif item.context == "离开":
-		if(GameManager.sav.have_event["firstParliamentary"]==true):
-			const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
-			FancyFade.new().custom_fade(SceneManager.STREET.instantiate(), 2, DISSOLVE_IMAGE)
+		if GameManager.sav.day<5:
+			if(GameManager.sav.have_event["firstParliamentary"]==true):
+				const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
+				FancyFade.new().custom_fade(SceneManager.STREET.instantiate(), 2, DISSOLVE_IMAGE)
+			else:
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"不能离开")
 		else:
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"不能离开")
+			const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
+			FancyFade.new().custom_fade(SceneManager.STREET.instantiate(), 2, DISSOLVE_IMAGE)		
 		#显示金钱 民心 xx 武将面板
 	print(item)
 	pass

@@ -1,11 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://ccwfks8124pm0"]
+[gd_scene load_steps=5 format=3 uid="uid://ccwfks8124pm0"]
 
 [ext_resource type="Script" path="res://Scene/commonPanel/rewardPanel.gd" id="1_nbkq4"]
 [ext_resource type="Theme" uid="uid://bklmr3xmk4m5u" path="res://global_theme.tres" id="2_gh1tc"]
-[ext_resource type="Texture2D" uid="uid://bqnt1tcxcsaxv" path="res://Asset/other/骷髅头.png" id="3_k71ka"]
+[ext_resource type="PackedScene" uid="uid://5qxpn6avk7bx" path="res://Scene/prefab/ShopItem.tscn" id="3_np5iq"]
+[ext_resource type="Texture2D" uid="uid://cnw7t4vywvfup" path="res://Asset/other/胜利.png" id="4_drk6n"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_nbkq4")
+DaojuItem = ExtResource("3_np5iq")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -51,7 +53,7 @@ layout_mode = 2
 theme_type_variation = &"HeaderLarge"
 theme_override_font_sizes/font_size = 48
 text = "
-  "
+"
 autowrap_mode = 2
 
 [node name="title" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer"]
@@ -62,16 +64,20 @@ autowrap_mode = 3
 
 [node name="Margin" type="MarginContainer" parent="Control/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 10
+size_flags_horizontal = 4
+theme_override_constants/margin_left = -86
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="Grid" type="GridContainer" parent="Control/PanelContainer/MarginContainer/VBoxContainer/Margin"]
+custom_minimum_size = Vector2(0, 100)
+layout_direction = 1
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-columns = 4
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/h_separation = 80
+columns = 6
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Control/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -116,8 +122,8 @@ layout_mode = 2
 size_flags_horizontal = 10
 
 [node name="骷髅头" type="Sprite2D" parent="."]
-position = Vector2(949, 290)
+position = Vector2(949, 239)
 scale = Vector2(2.56, 2.32)
-texture = ExtResource("3_k71ka")
+texture = ExtResource("4_drk6n")
 
 [connection signal="button_down" from="Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Button" to="." method="_on_button_button_down"]

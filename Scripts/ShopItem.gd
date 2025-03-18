@@ -20,12 +20,47 @@ const InventoryManagerName = "InventoryManager"
 		#if texture_rect!=null:
 		#	texture_rect.texture=img
 		
+#	return {
+#		"items": gained_items,
+#		"money": money,
+#		"population": population
+#	}		
+func set_Data(key,value):
+	var itemname= InventoryManagerItem.item_by_enum(key)
+	quantity=value
+	txt_quantity.text=var_to_str(value)
+	txt_quantity.show()
+	var db:InventoryItem=_inventoryManager.get_item_db(itemname)
+	context.texture=load(db.icon)
+	self.tooltip_text=db.name
+	
+	#var itemname= InventoryManagerItem.item_by_enum(key)
+	var remainder = _inventoryManager.add_item(GameManager.inventoryPackege, itemname, quantity, false)
+
+	
+const COIN = preload("res://Asset/coin.png")
+const LABOR = preload("res://Asset/labor.png")	
+func set_Money(_num):
+	context.texture=COIN
+	self.tooltip_text="金钱"
+	txt_quantity.show()
+	txt_quantity.text=var_to_str(_num)
+@onready var txt_quantity = $frame/Quantity
+
+func set_Labor(_num):
+	context.texture=LABOR
+	self.tooltip_text="人口"
+	txt_quantity.show()
+	txt_quantity.text=var_to_str(_num)
+	
 #const questManagerName = "QuestManager"		
 # Called when the node enters the scene tree for the first time.
 func _ready():
 
 	if get_tree().get_root().has_node(InventoryManagerName):
 		_inventoryManager = get_tree().get_root().get_node(InventoryManagerName)
+	if isShop==false:
+		return
 	context.texture=img
 	
 	var itemname= InventoryManagerItem.item_by_enum(itemstype)
@@ -35,7 +70,7 @@ func _ready():
 	#if get_tree().get_root().has_node(questManagerName):
 	#	questManager = get_tree().get_root().get_node(questManagerName)
 @export var quantity=1;
-
+@export var isShop:bool=true
 @export var itemstype:InventoryManagerItem.ItemEnum:
 	
 	get:
@@ -62,7 +97,10 @@ func _process(delta):
 
 
 func _on_gui_input(event):
+	
 	if event is InputEventMouseButton and event.button_index==1:
+		if isShop==false:
+			return;
 		GameManager.shopPanel.selectGoods=self;
 		var itemname= InventoryManagerItem.item_by_enum(itemstype)
 		var properties:Array=_inventoryManager.get_item_properties(itemname)

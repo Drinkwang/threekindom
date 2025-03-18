@@ -145,7 +145,6 @@ clickEvent = "饭局结束"
 visible = false
 
 [node name="battlePane" parent="CanvasInventory" instance=ExtResource("10_gfhv4")]
-visible = false
 
 [node name="caocaoLetterXieTianZi" parent="CanvasInventory" instance=ExtResource("11_lkv7t")]
 visible = false
