@@ -64,14 +64,6 @@ enum opcost{
 }
 var _engerge:energe
 
-@export var hp=100:
-	get:
-		return hp
-	set(value):
-		hp=value
-		if _engerge!=null:
-			_engerge.changerate(hp)
-		
 
 #var _rewardPanel:rewardPanel
 # 声明变量
@@ -94,7 +86,7 @@ func isTried(costNum)->bool:
 
 	if triedPanel!=null:
 		return true
-	if(hp-costNum<0):
+	if(sav.hp-costNum<0):
 		#显示累了框
 
 		if triedPanel==null:
@@ -210,7 +202,7 @@ func _enterDay(value=true):
 	initPaixi(BENTUPAI)
 	initPaixi(WAIDIPAI)
 	initBattle()
-	hp=100
+	sav.hp=100
 	sav.isLevelUp=false;
 	sav.isMeet=false
 
@@ -730,5 +722,8 @@ func calculate_points(enemy_strength: int, tasks_completed: int, casualty_ratio:
 	return max(0, int(total_points))
 		
 
-
+func recoverHp(value):
+	sav.hp=sav.hp+value
+	#GameManager.sav.hp=
+	pass
 

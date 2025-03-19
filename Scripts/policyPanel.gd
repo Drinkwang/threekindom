@@ -13,7 +13,7 @@ var costhp=35
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if GameManager.hp<costhp:
+	if GameManager.sav.hp<costhp:
 		
 		button.disabled=true
 		
@@ -159,7 +159,7 @@ func _on_button_button_down():
 
 	if await GameManager.isTried(costhp):
 		return
-	GameManager.hp=GameManager.hp-costhp
+	GameManager.sav.hp=GameManager.sav.hp-costhp
 	SoundManager.play_sound(sounds.SFX_FAST_UI_CLICK_MECHANICAL_03_WAV)
 	#var context="story"+index
 	#根据选项判断影响，并同时让施政选项不再显示
@@ -202,7 +202,7 @@ func agreelaw():
 	#num1\num2
 	# int index	
 	#当前【民田开垦】法案已被立项，请先在议会厅通过该法案，才能立项其他法律。	
-	GameManager.hp=GameManager.hp-costhp
+	GameManager.sav.hp=GameManager.sav.hp-costhp
 	GameManager.sav.Merit_points=GameManager.sav.Merit_points-selectLawPoint.costPoint
 	selectLawPoint.isUnlock=true
 	selectLawPoint._initData()

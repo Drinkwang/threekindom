@@ -237,7 +237,7 @@ func _on_exit_button_button_down():
 	SoundManager.play_sound(sounds.declinesound)
 	#大人
 	if GameManager.sav.day==3:
-		if GameManager.hp<=10:
+		if GameManager.sav.hp<=10:
 			if GameManager.sav.have_event["firstBattleEnd"]==false:
 				GameManager.sav.have_event["firstBattleEnd"]=true
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"军事行动结束")

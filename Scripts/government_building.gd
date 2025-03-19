@@ -280,7 +280,7 @@ func selectPolicy(data):
 		policy_panel.bancontrol(3,policy_panel.itemStatus.ban)
 		
 		#执行初始错误决策，体力回复
-		GameManager.hp=GameManager.hp+35
+		GameManager.sav.hp=GameManager.sav.hp+35
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"错误决策0")
 
 		#pass
@@ -359,7 +359,7 @@ func meeting():
 
 func meetingEnd():
 	GameManager.sav.destination="议事厅"
-	GameManager.hp=GameManager.hp-costHp_SummonOne
+	GameManager.sav.hp=GameManager.sav.hp-costHp_SummonOne
 	GameManager.sav.isMeet=true
 	control._show_button_5_yellow(-1)	
 @onready var mizhu = $"糜竺"

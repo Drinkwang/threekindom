@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Scene/commonPanel/TriedPanel.gd" id="1_2hrx8"]
 [ext_resource type="Theme" uid="uid://bklmr3xmk4m5u" path="res://global_theme.tres" id="2_67iyc"]
-[ext_resource type="Texture2D" uid="uid://5ll2fa5vyonb" path="res://addons/inventory_example/textures/potions/HealthBig.png" id="3_fck73"]
 [ext_resource type="Texture2D" uid="uid://ba2q2j3lkloto" path="res://addons/inventory_example/textures/inventories/InventoryBackground.png" id="3_hr873"]
+[ext_resource type="Texture2D" uid="uid://cphbecia7woet" path="res://Asset/items/益气.png" id="4_5wpuv"]
 
 [node name="Control" type="CanvasLayer"]
 script = ExtResource("1_2hrx8")
@@ -67,7 +67,7 @@ offset_left = 15.0
 offset_top = 12.5
 offset_right = 115.0
 offset_bottom = 112.5
-texture = ExtResource("3_fck73")
+texture = ExtResource("4_5wpuv")
 
 [node name="Label" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/TextureButton"]
 layout_mode = 0
@@ -82,14 +82,19 @@ vertical_alignment = 2
 
 [node name="Label" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/TextureButton/Label"]
 layout_mode = 0
-offset_left = 66.0
-offset_top = 4.0
-offset_right = 119.0
-offset_bottom = 61.0
+offset_left = 63.0
+offset_top = -61.0
+offset_right = 679.0
+offset_bottom = 62.0
 theme_override_font_sizes/font_size = 51
-text = "(点击消耗精力药剂回复体力)"
-horizontal_alignment = 2
+text = "剩余库存:5
+(点击消耗精力丸回复体力)
+"
 vertical_alignment = 2
+
+[node name="Control4" type="Control" parent="Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 10
 
 [node name="Control3" type="Control" parent="Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
@@ -128,5 +133,6 @@ text = "再撑一回"
 layout_mode = 2
 size_flags_horizontal = 10
 
+[connection signal="button_down" from="Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/TextureButton" to="." method="_on_jingliwan_button_down"]
 [connection signal="button_down" from="Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Button2" to="." method="_on_rest"]
 [connection signal="button_down" from="Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Button" to="." method="_on_cancel"]

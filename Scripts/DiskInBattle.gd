@@ -356,7 +356,7 @@ func _on_Tween_tween_all_completed():
 				
 				pass
 			
-	GameManager.hp=GameManager.hp-_hp
+	GameManager.sav.hp=GameManager.sav.hp-_hp
 	settleGame(selectPart,issuccess)
 	#将风险值和成功率一起输入
 	#print(real_angle)

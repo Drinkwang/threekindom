@@ -6,7 +6,7 @@ class_name saveData
 @export var day=0
 #@export var intellectual_support=100 #士族支持度 一开始为100 当议会中 会出现支持和不支持以及摇摆 
 @export var people_surrport=100 #群众支持度 数值
-@export var  coin=100 #金钱 数值
+@export var coin=100 #金钱 数值
 @export var coin_DayGet=20
 @export var labor_force=100 #劳动力 可以当作军队进行使用 劳动力转换成军队需要消耗值 骑兵 步兵 弓兵
 @export var labor_DayGet=5
@@ -64,6 +64,14 @@ var _data = InventoryInventories.new()
 @export var curLawNum1=-1
 @export var curLawNum2=-1
 
+@export var hp=100:
+	get:
+		return hp
+	set(value):
+		hp=value
+		if GameManager._engerge!=null:
+			GameManager._engerge.changerate(hp)
+		
 
 @export var have_event = {
 	"firstmeetchenqun":false,

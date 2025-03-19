@@ -143,7 +143,7 @@ const daybgm = preload("res://Asset/bgm/白天在家or办公.wav")
 const nightbgm = preload("res://Asset/bgm/夜晚在家.wav")
 func post_transition():
 	print("fadedone")
-	if GameManager.hp<=20:
+	if GameManager.sav.hp<=20:
 		SoundManager.play_music(nightbgm)
 	else:
 		SoundManager.play_music(daybgm)

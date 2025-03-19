@@ -78,7 +78,7 @@ func _on_upgrade_button_pressed():
 		GameManager.sav.isLevelUp=true
 		update_ui()
 		SoundManager.play_sound(sounds.buysellsound)
-		GameManager.hp=GameManager.hp-costhp
+		GameManager.sav.hp=GameManager.sav.hp-costhp
 		print("升级成功！", selected_general["name"], "当前等级: ", selected_general["level"])
 	elif GameManager.sav.coin<upgrade_cost:
 		label.text="你的金币不够"

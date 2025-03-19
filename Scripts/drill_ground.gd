@@ -147,7 +147,7 @@ func post_transition():
 const EAT_1 = preload("res://Asset/sound/eat1.mp3")
 func enterOldSoilderEat():
 	oldsoildereat.show()
-	GameManager.hp=GameManager.hp-20
+	GameManager.sav.hp=GameManager.sav.hp-20
 	#播放聚餐声音
 	SoundManager.play_sound(EAT_1)
 	pass
@@ -159,7 +159,7 @@ var battleNum=0
 
 func enterBattleMode():
 	GameManager.sav.have_event["战斗袁术血战模式"]=true
-	GameManager.hp=100
+	GameManager.sav.hp=100
 	#任务开始，10天完成20次duel
 	
 	GameManager.sav.targetValue=20
@@ -250,7 +250,7 @@ func _buttonListClick(item):
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"训练还没有结束")
 				return
 		if(GameManager.sav.day==3):
-			if GameManager.hp>10:
+			if GameManager.sav.hp>10:
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"三场战斗还没有结束")
 				return 
 		if GameManager.sav.have_event["战斗袁术血战模式"]==true:

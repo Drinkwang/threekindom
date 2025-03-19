@@ -163,7 +163,7 @@ func hideGuild():
 func showResult():
 	if await GameManager.isTried(costhp):
 		return 
-	GameManager.hp=GameManager.hp-costhp
+	GameManager.sav.hp=GameManager.sav.hp-costhp
 	parliamentary_detail.show()
 	parliamentary_detail.enter()
 	
