@@ -310,3 +310,19 @@ expand_mode = 1
 libraries = {
 "": SubResource("AnimationLibrary_uhe5w")
 }
+
+[node name="buffTxt" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 69.0
+offset_top = 3.0
+offset_right = 243.0
+offset_bottom = 94.0
+theme_override_colors/font_color = Color(0.266667, 0.333333, 0.407843, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0.539858, 0.955164, 1)
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/font_size = 23
+text = "道具加持+5%
+青龙偃月刀+5%"
+horizontal_alignment = 1

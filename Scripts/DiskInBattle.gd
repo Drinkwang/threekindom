@@ -9,7 +9,7 @@ const bu = preload("res://Asset/other/布.png")
 const shitou = preload("res://Asset/other/石头.png")
 const Success=preload("res://.godot/imported/Success.svg-af58d452c13e928b2a282a117f5e080e.ctex")
 const fail=preload("res://Asset/other/0_red.png")
-
+var useItem=false
 
 #var battleCircle=[
 #	{"name":"无风险","initPos":0,"radian":90},
@@ -62,6 +62,7 @@ func changeLanguage():
 var taskIndex:int=0
 
 var taskComplete=0
+@onready var buff_txt = $buffTxt
 	
 func _juideCompeleteTask():
 	#用100减去安全区的值
@@ -133,10 +134,18 @@ func _juideCompeleteTask():
 			
 	pass
 
-	
+		
 	#可加入每次完成任务，成功率提升10%
 	#当玩家的值大于basevalue时，每提升10% 会有5%的提升 上部封顶 但是最多玩家将会获得100%的和平区域 也就是最多为rewardMax
 	var levelup= int(floor(curCoin /(btdatas.index)))*2+int(floor(curSoilder/(btdatas.index)))*10+(generalLevel*18)
+	
+	
+	if useItem==true:
+		levelup=levelup*1.05
+		buff_txt.text="道具加持+5%" #未来要注销
+		buff_txt.show()
+	else:
+		buff_txt.hide()
 	GameManager.battleCircle[4].radian=levelup;
 	#targetGet=targetGet+levelup
 	#if(targetGet>rewardMax):

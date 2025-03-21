@@ -1,9 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://cjsb43uugkud4"]
+[gd_scene load_steps=15 format=3 uid="uid://cjsb43uugkud4"]
 
 [ext_resource type="Script" path="res://Scripts/battlePanel.gd" id="1_uyier"]
 [ext_resource type="Resource" uid="uid://d2qoinuor12dq" path="res://dialogues/演武场.dialogue" id="2_1p72a"]
 [ext_resource type="Theme" uid="uid://bklmr3xmk4m5u" path="res://global_theme.tres" id="2_syp0e"]
 [ext_resource type="PackedScene" uid="uid://dxj1s2d4grxwj" path="res://Scene/prefab/SoilderItem.tscn" id="3_3ya2h"]
+[ext_resource type="Texture2D" uid="uid://ba2q2j3lkloto" path="res://addons/inventory_example/textures/inventories/InventoryBackground.png" id="4_jdktt"]
+[ext_resource type="Texture2D" uid="uid://hy8jdf2wnwq" path="res://Asset/items/胜战.png" id="5_aelta"]
 [ext_resource type="Texture2D" uid="uid://j3kowe2tkoss" path="res://Asset/人物/关羽open.png" id="5_tboc2"]
 [ext_resource type="Texture2D" uid="uid://bol8v0a4a87yg" path="res://Asset/人物/张飞close.png" id="6_ffj5y"]
 [ext_resource type="Texture2D" uid="uid://rmaibsw1yjqd" path="res://Asset/城镇建筑/5_yellow.png" id="7_5kst7"]
@@ -102,6 +104,70 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 31
 text = "选择将领进行出征，你可以自由调节士兵数量和资金数量，注意完成右侧任务和猜拳，可以降低伤亡和提高成功率！"
 autowrap_mode = 3
+
+[node name="Control2" type="Control" parent="PanelContainer/orderPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 6.165)
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/orderPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="PanelContainer/orderPanel/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="PanelContainer/orderPanel/VBoxContainer/HBoxContainer2"]
+visible = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture_normal = ExtResource("4_jdktt")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="img" type="TextureRect" parent="PanelContainer/orderPanel/VBoxContainer/HBoxContainer2/TextureButton"]
+layout_mode = 2
+offset_left = 5.0
+offset_top = 6.0
+offset_right = 69.0
+offset_bottom = 70.0
+scale = Vector2(0.845, 0.845)
+texture = ExtResource("5_aelta")
+
+[node name="Label" type="Label" parent="PanelContainer/orderPanel/VBoxContainer/HBoxContainer2/TextureButton"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 60.0
+offset_bottom = 64.0
+theme_override_font_sizes/font_size = 32
+text = "1"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Label" type="Label" parent="PanelContainer/orderPanel/VBoxContainer/HBoxContainer2/TextureButton/Label"]
+layout_mode = 0
+offset_left = 61.0
+offset_top = -20.0
+offset_right = 298.0
+offset_bottom = 76.0
+theme_override_font_sizes/font_size = 21
+text = "   勾选使用胜战锦囊
+   用于提高胜率5%
+  【剩余库存：1】"
+vertical_alignment = 1
+
+[node name="CheckBox" type="CheckBox" parent="PanelContainer/orderPanel/VBoxContainer/HBoxContainer2/TextureButton"]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 5.0
+offset_right = 154.0
+offset_bottom = 101.0
+scale = Vector2(0.5, 0.5)
+
+[node name="Control2" type="Control" parent="PanelContainer/orderPanel/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
 
 [node name="Control" type="Control" parent="PanelContainer/orderPanel/VBoxContainer"]
 layout_mode = 2
@@ -283,10 +349,15 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="pointGroup" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -55.0
+offset_top = 90.0
+offset_right = -55.0
+offset_bottom = 90.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.04034, 1.0033)
@@ -494,6 +565,7 @@ texture_disabled = ExtResource("7_fydxo")
 texture_focused = ExtResource("7_fydxo")
 stretch_mode = 0
 
+[connection signal="toggled" from="PanelContainer/orderPanel/VBoxContainer/HBoxContainer2/TextureButton/CheckBox" to="." method="_on_Usecheck_box_toggled"]
 [connection signal="button_down" from="PanelContainer/orderPanel/VBoxContainer/HBoxContainer/Button" to="." method="_on_button_button_down"]
 [connection signal="tab_button_pressed" from="TabBar" to="." method="_on_tab_bar_tab_button_pressed"]
 [connection signal="tab_changed" from="TabBar" to="." method="_on_tab_bar_tab_changed"]
