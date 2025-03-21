@@ -8,6 +8,7 @@ const InventoryManagerName = "InventoryManager"
 @export var to_inventory: String 
 
 @onready var context = $frame/context
+@onready var alreaysold = $frame/Alreaysold
 
 @export var img:Texture2D:
 	
@@ -57,7 +58,7 @@ func set_Labor(_num):
 #const questManagerName = "QuestManager"		
 # Called when the node enters the scene tree for the first time.
 func _ready():
-
+	
 #	if get_tree().get_root().has_node(InventoryManagerName):
 #		_inventoryManager = get_tree().get_root().get_node(InventoryManagerName)
 	if isShop==false:
@@ -68,8 +69,21 @@ func _ready():
 	var db:InventoryItem=InventoryManager.get_item_db(itemname)
 
 	self.tooltip_text=db.name
+	if isShop==true:
+		refreshSold()
 	#if get_tree().get_root().has_node(questManagerName):
 	#	questManager = get_tree().get_root().get_node(questManagerName)
+
+func refreshSold():
+	if itemstype==InventoryManagerItem.ItemEnum.雌雄双股剑 or itemstype==InventoryManagerItem.ItemEnum.青龙偃月刀 or itemstype==InventoryManagerItem.ItemEnum.丈八蛇矛: 
+		
+		var itemname= InventoryManagerItem.item_by_enum(itemstype)
+		var _c=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,itemname)
+		if _c>0:
+			alreaysold.show()
+		else:
+			alreaysold.hide()
+
 @export var quantity=1;
 @export var isShop:bool=true
 @export var itemstype:InventoryManagerItem.ItemEnum:
@@ -109,5 +123,10 @@ func _on_gui_input(event):
 		var price=item["value"]
 		item=properties.filter(func(a):return a["name"]=="detail")[0]
 		var detail=item["value"]
+		
+		if alreaysold.visible==true:
+			GameManager.shopPanel.refreshAlreadySoldTxt()
+			return
+		#如果是三把武器，判断玩家是否有，如果有，则调用无法购买已售出的文本
 		GameManager.shopPanel.refreshPage(price,detail)#价格和介绍
 	#pass # Replace with function body.

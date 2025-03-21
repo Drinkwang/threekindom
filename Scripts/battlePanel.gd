@@ -78,6 +78,7 @@ func refreshUseItemPanel():
 		label.text="   勾选使用胜战锦囊\n   用于提高胜率5%\n  【剩余库存：{_num}】".format({"_num":num})
 	else:
 		useItemPanel.hide()
+	
 
 func _refreshGeneral():
 	refreshUseItemPanel()
@@ -153,7 +154,7 @@ func _process(_delta):
 
 
 func _changeProgress():
-	battle_circle.useItem=useItem
+
 	battle_circle._processSuccussCircle(costcoin,costsoild)
 	pass
 
@@ -255,10 +256,11 @@ func _on_exit_button_button_down():
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"军事行动结束")
 	 # Replace with function body.
 
-var useItem:bool=false
+
 var buffSize=0
 func _on_Usecheck_box_toggled(toggled_on):
-	useItem=toggled_on
+
+	GameManager.sav.useItemInBattle=toggled_on
 	buffSize=5;
 	_changeProgress()
 	#接下来的代码，改变胜率，让胜率的东西往前一丢丢

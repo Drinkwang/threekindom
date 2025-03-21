@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://5qxpn6avk7bx"]
+[gd_scene load_steps=5 format=3 uid="uid://5qxpn6avk7bx"]
 
 [ext_resource type="Script" path="res://Scripts/ShopItem.gd" id="1_h644w"]
 [ext_resource type="Texture2D" uid="uid://bye5cypeps08s" path="res://Asset/ui/4.png" id="1_wpj7r"]
 [ext_resource type="Texture2D" uid="uid://sq2pvmh6p5db" path="res://Asset/ui/8.png" id="2_smbln"]
+[ext_resource type="Texture2D" uid="uid://dahuc8gb2blc" path="res://Asset/other/0_red.png" id="4_tce4q"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -52,5 +53,14 @@ theme_override_font_sizes/font_size = 16
 text = "1"
 horizontal_alignment = 2
 vertical_alignment = 2
+
+[node name="Alreaysold" type="TextureRect" parent="frame"]
+visible = false
+offset_left = 7.0
+offset_top = 6.0
+offset_right = 68.0
+offset_bottom = 67.0
+texture = ExtResource("4_tce4q")
+expand_mode = 1
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]

@@ -63,7 +63,7 @@ var _data = InventoryInventories.new()
 
 @export var curLawNum1=-1
 @export var curLawNum2=-1
-
+@export var useItemInBattle=false
 @export var hp=100:
 	get:
 		return hp

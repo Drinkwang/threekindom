@@ -9,7 +9,7 @@ const bu = preload("res://Asset/other/布.png")
 const shitou = preload("res://Asset/other/石头.png")
 const Success=preload("res://.godot/imported/Success.svg-af58d452c13e928b2a282a117f5e080e.ctex")
 const fail=preload("res://Asset/other/0_red.png")
-var useItem=false
+
 
 #var battleCircle=[
 #	{"name":"无风险","initPos":0,"radian":90},
@@ -140,12 +140,49 @@ func _juideCompeleteTask():
 	var levelup= int(floor(curCoin /(btdatas.index)))*2+int(floor(curSoilder/(btdatas.index)))*10+(generalLevel*18)
 	
 	
-	if useItem==true:
+	if GameManager.sav.useItemInBattle==true:
 		levelup=levelup*1.05
 		buff_txt.text="道具加持+5%" #未来要注销
 		buff_txt.show()
 	else:
 		buff_txt.hide()
+	var haveWeaponNum=0
+	var haveWeaponTxt=""
+	var weaponRate=0
+	if selectgeneral.name=="关羽":
+		haveWeaponNum=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.青龙偃月刀)
+		haveWeaponTxt="青龙偃月刀+8%"
+		weaponRate=0.08
+		#有无青龙偃月刀
+		#道具加持xxx
+		#显示文本xxx
+		pass
+	elif selectgeneral.name=="张飞":
+		#有无丈八蛇矛
+		haveWeaponNum=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.丈八蛇矛)
+		haveWeaponTxt="丈八蛇矛+6%"
+		weaponRate=0.06
+		pass
+	elif selectgeneral.name=="赵云":
+		#有无龙胆银月枪
+		#道具加持xxx
+		haveWeaponNum=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.龙胆亮银枪)
+		haveWeaponTxt="龙胆亮银枪+10%"
+		weaponRate=0.1
+
+	if haveWeaponNum>0:
+		levelup=levelup*(1+weaponRate)
+		buff_txt=buff_txt.text+"\n"+haveWeaponTxt
+		buff_txt.show()
+		
+	if InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.雌雄双股剑)>0:
+		buff_txt=buff_txt.text+"\n"+"雌雄双股剑+1%"
+		levelup=levelup*(1.01)
+		buff_txt.show()
+	#商城系统如果购买了武器，则取消这件装备继续卖出
+	#判断选中的武将1 有无装备
+	#判断选中的武将2 有无装备
+	#判断选中的武将3 有无装备
 	GameManager.battleCircle[4].radian=levelup;
 	#targetGet=targetGet+levelup
 	#if(targetGet>rewardMax):
@@ -285,7 +322,6 @@ var stop_angle
 
 var _hp
 func _on_SpinButton_pressed():
-
 	# 开始旋转动画
 	$PointerScifiB.show()
 	var tween = get_tree().create_tween()
@@ -388,7 +424,12 @@ func settleGame(end,issuccess):
 	#小风险 扣除10-20%
 	#中风险 扣除30-40%
 	#高风险 扣除50-100%
-	
+	#如果道具用完，则改成不用道具
+	if GameManager.sav.useItemInBattle==true:
+		var resideCount=InventoryManager._remove_item(GameManager.inventoryPackege,InventoryManagerItem.胜战锦囊,1)
+		if resideCount<=0:
+			GameManager.sav.useItemInBattle=false
+		
 
 	var cost=10000
 	var percentage=0
