@@ -192,6 +192,37 @@ do meetingEnd()
 # 重新选择需要返回选项界面
 => END
 
+~ 赠礼完成
+成功赠送礼物，{{getFactionByIndex()._name}}好感度上升{{(15+GameManager.sav.randomIndex)}}
+#赠送礼物，好感度上升
+=> END
+
+~ 资金赠送完成
+
+if getFactionByIndex()._num_all+3+GameManager.sav.randomIndex<=100
+	赠送资金已顺利完成！{{getFactionByIndex()._name}}在你的慷慨支持下，人数激增{{3+GameManager.sav.randomIndex}}人，当前总人数为{{getFactionByIndex()._num_all}}。你的投入让{{getFactionByIndex()._name}}势力如虎添翼！
+
+else
+	赠送资金已顺利完成！{{getFactionByIndex()._name}}在你的支持下已达到上限100人。
+
+	
+
+#该派系人数上升完成
+=> END
+
+~ 索取完成
+你已成功从{{getFactionByIndex()._name}}手中获取资金{{ForValueGet}}，消耗{{ForValueCost}}点好感度
+#从xxx手中获取资金
+=> END
+
+~ 扩充吕布实力
+你已成功为吕布扩充实力，当前吕布手下人数达到{{getFactionByIndex()._num_all}}人，吕布的势力正在你的支持下日益壮大！
+=> END!
+
+~ 调用士兵完成
+你已成功从吕布手中征募士兵{{ForValueGet}}，消耗{{ForValueCost}}点好感度
+#该派系人数上升完成
+=> END
 
 ~ 选项吕布
 主簿: 大人，你想对吕布做什么呢？

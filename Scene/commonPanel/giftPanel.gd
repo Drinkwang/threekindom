@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 @onready var title = $Control/PanelContainer/MarginContainer/VBoxContainer/title
+@onready var texture_button = $Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/TextureButton
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,6 +14,7 @@ func _initPanel(factionName,index,point):
 	else:
 		indexName="好感"	
 	title.text="是否给{factionName}赠送礼物,赠送可以增加{point}点{indexName}".format({"factionName":factionName,"point":point,"indexName":indexName})
+	texture_button.tooltip_text=tr("珍品礼盒")
 	#0 支持度
 	#1 好感
 	#是否给徐州派赠送礼物,赠送可以增加15点支持度

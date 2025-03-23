@@ -56,6 +56,7 @@ vertical_alignment = 2
 
 [node name="Alreaysold" type="TextureRect" parent="frame"]
 visible = false
+layout_mode = 0
 offset_left = 7.0
 offset_top = 6.0
 offset_right = 68.0

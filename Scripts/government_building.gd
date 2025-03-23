@@ -576,8 +576,12 @@ func SummonFaction(value:cldata.factionIndex):
 	
 #如果总人数达到100 则无法资助	
 func financialConfortChoice():
+
 	if GameManager.sav.coin>=200:
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"消耗资金")#显示对话
+		if _faction==cldata.factionIndex.lvbu:
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"消耗资金_吕布")#显示对话
+		else:
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"消耗资金")#显示对话
 	else:
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"资金不足安抚")#显示对话
 	
@@ -588,6 +592,11 @@ func financialConfort():
 	#减去资金
 	GameManager.sav.coin=GameManager.sav.coin-200
 	_c.ChangeAllPeople(3+rindex)
+	if _faction==cldata.factionIndex.lvbu:
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"扩充吕布实力")#显示对话
+	else:
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"资金赠送完成")#显示对话
+	
 
 func getFactionByIndex()->cldata:
 	
@@ -606,18 +615,16 @@ func getFactionByIndex()->cldata:
 func sendgift():
 	var _c=getFactionByIndex()
 	var rindex=GameManager.sav.randomIndex
-	#减去资金
-	#GameManager.
+	InventoryManager._remove_item(GameManager.inventoryPackege,InventoryManagerItem.珍品礼盒,1)
 	_c.ChangeSupport(15+rindex)
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"赠礼完成")
+	
 @onready var send_gift_panel = $sendGiftPanel
 	
 func sendgiftChoice():
 	var rindex=GameManager.sav.randomIndex
 	var _c=getFactionByIndex()
-	#减去资金
-	#GameManager.
-	#赠送礼物可能会改成10点好感度了  好感度改变 是否摇摆派系也会改变
-	#_c.ChangeSupport(15+rindex)
+
 	var to_inventory= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.珍品礼盒)
 	var _inventoryManager = get_tree().get_root().get_node("InventoryManager")
 	var quantity=_inventoryManager.has_item_quantity(to_inventory)
@@ -703,6 +710,8 @@ func CF_CallingSoldier():
 	var _c=getFactionByIndex()
 	_c.ChangeSupport(-ForValueCost)
 	GameManager.sav.labor_force=GameManager.sav.labor_force+ForValueGet
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"调用士兵完成")#显示对话
+
 	
 func CF_claim():
 
@@ -710,7 +719,7 @@ func CF_claim():
 	_c.ChangeSupport(-ForValueCost)
 	#减去资金
 	GameManager.sav.coin=GameManager.sav.coin+ForValueGet
-	
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"索取完成")
 
 
 #调用可征集500名吕布士兵，但将消耗20点吕布忠诚度。是否执行？
