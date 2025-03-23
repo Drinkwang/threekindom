@@ -73,7 +73,7 @@ locale/locale_filter_mode=0
 
 [inventory_editor]
 
-types_split_offset=215
+types_split_offset=191
 
 [rendering]
 

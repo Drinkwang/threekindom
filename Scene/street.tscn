@@ -50,7 +50,6 @@ grow_horizontal = 1
 grow_vertical = 1
 
 [node name="shopPanel" parent="CanvasLayer" instance=ExtResource("7_nhhnq")]
-visible = false
 
 [node name="Control" parent="CanvasLayer" instance=ExtResource("8_qssq7")]
 offset_left = 1638.0

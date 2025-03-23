@@ -249,6 +249,7 @@ offset_bottom = 396.0
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
 tooltip_text = "雌雄双股剑"
+to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
 img = ExtResource("11_ysr0e")
 itemstype = 5
 
@@ -256,6 +257,7 @@ itemstype = 5
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
 tooltip_text = "青龙偃月刀"
+to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
 img = ExtResource("12_g3hr8")
 itemstype = 6
 
@@ -263,6 +265,7 @@ itemstype = 6
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
 tooltip_text = "丈八蛇矛"
+to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
 img = ExtResource("13_xnv0q")
 itemstype = 7
 

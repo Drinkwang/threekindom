@@ -64,7 +64,6 @@ accepts = Array[int]([2, 6, 8])
 dialogue_resource = ExtResource("8_ct1l0")
 
 [node name="sendGiftPanel" parent="." instance=ExtResource("9_2k5hb")]
-visible = false
 
 [node name="糜竺" parent="." instance=ExtResource("6_ibudm")]
 visible = false

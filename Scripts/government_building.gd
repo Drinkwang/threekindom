@@ -683,16 +683,6 @@ func policyCo_opt():
 
 
 
-
-
-#	var _c=getFactionByIndex()
-#	var rindex=GameManager.sav.randomIndex
-
-#	_c.ChangeSupport(15+rindex)
-	
-
-
-
 	
 var ForValueCost=0
 var ForValueGet=0

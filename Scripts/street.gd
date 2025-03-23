@@ -192,6 +192,13 @@ func showFirstGuild():
 
 
 
+func merchantSendGift():
+	var _reward:rewardPanel=PanelManager.new_reward()
+	var items=GameManager.ScoreToItem(1000)
+	items.money=0
+	items.population=0
+	_reward.showTitileReward(tr("你从商人那边获得如下道具"),items)
+
 
 func visitDrill():
 	if GameManager.sav.day==4:

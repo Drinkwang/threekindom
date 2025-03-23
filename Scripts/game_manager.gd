@@ -625,7 +625,7 @@ func ScoreToItem(player_score):
 	var rng = RandomNumberGenerator.new()
 	# 随机决定获得几种道具 (1-3种)
 	var item_types = rng.randi_range(1,  items.size())
-	
+	var has_at_least_one_item = false 
 	# 随机分配道具
 	var remaining_score = player_score
 	for i in range(item_types):
@@ -633,11 +633,21 @@ func ScoreToItem(player_score):
 			break
 		rng = RandomNumberGenerator.new()	
 		# 随机选择一种道具
-		var item = items[i]
+		
+		var available_items = items.filter(func(item): return not gained_items.has(item.name))
+		if available_items.size()==0:
+			break
+		
+		var item = available_items[rng.randi_range(0, available_items.size() - 1)]
 		# 随机决定该道具数量 (1-3)
 		var max_count=remaining_score/item.cost
 		#print(max_count)
-		var item_count = min(rng.randi_range(0, max_count),3)
+		var item_count
+		if max_count>=1 and has_at_least_one_item==false:
+			item_count =min(rng.randi_range(1, max_count),3)
+			has_at_least_one_item=true
+		else:	
+			item_count = min(rng.randi_range(0, max_count),3)
 		
 		# 计算道具消耗的积分 (这里假设每件道具消耗10积分，可调整)
 		var item_cost = item_count * item.cost

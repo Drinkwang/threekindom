@@ -139,7 +139,7 @@ func _juideCompeleteTask():
 	#当玩家的值大于basevalue时，每提升10% 会有5%的提升 上部封顶 但是最多玩家将会获得100%的和平区域 也就是最多为rewardMax
 	var levelup= int(floor(curCoin /(btdatas.index)))*2+int(floor(curSoilder/(btdatas.index)))*10+(generalLevel*18)
 	
-	
+	buff_txt.text=""
 	if GameManager.sav.useItemInBattle==true:
 		levelup=levelup*1.05
 		buff_txt.text="道具加持+5%" #未来要注销
@@ -149,6 +149,8 @@ func _juideCompeleteTask():
 	var haveWeaponNum=0
 	var haveWeaponTxt=""
 	var weaponRate=0
+	if selectgeneral==null:
+		return 
 	if selectgeneral.name=="关羽":
 		haveWeaponNum=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.青龙偃月刀)
 		haveWeaponTxt="青龙偃月刀+8%"
@@ -172,11 +174,11 @@ func _juideCompeleteTask():
 
 	if haveWeaponNum>0:
 		levelup=levelup*(1+weaponRate)
-		buff_txt=buff_txt.text+"\n"+haveWeaponTxt
+		buff_txt.text=buff_txt.text+"\n"+haveWeaponTxt
 		buff_txt.show()
 		
 	if InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.雌雄双股剑)>0:
-		buff_txt=buff_txt.text+"\n"+"雌雄双股剑+1%"
+		buff_txt.text=buff_txt.text+"\n"+"雌雄双股剑+1%"
 		levelup=levelup*(1.01)
 		buff_txt.show()
 	#商城系统如果购买了武器，则取消这件装备继续卖出

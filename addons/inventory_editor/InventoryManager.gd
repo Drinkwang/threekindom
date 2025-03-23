@@ -7,7 +7,7 @@ extends Node
 
 signal inventory_changed(inventory_uuid)
 
-var _db = InventoryData.new()
+var _db = InventoryData.new()#判断问题所在 装备放在非装备背包
 var player
 
 var _path_to_type = "user://inventory.tres"
