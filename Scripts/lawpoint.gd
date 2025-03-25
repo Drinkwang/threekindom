@@ -47,7 +47,7 @@ func _ready():
 	
 	#print(num1)
 	#GameManager.sav.laws[num1].append(num1)	
-	if GameManager.sav.laws[num1].has(num2):
+	if GameManager.sav.laws!=null and GameManager.sav.laws[num1].has(num2):
 		self.isUnlock=true
 	
 	_initData()

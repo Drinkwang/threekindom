@@ -635,20 +635,25 @@ func sendgiftChoice():
 	else:
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"你没有礼物")#显示对话
 var lawName	
+var lalongPolicy=0
 #选项政策拉拢 #政策拉拢后 摇摆派系全部变成支持派系 25 50 75 100
 func policyCo_opt():
 	#按照徐州派要求，你得在 法律法规中通过【民田开垦】这条法律，如果通过 你将提升好感度，并且使该派系摇摆人数下降
 	#获取一个即将要的政策，是否通过议会厅 通过好感度上升，没通过好感度下降
 	#当玩家选择法律通过时，才会那啥
-	if GameManager.getCDByFaction(_faction) <1:
+	if GameManager.getCDByFaction(_faction) >0:
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"当前还在cd中")
 		return
 	#显示对话
 	
 	#var index= int(_faction)  #可能需要一个转换函数进行转换
 	var lawIndex= GameManager.enablePolicyCooptCD(_faction)		
-	var maxLaw=GameManager.sav.laws[lawIndex].max()
+	var maxLaw=0
 
+	if GameManager.sav.laws[lawIndex].size()>0:
+		maxLaw=GameManager.sav.laws[lawIndex].max()
+	else:
+		maxLaw=1
 	
 	#需要将法律法规+1或者+2
 	# 有一堆bug 需要修改，到时候需要判断最大值，最大值后面2个有无元素，如果没有 从余下政策，如果余下政策没有再提示已经满格了
@@ -668,10 +673,11 @@ func policyCo_opt():
 		pass
 	if unUseArr.size()>0:
 		
-		var pick= randi_range(0,unUseArr.size())
+		var pick= randi_range(0,unUseArr.size()-1)
 		var policyIndex=unUseArr[pick]
 		lawName=policy_panel.getPolicyName(lawIndex,policyIndex) #12
-		GameManager.sav.laws[lawIndex].append(-policyIndex)
+		lalongPolicy=-policyIndex
+		#GameManager.sav.laws[lawIndex].append(-policyIndex)
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"政策拉拢")#显示对话	
 	
 	else:
@@ -681,9 +687,17 @@ func policyCo_opt():
 		return
 		#你当前所有法律已经设置满格了，无法提供额外的法律去拉拢派系
 
+func consent():
+	if lalongPolicy!=0:
+		var lawIndex= GameManager.enablePolicyCooptCD(_faction)		
+		GameManager.sav.laws[lawIndex].append(lalongPolicy)
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"成功拉拢")#显示对话	
+	else:
+		print("意外拉拢错误，请监察源码")	
 
-
-	
+func cancelConsent():
+	lalongPolicy=0
+	SummonFaction(_faction)
 var ForValueCost=0
 var ForValueGet=0
 

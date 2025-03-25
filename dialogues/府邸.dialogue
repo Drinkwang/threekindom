@@ -210,6 +210,11 @@ else
 #该派系人数上升完成
 => END
 
+~ 当前还在cd中
+提示：当前派系已有一项法律{{lawName}}用于争取支持，请在{{GameManager.getCDByFaction(_faction)}}天内完成该法律的制定，否则将损失派系好感度。
+=> END
+
+
 ~ 索取完成
 你已成功从{{getFactionByIndex()._name}}手中获取资金{{ForValueGet}}，消耗{{ForValueCost}}点好感度
 #从xxx手中获取资金
@@ -276,7 +281,7 @@ else
 # : （是关羽、张飞么？）
 
 ~ 资金不足安抚
-提示: 你的金额不足以资金资助
+提示: 你必须有200金才能进行一次资金资助
 do SummonFaction(_faction)
 => END
 #资金安抚最多一周一次
@@ -765,9 +770,16 @@ do canSummonLvBu()
 - 答应
 	do consent()
 - 拒绝
-	do SummonFaction(_faction)
+	do cancelConsent()
+
 => END!
 
+~ 成功拉拢
+提示: 您已成功将政策‘{{lawName}}’纳入任务清单，以争取支持。请在七天内完成法律的立项，并在议事厅获得通过。
+do SoundManager.play_sound(sounds.buysellsound)
+
+#提示和播放音效
+=> END!
 ~ 徐州得安
 刘备: 今日徐州得安，全赖诸君同心。奉先将军威震泰山，臧霸等辈俯首，实乃天佑汉室！
 糜竺: 此话非也，丹阳兵归心、泰山诸将俯首，此皆玄德公以诚待人之果！

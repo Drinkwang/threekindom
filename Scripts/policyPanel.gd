@@ -173,9 +173,11 @@ var selectLawPoint:lawpoint
 func preLaw(value:lawpoint):
 	if await GameManager.isTried(costhp):
 		return
+	lawbutton.show()
 	selectLawPoint=value
 	law_label.text=value.detail
 	pass
+@onready var lawbutton = $lawPanel/DetailPanel/Button
 
 func excuteLaw(value:lawpoint):
 
@@ -240,7 +242,7 @@ func getPolicyName(lawIndex,policyIndex)->String:
 	
 	
 	
-	var lawPoint:lawpoint=law_panel.get_node("Control"+(lawIndex+1)+"-"+policyIndex)
+	var lawPoint:lawpoint=law_panel.get_node("Control"+var_to_str(lawIndex+1)+"-"+var_to_str(policyIndex))
 	return lawPoint.context
 
 @onready var currence_no_policy = $currenceNoPolicy
