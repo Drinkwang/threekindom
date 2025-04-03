@@ -40,6 +40,8 @@ func _ready():
 	#每次睡眠起床都调用这个选项
 	
 	
+@onready var bti_rect = $btiRect
+@onready var bit_player = $bitPlayer
 
 
 func _initData():
@@ -75,6 +77,16 @@ func _initData():
 		"visible":"true"
 	}
 	]
+	
+	var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.迷魂木筒)
+
+	if num>=1 and GameManager.sav_have_event["竹简幻觉剧情"]==false:
+		bti_rect.show()
+		GameManager.sav_have_event["竹简幻觉剧情"]=true
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁梦境")
+		#竹筒剧情完了，再次调用这边
+		#竹筒幻觉剧情 播放音效，改变背景，然后吓醒了 我觉得这个剧情可以放在早上，如果早上没有主线，则触发这个剧情，然后得知是一场噩梦
+		return 
 #const 街道 = preload("res://Asset/bgm/街道.mp3")
 	control._processList(initData)
 	GameManager.currenceScene=self
@@ -149,6 +161,16 @@ func post_transition():
 		SoundManager.play_music(daybgm)
 	_initData()
 
+func PlayBitPlayer():
+	bti_rect.hide()
+	bit_player.show()
+	bit_player.finished.connect(_on_video_player_finished)
+	bit_player.play()
+
+func _on_video_player_finished():
+	bit_player.hide()
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁梦境结束")
+
 
 func _buttonListClick(item):
 
@@ -183,9 +205,14 @@ func _buttonListClick(item):
 			pass
 			#if GameManager.sav.have_event["xxxx"]==false:
 			#	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"xxxx")	
-			#	return		
+			#	return	
 		control._show_button_5_yellow(-1)
-		GameManager._rest()
+
+			
+		GameManager._rest()	 
+		#判断有无道具 有道具且等于false	
+				
+
 
 		#FancyFade.new().custom_fade(load("res://Scene/sleepBlank.tscn").instantiate(), 2, DISSOLVE_IMAGE)
 	print(item)
@@ -249,11 +276,28 @@ func _DayGet():
 	await 0.8
 	res_panel.showValue=false
 	GameManager._DayGet()
+	
+	extraTask()
 	if(GameManager.sav.targetTxt!=null and GameManager.sav.targetTxt.length()>0):	
 		_JudgeTask()
 	# 好的我了解了，还有别的事么？
 	# 对，还有一键
 	# 很好，继续努力。如果任务没有完成 提示三选一
+
+
+func extraTask():
+	if GameManager.sav.day>5 and GameManager.sav.day<8:
+		if GameManager.sav.have_event["支线发现羊尸"]==false:
+			GameManager.sav.have_event["支线发现羊尸"]=true
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"支线开始")	
+		#将任务可检索设置成true
+		#如果任务为false  设置成true 并触发对话
+		elif GameManager.sav.have_event["支线触发完毕查出锦囊"]==true and GameManager.sav.have_event["支线触发完毕查出锦囊休息"]==false:
+			GameManager.sav.have_event["支线触发完毕查出锦囊休息"]=true
+	else:
+		pass
+		#将任务设置成false
+		
 
 
 func _JudgeTask():
@@ -326,3 +370,8 @@ func lookDoneCaoCaoLetter():
 	GameManager.sav.TargetDestination="府邸"
 	caocao_letter.hide()
 	pass
+	
+func sheepGnawed():
+	pass
+	#street 显示xxx
+	#GameManager.sav.have_event["支线发现羊尸"]=true

@@ -4,12 +4,15 @@
 class_name InventoryManagerItem
 
 
-enum ItemEnum { NONE,  益气丸, 胜战锦囊, 诸子百家论集, 珍品礼盒, 雌雄双股剑, 青龙偃月刀, 丈八蛇矛, 龙胆亮银枪, HelmetKnight, HelmetViking, ArmorKnight, ArmorViking, GlovesLeftKnight, GlovesLeftViking, GlovesRightKnight, GlovesRightViking, BootsKnight, BootsViking, ShieldKnight, ShieldViking, Gold2D, Metal2D, Horn2D, RecipeHelmetKnight2D, RecipeHelmetViking2D}
+enum ItemEnum { NONE,  益气丸, 胜战锦囊, 诸子百家论集, 珍品礼盒, 迷魂木筒, 黄麻药囊, 饥蛊骨签, 雌雄双股剑, 青龙偃月刀, 丈八蛇矛, 龙胆亮银枪, HelmetKnight, HelmetViking, ArmorKnight, ArmorViking, GlovesLeftKnight, GlovesLeftViking, GlovesRightKnight, GlovesRightViking, BootsKnight, BootsViking, ShieldKnight, ShieldViking, Gold2D, Metal2D, Horn2D, RecipeHelmetKnight2D, RecipeHelmetViking2D}
 
 const 益气丸 = "f4352b3f-8500-419f-9617-9da134d822f5"
 const 胜战锦囊 = "63015407-55c9-4729-887f-493fe2a624b7"
 const 诸子百家论集 = "af0ab25b-4add-4834-ad96-555efd2e629d"
 const 珍品礼盒 = "a9f24ca6-b213-4f07-a690-2185ffd6ec1d"
+const 迷魂木筒 = "2cac68ca-2e3e-4dce-abfa-a66cb1692750"
+const 黄麻药囊 = "de62e3cc-6908-412e-b1c3-f4a4393b1e12"
+const 饥蛊骨签 = "0ca56144-b9d4-4f47-9a27-1ced87906377"
 const 雌雄双股剑 = "cf240703-26ac-4a2a-88a7-1441ff6c6a0c"
 const 青龙偃月刀 = "5fa70d8d-c0d0-43d9-8260-6efa4fde008b"
 const 丈八蛇矛 = "52d0a7fa-b133-45f1-9b75-b9818c8599d2"
@@ -37,6 +40,9 @@ const ITEMS = [
  "胜战锦囊",
  "诸子百家论集",
  "珍品礼盒",
+ "迷魂木筒",
+ "黄麻药囊",
+ "饥蛊骨签",
  "雌雄双股剑",
  "青龙偃月刀",
  "丈八蛇矛",
@@ -70,6 +76,12 @@ static func item_by_enum(item_enum: ItemEnum) -> String:
 			return InventoryManagerItem.诸子百家论集
 		ItemEnum.珍品礼盒:
 			return InventoryManagerItem.珍品礼盒
+		ItemEnum.迷魂木筒:
+			return InventoryManagerItem.迷魂木筒
+		ItemEnum.黄麻药囊:
+			return InventoryManagerItem.黄麻药囊
+		ItemEnum.饥蛊骨签:
+			return InventoryManagerItem.饥蛊骨签
 		ItemEnum.雌雄双股剑:
 			return InventoryManagerItem.雌雄双股剑
 		ItemEnum.青龙偃月刀:

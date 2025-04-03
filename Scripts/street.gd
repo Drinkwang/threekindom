@@ -173,7 +173,10 @@ func _buttonListClick(item):
 		##打开商店ui换皮或者换页
 	elif item.context=="城门-军事驻地":
 		if(GameManager.sav.day>=4):
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"selectOutSide")
+			if GameManager.sav.have_event["支线发现羊尸"]==true and GameManager.sav.have_event["支线触发完毕调查过竹简"]==false:
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"selectOutSide_side")
+			else:
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"selectOutSide")
 			pass #给选项，可跳可不跳
 		else:
 			visitDrill()
@@ -181,6 +184,11 @@ func _buttonListClick(item):
 	#FancyFade.new().custom_fade(scene, 2, DISSOLVE_IMAGE)
 	pass
 	 # Replace with function body.
+
+func gotoWasteland():
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"探访荒地")
+	#显示黑屏
+	#播放荒地音效
 
 
 func showFirstGuild():
@@ -219,6 +227,21 @@ func visitScholar():
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大儒辩经的剧情")
 	#SceneManager.changeScene(SceneManager.roomNode.DRILL_GROUND,2)
 	
+func holdWoolden():
+	GameManager.sav.have_event["支线触发完毕调查过竹简"]=true
+	#增加道具
+	var _reward:rewardPanel=PanelManager.new_reward()
+	var items={
+		"items": {InventoryManagerItem.ItemEnum.迷魂木筒:1},
+		"money": 0,
+		"population": 0
+	}
+	#GameManager.ScoreToItem()
+	_reward.showTitileReward(tr("恭喜你，你获得-道具竹简"),items)	
+	#reward获得
+func BurySheep():
+	GameManager.changePeopleSupport(-10)
+	GameManager.sav.have_event["支线触发完毕调查过竹简"]=true
 	
 func showbianji():
 	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeOut)
