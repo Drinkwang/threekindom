@@ -1,13 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://dqpklssxni160"]
+[gd_scene load_steps=6 format=3 uid="uid://dqpklssxni160"]
 
 [ext_resource type="Script" path="res://Scripts/clickBlock.gd" id="1_es4xp"]
 [ext_resource type="Texture2D" uid="uid://c1o6guigf68iu" path="res://Asset/城镇建筑/灵堂亮.jpg" id="2_cxpov"]
 [ext_resource type="Texture2D" uid="uid://bye5cypeps08s" path="res://Asset/ui/4.png" id="3_gdvxu"]
+[ext_resource type="Texture2D" uid="uid://c8s24bx5r2xci" path="res://Asset/other/感叹号.png" id="4_es4ro"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eqsn2"]
 
 [node name="Node2D2" type="Node2D"]
 script = ExtResource("1_es4xp")
+showEX = null
 txt2d = ExtResource("2_cxpov")
 isHide = null
 metadata/_edit_vertical_guides_ = [-329.0]
@@ -53,5 +55,14 @@ grow_vertical = 0
 theme_override_constants/line_spacing = 2
 horizontal_alignment = 1
 autowrap_mode = 3
+
+[node name="exPoint" type="TextureRect" parent="."]
+visible = false
+offset_left = 25.0
+offset_top = -60.0
+offset_right = 153.0
+offset_bottom = 68.0
+scale = Vector2(0.285, 0.285)
+texture = ExtResource("4_es4ro")
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

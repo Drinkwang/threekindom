@@ -185,6 +185,10 @@ func _initData():
 		if GameManager.sav.have_event["LiuBeiSucceed"]==false:
 			GameManager.sav.have_event["LiuBeiSucceed"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"刘备接任徐州之主")
+	if GameManager.sav.have_event["查出药囊后休息前"]==true and GameManager.sav.have_event["锦囊咨询丹阳派"]==false:
+		caobao.dialogue_start="演武场克苏鲁剧情支线"
+		caobao.show()
+	
 	var initData=[
 	{	
 		"id":"1",
@@ -241,7 +245,10 @@ func _initData():
 		initData[2].visible="true"
 	control._processList(initData)
 
-
+func drillKeComplete():
+	caobao.hide()
+	caobao.dialogue_start=""
+	GameManager.sav.have_event["锦囊咨询丹阳派"]=true
 
 func _buttonListClick(item):
 	if item.context=="离开此地":

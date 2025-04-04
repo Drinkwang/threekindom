@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dbk6u8kc33kq2"]
+[gd_scene load_steps=15 format=3 uid="uid://dbk6u8kc33kq2"]
 
 [ext_resource type="Script" path="res://Scripts/government_building.gd" id="1_xncth"]
 [ext_resource type="Texture2D" uid="uid://dn505pu4q3c3g" path="res://Asset/城镇建筑/小沛亮.png" id="3_bo6x4"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://dkqpav04j4kua" path="res://Asset/ui/文书2.png" id="9_qwmo3"]
 [ext_resource type="Texture2D" uid="uid://cjgwjw0xpgmys" path="res://Asset/人物/糜竺眨眼.png" id="10_73x55"]
 [ext_resource type="Texture2D" uid="uid://doh7mxtgy0hm2" path="res://Asset/人物/陈登睁眼.png" id="12_quqka"]
+[ext_resource type="Texture2D" uid="uid://bb3edpq2iva10" path="res://Asset/人物/陶商陶应.png" id="13_f851a"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_xncth")
@@ -67,10 +68,10 @@ dialogue_resource = ExtResource("8_ct1l0")
 visible = false
 
 [node name="糜竺" parent="." instance=ExtResource("6_ibudm")]
-visible = false
 position = Vector2(420, 686)
 showName = "糜竺"
 dialogue_doubleclick = "点击糜竺"
+showEX = false
 txt2d = ExtResource("10_73x55")
 dialogue_resource = ExtResource("8_ct1l0")
 dialogue_start = "点击糜竺"
@@ -80,15 +81,26 @@ visible = false
 position = Vector2(984, 625)
 showName = "政府文书"
 dialogue_doubleclick = "look"
+showEX = false
 txt2d = ExtResource("9_qwmo3")
 dialogue_resource = ExtResource("8_ct1l0")
 dialogue_start = "look"
 
-[node name="陈登" parent="." instance=ExtResource("6_ibudm")]
+[node name="陶商陶应" parent="." instance=ExtResource("6_ibudm")]
 visible = false
+position = Vector2(955, 639)
+showName = "陶商/陶应"
+dialogue_doubleclick = "城外克苏鲁事件触发"
+showEX = true
+txt2d = ExtResource("13_f851a")
+dialogue_resource = ExtResource("8_ct1l0")
+dialogue_start = "点击陈登"
+
+[node name="陈登" parent="." instance=ExtResource("6_ibudm")]
 position = Vector2(1531, 671)
 showName = "陈登"
 dialogue_doubleclick = "点击陈登"
+showEX = false
 txt2d = ExtResource("12_quqka")
 dialogue_resource = ExtResource("8_ct1l0")
 dialogue_start = "点击陈登"

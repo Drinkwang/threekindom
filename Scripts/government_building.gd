@@ -54,6 +54,7 @@ func post_transition():
 	_initData()
 
 
+@onready var tsty = $"陶商陶应"
 
 
 func _initGroup(group):
@@ -126,9 +127,8 @@ func _initData():
 			var to_inventory= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.迷魂木筒)
 			var quantity=InventoryManager.has_item_quantity(to_inventory)
 			if quantity>=1:
-				GameManager.sav.have_event["支线触发完毕查出锦囊"]=true
-				
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"城外克苏鲁事件触发")
+				tsty.show()
+				#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"城外克苏鲁事件触发")
 		elif GameManager.sav.have_event["支线触发完毕查出锦囊休息"]==true and GameManager.sav.have_event["支线触发完毕获得锦囊之前"]==false:
 			GameManager.sav.have_event["支线触发完毕获得锦囊之前"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁府邸调查支线")
@@ -177,8 +177,10 @@ func _initData():
 	#	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"府邸第一天")
 #
 func subHoldWoold():
-	
-	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"城外克苏鲁事件触发")
+	GameManager.sav.have_event["支线触发完毕查出锦囊"]=true
+				
+	pass
+	#DialogueManlogue_balloon(dialogue_resource,"城外克苏鲁事件触发")
 	#dialog
 	
 var costHp_SummonOne=50
@@ -771,3 +773,23 @@ func lvbuJoin():
 	GameManager.sav.targetResType=GameManager.ResType.battle
 	GameManager.sav.targetTxt="当前讨伐对象：{currence}/{target}"
 	GameManager.sav.TargetDestination="battle"
+
+
+func burnSac():
+	#pass
+	#民心-5
+	GameManager.changePeopleSupport(-5)
+	
+
+func holdSac():
+	#GameManager.sav.have_event["支线触发完毕调查过竹简"]=true
+	#增加道具
+	var _reward:rewardPanel=PanelManager.new_reward()
+	var items={
+		"items": {InventoryManagerItem.ItemEnum.黄麻药囊:1},
+		"money": 0,
+		"population": 0
+	}
+	#GameManager.ScoreToItem()
+	_reward.showTitileReward(tr("恭喜你，你获得-黄麻药囊"),items)	
+	

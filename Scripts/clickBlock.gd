@@ -25,6 +25,21 @@ extends baseComponent
 			
 	get:
 		return showborder
+		
+@onready var ex_point = $exPoint
+		
+@export var showEX:bool=false:
+	set(value):
+		showEX=value
+	
+		if showEX==true:
+			ex_point.show()
+		else:
+			ex_point.hide()
+
+	get:
+		return showEX
+
 @export var txt2d:Texture2D:
 	#if Engine.editor_hint:
 	set(txt):
@@ -53,6 +68,13 @@ func _ready():
 		$Panel.hide()
 		
 	changeLanguage()	
+	
+	
+	if showEX==true:
+		ex_point.show()
+	else:
+		ex_point.hide()
+	
 	#const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
 	#$TextureRect.texture=preload('res://addons/transitions/images/blurry-noise.png')
 	#$Sprite2D.texture=load("res://Asset/内屋.jpg")
