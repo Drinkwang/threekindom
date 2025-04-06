@@ -148,6 +148,7 @@ func _initData():
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"今日收入为")
 	#if()
 	
+@onready var zhubu = $"文官"
 	
 		#将政务面板更新 里面列举了一堆list
 	#如果没见过陈登把control隐藏，如果见过了陈登 control不隐藏
@@ -157,9 +158,20 @@ func post_transition():
 	print("fadedone")
 	if GameManager.sav.hp<=20:
 		SoundManager.play_music(nightbgm)
+		#判断条件做最终支线，显示任务主簿，和点击点击事件
+		if GameManager.sav.have_event["锦囊咨询丹阳派"]==true and GameManager.sav.have_event["支线触发完毕获得骨杖"]==false:
+			zhubu.show()
+			zhubu.showEX=true
+		#特殊事件触发时
+			zhubu.dialogue_start="支线克苏鲁最终开始"
 	else:
 		SoundManager.play_music(daybgm)
 	_initData()
+func gotostreetAndKe(value):
+	GameManager.sav.finalKeChoice=value
+	const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
+	FancyFade.new().custom_fade(SceneManager.STREET.instantiate(), 2, DISSOLVE_IMAGE)
+
 
 func PlayBitPlayer():
 	bti_rect.hide()

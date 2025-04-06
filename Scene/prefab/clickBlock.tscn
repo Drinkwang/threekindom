@@ -9,7 +9,6 @@
 
 [node name="Node2D2" type="Node2D"]
 script = ExtResource("1_es4xp")
-showEX = null
 txt2d = ExtResource("2_cxpov")
 isHide = null
 metadata/_edit_vertical_guides_ = [-329.0]

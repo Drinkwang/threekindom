@@ -100,7 +100,6 @@ scale = Vector2(1.6384, 1.6384)
 visible = false
 position = Vector2(982, 546)
 showName = "曹豹"
-showEX = false
 txt2d = ExtResource("15_1y7hu")
 dialogue_resource = ExtResource("2_j02vm")
 dialogue_start = "点击糜竺"

@@ -227,9 +227,9 @@ do sheepGnawed()
 
 刘备: （此事我该如何决断？）
 - 让陶氏去当诱饵
-#选项完后进入街道 触发剧情
+do gotostreetAndKe(0)
 - 无需诱饵带兵追捕  
-#选项完后进入街道触发剧情
+do gotostreetAndKe(1)
 
 
 => END!

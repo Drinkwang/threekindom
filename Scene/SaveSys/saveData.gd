@@ -72,7 +72,7 @@ var _data = InventoryInventories.new()
 		if GameManager._engerge!=null:
 			GameManager._engerge.changerate(hp)
 		
-
+@export var finalKeChoice=-1
 @export var have_event = {
 	"firstmeetchenqun":false,
 	"firsthouse": false,
@@ -159,5 +159,6 @@ var _data = InventoryInventories.new()
 	"支线触发完毕获得锦囊之前":false,
 	"查出药囊后休息前":false, #如果药囊存在 而且休息则置为true
 	"锦囊咨询丹阳派": false, #如果上个为true，到演武场，则令曹豹出现，并可以点击触发支线
+	#卖粮第几天
 	"支线触发完毕获得骨杖":false,#
 }

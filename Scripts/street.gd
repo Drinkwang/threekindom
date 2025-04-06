@@ -14,7 +14,7 @@ func _ready():
 		bg.texture=newBuild
 	else:
 		bg.texture=xiaopeiBuild
-	#方便测试
+	#方便测试,可能会删？我第一次看到方便测试很迷惑
 	GameManager.sav.have_event["firstmeetchenqun"]=true
 
 
@@ -78,6 +78,20 @@ func post_transition():
 	
 	
 func _initData():
+	
+	
+	#	"锦囊咨询丹阳派": false, #如果上个为true，到演武场，则令曹豹出现，并可以点击触发支线
+	#卖粮第几天
+	#"支线触发完毕获得骨杖":false,#
+	
+	if GameManager.sav.have_event["锦囊咨询丹阳派"]==true and GameManager.sav.have_event["支线触发完毕获得骨杖"]==false:
+		GameManager.sav.have_event["支线触发完毕获得骨杖"]=true
+		var keValue=GameManager.sav.finalKeChoice
+		if keValue==0:
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"选项克苏鲁诱饵")
+		elif keValue==1:
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"选项克苏鲁追杀")
+		return #选选项，另外点击百姓
 	var initData=[
 	{	
 		"id":"1",
@@ -109,8 +123,22 @@ func _initData():
 		"context":"城门-军事驻地", #天数加1 进入过度
 		"visible":"true"
 	}]
+	
 	control._processList(initData)
 	
+func HuntdownKe():
+	var _reward:rewardPanel=PanelManager.new_reward()
+	var items={
+		"items": {InventoryManagerItem.ItemEnum.饥蛊骨签:1},
+		"money": 0,
+		"population": 0
+	}
+	#GameManager.ScoreToItem()
+	_reward.showTitileReward(tr("恭喜你，你获得-饥蛊骨签"),items)	
+
+func SurrenderKe():
+	GameManager.changePeopleSupport(-20)
+	#民心-20	
 #const HOUSE = preload("res://Scene/house.tscn")
 #const BOULEUTERION = preload("res://Scene/Bouleuterion.tscn")
 func _buttonListClick(item):
