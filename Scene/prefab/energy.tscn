@@ -1,32 +1,29 @@
-[gd_scene load_steps=15 format=3 uid="uid://dfolt063spdso"]
+[gd_scene load_steps=16 format=3 uid="uid://dfolt063spdso"]
 
 [ext_resource type="Script" path="res://Scripts/energy.gd" id="1_jga5a"]
-[ext_resource type="Texture2D" uid="uid://cpx3dc1mppace" path="res://Asset/blue/edgeblue.png" id="2_2gdco"]
+[ext_resource type="Texture2D" uid="uid://cokwnsbgr1bbx" path="res://Asset/ui/进度条1.png" id="2_minpr"]
+[ext_resource type="Texture2D" uid="uid://bl3r57njbdry0" path="res://Asset/ui/进度条背景.png" id="3_te6ew"]
+[ext_resource type="Texture2D" uid="uid://i3ibtlwjd72k" path="res://Asset/ui/进度条填色.png" id="4_2kuei"]
 [ext_resource type="Texture2D" uid="uid://djtlal0bexgms" path="res://Asset/人物/刘备2.png" id="6_e7d3e"]
-[ext_resource type="Texture2D" uid="uid://yxnjmxcqgl2u" path="res://addons/inventory_example/textures/inventories/Chest.png" id="7_kc6cl"]
+[ext_resource type="Texture2D" uid="uid://bjc3moxp0k6ww" path="res://Asset/宝箱.png" id="7_h24fi"]
+[ext_resource type="Shader" path="res://shader/brightness_outline.gdshader" id="7_vnqe7"]
 [ext_resource type="Texture2D" uid="uid://sswcvqf8xpgs" path="res://Asset/存档.png" id="8_k0wc5"]
-[ext_resource type="Texture2D" uid="uid://dxg4rn2x2mnw6" path="res://Asset/blue/meter_text_background_blue.png" id="8_k83a2"]
-[ext_resource type="Texture2D" uid="uid://chlh86v3ynxre" path="res://Asset/blue/bluehold.png" id="9_ggo0n"]
 [ext_resource type="PackedScene" uid="uid://bhu5hq8kx8pov" path="res://addons/inventory_example/inventories/simple/InventoryUI.tscn" id="9_loc21"]
 [ext_resource type="Texture2D" uid="uid://dy3bhyc470by4" path="res://Asset/blue/meter_icon_holder_blue.png" id="9_qjdqi"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gfnad"]
-texture = ExtResource("9_ggo0n")
-texture_margin_left = 110.0
-texture_margin_top = 85.0
-texture_margin_right = 145.0
-texture_margin_bottom = 35.0
-expand_margin_left = 85.0
-expand_margin_top = 83.0
-expand_margin_right = 95.0
-expand_margin_bottom = 89.0
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nj81s"]
+shader = ExtResource("7_vnqe7")
+shader_parameter/brightness = 1.0
+shader_parameter/outline_size = 0.25
+shader_parameter/outline_color = Color(0.233925, 0.233925, 0.233925, 1)
+shader_parameter/outline_threshold = 0.5
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xmc7k"]
-texture = ExtResource("2_2gdco")
-texture_margin_left = 80.0
-texture_margin_top = 80.0
-texture_margin_right = 80.0
-texture_margin_bottom = 80.0
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eexuo"]
+shader = ExtResource("7_vnqe7")
+shader_parameter/brightness = 1.525
+shader_parameter/outline_size = 0.0
+shader_parameter/outline_color = Color(0.233925, 0.233925, 0.233925, 1)
+shader_parameter/outline_threshold = 0.5
 
 [sub_resource type="Animation" id="Animation_pgtk5"]
 length = 0.001
@@ -74,28 +71,40 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jga5a")
 
-[node name="TextureRect2" type="TextureRect" parent="."]
+[node name="TextureRect3" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = -1
-offset_left = 682.0
-offset_top = 572.0
-offset_right = 1862.0
-offset_bottom = 974.0
-texture = ExtResource("8_k83a2")
+offset_left = 12.0
+offset_top = 26.0
+offset_right = 262.0
+offset_bottom = 510.0
+scale = Vector2(11.5, 11.5)
+texture = ExtResource("2_minpr")
+stretch_mode = 2
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
-layout_mode = 1
-anchors_preset = -1
-offset_left = 416.0
-offset_top = 435.0
-offset_right = 1770.0
-offset_bottom = 595.0
-theme_override_font_sizes/font_size = 81
-theme_override_styles/background = SubResource("StyleBoxTexture_gfnad")
-theme_override_styles/fill = SubResource("StyleBoxTexture_xmc7k")
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_left = 863.0
+offset_top = 267.0
+offset_right = 995.0
+offset_bottom = 307.0
+scale = Vector2(11.5, 11.5)
 value = 100.0
+texture_under = ExtResource("3_te6ew")
+texture_progress = ExtResource("4_2kuei")
+
+[node name="Label" type="Label" parent="TextureProgressBar"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 5.0
+offset_right = 133.0
+offset_bottom = 21.0
+text = "100%"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="."]
+visible = false
 layout_mode = 1
 offset_left = 22.0
 offset_top = 255.0
@@ -104,6 +113,7 @@ offset_bottom = 836.0
 texture = ExtResource("9_qjdqi")
 
 [node name="TextureRect" type="TextureRect" parent="TextureRect"]
+visible = false
 layout_mode = 0
 offset_left = 91.0
 offset_top = 87.0
@@ -115,37 +125,39 @@ stretch_mode = 4
 
 [node name="itemButton" type="TextureButton" parent="."]
 self_modulate = Color(0.776471, 0.776471, 0.776471, 1)
+material = SubResource("ShaderMaterial_nj81s")
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -576.0
-offset_top = 725.0
-offset_right = -476.0
-offset_bottom = 825.0
+offset_left = -725.0
+offset_top = 956.0
+offset_right = -625.0
+offset_bottom = 1056.0
 grow_horizontal = 0
-scale = Vector2(2.5, 2.5)
+scale = Vector2(5, 5)
 tooltip_text = "查看玩家持有的道具和装备"
-texture_normal = ExtResource("7_kc6cl")
+texture_normal = ExtResource("7_h24fi")
 stretch_mode = 6
 
 [node name="saveButton" type="TextureButton" parent="."]
+material = SubResource("ShaderMaterial_eexuo")
 layout_mode = 0
-offset_left = 911.0
-offset_top = 698.0
-offset_right = 975.0
-offset_bottom = 762.0
-scale = Vector2(4.5, 4.5)
+offset_left = 1874.0
+offset_top = 981.0
+offset_right = 1938.0
+offset_bottom = 1045.0
+scale = Vector2(7, 7)
 tooltip_text = "用于游戏存档/读档"
 texture_normal = ExtResource("8_k0wc5")
 
 [node name="TargetLabel" type="Label" parent="."]
 modulate = Color(0.980392, 0.980392, 0.980392, 1)
 layout_mode = 0
-offset_left = 35.0
-offset_top = 1000.0
-offset_right = 1717.0
-offset_bottom = 2373.0
+offset_left = 786.0
+offset_top = 2065.0
+offset_right = 2417.0
+offset_bottom = 3438.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0.494118, 0.419608, 0.341176, 1)
 theme_override_constants/shadow_offset_x = 2
@@ -155,7 +167,6 @@ theme_override_constants/shadow_outline_size = 4
 theme_override_constants/line_spacing = 1
 theme_override_font_sizes/font_size = 149
 text = "当前任务：无"
-horizontal_alignment = 2
 autowrap_mode = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="TargetLabel"]
@@ -167,14 +178,14 @@ libraries = {
 visible = false
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.563615
-anchor_top = -0.0866715
-anchor_right = 0.563615
-anchor_bottom = -0.0866715
-offset_left = -300.0
-offset_top = 100.0
-offset_right = 0.0
-offset_bottom = 400.0
+anchor_left = 0.450561
+anchor_top = -0.514529
+anchor_right = 0.450561
+anchor_bottom = -0.514529
+offset_left = -330.866
+offset_top = 118.448
+offset_right = -30.8656
+offset_bottom = 418.448
 grow_horizontal = 0
 scale = Vector2(4, 4)
 inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"

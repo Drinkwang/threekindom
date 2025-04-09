@@ -7,7 +7,7 @@ var inventoryManager
 const FancyFade = preload("res://addons/transitions/FancyFade.gd")
 #const DestinationScene = preload("res://Destination.tscn")
 @export var clear_inventory:bool = true
-@onready var tu_label = $CanvasInventory/tuLabel
+
 
 const HOUSE = preload("res://Scene/house.tscn")
 @onready var rule_book = $CanvasBook/ruleBook
@@ -76,12 +76,15 @@ func _input(event):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+@onready var hp_panel = $CanvasInventory/hpPanel
 
 func setTuLabel(la):
-	tu_label.text=la
+	hp_panel.target_label.text=la
+	#GameManager.sav.TargetDestination=la
+	#tu_label.text=la
 const MATCH_STRIKING = preload("res://Asset/sound/Match_striking.wav")
 func getcandle():
-	tu_label.text=""
+	hp_panel.target_label.text=""
 	SoundManager.play_sound(MATCH_STRIKING)
 	$"蜡烛".hide()
 	mask.show()

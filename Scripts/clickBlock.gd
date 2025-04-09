@@ -26,12 +26,16 @@ extends baseComponent
 	get:
 		return showborder
 		
+
 @onready var ex_point = $exPoint
-		
+
+
 @export var showEX:bool=false:
 	set(value):
 		showEX=value
 	
+		if ex_point==null:
+			return
 		if showEX==true:
 			ex_point.show()
 		else:

@@ -1,14 +1,21 @@
-[gd_scene load_steps=22 format=3 uid="uid://00xr1q336bgu"]
+[gd_scene load_steps=29 format=3 uid="uid://00xr1q336bgu"]
 
 [ext_resource type="Script" path="res://Scripts/drill_ground.gd" id="1_bhlt2"]
 [ext_resource type="Resource" uid="uid://d2qoinuor12dq" path="res://dialogues/演武场.dialogue" id="2_j02vm"]
+[ext_resource type="Texture2D" uid="uid://d2artvwe80df1" path="res://Asset/光明/正常背景.png" id="3_6mpdg"]
 [ext_resource type="AudioStream" uid="uid://brg1ltppwfyim" path="res://Asset/sound/闪电.mp3" id="3_et4pg"]
+[ext_resource type="Texture2D" uid="uid://5n7qchhi5h04" path="res://Asset/ui/底色.png" id="4_jcaye"]
 [ext_resource type="Texture2D" uid="uid://co4gx5oho7htc" path="res://Asset/城镇建筑/演武场1.png" id="4_n3gnp"]
 [ext_resource type="PackedScene" uid="uid://bhu5hq8kx8pov" path="res://addons/inventory_example/inventories/simple/InventoryUI.tscn" id="6_cu7sp"]
+[ext_resource type="Texture2D" uid="uid://cvvmn6dd4m0to" path="res://Asset/光明/演武场-正常.png" id="6_ujx5w"]
 [ext_resource type="PackedScene" uid="uid://bw52ymer7ngwu" path="res://Scene/prefab/gapanel.tscn" id="7_fpvim"]
+[ext_resource type="Texture2D" uid="uid://bgqbxd6ppt5s2" path="res://Asset/光明/装饰1-正常.png" id="7_hf8vl"]
+[ext_resource type="Texture2D" uid="uid://b7rbhnxj7r7wi" path="res://Asset/光明/装饰2-正常.png" id="8_dh2c1"]
 [ext_resource type="Texture2D" uid="uid://tyir1850nr6p" path="res://Asset/other/聚餐.png" id="8_phhxu"]
 [ext_resource type="PackedScene" uid="uid://ditcwds6nu8ga" path="res://Scene/prefab/soilderUpdatePanel.tscn" id="9_02127"]
+[ext_resource type="Texture2D" uid="uid://dlpu2s7rm4k33" path="res://Asset/光明/装饰底板.png" id="9_cpoy4"]
 [ext_resource type="PackedScene" uid="uid://cjsb43uugkud4" path="res://Scene/battleSys/battlePanel.tscn" id="10_gfhv4"]
+[ext_resource type="Texture2D" uid="uid://bjmquyl6mhboo" path="res://Asset/光明/参考图明亮.png" id="10_t7yoh"]
 [ext_resource type="FontFile" uid="uid://qv74ebpr4i31" path="res://Asset/Font/VonwaonBitmap-16px.ttf" id="11_014y5"]
 [ext_resource type="PackedScene" uid="uid://cw66yiofu8q6f" path="res://Scene/prefab/RuleBook.tscn" id="11_lkv7t"]
 [ext_resource type="PackedScene" uid="uid://bv5ycsl0a50uq" path="res://Scene/prefab/btnList.tscn" id="12_g1aky"]
@@ -65,6 +72,50 @@ script = ExtResource("1_bhlt2")
 dialogue_resource = ExtResource("2_j02vm")
 dialogue_start = "初入演武场"
 
+[node name="正常背景" type="Sprite2D" parent="."]
+position = Vector2(959, 540)
+scale = Vector2(2.23, 2.23)
+texture = ExtResource("3_6mpdg")
+
+[node name="底色" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(968, 544)
+scale = Vector2(2.25, 2.25)
+texture = ExtResource("4_jcaye")
+flip_h = true
+
+[node name="内饰" type="Sprite2D" parent="."]
+position = Vector2(960, 537)
+scale = Vector2(2.23, 2.23)
+texture = ExtResource("4_n3gnp")
+region_filter_clip_enabled = true
+
+[node name="标题" type="Sprite2D" parent="."]
+position = Vector2(961, 538)
+scale = Vector2(2.23, 2.23)
+texture = ExtResource("6_ujx5w")
+
+[node name="左饰" type="Sprite2D" parent="."]
+position = Vector2(340, 538)
+scale = Vector2(2.23, 2.23)
+texture = ExtResource("7_hf8vl")
+
+[node name="右饰" type="Sprite2D" parent="."]
+position = Vector2(1664, 538)
+scale = Vector2(2.23, 2.23)
+texture = ExtResource("8_dh2c1")
+
+[node name="底饰" type="Sprite2D" parent="."]
+position = Vector2(960, 533)
+scale = Vector2(2.23, 2.23)
+texture = ExtResource("9_cpoy4")
+
+[node name="正常背景2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(960, 537)
+scale = Vector2(2.23, 2.23)
+texture = ExtResource("10_t7yoh")
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 1.5
 one_shot = true
@@ -87,11 +138,6 @@ libraries = {
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Canvas闪电/ColorRect/AnimationPlayer"]
 stream = ExtResource("3_et4pg")
 
-[node name="演武场" type="Sprite2D" parent="."]
-position = Vector2(960.5, 539.5)
-scale = Vector2(4.18478, 3.74653)
-texture = ExtResource("4_n3gnp")
-
 [node name="bgs" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(895, 333)
 scale = Vector2(1.6384, 1.6384)
@@ -107,13 +153,6 @@ dialogue_start = "点击糜竺"
 [node name="CanvasButton" type="CanvasLayer" parent="."]
 
 [node name="CanvasInventory" type="CanvasLayer" parent="."]
-
-[node name="hpPanel" parent="CanvasInventory" instance=ExtResource("14_hgva0")]
-offset_left = 1535.0
-offset_top = -46.0
-offset_right = 1535.0
-offset_bottom = -46.0
-scale = Vector2(0.2, 0.2)
 
 [node name="InventoryAny" parent="CanvasInventory" instance=ExtResource("6_cu7sp")]
 visible = false
@@ -176,12 +215,6 @@ context = "备弟足下：
 lookdoneDialog = " 遇到曹操2"
 dialogue_resource = ExtResource("2_j02vm")
 
-[node name="Control" parent="CanvasInventory" instance=ExtResource("13_4p7r8")]
-offset_left = 1638.0
-offset_top = 770.0
-offset_right = 1678.0
-offset_bottom = 810.0
-
 [node name="point" type="Node2D" parent="CanvasInventory"]
 visible = false
 position = Vector2(1765, 660)
@@ -197,6 +230,19 @@ libraries = {
 "": SubResource("AnimationLibrary_4gull")
 }
 autoplay = "YELLOWGUILD"
+
+[node name="hpPanel" parent="CanvasInventory" instance=ExtResource("14_hgva0")]
+offset_left = 1395.0
+offset_top = 20.0
+offset_right = 1395.0
+offset_bottom = 20.0
+scale = Vector2(0.2, 0.2)
+
+[node name="resPanel" parent="CanvasInventory" instance=ExtResource("13_4p7r8")]
+offset_left = 1529.0
+offset_top = 673.0
+offset_right = 1825.0
+offset_bottom = 1009.0
 
 [node name="title" type="RichTextLabel" parent="."]
 visible = false

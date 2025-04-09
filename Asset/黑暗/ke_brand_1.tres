@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://b2fu1mfs02ggc"]
+
+[ext_resource type="Texture2D" uid="uid://bkanosrsb7i1s" path="res://Asset/黑暗/牌子.png" id="1_p8moe"]
+
+[resource]
+atlas = ExtResource("1_p8moe")
+region = Rect2(3, 173, 178, 72)

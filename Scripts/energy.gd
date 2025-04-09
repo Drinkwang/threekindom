@@ -1,19 +1,20 @@
 extends Control
 class_name energe
-@onready var progress_bar = $ProgressBar
+@onready var progress_bar = $TextureProgressBar
 
-# Called when the node enters the scene tree for the first time.
+# Called when th$TextureProgressBare node enters the scene tree for the first time.
 func _ready():
 	GameManager._engerge=self
 	changerate(GameManager.sav.hp)
 	pass # Replace with function body.
 
-
+@onready var rateLabel=$TextureProgressBar/Label
 func _process(delta):
 	if(GameManager.sav.targetTxt!=null and GameManager.sav.targetTxt.length()>0):
 		showTargetLabel()
 func changerate(rate):
 	progress_bar.value=rate
+	rateLabel.text=var_to_str(rate)+"%"
 
 @onready var target_label = $TargetLabel
 
@@ -37,7 +38,7 @@ func showTargetLabel():
 		elif GameManager.sav.TargetDestination=="大儒辩经":
 			target_label.text="任务已完成，请前往城外和大儒辩经触发下一阶段剧情"
 		else:
-			GameManager.sav.TargetDestination=GameManager.sav.TargetDestination	
+			target_label.text=GameManager.sav.TargetDestination	
 	else:
 		target_label.text=GameManager.sav.targetTxt.format({"target":targetValue,"currence":currenceValue})
 	pass

@@ -5,7 +5,7 @@ extends baseComponent
 @onready var train_panel = $CanvasInventory/trainPanel
 @onready var battle_pane:battlePanel = $CanvasInventory/battlePane
 #const _校场 = preload("res://Asset/bgm/校场.mp3")
-@onready var bg = $"演武场"
+@onready var bg = $"内饰"
 
 const xiaopeiBuild = preload("res://Asset/城镇建筑/演武场1.png")
 const newBuild = preload("res://Asset/城镇建筑/演武场2.png")

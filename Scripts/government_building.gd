@@ -61,7 +61,8 @@ func _initGroup(group):
 	if group==2:
 		pass
 	pass
-@onready var bg = $"内屋2"
+
+@onready var bg = $"内饰"
 const newBuild = preload("res://Asset/城镇建筑/宅邸亮.png")
 const xiaopeiBuild = preload("res://Asset/城镇建筑/小沛亮.png")
 # Called when the node enters the scene tree for the first time.

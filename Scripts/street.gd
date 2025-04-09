@@ -6,8 +6,7 @@ const FancyFade = preload("res://addons/transitions/FancyFade.gd")
 @onready var shop_panel = $CanvasLayer/shopPanel
 const xiaopeiBuild = preload("res://Asset/城镇建筑/集市1.png")
 const newBuild = preload("res://Asset/城镇建筑/集市2.png")
-@onready var bg = $"内屋"
-
+@onready var bg = $"内饰"
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if GameManager.sav.have_event["initXuzhou"]==true:

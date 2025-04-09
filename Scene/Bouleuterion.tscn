@@ -1,16 +1,23 @@
-[gd_scene load_steps=24 format=3 uid="uid://v5b54ln6hhwc"]
+[gd_scene load_steps=31 format=3 uid="uid://v5b54ln6hhwc"]
 
 [ext_resource type="Script" path="res://Scripts/Bouleuterion.gd" id="1_q6noc"]
 [ext_resource type="Resource" uid="uid://bte38wl3etklk" path="res://dialogues/灵堂.dialogue" id="2_56kjn"]
 [ext_resource type="Resource" uid="uid://cjbqxteqnpnrd" path="res://dialogues/议会厅.dialogue" id="2_who4l"]
+[ext_resource type="Texture2D" uid="uid://d2artvwe80df1" path="res://Asset/光明/正常背景.png" id="3_4n4ue"]
 [ext_resource type="Texture2D" uid="uid://bl3fimimqrbnh" path="res://Asset/城镇建筑/会议室旧.png" id="4_hs6t7"]
 [ext_resource type="PackedScene" uid="uid://dfolt063spdso" path="res://Scene/prefab/energy.tscn" id="4_vcm8i"]
+[ext_resource type="Texture2D" uid="uid://5n7qchhi5h04" path="res://Asset/ui/底色.png" id="4_wlpww"]
+[ext_resource type="Texture2D" uid="uid://wdgskqosf4fn" path="res://Asset/光明/议事厅-正常.png" id="6_dffsn"]
 [ext_resource type="PackedScene" uid="uid://ervc6220fre7" path="res://Scene/prefab/fspanel.tscn" id="6_mjg5e"]
 [ext_resource type="Texture2D" uid="uid://doh7mxtgy0hm2" path="res://Asset/人物/陈登睁眼.png" id="7_0cx3q"]
 [ext_resource type="PackedScene" uid="uid://cda4765v12icm" path="res://Scene/prefab/parliamentary.tscn" id="7_1m0jr"]
 [ext_resource type="PackedScene" uid="uid://v5uv2iy3evkb" path="res://Scene/prefab/numPanel.tscn" id="7_3iegf"]
+[ext_resource type="Texture2D" uid="uid://bgqbxd6ppt5s2" path="res://Asset/光明/装饰1-正常.png" id="7_34d4k"]
 [ext_resource type="Texture2D" uid="uid://cjgwjw0xpgmys" path="res://Asset/人物/糜竺眨眼.png" id="7_ggy3f"]
+[ext_resource type="Texture2D" uid="uid://b7rbhnxj7r7wi" path="res://Asset/光明/装饰2-正常.png" id="8_dxqc2"]
+[ext_resource type="Texture2D" uid="uid://dlpu2s7rm4k33" path="res://Asset/光明/装饰底板.png" id="9_xwmi1"]
 [ext_resource type="Texture2D" uid="uid://rmaibsw1yjqd" path="res://Asset/城镇建筑/5_yellow.png" id="10_o7uio"]
+[ext_resource type="PackedScene" uid="uid://ghiim2lkqkbe" path="res://Scene/prefab/propertyPanel.tscn" id="11_1q5rr"]
 [ext_resource type="PackedScene" uid="uid://bw52ymer7ngwu" path="res://Scene/prefab/gapanel.tscn" id="11_gm57k"]
 [ext_resource type="PackedScene" uid="uid://bhu5hq8kx8pov" path="res://addons/inventory_example/inventories/simple/InventoryUI.tscn" id="13_2g6k4"]
 [ext_resource type="PackedScene" uid="uid://cw66yiofu8q6f" path="res://Scene/prefab/RuleBook.tscn" id="14_7v3lb"]
@@ -105,32 +112,62 @@ script = ExtResource("1_q6noc")
 dialogue_resource = ExtResource("2_who4l")
 dialogue_start = "第一次开始议事"
 
+[node name="正常背景" type="Sprite2D" parent="."]
+position = Vector2(959, 540)
+scale = Vector2(2.23, 2.23)
+texture = ExtResource("3_4n4ue")
+
+[node name="底色" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(968, 544)
+scale = Vector2(2.25, 2.25)
+texture = ExtResource("4_wlpww")
+flip_h = true
+
+[node name="内饰" type="Sprite2D" parent="."]
+position = Vector2(960, 537)
+scale = Vector2(2.23, 2.23)
+texture = ExtResource("4_hs6t7")
+region_filter_clip_enabled = true
+
+[node name="标题" type="Sprite2D" parent="."]
+position = Vector2(961, 538)
+scale = Vector2(2.23, 2.23)
+texture = ExtResource("6_dffsn")
+
+[node name="左饰" type="Sprite2D" parent="."]
+position = Vector2(340, 538)
+scale = Vector2(2.23, 2.23)
+texture = ExtResource("7_34d4k")
+
+[node name="右饰" type="Sprite2D" parent="."]
+position = Vector2(1664, 538)
+scale = Vector2(2.23, 2.23)
+texture = ExtResource("8_dxqc2")
+
+[node name="底饰" type="Sprite2D" parent="."]
+position = Vector2(960, 533)
+scale = Vector2(2.23, 2.23)
+texture = ExtResource("9_xwmi1")
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 1.5
 one_shot = true
 
-[node name="Canvas闪电" type="CanvasLayer" parent="."]
+[node name="ui" type="CanvasLayer" parent="."]
 
-[node name="TextureRect" type="TextureRect" parent="Canvas闪电"]
-offset_left = 275.0
-offset_top = 140.0
-offset_right = 735.0
-offset_bottom = 428.0
-scale = Vector2(3, 3)
-texture = ExtResource("4_hs6t7")
-
-[node name="hpPanel" parent="Canvas闪电" instance=ExtResource("4_vcm8i")]
-offset_left = 1535.0
-offset_top = -46.0
-offset_right = 1535.0
-offset_bottom = -46.0
+[node name="hpPanel" parent="ui" instance=ExtResource("4_vcm8i")]
+offset_left = 1395.0
+offset_top = 20.0
+offset_right = 1395.0
+offset_bottom = 20.0
 scale = Vector2(0.2, 0.2)
 
-[node name="议事厅" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(968, 543)
-scale = Vector2(4.22174, 3.79167)
-texture = ExtResource("4_hs6t7")
+[node name="resPanel" parent="ui" instance=ExtResource("11_1q5rr")]
+offset_left = 1529.0
+offset_top = 673.0
+offset_right = 1825.0
+offset_bottom = 1009.0
 
 [node name="bgs" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(895, 333)
@@ -161,7 +198,6 @@ position = Vector2(534, 496)
 scale = Vector2(1.55, 1.55)
 showName = "糜竺"
 dialogue_doubleclick = "second"
-showEX = false
 txt2d = ExtResource("7_ggy3f")
 dialogue_resource = ExtResource("17_iu3mf")
 dialogue_start = "点击陈群"
@@ -172,7 +208,6 @@ position = Vector2(1402, 608)
 scale = Vector2(1.4, 1.4)
 showName = "陈登"
 dialogue_doubleclick = "second"
-showEX = false
 txt2d = ExtResource("7_0cx3q")
 dialogue_resource = ExtResource("17_iu3mf")
 dialogue_start = "点击陈群"

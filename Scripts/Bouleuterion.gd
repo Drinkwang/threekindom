@@ -41,7 +41,7 @@ func post_transition():
 	print("fadedone")
 	_initData()
 
-@onready var bg = $"Canvas闪电/TextureRect"
+@onready var bg = $"内饰"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

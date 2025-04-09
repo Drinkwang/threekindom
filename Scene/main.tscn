@@ -1,22 +1,34 @@
-[gd_scene load_steps=37 format=3 uid="uid://s5nlht40cbgw"]
+[gd_scene load_steps=44 format=3 uid="uid://s5nlht40cbgw"]
 
 [ext_resource type="PackedScene" uid="uid://dqpklssxni160" path="res://Scene/prefab/clickBlock.tscn" id="1_1yudk"]
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_di8p8"]
 [ext_resource type="Resource" uid="uid://bte38wl3etklk" path="res://dialogues/灵堂.dialogue" id="2_cebyh"]
+[ext_resource type="Texture2D" uid="uid://cmbisvj1kshvi" path="res://Asset/黑暗/克苏鲁背景.png" id="3_f4lf1"]
 [ext_resource type="AudioStream" uid="uid://brg1ltppwfyim" path="res://Asset/sound/闪电.mp3" id="3_pm2r8"]
 [ext_resource type="Texture2D" uid="uid://cwrhf5jbmvrep" path="res://Asset/城镇建筑/灵堂暗.png" id="4_k34jm"]
 [ext_resource type="Texture2D" uid="uid://cale1h2nqfdrh" path="res://Asset/ui/circle.png" id="5_o5px7"]
 [ext_resource type="Texture2D" uid="uid://c28818lbnjdk6" path="res://Asset/蜡烛.png" id="5_qjidl"]
 [ext_resource type="Shader" path="res://shader/light.gdshader" id="5_yxgd7"]
+[ext_resource type="Texture2D" uid="uid://8wbi6b7hx0a4" path="res://Asset/黑暗/克苏鲁装饰1.png" id="6_iqq1l"]
 [ext_resource type="Texture2D" uid="uid://yuphy67p1cut" path="res://Asset/人物/陶谦.png" id="7_av8xv"]
 [ext_resource type="Script" path="res://Scripts/flashLight.gd" id="7_tfp5g"]
+[ext_resource type="Texture2D" uid="uid://bmdasf0q8rvvu" path="res://Asset/黑暗/克苏鲁装饰2.png" id="7_vopk2"]
 [ext_resource type="PackedScene" uid="uid://bhu5hq8kx8pov" path="res://addons/inventory_example/inventories/simple/InventoryUI.tscn" id="8_2jw10"]
+[ext_resource type="Texture2D" uid="uid://ca0oiajtd4cr6" path="res://Asset/黑暗/克苏鲁底部.png" id="8_bllik"]
 [ext_resource type="Texture2D" uid="uid://yxnjmxcqgl2u" path="res://addons/inventory_example/textures/inventories/Chest.png" id="9_0v21a"]
+[ext_resource type="Texture2D" uid="uid://bym1hqj50vlm1" path="res://Asset/黑暗/参考图克苏鲁.png" id="9_i7hp6"]
+[ext_resource type="Texture2D" uid="uid://5n7qchhi5h04" path="res://Asset/ui/底色.png" id="9_r54bb"]
 [ext_resource type="PackedScene" uid="uid://bx77tf2wbqmk0" path="res://Scene/prefab/blink.tscn" id="10_qif51"]
 [ext_resource type="PackedScene" uid="uid://bv5ycsl0a50uq" path="res://Scene/prefab/btnList.tscn" id="11_j50k8"]
+[ext_resource type="Texture2D" uid="uid://b05amgnpr3yut" path="res://Asset/黑暗/黑暗灵堂.png" id="12_f76dl"]
 [ext_resource type="PackedScene" uid="uid://cw66yiofu8q6f" path="res://Scene/prefab/RuleBook.tscn" id="12_phx3k"]
 [ext_resource type="FontFile" uid="uid://qv74ebpr4i31" path="res://Asset/Font/VonwaonBitmap-16px.ttf" id="14_vuyqr"]
 [ext_resource type="Texture2D" uid="uid://b0ar00as8flf" path="res://Asset/other/Siren head for games.png" id="17_ggnt5"]
+[ext_resource type="PackedScene" uid="uid://dfolt063spdso" path="res://Scene/prefab/energy.tscn" id="22_iqts8"]
+[ext_resource type="PackedScene" uid="uid://ghiim2lkqkbe" path="res://Scene/prefab/propertyPanel.tscn" id="23_ensiq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_21veu"]
+shader = ExtResource("5_yxgd7")
 
 [sub_resource type="Animation" id="Animation_0bk4q"]
 resource_name = "闪烁"
@@ -38,15 +50,6 @@ tracks/0/keys = {
 _data = {
 "闪烁": SubResource("Animation_0bk4q")
 }
-
-[sub_resource type="Gradient" id="Gradient_sgdlq"]
-offsets = PackedFloat32Array(0.993976, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_uoxgf"]
-gradient = SubResource("Gradient_sgdlq")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_21veu"]
-shader = ExtResource("5_yxgd7")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ejvyd"]
 atlas = ExtResource("17_ggnt5")
@@ -155,6 +158,102 @@ dontTrutShizu = "不要相信士族!
 dialogue_resource = ExtResource("2_cebyh")
 dialogue_start = "this_is_a_node_title"
 
+[node name="正常背景" type="Sprite2D" parent="."]
+position = Vector2(959, 540)
+scale = Vector2(2.23, 2.23)
+texture = ExtResource("3_f4lf1")
+
+[node name="内饰" type="Sprite2D" parent="."]
+position = Vector2(960, 537)
+scale = Vector2(2.23, 2.23)
+texture = ExtResource("4_k34jm")
+
+[node name="灯" parent="." instance=ExtResource("1_1yudk")]
+visible = false
+position = Vector2(669, 401)
+scale = Vector2(2.68435, 2.68435)
+showborder = false
+txt2d = null
+dialogue_resource = ExtResource("2_cebyh")
+dialogue_start = "开灯"
+
+[node name="蜡烛" parent="." instance=ExtResource("1_1yudk")]
+position = Vector2(1029, 672)
+dialogue_doubleclick = "蜡烛"
+showborder = false
+txt2d = ExtResource("5_qjidl")
+dialogue_resource = ExtResource("2_cebyh")
+dialogue_start = "蜡烛"
+
+[node name="GPUParticles2D" parent="蜡烛" instance=ExtResource("10_qif51")]
+position = Vector2(0, -7)
+scale = Vector2(2.11572, 2.5281)
+
+[node name="陶谦" parent="." instance=ExtResource("1_1yudk")]
+visible = false
+position = Vector2(975, 563)
+showName = "陶谦的牌位"
+dialogue_doubleclick = "second"
+txt2d = ExtResource("7_av8xv")
+dialogue_resource = ExtResource("2_cebyh")
+dialogue_start = ""
+
+[node name="GPUParticles2D" parent="." instance=ExtResource("10_qif51")]
+position = Vector2(678, 395)
+scale = Vector2(1.45455, 1.59)
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+copy_mode = 2
+
+[node name="blank" type="Sprite2D" parent="BackBufferCopy"]
+position = Vector2(957, 544)
+scale = Vector2(2.26, 2.26)
+texture = ExtResource("9_r54bb")
+
+[node name="mask2" type="Sprite2D" parent="BackBufferCopy"]
+visible = false
+material = SubResource("ShaderMaterial_21veu")
+position = Vector2(1031, 672)
+scale = Vector2(4.571, 4.636)
+texture = ExtResource("5_o5px7")
+offset = Vector2(-0.59, 1.16)
+script = ExtResource("7_tfp5g")
+
+[node name="mask" type="Sprite2D" parent="BackBufferCopy"]
+material = SubResource("ShaderMaterial_21veu")
+position = Vector2(-299, 447)
+scale = Vector2(4.571, 4.603)
+texture = ExtResource("5_o5px7")
+offset = Vector2(-0.59, 1.16)
+script = ExtResource("7_tfp5g")
+
+[node name="标题" type="Sprite2D" parent="."]
+position = Vector2(961, 538)
+scale = Vector2(2.23, 2.23)
+texture = ExtResource("12_f76dl")
+
+[node name="左饰" type="Sprite2D" parent="."]
+position = Vector2(249, 538)
+scale = Vector2(2.23, 2.23)
+texture = ExtResource("6_iqq1l")
+
+[node name="右饰" type="Sprite2D" parent="."]
+position = Vector2(1631, 531)
+scale = Vector2(2.23, 2.23)
+texture = ExtResource("7_vopk2")
+
+[node name="底饰" type="Sprite2D" parent="."]
+position = Vector2(960, 533)
+scale = Vector2(2.23, 2.23)
+texture = ExtResource("8_bllik")
+
+[node name="正常背景2" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.482353)
+position = Vector2(960, 537)
+scale = Vector2(2.23, 2.23)
+texture = ExtResource("9_i7hp6")
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 1.5
 one_shot = true
@@ -178,73 +277,14 @@ libraries = {
 stream = ExtResource("3_pm2r8")
 
 [node name="内屋" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(960, 540)
 scale = Vector2(4.1913, 3.77778)
 texture = ExtResource("4_k34jm")
 
-[node name="灯" parent="." instance=ExtResource("1_1yudk")]
-visible = false
-position = Vector2(435, 301)
-scale = Vector2(2.68435, 2.68435)
-showborder = false
-showEX = false
-txt2d = null
-dialogue_resource = ExtResource("2_cebyh")
-dialogue_start = "开灯"
-
-[node name="GPUParticles2D" parent="." instance=ExtResource("10_qif51")]
-position = Vector2(430, 304)
-scale = Vector2(1.45455, 1.59)
-
 [node name="bgs" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(895, 333)
 scale = Vector2(1.6384, 1.6384)
-
-[node name="陶谦" parent="." instance=ExtResource("1_1yudk")]
-visible = false
-position = Vector2(1003, 779)
-scale = Vector2(1.6384, 1.6384)
-showName = "陶谦的牌位"
-dialogue_doubleclick = "second"
-showEX = false
-txt2d = ExtResource("7_av8xv")
-dialogue_resource = ExtResource("2_cebyh")
-dialogue_start = ""
-
-[node name="蜡烛" parent="." instance=ExtResource("1_1yudk")]
-visible = false
-position = Vector2(1090, 806)
-dialogue_doubleclick = "蜡烛"
-showborder = false
-showEX = false
-txt2d = ExtResource("5_qjidl")
-dialogue_resource = ExtResource("2_cebyh")
-dialogue_start = "蜡烛"
-
-[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
-copy_mode = 2
-
-[node name="blank" type="Sprite2D" parent="BackBufferCopy"]
-position = Vector2(1353.04, 746.926)
-scale = Vector2(10.7865, 1508.76)
-texture = SubResource("GradientTexture1D_uoxgf")
-
-[node name="mask2" type="Sprite2D" parent="BackBufferCopy"]
-visible = false
-material = SubResource("ShaderMaterial_21veu")
-position = Vector2(1096, 774)
-scale = Vector2(6.951, 7.05)
-texture = ExtResource("5_o5px7")
-offset = Vector2(-0.59, 1.16)
-script = ExtResource("7_tfp5g")
-
-[node name="mask" type="Sprite2D" parent="BackBufferCopy"]
-material = SubResource("ShaderMaterial_21veu")
-position = Vector2(-295, 455)
-scale = Vector2(6.951, 7)
-texture = ExtResource("5_o5px7")
-offset = Vector2(-0.59, 1.16)
-script = ExtResource("7_tfp5g")
 
 [node name="CanvasButton" type="CanvasLayer" parent="."]
 
@@ -276,12 +316,19 @@ grow_horizontal = 0
 inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
 metadata/_edit_use_anchors_ = true
 
-[node name="tuLabel" type="Label" parent="CanvasInventory"]
-offset_top = 3.0
-offset_right = 1919.0
-offset_bottom = 111.0
-theme_override_font_sizes/font_size = 24
-horizontal_alignment = 2
+[node name="hpPanel" parent="CanvasInventory" instance=ExtResource("22_iqts8")]
+offset_left = 1395.0
+offset_top = 20.0
+offset_right = 1395.0
+offset_bottom = 20.0
+scale = Vector2(0.2, 0.2)
+
+[node name="resPanel" parent="CanvasInventory" instance=ExtResource("23_ensiq")]
+visible = false
+offset_left = 1529.0
+offset_top = 673.0
+offset_right = 1825.0
+offset_bottom = 1009.0
 
 [node name="CanvasBook" type="CanvasLayer" parent="."]
 visible = false
@@ -321,11 +368,11 @@ visible = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 visible = false
-position = Vector2(466, 681)
-scale = Vector2(9.285, 9.285)
+position = Vector2(719, 626)
+scale = Vector2(5.5, 5.5)
 sprite_frames = SubResource("SpriteFrames_0bccw")
 autoplay = "default"
-frame_progress = 0.385104
+frame_progress = 0.499834
 
 [connection signal="ready" from="." to="蜡烛" method="_on_node_2d_ready"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
