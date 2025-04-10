@@ -60,7 +60,7 @@ var _data = InventoryInventories.new()
 @export var randomIndex=0
 
 @export var curLawName=""
-
+#辩经目标
 @export var curLawNum1=-1
 @export var curLawNum2=-1
 @export var useItemInBattle=false
