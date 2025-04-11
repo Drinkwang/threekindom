@@ -16,6 +16,7 @@ scale = Vector2(1.41087, 1.33659)
 texture = ExtResource("1_3lq2u")
 
 [node name="title2" type="RichTextLabel" parent="."]
+visible = false
 offset_left = 9.96845
 offset_top = 326.043
 offset_right = 1924.97
@@ -28,7 +29,6 @@ text = "[center][rainbow]梦[/rainbow][wave amp=50 frep=100]断[/wave][rainbow][
 tab_size = 6
 
 [node name="title" type="RichTextLabel" parent="."]
-visible = false
 offset_left = 5.0
 offset_top = 253.0
 offset_right = 1920.0
