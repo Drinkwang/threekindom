@@ -238,7 +238,7 @@ func _buttonListClick(item):
 			return
 			
 		if(GameManager.sav.have_event["initTask1"]==false):
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"未完成前离开")
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"未完成前召见手下")
 			return	
 		#GameManager.hp=GameManager.hp-costHp_SummonOne
 		if GameManager.sav.isMeet==false:

@@ -171,6 +171,7 @@ var policy_Item=[
 func _ready():
 	#DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
 	_enterDay()
+	SkipPrologue()
 	#_inventoryManager
 
 
@@ -582,19 +583,35 @@ func excuteLaw():
 	elif sav.curLawName=="边防法":#获得一些人口增加
 		#RewardLaw="一次性人口+100，丹阳派好感度+5，群众支持度+5，一次性收入+400  "
 		lawAction= func():
+			GameManager.sav.labor_force=GameManager.sav.labor_force+100
+			_WAIDIPAI.ChangeSupport(5)
+			GameManager.changePeopleSupport(5)
+			GameManager.sav.coin=GameManager.sav.coin+400
 			print("边防法")	
 	elif sav.curLawName=="军事训诂":
 		#RewardLaw="收益：丹阳派好感度+20，获得道具“胜战锦囊”x2，一次性人口+150 冲突：徐州好感度-15  "
 		lawAction= func():
-			print("军事训诂")	
+			#print("军事训诂")	
+			_BENTUPAI.ChangeSupport(-15)
+			var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.胜战锦囊)
+			var remainder = InventoryManager.add_item(inventoryPackege, itemid, 2, false)
+			sav.labor_force=sav.labor_force+150
+			_WAIDIPAI.ChangeSupport(20)
 	elif sav.curLawName=="军事装备法":
 		#RewardLaw="收益：每日收入+50，获得道具“益气丸”x2 冲突：豪族好感度-20 "
 		lawAction= func():
-			print("军事装备法")	
+			GameManager.sav.coin_DayGet=GameManager.sav.coin_DayGet+50
+			_HAOZUPAI.ChangeSupport(-20)
+			var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.益气丸)
+			var remainder = InventoryManager.add_item(inventoryPackege, itemid, 2, false)
+			
+			#print("军事装备法")	
 	elif sav.curLawName=="军事训练法":
 		#RewardLaw="收益：丹阳派好感度+30，每日人口+20，一次性人口+200 冲突：徐州好感度-25  "
 		lawAction= func():
 			print("军事训练法")	
+			WAIDIPAI.ChangeSupport(30)
+			GameManager.sav.labor_DayGet=GameManager.sav.labor_DayGet+20
 	elif sav.curLawName=="军事优拔法":
 		#RewardLaw="收益：丹阳派好感度+40，获得道具“胜战锦囊”x3，一次性收入+800 冲突：豪族好感度-30，群众支持度-10  "									
 		lawAction= func():
@@ -743,3 +760,19 @@ func recoverHp(value):
 func changeTaskLabel(_value):
 	GameManager.sav.TargetDestination=_value
 	_engerge.changeTargetLabel()
+
+#这里用作跳过序章
+func SkipPrologue():
+	var keys_to_change = [
+		"firstmeetchenqun", "firsthouse", "firststreet", "firstgovernment", "firstgovermentTip",
+		"firstPolicyOpShow", "firstPolicyCorrect", "firstTabLaw", "firstLawExecute", "firstParliamentary",
+		"Factionalization", "firstEnterBattle", "dayThreeEnterBattle", "dayTwoInit", "dayThreeInit",
+		"secondStreet", "firstTraining", "firstWar", "firstTrain", "threeStree",
+		"firstMeetingEnd", "streetBeginBouleuterion", "firstBattle", "firstBattleTutorial", "firstBattleEnd",
+		"firstVisitScholars", "firstVisitScholarsEnd", "firstNewEnd", "DemoFinish"
+	]
+	
+	# Set each key's value to true
+	for key in keys_to_change:
+		sav.have_event[key] = true
+	sav.day=5

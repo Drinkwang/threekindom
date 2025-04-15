@@ -314,7 +314,7 @@ func _DayGet():
 
 
 func extraTask():
-	if GameManager.sav.day>5 and GameManager.sav.day<8:
+	if GameManager.sav.day>6 and GameManager.sav.day<=9:
 		if GameManager.sav.have_event["支线发现羊尸"]==false:
 			GameManager.sav.have_event["支线发现羊尸"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"支线开始")	
@@ -328,8 +328,8 @@ func extraTask():
 			if quantity>0:
 				GameManager.sav.have_event["查出药囊后休息前"]=true
 				#下一步去演武场，判断这个==true，将曹豹显示并修改任务
-	else:
-		pass
+	elif  GameManager.sav.day>9:
+		GameManager.sav.have_event["支线发现羊尸"]=false
 		#将任务设置成false
 		
 
