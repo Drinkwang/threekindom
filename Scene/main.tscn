@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://s5nlht40cbgw"]
+[gd_scene load_steps=46 format=3 uid="uid://s5nlht40cbgw"]
 
 [ext_resource type="PackedScene" uid="uid://dqpklssxni160" path="res://Scene/prefab/clickBlock.tscn" id="1_1yudk"]
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_di8p8"]
@@ -26,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://b0ar00as8flf" path="res://Asset/other/Siren head for games.png" id="17_ggnt5"]
 [ext_resource type="PackedScene" uid="uid://dfolt063spdso" path="res://Scene/prefab/energy.tscn" id="22_iqts8"]
 [ext_resource type="PackedScene" uid="uid://ghiim2lkqkbe" path="res://Scene/prefab/propertyPanel.tscn" id="23_ensiq"]
+[ext_resource type="Shader" path="res://shader/brightness_outline.gdshader" id="26_wtvsq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_21veu"]
 shader = ExtResource("5_yxgd7")
@@ -50,6 +51,13 @@ tracks/0/keys = {
 _data = {
 "闪烁": SubResource("Animation_0bk4q")
 }
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0pih0"]
+shader = ExtResource("26_wtvsq")
+shader_parameter/brightness = 1.1
+shader_parameter/outline_size = 0.5
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/outline_threshold = 0.5
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ejvyd"]
 atlas = ExtResource("17_ggnt5")
@@ -317,6 +325,7 @@ inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
 metadata/_edit_use_anchors_ = true
 
 [node name="hpPanel" parent="CanvasInventory" instance=ExtResource("22_iqts8")]
+visible = false
 offset_left = 1395.0
 offset_top = 20.0
 offset_right = 1395.0
@@ -363,11 +372,21 @@ bbcode_enabled = true
 text = "[center][rainbow]阴[/rainbow][wave amp=50 frep=100]三国[/wave][rainbow]谋论[/rainbow]-[tornado]徐州篇[/tornado][/center][color=#ff0000]Red Text[/color]"
 tab_size = 6
 
+[node name="Label" type="Label" parent="."]
+offset_left = 415.0
+offset_top = 891.0
+offset_right = 1172.0
+offset_bottom = 1023.0
+theme_override_font_sizes/font_size = 46
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Control2" parent="." instance=ExtResource("11_j50k8")]
 visible = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 visible = false
+material = SubResource("ShaderMaterial_0pih0")
 position = Vector2(719, 626)
 scale = Vector2(5.5, 5.5)
 sprite_frames = SubResource("SpriteFrames_0bccw")

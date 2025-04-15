@@ -14,7 +14,7 @@ var costhp=35
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if GameManager.sav.hp<costhp:
-		
+	
 		button.disabled=true
 		
 		pass
@@ -34,9 +34,9 @@ func initControls():
 	#应该是第二天
 	if group==-1:
 		currence_no_policy.show()
-		$PanelContainer/orderPanel.hide()
+		$PanelContainer/orderPanel/VBoxContainer.hide()
 	else:
-		$PanelContainer/orderPanel.show()
+		$PanelContainer/orderPanel/VBoxContainer.show()
 		currence_no_policy.hide()
 		GameManager.currenceScene._initGroup(group)
 		control_1.initDataByGroup(1,group)
@@ -245,7 +245,7 @@ func getPolicyName(lawIndex,policyIndex)->String:
 	var lawPoint:lawpoint=law_panel.get_node("Control"+var_to_str(lawIndex+1)+"-"+var_to_str(policyIndex))
 	return lawPoint.context
 
-@onready var currence_no_policy = $currenceNoPolicy
+@onready var currence_no_policy = $PanelContainer/orderPanel/currenceNoPolicy
 
 func _on_exit_button_button_down():
 	SoundManager.play_sound(sounds.declinesound)

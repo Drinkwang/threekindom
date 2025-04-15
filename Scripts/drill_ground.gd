@@ -208,7 +208,7 @@ func _initData():
 	{
 		"id":"4",
 		"context":"休息",#前往大街
-		"visible":"true"
+		"visible":"false"
 	},
 
 	]

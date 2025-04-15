@@ -6,7 +6,14 @@ class_name energe
 func _ready():
 	GameManager._engerge=self
 	changerate(GameManager.sav.hp)
-	pass # Replace with function body.
+	changeTargetLabel()
+
+
+func changeTargetLabel():
+	if(GameManager.sav.targetTxt==null || GameManager.sav.targetTxt.length()==0):
+		if GameManager.sav.TargetDestination!=null and GameManager.sav.TargetDestination.length()>0:
+			target_label.text=GameManager.sav.TargetDestination
+	
 
 @onready var rateLabel=$TextureProgressBar/Label
 func _process(delta):

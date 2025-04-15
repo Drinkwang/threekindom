@@ -77,7 +77,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="文官" parent="." instance=ExtResource("7_7mriv")]
 visible = false
-position = Vector2(619, 503)
+position = Vector2(638, 775)
 showName = "主簿"
 dialogue_doubleclick = "second"
 txt2d = ExtResource("6_ys6bi")
@@ -86,7 +86,7 @@ dialogue_start = "点击陈群"
 
 [node name="陈群" parent="." instance=ExtResource("7_7mriv")]
 visible = false
-position = Vector2(1163, 766)
+position = Vector2(1288, 737)
 showName = "陈群"
 dialogue_doubleclick = "second"
 txt2d = ExtResource("6_8cvew")
@@ -173,7 +173,7 @@ tab_size = 6
 
 [node name="糜竺" parent="mainRount" instance=ExtResource("7_7mriv")]
 visible = false
-position = Vector2(534, 496)
+position = Vector2(630, 744)
 scale = Vector2(1.55, 1.55)
 showName = "糜竺"
 dialogue_doubleclick = "second"
@@ -183,7 +183,7 @@ dialogue_start = "点击陈群"
 
 [node name="陈登" parent="mainRount" instance=ExtResource("7_7mriv")]
 visible = false
-position = Vector2(1402, 608)
+position = Vector2(1282, 752)
 scale = Vector2(1.4, 1.4)
 showName = "陈登"
 dialogue_doubleclick = "second"

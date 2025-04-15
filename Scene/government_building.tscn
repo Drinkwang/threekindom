@@ -77,6 +77,19 @@ contextEX = "
 titleEX = "宴会完美举办成功！"
 dialogue_resource = ExtResource("8_ct1l0")
 
+[node name="hpPanel" parent="CanvasLayer" instance=ExtResource("7_iy2fq")]
+offset_left = 1395.0
+offset_top = 20.0
+offset_right = 1395.0
+offset_bottom = 20.0
+scale = Vector2(0.2, 0.2)
+
+[node name="resPanel" parent="CanvasLayer" instance=ExtResource("16_rw7iu")]
+offset_left = 1529.0
+offset_top = 673.0
+offset_right = 1825.0
+offset_bottom = 1009.0
+
 [node name="policyPanel" parent="CanvasLayer" instance=ExtResource("9_fdrkw")]
 visible = false
 anchors_preset = 0
@@ -97,23 +110,11 @@ happys = Array[int]([4, 8, 10])
 accepts = Array[int]([2, 6, 8])
 dialogue_resource = ExtResource("8_ct1l0")
 
-[node name="hpPanel" parent="CanvasLayer" instance=ExtResource("7_iy2fq")]
-offset_left = 1395.0
-offset_top = 20.0
-offset_right = 1395.0
-offset_bottom = 20.0
-scale = Vector2(0.2, 0.2)
-
-[node name="resPanel" parent="CanvasLayer" instance=ExtResource("16_rw7iu")]
-offset_left = 1529.0
-offset_top = 673.0
-offset_right = 1825.0
-offset_bottom = 1009.0
-
 [node name="sendGiftPanel" parent="." instance=ExtResource("9_2k5hb")]
 visible = false
 
 [node name="糜竺" parent="." instance=ExtResource("6_ibudm")]
+visible = false
 position = Vector2(674, 628)
 showName = "糜竺"
 dialogue_doubleclick = "点击糜竺"
@@ -141,9 +142,10 @@ dialogue_resource = ExtResource("8_ct1l0")
 dialogue_start = "点击陈登"
 
 [node name="陈登" parent="." instance=ExtResource("6_ibudm")]
+visible = false
 position = Vector2(1264, 624)
 showName = "陈登"
-dialogue_doubleclick = "点击陈登"
+dialogue_doubleclick = "点击陈登0"
 txt2d = ExtResource("12_quqka")
 dialogue_resource = ExtResource("8_ct1l0")
-dialogue_start = "点击陈登"
+dialogue_start = "点击陈登0"

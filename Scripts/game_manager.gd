@@ -147,21 +147,21 @@ var policy_Item=[
 		"id":4,
 		"index":1,
 		"name":"上策-以商代赈",
-		"detail":"将给与商人更多指示性目标,用行政命令迫使商业协助完成粮食问题，军队好感上升，获得一笔钱", #每天获取钱下降，任务凑钱正常
+		"detail":"将给与商人更多指示性目标,用行政命令迫使商业协助完成粮食问题，军队好感上升，但商业具有不稳定性，获得一笔不定额的金钱", #每天获取钱下降，任务凑钱正常
 		"group":1
 	},
 	{
 		"id":5,
 		"index":2,
 		"name":"中策-军粮自给",
-		"detail":"维持现状，继续让军队自行解决粮食问题，丹阳派好感小幅度下跌，获得资金200", #前往花园并通向小道，ps_任务凑齐的钱会少
+		"detail":"维持现状，继续让军队自行解决粮食问题，丹阳派好感小幅度下跌，因为政策不变可能会获得一笔因为政策惯性的收益", #前往花园并通向小道，ps_任务凑齐的钱会少
 		"group":1
 	},
 	{
 		"id":6,
 		"index":3,
 		"name":"下策-增大消费税",
-		"detail":"增大城市人口商业来往的纳税，会增加城市居民生活开销负担，但会让城市获得日均收入上升，徐州派好感小幅度下跌，军队好感上升 ", #前往花园并通向小道#，每天获取钱上升，任务凑钱多
+		"detail":"增大城市人口商业来往的纳税，会增加城市居民生活开销负担，但会让城市获得日均收入上升，所有派系好感小幅度下跌", #前往花园并通向小道#，每天获取钱上升，任务凑钱多
 		"group":1
 	},	
 ]
@@ -365,11 +365,14 @@ func extractPolicyItem(index,group):
 	#return policy_Item.filter(func(item): item.group== id)[0]
 	var ele=GameManager.policy_Item.filter(func(ele): return ele.group == group and ele.index==index)[0]
 	return ele
+	
+#需要在saveData定义一个对子的数据结构判断1是否执行 2是否执行	
 func getPolicyGroup() -> int:
-	if sav.day<4:
-		return 1
-	if sav.day==5:
-		return 2
+	if sav.policyExcute==false:
+		if sav.day<4:
+			return 1
+		if sav.day==5:
+			return 2
 		
 	return -1
 	#如果处于主线状态，则取出来的是主线，否则取出来的是随机数
@@ -737,3 +740,6 @@ func recoverHp(value):
 	#GameManager.sav.hp=
 	pass
 
+func changeTaskLabel(_value):
+	GameManager.sav.TargetDestination=_value
+	_engerge.changeTargetLabel()

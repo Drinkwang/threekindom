@@ -3,7 +3,7 @@ class_name saveData
 @export var saveScene:PackedScene=PackedScene.new()
 
 #GameManager
-@export var day=5
+@export var day=4
 #@export var intellectual_support=100 #士族支持度 一开始为100 当议会中 会出现支持和不支持以及摇摆 
 @export var people_surrport=100 #群众支持度 数值
 @export var coin=100 #金钱 数值
@@ -47,9 +47,17 @@ class_name saveData
 @export var targetValue=10000
 @export var targetResType:GameManager.ResType
 @export var policy_Item_index=1#政策数量
+@export var policyExcute=false
+
 var _data = InventoryInventories.new()
 @export var GrainIndex=0
 @export var laws=[[],[],[]]
+#@export var policy
+var number_bool_map: Dictionary = {
+	1: true,
+	2: false,
+	3: true
+}
 @export var RewardLaw=""
 @export var xuzhouCD=-1
 @export var haozuCD=-1
@@ -138,6 +146,7 @@ var _data = InventoryInventories.new()
 	"lvBuFinalDiscuss":false,#未用
 	"lvbuJoin":false,
 	"canSummonLvbu":false,
+	"糜竺推荐陈登":false,
 	"战斗袁术开始":false,
 	"战斗袁术任务完成":false,
 	"亲征跟糜竺对话":false,

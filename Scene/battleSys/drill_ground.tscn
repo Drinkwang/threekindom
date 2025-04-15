@@ -154,6 +154,19 @@ dialogue_start = "点击糜竺"
 
 [node name="CanvasInventory" type="CanvasLayer" parent="."]
 
+[node name="hpPanel" parent="CanvasInventory" instance=ExtResource("14_hgva0")]
+offset_left = 1395.0
+offset_top = 20.0
+offset_right = 1395.0
+offset_bottom = 20.0
+scale = Vector2(0.2, 0.2)
+
+[node name="resPanel" parent="CanvasInventory" instance=ExtResource("13_4p7r8")]
+offset_left = 1529.0
+offset_top = 673.0
+offset_right = 1825.0
+offset_bottom = 1009.0
+
 [node name="InventoryAny" parent="CanvasInventory" instance=ExtResource("6_cu7sp")]
 visible = false
 anchors_preset = 1
@@ -230,19 +243,6 @@ libraries = {
 "": SubResource("AnimationLibrary_4gull")
 }
 autoplay = "YELLOWGUILD"
-
-[node name="hpPanel" parent="CanvasInventory" instance=ExtResource("14_hgva0")]
-offset_left = 1395.0
-offset_top = 20.0
-offset_right = 1395.0
-offset_bottom = 20.0
-scale = Vector2(0.2, 0.2)
-
-[node name="resPanel" parent="CanvasInventory" instance=ExtResource("13_4p7r8")]
-offset_left = 1529.0
-offset_top = 673.0
-offset_right = 1825.0
-offset_bottom = 1009.0
 
 [node name="title" type="RichTextLabel" parent="."]
 visible = false

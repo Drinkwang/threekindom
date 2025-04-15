@@ -77,13 +77,15 @@ func _input(event):
 func _process(delta):
 	pass
 @onready var hp_panel = $CanvasInventory/hpPanel
+@onready var tu_label = $Label
 
 func setTuLabel(la):
 	hp_panel.target_label.text=la
 	#GameManager.sav.TargetDestination=la
-	#tu_label.text=la
+	tu_label.text=la
 const MATCH_STRIKING = preload("res://Asset/sound/Match_striking.wav")
 func getcandle():
+	tu_label.text=""
 	hp_panel.target_label.text=""
 	SoundManager.play_sound(MATCH_STRIKING)
 	$"蜡烛".hide()

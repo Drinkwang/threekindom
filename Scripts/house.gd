@@ -80,7 +80,7 @@ func _initData():
 	
 	var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.迷魂木筒)
 
-	if num>=1 and GameManager.sav_have_event["竹简幻觉剧情"]==false:
+	if num>=1 and GameManager.sav.have_event["竹简幻觉剧情"]==false:
 		bti_rect.show()
 		GameManager.sav_have_event["竹简幻觉剧情"]=true
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁梦境")
@@ -94,7 +94,7 @@ func _initData():
 		if(GameManager.sav.have_event["firstmeetchenqun"]==false):
 			GameManager.sav.have_event["firstmeetchenqun"]=true
 			policyPanel.contextEX=tr("1.前往府邸看看堆积的工作\n2.前往演武场会见自己的老下属")
-	
+			GameManager.changeTaskLabel("当前任务：完成今日政务所有事项")
 		
 		
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
@@ -104,6 +104,7 @@ func _initData():
 			control._show_button_5_yellow(1)
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新的一天")
 			policyPanel.contextEX=tr("1.前往府邸回见不同派系的领导人\n2.前往议会通过昨天立的法律")
+			GameManager.changeTaskLabel("当前任务：完成今日政务所有事项")
 			GameManager.sav.destination="府邸"
 		#设置des
 	elif GameManager.sav.day==3:
@@ -112,6 +113,7 @@ func _initData():
 			GameManager.sav.have_event["dayThreeInit"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第三天")
 			policyPanel.contextEX=tr("1.前往城外军事驻地，讨伐土匪")
+			#GameManager.changeTaskLabel("当前任务:前往城外军事驻地，讨伐土匪")
 			GameManager.sav.destination="城门-军事驻地"
 		#军事行动 镇压土匪
 		#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新的一天")
@@ -137,6 +139,7 @@ func _initData():
 		#大儒辩经文 今天结束时，展示最终对话
 	elif GameManager.sav.day==5:
 		if GameManager.sav.have_event["DemoFinish"]==false:
+			GameManager.changeTaskLabel("")
 			GameManager.sav.have_event["DemoFinish"]=true
 			control.hide()
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新手关结束")	
@@ -237,6 +240,8 @@ func showFirstGuild():
 	control.show()
 	control._show_button_5_yellow(0)
 	$"陈群".hide()
+	#这句代码没有作用，以防万一添加进行初始化
+	GameManager.sav.policyExcute=false
 
 	pass
 	
@@ -266,9 +271,20 @@ func demoFinish():
 	
 	#if day==5:
 	#demo 完结 正式版内容
-	const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
+	#
+	#这句话放在黑屏转场并且播放央视声音
+	#旁白: 公元194年末，刘备入主徐州，同时他将州治迁往下邳，一场新的权力的游戏开始了 
+
+	GameManager.restLabel=tr("公元194年末，刘备入主徐州，同时他将州治迁往下邳，一场新的权力的游戏开始了！")
+	GameManager.restFadeScene=SceneManager.GOVERNMENT_BUILDING
+	#播放声音
+	GameManager._rest(false)
+	
+	
+	#府邸改成 进去触发对话，对话完触发主线内容
+	#const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
 		
-	FancyFade.new().custom_fade(SceneManager.GOVERNMENT_BUILDING.instantiate(), 2, DISSOLVE_IMAGE)
+	#FancyFade.new().custom_fade(SceneManager.GOVERNMENT_BUILDING.instantiate(), 2, DISSOLVE_IMAGE)
 
 
 func fadeInAndOut():

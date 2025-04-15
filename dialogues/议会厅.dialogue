@@ -13,7 +13,7 @@ do hideGuild()
 => END
 
 ~ 开始议事
- : 一段富有成效的沟通，议事中针对【{{sav.curLawName}}】立法坦率交换了意见
+ : 一段富有成效的沟通，议事中针对【{{GameManager.sav.curLawName}}】立法坦率交换了意见
 do showResult()
 => END
 
@@ -54,9 +54,10 @@ do chendenOpen()
 陈登 : 这样如何，我们把刘备扶持为徐州之主，这样也不算改陶大人的意思
 do mizhuxiao()
 糜竺 : 正有此意，但这种事情如何让丹阳派不从中使绊子呢？哪怕我们成功了，也不能保证陶谦旧部不反扑
-do ymlShowEnd()
-陈登 : 简单，我们借着这个由头，将州治从郯城迁往下邳..这样就能摆脱陶谦旧部的袭扰了..
+
+陈登 : 简单，我们借着这个由头，将州治从郯城迁往下邳..换个地盘，这样就能摆脱陶谦旧部的袭扰了..
 糜竺 : 妙，妙啊，哈哈哈
+do ymlShowEnd()
 => END
 
 ~ 当前不存在法律
@@ -70,7 +71,7 @@ do ymlShowEnd()
 
 ~ 通过法案
 #该法案可以改成实际名字，视实际情况而定
-提示: 成功通过[{{sav.curLawName}}]！{{GameManager.RewardLaw}}
+提示: 成功通过[{{GameManager.sav.curLawName}}]！{{GameManager.RewardLaw}}
 do GetLawClaimRevenue()
 #徐州派好感度提升
 #每日金币收益增加

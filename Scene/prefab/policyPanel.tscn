@@ -62,6 +62,19 @@ theme_override_constants/margin_left = 25
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 
+[node name="currenceNoPolicy" type="Label" parent="PanelContainer/orderPanel"]
+visible = false
+layout_mode = 2
+theme_override_constants/shadow_offset_x = 215
+theme_override_constants/shadow_offset_y = 150
+theme_override_constants/outline_size = 10
+theme_override_constants/shadow_outline_size = 440
+theme_override_font_sizes/font_size = 66
+text = "当前无政策可以实施，
+请改日再来看吧！"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/orderPanel"]
 layout_mode = 2
 
@@ -1155,21 +1168,6 @@ texture_hover = ExtResource("7_ogak8")
 texture_disabled = ExtResource("7_ogak8")
 texture_focused = ExtResource("7_ogak8")
 stretch_mode = 0
-
-[node name="currenceNoPolicy" type="Label" parent="."]
-visible = false
-layout_mode = 0
-offset_right = 1924.0
-offset_bottom = 1084.0
-theme_override_constants/shadow_offset_x = 215
-theme_override_constants/shadow_offset_y = 150
-theme_override_constants/outline_size = 10
-theme_override_constants/shadow_outline_size = 440
-theme_override_font_sizes/font_size = 66
-text = "当前无政策可以实施，
-请改日再来看吧！"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [connection signal="gui_input" from="PanelContainer/orderPanel/VBoxContainer/orderVbox/Control_1" to="." method="_on_control_1_gui_input"]
 [connection signal="gui_input" from="PanelContainer/orderPanel/VBoxContainer/orderVbox/Control_2" to="." method="_on_control_2_gui_input"]

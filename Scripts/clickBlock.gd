@@ -119,7 +119,9 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 
 
 
-
+func changeAllClick(_value):
+	dialogue_start=_value
+	dialogue_doubleclick=_value
 
 func _on_timer_timeout():
 

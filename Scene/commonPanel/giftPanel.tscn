@@ -147,7 +147,7 @@ text = "取消"
 layout_mode = 2
 size_flags_horizontal = 10
 
-[connection signal="button_down" from="Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/sendGift" to="." method="_on_send_gift_button_down"]
 [connection signal="button_down" from="Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/sendGift" to="." method="_on_rest"]
-[connection signal="button_down" from="Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/cancel" to="." method="_on_cancel_button_down"]
+[connection signal="button_down" from="Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/sendGift" to="." method="_on_send_gift_button_down"]
 [connection signal="button_down" from="Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/cancel" to="." method="_on_cancel"]
+[connection signal="button_down" from="Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/cancel" to="." method="_on_cancel_button_down"]

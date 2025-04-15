@@ -133,6 +133,21 @@ func _initData():
 		elif GameManager.sav.have_event["支线触发完毕查出锦囊休息"]==true and GameManager.sav.have_event["支线触发完毕获得锦囊之前"]==false:
 			GameManager.sav.have_event["支线触发完毕获得锦囊之前"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁府邸调查支线")
+	else :
+		if GameManager.sav.day>5:
+			if(GameManager.sav.have_event["initTask1"]==true):
+				pass
+				#if(GameManager.sav.have_event["initTask1"]==false):
+				#	chenden.show()
+				#	chenden.changeAllClick("点击陈登")
+				#if(GameManager.sav.have_event["initTask1"]==false):
+				#	mizhu.show()
+				#	mizhu.changeAllClick("点击糜竺")	
+					#chenden
+				#判断陈登有无第一次对话，若无则生成
+				#判断糜竺有无进行第一次对话，若无则生成	
+				#如果没有支线则生成
+			#pass				
 	GameManager.currenceScene=self
 	policy_panel.initControls()
 #	if GameManager.sav.day>=1:
@@ -189,6 +204,7 @@ var costHp_policy=35
 func _buttonListClick(item):
 	#35点
 	if item.context == "执行政策":
+		#if policy_panel.tab_bar.current_tab==0:
 		policy_panel.initControls()
 		#if await GameManager.isTried(costHp_policy):
 		#	return 
@@ -203,21 +219,27 @@ func _buttonListClick(item):
 		elif(GameManager.sav.day==2):
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第二天的提示")
 		elif GameManager.sav.day==5:
-			if(GameManager.sav.have_event["initTask1"]==false):
+			if(GameManager.sav.have_event["initTask1"]==false and GameManager.sav.have_event["糜竺推荐陈登"]==true):
 				#pass 跳转到下一个政策
-				GameManager.sav.have_event["initTask1"]=true
+				#GameManager.sav.have_event["initTask1"]=true
 				policy_panel.show()
 				
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"主线第一次指定政策")
+			elif GameManager.sav.have_event["糜竺推荐陈登"]==false:
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"没有对话前不能执行政策")
+			else:
+				policy_panel.show()
 		else:
 			policy_panel.show()
-			#执行到第二个决策点
-			#后续逻辑，但
-			pass			
+
 	#50点	
 	elif item.context == "召见手下":
 		if await GameManager.isTried(costHp_SummonOne):
 			return
+			
+		if(GameManager.sav.have_event["initTask1"]==false):
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"未完成前离开")
+			return	
 		#GameManager.hp=GameManager.hp-costHp_SummonOne
 		if GameManager.sav.isMeet==false:
 			optionSummonOnemen()
@@ -283,19 +305,35 @@ func optionSummonOnemen():
 		else:	
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"召见手下2")	
 
+func showMizhuTouchMain():
+	mizhu.show()
+	mizhu.showEX=true
+	#chenden.hide()
+	mizhu.dialogue_start="府邸主线"
+	mizhu.dialogue_doubleclick="府邸主线"
+	GameManager.changeTaskLabel("当前任务:与手下谈谈")
+	pass
+
 func showFirstMission():
-	GameManager.sav.targetValue=200
+	GameManager.sav.policyExcute=false
+	GameManager.sav.have_event["糜竺推荐陈登"]=true
+	GameManager.sav.targetValue=1000
 	GameManager.sav.targetResType=GameManager.ResType.coin
 	GameManager.sav.targetTxt="当前凑集资金：{currence}/{target}"
 	GameManager.sav.TargetDestination="府邸"
+	GameManager.changeTaskLabel("当前任务:执行政策")
+	chenden.hide()
+	mizhu.hide()
 func exit():
 	const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
 	FancyFade.new().custom_fade(SceneManager.STREET.instantiate(), 2, DISSOLVE_IMAGE)
 
 const BENTUPAI = preload("res://Asset/tres/bentupai.tres")
 const HAOZUPAI = preload("res://Asset/tres/haozupai.tres")
+var getCoin
 func selectPolicy(data):
 	var id=data.id
+	GameManager.sav.policyExcute=true
 	if id==1:
 		#额外buff填写
 		selectCorrect()
@@ -317,7 +355,9 @@ func selectPolicy(data):
 		HAOZUPAI.ChangeSupport(10)
 		BENTUPAI.ChangeSupport(-10)
 		GameManager.changePeopleSupport(-10)
-		GameManager.sav.coin=GameManager.sav.coin+50
+		#200-500
+		getCoin=randi_range(200,500)
+		GameManager.sav.coin=GameManager.sav.coin+getCoin
 		GameManager.sav.have_event["initTask1"]=true
 		#商业促进
 	elif id== policymanager.policyID.P_SUPPLIES_SELF_SUFFIENCY:
@@ -326,6 +366,7 @@ func selectPolicy(data):
 		GameManager.sav.have_event["initTask1"]=true
 		HAOZUPAI.ChangeSupport(-5)
 		GameManager.changePeopleSupport(5)
+		GameManager.sav.coin=GameManager.sav.coin+200
 		#@export var  coin=100 #金钱 数值
 		#@export var coin_DayGet=20
 		#labor_DayGet
@@ -343,7 +384,7 @@ func selectPolicy(data):
 		HAOZUPAI.ChangeSupport(10)
 		BENTUPAI.ChangeSupport(-20)
 		GameManager.changePeopleSupport(-20)
-		GameManager.sav.coin_DayGet=GameManager.sav.coin_DayGet+10
+		GameManager.sav.coin_DayGet=GameManager.sav.coin_DayGet+30
 		GameManager.sav.have_event["initTask1"]=true
 		#提升关税
 		#GameManager._engerge.ref

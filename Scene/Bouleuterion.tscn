@@ -194,8 +194,8 @@ metadata/_edit_use_anchors_ = true
 
 [node name="糜竺" parent="CanvasBook" instance=ExtResource("15_2mi3t")]
 visible = false
-position = Vector2(534, 496)
-scale = Vector2(1.55, 1.55)
+position = Vector2(679, 583)
+scale = Vector2(1.3, 1.3)
 showName = "糜竺"
 dialogue_doubleclick = "second"
 txt2d = ExtResource("7_ggy3f")
@@ -204,8 +204,8 @@ dialogue_start = "点击陈群"
 
 [node name="陈登" parent="CanvasBook" instance=ExtResource("15_2mi3t")]
 visible = false
-position = Vector2(1402, 608)
-scale = Vector2(1.4, 1.4)
+position = Vector2(1217, 585)
+scale = Vector2(1.2, 1.2)
 showName = "陈登"
 dialogue_doubleclick = "second"
 txt2d = ExtResource("7_0cx3q")
