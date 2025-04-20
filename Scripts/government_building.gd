@@ -205,6 +205,7 @@ func _buttonListClick(item):
 	#35点
 	if item.context == "执行政策":
 		#if policy_panel.tab_bar.current_tab==0:
+		policy_panel._initData()
 		policy_panel.initControls()
 		#if await GameManager.isTried(costHp_policy):
 		#	return 
@@ -316,12 +317,13 @@ func showMizhuTouchMain():
 
 func showFirstMission():
 	GameManager.sav.policyExcute=false
+	GameManager.changeTaskLabel("")
 	GameManager.sav.have_event["糜竺推荐陈登"]=true
 	GameManager.sav.targetValue=1000
 	GameManager.sav.targetResType=GameManager.ResType.coin
 	GameManager.sav.targetTxt="当前凑集资金：{currence}/{target}"
 	GameManager.sav.TargetDestination="府邸"
-	GameManager.changeTaskLabel("当前任务:执行政策")
+
 	chenden.hide()
 	mizhu.hide()
 func exit():

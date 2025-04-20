@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_12"
+type="Resource"
+uid="uid://d063omx4eda58"
+path="res://.godot/imported/系统.dialogue-20a13c9b572007759eed4171c7c22df1.tres"
+
+[deps]
+
+source_file="res://dialogues/系统.dialogue"
+dest_files=["res://.godot/imported/系统.dialogue-20a13c9b572007759eed4171c7c22df1.tres"]
+
+[params]
+
+defaults=true

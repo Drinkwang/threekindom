@@ -63,7 +63,7 @@ var number_bool_map: Dictionary = {
 @export var haozuCD=-1
 @export var danyangCD=-1
 @export var lvbuCD=-1
-
+@export var _num_defections=0
 #0-3 给与4档随机数，为忠诚度15-18 相关
 @export var randomIndex=0
 

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="cldata" load_steps=2 format=3 uid="uid://ct2v8fjy8wbus"]
+
+[ext_resource type="Script" path="res://clData.gd" id="1_83imj"]
+
+[resource]
+script = ExtResource("1_83imj")
+_name = "吕布"
+_num_all = 0
+_num_rt = 0
+_num_sp = 0
+_num_op = 0
+_num_grain = 0
+_num_defections = 0
+isrebellion = false
+_support_rate = 100
+isshow = true
+index = 3

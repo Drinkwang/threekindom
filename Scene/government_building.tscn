@@ -139,7 +139,7 @@ dialogue_doubleclick = "城外克苏鲁事件触发"
 showEX = true
 txt2d = ExtResource("13_f851a")
 dialogue_resource = ExtResource("8_ct1l0")
-dialogue_start = "点击陈登"
+dialogue_start = "城外克苏鲁事件触发"
 
 [node name="陈登" parent="." instance=ExtResource("6_ibudm")]
 visible = false

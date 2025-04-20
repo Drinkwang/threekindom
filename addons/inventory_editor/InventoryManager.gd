@@ -290,3 +290,35 @@ func craft_item(inventory_uuid, recipe_uuid) -> void:
 		var index = remove_item(inventory_uuid, recipe_db.uuid, 1)
 		GameManager.sav._data.inventories[inventory_uuid][index] = {"item_uuid": recipe_db.item, "quantity": 1}
 	emit_signal("inventory_changed", inventory_uuid)
+
+func canUseItemNum():
+	var num1=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.益气丸)
+	var num2=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.胜战锦囊)
+	var num3=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.诸子百家论集)
+	var num4=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.珍品礼盒)
+	return num1+num2+num3+num4
+
+func costItemRandom(_cost):
+	var items=[
+		{"type": InventoryManagerItem.益气丸, "count": InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.益气丸)},
+		{"type": InventoryManagerItem.胜战锦囊, "count": InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.胜战锦囊)},
+		{"type": InventoryManagerItem.诸子百家论集, "count": InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.诸子百家论集)},
+		{"type": InventoryManagerItem.珍品礼盒, "count": InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.珍品礼盒)}
+	]
+	var cost=_cost
+	
+
+	var consumed = {
+		InventoryManagerItem.益气丸: 0,
+		InventoryManagerItem.胜战锦囊: 0,
+		InventoryManagerItem.诸子百家论集: 0,
+		InventoryManagerItem.珍品礼盒: 0
+	}
+	while  cost>0:
+		var available_items = items.filter(func(item): return item.count > 0)
+		var random_item = available_items[randi() % available_items.size()]
+		random_item.count -= 1
+		consumed[random_item.type] += 1
+
+		cost=cost-1;		
+	return consumed

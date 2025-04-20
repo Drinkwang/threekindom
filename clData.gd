@@ -7,6 +7,8 @@ extends Resource
 @export var _num_sp:int #支持人数
 @export var _num_op:int #反对人数
 @export var _num_grain:int#分配的粮食
+@export var _num_defections:int=0
+@export var isrebellion:bool=false
 @export var _support_rate:int=100 #支持率
 @export var isshow:bool=true 
 @export var index:factionIndex

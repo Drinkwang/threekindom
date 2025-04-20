@@ -17,8 +17,11 @@ enum RspEnum{
 }
 
 enum ResType{
+	none,
 	coin,
 	people,
+	item,
+	heart,
 	battle,
 	rest,
 	
@@ -47,7 +50,7 @@ func changePeopleSupport(num):
 		sav.people_surrport=100
 	elif sav.people_surrport<0:
 		sav.people_surrport=0
-
+		#if失败逻辑
 
 
 func getCurLawExist()->bool:
@@ -111,7 +114,7 @@ var battleCircle=[
 const HAOZUPAI = preload("res://Asset/tres/haozupai.tres")
 const BENTUPAI = preload("res://Asset/tres/bentupai.tres")
 const WAIDIPAI = preload("res://Asset/tres/waidipai.tres")
-
+const LVBU = preload("res://Asset/tres/lvbu.tres")
 
 var currenceScene
 var restFadeScene
@@ -355,6 +358,7 @@ func initPaixi(data:cldata):
 	data._num_op=(data._num_all*(100-data._support_rate))/100+0.5
 	data._num_rt=randf_range(0,data._num_op*2)
 	data._num_sp=(data._num_all-data._num_op-data._num_rt)
+	data.isrebellion=false
 	#data._num_op
 	pass
 func extractByGroup(index):
@@ -431,10 +435,6 @@ var bentupai=cldata.factionIndex.bentupai
 var haozupai=cldata.factionIndex.haozupai
 var lvbu=cldata.factionIndex.lvbu
 
-const _BENTUPAI = preload("res://Asset/tres/bentupai.tres")
-const _HAOZUPAI = preload("res://Asset/tres/haozupai.tres")
-const _WAIDIPAI = preload("res://Asset/tres/waidipai.tres")
-
 func getcldateByindex(factionIndex:int)->cldata:
 	#index==0 士族
 	#index==1 豪族
@@ -487,13 +487,13 @@ func excuteLaw():
 			GameManager.sav.coin_DayGet=GameManager.sav.coin_DayGet+50
 			GameManager.sav.coin=GameManager.sav.coin+200
 			#徐州好感度+10
-			_BENTUPAI.ChangeSupport(10)
+			BENTUPAI.ChangeSupport(10)
 			print("农田开坑")
 
 	elif sav.curLawName=="兴办教育":#只有buff
 		#RewardLaw="每日人口+10，徐州好感度+5，获得道具“诸子百家”x1 " #人口每日增加 徐州派好感上升 获得道具xxx
 		lawAction= func():
-			_BENTUPAI.ChangeSupport(5)
+			BENTUPAI.ChangeSupport(5)
 			GameManager.sav.labor_DayGet=GameManager.sav.labor_DayGet+10
 			#获得诸子百家
 			
@@ -506,7 +506,7 @@ func excuteLaw():
 		
 		lawAction= func():
 			GameManager.sav.labor_force=GameManager.sav.labor_force+100
-			_BENTUPAI.ChangeSupport(10)
+			BENTUPAI.ChangeSupport(10)
 			GameManager.changePeopleSupport(5)
 			print("整治街容")			
 	elif sav.curLawName=="重农抑商":
@@ -566,25 +566,48 @@ func excuteLaw():
 	elif sav.curLawName=="商品流通法":
 		#RewardLaw="收益：每日收入+150，每日随机道具x1，一次性人口+200 冲突：徐州好感度-30，群众支持度-10  "
 		lawAction= func():
-			print("商品流通法")												
+			GameManager.sav.coin_DayGet=GameManager.sav.coin_DayGet+150
+			#每日随机道具											
 	elif sav.curLawName=="商业诚信法":
 		#RewardLaw="收益：获得道具“珍品礼盒”x2，每日收入+200，一次性收入+1500  冲突：徐州好感度-40，丹阳派好感度-20  "
 		lawAction= func():
-			print("商业诚信法")			
+			var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.珍品礼盒)
+			var remainder = InventoryManager.add_item(inventoryPackege, itemid, 2, false)
+			GameManager.sav.coin_DayGet=GameManager.sav.coin_DayGet+200
+			GameManager.sav.coin=GameManager.sav.coin+1500
+			BENTUPAI.ChangeSupport(-40)
+			WAIDIPAI.ChangeSupport(-20)
 #丹阳派
 	elif sav.curLawName=="军纪法":#所有好感度上升
 		#RewardLaw="所有派系好感度+15，获得道具“胜战锦囊”x1 "
 		lawAction= func():
-			print("军纪法")	
+			BENTUPAI.ChangeSupport(15)
+			WAIDIPAI.ChangeSupport(15)
+			HAOZUPAI.ChangeSupport(15)
+			var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.胜战锦囊)
+			var remainder = InventoryManager.add_item(inventoryPackege, itemid, 1, false)
+			
 	elif sav.curLawName=="战备法":#获得若干随机道具
+		#益气丸, 胜战锦囊, 诸子百家论集
+		
 		#RewardLaw="随机获得3个道具，一次性人口+100"
 		lawAction= func():
-			print("战备法")	
+			var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.益气丸)
+			var remainder = InventoryManager.add_item(inventoryPackege, itemid, 1, false)
+			
+			itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.胜战锦囊)
+			InventoryManager.add_item(inventoryPackege, itemid, 1, false)
+
+			itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.诸子百家论集)
+			InventoryManager.add_item(inventoryPackege, itemid, 1, false)
+
+
+			GameManager.sav.labor_force=GameManager.sav.labor_force+100
 	elif sav.curLawName=="边防法":#获得一些人口增加
 		#RewardLaw="一次性人口+100，丹阳派好感度+5，群众支持度+5，一次性收入+400  "
 		lawAction= func():
 			GameManager.sav.labor_force=GameManager.sav.labor_force+100
-			_WAIDIPAI.ChangeSupport(5)
+			WAIDIPAI.ChangeSupport(5)
 			GameManager.changePeopleSupport(5)
 			GameManager.sav.coin=GameManager.sav.coin+400
 			print("边防法")	
@@ -592,16 +615,16 @@ func excuteLaw():
 		#RewardLaw="收益：丹阳派好感度+20，获得道具“胜战锦囊”x2，一次性人口+150 冲突：徐州好感度-15  "
 		lawAction= func():
 			#print("军事训诂")	
-			_BENTUPAI.ChangeSupport(-15)
+			BENTUPAI.ChangeSupport(-15)
 			var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.胜战锦囊)
 			var remainder = InventoryManager.add_item(inventoryPackege, itemid, 2, false)
 			sav.labor_force=sav.labor_force+150
-			_WAIDIPAI.ChangeSupport(20)
+			WAIDIPAI.ChangeSupport(20)
 	elif sav.curLawName=="军事装备法":
 		#RewardLaw="收益：每日收入+50，获得道具“益气丸”x2 冲突：豪族好感度-20 "
 		lawAction= func():
 			GameManager.sav.coin_DayGet=GameManager.sav.coin_DayGet+50
-			_HAOZUPAI.ChangeSupport(-20)
+			HAOZUPAI.ChangeSupport(-20)
 			var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.益气丸)
 			var remainder = InventoryManager.add_item(inventoryPackege, itemid, 2, false)
 			
@@ -611,19 +634,39 @@ func excuteLaw():
 		lawAction= func():
 			print("军事训练法")	
 			WAIDIPAI.ChangeSupport(30)
+			BENTUPAI.ChangeSupport(-25)
 			GameManager.sav.labor_DayGet=GameManager.sav.labor_DayGet+20
+			GameManager.sav.labor_force=GameManager.sav.labor_force+200
 	elif sav.curLawName=="军事优拔法":
 		#RewardLaw="收益：丹阳派好感度+40，获得道具“胜战锦囊”x3，一次性收入+800 冲突：豪族好感度-30，群众支持度-10  "									
 		lawAction= func():
+			WAIDIPAI.ChangeAllPeople(40)
+			HAOZUPAI.ChangeSupport(-30)
+			changePeopleSupport(-10)
+			GameManager.sav.coin=GameManager.sav.coin+800
+			var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.胜战锦囊)
+			var remainder = InventoryManager.add_item(inventoryPackege, itemid, 3, false)
 			print("军事优拔法")	
 	elif sav.curLawName=="律令兵制":
 		#RewardLaw="收益：每日人口+100，获得道具“珍品礼盒”x2，一次性人口+250 冲突：徐州好感度-35，豪族好感度-15  "#获得银月枪
 		lawAction= func():
+			GameManager.sav.labor_DayGet=GameManager.sav.labor_DayGet+100
+			var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.珍品礼盒)
+			var remainder = InventoryManager.add_item(inventoryPackege, itemid, 2, false)
+			GameManager.sav.labor_force=GameManager.sav.labor_force+250
+			BENTUPAI.ChangeSupport(-35)
+			HAOZUPAI.ChangeSupport(-15)
 			print("律令兵制")	
 	elif sav.curLawName=="国防策略法":
-		#RewardLaw="收益：所有派系好感度+50，每日人口+50，获得道具“胜战锦囊”x4，一次性收入+1200 冲突：徐州好感度-50，豪族好感度-40  "		
+		#RewardLaw="民心+50，每日人口+50，获得道具“胜战锦囊”x4，一次性收入+1200  ，徐州好感度-50，豪族好感度-40  "		
 		lawAction= func():
-			print("国防策略法")	
+			GameManager.sav.labor_DayGet=GameManager.sav.labor_DayGet+50
+			GameManager.changePeopleSupport(50)
+			HAOZUPAI.ChangeSupport(-40)
+			BENTUPAI.ChangeSupport(-50)
+			var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.胜战锦囊)
+			var remainder = InventoryManager.add_item(inventoryPackege, itemid, 4, false)
+	
 
 	currenceScene.SettleLawRevenue()
 	
@@ -640,7 +683,7 @@ var items = [
 	{"name": InventoryManagerItem.ItemEnum.珍品礼盒, "cost": 350}
 ]
 const POPULATION_PER_POINT=2
-func ScoreToItem(player_score):
+func ScoreToItem(player_score,num=-1):
 	var gained_items: Dictionary = {}  # 使用字典记录道具和数量
 	var rng = RandomNumberGenerator.new()
 	# 随机决定获得几种道具 (1-3种)
@@ -648,6 +691,7 @@ func ScoreToItem(player_score):
 	var has_at_least_one_item = false 
 	# 随机分配道具
 	var remaining_score = player_score
+	var resideNum=num
 	for i in range(item_types):
 		if remaining_score <= 0:
 			break
@@ -661,6 +705,8 @@ func ScoreToItem(player_score):
 		var item = available_items[rng.randi_range(0, available_items.size() - 1)]
 		# 随机决定该道具数量 (1-3)
 		var max_count=remaining_score/item.cost
+		if resideNum!=-1:
+			max_count.min(max_count,resideNum)
 		#print(max_count)
 		var item_count
 		if max_count>=1 and has_at_least_one_item==false:
@@ -683,7 +729,11 @@ func ScoreToItem(player_score):
 				gained_items[item.name] += item_count
 			else:
 				gained_items[item.name] = item_count
-	
+
+			if resideNum!=-1:
+				resideNum=resideNum-item_count
+				if(resideNum==0):
+					break
 	# 随机分配剩余积分到人口和金钱
 	var population = 0
 	var money = 0

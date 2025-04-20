@@ -78,15 +78,7 @@ func _initData():
 	}
 	]
 	
-	var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.迷魂木筒)
 
-	if num>=1 and GameManager.sav.have_event["竹简幻觉剧情"]==false:
-		bti_rect.show()
-		GameManager.sav_have_event["竹简幻觉剧情"]=true
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁梦境")
-		#竹筒剧情完了，再次调用这边
-		#竹筒幻觉剧情 播放音效，改变背景，然后吓醒了 我觉得这个剧情可以放在早上，如果早上没有主线，则触发这个剧情，然后得知是一场噩梦
-		return 
 #const 街道 = preload("res://Asset/bgm/街道.mp3")
 	control._processList(initData)
 	GameManager.currenceScene=self
@@ -147,6 +139,19 @@ func _initData():
 	#判断以下，是首日获取 还是第二次获取
 	if GameManager.sav.day>=6:
 		if(GameManager.sav.isGetCoin==false):
+			#放幻觉 并return
+			
+			var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.迷魂木筒)
+
+			if num>=1 and GameManager.sav.have_event["竹简幻觉剧情"]==false:
+				bti_rect.show()
+				GameManager.sav.have_event["竹简幻觉剧情"]=true
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁梦境")
+		#竹筒剧情完了，再次调用这边
+		#竹筒幻觉剧情 播放音效，改变背景，然后吓醒了 我觉得这个剧情可以放在早上，如果早上没有主线，则触发这个剧情，然后得知是一场噩梦
+				return 
+			
+			
 			GameManager.sav.isGetCoin=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"今日收入为")
 	#if()
@@ -298,6 +303,8 @@ func _on_demo_end_button_down():
 
 
 func _DayGet():
+	#
+	isdetermine=false
 	res_panel.showValue=false
 	res_panel.GetValue(GameManager.sav.coin_DayGet,0,GameManager.sav.labor_DayGet)
 	SoundManager.play_sound(sounds.buysellsound)
@@ -314,6 +321,7 @@ func _DayGet():
 
 
 func extraTask():
+	
 	if GameManager.sav.day>6 and GameManager.sav.day<=9:
 		if GameManager.sav.have_event["支线发现羊尸"]==false:
 			GameManager.sav.have_event["支线发现羊尸"]=true
@@ -331,8 +339,9 @@ func extraTask():
 	elif  GameManager.sav.day>9:
 		GameManager.sav.have_event["支线发现羊尸"]=false
 		#将任务设置成false
-		
-
+	#判断忠诚度
+	var chaonum=0	
+	enterdetermineInternalUnrest()
 
 func _JudgeTask():
 	var value=0
@@ -380,7 +389,7 @@ const WAIDIPAI = preload("res://Asset/tres/waidipai.tres")
 #准备改成5天，然后民心下降改成5点
 func yuanshuChaos(value):
 	if value==1:
-		GameManager.sav.changePeopleSupport(-10)
+		GameManager.changePeopleSupport(-10)
 		#民心下降10,改成5
 	elif value==2:
 		WAIDIPAI.ChangeSupport(-10)
@@ -398,12 +407,228 @@ func yuanshuChaos(value):
 func showCaoCaoLetter():
 	caocao_letter.show()
 	
+var isdetermine=false
 #完成任务不应该显示 休息进入下一天
 func lookDoneCaoCaoLetter():
 	#设置目标是前往宅邸
 	GameManager.sav.TargetDestination="府邸"
 	caocao_letter.hide()
-	pass
+	enterdetermineInternalUnrest()
+
+func enterdetermineInternalUnrest():
+	if isdetermine==false:
+		isdetermine=true
+		determineInternalUnrest()	
+
+var randomIndex=0
+#以下是叛乱逻辑
+const sys = preload("res://dialogues/系统.dialogue")
+func determineInternalUnrest():
+	var _UnrestNum=0
+	randomIndex=GameManager.sav.randomIndex
+	var fractions:Array=[GameManager.HAOZUPAI,GameManager.WAIDIPAI,GameManager.BENTUPAI]
+	for fraction in fractions:
+		var _support_rate=fraction._support_rate
+		if _support_rate < 60.0:
+			# 计算叛变概率：支持率越低，概率越高
+			# 线性插值：支持率 60 -> 5% 概率，支持率 0 -> 80% 概率
+			var rebellion_chance = lerp(0.05, 0.80, (60.0 - _support_rate) / 60.0)
+			# 随机数判断是否叛变
+			if randf() < rebellion_chance:
+				fraction._isrebellion = true
+				_UnrestNum=_UnrestNum+1	
+	
+	var _LVBUsupport_rate=GameManager.LVBU._support_rate
+	if _LVBUsupport_rate < 80.0:
+			# 计算叛变概率：支持率越低，概率越高
+			# 线性插值：支持率 60 -> 5% 概率，支持率 0 -> 80% 概率
+		var rebellion_chance = lerp(0.25, 0.80, (80.0 - _LVBUsupport_rate) / 80.0)
+			# 随机数判断是否叛变
+		if randf() < rebellion_chance:
+			GameManager.LVBU._isrebellion = true
+			_UnrestNum=_UnrestNum+1	
+	
+	
+	
+	if _UnrestNum>0:
+		DialogueManager.show_example_dialogue_balloon(sys,"有内乱禀报")
+var determineValue1=0
+var determineType:GameManager.ResType=GameManager.ResType.none
+var determineDetail=""
+func resetDeterminValue():
+	determineValue1=0
+	determineType=GameManager.ResType.none
+	determineDetail=""
+
+func settleDeterminValue():
+	if(determineType==GameManager.ResType.coin):
+		GameManager.sav.coin=GameManager.sav.coin-determineValue1
+	elif determineType==GameManager.ResType.people:
+		GameManager.sav.labor_force=GameManager.sav.labor_force-determineValue1
+	elif determineType==GameManager.ResType.heart:
+		GameManager.changePeopleSupport(-determineValue1)
+	
+	
+func determineInternalUnrestXuzhou():
+	resetDeterminValue()
+	if GameManager.BENTUPAI._isrebellion==true:
+		GameManager.BENTUPAI._num_defections=GameManager.BENTUPAI._num_defections+1
+		determineValue1=30*randomIndex+(GameManager.BENTUPAI._num_defections)*30
+		
+		if randf() < 0.5||GameManager.sav.labor_force<determineValue1:
+			determineType=GameManager.ResType.heart
+			determineValue1=5+randomIndex+(GameManager.BENTUPAI._num_defections-1)*2
+			DialogueManager.show_example_dialogue_balloon(sys,"士族叛乱1")
+		else:
+			determineType=GameManager.ResType.people
+			
+			DialogueManager.show_example_dialogue_balloon(sys,"士族叛乱2")
+		return
+	determineInternalUnrestHaozu()
+
+func determineInternalUnrestHaozu():
+	settleDeterminValue()
+	resetDeterminValue()
+	if GameManager.HAOZUPAI._isrebellion==true:
+		GameManager.HAOZUPAI._num_defections=GameManager.HAOZUPAI._num_defections+1
+		determineValue1=50*randomIndex+(GameManager.HAOZUPAI._num_defections)*50
+		if randf() < 0.5||GameManager.sav.coin<determineValue1:
+			determineValue1=5+randomIndex+(GameManager.HAOZUPAI._num_defections-1)*2
+			determineType=GameManager.ResType.heart
+			DialogueManager.show_example_dialogue_balloon(sys,"豪族叛乱1")
+		else:
+			
+			determineType=GameManager.ResType.coin			
+			DialogueManager.show_example_dialogue_balloon(sys,"豪族叛乱2")
+		return
+	determineInternalUnrestDanyang()	
+func determineInternalUnrestDanyang():
+	settleDeterminValue()
+	resetDeterminValue()
+	if GameManager.WAIDIPAI._isrebellion==true:
+		GameManager.WAIDIPAI._num_defections=GameManager.WAIDIPAI._num_defections+1
+		determineValue1=randomIndex+GameManager.WAIDIPAI._num_defections
+		#判断道具总数之和
+		var _num=InventoryManager.canUseItemNum()
+
+		if randf() < 0.5 and _num<determineValue1:
+
+			determineValue1=InventoryManager.costItemRandom(determineValue1)
+			determineDetail=generate_consumed_string(determineValue1)
+			determineType=GameManager.ResType.item	
+			DialogueManager.show_example_dialogue_balloon(sys,"丹阳叛乱1")
+		else:
+			determineValue1=5+randomIndex+(GameManager.WAIDIPAI._num_defections-1)*2
+			determineType=GameManager.ResType.heart			
+			DialogueManager.show_example_dialogue_balloon(sys,"丹阳叛乱2")
+		return
+	determineInternalUnrestLvbu()
+func determineInternalUnrestLvbu():
+	settleDeterminValue()
+	resetDeterminValue()
+	if GameManager.LVBU._isrebellion==true:
+		var rand = randi() % 4
+		var valid_choice = false
+		var costItem= randomIndex + GameManager.LVBU._num_defections
+		var costCoin=50 * randomIndex + (GameManager.LVBU._num_defections) * 50
+		var costPeople=30 * randomIndex + (GameManager.LVBU._num_defections) * 30
+		var costHeart=5 + randomIndex + (GameManager.LVBU._num_defections - 1) * 2
+		#var costItemDetail=InventoryManager.costItemRandom()
+	# 收集可满足的资源类型
+		var valid_options = []
+		if InventoryManager.canUseItemNum() >= costItem:
+			valid_options.append([GameManager.ResType.item, costItem])
+		if GameManager.sav.coin >= costCoin:
+			valid_options.append([GameManager.ResType.coin, costCoin,tr("金币-%d") %costCoin])
+		if GameManager.sav.labor_force >= costPeople:
+			valid_options.append([GameManager.ResType.people, costPeople,tr("劳动力-%d") %costPeople])
+		if GameManager.sav.people_surrport >= costHeart:
+			valid_options.append([GameManager.ResType.heart, costHeart,tr("民心-%d") %costHeart])
+
+		# 如果有可满足的资源，随机选择一种
+		if valid_options.size() > 0:
+			var choice = valid_options[randi() % valid_options.size()]
+			if(choice[0]!=GameManager.ResType.item):
+				
+				determineType = choice[0]
+				determineValue1 = choice[1]
+				determineDetail=choice[2]
+			else:
+				determineValue1=InventoryManager.costItemRandom(choice[1])
+				determineDetail=generate_consumed_string(determineValue1)
+				determineType=GameManager.ResType.item
+		else:
+		# 否则默认选择 heart
+			determineType = GameManager.ResType.heart
+			determineValue1 = costHeart
+			determineDetail=tr("民心-%d") %costHeart
+		DialogueManager.show_example_dialogue_balloon(sys,"吕布叛乱")
+		return
+
+	determineInternalUnrestMinxin()
+func determineInternalUnrestMinxin():
+	settleDeterminValue()
+	resetDeterminValue()
+	var rebellion_chance = lerp(0.05, 0.80, (60.0 - GameManager.sav.people_surrport) / 60.0)
+			# 随机数判断是否叛变
+	if randf() > rebellion_chance:
+		return
+		
+	var rand = randi() % 4
+	var valid_choice = false
+	var costItem= randomIndex + GameManager.LVBU._num_defections
+	var costCoin=50 * randomIndex + (GameManager.LVBU._num_defections) * 50
+	var costPeople=30 * randomIndex + (GameManager.LVBU._num_defections) * 30
+	var costHeart=5 + randomIndex + (GameManager.LVBU._num_defections - 1) * 2
+		#var costItemDetail=InventoryManager.costItemRandom()
+	# 收集可满足的资源类型
+	var valid_options = []
+	if InventoryManager.canUseItemNum() >= costItem:
+		valid_options.append([GameManager.ResType.item, costItem])
+	if GameManager.sav.coin >= costCoin:
+		valid_options.append([GameManager.ResType.coin, costCoin,tr("金币-%d") %costCoin])
+	if GameManager.sav.labor_force >= costPeople:
+		valid_options.append([GameManager.ResType.people, costPeople,tr("劳动力-%d") %costPeople])
+	if GameManager.sav.people_surrport >= costHeart:
+		valid_options.append([GameManager.ResType.heart, costHeart,tr("民心-%d") %costHeart])
+
+	# 如果有可满足的资源，随机选择一种
+	if valid_options.size() > 0:
+		var choice = valid_options[randi() % valid_options.size()]
+		if(choice[0]!=GameManager.ResType.item):	
+			determineType = choice[0]
+			determineValue1 = choice[1]
+			determineDetail=choice[2]
+			if determineType==GameManager.ResType.coin:
+				DialogueManager.show_example_dialogue_balloon(sys,"民心叛乱2")		
+			elif determineType==GameManager.ResType.people:
+				DialogueManager.show_example_dialogue_balloon(sys,"民心叛乱3")		
+			elif determineType==GameManager.ResType.heart:
+				DialogueManager.show_example_dialogue_balloon(sys,"民心叛乱4")		
+		else:
+			determineValue1=InventoryManager.costItemRandom(choice[1])
+			determineDetail=generate_consumed_string(determineValue1)
+			determineType=GameManager.ResType.item
+			DialogueManager.show_example_dialogue_balloon(sys,"民心叛乱1")
+	else:
+	# 否则默认选择 heart
+		determineType = GameManager.ResType.heart
+		determineValue1 = costHeart
+		determineDetail=tr("民心-%d") %costHeart
+		DialogueManager.show_example_dialogue_balloon(sys,"民心叛乱4")
+		
+		
+
+func generate_consumed_string(consumed: Dictionary) -> String:
+	var result = []
+	for item_type in consumed:
+		if consumed[item_type] > 0:  # 只处理消耗数量大于 0 的道具
+			var item_name = InventoryManager.get_item_db(item_type).name
+			result.append(tr("%s损失%d个") % [item_name, consumed[item_type]])
+	#
+	## 用逗号连接所有描述
+	return "，".join(result)
+	
 	
 func sheepGnawed():
 	pass

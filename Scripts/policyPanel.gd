@@ -83,13 +83,14 @@ func _on_tab_bar_tab_changed(tab):
 		$PanelContainer/orderPanel.show()
 	else:
 		$lawPanel.show()
+		
 		$PanelContainer/orderPanel.hide()
 		if GameManager.sav.have_event["firstTabLaw"]==false:
 			GameManager.sav.have_event["firstTabLaw"]=true
 			DialogueManager.show_example_dialogue_balloon(GameManager.currenceScene.dialogue_resource,"第一次指定法律")
 		#判断剧情是否触发，如果没触发触发剧情
 	#pass # Replace with function body.
-
+	_initData()
 
 @onready var control_1 = $PanelContainer/orderPanel/VBoxContainer/orderVbox/Control_1
 @onready var control_2 = $PanelContainer/orderPanel/VBoxContainer/orderVbox/Control_2
@@ -184,7 +185,7 @@ func excuteLaw(value:lawpoint):
 
 	#GameManager.hp=GameManager.hp-costhp
 	if(GameManager.sav.Merit_points<value.costPoint):
-		#DialogueManager.show_example_dialogue_balloon(GameManager.currenceScene.dialogue_resource,"你的政策点不够")	
+		DialogueManager.show_example_dialogue_balloon(GameManager.currenceScene.dialogue_resource,"你的政策点不够")	
 		return
 	if await GameManager.isTried(costhp):
 		return	
@@ -218,15 +219,15 @@ func agreelaw():
 	SoundManager.play_sound(sounds.confiresound)
 	if GameManager.sav.have_event["firstLawExecute"]==false:
 		GameManager.sav.have_event["firstLawExecute"]=true
-		_initData()
+		
 		DialogueManager.show_example_dialogue_balloon(GameManager.currenceScene.dialogue_resource,"第一次指定法律完成")
 	#第一次执行完 执行额外操作
 	#后续法律生效写在这里
-	if selectLawPoint.context=="":
-		pass
-	elif selectLawPoint.context=="":
-		pass
-
+	#if selectLawPoint.context=="":
+	#	pass
+	#elif selectLawPoint.context=="":
+	#	pass
+	_initData()
 enum itemStatus{ban,select,normal}
 
 func arrangeDone():
