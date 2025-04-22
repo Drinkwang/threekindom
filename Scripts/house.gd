@@ -206,7 +206,7 @@ func _buttonListClick(item):
 		#显示金钱 民心 xx 武将面板
 		pass
 	elif item.context == "休息":
-		GameManager.sav.isGetCoin=false
+		
 	 	#如果休息时=4天，则触发阴谋论剧情
 		if(GameManager.sav.day==1):
 			if GameManager.sav.have_event["threeStree"]==false:
@@ -400,7 +400,7 @@ func yuanshuChaos(value):
 	elif value==4:
 		WAIDIPAI.ChangeSupport(-10)
 		BENTUPAI.ChangeSupport(-10)
-		GameManager.sav.changePeopleSupport(-10)
+		GameManager.changePeopleSupport(-10)
 		#全部下降10
 @onready var caocao_letter = $CanvasLayer/caocaoLetter
 		
@@ -435,7 +435,7 @@ func determineInternalUnrest():
 			var rebellion_chance = lerp(0.05, 0.80, (60.0 - _support_rate) / 60.0)
 			# 随机数判断是否叛变
 			if randf() < rebellion_chance:
-				fraction._isrebellion = true
+				fraction.isrebellion = true
 				_UnrestNum=_UnrestNum+1	
 	
 	var _LVBUsupport_rate=GameManager.LVBU._support_rate
@@ -445,7 +445,7 @@ func determineInternalUnrest():
 		var rebellion_chance = lerp(0.25, 0.80, (80.0 - _LVBUsupport_rate) / 80.0)
 			# 随机数判断是否叛变
 		if randf() < rebellion_chance:
-			GameManager.LVBU._isrebellion = true
+			GameManager.LVBU.isrebellion = true
 			_UnrestNum=_UnrestNum+1	
 	
 	
@@ -471,7 +471,7 @@ func settleDeterminValue():
 	
 func determineInternalUnrestXuzhou():
 	resetDeterminValue()
-	if GameManager.BENTUPAI._isrebellion==true:
+	if GameManager.BENTUPAI.isrebellion==true:
 		GameManager.BENTUPAI._num_defections=GameManager.BENTUPAI._num_defections+1
 		determineValue1=30*randomIndex+(GameManager.BENTUPAI._num_defections)*30
 		
@@ -489,7 +489,7 @@ func determineInternalUnrestXuzhou():
 func determineInternalUnrestHaozu():
 	settleDeterminValue()
 	resetDeterminValue()
-	if GameManager.HAOZUPAI._isrebellion==true:
+	if GameManager.HAOZUPAI.isrebellion==true:
 		GameManager.HAOZUPAI._num_defections=GameManager.HAOZUPAI._num_defections+1
 		determineValue1=50*randomIndex+(GameManager.HAOZUPAI._num_defections)*50
 		if randf() < 0.5||GameManager.sav.coin<determineValue1:
@@ -505,7 +505,7 @@ func determineInternalUnrestHaozu():
 func determineInternalUnrestDanyang():
 	settleDeterminValue()
 	resetDeterminValue()
-	if GameManager.WAIDIPAI._isrebellion==true:
+	if GameManager.WAIDIPAI.isrebellion==true:
 		GameManager.WAIDIPAI._num_defections=GameManager.WAIDIPAI._num_defections+1
 		determineValue1=randomIndex+GameManager.WAIDIPAI._num_defections
 		#判断道具总数之和
@@ -526,7 +526,7 @@ func determineInternalUnrestDanyang():
 func determineInternalUnrestLvbu():
 	settleDeterminValue()
 	resetDeterminValue()
-	if GameManager.LVBU._isrebellion==true:
+	if GameManager.LVBU.isrebellion==true:
 		var rand = randi() % 4
 		var valid_choice = false
 		var costItem= randomIndex + GameManager.LVBU._num_defections

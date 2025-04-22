@@ -21,12 +21,13 @@ func changeLanguage():
 			
 	else:
 		pass	
-	
+var _data
 func init(data:cldata):
-	pass
-	label.text=tr(data._name)+":%d"%data._num_all+"(%d)"%data._num_rt
+	_data=data
+	refreshData()
 	#self._set_size(Vector2(panel_container.size.x+texture_rect_2.size.x,texture_rect_2.size.y+20))
-
+func refreshData():
+	label.text=tr(_data._name)+":%d"%_data._num_all+"(%d)"%_data._num_rt
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

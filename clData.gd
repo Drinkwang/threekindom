@@ -8,6 +8,7 @@ extends Resource
 @export var _num_op:int #反对人数
 @export var _num_grain:int#分配的粮食
 @export var _num_defections:int=0
+@export var isAlertRisk=false
 @export var isrebellion:bool=false
 @export var _support_rate:int=100 #支持率
 @export var isshow:bool=true 
@@ -26,6 +27,7 @@ func ChangeAllPeople(num):
 		_num_all=100
 	elif _num_all<0:
 		_num_all=0
+	#发送信号
 
 func ChangeSupport(num):
 	_support_rate=_support_rate+num
@@ -33,3 +35,5 @@ func ChangeSupport(num):
 		_support_rate=100
 	elif _support_rate<0:
 		_support_rate=0
+	#发送信号	
+	SignalManager.changeFraction.emit()

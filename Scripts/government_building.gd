@@ -563,6 +563,7 @@ func chaosBegin():
 	GameManager.sav.have_event["chaosBegin"]=true
 	mizhu.show()
 	chenden.show()
+	GameManager.changeTaskLabel("当前任务:与手下谈谈")
 	mizhu.dialogue_start="混乱与糜竺对话"
 	chenden.dialogue_start="混乱与陈登对话"
 	pass

@@ -211,10 +211,10 @@ func _buttonListClick(item):
 	#FancyFade.new().custom_fade(scene, 2, DISSOLVE_IMAGE)
 	pass
 	 # Replace with function body.
-
+const WASTELAND_0 = preload("res://Asset/bgm/wasteland0.wav")
 func gotoWasteland():
 	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeIn)
-	
+	SoundManager.play_music(WASTELAND_0)
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"探访荒地")
 	#显示黑屏
 	#播放荒地音效
@@ -257,6 +257,7 @@ func visitScholar():
 	#SceneManager.changeScene(SceneManager.roomNode.DRILL_GROUND,2)
 	
 func holdWoolden():
+	playStageMusic()
 	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeOut)
 	GameManager.sav.have_event["支线触发完毕调查过竹简"]=true
 	#增加道具
@@ -270,9 +271,14 @@ func holdWoolden():
 	_reward.showTitileReward(tr("恭喜你，你获得-道具竹简"),items)	
 	#reward获得
 func BurySheep():
+	playStageMusic()
 	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeOut)
 	GameManager.changePeopleSupport(-10)
 	GameManager.sav.have_event["支线触发完毕调查过竹简"]=true
+
+func playStageMusic():
+	SoundManager.stop_music()
+	SoundManager.play_music(MINISTREET)	
 	
 func showbianji():
 	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeOut)

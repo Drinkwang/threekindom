@@ -23,10 +23,12 @@ offset_left = -61.105
 offset_top = -62.18
 offset_right = 54.515
 offset_bottom = 59.215
+mouse_filter = 2
 texture = ExtResource("2_cxpov")
 expand_mode = 2
 
 [node name="Area2D" type="Area2D" parent="."]
+priority = 10000
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 scale = Vector2(5.72, 5.72)
@@ -38,6 +40,7 @@ offset_left = -63.0
 offset_top = 42.0
 offset_right = 63.0
 offset_bottom = 61.0
+mouse_filter = 2
 
 [node name="Label" type="Label" parent="Panel"]
 layout_mode = 1
@@ -62,6 +65,7 @@ offset_top = -60.0
 offset_right = 153.0
 offset_bottom = 68.0
 scale = Vector2(0.285, 0.285)
+mouse_filter = 2
 texture = ExtResource("4_es4ro")
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

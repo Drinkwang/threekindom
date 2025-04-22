@@ -7,7 +7,7 @@ func _ready():
 	var d:cldata=cldata.new()
 	#d.
 	_processList()
-
+	SignalManager.changeFraction.connect(refreshData)
 
 
 func _processList():
@@ -24,6 +24,14 @@ func _processList():
 		
 	
 	pass
+
+func refreshData():
+	var items=v_box_container.get_children()		
+	for item in items:
+		item.refreshData()
+	
+	
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass

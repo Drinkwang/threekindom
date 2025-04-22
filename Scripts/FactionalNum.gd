@@ -2,7 +2,7 @@ extends PanelContainer
 class_name factionalname
 @onready var progress_bar = $MarginContainer/VBoxContainer/ProgressBar
 @onready var label = $MarginContainer/VBoxContainer/Label
-
+var itemData
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	changeLanguage()
@@ -25,20 +25,50 @@ func _process(delta):
 	pass
 
 func init(item:cldata):
-	label.text=tr(item._name)+tr("-支持度：")
-	progress_bar.value=item._support_rate
-	if item.index==cldata.factionIndex.weidipai:
-		var sb = StyleBoxFlat.new()
-		progress_bar.add_theme_stylebox_override("fill", sb)
-		sb.bg_color = Color.RED
-	elif item.index==cldata.factionIndex.bentupai:
-		var sb = StyleBoxFlat.new()
-		progress_bar.add_theme_stylebox_override("fill", sb)
-		sb.bg_color = Color.GREEN
-	elif item.index==cldata.factionIndex.haozupai:
-		var sb = StyleBoxFlat.new()
-		progress_bar.add_theme_stylebox_override("fill", sb)
-		sb.bg_color = Color.BLUE
-	pass
-	
+	itemData=item
+	refreshData()
 
+const sys = preload("res://dialogues/系统.dialogue")	
+func refreshData():
+	if itemData==null:
+		return
+	var supportValue=itemData._support_rate
+	label.text=tr(itemData._name)+tr("-支持度：")
+	progress_bar.value=itemData._support_rate
+	if itemData.index==cldata.factionIndex.weidipai:
+		var sb = StyleBoxFlat.new()
+		progress_bar.add_theme_stylebox_override("fill", sb)
+		if supportValue>=60:
+			sb.bg_color = Color.RED
+		else:
+			sb.bg_color=Color.DARK_RED 
+	elif itemData.index==cldata.factionIndex.bentupai:
+		var sb = StyleBoxFlat.new()
+		progress_bar.add_theme_stylebox_override("fill", sb)
+		if supportValue>=60:
+			sb.bg_color = Color.GREEN
+		else:
+			sb.bg_color = Color.DARK_GREEN
+	elif itemData.index==cldata.factionIndex.haozupai:
+		var sb = StyleBoxFlat.new()
+		progress_bar.add_theme_stylebox_override("fill", sb)
+		if supportValue>=60:
+			sb.bg_color = Color.BLUE
+		else:
+			sb.bg_color = Color.DARK_BLUE
+			#if itemData.isAlertRisk==false:
+	elif itemData.index==cldata.factionIndex.lvbu:
+		var sb = StyleBoxFlat.new()
+		progress_bar.add_theme_stylebox_override("fill", sb)
+		if supportValue>=60:
+			sb.bg_color = Color.GRAY
+		else:
+			sb.bg_color = Color.DARK_GRAY
+			#if itemData.isAlertRisk==false:					
+	if(supportValue<60 and itemData.index!=cldata.factionIndex.lvbu and itemData.isAlertRisk==false):
+		itemData.isAlertRisk=true
+		GameManager.resideValue=itemData._name
+		DialogueManager.show_example_dialogue_balloon(sys,"警告叛乱风险")
+	elif (supportValue<80 and itemData.index==cldata.factionIndex.lvbu and itemData.isAlertRisk==false):	
+		itemData.isAlertRisk=true
+		DialogueManager.show_example_dialogue_balloon(sys,"吕布风险")	

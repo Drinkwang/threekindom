@@ -48,7 +48,7 @@ class_name saveData
 @export var targetResType:GameManager.ResType
 @export var policy_Item_index=1#政策数量
 @export var policyExcute=false
-
+@export var isAlertRisk=false
 var _data = InventoryInventories.new()
 @export var GrainIndex=0
 @export var laws=[[],[],[]]

@@ -280,6 +280,7 @@ func _buttonListClick(item):
 			battle_pane.point_group.hide()
 		battle_pane.show()
 		battle_pane.initData()
+		res_panel.position.x=1598
 		if GameManager.sav.have_event["battleTaiShan"]==true:
 			if GameManager.sav.have_event["臧霸首战之前"]==false:
 				GameManager.sav.have_event["臧霸首战之前"]=true
@@ -403,7 +404,7 @@ func xiapi():
 	pass
 
 
-@onready var res_panel = $CanvasInventory/Control
+@onready var res_panel = $CanvasInventory/resPanel
 
 func _DayGet():
 	res_panel.showValue=false

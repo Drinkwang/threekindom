@@ -248,26 +248,26 @@ offset_bottom = 396.0
 [node name="Control1" parent="HBoxContainer" instance=ExtResource("4_iwehk")]
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
-tooltip_text = "迷魂木筒"
+tooltip_text = "雌雄双股剑"
 to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
 img = ExtResource("11_ysr0e")
-itemstype = 5
+itemstype = 8
 
 [node name="Control2" parent="HBoxContainer" instance=ExtResource("4_iwehk")]
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
-tooltip_text = "黄麻药囊"
+tooltip_text = "青龙偃月刀"
 to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
 img = ExtResource("12_g3hr8")
-itemstype = 6
+itemstype = 9
 
 [node name="Control3" parent="HBoxContainer" instance=ExtResource("4_iwehk")]
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
-tooltip_text = "饥蛊骨签"
+tooltip_text = "丈八蛇矛"
 to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
 img = ExtResource("13_xnv0q")
-itemstype = 7
+itemstype = 10
 
 [node name="Label2" type="Label" parent="."]
 visible = false

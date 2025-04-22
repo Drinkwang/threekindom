@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cehg7t1h5f2ei"]
+[gd_scene load_steps=17 format=3 uid="uid://cehg7t1h5f2ei"]
 
 [ext_resource type="Script" path="res://Scripts/street.gd" id="1_jskmv"]
 [ext_resource type="Resource" uid="uid://qopivlttvt12" path="res://dialogues/街道.dialogue" id="2_a3tl4"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://ghiim2lkqkbe" path="res://Scene/prefab/propertyPanel.tscn" id="8_qssq7"]
 [ext_resource type="Texture2D" uid="uid://dlpu2s7rm4k33" path="res://Asset/光明/装饰底板.png" id="9_ide2q"]
 [ext_resource type="Texture2D" uid="uid://bjmquyl6mhboo" path="res://Asset/光明/参考图明亮.png" id="10_0o7yc"]
+[ext_resource type="PackedScene" uid="uid://v5uv2iy3evkb" path="res://Scene/prefab/numPanel.tscn" id="12_koypy"]
 
 [node name="Node2D2" type="Node2D"]
 script = ExtResource("1_jskmv")
@@ -69,6 +70,12 @@ texture = ExtResource("10_0o7yc")
 metadata/_edit_use_anchors_ = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="supportPanel" parent="CanvasLayer" instance=ExtResource("12_koypy")]
+offset_left = 4.0
+offset_top = 738.0
+offset_right = -1574.0
+offset_bottom = -10.0
 
 [node name="hpPanel" parent="CanvasLayer" instance=ExtResource("6_00ynb")]
 offset_left = 1395.0

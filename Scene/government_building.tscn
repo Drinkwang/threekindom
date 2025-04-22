@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dbk6u8kc33kq2"]
+[gd_scene load_steps=23 format=3 uid="uid://dbk6u8kc33kq2"]
 
 [ext_resource type="Script" path="res://Scripts/government_building.gd" id="1_xncth"]
 [ext_resource type="Texture2D" uid="uid://d2artvwe80df1" path="res://Asset/光明/正常背景.png" id="3_iplod"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://dkqpav04j4kua" path="res://Asset/ui/文书2.png" id="9_qwmo3"]
 [ext_resource type="Texture2D" uid="uid://dlpu2s7rm4k33" path="res://Asset/光明/装饰底板.png" id="9_ucpug"]
 [ext_resource type="Texture2D" uid="uid://cjgwjw0xpgmys" path="res://Asset/人物/糜竺眨眼.png" id="10_73x55"]
+[ext_resource type="PackedScene" uid="uid://v5uv2iy3evkb" path="res://Scene/prefab/numPanel.tscn" id="12_5ydg1"]
 [ext_resource type="Texture2D" uid="uid://doh7mxtgy0hm2" path="res://Asset/人物/陈登睁眼.png" id="12_quqka"]
 [ext_resource type="Texture2D" uid="uid://bb3edpq2iva10" path="res://Asset/人物/陶商陶应.png" id="13_f851a"]
 [ext_resource type="PackedScene" uid="uid://ghiim2lkqkbe" path="res://Scene/prefab/propertyPanel.tscn" id="16_rw7iu"]
@@ -76,6 +77,12 @@ contextEX = "
 在您举办的饭局中，各大派系忠诚度都提高了"
 titleEX = "宴会完美举办成功！"
 dialogue_resource = ExtResource("8_ct1l0")
+
+[node name="supportPanel" parent="CanvasLayer" instance=ExtResource("12_5ydg1")]
+offset_left = 4.0
+offset_top = 738.0
+offset_right = -1574.0
+offset_bottom = -10.0
 
 [node name="hpPanel" parent="CanvasLayer" instance=ExtResource("7_iy2fq")]
 offset_left = 1395.0

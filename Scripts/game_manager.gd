@@ -7,6 +7,9 @@ const MANUAL_TEST = preload("res://ManualTest.tscn")
 #以下三个值均为三股不同力量士族可以篡改的值 其中士族可以把控群众支持度，商贾可以把控金钱，丹阳派系的军官可以把控劳动力
 var _savePanel:savePanel
 var restLabel:String=""
+
+#用于临时储存的值
+var resideValue
 enum RspEnum{
 	PAPER=0,
 	ROCK=1,
@@ -44,6 +47,7 @@ func clearTask():
 
 const inventoryPackege="e4530fc7-c5d6-41af-9b6e-35249272186a"
 @export var sav:saveData=saveData.new()
+const sys = preload("res://dialogues/系统.dialogue")
 func changePeopleSupport(num):
 	sav.people_surrport=sav.people_surrport+num
 	if(sav.people_surrport>100):
@@ -51,8 +55,9 @@ func changePeopleSupport(num):
 	elif sav.people_surrport<0:
 		sav.people_surrport=0
 		#if失败逻辑
-
-
+	if(sav.people_surrport<60 and sav.isAlertRisk==false):
+		sav.isAlertRisk=true
+		DialogueManager.show_example_dialogue_balloon(sys,"民变风险")
 func getCurLawExist()->bool:
 
 	return sav.curLawName!=null and sav.curLawName.length()>0 and sav.curLawNum1!=-1 and sav.curLawNum2!=-1
@@ -209,7 +214,7 @@ func _enterDay(value=true):
 	sav.hp=100
 	sav.isLevelUp=false;
 	sav.isMeet=false
-
+	sav.isGetCoin=false
 	sav.randomIndex=randi_range(0,3)
 	if GameManager.sav.targetResType==GameManager.ResType.rest:
 		GameManager.sav.currenceValue=GameManager.sav.currenceValue+1
