@@ -73,14 +73,8 @@ enum opcost{
 var _engerge:energe
 
 
-#var _rewardPanel:rewardPanel
-# 声明变量
-var generals:Dictionary = {RspEnum.ROCK:{"name": "关羽", "level": 1, "max_level": 10, "randominit": -1,"isBattle":false},
+#var _rewardPanel:rewardPanel 移动导savedate里
 
-RspEnum.SCISSORS:{"name": "张飞", "level": 1, "max_level": 10, "randominit": -1,"isBattle":false},
-
-RspEnum.PAPER:{"name": "赵云", "level": 1, "max_level": 10, "randominit": -1,"isBattle":false}
-}
 
 #剩余粮食_用于赈灾系统
 var resideGrain=0
@@ -188,7 +182,8 @@ func _ready():
 #	pass
 func initBattle():
 	sav.UseGeneral=[]
-	if(sav.battleResults.size()!=3 or sav.battleResults.all(func(e):e!=BattleResult.none)):
+	#all改成any
+	if(sav.battleResults.size()!=3 or sav.battleResults.any(func(e):e!=BattleResult.none)):
 		sav.battleResults=[
 		BattleResult.none,
 		BattleResult.none,
@@ -215,6 +210,7 @@ func _enterDay(value=true):
 	sav.isLevelUp=false;
 	sav.isMeet=false
 	sav.isGetCoin=false
+	sav.isVisitScholar=false
 	sav.randomIndex=randi_range(0,3)
 	if GameManager.sav.targetResType==GameManager.ResType.rest:
 		GameManager.sav.currenceValue=GameManager.sav.currenceValue+1
@@ -222,8 +218,9 @@ func _enterDay(value=true):
 		if GameManager.sav.have_event["chaosBegin"]==true:#第三个任务
 			if GameManager.sav.currenceValue==2:
 				pass#克苏鲁现象
-	if GameManager.sav.have_event["battleTaiShan"]==true:
-		if(GameManager.sav.have_event["completebattleTaiShan"]==false):	
+
+	if GameManager.sav.have_event["chaoDialogEnd"]==true:
+		if(GameManager.sav.have_event["chaosEnd"]==false):	
 			sav.currenceDay=sav.currenceDay+1#	
 		elif (GameManager.sav.have_event["lvbuJoin"]==true) and GameManager.sav.have_event["canSummonLvbu"]==false:
 			sav.currenceDay=sav.currenceDay+1#	
@@ -334,7 +331,7 @@ func initBattleCircle():
 		
 
 func initGenerlRandom():
-	for value in generals.values():
+	for value in sav.generals.values():
 		value.randominit=randi_range(0,360)
 
 
@@ -812,7 +809,11 @@ func recoverHp(value):
 	#GameManager.sav.hp=
 	pass
 
-func changeTaskLabel(_value):
+func changeTaskLabel(_value:String):
+	if _value.length()>0:	
+		GameManager.sav.TargetDestinationBefore=tr("当前任务：")
+	else:
+		GameManager.sav.TargetDestinationBefore=""
 	GameManager.sav.TargetDestination=_value
 	_engerge.changeTargetLabel()
 

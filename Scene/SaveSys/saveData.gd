@@ -31,6 +31,8 @@ class_name saveData
 
 #若通关 则completeTask	
 @export var currenceTask:int=0	
+@export var curGovAff:String
+@export var TargetDestinationBefore:String
 #任务完成下一步目标
 @export var TargetDestination:String #放在gameins里面
 #如果是战斗，存储的数量
@@ -39,7 +41,8 @@ class_name saveData
 @export var currenceDay:int=3
 #是否获取金钱
 @export var isGetCoin=false
-
+#是否已经辩经
+@export var isVisitScholar=false
 #资源派系没存
 @export var haveGuild=true
 @export var jumpmain=false
@@ -58,6 +61,15 @@ var number_bool_map: Dictionary = {
 	2: false,
 	3: true
 }
+
+var SIDEQUEST_MAP:Dictionary={
+	SceneManager.sideQuest.CHENDENG:"",
+	SceneManager.sideQuest.CAOBAO:"",
+	SceneManager.sideQuest.MIZHU:"",
+	SceneManager.sideQuest.DARU:"",
+	SceneManager.sideQuest.KESULU:""
+}
+
 @export var RewardLaw=""
 @export var xuzhouCD=-1
 @export var haozuCD=-1
@@ -92,7 +104,7 @@ var number_bool_map: Dictionary = {
 	"firstTabLaw":false,#为false不显示tab面板 只触发一次对话
 	"firstLawExecute":false,#为false 不显示close选项 只触发一次对话
 	"firstParliamentary":false,
-	"Factionalization":false,
+	"Factionalization":false,#出现分化
 	#second事件 
 	"firstEnterBattle":false,#初次进入演武场 第一天
 	"dayThreeEnterBattle":false,#第三天进入演武场
@@ -170,4 +182,16 @@ var number_bool_map: Dictionary = {
 	"锦囊咨询丹阳派": false, #如果上个为true，到演武场，则令曹豹出现，并可以点击触发支线
 	#卖粮第几天
 	"支线触发完毕获得骨杖":false,#
+}
+func testFunc():
+	var questContexts=SIDEQUEST_MAP.values().filter(func(a):a.length()>0)
+	var size=questContexts.size()
+	
+	#size()
+# 声明变量
+@export var generals:Dictionary = {GameManager.RspEnum.ROCK:{"name": "关羽", "level": 1, "max_level": 10, "randominit": -1,"isBattle":false},
+
+GameManager.RspEnum.SCISSORS:{"name": "张飞", "level": 1, "max_level": 10, "randominit": -1,"isBattle":false},
+
+GameManager.RspEnum.PAPER:{"name": "赵云", "level": 1, "max_level": 10, "randominit": -1,"isBattle":false}
 }

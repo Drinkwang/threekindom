@@ -3,6 +3,9 @@ extends baseComponent
 
 @onready var control = $Control
 @onready var policyPanel = $"CanvasLayer/政务面板"
+
+@onready var propertyPanel = $"CanvasLayer/属性面板"
+
 @onready var hp_panel = $CanvasLayer/hpPanel
 const NOT_JAM_UI_CONDENSED_16 = preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf")
 const FancyFade = preload("res://addons/transitions/FancyFade.gd")
@@ -85,8 +88,8 @@ func _initData():
 	if GameManager.sav.day==1:
 		if(GameManager.sav.have_event["firstmeetchenqun"]==false):
 			GameManager.sav.have_event["firstmeetchenqun"]=true
-			policyPanel.contextEX=tr("1.前往府邸看看堆积的工作\n2.前往演武场会见自己的老下属")
-			GameManager.changeTaskLabel("当前任务：完成今日政务所有事项")
+			GameManager.sav.curGovAff=tr("1.前往府邸看看堆积的工作\n2.前往演武场会见自己的老下属")
+			GameManager.changeTaskLabel("完成今日政务所有事项")
 		
 		
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
@@ -95,8 +98,9 @@ func _initData():
 			GameManager.sav.have_event["dayTwoInit"]=true
 			control._show_button_5_yellow(1)
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新的一天")
-			policyPanel.contextEX=tr("1.前往府邸回见不同派系的领导人\n2.前往议会通过昨天立的法律")
-			GameManager.changeTaskLabel("当前任务：完成今日政务所有事项")
+			
+			GameManager.sav.curGovAff=tr("1.前往府邸回见不同派系的领导人\n2.前往议会通过昨天立的法律")
+			GameManager.changeTaskLabel("完成今日政务所有事项")
 			GameManager.sav.destination="府邸"
 		#设置des
 	elif GameManager.sav.day==3:
@@ -104,12 +108,9 @@ func _initData():
 			control._show_button_5_yellow(1)
 			GameManager.sav.have_event["dayThreeInit"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第三天")
-			policyPanel.contextEX=tr("1.前往城外军事驻地，讨伐土匪")
-			#GameManager.changeTaskLabel("当前任务:前往城外军事驻地，讨伐土匪")
+			GameManager.sav.curGovAff=tr("1.前往城外军事驻地，讨伐土匪")
+			GameManager.changeTaskLabel("完成今日政务所有事项")
 			GameManager.sav.destination="城门-军事驻地"
-		#军事行动 镇压土匪
-		#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新的一天")
-		#policyPanel.contextEX="1.前往府邸回见不同派系的领导人\n2.前往议会通过昨天立的法律"
 
 	elif GameManager.sav.day==4:
 		#条件没写，只会触发一次
@@ -117,12 +118,13 @@ func _initData():
 			GameManager.sav.have_event["firstVisitScholars"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第四天")
 			control._show_button_5_yellow(1)			
-			policyPanel.contextEX=tr("1.前往城外及军事驻地，选择拜见大儒郑玄")
-		
+			GameManager.sav.curGovAff=tr("1.前往城外及军事驻地，选择拜见大儒郑玄")
+			#GameManager.changeTaskLabel("前往城外及军事驻地，选择拜见大儒郑玄")
 		if GameManager.sav.have_event["firstVisitScholarsEnd"]==true and GameManager.sav.day<=5:	
 			if GameManager.sav.have_event["firstNewEnd"]==false:
 				GameManager.sav.have_event["firstNewEnd"]=true
 				GameManager.restFadeScene=SceneManager.BOULEUTERION
+				GameManager.sav.curGovAff=""
 				GameManager.restLabel=tr("与此同时")
 				GameManager._rest(false)
 				#跳转到议会厅触发剧情 先跳转到rest，然后跳转议会厅触发剧情
@@ -200,10 +202,12 @@ func _buttonListClick(item):
 		pass
 	elif item.context == "今日政务":
 		control._show_button_5_yellow(-1)
+		policyPanel.refreshContext()
 		policyPanel.show()
 		pass
 	elif item.context == "属性面板":
-		#显示金钱 民心 xx 武将面板
+		refreshPropertyPanel()
+		propertyPanel.show()
 		pass
 	elif item.context == "休息":
 		
@@ -237,6 +241,40 @@ func _buttonListClick(item):
 		#FancyFade.new().custom_fade(load("res://Scene/sleepBlank.tscn").instantiate(), 2, DISSOLVE_IMAGE)
 	print(item)
 	pass
+	
+func refreshPropertyPanel():
+
+	var contextEx="当前天数：%d"%GameManager.sav.day+"\n"
+	contextEx=contextEx+"每日钱财收入：%d"%GameManager.sav.coin_DayGet+"\n"
+	contextEx=contextEx+"每日劳动力获取：%d"%GameManager.sav.labor_DayGet+"\n"
+	contextEx=contextEx+"------------------------------"+"\n"
+	contextEx=contextEx+"武将等级（括弧为战斗力）"+"\n"
+	contextEx=contextEx+"关羽：lv%d（%d）"%[GameManager.sav.generals[GameManager.RspEnum.ROCK].level,500]+"\n"
+	contextEx=contextEx+"张飞：lv%d（%d）"%[GameManager.sav.generals[GameManager.RspEnum.PAPER].level,500]+"\n"
+	contextEx=contextEx+"赵云：lv%d（%d）"%[GameManager.sav.generals[GameManager.RspEnum.SCISSORS].level,500]+"\n"	
+	contextEx=contextEx+"------------------------------"+"\n"
+	contextEx=contextEx+"当前派系对你的看法"+"\n"
+	
+	contextEx=contextEx+"徐州派：%s"%getFractionView(GameManager.BENTUPAI._support_rate)+"\n"
+	contextEx=contextEx+"豪族派：%s"%getFractionView(GameManager.HAOZUPAI._support_rate)+"\n"
+	contextEx=contextEx+"丹阳派：%s"%getFractionView(GameManager.WAIDIPAI._support_rate)+"\n"
+	contextEx=contextEx+"当前建议：%s"%"xxxxxx"+"\n"
+	propertyPanel.contextEX=contextEx
+	
+	
+func getFractionView(point):
+	var viewStr=""
+	if point>=90:
+		viewStr="忠诚"
+	elif point<90 and point>=70:
+		viewStr="友好"
+	elif point<70 and point>=60:
+		viewStr="中立"
+	elif point<60 and point>=40:
+		viewStr="戒备"
+	else:
+		viewStr="敌对"
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass

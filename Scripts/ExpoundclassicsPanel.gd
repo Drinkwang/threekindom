@@ -85,6 +85,7 @@ func over():
 	var items=GameManager.ScoreToItem(score/10)
 	_reward.showTitileReward(tr("你从郑玄哪里受益良多"),items)
 	texture_button.show()
+	GameManager.sav.isVisitScholar=true
 	await  SignalManager.endReward
 	if GameManager.sav.have_event["firstVisitScholarsEnd"]==false:
 		GameManager.sav.have_event["firstVisitScholarsEnd"]=true

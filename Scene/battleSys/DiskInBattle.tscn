@@ -41,7 +41,7 @@ offset_top = 33.0
 offset_right = 172.0
 offset_bottom = 124.0
 theme_override_font_sizes/font_size = 23
-text = "[胜/合]"
+text = "[胜/负/合]"
 horizontal_alignment = 1
 
 [node name="NoDamage" type="TextureProgressBar" parent="."]

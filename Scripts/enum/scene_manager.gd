@@ -22,6 +22,15 @@ enum roomNode{
 	
 }
 
+enum sideQuest{
+	CHENDENG,
+	MIZHU,
+	KESULU,
+	CAOBAO,
+	DARU,
+	
+	
+}
 func changeScene(tempnode:roomNode,time:float):
 	const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
 	if tempnode==roomNode.PRE_SCENE:

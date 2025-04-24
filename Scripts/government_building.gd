@@ -312,7 +312,7 @@ func showMizhuTouchMain():
 	#chenden.hide()
 	mizhu.dialogue_start="府邸主线"
 	mizhu.dialogue_doubleclick="府邸主线"
-	GameManager.changeTaskLabel("当前任务:与手下谈谈")
+	GameManager.changeTaskLabel("与手下谈谈")
 	pass
 
 func showFirstMission():
@@ -490,9 +490,9 @@ func deliverTask():
 				GameManager.sav.have_event["deliverYuanShu"]=true
 				GameManager.clearTask()
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"打跑袁术")#显示对话
-		
-		if GameManager.sav.have_event["battleTaiShan"]==true:
-			if(GameManager.sav.have_event["completebattleTaiShan"]==false):	
+		#修改袁术内应阶段
+		if GameManager.sav.have_event["chaoDialogEnd"]==true:
+			if(GameManager.sav.have_event["chaosEnd"]==false):	
 				if GameManager.sav.currenceDay>=2:
 					GameManager.sav.currenceDay=0
 					if GameManager.sav.have_event["firstDisaster"]==false:
@@ -517,21 +517,20 @@ func deliverTask():
 				chenden.dialogue_start="亲征前跟陈登对话"
 			
 			if GameManager.sav.have_event["亲征跟糜竺对话"]==false and GameManager.sav.have_event["亲征跟陈登对话"]==false: 
-			
-				GameManager.sav.TargetDestination="交互提示：你需要跟糜竺和陈登分别对话"
+				GameManager.sav.TargetDestinationBefore="交互提示："
+				GameManager.sav.TargetDestination="你需要跟糜竺和陈登分别对话"
 			elif GameManager.sav.have_event["亲征跟糜竺对话"]==true and GameManager.sav.have_event["亲征跟陈登对话"]==false: 
-				GameManager.sav.TargetDestination="交互提示：你需要跟陈登对话"
+				
+				GameManager.sav.TargetDestination="你需要跟陈登对话"
 			elif GameManager.sav.have_event["亲征跟糜竺对话"]==false and GameManager.sav.have_event["亲征跟陈登对话"]==true:
-				GameManager.sav.TargetDestination="交互提示：你需要跟糜竺对话" 
+				GameManager.sav.TargetDestination="你需要跟糜竺对话" 
 
 func liubeiBattleAfterMizhu():
-	#GameManager.sav.TargetDestination="交互提示：你需要跟陈登对话"
 	mizhu.hide()
 	GameManager.sav.have_event["亲征跟糜竺对话"]=true
 	liubeiBattleAfterEvent()
 
 func liubeiBattleAfterChenDen():
-	#GameManager.sav.TargetDestination="交互提示：你需要跟糜竺对话"	
 	chenden.hide()
 	GameManager.sav.have_event["亲征跟陈登对话"]=true
 	liubeiBattleAfterEvent()
@@ -563,7 +562,7 @@ func chaosBegin():
 	GameManager.sav.have_event["chaosBegin"]=true
 	mizhu.show()
 	chenden.show()
-	GameManager.changeTaskLabel("当前任务:与手下谈谈")
+	GameManager.changeTaskLabel("与手下谈谈")
 	mizhu.dialogue_start="混乱与糜竺对话"
 	chenden.dialogue_start="混乱与陈登对话"
 	pass
@@ -580,9 +579,11 @@ func chaosChendengEnd():
 	chenden.hide()	
 	if GameManager.sav.have_event["chaoMizhuEnd"]==true:
 		chaosDialogEnd()
+	FractionalDiff()
 func chaosDialogEnd():
 	#
 	#可以离开，但是会有提示如何做
+	#GameManager.sav
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"混乱对话结束")#显示对话
 	GameManager.sav.have_event["chaoDialogEnd"]=true
 func chaosTaskBegin():

@@ -245,6 +245,9 @@ func visitDrill():
 	
 const visitbgm = preload("res://Asset/bgm/拜访大儒.wav")
 func visitScholar():
+	if GameManager.sav.isVisitScholar==true:
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"已经大儒辩经内容")
+		return
 	SoundManager.play_music(visitbgm)
 	#PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeInAndOut)
 	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeIn)
@@ -253,7 +256,10 @@ func visitScholar():
 	#第一次访问显示大儒辩经
 	#播放高山流水音效
 	#离开大儒辩经，取消高山流水音效
-	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大儒辩经的剧情")
+	if GameManager.sav.have_event["firstVisitScholarsEnd"]==false:
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大儒辩经的剧情")
+	else:
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大儒辩经的剧情2")
 	#SceneManager.changeScene(SceneManager.roomNode.DRILL_GROUND,2)
 	
 func holdWoolden():

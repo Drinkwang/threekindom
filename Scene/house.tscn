@@ -96,10 +96,6 @@ dialogue_start = "点击陈群"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="政务面板" parent="CanvasLayer" instance=ExtResource("8_2ady6")]
-visible = false
-clickEvent = ""
-
 [node name="DemoEnd" type="Button" parent="CanvasLayer"]
 visible = false
 offset_left = 657.0
@@ -143,6 +139,15 @@ context = "备弟足下：
                                曹操敬上"
 lookdoneDialog = "袁术之乱看曹操信件"
 dialogue_resource = ExtResource("2_6rtve")
+
+[node name="属性面板" parent="CanvasLayer" instance=ExtResource("8_2ady6")]
+visible = false
+titleEX = ""
+clickEvent = ""
+
+[node name="政务面板" parent="CanvasLayer" instance=ExtResource("8_2ady6")]
+visible = false
+clickEvent = ""
 
 [node name="Control2" parent="." instance=ExtResource("9_mf3v8")]
 visible = false

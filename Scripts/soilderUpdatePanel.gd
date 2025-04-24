@@ -41,7 +41,7 @@ func changeLanguage():
 @onready var label = $PanelContainer/orderPanel/VBoxContainer/Label
 
 func update_ui():
-	var selected_general = GameManager.generals.values()[selected_general_index]
+	var selected_general = GameManager.sav.generals.values()[selected_general_index]
 	label.text=tr("选择{name}进行练兵升级，这大概需要花费{num}金，升级成功率100%").format({"name":tr(selected_general.name),"num":selected_general.level*50})
 	control_1.updateContext(0)
 	control_2.updateContext(1)	
@@ -70,7 +70,7 @@ func _on_upgrade_button_pressed():
 	if(await GameManager.isTried(costhp)):
 		return 
 	
-	var selected_general = GameManager.generals.values()[selected_general_index]
+	var selected_general = GameManager.sav.generals.values()[selected_general_index]
 	if GameManager.sav.coin >= upgrade_cost and selected_general["level"] < selected_general["max_level"]:
 		GameManager.sav.coin -= upgrade_cost
 		selected_general["level"] += 1

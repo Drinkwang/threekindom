@@ -117,7 +117,7 @@ func Use():
 #赵云：lv1	
 #{"name": "张飞", "level": 1, "max_level": 10, "randominit": -1,"isBattle":false}
 func updateContext(value):
-	var general=GameManager.generals[repImg]
+	var general=GameManager.sav.generals[repImg]
 	var _name=general.name
 	var _level=general.level
 	if value==1:

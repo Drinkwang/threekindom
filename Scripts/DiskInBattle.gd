@@ -114,7 +114,7 @@ func _juideCompeleteTask():
 # 判断选择武将的石头剪刀布
 #首先获取选择的武将
 	#btdatas.sdType
-	var type = GameManager.generals.find_key(selectgeneral)
+	var type = GameManager.sav.generals.find_key(selectgeneral)
 	
 	if (btdatas.sdType==GameManager.RspEnum.SCISSORS&&type==GameManager.RspEnum.PAPER) or\
 	(btdatas.sdType==GameManager.RspEnum.PAPER&&type==GameManager.RspEnum.ROCK) or\
@@ -486,7 +486,7 @@ func settleGame(end,issuccess):
 	if(taskIndex>=3):
 		GameManager.initBattleCircle()
 		taskIndex=0
-	Txtcount.text=str(GameManager.sav.completeTask)+"/"+str(GameManager.sav.currenceTask)
+	Txtcount.text=str(GameManager.sav.completeTask)+"/"+str(GameManager.sav.currenceTask-GameManager.sav.completeTask)+"/"+str(GameManager.sav.currenceTask)
 
 	
 @onready var Txtcount = $count

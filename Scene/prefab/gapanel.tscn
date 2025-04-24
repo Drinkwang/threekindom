@@ -11,11 +11,21 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5p17t")
-contextEX = "1.前往xxx并
-2.前往xxx并
-3.前往xxx并
-4.前往xxx并
-5.前往xxx并"
+contextEX = "当前天数：
+每日钱财收入：
+每日劳动力获取：
+------------------------------
+武将等级（括弧为战斗力）
+赵云：lv1（3000）
+关羽：lv2（200）
+张飞：lv3（200）
+------------------------------
+当前派系对你的看法
+徐州派：
+丹阳派：
+豪族派：
+当前需要xxxxxx
+目前建议：xxxxx"
 titleEX = "当前还需要处理的政务："
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
@@ -69,11 +79,21 @@ size_flags_horizontal = 10
 layout_mode = 2
 theme_type_variation = &"HeaderLarge"
 theme_override_font_sizes/font_size = 48
-text = "1.前往xxx并
-2.前往xxx并
-3.前往xxx并
-4.前往xxx并
-5.前往xxx并"
+text = "当前天数：
+每日钱财收入：
+每日劳动力获取：
+------------------------------
+武将等级（括弧为战斗力）
+赵云：lv1（3000）
+关羽：lv2（200）
+张飞：lv3（200）
+------------------------------
+当前派系对你的看法
+徐州派：
+丹阳派：
+豪族派：
+当前需要xxxxxx
+目前建议：xxxxx"
 autowrap_mode = 3
 
 [node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer"]
