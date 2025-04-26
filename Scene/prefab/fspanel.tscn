@@ -47,6 +47,6 @@ custom_minimum_size = Vector2(0, 0.855)
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_font_sizes/font_size = 26
-text = "(括弧内为摇摆人数)"
+text = "(支持:反对:摇摆)"
 horizontal_alignment = 1
 text_overrun_behavior = 4

@@ -210,7 +210,7 @@ func agreelaw():
 	selectLawPoint.isUnlock=true
 	selectLawPoint._initData()
 
-	
+	GameManager.refreshPaixis()
 	GameManager.sav.laws[selectLawPoint.num1].append(selectLawPoint.num2)
 	
 	#判断法律是否为即将达成的，如果是，则让其完成，获得好感度和目标

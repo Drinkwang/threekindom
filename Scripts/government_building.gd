@@ -718,7 +718,7 @@ func policyCo_opt():
 	#显示对话
 	
 	#var index= int(_faction)  #可能需要一个转换函数进行转换
-	var lawIndex= GameManager.enablePolicyCooptCD(_faction)		
+	var lawIndex= GameManager.getIndexByFractionIndex(_faction)		
 	var maxLaw=0
 
 	if GameManager.sav.laws[lawIndex].size()>0:
@@ -760,7 +760,15 @@ func policyCo_opt():
 
 func consent():
 	if lalongPolicy!=0:
-		var lawIndex= GameManager.enablePolicyCooptCD(_faction)		
+		var lawIndex= GameManager.getIndexByFractionIndex(_faction)
+		if lawIndex==0:
+			GameManager.sav.xuzhouCD=7
+		elif lawIndex==1:
+			GameManager.sav.haozuCD=7
+		elif lawIndex==2:
+			GameManager.sav.danyangCD=7
+		elif lawIndex==3:
+			GameManager.sav.lvbuCD=7			
 		GameManager.sav.laws[lawIndex].append(lalongPolicy)
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"成功拉拢")#显示对话	
 	else:

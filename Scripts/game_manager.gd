@@ -200,11 +200,15 @@ func array_sum(arr: Array) -> int:
 		sum += i
 	return sum
 
+func refreshPaixis():
+	initPaixi(BENTUPAI)
+	initPaixi(WAIDIPAI)
+	#传递信号，政策看法
+
 func _enterDay(value=true):
 	if(value==true):
 		GameManager.sav.day=GameManager.sav.day+1
-	initPaixi(BENTUPAI)
-	initPaixi(WAIDIPAI)
+	refreshPaixis()
 	initBattle()
 	sav.hp=100
 	sav.isLevelUp=false;
@@ -353,12 +357,23 @@ func LessDamage():
 		#cloneData.remove_at(cloneData.find(item))
 
 #	pass
-	
+#每次立法，重新刷新派系
 func initPaixi(data:cldata):
 	
 	#data._num_sp=(data._num_all*data._support_rate)/100+0.5
 	data._num_op=(data._num_all*(100-data._support_rate))/100+0.5
-	data._num_rt=randf_range(0,data._num_op*2)
+	var paixiindex=GameManager.getIndexByFractionIndex(data.index)
+	var lawOP=0
+	if paixiindex!=GameManager.sav.curLawNum1 and GameManager.sav.curLawNum1>0:
+		lawOP=((GameManager.sav.curLawNum2-1)*10.0/100.0)*(data._num_all-data._num_op)
+		lawOP=floor(lawOP)
+
+	#如果是相同派系，则为0，不同派系，将（index-1）*9到10 的百分比赋值给它
+	data._num_op=data._num_op+lawOP
+	var initRt=randf_range(0,max(data._num_op*2,data._num_all-data._num_op))
+	if GameManager.sav.curLawNum1<=0:
+		initRt=0
+	data._num_rt=initRt
 	data._num_sp=(data._num_all-data._num_op-data._num_rt)
 	data.isrebellion=false
 	#data._num_op
@@ -406,7 +421,7 @@ func _rest(value=true):
 
 
 
-func enablePolicyCooptCD(factionIndex:cldata.factionIndex)->int:
+func getIndexByFractionIndex(factionIndex:cldata.factionIndex)->int:
 	#index==0 士族
 	#index==1 豪族
 	#index==2 军方
@@ -415,18 +430,16 @@ func enablePolicyCooptCD(factionIndex:cldata.factionIndex)->int:
 	#var haozuCD=-1
 	#var danyangCD=-1
 	#var lvbuCD=-1
+	#将cd代码放在外部
 	var index
 	if factionIndex==cldata.factionIndex.weidipai:
-		sav.danyangCD=7
 		index=2
 	elif factionIndex==cldata.factionIndex.bentupai:
-		sav.xuzhouCD=7
 		index=0
 	elif factionIndex==cldata.factionIndex.haozupai:
-		sav.haozuCD=7
 		index=1
 	elif factionIndex==cldata.factionIndex.lvbu:
-		sav.lvbuCD=7
+
 		index=3	
 	
 	return index	

@@ -4,9 +4,15 @@
 
 [resource]
 script = ExtResource("1_s0lvs")
-_name = "豪族派(糜家)"
+_name = "豪族派"
 _num_all = 0
 _num_rt = 0
+_num_sp = 0
+_num_op = 0
+_num_grain = 0
+_num_defections = 0
+isAlertRisk = false
+isrebellion = false
 _support_rate = 100
 isshow = false
 index = 2
