@@ -610,6 +610,7 @@ func determineInternalUnrestMinxin():
 	var rebellion_chance = lerp(0.05, 0.80, (60.0 - GameManager.sav.people_surrport) / 60.0)
 			# 随机数判断是否叛变
 	if randf() > rebellion_chance:
+		shizuLawTest()
 		return
 		
 	var rand = randi() % 4
@@ -655,7 +656,35 @@ func determineInternalUnrestMinxin():
 		determineDetail=tr("民心-%d") %costHeart
 		DialogueManager.show_example_dialogue_balloon(sys,"民心叛乱4")
 		
-		
+
+func shizuLawTest():
+	if GameManager.sav.xuzhouCD==0:
+		GameManager.sav.xuzhouCD=-1
+		GameManager.sav.laws[0]= GameManager.sav.laws[0].filter(func(x): return x >= 0)
+		GameManager.sav.courtingLaws.erase(GameManager.BENTUPAI._name)
+		GameManager.BENTUPAI.ChangeSupport(-10)
+		DialogueManager.show_example_dialogue_balloon(sys,"士族法律未通过")
+		return
+	haozuLawTest()
+func haozuLawTest():
+	if GameManager.sav.haozuCD==0:
+		GameManager.sav.haozuCD=-1
+		GameManager.sav.laws[1]= GameManager.sav.laws[1].filter(func(x): return x >= 0)
+		GameManager.sav.courtingLaws.erase(GameManager.HAOZUPAI._name)
+		GameManager.HAOZUPAI.ChangeSupport(-10)
+		DialogueManager.show_example_dialogue_balloon(sys,"豪族法律未通过")
+		return
+	danyangLawTest()
+
+func danyangLawTest():
+	if GameManager.sav.danyangCD==0:
+		GameManager.sav.danyangCD=-1
+		GameManager.sav.laws[2]= GameManager.sav.laws[2].filter(func(x): return x >= 0)
+		GameManager.sav.courtingLaws.erase(GameManager.WAIDIPAI._name)
+		DialogueManager.show_example_dialogue_balloon(sys,"丹阳法律未通过")
+		GameManager.WAIDIPAI.ChangeSupport(-10)
+		return
+
 
 func generate_consumed_string(consumed: Dictionary) -> String:
 	var result = []

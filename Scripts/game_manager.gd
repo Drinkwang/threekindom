@@ -216,6 +216,16 @@ func _enterDay(value=true):
 	sav.isGetCoin=false
 	sav.isVisitScholar=false
 	sav.randomIndex=randi_range(0,3)
+	
+	if GameManager.sav.xuzhouCD>0:
+		GameManager.sav.xuzhouCD-=1
+
+	if GameManager.sav.haozuCD>0:
+		GameManager.sav.haozuCD-=1
+
+	if GameManager.sav.danyangCD>0:
+		GameManager.sav.danyangCD-=1
+
 	if GameManager.sav.targetResType==GameManager.ResType.rest:
 		GameManager.sav.currenceValue=GameManager.sav.currenceValue+1
 		

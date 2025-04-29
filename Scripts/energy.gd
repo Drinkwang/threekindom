@@ -48,7 +48,21 @@ func showTargetLabel():
 			target_label.text=GameManager.sav.TargetDestination	
 	else:
 		target_label.text=GameManager.sav.targetTxt.format({"target":targetValue,"currence":currenceValue})
-	pass
+	for law in GameManager.sav.courtingLaws:
+
+		var cd
+		if law=="本土派"||law=="士族派":
+			cd=GameManager.sav.xuzhouCD
+		elif law=="豪族派":
+			cd=GameManager.sav.haozuCD
+		elif law=="外地派":
+			cd=GameManager.sav.danyangCD
+		
+		if(cd>0):	
+			target_label.text=target_label.text+"\n"
+			var context=tr("%s指定《%s》，7天内通过，还剩%d天！")%[law,GameManager.sav.courtingLaws[law],cd]
+			target_label.text=target_label.text+context
+	#target_label.text=target_label.text+
 @onready var animation_player = $TargetLabel/AnimationPlayer
 
 func playLabelChange():

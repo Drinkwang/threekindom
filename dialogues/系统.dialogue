@@ -26,7 +26,7 @@ Game Over：民心尽失，徐州陷于暴乱，游戏结束。
 提示: {{determineDetail}}
 do settleDeterminValue()
 游戏提示: 因为民心低于60触发的负面事件，请尽快将民心提升到60以上
-
+do shizuLawTest()
 => END
 
 
@@ -35,7 +35,7 @@ do settleDeterminValue()
 提示: 资金 -{{determineValue1}}
 do settleDeterminValue()
 游戏提示: 因为民心低于60触发的负面事件，请尽快将民心提升到60以上
-
+do shizuLawTest()
 #帮我写一个民众叛乱的剧情，分别会导致 损失道具，损失金钱，失去劳动力，进一步失去民心，四种情况
 => END
 
@@ -44,7 +44,7 @@ do settleDeterminValue()
 提示: 劳动力 -{{determineValue1}}
 do settleDeterminValue()
 游戏提示: 因为民心低于60触发的负面事件，请尽快将民心提升到60以上
-
+do shizuLawTest()
 => END
 
 ~ 民心叛乱4
@@ -52,7 +52,7 @@ do settleDeterminValue()
 提示: 民心-{{determineValue1}}
 do settleDeterminValue()
 游戏提示: 因为民心低于60触发的负面事件，请尽快将民心提升到60以上
-
+do shizuLawTest()
 => END
 
 #商人
@@ -105,4 +105,19 @@ do determineInternalUnrestLvbu()
 主簿: 主公，不满的吕布劫掠你的城池，损失惨重!
 提示: {{determineDetail}}。需将吕布好感度提升至80或镇压叛乱。
 do determineInternalUnrestMinxin()
+=> END
+
+~ 士族法律未通过
+提示: 你许诺{{GameManager.BENTUPAI._name}}的法律没有通过，丧失10点支持度。
+do haozuLawTest()
+=> END
+
+
+~ 豪族法律未通过
+提示: 你许诺{{GameManager.HAOZUPAI._name}}的法律没有通过，丧失10点支持度。
+do danyangLawTest()
+=> END
+
+~ 丹阳法律未通过
+提示: 你许诺{{GameManager.WAIDIPAI._name}}的法律没有通过，丧失10点支持度。
 => END

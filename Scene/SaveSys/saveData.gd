@@ -55,6 +55,7 @@ class_name saveData
 var _data = InventoryInventories.new()
 @export var GrainIndex=0
 @export var laws=[[],[],[]]
+@export var courtingLaws:Dictionary={}
 #@export var policy
 var number_bool_map: Dictionary = {
 	1: true,
@@ -186,7 +187,10 @@ var SIDEQUEST_MAP:Dictionary={
 func testFunc():
 	var questContexts=SIDEQUEST_MAP.values().filter(func(a):a.length()>0)
 	var size=questContexts.size()
-	
+	#courtingLaws.
+	for i in courtingLaws:
+		print(i)
+		print(courtingLaws[i])
 	#size()
 # 声明变量
 @export var generals:Dictionary = {GameManager.RspEnum.ROCK:{"name": "关羽", "level": 1, "max_level": 10, "randominit": -1,"isBattle":false},

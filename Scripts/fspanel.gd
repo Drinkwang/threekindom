@@ -16,7 +16,8 @@ func _ready():
 	#d.
 	_processList()
 	changeLanguage()
-	
+	SignalManager.changeSupport.connect(refreshData)
+	showCurrenceLaw()
 func changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()
 	if currencelanguage=="ja":
@@ -33,31 +34,38 @@ func changeLanguage():
 @onready var v_box_container = $PanelContainer/VBoxContainer
 
 func _processList():
-
+	#v_box_container.remove_child()
 	for item:cldata in datas:
 		if item.isshow==false:
 			continue
-		
 
-
-		#richTxt.add_theme_font_override("")
-		#richTxt.horizontal_alignment = CENTER
-		#richTxt.outline_color=Color.BLACK
 		var fs=load("res://Scene/prefab/Factionalsupport.tscn").instantiate()
 
-		#buttton.add_child(richTxt)
-		#buttton.texture_normal=normalbtn
-		#buttton.texture_pressed=pressbtn
-		#buttton.texture_hover=hoverbtn
-		#buttton.texture_focused=focusbtn
-		#buttton.pressed.connect(_button_ation.bind(item,index))
-		#buttton.name="button"+var_to_str(index)
-		#index=index+1
+
+		
 		v_box_container.add_child(fs)		
 		fs.init(item)
 		
 	
 	pass
+	
+@onready var currence_laws = $PanelContainer/VBoxContainer/currenceLaws
+
+func refreshData():
+	var items=v_box_container.get_children()		
+	for item in items:
+		if item is factionalsupport:
+			item.refreshData()		
+	showCurrenceLaw()
+
+func showCurrenceLaw():
+	if  GameManager.sav.curLawName!=null and  GameManager.sav.curLawName.length()>0:
+
+		currence_laws.show()
+		currence_laws.text="当前待立法律【%s】\n你需要去议事厅商讨通过"%GameManager.sav.curLawName
+	else:
+		currence_laws.hide()	
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass

@@ -236,8 +236,10 @@ func GetLawClaimRevenue():
 	for i in GameManager.sav.laws[GameManager.sav.curLawNum1]:
 		if i<0:
 			if abs(i)==GameManager.sav.curLawNum2:
+				
 				GameManager.sav.laws[GameManager.sav.curLawNum1].erase(i)
 				var factions=_date._name
+				GameManager.sav.courtingLaws.erase(faction)
 				var rindex=GameManager.sav.randomIndex
 				point=10+GameManager.sav.rindex
 				#暂时放在这里

@@ -199,9 +199,11 @@ func agreelaw():
 	if await GameManager.isTried(costhp):
 		return
 	GameManager.sav.RewardLaw=selectLawPoint.IncomeTxt
+
 	GameManager.sav.curLawName=selectLawPoint.context
 	GameManager.sav.curLawNum1=selectLawPoint.num1
 	GameManager.sav.curLawNum2=selectLawPoint.num2
+	SignalManager.changeSupport.emit()
 	#num1\num2
 	# int index	
 	#当前【民田开垦】法案已被立项，请先在议会厅通过该法案，才能立项其他法律。	

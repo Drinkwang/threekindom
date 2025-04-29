@@ -99,11 +99,10 @@ offset_right = 1825.0
 offset_bottom = 1009.0
 
 [node name="faction" parent="CanvasLayer" instance=ExtResource("15_wrxcl")]
-visible = false
-offset_left = 1.0
-offset_top = 677.0
-offset_right = -1588.0
-offset_bottom = -240.0
+offset_left = 9.0
+offset_top = 697.0
+offset_right = -1580.0
+offset_bottom = -220.0
 size_flags_horizontal = 4
 
 [node name="policyPanel" parent="CanvasLayer" instance=ExtResource("9_fdrkw")]

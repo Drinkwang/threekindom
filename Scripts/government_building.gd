@@ -691,6 +691,7 @@ func sendgift():
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"赠礼完成")
 	
 @onready var send_gift_panel = $sendGiftPanel
+#《经济刺激法案》需通过，还剩6天！
 	
 func sendgiftChoice():
 	var rindex=GameManager.sav.randomIndex
@@ -748,6 +749,7 @@ func policyCo_opt():
 		var policyIndex=unUseArr[pick]
 		lawName=policy_panel.getPolicyName(lawIndex,policyIndex) #12
 		lalongPolicy=-policyIndex
+		GameManager.sav.courtingLaws[getFactionByIndex()._name]=lawName
 		#GameManager.sav.laws[lawIndex].append(-policyIndex)
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"政策拉拢")#显示对话	
 	
