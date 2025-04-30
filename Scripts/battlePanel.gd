@@ -87,7 +87,7 @@ func _refreshGeneral():
 	control_3.updateContext(2)	
 	if GameManager.sav.UseGeneral.size()>0:
 		for ele in GameManager.sav.UseGeneral:
-			var index=GameManager.generals.values().find(ele)
+			var index=GameManager.sav.generals.values().find(ele)
 			var finde:SoilderItem=self.find_child("Control_"+str(index+1)) as SoilderItem
 			finde.Use()
 		
@@ -193,7 +193,7 @@ func _on_control_3_gui_input(event):
 		control_2.check_box.button_pressed=false
 		control_1.check_box.button_pressed=false
 		
-		battle_circle.selectgeneral= GameManager.generals[control_3.repImg]
+		battle_circle.selectgeneral= GameManager.sav.generals[control_3.repImg]
 		battle_circle._juideCompeleteTask()
 		_refreshSlider()
 	#取消其它的选中状态
@@ -211,7 +211,7 @@ func _on_control_2_gui_input(event):
 		control_1.check_box.button_pressed=false
 		control_2.check_box.button_pressed=true
 		control_3.check_box.button_pressed=false
-		battle_circle.selectgeneral= GameManager.generals[control_2.repImg]
+		battle_circle.selectgeneral= GameManager.sav.generals[control_2.repImg]
 		battle_circle._juideCompeleteTask() 
 		_refreshSlider()
 
@@ -224,7 +224,7 @@ func _on_control_1_gui_input(event):
 		control_3.check_box.button_pressed=false
 		control_2.check_box.button_pressed=false
 		control_1.check_box.button_pressed=true
-		battle_circle.selectgeneral= GameManager.generals[control_1.repImg]
+		battle_circle.selectgeneral= GameManager.sav.generals[control_1.repImg]
 		battle_circle._juideCompeleteTask()	 
 		_refreshSlider()
 

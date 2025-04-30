@@ -380,7 +380,7 @@ func initPaixi(data:cldata):
 
 	#如果是相同派系，则为0，不同派系，将（index-1）*9到10 的百分比赋值给它
 	data._num_op=data._num_op+lawOP
-	var initRt=randf_range(0,max(data._num_op*2,data._num_all-data._num_op))
+	var initRt=randf_range(0,min(data._num_op*2,data._num_all-data._num_op))
 	if GameManager.sav.curLawNum1<=0:
 		initRt=0
 	data._num_rt=initRt

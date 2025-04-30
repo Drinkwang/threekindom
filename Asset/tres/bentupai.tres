@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_wkftk")
 _name = "本土派"
-_num_all = 5
+_num_all = 10
 _num_rt = 0
 _num_sp = 0
 _num_op = 0

@@ -60,7 +60,7 @@ func _ready():
 	else:
 		bg.texture=xiaopeiBuild		
 		
-		
+	changePanelPos()	
 @onready var node_2d = $CanvasBook/Node2D
 
 func changeLanguage():
@@ -261,5 +261,14 @@ func GetLawClaimRevenue():
 	GameManager.sav.curLawName=""
 	GameManager.sav.curLawNum1=-1
 	GameManager.sav.curLawNum2=-1
-	
-	
+	SignalManager.changeSupport.emit()
+
+@onready var factionView = $CanvasBook/faction
+
+func changePanelPos():
+	if GameManager.sav.have_event["Factionalization"]==true:
+		factionView.position.y=655
+	else:	
+	#f GameManager.sav.
+		factionView.position.y=737
+	pass

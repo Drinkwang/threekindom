@@ -58,9 +58,9 @@ text = "本地派:外来派"
 [node name="p1" type="Label" parent="."]
 layout_mode = 0
 offset_left = 735.0
-offset_top = 247.0
+offset_top = 243.0
 offset_right = 990.0
-offset_bottom = 803.0
+offset_bottom = 799.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_constants/line_spacing = 20

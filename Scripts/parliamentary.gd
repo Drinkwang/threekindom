@@ -62,10 +62,11 @@ func enter():
 	#合计反对
 	#通过率
 	#结果
+	#摇摆增加放在这里进行结算
 	var totalSp:int=BENTUPAI._num_sp+WAIDIPAI._num_sp+HAOZUPAI._num_sp
 	var totalOp:int=BENTUPAI._num_op+WAIDIPAI._num_op+HAOZUPAI._num_op
 	var totalNum:int=BENTUPAI._num_all+WAIDIPAI._num_all+HAOZUPAI._num_all
-	var totalrate=(totalSp/totalNum)*100
+	var totalrate=(totalSp*1.0/totalNum*1.0)*100.0
 	var isPass:String="通过"
 	if(totalrate>50):
 		isPass="通过"

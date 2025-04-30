@@ -220,13 +220,12 @@ offset_bottom = 37.0
 metadata/_edit_use_anchors_ = true
 
 [node name="Control2" parent="CanvasBook" instance=ExtResource("7_3iegf")]
-offset_top = 741.0
+offset_top = 899.0
 offset_right = -1579.0
 
 [node name="faction" parent="CanvasBook" instance=ExtResource("6_mjg5e")]
-offset_left = 5.0
 offset_top = 737.0
-offset_right = -1584.0
+offset_right = -1590.0
 offset_bottom = -180.0
 size_flags_horizontal = 4
 

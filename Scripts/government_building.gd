@@ -77,7 +77,7 @@ func _ready():
 	control.buttonClick.connect(_buttonListClick)
 	super._ready()
 	#initData()
-	
+	changePanelPos()	
 	
 	pass # Replace with function body.
 var candoSub=true
@@ -176,7 +176,7 @@ func _initData():
 	
 	if GameManager.sav.have_event["firstPolicyOpShow"]==true||GameManager.sav.day>1:
 		control._processList(initData)
-		
+
 	if GameManager.sav.have_event["firstTabLaw"]==true or GameManager.sav.day>=5:
 		policy_panel.tab_bar.show()
 	else:
@@ -472,8 +472,29 @@ func _JudgeTask():
 		if GameManager.sav.TargetDestination.length()>0:
 
 			deliverTask()
+			return
 	#判断task 完成 所到地点
+	else:
+		deliverUncompleteTask()
 
+func deliverUncompleteTask():
+	if GameManager.sav.have_event["chaoDialogEnd"]==true:
+		if(GameManager.sav.have_event["chaosEnd"]==false):	
+			if GameManager.sav.currenceDay>=2:
+				GameManager.sav.currenceDay=0
+				if GameManager.sav.have_event["firstDisaster"]==false:
+					GameManager.sav.have_event["firstDisaster"]=true
+					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第一次赈灾开始")#显示对话
+	#第一次赈灾启动 还没设定
+				elif GameManager.sav.have_event["secondDisaster"]==false:	
+					GameManager.sav.have_event["secondDisaster"]=true
+					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第二次分配粮食")#显示对话
+						#第二次赈灾开始
+				elif GameManager.sav.have_event["thirdDisaster"]==false:
+					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第三次分配粮食")#显示对话			
+					GameManager.sav.have_event["thirdDisaster"]=true
+						#第三次赈灾开始	
+		
 			
 func deliverTask():
 	if GameManager.sav.TargetDestination=="府邸":
@@ -490,24 +511,8 @@ func deliverTask():
 				GameManager.sav.have_event["deliverYuanShu"]=true
 				GameManager.clearTask()
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"打跑袁术")#显示对话
-		#修改袁术内应阶段
-		if GameManager.sav.have_event["chaoDialogEnd"]==true:
-			if(GameManager.sav.have_event["chaosEnd"]==false):	
-				if GameManager.sav.currenceDay>=2:
-					GameManager.sav.currenceDay=0
-					if GameManager.sav.have_event["firstDisaster"]==false:
-						GameManager.sav.have_event["firstDisaster"]=true
-						DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第一次赈灾开始")#显示对话
-	#第一次赈灾启动 还没设定
-					elif GameManager.sav.have_event["secondDisaster"]==false:	
-						GameManager.sav.have_event["secondDisaster"]=true
-						DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第二次分配粮食")#显示对话
-						#第二次赈灾开始
-					elif GameManager.sav.have_event["thirdDisaster"]==false:
-						DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第三次分配粮食")#显示对话			
-						GameManager.sav.have_event["thirdDisaster"]=true
-						#第三次赈灾开始	
-		elif GameManager.sav.have_event["战斗袁术开始"]==true:
+
+		if GameManager.sav.have_event["战斗袁术开始"]==true and GameManager.sav.have_event["chaoDialogEnd"]==false:
 			if GameManager.sav.have_event["亲征跟糜竺对话"]==false:
 				mizhu.show()
 				mizhu.dialogue_start="亲征前跟糜竺对话"
@@ -524,6 +529,7 @@ func deliverTask():
 				GameManager.sav.TargetDestination="你需要跟陈登对话"
 			elif GameManager.sav.have_event["亲征跟糜竺对话"]==false and GameManager.sav.have_event["亲征跟陈登对话"]==true:
 				GameManager.sav.TargetDestination="你需要跟糜竺对话" 
+
 
 func liubeiBattleAfterMizhu():
 	mizhu.hide()
@@ -609,8 +615,12 @@ func afterAllocation():
 const WAIDIPAI = preload("res://Asset/tres/waidipai.tres")
 func FractionalDiff():
 	HAOZUPAI.isshow=true
-	BENTUPAI._name="士族派(本土)"
+	HAOZUPAI.ChangeAllPeople(floor(BENTUPAI._num_all/2))
+	BENTUPAI.ChangeAllPeople(floor(BENTUPAI._num_all/2))
+	BENTUPAI._name="士族派"
+	SignalManager.changeSupport.emit()
 	GameManager.sav.have_event["Factionalization"]=true
+	changePanelPos()
 	#存档
 	#派系分化成2个
 func ShowDisterPanel():
@@ -849,3 +859,14 @@ func holdSac():
 	#GameManager.ScoreToItem()
 	_reward.showTitileReward(tr("恭喜你，你获得-黄麻药囊"),items)	
 	
+@onready var factionView= $CanvasLayer/faction
+
+func changePanelPos():
+	if factionView==null:
+		return
+	if GameManager.sav.have_event["Factionalization"]==true:
+		factionView.position.y=655
+	else:	
+	#f GameManager.sav.
+		factionView.position.y=737
+	pass

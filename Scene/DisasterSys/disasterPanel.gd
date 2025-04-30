@@ -101,7 +101,7 @@ func confireAllocation():
 
 #这里可能不写
 func afterAllocation():
-	
+	self.hide()
 	pass
 
 func cancelAllocation():
