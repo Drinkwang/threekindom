@@ -47,7 +47,8 @@ func clearTask():
 
 const inventoryPackege="e4530fc7-c5d6-41af-9b6e-35249272186a"
 @export var sav:saveData=saveData.new()
-const sys = preload("res://dialogues/系统.dialogue")
+var sys = preload("res://dialogues/系统.dialogue")
+
 func changePeopleSupport(num):
 	sav.people_surrport=sav.people_surrport+num
 	if(sav.people_surrport>100):
@@ -171,15 +172,21 @@ var policy_Item=[
 #var dialogBegin=false
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
+
 	_enterDay()
 	SkipPrologue()
-	#_inventoryManager
 
 
-#func _on_dialogue_ended():
-	#dialogBegin=false
-#	pass
+func _input(event):
+	# 检测 ESC 键
+	if event.is_action_pressed("ui_cancel") and not event.is_echo() and DialogueManager.dialogBegin==false and currenceScene!=null:
+		#pass
+		if !(currenceScene is mainHall):
+			DialogueManager.show_example_dialogue_balloon(sys,"ESC按钮")
+		else:
+			DialogueManager.show_example_dialogue_balloon(sys,"选项暂不可开")
+			
+			print("目前场景不能通过esc按钮执行任何操作")
 func initBattle():
 	sav.UseGeneral=[]
 	#all改成any

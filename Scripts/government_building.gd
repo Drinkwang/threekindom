@@ -485,7 +485,7 @@ func deliverUncompleteTask():
 				if GameManager.sav.have_event["firstDisaster"]==false:
 					GameManager.sav.have_event["firstDisaster"]=true
 					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第一次赈灾开始")#显示对话
-	#第一次赈灾启动 还没设定
+						#第一次赈灾启动 还没设定
 				elif GameManager.sav.have_event["secondDisaster"]==false:	
 					GameManager.sav.have_event["secondDisaster"]=true
 					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第二次分配粮食")#显示对话

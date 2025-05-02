@@ -14,16 +14,24 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nj81s"]
 shader = ExtResource("7_vnqe7")
 shader_parameter/brightness = 1.0
+shader_parameter/global_alpha = 1.0
 shader_parameter/outline_size = 0.25
-shader_parameter/outline_color = Color(0.233925, 0.233925, 0.233925, 1)
+shader_parameter/outline_color_1 = Color(0, 0, 0, 1)
+shader_parameter/outline_color_2 = Color(0, 0, 0, 0.7)
+shader_parameter/outline_color_3 = Color(0, 0, 0, 0.4)
 shader_parameter/outline_threshold = 0.5
+shader_parameter/outline_step = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eexuo"]
 shader = ExtResource("7_vnqe7")
 shader_parameter/brightness = 1.525
+shader_parameter/global_alpha = 1.0
 shader_parameter/outline_size = 0.0
-shader_parameter/outline_color = Color(0.233925, 0.233925, 0.233925, 1)
+shader_parameter/outline_color_1 = Color(0, 0, 0, 1)
+shader_parameter/outline_color_2 = Color(0, 0, 0, 0.7)
+shader_parameter/outline_color_3 = Color(0, 0, 0, 0.4)
 shader_parameter/outline_threshold = 0.5
+shader_parameter/outline_step = 1.0
 
 [sub_resource type="Animation" id="Animation_pgtk5"]
 length = 0.001

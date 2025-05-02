@@ -185,7 +185,7 @@ do meetingEnd()
 - 索取
 #优先级b
 	do claim()
-
+- 镇压
 - (重新选择)
 	do optionSummonOnemen()
 #	do SummonFaction(_faction)

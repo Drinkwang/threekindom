@@ -62,7 +62,7 @@ func showCurrenceLaw():
 	if  GameManager.sav.curLawName!=null and  GameManager.sav.curLawName.length()>0:
 
 		currence_laws.show()
-		currence_laws.text="当前待立法律【%s】\n你需要去议事厅商讨通过"%GameManager.sav.curLawName
+		currence_laws.text=tr("当前待立法律【%s】\n你需要去议事厅商讨通过")%GameManager.sav.curLawName
 	else:
 		currence_laws.hide()	
 

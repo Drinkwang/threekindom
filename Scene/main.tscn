@@ -55,9 +55,13 @@ _data = {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0pih0"]
 shader = ExtResource("26_wtvsq")
 shader_parameter/brightness = 1.1
+shader_parameter/global_alpha = 1.0
 shader_parameter/outline_size = 0.5
-shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/outline_color_1 = Color(0, 0, 0, 1)
+shader_parameter/outline_color_2 = Color(0.512884, 0, 0.145131, 1)
+shader_parameter/outline_color_3 = Color(0.400493, 6.257e-07, 0.225525, 1)
 shader_parameter/outline_threshold = 0.5
+shader_parameter/outline_step = 1.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ejvyd"]
 atlas = ExtResource("17_ggnt5")
@@ -195,7 +199,7 @@ dialogue_start = "蜡烛"
 
 [node name="GPUParticles2D" parent="蜡烛" instance=ExtResource("10_qif51")]
 position = Vector2(0, -7)
-scale = Vector2(2.11572, 2.5281)
+scale = Vector2(1.006, 1.202)
 
 [node name="陶谦" parent="." instance=ExtResource("1_1yudk")]
 visible = false
@@ -208,7 +212,7 @@ dialogue_start = ""
 
 [node name="GPUParticles2D" parent="." instance=ExtResource("10_qif51")]
 position = Vector2(678, 395)
-scale = Vector2(1.45455, 1.59)
+scale = Vector2(1.045, 1.143)
 
 [node name="BackBufferCopy" type="BackBufferCopy" parent="."]
 copy_mode = 2
@@ -386,6 +390,8 @@ visible = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 visible = false
+modulate = Color(1, 1, 1, 0.431373)
+self_modulate = Color(1, 1, 1, 0.388235)
 material = SubResource("ShaderMaterial_0pih0")
 position = Vector2(719, 626)
 scale = Vector2(5.5, 5.5)

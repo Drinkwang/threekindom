@@ -1,4 +1,5 @@
 extends baseComponent
+class_name mainHall
 @onready var timer = $Timer
 @onready var mask = $BackBufferCopy/mask
 @onready var inventory_any = $CanvasInventory/InventoryAny
@@ -19,6 +20,7 @@ func _ready():
 	Transitions.post_transition.connect(post_transition)
 	SoundManager.play_music(_10__TIME_WHISTLE)
 	mask.hide()
+	GameManager.currenceScene=self
 	#timer.start()
 	if get_tree().get_root().has_node("InventoryManager"):
 	#_error_ui.queue_free()
@@ -44,6 +46,25 @@ func _ready():
 		}
 	]
 	super._ready()
+	initLanguage()
+
+func initLanguage():
+	var currencelanguage=TranslationServer.get_locale()
+	if currencelanguage=="en":
+		tu_label.add_theme_font_size_override("font_size", 30)
+		#reallabel.add_theme_font_size_override("font_size", 38)
+	elif currencelanguage=="zh":
+		tu_label.add_theme_font_size_override("font_size", 46)
+		#reallabel.add_theme_font_size_override("font_size", 40)
+		#label.font_size=36
+	elif currencelanguage=="ru":
+		tu_label.add_theme_font_size_override("font_size", 30)
+		
+
+	print(TranslationServer.get_locale()) 
+	# Replace with function body.
+		
+	
 	#time2.s();
 @onready var mask_2 = $BackBufferCopy/mask2
 	#pass # Replace with function body.

@@ -71,6 +71,10 @@ var _autoloads: Dictionary = {}
 
 var _node_properties: Array = []
 
+var dialogBegin=false
+
+func _on_dialogue_ended(ens):
+	dialogBegin=false
 
 func _ready() -> void:
 	# Cache the known Node2D properties
@@ -79,7 +83,7 @@ func _ready() -> void:
 	for property in temp_node.get_property_list():
 		_node_properties.append(property.name)
 	temp_node.free()
-
+	DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
 	# Make the dialogue manager available as a singleton
 	if Engine.has_singleton("DialogueManager"):
 		Engine.unregister_singleton("DialogueManager")
@@ -263,7 +267,8 @@ func create_resource_from_text(text: String) -> Resource:
 ## Show the example balloon
 func show_example_dialogue_balloon(resource: DialogueResource, title: String = "", extra_game_states: Array = []) -> CanvasLayer:
 	var balloon: Node = load(_get_example_balloon_path()).instantiate()
-
+	
+	dialogBegin=true
 	get_current_scene.call().add_child(balloon)
 	balloon.start(resource, title, extra_game_states)
 
