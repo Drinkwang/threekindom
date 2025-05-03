@@ -1,0 +1,208 @@
+[gd_scene load_steps=6 format=3 uid="uid://csklkba66a2ow"]
+
+[ext_resource type="Script" path="res://Scene/commonPanel/SettingMenu.gd" id="1_juv31"]
+[ext_resource type="Texture2D" uid="uid://d3lr2uas6ax8v" path="res://addons/dialogue_manager/assets/icon.svg" id="2_3w1gj"]
+[ext_resource type="Theme" uid="uid://bklmr3xmk4m5u" path="res://global_theme.tres" id="2_gh1tc"]
+[ext_resource type="Theme" uid="uid://bk18yfu0d77wk" path="res://addons/panku_console/res/panku_console_theme.tres" id="3_xifkc"]
+[ext_resource type="Theme" uid="uid://bd3x65u7e06d8" path="res://new_theme.tres" id="4_wlupd"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_juv31")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1408.0
+offset_top = -884.0
+offset_right = 1584.0
+offset_bottom = 728.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2, 0.2, 0.2, 0.827451)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -606.0
+offset_top = -370.0
+offset_right = 604.0
+offset_bottom = 287.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(630.615, 267.699)
+theme = ExtResource("2_gh1tc")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="context2" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 48
+text = "设置菜单
+"
+autowrap_mode = 2
+
+[node name="分辨率" type="Label" parent="."]
+offset_left = 707.0
+offset_top = 386.0
+offset_right = 851.0
+offset_bottom = 437.0
+theme_override_font_sizes/font_size = 36
+text = "分辨率："
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="分辨率"]
+visible = false
+layout_mode = 0
+offset_left = 154.0
+offset_top = 19.0
+offset_right = 527.0
+offset_bottom = 35.0
+theme_override_icons/grabber = ExtResource("2_3w1gj")
+value = 17.0
+
+[node name="OptionButton" type="OptionButton" parent="分辨率"]
+layout_mode = 0
+offset_left = 141.0
+offset_top = 2.0
+offset_right = 347.0
+offset_bottom = 54.0
+theme = ExtResource("4_wlupd")
+theme_override_font_sizes/font_size = 31
+selected = 0
+
+[node name="是否全屏" type="Label" parent="."]
+offset_left = 669.0
+offset_top = 438.0
+offset_right = 813.0
+offset_bottom = 489.0
+theme_override_font_sizes/font_size = 36
+text = "是否全屏"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckBox" type="CheckBox" parent="是否全屏"]
+layout_mode = 0
+offset_left = 158.0
+offset_top = 8.0
+offset_right = 182.0
+offset_bottom = 29.0
+scale = Vector2(2, 2)
+theme = ExtResource("3_xifkc")
+button_pressed = true
+
+[node name="音乐音量" type="Label" parent="."]
+offset_left = 674.0
+offset_top = 490.0
+offset_right = 818.0
+offset_bottom = 541.0
+theme_override_font_sizes/font_size = 36
+text = "音乐音量"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="音乐音量"]
+layout_mode = 0
+offset_left = 154.0
+offset_top = 19.0
+offset_right = 527.0
+offset_bottom = 35.0
+theme_override_icons/grabber = ExtResource("2_3w1gj")
+max_value = 1.0
+step = 0.1
+value = 1.0
+
+[node name="语言系统" type="Label" parent="."]
+offset_left = 672.0
+offset_top = 330.0
+offset_right = 852.0
+offset_bottom = 381.0
+theme_override_font_sizes/font_size = 36
+text = "语言系统："
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OptionButton" type="OptionButton" parent="语言系统"]
+layout_mode = 0
+offset_left = 180.0
+offset_top = 1.0
+offset_right = 349.0
+offset_bottom = 53.0
+theme = ExtResource("4_wlupd")
+theme_override_font_sizes/font_size = 31
+item_count = 5
+selected = 0
+fit_to_longest_item = false
+popup/item_0/text = "简体中文"
+popup/item_0/id = 0
+popup/item_1/text = "繁体中文"
+popup/item_1/id = 1
+popup/item_2/text = "英语"
+popup/item_2/id = 2
+popup/item_3/text = "日语"
+popup/item_3/id = 3
+popup/item_4/text = "俄语"
+popup/item_4/id = 4
+
+[node name="音效音量" type="Label" parent="."]
+offset_left = 672.0
+offset_top = 553.0
+offset_right = 816.0
+offset_bottom = 604.0
+theme_override_font_sizes/font_size = 36
+text = "音效音量"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="音效音量"]
+layout_mode = 0
+offset_left = 154.0
+offset_top = 19.0
+offset_right = 527.0
+offset_bottom = 35.0
+theme_override_icons/grabber = ExtResource("2_3w1gj")
+max_value = 1.0
+step = 0.1
+value = 1.0
+
+[node name="Button" type="Button" parent="."]
+offset_left = 1093.0
+offset_top = 630.0
+offset_right = 1405.0
+offset_bottom = 739.0
+text = "确认设置"
+
+[connection signal="item_selected" from="分辨率/OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="value_changed" from="音乐音量/HSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="item_selected" from="语言系统/OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="value_changed" from="音效音量/HSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]

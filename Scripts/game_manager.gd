@@ -177,6 +177,13 @@ func _ready():
 	SkipPrologue()
 
 
+func OpenSettingMenu():
+	PanelManager.new_SettingMenu()	
+
+func ReturnMenu():
+	pass
+
+
 func _input(event):
 	# 检测 ESC 键
 	if event.is_action_pressed("ui_cancel") and not event.is_echo() and DialogueManager.dialogBegin==false and currenceScene!=null:
