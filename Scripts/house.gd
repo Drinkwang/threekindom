@@ -48,6 +48,12 @@ func _ready():
 
 
 func _initData():
+	
+	
+	var musicVolume=SoundManager.get_music_volume()
+	
+	var soundVolume=SoundManager.get_sound_volume()
+		
 	var initData=[
 	{
 		"id":"1",

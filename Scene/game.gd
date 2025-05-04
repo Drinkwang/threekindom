@@ -5,7 +5,13 @@ extends Node2D
 const ARVOSTUS = preload("res://Asset/bgm/4- Arvostus.mp3")
 func _ready():
 	SoundManager.play_music(ARVOSTUS)
-	var system_locale = OS.get_locale_language()
+	var system_locale	
+	if GameManager._setting==null:
+		system_locale= OS.get_locale_language()
+	else:
+		system_locale=GameManager._setting.language
+
+
 	TranslationServer.set_locale(system_locale)
 	if system_locale=="zh_HK" or system_locale=="zh_TW":
 		TranslationServer.set_locale("lzh")

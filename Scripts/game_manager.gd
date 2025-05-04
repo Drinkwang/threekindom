@@ -175,7 +175,7 @@ func _ready():
 
 	_enterDay()
 	SkipPrologue()
-
+	initSetting()
 
 func OpenSettingMenu():
 	PanelManager.new_SettingMenu()	
@@ -869,3 +869,51 @@ func SkipPrologue():
 	for key in keys_to_change:
 		sav.have_event[key] = true
 	sav.day=5
+
+var _setting:SettingsResource
+
+func initSetting():
+	var path="user://save_data_setting.tres"
+	if(FileAccess.file_exists(path)):
+		_setting=load(path)
+		load_settings()#把语言系统设置，然后应用分辨率 应用全屏，引用音效、没了
+	#else:
+		
+func load_settings():
+	
+
+	SoundManager.set_sound_volume(_setting.sfx_volume)
+	SoundManager.set_music_volume(_setting.music_volume)
+	if _setting.fullscreen:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	
+	
+	var system_locale = _setting.language
+	TranslationServer.set_locale(system_locale)
+	if system_locale=="zh_HK" or system_locale=="zh_TW":
+		TranslationServer.set_locale("lzh")
+		#option_button.select(1)
+	
+	var res =_setting.resolution.split("x")
+	var width = int(res[0])
+	var height = int(res[1])
+	
+	DisplayServer.window_set_size(Vector2i(width, height))
+	# 居中窗口
+	var screen_size = DisplayServer.screen_get_size()
+	var window_pos = (screen_size - Vector2i(width, height)) / 2
+	DisplayServer.window_set_position(window_pos)	
+	
+	#current_resolution_index = resolutions.find(settings.resolution)
+	#apply_resolution(current_resolution_index)
+	
+	#fullscreen_check.button_pressed = settings.fullscreen
+	#_on_fullscreen_toggled(settings.fullscreen)
+	
+	#music_slider.value = settings.music_volume
+	#_on_music_slider_value_changed(settings.music_volume)
+	
+	#sfx_slider.value = settings.sfx_volume
+	#_on_sfx_slider_value_changed(settings.sfx_volume)
