@@ -95,9 +95,7 @@ func _ready():
 	apply_resolution(current_resolution_index)
 	TranslationServer.set_locale(system_locale)
 	# 连接信号
-	resolution_option.item_selected.connect(_on_resolution_selected)
-	fullscreen_check.toggled.connect(_on_fullscreen_toggled)
-
+	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_RESIZE_DISABLED, true)
 	#如果设置存了别的
 
 	if system_locale=="zh_HK" or system_locale=="zh_TW":
@@ -160,7 +158,9 @@ func _on_resolution_selected(index: int):
 	var saveResolution=apply_resolution(index)
 	GameManager._setting.resolution=saveResolution
 
-	
+	#if not GameManager._setting.fullscreen:
+		#DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)  # Ensure windowed mode
+	#
 	
 # 全屏模式切换
 func _on_fullscreen_toggled(toggled: bool):
@@ -169,6 +169,8 @@ func _on_fullscreen_toggled(toggled: bool):
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 		apply_resolution(current_resolution_index)
+		
+		#DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	GameManager._setting.fullscreen=toggled
 # 确认按钮
 

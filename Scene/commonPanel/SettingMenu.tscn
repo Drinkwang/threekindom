@@ -7,6 +7,7 @@
 [ext_resource type="Theme" uid="uid://bd3x65u7e06d8" path="res://new_theme.tres" id="4_wlupd"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
+transform = Transform2D(1, 8.74228e-08, -8.74228e-08, 1, 0, 0)
 script = ExtResource("1_juv31")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -31,9 +32,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -20.0
-offset_top = -20.0
+offset_top = -3.0
 offset_right = 20.0
-offset_bottom = 20.0
+offset_bottom = 37.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -72,9 +73,9 @@ autowrap_mode = 2
 
 [node name="分辨率" type="Label" parent="."]
 offset_left = 707.0
-offset_top = 386.0
+offset_top = 403.0
 offset_right = 851.0
-offset_bottom = 437.0
+offset_bottom = 454.0
 theme_override_font_sizes/font_size = 36
 text = "分辨率："
 horizontal_alignment = 2
@@ -101,9 +102,9 @@ theme_override_font_sizes/font_size = 31
 
 [node name="是否全屏" type="Label" parent="."]
 offset_left = 669.0
-offset_top = 438.0
+offset_top = 455.0
 offset_right = 813.0
-offset_bottom = 489.0
+offset_bottom = 506.0
 theme_override_font_sizes/font_size = 36
 text = "是否全屏"
 horizontal_alignment = 1
@@ -121,9 +122,9 @@ button_pressed = true
 
 [node name="音乐音量" type="Label" parent="."]
 offset_left = 674.0
-offset_top = 490.0
+offset_top = 507.0
 offset_right = 818.0
-offset_bottom = 541.0
+offset_bottom = 558.0
 theme_override_font_sizes/font_size = 36
 text = "音乐音量"
 horizontal_alignment = 1
@@ -142,9 +143,9 @@ value = 1.0
 
 [node name="语言系统" type="Label" parent="."]
 offset_left = 672.0
-offset_top = 330.0
+offset_top = 347.0
 offset_right = 852.0
-offset_bottom = 381.0
+offset_bottom = 398.0
 theme_override_font_sizes/font_size = 36
 text = "语言系统："
 horizontal_alignment = 1
@@ -174,9 +175,9 @@ popup/item_4/id = 4
 
 [node name="音效音量" type="Label" parent="."]
 offset_left = 672.0
-offset_top = 553.0
+offset_top = 570.0
 offset_right = 816.0
-offset_bottom = 604.0
+offset_bottom = 621.0
 theme_override_font_sizes/font_size = 36
 text = "音效音量"
 horizontal_alignment = 1
@@ -195,9 +196,9 @@ value = 1.0
 
 [node name="Button" type="Button" parent="."]
 offset_left = 1093.0
-offset_top = 630.0
+offset_top = 647.0
 offset_right = 1405.0
-offset_bottom = 739.0
+offset_bottom = 756.0
 text = "确认设置"
 
 [connection signal="item_selected" from="分辨率/OptionButton" to="." method="_on_resolution_selected"]
