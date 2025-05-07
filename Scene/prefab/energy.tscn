@@ -5,33 +5,25 @@
 [ext_resource type="Texture2D" uid="uid://bl3r57njbdry0" path="res://Asset/ui/进度条背景.png" id="3_te6ew"]
 [ext_resource type="Texture2D" uid="uid://i3ibtlwjd72k" path="res://Asset/ui/进度条填色.png" id="4_2kuei"]
 [ext_resource type="Texture2D" uid="uid://djtlal0bexgms" path="res://Asset/人物/刘备2.png" id="6_e7d3e"]
+[ext_resource type="Shader" path="res://shader/brightness_outline_old.gdshader" id="7_aou84"]
 [ext_resource type="Texture2D" uid="uid://bjc3moxp0k6ww" path="res://Asset/宝箱.png" id="7_h24fi"]
-[ext_resource type="Shader" path="res://shader/brightness_outline.gdshader" id="7_vnqe7"]
 [ext_resource type="Texture2D" uid="uid://sswcvqf8xpgs" path="res://Asset/存档.png" id="8_k0wc5"]
 [ext_resource type="PackedScene" uid="uid://bhu5hq8kx8pov" path="res://addons/inventory_example/inventories/simple/InventoryUI.tscn" id="9_loc21"]
 [ext_resource type="Texture2D" uid="uid://dy3bhyc470by4" path="res://Asset/blue/meter_icon_holder_blue.png" id="9_qjdqi"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nj81s"]
-shader = ExtResource("7_vnqe7")
+shader = ExtResource("7_aou84")
 shader_parameter/brightness = 1.0
-shader_parameter/global_alpha = 1.0
 shader_parameter/outline_size = 0.25
-shader_parameter/outline_color_1 = Color(0, 0, 0, 1)
-shader_parameter/outline_color_2 = Color(0, 0, 0, 0.7)
-shader_parameter/outline_color_3 = Color(0, 0, 0, 0.4)
+shader_parameter/outline_color = Color(0, 0, 0, 1)
 shader_parameter/outline_threshold = 0.5
-shader_parameter/outline_step = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eexuo"]
-shader = ExtResource("7_vnqe7")
+shader = ExtResource("7_aou84")
 shader_parameter/brightness = 1.525
-shader_parameter/global_alpha = 1.0
 shader_parameter/outline_size = 0.0
-shader_parameter/outline_color_1 = Color(0, 0, 0, 1)
-shader_parameter/outline_color_2 = Color(0, 0, 0, 0.7)
-shader_parameter/outline_color_3 = Color(0, 0, 0, 0.4)
+shader_parameter/outline_color = Color(0, 0, 0, 1)
 shader_parameter/outline_threshold = 0.5
-shader_parameter/outline_step = 1.0
 
 [sub_resource type="Animation" id="Animation_pgtk5"]
 length = 0.001

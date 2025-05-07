@@ -237,8 +237,8 @@ func _buttonListClick(item):
 	elif item.context == "召见手下":
 		if await GameManager.isTried(costHp_SummonOne):
 			return
-			
-		if(GameManager.sav.have_event["initTask1"]==false):
+
+		if(GameManager.sav.have_event["initTask1"]==false and GameManager.sav.have_event["initXuzhou"]==true):
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"未完成前召见手下")
 			return	
 		#GameManager.hp=GameManager.hp-costHp_SummonOne

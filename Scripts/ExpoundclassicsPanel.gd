@@ -141,7 +141,7 @@ func _on_item_use_gui_input(event):
 	if event is InputEventMouseButton and event.button_index==1 and isboot==true:
 		if count>0:
 			InventoryManager._remove_item(GameManager.inventoryPackege,InventoryManagerItem.诸子百家论集,1)
-			itemUseLabel.text="点击图标使用\n快速结束辩经\n（库存：{num}）".format({"num":count-1})
+			itemUseLabel.text=tr("点击图标使用\n快速结束辩经\n（库存：{num}）").format({"num":count-1})
 			score=9000
 			yourscore.text=tr("你的得分：")+"\n"+str(score)
 			over()

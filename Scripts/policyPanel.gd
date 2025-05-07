@@ -76,7 +76,7 @@ func refreshLawPoint():
 		$lawPanel/DetailPanel/Button.disabled=true
 	else:
 		$lawPanel/DetailPanel/Button.disabled=false
-	point_label.text="点数:%s"%GameManager.sav.Merit_points
+	point_label.text=tr("点数:%s")%GameManager.sav.Merit_points
 func _on_tab_bar_tab_changed(tab):
 	if tab==0:
 		$lawPanel.hide()

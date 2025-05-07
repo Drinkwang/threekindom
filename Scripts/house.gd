@@ -166,7 +166,7 @@ func _initData():
 	
 @onready var zhubu = $"文官"
 	
-		#将政务面板更新 里面列举了一堆list
+	#将政务面板更新 里面列举了一堆list
 	#如果没见过陈登把control隐藏，如果见过了陈登 control不隐藏
 const daybgm = preload("res://Asset/bgm/白天在家or办公.wav")	
 const nightbgm = preload("res://Asset/bgm/夜晚在家.wav")
@@ -311,7 +311,7 @@ func demoFinishWenGuanShow():
 	pass
 @onready var title = $title2
 @onready var demo_end = $CanvasLayer/DemoEnd
-
+const bgs194 = preload("res://Asset/sound/公元194末.mp3")
 func demoFinish():
 	$"陈群".hide()
 	$"文官".hide()
@@ -327,6 +327,7 @@ func demoFinish():
 	GameManager.restLabel=tr("公元194年末，刘备入主徐州，同时他将州治迁往下邳，一场新的权力的游戏开始了！")
 	GameManager.restFadeScene=SceneManager.GOVERNMENT_BUILDING
 	#播放声音
+	SoundManager.play_sound(bgs194)
 	GameManager._rest(false)
 	
 	

@@ -174,7 +174,7 @@ var policy_Item=[
 func _ready():
 
 	_enterDay()
-	SkipPrologue()
+	#SkipPrologue()
 	initSetting()
 
 func OpenSettingMenu():

@@ -72,13 +72,6 @@ metadata/_edit_use_anchors_ = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="ruleBook" parent="CanvasLayer" instance=ExtResource("8_ca5ns")]
-visible = false
-contextEX = "
-在您举办的饭局中，各大派系忠诚度都提高了"
-titleEX = "宴会完美举办成功！"
-dialogue_resource = ExtResource("8_ct1l0")
-
 [node name="supportPanel" parent="CanvasLayer" instance=ExtResource("12_5ydg1")]
 offset_left = 4.0
 offset_top = 738.0
@@ -123,6 +116,13 @@ size_flags_vertical = 4
 visible = false
 happys = Array[int]([4, 8, 10])
 accepts = Array[int]([2, 6, 8])
+dialogue_resource = ExtResource("8_ct1l0")
+
+[node name="ruleBook" parent="CanvasLayer" instance=ExtResource("8_ca5ns")]
+visible = false
+contextEX = "
+在您举办的饭局中，各大派系忠诚度都提高了"
+titleEX = "宴会完美举办成功！"
 dialogue_resource = ExtResource("8_ct1l0")
 
 [node name="sendGiftPanel" parent="." instance=ExtResource("9_2k5hb")]
