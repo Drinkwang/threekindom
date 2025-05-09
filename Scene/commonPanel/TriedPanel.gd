@@ -10,7 +10,7 @@ func _ready():
 	var count=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.益气丸)
 
 	if count>0:
-		resideLabel.text="剩余库存:{num}\n(点击消耗精力丸回复体力)".format({"num":count})
+		resideLabel.text=tr("剩余库存:{num}\n(点击消耗精力丸回复体力)").format({"num":count})
 		texture_button.show()
 	else:
 		texture_button.hide()

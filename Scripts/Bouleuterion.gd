@@ -37,7 +37,8 @@ func showTab():
 const bgmmeet = preload("res://Asset/bgm/会议室.wav")	
 #const 议会2 = preload("res://Asset/bgm/议会2.mp3")
 func post_transition():
-	SoundManager.play_music(bgmmeet)
+	SoundManager.stop_all_ambient_sounds()
+	SoundManager.play_ambient_sound(bgmmeet)
 	print("fadedone")
 	_initData()
 

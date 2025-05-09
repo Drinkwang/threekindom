@@ -16,6 +16,7 @@ func _ready():
 	control.buttonClick.connect(_buttonListClick)
 	if GameManager.sav.day==1||GameManager.sav.day==0:
 		if GameManager.sav.have_event["firstmeetchenqun"]==false:
+			GameManager.changeTaskLabel(tr(""))
 			control.hide()
 		else:
 			control.show()
@@ -46,10 +47,26 @@ func _ready():
 @onready var bti_rect = $btiRect
 @onready var bit_player = $bitPlayer
 
-
+func play_music(file_path: String) -> void:
+	var stream = load(file_path)
+	SoundManager.play_music(stream)
 func _initData():
 	
+	if GameManager.musicId <= 0:
+		var available_ids = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+		# 如果 musicId 是负数，排除对应的编号
+		if GameManager.musicId < 0:
+			var exclude_id = abs(GameManager.musicId)
+			if exclude_id >= 1 and exclude_id <= 10:
+				available_ids.erase(exclude_id)
+		# 从剩余编号中随机选择
+		GameManager.musicId = available_ids[randi() % available_ids.size()]	
 	
+
+		var music_file = "res://Asset/music/Ambient " + str(GameManager.musicId) + ".wav"
+		play_music(music_file)
+		# save_last_play_date(room_id, current_date) # 保存日期
+		# save_has_played(room_id, true) # 标记已播放		
 	var musicVolume=SoundManager.get_music_volume()
 	
 	var soundVolume=SoundManager.get_sound_volume()
@@ -86,8 +103,13 @@ func _initData():
 		"visible":"true"
 	}
 	]
-	
-
+	if GameManager.sav.day>=6:
+		title.show()
+		demo_end.show()
+		hp_panel.hide()
+		res_panel.hide()
+		$CanvasLayer/supportPanel.hide()
+		return
 #const 街道 = preload("res://Asset/bgm/街道.mp3")
 	control._processList(initData)
 	GameManager.currenceScene=self
@@ -95,7 +117,7 @@ func _initData():
 		if(GameManager.sav.have_event["firstmeetchenqun"]==false):
 			GameManager.sav.have_event["firstmeetchenqun"]=true
 			GameManager.sav.curGovAff=tr("1.前往府邸看看堆积的工作\n2.前往演武场会见自己的老下属")
-			GameManager.changeTaskLabel(tr("完成今日政务所有事项"))
+			#GameManager.changeTaskLabel(tr("完成今日政务所有事项"))
 		
 		
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
@@ -131,6 +153,7 @@ func _initData():
 				GameManager.sav.have_event["firstNewEnd"]=true
 				GameManager.restFadeScene=SceneManager.BOULEUTERION
 				GameManager.sav.curGovAff=""
+				SoundManager.stop_music()
 				GameManager.restLabel=tr("与此同时")
 				GameManager._rest(false)
 				#跳转到议会厅触发剧情 先跳转到rest，然后跳转议会厅触发剧情
@@ -138,6 +161,9 @@ func _initData():
 		#并且结束时 触发终极对话，弹出一个类似那样的框 并写着如此同时 xxxxx
 		#大儒辩经文 今天结束时，展示最终对话
 	elif GameManager.sav.day==5:
+		#demo内容未来可删
+		
+		
 		if GameManager.sav.have_event["DemoFinish"]==false:
 			GameManager.changeTaskLabel("")
 			GameManager.sav.have_event["DemoFinish"]=true
@@ -171,9 +197,9 @@ func _initData():
 const daybgm = preload("res://Asset/bgm/白天在家or办公.wav")	
 const nightbgm = preload("res://Asset/bgm/夜晚在家.wav")
 func post_transition():
-	print("fadedone")
+	SoundManager.stop_all_ambient_sounds()
 	if GameManager.sav.hp<=20:
-		SoundManager.play_music(nightbgm)
+		SoundManager.play_ambient_sound(nightbgm)
 		#判断条件做最终支线，显示任务主簿，和点击点击事件
 		if GameManager.sav.have_event["锦囊咨询丹阳派"]==true and GameManager.sav.have_event["支线触发完毕获得骨杖"]==false:
 			zhubu.show()
@@ -181,7 +207,7 @@ func post_transition():
 		#特殊事件触发时
 			zhubu.dialogue_start="支线克苏鲁最终开始"
 	else:
-		SoundManager.play_music(daybgm)
+		SoundManager.play_ambient_sound(daybgm)
 	_initData()
 func gotostreetAndKe(value):
 	GameManager.sav.finalKeChoice=value
@@ -212,9 +238,13 @@ func _buttonListClick(item):
 		policyPanel.show()
 		pass
 	elif item.context == "属性面板":
-		refreshPropertyPanel()
-		propertyPanel.show()
-		pass
+		#当前功能demo不开放
+		DialogueManager.show_example_dialogue_balloon(sys,"当前功能demo不开放")	
+		
+		#正式功能需要取消注释
+		#refreshPropertyPanel()
+		#propertyPanel.show()
+		
 	elif item.context == "休息":
 		
 	 	#如果休息时=4天，则触发阴谋论剧情
@@ -237,8 +267,9 @@ func _buttonListClick(item):
 			#	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"xxxx")	
 			#	return	
 		control._show_button_5_yellow(-1)
-
-			
+		if GameManager.musicId!=0:
+			GameManager.musicId=-GameManager.musicId
+		SoundManager.stop_music()	
 		GameManager._rest()	 
 		#判断有无道具 有道具且等于false	
 				
@@ -291,11 +322,12 @@ func showFirstGuild():
 	$"陈群".hide()
 	#这句代码没有作用，以防万一添加进行初始化
 	GameManager.sav.policyExcute=false
-
+	GameManager.changeTaskLabel(tr("完成今日政务所有事项"))
 	pass
 	
 func showchenqun():
 	$"陈群".show()
+	GameManager.changeTaskLabel(tr("跟陈群对话"))
 	pass
 
 func demoFinishChenQunShow():
@@ -315,9 +347,12 @@ const bgs194 = preload("res://Asset/sound/公元194末.mp3")
 func demoFinish():
 	$"陈群".hide()
 	$"文官".hide()
+	
+	
 	#title.show()
 	#demo_end.show()
 	
+	#return
 	#if day==5:
 	#demo 完结 正式版内容
 	#
@@ -325,10 +360,12 @@ func demoFinish():
 	#旁白: 公元194年末，刘备入主徐州，同时他将州治迁往下邳，一场新的权力的游戏开始了 
 
 	GameManager.restLabel=tr("公元194年末，刘备入主徐州，同时他将州治迁往下邳，一场新的权力的游戏开始了！")
-	GameManager.restFadeScene=SceneManager.GOVERNMENT_BUILDING
+	#DEMO屏蔽
+	#GameManager.restFadeScene=SceneManager.GOVERNMENT_BUILDING
 	#播放声音
 	SoundManager.play_sound(bgs194)
-	GameManager._rest(false)
+	GameManager.wait_time=bgs194.get_length()
+	GameManager._rest(true)#正式游戏false
 	
 	
 	#府邸改成 进去触发对话，对话完触发主线内容

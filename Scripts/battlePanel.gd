@@ -75,7 +75,7 @@ func refreshUseItemPanel():
 
 	if num>0:
 		useItemPanel.show()
-		label.text="   勾选使用胜战锦囊\n   用于提高胜率5%\n  【剩余库存：{_num}】".format({"_num":num})
+		label.text=tr("_battleUseItem").format({"_num":num})
 	else:
 		useItemPanel.hide()
 	

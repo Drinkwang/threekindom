@@ -25,7 +25,7 @@ func _ready():
 	else:
 		fadeScene=SceneManager.HOUSE
 	# Replace with function body.
-
+	$Timer.wait_time=GameManager.wait_time
 @onready var label = $CanvasLayer/Label
 
 
@@ -51,5 +51,5 @@ var fadeScene
 func _on_timer_timeout():
 	const DISSOLVE_IMAGE = preload("res://addons/transitions/images/circle-inverted.png")
 	FancyFade.new().custom_fade(fadeScene.instantiate(), 2, DISSOLVE_IMAGE)	
-	
+	GameManager.wait_time=2
 	#pass # Replace with function body.

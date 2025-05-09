@@ -7,9 +7,10 @@ class_name policyPanel
 @onready var tab_bar = $TabBar
 @onready var point_label = $lawPanel/PointLabel
 @onready var law_label = $lawPanel/DetailPanel/Label2
-#$lawPanel/DetailPanel/Label2
+
 var costhp=35
 #@onready var button = $PanelContainer/orderPanel/VBoxContainer/HBoxContainer/Button
+@onready var detail_panel = $lawPanel/DetailPanel
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -42,7 +43,7 @@ func initControls():
 		control_1.initDataByGroup(1,group)
 		control_2.initDataByGroup(2,group)
 		control_3.initDataByGroup(3,group)
-	
+		
 
 
 func changeLanguage():
@@ -52,7 +53,8 @@ func changeLanguage():
 	elif currencelanguage=="ru":
 		tab_bar.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
 		label.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
-			
+		law_label.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))	
+		currence_no_policy.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))	
 	else:
 		pass
 
@@ -67,7 +69,15 @@ func _initData():
 	else:
 		$TextureButton.show()
 	if GameManager.sav.curLawName.length()>0:
-		law_label.text=tr("当前【%s】法案已被立项，请先在议会厅通过该法案，才能立项其他法律。")%GameManager.sav.curLawName
+		law_label.text=tr("当前【%s】法案已被立项，请先在议会厅通过该法案，才能立项其他法律。")%tr(GameManager.sav.curLawName)
+		var label_height = 81
+		var label_line_count = law_label.get_line_count()  # 获取行数（可选）
+		var padding = 20  # 可根据需要调整
+		var new_size = Vector2(detail_panel.custom_minimum_size.x, label_height +label_line_count* padding)
+	
+		# 应用到 Panel
+		detail_panel.custom_minimum_size = new_size
+	
 	refreshLawPoint()
 
 func refreshLawPoint():
@@ -177,12 +187,25 @@ func preLaw(value:lawpoint):
 	lawbutton.show()
 	selectLawPoint=value
 	law_label.text=value.detail
+	
+	
+	var label_height = 81
+	var label_line_count = law_label.get_line_count()  # 获取行数（可选）
+	var padding = 20  # 可根据需要调整
+	var new_size = Vector2(detail_panel.custom_minimum_size.x, label_height +label_line_count* padding)
+	
+	# 应用到 Panel
+	detail_panel.custom_minimum_size = new_size
+	
+	
+	detail_panel.size=new_size
 	pass
 @onready var lawbutton = $lawPanel/DetailPanel/Button
 
 func excuteLaw(value:lawpoint):
 
-
+	if value==null:
+		return
 	#GameManager.hp=GameManager.hp-costhp
 	if(GameManager.sav.Merit_points<value.costPoint):
 		DialogueManager.show_example_dialogue_balloon(GameManager.currenceScene.dialogue_resource,"你的政策点不够")	
@@ -198,7 +221,7 @@ func excuteLaw(value:lawpoint):
 func agreelaw():
 	if await GameManager.isTried(costhp):
 		return
-	GameManager.sav.RewardLaw=selectLawPoint.IncomeTxt
+	GameManager.sav.RewardLaw=tr(selectLawPoint.IncomeTxt)
 
 	GameManager.sav.curLawName=selectLawPoint.context
 	GameManager.sav.curLawNum1=selectLawPoint.num1

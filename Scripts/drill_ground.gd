@@ -135,7 +135,8 @@ func caocaoLetterHide():
 	caocao_letter.hide()
 	caocao_letter_xie_tian_zi.hide()
 func post_transition():
-	SoundManager.play_music(bgm)
+	SoundManager.stop_all_ambient_sounds()
+	SoundManager.play_ambient_sound(bgm)
 	print("fadedone")
 	
 	if GameManager.sav.have_event["亲征对话结束"]==true and GameManager.sav.have_event["战斗袁术血战模式"]==false:

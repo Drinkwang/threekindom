@@ -62,8 +62,8 @@ func changeLanguage():
 		pass
 	elif currencelanguage=="ru":
 		
-		$TextureRect/Label2.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
-		$TextureRect/Label2.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
+		have_grain.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
+		detail_cotext.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
 	else:
 		pass
 		

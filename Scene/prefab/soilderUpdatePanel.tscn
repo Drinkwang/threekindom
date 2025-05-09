@@ -174,8 +174,9 @@ offset_bottom = -220.0
 grow_horizontal = 2
 grow_vertical = 2
 _color = 2
-detail = "建设"
 context = "农田开坑"
+num1 = 0
+num2 = 1
 
 [node name="Line2D3" type="Line2D" parent="lawPanel/Control1-1"]
 material = SubResource("CanvasItemMaterial_4sj3t")
@@ -213,6 +214,8 @@ grow_vertical = 2
 _color = 2
 lawpoins = [NodePath("../Control1-1")]
 context = "兴办教育"
+num1 = 0
+num2 = 2
 
 [node name="Line2D4" type="Line2D" parent="lawPanel/Control1-2"]
 material = SubResource("CanvasItemMaterial_4sj3t")
@@ -240,6 +243,8 @@ grow_vertical = 2
 _color = 2
 lawpoins = [NodePath("../Control1-1")]
 context = "整治街容"
+num1 = 0
+num2 = 3
 
 [node name="Line2D4" type="Line2D" parent="lawPanel/Control1-3"]
 material = SubResource("CanvasItemMaterial_4sj3t")
@@ -267,6 +272,8 @@ grow_vertical = 2
 _color = 2
 lawpoins = [NodePath("../Control1-2"), NodePath("../Control1-3")]
 context = "重农抑商"
+num1 = 0
+num2 = 4
 
 [node name="Line2D4" type="Line2D" parent="lawPanel/Control1-4"]
 material = SubResource("CanvasItemMaterial_4sj3t")
@@ -303,8 +310,9 @@ grow_horizontal = 2
 grow_vertical = 2
 _color = 2
 lawpoins = [NodePath("../Control1-4")]
-detail = "士族优先"
 context = "士族优先"
+num1 = 0
+num2 = 5
 
 [node name="Line2D4" type="Line2D" parent="lawPanel/Control1-5"]
 material = SubResource("CanvasItemMaterial_4sj3t")
@@ -352,6 +360,8 @@ grow_vertical = 2
 _color = 2
 lawpoins = [NodePath("../Control1-4")]
 context = "物价稳定"
+num1 = 0
+num2 = 6
 
 [node name="Line2D4" type="Line2D" parent="lawPanel/Control1-6"]
 material = SubResource("CanvasItemMaterial_4sj3t")
@@ -399,6 +409,8 @@ grow_vertical = 2
 _color = 2
 lawpoins = [NodePath("../Control1-5"), NodePath("../Control1-6")]
 context = "屯田制"
+num1 = 0
+num2 = 7
 
 [node name="Control1-8" parent="lawPanel" node_paths=PackedStringArray("lawpoins") groups=["lawpoints"] instance=ExtResource("5_l5e0h")]
 layout_mode = 1
@@ -416,6 +428,8 @@ grow_vertical = 2
 _color = 2
 lawpoins = [NodePath("../Control1-5"), NodePath("../Control1-6")]
 context = "府兵制"
+num1 = 0
+num2 = 8
 
 [node name="Control1-9" parent="lawPanel" node_paths=PackedStringArray("lawpoins") groups=["lawpoints"] instance=ExtResource("5_l5e0h")]
 layout_mode = 1
@@ -433,6 +447,8 @@ grow_vertical = 2
 _color = 2
 lawpoins = [NodePath("../Control1-5"), NodePath("../Control1-6")]
 context = "品级制"
+num1 = 0
+num2 = 9
 
 [node name="Control2-1" parent="lawPanel" groups=["lawpoints"] instance=ExtResource("5_l5e0h")]
 layout_mode = 1
@@ -449,6 +465,8 @@ grow_horizontal = 2
 grow_vertical = 2
 _color = 1
 context = "促进商贸"
+num1 = 1
+num2 = 1
 
 [node name="Line2D3" type="Line2D" parent="lawPanel/Control2-1"]
 material = SubResource("CanvasItemMaterial_4sj3t")
@@ -486,6 +504,8 @@ grow_vertical = 2
 _color = 1
 lawpoins = [NodePath("../Control2-1")]
 context = "诚信经营"
+num1 = 1
+num2 = 2
 
 [node name="Line2D4" type="Line2D" parent="lawPanel/Control2-2"]
 material = SubResource("CanvasItemMaterial_4sj3t")
@@ -513,6 +533,8 @@ grow_vertical = 2
 _color = 1
 lawpoins = [NodePath("../Control2-1")]
 context = "行业准则"
+num1 = 1
+num2 = 3
 
 [node name="Line2D4" type="Line2D" parent="lawPanel/Control2-3"]
 material = SubResource("CanvasItemMaterial_4sj3t")
@@ -540,6 +562,8 @@ grow_vertical = 2
 _color = 1
 lawpoins = [NodePath("../Control2-2"), NodePath("../Control2-3")]
 context = "禁止军商"
+num1 = 1
+num2 = 4
 
 [node name="Line2D4" type="Line2D" parent="lawPanel/Control2-4"]
 material = SubResource("CanvasItemMaterial_4sj3t")
@@ -577,6 +601,8 @@ grow_vertical = 2
 _color = 1
 lawpoins = [NodePath("../Control2-4")]
 context = "商业税收法"
+num1 = 1
+num2 = 5
 
 [node name="Line2D4" type="Line2D" parent="lawPanel/Control2-5"]
 material = SubResource("CanvasItemMaterial_4sj3t")
@@ -624,6 +650,8 @@ grow_vertical = 2
 _color = 1
 lawpoins = [NodePath("../Control2-4")]
 context = "货币法"
+num1 = 1
+num2 = 6
 
 [node name="Line2D4" type="Line2D" parent="lawPanel/Control2-6"]
 material = SubResource("CanvasItemMaterial_4sj3t")
@@ -670,8 +698,9 @@ grow_horizontal = 2
 grow_vertical = 2
 _color = 1
 lawpoins = [NodePath("../Control2-5"), NodePath("../Control2-6")]
-detail = "竞商兼并，或致市场垄断，朝廷须干预，以保市场竞争。"
 context = "商业竞争法"
+num1 = 1
+num2 = 7
 
 [node name="Control2-8" parent="lawPanel" node_paths=PackedStringArray("lawpoins") groups=["lawpoints"] instance=ExtResource("5_l5e0h")]
 layout_mode = 1
@@ -688,8 +717,9 @@ grow_horizontal = 2
 grow_vertical = 2
 _color = 1
 lawpoins = [NodePath("../Control2-5"), NodePath("../Control2-6")]
-detail = "商货流通，或生纷争，权宜之计，当有施为。"
 context = "商品流通法"
+num1 = 1
+num2 = 8
 
 [node name="Control2-9" parent="lawPanel" node_paths=PackedStringArray("lawpoins") groups=["lawpoints"] instance=ExtResource("5_l5e0h")]
 layout_mode = 1
@@ -706,8 +736,9 @@ grow_horizontal = 2
 grow_vertical = 2
 _color = 1
 lawpoins = [NodePath("../Control2-5"), NodePath("../Control2-6")]
-detail = "商德不正，损人利己，须重立诚信，以保商业之长久发展。"
 context = "商业诚信法"
+num1 = 1
+num2 = 9
 
 [node name="Control3-1" parent="lawPanel" groups=["lawpoints"] instance=ExtResource("5_l5e0h")]
 layout_mode = 1
@@ -723,6 +754,8 @@ offset_bottom = 221.0
 grow_horizontal = 2
 grow_vertical = 2
 context = "军纪法"
+num1 = 2
+num2 = 1
 
 [node name="Line2D4" type="Line2D" parent="lawPanel/Control3-1"]
 material = SubResource("CanvasItemMaterial_4sj3t")
@@ -759,6 +792,8 @@ grow_horizontal = 2
 grow_vertical = 2
 lawpoins = [NodePath("../Control3-1")]
 context = "战备法"
+num1 = 2
+num2 = 2
 
 [node name="Line2D4" type="Line2D" parent="lawPanel/Control3-2"]
 material = SubResource("CanvasItemMaterial_4sj3t")
@@ -785,6 +820,8 @@ grow_horizontal = 2
 grow_vertical = 2
 lawpoins = [NodePath("../Control3-1")]
 context = "边防法"
+num1 = 2
+num2 = 3
 
 [node name="Line2D4" type="Line2D" parent="lawPanel/Control3-3"]
 material = SubResource("CanvasItemMaterial_4sj3t")
@@ -811,6 +848,8 @@ grow_horizontal = 2
 grow_vertical = 2
 lawpoins = [NodePath("../Control3-2"), NodePath("../Control3-3")]
 context = "军事训诂"
+num1 = 2
+num2 = 4
 
 [node name="Line2D4" type="Line2D" parent="lawPanel/Control3-4"]
 material = SubResource("CanvasItemMaterial_4sj3t")
@@ -846,8 +885,9 @@ offset_bottom = 158.0
 grow_horizontal = 2
 grow_vertical = 2
 lawpoins = [NodePath("../Control3-4")]
-detail = "军事装备法"
 context = "军事装备法"
+num1 = 2
+num2 = 5
 
 [node name="Line2D4" type="Line2D" parent="lawPanel/Control3-5"]
 material = SubResource("CanvasItemMaterial_4sj3t")
@@ -894,6 +934,8 @@ grow_horizontal = 2
 grow_vertical = 2
 lawpoins = [NodePath("../Control3-4")]
 context = "军事训练法"
+num1 = 2
+num2 = 6
 
 [node name="Line2D4" type="Line2D" parent="lawPanel/Control3-6"]
 material = SubResource("CanvasItemMaterial_4sj3t")
@@ -939,8 +981,9 @@ offset_bottom = 135.0
 grow_horizontal = 2
 grow_vertical = 2
 lawpoins = [NodePath("../Control3-5"), NodePath("../Control3-6")]
-detail = "存在着干部选拔不公平、腐败现象等问题，影响军队的建设和战斗力。"
 context = "军事优拔法"
+num1 = 2
+num2 = 7
 
 [node name="Control3-8" parent="lawPanel" node_paths=PackedStringArray("lawpoins") groups=["lawpoints"] instance=ExtResource("5_l5e0h")]
 layout_mode = 1
@@ -956,8 +999,9 @@ offset_bottom = 216.0
 grow_horizontal = 2
 grow_vertical = 2
 lawpoins = [NodePath("../Control3-5"), NodePath("../Control3-6")]
-detail = "法度之下，或生疑端，朝廷须审，以抚士心。"
 context = "律令兵制"
+num1 = 2
+num2 = 8
 
 [node name="Control3-9" parent="lawPanel" node_paths=PackedStringArray("lawpoins") groups=["lawpoints"] instance=ExtResource("5_l5e0h")]
 layout_mode = 1
@@ -973,8 +1017,9 @@ offset_bottom = 309.0
 grow_horizontal = 2
 grow_vertical = 2
 lawpoins = [NodePath("../Control3-5"), NodePath("../Control3-6")]
-detail = "计策施行，或或难合，明智谋略，当得民心。"
 context = "国防策略法"
+num1 = 2
+num2 = 9
 
 [node name="PointLabel" type="Label" parent="lawPanel"]
 layout_mode = 0

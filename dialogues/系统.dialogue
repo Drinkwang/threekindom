@@ -124,13 +124,13 @@ do danyangLawTest()
 
 ~ ESC按钮
 提示: 点右方道具栏旁「笔书」图标，可入存档司，记录霸业。下方设置与退出选项，谨慎选择，勿误大计！
-- 1. 继续游戏
+- 继续游戏
 
-- 2. 设置
+- 设置
 	do GameManager.OpenSettingMenu()
-- 3. 返回到游戏主菜单
+- 返回到游戏主菜单
 	do GameManager.ReturnMenu()
-- 4. 退出游戏 
+- 退出游戏 
 	do get_tree().quit()
 => END
 
@@ -138,4 +138,9 @@ do danyangLawTest()
 ~ 选项暂不可开
 : 灵堂祭礼，未可轻离，选项暂不可开。
 
+=> END
+
+
+~ 当前功能demo不开放
+提示: 当前功能demo不开放 
 => END

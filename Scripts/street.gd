@@ -39,7 +39,7 @@ func post_transition():
 	
 	#print("fadedone")
 	_initData()
-	SoundManager.play_music(MINISTREET)
+	SoundManager.play_ambient_sound(MINISTREET)
 	if GameManager.sav.day==1:
 		if(GameManager.sav.have_event["firststreet"]==true):
 			if(GameManager.sav.have_event["secondStreet"]==false):
@@ -214,7 +214,7 @@ func _buttonListClick(item):
 const WASTELAND_0 = preload("res://Asset/bgm/wasteland0.wav")
 func gotoWasteland():
 	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeIn)
-	SoundManager.play_music(WASTELAND_0)
+	SoundManager.play_ambient_sound(WASTELAND_0)
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"探访荒地")
 	#显示黑屏
 	#播放荒地音效
@@ -248,7 +248,7 @@ func visitScholar():
 	if GameManager.sav.isVisitScholar==true:
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"已经大儒辩经内容")
 		return
-	SoundManager.play_music(visitbgm)
+	SoundManager.play_ambient_sound(visitbgm)
 	#PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeInAndOut)
 	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeIn)
 	
@@ -283,8 +283,8 @@ func BurySheep():
 	GameManager.sav.have_event["支线触发完毕调查过竹简"]=true
 
 func playStageMusic():
-	SoundManager.stop_music()
-	SoundManager.play_music(MINISTREET)	
+	#SoundManager.stop_music()
+	SoundManager.play_ambient_sound(MINISTREET)	
 	
 func showbianji():
 	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeOut)

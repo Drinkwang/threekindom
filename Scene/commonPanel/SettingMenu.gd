@@ -1,14 +1,14 @@
 extends CanvasLayer
 class_name SettingMenu
-@onready var resolution_option: OptionButton =$"分辨率/OptionButton"
+@onready var resolution_option: OptionButton =$VBoxContainer/resolotionCon/OptionButton
 
-@onready var fullscreen_check: CheckBox = $"是否全屏/CheckBox"
+@onready var fullscreen_check: CheckBox=$VBoxContainer/fullsysCon/CheckBox
 
-@onready var music_slider: HSlider =  $"音乐音量/HSlider"
+@onready var music_slider: HSlider = $VBoxContainer/musicCon/HSlider2
 
-@onready var sfx_slider: HSlider =  $"音效音量/HSlider"
+@onready var sfx_slider: HSlider =  $VBoxContainer/sfxCon/HSlider
 
-@onready var option_button = $"语言系统/OptionButton"
+@onready var option_button = $VBoxContainer/lanSysCon/OptionButton2
 
 # 当前分辨率索引
 var current_resolution_index: int = 0
@@ -97,20 +97,22 @@ func _ready():
 	# 连接信号
 	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_RESIZE_DISABLED, true)
 	#如果设置存了别的
-
+	var lan
 	if system_locale=="zh_HK" or system_locale=="zh_TW":
-		TranslationServer.set_locale("lzh")
 		option_button.select(1)
+		_on_option_button_item_selected(1)
 	elif system_locale=="zh":
 		option_button.select(0)
+		_on_option_button_item_selected(0)
 	elif system_locale=="ja":
 		option_button.select(3)	
+		_on_option_button_item_selected(3)
 	elif system_locale=="ru":
 		option_button.select(4)
+		_on_option_button_item_selected(4)
 	elif system_locale=="en":
 		option_button.select(2)		
-
-
+		_on_option_button_item_selected(2)
 
 # 去重函数
 func remove_duplicates(res_list: Array[Vector2i]) -> Array[Vector2i]:
@@ -201,19 +203,42 @@ func _on_button_button_down():
 
 #语言切换
 func _on_option_button_item_selected(index):
+	var lan
 	if index==0:
-		TranslationServer.set_locale("zh")
-		GameManager._setting.language="zh"
-	elif index==1:
-		TranslationServer.set_locale("lzh")
-		GameManager._setting.language="lzh"		
-	elif index==2:
-		TranslationServer.set_locale("en")
-		GameManager._setting.language="en"		
-	elif index==3:
-		TranslationServer.set_locale("ja")
-		GameManager._setting.language="ja"		
-	elif index==4:
-		TranslationServer.set_locale("ru")
-		GameManager._setting.language="ru"		
+		lan="zh"
 
+	elif index==1:
+		lan="lzh"
+	
+	elif index==2:
+		lan="en"
+		
+	elif index==3:
+		lan="ja"
+	
+	elif index==4:
+		lan="ru"
+		
+	TranslationServer.set_locale(lan)
+	GameManager._setting.language=lan
+	refreshLanguage(lan)
+	
+@onready var v_box_container = $VBoxContainer
+	
+func refreshLanguage(lan):
+	if(lan=="ru"):
+		$"VBoxContainer/lanSysCon/语言系统".add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
+		$"VBoxContainer/resolotionCon/分辨率".add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
+		$"VBoxContainer/fullsysCon/是否全屏".add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
+		$"VBoxContainer/musicCon/音乐音量".add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
+		$"VBoxContainer/sfxCon/音效音量".add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
+
+		v_box_container.position.x=681-150
+	else:
+		$"VBoxContainer/lanSysCon/语言系统".remove_theme_font_override("font")
+		$"VBoxContainer/resolotionCon/分辨率".remove_theme_font_override("font")
+		$"VBoxContainer/fullsysCon/是否全屏".remove_theme_font_override("font")
+		$"VBoxContainer/musicCon/音乐音量".remove_theme_font_override("font")
+		$"VBoxContainer/sfxCon/音效音量".remove_theme_font_override("font")
+		v_box_container.position.x=681	
+		

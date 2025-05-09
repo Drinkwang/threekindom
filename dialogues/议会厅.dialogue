@@ -13,7 +13,7 @@ do hideGuild()
 => END
 
 ~ 开始议事
- : 一段富有成效的沟通，议事中针对【{{GameManager.sav.curLawName}}】立法坦率交换了意见
+ : 一段富有成效的沟通，议事中针对【{{tr(GameManager.sav.curLawName)}}】立法坦率交换了意见
 do showResult()
 => END
 
@@ -71,7 +71,7 @@ do ymlShowEnd()
 
 ~ 通过法案
 #该法案可以改成实际名字，视实际情况而定
-提示: 成功通过[{{GameManager.sav.curLawName}}]！{{GameManager.RewardLaw}}
+提示: 成功通过[{{tr(GameManager.sav.curLawName)}}]！{{GameManager.RewardLaw}}
 do GetLawClaimRevenue()
 #徐州派好感度提升
 #每日金币收益增加

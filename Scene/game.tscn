@@ -41,7 +41,7 @@ text = "[center][rainbow]阴[/rainbow][wave amp=50 frep=100]三国[/wave][rainbo
 tab_size = 6
 
 [node name="exit" type="Button" parent="."]
-offset_left = 1448.0
+offset_left = 1569.0
 offset_top = 652.0
 offset_right = 1852.0
 offset_bottom = 783.0
@@ -49,9 +49,9 @@ theme_override_font_sizes/font_size = 36
 text = "退出游戏"
 
 [node name="begin" type="Button" parent="."]
-offset_left = 753.0
+offset_left = 566.0
 offset_top = 652.0
-offset_right = 1157.0
+offset_right = 856.0
 offset_bottom = 783.0
 theme_override_font_sizes/font_size = 36
 text = "开始游戏"
@@ -59,11 +59,21 @@ text = "开始游戏"
 [node name="continue" type="Button" parent="."]
 offset_left = 110.0
 offset_top = 652.0
-offset_right = 514.0
+offset_right = 400.0
 offset_bottom = 783.0
 theme_override_font_sizes/font_size = 36
 disabled = true
 text = "继续游戏"
+
+[node name="credit" type="Button" parent="."]
+offset_left = 1075.0
+offset_top = 655.0
+offset_right = 1365.0
+offset_bottom = 786.0
+rotation = -0.0189686
+theme_override_font_sizes/font_size = 36
+disabled = true
+text = "鸣谢"
 
 [node name="Control" parent="." instance=ExtResource("4_nv5v8")]
 visible = false
@@ -107,5 +117,7 @@ visible = false
 [connection signal="mouse_entered" from="begin" to="." method="_on_begin_mouse_entered"]
 [connection signal="button_down" from="continue" to="." method="_on_continue_button_down"]
 [connection signal="mouse_entered" from="continue" to="." method="_on_continue_mouse_entered"]
+[connection signal="button_down" from="credit" to="." method="_on_begin_button_down"]
+[connection signal="mouse_entered" from="credit" to="." method="_on_begin_mouse_entered"]
 [connection signal="mouse_entered" from="Control" to="." method="_on_control_mouse_entered"]
 [connection signal="item_selected" from="OptionButton" to="." method="_on_option_button_item_selected"]

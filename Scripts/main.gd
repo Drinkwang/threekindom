@@ -69,8 +69,12 @@ func initLanguage():
 @onready var mask_2 = $BackBufferCopy/mask2
 	#pass # Replace with function body.
 func _initData():
+	pass
+	
+func showFirst():
 	$"蜡烛".show()
-	mask_2.show()
+	mask_2.show()		
+	
 func _initList():
 	pass
 

@@ -8,7 +8,7 @@ var db
 # Called when the node enters the scene tree for the first time.
 func refreshCount():
 	var count=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.诸子百家论集)
-	itemUseLabel.text="点击图标使用\n快速结束辩经\n（库存：{num}）".format({"num":count})
+	itemUseLabel.text=tr("_stockInExpound").format({"num":count})
 	if count<1:
 		item_use.context.modulate = Color(0.5, 0.5, 0.5, 1.0)
 	else:
@@ -128,10 +128,11 @@ const STREET = preload("res://Asset/bgm/street.wav")
 const MINISTREET = preload("res://Asset/bgm/ministreet.wav")
 func _on_exit_button_button_down():
 	self.hide()
+	SoundManager.stop_all_ambient_sounds()
 	if GameManager.sav.day<=4:
-		SoundManager.play_music(MINISTREET)
+		SoundManager.play_ambient_sound(MINISTREET)
 	else:
-		SoundManager.play_music(STREET)		
+		SoundManager.play_ambient_sound(STREET)		
 	pass # Replace with function body.
 
 
@@ -141,7 +142,7 @@ func _on_item_use_gui_input(event):
 	if event is InputEventMouseButton and event.button_index==1 and isboot==true:
 		if count>0:
 			InventoryManager._remove_item(GameManager.inventoryPackege,InventoryManagerItem.诸子百家论集,1)
-			itemUseLabel.text=tr("点击图标使用\n快速结束辩经\n（库存：{num}）").format({"num":count-1})
+			itemUseLabel.text=tr("_stockInExpound").format({"num":count-1})
 			score=9000
 			yourscore.text=tr("你的得分：")+"\n"+str(score)
 			over()

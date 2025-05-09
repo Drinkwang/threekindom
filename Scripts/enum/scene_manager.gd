@@ -6,6 +6,7 @@ var BOULEUTERION = preload("res://Scene/Bouleuterion.tscn")
 var DRILL_GROUND = preload("res://Scene/battleSys/drill_ground.tscn")
 var GOVERNMENT_BUILDING = preload("res://Scene/government_building.tscn")
 var HOUSE = preload("res://Scene/house.tscn")
+const GAMEHALL = preload("res://Scene/game.tscn")
 const FancyFade = preload("res://addons/transitions/FancyFade.gd")
 
 var MAIN = preload("res://Scene/main.tscn")
@@ -16,7 +17,8 @@ enum roomNode{
 	BOULEUTERION,
 	DRILL_GROUND,
 	GOVERNMENT_BUILDING,
-	HOUSE
+	HOUSE,
+	MainMenu,
 	
 	
 	
@@ -47,3 +49,5 @@ func changeScene(tempnode:roomNode,time:float):
 		FancyFade.new().custom_fade(GOVERNMENT_BUILDING.instantiate(), time, DISSOLVE_IMAGE)
 	elif tempnode==roomNode.HOUSE:
 		FancyFade.new().custom_fade(HOUSE.instantiate(), time, DISSOLVE_IMAGE)
+	elif tempnode==roomNode.MainMenu:
+		FancyFade.new().custom_fade(GAMEHALL.instantiate(), time, DISSOLVE_IMAGE)

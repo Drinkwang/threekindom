@@ -4,6 +4,9 @@ extends Node2D
 
 const ARVOSTUS = preload("res://Asset/bgm/4- Arvostus.mp3")
 func _ready():
+	GameManager.sav=saveData.new()
+	GameManager.sav.day=1
+	GameManager.musicId=0
 	SoundManager.play_music(ARVOSTUS)
 	var system_locale	
 	if GameManager._setting==null:
@@ -16,15 +19,19 @@ func _ready():
 	if system_locale=="zh_HK" or system_locale=="zh_TW":
 		TranslationServer.set_locale("lzh")
 		option_button.select(1)
+		_on_option_button_item_selected(1)
 	elif system_locale=="zh":
 		option_button.select(0)
+		_on_option_button_item_selected(0)
 	elif system_locale=="ja":
-		option_button.select(3)	
+		option_button.select(3)
+		_on_option_button_item_selected(3)	
 	elif system_locale=="ru":
 		option_button.select(4)
+		_on_option_button_item_selected(4)
 	elif system_locale=="en":
 		option_button.select(2)			
-
+		_on_option_button_item_selected(2)
 		
 
 
@@ -36,13 +43,17 @@ func _on_exit_button_down():
 #需要修改，此处应该是hero剪辑欸
 #@onready var policyPanel = $"政务面板"
 @onready var control = $Control
-
+@onready var readyInitData=null
 func _on_begin_button_down():
 	SoundManager.play_sound(sounds.confiresound)
 	
-	control.show()
-	#control._on_v_slider_value_changed(100)
-	control._initData()
+	
+	SoundManager.play_sound(sounds.COLLECT_SMALL_JEWEL_1)
+	SceneManager.changeScene(SceneManager.roomNode.PRE_SCENE,2)
+	
+	#不显示初始相关内容	
+	#control.show()
+	#control._initData()
 #policyPanel.show()
 
 

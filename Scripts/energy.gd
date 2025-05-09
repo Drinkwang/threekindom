@@ -76,7 +76,8 @@ func _on_item_button_button_down():
 	else:
 		inventory_any.show()
 
-
+const sys = preload("res://dialogues/系统.dialogue")
 func _on_save_button_button_down():
-	PanelManager.show_Save_panel()
-	pass # Replace with function body.
+	DialogueManager.show_example_dialogue_balloon(sys,"当前功能demo不开放")
+	#PanelManager.show_Save_panel()
+	#demo注释
