@@ -53,9 +53,9 @@ func _ready():
 	if GameManager.sav.day==4:
 		ymlShow()
 	super._ready()
+	
 	changeLanguage()
-	#initData()
-		
+	SignalManager.changeLanguage.connect(changeLanguage)		
 	if GameManager.sav.have_event["initXuzhou"]==true:
 		bg.texture=newBuild
 	else:
@@ -271,5 +271,5 @@ func changePanelPos():
 		factionView.position.y=655
 	else:	
 	#f GameManager.sav.
-		factionView.position.y=737
+		factionView.position.y=730
 	pass

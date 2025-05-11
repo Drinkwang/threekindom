@@ -32,6 +32,7 @@ extends Control
 			
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	SignalManager.changeLanguage.connect(changeLanguage)		
 	changeLanguage()
 	if contextUI!=null:
 		contextUI.text=context	
@@ -44,14 +45,12 @@ func _ready():
 
 func changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()
-	if currencelanguage=="ja":
-		pass
-	elif currencelanguage=="ru":
+	if currencelanguage=="ru":
 
 		$Panel/context.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
 			
 	else:
-		pass
+		$Panel/context.remove_theme_font_override("font")
 
 var data
 func initDataByGroup(index,group):

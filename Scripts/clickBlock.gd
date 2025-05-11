@@ -70,7 +70,7 @@ func _ready():
 		$Panel/Label.text=showName;
 	else:
 		$Panel.hide()
-		
+	SignalManager.changeLanguage.connect(changeLanguage)			
 	changeLanguage()	
 	
 	
@@ -88,12 +88,11 @@ func _ready():
 const NOT_JAM_UI_CONDENSED_16 = preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf")
 func changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()
-	if currencelanguage=="ja":
-		pass
-	elif currencelanguage=="ru":
+
+	if currencelanguage=="ru":
 		label.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
 	else:
-		pass
+		label.remove_theme_font_override("font")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass

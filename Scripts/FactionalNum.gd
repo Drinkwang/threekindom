@@ -5,20 +5,20 @@ class_name factionalname
 var itemData
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	SignalManager.changeLanguage.connect(changeLanguage)		
 	changeLanguage()
 	pass # Replace with function body.
 
 func changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()
-	if currencelanguage=="ja":
-		pass
-	elif currencelanguage=="ru":
+
+	if currencelanguage=="ru":
 
 		label.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
 			
 	else:
-		pass
-
+		label.remove_theme_font_override("font")
+	refreshData()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 

@@ -51,20 +51,20 @@ func _ready():
 		self.isUnlock=true
 	
 	_initData()
+	SignalManager.changeLanguage.connect(changeLanguage)			
 	changeLanguage()
 	pass # Replace with function body.
 
 
 func changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()
-	if currencelanguage=="ja":
-		pass
-	elif currencelanguage=="ru":
+
+	if currencelanguage=="ru":
 
 		$PanelContainer/MarginContainer/Label.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
 			
 	else:
-		pass
+		$PanelContainer/MarginContainer/Label.remove_theme_font_override("font")
 
 @onready var texture_rect = $TextureRect2/TextureRect
 @onready var animation_player = $AnimationPlayer

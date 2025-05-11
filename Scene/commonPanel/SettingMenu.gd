@@ -221,6 +221,7 @@ func _on_option_button_item_selected(index):
 		
 	TranslationServer.set_locale(lan)
 	GameManager._setting.language=lan
+	SignalManager.changeLanguage.emit()
 	refreshLanguage(lan)
 	
 @onready var v_box_container = $VBoxContainer

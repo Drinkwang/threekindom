@@ -9,6 +9,7 @@ const newBuild = preload("res://Asset/城镇建筑/集市2.png")
 @onready var bg = $"内饰"
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	GameManager.currenceScene=self
 	if GameManager.sav.have_event["initXuzhou"]==true:
 		bg.texture=newBuild
 	else:
@@ -149,7 +150,7 @@ func _buttonListClick(item):
 	#		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"tip")
 	#		return
 	if(GameManager.sav.destination.length()>0):
-		if(GameManager.sav.destination!=item.context):
+		if(GameManager.sav.destination!=item.context and item.context!="商店"):
 			if(GameManager.sav.destination=="府邸"):
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"tip")
 			#return 
@@ -163,7 +164,7 @@ func _buttonListClick(item):
 			elif GameManager.sav.destination=="议事厅":
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"tip_bouleuterion")
 			return
-		else:
+		elif GameManager.sav.destination==item.context:
 			GameManager.sav.destination=""	#如果去的是目的地，则将目的地滞空	
 	const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
 
@@ -292,7 +293,7 @@ func showbianji():
 	
 func bianjiEnd():
 	control._show_button_5_yellow(1)
-	pass
+	GameManager.sav.destination="自宅"
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass

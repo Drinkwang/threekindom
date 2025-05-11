@@ -44,23 +44,23 @@ func _ready():
 		title.show()	
 	if(txt!=null):
 		img.texture=txt
+	SignalManager.changeLanguage.connect(changeLanguage)				
 	changeLanguage() # Replace with function body.
 
 
 func changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()	
-	if currencelanguage=="en":
-		pass
-	elif currencelanguage=="zh":
-		pass
-	elif currencelanguage=="ru":
+	if currencelanguage=="ru":
 		#label.add_theme_font_size_override("font_size", 34)
 		#reallabel.add_theme_font_size_override("font_size", 38)
 		title.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
 		context.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
 		context.add_theme_font_size_override("font_size", 38)
 		#reallabel.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
-	
+	else:
+		title.remove_theme_font_override("font")
+		context.remove_theme_font_override("font")
+		context.add_theme_font_size_override("font_size", 48)
 	
 func refreshContext():
 	if GameManager.sav.curGovAff.length()>0:

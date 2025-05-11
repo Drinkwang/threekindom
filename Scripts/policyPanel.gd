@@ -14,6 +14,7 @@ var costhp=35
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	SignalManager.changeLanguage.connect(changeLanguage)
 	if GameManager.sav.hp<costhp:
 	
 		button.disabled=true
@@ -45,19 +46,24 @@ func initControls():
 		control_3.initDataByGroup(3,group)
 		
 
+@onready var ConfireButton = $lawPanel/DetailPanel/Button
 
 func changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()
-	if currencelanguage=="ja":
-		pass
-	elif currencelanguage=="ru":
+
+	if currencelanguage=="ru":
+		ConfireButton.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
 		tab_bar.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
 		label.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
 		law_label.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))	
 		currence_no_policy.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))	
 	else:
-		pass
-
+		ConfireButton.remove_theme_font_override("font")
+		tab_bar.remove_theme_font_override("font")
+		label.remove_theme_font_override("font")
+		law_label.remove_theme_font_override("font")
+		currence_no_policy.remove_theme_font_override("font")
+	point_label.text=tr("点数:%s")%GameManager.sav.Merit_points
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
@@ -72,7 +78,7 @@ func _initData():
 		law_label.text=tr("当前【%s】法案已被立项，请先在议会厅通过该法案，才能立项其他法律。")%tr(GameManager.sav.curLawName)
 		var label_height = 81
 		var label_line_count = law_label.get_line_count()  # 获取行数（可选）
-		var padding = 20  # 可根据需要调整
+		var padding = 17  # 可根据需要调整
 		var new_size = Vector2(detail_panel.custom_minimum_size.x, label_height +label_line_count* padding)
 	
 		# 应用到 Panel

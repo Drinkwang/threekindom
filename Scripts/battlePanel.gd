@@ -40,21 +40,22 @@ func _ready():
 	SignalManager.endReward.connect(endBattle)
 	battle_circle.isBoot=false
 	initTask()
+	SignalManager.changeLanguage.connect(changeLanguage)			
 	changeLanguage()
 	pass # Replace with function body.
 const NOT_JAM_UI_CONDENSED_16 = preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf")
 func changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()
-	if currencelanguage=="ja":
-		pass
-	elif currencelanguage=="ru":
+	if currencelanguage=="ru":
 		sliderlabel_1.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
 		sliderlabel_2.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
-		#task_label.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
 		select_detail.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
 		title.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
 	else:
-		pass
+		sliderlabel_1.remove_theme_font_override("font")
+		sliderlabel_2.remove_theme_font_override("font")
+		select_detail.remove_theme_font_override("font")
+		title.remove_theme_font_override("font")
 #可能会删除
 func initData():
 	battle_circle.refreshPage()
@@ -255,6 +256,7 @@ func _on_exit_button_button_down():
 			if GameManager.sav.have_event["firstBattleEnd"]==false:
 				GameManager.sav.have_event["firstBattleEnd"]=true
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"军事行动结束")
+				GameManager.sav.destination="自宅"	
 	 # Replace with function body.
 
 

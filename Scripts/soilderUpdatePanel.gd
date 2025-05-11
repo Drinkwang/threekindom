@@ -21,6 +21,7 @@ func _ready():
 	#general3_button.connect("pressed", self, "_on_general3_button_pressed")
 	#upgrade_button.connect("pressed", self, "_on_upgrade_button_pressed")
 	update_ui()
+	SignalManager.changeLanguage.connect(changeLanguage)		
 	changeLanguage()
 # 更新界面
 

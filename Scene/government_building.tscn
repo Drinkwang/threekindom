@@ -74,9 +74,9 @@ metadata/_edit_use_anchors_ = true
 
 [node name="supportPanel" parent="CanvasLayer" instance=ExtResource("12_5ydg1")]
 offset_left = 4.0
-offset_top = 738.0
+offset_top = 743.0
 offset_right = -1574.0
-offset_bottom = -10.0
+offset_bottom = -5.0
 
 [node name="hpPanel" parent="CanvasLayer" instance=ExtResource("7_iy2fq")]
 offset_left = 1395.0
@@ -93,9 +93,9 @@ offset_bottom = 1009.0
 
 [node name="faction" parent="CanvasLayer" instance=ExtResource("15_wrxcl")]
 offset_left = 9.0
-offset_top = 697.0
+offset_top = 693.0
 offset_right = -1580.0
-offset_bottom = -220.0
+offset_bottom = -224.0
 size_flags_horizontal = 4
 
 [node name="policyPanel" parent="CanvasLayer" instance=ExtResource("9_fdrkw")]

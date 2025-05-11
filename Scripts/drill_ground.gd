@@ -352,6 +352,7 @@ func ConsultWithCaoBaoEnd():
 
 func showtutorial(num):
 	if num ==1:
+		battle_pane.point_group.show()
 		control._show_button_5_yellow(-1)		
 	if(num<8):
 		battle_pane["guild_"+str(num)].show()

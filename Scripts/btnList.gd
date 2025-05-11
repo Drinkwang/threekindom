@@ -10,6 +10,7 @@ var guilds:Sprite2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	guilds = $"Node2D/5Yellow" as Sprite2D
+	SignalManager.changeLanguage.connect(changeLanguage)
 		#"id":"3",
 		#"context":"外出",#前往大街
 		#"visible":"false"
@@ -84,8 +85,37 @@ func _processList(data):
 		buttton.name="button"+var_to_str(index)
 		index=index+1
 		$VBoxContainer.add_child(buttton)		
-	
 
+
+
+func changeLanguage():
+	for e in $VBoxContainer.get_children():
+		var currencelanguage=TranslationServer.get_locale()
+		var richTxt:RichTextLabel=e.get_child(0)
+		var richLenth=tr(richTxt.text).length()
+		if currencelanguage=="ja":
+			if(richLenth>=6 and richLenth<8):
+				richTxt.add_theme_font_size_override("normal_font_size",48)
+			if(richLenth>=8):
+				richTxt.add_theme_font_size_override("normal_font_size",46)
+			else:
+				richTxt.add_theme_font_size_override("normal_font_size",55)
+			richTxt.remove_theme_font_override("normal_font")	
+		elif currencelanguage=="ru":
+			if(richLenth>=9):
+				richTxt.add_theme_font_size_override("normal_font_size",36)
+			else:
+				richTxt.add_theme_font_size_override("normal_font_size",40)
+			richTxt.add_theme_font_override("normal_font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
+			
+		else:
+			if(richLenth>=12 and richLenth<14):
+				richTxt.add_theme_font_size_override("normal_font_size",48)
+			if(richLenth>=14):
+				richTxt.add_theme_font_size_override("normal_font_size",46)
+			else:
+				richTxt.add_theme_font_size_override("normal_font_size",55)
+			richTxt.remove_theme_font_override("normal_font")	
 @onready var animation_player = $"Node2D/5Yellow/AnimationPlayer"
 func _buttonHover():
 	SoundManager.play_sound(sounds.hoversound)

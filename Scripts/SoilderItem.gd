@@ -79,7 +79,7 @@ func _ready():
 	else: 
 		check_box.hide()
 		
-		
+	SignalManager.changeLanguage.connect(changeLanguage)				
 	changeLanguage()
 func changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()

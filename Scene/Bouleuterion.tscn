@@ -289,7 +289,7 @@ libraries = {
 
 [node name="Node2D" type="Node2D" parent="CanvasBook"]
 visible = false
-position = Vector2(400, 811)
+position = Vector2(355, 811)
 
 [node name="5Yellow" type="Sprite2D" parent="CanvasBook/Node2D"]
 rotation = -1.5708

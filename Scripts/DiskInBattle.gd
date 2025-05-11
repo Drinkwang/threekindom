@@ -26,6 +26,7 @@ func _endReward():
 @onready var enemy = $enemy
 
 func _ready():
+	SignalManager.changeLanguage.connect(changeLanguage)		
 	SignalManager.endReward.connect(_endReward)
 	_initBattleTypePng(0,GameManager.sav.battleTasks[taskIndex].sdType)
 	for i in range(1,3):

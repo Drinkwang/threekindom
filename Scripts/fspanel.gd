@@ -15,22 +15,28 @@ func _ready():
 	var d:cldata=cldata.new()
 	#d.
 	_processList()
+	SignalManager.changeLanguage.connect(changeLanguage)
 	changeLanguage()
 	SignalManager.changeSupport.connect(refreshData)
 	showCurrenceLaw()
 func changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()
-	if currencelanguage=="ja":
-		pass
-	elif currencelanguage=="ru":
+	#if currencelanguage=="ja":
+		#pass
+	if currencelanguage=="ru":
 		var newfont=preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf")
 		label.add_theme_font_override("font",newfont)
 		label_2	.add_theme_font_override("font",newfont)
 		label.add_theme_constant_override("line_spacing",-2)
-		label_2.add_theme_constant_override("line_spacing",-2)		
+		label_2.add_theme_constant_override("line_spacing",-2)
+		currence_laws.add_theme_font_override("font",newfont)
 	else:
-		pass
-
+		label.remove_theme_font_override("font")
+		label_2.remove_theme_font_override("font")
+		label.remove_theme_constant_override("line_spacing")
+		label_2.remove_theme_constant_override("line_spacing")
+		currence_laws.remove_theme_font_override("font")
+	refreshData()
 @onready var v_box_container = $PanelContainer/VBoxContainer
 
 func _processList():
