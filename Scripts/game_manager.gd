@@ -111,10 +111,7 @@ var battleCircle=[
 	
 	#初始值会带有一些随机元素，但会根据优势更偏进好的 初始成功率不大于30  做任务降低损失增大成功率 
 ]
-const HAOZUPAI = preload("res://Asset/tres/haozupai.tres")
-const BENTUPAI = preload("res://Asset/tres/bentupai.tres")
-const WAIDIPAI = preload("res://Asset/tres/waidipai.tres")
-const LVBU = preload("res://Asset/tres/lvbu.tres")
+
 
 var currenceScene
 var restFadeScene
@@ -167,6 +164,34 @@ var policy_Item=[
 		"detail":"增大城市人口商业来往的纳税，会增加城市居民生活开销负担，但会让城市获得日均收入上升，所有派系好感小幅度下跌", #前往花园并通向小道#，每天获取钱上升，任务凑钱多
 		"group":1
 	},	
+	
+	
+	
+	
+	
+	
+	{
+		"id":7,
+		"index":1,
+		"name":"上策-精查内患，稳粮缓行",
+		"detail":"陈登建议组建由士族领袖主导的秘密调查小组，精准排查徐州内部的奸细。调查重点放在行政和军务人员中，通过士族的情报网络暗中收集线索，避免公开行动惊动奸细。同时，为确保粮草运输安全，暂停部分非紧急粮草调运，集中护送关键物资至徐州核心据点，并由士族控制的本地武装加强押运。粮草分配上，优先供应士族和军队，次要分配给商队和民户，以稳定核心支持力量。", #每天获取钱下降，任务凑钱正常
+		"group":2
+	},
+	{
+		"id":8,
+		"index":2,
+		"name":"中策-联查共管，运粮分流",
+		"detail":"陈登提议由刘备亲自监督，糜竺与士族代表组成联合调查团，共同排查奸细。调查范围覆盖行政、商队和军务，通过商队交易记录和士族情报交叉核查，力求全面但不过激。为保障粮草运输，采取分流策略：主力粮草由正规军护送至核心据点，次要粮草交由商队分散运输，降低整体风险。粮草分配上，军队优先，士族和商队次之，民户最后，以平衡各方需求。", #前往花园并通向小道，ps_任务凑齐的钱会少
+		"group":2
+	},
+	{
+		"id":9,
+		"index":3,
+		"name":"下策-严打内奸，急运全粮",
+		"detail":"陈登建议采取强硬措施，由糜竺全面负责，公开严查徐州所有行政、军务和商队人员，设立举报机制，重惩疑似奸细，以震慑袁术势力。为应对粮草需求，集中所有资源加速粮草运输，调动全部军队护送，力求快速补齐徐州各据点物资。粮草分配上，采取平均分配，军队、士族、商队和民户一视同仁，以示公平。", #前往花园并通向小道#，每天获取钱上升，任务凑钱多
+		"group":2
+	},	
+	
 ]
 
 #var dialogBegin=false
@@ -174,7 +199,7 @@ var policy_Item=[
 func _ready():
 
 	_enterDay()
-	#SkipPrologue()
+	SkipPrologue()
 	initSetting()
 
 func OpenSettingMenu():
@@ -216,8 +241,8 @@ func array_sum(arr: Array) -> int:
 	return sum
 
 func refreshPaixis():
-	initPaixi(BENTUPAI)
-	initPaixi(WAIDIPAI)
+	initPaixi(sav.BENTUPAI)
+	initPaixi(sav.WAIDIPAI)
 	#传递信号，政策看法
 
 func _enterDay(value=true):
@@ -420,7 +445,8 @@ func getPolicyGroup() -> int:
 			return 1
 		if sav.day==5:
 			return 2
-		
+		if GameManager.sav.have_event["chaoMizhuEnd"]==true and GameManager.sav.have_event["chaoChenDenPolicyExcute"]==false:
+			return 3
 	return -1
 	#如果处于主线状态，则取出来的是主线，否则取出来的是随机数
 
@@ -479,19 +505,18 @@ func getcldateByindex(factionIndex:int)->cldata:
 	#index==0 士族
 	#index==1 豪族
 	#index==2 军方
-	
 
 	if factionIndex==2:
-		return preload("res://Asset/tres/waidipai.tres")
+		return GameManager.sav.WAIDIPAI #preload("res://Asset/tres/waidipai.tres")
 		#index=2
 	elif factionIndex==0:
-		return preload("res://Asset/tres/bentupai.tres")
+		return GameManager.sav.BENTUPAI #preload("res://Asset/tres/bentupai.tres")
 		#index=0
 	elif factionIndex==1:
-		return preload("res://Asset/tres/haozupai.tres")
+		return GameManager.sav.HAOZUPAI #preload("res://Asset/tres/haozupai.tres")
 		#index=1
 	elif factionIndex==cldata.factionIndex.lvbu:
-		return preload("res://Asset/tres/haozupai.tres")
+		return GameManager.sav.LVBU#preload("res://Asset/tres/haozupai.tres")
 		#index=3	
 	return null
 
@@ -527,13 +552,13 @@ func excuteLaw():
 			GameManager.sav.coin_DayGet=GameManager.sav.coin_DayGet+50
 			GameManager.sav.coin=GameManager.sav.coin+200
 			#徐州好感度+10
-			BENTUPAI.ChangeSupport(10)
+			sav.BENTUPAI.ChangeSupport(10)
 			print("农田开坑")
 
 	elif sav.curLawName=="兴办教育":#只有buff
 		#RewardLaw="每日人口+10，徐州好感度+5，获得道具“诸子百家”x1 " #人口每日增加 徐州派好感上升 获得道具xxx
 		lawAction= func():
-			BENTUPAI.ChangeSupport(5)
+			sav.BENTUPAI.ChangeSupport(5)
 			GameManager.sav.labor_DayGet=GameManager.sav.labor_DayGet+10
 			#获得诸子百家
 			
@@ -546,7 +571,7 @@ func excuteLaw():
 		
 		lawAction= func():
 			GameManager.sav.labor_force=GameManager.sav.labor_force+100
-			BENTUPAI.ChangeSupport(10)
+			sav.BENTUPAI.ChangeSupport(10)
 			GameManager.changePeopleSupport(5)
 			print("整治街容")			
 	elif sav.curLawName=="重农抑商":
@@ -615,15 +640,15 @@ func excuteLaw():
 			var remainder = InventoryManager.add_item(inventoryPackege, itemid, 2, false)
 			GameManager.sav.coin_DayGet=GameManager.sav.coin_DayGet+200
 			GameManager.sav.coin=GameManager.sav.coin+1500
-			BENTUPAI.ChangeSupport(-40)
-			WAIDIPAI.ChangeSupport(-20)
+			sav.BENTUPAI.ChangeSupport(-40)
+			sav.WAIDIPAI.ChangeSupport(-20)
 #丹阳派
 	elif sav.curLawName=="军纪法":#所有好感度上升
 		#RewardLaw="所有派系好感度+15，获得道具“胜战锦囊”x1 "
 		lawAction= func():
-			BENTUPAI.ChangeSupport(15)
-			WAIDIPAI.ChangeSupport(15)
-			HAOZUPAI.ChangeSupport(15)
+			sav.BENTUPAI.ChangeSupport(15)
+			sav.WAIDIPAI.ChangeSupport(15)
+			sav.HAOZUPAI.ChangeSupport(15)
 			var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.胜战锦囊)
 			var remainder = InventoryManager.add_item(inventoryPackege, itemid, 1, false)
 			
@@ -647,7 +672,7 @@ func excuteLaw():
 		#RewardLaw="一次性人口+100，丹阳派好感度+5，群众支持度+5，一次性收入+400  "
 		lawAction= func():
 			GameManager.sav.labor_force=GameManager.sav.labor_force+100
-			WAIDIPAI.ChangeSupport(5)
+			sav.WAIDIPAI.ChangeSupport(5)
 			GameManager.changePeopleSupport(5)
 			GameManager.sav.coin=GameManager.sav.coin+400
 			print("边防法")	
@@ -655,16 +680,16 @@ func excuteLaw():
 		#RewardLaw="收益：丹阳派好感度+20，获得道具“胜战锦囊”x2，一次性人口+150 冲突：徐州好感度-15  "
 		lawAction= func():
 			#print("军事训诂")	
-			BENTUPAI.ChangeSupport(-15)
+			sav.BENTUPAI.ChangeSupport(-15)
 			var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.胜战锦囊)
 			var remainder = InventoryManager.add_item(inventoryPackege, itemid, 2, false)
 			sav.labor_force=sav.labor_force+150
-			WAIDIPAI.ChangeSupport(20)
+			sav.WAIDIPAI.ChangeSupport(20)
 	elif sav.curLawName=="军事装备法":
 		#RewardLaw="收益：每日收入+50，获得道具“益气丸”x2 冲突：豪族好感度-20 "
 		lawAction= func():
 			GameManager.sav.coin_DayGet=GameManager.sav.coin_DayGet+50
-			HAOZUPAI.ChangeSupport(-20)
+			sav.HAOZUPAI.ChangeSupport(-20)
 			var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.益气丸)
 			var remainder = InventoryManager.add_item(inventoryPackege, itemid, 2, false)
 			
@@ -673,15 +698,15 @@ func excuteLaw():
 		#RewardLaw="收益：丹阳派好感度+30，每日人口+20，一次性人口+200 冲突：徐州好感度-25  "
 		lawAction= func():
 			print("军事训练法")	
-			WAIDIPAI.ChangeSupport(30)
-			BENTUPAI.ChangeSupport(-25)
+			sav.WAIDIPAI.ChangeSupport(30)
+			sav.BENTUPAI.ChangeSupport(-25)
 			GameManager.sav.labor_DayGet=GameManager.sav.labor_DayGet+20
 			GameManager.sav.labor_force=GameManager.sav.labor_force+200
 	elif sav.curLawName=="军事优拔法":
 		#RewardLaw="收益：丹阳派好感度+40，获得道具“胜战锦囊”x3，一次性收入+800 冲突：豪族好感度-30，群众支持度-10  "									
 		lawAction= func():
-			WAIDIPAI.ChangeAllPeople(40)
-			HAOZUPAI.ChangeSupport(-30)
+			sav.WAIDIPAI.ChangeAllPeople(40)
+			sav.HAOZUPAI.ChangeSupport(-30)
 			changePeopleSupport(-10)
 			GameManager.sav.coin=GameManager.sav.coin+800
 			var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.胜战锦囊)
@@ -694,16 +719,16 @@ func excuteLaw():
 			var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.珍品礼盒)
 			var remainder = InventoryManager.add_item(inventoryPackege, itemid, 2, false)
 			GameManager.sav.labor_force=GameManager.sav.labor_force+250
-			BENTUPAI.ChangeSupport(-35)
-			HAOZUPAI.ChangeSupport(-15)
+			sav.BENTUPAI.ChangeSupport(-35)
+			sav.HAOZUPAI.ChangeSupport(-15)
 			print("律令兵制")	
 	elif sav.curLawName=="国防策略法":
 		#RewardLaw="民心+50，每日人口+50，获得道具“胜战锦囊”x4，一次性收入+1200  ，徐州好感度-50，豪族好感度-40  "		
 		lawAction= func():
 			GameManager.sav.labor_DayGet=GameManager.sav.labor_DayGet+50
 			GameManager.changePeopleSupport(50)
-			HAOZUPAI.ChangeSupport(-40)
-			BENTUPAI.ChangeSupport(-50)
+			sav.HAOZUPAI.ChangeSupport(-40)
+			sav.BENTUPAI.ChangeSupport(-50)
 			var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.胜战锦囊)
 			var remainder = InventoryManager.add_item(inventoryPackege, itemid, 4, false)
 	

@@ -12,6 +12,12 @@ extends Control
 #var _num_rt:int 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+
+	datas.clear()
+	datas.append(GameManager.sav.WAIDIPAI)
+	datas.append(GameManager.sav.BENTUPAI)
+	datas.append(GameManager.sav.HAOZUPAI)
+	
 	var d:cldata=cldata.new()
 	#d.
 	_processList()

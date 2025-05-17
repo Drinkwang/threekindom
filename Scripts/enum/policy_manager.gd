@@ -57,6 +57,9 @@ enum policyID{
 	P_COMMERCIAL_INPLACE_AID,
 	P_SUPPLIES_SELF_SUFFIENCY,
 	P_RAISE_TAX,
+	P_PrecisionPurge,#精准除奸
+	P_BalancePurge,#平衡除奸
+	P_SwiftPurge #速清公斥策
 
 	
 	

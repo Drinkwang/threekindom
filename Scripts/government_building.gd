@@ -331,8 +331,6 @@ func exit():
 	const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
 	FancyFade.new().custom_fade(SceneManager.STREET.instantiate(), 2, DISSOLVE_IMAGE)
 
-const BENTUPAI = preload("res://Asset/tres/bentupai.tres")
-const HAOZUPAI = preload("res://Asset/tres/haozupai.tres")
 var getCoin
 func selectPolicy(data):
 	var id=data.id
@@ -355,8 +353,8 @@ func selectPolicy(data):
 		policy_panel.bancontrol(1,policy_panel.itemStatus.ban)
 		hidePolicy()
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"以商代赈")
-		HAOZUPAI.ChangeSupport(10)
-		BENTUPAI.ChangeSupport(-10)
+		GameManager.sav.HAOZUPAI.ChangeSupport(10)
+		GameManager.sav.BENTUPAI.ChangeSupport(-10)
 		GameManager.changePeopleSupport(-10)
 		#200-500
 		getCoin=randi_range(200,500)
@@ -367,7 +365,7 @@ func selectPolicy(data):
 		policy_panel.bancontrol(2,policy_panel.itemStatus.ban)
 		hidePolicy()
 		GameManager.sav.have_event["initTask1"]=true
-		HAOZUPAI.ChangeSupport(-5)
+		GameManager.sav.HAOZUPAI.ChangeSupport(-5)
 		GameManager.changePeopleSupport(5)
 		GameManager.sav.coin=GameManager.sav.coin+200
 		#@export var  coin=100 #金钱 数值
@@ -384,13 +382,58 @@ func selectPolicy(data):
 		#GameManager.sav.targetValue=200
 		#GameManager.sav.targetTxt="当前凑集资金：{currence}/{target}"
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"增加税率")
-		HAOZUPAI.ChangeSupport(10)
-		BENTUPAI.ChangeSupport(-20)
+		GameManager.sav.HAOZUPAI.ChangeSupport(10)
+		GameManager.sav.BENTUPAI.ChangeSupport(-20)
 		GameManager.changePeopleSupport(-20)
 		GameManager.sav.coin_DayGet=GameManager.sav.coin_DayGet+30
 		GameManager.sav.have_event["initTask1"]=true
 		#提升关税
 		#GameManager._engerge.ref
+	elif id==policymanager.policyID.P_PrecisionPurge:
+		#-豪族和军方 获得一笔钱
+		
+		
+		GameManager.sav.BENTUPAI.ChangeSupport(10)
+		GameManager.sav.HAOZUPAI.ChangeSupport(-5)
+		GameManager.changePeopleSupport(5)
+		
+		
+		GameManager.sav.coin_DayGet+=30
+		GameManager.sav.labor_DayGet+=10
+		GameManager.sav.currenceValue+=2
+		#天数-2
+		#GameManager.resideValue=tr("士族派好感上升10，豪族派好感下降5，徐州百姓的民心上升5，每日获取金额+10，内奸剩余被发现的天数-2")
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"精确除奸")
+		GameManager.sav.have_event["chaoChenDenPolicyExcute"]=true
+	elif id==policymanager.policyID.P_BalancePurge:
+		#-豪族和军方 获得道具
+		
+		GameManager.sav.BENTUPAI.ChangeSupport(5)
+		GameManager.sav.HAOZUPAI.ChangeSupport(5)
+
+		
+		GameManager.sav.coin_DayGet+=10
+		GameManager.sav.labor_DayGet+=5
+		
+		
+		var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.益气丸)
+		var remainder = InventoryManager.add_item(GameManager.inventoryPackege, itemid, 1, false)
+		
+		GameManager.resideValue=tr("士族派好感上升5，豪族派好感上升5，每日获取金额+30，每日获得劳动力+15，获得道具2")
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"平衡除奸")
+		GameManager.sav.have_event["chaoChenDenPolicyExcute"]=true
+	elif id==policymanager.policyID.P_SwiftPurge:
+		#所有派系-10，并且获得人口和金币
+		GameManager.sav.BENTUPAI.ChangeSupport(-5)
+		GameManager.sav.HAOZUPAI.ChangeSupport(-5)
+		GameManager.sav.WAIDIPAI.ChangeSupport(-5)
+		GameManager.sav.coin_DayGet-=5
+		GameManager.sav.labor_DayGet-=5
+		GameManager.sav.coin+=300
+		GameManager.sav.labor_force+=150
+		GameManager.resideValue=tr("士族派好感下降5，豪族派好感下降5，丹阳派好感下降5，每日获取金额-10，每日获取劳动力-15，金钱+300,劳动力+150")
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"暴力除奸")
+		GameManager.sav.have_event["chaoChenDenPolicyExcute"]=true		
 func selectCorrect():
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"正确决策0")
 	hidePolicy()
@@ -587,6 +630,7 @@ func chaosChendengEnd():
 	if GameManager.sav.have_event["chaoMizhuEnd"]==true:
 		chaosDialogEnd()
 	FractionalDiff()
+	#生成一个
 func chaosDialogEnd():
 	#
 	#可以离开，但是会有提示如何做
@@ -611,14 +655,12 @@ func cancelAllocation():
 
 func afterAllocation():
 	disater_panel.afterAllocation()
-#const BENTUPAI = preload("res://Asset/tres/bentupai.tres")
-#const HAOZUPAI = preload("res://Asset/tres/haozupai.tres")
-const WAIDIPAI = preload("res://Asset/tres/waidipai.tres")
+
 func FractionalDiff():
-	HAOZUPAI.isshow=true
-	HAOZUPAI.ChangeAllPeople(floor(BENTUPAI._num_all/2))
-	BENTUPAI.ChangeAllPeople(floor(BENTUPAI._num_all/2))
-	BENTUPAI._name="士族派"
+	GameManager.sav.HAOZUPAI.isshow=true
+	GameManager.sav.HAOZUPAI.ChangeAllPeople(floor(GameManager.sav.BENTUPAI._num_all/2))
+	GameManager.sav.BENTUPAI.ChangeAllPeople(floor(GameManager.sav.BENTUPAI._num_all/2))
+	GameManager.sav.BENTUPAI._name="士族派"
 	SignalManager.changeSupport.emit()
 	GameManager.sav.have_event["Factionalization"]=true
 	changePanelPos()
@@ -684,11 +726,11 @@ func getFactionByIndex()->cldata:
 	
 	var _confortV
 	if _faction==cldata.factionIndex.bentupai:
-		_confortV=BENTUPAI
+		_confortV=GameManager.sav.BENTUPAI
 	elif _faction==cldata.factionIndex.weidipai:
-		_confortV=WAIDIPAI
+		_confortV=GameManager.sav.WAIDIPAI
 	elif _faction==cldata.factionIndex.haozupai:
-		_confortV=HAOZUPAI
+		_confortV=GameManager.sav.HAOZUPAI
 		
 		
 	return _confortV

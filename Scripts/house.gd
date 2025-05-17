@@ -49,9 +49,11 @@ func _ready():
 
 func play_music(file_path: String) -> void:
 	var stream = load(file_path)
-	SoundManager.play_music(stream)
-func _initData():
-	
+	if stream!=null:
+		SoundManager.play_music(stream)
+	else:
+		print("载入音频出错"+file_path)
+func play_BGM():
 	if GameManager.musicId <= 0:
 		var available_ids = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 		# 如果 musicId 是负数，排除对应的编号
@@ -64,12 +66,13 @@ func _initData():
 	
 
 		var music_file = "res://Asset/music/Ambient " + str(GameManager.musicId) + ".wav"
-		play_music(music_file)
-		# save_last_play_date(room_id, current_date) # 保存日期
-		# save_has_played(room_id, true) # 标记已播放		
-	var musicVolume=SoundManager.get_music_volume()
+		play_music(music_file)	
+			
+func _initData():
+
+#	var musicVolume=SoundManager.get_music_volume()
 	
-	var soundVolume=SoundManager.get_sound_volume()
+#	var soundVolume=SoundManager.get_sound_volume()
 		
 	var initData=[
 	{
@@ -103,14 +106,13 @@ func _initData():
 		"visible":"true"
 	}
 	]
-	if GameManager.sav.day>=6:
-		title.show()
-		demo_end.show()
-		hp_panel.hide()
-		res_panel.hide()
-		$CanvasLayer/supportPanel.hide()
-		return
-#const 街道 = preload("res://Asset/bgm/街道.mp3")
+	#if GameManager.sav.day>=6:
+		##title.show()
+		##demo_end.show()
+		#hp_panel.hide()
+		#res_panel.hide()
+		#$CanvasLayer/supportPanel.hide()
+		#return
 	control._processList(initData)
 	GameManager.currenceScene=self
 	if GameManager.sav.day==1:
@@ -239,11 +241,11 @@ func _buttonListClick(item):
 		pass
 	elif item.context == "属性面板":
 		#当前功能demo不开放
-		DialogueManager.show_example_dialogue_balloon(sys,"当前功能demo不开放")	
+		#DialogueManager.show_example_dialogue_balloon(sys,"当前功能demo不开放")	
 		
 		#正式功能需要取消注释
-		#refreshPropertyPanel()
-		#propertyPanel.show()
+		refreshPropertyPanel()
+		propertyPanel.show()
 		
 	elif item.context == "休息":
 		
@@ -292,9 +294,9 @@ func refreshPropertyPanel():
 	contextEx=contextEx+"------------------------------"+"\n"
 	contextEx=contextEx+"当前派系对你的看法"+"\n"
 	
-	contextEx=contextEx+"徐州派：%s"%getFractionView(GameManager.BENTUPAI._support_rate)+"\n"
-	contextEx=contextEx+"豪族派：%s"%getFractionView(GameManager.HAOZUPAI._support_rate)+"\n"
-	contextEx=contextEx+"丹阳派：%s"%getFractionView(GameManager.WAIDIPAI._support_rate)+"\n"
+	contextEx=contextEx+"徐州派：%s"%getFractionView(GameManager.sav.BENTUPAI._support_rate)+"\n"
+	contextEx=contextEx+"豪族派：%s"%getFractionView(GameManager.sav.HAOZUPAI._support_rate)+"\n"
+	contextEx=contextEx+"丹阳派：%s"%getFractionView(GameManager.sav.WAIDIPAI._support_rate)+"\n"
 	contextEx=contextEx+"当前建议：%s"%"xxxxxx"+"\n"
 	propertyPanel.contextEX=contextEx
 	
@@ -349,23 +351,16 @@ func demoFinish():
 	$"文官".hide()
 	
 	
-	#title.show()
-	#demo_end.show()
-	
-	#return
-	#if day==5:
-	#demo 完结 正式版内容
-	#
-	#这句话放在黑屏转场并且播放央视声音
-	#旁白: 公元194年末，刘备入主徐州，同时他将州治迁往下邳，一场新的权力的游戏开始了 
 
 	GameManager.restLabel=tr("公元194年末，刘备入主徐州，同时他将州治迁往下邳，一场新的权力的游戏开始了！")
-	#DEMO屏蔽
-	#GameManager.restFadeScene=SceneManager.GOVERNMENT_BUILDING
+
+	
+	
+	GameManager.restFadeScene=SceneManager.GOVERNMENT_BUILDING
 	#播放声音
 	SoundManager.play_sound(bgs194)
 	GameManager.wait_time=bgs194.get_length()
-	GameManager._rest(true)#正式游戏false
+	GameManager._rest(false)#正式游戏false
 	
 	
 	#府邸改成 进去触发对话，对话完触发主线内容
@@ -465,23 +460,21 @@ func secondMissonStart():
 	#GameManager.sav.TargetDestination=="府邸"
 	pass
 	
-const BENTUPAI = preload("res://Asset/tres/bentupai.tres")
-const HAOZUPAI = preload("res://Asset/tres/haozupai.tres")
-const WAIDIPAI = preload("res://Asset/tres/waidipai.tres")	
+
 #准备改成5天，然后民心下降改成5点
 func yuanshuChaos(value):
 	if value==1:
 		GameManager.changePeopleSupport(-10)
 		#民心下降10,改成5
 	elif value==2:
-		WAIDIPAI.ChangeSupport(-10)
+		GameManager.sav.WAIDIPAI.ChangeSupport(-10)
 		#丹阳派下降10
 	elif value==3:
-		BENTUPAI.ChangeSupport(-10)
+		GameManager.sav.BENTUPAI.ChangeSupport(-10)
 		#徐州度下降10
 	elif value==4:
-		WAIDIPAI.ChangeSupport(-10)
-		BENTUPAI.ChangeSupport(-10)
+		GameManager.sav.WAIDIPAI.ChangeSupport(-10)
+		GameManager.sav.BENTUPAI.ChangeSupport(-10)
 		GameManager.changePeopleSupport(-10)
 		#全部下降10
 @onready var caocao_letter = $CanvasLayer/caocaoLetter
@@ -508,7 +501,7 @@ const sys = preload("res://dialogues/系统.dialogue")
 func determineInternalUnrest():
 	var _UnrestNum=0
 	randomIndex=GameManager.sav.randomIndex
-	var fractions:Array=[GameManager.HAOZUPAI,GameManager.WAIDIPAI,GameManager.BENTUPAI]
+	var fractions:Array=[GameManager.sav.HAOZUPAI,GameManager.sav.WAIDIPAI,GameManager.sav.BENTUPAI]
 	for fraction in fractions:
 		var _support_rate=fraction._support_rate
 		if _support_rate < 60.0:
@@ -520,14 +513,14 @@ func determineInternalUnrest():
 				fraction.isrebellion = true
 				_UnrestNum=_UnrestNum+1	
 	
-	var _LVBUsupport_rate=GameManager.LVBU._support_rate
+	var _LVBUsupport_rate=GameManager.sav.LVBU._support_rate
 	if _LVBUsupport_rate < 80.0:
 			# 计算叛变概率：支持率越低，概率越高
 			# 线性插值：支持率 60 -> 5% 概率，支持率 0 -> 80% 概率
 		var rebellion_chance = lerp(0.25, 0.80, (80.0 - _LVBUsupport_rate) / 80.0)
 			# 随机数判断是否叛变
 		if randf() < rebellion_chance:
-			GameManager.LVBU.isrebellion = true
+			GameManager.sav.LVBU.isrebellion = true
 			_UnrestNum=_UnrestNum+1	
 	
 	
@@ -553,13 +546,13 @@ func settleDeterminValue():
 	
 func determineInternalUnrestXuzhou():
 	resetDeterminValue()
-	if GameManager.BENTUPAI.isrebellion==true:
-		GameManager.BENTUPAI._num_defections=GameManager.BENTUPAI._num_defections+1
-		determineValue1=30*randomIndex+(GameManager.BENTUPAI._num_defections)*30
+	if GameManager.sav.BENTUPAI.isrebellion==true:
+		GameManager.sav.BENTUPAI._num_defections=GameManager.sav.BENTUPAI._num_defections+1
+		determineValue1=30*randomIndex+(GameManager.sav.BENTUPAI._num_defections)*30
 		
 		if randf() < 0.5||GameManager.sav.labor_force<determineValue1:
 			determineType=GameManager.ResType.heart
-			determineValue1=5+randomIndex+(GameManager.BENTUPAI._num_defections-1)*2
+			determineValue1=5+randomIndex+(GameManager.sav.BENTUPAI._num_defections-1)*2
 			DialogueManager.show_example_dialogue_balloon(sys,"士族叛乱1")
 		else:
 			determineType=GameManager.ResType.people
@@ -571,11 +564,11 @@ func determineInternalUnrestXuzhou():
 func determineInternalUnrestHaozu():
 	settleDeterminValue()
 	resetDeterminValue()
-	if GameManager.HAOZUPAI.isrebellion==true:
-		GameManager.HAOZUPAI._num_defections=GameManager.HAOZUPAI._num_defections+1
-		determineValue1=50*randomIndex+(GameManager.HAOZUPAI._num_defections)*50
+	if GameManager.sav.HAOZUPAI.isrebellion==true:
+		GameManager.sav.HAOZUPAI._num_defections=GameManager.sav.HAOZUPAI._num_defections+1
+		determineValue1=50*randomIndex+(GameManager.sav.HAOZUPAI._num_defections)*50
 		if randf() < 0.5||GameManager.sav.coin<determineValue1:
-			determineValue1=5+randomIndex+(GameManager.HAOZUPAI._num_defections-1)*2
+			determineValue1=5+randomIndex+(GameManager.sav.HAOZUPAI._num_defections-1)*2
 			determineType=GameManager.ResType.heart
 			DialogueManager.show_example_dialogue_balloon(sys,"豪族叛乱1")
 		else:
@@ -587,9 +580,9 @@ func determineInternalUnrestHaozu():
 func determineInternalUnrestDanyang():
 	settleDeterminValue()
 	resetDeterminValue()
-	if GameManager.WAIDIPAI.isrebellion==true:
-		GameManager.WAIDIPAI._num_defections=GameManager.WAIDIPAI._num_defections+1
-		determineValue1=randomIndex+GameManager.WAIDIPAI._num_defections
+	if GameManager.sav.WAIDIPAI.isrebellion==true:
+		GameManager.sav.WAIDIPAI._num_defections=GameManager.sav.WAIDIPAI._num_defections+1
+		determineValue1=randomIndex+GameManager.sav.WAIDIPAI._num_defections
 		#判断道具总数之和
 		var _num=InventoryManager.canUseItemNum()
 
@@ -600,7 +593,7 @@ func determineInternalUnrestDanyang():
 			determineType=GameManager.ResType.item	
 			DialogueManager.show_example_dialogue_balloon(sys,"丹阳叛乱1")
 		else:
-			determineValue1=5+randomIndex+(GameManager.WAIDIPAI._num_defections-1)*2
+			determineValue1=5+randomIndex+(GameManager.sav.WAIDIPAI._num_defections-1)*2
 			determineType=GameManager.ResType.heart			
 			DialogueManager.show_example_dialogue_balloon(sys,"丹阳叛乱2")
 		return
@@ -608,13 +601,13 @@ func determineInternalUnrestDanyang():
 func determineInternalUnrestLvbu():
 	settleDeterminValue()
 	resetDeterminValue()
-	if GameManager.LVBU.isrebellion==true:
+	if GameManager.sav.LVBU.isrebellion==true:
 		var rand = randi() % 4
 		var valid_choice = false
-		var costItem= randomIndex + GameManager.LVBU._num_defections
-		var costCoin=50 * randomIndex + (GameManager.LVBU._num_defections) * 50
-		var costPeople=30 * randomIndex + (GameManager.LVBU._num_defections) * 30
-		var costHeart=5 + randomIndex + (GameManager.LVBU._num_defections - 1) * 2
+		var costItem= randomIndex + GameManager.sav.LVBU._num_defections
+		var costCoin=50 * randomIndex + (GameManager.sav.LVBU._num_defections) * 50
+		var costPeople=30 * randomIndex + (GameManager.sav.LVBU._num_defections) * 30
+		var costHeart=5 + randomIndex + (GameManager.sav.LVBU._num_defections - 1) * 2
 		#var costItemDetail=InventoryManager.costItemRandom()
 	# 收集可满足的资源类型
 		var valid_options = []
@@ -659,10 +652,10 @@ func determineInternalUnrestMinxin():
 		
 	var rand = randi() % 4
 	var valid_choice = false
-	var costItem= randomIndex + GameManager.LVBU._num_defections
-	var costCoin=50 * randomIndex + (GameManager.LVBU._num_defections) * 50
-	var costPeople=30 * randomIndex + (GameManager.LVBU._num_defections) * 30
-	var costHeart=5 + randomIndex + (GameManager.LVBU._num_defections - 1) * 2
+	var costItem= randomIndex + GameManager.sav.LVBU._num_defections
+	var costCoin=50 * randomIndex + (GameManager.sav.LVBU._num_defections) * 50
+	var costPeople=30 * randomIndex + (GameManager.sav.LVBU._num_defections) * 30
+	var costHeart=5 + randomIndex + (GameManager.sav.LVBU._num_defections - 1) * 2
 		#var costItemDetail=InventoryManager.costItemRandom()
 	# 收集可满足的资源类型
 	var valid_options = []
@@ -705,8 +698,8 @@ func shizuLawTest():
 	if GameManager.sav.xuzhouCD==0:
 		GameManager.sav.xuzhouCD=-1
 		GameManager.sav.laws[0]= GameManager.sav.laws[0].filter(func(x): return x >= 0)
-		GameManager.sav.courtingLaws.erase(GameManager.BENTUPAI._name)
-		GameManager.BENTUPAI.ChangeSupport(-10)
+		GameManager.sav.courtingLaws.erase(GameManager.sav.BENTUPAI._name)
+		GameManager.sav.BENTUPAI.ChangeSupport(-10)
 		DialogueManager.show_example_dialogue_balloon(sys,"士族法律未通过")
 		return
 	haozuLawTest()
@@ -714,8 +707,8 @@ func haozuLawTest():
 	if GameManager.sav.haozuCD==0:
 		GameManager.sav.haozuCD=-1
 		GameManager.sav.laws[1]= GameManager.sav.laws[1].filter(func(x): return x >= 0)
-		GameManager.sav.courtingLaws.erase(GameManager.HAOZUPAI._name)
-		GameManager.HAOZUPAI.ChangeSupport(-10)
+		GameManager.sav.courtingLaws.erase(GameManager.sav.HAOZUPAI._name)
+		GameManager.sav.HAOZUPAI.ChangeSupport(-10)
 		DialogueManager.show_example_dialogue_balloon(sys,"豪族法律未通过")
 		return
 	danyangLawTest()
@@ -724,9 +717,9 @@ func danyangLawTest():
 	if GameManager.sav.danyangCD==0:
 		GameManager.sav.danyangCD=-1
 		GameManager.sav.laws[2]= GameManager.sav.laws[2].filter(func(x): return x >= 0)
-		GameManager.sav.courtingLaws.erase(GameManager.WAIDIPAI._name)
+		GameManager.sav.courtingLaws.erase(GameManager.sav.WAIDIPAI._name)
 		DialogueManager.show_example_dialogue_balloon(sys,"丹阳法律未通过")
-		GameManager.WAIDIPAI.ChangeSupport(-10)
+		GameManager.sav.WAIDIPAI.ChangeSupport(-10)
 		return
 
 

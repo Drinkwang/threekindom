@@ -63,7 +63,7 @@ func showTitileReward(context,item):
 	title.text=titleContext	
 
 	_clear_view()
-	
+	getItemSound()
 	
 	for key in item.items.keys():
 		var _count=item.items[key]
@@ -94,11 +94,14 @@ func showTitileReward(context,item):
 @export var DaojuItem: PackedScene	
 @onready var _grid_ui = $Control/PanelContainer/MarginContainer/VBoxContainer/Margin/Grid
 
+func getItemSound():
+	var ranValue=randi_range(1,3)
+	SoundManager.play_sound(sounds["COLLECT_SMALL_JEWEL_"+str(ranValue)])
 
 func showReward(item):
 	imgTarget.texture=victoryPng
 	self.show()
-	
+	getItemSound()
 
 	var titleContext=""
 	if(coinCost>0 and soilderCost>0):
@@ -179,6 +182,7 @@ func fail():
 		titleContext=tr(failContext)+tr(TxtNoCost)
 	title.text=titleContext
 	self.show()
+	SoundManager.play_sound(sounds.uneqipsound)
 
 
 @export var Item: PackedScene

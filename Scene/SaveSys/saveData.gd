@@ -94,6 +94,13 @@ var SIDEQUEST_MAP:Dictionary={
 			GameManager._engerge.changerate(hp)
 		
 @export var finalKeChoice=-1
+
+
+@export var HAOZUPAI:cldata= preload("res://Asset/tres/haozupai.tres").duplicate()
+@export var BENTUPAI:cldata=preload("res://Asset/tres/bentupai.tres").duplicate()
+@export var WAIDIPAI:cldata=preload("res://Asset/tres/waidipai.tres").duplicate()
+@export var LVBU:cldata =preload("res://Asset/tres/lvbu.tres").duplicate()
+
 @export var have_event = {
 	"firstmeetchenqun":false,
 	"firsthouse": false,
@@ -138,6 +145,7 @@ var SIDEQUEST_MAP:Dictionary={
 	"chaosBegin":false,
 	"chaoChendengEnd":false,
 	"chaoMizhuEnd":false,
+	"chaoChenDenPolicyExcute":false,
 	"chaosEnd":false,
 	"chaoDialogEnd":false,
 	"battleTaiShan":false,#攻击泰山诸将

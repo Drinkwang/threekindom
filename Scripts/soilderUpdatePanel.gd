@@ -11,7 +11,7 @@ var costhp=10
 
 var selected_general_index = 0
 
-var upgrade_cost = 5
+var upgrade_cost = 50
 
 
 # 在场景中准备好时运行
@@ -72,6 +72,7 @@ func _on_upgrade_button_pressed():
 		return 
 	
 	var selected_general = GameManager.sav.generals.values()[selected_general_index]
+	upgrade_cost=selected_general["level"]*50
 	if GameManager.sav.coin >= upgrade_cost and selected_general["level"] < selected_general["max_level"]:
 		GameManager.sav.coin -= upgrade_cost
 		selected_general["level"] += 1

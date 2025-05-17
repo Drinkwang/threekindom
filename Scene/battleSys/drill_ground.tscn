@@ -171,12 +171,6 @@ scale = Vector2(0.2, 0.2)
 [node name="battlePane" parent="CanvasInventory" instance=ExtResource("10_gfhv4")]
 visible = false
 
-[node name="resPanel" parent="CanvasInventory" instance=ExtResource("13_4p7r8")]
-offset_left = 1529.0
-offset_top = 673.0
-offset_right = 1825.0
-offset_bottom = 1009.0
-
 [node name="InventoryAny" parent="CanvasInventory" instance=ExtResource("6_cu7sp")]
 visible = false
 anchors_preset = 1
@@ -205,6 +199,12 @@ clickEvent = "饭局结束"
 
 [node name="trainPanel" parent="CanvasInventory" instance=ExtResource("9_02127")]
 visible = false
+
+[node name="resPanel" parent="CanvasInventory" instance=ExtResource("13_4p7r8")]
+offset_left = 1529.0
+offset_top = 673.0
+offset_right = 1825.0
+offset_bottom = 1009.0
 
 [node name="caocaoLetterXieTianZi" parent="CanvasInventory" instance=ExtResource("11_lkv7t")]
 visible = false

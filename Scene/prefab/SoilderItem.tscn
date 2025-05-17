@@ -18,8 +18,8 @@ script = ExtResource("1_t53yr")
 layout_mode = 0
 offset_left = 17.0
 offset_top = 21.0
-offset_right = 360.0
-offset_bottom = 340.0
+offset_right = 296.0
+offset_bottom = 294.0
 texture = ExtResource("2_fwr36")
 region_rect = Rect2(27.3333, 26.3333, 397.333, 98.2222)
 patch_margin_left = 12
@@ -29,51 +29,52 @@ patch_margin_bottom = 14
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 33.0
-offset_top = 33.0
-offset_right = 344.0
-offset_bottom = 328.0
+offset_left = 28.0
+offset_top = 30.0
+offset_right = 284.0
+offset_bottom = 286.0
 expand_mode = 1
 
 [node name="rsp" type="TextureRect" parent="TextureRect"]
 layout_mode = 0
-offset_left = 255.0
-offset_right = 311.0
-offset_bottom = 56.0
+offset_left = 209.0
+offset_right = 257.0
+offset_bottom = 48.0
 texture = ExtResource("3_qrcr8")
 expand_mode = 1
 
 [node name="CheckBox" type="CheckBox" parent="TextureRect"]
 layout_mode = 0
-offset_left = 98.0
-offset_top = 333.0
-offset_right = 194.0
-offset_bottom = 429.0
+offset_left = 74.0
+offset_top = 298.0
+offset_right = 170.0
+offset_bottom = 394.0
 mouse_filter = 2
 button_mask = 7
 
 [node name="Label2" type="Label" parent="TextureRect"]
 layout_mode = 0
-offset_left = -96.0
-offset_top = 309.0
-offset_right = 411.0
-offset_bottom = 349.0
+offset_left = -137.0
+offset_top = 271.0
+offset_right = 370.0
+offset_bottom = 311.0
 theme_override_font_sizes/font_size = 40
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Panel" type="Panel" parent="."]
 visible = false
 layout_mode = 0
-offset_left = 36.0
-offset_top = 288.0
-offset_right = 349.0
-offset_bottom = 329.0
+offset_left = 31.0
+offset_top = 121.0
+offset_right = 224.0
+offset_bottom = 162.0
 
 [node name="context" type="Label" parent="Panel"]
 layout_mode = 0
 offset_left = 3.0
 offset_top = 9.0
-offset_right = 311.0
+offset_right = 179.0
 offset_bottom = 33.0
 theme_override_font_sizes/font_size = 23
 horizontal_alignment = 1
@@ -81,9 +82,9 @@ horizontal_alignment = 1
 [node name="alreadyUse" type="TextureRect" parent="."]
 visible = false
 layout_mode = 0
-offset_left = 152.0
-offset_top = 387.0
-offset_right = 208.0
-offset_bottom = 443.0
+offset_left = 132.0
+offset_top = 130.0
+offset_right = 188.0
+offset_bottom = 186.0
 texture = ExtResource("4_jpu1k")
 expand_mode = 1

@@ -74,9 +74,7 @@ func _judWin():
 		if GameManager.sav.currenceValue>=GameManager.sav.targetValue:
 			_completeTask()
 			
-const BENTUPAI = preload("res://Asset/tres/bentupai.tres")
-const HAOZUPAI = preload("res://Asset/tres/haozupai.tres")
-const WAIDIPAI = preload("res://Asset/tres/waidipai.tres")
+
 func _completeTask():#将完成任务移动到外层
 	if(GameManager.sav.have_event["completeTask2"]==false):
 		GameManager.sav.have_event["completeTask2"]=true
@@ -101,13 +99,13 @@ func _completeTask():#将完成任务移动到外层
 			#return 
 			#血战 30 场决斗 3天给与选择 5天断粮 7天判断有无克苏鲁 如果输了15场 就自动进入克苏鲁 仅以身免，刘备的最好兄弟牺牲 兄弟甲乙丙 都是同乡 甲被人吃，乙想吃刘备肉被甲劝说，无果，年老的丙用自己肉保住主公，最终乙因为自己最好兄弟甲之死，自己割自己肉给刘备吃 ，最后甲乙丙都死，如果活下来，他们也是新的关羽和张飞，乙也有傲气 
 			#21 11
-		if WAIDIPAI._support_rate<60:
+		if GameManager.sav.WAIDIPAI._support_rate<60:
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"丹阳线")
 	
-		elif BENTUPAI._support_rate<60:
+		elif GameManager.sav.BENTUPAI._support_rate<60:
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"士族线")
 	
-		elif HAOZUPAI._support_rate<60:
+		elif GameManager.sav.HAOZUPAI._support_rate<60:
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"豪族线")
 			#pass #其实以上三种都是丢徐州 但是通过战斗胜利次数，判断有无进入克苏鲁线
 		else:
