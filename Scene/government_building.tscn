@@ -1,6 +1,7 @@
-[gd_scene load_steps=23 format=3 uid="uid://dbk6u8kc33kq2"]
+[gd_scene load_steps=24 format=3 uid="uid://dbk6u8kc33kq2"]
 
 [ext_resource type="Script" path="res://Scripts/government_building.gd" id="1_xncth"]
+[ext_resource type="Resource" uid="uid://cqlt2sgkuk3na" path="res://dialogues/府邸.dialogue" id="2_yngd1"]
 [ext_resource type="Texture2D" uid="uid://d2artvwe80df1" path="res://Asset/光明/正常背景.png" id="3_iplod"]
 [ext_resource type="Texture2D" uid="uid://5n7qchhi5h04" path="res://Asset/ui/底色.png" id="4_mcbyl"]
 [ext_resource type="PackedScene" uid="uid://bv5ycsl0a50uq" path="res://Scene/prefab/btnList.tscn" id="5_gv3ja"]
@@ -25,6 +26,7 @@
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_xncth")
+dialogue_resource = ExtResource("2_yngd1")
 dialogue_start = "init"
 
 [node name="正常背景" type="Sprite2D" parent="."]

@@ -194,6 +194,15 @@ var SIDEQUEST_MAP:Dictionary={
 	#卖粮第几天
 	"支线触发完毕获得骨杖":false,#
 }
+
+
+
+func ensure_default_fields():
+	var default_data = saveData.new().have_event
+	for key in default_data.keys():
+		if not have_event.has(key):
+			have_event[key] = default_data[key]
+
 func testFunc():
 	var questContexts=SIDEQUEST_MAP.values().filter(func(a):a.length()>0)
 	var size=questContexts.size()

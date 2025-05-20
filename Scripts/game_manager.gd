@@ -446,7 +446,7 @@ func getPolicyGroup() -> int:
 			return 1
 		if sav.day==5:
 			return 2
-		if GameManager.sav.have_event["chaoMizhuEnd"]==true and GameManager.sav.have_event["chaoChenDenPolicyExcute"]==false:
+		if GameManager.sav.have_event["chaoChendengEnd"]==true and GameManager.sav.have_event["chaoChenDenPolicyExcute"]==false:
 			return 3
 	return -1
 	#如果处于主线状态，则取出来的是主线，否则取出来的是随机数

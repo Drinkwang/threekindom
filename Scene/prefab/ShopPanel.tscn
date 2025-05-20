@@ -218,6 +218,7 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="buyBackButton" type="Button" parent="backTxt"]
+layout_mode = 0
 offset_left = 851.0
 offset_top = -16.0
 offset_right = 1213.0
@@ -299,7 +300,7 @@ itemstype = 10
 visible = false
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
-tooltip_text = "丈八蛇矛"
+tooltip_text = "雌雄双股剑"
 to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
 img = ExtResource("13_xnv0q")
 itemstype = 8

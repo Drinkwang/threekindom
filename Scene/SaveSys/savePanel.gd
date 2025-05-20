@@ -62,10 +62,13 @@ var _GrainNum=0
 func loadFile():
 	if(savs[index-1]!=null):
 		GameManager.sav=savs[index-1]
+		GameManager.sav.ensure_default_fields()
 		get_tree().change_scene_to_packed(savs[index-1].saveScene)
 
 	refresh()
 	self.hide()
+
+
 
 
 func _on_close_button_down():

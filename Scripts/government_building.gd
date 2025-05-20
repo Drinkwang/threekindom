@@ -626,6 +626,7 @@ func chaosMizhuEnd():
 	
 func chaosChendengEnd():
 	GameManager.sav.have_event["chaoChendengEnd"]=true
+	GameManager.sav.policyExcute=false
 	chenden.hide()	
 	if GameManager.sav.have_event["chaoMizhuEnd"]==true:
 		chaosDialogEnd()

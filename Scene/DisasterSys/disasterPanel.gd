@@ -45,7 +45,7 @@ func _process(delta):
 @export var DanYangValue=0
 func confireAllocation():
 	if(GameManager.resideGrain!=0):
-		DialogueManager.show_dialogue_balloon(dialogue_resource,"必须分配")
+		DialogueManager.show_dialogue_balloon(GameManager.currenceScene.dialogue_resource,"必须分配")
 	
 		return
 	
@@ -94,7 +94,7 @@ func confireAllocation():
 	GameManager.sav.HAOZUPAI.ChangeSupport(greatValue)
 	GameManager.sav.WAIDIPAI.ChangeSupport(DanYangValue)
 	
-	DialogueManager.show_dialogue_balloon(dialogue_resource,"分配成功")
+	DialogueManager.show_dialogue_balloon(GameManager.currenceScene.dialogue_resource,"分配成功")
 	
 	#control 1士族
 	#control 2豪族
@@ -115,9 +115,13 @@ func cancelAllocation():
 	#pass
 
 
+#const dialogue_resource = preload("res://dialogues/府邸.dialogue")
 
-@export var dialogue_resource:DialogueResource
 func _on_allocation_down():
 	#开启对话框
-	DialogueManager.show_dialogue_balloon(dialogue_resource,"确定分配")
+	var resideNum=GameManager.resideGrain
+	if resideNum>0:
+		DialogueManager.show_dialogue_balloon(GameManager.currenceScene.dialogue_resource,"必须分配")
+	else:
+		DialogueManager.show_dialogue_balloon(GameManager.currenceScene.dialogue_resource,"确定分配")
 	pass # Replace with function body.
