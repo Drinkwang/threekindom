@@ -79,9 +79,9 @@ func _ready():
 	else: 
 		check_box.hide()
 		
-	SignalManager.changeLanguage.connect(changeLanguage)				
-	changeLanguage()
-func changeLanguage():
+	SignalManager.changeLanguage.connect(_changeLanguage)				
+	_changeLanguage()
+func _changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()
 	if currencelanguage=="ja":
 		pass

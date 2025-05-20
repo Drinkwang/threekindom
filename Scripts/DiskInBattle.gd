@@ -496,6 +496,10 @@ func settleGame(end,issuccess):
 func refreshPage():
 	enemy.namelv=tr("(当前战力:{targetValue})").format({"targetValue": GameManager.sav.battleTasks[taskIndex].index*50}) 
 	var btresult= GameManager.BattleResult
+
+	var sd=GameManager.sav.battleTasks[taskIndex].sdType
+	_initBattleTypePng(0,sd)
+
 	var txt
 	for i in range(0,GameManager.sav.battleResults.size()):
 		var _ColorRect=find_child("ColorRect_"+str(i+1))

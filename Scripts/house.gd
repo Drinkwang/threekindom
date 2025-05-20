@@ -490,6 +490,7 @@ func lookDoneCaoCaoLetter():
 	caocao_letter.hide()
 	enterdetermineInternalUnrest()
 
+#有bug需要改
 func enterdetermineInternalUnrest():
 	if isdetermine==false:
 		isdetermine=true

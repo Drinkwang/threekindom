@@ -9,6 +9,7 @@ var showValue:bool=true
 func _ready():
 	pass # Replace with function body.
 
+@onready var color_rect = $PanelContainer/MarginContainer/GridContainer/TextureRect/ColorRect
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -16,7 +17,7 @@ func _process(delta):
 		coin_num.text=var_to_str(GameManager.sav.coin)
 		heart_num.text=var_to_str(GameManager.sav.people_surrport)
 		labor_num.text=var_to_str(GameManager.sav.labor_force)
-	
+		color_rect.color.a=0.314+0.686*((100-GameManager.sav.people_surrport)/100.0)
 
 func GetValue(coinGet,heartGet,peopleGet):
 	if coinGet>0:
@@ -39,7 +40,7 @@ func GetValue(coinGet,heartGet,peopleGet):
 		labor_num.text=var_to_str(GameManager.sav.labor_force)+"-"+var_to_str(peopleGet)
 	else:
 		labor_num.text=var_to_str(GameManager.sav.labor_force)	
-	await 3
+	await 0.8
 	
 	
 	if coinGet>0:

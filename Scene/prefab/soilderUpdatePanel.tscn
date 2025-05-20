@@ -71,6 +71,11 @@ text = "请选择你的武将进行练兵
 （练兵有一定概率提升武将等级）"
 autowrap_mode = 2
 
+[node name="Control3" type="Control" parent="PanelContainer/orderPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 9.5)
+layout_mode = 2
+size_flags_vertical = 6
+
 [node name="orderVbox" type="HBoxContainer" parent="PanelContainer/orderPanel/VBoxContainer"]
 custom_minimum_size = Vector2(7.405, 447.98)
 layout_mode = 2
@@ -96,7 +101,7 @@ headImg = ExtResource("7_ib6jt")
 namelv = "赵云：lv1"
 
 [node name="Control2" type="Control" parent="PanelContainer/orderPanel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 60)
+custom_minimum_size = Vector2(0, 44.12)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="PanelContainer/orderPanel/VBoxContainer"]

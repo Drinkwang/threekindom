@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dbk6u8kc33kq2"]
+[gd_scene load_steps=23 format=3 uid="uid://dbk6u8kc33kq2"]
 
 [ext_resource type="Script" path="res://Scripts/government_building.gd" id="1_xncth"]
 [ext_resource type="Texture2D" uid="uid://d2artvwe80df1" path="res://Asset/光明/正常背景.png" id="3_iplod"]
@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://dfolt063spdso" path="res://Scene/prefab/energy.tscn" id="7_iy2fq"]
 [ext_resource type="PackedScene" uid="uid://bw52ymer7ngwu" path="res://Scene/prefab/gapanel.tscn" id="8_ca5ns"]
 [ext_resource type="Texture2D" uid="uid://b7rbhnxj7r7wi" path="res://Asset/光明/装饰2-正常.png" id="8_cn83s"]
-[ext_resource type="Resource" uid="uid://cqlt2sgkuk3na" path="res://dialogues/府邸.dialogue" id="8_ct1l0"]
 [ext_resource type="PackedScene" uid="uid://bvlh16yfcevdj" path="res://Scene/DisasterSys/disasterPanel.tscn" id="8_lgypm"]
 [ext_resource type="PackedScene" uid="uid://be0m00qmu43tx" path="res://Scene/commonPanel/giftPanel.tscn" id="9_2k5hb"]
 [ext_resource type="PackedScene" uid="uid://n73q2fqj4htr" path="res://Scene/prefab/policyPanel.tscn" id="9_fdrkw"]
@@ -26,7 +25,6 @@
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_xncth")
-dialogue_resource = ExtResource("8_ct1l0")
 dialogue_start = "init"
 
 [node name="正常背景" type="Sprite2D" parent="."]
@@ -116,14 +114,12 @@ size_flags_vertical = 4
 visible = false
 happys = Array[int]([4, 8, 10])
 accepts = Array[int]([2, 6, 8])
-dialogue_resource = ExtResource("8_ct1l0")
 
 [node name="ruleBook" parent="CanvasLayer" instance=ExtResource("8_ca5ns")]
 visible = false
 contextEX = "
 在您举办的饭局中，各大派系忠诚度都提高了"
 titleEX = "宴会完美举办成功！"
-dialogue_resource = ExtResource("8_ct1l0")
 
 [node name="sendGiftPanel" parent="." instance=ExtResource("9_2k5hb")]
 visible = false
@@ -134,7 +130,6 @@ position = Vector2(674, 628)
 showName = "糜竺"
 dialogue_doubleclick = "点击糜竺"
 txt2d = ExtResource("10_73x55")
-dialogue_resource = ExtResource("8_ct1l0")
 dialogue_start = "点击糜竺"
 
 [node name="政府文书" parent="." instance=ExtResource("6_ibudm")]
@@ -143,7 +138,6 @@ position = Vector2(984, 625)
 showName = "政府文书"
 dialogue_doubleclick = "look"
 txt2d = ExtResource("9_qwmo3")
-dialogue_resource = ExtResource("8_ct1l0")
 dialogue_start = "look"
 
 [node name="陶商陶应" parent="." instance=ExtResource("6_ibudm")]
@@ -153,7 +147,6 @@ showName = "陶商/陶应"
 dialogue_doubleclick = "城外克苏鲁事件触发"
 showEX = true
 txt2d = ExtResource("13_f851a")
-dialogue_resource = ExtResource("8_ct1l0")
 dialogue_start = "城外克苏鲁事件触发"
 
 [node name="陈登" parent="." instance=ExtResource("6_ibudm")]
@@ -162,5 +155,4 @@ position = Vector2(1264, 624)
 showName = "陈登"
 dialogue_doubleclick = "点击陈登0"
 txt2d = ExtResource("12_quqka")
-dialogue_resource = ExtResource("8_ct1l0")
 dialogue_start = "点击陈登0"

@@ -89,7 +89,11 @@ func confireAllocation():
 		DanYangValue=UpValue
 	elif  control_3._num+control_3.factionSurpuls._num_grain<doubt:
 		DanYangValue=0-UpValue	
-		
+	
+	GameManager.sav.BENTUPAI.ChangeSupport(literatiValue)
+	GameManager.sav.HAOZUPAI.ChangeSupport(greatValue)
+	GameManager.sav.WAIDIPAI.ChangeSupport(DanYangValue)
+	
 	DialogueManager.show_dialogue_balloon(dialogue_resource,"分配成功")
 	
 	#control 1士族

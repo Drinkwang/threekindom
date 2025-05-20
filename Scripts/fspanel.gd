@@ -23,7 +23,7 @@ func _ready():
 	_processList()
 	SignalManager.changeLanguage.connect(changeLanguage)
 	changeLanguage()
-	SignalManager.changeSupport.connect(refreshData)
+	SignalManager.changeSupport.connect(_processList)
 	showCurrenceLaw()
 func changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()
@@ -46,7 +46,7 @@ func changeLanguage():
 @onready var v_box_container = $PanelContainer/VBoxContainer
 
 func _processList():
-	#v_box_container.remove_child()
+	GameManager.clear_children(v_box_container)#.remove_child()
 	for item:cldata in datas:
 		if item.isshow==false:
 			continue

@@ -50,6 +50,8 @@ func get_inventory_by_name_items(inventory_name: String) -> Array:
 
 func get_inventory_items(inventory_uuid: String) -> Array:
 	var items = []
+	if GameManager.sav==null:
+		return items
 	if GameManager.sav._data.inventories.has(inventory_uuid):
 		items = GameManager.sav._data.inventories[inventory_uuid]
 	return items

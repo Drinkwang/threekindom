@@ -35,6 +35,14 @@ texture = ExtResource("1_twhjh")
 expand_mode = 2
 stretch_mode = 4
 
+[node name="ColorRect" type="ColorRect" parent="PanelContainer/MarginContainer/GridContainer/TextureRect"]
+layout_mode = 2
+offset_left = -23.0
+offset_top = 69.0
+offset_right = 202.0
+offset_bottom = 135.0
+color = Color(0.792157, 0, 0.223529, 0.313726)
+
 [node name="coinNum" type="Label" parent="PanelContainer/MarginContainer/GridContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 66
@@ -63,3 +71,10 @@ stretch_mode = 4
 layout_mode = 2
 theme_override_font_sizes/font_size = 66
 text = "0"
+
+[node name="heart" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 36.0
+offset_top = 109.0
+offset_right = 253.0
+offset_bottom = 174.0

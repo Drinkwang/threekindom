@@ -12,10 +12,10 @@ func _ready():
 	#d.
 	_processList()
 	SignalManager.changeFraction.connect(refreshData)
-
+	SignalManager.changeSupport.connect(_processList)
 
 func _processList():
-
+	GameManager.clear_children(v_box_container)
 	for item:cldata in datas:
 		if item.isshow==false:
 			continue

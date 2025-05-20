@@ -70,8 +70,8 @@ func _ready():
 		$Panel/Label.text=showName;
 	else:
 		$Panel.hide()
-	SignalManager.changeLanguage.connect(changeLanguage)			
-	changeLanguage()	
+	SignalManager.changeLanguage.connect(_changeLanguage)			
+	_changeLanguage()	
 	
 	
 	if showEX==true:
@@ -86,7 +86,7 @@ func _ready():
 	pass # Replace with function body.
 @onready var label = $Panel/Label
 const NOT_JAM_UI_CONDENSED_16 = preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf")
-func changeLanguage():
+func _changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()
 
 	if currencelanguage=="ru":

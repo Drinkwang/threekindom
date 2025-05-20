@@ -410,8 +410,8 @@ func _DayGet():
 	res_panel.showValue=false
 	res_panel.GetValue(GameManager.sav.coin_DayGet,0,GameManager.sav.labor_DayGet)
 	SoundManager.play_sound(sounds.buysellsound)
-	await 0.8
-	res_panel.showValue=false
-	GameManager._DayGet()
+	await 1
+	res_panel.showValue=true
+	#GameManager._DayGet()
 	#if(GameManager.sav.targetTxt!=null and GameManager.sav.targetTxt.length()>0):	
 	#	_JudgeTask()

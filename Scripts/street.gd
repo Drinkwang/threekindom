@@ -298,4 +298,6 @@ func bianjiEnd():
 func _process(delta):
 	pass
 
+func confireSold():
+	shop_panel.confireSold()
 

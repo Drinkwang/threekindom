@@ -52,7 +52,9 @@ class_name saveData
 @export var policy_Item_index=1#政策数量
 @export var policyExcute=false
 @export var isAlertRisk=false
-var _data = InventoryInventories.new()
+
+@export var isSoldItem=false
+@export var _data = InventoryInventories.new()
 @export var GrainIndex=0
 @export var laws=[[],[],[]]
 @export var courtingLaws:Dictionary={}

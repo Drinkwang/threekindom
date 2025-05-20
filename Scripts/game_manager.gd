@@ -197,7 +197,7 @@ var policy_Item=[
 #var dialogBegin=false
 # Called when the node enters the scene tree for the first time.
 func _ready():
-
+	sav=saveData.new()
 	_enterDay()
 	SkipPrologue()
 	initSetting()
@@ -223,15 +223,15 @@ func _input(event):
 func initBattle():
 	sav.UseGeneral=[]
 	#all改成any
-	if(sav.battleResults.size()!=3 or sav.battleResults.any(func(e):e!=BattleResult.none)):
-		sav.battleResults=[
+	
+	sav.battleResults=[
 		BattleResult.none,
 		BattleResult.none,
 		BattleResult.none
 	#初始值会带有一些随机元素，但会根据优势更偏进好的 初始成功率不大于30  做任务降低损失增大成功率 
-		]
+	]
 		
-		initBattleCircle()
+	initBattleCircle()
 	#同时初始化3个将军攻克面板	
 
 func array_sum(arr: Array) -> int:
@@ -250,6 +250,7 @@ func _enterDay(value=true):
 		GameManager.sav.day=GameManager.sav.day+1
 	refreshPaixis()
 	initBattle()
+	sav.isSoldItem=false
 	sav.hp=100
 	sav.isLevelUp=false;
 	sav.isMeet=false
@@ -495,7 +496,8 @@ func getIndexByFractionIndex(factionIndex:cldata.factionIndex)->int:
 	
 	return index	
 
-
+var SoldItemStr=""
+var SoldCoin=0
 var waidipai=cldata.factionIndex.weidipai
 var bentupai=cldata.factionIndex.bentupai
 var haozupai=cldata.factionIndex.haozupai
@@ -943,3 +945,7 @@ func load_settings():
 	
 	#sfx_slider.value = settings.sfx_volume
 	#_on_sfx_slider_value_changed(settings.sfx_volume)
+func clear_children(parent: Node) -> void:
+	for child in parent.get_children():
+		parent.remove_child(child)
+		child.queue_free()  # 或 child.free()
