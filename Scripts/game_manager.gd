@@ -257,7 +257,7 @@ func _enterDay(value=true):
 	sav.isGetCoin=false
 	sav.isVisitScholar=false
 	sav.randomIndex=randi_range(0,3)
-	
+	sav.alreadyHP=0	
 	if GameManager.sav.xuzhouCD>0:
 		GameManager.sav.xuzhouCD-=1
 

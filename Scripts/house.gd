@@ -271,6 +271,23 @@ func _buttonListClick(item):
 		control._show_button_5_yellow(-1)
 		if GameManager.musicId!=0:
 			GameManager.musicId=-GameManager.musicId
+		
+		if(GameManager.sav.alreadyHP<10):
+			GameManager.sav.lazydays+=1	
+			GameManager.sav.lazyValue=GameManager.sav.lazyValue+1
+			if GameManager.sav.lazydays>=3:
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"连续多日怠惰")	
+				#连续多日怠惰
+			else:
+				var lazyRan=0.2*GameManager.sav.lazyValue
+				var random_value = randf()  # 生成0.0到1.0的随机数
+				if random_value <= lazyRan:
+					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"单日概率怠惰")
+				#怠惰概率 1次 10% 
+		else:
+			if GameManager.sav.lazyValue>0:
+				GameManager.sav.lazyValue=GameManager.sav.lazyValue-1
+			GameManager.sav.lazydays=0	
 		SoundManager.stop_music()	
 		GameManager._rest()	 
 		#判断有无道具 有道具且等于false	
@@ -280,7 +297,17 @@ func _buttonListClick(item):
 		#FancyFade.new().custom_fade(load("res://Scene/sleepBlank.tscn").instantiate(), 2, DISSOLVE_IMAGE)
 	print(item)
 	pass
-	
+
+func oneDayidleness():
+	GameManager.sav.HAOZUPAI.ChangeSupport(-5)
+	GameManager.sav.BENTUPAI.ChangeSupport(-5)
+	GameManager.sav.WAIDIPAI.ChangeSupport(-5)
+func moreDayidness():
+	GameManager.sav.HAOZUPAI.ChangeSupport(-10)
+	GameManager.sav.BENTUPAI.ChangeSupport(-10)
+	GameManager.sav.WAIDIPAI.ChangeSupport(-10)
+	GameManager.sav.changePeopleSupport(-5)
+
 func refreshPropertyPanel():
 
 	var contextEx="当前天数：%d"%GameManager.sav.day+"\n"

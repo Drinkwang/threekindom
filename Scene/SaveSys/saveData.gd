@@ -91,10 +91,15 @@ var SIDEQUEST_MAP:Dictionary={
 	get:
 		return hp
 	set(value):
+		if value<hp:
+			alreadyHP+=(hp-value)
 		hp=value
+		
 		if GameManager._engerge!=null:
 			GameManager._engerge.changerate(hp)
-		
+@export var alreadyHP=0		
+@export var lazydays=0
+@export var lazyValue=0
 @export var finalKeChoice=-1
 
 
