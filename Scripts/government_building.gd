@@ -104,10 +104,14 @@ func _initData():
 		elif GameManager.sav.have_event["findLvbu"]==true and GameManager.sav.have_event["discussLvbu"]==false:
 				GameManager.sav.have_event["discussLvbu"]=true
 				candoSub=false#此处需要跟曹豹将军沟通
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"商讨吕布是否留下") #征讨袁术开始*/	
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"商讨吕布是否留下") 
+				#修改任务目标为跟曹豹谈一谈 
+				GameManager.sav.TargetDestination="演武场"
+				#征讨袁术开始*/	
 		elif  GameManager.sav.have_event["lvbuDiscussInCaoBao"]==true and GameManager.sav.have_event["lvBuFinalDiscuss"]==false:
 				GameManager.sav.have_event["lvBuFinalDiscuss"]=true
-				candoSub=false#此处需要跟曹豹将军沟通
+				candoSub=false
+
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第二次商讨吕布是否留下") #征讨袁术开始*/	
 		elif GameManager.sav.have_event["lvbuJoin"]==true and GameManager.sav.have_event["canSummonLvbu"]==false:
 			if GameManager.sav.currenceDay>=1:

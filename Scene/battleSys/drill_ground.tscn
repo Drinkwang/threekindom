@@ -149,7 +149,7 @@ position = Vector2(982, 546)
 showName = "曹豹"
 txt2d = ExtResource("15_1y7hu")
 dialogue_resource = ExtResource("2_j02vm")
-dialogue_start = "点击糜竺"
+dialogue_start = ""
 
 [node name="CanvasButton" type="CanvasLayer" parent="."]
 

@@ -17,6 +17,18 @@ layout_mode = 0
 offset_right = 287.0
 offset_bottom = 299.0
 
+[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = -5
+theme_override_constants/margin_right = -5
+theme_override_constants/margin_bottom = 10
+
+[node name="ColorRect" type="ColorRect" parent="PanelContainer/MarginContainer2"]
+custom_minimum_size = Vector2(8.155, 56.245)
+layout_mode = 2
+size_flags_vertical = 4
+color = Color(0.792157, 0, 0.223529, 0.313726)
+
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 20
@@ -34,14 +46,6 @@ tooltip_text = "玩家持有的金钱数量（可购买道具）"
 texture = ExtResource("1_twhjh")
 expand_mode = 2
 stretch_mode = 4
-
-[node name="ColorRect" type="ColorRect" parent="PanelContainer/MarginContainer/GridContainer/TextureRect"]
-layout_mode = 2
-offset_left = -23.0
-offset_top = 69.0
-offset_right = 202.0
-offset_bottom = 135.0
-color = Color(0.792157, 0, 0.223529, 0.313726)
 
 [node name="coinNum" type="Label" parent="PanelContainer/MarginContainer/GridContainer"]
 layout_mode = 2

@@ -20,7 +20,7 @@ func _ready():
 		bg.texture=newBuild
 	else:
 		bg.texture=xiaopeiBuild
-	if GameManager.sav.have_event["findLvbu"]==true and GameManager.sav.have_event["征询曹将军意见"]==false:
+	if GameManager.sav.have_event["discussLvbu"]==true and GameManager.sav.have_event["征询曹将军意见"]==false:
 		#可改成显示曹将军立绘
 		caobao.show()
 		GameManager.sav.have_event["征询曹将军意见"]=true
@@ -343,6 +343,7 @@ func endtrain():
 	control._show_button_5_yellow(0)
 
 func ConsultWithCaoBaoEnd():
+	caobao.hide()
 	GameManager.sav.TargetDestination="府邸"	
 	GameManager.sav.have_event["lvbuDiscussInCaoBao"]=true
 

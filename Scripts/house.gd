@@ -416,9 +416,11 @@ func _DayGet():
 	res_panel.showValue=false
 	GameManager._DayGet()
 	
-	extraTask()
+
 	if(GameManager.sav.targetTxt!=null and GameManager.sav.targetTxt.length()>0):	
-		_JudgeTask()
+		_JudgeTask()	#主线
+	else:
+		extraTask()	#支线
 	# 好的我了解了，还有别的事么？
 	# 对，还有一键
 	# 很好，继续努力。如果任务没有完成 提示三选一

@@ -9,7 +9,7 @@ var showValue:bool=true
 func _ready():
 	pass # Replace with function body.
 
-@onready var color_rect = $PanelContainer/MarginContainer/GridContainer/TextureRect/ColorRect
+@onready var color_rect = $PanelContainer/MarginContainer2/ColorRect
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

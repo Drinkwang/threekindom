@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://cy140f6kxm5ev"]
+[gd_scene load_steps=20 format=3 uid="uid://cy140f6kxm5ev"]
 
 [ext_resource type="Script" path="res://Scripts/ShopPanel.gd" id="1_ngsol"]
 [ext_resource type="Theme" uid="uid://bklmr3xmk4m5u" path="res://global_theme.tres" id="2_0of21"]
 [ext_resource type="Resource" uid="uid://bouswe15a440i" path="res://dialogues/商店.dialogue" id="2_gxgjo"]
 [ext_resource type="AudioStream" uid="uid://daxlyrk7pr0bu" path="res://Asset/sound/翻阅.mp3" id="3_32rtm"]
 [ext_resource type="PackedScene" uid="uid://5qxpn6avk7bx" path="res://Scene/prefab/ShopItem.tscn" id="4_iwehk"]
+[ext_resource type="Texture2D" uid="uid://b1fhdo48wn43i" path="res://Asset/items/密谈3.png" id="7_2m2sr"]
 [ext_resource type="Texture2D" uid="uid://cphbecia7woet" path="res://Asset/items/益气.png" id="7_ubh4f"]
 [ext_resource type="Texture2D" uid="uid://hy8jdf2wnwq" path="res://Asset/items/胜战.png" id="8_080tv"]
 [ext_resource type="Texture2D" uid="uid://dahuc8gb2blc" path="res://Asset/other/0_red.png" id="9_kapto"]
@@ -13,6 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://cs7ohr5y7hv61" path="res://Asset/items/雌雄双股剑.png" id="11_ysr0e"]
 [ext_resource type="Texture2D" uid="uid://dxqq4mduw6nkd" path="res://Asset/items/青龙偃月刀.png" id="12_g3hr8"]
 [ext_resource type="Texture2D" uid="uid://cwannilraxnen" path="res://Asset/丈八蛇矛.png" id="13_xnv0q"]
+[ext_resource type="Texture2D" uid="uid://cmmqirxfkg16m" path="res://Asset/items/獬豸.png" id="14_bvea7"]
+[ext_resource type="Texture2D" uid="uid://dbkvahmqpu36o" path="res://Asset/items/洞察之镜.png" id="15_ptsft"]
 
 [sub_resource type="Animation" id="Animation_g5rj7"]
 length = 0.001
@@ -233,6 +236,14 @@ offset_top = 305.0
 offset_right = 1295.0
 offset_bottom = 393.0
 
+[node name="xiaodao" parent="HBoxContainer2" instance=ExtResource("4_iwehk")]
+custom_minimum_size = Vector2(88, 88)
+layout_mode = 2
+tooltip_text = "珍品礼盒"
+to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
+img = ExtResource("7_2m2sr")
+itemstype = 4
+
 [node name="huanyuan" parent="HBoxContainer2" instance=ExtResource("4_iwehk")]
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
@@ -297,21 +308,19 @@ img = ExtResource("13_xnv0q")
 itemstype = 10
 
 [node name="Control4" parent="HBoxContainer" instance=ExtResource("4_iwehk")]
-visible = false
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
 tooltip_text = "雌雄双股剑"
 to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
-img = ExtResource("13_xnv0q")
+img = ExtResource("14_bvea7")
 itemstype = 8
 
 [node name="Control5" parent="HBoxContainer" instance=ExtResource("4_iwehk")]
-visible = false
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
 tooltip_text = "丈八蛇矛"
 to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
-img = ExtResource("13_xnv0q")
+img = ExtResource("15_ptsft")
 itemstype = 10
 
 [node name="Label2" type="Label" parent="."]
