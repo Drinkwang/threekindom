@@ -236,14 +236,6 @@ offset_top = 305.0
 offset_right = 1295.0
 offset_bottom = 393.0
 
-[node name="xiaodao" parent="HBoxContainer2" instance=ExtResource("4_iwehk")]
-custom_minimum_size = Vector2(88, 88)
-layout_mode = 2
-tooltip_text = "珍品礼盒"
-to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
-img = ExtResource("7_2m2sr")
-itemstype = 4
-
 [node name="huanyuan" parent="HBoxContainer2" instance=ExtResource("4_iwehk")]
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
@@ -276,6 +268,16 @@ to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
 img = ExtResource("10_bt0g7")
 itemstype = 4
 
+[node name="xiaodao" parent="HBoxContainer2" instance=ExtResource("4_iwehk")]
+visible = false
+custom_minimum_size = Vector2(88, 88)
+layout_mode = 2
+tooltip_text = "市井秘闻"
+to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
+img = ExtResource("7_2m2sr")
+itemContext = "1"
+itemstype = 8
+
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 352.0
@@ -289,7 +291,7 @@ layout_mode = 2
 tooltip_text = "雌雄双股剑"
 to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
 img = ExtResource("11_ysr0e")
-itemstype = 8
+itemstype = 11
 
 [node name="Control2" parent="HBoxContainer" instance=ExtResource("4_iwehk")]
 custom_minimum_size = Vector2(88, 88)
@@ -297,31 +299,31 @@ layout_mode = 2
 tooltip_text = "青龙偃月刀"
 to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
 img = ExtResource("12_g3hr8")
-itemstype = 9
+itemstype = 12
 
 [node name="Control3" parent="HBoxContainer" instance=ExtResource("4_iwehk")]
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
-tooltip_text = "丈八蛇矛"
+tooltip_text = "龙胆亮银枪"
 to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
 img = ExtResource("13_xnv0q")
-itemstype = 10
+itemstype = 14
 
 [node name="Control4" parent="HBoxContainer" instance=ExtResource("4_iwehk")]
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
-tooltip_text = "雌雄双股剑"
+tooltip_text = "獬豸圣像"
 to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
 img = ExtResource("14_bvea7")
-itemstype = 8
+itemstype = 16
 
 [node name="Control5" parent="HBoxContainer" instance=ExtResource("4_iwehk")]
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
-tooltip_text = "丈八蛇矛"
+tooltip_text = "洞察之镜"
 to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
 img = ExtResource("15_ptsft")
-itemstype = 10
+itemstype = 15
 
 [node name="Label2" type="Label" parent="."]
 visible = false
@@ -337,9 +339,9 @@ vertical_alignment = 2
 
 [node name="detail" type="Label" parent="."]
 layout_mode = 0
-offset_left = 517.0
+offset_left = 432.0
 offset_top = 634.0
-offset_right = 1415.0
+offset_right = 1471.0
 offset_bottom = 821.0
 theme_override_font_sizes/font_size = 31
 text = "当前商品价格:0"

@@ -45,15 +45,41 @@ var responses: Array = []:
 					item.response = response
 				# Otherwise assume we can just set the text
 				else:
+					if "[highlight=true]" in response.text:
+						response.text = response.text.replace("[highlight=true]", "")
+						var sxnum=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.獬豸圣像) 
+						if sxnum>0:
+							apply_highlight_effect(item)  # 应用高亮效果
 					item.text = response.text
-
+					
 				item.set_meta("response", response)
 
 				add_child(item)
 
 			_configure_focus()
 
-
+func apply_highlight_effect(button):
+	# 添加金光效果（示例：使用 Shader 或 AnimationPlayer）
+	var material = ShaderMaterial.new()
+	#material.shader = load("res://shader/glow_effect.gdshader")  # 自定义金光着色器
+	#button.material = material
+	# 或者使用 AnimationPlayer 播放金光动画
+	var animation_player = AnimationPlayer.new()
+	button.add_child(animation_player)
+	var animation = Animation.new()
+	var track_index = animation.add_track(Animation.TYPE_VALUE)
+	animation.track_set_path(track_index, ":modulate")
+	animation.track_insert_key(track_index, 0.0, Color(1, 1, 0, 1))  # 金色
+	animation.track_insert_key(track_index, 0.5, Color(1, 1, 1, 1))  # 白色
+	animation.track_insert_key(track_index, 1.0, Color(1, 1, 0, 1))  # 金色
+	animation.length = 1.0
+	animation.loop = true
+	
+	var library = AnimationLibrary.new()
+	library.add_animation("glow", animation)
+	animation_player.add_animation_library("glow_library", library)
+	
+	animation_player.play("glow_library/glow")
 func _ready() -> void:
 	visibility_changed.connect(func():
 		if visible and get_menu_items().size() > 0:

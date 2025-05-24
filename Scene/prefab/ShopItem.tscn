@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://5qxpn6avk7bx"]
+[gd_scene load_steps=6 format=3 uid="uid://5qxpn6avk7bx"]
 
 [ext_resource type="Script" path="res://Scripts/ShopItem.gd" id="1_h644w"]
 [ext_resource type="Texture2D" uid="uid://bye5cypeps08s" path="res://Asset/ui/4.png" id="1_wpj7r"]
 [ext_resource type="Texture2D" uid="uid://sq2pvmh6p5db" path="res://Asset/ui/8.png" id="2_smbln"]
 [ext_resource type="Texture2D" uid="uid://dahuc8gb2blc" path="res://Asset/other/0_red.png" id="4_tce4q"]
+[ext_resource type="FontFile" uid="uid://dk0uyb3ayyxtk" path="res://addons/inventory_editor/default/fonts/Pangolin-Regular.ttf" id="5_7lbv2"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -63,5 +64,23 @@ offset_right = 68.0
 offset_bottom = 67.0
 texture = ExtResource("4_tce4q")
 expand_mode = 1
+
+[node name="itemContext" type="Label" parent="frame"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.08
+anchor_top = -0.053
+anchor_right = -0.08
+anchor_bottom = -0.053
+offset_left = 13.0
+offset_top = -3.025
+offset_right = 72.0
+offset_bottom = 88.975
+theme_override_fonts/font = ExtResource("5_7lbv2")
+theme_override_font_sizes/font_size = 39
+text = "秘"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]

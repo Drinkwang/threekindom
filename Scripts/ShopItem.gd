@@ -27,6 +27,19 @@ const InventoryManagerName = "InventoryManager"
 #		"money": money,
 #		"population": population
 #	}		
+@onready var item_context = $frame/itemContext
+
+@export var itemContext:String:
+	get:
+		return itemContext
+	set(value):
+		itemContext=value
+		if itemContext.length()>0:
+			if item_context!=null:
+				item_context.show()
+				item_context.text=value
+		else:
+			item_context.hide()
 func set_Data(key,value):
 	var itemname= InventoryManagerItem.item_by_enum(key)
 	quantity=value
@@ -75,7 +88,10 @@ func _ready():
 	#	questManager = get_tree().get_root().get_node(questManagerName)
 
 func refreshSold():
-	if itemstype==InventoryManagerItem.ItemEnum.雌雄双股剑 or itemstype==InventoryManagerItem.ItemEnum.青龙偃月刀 or itemstype==InventoryManagerItem.ItemEnum.丈八蛇矛: 
+	var havedec=(itemstype==InventoryManagerItem.ItemEnum.洞察之镜 or itemstype==InventoryManagerItem.ItemEnum.獬豸圣像)
+	var havesecret=(itemstype==InventoryManagerItem.ItemEnum.市井秘闻 or itemstype==InventoryManagerItem.ItemEnum.市井秘闻_续 or itemstype==InventoryManagerItem.ItemEnum.市井秘闻_终)
+	var havewea=(itemstype==InventoryManagerItem.ItemEnum.雌雄双股剑 or itemstype==InventoryManagerItem.ItemEnum.青龙偃月刀 or itemstype==InventoryManagerItem.ItemEnum.丈八蛇矛)
+	if havedec or havesecret or havewea: 
 		
 		var itemname= InventoryManagerItem.item_by_enum(itemstype)
 		var _c=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,itemname)
@@ -124,8 +140,18 @@ func _on_gui_input(event):
 		item=properties.filter(func(a):return a["name"]=="detail")[0]
 		var detail=item["value"]
 		
+		var index=0
+		var havedec=(itemstype==InventoryManagerItem.ItemEnum.洞察之镜 or itemstype==InventoryManagerItem.ItemEnum.獬豸圣像)
+		var havesecret=(itemstype==InventoryManagerItem.ItemEnum.市井秘闻 or itemstype==InventoryManagerItem.ItemEnum.市井秘闻_续 or itemstype==InventoryManagerItem.ItemEnum.市井秘闻_终)
+		var havewea=(itemstype==InventoryManagerItem.ItemEnum.雌雄双股剑 or itemstype==InventoryManagerItem.ItemEnum.青龙偃月刀 or itemstype==InventoryManagerItem.ItemEnum.丈八蛇矛)
+		if havedec==true:
+			index=2
+		elif  havesecret==true:
+			index=3
+		elif havewea==true:
+			index=1
 		if alreaysold.visible==true:
-			GameManager.shopPanel.refreshAlreadySoldTxt()
+			GameManager.shopPanel.refreshAlreadySoldTxt(index)
 			return
 		#如果是三把武器，判断玩家是否有，如果有，则调用无法购买已售出的文本
 		GameManager.shopPanel.refreshPage(price,detail)#价格和介绍

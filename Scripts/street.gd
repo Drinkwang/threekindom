@@ -124,6 +124,12 @@ func _initData():
 		"visible":"true"
 	}]
 	
+	
+	if(GameManager.hearsayID>0):
+		GameManager.hearsayID=-1
+		shop_panel.show()
+	
+
 	control._processList(initData)
 	
 func HuntdownKe():

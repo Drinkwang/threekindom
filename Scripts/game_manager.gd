@@ -8,6 +8,8 @@ const MANUAL_TEST = preload("res://ManualTest.tscn")
 var _savePanel:savePanel
 var restLabel:String=""
 var wait_time=2
+var hearsayID=-1 #秘闻id，购买秘闻修改 如果是商店=0
+var hearsayBeforeNode=null
 #用于临时储存的值
 var resideValue
 enum RspEnum{
@@ -949,3 +951,11 @@ func clear_children(parent: Node) -> void:
 	for child in parent.get_children():
 		parent.remove_child(child)
 		child.queue_free()  # 或 child.free()
+
+
+func haveMirror()->bool:
+	var sxnum=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.洞察之镜) 
+	if sxnum>0:
+		return true
+	else:
+		return false

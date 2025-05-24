@@ -73,7 +73,23 @@ func _ready():
 	else:
 		bg.texture=xiaopeiBuild
 	#DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
+	if(GameManager.hearsayID==1):
+		chenden.show()
+		mizhu.show()
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"商人售卖利益")
+		return
+	elif GameManager.hearsayID==2:
+		chenden.show()
+		mizhu.show()
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"出现分化")
 
+		return
+	elif GameManager.hearsayID==3:
+		chenden.hide()
+		mizhu.show()
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"糜竺第三次市井")
+
+		return		
 	Transitions.post_transition.connect(post_transition)
 	control.buttonClick.connect(_buttonListClick)
 	super._ready()
@@ -82,6 +98,23 @@ func _ready():
 	
 	pass # Replace with function body.
 var candoSub=true
+func hearSayEnd():
+	if(GameManager.hearsayID==1):
+		const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
+		FancyFade.new().custom_fade(SceneManager.STREET.instantiate(), 2, DISSOLVE_IMAGE)
+	
+	elif GameManager.hearsayID==2:
+		const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
+		FancyFade.new().custom_fade(SceneManager.STREET.instantiate(), 2, DISSOLVE_IMAGE)
+	
+	elif GameManager.hearsayID==3:
+		GameManager.restFadeScene=SceneManager.BOULEUTERION
+		SoundManager.stop_music()
+		GameManager.hearsayID=3
+		GameManager.restLabel=tr("陈登在议事厅，灯下独思")
+				#商人售卖利益 
+		GameManager._rest(false)
+
 func _initData():
 	candoSub=true
 	if GameManager.sav.day==1:

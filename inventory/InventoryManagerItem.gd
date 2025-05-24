@@ -4,7 +4,7 @@
 class_name InventoryManagerItem
 
 
-enum ItemEnum { NONE,  益气丸, 胜战锦囊, 诸子百家论集, 珍品礼盒, 迷魂木筒, 黄麻药囊, 饥蛊骨签, 雌雄双股剑, 青龙偃月刀, 丈八蛇矛, 龙胆亮银枪, HelmetKnight, HelmetViking, ArmorKnight, ArmorViking, GlovesLeftKnight, GlovesLeftViking, GlovesRightKnight, GlovesRightViking, BootsKnight, BootsViking, ShieldKnight, ShieldViking, Gold2D, Metal2D, Horn2D, RecipeHelmetKnight2D, RecipeHelmetViking2D}
+enum ItemEnum { NONE,  益气丸, 胜战锦囊, 诸子百家论集, 珍品礼盒, 迷魂木筒, 黄麻药囊, 饥蛊骨签, 市井秘闻, 市井秘闻_续, 市井秘闻_终, 雌雄双股剑, 青龙偃月刀, 丈八蛇矛, 龙胆亮银枪, 洞察之镜, 獬豸圣像, HelmetKnight, HelmetViking, ArmorKnight, ArmorViking, GlovesLeftKnight, GlovesLeftViking, GlovesRightKnight, GlovesRightViking, BootsKnight, BootsViking, ShieldKnight, ShieldViking, Gold2D, Metal2D, Horn2D, RecipeHelmetKnight2D, RecipeHelmetViking2D}
 
 const 益气丸 = "f4352b3f-8500-419f-9617-9da134d822f5"
 const 胜战锦囊 = "63015407-55c9-4729-887f-493fe2a624b7"
@@ -13,10 +13,15 @@ const 珍品礼盒 = "a9f24ca6-b213-4f07-a690-2185ffd6ec1d"
 const 迷魂木筒 = "2cac68ca-2e3e-4dce-abfa-a66cb1692750"
 const 黄麻药囊 = "de62e3cc-6908-412e-b1c3-f4a4393b1e12"
 const 饥蛊骨签 = "0ca56144-b9d4-4f47-9a27-1ced87906377"
+const 市井秘闻 = "98a2390d-e67a-460d-84c7-b442f0b50ea4"
+const 市井秘闻_续 = "20074a58-ba8c-4f86-a293-e4d8c62ad7df"
+const 市井秘闻_终 = "266cc0b9-26cc-49ce-9871-1e60a81cd403"
 const 雌雄双股剑 = "cf240703-26ac-4a2a-88a7-1441ff6c6a0c"
 const 青龙偃月刀 = "5fa70d8d-c0d0-43d9-8260-6efa4fde008b"
 const 丈八蛇矛 = "52d0a7fa-b133-45f1-9b75-b9818c8599d2"
 const 龙胆亮银枪 = "38a142cc-57cb-4f07-8e61-3b7c6601f3b8"
+const 洞察之镜 = "a1c7db2c-2e5f-407e-bfeb-1e4624b3d313"
+const 獬豸圣像 = "6f1b582b-6968-4f09-a102-047cfcb7c773"
 const HELMETKNIGHT = "8274191e-eaac-4605-9f3e-f55492b5a4b9"
 const HELMETVIKING = "a20c35ce-bcc8-4344-9840-dc0783ebb2e4"
 const ARMORKNIGHT = "677586f9-55cc-40c2-bd87-7c54430c629d"
@@ -43,10 +48,15 @@ const ITEMS = [
  "迷魂木筒",
  "黄麻药囊",
  "饥蛊骨签",
+ "市井秘闻",
+ "市井秘闻-续",
+ "市井秘闻-终",
  "雌雄双股剑",
  "青龙偃月刀",
  "丈八蛇矛",
  "龙胆亮银枪",
+ "洞察之镜",
+ "獬豸圣像",
  "HelmetKnight",
  "HelmetViking",
  "ArmorKnight",
@@ -82,6 +92,12 @@ static func item_by_enum(item_enum: ItemEnum) -> String:
 			return InventoryManagerItem.黄麻药囊
 		ItemEnum.饥蛊骨签:
 			return InventoryManagerItem.饥蛊骨签
+		ItemEnum.市井秘闻:
+			return InventoryManagerItem.市井秘闻
+		ItemEnum.市井秘闻_续:
+			return InventoryManagerItem.市井秘闻_续
+		ItemEnum.市井秘闻_终:
+			return InventoryManagerItem.市井秘闻_终
 		ItemEnum.雌雄双股剑:
 			return InventoryManagerItem.雌雄双股剑
 		ItemEnum.青龙偃月刀:
@@ -90,6 +106,10 @@ static func item_by_enum(item_enum: ItemEnum) -> String:
 			return InventoryManagerItem.丈八蛇矛
 		ItemEnum.龙胆亮银枪:
 			return InventoryManagerItem.龙胆亮银枪
+		ItemEnum.洞察之镜:
+			return InventoryManagerItem.洞察之镜
+		ItemEnum.獬豸圣像:
+			return InventoryManagerItem.獬豸圣像
 		ItemEnum.HelmetKnight:
 			return InventoryManagerItem.HELMETKNIGHT
 		ItemEnum.HelmetViking:

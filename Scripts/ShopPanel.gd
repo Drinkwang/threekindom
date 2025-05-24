@@ -4,6 +4,7 @@ class_name ShopPanel
 var selectGoods:ShopItem
 
 @onready var back_txt = $backTxt
+@onready var hearsay = $HBoxContainer2/xiaodao
 
 var useItems
 # Called when the node enters the scene tree for the first time.
@@ -27,8 +28,30 @@ func _ready():
 		GameManager.SoldItemStr=tr("我将以%d金收购你手上的")%GameManager.SoldCoin+GameManager.SoldItemStr
 		back_txt.show()
 		#
+		
 	else:
 		back_txt.hide()
+	
+	var haveone=((InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.市井秘闻) )>0)	
+	var havetwo=((InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.市井秘闻_续) )>0)
+	var havethree=((InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.市井秘闻_终) )>0)	
+	if not haveone and GameManager.sav.have_event["completeTask1"]==true:#没有1 然后特定事件
+		hearsay.show()
+		hearsay.itemstype=InventoryManagerItem.ItemEnum.市井秘闻	
+		hearsay.img=load("res://Asset/items/密谈3.png")
+		hearsay.itemContext="1"
+	elif haveone and !havetwo and GameManager.sav.have_event["Factionalization"]==true:#拥有市井1 没有2 然后特定事件
+		hearsay.show()	
+		hearsay.itemstype=InventoryManagerItem.ItemEnum.市井秘闻_续
+		hearsay.img=load("res://Asset/items/密谈2.png")
+		hearsay.itemContext="2"
+	elif havetwo and GameManager.sav.have_event["庆功宴是否举办"]==true:#拥有市井2 没有3 然后特定事件
+		hearsay.show()
+		hearsay.itemstype=InventoryManagerItem.ItemEnum.市井秘闻_终	
+		hearsay.img=load("res://Asset/items/密谈1.png")
+		hearsay.itemContext="3"
+	else:
+		hearsay.hide()	
 	#pass # Replace with function body.
 
 @export var dialogue_resource:DialogueResource
@@ -61,14 +84,46 @@ func refreshPage(_price,_detail):
 	# selectGoods.itemstype#通过这个获取价格
 	pass
 	
-func refreshAlreadySoldTxt():
+func refreshAlreadySoldTxt(index):
 	buy_button.disabled=true
-	detail.text="当前武器你已经持有了，无需再购买"
+	if index==1:
+		detail.text="当前武器你已经持有了，无需再购买"
+	elif index==2:
+		detail.text="这个饰品你已经持有了，无需再购买"
+	else:
+		detail.text="这个秘闻你已经知道了，请改日再来吧"
+#var befunc		
 func _on_buy_button_down():
 	if(GameManager.sav.coin>=(price as int) and selectGoods!=null):
 		SoundManager.play_sound(sounds.buysellsound)
 		selectGoods.getItem()
 		GameManager.sav.coin=GameManager.sav.coin-price
+		if selectGoods.itemstype==InventoryManagerItem.ItemEnum.市井秘闻:
+			#展示内部剧情
+				GameManager.hearsayBeforeNode=SceneManager.beforeNode
+				GameManager.restFadeScene=SceneManager.GOVERNMENT_BUILDING
+				SoundManager.stop_music()
+				GameManager.hearsayID=1
+				GameManager.restLabel=tr("你在徐州商人花钱买到一则秘闻。陶谦已逝，刘备新掌徐州，城中却暗潮汹涌。近日，陈登与糜竺密会厅堂，窃窃私语，似在筹谋未来。市井耳目偷听二人低语，揭开权臣心机一角，细闻之下，耐人寻味……")
+				#商人售卖利益 
+				GameManager._rest(false)
+		elif selectGoods.itemstype==InventoryManagerItem.ItemEnum.市井秘闻_续:
+				GameManager.hearsayBeforeNode=SceneManager.beforeNode
+				GameManager.restFadeScene=SceneManager.GOVERNMENT_BUILDING
+				SoundManager.stop_music()
+				GameManager.hearsayID=2
+				GameManager.restLabel=tr("你在徐州商人重金购得一则秘闻。刘备新主徐州，粮荒民怨未平，陈登与糜竺却针锋相对。昨夜，二人争执后各归私邸，似有异样。市井探子窃闻两人低语，令人心惊……")
+				#商人售卖利益 
+				GameManager._rest(false)
+		elif selectGoods.itemstype==InventoryManagerItem.ItemEnum.市井秘闻_终:
+				GameManager.hearsayBeforeNode=SceneManager.beforeNode
+				GameManager.restFadeScene=SceneManager.GOVERNMENT_BUILDING
+				SoundManager.stop_music()
+				GameManager.hearsayID=3
+				GameManager.restLabel=tr("你于徐州商人重金购得一则秘闻。时值196年，刘备新主徐州，袁术兵临城下，城中暗流汹涌。昨夜，陈登独坐议事厅，灯下沉吟；糜竺踱步府邸庭院，月下低吟。市井耳目窃闻二人心声，权谋隐志，令人暗叹……")
+				#商人售卖利益 
+				GameManager._rest(false)
+		
 		selectGoods=null
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"欢迎光临")
 		price=0
