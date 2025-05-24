@@ -82,7 +82,6 @@ func _ready():
 	#const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
 	#$TextureRect.texture=preload('res://addons/transitions/images/blurry-noise.png')
 	#$Sprite2D.texture=load("res://Asset/内屋.jpg")
-	#FancyFade.custom_fade($"..".instance(), 1.5, DISSOLVE_IMAGE)
 	pass # Replace with function body.
 @onready var label = $Panel/Label
 const NOT_JAM_UI_CONDENSED_16 = preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf")

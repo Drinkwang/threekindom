@@ -99,14 +99,14 @@ func _ready():
 	pass # Replace with function body.
 var candoSub=true
 func hearSayEnd():
+	GameManager.hearsayID=-1
 	if(GameManager.hearsayID==1):
-		const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
-		FancyFade.new().custom_fade(SceneManager.STREET.instantiate(), 2, DISSOLVE_IMAGE)
-	
+		
+		#const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
+		SceneManager.changeScene(GameManager.hearsayBeforeNode,2)
+
 	elif GameManager.hearsayID==2:
-		const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
-		FancyFade.new().custom_fade(SceneManager.STREET.instantiate(), 2, DISSOLVE_IMAGE)
-	
+		SceneManager.changeScene(GameManager.hearsayBeforeNode,2)
 	elif GameManager.hearsayID==3:
 		GameManager.restFadeScene=SceneManager.BOULEUTERION
 		SoundManager.stop_music()
@@ -365,9 +365,7 @@ func showFirstMission():
 	chenden.hide()
 	mizhu.hide()
 func exit():
-	const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
-	FancyFade.new().custom_fade(SceneManager.STREET.instantiate(), 2, DISSOLVE_IMAGE)
-
+	SceneManager.changeScene(SceneManager.roomNode.STREET,2)
 var getCoin
 func selectPolicy(data):
 	var id=data.id

@@ -213,9 +213,7 @@ func post_transition():
 	_initData()
 func gotostreetAndKe(value):
 	GameManager.sav.finalKeChoice=value
-	const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
-	FancyFade.new().custom_fade(SceneManager.STREET.instantiate(), 2, DISSOLVE_IMAGE)
-
+	SceneManager.changeScene(SceneManager.roomNode.STREET,2)
 
 func PlayBitPlayer():
 	bti_rect.hide()
@@ -231,9 +229,7 @@ func _on_video_player_finished():
 func _buttonListClick(item):
 
 	if item.context == "外出":
-		const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
-		FancyFade.new().custom_fade(SceneManager.STREET.instantiate(), 2, DISSOLVE_IMAGE)
-		pass
+		SceneManager.changeScene(SceneManager.roomNode.STREET,2)
 	elif item.context == "今日政务":
 		control._show_button_5_yellow(-1)
 		policyPanel.refreshContext()
@@ -294,9 +290,7 @@ func _buttonListClick(item):
 				
 
 
-		#FancyFade.new().custom_fade(load("res://Scene/sleepBlank.tscn").instantiate(), 2, DISSOLVE_IMAGE)
-	print(item)
-	pass
+
 
 func oneDayidleness():
 	GameManager.sav.HAOZUPAI.ChangeSupport(-5)
@@ -393,7 +387,6 @@ func demoFinish():
 	#府邸改成 进去触发对话，对话完触发主线内容
 	#const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
 		
-	#FancyFade.new().custom_fade(SceneManager.GOVERNMENT_BUILDING.instantiate(), 2, DISSOLVE_IMAGE)
 
 
 func fadeInAndOut():

@@ -100,7 +100,7 @@ func _on_buy_button_down():
 		GameManager.sav.coin=GameManager.sav.coin-price
 		if selectGoods.itemstype==InventoryManagerItem.ItemEnum.市井秘闻:
 			#展示内部剧情
-				GameManager.hearsayBeforeNode=SceneManager.beforeNode
+				GameManager.hearsayBeforeNode=SceneManager.roomNode.Shop
 				GameManager.restFadeScene=SceneManager.GOVERNMENT_BUILDING
 				SoundManager.stop_music()
 				GameManager.hearsayID=1
@@ -108,7 +108,7 @@ func _on_buy_button_down():
 				#商人售卖利益 
 				GameManager._rest(false)
 		elif selectGoods.itemstype==InventoryManagerItem.ItemEnum.市井秘闻_续:
-				GameManager.hearsayBeforeNode=SceneManager.beforeNode
+				GameManager.hearsayBeforeNode=SceneManager.roomNode.Shop
 				GameManager.restFadeScene=SceneManager.GOVERNMENT_BUILDING
 				SoundManager.stop_music()
 				GameManager.hearsayID=2
@@ -116,7 +116,7 @@ func _on_buy_button_down():
 				#商人售卖利益 
 				GameManager._rest(false)
 		elif selectGoods.itemstype==InventoryManagerItem.ItemEnum.市井秘闻_终:
-				GameManager.hearsayBeforeNode=SceneManager.beforeNode
+				GameManager.hearsayBeforeNode=SceneManager.roomNode.Shop
 				GameManager.restFadeScene=SceneManager.GOVERNMENT_BUILDING
 				SoundManager.stop_music()
 				GameManager.hearsayID=3

@@ -54,4 +54,6 @@ func _on_timer_timeout():
 	SceneManager.beforeNode=fadeScene
 	FancyFade.new().custom_fade(fadeScene.instantiate(), 2, DISSOLVE_IMAGE)	
 	GameManager.wait_time=2
+	
+	#SceneManager.changeScene(SceneManager.roomNode.STREET,2)
 	#pass # Replace with function body.

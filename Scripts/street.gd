@@ -131,6 +131,10 @@ func _initData():
 	
 
 	control._processList(initData)
+	if GameManager.hearsayBeforeNode==SceneManager.roomNode.Shop:
+		shop_panel.show()
+		GameManager.hearsayBeforeNode=null
+		
 	
 func HuntdownKe():
 	var _reward:rewardPanel=PanelManager.new_reward()
@@ -148,13 +152,7 @@ func SurrenderKe():
 #const HOUSE = preload("res://Scene/house.tscn")
 #const BOULEUTERION = preload("res://Scene/Bouleuterion.tscn")
 func _buttonListClick(item):
-	#if GameManager.story_point<1:
-		#if item.context == "府邸":
-			#const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
-			#FancyFade.new().custom_fade(GOVERNMENT_BUILDING.instantiate(), 7, DISSOLVE_IMAGE)
-		#else:
-	#		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"tip")
-	#		return
+
 	if(GameManager.sav.destination.length()>0):
 		if(GameManager.sav.destination!=item.context and item.context!="商店"):
 			if(GameManager.sav.destination=="府邸"):
@@ -211,13 +209,12 @@ func _buttonListClick(item):
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"selectOutSide_side")
 			else:
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"selectOutSide")
-			pass #给选项，可跳可不跳
+			
 		else:
 			visitDrill()
-		pass
-	#FancyFade.new().custom_fade(scene, 2, DISSOLVE_IMAGE)
-	pass
-	 # Replace with function body.
+		
+
+
 const WASTELAND_0 = preload("res://Asset/bgm/wasteland0.wav")
 func gotoWasteland():
 	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeIn)

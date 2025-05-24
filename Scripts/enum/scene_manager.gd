@@ -19,7 +19,7 @@ enum roomNode{
 	GOVERNMENT_BUILDING,
 	HOUSE,
 	MainMenu,
-	
+	Shop
 	
 	
 }
@@ -53,3 +53,5 @@ func changeScene(tempnode:roomNode,time:float):
 		FancyFade.new().custom_fade(HOUSE.instantiate(), time, DISSOLVE_IMAGE)
 	elif tempnode==roomNode.MainMenu:
 		FancyFade.new().custom_fade(GAMEHALL.instantiate(), time, DISSOLVE_IMAGE)
+	elif tempnode==roomNode.Shop:
+		FancyFade.new().custom_fade(STREET.instantiate(), time, DISSOLVE_IMAGE)

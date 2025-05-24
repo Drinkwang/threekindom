@@ -52,6 +52,7 @@ func _ready():
 	
 	if GameManager.sav.day==4:
 		ymlShow()
+
 	super._ready()
 	
 	changeLanguage()
@@ -116,8 +117,18 @@ func _initData():
 			return
 	elif GameManager.sav.day==2:
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
+	
+	if GameManager.hearsayID==3:
+		chendeng.show()
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"陈登第三次市井")
+		return
+	
 	control._processList(initData)
 var costhp=50
+
+func hearSayEnd():
+	GameManager.hearsayID=-1
+	SceneManager.changeScene(GameManager.hearsayBeforeNode,2)
 
 func _buttonListClick(item):
 	if item.context == "开始议事":
@@ -136,13 +147,11 @@ func _buttonListClick(item):
 	elif item.context == "离开":
 		if GameManager.sav.day<5:
 			if(GameManager.sav.have_event["firstParliamentary"]==true):
-				const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
-				FancyFade.new().custom_fade(SceneManager.STREET.instantiate(), 2, DISSOLVE_IMAGE)
+				SceneManager.changeScene(SceneManager.roomNode.STREET,2)
 			else:
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"不能离开")
 		else:
-			const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
-			FancyFade.new().custom_fade(SceneManager.STREET.instantiate(), 2, DISSOLVE_IMAGE)		
+				SceneManager.changeScene(SceneManager.roomNode.STREET,2)
 		#显示金钱 民心 xx 武将面板
 	print(item)
 	pass
