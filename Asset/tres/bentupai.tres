@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="cldata" load_steps=2 format=3 uid="uid://dh6qm466adpma"]
 
-[ext_resource type="Script" path="res://clData.gd" id="1_wkftk"]
+[ext_resource type="Script" path="res://clData.gd" id="1_si38w"]
 
 [resource]
-script = ExtResource("1_wkftk")
+script = ExtResource("1_si38w")
 _name = "本土派"
 _num_all = 10
 _num_rt = 0

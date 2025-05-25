@@ -525,6 +525,27 @@ func getcldateByindex(factionIndex:int)->cldata:
 	return null
 
 
+func getFractionByEnum(factionIndex:cldata.factionIndex):
+	#index==0 士族
+	#index==1 豪族
+	#index==2 军方
+
+	if factionIndex==cldata.factionIndex.weidipai:
+		return GameManager.sav.WAIDIPAI #preload("res://Asset/tres/waidipai.tres")
+		#index=2
+	elif factionIndex==cldata.factionIndex.bentupai:
+		return GameManager.sav.BENTUPAI #preload("res://Asset/tres/bentupai.tres")
+		#index=0
+	elif factionIndex==cldata.factionIndex.haozupai:
+		return GameManager.sav.HAOZUPAI #preload("res://Asset/tres/haozupai.tres")
+		#index=1
+	elif factionIndex==cldata.factionIndex.lvbu:
+		return GameManager.sav.LVBU#preload("res://Asset/tres/haozupai.tres")
+		#index=3	
+	return null
+
+
+
 
 #获取政策拉拢的cd  未来说不定改成每个派系操作的cd
 func getCDByFaction(factionIndex:cldata.factionIndex):

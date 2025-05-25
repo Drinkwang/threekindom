@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bvlh16yfcevdj"]
+[gd_scene load_steps=7 format=3 uid="uid://bvlh16yfcevdj"]
 
 [ext_resource type="Script" path="res://Scene/DisasterSys/disasterPanel.gd" id="1_njxrl"]
 [ext_resource type="Theme" uid="uid://bklmr3xmk4m5u" path="res://global_theme.tres" id="3_srxaq"]
 [ext_resource type="Texture2D" uid="uid://c55poolb2pxld" path="res://Asset/城镇建筑/会议室新.png" id="5_42wl1"]
 [ext_resource type="PackedScene" uid="uid://cxr21r3qi1u3q" path="res://Scene/DisasterSys/disasterItem.tscn" id="5_qwu0r"]
-[ext_resource type="Resource" uid="uid://c4iedj4vt36ue" path="res://Asset/tres/haozupai.tres" id="6_icsin"]
 [ext_resource type="Texture2D" uid="uid://cej3eajnovwwy" path="res://Asset/城镇建筑/集市2.png" id="6_slyy2"]
 [ext_resource type="Texture2D" uid="uid://b3e4y6w102ylq" path="res://Asset/城镇建筑/演武场2.png" id="7_nfro8"]
 
@@ -110,7 +109,7 @@ offset_right = -1158.0
 offset_bottom = -415.0
 grow_horizontal = 2
 grow_vertical = 2
-factionSurpuls = ExtResource("6_icsin")
+factionIndex = 1
 headImg = ExtResource("5_42wl1")
 detail_str = "优先满足士族需求，通过公开透明的分配确保公平，提升士族支持度，但需注意士族作为大地主阶层，可能加剧对普通百姓的剥削。"
 namelv = "士赈模式"
@@ -126,7 +125,7 @@ offset_right = -769.0
 offset_bottom = -418.0
 grow_horizontal = 2
 grow_vertical = 2
-factionSurpuls = ExtResource("6_icsin")
+factionIndex = 2
 headImg = ExtResource("6_slyy2")
 detail_str = "优先保障商人集团利益，确保粮食流通和市场稳定，通过控制商路维持价格，但需警惕商人可能哄抬物价，影响百姓民心。"
 namelv = "商赈模式"
@@ -142,7 +141,6 @@ offset_right = -369.0
 offset_bottom = -416.0
 grow_horizontal = 2
 grow_vertical = 2
-factionSurpuls = ExtResource("6_icsin")
 headImg = ExtResource("7_nfro8")
 detail_str = "优先保障军队需求，确保粮食储备充足、士兵士气高昂，但要警惕军官用于犒劳士卒导致的贪污行为。"
 namelv = "军赈模式"

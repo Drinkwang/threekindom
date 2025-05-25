@@ -237,7 +237,8 @@ func inventory_item_quantity_by_name(inventory_name: String, item_name: String) 
 
 func inventory_item_quantity(inventory_uuid: String, item_uuid: String) -> int:
 	var quantity = 0
-	if GameManager.sav._data.inventories.has(inventory_uuid):
+	
+	if GameManager.sav!=null and GameManager.sav._data.inventories.has(inventory_uuid):
 		var items = GameManager.sav._data.inventories[inventory_uuid]
 		var item
 		for index in range(items.size()):

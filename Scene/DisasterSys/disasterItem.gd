@@ -7,8 +7,8 @@ const scissor= preload("res://Asset/other/剪刀.png")
 const paper= preload("res://Asset/other/布.png")
 const stone = preload("res://Asset/other/石头.png")
 
-
-@export var factionSurpuls:cldata
+@export var factionIndex:cldata.factionIndex
+var factionSurpuls:cldata
 #@export var heroIndex:int
 #
 
@@ -53,7 +53,7 @@ func _ready():
 		
 	if(detail_cotext!=null and detail_cotext!=null):
 		detail_cotext.text=detail_str
-		
+	factionSurpuls=GameManager.getFractionByEnum(factionIndex)
 	refreshHaveGrain()	
 	changeLanguage()
 func changeLanguage():

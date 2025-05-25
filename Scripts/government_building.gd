@@ -108,12 +108,11 @@ func hearSayEnd():
 	elif GameManager.hearsayID==2:
 		SceneManager.changeScene(GameManager.hearsayBeforeNode,2)
 	elif GameManager.hearsayID==3:
-		GameManager.restFadeScene=SceneManager.BOULEUTERION
-		SoundManager.stop_music()
 		GameManager.hearsayID=3
-		GameManager.restLabel=tr("陈登在议事厅，灯下独思")
-				#商人售卖利益 
-		GameManager._rest(false)
+		GameManager.restLabel=tr("陈登在议事厅，灯下独思")		
+		SceneManager.rest_scene(SceneManager.roomNode.BOULEUTERION)
+
+
 
 func _initData():
 	candoSub=true

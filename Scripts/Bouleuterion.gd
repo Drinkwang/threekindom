@@ -177,8 +177,9 @@ func showResult():
 	parliamentary_detail.show()
 	parliamentary_detail.enter()
 	
-	
-	#立法通过，并执行法律,不能在这里执行，得把法律放在面板里
+	return
+	SceneManager.STREET.instantiate()	
+	#这个代码哪怕不执行，放在这里可以防止cldate被覆盖，被傻逼godot释放
 
 	pass
 

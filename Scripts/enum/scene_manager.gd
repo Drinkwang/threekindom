@@ -19,7 +19,7 @@ enum roomNode{
 	GOVERNMENT_BUILDING,
 	HOUSE,
 	MainMenu,
-	Shop
+	Shop,
 	
 	
 }
@@ -55,3 +55,29 @@ func changeScene(tempnode:roomNode,time:float):
 		FancyFade.new().custom_fade(GAMEHALL.instantiate(), time, DISSOLVE_IMAGE)
 	elif tempnode==roomNode.Shop:
 		FancyFade.new().custom_fade(STREET.instantiate(), time, DISSOLVE_IMAGE)
+
+
+func rest_scene(tempnode:roomNode):
+	
+	if tempnode==roomNode.SLEEP_BLANK:
+		GameManager.restFadeScene=SceneManager.SLEEP_BLANK
+	elif tempnode==roomNode.STREET:
+		GameManager.restFadeScene=SceneManager.STREET
+	elif tempnode==roomNode.BOULEUTERION:
+		GameManager.restFadeScene=SceneManager.BOULEUTERION		
+
+	elif tempnode==roomNode.DRILL_GROUND:	
+		GameManager.restFadeScene=SceneManager.DRILL_GROUND		
+
+	elif tempnode==roomNode.GOVERNMENT_BUILDING:
+		GameManager.restFadeScene=SceneManager.GOVERNMENT_BUILDING		
+
+	elif tempnode==roomNode.HOUSE:
+		GameManager.restFadeScene=HOUSE
+
+	
+	
+	SoundManager.stop_music()
+
+		
+	GameManager._rest(false)

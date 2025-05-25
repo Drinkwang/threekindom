@@ -237,9 +237,10 @@ func _on_button_button_down():
 	if await GameManager.isTried(costhp):
 		return 
 	if battle_circle.isBoot==false:
+		
 		SoundManager.play_sound(sounds.ZHUANPAN)
 		battle_circle.lauchProgress(costhp)
-
+		lauchBtn.disabled=true
 
 
 	

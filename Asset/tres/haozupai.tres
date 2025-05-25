@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_s0lvs")
 _name = "豪族派"
-_num_all = 0
+_num_all = 5
 _num_rt = 0
 _num_sp = 0
 _num_op = 0
