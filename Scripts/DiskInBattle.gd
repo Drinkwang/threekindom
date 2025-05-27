@@ -421,6 +421,8 @@ func _on_Tween_tween_all_completed():
 
 var buffMultiple=1
 var finalScore
+const yanwuchang = preload("res://dialogues/演武场.dialogue")
+
 func settleGame(end,issuccess):
 	#扣除消耗 只会消耗士兵
 	#无风险 无扣除
@@ -471,10 +473,16 @@ func settleGame(end,issuccess):
 		_rewardPanel.showReward(items)
 		#一旦完成target的数量，就令其获胜，来到府邸进行下一步操作
 		GameManager.sav.completeTask=GameManager.sav.completeTask+1
+		
+		GameManager.sav.ctLoseBattle=0
+		if GameManager.sav.ctLoseBattleRate>0:
+			GameManager.sav.ctLoseBattleRate=GameManager.sav.ctLoseBattleRate-1
+		
 	else:
 		GameManager.sav.battleResults[taskIndex]=GameManager.BattleResult.fail
 		print("你输了")
 		_rewardPanel.fail()
+		judgeLoseSentiment()
 	#bug 开始修改这里的问题
 	curCoin=0
 	curSoilder=0
@@ -489,6 +497,36 @@ func settleGame(end,issuccess):
 		taskIndex=0
 	Txtcount.text=str(GameManager.sav.completeTask)+"/"+str(GameManager.sav.currenceTask-GameManager.sav.completeTask)+"/"+str(GameManager.sav.currenceTask)
 
+
+func judgeLoseSentiment():
+	var loseNum=GameManager.sav.currenceTask-GameManager.sav.completeTask
+	var allNum=GameManager.sav.currenceTask
+	if(loseNum)>=10 and (loseNum)>allNum/2 and GameManager.sav.have_event["军事行动大败"]==false:
+		#需要加入事件 有且仅能触发一次
+		GameManager.sav.have_event["军事行动大败"]=true
+		DialogueManager.show_example_dialogue_balloon(yanwuchang,"大败")	
+		#return
+		#pass#大败 可以在sav加入一次
+	if loseNum>=8 and loseNum>allNum/2 and GameManager.sav.have_event["军事行动大败提示"]==false:
+		#需要加入事件 有且仅能触发一次
+		GameManager.sav.have_event["军事行动大败提示"]=true
+		DialogueManager.show_example_dialogue_balloon(yanwuchang,"大败提示")	
+	
+
+	
+	GameManager.sav.ctLoseBattle+=1	
+	GameManager.sav.ctLoseBattleRate=GameManager.sav.ctLoseBattleRate+1
+	if GameManager.sav.ctLoseBattle>=3:
+		DialogueManager.show_example_dialogue_balloon(yanwuchang,"连续多次败北")	
+		#连续多日怠惰
+	else:
+		var lazyRan=0.1*GameManager.sav.ctLoseBattleRate
+		var random_value = randf()  # 生成0.0到1.0的随机数
+		if random_value <= lazyRan:
+			DialogueManager.show_example_dialogue_balloon(yanwuchang,"一次败北引发民愤")
+				#怠惰概率 1次 10% 	
+		
+	#后面加入一些判断胜利次数的
 	
 @onready var Txtcount = $count
 

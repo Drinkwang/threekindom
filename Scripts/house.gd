@@ -9,9 +9,13 @@ extends baseComponent
 @onready var hp_panel = $CanvasLayer/hpPanel
 const NOT_JAM_UI_CONDENSED_16 = preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf")
 const FancyFade = preload("res://addons/transitions/FancyFade.gd")
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-
+	preload("res://Asset/tres/bentupai.tres")#没用但必须有，让资源提前单例加载
+	
+	
 	Transitions.post_transition.connect(post_transition)
 	control.buttonClick.connect(_buttonListClick)
 	if GameManager.sav.day==1||GameManager.sav.day==0:

@@ -58,6 +58,10 @@ func initDataByGroup(index,group):
 	data=GameManager.policy_Item.filter(func(ele): return ele.group == group-1 and ele.index==index)[0]
 	detail=data.detail
 	context=data.name
+	if GameManager.haveMirror():
+		self.tooltip_text=data.tootip
+	else:
+		self.tooltip_text=""
 	pass
 
 func setBanStatus(boolvalue):

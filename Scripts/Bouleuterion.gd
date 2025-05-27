@@ -178,8 +178,10 @@ func showResult():
 	parliamentary_detail.enter()
 	
 	return
-	SceneManager.STREET.instantiate()	
-	#这个代码哪怕不执行，放在这里可以防止cldate被覆盖，被傻逼godot释放
+
+	#preload("res://Scene/street.tscn")
+	#SceneManager.STREET.instantiate()	
+	#这个代码哪怕不执行，放在这里可以防止cldate的资源管理被覆盖，被蠢godot释放
 
 	pass
 

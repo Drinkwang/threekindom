@@ -132,6 +132,7 @@ position = Vector2(674, 628)
 showName = "糜竺"
 dialogue_doubleclick = "点击糜竺"
 txt2d = ExtResource("10_73x55")
+dialogue_resource = ExtResource("2_yngd1")
 dialogue_start = "点击糜竺"
 
 [node name="政府文书" parent="." instance=ExtResource("6_ibudm")]
@@ -140,6 +141,7 @@ position = Vector2(984, 625)
 showName = "政府文书"
 dialogue_doubleclick = "look"
 txt2d = ExtResource("9_qwmo3")
+dialogue_resource = ExtResource("2_yngd1")
 dialogue_start = "look"
 
 [node name="陶商陶应" parent="." instance=ExtResource("6_ibudm")]
@@ -149,6 +151,7 @@ showName = "陶商/陶应"
 dialogue_doubleclick = "城外克苏鲁事件触发"
 showEX = true
 txt2d = ExtResource("13_f851a")
+dialogue_resource = ExtResource("2_yngd1")
 dialogue_start = "城外克苏鲁事件触发"
 
 [node name="陈登" parent="." instance=ExtResource("6_ibudm")]
@@ -157,4 +160,5 @@ position = Vector2(1264, 624)
 showName = "陈登"
 dialogue_doubleclick = "点击陈登0"
 txt2d = ExtResource("12_quqka")
+dialogue_resource = ExtResource("2_yngd1")
 dialogue_start = "点击陈登0"

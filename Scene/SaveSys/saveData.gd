@@ -58,6 +58,9 @@ class_name saveData
 @export var GrainIndex=0
 @export var laws=[[],[],[]]
 @export var courtingLaws:Dictionary={}
+
+@export var ctLoseBattle=0
+@export var ctLoseBattleRate=0
 #@export var policy
 var number_bool_map: Dictionary = {
 	1: true,
@@ -198,6 +201,8 @@ var SIDEQUEST_MAP:Dictionary={
 	"锦囊咨询丹阳派": false, #如果上个为true，到演武场，则令曹豹出现，并可以点击触发支线
 	#卖粮第几天
 	"支线触发完毕获得骨杖":false,#
+	"军事行动大败提示":false,
+	"军事行动大败":false,
 }
 
 

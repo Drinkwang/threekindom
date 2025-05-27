@@ -19,8 +19,8 @@ config/icon="res://Asset/icon.png"
 
 [autoload]
 
-Transitions="*res://addons/transitions/Transitions.gd"
 SceneManager="*res://Scripts/enum/scene_manager.gd"
+Transitions="*res://addons/transitions/Transitions.gd"
 FancyFade="*res://addons/transitions/FancyFade.gd"
 InventoryManager="*res://addons/inventory_editor/InventoryManager.gd"
 GameManager="*res://Scripts/game_manager.gd"
