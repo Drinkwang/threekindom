@@ -10,6 +10,10 @@ const shitou = preload("res://Asset/other/石头.png")
 const Success=preload("res://.godot/imported/Success.svg-af58d452c13e928b2a282a117f5e080e.ctex")
 const fail=preload("res://Asset/other/0_red.png")
 
+@onready var point_1 = $POINT1
+@onready var point_2 = $POINT2
+@onready var point_3 = $POINT3
+@onready var point_4 = $POINT4
 
 #var battleCircle=[
 #	{"name":"无风险","initPos":0,"radian":90},
@@ -38,7 +42,7 @@ func _ready():
 		var btdata=btdatas[i]
 		datas[i].radial_initial_angle=btdata.initPos
 		datas[i].radial_fill_degrees=btdata.radian
-		
+		self["point_"+str(i+1)].radial_initial_angle=btdata.initPos
 		
 	#初始化玩家坐标系
 	datas[4].radial_initial_angle=btdatas[4].initPos
@@ -291,7 +295,7 @@ func refresh():
 		var btdata=battleCircleClone[i]
 		datas[i].radial_initial_angle=btdata.initPos
 		datas[i].radial_fill_degrees=btdata.radian
-		
+		self["point_"+str(i+1)].radial_initial_angle=btdata.initPos
 		
 	#初始化玩家坐标系
 	datas[4].radial_initial_angle=battleCircleClone[4].initPos

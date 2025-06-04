@@ -1,12 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://dcydwatjg50hl"]
+[gd_scene load_steps=12 format=3 uid="uid://dcydwatjg50hl"]
 
 [ext_resource type="Script" path="res://Scripts/DiskInBattle.gd" id="1_0q3sx"]
 [ext_resource type="Texture2D" uid="uid://cale1h2nqfdrh" path="res://Asset/ui/circle.png" id="1_upy2s"]
 [ext_resource type="Texture2D" uid="uid://dmqvx1ja8yft7" path="res://Asset/other/剪刀.png" id="3_8nnbh"]
+[ext_resource type="Texture2D" uid="uid://1py5n0lr60f4" path="res://Asset/ui/Border.png" id="3_ipo41"]
 [ext_resource type="PackedScene" uid="uid://dxj1s2d4grxwj" path="res://Scene/prefab/SoilderItem.tscn" id="4_px0mi"]
 [ext_resource type="Texture2D" uid="uid://dahuc8gb2blc" path="res://Asset/other/0_red.png" id="5_mg3wr"]
 [ext_resource type="Texture2D" uid="uid://cc2retfuupgvb" path="res://Asset/pointer_scifi_b.png" id="6_cexsq"]
 [ext_resource type="Texture2D" uid="uid://31w72gjd8mmu" path="res://Asset/人物/吕布.jpg" id="7_buuow"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ahpuy"]
 
 [sub_resource type="Animation" id="Animation_whhn8"]
 resource_name = "c1"
@@ -66,8 +69,8 @@ fill_mode = 5
 texture_progress = ExtResource("1_upy2s")
 tint_under = Color(0.981098, 0.850573, 0.852089, 1)
 tint_progress = Color(0.926972, 0.873791, 0.33644, 1)
-radial_initial_angle = 270.0
-radial_fill_degrees = 88.3
+radial_initial_angle = 90.0
+radial_fill_degrees = 90.0
 
 [node name="MiddleDamage" type="TextureProgressBar" parent="."]
 layout_mode = 0
@@ -92,8 +95,71 @@ fill_mode = 5
 texture_progress = ExtResource("1_upy2s")
 tint_under = Color(0.981098, 0.850573, 0.852089, 1)
 tint_progress = Color(0.851983, 0, 0.257883, 1)
-radial_initial_angle = 90.0
-radial_fill_degrees = 293.2
+radial_initial_angle = 59.5
+radial_fill_degrees = 235.2
+
+[node name="POINT1" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+scale = Vector2(5, 5)
+step = 2.0
+value = 100.0
+fill_mode = 5
+texture_progress = ExtResource("1_upy2s")
+tint_under = Color(0.981098, 0.850573, 0.852089, 1)
+tint_progress = Color(0, 0, 0, 1)
+radial_initial_angle = 354.0
+radial_fill_degrees = 1.0
+
+[node name="POINT2" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+scale = Vector2(5, 5)
+value = 100.0
+fill_mode = 5
+texture_progress = ExtResource("1_upy2s")
+tint_under = Color(0.981098, 0.850573, 0.852089, 1)
+tint_progress = Color(0, 0, 0, 1)
+radial_initial_angle = 263.7
+radial_fill_degrees = 1.0
+
+[node name="POINT3" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+scale = Vector2(5, 5)
+value = 100.0
+fill_mode = 5
+texture_progress = ExtResource("1_upy2s")
+tint_under = Color(0.981098, 0.850573, 0.852089, 1)
+tint_progress = Color(0, 0, 0, 1)
+radial_initial_angle = 171.5
+radial_fill_degrees = 1.0
+
+[node name="POINT4" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+scale = Vector2(5, 5)
+value = 100.0
+fill_mode = 5
+texture_progress = ExtResource("1_upy2s")
+tint_under = Color(0.981098, 0.850573, 0.852089, 1)
+tint_progress = Color(0, 0, 0, 1)
+radial_initial_angle = 83.5
+radial_fill_degrees = 1.0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_ahpuy")
+layout_mode = 0
+offset_left = 41.0
+offset_top = 40.0
+offset_right = 391.0
+offset_bottom = 390.0
+scale = Vector2(0.67, 0.67)
+texture = ExtResource("3_ipo41")
 
 [node name="background-player" type="TextureProgressBar" parent="."]
 layout_mode = 0

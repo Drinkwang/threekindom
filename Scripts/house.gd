@@ -73,11 +73,8 @@ func play_BGM():
 		play_music(music_file)	
 			
 func _initData():
+	play_BGM()
 
-#	var musicVolume=SoundManager.get_music_volume()
-	
-#	var soundVolume=SoundManager.get_sound_volume()
-		
 	var initData=[
 	{
 		"id":"1",

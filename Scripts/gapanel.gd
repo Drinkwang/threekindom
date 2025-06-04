@@ -44,11 +44,11 @@ func _ready():
 		title.show()	
 	if(txt!=null):
 		img.texture=txt
-	SignalManager.changeLanguage.connect(changeLanguage)				
-	changeLanguage() # Replace with function body.
+	SignalManager.changeLanguage.connect(_changeLanguage)				
+	_changeLanguage() # Replace with function body.
 
 
-func changeLanguage():
+func _changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()	
 	if currencelanguage=="ru":
 		#label.add_theme_font_size_override("font_size", 34)
