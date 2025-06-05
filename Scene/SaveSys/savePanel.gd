@@ -21,6 +21,8 @@ func _process(delta):
 var index=0
 
 
+
+
 func saveFile():
 	if(index>=1):
 		if savs[index-1]!=null:
@@ -42,6 +44,7 @@ func confireSaveFile():
 	if(GameManager.currenceScene!=null):
 		GameManager.sav.saveScene.pack(GameManager.currenceScene)
 		pass
+	GameManager.sav.autoSave=false
 	# 格式化DateTime对象为字符串
 	#var formatted_time = GameManager.sav.current_datetime.format_datetime("%Y-%m-%d %H:%M:%S")
 	#print("Formatted date and time:", current_datetime)

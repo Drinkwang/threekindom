@@ -985,3 +985,48 @@ func haveMirror()->bool:
 		return true
 	else:
 		return false
+		
+		
+func AutoSaveFile():
+	var tempSavs:Array=[null,null,null]
+	sav.autoSave=true	
+	for i in range(1,4):
+		var path="user://save_data{index}.tres".format({"index":i})
+		if(FileAccess.file_exists(path)):
+			tempSavs[i-1]=load(path)
+			if tempSavs[i-1].sav==true:
+				ResourceSaver.save(GameManager.sav,"user://save_data{index}.tres".format({"index":str(i-1)}))
+				return
+				
+	for i in range(1,4):
+		if tempSavs[i-1]==null:
+			ResourceSaver.save(GameManager.sav,"user://save_data{index}.tres".format({"index":str(i-1)}))
+			return
+	#获取tempSavs时间最小的 进行存档
+ # If all slots are occupied, find the slot with the earliest current_datetime
+	var earliest_index: int = -1
+	var earliest_time: int = 9223372036854775807 # Max int for comparison (future timestamp)
+
+	for i in range(3):
+		if tempSavs[i] != null:
+			# Parse current_datetime string (format: "year/month/day/hour/minute")
+			var time_str: String = tempSavs[i].current_datetime
+			var time_parts = time_str.split("/")
+			if time_parts.size() == 5:
+				var time_dict = {
+					"year": int(time_parts[0]),
+					"month": int(time_parts[1]),
+					"day": int(time_parts[2]),
+					"hour": int(time_parts[3]),
+					"minute": int(time_parts[4]),
+					"second": 0 # Assuming seconds are not included
+				}
+				# Convert to Unix timestamp for comparison
+				var timestamp = Time.get_unix_time_from_datetime_dict(time_dict)
+				if timestamp < earliest_time:
+					earliest_time = timestamp
+					earliest_index = i
+
+	# Save to the slot with the earliest time
+	if earliest_index != -1:
+		ResourceSaver.save(GameManager.sav, "user://save_data{index}.tres".format({"index": str(earliest_index)}))

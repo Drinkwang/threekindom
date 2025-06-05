@@ -21,3 +21,5 @@ const COLLECT_SMALL_JEWEL_1 = preload("res://Asset/sound/ui/Collect_Small_Jewel_
 const COLLECT_SMALL_JEWEL_2 = preload("res://Asset/sound/ui/Collect_Small_Jewel_2.wav")
 const COLLECT_SMALL_JEWEL_3 = preload("res://Asset/sound/ui/Collect_Small_Jewel_3.wav")
 
+const BAD_BATTLE = preload("res://Asset/sound/badBattle.wav")
+const GOOD_THING = preload("res://Asset/sound/goodThing.wav")

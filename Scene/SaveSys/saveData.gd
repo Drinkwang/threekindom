@@ -105,7 +105,7 @@ var SIDEQUEST_MAP:Dictionary={
 @export var lazyValue=0
 @export var finalKeChoice=-1
 
-
+@export var autoSave:bool=false
 @export var HAOZUPAI:cldata=preload("res://Asset/tres/haozupai.tres").duplicate()
 @export var BENTUPAI:cldata=preload("res://Asset/tres/bentupai.tres").duplicate()
 @export var WAIDIPAI:cldata=preload("res://Asset/tres/waidipai.tres").duplicate()

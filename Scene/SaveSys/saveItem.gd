@@ -15,8 +15,12 @@ func _process(delta):
 func refresh(sav:saveData):
 	nodate.hide()
 	label.show()
+
 	#GameManager.sav.current_datetime
-	var formatStr="時間:{current_datetime}\n游戲天數：{day}\n擁有黃金：{coin}\n人心：{heart}\n勞夫：{people}"
+	var formatStr=tr("時間:{current_datetime}\n游戲天數：{day}\n擁有黃金：{coin}\n人心：{heart}\n勞夫：{people}")
+	if sav.autoSave == true:
+		formatStr=("({auto})").format({"auto":tr("自动存档")})+"\n"+formatStr
+
 	label.text=formatStr.format({"current_datetime":sav.current_datetime,"day":sav.day,"coin":sav.coin,"heart":sav.people_surrport,"people":sav.labor_force})
 	
 	

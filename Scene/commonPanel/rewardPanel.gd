@@ -96,7 +96,7 @@ func showTitileReward(context,item):
 
 func getItemSound():
 	var ranValue=randi_range(1,3)
-	SoundManager.play_sound(sounds["COLLECT_SMALL_JEWEL_"+str(ranValue)])
+	SoundManager.play_sound(sounds.GOOD_THING)
 
 func showReward(item):
 	imgTarget.texture=victoryPng
@@ -182,7 +182,7 @@ func fail():
 		titleContext=tr(failContext)+tr(TxtNoCost)
 	title.text=titleContext
 	self.show()
-	SoundManager.play_sound(sounds.uneqipsound)
+	SoundManager.play_sound(sounds.BAD_BATTLE)
 
 
 @export var Item: PackedScene

@@ -348,6 +348,40 @@ offset_bottom = 547.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="battleCircle" parent="." instance=ExtResource("8_75jyp")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 219.0
+offset_top = -368.0
+offset_right = 937.0
+offset_bottom = 114.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 643.0
+offset_top = -447.0
+offset_right = 707.0
+offset_bottom = -383.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("7_fydxo")
+texture_pressed = ExtResource("7_fydxo")
+texture_hover = ExtResource("7_fydxo")
+texture_disabled = ExtResource("7_fydxo")
+texture_focused = ExtResource("7_fydxo")
+stretch_mode = 0
+
 [node name="pointGroup" type="Control" parent="."]
 visible = false
 layout_mode = 1
@@ -364,7 +398,7 @@ scale = Vector2(1.04034, 1.0033)
 
 [node name="1" type="Node2D" parent="pointGroup"]
 visible = false
-position = Vector2(702.658, 591.047)
+position = Vector2(746.871, 505.333)
 rotation = 1.16413
 
 [node name="5Yellow" type="Sprite2D" parent="pointGroup/1"]
@@ -380,7 +414,7 @@ autoplay = "YELLOWGUILD"
 
 [node name="2" type="Node2D" parent="pointGroup"]
 visible = false
-position = Vector2(975.646, 315.956)
+position = Vector2(1037.16, 162.464)
 
 [node name="5Yellow" type="Sprite2D" parent="pointGroup/2"]
 rotation = -1.5708
@@ -397,7 +431,7 @@ autoplay = "YELLOWGUILD"
 position = Vector2(-192.246, 90.7003)
 
 [node name="Node2D2" type="Node2D" parent="pointGroup/2/Node2D3"]
-position = Vector2(-225.889, -90.7003)
+position = Vector2(-242.227, -90.7003)
 
 [node name="5Yellow" type="Sprite2D" parent="pointGroup/2/Node2D3/Node2D2"]
 rotation = -1.5708
@@ -426,7 +460,7 @@ autoplay = "YELLOWGUILD"
 
 [node name="3" type="Node2D" parent="pointGroup"]
 visible = false
-position = Vector2(1237.1, 831.253)
+position = Vector2(1255.36, 726.602)
 rotation = 0.968658
 
 [node name="5Yellow" type="Sprite2D" parent="pointGroup/3"]
@@ -475,7 +509,7 @@ autoplay = "YELLOWGUILD"
 
 [node name="6" type="Node2D" parent="pointGroup"]
 visible = false
-position = Vector2(533.482, 803.345)
+position = Vector2(616.145, 753.513)
 rotation = 3.91826
 
 [node name="5Yellow" type="Sprite2D" parent="pointGroup/6"]
@@ -491,7 +525,7 @@ autoplay = "YELLOWGUILD"
 
 [node name="7" type="Node2D" parent="pointGroup"]
 visible = false
-position = Vector2(858.377, 556.162)
+position = Vector2(922.775, 425.596)
 
 [node name="5Yellow" type="Sprite2D" parent="pointGroup/7"]
 rotation = -0.0349066
@@ -530,40 +564,6 @@ libraries = {
 "": SubResource("AnimationLibrary_4gull")
 }
 autoplay = "YELLOWGUILD"
-
-[node name="battleCircle" parent="." instance=ExtResource("8_75jyp")]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 219.0
-offset_top = -368.0
-offset_right = 937.0
-offset_bottom = 114.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureButton" type="TextureButton" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 643.0
-offset_top = -447.0
-offset_right = 707.0
-offset_bottom = -383.0
-grow_horizontal = 2
-grow_vertical = 2
-texture_normal = ExtResource("7_fydxo")
-texture_pressed = ExtResource("7_fydxo")
-texture_hover = ExtResource("7_fydxo")
-texture_disabled = ExtResource("7_fydxo")
-texture_focused = ExtResource("7_fydxo")
-stretch_mode = 0
 
 [connection signal="toggled" from="PanelContainer/orderPanel/VBoxContainer/HBoxContainer2/TextureButton/CheckBox" to="." method="_on_Usecheck_box_toggled"]
 [connection signal="button_down" from="PanelContainer/orderPanel/VBoxContainer/HBoxContainer/Button" to="." method="_on_button_button_down"]
