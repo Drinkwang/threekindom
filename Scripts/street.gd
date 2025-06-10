@@ -205,10 +205,8 @@ func _buttonListClick(item):
 		##打开商店ui换皮或者换页
 	elif item.context=="城门-军事驻地":
 		if(GameManager.sav.day>=4):
-			if GameManager.sav.have_event["支线发现羊尸"]==true and GameManager.sav.have_event["支线触发完毕调查过竹简"]==false:
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"selectOutSide_side")
-			else:
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"selectOutSide")
+
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"selectOutSide")
 			
 		else:
 			visitDrill()
@@ -224,6 +222,71 @@ func gotoWasteland():
 	#播放荒地音效
 
 
+func gotoTomb():
+	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeIn)
+	SoundManager.play_ambient_sound(WASTELAND_0)
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"初次见面_陶谦")
+	await 0.5
+	PanelManager.Fade_Blank(Color.BLACK,0,PanelManager.fadeType.fadeOut)
+	blank.show()
+	taoqian.show()
+@onready var blank = $blank
+@onready var taoqian = $blank/taoqian
+@onready var mizhen = $blank/mizhen
+@onready var battle_pane = $blank/battlePane
+
+func gotoMiMasion():
+	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeIn)
+	SoundManager.play_ambient_sound(WASTELAND_0)
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"初次见面_血姬")
+	await 0.5
+	PanelManager.Fade_Blank(Color.BLACK,0,PanelManager.fadeType.fadeOut)
+	blank.show()
+	mizhen.show()
+func gotoHuangDiMiao():
+	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeIn)
+	SoundManager.play_ambient_sound(WASTELAND_0)
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"初次见面_骨龙")
+	
+func PlayMizhen():
+	var lady = load("res://Asset/vedio/bloodLady.ogv")
+	#不能这样写，因为boss战
+	var _func=func():
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"动画播完_血姬")
+		battle_pane.show()
+		battle_pane.enterBattleMi()
+	playBossAni(lady,_func)
+
+
+func enterBattleMi():
+	pass
+
+func enterBattleTao():
+	pass
+	
+
+@onready var bit_player = $blank/bitPlayer
+
+func PlayTaoQian():
+	var tao = load("res://Asset/vedio/bloodTao.ogv")
+	var _func=func():
+		pass
+	playBossAni(tao,_func)
+
+
+func _on_video_player_finished():
+	bit_player.hide()
+
+
+func playBossAni(value,lambda:Callable):
+	bit_player.show()
+	bit_player.stream=value
+	bit_player.play()
+	bit_player.finished.connect(func():
+		_on_video_player_finished()
+		if lambda.is_valid():  # 检查 lambda 是否有效
+			lambda.call()
+		)
 func showFirstGuild():
 	control.show()
 	control._show_button_5_yellow(0)

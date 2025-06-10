@@ -81,3 +81,13 @@ func rest_scene(tempnode:roomNode):
 
 		
 	GameManager._rest(false)
+
+
+enum bossMode{
+	none,
+	tao,
+	mi,
+	huang
+	
+	
+}

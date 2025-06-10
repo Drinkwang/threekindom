@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cjsb43uugkud4"]
+[gd_scene load_steps=17 format=3 uid="uid://cjsb43uugkud4"]
 
 [ext_resource type="Script" path="res://Scripts/battlePanel.gd" id="1_uyier"]
 [ext_resource type="Resource" uid="uid://d2qoinuor12dq" path="res://dialogues/演武场.dialogue" id="2_1p72a"]
@@ -12,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://dahuc8gb2blc" path="res://Asset/other/0_red.png" id="7_fydxo"]
 [ext_resource type="Texture2D" uid="uid://cqveha2p8ktj6" path="res://Asset/人物/赵云open.png" id="7_xltxl"]
 [ext_resource type="PackedScene" uid="uid://dcydwatjg50hl" path="res://Scene/battleSys/DiskInBattle.tscn" id="8_75jyp"]
+[ext_resource type="Texture2D" uid="uid://drruce0ama0gw" path="res://addons/inventory_editor/test/test_model/icons/base 13.png" id="12_h80nc"]
+[ext_resource type="Texture2D" uid="uid://dkan2jd08uc4p" path="res://addons/inventory_editor/test/test_model/icons/Fail.svg" id="13_ugjcw"]
 
 [sub_resource type="Animation" id="Animation_rms3s"]
 resource_name = "YELLOWGUILD"
@@ -381,6 +383,100 @@ texture_hover = ExtResource("7_fydxo")
 texture_disabled = ExtResource("7_fydxo")
 texture_focused = ExtResource("7_fydxo")
 stretch_mode = 0
+
+[node name="ban2" type="NinePatchRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 378.0
+offset_top = 554.0
+offset_right = 533.0
+offset_bottom = 602.0
+texture = ExtResource("12_h80nc")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="ColorRect" type="ColorRect" parent="ban2"]
+layout_mode = 0
+offset_right = 154.0
+offset_bottom = 47.0
+color = Color(1, 0, 0, 0.733333)
+
+[node name="TextureRect" type="TextureRect" parent="ban2/ColorRect"]
+layout_mode = 0
+offset_left = 35.0
+offset_right = 75.0
+offset_bottom = 47.0
+texture = ExtResource("13_ugjcw")
+
+[node name="TextureRect" type="TextureRect" parent="ban2/ColorRect/TextureRect"]
+layout_mode = 0
+offset_left = 35.0
+offset_right = 75.0
+offset_bottom = 47.0
+texture = ExtResource("13_ugjcw")
+
+[node name="TextureRect" type="TextureRect" parent="ban2/ColorRect/TextureRect/TextureRect"]
+layout_mode = 0
+offset_left = 35.0
+offset_right = 75.0
+offset_bottom = 47.0
+texture = ExtResource("13_ugjcw")
+
+[node name="TextureRect" type="TextureRect" parent="ban2/ColorRect/TextureRect/TextureRect/TextureRect"]
+layout_mode = 0
+offset_left = -102.0
+offset_right = -62.0
+offset_bottom = 47.0
+texture = ExtResource("13_ugjcw")
+
+[node name="ban1" type="NinePatchRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 378.0
+offset_top = 508.0
+offset_right = 533.0
+offset_bottom = 556.0
+texture = ExtResource("12_h80nc")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="ColorRect" type="ColorRect" parent="ban1"]
+layout_mode = 0
+offset_right = 154.0
+offset_bottom = 47.0
+color = Color(1, 0, 0, 0.733333)
+
+[node name="TextureRect" type="TextureRect" parent="ban1/ColorRect"]
+layout_mode = 0
+offset_left = 35.0
+offset_right = 75.0
+offset_bottom = 47.0
+texture = ExtResource("13_ugjcw")
+
+[node name="TextureRect" type="TextureRect" parent="ban1/ColorRect/TextureRect"]
+layout_mode = 0
+offset_left = 35.0
+offset_right = 75.0
+offset_bottom = 47.0
+texture = ExtResource("13_ugjcw")
+
+[node name="TextureRect" type="TextureRect" parent="ban1/ColorRect/TextureRect/TextureRect"]
+layout_mode = 0
+offset_left = 35.0
+offset_right = 75.0
+offset_bottom = 47.0
+texture = ExtResource("13_ugjcw")
+
+[node name="TextureRect" type="TextureRect" parent="ban1/ColorRect/TextureRect/TextureRect/TextureRect"]
+layout_mode = 0
+offset_left = -102.0
+offset_right = -62.0
+offset_bottom = 47.0
+texture = ExtResource("13_ugjcw")
 
 [node name="pointGroup" type="Control" parent="."]
 visible = false

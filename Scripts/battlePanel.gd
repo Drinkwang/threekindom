@@ -67,9 +67,29 @@ func endBattle():
 	initTask()
 	_refreshGeneral()
 	#刷新界面
-	pass
+	var bossMode=scenemanager.bossMode
+	if battle_circle.taskIndex+1==2:
+		if _mode==bossMode.tao:
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"真相揭露_陶谦")
+		elif  _mode==bossMode.mi:
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"真相揭露_糜贞")
+	elif battle_circle.taskIndex+1==3:
+		var wincount=battle_circle.getWinCount()
+		if wincount>=3:
+			if _mode==bossMode.tao:
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"战斗胜利_陶谦")
+			elif  _mode==bossMode.mi:
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"战斗胜利_糜贞")
+		else:
+			if _mode==bossMode.tao:
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"战斗失败_陶谦")
+			elif  _mode==bossMode.mi:
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"战斗失败_糜贞")
 @onready var useItemPanel = $PanelContainer/orderPanel/VBoxContainer/HBoxContainer2/TextureButton
 @onready var label = $PanelContainer/orderPanel/VBoxContainer/HBoxContainer2/TextureButton/Label/Label
+
+
+
 
 func refreshUseItemPanel():
 	var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.胜战锦囊)
@@ -123,27 +143,43 @@ func initTask():
 	var index=1;
 	var taskcontext=""
 	var targetValue
+	var bossMode=scenemanager.bossMode
 	for task in currence.task:
 		targetValue=task.value
-		if task.res=="coin":
+		if task.res=="coin"and _mode!=bossMode.tao:
 			var after=str(targetValue)+"目标值)"
 			if task.symbol==GameManager.opcost.greater:
-				taskcontext="\n"+str(index)+tr(".工程战:")+tr("(资金超过{targetValue})").format({"targetValue": targetValue})
-				pass
+				if _mode==bossMode.mi:
+					taskcontext="\n"+str(index)+tr(".血金祭坛:")+tr("(资金超过{targetValue})").format({"targetValue": targetValue})
+				else:
+					taskcontext="\n"+str(index)+tr(".工程战:")+tr("(资金超过{targetValue})").format({"targetValue": targetValue})
 			elif task.symbol==GameManager.opcost.equal:
-				taskcontext="\n"+str(index)+tr(".特种战:")+tr("(资金等于{targetValue})").format({"targetValue": targetValue})
-				pass
+				if _mode==bossMode.mi:
+					taskcontext="\n"+str(index)+tr(".血金秘术:")+tr("(资金等于{targetValue})").format({"targetValue": targetValue})
+				else:				
+					taskcontext="\n"+str(index)+tr(".特种战:")+tr("(资金等于{targetValue})").format({"targetValue": targetValue})
 			elif task.symbol==GameManager.opcost.less:
-				taskcontext="\n"+str(index)+tr(".游击战:")+tr("(资金小于{targetValue} 但大于{targetValue2})").format({"targetValue": targetValue,"targetValue2":int(floor(targetValue*2/3))})
-				pass
+				if _mode==bossMode.mi:
+					taskcontext="\n"+str(index)+tr(".商贾幻影:")+tr("(资金小于{targetValue} 但大于{targetValue2})").format({"targetValue": targetValue,"targetValue2":int(floor(targetValue*2/3))})
+				else:				
+					taskcontext="\n"+str(index)+tr(".游击战:")+tr("(资金小于{targetValue} 但大于{targetValue2})").format({"targetValue": targetValue,"targetValue2":int(floor(targetValue*2/3))})
 		pass
-		if task.res=="human":
+		if task.res=="human" and _mode!=bossMode.mi:
 			if task.symbol==GameManager.opcost.greater:
-				taskcontext="\n"+str(index)+tr(".遭遇战:")+tr("(兵力超过{targetValue})").format({"targetValue": targetValue})
+				if _mode==bossMode.tao:
+					taskcontext="\n"+str(index)+tr(".尸皇怒吼:")+tr("(兵力超过{targetValue})").format({"targetValue": targetValue})
+				else:
+					taskcontext="\n"+str(index)+tr(".遭遇战:")+tr("(兵力超过{targetValue})").format({"targetValue": targetValue})
 			elif task.symbol==GameManager.opcost.equal:
-				taskcontext="\n"+str(index)+tr(".奇兵任务:")+tr("(兵力等于{targetValue})").format({"targetValue": targetValue})
+				if _mode==bossMode.tao:
+					taskcontext="\n"+str(index)+tr(".怨魂诡阵:")+tr("(兵力等于{targetValue})").format({"targetValue": targetValue})
+				else:				
+					taskcontext="\n"+str(index)+tr(".奇兵任务:")+tr("(兵力等于{targetValue})").format({"targetValue": targetValue})
 			elif task.symbol==GameManager.opcost.less:
-				taskcontext="\n"+str(index)+tr(".防守战:")+tr("(兵力小于{targetValue} 但大于{targetValue2})").format({"targetValue": targetValue,"targetValue2":int(floor(targetValue*3/5))})
+				if _mode==bossMode.tao:
+					taskcontext="\n"+str(index)+tr(".冥界壁垒:")+tr("(兵力小于{targetValue} 但大于{targetValue2})").format({"targetValue": targetValue,"targetValue2":int(floor(targetValue*3/5))})
+				else:				
+					taskcontext="\n"+str(index)+tr(".防守战:")+tr("(兵力小于{targetValue} 但大于{targetValue2})").format({"targetValue": targetValue,"targetValue2":int(floor(targetValue*3/5))})
 		pass
 		context=context+taskcontext
 	pass
@@ -268,3 +304,39 @@ func _on_Usecheck_box_toggled(toggled_on):
 	buffSize=5;
 	_changeProgress()
 	#接下来的代码，改变胜率，让胜率的东西往前一丢丢
+
+@onready var ban_2_coin = $ban2
+@onready var ban_1_soilder = $ban1
+
+var _mode:SceneManager.bossMode=SceneManager.bossMode.none
+
+
+func enterBattleMi():
+	_mode=SceneManager.bossMode.mi
+	ban_1_soilder.show()
+	soild_slider.editable=false
+	
+	var cha=load("res://Asset/人物/尸皇.png")
+	battle_circle.changeHead(cha)
+	initTask()
+
+func enterBattleTao():
+	ban_2_coin.show()
+	coin_slider.editable=false	
+	var cha=load("res://Asset/人物/假糜贞.png")
+	battle_circle.changeHead(cha)
+	_mode=SceneManager.bossMode.tao
+	initTask()
+func enterBattleHuang():
+	pass
+
+
+func sideQuestReturnG(iswin):
+	GameManager.bossmode=SceneManager.bossMode.mi
+	GameManager.bossmoderesult=iswin
+	SceneManager.changeScene(SceneManager.roomNode.GOVERNMENT_BUILDING,2)
+	
+func sideQuestReturnT(iswin):
+	GameManager.bossmode=SceneManager.bossMode.tao
+	GameManager.bossmoderesult=iswin
+	SceneManager.changeScene(SceneManager.roomNode.BOULEUTERION,2)

@@ -111,6 +111,11 @@ func _initData():
 	]
 	#if GameManager.sav.have_event["firstBoleuterion"]==true:
 	
+	if GameManager.bossmode==scenemanager.bossMode.mi and GameManager.sav.have_event["陈登支线3"]==false:
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"陈登结尾")
+		GameManager.sav.have_event["陈登支线3"]=true
+		return 	
+	
 	if GameManager.sav.day==4:
 		if GameManager.sav.have_event["firstNewEnd"]==true:
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新手教程结束_阴谋论")
@@ -124,8 +129,34 @@ func _initData():
 		return
 	
 	control._processList(initData)
+	
+	if GameManager.sav.have_event["陈登支线1"]==false and GameManager.sav.day>=5:
+		chendeng.show()
+		chendeng.dialogue_start="陈登爱吃鱼1"	
+	elif GameManager.sav.have_event["陈登支线2"]==false and GameManager.sav.have_event["陈登支线1"]==true and GameManager.sav.chendenSideWait==0:
+		chendeng.show()
+		chendeng.dialogue_start="陈登爱吃鱼2"	
+	
 var costhp=50
 
+
+func eatFish1(issuccuss=false):
+	GameManager.sav.chendenSideWait=3
+	GameManager.sav.have_event["陈登支线1"]=true
+	if issuccuss==true:
+		GameManager.sav.have_event["陈登正确选择1"]==true
+	else:
+		GameManager.sav.have_event["陈登正确选择1"]==false
+		#GameManager.sav.hp
+func eatFish2(issuccuss=false):
+
+	GameManager.sav.have_event["陈登支线2"]=true
+
+
+	if issuccuss==true:
+		GameManager.sav.have_event["陈登正确选择2"]==true
+	else:
+		GameManager.sav.have_event["陈登正确选择2"]==false
 func hearSayEnd():
 	GameManager.hearsayID=-1
 	SceneManager.changeScene(GameManager.hearsayBeforeNode,2)

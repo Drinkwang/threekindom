@@ -206,7 +206,7 @@ func _ready():
 
 	sav=saveData.new()
 	_enterDay()
-	#SkipPrologue()
+	SkipPrologue()
 	initSetting()
 
 func OpenSettingMenu():
@@ -247,6 +247,11 @@ func array_sum(arr: Array) -> int:
 		sum += i
 	return sum
 
+func costHp(value):
+	if sav.hp-value>0:
+		sav.hp-=value
+	else:
+		sav.hp=0
 func refreshPaixis():
 	initPaixi(sav.BENTUPAI)
 	initPaixi(sav.WAIDIPAI)
@@ -273,6 +278,17 @@ func _enterDay(value=true):
 
 	if GameManager.sav.danyangCD>0:
 		GameManager.sav.danyangCD-=1
+
+
+#@export var mizhuSideWait=-1
+#@export var chendenSideWait=-1
+#@export var caobaoSideWait=-1
+	if GameManager.sav.mizhuSideWait!=-1 and GameManager.sav.mizhuSideWait>0:
+		GameManager.sav.mizhuSideWait-=1
+	if GameManager.sav.chendenSideWait!=-1 and GameManager.sav.chendenSideWait>0:
+		GameManager.sav.chendenSideWait-=1	
+	if GameManager.sav.caobaoSideWait!=-1 and GameManager.sav.caobaoSideWait>0:
+		GameManager.sav.caobaoSideWait-=1
 
 	if GameManager.sav.targetResType==GameManager.ResType.rest:
 		GameManager.sav.currenceValue=GameManager.sav.currenceValue+1
@@ -416,6 +432,9 @@ func LessDamage():
 
 #	pass
 #每次立法，重新刷新派系
+
+@export var bossmode:SceneManager.bossMode#SceneManager.bossMode.none
+@export var bossmoderesult:bool
 func initPaixi(data:cldata):
 	
 	#data._num_sp=(data._num_all*data._support_rate)/100+0.5

@@ -203,9 +203,32 @@ var SIDEQUEST_MAP:Dictionary={
 	"支线触发完毕获得骨杖":false,#
 	"军事行动大败提示":false,
 	"军事行动大败":false,
+	
+	#这个支线将在之前或者之后触发、中期后期剧情触发
+	"糜竺支线1":false,
+	"糜竺支线2":false,
+	"糜竺支线3":false,
+	"糜竺正确选择1":false,
+	"糜竺正确选择2":false,
+	
+	#这个支线可以同时触发，新手支线 截至就是 陶谦出事
+	"陈登支线1":false,
+	"陈登支线2":false,
+	"陈登支线3":false,
+	"陈登正确选择1":false,
+	"陈登正确选择2":false,
+	
+	#盗墓现象，黄帝古龙，给金钱300 和给金钱500 前期可触发
+	"曹豹支线1":false,
+	"曹豹支线2":false,
+	"曹豹支线3":false,
+	"曹豹正确选择1":false,
+	"曹豹正确选择2":false,
 }
 
-
+@export var mizhuSideWait=-1
+@export var chendenSideWait=-1
+@export var caobaoSideWait=-1
 
 func ensure_default_fields():
 	var default_data = saveData.new().have_event

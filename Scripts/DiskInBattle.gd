@@ -305,6 +305,9 @@ func refresh():
 
 var isBoot:bool=false
 
+func changeHead(value):
+	enemy.headImg=value
+
 func lauchProgress(hp):
 	if isBoot ==false:
 		isBoot=true
@@ -500,6 +503,11 @@ func settleGame(end,issuccess):
 		GameManager.initBattleCircle()
 		taskIndex=0
 	Txtcount.text=str(GameManager.sav.completeTask)+"/"+str(GameManager.sav.currenceTask-GameManager.sav.completeTask)+"/"+str(GameManager.sav.currenceTask)
+
+
+func getWinCount()->int:
+	var win_count = GameManager.sav.battleResults.count(GameManager.BattleResult.win)
+	return win_count
 
 
 func judgeLoseSentiment():

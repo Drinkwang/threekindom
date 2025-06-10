@@ -116,6 +116,10 @@ func hearSayEnd():
 
 func _initData():
 	candoSub=true
+	if GameManager.bossmode==scenemanager.bossMode.mi and GameManager.sav.have_event["糜竺支线3"]==false:
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"糜贞结尾")
+		GameManager.sav.have_event["糜竺支线3"]=true
+		return 
 	if GameManager.sav.day==1:
 		if	GameManager.sav.have_event["firstgovernment"]==false:
 			#control._show_button_5_yellow(1)
@@ -158,33 +162,7 @@ func _initData():
 			candoSub=false
 			#判断任务完成 如果任务完成，那么就开始对话指令，且不能离开
 			pass
-	if candoSub==true:
-		if GameManager.sav.have_event["竹简幻觉剧情"]==true and GameManager.sav.have_event["支线触发完毕查出锦囊"]==false:
-			
-			
-			var to_inventory= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.迷魂木筒)
-			var quantity=InventoryManager.has_item_quantity(to_inventory)
-			if quantity>=1:
-				tsty.show()
-				#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"城外克苏鲁事件触发")
-		elif GameManager.sav.have_event["支线触发完毕查出锦囊休息"]==true and GameManager.sav.have_event["支线触发完毕获得锦囊之前"]==false:
-			GameManager.sav.have_event["支线触发完毕获得锦囊之前"]=true
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁府邸调查支线")
-	else :
-		if GameManager.sav.day>5:
-			if(GameManager.sav.have_event["initTask1"]==true):
-				pass
-				#if(GameManager.sav.have_event["initTask1"]==false):
-				#	chenden.show()
-				#	chenden.changeAllClick("点击陈登")
-				#if(GameManager.sav.have_event["initTask1"]==false):
-				#	mizhu.show()
-				#	mizhu.changeAllClick("点击糜竺")	
-					#chenden
-				#判断陈登有无第一次对话，若无则生成
-				#判断糜竺有无进行第一次对话，若无则生成	
-				#如果没有支线则生成
-			#pass				
+
 	GameManager.currenceScene=self
 	policy_panel.initControls()
 #	if GameManager.sav.day>=1:
@@ -228,6 +206,42 @@ func _initData():
 		_JudgeTask()
 	#elif GameManager.sav.day==4:
 	#	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"府邸第一天")
+	
+	
+	elif candoSub==true:
+		if GameManager.sav.have_event["竹简幻觉剧情"]==true and GameManager.sav.have_event["支线触发完毕查出锦囊"]==false:
+			
+			
+			var to_inventory= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.迷魂木筒)
+			var quantity=InventoryManager.has_item_quantity(to_inventory)
+			if quantity>=1:
+				tsty.show()
+				return
+				#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"城外克苏鲁事件触发")
+		elif GameManager.sav.have_event["支线触发完毕查出锦囊休息"]==true and GameManager.sav.have_event["支线触发完毕获得锦囊之前"]==false:
+			GameManager.sav.have_event["支线触发完毕获得锦囊之前"]=true
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁府邸调查支线")
+			return
+		
+		#判断该不该显示糜竺邀请，同时时间节点到中期，显示任务糜竺-中央，点击触发额外剧情
+		if GameManager.sav.have_event["糜竺支线1"]==false and 1:
+			pass
+			#tsty.show()		
+	else :
+		if GameManager.sav.day>5:
+			if(GameManager.sav.have_event["initTask1"]==true):
+				pass
+				#if(GameManager.sav.have_event["initTask1"]==false):
+				#	chenden.show()
+				#	chenden.changeAllClick("点击陈登")
+				#if(GameManager.sav.have_event["initTask1"]==false):
+				#	mizhu.show()
+				#	mizhu.changeAllClick("点击糜竺")	
+					#chenden
+				#判断陈登有无第一次对话，若无则生成
+				#判断糜竺有无进行第一次对话，若无则生成	
+				#如果没有支线则生成
+			#pass					
 #
 func subHoldWoold():
 	GameManager.sav.have_event["支线触发完毕查出锦囊"]=true
