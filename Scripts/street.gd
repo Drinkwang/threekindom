@@ -377,6 +377,7 @@ func getXueJiItem():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
 func getDaoQianItem():
+	
 	var _reward:rewardPanel=PanelManager.new_reward()
 	var items={
 		"items": {InventoryManagerItem.ItemEnum.陶谦血袖:1},
@@ -387,10 +388,18 @@ func getDaoQianItem():
 	_reward.showTitileReward(tr("恭喜你，你获得-陶谦血袖"),items)		
 
 func _bossMode():
-	if GameManager.bossmode==SceneManager.bossMode.tao:
+	
+	
+	var to_inventory_xue= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.血姬傀儡)
+	var to_inventory_tao= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.陶谦血袖)
+	var xue_quantity=InventoryManager.has_item_quantity(to_inventory_xue)
+	var tao_quantity=InventoryManager.has_item_quantity(to_inventory_tao)
+	
+	#改成判断持有的道具
+	if tao_quantity>0:
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"战斗胜利_陶谦结算")
-	elif GameManager.bossmode==SceneManager.bossMode.mi:
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"战斗胜利_糜贞结算")	
+	elif xue_quantity>0:
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"战斗胜利_血姬结算")	
 	#GameManager.bossmode=SceneManager.bossMode.none
 
 func _process(delta):

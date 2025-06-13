@@ -138,7 +138,8 @@ func _refreshSlider():
 @onready var task_label = $TaskLabel
 
 func initTask():
-	
+	if battle_circle.taskIndex<0:
+		return
 	var currence= GameManager.sav.battleTasks[battle_circle.taskIndex]
 	var context=tr("任务条件：")
 	var index=1;
@@ -309,7 +310,7 @@ func _on_Usecheck_box_toggled(toggled_on):
 @onready var ban_2_coin = $ban2
 @onready var ban_1_soilder = $ban1
 
-var _mode:SceneManager.bossMode=SceneManager.bossMode.none
+@export var _mode:SceneManager.bossMode=SceneManager.bossMode.none
 
 
 func enterBattleMi():

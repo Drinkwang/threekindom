@@ -84,9 +84,7 @@ height = 22.9168
 [node name="CharacterBody2D" type="CharacterBody2D"]
 rotation = 3.29867
 script = ExtResource("1_qdog1")
-_name = null
 color = Color(0.679011, 0, 0.166589, 1)
-hp = null
 _shader = ExtResource("3_7ivgi")
 _spark = ExtResource("2_y21cb")
 
