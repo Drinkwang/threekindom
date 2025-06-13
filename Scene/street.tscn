@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cehg7t1h5f2ei"]
+[gd_scene load_steps=22 format=3 uid="uid://cehg7t1h5f2ei"]
 
 [ext_resource type="Script" path="res://Scripts/street.gd" id="1_jskmv"]
 [ext_resource type="Resource" uid="uid://qopivlttvt12" path="res://dialogues/街道.dialogue" id="2_a3tl4"]
@@ -19,7 +19,6 @@
 [ext_resource type="PackedScene" uid="uid://dqpklssxni160" path="res://Scene/prefab/clickBlock.tscn" id="17_w7ika"]
 [ext_resource type="Texture2D" uid="uid://yuphy67p1cut" path="res://Asset/人物/陶谦.png" id="18_fbh2q"]
 [ext_resource type="Texture2D" uid="uid://ywdj7u3flcmu" path="res://Asset/人物/假糜贞.png" id="18_ks6ru"]
-[ext_resource type="Resource" uid="uid://bmuiri1yjrdba" path="res://dialogues/屋舍.dialogue" id="19_ajv3k"]
 [ext_resource type="PackedScene" uid="uid://cjsb43uugkud4" path="res://Scene/battleSys/battlePanel.tscn" id="21_h0siw"]
 [ext_resource type="VideoStream" path="res://Asset/vedio/Tentacle.ogv" id="22_pmyge"]
 
@@ -83,19 +82,6 @@ offset_top = 738.0
 offset_right = -1574.0
 offset_bottom = -10.0
 
-[node name="hpPanel" parent="CanvasLayer" instance=ExtResource("6_00ynb")]
-offset_left = 1395.0
-offset_top = 20.0
-offset_right = 1395.0
-offset_bottom = 20.0
-scale = Vector2(0.2, 0.2)
-
-[node name="resPanel" parent="CanvasLayer" instance=ExtResource("8_qssq7")]
-offset_left = 1529.0
-offset_top = 673.0
-offset_right = 1825.0
-offset_bottom = 1009.0
-
 [node name="shopPanel" parent="CanvasLayer" instance=ExtResource("7_nhhnq")]
 visible = false
 
@@ -111,39 +97,56 @@ offset_bottom = 1081.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="blank" type="ColorRect" parent="."]
+[node name="hpPanel" parent="CanvasLayer" instance=ExtResource("6_00ynb")]
+offset_left = 1395.0
+offset_top = 20.0
+offset_right = 1395.0
+offset_bottom = 20.0
+scale = Vector2(0.2, 0.2)
+
+[node name="blank" type="ColorRect" parent="CanvasLayer"]
 visible = false
 offset_right = 1939.0
 offset_bottom = 1078.0
+mouse_filter = 1
 color = Color(0, 0, 0, 1)
 
-[node name="mizhen" parent="blank" instance=ExtResource("17_w7ika")]
+[node name="mizhen" parent="CanvasLayer/blank" instance=ExtResource("17_w7ika")]
 visible = false
 position = Vector2(965, 454)
 showName = "“糜贞”"
+showEX = true
 txt2d = ExtResource("18_ks6ru")
-dialogue_resource = ExtResource("19_ajv3k")
-dialogue_start = "真相揭露_糜贞"
+dialogue_resource = ExtResource("2_a3tl4")
+dialogue_start = "boss战开始_糜贞"
 
-[node name="taoqian" parent="blank" instance=ExtResource("17_w7ika")]
+[node name="taoqian" parent="CanvasLayer/blank" instance=ExtResource("17_w7ika")]
 visible = false
 position = Vector2(914, 537)
 showName = "\"陶谦\""
+showEX = true
 txt2d = ExtResource("18_fbh2q")
-dialogue_resource = ExtResource("19_ajv3k")
-dialogue_start = "真相揭露_陶谦"
+dialogue_resource = ExtResource("2_a3tl4")
+dialogue_start = "boss战开始_陶谦"
 
-[node name="battlePane" parent="blank" instance=ExtResource("21_h0siw")]
+[node name="battlePane" parent="CanvasLayer/blank" instance=ExtResource("21_h0siw")]
 visible = false
 layout_mode = 1
 offset_left = -74.0
 offset_top = 60.0
 offset_right = -74.0
 offset_bottom = 60.0
+dialogue_resource = ExtResource("2_a3tl4")
 
-[node name="bitPlayer" type="VideoStreamPlayer" parent="blank"]
+[node name="bitPlayer" type="VideoStreamPlayer" parent="CanvasLayer/blank"]
 visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 stream = ExtResource("22_pmyge")
+
+[node name="resPanel" parent="CanvasLayer" instance=ExtResource("8_qssq7")]
+offset_left = 1529.0
+offset_top = 673.0
+offset_right = 1825.0
+offset_bottom = 1009.0

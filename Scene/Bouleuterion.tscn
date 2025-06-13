@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://v5b54ln6hhwc"]
+[gd_scene load_steps=30 format=3 uid="uid://v5b54ln6hhwc"]
 
 [ext_resource type="Script" path="res://Scripts/Bouleuterion.gd" id="1_q6noc"]
 [ext_resource type="Resource" uid="uid://bte38wl3etklk" path="res://dialogues/灵堂.dialogue" id="2_56kjn"]
@@ -24,7 +24,6 @@
 [ext_resource type="PackedScene" uid="uid://dqpklssxni160" path="res://Scene/prefab/clickBlock.tscn" id="15_2mi3t"]
 [ext_resource type="PackedScene" uid="uid://bv5ycsl0a50uq" path="res://Scene/prefab/btnList.tscn" id="16_ba2uq"]
 [ext_resource type="FontFile" uid="uid://qv74ebpr4i31" path="res://Asset/Font/VonwaonBitmap-16px.ttf" id="17_dfqgc"]
-[ext_resource type="Resource" uid="uid://bmuiri1yjrdba" path="res://dialogues/屋舍.dialogue" id="17_iu3mf"]
 
 [sub_resource type="Animation" id="Animation_vtpf1"]
 length = 0.001
@@ -199,7 +198,7 @@ scale = Vector2(1.3, 1.3)
 showName = "糜竺"
 dialogue_doubleclick = "second"
 txt2d = ExtResource("7_ggy3f")
-dialogue_resource = ExtResource("17_iu3mf")
+dialogue_resource = ExtResource("2_who4l")
 dialogue_start = "点击陈群"
 
 [node name="陈登" parent="CanvasBook" instance=ExtResource("15_2mi3t")]
@@ -209,7 +208,7 @@ scale = Vector2(1.2, 1.2)
 showName = "陈登"
 dialogue_doubleclick = "second"
 txt2d = ExtResource("7_0cx3q")
-dialogue_resource = ExtResource("17_iu3mf")
+dialogue_resource = ExtResource("2_who4l")
 dialogue_start = "点击陈群"
 
 [node name="Control" parent="CanvasBook" instance=ExtResource("16_ba2uq")]

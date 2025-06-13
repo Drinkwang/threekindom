@@ -9,7 +9,8 @@ var liubeiPos:Vector2
 func _ready():
 	caocaoPos=caocao.position
 	liubeiPos=liubei.position
-	
+	caocao.sword.hide()
+	liubei.sword.hide()
 	caocao.hit_body.connect(_on_player_hit)
 	liubei.hit_body.connect(_on_player_hit)
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"最终章节")
@@ -17,6 +18,9 @@ func _ready():
 func dialogEnd():
 	caocao.isdead=false
 	liubei.isdead=false
+	
+	caocao.sword.show()
+	liubei.sword.show()
 	GameManager.swordManGameState=GameManager.gameState.start
 	
 	

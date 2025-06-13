@@ -52,10 +52,10 @@ do streetTwo()
 	
 #待开发
 - 前往埋葬陶谦的墓地 [if GameManager.sav.have_event["陈登正确选择1"]==true and GameManager.sav.have_event["陈登正确选择2"]==true and GameManager.sav.have_event["陈登支线3"]==false]
-	do gotoWasteland()
+	do gotoTomb()
 	
 - 糜家的郊外私宅 [if GameManager.sav.have_event["糜竺正确选择1"]==true and GameManager.sav.have_event["糜竺正确选择2"]==true and GameManager.sav.have_event["糜竺支线3"]==false]
-	do gotoWasteland()
+	do gotoMiMasion()
 
 - 黄帝的祀庙 [if GameManager.sav.have_event["曹豹正确选择1"]==true and GameManager.sav.have_event["曹豹正确选择2"]==true and GameManager.sav.have_event["曹豹支线3"]==false]
 	do gotoWasteland()	
@@ -392,6 +392,7 @@ do sideQuestReturnG(false)
 do PlayTaoQian()
 
 => END!
+
 ~ 动画播完_陶谦
 尸皇-“陶谦”: 我已是入土之人，金钱对我无用！拿出你的真本事吧，证明你堪当徐州之主，否则……魂归此地，永不超生！
 #do enterBattleMi()

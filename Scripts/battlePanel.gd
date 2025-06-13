@@ -68,23 +68,24 @@ func endBattle():
 	_refreshGeneral()
 	#刷新界面
 	var bossMode=scenemanager.bossMode
-	if battle_circle.taskIndex+1==2:
+	if battle_circle.taskIndex==2:
 		if _mode==bossMode.tao:
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"真相揭露_陶谦")
 		elif  _mode==bossMode.mi:
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"真相揭露_糜贞")
-	elif battle_circle.taskIndex+1==3:
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"真相揭露_血姬")
+	elif battle_circle.taskIndex==0:
+		battle_circle.taskIndex=-1
 		var wincount=battle_circle.getWinCount()
 		if wincount>=3:
 			if _mode==bossMode.tao:
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"战斗胜利_陶谦")
 			elif  _mode==bossMode.mi:
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"战斗胜利_糜贞")
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"战斗胜利_血姬")
 		else:
 			if _mode==bossMode.tao:
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"战斗失败_陶谦")
 			elif  _mode==bossMode.mi:
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"战斗失败_糜贞")
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"战斗失败_血姬")
 @onready var useItemPanel = $PanelContainer/orderPanel/VBoxContainer/HBoxContainer2/TextureButton
 @onready var label = $PanelContainer/orderPanel/VBoxContainer/HBoxContainer2/TextureButton/Label/Label
 
@@ -120,11 +121,11 @@ func _refreshGeneral():
 @onready var lauchBtn = $PanelContainer/orderPanel/VBoxContainer/HBoxContainer/Button
 
 func _refreshSlider():
-	if GameManager.sav.labor_force<0:
+	if GameManager.sav.labor_force<0 or _mode==SceneManager.bossMode.mi:
 		soild_slider.editable=false
 	else:
 		soild_slider.editable=true
-	if GameManager.sav.coin<0:
+	if GameManager.sav.coin<0 or _mode==SceneManager.bossMode.tao: 
 		coin_slider.editable=false
 	else:
 		coin_slider.editable=true
@@ -313,19 +314,25 @@ var _mode:SceneManager.bossMode=SceneManager.bossMode.none
 
 func enterBattleMi():
 	_mode=SceneManager.bossMode.mi
+	close_btn.hide()
 	ban_1_soilder.show()
-	soild_slider.editable=false
 	
-	var cha=load("res://Asset/人物/尸皇.png")
-	battle_circle.changeHead(cha)
-	initTask()
-
-func enterBattleTao():
-	ban_2_coin.show()
-	coin_slider.editable=false	
+	soild_slider.editable=false
+	#soild_slider.enan;
 	var cha=load("res://Asset/人物/假糜贞.png")
 	battle_circle.changeHead(cha)
+	initTask()
+@onready var close_btn = $TextureButton
+
+func enterBattleTao():
+	close_btn.hide()
 	_mode=SceneManager.bossMode.tao
+	ban_2_coin.show()
+	coin_slider.editable=false	
+	var cha=load("res://Asset/人物/尸皇.png")
+	
+	battle_circle.changeHead(cha)
+
 	initTask()
 func enterBattleHuang():
 	pass

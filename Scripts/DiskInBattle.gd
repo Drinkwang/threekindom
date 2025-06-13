@@ -32,6 +32,8 @@ func _endReward():
 func _ready():
 	SignalManager.changeLanguage.connect(changeLanguage)		
 	SignalManager.endReward.connect(_endReward)
+	if GameManager.sav.battleTasks==null or GameManager.sav.battleTasks.size()==0:
+		return 
 	_initBattleTypePng(0,GameManager.sav.battleTasks[taskIndex].sdType)
 	for i in range(1,3):
 		var sd=GameManager.sav.battleTasks[i-1].sdType

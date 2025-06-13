@@ -230,10 +230,10 @@ func gotoTomb():
 	PanelManager.Fade_Blank(Color.BLACK,0,PanelManager.fadeType.fadeOut)
 	blank.show()
 	taoqian.show()
-@onready var blank = $blank
-@onready var taoqian = $blank/taoqian
-@onready var mizhen = $blank/mizhen
-@onready var battle_pane = $blank/battlePane
+@onready var blank = $CanvasLayer/blank
+@onready var taoqian = $CanvasLayer/blank/taoqian
+@onready var mizhen = $CanvasLayer/blank/mizhen
+@onready var battle_pane = $CanvasLayer/blank/battlePane
 
 func gotoMiMasion():
 	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeIn)
@@ -265,12 +265,14 @@ func enterBattleTao():
 	pass
 	
 
-@onready var bit_player = $blank/bitPlayer
+@onready var bit_player = $CanvasLayer/blank/bitPlayer
 
 func PlayTaoQian():
 	var tao = load("res://Asset/vedio/bloodTao.ogv")
 	var _func=func():
-		pass
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"动画播完_陶谦")
+		battle_pane.show()
+		battle_pane.enterBattleTao()
 	playBossAni(tao,_func)
 
 

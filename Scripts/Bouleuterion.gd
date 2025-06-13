@@ -132,9 +132,11 @@ func _initData():
 	
 	if GameManager.sav.have_event["陈登支线1"]==false and GameManager.sav.day>=5:
 		chendeng.show()
+		chendeng.showEX=true
 		chendeng.dialogue_start="陈登爱吃鱼1"	
 	elif GameManager.sav.have_event["陈登支线2"]==false and GameManager.sav.have_event["陈登支线1"]==true and GameManager.sav.chendenSideWait==0:
 		chendeng.show()
+		chendeng.showEX=true
 		chendeng.dialogue_start="陈登爱吃鱼2"	
 	
 var costhp=50
@@ -144,9 +146,9 @@ func eatFish1(issuccuss=false):
 	GameManager.sav.chendenSideWait=3
 	GameManager.sav.have_event["陈登支线1"]=true
 	if issuccuss==true:
-		GameManager.sav.have_event["陈登正确选择1"]==true
+		GameManager.sav.have_event["陈登正确选择1"]=true
 	else:
-		GameManager.sav.have_event["陈登正确选择1"]==false
+		GameManager.sav.have_event["陈登正确选择1"]=false
 		#GameManager.sav.hp
 func eatFish2(issuccuss=false):
 
@@ -154,9 +156,9 @@ func eatFish2(issuccuss=false):
 
 
 	if issuccuss==true:
-		GameManager.sav.have_event["陈登正确选择2"]==true
+		GameManager.sav.have_event["陈登正确选择2"]=true
 	else:
-		GameManager.sav.have_event["陈登正确选择2"]==false
+		GameManager.sav.have_event["陈登正确选择2"]=false
 func hearSayEnd():
 	GameManager.hearsayID=-1
 	SceneManager.changeScene(GameManager.hearsayBeforeNode,2)
