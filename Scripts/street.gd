@@ -17,7 +17,7 @@ func _ready():
 	#方便测试,可能会删？我第一次看到方便测试很迷惑
 	GameManager.sav.have_event["firstmeetchenqun"]=true
 
-
+	SignalManager.endReward.connect(_bossMode)
 	super._ready()
 	Transitions.post_transition.connect(post_transition)
 	control.buttonClick.connect(_buttonListClick)
@@ -360,10 +360,46 @@ func showbianji():
 func bianjiEnd():
 	control._show_button_5_yellow(1)
 	GameManager.sav.destination="自宅"
+	
+	
+func getXueJiItem():
+	var _reward:rewardPanel=PanelManager.new_reward()
+	var items={
+		"items": {InventoryManagerItem.ItemEnum.血姬傀儡:1},
+		"money": 0,
+		"population": 0
+	}
+	#GameManager.ScoreToItem()
+	GameManager.sav.maxHP=120
+	_reward.showTitileReward(tr("恭喜你，你获得-血姬傀儡"),items)	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+
+func getDaoQianItem():
+	var _reward:rewardPanel=PanelManager.new_reward()
+	var items={
+		"items": {InventoryManagerItem.ItemEnum.陶谦血袖:1},
+		"money": 0,
+		"population": 0
+	}
+	#GameManager.ScoreToItem()
+	_reward.showTitileReward(tr("恭喜你，你获得-陶谦血袖"),items)		
+
+func _bossMode():
+	if GameManager.bossmode==SceneManager.bossMode.tao:
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"战斗胜利_陶谦结算")
+	elif GameManager.bossmode==SceneManager.bossMode.mi:
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"战斗胜利_糜贞结算")	
+	#GameManager.bossmode=SceneManager.bossMode.none
+
 func _process(delta):
 	pass
 
 func confireSold():
 	shop_panel.confireSold()
 
+
+
+func sideQuestReturnG(iswin):
+	battle_pane.sideQuestReturnG(iswin)
+func sideQuestReturnT(iswin):
+	battle_pane.sideQuestReturnT(iswin)

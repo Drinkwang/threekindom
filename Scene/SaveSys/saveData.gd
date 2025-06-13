@@ -52,7 +52,7 @@ class_name saveData
 @export var policy_Item_index=1#政策数量
 @export var policyExcute=false
 @export var isAlertRisk=false
-
+@export var maxHP=100
 @export var isSoldItem=false
 @export var _data = InventoryInventories.new()
 @export var GrainIndex=0

@@ -4,6 +4,10 @@ extends Node
 @onready var sprite_2d = $Sprite2D
 const SPARK_2D = preload("res://Scene/prefab/spark2d.tscn")
 @onready var sword = $Sword9
+enum type_name { LiuBei, CaoCao }
+@export var _name:type_name
+signal hit_body(who: swordMan)
+@export var hparr:Array[ColorRect]
 @export var color:Color:
 	get:
 		return color
@@ -12,6 +16,17 @@ const SPARK_2D = preload("res://Scene/prefab/spark2d.tscn")
 			sprite_2d.set_modulate(value)
 		color=value
 		pass
+@export var hp:int:
+	get:
+		return hp
+	set(value):
+		hp=value
+		if hparr!=null and hparr.size()>=3:
+			for i in range(0,2):
+				if i<hp:
+					hparr[i].show()
+				else:
+					hparr[i].hide()
 @onready var timer = $Sword9/Timer
 @onready var collision_shape_2d = $Sword9/sword/CollisionShape2D
 const SWORDMANMAT = preload("res://swordmanmat.tres")
@@ -81,8 +96,16 @@ func _on_GetHit_area_entered(area):
 			#print("aaaa")
 			animation_player.active=true
 			animation_player.play("die")
-		
+			animation_player.connect("animation_finished", Callable(self, "_on_animation_finished"))
 			isdead=true
+
+func _on_animation_finished(anim_name):
+	if anim_name == "die":
+		# 发出 hit_body 信号，传递当前节点（self）作为 body
+		emit_signal("hit_body", self)
+		print("动画 'die' 完成，发出 hit_body 信号，时间：", Time.get_datetime_string_from_system())
+
+
 const SWORD_PANG = preload("res://Asset/sound/swordPang.wav")
 func _on_Hit_area_entered(area):
 	if area!=areabody and area!=areasword and isdead==false:

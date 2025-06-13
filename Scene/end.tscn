@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://ptclmhhv84g6"]
+[gd_scene load_steps=17 format=3 uid="uid://ptclmhhv84g6"]
 
 [ext_resource type="Script" path="res://Scene/end.gd" id="1_g32r7"]
 [ext_resource type="AudioStream" uid="uid://brg1ltppwfyim" path="res://Asset/sound/闪电.mp3" id="3_lav2d"]
 [ext_resource type="Texture2D" uid="uid://cwrhf5jbmvrep" path="res://Asset/城镇建筑/灵堂暗.png" id="4_roc22"]
 [ext_resource type="Texture2D" uid="uid://cale1h2nqfdrh" path="res://Asset/ui/circle.png" id="10_hxrec"]
+[ext_resource type="Script" path="res://Scene/SwordMan/ai_controller.gd" id="12_0mg6j"]
 [ext_resource type="Texture2D" uid="uid://yxnjmxcqgl2u" path="res://addons/inventory_example/textures/inventories/Chest.png" id="12_02t4n"]
 [ext_resource type="Shader" path="res://Asset/shader/obj.gdshader" id="13_ikcuw"]
 [ext_resource type="PackedScene" uid="uid://cgqf0fexq24hn" path="res://Scene/SwordMan/swordMan.tscn" id="13_y24ds"]
@@ -103,9 +104,9 @@ size_flags_horizontal = 8
 
 [node name="Label" type="Label" parent="CanvasInventory/CAOCAOBox"]
 layout_mode = 0
-offset_left = 1433.0
+offset_left = 1577.0
 offset_top = 15.0
-offset_right = 1579.0
+offset_right = 1723.0
 offset_bottom = 103.0
 theme_override_colors/font_color = Color(0.25098, 0.0509804, 0.839216, 1)
 theme_override_font_sizes/font_size = 26
@@ -115,9 +116,9 @@ horizontal_alignment = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasInventory/CAOCAOBox"]
 custom_minimum_size = Vector2(2.185, 0.48)
 layout_mode = 0
-offset_left = 1584.0
+offset_left = 1728.0
 offset_top = 15.0
-offset_right = 1861.0
+offset_right = 2005.0
 offset_bottom = 43.0
 theme_override_constants/separation = 15
 
@@ -132,6 +133,7 @@ layout_mode = 2
 color = Color(0.25098, 0.0509804, 0.839216, 1)
 
 [node name="ColorRect3" type="ColorRect" parent="CanvasInventory/CAOCAOBox/HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(80, 10)
 layout_mode = 2
 color = Color(0.25098, 0.0509804, 0.839216, 1)
@@ -164,6 +166,7 @@ layout_mode = 2
 color = Color(0.541176, 0.0235294, 0.14902, 1)
 
 [node name="ColorRect3" type="ColorRect" parent="CanvasInventory/CAOCAOBox/Control/HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(80, 10)
 layout_mode = 2
 color = Color(0.541176, 0.0235294, 0.14902, 1)
@@ -198,14 +201,20 @@ offset_right = 1993.0
 offset_bottom = 1145.0
 color = Color(0, 0, 0, 1)
 
-[node name="caocao" parent="." instance=ExtResource("13_y24ds")]
-position = Vector2(1116, 281)
-rotation = 5.93412
+[node name="caocao" parent="." node_paths=PackedStringArray("hparr") instance=ExtResource("13_y24ds")]
+position = Vector2(1015, 133)
+rotation = 6.07375
+_name = 1
+hparr = [NodePath("../CanvasInventory/CAOCAOBox/HBoxContainer/ColorRect"), NodePath("../CanvasInventory/CAOCAOBox/HBoxContainer/ColorRect2"), NodePath("../CanvasInventory/CAOCAOBox/HBoxContainer/ColorRect3")]
 color = Color(0.22331, 1.90598e-05, 0.881381, 1)
+hp = 2
 
-[node name="liubei" parent="." instance=ExtResource("13_y24ds")]
+[node name="liubei" parent="." node_paths=PackedStringArray("hparr") instance=ExtResource("13_y24ds")]
 position = Vector2(1020, 859)
-rotation = 5.93412
+rotation = 6.07375
+_name = 0
+hparr = [NodePath("../CanvasInventory/CAOCAOBox/Control/HBoxContainer/ColorRect"), NodePath("../CanvasInventory/CAOCAOBox/Control/HBoxContainer/ColorRect2"), NodePath("../CanvasInventory/CAOCAOBox/Control/HBoxContainer/ColorRect3")]
+hp = 2
 
 [node name="GPUParticles2D" parent="." instance=ExtResource("15_rjsb5")]
 position = Vector2(279, 539)
@@ -227,5 +236,10 @@ texture = ExtResource("14_vaajl")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Sword9/RigidBody2D"]
 rotation = -0.794125
 shape = SubResource("CapsuleShape2D_0c80r")
+
+[node name="AIController" type="Node" parent="." node_paths=PackedStringArray("ai_swordman", "player_swordman")]
+script = ExtResource("12_0mg6j")
+ai_swordman = NodePath("../caocao")
+player_swordman = NodePath("../liubei")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

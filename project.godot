@@ -66,7 +66,7 @@ move_left={
 [internationalization]
 
 locale/translations=PackedStringArray("res://Asset/language/data.csv", "res://Asset/language/data.en.translation", "res://Asset/language/data.ja.translation", "res://Asset/language/data.ru.translation", "res://Asset/language/data.zh.translation", "res://Asset/language/data.lzh.translation")
-locale/translations_pot_files=PackedStringArray("res://dialogues/灵堂.dialogue", "res://dialogues/屋舍.dialogue", "res://dialogues/街道.dialogue", "res://dialogues/府邸.dialogue", "res://dialogues/演武场.dialogue", "res://dialogues/议会厅.dialogue", "res://dialogues/存档.dialogue", "res://dialogues/商店.dialogue", "res://青梅煮酒.dialogue", "res://dialogues/系统.dialogue")
+locale/translations_pot_files=PackedStringArray("res://dialogues/灵堂.dialogue", "res://dialogues/屋舍.dialogue", "res://dialogues/街道.dialogue", "res://dialogues/府邸.dialogue", "res://dialogues/演武场.dialogue", "res://dialogues/议会厅.dialogue", "res://dialogues/存档.dialogue", "res://dialogues/商店.dialogue", "res://dialogues/系统.dialogue", "res://dialogues/青梅煮酒.dialogue")
 locale/include_text_server_data=true
 locale/fallback=""
 locale/locale_filter_mode=0

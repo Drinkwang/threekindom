@@ -12,6 +12,7 @@ var hearsayID=-1 #秘闻id，购买秘闻修改 如果是商店=0
 var hearsayBeforeNode=null
 #用于临时储存的值
 var resideValue
+
 enum RspEnum{
 	PAPER=0,
 	ROCK=1,
@@ -81,7 +82,8 @@ var _engerge:energe
 
 #剩余粮食_用于赈灾系统
 var resideGrain=0
-
+var swordManGameState:gameState=gameState.pause
+enum gameState{pause,start}
 #判断是否累了的框，不用保存
 var triedResult=false
 var triedPanel
@@ -263,7 +265,7 @@ func _enterDay(value=true):
 	refreshPaixis()
 	initBattle()
 	sav.isSoldItem=false
-	sav.hp=100
+	sav.hp=sav.maxHP
 	sav.isLevelUp=false;
 	sav.isMeet=false
 	sav.isGetCoin=false

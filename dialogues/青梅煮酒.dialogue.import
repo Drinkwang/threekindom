@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_12"
+type="Resource"
+uid="uid://dir5fk4i7s67k"
+path="res://.godot/imported/青梅煮酒.dialogue-d17430b230e6183f00b35ecbc3044689.tres"
+
+[deps]
+
+source_file="res://dialogues/青梅煮酒.dialogue"
+dest_files=["res://.godot/imported/青梅煮酒.dialogue-d17430b230e6183f00b35ecbc3044689.tres"]
+
+[params]
+
+defaults=true
