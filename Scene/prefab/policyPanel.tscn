@@ -3,11 +3,11 @@
 [ext_resource type="Theme" uid="uid://bklmr3xmk4m5u" path="res://global_theme.tres" id="1_q7yni"]
 [ext_resource type="Script" path="res://Scripts/policyPanel.gd" id="1_vilmr"]
 [ext_resource type="PackedScene" uid="uid://bit5bobykh81y" path="res://Scene/prefab/policyItem.tscn" id="2_emouu"]
-[ext_resource type="Texture2D" uid="uid://bkpmf2iyu3rrc" path="res://Asset/threekindom5.png" id="4_qfbsc"]
+[ext_resource type="Texture2D" uid="uid://cyhsitp3pce6e" path="res://Asset/上册.png" id="4_e2tu2"]
 [ext_resource type="FontFile" uid="uid://j7hxj2vlcx5l" path="res://Asset/YanShiXiaXingKai-2.ttf" id="5_i8b5x"]
-[ext_resource type="Texture2D" uid="uid://b7cs1dhnw5lhs" path="res://Asset/threekindom3.png" id="5_u8rlx"]
+[ext_resource type="Texture2D" uid="uid://dic5yom1jx6pk" path="res://Asset/中策.png" id="5_ikicj"]
 [ext_resource type="PackedScene" uid="uid://dpw77mhy77404" path="res://Scene/prefab/lawpoint.tscn" id="6_0wkqx"]
-[ext_resource type="Texture2D" uid="uid://buidw76lnyipq" path="res://Asset/threekindom.png" id="6_fvubf"]
+[ext_resource type="Texture2D" uid="uid://cyikut66dpmhv" path="res://Asset/下策.png" id="6_ebvwh"]
 [ext_resource type="Texture2D" uid="uid://dahuc8gb2blc" path="res://Asset/other/0_red.png" id="7_ogak8"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4sj3t"]
@@ -87,21 +87,21 @@ custom_minimum_size = Vector2(404.79, 0)
 layout_mode = 2
 detail = "所有军队领袖，严禁擅自动用粮草物资，必须经士族批准后方可动用。一切军需，须经过严格审批备案，不得私自行动。"
 context = "上策-限制军需物资法"
-img = ExtResource("4_qfbsc")
+img = ExtResource("4_e2tu2")
 
 [node name="Control_2" parent="PanelContainer/orderPanel/VBoxContainer/orderVbox" instance=ExtResource("2_emouu")]
 custom_minimum_size = Vector2(404.79, 0)
 layout_mode = 2
 detail = "军队领袖应向相关报备所需物资，并等待审批后方可调用。一切军需申请，必须经过严格审批程序，禁止私自调度。"
 context = "中策-军需审批规定"
-img = ExtResource("5_u8rlx")
+img = ExtResource("5_ikicj")
 
 [node name="Control_3" parent="PanelContainer/orderPanel/VBoxContainer/orderVbox" instance=ExtResource("2_emouu")]
 custom_minimum_size = Vector2(374.215, 0)
 layout_mode = 2
 detail = "凡有违反调度规定者，不分情节轻重，一律拉出军营，以极刑示众。对于私自调用粮草者，立即斩首示众，家属一并流放，绝不宽贷。"
 context = "下策-物资调度违规处罚法"
-img = ExtResource("6_fvubf")
+img = ExtResource("6_ebvwh")
 
 [node name="Control2" type="Control" parent="PanelContainer/orderPanel/VBoxContainer"]
 layout_mode = 2

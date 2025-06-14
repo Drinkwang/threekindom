@@ -48,6 +48,7 @@ func showTab():
 const 府邸 = preload("res://Asset/bgm/办公.wav")	
 #const 府邸 = preload("res://Asset/bgm/府邸.mp3")
 func post_transition():
+	GameManager.CanClickUI=true
 	SoundManager.stop_all_ambient_sounds()
 	SoundManager.play_ambient_sound(府邸)
 

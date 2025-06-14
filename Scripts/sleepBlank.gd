@@ -34,6 +34,7 @@ func _process(delta):
 	pass
 	
 func post_transition():
+	GameManager.CanClickUI=true
 	print("fadedone")
 	$Timer.start()
 	changeAndSave()

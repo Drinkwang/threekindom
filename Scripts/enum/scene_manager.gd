@@ -36,6 +36,7 @@ enum sideQuest{
 var beforeNode
 func changeScene(tempnode:roomNode,time:float):
 	beforeNode=tempnode
+	GameManager.CanClickUI=false
 	const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
 	if tempnode==roomNode.PRE_SCENE:
 		FancyFade.new().custom_fade(MAIN.instantiate(), time, DISSOLVE_IMAGE)

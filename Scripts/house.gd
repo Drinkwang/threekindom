@@ -200,6 +200,7 @@ func _initData():
 const daybgm = preload("res://Asset/bgm/白天在家or办公.wav")	
 const nightbgm = preload("res://Asset/bgm/夜晚在家.wav")
 func post_transition():
+	GameManager.CanClickUI=true
 	SoundManager.stop_all_ambient_sounds()
 	if GameManager.sav.hp<=20:
 		SoundManager.play_ambient_sound(nightbgm)
@@ -408,7 +409,7 @@ func _DayGet():
 	SoundManager.play_sound(sounds.buysellsound)
 	await 0.8
 	res_panel.showValue=false
-	GameManager._DayGet()
+
 	
 
 	if(GameManager.sav.targetTxt!=null and GameManager.sav.targetTxt.length()>0):	

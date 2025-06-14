@@ -133,6 +133,7 @@ func caocaoLetterHide():
 	caocao_letter.hide()
 	caocao_letter_xie_tian_zi.hide()
 func post_transition():
+	GameManager.CanClickUI=true
 	SoundManager.stop_all_ambient_sounds()
 	SoundManager.play_ambient_sound(bgm)
 	print("fadedone")

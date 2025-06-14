@@ -212,7 +212,6 @@ hp = 2
 [node name="liubei" parent="." node_paths=PackedStringArray("hparr") instance=ExtResource("13_y24ds")]
 position = Vector2(1020, 859)
 rotation = 6.16101
-_name = 0
 hparr = [NodePath("../CanvasInventory/CAOCAOBox/Control/HBoxContainer/ColorRect"), NodePath("../CanvasInventory/CAOCAOBox/Control/HBoxContainer/ColorRect2"), NodePath("../CanvasInventory/CAOCAOBox/Control/HBoxContainer/ColorRect3")]
 hp = 2
 

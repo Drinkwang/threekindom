@@ -71,6 +71,8 @@ func playLabelChange():
 @onready var inventory_any = $TargetLabel/InventoryAny
 
 func _on_item_button_button_down():
+	if GameManager.CanClickUI==false:
+		return
 	if inventory_any.visible:
 		inventory_any.hide()
 	else:
@@ -78,6 +80,9 @@ func _on_item_button_button_down():
 
 const sys = preload("res://dialogues/系统.dialogue")
 func _on_save_button_button_down():
+	
+	if GameManager.CanClickUI==false:
+		return
 	#DialogueManager.show_example_dialogue_balloon(sys,"当前功能demo不开放")
 	PanelManager.show_Save_panel()
 	#demo注释

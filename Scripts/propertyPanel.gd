@@ -1,5 +1,5 @@
 extends Control
-
+class_name propertyPanel
 @onready var coin_num = $PanelContainer/MarginContainer/GridContainer/coinNum
 @onready var heart_num = $PanelContainer/MarginContainer/GridContainer/heartNum
 @onready var labor_num = $PanelContainer/MarginContainer/GridContainer/laborNum
@@ -7,6 +7,7 @@ extends Control
 var showValue:bool=true
 # Called when the node enters the scene tree for the first time.
 func _ready():
+
 	pass # Replace with function body.
 
 @onready var color_rect = $PanelContainer/MarginContainer2/ColorRect
@@ -14,6 +15,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if(showValue==true):
+
 		coin_num.text=var_to_str(GameManager.sav.coin)
 		heart_num.text=var_to_str(GameManager.sav.people_surrport)
 		labor_num.text=var_to_str(GameManager.sav.labor_force)

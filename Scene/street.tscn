@@ -82,21 +82,6 @@ offset_top = 738.0
 offset_right = -1574.0
 offset_bottom = -10.0
 
-[node name="shopPanel" parent="CanvasLayer" instance=ExtResource("7_nhhnq")]
-visible = false
-
-[node name="scholar" parent="CanvasLayer" instance=ExtResource("5_jclo7")]
-visible = false
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 11.0
-offset_top = 1.0
-offset_right = 1931.0
-offset_bottom = 1081.0
-grow_horizontal = 1
-grow_vertical = 1
-
 [node name="hpPanel" parent="CanvasLayer" instance=ExtResource("6_00ynb")]
 offset_left = 1395.0
 offset_top = 20.0
@@ -150,3 +135,18 @@ offset_left = 1529.0
 offset_top = 673.0
 offset_right = 1825.0
 offset_bottom = 1009.0
+
+[node name="scholar" parent="CanvasLayer" instance=ExtResource("5_jclo7")]
+visible = false
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 11.0
+offset_top = 1.0
+offset_right = 1931.0
+offset_bottom = 1081.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="shopPanel" parent="CanvasLayer" instance=ExtResource("7_nhhnq")]
+visible = false

@@ -37,7 +37,7 @@ func streetThree():
 const MINISTREET = preload("res://Asset/bgm/ministreet.wav")
 #const 街道 = preload("res://Asset/bgm/街道.mp3")	"res://Asset/bgm/ministreet.wav"
 func post_transition():
-	
+	GameManager.CanClickUI=true
 	#print("fadedone")
 	_initData()
 	SoundManager.play_ambient_sound(MINISTREET)

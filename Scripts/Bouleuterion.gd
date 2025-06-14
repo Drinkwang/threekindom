@@ -37,6 +37,7 @@ func showTab():
 const bgmmeet = preload("res://Asset/bgm/会议室.wav")	
 #const 议会2 = preload("res://Asset/bgm/议会2.mp3")
 func post_transition():
+	GameManager.CanClickUI=true
 	SoundManager.stop_all_ambient_sounds()
 	SoundManager.play_ambient_sound(bgmmeet)
 	print("fadedone")
@@ -111,7 +112,7 @@ func _initData():
 	]
 	#if GameManager.sav.have_event["firstBoleuterion"]==true:
 	
-	if GameManager.bossmode==scenemanager.bossMode.mi and GameManager.sav.have_event["陈登支线3"]==false:
+	if GameManager.bossmode==scenemanager.bossMode.tao and GameManager.sav.have_event["陈登支线3"]==false:
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"陈登结尾")
 		GameManager.sav.have_event["陈登支线3"]=true
 		return 	

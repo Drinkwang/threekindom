@@ -1,9 +1,11 @@
 extends Control
+class_name supportPanel
 @onready var v_box_container = $PanelContainer/VBoxContainer
 
 @export var datas:Array[cldata] 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
 	var d:cldata=cldata.new()
 	datas.clear()
 	datas.append(GameManager.sav.WAIDIPAI)

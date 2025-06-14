@@ -77,6 +77,9 @@ enum opcost{
 var _engerge:energe
 
 
+
+
+var CanClickUI:bool=true
 #var _rewardPanel:rewardPanel 移动导savedate里
 
 
@@ -489,9 +492,9 @@ func getTaskCurrenceValue():
 		cur=sav.currenceValue#暂时该值未定义
 	return cur
 
-func _DayGet():
-	sav.coin=sav.coin+sav.coin_DayGet
-	sav.labor_force=sav.labor_force+sav.labor_DayGet
+
+	#sav.coin=sav.coin+sav.coin_DayGet
+	#sav.labor_force=sav.labor_force+sav.labor_DayGet
 
 func _rest(value=true):
 	const DISSOLVE_IMAGE = preload("res://addons/transitions/images/circle-inverted.png")
@@ -936,7 +939,7 @@ func SkipPrologue():
 	var keys_to_change = [
 		"firstmeetchenqun", "firsthouse", "firststreet", "firstgovernment", "firstgovermentTip",
 		"firstPolicyOpShow", "firstPolicyCorrect", "firstTabLaw", "firstLawExecute", "firstParliamentary",
-		"Factionalization", "firstEnterBattle", "dayThreeEnterBattle", "dayTwoInit", "dayThreeInit",
+		"firstEnterBattle", "dayThreeEnterBattle", "dayTwoInit", "dayThreeInit",
 		"secondStreet", "firstTraining", "firstWar", "firstTrain", "threeStree",
 		"firstMeetingEnd", "streetBeginBouleuterion", "firstBattle", "firstBattleTutorial", "firstBattleEnd",
 		"firstVisitScholars", "firstVisitScholarsEnd", "firstNewEnd", "DemoFinish"
