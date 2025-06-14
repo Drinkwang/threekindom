@@ -320,10 +320,54 @@ func refreshPropertyPanel():
 	contextEx=contextEx+"徐州派：%s"%getFractionView(GameManager.sav.BENTUPAI._support_rate)+"\n"
 	contextEx=contextEx+"豪族派：%s"%getFractionView(GameManager.sav.HAOZUPAI._support_rate)+"\n"
 	contextEx=contextEx+"丹阳派：%s"%getFractionView(GameManager.sav.WAIDIPAI._support_rate)+"\n"
-	contextEx=contextEx+"当前建议：%s"%"xxxxxx"+"\n"
+	
+	
+	#1优化参与军事行动的策略，通过战胜对手获得足够的资金收益。  
+	#2积极参与大儒辩经活动，进行辩论小游戏，获取道具与金钱奖励。  
+	#3制定有利可图的律法以增加税收，同时向城内派系索取资金，利用好的策略确保稳定的金钱来源。
+
+
+	
+	#4通过任务、立法、军事行动等方式，系统性地收集资源，确保资源储备充足以支持武将升级与道具购买。  
+	#5可以选择武将进行升级，确保在军事行动中拥有更强的作战能力。  
+	#6可以购买增益类道具在军事行动中取得更大的优势。
+
+	
+	var comindex=0
+	if GameManager.sav.targetResType==GameManager.ResType.coin:
+		comindex=0
+	elif GameManager.sav.targetResType==GameManager.ResType.none:
+		comindex=2
+	else:
+		comindex=1	
+	#通过演武场、大儒辩经、立法、从其它派系索取钱财 尽可能实现收集资金的目标
+	#通过收集尽可能多的资源，升级武将购买道具并在军事行动取得进一步的优势
+	contextEx=contextEx+"今日建议：%s"%getrecommendStr(comindex)+"\n"
 	propertyPanel.contextEX=contextEx
 	
-	
+
+func getrecommendStr(index):
+	var Rstr
+	var rindex=randi_range(0,2)
+	if index==0:
+		if rindex==0:
+			Rstr=tr("优化参与军事行动的策略，通过战胜对手获得足够的资金收益。")
+		elif rindex==1:
+			Rstr=tr("积极参与大儒辩经活动，进行辩论小游戏，获取道具与金钱奖励。")
+		elif rindex==2:
+			Rstr=tr("制定有利可图的律法以增加税收，同时向城内派系索取资金，利用好的策略确保稳定的金钱来源。")
+						  
+	elif index==1:
+		if rindex==0:
+			Rstr=tr("通过任务、立法、军事行动等方式，系统性地收集资源，确保资源储备充足以支持武将升级与道具购买。")
+		elif rindex==1:
+			Rstr=tr("可以选择武将进行升级，确保在军事行动中拥有更强的作战能力。")
+		elif rindex==2:
+			Rstr=tr("可以购买增益类道具在军事行动中取得更大的优势。	")
+	else:
+		Rstr=tr("暂无")	
+	return Rstr
+
 func getFractionView(point):
 	var viewStr=""
 	if point>=90:
@@ -336,7 +380,7 @@ func getFractionView(point):
 		viewStr="戒备"
 	else:
 		viewStr="敌对"
-
+	return viewStr
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
