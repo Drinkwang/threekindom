@@ -301,7 +301,8 @@ func GetLawClaimRevenue():
 				await 5
 				animation_player.playback.speed_scale = -1.0
 				$CanvasBook/ColorRect/AnimationPlayer.play("colorUp")
-				
+
+				GameManager._imporveRelation(_date)
 				
 				#任务完成 获得忠诚度	
 	

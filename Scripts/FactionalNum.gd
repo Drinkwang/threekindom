@@ -71,7 +71,7 @@ func refreshData():
 		else:
 			sb.bg_color = Color.DARK_GRAY
 			#if itemData.isAlertRisk==false:					
-	if(supportValue<60 and itemData.index!=cldata.factionIndex.lvbu and itemData.isAlertRisk==false):
+	if(supportValue<60 and itemData.index!=cldata.factionIndex.lvbu and itemData.isAlertRisk==false and DialogueManager.dialogBegin==false):#必须没有其它对话
 		itemData.isAlertRisk=true
 		GameManager.resideValue=itemData._name
 		DialogueManager.show_example_dialogue_balloon(sys,"警告叛乱风险")

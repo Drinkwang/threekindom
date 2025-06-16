@@ -210,6 +210,7 @@ do meetingEnd()
 => END!
 ~ 赠礼完成
 成功赠送礼物，{{getFactionByIndex()._name}}好感度上升{{(15+GameManager.sav.randomIndex)}}
+do GameManager._imporveRelation(getFactionByIndex())
 #赠送礼物，好感度上升
 => END
 
@@ -227,7 +228,7 @@ if getFactionByIndex()._num_all+3+GameManager.sav.randomIndex<=100
 else
 	赠送资金已顺利完成！{{getFactionByIndex()._name}}在你的支持下已达到上限100人。
 
-	
+do GameManager._imporveRelation(getFactionByIndex())	
 
 #该派系人数上升完成
 => END
@@ -244,6 +245,7 @@ else
 
 ~ 扩充吕布实力
 你已成功为吕布扩充实力，当前吕布手下人数达到{{getFactionByIndex()._num_all}}人，吕布的势力正在你的支持下日益壮大！
+do GameManager._imporveRelation(getFactionByIndex())
 => END!
 
 ~ 调用士兵完成

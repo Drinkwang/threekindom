@@ -12,7 +12,7 @@ var hearsayID=-1 #秘闻id，购买秘闻修改 如果是商店=0
 var hearsayBeforeNode=null
 #用于临时储存的值
 var resideValue
-
+var resideValue2
 enum RspEnum{
 	PAPER=0,
 	ROCK=1,
@@ -1054,3 +1054,18 @@ func AutoSaveFile():
 	# Save to the slot with the earliest time
 	if earliest_index != -1:
 		ResourceSaver.save(GameManager.sav, "user://save_data{index}.tres".format({"index": str(earliest_index)}))
+
+
+func _imporveRelation(data:cldata):
+	if DialogueManager.dialogBegin==false:
+		if data.isrebellion==true:
+			data.rebellionUpdateNum+=1
+			resideValue=data._name
+			resideValue2=data._num_defections-data.rebellionUpdateNum
+			if data.rebellionUpdateNum>=data._num_defections:
+				DialogueManager.show_example_dialogue_balloon(sys,"讨好叛乱1")
+				data.rebellionUpdateNum=0
+				data.isrebellion=false
+			else:
+				DialogueManager.show_example_dialogue_balloon(sys,"讨好叛乱2")
+			

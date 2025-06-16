@@ -12,6 +12,18 @@ Game Over：民心尽失，徐州陷于暴乱，游戏结束。
 警告: 注意，因为你的{{GameManager.resideValue}}的支持度低于60，内部不稳，叛乱风险加剧！
 => END
 
+
+~ 讨好叛乱1
+系统提示: 因为你的措施改善了{{GameManager.resideValue}}的关系。{{GameManager.resideValue}}结束敌对状态
+=> END!
+
+
+~ 讨好叛乱2
+{{GameManager.resideValue}}: 别以为笼络就能让我们原谅你!
+你的措施还不足以结束{{GameManager.resideValue}}派敌对关系，再执行{{GameManager.resideValue2}}次能或许就有成效
+=> END!
+
+
 ~ 吕布风险
 警告: 吕布忠诚度低于80，其不满情绪高涨，可能对你发起掠夺！
 => END
