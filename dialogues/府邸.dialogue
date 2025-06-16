@@ -186,17 +186,39 @@ do meetingEnd()
 #优先级b
 	do claim()
 - 镇压
+	do suppress()
 - (重新选择)
 	do optionSummonOnemen()
 #	do SummonFaction(_faction)
 # 重新选择需要返回选项界面
 => END
 
+
+~ 贸然镇压
+主簿: 主公，贸然镇压一个与我方好感度颇高的派系，或将引发不利后果。轻则人心离散，重则声望受损，招致其他派系联合反制，我建议审慎权衡，先以怀柔之策巩固关系，再行定夺，以免因小失大。
+
+系统提示: 你没有必要镇压一个对你没有敌意的派系.
+=> END!
+
+~ 决定镇压
+主簿: 主公，镇压固然能解决他们可能导致骚乱的因素，但恐埋后患无穷，我建议先施恩惠笼络人心，免生祸端。
+系统提示: 镇压{{getFactionByIndex()._name}}需要消耗劳动力{{ForValueGet}}和金币{{ForValueCost}}，你确定用武力镇压么?
+- 是
+	do confireSuppress()
+- 否
+	do SummonFaction(_faction)
+=> END!
 ~ 赠礼完成
 成功赠送礼物，{{getFactionByIndex()._name}}好感度上升{{(15+GameManager.sav.randomIndex)}}
 #赠送礼物，好感度上升
 => END
 
+
+~ 镇压成功
+系统提示: 成功{{getFactionByIndex()._name}}，其对主公您望而生畏，暂时臣服。然而，暴力镇压引发该派系持续不满，好感度每秒下降，恐埋后患。建议通过怀柔策略化解怨恨，满足特定条件后可解除不满，恢复派系关系。
+
+
+=> END!
 ~ 资金赠送完成
 
 if getFactionByIndex()._num_all+3+GameManager.sav.randomIndex<=100

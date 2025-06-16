@@ -32,3 +32,7 @@ text = "外地派系(丹阳)-支持度："
 layout_mode = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_2mory")
 value = 100.0
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

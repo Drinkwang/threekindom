@@ -894,6 +894,33 @@ func claim():
 	ForValueGet=_c._num_all*20
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"索取从派系")#显示对话
 
+
+func suppress():
+
+	var _c=getFactionByIndex()
+	
+	ForValueGet=(100-_c._support_rate)*5*(_c._num_defections+1)
+	ForValueCost=(100-_c._support_rate)*10*(_c._num_defections+1)
+
+	if _c._support_rate>=60:
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"贸然镇压")#显示对话
+	else:
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"决定镇压")#显示对话
+
+func confireSuppress():
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"镇压成功")#显示对话
+	
+	GameManager._propertyPanel.GetValue(-ForValueCost,0,-ForValueGet)
+	ForValueCost=0
+	ForValueGet=0
+	
+	var _c=getFactionByIndex()
+	_c._support_rate=100
+	_c.isrebellion=true
+	_c._num_defections+=1
+	SignalManager.changeFraction.emit()
+	#发一个信号，有派系确认为对你没有敌意的派系
+
 func CF_CallingSoldier():
 	var _c=getFactionByIndex()
 	_c.ChangeSupport(-ForValueCost)

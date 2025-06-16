@@ -76,7 +76,7 @@ enum opcost{
 }
 var _engerge:energe
 
-
+var _propertyPanel:propertyPanel
 
 
 var CanClickUI:bool=true
