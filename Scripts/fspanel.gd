@@ -4,8 +4,9 @@ extends Control
 @export var datas:Array[cldata] 
 
 
-@onready var label = $PanelContainer/VBoxContainer/Label
-@onready var label_2 = $PanelContainer/VBoxContainer/Label2
+
+@onready var _label = $PanelContainer/VBoxContainer/Label
+@onready var _label_2 = $PanelContainer/VBoxContainer/Label2
 
 #var _name:String
 #var _num_all:int
@@ -31,16 +32,16 @@ func changeLanguage():
 		#pass
 	if currencelanguage=="ru":
 		var newfont=preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf")
-		label.add_theme_font_override("font",newfont)
-		label_2	.add_theme_font_override("font",newfont)
-		label.add_theme_constant_override("line_spacing",-2)
-		label_2.add_theme_constant_override("line_spacing",-2)
+		_label.add_theme_font_override("font",newfont)
+		_label_2	.add_theme_font_override("font",newfont)
+		_label.add_theme_constant_override("line_spacing",-2)
+		_label_2.add_theme_constant_override("line_spacing",-2)
 		currence_laws.add_theme_font_override("font",newfont)
 	else:
-		label.remove_theme_font_override("font")
-		label_2.remove_theme_font_override("font")
-		label.remove_theme_constant_override("line_spacing")
-		label_2.remove_theme_constant_override("line_spacing")
+		_label.remove_theme_font_override("font")
+		_label_2.remove_theme_font_override("font")
+		_label.remove_theme_constant_override("line_spacing")
+		_label_2.remove_theme_constant_override("line_spacing")
 		currence_laws.remove_theme_font_override("font")
 	refreshData()
 @onready var v_box_container = $PanelContainer/VBoxContainer

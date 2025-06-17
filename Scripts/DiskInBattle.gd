@@ -546,10 +546,16 @@ func judgeLoseSentiment():
 
 
 func refreshPage():
-	enemy.namelv=tr("(当前战力:{targetValue})").format({"targetValue": GameManager.sav.battleTasks[taskIndex].index*50}) 
+	var index
+	if taskIndex==-1:
+		index=0
+	else:
+		index=taskIndex
+	
+	enemy.namelv=tr("(当前战力:{targetValue})").format({"targetValue": GameManager.sav.battleTasks[index].index*50}) 
 	var btresult= GameManager.BattleResult
 
-	var sd=GameManager.sav.battleTasks[taskIndex].sdType
+	var sd=GameManager.sav.battleTasks[index].sdType
 	_initBattleTypePng(0,sd)
 
 	var txt

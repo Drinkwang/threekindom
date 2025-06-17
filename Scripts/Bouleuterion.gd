@@ -313,6 +313,12 @@ func GetLawClaimRevenue():
 
 @onready var factionView = $CanvasBook/faction
 
+func eatFishSound():
+	var EAT_2 =load("res://Asset/sound/eat2.mp3")
+	SoundManager.play_sound(EAT_2)	
+	
+
+
 func changePanelPos():
 	if GameManager.sav.have_event["Factionalization"]==true:
 		factionView.position.y=655

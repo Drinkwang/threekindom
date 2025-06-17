@@ -42,7 +42,7 @@ color = Color(0.2, 0.2, 0.2, 0.827451)
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -51,8 +51,6 @@ offset_left = -669.0
 offset_top = -411.0
 offset_right = 696.0
 offset_bottom = 411.0
-grow_horizontal = 2
-grow_vertical = 2
 pivot_offset = Vector2(630.615, 267.699)
 theme = ExtResource("1_q7yni")
 
@@ -113,11 +111,13 @@ text = "请点击政策获取施政的详细信息"
 autowrap_mode = 3
 
 [node name="Control" type="Control" parent="PanelContainer/orderPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 119)
 layout_mode = 2
 size_flags_vertical = 6
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/orderPanel/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 2
 
 [node name="Control2" type="Control" parent="PanelContainer/orderPanel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -134,6 +134,28 @@ text = "确认信息"
 [node name="Control3" type="Control" parent="PanelContainer/orderPanel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
+
+[node name="orderPanel2" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/orderPanel2"]
+layout_mode = 2
+
+[node name="MainExp" type="Control" parent="PanelContainer/orderPanel2/VBoxContainer"]
+custom_minimum_size = Vector2(1240, 724)
+layout_direction = 1
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="expLen" type="Control" parent="PanelContainer/orderPanel2/VBoxContainer"]
+custom_minimum_size = Vector2(1240, 0)
+layout_direction = 1
+layout_mode = 2
+size_flags_vertical = 0
 
 [node name="TabBar" type="TabBar" parent="."]
 visible = false
@@ -338,6 +360,7 @@ num1 = 0
 num2 = 5
 
 [node name="Line2D4" type="Line2D" parent="lawPanel/Control1-5"]
+visible = false
 material = SubResource("CanvasItemMaterial_4sj3t")
 position = Vector2(565, 273)
 points = PackedVector2Array(-401, -241, -331, -262)
@@ -1125,9 +1148,9 @@ autowrap_mode = 2
 custom_minimum_size = Vector2(1295, 0)
 layout_mode = 0
 offset_left = -613.0
-offset_top = 316.0
+offset_top = 322.0
 offset_right = 682.0
-offset_bottom = 397.0
+offset_bottom = 403.0
 
 [node name="Label2" type="Label" parent="lawPanel/DetailPanel"]
 layout_mode = 0

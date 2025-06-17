@@ -7,6 +7,7 @@ class_name policyPanel
 @onready var tab_bar = $TabBar
 @onready var point_label = $lawPanel/PointLabel
 @onready var law_label = $lawPanel/DetailPanel/Label2
+@onready var exp_len = $PanelContainer/orderPanel2/VBoxContainer/expLen
 
 var costhp=35
 #@onready var button = $PanelContainer/orderPanel/VBoxContainer/HBoxContainer/Button
@@ -44,7 +45,7 @@ func initControls():
 		control_1.initDataByGroup(1,group)
 		control_2.initDataByGroup(2,group)
 		control_3.initDataByGroup(3,group)
-		
+var expLenWidth=1240		
 
 @onready var ConfireButton = $lawPanel/DetailPanel/Button
 
@@ -52,12 +53,14 @@ func changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()
 
 	if currencelanguage=="ru":
+		expLenWidth=1325
 		ConfireButton.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
 		tab_bar.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
 		label.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
 		law_label.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))	
 		currence_no_policy.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))	
 	else:
+		expLenWidth=1240
 		ConfireButton.remove_theme_font_override("font")
 		tab_bar.remove_theme_font_override("font")
 		label.remove_theme_font_override("font")
@@ -69,23 +72,34 @@ func _process(delta):
 	pass
 
 func _initData():
-	index=0
+	#_on_control_1_gui_input()
 	if GameManager.sav.have_event["firstLawExecute"]==false and GameManager.sav.day<5:
 		$TextureButton.hide()
 	else:
 		$TextureButton.show()
 	if GameManager.sav.curLawName.length()>0:
 		law_label.text=tr("当前【%s】法案已被立项，请先在议会厅通过该法案，才能立项其他法律。")%tr(GameManager.sav.curLawName)
-		var label_height = 81
-		var label_line_count = law_label.get_line_count()  # 获取行数（可选）
-		var padding = 17  # 可根据需要调整
-		var new_size = Vector2(detail_panel.custom_minimum_size.x, label_height +label_line_count* padding)
-	
-		# 应用到 Panel
-		detail_panel.custom_minimum_size = new_size
+		
+		changeexp_len()
+		#var label_height = 81
+		#var label_line_count = law_label.get_line_count()  # 获取行数（可选）
+		#var padding = 20  # 可根据需要调整
+		#var new_size = Vector2(detail_panel.custom_minimum_size.x, label_height +label_line_count* padding)
+		#exp_len.custom_minimum_size=Vector2(expLenWidth,new_size.y-81)
+
+		#detail_panel.custom_minimum_size = new_size
 	
 	refreshLawPoint()
 
+func changeexp_len():
+
+	var label_height = 81
+	var label_line_count = law_label.get_line_count()  # 获取行数（可选）
+	var padding = 20  # 可根据需要调整
+	var new_size = Vector2(1295+expLenWidth-1240, label_height +label_line_count* padding)
+	exp_len.custom_minimum_size=Vector2(expLenWidth,new_size.y-81)
+		# 应用到 Panel
+	detail_panel.custom_minimum_size = new_size
 func refreshLawPoint():
 	get_tree().call_group("lawpoints","_initData")
 	if GameManager.sav.curLawName.length()>0 or GameManager.sav.curLawNum1!=-1 or GameManager.sav.curLawNum2!=-1:
@@ -99,7 +113,7 @@ func _on_tab_bar_tab_changed(tab):
 		$PanelContainer/orderPanel.show()
 	else:
 		$lawPanel.show()
-		
+		changeexp_len()
 		$PanelContainer/orderPanel.hide()
 		if GameManager.sav.have_event["firstTabLaw"]==false:
 			GameManager.sav.have_event["firstTabLaw"]=true
@@ -174,7 +188,7 @@ func _disableAll():
 
 func _on_button_button_down():
 
-	if await GameManager.isTried(costhp):
+	if await GameManager.isTried(costhp) and index==0:
 		return
 	GameManager.sav.hp=GameManager.sav.hp-costhp
 	SoundManager.play_sound(sounds.SFX_FAST_UI_CLICK_MECHANICAL_03_WAV)
@@ -194,17 +208,17 @@ func preLaw(value:lawpoint):
 	selectLawPoint=value
 	law_label.text=value.detail
 	
-	
-	var label_height = 81
-	var label_line_count = law_label.get_line_count()  # 获取行数（可选）
-	var padding = 20  # 可根据需要调整
-	var new_size = Vector2(detail_panel.custom_minimum_size.x, label_height +label_line_count* padding)
+	changeexp_len()
+	#var label_height = 81
+	#var label_line_count = law_label.get_line_count()  # 获取行数（可选）
+	#var padding = 20  # 可根据需要调整
+	#var new_size = Vector2(detail_panel.custom_minimum_size.x, label_height +label_line_count* padding)
 	
 	# 应用到 Panel
-	detail_panel.custom_minimum_size = new_size
+	#detail_panel.custom_minimum_size = new_size
 	
-	
-	detail_panel.size=new_size
+	#exp_len.custom_minimum_size=Vector2(expLenWidth,new_size.y-81)
+	#detail_panel.size=new_size
 	pass
 @onready var lawbutton = $lawPanel/DetailPanel/Button
 

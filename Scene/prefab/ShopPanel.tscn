@@ -288,42 +288,42 @@ offset_bottom = 396.0
 [node name="Control1" parent="HBoxContainer" instance=ExtResource("4_iwehk")]
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
-tooltip_text = "雌雄双股剑"
+tooltip_text = "血姬傀儡"
 to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
 img = ExtResource("11_ysr0e")
-itemstype = 11
+itemstype = 13
 
 [node name="Control2" parent="HBoxContainer" instance=ExtResource("4_iwehk")]
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
-tooltip_text = "青龙偃月刀"
+tooltip_text = "陶谦血袖"
 to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
 img = ExtResource("12_g3hr8")
-itemstype = 12
+itemstype = 14
 
 [node name="Control3" parent="HBoxContainer" instance=ExtResource("4_iwehk")]
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
-tooltip_text = "龙胆亮银枪"
+tooltip_text = "青龙偃月刀"
 to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
 img = ExtResource("13_xnv0q")
-itemstype = 14
+itemstype = 15
 
 [node name="Control4" parent="HBoxContainer" instance=ExtResource("4_iwehk")]
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
-tooltip_text = "獬豸圣像"
+tooltip_text = "龙胆亮银枪"
 to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
 img = ExtResource("14_bvea7")
-itemstype = 16
+itemstype = 18
 
 [node name="Control5" parent="HBoxContainer" instance=ExtResource("4_iwehk")]
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
-tooltip_text = "洞察之镜"
+tooltip_text = "丈八蛇矛"
 to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
 img = ExtResource("15_ptsft")
-itemstype = 15
+itemstype = 17
 
 [node name="Label2" type="Label" parent="."]
 visible = false

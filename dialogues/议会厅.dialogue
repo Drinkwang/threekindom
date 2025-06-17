@@ -92,7 +92,7 @@ do chendeng.showEX=false
 
 刘备: (陈登职责繁重，尚有此兴致……近日徐州流言四起，旧主陶谦之墓似有异动，莫非他因此烦忧？）
 - 与陈登共食
-
+	do eatFishSound()
 	刘备: 这个生鱼片我尝了，果然鲜美。
 	陈登: 主公豪气，我敬你一盏！  
 
@@ -158,7 +158,7 @@ do chendeng.showEX=false
 #
 - 再次尝试生鱼片
 	刘备: 元龙好兴致，备再尝此味。
-
+	do eatFishSound()
 	陈登: 还是主公懂我，元龙幸甚！
 	刘备: (鱼脍虽好，但享用后总觉得有一些不舒服）
 	do eatFish2(false)
