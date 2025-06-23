@@ -270,17 +270,21 @@ func _buttonListClick(item):
 		if GameManager.musicId!=0:
 			GameManager.musicId=-GameManager.musicId
 		
+		
+		#逻辑不能放在这里
 		if(GameManager.sav.alreadyHP<10):
 			GameManager.sav.lazydays+=1	
 			GameManager.sav.lazyValue=GameManager.sav.lazyValue+1
 			if GameManager.sav.lazydays>=3:
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"连续多日怠惰")	
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"连续多日怠惰")
+				return	
 				#连续多日怠惰
 			else:
 				var lazyRan=0.2*GameManager.sav.lazyValue
 				var random_value = randf()  # 生成0.0到1.0的随机数
 				if random_value <= lazyRan:
 					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"单日概率怠惰")
+					return
 				#怠惰概率 1次 10% 
 		else:
 			if GameManager.sav.lazyValue>0:
@@ -298,12 +302,15 @@ func oneDayidleness():
 	GameManager.sav.HAOZUPAI.ChangeSupport(-5)
 	GameManager.sav.BENTUPAI.ChangeSupport(-5)
 	GameManager.sav.WAIDIPAI.ChangeSupport(-5)
+	SoundManager.stop_music()	
+	GameManager._rest()	 	
 func moreDayidness():
 	GameManager.sav.HAOZUPAI.ChangeSupport(-10)
 	GameManager.sav.BENTUPAI.ChangeSupport(-10)
 	GameManager.sav.WAIDIPAI.ChangeSupport(-10)
-	GameManager.sav.changePeopleSupport(-5)
-
+	GameManager.changePeopleSupport(-5)
+	SoundManager.stop_music()	
+	GameManager._rest()	 
 func refreshPropertyPanel():
 
 	var contextEx="当前天数：%d"%GameManager.sav.day+"\n"

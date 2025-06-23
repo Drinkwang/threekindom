@@ -253,6 +253,7 @@ func array_sum(arr: Array) -> int:
 	return sum
 
 func costHp(value):
+	#sav.alreadyHP+=value
 	if sav.hp-value>0:
 		sav.hp-=value
 	else:

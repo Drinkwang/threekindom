@@ -255,13 +255,15 @@ do gotostreetAndKe(1)
 
 ~ 连续多日怠惰
 主簿: 主公，徐州丹阳派、士族派、豪族派因您多日未理政务，已颇有微词，恐生不安。
-do moreDayidness()
+
 系统提示: 士族派好感-10，豪族派好感-10，丹阳派好感-10，民心-5
+do moreDayidness()
 => END!
 
 
 ~ 单日概率怠惰
 主簿: 主公，今日您未处理政务，丹阳派、士族派、豪族派已有不满之声。
-do oneDayidleness()
+
 系统提示: 士族派好感-5，豪族派好感-5，丹阳派好感-5
+do oneDayidleness()
 => END!
