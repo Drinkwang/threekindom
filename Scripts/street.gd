@@ -388,8 +388,9 @@ func getDaoQianItem():
 	_reward.showTitileReward(tr("恭喜你，你获得-陶谦血袖"),items)		
 
 func _bossMode():
-	
-	
+	if battle_pane.visible==false:
+		return
+	#挑战完boss后触发，可能没触发
 	var to_inventory_xue= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.血姬傀儡)
 	var to_inventory_tao= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.陶谦血袖)
 	var xue_quantity=InventoryManager.has_item_quantity(to_inventory_xue)
@@ -408,6 +409,9 @@ func _process(delta):
 func confireSold():
 	shop_panel.confireSold()
 
+
+func settleAfter():
+	shop_panel.settleAfter()
 
 
 func sideQuestReturnG(iswin):

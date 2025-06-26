@@ -693,7 +693,7 @@ func excuteLaw():
 			sav.labor_force+=100
 			var items:Array=[InventoryManagerItem.ItemEnum.珍品礼盒,InventoryManagerItem.ItemEnum.益气丸, InventoryManagerItem.ItemEnum.胜战锦囊, InventoryManagerItem.ItemEnum.诸子百家论集]
 			var rindex= randi_range(0,items.size())
-			var remainder = InventoryManager.add_item(inventoryPackege, items[rindex], 1, false)
+			var remainder = InventoryManager.add_item(inventoryPackege, items[rindex-1], 1, false)
 			#bedone
 			print("促进商贸")			
 	elif sav.curLawName=="诚信经营":#只有buff 所有派系好感度上升

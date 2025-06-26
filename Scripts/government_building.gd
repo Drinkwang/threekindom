@@ -1,5 +1,5 @@
 extends baseComponent
-
+class_name  government_building
 
 @onready var control = $Control
 const FancyFade = preload("res://addons/transitions/FancyFade.gd")
@@ -990,3 +990,7 @@ func changePanelPos():
 	#f GameManager.sav.
 		factionView.position.y=730
 	pass
+
+func JudFundTask():
+	#在府邸意外凑齐钱时会判断任务是否完成
+	_JudgeTask()

@@ -144,6 +144,11 @@ func refreshAlreadySoldWeapon():
 func _on_texture_button_2_button_down():
 	self.hide()
 
+func settleAfter():
+	pass#后续可能会修改
+	#refreshAlreadySoldTxt
+	
+
 
 func _on_Sold_button_down():
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"是否售出商品")

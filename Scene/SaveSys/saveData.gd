@@ -6,7 +6,18 @@ class_name saveData
 @export var day=0
 #@export var intellectual_support=100 #士族支持度 一开始为100 当议会中 会出现支持和不支持以及摇摆 
 @export var people_surrport=100 #群众支持度 数值
-@export var coin=100 #金钱 数值
+@export var coin=100: #金钱 数值
+
+	get:
+		return coin
+	set(value):
+
+		coin=value
+		
+		if GameManager.currenceScene is government_building:
+			GameManager.currenceScene.JudFundTask()
+
+
 @export var coin_DayGet=40
 @export var labor_force=100 #劳动力 可以当作军队进行使用 劳动力转换成军队需要消耗值 骑兵 步兵 弓兵
 @export var labor_DayGet=10

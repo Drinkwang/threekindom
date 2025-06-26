@@ -87,7 +87,7 @@ func endBattle():
 			elif  _mode==bossMode.mi:
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"战斗失败_血姬")
 @onready var useItemPanel = $PanelContainer/orderPanel/VBoxContainer/HBoxContainer2/TextureButton
-@onready var label = $PanelContainer/orderPanel/VBoxContainer/HBoxContainer2/TextureButton/Label/Label
+@onready var label = $PanelContainer/orderPanel/VBoxContainer/HBoxContainer2/TextureButton/CheckBox/Label
 
 
 

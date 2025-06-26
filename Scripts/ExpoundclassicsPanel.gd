@@ -1,6 +1,6 @@
 extends Control
 @onready var timer = $Timer
-
+@onready var itemuseLabel=$itemUse/Label
 @onready var animation_player = $AnimationPlayer
 var score=0
 var db
@@ -20,23 +20,29 @@ func _ready():
 	refreshCount()
 	var currencelanguage=TranslationServer.get_locale()
 	if currencelanguage=="en":
+		itemuseLabel.add_theme_constant_override("line_spacing",0)#/line_spacing
 		starttitle.add_theme_font_size_override("font_size", 60)
 		reside_txt.add_theme_font_size_override("font_size", 60)
 		title.add_theme_font_size_override("font_size", 60)
 		button.add_theme_font_size_override("font_size", 60)
 		#if(starttitle.size()>)
+	elif currencelanguage=="lzh":
+		itemuseLabel.add_theme_constant_override("line_spacing",-5)#/line_spacing
 	elif currencelanguage=="zh":
+		itemuseLabel.add_theme_constant_override("line_spacing",0)
 		starttitle.add_theme_font_size_override("font_size", 81)
 		reside_txt.add_theme_font_size_override("font_size", 81)
 		title.add_theme_font_size_override("font_size", 81)
 		button.add_theme_font_size_override("font_size", 81)
 	elif currencelanguage=="ja":
+		itemuseLabel.add_theme_constant_override("line_spacing",0)		
 		starttitle.add_theme_font_size_override("font_size", 50)
 		reside_txt.add_theme_font_size_override("font_size", 50)
 		title.add_theme_font_size_override("font_size", 50)
 		button.add_theme_font_size_override("font_size", 50)
 	#获取各个语言大小，微调
 	elif currencelanguage=="ru":
+		itemuseLabel.add_theme_constant_override("line_spacing",0)		
 		starttitle.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
 		reside_txt.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
 		title.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))

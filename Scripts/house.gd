@@ -289,7 +289,8 @@ func _buttonListClick(item):
 		else:
 			if GameManager.sav.lazyValue>0:
 				GameManager.sav.lazyValue=GameManager.sav.lazyValue-1
-			GameManager.sav.lazydays=0	
+			GameManager.sav.lazydays=0
+			print("已经清除怠惰")	
 		SoundManager.stop_music()	
 		GameManager._rest()	 
 		#判断有无道具 有道具且等于false	

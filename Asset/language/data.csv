@@ -578,8 +578,8 @@ Result:","人数：
 "这场战斗你赢了,","You won this battle,","这场战斗你赢了,","這場戰鬥你贏了,","この戦いであなたは勝ちました,","Ты выиграл этот бой,"
 你没有损失,You had no losses,你没有损失,你沒有損失,あなたは損失がなかった ,Ты не понес убытков 
 你损失了{soilder}个士兵,You lost {soilder} soldiers,你损失了{soilder}个士兵,你損失了{soilder}個士兵 ,あなたは{soilder}人の兵士を失った ,Ты потерял {soilder} солдат 
-你损失了{coin}金,You lost {coin} money,你损失了{coin}金,你損失了{coin}金錢。 ,あなたは{coin}のお金を失った。 ,Ты потерял {coin} денег. 
-你损失了{coin}金和{soilder}个士兵,You lost {coin} money and {soilder} soldiers. ,你损失了{coin}金和{soilder}个士兵,你損失了{coin}金錢和{soilder}個士兵。 ,あなたは{coin}のお金と{soilder}人の兵士を失った。 ,Ты потерял {coin} денег и {soilder} солдат. 
+你损失了{coin}金,You lost {coin} money,你损失了{coin}金,你損失了{coin}金錢,あなたは{coin}のお金を失った,Ты потерял {coin} денег. 
+你损失了{coin}金和{soilder}个士兵,You lost {coin} money and {soilder} soldiers. ,你损失了{coin}金和{soilder}个士兵,你損失了{coin}金錢和{soilder}個士兵,あなたは{coin}のお金と{soilder}人の兵士を失った,Ты потерял {coin} денег и {soilder} солдат. 
 ",获得以下道具:",",You obtained the following items: ",",获得以下道具:",", 獲得以下道具： ",", 以下のアイテムを獲得しました： ",", Ты получил следующие предметы: "
 你从郑玄哪里受益良多,You gained much from Zheng Xuan ,你从郑玄哪里受益良多,你從鄭玄那裡受益良多,あなたは鄭玄から多くの利益を得ました ,Ты многое получил от Чжэн Сюаня 
 郑玄,Zheng Xuan,郑玄,鄭玄,鄭玄,Чжэн Сюань

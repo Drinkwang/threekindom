@@ -18,7 +18,7 @@ const InventoryManagerName = "InventoryManager"
 		img=value
 		if context!=null:
 			context.texture=img
-			context.gre
+			#context.gre
 		#if texture_rect!=null:
 		#	texture_rect.texture=img
 		

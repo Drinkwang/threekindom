@@ -89,6 +89,9 @@ offset_right = 1395.0
 offset_bottom = 20.0
 scale = Vector2(0.2, 0.2)
 
+[node name="shopPanel" parent="CanvasLayer" instance=ExtResource("7_nhhnq")]
+visible = false
+
 [node name="blank" type="ColorRect" parent="CanvasLayer"]
 visible = false
 offset_right = 1939.0
@@ -147,6 +150,3 @@ offset_right = 1931.0
 offset_bottom = 1081.0
 grow_horizontal = 1
 grow_vertical = 1
-
-[node name="shopPanel" parent="CanvasLayer" instance=ExtResource("7_nhhnq")]
-visible = false
