@@ -98,7 +98,7 @@ func _ready():
 	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_RESIZE_DISABLED, true)
 	#如果设置存了别的
 	var lan
-	if system_locale=="zh_HK" or system_locale=="zh_TW":
+	if system_locale=="zh_HK" or system_locale=="zh_TW" or system_locale=="lzh":
 		option_button.select(1)
 		_on_option_button_item_selected(1)
 	elif system_locale=="zh":

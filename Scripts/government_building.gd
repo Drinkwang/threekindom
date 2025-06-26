@@ -708,8 +708,8 @@ func afterAllocation():
 
 func FractionalDiff():
 	GameManager.sav.HAOZUPAI.isshow=true
-	GameManager.sav.HAOZUPAI.ChangeAllPeople(floor(GameManager.sav.BENTUPAI._num_all/2))
-	GameManager.sav.BENTUPAI.ChangeAllPeople(floor(GameManager.sav.BENTUPAI._num_all/2))
+	GameManager.sav.HAOZUPAI._num_all=GameManager.sav.BENTUPAI._num_all/2
+	GameManager.sav.BENTUPAI._num_all=GameManager.sav.BENTUPAI._num_all-GameManager.sav.HAOZUPAI._num_all
 	GameManager.sav.BENTUPAI._name="士族派"
 	SignalManager.changeSupport.emit()
 	GameManager.sav.have_event["Factionalization"]=true

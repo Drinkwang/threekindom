@@ -37,6 +37,13 @@ func refreshSysLanguageFont():
 		#p_3.add_theme_font_override("font",rufont)	
 		#o_1.add_theme_font_override("font",rufont)	
 func enter():
+	var has_separatist_forces=GameManager.sav.have_event["Factionalization"]
+	
+	if has_separatist_forces:
+		p_3.show()
+	else:
+		p_3.hide()
+	
 	o_1.text="{AS}\n{AP}\n{RATE}\n{FINAL}".format({"AS": "__", "AP":"__" ,"RATE":"__","FINAL":"__"})
 	SoundManager.play_sound(bgmxuanhua)
 	button.hide()
@@ -46,15 +53,21 @@ func enter():
 	initRtSO(GameManager.sav.WAIDIPAI)		
 	p_1.text="{NP}\n{RT}\n{SP}\n{OP}".format({"NP": GameManager.sav.BENTUPAI._num_all, "RT": "__","SP":"__","OP":"__"})
 	p_2.text="{NP}\n{RT}\n{SP}\n{OP}".format({"NP": GameManager.sav.WAIDIPAI._num_all, "RT": "__","SP":"__","OP":"__"}) 
+	p_3.text="{NP}\n{RT}\n{SP}\n{OP}".format({"NP": GameManager.sav.HAOZUPAI._num_all, "RT": "__","SP":"__","OP":"__"}) 
 	await get_tree().create_timer(0.5).timeout  #本土派
 	p_1.text="{NP}\n{RT}\n{SP}\n{OP}".format({"NP": GameManager.sav.BENTUPAI._num_all, "RT": GameManager.sav.BENTUPAI._num_rt,"SP":"__","OP":"__"})
 	p_2.text="{NP}\n{RT}\n{SP}\n{OP}".format({"NP": GameManager.sav.WAIDIPAI._num_all, "RT": GameManager.sav.WAIDIPAI._num_rt,"SP":"__","OP":"__"}) 
+	p_3.text="{NP}\n{RT}\n{SP}\n{OP}".format({"NP": GameManager.sav.HAOZUPAI._num_all, "RT": GameManager.sav.HAOZUPAI._num_rt,"SP":"__","OP":"__"}) 
 	await get_tree().create_timer(0.5).timeout  #本土派
 	p_1.text="{NP}\n{RT}\n{SP}\n{OP}".format({"NP": GameManager.sav.BENTUPAI._num_all, "RT": GameManager.sav.BENTUPAI._num_rt,"SP":GameManager.sav.BENTUPAI._num_sp,"OP":"__"})
 	p_2.text="{NP}\n{RT}\n{SP}\n{OP}".format({"NP": GameManager.sav.WAIDIPAI._num_all, "RT": GameManager.sav.WAIDIPAI._num_rt,"SP":GameManager.sav.WAIDIPAI._num_sp,"OP":"__"}) 
+	p_3.text="{NP}\n{RT}\n{SP}\n{OP}".format({"NP": GameManager.sav.WAIDIPAI._num_all, "RT": GameManager.sav.HAOZUPAI._num_rt,"SP":GameManager.sav.HAOZUPAI._num_sp,"OP":"__"}) 
+	
 	await get_tree().create_timer(0.5).timeout  #本土派
 	p_1.text="{NP}\n{RT}\n{SP}\n{OP}".format({"NP": GameManager.sav.BENTUPAI._num_all, "RT": GameManager.sav.BENTUPAI._num_rt,"SP":GameManager.sav.BENTUPAI._num_sp,"OP":GameManager.sav.BENTUPAI._num_op})
 	p_2.text="{NP}\n{RT}\n{SP}\n{OP}".format({"NP": GameManager.sav.WAIDIPAI._num_all, "RT": GameManager.sav.WAIDIPAI._num_rt,"SP":GameManager.sav.WAIDIPAI._num_sp,"OP":GameManager.sav.WAIDIPAI._num_op}) 
+	p_3.text="{NP}\n{RT}\n{SP}\n{OP}".format({"NP": GameManager.sav.WAIDIPAI._num_all, "RT": GameManager.sav.HAOZUPAI._num_rt,"SP":GameManager.sav.WAIDIPAI._num_sp,"OP":GameManager.sav.HAOZUPAI._num_op}) 
+
 	await get_tree().create_timer(0.5).timeout
 	#合计同意
 	#合计反对
@@ -65,6 +78,10 @@ func enter():
 	var totalOp:int=GameManager.sav.BENTUPAI._num_op+GameManager.sav.WAIDIPAI._num_op+GameManager.sav.HAOZUPAI._num_op
 	var totalNum:int=GameManager.sav.BENTUPAI._num_all+GameManager.sav.WAIDIPAI._num_all+GameManager.sav.HAOZUPAI._num_all
 	var totalrate=(totalSp*1.0/totalNum*1.0)*100.0
+
+	
+	
+	
 	var isPass:String="通过"
 	if(totalrate>50):
 		isPass="通过"
