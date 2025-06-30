@@ -107,12 +107,18 @@ func refreshLawPoint():
 	else:
 		$lawPanel/DetailPanel/Button.disabled=false
 	point_label.text=tr("点数:%s")%GameManager.sav.Merit_points
+
+@onready var LawPanelBoard = $PanelContainer/orderPanel2
+
+
 func _on_tab_bar_tab_changed(tab):
 	if tab==0:
 		$lawPanel.hide()
+		LawPanelBoard.hide()
 		$PanelContainer/orderPanel.show()
 	else:
 		$lawPanel.show()
+		LawPanelBoard.show()
 		changeexp_len()
 		$PanelContainer/orderPanel.hide()
 		if GameManager.sav.have_event["firstTabLaw"]==false:
@@ -142,7 +148,7 @@ func _on_control_1_gui_input(event):
 		control_2.check_box.button_pressed=false
 		control_3.check_box.button_pressed=false
 		label.text=tr(control_1.context)+":"+tr(control_1.detail)
-
+		canHideBlockShow()
 
 func _on_control_2_gui_input(event):
 	
@@ -157,6 +163,8 @@ func _on_control_2_gui_input(event):
 		control_2.check_box.button_pressed=true
 		control_3.check_box.button_pressed=false
 		label.text=tr(control_2.context)+":"+tr(control_2.detail)	
+		canHideBlockShow()
+@onready var can_hide_block = $PanelContainer/orderPanel/VBoxContainer/canHideBlock
 
 
 func _on_control_3_gui_input(event):
@@ -172,7 +180,14 @@ func _on_control_3_gui_input(event):
 		control_2.check_box.button_pressed=false
 		control_3.check_box.button_pressed=true
 		label.text=tr(control_3.context)+":"+tr(control_3.detail)	
-
+		canHideBlockShow()
+		
+func canHideBlockShow():		
+	var lines = label.text.split("\n", false)  # false 表示不包含空行
+	if lines.size() >= 9:
+		can_hide_block.hide()
+	else:
+		can_hide_block.show()	
 func bancontrol(_index,status):
 	#get("ban%d"%index)=boolvalue
 	#set("ban%d"%index,boolvalue)

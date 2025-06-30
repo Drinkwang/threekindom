@@ -58,7 +58,7 @@ func confireAllocation():
 	#当前士族派对你的支持度为 当前豪族派对你的支持度为 当前民心为
 #这里做好感度现实
 	#0 降低
-
+	GameManager.sav.GrainIndex+=1
 	
 	#+5
 	#-5
@@ -105,6 +105,9 @@ func confireAllocation():
 
 #这里可能不写
 func afterAllocation():
+	control_1.factionSurpuls._num_grain=control_1._num+control_1.factionSurpuls._num_grain
+	control_2.factionSurpuls._num_grain=control_2._num+control_2.factionSurpuls._num_grain
+	control_3.factionSurpuls._num_grain=control_3._num+control_3.factionSurpuls._num_grain			
 	self.hide()
 	pass
 

@@ -53,6 +53,23 @@ func post_transition():
 	SoundManager.play_ambient_sound(府邸)
 
 	print("fadedone")
+	if(GameManager.hearsayID==1):
+		chenden.show()
+		mizhu.show()
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"商人售卖利益")
+		return
+	elif GameManager.hearsayID==2:
+		chenden.show()
+		mizhu.show()
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"出现分化")
+
+		return
+	elif GameManager.hearsayID==3:
+		chenden.hide()
+		mizhu.show()
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"糜竺第三次市井")
+
+		return	
 	_initData()
 
 
@@ -74,23 +91,7 @@ func _ready():
 	else:
 		bg.texture=xiaopeiBuild
 	#DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
-	if(GameManager.hearsayID==1):
-		chenden.show()
-		mizhu.show()
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"商人售卖利益")
-		return
-	elif GameManager.hearsayID==2:
-		chenden.show()
-		mizhu.show()
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"出现分化")
-
-		return
-	elif GameManager.hearsayID==3:
-		chenden.hide()
-		mizhu.show()
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"糜竺第三次市井")
-
-		return		
+	
 	Transitions.post_transition.connect(post_transition)
 	control.buttonClick.connect(_buttonListClick)
 	super._ready()
@@ -100,7 +101,7 @@ func _ready():
 	pass # Replace with function body.
 var candoSub=true
 func hearSayEnd():
-	GameManager.hearsayID=-1
+
 	if(GameManager.hearsayID==1):
 		
 		#const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
@@ -112,7 +113,7 @@ func hearSayEnd():
 		GameManager.hearsayID=3
 		GameManager.restLabel=tr("陈登在议事厅，灯下独思")		
 		SceneManager.rest_scene(SceneManager.roomNode.BOULEUTERION)
-
+	GameManager.hearsayID=-1
 
 
 func _initData():
@@ -223,11 +224,27 @@ func _initData():
 			GameManager.sav.have_event["支线触发完毕获得锦囊之前"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁府邸调查支线")
 			return
-		
-		#判断该不该显示糜竺邀请，同时时间节点到中期，显示任务糜竺-中央，点击触发额外剧情
-		if GameManager.sav.have_event["糜竺支线1"]==false and 1:
-			pass
+		#今日重点完成任务
+		#判断该不该显示糜竺邀请，同时时间节点到中期，显示任务糜竺-中央，点击触发额外剧情,进入平定泰山诸将时，这里弹出
+		if GameManager.sav.have_event["糜竺支线1"]==false and GameManager.sav.have_event["battleTaiShan"]==true:
+			mizhu.changeAllClick("糜竺嫁妹支线1")
+			mizhu.show()
+			mizhu.showEX=true
+			#插入糜贞送药
+			#糜竺嫁妹支线2
 			#tsty.show()		
+			
+		elif GameManager.sav.have_event["糜竺支线2"]==false and GameManager.sav.mizhuSideWait==1:
+			if GameManager.sav.have_event["糜贞送药"]==false:
+				mizhu.show()
+				mizhu.showEX=false
+				GameManager.sav.have_event["糜贞送药"]=true
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"插入糜贞送药")
+				
+		elif GameManager.sav.have_event["糜竺支线2"]==false and GameManager.sav.mizhuSideWait==0:	
+			mizhu.changeAllClick("糜竺嫁妹支线2")
+			mizhu.show()
+			mizhu.showEX=true
 	else :
 		if GameManager.sav.day>5:
 			if(GameManager.sav.have_event["initTask1"]==true):
@@ -244,6 +261,19 @@ func _initData():
 				#如果没有支线则生成
 			#pass					
 #
+
+func mizhenGift():
+	mizhu.hide()
+	var _reward:rewardPanel=PanelManager.new_reward()
+	var items={
+		"items": {InventoryManagerItem.ItemEnum.益气丸:2},
+		"money": 0,
+		"population": 0
+	}
+	#GameManager.ScoreToItem()
+	GameManager.sav.hp=GameManager.sav.hp+10
+	_reward.showTitileReward(tr("恭喜你，你获得-益气丸x2"),items)		
+
 func subHoldWoold():
 	GameManager.sav.have_event["支线触发完毕查出锦囊"]=true
 				
@@ -358,6 +388,28 @@ func optionSummonOnemen():
 		else:	
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"召见手下2")	
 
+
+
+
+func eatTea1(issuccuss=false):
+	GameManager.sav.mizhuSideWait=3
+	GameManager.sav.have_event["糜竺支线1"]=true
+	if issuccuss==true:
+		GameManager.sav.have_event["糜竺正确选择1"]=true
+	else:
+		GameManager.sav.have_event["糜竺正确选择1"]=false
+		#GameManager.sav.hp
+func eatTea2(issuccuss=false):
+
+	GameManager.sav.have_event["糜竺支线2"]=true
+
+
+	if issuccuss==true:
+		GameManager.sav.have_event["糜竺正确选择2"]=true
+	else:
+		GameManager.sav.have_event["糜竺正确选择2"]=false
+
+
 func showMizhuTouchMain():
 	mizhu.show()
 	mizhu.showEX=true
@@ -446,7 +498,7 @@ func selectPolicy(data):
 		GameManager.sav.HAOZUPAI.ChangeSupport(-5)
 		GameManager.changePeopleSupport(5)
 		
-		
+		hidePolicy()
 		GameManager.sav.coin_DayGet+=30
 		GameManager.sav.labor_DayGet+=10
 		GameManager.sav.currenceValue+=2
@@ -460,7 +512,7 @@ func selectPolicy(data):
 		GameManager.sav.BENTUPAI.ChangeSupport(5)
 		GameManager.sav.HAOZUPAI.ChangeSupport(5)
 
-		
+		hidePolicy()
 		GameManager.sav.coin_DayGet+=10
 		GameManager.sav.labor_DayGet+=5
 		
@@ -473,6 +525,7 @@ func selectPolicy(data):
 		GameManager.sav.have_event["chaoChenDenPolicyExcute"]=true
 	elif id==policymanager.policyID.P_SwiftPurge:
 		#所有派系-10，并且获得人口和金币
+		hidePolicy()
 		GameManager.sav.BENTUPAI.ChangeSupport(-5)
 		GameManager.sav.HAOZUPAI.ChangeSupport(-5)
 		GameManager.sav.WAIDIPAI.ChangeSupport(-5)
@@ -481,7 +534,7 @@ func selectPolicy(data):
 		GameManager.sav.coin+=300
 		GameManager.sav.labor_force+=150
 		GameManager.resideValue=tr("士族派好感下降5，豪族派好感下降5，丹阳派好感下降5，每日获取金额-5，每日获取劳动力-5，金钱+300,劳动力+150")
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"暴力除奸")
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"加速除奸")
 		GameManager.sav.have_event["chaoChenDenPolicyExcute"]=true		
 func selectCorrect():
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"正确决策0")
@@ -557,6 +610,8 @@ func _JudgeTask():
 		if(GameManager.sav.have_event["completeTask1"]==false):
 			#ameManager.clearTask()
 			GameManager.sav.have_event["completeTask1"]=true
+			mizhu.show()
+			chenden.show()
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"收集资金任务完成")#显示对话
 			#任务完成
 		elif(true):
@@ -649,8 +704,8 @@ func enterBattleModeBefore():
 @onready var hp_panel = $CanvasLayer/hpPanel
 func collectMoneyComplete():
 	GameManager.sav.TargetDestination="rest"	
-	mizhu.show()
-	chenden.show()
+	#mizhu.show()
+	#chenden.show()
 	mizhu.dialogue_start="与糜竺对话2"
 	chenden.dialogue_start="与陈登对话2"
 	#ameManager.sav.targetResType=GameManager.ResType.rest
@@ -735,6 +790,9 @@ func StartTaishan():
 var _faction:cldata.factionIndex=cldata.factionIndex.bentupai	
 func SummonFaction(value:cldata.factionIndex):
 	_faction=value
+	if getFactionByIndex().isDoneOp==true:
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"已经约过该派系")#显示对话
+		return
 	if(value==cldata.factionIndex.weidipai):
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"选项")#显示对话
 			
@@ -762,6 +820,7 @@ func financialConfortChoice():
 #选项资金安抚
 func financialConfort():
 	var _c=getFactionByIndex()
+	_c.isDoneOp=true
 	var rindex=GameManager.sav.randomIndex
 	#减去资金
 	GameManager.sav.coin=GameManager.sav.coin-200
@@ -873,7 +932,9 @@ func consent():
 		elif lawIndex==2:
 			GameManager.sav.danyangCD=7
 		elif lawIndex==3:
-			GameManager.sav.lvbuCD=7			
+			GameManager.sav.lvbuCD=7
+		var data=getFactionByIndex()
+		data.isDoneOp=true
 		GameManager.sav.laws[lawIndex].append(lalongPolicy)
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"成功拉拢")#显示对话	
 	else:
@@ -891,7 +952,7 @@ func claim():
 	var _c=getFactionByIndex()
 	var rindex=GameManager.sav.randomIndex
 	ForValueCost=10+5*rindex
-	ForValueGet=_c._num_all*20
+	ForValueGet=_c._num_all*5
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"索取从派系")#显示对话
 
 
@@ -915,6 +976,7 @@ func confireSuppress():
 	ForValueGet=0
 	
 	var _c=getFactionByIndex()
+	_c.isDoneOp=true
 	_c._support_rate=100
 	_c.isrebellion=true
 	_c._num_defections+=1
@@ -923,6 +985,7 @@ func confireSuppress():
 
 func CF_CallingSoldier():
 	var _c=getFactionByIndex()
+	_c.isDoneOp=true
 	_c.ChangeSupport(-ForValueCost)
 	GameManager.sav.labor_force=GameManager.sav.labor_force+ForValueGet
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"调用士兵完成")#显示对话
@@ -932,6 +995,7 @@ func CF_claim():
 
 	var _c=getFactionByIndex()
 	_c.ChangeSupport(-ForValueCost)
+	_c.isDoneOp=true
 	#减去资金
 	GameManager.sav.coin=GameManager.sav.coin+ForValueGet
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"索取完成")

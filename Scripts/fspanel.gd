@@ -36,19 +36,20 @@ func changeLanguage():
 			_label.add_theme_font_override("font",newfont)
 			_label.add_theme_constant_override("line_spacing",-2)			
 		if _label_2!=null:
-			_label_2	.add_theme_font_override("font",newfont)
+			_label_2.add_theme_font_override("font",newfont)
 			_label_2.add_theme_constant_override("line_spacing",-2)
 		if currence_laws!=null:
 			currence_laws.add_theme_font_override("font",newfont)
 	else:
 		if _label!=null:
-			_label.remove_theme_font_override("font")
-			_label.remove_theme_constant_override("line_spacing")			
+			#_label.remove_theme_font_override("font")
+			_label.add_theme_constant_override("line_spacing",0)		
 		if _label_2!=null:
-			_label_2.remove_theme_font_override("font")
-			_label_2.remove_theme_constant_override("line_spacing")
+			#_label_2.remove_theme_font_override("font")
+			_label_2.add_theme_constant_override("line_spacing",0)
 		if currence_laws!=null:
-			currence_laws.remove_theme_font_override("font")
+			pass
+			#currence_laws.remove_theme_font_override("font")
 	refreshData()
 @onready var v_box_container = $PanelContainer/VBoxContainer
 

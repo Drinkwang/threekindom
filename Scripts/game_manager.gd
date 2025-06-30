@@ -261,6 +261,9 @@ func costHp(value):
 func refreshPaixis():
 	initPaixi(sav.BENTUPAI)
 	initPaixi(sav.WAIDIPAI)
+	#initPaixi(sav.HAOZUPAI)
+	if GameManager.sav.have_event["Factionalization"]:
+		initPaixi(sav.HAOZUPAI)
 	#传递信号，政策看法
 
 func _enterDay(value=true):
@@ -459,6 +462,7 @@ func initPaixi(data:cldata):
 	data._num_rt=initRt
 	data._num_sp=(data._num_all-data._num_op-data._num_rt)
 	data.isrebellion=false
+	data.isDoneOp=false
 	#data._num_op
 	pass
 func extractByGroup(index):
@@ -692,8 +696,8 @@ func excuteLaw():
 			sav.BENTUPAI.ChangeSupport(5)
 			sav.labor_force+=100
 			var items:Array=[InventoryManagerItem.ItemEnum.珍品礼盒,InventoryManagerItem.ItemEnum.益气丸, InventoryManagerItem.ItemEnum.胜战锦囊, InventoryManagerItem.ItemEnum.诸子百家论集]
-			var rindex= randi_range(0,items.size())
-			var remainder = InventoryManager.add_item(inventoryPackege, items[rindex-1], 1, false)
+			var rindex= randi_range(0,items.size()-1)
+			var remainder = InventoryManager.add_item(inventoryPackege, items[rindex], 1, false)
 			#bedone
 			print("促进商贸")			
 	elif sav.curLawName=="诚信经营":#只有buff 所有派系好感度上升
@@ -1071,8 +1075,9 @@ func load_settings():
 	#_on_sfx_slider_value_changed(settings.sfx_volume)
 func clear_children(parent: Node) -> void:
 	for child in parent.get_children():
-		parent.remove_child(child)
-		child.queue_free()  # 或 child.free()
+		if !(child is Label):
+			parent.remove_child(child)
+			child.queue_free()  # 或 child.free()
 
 
 func haveMirror()->bool:

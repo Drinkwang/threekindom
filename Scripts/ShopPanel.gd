@@ -156,7 +156,7 @@ func _on_Sold_button_down():
 @onready var buy_back_button = $backTxt/buyBackButton
 
 func confireSold():
-	GameManager.sav.coin+int(GameManager.SoldCoin)
+	GameManager.sav.coin=GameManager.sav.coin+int(GameManager.SoldCoin)
 	GameManager.sav.isSoldItem=true
 	for item_type in useItems:
 			if useItems[item_type] > 0:  # 只处理消耗数量大于 0 的道具

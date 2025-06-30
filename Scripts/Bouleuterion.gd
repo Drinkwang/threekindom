@@ -135,13 +135,23 @@ func _initData():
 		chendeng.show()
 		chendeng.showEX=true
 		chendeng.dialogue_start="陈登爱吃鱼1"	
+		
+	elif GameManager.sav.have_event["陈登支线2"]==false and GameManager.sav.have_event["陈登支线1"]==true and GameManager.sav.chendenSideWait==1:
+		if GameManager.sav.have_event["陈登送礼"]==false:
+			GameManager.sav.have_event["陈登送礼"]=true
+			chendeng.show()
+			chendeng.showEX=false
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"陈登赞助")
+		
 	elif GameManager.sav.have_event["陈登支线2"]==false and GameManager.sav.have_event["陈登支线1"]==true and GameManager.sav.chendenSideWait==0:
 		chendeng.show()
 		chendeng.showEX=true
 		chendeng.dialogue_start="陈登爱吃鱼2"	
 	
 var costhp=50
-
+func chendengWantUpLevel():
+	chendeng.hide()
+	GameManager._propertyPanel.GetValue(200,0,0)
 
 func eatFish1(issuccuss=false):
 	GameManager.sav.chendenSideWait=3
@@ -264,9 +274,13 @@ func ymlShowEnd():
 	GameManager.restFadeScene=null
 	GameManager._rest()
 	pass
+	
+	
+
+
 func SettleLawRevenue():
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"通过法案")
-
+	faction.refreshData()
 @onready var claimLabel = $CanvasBook/ColorRect/Label
 
 	
@@ -317,6 +331,14 @@ func eatFishSound():
 	var EAT_2 =load("res://Asset/sound/eat2.mp3")
 	SoundManager.play_sound(EAT_2)	
 	
+
+func cancelLaw():
+	GameManager.sav.laws[GameManager.sav.curLawNum1].erase(GameManager.sav.curLawNum2)	
+	GameManager.sav.curLawName=""
+	GameManager.sav.curLawNum1=-1
+	GameManager.sav.curLawNum2=-1
+	faction.refreshData()
+
 
 
 func changePanelPos():

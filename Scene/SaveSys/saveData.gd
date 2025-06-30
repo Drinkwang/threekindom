@@ -220,6 +220,7 @@ var SIDEQUEST_MAP:Dictionary={
 	
 	#这个支线将在之前或者之后触发、中期后期剧情触发
 	"糜竺支线1":false,
+	"糜贞送药":false,
 	"糜竺支线2":false,
 	"糜竺支线3":false,
 	"糜竺正确选择1":false,
@@ -227,6 +228,7 @@ var SIDEQUEST_MAP:Dictionary={
 	
 	#这个支线可以同时触发，新手支线 截至就是 陶谦出事
 	"陈登支线1":false,
+	"陈登送礼":false,
 	"陈登支线2":false,
 	"陈登支线3":false,
 	"陈登正确选择1":false,

@@ -7,7 +7,7 @@ class_name propertyPanel
 var showValue:bool=true
 # Called when the node enters the scene tree for the first time.
 func _ready():
-
+	GameManager._propertyPanel=self
 	pass # Replace with function body.
 
 @onready var color_rect = $PanelContainer/MarginContainer2/ColorRect

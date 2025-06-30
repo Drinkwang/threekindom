@@ -51,12 +51,12 @@ func _ready():
 		self.isUnlock=true
 	
 	_initData()
-	SignalManager.changeLanguage.connect(changeLanguage)			
-	changeLanguage()
+	SignalManager.changeLanguage.connect(_changeLanguage)			
+	_changeLanguage()
 	pass # Replace with function body.
 
 
-func changeLanguage():
+func _changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()
 
 	if currencelanguage=="ru":

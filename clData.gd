@@ -14,7 +14,7 @@ extends Resource
 @export var _support_rate:int=100 #支持率
 @export var isshow:bool=true 
 @export var index:factionIndex
-
+@export var isDoneOp=false
 enum factionIndex{
 	weidipai,
 	bentupai,

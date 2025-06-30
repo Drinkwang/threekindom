@@ -110,7 +110,7 @@ theme_override_font_sizes/font_size = 31
 text = "请点击政策获取施政的详细信息"
 autowrap_mode = 3
 
-[node name="Control" type="Control" parent="PanelContainer/orderPanel/VBoxContainer"]
+[node name="canHideBlock" type="Control" parent="PanelContainer/orderPanel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 119)
 layout_mode = 2
 size_flags_vertical = 6
@@ -136,6 +136,7 @@ layout_mode = 2
 size_flags_horizontal = 10
 
 [node name="orderPanel2" type="MarginContainer" parent="PanelContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/margin_left = 25
