@@ -412,8 +412,8 @@ func _on_Tween_tween_all_completed():
 					selectPart=data.name
 				
 				pass
-			
-	GameManager.sav.hp=GameManager.sav.hp-_hp
+	if GameManager.currenceScene.battle_pane._mode==SceneManager.bossMode.none:
+		GameManager.sav.hp=GameManager.sav.hp-_hp
 	settleGame(selectPart,issuccess)
 	#将风险值和成功率一起输入
 	#print(real_angle)

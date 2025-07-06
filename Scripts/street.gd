@@ -223,6 +223,7 @@ func gotoWasteland():
 
 
 func gotoTomb():
+	GameManager.initBattle()
 	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeIn)
 	SoundManager.play_ambient_sound(WASTELAND_0)
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"初次见面_陶谦")
@@ -236,6 +237,8 @@ func gotoTomb():
 @onready var battle_pane = $CanvasLayer/blank/battlePane
 
 func gotoMiMasion():
+	GameManager.initBattle()
+	#清空战斗面板，做记录，临时
 	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeIn)
 	SoundManager.play_ambient_sound(WASTELAND_0)
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"初次见面_血姬")
@@ -244,6 +247,7 @@ func gotoMiMasion():
 	blank.show()
 	mizhen.show()
 func gotoHuangDiMiao():
+	GameManager.initBattle()
 	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeIn)
 	SoundManager.play_ambient_sound(WASTELAND_0)
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"初次见面_骨龙")
@@ -314,9 +318,13 @@ func visitDrill():
 	
 const visitbgm = preload("res://Asset/bgm/拜访大儒.wav")
 func visitScholar():
+	
 	if GameManager.sav.isVisitScholar==true:
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"已经大儒辩经内容")
 		return
+	
+	if await GameManager.isTried(50):
+		return 	
 	SoundManager.play_ambient_sound(visitbgm)
 	#PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeInAndOut)
 	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeIn)
@@ -372,9 +380,12 @@ func getXueJiItem():
 		"population": 0
 	}
 	#GameManager.ScoreToItem()
+	bossBattleAfter=true
 	GameManager.sav.maxHP=120
 	_reward.showTitileReward(tr("恭喜你，你获得-血姬傀儡"),items)	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+
+var bossBattleAfter=false
 
 func getDaoQianItem():
 	
@@ -385,12 +396,15 @@ func getDaoQianItem():
 		"population": 0
 	}
 	#GameManager.ScoreToItem()
+	bossBattleAfter=true
 	_reward.showTitileReward(tr("恭喜你，你获得-陶谦血袖"),items)		
 
 func _bossMode():
-	if battle_pane.visible==false:
+	if bossBattleAfter==false:
+		print("陶谦任务取消发动")
 		return
 	#挑战完boss后触发，可能没触发
+	bossBattleAfter=true
 	var to_inventory_xue= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.血姬傀儡)
 	var to_inventory_tao= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.陶谦血袖)
 	var xue_quantity=InventoryManager.has_item_quantity(to_inventory_xue)

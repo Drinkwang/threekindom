@@ -113,6 +113,8 @@ func _initData():
 	#if GameManager.sav.have_event["firstBoleuterion"]==true:
 	
 	if GameManager.bossmode==scenemanager.bossMode.tao and GameManager.sav.have_event["陈登支线3"]==false:
+		GameManager.sav.hp=0
+		chendeng.show()
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"陈登结尾")
 		GameManager.sav.have_event["陈登支线3"]=true
 		return 	
@@ -152,10 +154,11 @@ var costhp=50
 func chendengWantUpLevel():
 	chendeng.hide()
 	GameManager._propertyPanel.GetValue(200,0,0)
-
+const kek = preload("res://Asset/sound/咳嗽1.wav")
 func eatFish1(issuccuss=false):
 	GameManager.sav.chendenSideWait=3
 	GameManager.sav.have_event["陈登支线1"]=true
+	SoundManager.play_sound(kek)
 	if issuccuss==true:
 		GameManager.sav.have_event["陈登正确选择1"]=true
 	else:

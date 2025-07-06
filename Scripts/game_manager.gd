@@ -58,6 +58,13 @@ func changePeopleSupport(num):
 		sav.people_surrport=100
 	elif sav.people_surrport<0:
 		sav.people_surrport=0
+		_engerge.hide()
+		DialogueManager.show_example_dialogue_balloon(sys,"民乱四起")
+		#展示gameover
+		#隐藏血条
+		#隐藏control
+		#显示GameOver
+		
 		#if失败逻辑
 	if(sav.people_surrport<60 and sav.isAlertRisk==false):
 		sav.isAlertRisk=true
@@ -244,6 +251,7 @@ func initBattle():
 	]
 		
 	initBattleCircle()
+	SignalManager.initBattle.emit()
 	#同时初始化3个将军攻克面板	
 
 func array_sum(arr: Array) -> int:
@@ -697,7 +705,8 @@ func excuteLaw():
 			sav.labor_force+=100
 			var items:Array=[InventoryManagerItem.ItemEnum.珍品礼盒,InventoryManagerItem.ItemEnum.益气丸, InventoryManagerItem.ItemEnum.胜战锦囊, InventoryManagerItem.ItemEnum.诸子百家论集]
 			var rindex= randi_range(0,items.size()-1)
-			var remainder = InventoryManager.add_item(inventoryPackege, items[rindex], 1, false)
+			var itemname= InventoryManagerItem.item_by_enum(items[rindex])
+			var remainder = InventoryManager.add_item(inventoryPackege, itemname, 1, false)
 			#bedone
 			print("促进商贸")			
 	elif sav.curLawName=="诚信经营":#只有buff 所有派系好感度上升

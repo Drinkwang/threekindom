@@ -1,18 +1,20 @@
 [gd_resource type="Resource" script_class="cldata" load_steps=2 format=3 uid="uid://blfuk0ymk0m4m"]
 
-[ext_resource type="Script" uid="uid://c758vekv6fu83" path="res://clData.gd" id="1_vy71u"]
+[ext_resource type="Script" path="res://clData.gd" id="1_vy71u"]
 
 [resource]
 script = ExtResource("1_vy71u")
-_name = "外地派"
+_name = "丹阳派"
 _num_all = 5
 _num_rt = 0
 _num_sp = 0
 _num_op = 0
 _num_grain = 0
 _num_defections = 0
+rebellionUpdateNum = 0
 isAlertRisk = false
 isrebellion = false
 _support_rate = 100
 isshow = true
 index = 0
+isDoneOp = false

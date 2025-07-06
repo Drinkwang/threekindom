@@ -81,7 +81,7 @@ func enter():
 	var totalSp:int=GameManager.sav.BENTUPAI._num_sp+GameManager.sav.WAIDIPAI._num_sp+GameManager.sav.HAOZUPAI._num_sp
 	var totalOp:int=GameManager.sav.BENTUPAI._num_op+GameManager.sav.WAIDIPAI._num_op+GameManager.sav.HAOZUPAI._num_op
 	var totalNum:int=GameManager.sav.BENTUPAI._num_all+GameManager.sav.WAIDIPAI._num_all+GameManager.sav.HAOZUPAI._num_all
-	var totalrate=(totalSp*1.0/totalNum*1.0)*100.0
+	var totalrate=floor((totalSp*1.0/totalNum*1.0)*100.0)
 
 	
 	

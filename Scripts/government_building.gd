@@ -119,6 +119,8 @@ func hearSayEnd():
 func _initData():
 	candoSub=true
 	if GameManager.bossmode==scenemanager.bossMode.mi and GameManager.sav.have_event["糜竺支线3"]==false:
+		GameManager.sav.hp=0
+		mizhu.show()
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"糜贞结尾")
 		GameManager.sav.have_event["糜竺支线3"]=true
 		return 
@@ -765,6 +767,8 @@ func FractionalDiff():
 	GameManager.sav.HAOZUPAI.isshow=true
 	GameManager.sav.HAOZUPAI._num_all=GameManager.sav.BENTUPAI._num_all/2
 	GameManager.sav.BENTUPAI._num_all=GameManager.sav.BENTUPAI._num_all-GameManager.sav.HAOZUPAI._num_all
+	GameManager.initPaixi(GameManager.sav.HAOZUPAI)
+	GameManager.initPaixi(GameManager.sav.BENTUPAI)
 	GameManager.sav.BENTUPAI._name="士族派"
 	SignalManager.changeSupport.emit()
 	GameManager.sav.have_event["Factionalization"]=true
@@ -790,6 +794,9 @@ func StartTaishan():
 var _faction:cldata.factionIndex=cldata.factionIndex.bentupai	
 func SummonFaction(value:cldata.factionIndex):
 	_faction=value
+	#getFactionByIndex().isDoneOp
+	#if _faction.isd==false:
+	#xxxx
 	if getFactionByIndex().isDoneOp==true:
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"已经约过该派系")#显示对话
 		return
@@ -825,6 +832,7 @@ func financialConfort():
 	#减去资金
 	GameManager.sav.coin=GameManager.sav.coin-200
 	_c.ChangeAllPeople(3+rindex)
+	GameManager.sav.hp-=costHp_SummonOne
 	if _faction==cldata.factionIndex.lvbu:
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"扩充吕布实力")#显示对话
 	else:
@@ -850,6 +858,8 @@ func sendgift():
 	var rindex=GameManager.sav.randomIndex
 	InventoryManager._remove_item(GameManager.inventoryPackege,InventoryManagerItem.珍品礼盒,1)
 	_c.ChangeSupport(15+rindex)
+	_c.isDoneOp=true
+	GameManager.sav.hp-=costHp_SummonOne
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"赠礼完成")
 	
 @onready var send_gift_panel = $sendGiftPanel
@@ -937,6 +947,7 @@ func consent():
 		data.isDoneOp=true
 		GameManager.sav.laws[lawIndex].append(lalongPolicy)
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"成功拉拢")#显示对话	
+		GameManager.sav.hp-=costHp_SummonOne
 	else:
 		print("意外拉拢错误，请监察源码")	
 
@@ -974,7 +985,7 @@ func confireSuppress():
 	GameManager._propertyPanel.GetValue(-ForValueCost,0,-ForValueGet)
 	ForValueCost=0
 	ForValueGet=0
-	
+	GameManager.sav.hp-=costHp_SummonOne
 	var _c=getFactionByIndex()
 	_c.isDoneOp=true
 	_c._support_rate=100
@@ -986,13 +997,14 @@ func confireSuppress():
 func CF_CallingSoldier():
 	var _c=getFactionByIndex()
 	_c.isDoneOp=true
+	GameManager.sav.hp-=costHp_SummonOne
 	_c.ChangeSupport(-ForValueCost)
 	GameManager.sav.labor_force=GameManager.sav.labor_force+ForValueGet
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"调用士兵完成")#显示对话
 
 	
 func CF_claim():
-
+	GameManager.sav.hp-=costHp_SummonOne
 	var _c=getFactionByIndex()
 	_c.ChangeSupport(-ForValueCost)
 	_c.isDoneOp=true

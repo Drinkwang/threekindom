@@ -93,9 +93,11 @@ func over():
 	texture_button.show()
 	GameManager.sav.isVisitScholar=true
 	await  SignalManager.endReward
+	GameManager.sav.hp=GameManager.sav.hp-50
 	if GameManager.sav.have_event["firstVisitScholarsEnd"]==false:
 		GameManager.sav.have_event["firstVisitScholarsEnd"]=true
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大儒辩经结束")
+		
 	pass
 
 @onready var audio_stream_player = $Timer/AudioStreamPlayer

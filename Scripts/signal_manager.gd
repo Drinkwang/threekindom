@@ -4,6 +4,7 @@ signal endReward
 signal changeFraction
 signal changeSupport
 signal changeLanguage
+signal initBattle
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass

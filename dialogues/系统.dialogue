@@ -1,11 +1,15 @@
 ~ 有内乱禀报
 主簿: 主公，还有城中叛乱禀报...
 do determineInternalUnrestXuzhou()
+
+
 ~ 民乱四起
+do DialogueManager.gameover=true
 刘备: 徐州百姓，备未能安抚，竟至如此……
 主簿: 主公，民怨沸腾，城外乱民已破门而入。
 关羽/张飞: 大哥，徐州已不可守！我们掩护你撤退..  
-Game Over：民心尽失，徐州陷于暴乱，游戏结束。
+Game Over: 民心尽失，徐州陷于暴乱，游戏结束。
+
 => END
 
 ~ 警告叛乱风险

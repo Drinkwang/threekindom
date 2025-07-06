@@ -37,13 +37,22 @@ var costhp=30
 func _ready():
 	_refreshSlider()
 	_refreshGeneral()
+	initTask()
 	SignalManager.endReward.connect(endBattle)
 	battle_circle.isBoot=false
-	initTask()
-	SignalManager.changeLanguage.connect(changeLanguage)			
+
 	changeLanguage()
-	pass # Replace with function body.
+	SignalManager.changeLanguage.connect(changeLanguage)			
+	
+	SignalManager.initBattle.connect(refreshData)
 const NOT_JAM_UI_CONDENSED_16 = preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf")
+
+func refreshData():
+	
+	_refreshSlider()
+	_refreshGeneral()
+	initTask()	
+	battle_circle.refreshPage()
 func changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()
 	if currencelanguage=="ru":
@@ -109,10 +118,21 @@ func _refreshGeneral():
 	control_3.updateContext(2)	
 	if GameManager.sav.UseGeneral.size()>0:
 		for ele in GameManager.sav.UseGeneral:
-			var index=GameManager.sav.generals.values().find(ele)
-			var finde:SoilderItem=self.find_child("Control_"+str(index+1)) as SoilderItem
-			finde.Use()
-		
+			#var index=GameManager.sav.generals.values().find(ele)
+			#var value=GameManager.sav.generals.values().filter(func(a):a.name==ele.name)[0]
+			var key=GameManager.sav.generals.find_key(ele)
+			#改成不一定是index,index是乱序的
+			for i in range(1,4):
+				var soider:SoilderItem=self.find_child("Control_"+str(i))
+				if soider.repImg==key:
+					soider.Use()
+					break
+			#var finde:SoilderItem=self.find_child("Control_"+str(index+1)) as SoilderItem
+			#finde.Use()
+	else:
+		for i in range(1,4):
+			var soider:SoilderItem=self.find_child("Control_"+str(i))
+			soider.alreadyUse=false	
 
 #
 #将任务给创建出来
@@ -138,7 +158,7 @@ func _refreshSlider():
 @onready var task_label = $TaskLabel
 
 func initTask():
-	if battle_circle.taskIndex<0:
+	if battle_circle.taskIndex<0 or GameManager.sav.battleTasks==null:
 		return
 	var currence= GameManager.sav.battleTasks[battle_circle.taskIndex]
 	var context=tr("任务条件：")
@@ -272,8 +292,9 @@ func _on_control_1_gui_input(event):
 
 #出征按钮
 func _on_button_button_down():
-	if await GameManager.isTried(costhp):
-		return 
+	if GameManager.currenceScene.battle_pane._mode==SceneManager.bossMode.none:
+		if await GameManager.isTried(costhp):
+			return 
 	if battle_circle.isBoot==false:
 		
 		SoundManager.play_sound(sounds.ZHUANPAN)

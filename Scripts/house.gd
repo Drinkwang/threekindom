@@ -107,13 +107,15 @@ func _initData():
 		"visible":"true"
 	}
 	]
+	
+	#记得demo注销
 	#if GameManager.sav.day>=6:
-		##title.show()
-		##demo_end.show()
-		#hp_panel.hide()
-		#res_panel.hide()
-		#$CanvasLayer/supportPanel.hide()
-		#return
+	#	title.show()
+	#	demo_end.show()
+	#	hp_panel.hide()
+	#	res_panel.hide()
+	#	$CanvasLayer/supportPanel.hide()
+	#	return
 	control._processList(initData)
 	GameManager.currenceScene=self
 	if GameManager.sav.day==1:
@@ -418,7 +420,7 @@ func demoFinishWenGuanShow():
 	$"陈群".hide()
 	$"文官".show()
 	pass
-@onready var title = $title2
+@onready var title = $CanvasLayer/title
 @onready var demo_end = $CanvasLayer/DemoEnd
 const bgs194 = preload("res://Asset/sound/公元194末.mp3")
 func demoFinish():
@@ -429,8 +431,9 @@ func demoFinish():
 
 	GameManager.restLabel=tr("公元194年末，刘备入主徐州，同时他将州治迁往下邳，一场新的权力的游戏开始了！")
 
+	#GameManager.restFadeScene=SceneManager.HOUSE
 	
-	
+	#正式版
 	GameManager.restFadeScene=SceneManager.GOVERNMENT_BUILDING
 	#播放声音
 	SoundManager.play_sound(bgs194)
@@ -497,6 +500,7 @@ func extraTask():
 	enterdetermineInternalUnrest()
 
 func _JudgeTask():
+	var hasSide=true
 	var value=0
 	if GameManager.sav.targetResType==GameManager.ResType.coin:
 		value=GameManager.sav.coin
@@ -513,18 +517,22 @@ func _JudgeTask():
 					hp_panel.playLabelChange()
 					GameManager.sav.TargetDestination="府邸"
 					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"袁术之乱结束")	
+					hasSide=false
 				else:
+					hasSide=false
 					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"每天袁术内应搞事")	
 	if(GameManager.sav.have_event["completeTask1"]==true):
 		if(GameManager.sav.have_event["initTask2"]==false):
 			GameManager.sav.have_event["initTask2"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"有拦路虎")
+			hasSide=false
 			#显示对话
 			#任务完成
 	
 			#if GameManager.sav.have_event["battleYuanshu"]==true:
 			#if(GameManager.sav.have_event["completebattleYuanshu"]==false):	
-			
+	if hasSide==true:
+		extraTask()		
 	
 func secondMissonStart():
 	GameManager.sav.targetValue=10

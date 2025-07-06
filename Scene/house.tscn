@@ -149,7 +149,28 @@ clickEvent = ""
 visible = false
 clickEvent = ""
 
-[node name="title" type="RichTextLabel" parent="."]
+[node name="ColorRectdont" type="ColorRect" parent="CanvasLayer"]
+visible = false
+offset_right = 2023.0
+offset_bottom = 1169.0
+color = Color(1, 0, 0, 0.541176)
+
+[node name="title2" type="RichTextLabel" parent="CanvasLayer/ColorRectdont"]
+offset_left = 144.0
+offset_top = 292.0
+offset_right = 1836.0
+offset_bottom = 932.0
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 0
+theme_override_fonts/normal_font = ExtResource("10_fk36n")
+theme_override_font_sizes/normal_font_size = 80
+bbcode_enabled = true
+text = "[center][tornado]
+民心尽失，徐州陷于暴乱，游戏结束。[/tornado][/center]"
+tab_size = 6
+
+[node name="title" type="RichTextLabel" parent="CanvasLayer"]
 visible = false
 offset_left = -9.0
 offset_top = 76.0
@@ -159,19 +180,6 @@ theme_override_fonts/normal_font = ExtResource("10_fk36n")
 theme_override_font_sizes/normal_font_size = 200
 bbcode_enabled = true
 text = "[center][rainbow]阴[/rainbow][wave amp=50 frep=100]三国[/wave][rainbow]谋论[/rainbow]-[tornado]徐州篇[/tornado][/center]"
-tab_size = 6
-
-[node name="title2" type="RichTextLabel" parent="."]
-visible = false
-offset_left = 49.0001
-offset_top = 264.0
-offset_right = 1964.0
-offset_bottom = 743.0
-scale = Vector2(0.993691, 1.04365)
-theme_override_fonts/normal_font = ExtResource("10_fk36n")
-theme_override_font_sizes/normal_font_size = 200
-bbcode_enabled = true
-text = "[center][rainbow]梦[/rainbow][wave amp=50 frep=100]断[/wave][rainbow][/rainbow][tornado][color=#ff0000]徐州城[/color][/tornado][/center]"
 tab_size = 6
 
 [node name="mainRount" type="Node2D" parent="."]
