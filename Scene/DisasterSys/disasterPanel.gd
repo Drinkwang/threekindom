@@ -43,7 +43,17 @@ func _process(delta):
 @export var literatiValue=0
 @export var greatValue=0
 @export var DanYangValue=0
+
+@onready var animation_player = $TextureRect/AnimationPlayer
+@onready var animation_player2 = $"运动的马尔,/AnimationPlayer"
+
+@onready var texture_rect = $TextureRect
+
+const mache = preload("res://Asset/sound/马车.mp3")
 func confireAllocation():
+	texture_rect.show()
+	SoundManager.play_sound(mache)
+	animation_player.play("carriage")
 	if(GameManager.resideGrain!=0):
 		DialogueManager.show_dialogue_balloon(GameManager.currenceScene.dialogue_resource,"必须分配")
 	
@@ -108,6 +118,8 @@ func afterAllocation():
 	control_1.factionSurpuls._num_grain=control_1._num+control_1.factionSurpuls._num_grain
 	control_2.factionSurpuls._num_grain=control_2._num+control_2.factionSurpuls._num_grain
 	control_3.factionSurpuls._num_grain=control_3._num+control_3.factionSurpuls._num_grain			
+	texture_rect.hide()
+	SoundManager.stop_sound(mache)
 	self.hide()
 	pass
 
