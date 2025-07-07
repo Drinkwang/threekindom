@@ -97,8 +97,22 @@ func over():
 	if GameManager.sav.have_event["firstVisitScholarsEnd"]==false:
 		GameManager.sav.have_event["firstVisitScholarsEnd"]=true
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大儒辩经结束")
-		
-	pass
+	#if GameManager.sav.have_event["大儒支线1"]==true and GameManager.sav.have_event["大儒辩经启动词1"]==false:
+		#pass
+	#elif GameManager.sav.have_event["大儒支线2"]==true and GameManager.sav.have_event["大儒辩经启动词2"]==false:	
+		#pass
+	#elif GameManager.sav.have_event["大儒支线3"]==true and GameManager.sav.have_event["大儒辩经启动词3"]==false:
+		#pass	
+	var num1=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.论语简注)	
+	var num2=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.礼记笺疏)	
+	var num3=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.治国箴言)	
+
+	if score>=8000 and num1==0 and GameManager.sav.have_event["大儒辩经启动词1"]==true:
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大儒辩经1奖赏")
+	elif score>=10000 and num2==0 and GameManager.sav.have_event["大儒辩经启动词2"]==true:
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大儒辩经2奖赏")
+	elif score>=12000 and num3==0 and GameManager.sav.have_event["大儒辩经启动词3"]==true:
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大儒辩经3奖赏")
 
 @onready var audio_stream_player = $Timer/AudioStreamPlayer
 

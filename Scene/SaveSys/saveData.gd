@@ -240,6 +240,13 @@ var SIDEQUEST_MAP:Dictionary={
 	"曹豹支线3":false,
 	"曹豹正确选择1":false,
 	"曹豹正确选择2":false,
+	"大儒支线1":false,
+	"大儒支线2":false,
+	"大儒支线3":false,	
+	"大儒辩经启动词1":false,
+	"大儒辩经启动词2":false,
+	"大儒辩经启动词3":false,		
+	"大儒辩经完成":false
 }
 
 @export var mizhuSideWait=-1

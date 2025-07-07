@@ -335,10 +335,62 @@ func visitScholar():
 	#离开大儒辩经，取消高山流水音效
 	if GameManager.sav.have_event["firstVisitScholarsEnd"]==false:
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大儒辩经的剧情")
+	if GameManager.sav.have_event["大儒支线1"]==true and GameManager.sav.have_event["大儒辩经启动词1"]==false:
+		GameManager.sav.have_event["大儒辩经启动词1"]=true
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大儒辩经支线1")
+	elif GameManager.sav.have_event["大儒支线2"]==true and GameManager.sav.have_event["大儒辩经启动词2"]==false:	
+		GameManager.sav.have_event["大儒辩经启动词2"]=true
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大儒辩经支线2")		
+	elif GameManager.sav.have_event["大儒支线3"]==true and GameManager.sav.have_event["大儒辩经启动词3"]==false:
+		GameManager.sav.have_event["大儒辩经启动词3"]=true
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大儒辩经支线3")
 	else:
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大儒辩经的剧情2")
+		var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.治国箴言)	
+		if num>=1:
+		#有道具和无道具			
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大儒辩经的剧情3")
+		elif num<1 and GameManager.sav.have_event["大儒辩经完成"]==true:
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"下次前来大儒辩经")
+		else:
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大儒辩经的剧情2")
 	#SceneManager.changeScene(SceneManager.roomNode.DRILL_GROUND,2)
+		
+
+func getScholarReward1():
+	var _reward:rewardPanel=PanelManager.new_reward()
+	var items={
+		"items": {InventoryManagerItem.ItemEnum.论语简注:1},
+		"money": 0,
+		"population": 0
+	}
+	#GameManager.ScoreToItem()
+	_reward.showTitileReward(tr("恭喜你，你获得-论语简注"),items)	
+func getScholarReward2():
+	var _reward:rewardPanel=PanelManager.new_reward()
+	var items={
+		"items": {InventoryManagerItem.ItemEnum.礼记笺疏:1},
+		"money": 0,
+		"population": 0
+	}
+	#GameManager.ScoreToItem()
+	_reward.showTitileReward(tr("恭喜你，你获得-礼记笺疏"),items)	
 	
+func getScholarReward3Before():
+	GameManager.sav.have_event["大儒辩经完成"]=true	
+	
+	
+func getScholarReward3():
+	var _reward:rewardPanel=PanelManager.new_reward()
+	var items={
+		"items": {InventoryManagerItem.ItemEnum.治国箴言:1},
+		"money": 0,
+		"population": 0
+	}
+	#GameManager.ScoreToItem()
+	_reward.showTitileReward(tr("恭喜你，你获得-治国箴言"),items)	
+	await SignalManager.endReward
+	showbianji()
+
 func holdWoolden():
 	playStageMusic()
 	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeOut)

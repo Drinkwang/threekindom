@@ -4,7 +4,7 @@
 class_name InventoryManagerItem
 
 
-enum ItemEnum { NONE,  益气丸, 胜战锦囊, 诸子百家论集, 珍品礼盒, 迷魂木筒, 黄麻药囊, 饥蛊骨签, 市井秘闻, 市井秘闻_续, 市井秘闻_终, 血姬傀儡, 陶谦血袖, 雌雄双股剑, 青龙偃月刀, 丈八蛇矛, 龙胆亮银枪, 洞察之镜, 獬豸圣像, HelmetKnight, HelmetViking, ArmorKnight, ArmorViking, GlovesLeftKnight, GlovesLeftViking, GlovesRightKnight, GlovesRightViking, BootsKnight, BootsViking, ShieldKnight, ShieldViking, Gold2D, Metal2D, Horn2D, RecipeHelmetKnight2D, RecipeHelmetViking2D}
+enum ItemEnum { NONE,  益气丸, 胜战锦囊, 诸子百家论集, 珍品礼盒, 迷魂木筒, 黄麻药囊, 饥蛊骨签, 市井秘闻, 市井秘闻_续, 市井秘闻_终, 血姬傀儡, 陶谦血袖, 雌雄双股剑, 青龙偃月刀, 丈八蛇矛, 龙胆亮银枪, 洞察之镜, 獬豸圣像,论语简注,礼记笺疏,治国箴言, HelmetKnight, HelmetViking, ArmorKnight, ArmorViking, GlovesLeftKnight, GlovesLeftViking, GlovesRightKnight, GlovesRightViking, BootsKnight, BootsViking, ShieldKnight, ShieldViking, Gold2D, Metal2D, Horn2D, RecipeHelmetKnight2D, RecipeHelmetViking2D}
 
 const 益气丸 = "f4352b3f-8500-419f-9617-9da134d822f5"
 const 胜战锦囊 = "63015407-55c9-4729-887f-493fe2a624b7"
@@ -24,6 +24,9 @@ const 丈八蛇矛 = "52d0a7fa-b133-45f1-9b75-b9818c8599d2"
 const 龙胆亮银枪 = "38a142cc-57cb-4f07-8e61-3b7c6601f3b8"
 const 洞察之镜 = "a1c7db2c-2e5f-407e-bfeb-1e4624b3d313"
 const 獬豸圣像 = "6f1b582b-6968-4f09-a102-047cfcb7c773"
+const 论语简注 = "3dc3039c-99e2-4030-9a07-b0d740ea3611"
+const 礼记笺疏 = "f563b135-83aa-4346-bf9d-644252e509cb"
+const 治国箴言 = "179ac6c9-726b-4f24-bc24-a730ed0f3c13"
 const HELMETKNIGHT = "8274191e-eaac-4605-9f3e-f55492b5a4b9"
 const HELMETVIKING = "a20c35ce-bcc8-4344-9840-dc0783ebb2e4"
 const ARMORKNIGHT = "677586f9-55cc-40c2-bd87-7c54430c629d"
@@ -61,6 +64,9 @@ const ITEMS = [
  "龙胆亮银枪",
  "洞察之镜",
  "獬豸圣像",
+ "论语简注",
+ "礼记笺疏",
+ "治国箴言",
  "HelmetKnight",
  "HelmetViking",
  "ArmorKnight",
@@ -118,6 +124,12 @@ static func item_by_enum(item_enum: ItemEnum) -> String:
 			return InventoryManagerItem.洞察之镜
 		ItemEnum.獬豸圣像:
 			return InventoryManagerItem.獬豸圣像
+		ItemEnum.论语简注:
+			return InventoryManagerItem.论语简注
+		ItemEnum.礼记笺疏:
+			return InventoryManagerItem.礼记笺疏
+		ItemEnum.治国箴言:
+			return InventoryManagerItem.治国箴言
 		ItemEnum.HelmetKnight:
 			return InventoryManagerItem.HELMETKNIGHT
 		ItemEnum.HelmetViking:

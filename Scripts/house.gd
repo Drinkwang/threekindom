@@ -189,11 +189,11 @@ func _initData():
 		#竹筒剧情完了，再次调用这边
 		#竹筒幻觉剧情 播放音效，改变背景，然后吓醒了 我觉得这个剧情可以放在早上，如果早上没有主线，则触发这个剧情，然后得知是一场噩梦
 				return 
-			
+
 			
 			GameManager.sav.isGetCoin=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"今日收入为")
-	#if()
+
 	
 @onready var zhubu = $"文官"
 	
@@ -495,6 +495,17 @@ func extraTask():
 	elif  GameManager.sav.day>9:
 		GameManager.sav.have_event["支线发现羊尸"]=false
 		#将任务设置成false
+		var num1=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.论语简注)	
+		var num2=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.礼记笺疏)	
+		if(GameManager.sav.have_event["大儒支线1"]==false):
+			GameManager.sav.have_event["大儒支线1"]=true
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大儒辩经1启动之前")	
+		elif GameManager.sav.have_event["大儒支线2"]==false and num1>=1:
+			GameManager.sav.have_event["大儒支线2"]=true
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大儒辩经2启动之前")			
+		elif GameManager.sav.have_event["大儒支线3"]==false and num2>=1:
+			GameManager.sav.have_event["大儒支线3"]=true
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大儒辩经3启动之前")							
 	#判断忠诚度
 	var chaonum=0	
 	enterdetermineInternalUnrest()

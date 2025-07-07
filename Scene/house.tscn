@@ -156,6 +156,7 @@ offset_bottom = 1169.0
 color = Color(1, 0, 0, 0.541176)
 
 [node name="title2" type="RichTextLabel" parent="CanvasLayer/ColorRectdont"]
+layout_mode = 0
 offset_left = 144.0
 offset_top = 292.0
 offset_right = 1836.0
