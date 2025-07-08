@@ -470,7 +470,7 @@ func selectPolicy(data):
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"以商代赈")
 		GameManager.sav.HAOZUPAI.ChangeSupport(10)
 		GameManager.sav.BENTUPAI.ChangeSupport(-10)
-		GameManager.changePeopleSupport(-10)
+		
 		#200-500
 		getCoin=randi_range(200,500)
 		GameManager.sav.coin=GameManager.sav.coin+getCoin
@@ -481,7 +481,7 @@ func selectPolicy(data):
 		hidePolicy()
 		GameManager.sav.have_event["initTask1"]=true
 		GameManager.sav.HAOZUPAI.ChangeSupport(-5)
-		GameManager.changePeopleSupport(5)
+		
 		GameManager.sav.coin=GameManager.sav.coin+200
 		#@export var  coin=100 #金钱 数值
 		#@export var coin_DayGet=20
@@ -499,7 +499,7 @@ func selectPolicy(data):
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"增加税率")
 		GameManager.sav.HAOZUPAI.ChangeSupport(10)
 		GameManager.sav.BENTUPAI.ChangeSupport(-20)
-		GameManager.changePeopleSupport(-20)
+		
 		GameManager.sav.coin_DayGet=GameManager.sav.coin_DayGet+30
 		GameManager.sav.have_event["initTask1"]=true
 		#提升关税

@@ -59,7 +59,9 @@ func changePeopleSupport(num):
 	elif sav.people_surrport<0:
 		sav.people_surrport=0
 		_engerge.hide()
+		
 		DialogueManager.show_example_dialogue_balloon(sys,"民乱四起")
+		DialogueManager.gameover=true
 		PanelManager.new_ChaoView()
 		#展示gameover
 		#隐藏血条

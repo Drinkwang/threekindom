@@ -9,6 +9,9 @@ var isHide:bool=true
 func _ready():
 	GameManager._savePanel=self
 	initLoad()
+	if DialogueManager.gameover==true:
+		_on_load_button_button_down()
+		save_text.add_theme_color_override("font_color",Color.DIM_GRAY)
  # Replace with function body.
 
 
@@ -20,6 +23,8 @@ func _process(delta):
 
 var index=0
 
+@onready var load_text = $Control/load
+@onready var save_text = $Control/save
 
 
 
@@ -94,9 +99,10 @@ func refresh():
 	pass
 
 func _on_save_button_button_down():
-	select.position=Vector2(736,654.87)
+	if DialogueManager.gameover==false:
+		select.position=Vector2(736,654.87)
 	
-	state=_SaveState.save
+		state=_SaveState.save
 	
 func _on_load_button_button_down():
 	select.position=Vector2(912,654.87)

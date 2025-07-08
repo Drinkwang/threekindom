@@ -157,7 +157,7 @@ func _get_setting_balloon_path() -> String:
 
 
 ## Show the configured dialogue balloon
-func new_ChaoView( title: String = "") -> Control:
+func new_ChaoView( title: String = "") -> CanvasLayer:
 	var balloon_path: String# = DialogueSettings.get_setting(&"balloon_path", _get_example_balloon_path())
 	if not ResourceLoader.exists(balloon_path):
 		balloon_path = _get_chao_balloon_path()
