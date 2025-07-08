@@ -389,6 +389,9 @@ func getScholarReward3():
 	#GameManager.ScoreToItem()
 	_reward.showTitileReward(tr("恭喜你，你获得-治国箴言"),items)	
 	await SignalManager.endReward
+	GameManager.sav.coinGet+=100
+	GameManager.sav.labor_DayGet+=50
+	GameManager.changePeopleSupport(10)
 	showbianji()
 
 func holdWoolden():

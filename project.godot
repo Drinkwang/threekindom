@@ -29,6 +29,7 @@ PanelManager="*res://Scene/commonPanel/panel_manager.gd"
 SoundManager="*res://addons/sound_manager/sound_manager.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 Panku="*res://addons/panku_console/console.tscn"
+PolicyManager="*res://Scripts/enum/policy_manager.gd"
 
 [display]
 

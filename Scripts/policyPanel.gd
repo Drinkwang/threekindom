@@ -27,14 +27,17 @@ func _ready():
 	changeLanguage()
 	 # Replace with function body.
 
-func initControls():
-	var group=GameManager.getPolicyGroup()
 
-		
+func initControls():
+
+	var group=GameManager.getPolicyGroup()
 		#GameManager.currenceScene.selectPolicy(self["control_"+index].data)
 		#DialogueManager.show_example_dialogue_balloon(GameManager.currenceScene.dialogue_resource,"xxx")
 		#判断自己的逻辑
 	#应该是第二天
+	if group==-1:
+		if GameManager.sav.randomIndex<=1:
+			group=4
 	if group==-1:
 		currence_no_policy.show()
 		$PanelContainer/orderPanel/VBoxContainer.hide()

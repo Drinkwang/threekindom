@@ -291,6 +291,18 @@ func _buttonListClick(item):
 		#if policy_panel.tab_bar.current_tab==0:
 		policy_panel._initData()
 		policy_panel.initControls()
+		var group=GameManager.getPolicyGroup()
+		#GameManager.currenceScene.selectPolicy(self["control_"+index].data)
+		#DialogueManager.show_example_dialogue_balloon(GameManager.currenceScene.dialogue_resource,"xxx")
+		#判断自己的逻辑
+	#应该是第二天
+
+		if group==-1:
+			if GameManager.sav.have_event["第一次民心政策"]==false and GameManager.sav.randomIndex<=1:
+				GameManager.sav.have_event["第一次民心政策"]=true
+				DialogueManager.show_example_dialogue_balloon(GameManager.currenceScene.dialogue_resource,"民生政策")		
+		
+		
 		#if await GameManager.isTried(costHp_policy):
 		#	return 
 		#GameManager.hp=GameManager.hp-costHp_policy
@@ -538,6 +550,39 @@ func selectPolicy(data):
 		GameManager.resideValue=tr("士族派好感下降5，豪族派好感下降5，丹阳派好感下降5，每日获取金额-5，每日获取劳动力-5，金钱+300,劳动力+150")
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"加速除奸")
 		GameManager.sav.have_event["chaoChenDenPolicyExcute"]=true		
+	elif id==policymanager.policyID.P_LessCoin:
+		hidePolicy()
+		var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.论语简注)
+		var heart=5
+		if num>0:
+			heart=10
+		GameManager.sav.coin-=1000
+		GameManager.resideValue=tr("你消耗了1000金，恢复了{heart}点民心").format({"heart":heart})
+		GameManager.changePeopleSupport(5)
+	elif id==policymanager.policyID.P_LessLabor:
+		hidePolicy()
+		var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.论语简注)
+		var heart=5
+		if num>0:
+			heart=10		
+		GameManager.resideValue=tr("你消耗了500点劳动力，恢复了{heart}点民心").format({"heart":heart})
+		GameManager.sav.labor_force-=500
+		GameManager.changePeopleSupport(5)
+	elif id==policymanager.policyID.P_MoreBlood:
+		hidePolicy()
+		var addcoin=300
+		var addLabor=100
+		var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.论语简注)
+		if num>0:
+			addcoin=500
+			addLabor=200
+		GameManager.resideValue=tr("你消耗了20点民心,获得了{addcoin}金币和{addLabor}劳动力").format({"addcoin":addcoin,"addLabor":addLabor})
+
+		GameManager.changePeopleSupport(-20)
+		GameManager.sav.coin+=500
+		GameManager.sav.labor_force+=200
+		
+		
 func selectCorrect():
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"正确决策0")
 	hidePolicy()
@@ -857,7 +902,14 @@ func sendgift():
 	var _c=getFactionByIndex()
 	var rindex=GameManager.sav.randomIndex
 	InventoryManager._remove_item(GameManager.inventoryPackege,InventoryManagerItem.珍品礼盒,1)
-	_c.ChangeSupport(15+rindex)
+	#+5
+	var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.礼记笺疏)
+	if num>=1:
+		GameManager.extraValue=5
+		_c.ChangeSupport(20+rindex)
+	else:
+		GameManager.extraValue=0
+		_c.ChangeSupport(15+rindex)
 	_c.isDoneOp=true
 	GameManager.sav.hp-=costHp_SummonOne
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"赠礼完成")

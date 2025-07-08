@@ -146,21 +146,28 @@ func new_SettingMenu( title: String = "") -> SettingMenu:
 	return show_reward_scene(balloon_path, title)
 
 
-## Show a given balloon scene
-#func show_setting_scene(reward_scene, title: String = ""):
-#	if reward_scene is String:
-#		reward_scene = load(reward_scene)
-#	if reward_scene is PackedScene:
-#		reward_scene = reward_scene.instantiate()
-
-#	var balloon: Node = reward_scene
-#	get_current_scene.call().add_child(balloon)
-
-#	return balloon
 
 
 
 func _get_setting_balloon_path() -> String:
 	var is_small_window: bool = ProjectSettings.get_setting("display/window/size/viewport_width") < 400
 	var balloon_path: String = "/SettingMenu.tscn" #if is_small_window else "/example_balloon/example_balloon.tscn"
+	return get_script().resource_path.get_base_dir() + balloon_path
+
+
+
+## Show the configured dialogue balloon
+func new_ChaoView( title: String = "") -> Control:
+	var balloon_path: String# = DialogueSettings.get_setting(&"balloon_path", _get_example_balloon_path())
+	if not ResourceLoader.exists(balloon_path):
+		balloon_path = _get_chao_balloon_path()
+	return show_reward_scene(balloon_path, title)
+
+
+
+
+
+func _get_chao_balloon_path() -> String:
+	var is_small_window: bool = ProjectSettings.get_setting("display/window/size/viewport_width") < 400
+	var balloon_path: String = "/chaoPanel.tscn" #if is_small_window else "/example_balloon/example_balloon.tscn"
 	return get_script().resource_path.get_base_dir() + balloon_path

@@ -149,28 +149,6 @@ clickEvent = ""
 visible = false
 clickEvent = ""
 
-[node name="ColorRectdont" type="ColorRect" parent="CanvasLayer"]
-visible = false
-offset_right = 2023.0
-offset_bottom = 1169.0
-color = Color(1, 0, 0, 0.541176)
-
-[node name="title2" type="RichTextLabel" parent="CanvasLayer/ColorRectdont"]
-layout_mode = 0
-offset_left = 144.0
-offset_top = 292.0
-offset_right = 1836.0
-offset_bottom = 932.0
-theme_override_constants/shadow_offset_x = 3
-theme_override_constants/shadow_offset_y = 5
-theme_override_constants/outline_size = 0
-theme_override_fonts/normal_font = ExtResource("10_fk36n")
-theme_override_font_sizes/normal_font_size = 80
-bbcode_enabled = true
-text = "[center][tornado]
-民心尽失，徐州陷于暴乱，游戏结束。[/tornado][/center]"
-tab_size = 6
-
 [node name="title" type="RichTextLabel" parent="CanvasLayer"]
 visible = false
 offset_left = -9.0

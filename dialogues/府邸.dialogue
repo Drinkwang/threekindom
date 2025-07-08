@@ -209,7 +209,8 @@ do meetingEnd()
 	do SummonFaction(_faction)
 => END!
 ~ 赠礼完成
-成功赠送礼物，{{getFactionByIndex()._name}}好感度上升{{(15+GameManager.sav.randomIndex)}}
+
+成功赠送礼物，{{getFactionByIndex()._name}}好感度上升{{(15+GameManager.sav.randomIndex+GameManager.extraValue)}}
 do GameManager._imporveRelation(getFactionByIndex())
 #赠送礼物，好感度上升
 => END
@@ -1158,4 +1159,10 @@ do _initData()
 糜竺: 雪中送炭，倾力相助。若其功成，吾糜氏必得百倍之利！
 糜竺: 乱世乃我最后的机会，徐州虽乱，我当再谋一局，保家族千秋之兴！
 do hearSayEnd()
+=> END!
+
+~ 民生政策
+主簿: 大人，这次幕僚给您提供的是【民心政策】，这意味着大人需要消耗什么才能实施的政策
+主簿: 这些政策往往拥有很直观的效果，并且幕僚会多次不厌其烦的向你进献这种类型的政策。
+主簿: 不过也间接说明这类型的政策并不是必须需要实施，往往不执行选择无为而治也是一种很好的选择。
 => END!

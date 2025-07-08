@@ -4,7 +4,7 @@
 class_name InventoryManagerItem
 
 
-enum ItemEnum { NONE,  益气丸, 胜战锦囊, 诸子百家论集, 珍品礼盒, 迷魂木筒, 黄麻药囊, 饥蛊骨签, 市井秘闻, 市井秘闻_续, 市井秘闻_终, 血姬傀儡, 陶谦血袖, 雌雄双股剑, 青龙偃月刀, 丈八蛇矛, 龙胆亮银枪, 洞察之镜, 獬豸圣像,论语简注,礼记笺疏,治国箴言, HelmetKnight, HelmetViking, ArmorKnight, ArmorViking, GlovesLeftKnight, GlovesLeftViking, GlovesRightKnight, GlovesRightViking, BootsKnight, BootsViking, ShieldKnight, ShieldViking, Gold2D, Metal2D, Horn2D, RecipeHelmetKnight2D, RecipeHelmetViking2D}
+enum ItemEnum { NONE,  益气丸, 胜战锦囊, 诸子百家论集, 珍品礼盒, 迷魂木筒, 黄麻药囊, 饥蛊骨签, 市井秘闻, 市井秘闻_续, 市井秘闻_终, 血姬傀儡, 陶谦血袖, 雌雄双股剑, 青龙偃月刀, 丈八蛇矛, 龙胆亮银枪, 洞察之镜, 獬豸圣像, 论语简注, 礼记笺疏, 治国箴言, HelmetKnight, HelmetViking, ArmorKnight, ArmorViking, GlovesLeftKnight, GlovesLeftViking, GlovesRightKnight, GlovesRightViking, BootsKnight, BootsViking, ShieldKnight, ShieldViking, Gold2D, Metal2D, Horn2D, RecipeHelmetKnight2D, RecipeHelmetViking2D}
 
 const 益气丸 = "f4352b3f-8500-419f-9617-9da134d822f5"
 const 胜战锦囊 = "63015407-55c9-4729-887f-493fe2a624b7"

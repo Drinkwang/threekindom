@@ -60,6 +60,7 @@ func changePeopleSupport(num):
 		sav.people_surrport=0
 		_engerge.hide()
 		DialogueManager.show_example_dialogue_balloon(sys,"民乱四起")
+		PanelManager.new_ChaoView()
 		#展示gameover
 		#隐藏血条
 		#隐藏control
@@ -131,85 +132,6 @@ var currenceScene
 var restFadeScene
 
 
-var policy_Item=[
-	{
-		"id":1,
-		"index":1,
-		"name":"上策-限制军需物资法",
-		"detail":"所有军队领袖，严禁擅自动用粮草物资，必须经士族批准后方可动用。一切军需，须经过严格审批备案，不得私自行动。", #前往花园并通向小道
-		"group":0
-	},
-	{
-		"id":2,
-		"index":2,
-		"name":"中策-军需审批规定",
-		"detail":"军队领袖应向相关报备所需物资，并等待审批后方可调用。一切军需申请，必须经过严格审批程序，禁止私自调度。", #前往花园并通向小道
-		"group":0
-	},
-	{
-		"id":3,
-		"index":3,
-		"name":"下策-物资调度违规处罚法",
-		"detail":"凡有违反调度规定者，不分情节轻重，一律拉出军营，以极刑示众。对于私自调用粮草者，立即斩首示众，家属一并流放，绝不宽贷。", #前往花园并通向小道
-		"group":0
-	},	
-	
-	
-	
-	#主线第一个计策
-	{
-		"id":4,
-		"index":1,
-		"name":"上策-以商代赈",
-		"detail":"将给与商人更多指示性目标,用行政命令迫使商业协助完成粮食问题，军队好感上升，但商业具有不稳定性，获得一笔不定额的金钱", #每天获取钱下降，任务凑钱正常
-		"group":1
-	},
-	{
-		"id":5,
-		"index":2,
-		"name":"中策-军粮自给",
-		"detail":"维持现状，继续让军队自行解决粮食问题，丹阳派好感小幅度下跌，因为政策不变可能会获得一笔因为政策惯性的收益", #前往花园并通向小道，ps_任务凑齐的钱会少
-		"group":1
-	},
-	{
-		"id":6,
-		"index":3,
-		"name":"下策-增大消费税",
-		"detail":"增大城市人口商业来往的纳税，会增加城市居民生活开销负担，但会让城市获得日均收入上升，所有派系好感小幅度下跌", #前往花园并通向小道#，每天获取钱上升，任务凑钱多
-		"group":1
-	},	
-	
-	
-	
-	
-	
-	
-	{
-		"id":7,
-		"index":1,
-		"name":"上策-精查内患，稳粮缓行",
-		"detail":"陈登建议组建由士族领袖主导的秘密调查小组，精准排查徐州内部的奸细。调查重点放在行政和军务人员中，通过士族的情报网络暗中收集线索，避免公开行动惊动奸细。同时，为确保粮草运输安全，暂停部分非紧急粮草调运，集中护送关键物资至徐州核心据点，并由士族控制的本地武装加强押运。粮草分配上，优先供应士族和军队，次要分配给商队和民户，以稳定核心支持力量。", #每天获取钱下降，任务凑钱正常
-		"tootip":"该政策会让士族派好感上升10，豪族派好感下降5，徐州百姓的民心上升5，每日获取金额+10，内奸剩余被发现的天数-2",
-		"group":2
-	},
-	{
-		"id":8,
-		"index":2,
-		"name":"中策-联查共管，运粮分流",
-		"detail":"陈登提议由刘备亲自监督，糜竺与士族代表组成联合调查团，共同排查奸细。调查范围覆盖行政、商队和军务，通过商队交易记录和士族情报交叉核查，力求全面但不过激。为保障粮草运输，采取分流策略：主力粮草由正规军护送至核心据点，次要粮草交由商队分散运输，降低整体风险。粮草分配上，军队优先，士族和商队次之，民户最后，以平衡各方需求。", #前往花园并通向小道，ps_任务凑齐的钱会少
-		"tootip":"该政策会让士族派好感上升5，豪族派好感上升5，每日获取金额+10，每日获得劳动力+5，获得益气丸x2",
-		"group":2
-	},
-	{
-		"id":9,
-		"index":3,
-		"name":"下策-严打内奸，急运全粮",
-		"detail":"陈登建议采取强硬措施，由糜竺全面负责，公开严查徐州所有行政、军务和商队人员，设立举报机制，重惩疑似奸细，以震慑袁术势力。为应对粮草需求，集中所有资源加速粮草运输，调动全部军队护送，力求快速补齐徐州各据点物资。粮草分配上，采取平均分配，军队、士族、商队和民户一视同仁，以示公平。", #前往花园并通向小道#，每天获取钱上升，任务凑钱多
-		"tootip":"该政策会让士族派好感下降5，豪族派好感下降5，丹阳派好感下降5，每日获取金额-5，每日获取劳动力-5，金钱+300,劳动力+150",
-		"group":2
-	},	
-	
-]
 
 #var dialogBegin=false
 # Called when the node enters the scene tree for the first time.
@@ -473,15 +395,10 @@ func initPaixi(data:cldata):
 	data.isDoneOp=false
 	#data._num_op
 	pass
-func extractByGroup(index):
-	return policy_Item.filter(func(item): item.group== index)
 
 
-# 函数可能有问题，目前好像暂时没有使用，试用前注意修改其中问题
-func extractPolicyItem(index,group):
-	#return policy_Item.filter(func(item): item.group== id)[0]
-	var ele=GameManager.policy_Item.filter(func(ele): return ele.group == group and ele.index==index)[0]
-	return ele
+var extraValue=0
+
 	
 #需要在saveData定义一个对子的数据结构判断1是否执行 2是否执行	
 func getPolicyGroup() -> int:
@@ -492,6 +409,8 @@ func getPolicyGroup() -> int:
 			return 2
 		if GameManager.sav.have_event["chaoChendengEnd"]==true and GameManager.sav.have_event["chaoChenDenPolicyExcute"]==false:
 			return 3
+
+
 	return -1
 	#如果处于主线状态，则取出来的是主线，否则取出来的是随机数
 
