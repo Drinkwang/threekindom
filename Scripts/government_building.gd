@@ -207,61 +207,12 @@ func _initData():
 		
 
 	if(GameManager.sav.targetTxt!=null and GameManager.sav.targetTxt.length()>0):		
-		_JudgeTask()
+		_JudgeTask()#这里必然进去
 	#elif GameManager.sav.day==4:
 	#	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"府邸第一天")
 	
 	
-	elif candoSub==true:
-		if GameManager.sav.have_event["竹简幻觉剧情"]==true and GameManager.sav.have_event["支线触发完毕查出锦囊"]==false:
-			
-			
-			var to_inventory= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.迷魂木筒)
-			var quantity=InventoryManager.has_item_quantity(to_inventory)
-			if quantity>=1:
-				tsty.show()
-				return
-				#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"城外克苏鲁事件触发")
-		elif GameManager.sav.have_event["支线触发完毕查出锦囊休息"]==true and GameManager.sav.have_event["支线触发完毕获得锦囊之前"]==false:
-			GameManager.sav.have_event["支线触发完毕获得锦囊之前"]=true
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁府邸调查支线")
-			return
-		#今日重点完成任务
-		#判断该不该显示糜竺邀请，同时时间节点到中期，显示任务糜竺-中央，点击触发额外剧情,进入平定泰山诸将时，这里弹出
-		if GameManager.sav.have_event["糜竺支线1"]==false and GameManager.sav.have_event["battleTaiShan"]==true:
-			mizhu.changeAllClick("糜竺嫁妹支线1")
-			mizhu.show()
-			mizhu.showEX=true
-			#插入糜贞送药
-			#糜竺嫁妹支线2
-			#tsty.show()		
-			
-		elif GameManager.sav.have_event["糜竺支线2"]==false and GameManager.sav.mizhuSideWait==1:
-			if GameManager.sav.have_event["糜贞送药"]==false:
-				mizhu.show()
-				mizhu.showEX=false
-				GameManager.sav.have_event["糜贞送药"]=true
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"插入糜贞送药")
-				
-		elif GameManager.sav.have_event["糜竺支线2"]==false and GameManager.sav.mizhuSideWait==0:	
-			mizhu.changeAllClick("糜竺嫁妹支线2")
-			mizhu.show()
-			mizhu.showEX=true
-	else :
-		if GameManager.sav.day>5:
-			if(GameManager.sav.have_event["initTask1"]==true):
-				pass
-				#if(GameManager.sav.have_event["initTask1"]==false):
-				#	chenden.show()
-				#	chenden.changeAllClick("点击陈登")
-				#if(GameManager.sav.have_event["initTask1"]==false):
-				#	mizhu.show()
-				#	mizhu.changeAllClick("点击糜竺")	
-					#chenden
-				#判断陈登有无第一次对话，若无则生成
-				#判断糜竺有无进行第一次对话，若无则生成	
-				#如果没有支线则生成
-			#pass					
+
 #
 
 func mizhenGift():
@@ -551,25 +502,42 @@ func selectPolicy(data):
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"加速除奸")
 		GameManager.sav.have_event["chaoChenDenPolicyExcute"]=true		
 	elif id==policymanager.policyID.P_LessCoin:
+		if GameManager.sav.coin<1000:
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"金币无法支持")
+			GameManager.sav.hp=GameManager.sav.hp+35
+			return
 		hidePolicy()
 		var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.论语简注)
 		var heart=5
 		if num>0:
 			heart=10
 		GameManager.sav.coin-=1000
+		GameManager.sav.randomIndex=randi_range(2,3)
 		GameManager.resideValue=tr("你消耗了1000金，恢复了{heart}点民心").format({"heart":heart})
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"执行政策")
 		GameManager.changePeopleSupport(5)
 	elif id==policymanager.policyID.P_LessLabor:
+		if GameManager.sav.labor_force<1000:
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"劳动力无法支持")
+			GameManager.sav.hp=GameManager.sav.hp+35
+			return
 		hidePolicy()
 		var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.论语简注)
 		var heart=5
+		GameManager.sav.randomIndex=randi_range(2,3)
 		if num>0:
 			heart=10		
 		GameManager.resideValue=tr("你消耗了500点劳动力，恢复了{heart}点民心").format({"heart":heart})
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"执行政策")
 		GameManager.sav.labor_force-=500
 		GameManager.changePeopleSupport(5)
 	elif id==policymanager.policyID.P_MoreBlood:
+		if GameManager.sav.people_surrport<40:
+			GameManager.sav.hp=GameManager.sav.hp+35
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"民心无法支持了")
+			return
 		hidePolicy()
+		GameManager.sav.randomIndex=randi_range(2,3)
 		var addcoin=300
 		var addLabor=100
 		var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.论语简注)
@@ -577,10 +545,14 @@ func selectPolicy(data):
 			addcoin=500
 			addLabor=200
 		GameManager.resideValue=tr("你消耗了20点民心,获得了{addcoin}金币和{addLabor}劳动力").format({"addcoin":addcoin,"addLabor":addLabor})
-
-		GameManager.changePeopleSupport(-20)
-		GameManager.sav.coin+=500
-		GameManager.sav.labor_force+=200
+	
+		GameManager.policyAction= func():
+			GameManager.changePeopleSupport(-20)
+			GameManager.sav.coin+=500
+			GameManager.sav.labor_force+=200
+				
+		#储存方法
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"执行政策")
 		
 		
 func selectCorrect():
@@ -659,8 +631,9 @@ func _JudgeTask():
 			GameManager.sav.have_event["completeTask1"]=true
 			mizhu.show()
 			chenden.show()
+			policy_panel.hide()
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"收集资金任务完成")#显示对话
-			#任务完成
+			return
 		elif(true):
 			pass
 		#任务完成交付任务
@@ -689,7 +662,56 @@ func deliverUncompleteTask():
 					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第三次分配粮食")#显示对话			
 					GameManager.sav.have_event["thirdDisaster"]=true
 						#第三次赈灾开始	
-		
+	elif candoSub==true:
+		if GameManager.sav.have_event["竹简幻觉剧情"]==true and GameManager.sav.have_event["支线触发完毕查出锦囊"]==false:
+			
+			
+			var to_inventory= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.迷魂木筒)
+			var quantity=InventoryManager.has_item_quantity(to_inventory)
+			if quantity>=1:
+				tsty.show()
+				return
+				#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"城外克苏鲁事件触发")
+		elif GameManager.sav.have_event["支线触发完毕查出锦囊休息"]==true and GameManager.sav.have_event["支线触发完毕获得锦囊之前"]==false:
+			GameManager.sav.have_event["支线触发完毕获得锦囊之前"]=true
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁府邸调查支线")
+			return
+		#今日重点完成任务
+		#判断该不该显示糜竺邀请，同时时间节点到中期，显示任务糜竺-中央，点击触发额外剧情,进入平定泰山诸将时，这里弹出
+		if GameManager.sav.have_event["糜竺支线1"]==false and GameManager.sav.have_event["battleTaiShan"]==true:
+			mizhu.changeAllClick("糜竺嫁妹支线1")
+			mizhu.show()
+			mizhu.showEX=true
+			#插入糜贞送药
+			#糜竺嫁妹支线2
+			#tsty.show()		
+			
+		elif GameManager.sav.have_event["糜竺支线2"]==false and GameManager.sav.mizhuSideWait==1:
+			if GameManager.sav.have_event["糜贞送药"]==false:
+				mizhu.show()
+				mizhu.showEX=false
+				GameManager.sav.have_event["糜贞送药"]=true
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"插入糜贞送药")
+				
+		elif GameManager.sav.have_event["糜竺支线2"]==false and GameManager.sav.mizhuSideWait==0:	
+			mizhu.changeAllClick("糜竺嫁妹支线2")
+			mizhu.show()
+			mizhu.showEX=true
+	else :
+		if GameManager.sav.day>5:
+			if(GameManager.sav.have_event["initTask1"]==true):
+				pass
+				#if(GameManager.sav.have_event["initTask1"]==false):
+				#	chenden.show()
+				#	chenden.changeAllClick("点击陈登")
+				#if(GameManager.sav.have_event["initTask1"]==false):
+				#	mizhu.show()
+				#	mizhu.changeAllClick("点击糜竺")	
+					#chenden
+				#判断陈登有无第一次对话，若无则生成
+				#判断糜竺有无进行第一次对话，若无则生成	
+				#如果没有支线则生成
+			#pass							
 			
 func deliverTask():
 	if GameManager.sav.TargetDestination=="府邸":
@@ -1120,5 +1142,6 @@ func changePanelPos():
 	pass
 
 func JudFundTask():
-	#在府邸意外凑齐钱时会判断任务是否完成
-	_JudgeTask()
+	#在府邸意外凑齐钱时会判断任务是否完成,这个会触发第一次赈灾，这是bug
+	if(GameManager.sav.have_event["completeTask1"]==false):#仅完成收集资金任务
+		_JudgeTask()

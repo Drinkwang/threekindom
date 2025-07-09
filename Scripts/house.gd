@@ -186,6 +186,13 @@ func _initData():
 				bti_rect.show()
 				GameManager.sav.have_event["竹简幻觉剧情"]=true
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁梦境")
+				SoundManager.stop_music()
+				
+				GameManager.musicId=0
+				SoundManager.stop_all_ambient_sounds()
+				SoundManager.play_ambient_sound(nightbgm)
+				#SoundManager.play_sound()#暂时不播放音效，待测试
+	
 		#竹筒剧情完了，再次调用这边
 		#竹筒幻觉剧情 播放音效，改变背景，然后吓醒了 我觉得这个剧情可以放在早上，如果早上没有主线，则触发这个剧情，然后得知是一场噩梦
 				return 
@@ -193,8 +200,13 @@ func _initData():
 			
 			GameManager.sav.isGetCoin=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"今日收入为")
-
+const siku1 = preload("res://Asset/sound/似哭似笑1.mp3")
+const siku2 = preload("res://Asset/sound/似哭似笑2.mp3")
+func resumeBgm():
+	play_BGM()
 	
+	SoundManager.stop_all_ambient_sounds()
+	SoundManager.play_ambient_sound(daybgm)
 @onready var zhubu = $"文官"
 	
 	#将政务面板更新 里面列举了一堆list

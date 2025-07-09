@@ -1560,3 +1560,6 @@ _battleUseItem,Check to use the Victory Strategy Kit\nIncreases win rate by 5%\n
 刺史大人，我有意向花钱收购一批你手里的道具，你看意向如何？,,,,,
 同意收购,,,,,
 你已成功出售商品，获得{{GameManager.SoldCoin}}金,,,,,
+载入存档,,,,,
+退回主菜单,,,,,
+退出游戏,,,,,

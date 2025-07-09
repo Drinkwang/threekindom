@@ -149,6 +149,7 @@ func OpenSettingMenu():
 	PanelManager.new_SettingMenu()	
 
 func ReturnMenu():
+	DialogueManager.gameover=false
 	SceneManager.changeScene(SceneManager.roomNode.MainMenu,2)
 
 var musicId=0
@@ -527,6 +528,7 @@ func getCDByFaction(factionIndex:cldata.factionIndex):
 const InventoryManagerName = "InventoryManager"
 
 var lawAction: Callable
+var policyAction:Callable
 var RewardLaw
 func excuteLaw():
 	sav.laws[sav.curLawNum1].append(sav.curLawNum2)

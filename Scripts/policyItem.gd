@@ -62,7 +62,11 @@ func initDataByGroup(index,group):
 		self.tooltip_text=data.tootip
 	else:
 		self.tooltip_text=""
-	pass
+	if group==4:
+		heart.show()
+	else:
+		heart.hide()
+@onready var heart = $heart
 
 func setBanStatus(boolvalue):
 	if boolvalue==true:
