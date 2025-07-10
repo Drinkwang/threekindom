@@ -83,8 +83,8 @@ func _initData():
 	#	"锦囊咨询丹阳派": false, #如果上个为true，到演武场，则令曹豹出现，并可以点击触发支线
 	#卖粮第几天
 	#"支线触发完毕获得骨杖":false,#
-	
-	if GameManager.sav.have_event["锦囊咨询丹阳派"]==true and GameManager.sav.have_event["支线触发完毕获得骨杖"]==false:
+	#0改成最终触发条件，这个应该是
+	if GameManager.sav.finalKeChoice!=-1 and GameManager.sav.have_event["锦囊咨询丹阳派"]==true and GameManager.sav.have_event["支线触发完毕获得骨杖"]==false:
 		GameManager.sav.have_event["支线触发完毕获得骨杖"]=true
 		var keValue=GameManager.sav.finalKeChoice
 		if keValue==0:

@@ -187,6 +187,7 @@ func _initData():
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"刘备接任徐州之主")
 	if GameManager.sav.have_event["查出药囊后休息前"]==true and GameManager.sav.have_event["锦囊咨询丹阳派"]==false:
 		caobao.dialogue_start="演武场克苏鲁剧情支线"
+		caobao.showEX=true
 		caobao.show()
 	
 	var initData=[

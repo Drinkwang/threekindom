@@ -74,6 +74,7 @@ mouse_filter = 2
 button_mask = 7
 
 [node name="heart" type="Panel" parent="."]
+layout_mode = 0
 offset_left = 35.0
 offset_top = 31.0
 offset_right = 351.0
