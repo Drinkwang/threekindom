@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cjsb43uugkud4"]
+[gd_scene load_steps=53 format=3 uid="uid://cjsb43uugkud4"]
 
 [ext_resource type="Script" path="res://Scripts/battlePanel.gd" id="1_uyier"]
 [ext_resource type="Resource" uid="uid://d2qoinuor12dq" path="res://dialogues/演武场.dialogue" id="2_1p72a"]
@@ -14,6 +14,33 @@
 [ext_resource type="PackedScene" uid="uid://dcydwatjg50hl" path="res://Scene/battleSys/DiskInBattle.tscn" id="8_75jyp"]
 [ext_resource type="Texture2D" uid="uid://drruce0ama0gw" path="res://addons/inventory_editor/test/test_model/icons/base 13.png" id="12_h80nc"]
 [ext_resource type="Texture2D" uid="uid://dkan2jd08uc4p" path="res://addons/inventory_editor/test/test_model/icons/Fail.svg" id="13_ugjcw"]
+[ext_resource type="Texture2D" uid="uid://cewxnaheces8p" path="res://Asset/fx/color5_blue_frame1/Frames/Slash_color5_frame1.png" id="15_7bqq5"]
+[ext_resource type="Texture2D" uid="uid://u53qkbj6efdc" path="res://Asset/fx/guanyu_frames_3/Slash3_color1_frame1.png" id="15_b1f1v"]
+[ext_resource type="Texture2D" uid="uid://c778ryb4qlvtn" path="res://Asset/fx/color5_blue_frame1/Frames/Slash_color5_frame2.png" id="16_t2kcv"]
+[ext_resource type="Texture2D" uid="uid://0j4j2qe8qaa0" path="res://Asset/fx/guanyu_frames_3/Slash3_color1_frame2.png" id="16_wpk8g"]
+[ext_resource type="Texture2D" uid="uid://bkl0gjayxwtjf" path="res://Asset/fx/guanyu_frames_3/Slash3_color1_frame3.png" id="17_tnvu8"]
+[ext_resource type="Texture2D" uid="uid://dr5kahwhyks16" path="res://Asset/fx/color5_blue_frame1/Frames/Slash_color5_frame3.png" id="17_yaesa"]
+[ext_resource type="Texture2D" uid="uid://crlnhtsbrj4io" path="res://Asset/fx/guanyu_frames_3/Slash3_color1_frame4.png" id="18_b0rhn"]
+[ext_resource type="Texture2D" uid="uid://dq4emn0enpche" path="res://Asset/fx/color5_blue_frame1/Frames/Slash_color5_frame4.png" id="18_gpsba"]
+[ext_resource type="Texture2D" uid="uid://b0uw2fph1icdc" path="res://Asset/fx/color5_blue_frame1/Frames/Slash_color5_frame5.png" id="19_wlrtl"]
+[ext_resource type="Texture2D" uid="uid://8j7b1fs52omw" path="res://Asset/fx/guanyu_frames_3/Slash3_color1_frame5.png" id="19_y11ik"]
+[ext_resource type="Texture2D" uid="uid://c37f7ir1ngig5" path="res://Asset/fx/guanyu_frames_3/Slash3_color1_frame6.png" id="20_sbgoq"]
+[ext_resource type="Texture2D" uid="uid://d2bkqwbe0vwab" path="res://Asset/fx/color5_blue_frame1/Frames/Slash_color5_frame6.png" id="20_udw3v"]
+[ext_resource type="Texture2D" uid="uid://c64kdneoqt3fx" path="res://Asset/fx/color5_blue_frame1/Frames/Slash_color5_frame7.png" id="21_cxf7p"]
+[ext_resource type="Texture2D" uid="uid://cb754vf8bauc5" path="res://Asset/fx/guanyu_frames_3/Slash3_color1_frame7.png" id="21_vd5nr"]
+[ext_resource type="Texture2D" uid="uid://cr683jyoes82c" path="res://Asset/fx/guanyu_frames_3/Slash3_color1_frame8.png" id="22_vpwl0"]
+[ext_resource type="Texture2D" uid="uid://2h35ysa2cn1o" path="res://Asset/fx/color5_blue_frame1/Frames/Slash_color5_frame8.png" id="22_x4ft2"]
+[ext_resource type="Texture2D" uid="uid://bund47ax8k4g8" path="res://Asset/fx/guanyu_frames_3/Slash3_color1_frame9.png" id="23_18dfb"]
+[ext_resource type="Texture2D" uid="uid://b6ooqefhqnrms" path="res://Asset/fx/color5_blue_frame1/Frames/Slash_color5_frame9.png" id="23_l7iqe"]
+[ext_resource type="Texture2D" uid="uid://d0x67b6u07dvt" path="res://Asset/fx/zhangfei_Frames_1/Slash_color4_frame1.png" id="24_s3r1q"]
+[ext_resource type="Texture2D" uid="uid://b8k2pbfmv3kf3" path="res://Asset/fx/zhangfei_Frames_1/Slash_color4_frame2.png" id="25_f0hlf"]
+[ext_resource type="Texture2D" uid="uid://bu0j7kdb2xj37" path="res://Asset/fx/zhangfei_Frames_1/Slash_color4_frame3.png" id="26_ik576"]
+[ext_resource type="Texture2D" uid="uid://00w8mjb7ivja" path="res://Asset/fx/zhangfei_Frames_1/Slash_color4_frame4.png" id="27_14bp8"]
+[ext_resource type="Texture2D" uid="uid://caq6m6fa6lvus" path="res://Asset/fx/zhangfei_Frames_1/Slash_color4_frame5.png" id="28_yj3x7"]
+[ext_resource type="Texture2D" uid="uid://q33fwmexdwnu" path="res://Asset/fx/zhangfei_Frames_1/Slash_color4_frame6.png" id="29_yk2xv"]
+[ext_resource type="Texture2D" uid="uid://cyoosguk88jyf" path="res://Asset/fx/zhangfei_Frames_1/Slash_color4_frame7.png" id="30_1le41"]
+[ext_resource type="Texture2D" uid="uid://xe42wyg2wpsh" path="res://Asset/fx/zhangfei_Frames_1/Slash_color4_frame8.png" id="31_8b8yb"]
+[ext_resource type="Texture2D" uid="uid://cio88hkk4d20o" path="res://Asset/fx/zhangfei_Frames_1/Slash_color4_frame9.png" id="32_ptive"]
 
 [sub_resource type="Animation" id="Animation_rms3s"]
 resource_name = "YELLOWGUILD"
@@ -34,6 +61,117 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4gull"]
 _data = {
 "YELLOWGUILD": SubResource("Animation_rms3s")
+}
+
+[sub_resource type="Animation" id="Animation_65orj"]
+resource_name = "slash"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("15_b1f1v"), ExtResource("16_wpk8g"), ExtResource("17_tnvu8"), ExtResource("18_b0rhn"), ExtResource("19_y11ik"), ExtResource("20_sbgoq"), ExtResource("21_vd5nr"), ExtResource("22_vpwl0"), ExtResource("23_18dfb")]
+}
+
+[sub_resource type="Animation" id="Animation_rxw6y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("15_b1f1v")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8y110"]
+_data = {
+"RESET": SubResource("Animation_rxw6y"),
+"slash": SubResource("Animation_65orj")
+}
+
+[sub_resource type="Animation" id="Animation_cevd6"]
+resource_name = "slash"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("24_s3r1q"), ExtResource("25_f0hlf"), ExtResource("26_ik576"), ExtResource("27_14bp8"), ExtResource("28_yj3x7"), ExtResource("29_yk2xv"), ExtResource("30_1le41"), ExtResource("31_8b8yb"), ExtResource("32_ptive")]
+}
+
+[sub_resource type="Animation" id="Animation_uvpvr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("24_s3r1q")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_es4tc"]
+_data = {
+"RESET": SubResource("Animation_uvpvr"),
+"slash": SubResource("Animation_cevd6")
+}
+
+[sub_resource type="Animation" id="Animation_yow7p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("15_7bqq5")]
+}
+
+[sub_resource type="Animation" id="Animation_l7yf1"]
+resource_name = "slash"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("15_7bqq5"), ExtResource("16_t2kcv"), ExtResource("17_yaesa"), ExtResource("18_gpsba"), ExtResource("19_wlrtl"), ExtResource("20_udw3v"), ExtResource("21_cxf7p"), ExtResource("22_x4ft2"), ExtResource("23_l7iqe")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kmfee"]
+_data = {
+"RESET": SubResource("Animation_yow7p"),
+"slash": SubResource("Animation_l7yf1")
 }
 
 [node name="Control" type="Control"]
@@ -660,6 +798,37 @@ libraries = {
 "": SubResource("AnimationLibrary_4gull")
 }
 autoplay = "YELLOWGUILD"
+
+[node name="ani_1" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(442, 331)
+texture = ExtResource("15_b1f1v")
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="ani_1"]
+libraries = {
+"": SubResource("AnimationLibrary_8y110")
+}
+
+[node name="ani_2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(670, 333)
+texture = ExtResource("24_s3r1q")
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="ani_2"]
+libraries = {
+"": SubResource("AnimationLibrary_es4tc")
+}
+
+[node name="ani_3" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(897, 328)
+texture = ExtResource("15_7bqq5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ani_3"]
+libraries = {
+"": SubResource("AnimationLibrary_kmfee")
+}
+autoplay = "slash"
 
 [connection signal="toggled" from="PanelContainer/orderPanel/VBoxContainer/HBoxContainer2/TextureButton/CheckBox" to="." method="_on_Usecheck_box_toggled"]
 [connection signal="button_down" from="PanelContainer/orderPanel/VBoxContainer/HBoxContainer/Button" to="." method="_on_button_button_down"]

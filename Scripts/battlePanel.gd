@@ -238,7 +238,7 @@ func _on_coin_slider_value_changed(value):
 	if(battle_circle.selectgeneral):
 		_changeProgress()
 
-
+var selectIndex
 #BOOT结算完后将对应的general转换成use 然后同时也结算
 #{"name": "关羽", "level": 1, "max_level": 10, "randominit": -1}
 func _on_control_3_gui_input(event):
@@ -251,7 +251,7 @@ func _on_control_3_gui_input(event):
 		control_3.check_box.button_pressed=true
 		control_2.check_box.button_pressed=false
 		control_1.check_box.button_pressed=false
-		
+		selectIndex=3
 		battle_circle.selectgeneral= GameManager.sav.generals[control_3.repImg]
 		battle_circle._juideCompeleteTask()
 		_refreshSlider()
@@ -270,6 +270,7 @@ func _on_control_2_gui_input(event):
 		control_1.check_box.button_pressed=false
 		control_2.check_box.button_pressed=true
 		control_3.check_box.button_pressed=false
+		selectIndex=2
 		battle_circle.selectgeneral= GameManager.sav.generals[control_2.repImg]
 		battle_circle._juideCompeleteTask() 
 		_refreshSlider()
@@ -283,12 +284,16 @@ func _on_control_1_gui_input(event):
 		control_3.check_box.button_pressed=false
 		control_2.check_box.button_pressed=false
 		control_1.check_box.button_pressed=true
+		selectIndex=1
 		battle_circle.selectgeneral= GameManager.sav.generals[control_1.repImg]
 		battle_circle._juideCompeleteTask()	 
 		_refreshSlider()
 
 
 
+@onready var ani_1 = $ani_1
+@onready var ani_2 = $ani_2
+@onready var ani_3 = $ani_3
 
 #出征按钮
 func _on_button_button_down():
@@ -298,11 +303,21 @@ func _on_button_button_down():
 	if battle_circle.isBoot==false:
 		
 		SoundManager.play_sound(sounds.ZHUANPAN)
+		var anisprite:Sprite2D=self["ani_"+var_to_str(selectIndex)]
+		
 		battle_circle.lauchProgress(costhp)
 		lauchBtn.disabled=true
 
-
-	
+		anisprite.show()
+		var ani:AnimationPlayer=anisprite.get_child(0)
+		ani.play("slash")
+		
+		var _func=func(anim_name: StringName):
+			ani.stop()
+			anisprite.hide()
+			print("diaoyong")
+		ani.animation_finished.connect(_func)
+		
 	pass # Replace with function body.
 @export var dialogue_resource:DialogueResource
 #推出按钮，同时调用结束

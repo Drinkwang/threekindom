@@ -105,7 +105,8 @@ offset_bottom = 523.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(2, 2)
-text = "demo结束，感谢试玩"
+text = "试玩版结束，感谢试玩
+有意见可以反馈"
 
 [node name="hpPanel" parent="CanvasLayer" instance=ExtResource("10_vpbf8")]
 offset_left = 1395.0

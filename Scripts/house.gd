@@ -109,13 +109,13 @@ func _initData():
 	]
 	
 	#记得demo注销
-	#if GameManager.sav.day>=6:
-	#	title.show()
-	#	demo_end.show()
-	#	hp_panel.hide()
-	#	res_panel.hide()
-	#	$CanvasLayer/supportPanel.hide()
-	#	return
+	if GameManager.sav.have_event["chaoMizhuEnd"]==true:
+		title.show()
+		demo_end.show()
+		hp_panel.hide()
+		res_panel.hide()
+		$CanvasLayer/supportPanel.hide()
+		return
 	control._processList(initData)
 	GameManager.currenceScene=self
 	if GameManager.sav.day==1:
