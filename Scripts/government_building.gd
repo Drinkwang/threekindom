@@ -1145,3 +1145,37 @@ func JudFundTask():
 	#在府邸意外凑齐钱时会判断任务是否完成,这个会触发第一次赈灾，这是bug
 	if(GameManager.sav.have_event["completeTask1"]==false):#仅完成收集资金任务
 		_JudgeTask()
+const _2__MENTAL_VORTEX = preload("res://Asset/bgm/2- Mental Vortex.mp3")
+func zhangyanCrazy():
+	PanelManager.Fade_Blank(Color.RED,0.5,PanelManager.fadeType.fadeIn)
+	await 0.5
+	PanelManager.Fade_Blank(Color.RED,0.5,PanelManager.fadeType.fadeOut)
+	SoundManager.stop_music()
+	SoundManager.play_music(_2__MENTAL_VORTEX)
+	#屏幕发红
+	#音乐切换
+	
+	pass
+const HUI_3 = preload("res://Asset/sound/hui3.wav")	
+
+@onready var hui_animation_player = $Sprite2D/AnimationPlayer
+@onready var sprite_hui = $Sprite2D
+
+func zhangyanChop():
+	SoundManager.play_sound(HUI_3)
+	sprite_hui.show()
+	hui_animation_player.play("chop")
+
+	var _func=func(stringname):sprite_hui.hide()
+	hui_animation_player.animation_finished.connect(_func)
+	#挥舞音乐
+	#张yan挥刀，陶跑
+	pass
+
+func resumeMusic():
+	SoundManager.stop_music()
+
+	
+	var music_file = "res://Asset/music/Ambient " + str(GameManager.musicId) + ".wav"
+	GameManager.play_music(music_file)	
+

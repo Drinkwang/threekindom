@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dbk6u8kc33kq2"]
+[gd_scene load_steps=34 format=3 uid="uid://dbk6u8kc33kq2"]
 
 [ext_resource type="Script" path="res://Scripts/government_building.gd" id="1_xncth"]
 [ext_resource type="Resource" uid="uid://cqlt2sgkuk3na" path="res://dialogues/府邸.dialogue" id="2_yngd1"]
@@ -23,6 +23,74 @@
 [ext_resource type="Texture2D" uid="uid://bb3edpq2iva10" path="res://Asset/人物/陶商陶应.png" id="13_f851a"]
 [ext_resource type="PackedScene" uid="uid://ervc6220fre7" path="res://Scene/prefab/fspanel.tscn" id="15_wrxcl"]
 [ext_resource type="PackedScene" uid="uid://ghiim2lkqkbe" path="res://Scene/prefab/propertyPanel.tscn" id="16_rw7iu"]
+[ext_resource type="Texture2D" uid="uid://mb7wj00b7s8p" path="res://Asset/fx/zhangyan_Frames/Slash2_color2_frame1.png" id="22_u8c3t"]
+[ext_resource type="Texture2D" uid="uid://cxodneuue05m4" path="res://Asset/fx/zhangyan_Frames/Slash2_color2_frame2.png" id="23_ssyf0"]
+[ext_resource type="Texture2D" uid="uid://b4nhuitfqto1b" path="res://Asset/fx/zhangyan_Frames/Slash2_color2_frame3.png" id="24_gm54n"]
+[ext_resource type="Texture2D" uid="uid://5f7l2pp1xe7d" path="res://Asset/fx/zhangyan_Frames/Slash2_color2_frame4.png" id="25_4ooeq"]
+[ext_resource type="Texture2D" uid="uid://dme188pn6ks8" path="res://Asset/fx/zhangyan_Frames/Slash2_color2_frame5.png" id="26_dmvci"]
+[ext_resource type="Texture2D" uid="uid://d1dl7ni55wrps" path="res://Asset/fx/zhangyan_Frames/Slash2_color2_frame6.png" id="27_02a0d"]
+[ext_resource type="Texture2D" uid="uid://c4o3chacp3emp" path="res://Asset/fx/zhangyan_Frames/Slash2_color2_frame7.png" id="28_nttis"]
+
+[sub_resource type="Animation" id="Animation_hoxs8"]
+resource_name = "chop"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("22_u8c3t"), ExtResource("23_ssyf0"), ExtResource("24_gm54n"), ExtResource("25_4ooeq"), ExtResource("26_dmvci"), ExtResource("27_02a0d"), ExtResource("28_nttis")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../陶商陶应:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(955, 639), Vector2(992, 639), Vector2(992, 639), Vector2(955, 639)]
+}
+
+[sub_resource type="Animation" id="Animation_trdn5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("22_u8c3t")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../陶商陶应:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(955, 639)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_got6o"]
+_data = {
+"RESET": SubResource("Animation_trdn5"),
+"chop": SubResource("Animation_hoxs8")
+}
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_xncth")
@@ -145,6 +213,16 @@ dialogue_doubleclick = "look"
 txt2d = ExtResource("9_qwmo3")
 dialogue_resource = ExtResource("2_yngd1")
 dialogue_start = "look"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(889, 644)
+texture = ExtResource("22_u8c3t")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_got6o")
+}
 
 [node name="陶商陶应" parent="." instance=ExtResource("6_ibudm")]
 visible = false

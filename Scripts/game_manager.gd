@@ -1078,3 +1078,9 @@ func _imporveRelation(data:cldata):
 			else:
 				DialogueManager.show_example_dialogue_balloon(sys,"讨好叛乱2")
 			
+func play_music(file_path: String) -> void:
+	var stream = load(file_path)
+	if stream!=null:
+		SoundManager.play_music(stream)
+	else:
+		print("载入音频出错"+file_path)
