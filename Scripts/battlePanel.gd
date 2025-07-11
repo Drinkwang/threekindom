@@ -158,8 +158,10 @@ func _refreshSlider():
 @onready var task_label = $TaskLabel
 
 func initTask():
-	if battle_circle.taskIndex<0 or GameManager.sav.battleTasks==null:
+	if battle_circle.taskIndex<0 or GameManager.sav.battleTasks==null or GameManager.sav.battleTasks.size()<=0:
 		return
+		
+
 	var currence= GameManager.sav.battleTasks[battle_circle.taskIndex]
 	var context=tr("任务条件：")
 	var index=1;

@@ -16,11 +16,12 @@ func _ready():
 
 
 	TranslationServer.set_locale(system_locale)
-	if system_locale=="zh_HK" or system_locale=="zh_TW":
-		TranslationServer.set_locale("lzh")
+	if system_locale=="zh_HK" or system_locale=="zh_TW" or system_locale=="lzh":
+		#TranslationServer.set_locale("lzh")
 		option_button.select(1)
 		_on_option_button_item_selected(1)
 	elif system_locale=="zh":
+		#TranslationServer.set_locale("zh")
 		option_button.select(0)
 		_on_option_button_item_selected(0)
 	elif system_locale=="ja":
@@ -42,14 +43,18 @@ func _on_exit_button_down():
 
 #需要修改，此处应该是hero剪辑欸
 #@onready var policyPanel = $"政务面板"
+const sys = preload("res://dialogues/系统.dialogue")
 @onready var control = $Control
 @onready var readyInitData=null
 func _on_begin_button_down():
-	SoundManager.play_sound(sounds.confiresound)
+	
+	DialogueManager.show_example_dialogue_balloon(sys,"开始游戏选项")
+	
+	#SoundManager.play_sound(sounds.confiresound)
 	
 	
-	SoundManager.play_sound(sounds.COLLECT_SMALL_JEWEL_1)
-	SceneManager.changeScene(SceneManager.roomNode.PRE_SCENE,2)
+	#SoundManager.play_sound(sounds.COLLECT_SMALL_JEWEL_1)
+	#SceneManager.changeScene(SceneManager.roomNode.PRE_SCENE,2)
 	
 	#不显示初始相关内容	
 	#control.show()
@@ -57,38 +62,61 @@ func _on_begin_button_down():
 #policyPanel.show()
 
 
+func NormalStartGame():
+	SoundManager.play_sound(sounds.confiresound)
+	
+	
+	SoundManager.play_sound(sounds.COLLECT_SMALL_JEWEL_1)
+	SceneManager.changeScene(SceneManager.roomNode.PRE_SCENE,2)
+	
+	
+func JumpStartGame():
+	DialogueManager.show_example_dialogue_balloon(sys,"小沛内容介绍")
+
+func MainContent():
+	SoundManager.stop_music()
+	GameManager.SkipPrologue()
+	
+	SoundManager.play_sound(sounds.confiresound)
+	
+	
+	SoundManager.play_sound(sounds.COLLECT_SMALL_JEWEL_1)
+	SceneManager.changeScene(SceneManager.roomNode.GOVERNMENT_BUILDING,2)
+
 
 func _on_continue_button_down():
 	pass # Replace with function body.
 
 
 func _on_option_button_item_selected(index):
+	var lan=""
 	if index==0:
 		title.add_theme_font_size_override("normal_font_size",200)  
-		TranslationServer.set_locale("zh")
+		lan="zh"
 		title.text="[center][rainbow]阴[/rainbow][wave amp=50 frep=100]三国[/wave][rainbow]谋论[/rainbow]-[tornado][color=#ff0000]徐州篇[/color][/tornado][/center]"				
 
 	elif index==1:
 		title.add_theme_font_size_override("normal_font_size",200)  
-		TranslationServer.set_locale("lzh")
+		lan="lzh"
 		title.text="[center][rainbow]陰[/rainbow][wave amp=50 frep=100]三國[/wave][rainbow]謀論[/rainbow]-[tornado]徐州篇[/tornado][/center]"				
 	
 	elif index==2:
-		TranslationServer.set_locale("en")
+		lan="en"
 		title.add_theme_font_size_override("normal_font_size",130)
 		title.text="[center]The [rainbow]Three Kingdoms[/rainbow] of [wave amp=50 frep=100]Shadows[/wave]:[tornado]Xuzhou[/tornado][/center]"
 				
 	elif index==3:
-		TranslationServer.set_locale("ja")
+		lan="ja"
 		title.text="[center][rainbow]陰[/rainbow][wave amp=50 frep=100]三国[/wave][rainbow]謀論[/rainbow]: [tornado]徐州編[/tornado][/center]"
 		title.add_theme_font_size_override("normal_font_size",200)  		
 	elif index==4:
-		TranslationServer.set_locale("ru")
+		lan="ru"
 		title.text="[center][tornado]Тёмные [/tornado][wave amp=50 frep=100]интриги [/wave][rainbow]Троецарствия[/rainbow][/center]"			
 		title.add_theme_font_size_override("normal_font_size",130)  		
-	
-	pass # Replace with function body.
-
+	TranslationServer.set_locale(lan)
+	GameManager._setting.language=lan
+	SignalManager.changeLanguage.emit()
+	ResourceSaver.save(GameManager._setting,"user://save_data_setting.tres")
 
 
 

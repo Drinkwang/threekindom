@@ -63,6 +63,21 @@ _data = {
 "YELLOWGUILD": SubResource("Animation_rms3s")
 }
 
+[sub_resource type="Animation" id="Animation_rxw6y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("15_b1f1v")]
+}
+
 [sub_resource type="Animation" id="Animation_65orj"]
 resource_name = "slash"
 length = 0.8
@@ -79,7 +94,13 @@ tracks/0/keys = {
 "values": [ExtResource("15_b1f1v"), ExtResource("16_wpk8g"), ExtResource("17_tnvu8"), ExtResource("18_b0rhn"), ExtResource("19_y11ik"), ExtResource("20_sbgoq"), ExtResource("21_vd5nr"), ExtResource("22_vpwl0"), ExtResource("23_18dfb")]
 }
 
-[sub_resource type="Animation" id="Animation_rxw6y"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8y110"]
+_data = {
+"RESET": SubResource("Animation_rxw6y"),
+"slash": SubResource("Animation_65orj")
+}
+
+[sub_resource type="Animation" id="Animation_uvpvr"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -91,13 +112,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("15_b1f1v")]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_8y110"]
-_data = {
-"RESET": SubResource("Animation_rxw6y"),
-"slash": SubResource("Animation_65orj")
+"values": [ExtResource("24_s3r1q")]
 }
 
 [sub_resource type="Animation" id="Animation_cevd6"]
@@ -114,21 +129,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [ExtResource("24_s3r1q"), ExtResource("25_f0hlf"), ExtResource("26_ik576"), ExtResource("27_14bp8"), ExtResource("28_yj3x7"), ExtResource("29_yk2xv"), ExtResource("30_1le41"), ExtResource("31_8b8yb"), ExtResource("32_ptive")]
-}
-
-[sub_resource type="Animation" id="Animation_uvpvr"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("24_s3r1q")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_es4tc"]
