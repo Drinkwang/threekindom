@@ -51,29 +51,11 @@ func _ready():
 @onready var bti_rect = $btiRect
 @onready var bit_player = $bitPlayer
 
-func play_music(file_path: String) -> void:
-	var stream = load(file_path)
-	if stream!=null:
-		SoundManager.play_music(stream)
-	else:
-		print("载入音频出错"+file_path)
-func play_BGM():
-	if GameManager.musicId <= 0:
-		var available_ids = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-		# 如果 musicId 是负数，排除对应的编号
-		if GameManager.musicId < 0:
-			var exclude_id = abs(GameManager.musicId)
-			if exclude_id >= 1 and exclude_id <= 10:
-				available_ids.erase(exclude_id)
-		# 从剩余编号中随机选择
-		GameManager.musicId = available_ids[randi() % available_ids.size()]	
-	
 
-		var music_file = "res://Asset/music/Ambient " + str(GameManager.musicId) + ".wav"
-		play_music(music_file)	
+
 			
 func _initData():
-	play_BGM()
+	GameManager.play_BGM()
 
 	var initData=[
 	{
@@ -203,7 +185,7 @@ func _initData():
 const siku1 = preload("res://Asset/sound/似哭似笑1.mp3")
 const siku2 = preload("res://Asset/sound/似哭似笑2.mp3")
 func resumeBgm():
-	play_BGM()
+	GameManager.play_BGM()
 	
 	SoundManager.stop_all_ambient_sounds()
 	SoundManager.play_ambient_sound(daybgm)

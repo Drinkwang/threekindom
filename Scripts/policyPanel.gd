@@ -35,7 +35,7 @@ func initControls():
 		#DialogueManager.show_example_dialogue_balloon(GameManager.currenceScene.dialogue_resource,"xxx")
 		#判断自己的逻辑
 	#应该是第二天
-	if group==-1:
+	if group==-1 and GameManager.sav.policyExcute==false and GameManager.sav.day>=5:
 		if GameManager.sav.randomIndex<=1:
 			group=4
 	if group==-1:

@@ -1084,3 +1084,20 @@ func play_music(file_path: String) -> void:
 		SoundManager.play_music(stream)
 	else:
 		print("载入音频出错"+file_path)
+
+
+
+func play_BGM():
+	if GameManager.musicId <= 0:
+		var available_ids = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+		# 如果 musicId 是负数，排除对应的编号
+		if GameManager.musicId < 0:
+			var exclude_id = abs(GameManager.musicId)
+			if exclude_id >= 1 and exclude_id <= 10:
+				available_ids.erase(exclude_id)
+		# 从剩余编号中随机选择
+		GameManager.musicId = available_ids[randi() % available_ids.size()]	
+	
+
+		var music_file = "res://Asset/music/Ambient " + str(GameManager.musicId) + ".wav"
+		play_music(music_file)	

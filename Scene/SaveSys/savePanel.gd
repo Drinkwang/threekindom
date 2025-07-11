@@ -100,7 +100,7 @@ func refresh():
 	pass
 
 func _on_save_button_button_down():
-	if DialogueManager.gameover==false or GameManager.sav.day==0:
+	if DialogueManager.gameover==false and GameManager.sav.day!=0:
 		select.position=Vector2(736,654.87)
 	
 		state=_SaveState.save

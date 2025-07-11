@@ -34,7 +34,7 @@ func _ready():
 		option_button.select(2)			
 		_on_option_button_item_selected(2)
 		
-
+	initLoadContinus()
 func initLoadContinus():
 	var showContinus=false
 	for i in range(1,4):

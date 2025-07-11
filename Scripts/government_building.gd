@@ -135,6 +135,7 @@ func _initData():
 		if	GameManager.sav.have_event["initXuzhou"]==false:
 			GameManager.sav.have_event["initXuzhou"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"府邸第一天")
+			GameManager.play_BGM()
 			candoSub=false
 	elif GameManager.sav.day>5:
 		if GameManager.sav.have_event["chaosEnd"]==true and GameManager.sav.have_event["泰山诸将曹操消息"]==false:
@@ -248,7 +249,7 @@ func _buttonListClick(item):
 		#判断自己的逻辑
 	#应该是第二天
 
-		if group==-1:
+		if group==-1 and GameManager.sav.policyExcute==false and GameManager.sav.day>=5:
 			if GameManager.sav.have_event["第一次民心政策"]==false and GameManager.sav.randomIndex<=1:
 				GameManager.sav.have_event["第一次民心政策"]=true
 				DialogueManager.show_example_dialogue_balloon(GameManager.currenceScene.dialogue_resource,"民生政策")		
