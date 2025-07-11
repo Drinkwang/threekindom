@@ -9,7 +9,7 @@ var isHide:bool=true
 func _ready():
 	GameManager._savePanel=self
 	initLoad()
-	if DialogueManager.gameover==true:
+	if DialogueManager.gameover==true or GameManager.sav.day==0:
 		_on_load_button_button_down()
 		save_text.add_theme_color_override("font_color",Color.DIM_GRAY)
  # Replace with function body.
@@ -100,7 +100,7 @@ func refresh():
 	pass
 
 func _on_save_button_button_down():
-	if DialogueManager.gameover==false:
+	if DialogueManager.gameover==false or GameManager.sav.day==0:
 		select.position=Vector2(736,654.87)
 	
 		state=_SaveState.save

@@ -5,7 +5,7 @@ extends Node2D
 const ARVOSTUS = preload("res://Asset/bgm/4- Arvostus.mp3")
 func _ready():
 	GameManager.sav=saveData.new()
-	GameManager.sav.day=1
+	GameManager.sav.day=0
 	GameManager.musicId=0
 	SoundManager.play_music(ARVOSTUS)
 	var system_locale	
@@ -35,7 +35,16 @@ func _ready():
 		_on_option_button_item_selected(2)
 		
 
-
+func initLoadContinus():
+	var showContinus=false
+	for i in range(1,4):
+		var path="user://save_data{index}.tres".format({"index":i})
+		if(FileAccess.file_exists(path)):	
+			showContinus=true
+			break
+	if	showContinus==true:
+		$continue.disabled=false
+		
 
 func _on_exit_button_down():
 	get_tree().quit()
@@ -65,7 +74,7 @@ func _on_begin_button_down():
 func NormalStartGame():
 	SoundManager.play_sound(sounds.confiresound)
 	
-	
+	GameManager.sav.day=1
 	SoundManager.play_sound(sounds.COLLECT_SMALL_JEWEL_1)
 	SceneManager.changeScene(SceneManager.roomNode.PRE_SCENE,2)
 	
@@ -85,7 +94,10 @@ func MainContent():
 
 
 func _on_continue_button_down():
-	pass # Replace with function body.
+	#if GameManager.CanClickUI==false:
+	#	return
+	#DialogueManager.show_example_dialogue_balloon(sys,"当前功能demo不开放")
+	PanelManager.show_Save_panel()
 
 
 func _on_option_button_item_selected(index):
@@ -113,10 +125,12 @@ func _on_option_button_item_selected(index):
 		lan="ru"
 		title.text="[center][tornado]Тёмные [/tornado][wave amp=50 frep=100]интриги [/wave][rainbow]Троецарствия[/rainbow][/center]"			
 		title.add_theme_font_size_override("normal_font_size",130)  		
+	
 	TranslationServer.set_locale(lan)
-	GameManager._setting.language=lan
-	SignalManager.changeLanguage.emit()
-	ResourceSaver.save(GameManager._setting,"user://save_data_setting.tres")
+	if GameManager._setting!=null:
+		GameManager._setting.language=lan
+		SignalManager.changeLanguage.emit()
+		ResourceSaver.save(GameManager._setting,"user://save_data_setting.tres")
 
 
 
