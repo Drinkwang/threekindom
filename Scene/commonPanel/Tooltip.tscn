@@ -6,10 +6,19 @@
 [node name="Control" type="CanvasLayer"]
 script = ExtResource("1_b7hmj")
 
+[node name="Label" type="Label" parent="."]
+visible = false
+custom_minimum_size = Vector2(15, 0)
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 20.0
+offset_bottom = 21.0
+text = "玩家持有的金钱数量(可购买道具)"
+
 [node name="PanelContainer" type="PanelContainer" parent="."]
 self_modulate = Color(0.211765, 0.211765, 0.211765, 0.819608)
-offset_right = 19.0
-offset_bottom = 19.0
+offset_right = 21.0
+offset_bottom = 26.0
 theme = ExtResource("1_02gia")
 theme_type_variation = &"PanelContainer_new"
 
@@ -21,4 +30,6 @@ theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer"]
+custom_minimum_size = Vector2(15, 0)
 layout_mode = 2
+autowrap_mode = 3

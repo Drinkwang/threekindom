@@ -12,9 +12,9 @@ var showValue:bool=true
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GameManager._propertyPanel=self
-	TooltipManager.register_tooltip(coin,"玩家持有的金钱数量(可购买道具)")
-	TooltipManager.register_tooltip(labor,"玩家拥有空闲人口(可转换为士兵)")
-	TooltipManager.register_tooltip(heart,"玩家当前百姓的支持度(<=0时游戏失败)")
+	TooltipManager.register_tooltip(coin,"金币：持有的金钱数量(可购买道具)")
+	TooltipManager.register_tooltip(labor,"人口：拥有空闲人口(可转换为士兵)")
+	TooltipManager.register_tooltip(heart,"民心：当前百姓的支持度(<=0时游戏失败)")
 	#dd222test
 	pass # Replace with function body.
 

@@ -1,8 +1,8 @@
 extends CanvasLayer
 
 # Tooltip 相关节点
-@onready var tooltip_popup =$PanelContainer
-@onready var tooltip_label =$PanelContainer/MarginContainer/Label
+@onready var tooltip_popup = $PanelContainer
+@onready var tooltip_label = $PanelContainer/MarginContainer/Label
 @onready var panel_container = $PanelContainer
 
 # 计时器相关
@@ -13,6 +13,7 @@ const CLICK_HOLD_DELAY = 0.5  # 点击保持延迟（秒）
 var is_hovered = false
 var is_click_held = false
 var mouse_pos = Vector2.ZERO
+var max_label_width: float = 300.0  # Label 最大宽度（像素）
 
 func _ready():
 	# 确保 tooltip 初始化时隐藏
@@ -34,20 +35,23 @@ func _input(event):
 			is_click_held = false
 			tooltip_popup.hide()
 
-var context
+var context=""
 func showText(_v):
-	context=_v
-	if tooltip_label!=null:
-		tooltip_label.text=context
+	context = _v
+	if tooltip_label != null:
+		# 处理文本换行
+		tooltip_label.text = wrap_text(context)
 
 func _process(delta):
+	# 更新文本
 	showText(context)
+	
 	# 处理悬停计时
 	if is_hovered and not is_click_held:
 		hover_timer += delta
 		if hover_timer >= HOVER_DELAY:
 			show_tooltip()
-
+	
 	# 处理点击保持计时
 	if is_click_held:
 		# 检查鼠标是否移动（避免移动时显示 tooltip）
@@ -61,6 +65,7 @@ func _process(delta):
 			
 	#tooltip_popup.hide()
 	adjust_tooltip_position()
+
 func _on_mouse_entered():
 	is_hovered = true
 	hover_timer = 0.0
@@ -70,6 +75,38 @@ func _on_mouse_exited():
 	hover_timer = 0.0
 	tooltip_popup.hide()
 
+func wrap_text(text: String) -> String:
+	if text == null or text == "":
+		return ""
+	
+	# 获取 Label 的字体和大小
+	var font = tooltip_label.get_theme_font("font")
+	var font_size = tooltip_label.get_theme_font_size("font_size", "") if tooltip_label.get_theme_font_size("font_size", "") else 16
+	var width=font.get_string_size(text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x
+	print(panel_container.size.x)
+	if width<=max_label_width:
+		panel_container.size=Vector2(width+20,panel_container.size.y)
+	else:
+		panel_container.size=Vector2(max_label_width+20,panel_container.size.y)
+	
+	# 分割文本为单词
+
+	
+	
+	return text
+
+func show_tooltip():
+	# 显示 tooltip 并跟随鼠标位置
+	tooltip_popup.show()
+	var mouse_pos = get_viewport().get_mouse_position()
+	tooltip_popup.position = mouse_pos + Vector2(10, 10)  # 偏移以避免遮挡鼠标
+	
+	# 重置 PanelContainer 大小以自适应
+	# tooltip_popup.size = Vector2.ZERO
+	# await get_tree().create_timer(0.01).timeout  # 等待布局更新
+	
+	# 更新文本（确保换行）
+	showText(context)
 
 func adjust_tooltip_position():
 	var screen_size = get_viewport().get_visible_rect().size
@@ -80,10 +117,3 @@ func adjust_tooltip_position():
 	pos.x = max(pos.x, 0)
 	pos.y = max(pos.y, 0)
 	tooltip_popup.position = pos
-
-func show_tooltip():
-	# 显示 tooltip 并跟随鼠标位置
-	tooltip_popup.show()
-	var mouse_pos = get_viewport().get_mouse_position()
-	tooltip_popup.position = mouse_pos + Vector2(10, 10)  # 偏移以避免遮挡鼠标
-	showText(context)
