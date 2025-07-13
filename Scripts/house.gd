@@ -91,7 +91,7 @@ func _initData():
 	]
 	
 	#记得demo注销
-	if GameManager.sav.have_event["chaoMizhuEnd"]==true:
+	if GameManager.sav.have_event["chaoMizhuEnd"]==true and GameManager.sav.isGetCoin==false:
 		title.show()
 		demo_end.show()
 		hp_panel.hide()
