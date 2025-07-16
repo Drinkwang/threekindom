@@ -93,6 +93,8 @@ do chendeng.showEX=false
 
 刘备: (陈登职责繁重，尚有此兴致……近日徐州流言四起，旧主陶谦之墓似有异动，莫非他因此烦忧？）
 - 与陈登共食
+	do GameManager.changeChendenHeart(10)
+	do chendeng.showHeart(GameManager.sav.chendenfav)
 	do eatFishSound()
 	刘备: 这个生鱼片我尝了，果然鲜美。
 	陈登: 主公豪气，我敬你一盏！
@@ -109,6 +111,7 @@ do chendeng.showEX=false
 	提示: 因为食用了生鱼，你的体力值下降了。
 	do eatFish1(false)
 - 避免生食并询问公务[highlight=true]
+	do chendeng.showHeart(GameManager.sav.chendenfav)
 	刘备: 你的盛情，我心领了，但肠胃不惯生食，还是算了吧。元龙，你近日似有烦忧，可与公务有关？不妨与我一谈。  
 
 	陈登: 主公谨慎，我独享便是！不过是些琐事，不值一提，主公不必挂心。 
@@ -148,8 +151,12 @@ do chendeng.showEX=false
 
 刘备: （元龙嗜脍，豪情不减，然古医书有云，生食宜少，我是否该告诫他？近日陶氏陵墓异动的传闻愈发诡异，莫非与他烦忧有关？）
 - 拒绝并提醒陈登，继续询问公务 [highlight=true]
+	do GameManager.changeChendenHeart(-10)
+	do chendeng.showHeart(GameManager.sav.chendenfav)
+
 	刘备: 元龙，生食虽鲜，恐伤身，备肠胃素弱，不敢再尝，劝你亦宜慎之。近日徐州流言四起，陶氏陵墓似有异动，你既掌杂务，可知内情？  
 	陈登: 主公之言，我已知晓，然此味半生相伴，戒不下的，哈哈！
+	#showHeart()
 	#刘备:
 	#判断上次是否追问
 	if GameManager.sav.have_event["陈登正确选择1"]==true
@@ -169,6 +176,8 @@ do chendeng.showEX=false
 
 #
 - 再次尝试生鱼片
+	do GameManager.changeChendenHeart(10)
+	do chendeng.showHeart(GameManager.sav.chendenfav)
 	刘备: 元龙好兴致，备再尝此味。
 	do eatFishSound()
 	陈登: 还是主公懂我，元龙幸甚！

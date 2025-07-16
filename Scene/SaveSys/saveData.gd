@@ -4,6 +4,11 @@ class_name saveData
 
 #GameManager
 @export var day=0
+
+
+@export var chendenfav=70
+@export var mizhufav=70
+@export var caobaofav=70
 #@export var intellectual_support=100 #士族支持度 一开始为100 当议会中 会出现支持和不支持以及摇摆 
 @export var people_surrport=100 #群众支持度 数值
 @export var coin=100: #金钱 数值

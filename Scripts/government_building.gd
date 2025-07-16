@@ -391,7 +391,7 @@ func showFirstMission():
 	GameManager.sav.have_event["糜竺推荐陈登"]=true
 	GameManager.sav.targetValue=1000
 	GameManager.sav.targetResType=GameManager.ResType.coin
-	GameManager.sav.targetTxt="当前凑集资金：{currence}/{target}"
+	GameManager.sav.targetTxt=tr("当前凑集资金：{currence}/{target}")
 	GameManager.sav.TargetDestination="府邸"
 
 	chenden.hide()
@@ -786,7 +786,7 @@ func chaosBegin():
 	GameManager.sav.have_event["chaosBegin"]=true
 	mizhu.show()
 	chenden.show()
-	GameManager.changeTaskLabel("与手下谈谈")
+	GameManager.changeTaskLabel(tr("与手下谈谈"))
 	mizhu.dialogue_start="混乱与糜竺对话"
 	chenden.dialogue_start="混乱与陈登对话"
 	pass

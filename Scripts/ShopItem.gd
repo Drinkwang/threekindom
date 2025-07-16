@@ -47,7 +47,17 @@ func set_Data(key,value):
 	txt_quantity.show()
 	var db:InventoryItem=InventoryManager.get_item_db(itemname)
 	context.texture=load(db.icon)
-	self.tooltip_text=db.name
+
+	
+	
+	var properties:Array=db.properties
+
+		
+	var detail=properties.filter(func(a):return a["name"]=="detail")[0]
+	
+	var _context=db.name+":"+detail["value"]
+	TooltipManager.register_tooltip(self,_context)
+	
 	
 	#var itemname= InventoryManagerItem.item_by_enum(key)
 	var remainder = InventoryManager.add_item(GameManager.inventoryPackege, itemname, quantity, false)
@@ -80,8 +90,14 @@ func _ready():
 	
 	var itemname= InventoryManagerItem.item_by_enum(itemstype)
 	var db:InventoryItem=InventoryManager.get_item_db(itemname)
+	var properties:Array=db.properties
 
-	self.tooltip_text=db.name
+		
+	var detail=properties.filter(func(a):return a["name"]=="detail")[0]
+	
+	var _context=db.name+":"+detail["value"]
+	TooltipManager.register_tooltip(self,_context)
+
 	if isShop==true:
 		refreshSold()
 	#if get_tree().get_root().has_node(questManagerName):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dfolt063spdso"]
+[gd_scene load_steps=19 format=3 uid="uid://dfolt063spdso"]
 
 [ext_resource type="Script" path="res://Scripts/energy.gd" id="1_jga5a"]
 [ext_resource type="Texture2D" uid="uid://cokwnsbgr1bbx" path="res://Asset/ui/进度条1.png" id="2_minpr"]
@@ -17,6 +17,67 @@ shader_parameter/brightness = 1.0
 shader_parameter/outline_size = 0.25
 shader_parameter/outline_color = Color(0, 0, 0, 1)
 shader_parameter/outline_threshold = 0.5
+
+[sub_resource type="Animation" id="Animation_npsvx"]
+resource_name = "AUTO"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": ["自动存档中...", "自动存档中.", "自动存档中.."]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../saveButton:material:shader_parameter/outline_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 0.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_jyf12"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["自动存档中..."]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../saveButton:material:shader_parameter/outline_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lbpkd"]
+_data = {
+"AUTO": SubResource("Animation_npsvx"),
+"RESET": SubResource("Animation_jyf12")
+}
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eexuo"]
 shader = ExtResource("7_aou84")
@@ -139,6 +200,31 @@ scale = Vector2(5, 5)
 tooltip_text = "查看玩家持有的道具和装备"
 texture_normal = ExtResource("7_h24fi")
 stretch_mode = 6
+
+[node name="AutoLabel" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 1833.0
+offset_top = 1389.0
+offset_right = 2418.0
+offset_bottom = 1683.0
+theme_override_font_sizes/font_size = 90
+text = "自动存档中..."
+horizontal_alignment = 1
+
+[node name="AutoPlayer" type="AnimationPlayer" parent="AutoLabel"]
+libraries = {
+"": SubResource("AnimationLibrary_lbpkd")
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 1809.0
+offset_top = 1389.0
+offset_right = 2426.0
+offset_bottom = 1691.0
+color = Color(0, 0, 0, 0.286275)
 
 [node name="saveButton" type="TextureButton" parent="."]
 material = SubResource("ShaderMaterial_eexuo")

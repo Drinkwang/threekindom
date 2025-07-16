@@ -96,7 +96,8 @@ func _initData():
 	{	
 		"id":"1",
 		"context":"府邸", #前往小道通向议事厅 
-		"visible":"true"
+		"visible":"true",
+		"tooltip":"前往府邸进行办公"
 	},
 	{
 		"id":"2",

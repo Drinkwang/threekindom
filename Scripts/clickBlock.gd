@@ -78,11 +78,7 @@ func _ready():
 		ex_point.show()
 	else:
 		ex_point.hide()
-	
-	#const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
-	#$TextureRect.texture=preload('res://addons/transitions/images/blurry-noise.png')
-	#$Sprite2D.texture=load("res://Asset/内屋.jpg")
-	pass # Replace with function body.
+
 @onready var label = $Panel/Label
 const NOT_JAM_UI_CONDENSED_16 = preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf")
 func _changeLanguage():
@@ -116,8 +112,15 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 		if isHide==true:
 			self.hide()
 	pass
+@onready var heart = $Heart
 
+@onready var Heartlabel = $Heart/Label
+@onready var heart_ani = $heartAni
 
+func showHeart(num):
+	heart.show()
+	Heartlabel.text=tr("好感度:{s}").format({"s":num})
+	heart_ani.play("heart")
 
 func changeAllClick(_value):
 	dialogue_start=_value

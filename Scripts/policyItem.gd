@@ -59,8 +59,10 @@ func initDataByGroup(index,group):
 	detail=data.detail
 	context=data.name
 	if GameManager.haveMirror():
-		self.tooltip_text=data.tootip
+		
+		TooltipManager.register_tooltip(self,data.tootip)
 	else:
+		TooltipManager.unregister_tooltip(self)
 		self.tooltip_text=""
 	if group==4:
 		heart.show()

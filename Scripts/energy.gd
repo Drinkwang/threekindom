@@ -64,7 +64,13 @@ func showTargetLabel():
 			target_label.text=target_label.text+context
 	#target_label.text=target_label.text+
 @onready var animation_player = $TargetLabel/AnimationPlayer
+@onready var auto_label = $AutoLabel
 
+
+func showAutoSaveANI():
+	auto_label.show()
+func hideAutoSaveANI():
+	auto_label.hide()
 func playLabelChange():
 	animation_player.play("targetlabel")
 

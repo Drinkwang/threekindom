@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://cfaf00au3sh5k"
+
+[deps]
+
+files=["res://Asset/language/data_back.en.translation", "res://Asset/language/data_back.zh.translation", "res://Asset/language/data_back.lzh.translation", "res://Asset/language/data_back.ja.translation", "res://Asset/language/data_back.ru.translation"]
+
+source_file="res://Asset/language/data_back.csv"
+dest_files=["res://Asset/language/data_back.en.translation", "res://Asset/language/data_back.zh.translation", "res://Asset/language/data_back.lzh.translation", "res://Asset/language/data_back.ja.translation", "res://Asset/language/data_back.ru.translation"]
+
+[params]
+
+compress=true
+delimiter=0

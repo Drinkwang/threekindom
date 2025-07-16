@@ -56,8 +56,16 @@ func _update_item() -> void:
 					#var properties=_item_db.properties
 					#var item=properties.filter(func(a):return a["name"]=="detail")[0]
 					#var detail=item["value"]
-					self.tooltip_text=""+_item_db.name
+					var properties:Array=_item_db.properties
+
+		
+					var detail=properties.filter(func(a):return a["name"]=="detail")[0]
+	
+					var _context=_item_db.name+":"+detail["value"]
+					TooltipManager.register_tooltip(self,_context)
+					#self.tooltip_text=_context
 			else:
+				TooltipManager.unregister_tooltip(self)
 				_item = null
 				_item_db = null
 				texture = null

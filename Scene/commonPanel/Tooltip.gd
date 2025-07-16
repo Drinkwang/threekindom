@@ -83,7 +83,6 @@ func wrap_text(text: String) -> String:
 	var font = tooltip_label.get_theme_font("font")
 	var font_size = tooltip_label.get_theme_font_size("font_size", "") if tooltip_label.get_theme_font_size("font_size", "") else 16
 	var width=font.get_string_size(text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x
-	print(panel_container.size.x)
 	if width<=max_label_width:
 		panel_container.size=Vector2(width+20,panel_container.size.y)
 	else:
@@ -100,12 +99,6 @@ func show_tooltip():
 	tooltip_popup.show()
 	var mouse_pos = get_viewport().get_mouse_position()
 	tooltip_popup.position = mouse_pos + Vector2(10, 10)  # 偏移以避免遮挡鼠标
-	
-	# 重置 PanelContainer 大小以自适应
-	# tooltip_popup.size = Vector2.ZERO
-	# await get_tree().create_timer(0.01).timeout  # 等待布局更新
-	
-	# 更新文本（确保换行）
 	showText(context)
 
 func adjust_tooltip_position():

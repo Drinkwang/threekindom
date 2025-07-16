@@ -1,11 +1,48 @@
-[gd_scene load_steps=6 format=3 uid="uid://dqpklssxni160"]
+[gd_scene load_steps=10 format=3 uid="uid://dqpklssxni160"]
 
 [ext_resource type="Script" path="res://Scripts/clickBlock.gd" id="1_es4xp"]
 [ext_resource type="Texture2D" uid="uid://c1o6guigf68iu" path="res://Asset/城镇建筑/灵堂亮.jpg" id="2_cxpov"]
 [ext_resource type="Texture2D" uid="uid://bye5cypeps08s" path="res://Asset/ui/4.png" id="3_gdvxu"]
 [ext_resource type="Texture2D" uid="uid://c8s24bx5r2xci" path="res://Asset/other/感叹号.png" id="4_es4ro"]
+[ext_resource type="Texture2D" uid="uid://c4tifw3jqmu6n" path="res://Scene/heart.png" id="5_3uyx0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eqsn2"]
+
+[sub_resource type="Animation" id="Animation_tjyto"]
+resource_name = "heart"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_w6s1d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vxejg"]
+_data = {
+"RESET": SubResource("Animation_w6s1d"),
+"heart": SubResource("Animation_tjyto")
+}
 
 [node name="Node2D2" type="Node2D"]
 script = ExtResource("1_es4xp")
@@ -67,5 +104,24 @@ offset_bottom = 68.0
 scale = Vector2(0.285, 0.285)
 mouse_filter = 2
 texture = ExtResource("4_es4ro")
+
+[node name="Heart" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-37, 81)
+texture = ExtResource("5_3uyx0")
+
+[node name="Label" type="Label" parent="Heart"]
+offset_left = 17.0
+offset_top = -8.0
+offset_right = 129.0
+offset_bottom = 8.0
+text = "好感度:70"
+
+[node name="heartAni" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Heart/Label")
+libraries = {
+"": SubResource("AnimationLibrary_vxejg")
+}
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

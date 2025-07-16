@@ -32,11 +32,17 @@ func _processList(data):
 			continue
 		var btnContext=item.context
 		var richTxt:RichTextLabel =RichTextLabel.new()
+		richTxt.fit_content=true
+		richTxt.autowrap_mode=TextServer.AUTOWRAP_OFF
 		richTxt.set_text(btnContext)
 		#richTxt.set_size(Vector2(200,50))
-		richTxt.set_size(Vector2(850,80))
-		richTxt.set_mouse_filter(Control.MOUSE_FILTER_IGNORE)
+		#可以修改成动态调整的大小
 		
+		#var text_size: Vector2 = richTxt.get_content_rect()
+		#var padding: Vector2 = Vector2(20, 10)  # 宽度和高度的内边距
+		#richTxt.set_size(Vector2(text_size.x + padding.x, text_size.y + padding.y))
+		richTxt.set_mouse_filter(Control.MOUSE_FILTER_IGNORE)
+
 		#获取语言 并获取长度
 		#如果长度大于一个区间，可以将语言字体变小
 		var currencelanguage=TranslationServer.get_locale()
@@ -76,6 +82,7 @@ func _processList(data):
 		#buttton.ignore_texture_size=true
 		#buttton.stretch_mode=TextureButton.STRETCH_KEEP_ASPECT
 		buttton.add_child(richTxt)
+		
 		buttton.texture_normal=normalbtn
 		buttton.texture_pressed=pressbtn
 		buttton.texture_hover=hoverbtn
@@ -83,10 +90,12 @@ func _processList(data):
 		buttton.mouse_entered.connect(_buttonHover)
 		buttton.pressed.connect(_button_ation.bind(item,index))
 		buttton.name="button"+var_to_str(index)
+		if item.has("tooltip"):
+			TooltipManager.register_tooltip(richTxt,item.tooltip)	
 		index=index+1
 		$VBoxContainer.add_child(buttton)		
 
-
+		richTxt.set_size(Vector2(buttton.size.x,50))
 
 func changeLanguage():
 	for e in $VBoxContainer.get_children():
@@ -138,7 +147,16 @@ func _show_button_5_yellow(index):
 	animation_player.play("YELLOWGUILD")
 	pass
 
-
+#func _show_button_ToolTip(index):
+	#if index==-1:
+		#node_2d.hide()
+		#return
+	#else:
+		#node_2d.show()
+	##await $VBoxContainer.get_node("button1").position.y>0
+	#var findpattern="button"+var_to_str(index)
+	#var groups=$VBoxContainer.get_node(findpattern)
+	#var texbtn:TextureButton=groups
 func _button_ation(item,index):
 	SoundManager.play_sound(sounds.confiresound)
 	#_show_button_5_yellow(index)

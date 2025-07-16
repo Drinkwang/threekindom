@@ -320,6 +320,7 @@ do SummonFaction(_faction)
 #后续内容作为正式版本剧情
 ~ 府邸第一天
 do _firstPhaseBegin()
+#do GameManager.sav.chendenfav=GameManager.sav.chendenfav+10
 : 刘备第一天上任徐州刺史，糜竺和陈登前来迎接。他的主簿向他介绍陈登等人
 主簿: 将军，这位是陈登，字元龙，在徐州声名远扬，也是我们的幕僚。
 刘备: 久仰大名！元龙之才，果然名不虚传。

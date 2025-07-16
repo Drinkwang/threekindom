@@ -11,6 +11,9 @@ func set_inventory_manager(inv_uuid, manager) -> void:
 	inventory = inv_uuid
 	_inventoryManager = manager
 	_update_view()
+#如果接收到使用道具消耗道具的给刷新
+
+
 
 func _ready() -> void:
 	if get_tree().get_root().has_node(InventoryManagerName):

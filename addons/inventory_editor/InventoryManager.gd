@@ -180,11 +180,13 @@ func _remove_item(inventory_uuid: String, item_uuid: String, quantity: int) -> i
 	if stack_quantity > quantity:
 		GameManager.sav._data.inventories[inventory_uuid][index].quantity = GameManager.sav._data.inventories[inventory_uuid][index].quantity - quantity
 		quantity = 0
+		#emit_signal("inventory_changed", inventory_uuid)
 	else:
 		quantity = quantity - GameManager.sav._data.inventories[inventory_uuid][index].quantity
 		GameManager.sav._data.inventories[inventory_uuid][index] = {}
 	if stacks_with_item_indexes.size() > 0 and quantity > 0:
 		remove_item(inventory_uuid, item_uuid, quantity)
+	emit_signal("inventory_changed", inventory_uuid)	
 	return quantity
 
 func move_item_by_names(inventory_name_from: String, from_index: int, inventory_name_to: String, to_index: int) -> void:

@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_vy71u")
-_name = "丹阳派"
+_name = "外地派"
 _num_all = 5
 _num_rt = 0
 _num_sp = 0

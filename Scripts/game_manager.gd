@@ -942,6 +942,17 @@ func changeTaskLabel(_value:String):
 	GameManager.sav.TargetDestination=_value
 	_engerge.changeTargetLabel()
 
+
+func changeChendenHeart(addValue):
+	sav.chendenfav+=addValue
+
+func changeMizhuHeart(addValue):
+	sav.chendenfav+=addValue
+	
+func changeCaobaoHeart(addValue):
+	sav.chendenfav+=addValue
+	
+
 #这里用作跳过序章
 func SkipPrologue():
 	var keys_to_change = [
@@ -1021,6 +1032,7 @@ func haveMirror()->bool:
 		
 		
 func AutoSaveFile():
+	_engerge.showAutoSaveANI()
 	var tempSavs:Array=[null,null,null]
 	sav.autoSave=true	
 	for i in range(1,4):
@@ -1063,7 +1075,8 @@ func AutoSaveFile():
 	# Save to the slot with the earliest time
 	if earliest_index != -1:
 		ResourceSaver.save(GameManager.sav, "user://save_data{index}.tres".format({"index": str(earliest_index)}))
-
+	await 2
+	_engerge.hideAutoSaveANI()
 
 func _imporveRelation(data:cldata):
 	if DialogueManager.dialogBegin==false:

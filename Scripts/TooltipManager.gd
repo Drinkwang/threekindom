@@ -43,6 +43,33 @@ func register_tooltip(node: Node, tooltip_text: String):
 		if not area.is_connected("mouse_exited", _on_mouse_exited.bind(node)):
 			area.mouse_exited.connect(_on_mouse_exited.bind(node))
 
+
+func unregister_tooltip(node: Node):
+	# 从 Tooltipable 分组移除
+	if node.is_in_group("Tooltipable"):
+		node.remove_from_group("Tooltipable")
+	
+	# 断开信号
+	if node is Control:
+		if node.is_connected("mouse_entered", _on_mouse_entered.bind(node)):
+			node.mouse_entered.disconnect(_on_mouse_entered.bind(node))
+		if node.is_connected("mouse_exited", _on_mouse_exited.bind(node)):
+			node.mouse_exited.disconnect(_on_mouse_exited.bind(node))
+	elif node is Node2D and node.has_node("Area2D"):
+		var area = node.get_node("Area2D")
+		if area.is_connected("mouse_entered", _on_mouse_entered.bind(node)):
+			area.mouse_entered.disconnect(_on_mouse_entered.bind(node))
+		if area.is_connected("mouse_exited", _on_mouse_exited.bind(node)):
+			area.mouse_exited.disconnect(_on_mouse_exited.bind(node))
+	
+	# 移除 tooltip_text 元数据（可选）
+	if node.has_meta("tooltip_text"):
+		node.remove_meta("tooltip_text")
+	
+	# 如果是当前目标节点，隐藏 Tooltip
+	if current_target == node:
+		hide_tooltip()
+
 func _on_node_added(node: Node):
 	# 自动为加入 "Tooltipable" 分组的节点连接信号
 	if node.is_in_group("Tooltipable") and node.has_meta("tooltip_text"):
