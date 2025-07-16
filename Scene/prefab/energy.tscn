@@ -240,7 +240,7 @@ texture_normal = ExtResource("8_k0wc5")
 [node name="TargetLabel" type="Label" parent="."]
 modulate = Color(0.980392, 0.980392, 0.980392, 1)
 layout_mode = 0
-offset_left = 474.0
+offset_left = -734.0
 offset_top = 2236.0
 offset_right = 2417.0
 offset_bottom = 3438.0
@@ -253,6 +253,7 @@ theme_override_constants/shadow_outline_size = 4
 theme_override_constants/line_spacing = 1
 theme_override_font_sizes/font_size = 149
 text = "当前任务：无"
+horizontal_alignment = 2
 autowrap_mode = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="TargetLabel"]

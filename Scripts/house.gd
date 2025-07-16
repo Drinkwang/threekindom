@@ -310,20 +310,21 @@ func moreDayidness():
 	GameManager._rest()	 
 func refreshPropertyPanel():
 
-	var contextEx="当前天数：%d"%GameManager.sav.day+"\n"
-	contextEx=contextEx+"每日钱财收入：%d"%GameManager.sav.coin_DayGet+"\n"
-	contextEx=contextEx+"每日劳动力获取：%d"%GameManager.sav.labor_DayGet+"\n"
+	var contextEx=tr("当前天数：%d")%GameManager.sav.day+"\n"
+	contextEx=contextEx+tr("每日钱财收入：%d")%GameManager.sav.coin_DayGet+"\n"
+	contextEx=contextEx+tr("每日劳动力获取：%d")%GameManager.sav.labor_DayGet+"\n"
 	contextEx=contextEx+"------------------------------"+"\n"
-	contextEx=contextEx+"武将等级（括弧为战斗力）"+"\n"
-	contextEx=contextEx+"关羽：lv%d（%d）"%[GameManager.sav.generals[GameManager.RspEnum.ROCK].level,500]+"\n"
-	contextEx=contextEx+"张飞：lv%d（%d）"%[GameManager.sav.generals[GameManager.RspEnum.PAPER].level,500]+"\n"
-	contextEx=contextEx+"赵云：lv%d（%d）"%[GameManager.sav.generals[GameManager.RspEnum.SCISSORS].level,500]+"\n"	
+	contextEx=contextEx+tr("武将等级（括弧为战斗力）")+"\n"
+	contextEx=contextEx+tr("关羽：lv%d（%d）")%[GameManager.sav.generals[GameManager.RspEnum.ROCK].level,500]+"\n"
+	contextEx=contextEx+tr("张飞：lv%d（%d）")%[GameManager.sav.generals[GameManager.RspEnum.PAPER].level,500]+"\n"
+	contextEx=contextEx+tr("赵云：lv%d（%d）")%[GameManager.sav.generals[GameManager.RspEnum.SCISSORS].level,500]+"\n"	
 	contextEx=contextEx+"------------------------------"+"\n"
-	contextEx=contextEx+"当前派系对你的看法"+"\n"
+	contextEx=contextEx+tr("当前派系对你的看法")+"\n"
 	
-	contextEx=contextEx+"徐州派：%s"%getFractionView(GameManager.sav.BENTUPAI._support_rate)+"\n"
-	contextEx=contextEx+"豪族派：%s"%getFractionView(GameManager.sav.HAOZUPAI._support_rate)+"\n"
-	contextEx=contextEx+"丹阳派：%s"%getFractionView(GameManager.sav.WAIDIPAI._support_rate)+"\n"
+	contextEx=contextEx+tr("%s：%s")%[tr(GameManager.sav.BENTUPAI._name),getFractionView(GameManager.sav.BENTUPAI._support_rate)]+"\n"
+	if GameManager.sav.have_event["Factionalization"]==true:
+		contextEx=contextEx+tr("%s：%s")%[tr(GameManager.sav.HAOZUPAI._name),getFractionView(GameManager.sav.HAOZUPAI._support_rate)]+"\n"
+	contextEx=contextEx+tr("%s：%s")%[tr(GameManager.sav.WAIDIPAI._name),getFractionView(GameManager.sav.WAIDIPAI._support_rate)]+"\n"
 	
 	
 	#1优化参与军事行动的策略，通过战胜对手获得足够的资金收益。  
@@ -346,7 +347,7 @@ func refreshPropertyPanel():
 		comindex=1	
 	#通过演武场、大儒辩经、立法、从其它派系索取钱财 尽可能实现收集资金的目标
 	#通过收集尽可能多的资源，升级武将购买道具并在军事行动取得进一步的优势
-	contextEx=contextEx+"今日建议：%s"%getrecommendStr(comindex)+"\n"
+	contextEx=contextEx+tr("今日建议：%s")%getrecommendStr(comindex)+"\n"
 	propertyPanel.contextEX=contextEx
 	
 
@@ -375,15 +376,15 @@ func getrecommendStr(index):
 func getFractionView(point):
 	var viewStr=""
 	if point>=90:
-		viewStr="忠诚"
+		viewStr=tr("忠诚")
 	elif point<90 and point>=70:
-		viewStr="友好"
+		viewStr=tr("友好")
 	elif point<70 and point>=60:
-		viewStr="中立"
+		viewStr=tr("中立")
 	elif point<60 and point>=40:
-		viewStr="戒备"
+		viewStr=tr("戒备")
 	else:
-		viewStr="敌对"
+		viewStr=tr("敌对")
 	return viewStr
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

@@ -91,7 +91,7 @@ func _processList(data):
 		buttton.pressed.connect(_button_ation.bind(item,index))
 		buttton.name="button"+var_to_str(index)
 		if item.has("tooltip"):
-			TooltipManager.register_tooltip(richTxt,item.tooltip)	
+			TooltipManager.register_tooltip(richTxt,tr(item.tooltip))	
 		index=index+1
 		$VBoxContainer.add_child(buttton)		
 

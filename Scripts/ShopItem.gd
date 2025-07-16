@@ -55,7 +55,7 @@ func set_Data(key,value):
 		
 	var detail=properties.filter(func(a):return a["name"]=="detail")[0]
 	
-	var _context=db.name+":"+detail["value"]
+	var _context=tr(db.name)+":"+tr(detail["value"])
 	TooltipManager.register_tooltip(self,_context)
 	
 	
@@ -95,7 +95,7 @@ func _ready():
 		
 	var detail=properties.filter(func(a):return a["name"]=="detail")[0]
 	
-	var _context=db.name+":"+detail["value"]
+	var _context=tr(db.name)+":"+tr(detail["value"])
 	TooltipManager.register_tooltip(self,_context)
 
 	if isShop==true:

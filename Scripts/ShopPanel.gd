@@ -73,25 +73,25 @@ var price:int
 @onready var buy_button = $buyButton
 
 func initData():
-	detail.text="点击商品获取详细信息"
+	detail.text=tr("点击商品获取详细信息")
 	buy_button.disabled=true
 	selectGoods=null
 	refreshAlreadySoldWeapon()
 func refreshPage(_price,_detail):
 	buy_button.disabled=false
 	price=_price.to_int()
-	detail.text=_detail+"\n\n"+"当前商品价格:{price}".format({"price":price})
+	detail.text=tr(_detail)+"\n\n"+tr("当前商品价格:{price}").format({"price":price})
 	# selectGoods.itemstype#通过这个获取价格
 	pass
 	
 func refreshAlreadySoldTxt(index):
 	buy_button.disabled=true
 	if index==1:
-		detail.text="当前武器你已经持有了，无需再购买"
+		detail.text=tr("当前武器你已经持有了，无需再购买")
 	elif index==2:
-		detail.text="这个饰品你已经持有了，无需再购买"
+		detail.text=tr("这个饰品你已经持有了，无需再购买")
 	else:
-		detail.text="这个秘闻你已经知道了，请改日再来吧"
+		detail.text=tr("这个秘闻你已经知道了，请改日再来吧")
 #var befunc		
 func _on_buy_button_down():
 	if(GameManager.sav.coin>=(price as int) and selectGoods!=null):
@@ -131,7 +131,7 @@ func _on_buy_button_down():
 	else:
 		selectGoods=null
 		price=0
-		detail.text="你买不起物品"
+		detail.text=tr("你买不起物品")
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"小本生意，请谅解")
 		print("你买不起物品")
 	pass # Replace with function body.

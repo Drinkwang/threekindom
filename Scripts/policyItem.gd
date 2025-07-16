@@ -60,7 +60,7 @@ func initDataByGroup(index,group):
 	context=data.name
 	if GameManager.haveMirror():
 		
-		TooltipManager.register_tooltip(self,data.tootip)
+		TooltipManager.register_tooltip(self,tr(data.tootip))
 	else:
 		TooltipManager.unregister_tooltip(self)
 		self.tooltip_text=""

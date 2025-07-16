@@ -963,7 +963,7 @@ func SkipPrologue():
 		"firstMeetingEnd", "streetBeginBouleuterion", "firstBattle", "firstBattleTutorial", "firstBattleEnd",
 		"firstVisitScholars", "firstVisitScholarsEnd", "firstNewEnd", "DemoFinish"
 	]
-	
+	initBattle()
 	# Set each key's value to true
 	for key in keys_to_change:
 		sav.have_event[key] = true
