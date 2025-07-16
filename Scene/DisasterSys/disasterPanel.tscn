@@ -108,7 +108,7 @@ offset_top = 189.0
 offset_right = 1019.0
 offset_bottom = 221.0
 theme_override_font_sizes/font_size = 31
-text = "请选择你赈灾的比例 5、8、12、"
+text = "请选择你赈灾的比例"
 autowrap_mode = 2
 
 [node name="Panel2" type="Panel" parent="."]

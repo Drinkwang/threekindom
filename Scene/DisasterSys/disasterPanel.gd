@@ -29,11 +29,11 @@ func _refreshStand():
 	elif index==2:
 		GameManager.resideGrain=12
 	
-	str_standard.text="欣然：{happy}（满足大幅度提升支持度）\n认可：{accept}（满足小幅度提升支持度）\n疑虑：{doubt}（满足不降低支持度）\n失望：{sad}(不满足降低好感度)".format({"happy":happy,"accept":accept,"doubt":doubt,"sad":sad})
+	str_standard.text=tr("欣然：{happy}（满足大幅度提升支持度）\n认可：{accept}（满足小幅度提升支持度）\n疑虑：{doubt}（满足不降低支持度）\n失望：{sad}(不满足降低好感度)").format({"happy":happy,"accept":accept,"doubt":doubt,"sad":sad})
 
 func _refreshReside():
 	var resideNum=GameManager.resideGrain
-	str_reside.text="剩余粮食数：{str}（万吨）".format({"str":resideNum})
+	str_reside.text=tr("剩余粮食数：{str}（万吨）").format({"str":resideNum})
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -49,10 +49,10 @@ func _ready():
 	if(headImg!=null):
 		$TextureRect.texture=headImg# Replace with function body.
 	if(namelv!=null):
-		context.text=namelv
+		context.text=tr(namelv)
 		
 	if(detail_cotext!=null and detail_cotext!=null):
-		detail_cotext.text=detail_str
+		detail_cotext.text=tr(detail_str)
 	factionSurpuls=GameManager.getFractionByEnum(factionIndex)
 	refreshHaveGrain()	
 	changeLanguage()
@@ -123,6 +123,6 @@ func _on_text_edit_3_text_changed():
 @onready var have_grain = $haveGrain
 
 func refreshHaveGrain():
-	have_grain.text="已有粮食数量："+str(_num+factionSurpuls._num_grain)
+	have_grain.text=tr("已有粮食数量：")+str(_num+factionSurpuls._num_grain)
 	
 	#pass # Replace with function body.
