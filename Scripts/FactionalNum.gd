@@ -35,7 +35,7 @@ func refreshData():
 	var supportValue=itemData._support_rate
 	label.text=tr(itemData._name)+tr("-支持度：")
 	progress_bar.value=itemData._support_rate
-	if itemData.isrebellion==true:
+	if itemData.isSuppressed==true:
 		var sb = StyleBoxFlat.new()
 		progress_bar.add_theme_stylebox_override("fill", sb)
 
@@ -78,13 +78,13 @@ func refreshData():
 	elif (supportValue<80 and itemData.index==cldata.factionIndex.lvbu and itemData.isAlertRisk==false):	
 		itemData.isAlertRisk=true
 		DialogueManager.show_example_dialogue_balloon(sys,"吕布风险")	
-	if itemData.isrebellion==true:
+	if itemData.isSuppressed==true:
 		timer.start()
 	else:
 		timer.stop()
 @onready var timer = $Timer
 
 func _on_timer_timeout():
-	if itemData.isrebellion==true:
+	if itemData.isSuppressed==true:
 		itemData.ChangeSupport(-1)
 	#itemData # Replace with function body.

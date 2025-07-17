@@ -1080,14 +1080,14 @@ func AutoSaveFile():
 
 func _imporveRelation(data:cldata):
 	if DialogueManager.dialogBegin==false:
-		if data.isrebellion==true:
+		if data.isSuppressed==true:
 			data.rebellionUpdateNum+=1
 			resideValue=data._name
 			resideValue2=data._num_defections-data.rebellionUpdateNum
 			if data.rebellionUpdateNum>=data._num_defections:
 				DialogueManager.show_example_dialogue_balloon(sys,"讨好叛乱1")
 				data.rebellionUpdateNum=0
-				data.isrebellion=false
+				data.isSuppressed=false
 			else:
 				DialogueManager.show_example_dialogue_balloon(sys,"讨好叛乱2")
 			

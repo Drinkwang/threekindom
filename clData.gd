@@ -1,7 +1,11 @@
 class_name cldata
 extends Resource
 
-@export var _name:String
+@export var _name:String="":
+	get:
+		return tr(_name)
+	set(value):
+		_name=value
 @export var _num_all:int#总人数
 @export var _num_rt:int #摇摆人数
 @export var _num_sp:int #支持人数
@@ -11,6 +15,7 @@ extends Resource
 @export var rebellionUpdateNum:int=0
 @export var isAlertRisk=false
 @export var isrebellion:bool=false
+@export var isSuppressed=false
 @export var _support_rate:int=100 #支持率
 @export var isshow:bool=true 
 @export var index:factionIndex

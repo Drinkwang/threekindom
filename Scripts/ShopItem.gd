@@ -51,11 +51,13 @@ func set_Data(key,value):
 	
 	
 	var properties:Array=db.properties
-
+	var _context
 		
 	var detail=properties.filter(func(a):return a["name"]=="detail")[0]
-	
-	var _context=tr(db.name)+":"+tr(detail["value"])
+	if tr(detail["value"]).length()>0:
+		_context=tr(db.name)+":"+tr(detail["value"])
+	else:
+		_context=tr(db.name)+":"+"???"
 	TooltipManager.register_tooltip(self,_context)
 	
 	
@@ -67,14 +69,14 @@ const COIN = preload("res://Asset/coin.png")
 const LABOR = preload("res://Asset/labor.png")	
 func set_Money(_num):
 	context.texture=COIN
-	self.tooltip_text="金钱"
+	self.tooltip_text=tr("金币：持有的金钱数量(可购买道具)")#
 	txt_quantity.show()
 	txt_quantity.text=var_to_str(_num)
 @onready var txt_quantity = $frame/Quantity
 
 func set_Labor(_num):
 	context.texture=LABOR
-	self.tooltip_text="人口"
+	self.tooltip_text=tr("人口：拥有空闲人口(可转换为士兵)")#
 	txt_quantity.show()
 	txt_quantity.text=var_to_str(_num)
 	

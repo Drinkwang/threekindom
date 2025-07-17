@@ -1064,7 +1064,7 @@ func confireSuppress():
 	var _c=getFactionByIndex()
 	_c.isDoneOp=true
 	_c._support_rate=100
-	_c.isrebellion=true
+	_c.isSuppressed=true
 	_c._num_defections+=1
 	SignalManager.changeFraction.emit()
 	#发一个信号，有派系确认为对你没有敌意的派系
