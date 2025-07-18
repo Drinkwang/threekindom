@@ -136,13 +136,14 @@ func show_Fade_Blank_scene(tied_scene) -> blankPanel:
 
 
 
-
+@export var isOpenSetting=false
 
 ## Show the configured dialogue balloon
 func new_SettingMenu( title: String = "") -> SettingMenu:
 	var balloon_path: String# = DialogueSettings.get_setting(&"balloon_path", _get_example_balloon_path())
 	if not ResourceLoader.exists(balloon_path):
 		balloon_path = _get_setting_balloon_path()
+	isOpenSetting=true	
 	return show_reward_scene(balloon_path, title)
 
 

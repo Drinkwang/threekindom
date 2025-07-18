@@ -15,16 +15,25 @@ func _ready():
 	initLanguage()
 	SignalManager.changeLanguage.connect(initLanguage)
  # Replace with function body.
-	
+const NOT_JAM_UI_CONDENSED_16 = preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf")	
 const BAKUDAI_BOLD = preload("res://Asset/Font/Bakudai-Bold.ttf")
 func initLanguage():
 	var currencelanguage=TranslationServer.get_locale()
-	if currencelanguage=="en" or currencelanguage=="ru":
+	if currencelanguage=="en":
 		load_text.add_theme_font_size_override("font_size",50)
 		save_text.add_theme_font_size_override("font_size",50)
+		load_text.add_theme_font_override("font",BAKUDAI_BOLD)
+		save_text.add_theme_font_override("font",BAKUDAI_BOLD)				
+	elif currencelanguage=="ru":
+		load_text.add_theme_font_size_override("font_size",35)
+		save_text.add_theme_font_size_override("font_size",35)
+		load_text.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
+		save_text.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)		
 	else:
 		load_text.add_theme_font_size_override("font_size",72)
 		save_text.add_theme_font_size_override("font_size",72)
+		load_text.add_theme_font_override("font",BAKUDAI_BOLD)
+		save_text.add_theme_font_override("font",BAKUDAI_BOLD)					
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass

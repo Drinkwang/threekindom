@@ -158,6 +158,8 @@ func _input(event):
 	# 检测 ESC 键
 	if event.is_action_pressed("ui_cancel") and not event.is_echo() and DialogueManager.dialogBegin==false and currenceScene!=null:
 		#pass
+		if PanelManager.isOpenSetting==true:
+			return
 		if !(currenceScene is mainHall):
 			DialogueManager.show_example_dialogue_balloon(sys,"ESC按钮")
 		else:
