@@ -12,9 +12,19 @@ func _ready():
 	if DialogueManager.gameover==true or GameManager.sav.day==0:
 		_on_load_button_button_down()
 		save_text.add_theme_color_override("font_color",Color.DIM_GRAY)
+	initLanguage()
+	SignalManager.changeLanguage.connect(initLanguage)
  # Replace with function body.
-
-
+	
+const BAKUDAI_BOLD = preload("res://Asset/Font/Bakudai-Bold.ttf")
+func initLanguage():
+	var currencelanguage=TranslationServer.get_locale()
+	if currencelanguage=="en" or currencelanguage=="ru":
+		load_text.add_theme_font_size_override("font_size",50)
+		save_text.add_theme_font_size_override("font_size",50)
+	else:
+		load_text.add_theme_font_size_override("font_size",72)
+		save_text.add_theme_font_size_override("font_size",72)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass

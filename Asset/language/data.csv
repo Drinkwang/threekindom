@@ -1,5 +1,5 @@
 id,en,zh,lzh,ja,ru
-教程：请拾起未熄灭的蜡烛,Tutorial: Please double-click Tao Qian's memorial tablet.,教程：请拾起未熄灭的蜡烛,教程：請雙擊陶謙的牌位。,チュートリアル：陶謙の牌位をダブルクリックしてください。,Обучение: дважды щелкните по табличке Тао Цяня.
+教程：请拾起未熄灭的蜡烛,Tutorial: Pick up the unextinguished candle,教程：请拾起未熄灭的蜡烛,教學：請拾起未熄滅的蠟燭,チュートリアル：消えていないろうそくを拾ってください,Обучение: Поднимите незатушенную свечу
 教程：找到熄灭的灯源并点亮它,Tutorial: Find the extinguished lamp and light it.,教程：找到熄灭的灯源并点亮它,教程：找到熄滅的燈源並點亮它。,チュートリアル：消えた灯りを見つけて、点灯してください。,Обучение: найдите потухший фонарь и зажгите его.
 教程：请双击陶谦的牌位,Tutorial: Please double-click Tao Qian's memorial tablet.,教程：请双击陶谦的牌位,教程：請雙擊陶謙的牌位。,チュートリアル：陶謙の牌位をダブルクリックしてください。,Обучение: дважды щелкните по табличке Тао Цяня.
 蜡烛,Candle,蜡烛,蠟燭,ロウソク,Свеча
@@ -1306,10 +1306,8 @@ Days until spy discovery -2",士族派好感上升10，豪族派好感下降5，
 你许诺{{GameManager.HAOZUPAI._name}}的法律没有通过，丧失10点支持度。,"Your proposed law for {{GameManager.HAOZUPAI._name}} was rejected, losing 10 support points.",你许诺{{GameManager.HAOZUPAI._name}}的法律没有通过，丧失10点支持度。,你許諾{{GameManager.HAOZUPAI._name}}的法律沒有通過，喪失10點支持度。,{{GameManager.HAOZUPAI._name}}が約束した法律が成立せず、支持率が10ポイント低下しました。,"Вы не смогли провести закон {{GameManager.HAOZUPAI._name}}, что привело к потере 10 очков поддержки."
 你许诺{{GameManager.WAIDIPAI._name}}的法律没有通过，丧失10点支持度。,"Your proposed law for {{GameManager.WAIDIPAI._name}} was rejected, losing 10 support points.",你许诺{{GameManager.WAIDIPAI._name}}的法律没有通过，丧失10点支持度。,你許諾{{GameManager.WAIDIPAI._name}}的法律沒有通過，喪失10點支持度。,{{GameManager.WAIDIPAI._name}}の法律が成立せず、支持度が10ポイント減少しました。,"Вы не смогли провести закон {{GameManager.WAIDIPAI._name}}, который обещали, и потеряли 10 очков поддержки."
 点右方道具栏旁「笔书」图标，可入存档司，记录霸业。下方设置与退出选项，谨慎选择，勿误大计！,"Click the ""Scroll"" icon next to the item bar on the right to enter the Archive Hall and record your conquests. The settings and exit options below should be chosen carefully—do not jeopardize your grand strategy!",点右方道具栏旁「笔书」图标，可入存档司，记录霸业。下方设置与退出选项，谨慎选择，勿误大计！,點擊右方道具欄旁的「筆書」圖示，可進入存檔司，記錄霸業。下方設置與退出選項，謹慎選擇，勿誤大計！,画面右側のアイテム欄横にある「筆書」アイコンをタップすると、セーブ画面に入り、覇業の記録を残せます。下部の設定と終了オプションは慎重に選択し、大事な計画を誤らないようご注意ください！,"Нажмите значок «Книга» справа от панели предметов, чтобы войти в архив и сохранить свои завоевания. Внизу находятся настройки и выход — выбирайте осторожно, чтобы не сорвать великие планы!"
-继续游戏,Continue Game,继续游戏,繼續遊戲,続きから,Продолжить игру
 设置,Settings,设置,設定,設定,Настройки
 返回到游戏主菜单,Return to Main Menu,返回到游戏主菜单,返回至遊戲主選單,ゲームのメインメニューに戻る,Вернуться в главное меню
-退出游戏,Exit Game,退出游戏,退出遊戲,ゲームを終了,Выйти из игры
 选项暂不可开,Option temporarily unavailable,选项暂不可开,選項暫不可開,選択肢はまだ開けません,Опция временно недоступна
 灵堂祭礼，未可轻离，选项暂不可开。,The mourning rites are underway; this option is temporarily unavailable.,灵堂祭礼，未可轻离，选项暂不可开。,靈堂祭禮，未可輕離，選項暫不可開。,霊前の祭礼中につき、軽々しく離れることはできません。選択肢は一時的に利用できません。,"Поминальные обряды в зале скорби нельзя прерывать, выбор пока недоступен."
 各位将士辛苦了。今天我正式接任徐州刺史一职，希望我们能共同守护这片土地。,"Soldiers, your hard work is appreciated. Today I officially assume the post of Governor of Xuzhou. May we defend this land together.",各位将士辛苦了。今天我正式接任徐州刺史一职，希望我们能共同守护这片土地。,各位將士辛苦了。今天我正式接任徐州刺史一職，希望我們能共同守護這片土地。,諸将の皆、ご苦労であった。本日より正式に徐州刺史を引き継ぐこととなった。共にこの地を守り抜こう。,"Дорогие воины, вы хорошо потрудились. Сегодня я официально вступаю в должность губернатора Сюйчжоу. Надеюсь, мы вместе сможем защитить эту землю."
@@ -1335,14 +1333,13 @@ Days until spy discovery -2",士族派好感上升10，豪族派好感下降5，
   闻你正忙于清剿黄巾军，虽已取得进展，但仍有余孽未除。我愿派遣一支精锐步兵协助你彻底剿灭黄巾军，确保粮道畅通无阻。袁绍势力庞大，且与我有旧交，相信他会接纳你的诚意。望你一切顺利，若有需要，随时告知。
   无论如何，愿你一切安好，期待未来能再度携手，共创大业。
 
-                               曹操敬上","To My Esteemed Brother Bei: 
-It has been too long since we last met, and my heart is filled with profound emotion. When you aided Tao Qian against my forces, I too was beset by troubles as Lü Bu conspired to seize Yan Province. At first, I suspected this was your cunning stratagem—to wield others as blades against me, using Tao Qian and Lü Bu to weaken my strength. Yet I know your character to be noble and forthright, far removed from such deceit. Fortunately, those matters are now resolved, and I bear no lingering resentment.
-I still remember our first meeting in Luoyang, where we shared our aspirations as men of ambition—a memory I hold dear to this day. You once aided me in raising an army, and that kindness remains etched in my heart.
-I hear you are occupied with quelling the Yellow Turban remnants. Though you have made progress, scattered rebels still linger. To ensure the safety of your supply routes, I am willing to dispatch a contingent of elite infantry to assist in their complete eradication. Yuan Shao commands vast influence, and given our past ties, I trust he will receive your goodwill. May your endeavors prosper, and should you require anything, do not hesitate to ask.
-Whatever may come, I wish you peace and success. I look forward to the day we may stand together again and achieve greatness.
-Respectfully,
-Cao Cao
-","备弟足下：
+                               曹操敬上","My Esteemed Brother Bei,
+  Long parted, yet I remember all. When you aided Tao Qian against me, I too was betrayed by Lü Bu. At first, I suspected your hand—yet I know your honor. The past is settled; I hold no blame.
+  I recall our meeting in Luoyang, where we spoke as heroes. You once helped me raise troops—a debt I’ve not forgotten.
+  I hear of your fight against the Yellow Turbans. Though you advance, remnants remain. I offer elite infantry to aid you and secure your roads. Yuan Shao, powerful and my old ally, may yet heed you. Call if you need aid.
+  May fortune favor you. Let us meet again as allies.
+
+                               Cao Cao ","备弟足下：
   久别重逢，感慨万千。当年你助陶谦对抗我军，而我也因吕布勾结兖州之事陷入困境。起初，我以为这是你逆借刀杀人的妙计，利用陶谦、吕布等人削弱我的势力。然而，你一向光明磊落，绝非此等人。幸而我已经解决了此事，往事已矣，我不再计较。
   犹记当年初遇于洛阳，共叙英雄之志，感怀至今。你曾助我招募军队，那份情谊我始终铭记于心。
   闻你正忙于清剿黄巾军，虽已取得进展，但仍有余孽未除。我愿派遣一支精锐步兵协助你彻底剿灭黄巾军，确保粮道畅通无阻。袁绍势力庞大，且与我有旧交，相信他会接纳你的诚意。望你一切顺利，若有需要，随时告知。
@@ -1352,19 +1349,19 @@ Cao Cao
   久別重逢，感慨萬千。當年你助陶謙對抗我軍，而我也因呂布勾結兗州之事陷入困境。起初，我以為這是你借刀殺人之妙計，欲利用陶謙、呂布等人削弱我勢力。然而，你向來光明磊落，絕非此等之人。幸而此事已解，往事已矣，我不再計較。
   猶記當年初遇於洛陽，共敘英雄之志，至今感懷。你曾助我招募軍隊，那份情誼我銘記於心。 
   聞你正忙於清剿黃巾軍，雖已有所進展，然餘孽未除。我願遣一支精銳步兵助你徹底剿滅黃巾軍，確保糧道暢通無阻。袁紹勢力龐大，且與我有舊交，相信他會接納你的誠意。望你一切順利，若有需要，隨時告知。 無論如何，願你一切安好，期待未來能再度攜手，共創大業。
-      曹操敬上 ","備弟 足下：
-久闊を叙ぶるに、万感胸に迫る。昔、君が陶謙を助けて我が軍に対抗し、我もまた呂布の兗州謀叛に苦境に陥った折りは、当初これは君の「人を斬らすに刀を借る」妙計かと疑ったものだ。陶謙や呂布らを利用して我が勢力を削ごうとしたのかと。然るに、君は元来光明磊落な人物、決してそのような策士ではない。幸い我已にこの難を乗り越え、往時の事は水に流そう。
-洛陽で初めて相見えた時、共に英雄の志を語り合ったことが、今も懐かしく思い出される。君が我の募兵を助けてくれた恩義は、今も忘れてはいない。
-聞けば君は今、黄巾賊の掃滅に忙殺されているとか。既に成果を挙げつつも、なお残党が跳梁している由。我より一隊の精鋭歩兵を派遣し、君の黄巾賊殲滅と糧道確保を支援しよう。袁紹は勢力こそ大きいが、我と旧交あり、君の誠意なら受け入れるであろう。全て順調ならば幸いである。必要あれば遠慮なく申し出られよ。
-如何なる時も、君の安泰を願っている。いつの日か再び手を携え、共に大業を成すことを期待して。
-　　　　　　　　　　　　　　　　　　　　　　曹操　拝
-","Лю Бэю, брат мой,
-Как много мыслей вызывает наша долгая разлука! Помнишь, когда ты помогал Тао Цяню против моих войск, а я был в трудном положении из-за предательства Люй Бу в Янчжоу? Сперва я подумал, что это твой хитрый план — использовать других, чтобы ослабить меня. Но ты всегда был благороден, и я знаю: ты не способен на такое. К счастью, те трудности уже позади, и я не держу зла.
-Я до сих пор вспоминаю нашу встречу в Лояне, где мы говорили о великих делах. Ты помог мне собрать войска — эту дружбу я не забуду.
-Слышал, ты сражаешься с остатками Жёлтых Повязок. Хоть ты и одержал победы, угроза ещё есть. Готов послать тебе отряд опытных пехотинцев, чтобы очистить земли и защитить поставки зерна. Юань Шао могущественен, но у нас с ним старые связи — уверен, он примет твоё предложение. Если понадобится помощь, дай знать.
-Желаю тебе успехов. Надеюсь, однажды мы снова объединим силы для великих свершений.
-С уважением,
-Цао Цао
+      曹操敬上 ","備弟 足下： 
+  久しぶりの再会、感慨無量。かつて君は陶謙を助け、我が軍と戦ったが、私も呂布の裏切りで窮地に陥った。当初は「借刀殺人」の計かと疑ったが、君は義に厚い男、そんな策士ではない。今は全て過ぎ去ったことだ。
+  洛陽で語り合った志、今も忘れぬ。軍編成を助けてくれた恩義、返す時が来よう。
+  黄巾残党の討伐に苦戦と聞く。ここに精鋭の歩兵を預けよう。糧道を守り、君の力となれ。袁紹とは旧交あり、きっと君を認めよう。何かあれば言ってくれ。
+  どうか無事で。いずれ再び手を組み、大業を成そう。
+
+                               曹操","Лю Бэю, брат мой,
+  Долгая разлука навевает думы!  Помнишь, как ты помогал Тао Цяню против меня, а я боролся с предательством Люй Бу?  Сперва я заподозрил хитрость, но ты благороден — ты не таков.  Те невзгоды позади, и зла я не держу.
+  Не забыл нашу встречу в Лояне и твою помощь в сборе войск.
+  Слышал, ты добиваешь Жёлтых Повязок.  Готов послать тебе отряд опытных пехотинцев, чтобы обезопасить зерновые пути от их набегов.  Юань Шао примет твоё предложение — у нас с ним связи.  Нужна помощь — обращайся.
+  Успехов!  Надеюсь, ещё объединим силы.
+
+                               Цао Цао
 "
 主公竟与曹操有旧识？,"My lord, you actually have ties with Cao Cao?",主公竟与曹操有旧识？,主公竟與曹操有舊識？,主君は曹操と旧知の仲だったのか？,"Господин, оказывается, знаком с Цао Цао?"
 多年前，我辞官逃亡京师，欲寻恩师。因恩师与袁氏有旧，我曾为袁氏效力。彼时，我因熟谙合众之道，被派往曹操麾下，助其募兵，略有交情。,"Years ago, I resigned from office and fled to the capital in search of my mentor. As my mentor had ties with the Yuan family, I once served under them. At that time, I was sent to Cao Cao's camp to assist in recruiting troops due to my expertise in coalition-building, and we developed some rapport.",多年前，我辞官逃亡京师，欲寻恩师。因恩师与袁氏有旧，我曾为袁氏效力。彼时，我因熟谙合众之道，被派往曹操麾下，助其募兵，略有交情。,多年前，我辭官逃亡京師，欲尋恩師。因恩師與袁氏有舊，我曾為袁氏效力。彼時，我因熟諳合眾之道，被派往曹操麾下，助其募兵，略有交情。,数年前、私は官職を辞して都へ逃れ、恩師を探し求めていた。恩師は袁氏と旧知の間柄であり、私はかつて袁氏に仕えたことがあった。当時、私は連合の術に通じていたため、曹操の配下に派遣され、兵を募るのを助け、少しばかりの縁ができた。,"Много лет назад я покинул пост и бежал в столицу, чтобы найти своего наставника. Поскольку мой учитель был связан с родом Юань, я служил у них. В то время, благодаря моему знанию искусства объединения людей, меня направили под командование Цао Цао, чтобы помочь ему набирать войска, и у нас завязались некоторые отношения."
@@ -1599,7 +1596,6 @@ Scene: Inside a tattered military tent, Liu Bei and three fellow-veteran soldier
 你已成功出售商品，获得{{GameManager.SoldCoin}}金,You have successfully sold the goods and received {{GameManager.SoldCoin}} gold.,你已成功出售商品，获得{{GameManager.SoldCoin}}金,你已成功出售商品，獲得{{GameManager.SoldCoin}}金,商品を売却しました。{{GameManager.SoldCoin}}金を獲得しました,Вы успешно продали товар и получили {{GameManager.SoldCoin}} золота
 载入存档,Load Game,载入存档,載入存檔,ロード,Загрузить сохранение
 退回主菜单,Return to Main Menu,退回主菜单,返回主選單,メインメニューに戻る,Вернуться в главное меню
-退出游戏,Exit Game,退出游戏,退出遊戲,ゲームを終了,Выйти из игры
 恭喜你，你获得-饥蛊骨签,"Congratulations, you have obtained - Starvation Bone Talisman",恭喜你，你获得-饥蛊骨签,恭喜你，你獲得-饑蠱骨籤,おめでとうございます、あなたは「飢蠱骨札」を獲得しました,"Поздравляем, вы получили - Голодный амулет из кости"
 恭喜你，你获得-论语简注,"Congratulations, you have obtained - The Analects Simplified Commentary",恭喜你，你获得-论语简注,恭喜你，你獲得-論語簡注,おめでとうございます、あなたは「論語簡注」を獲得しました,"Поздравляю, вы получили – Лунь Юй в кратком изложении"
 恭喜你，你获得-礼记笺疏,"Congratulations, you have obtained – Annotations to the Book of Rites",恭喜你，你获得-礼记笺疏,恭喜你，你獲得-禮記箋疏,おめでとうございます、あなたは「礼記箋疏」を獲得しました,"Поздравляем, вы получили – Комментарии к Ли Цзи"
@@ -1657,7 +1653,7 @@ Scene: Inside a tattered military tent, Liu Bei and three fellow-veteran soldier
 你当前的民心低于40,Your current public support is below 40.,你当前的民心低于40,你當前的民心低於40,あなたの現在の民心は40未満です,Ваша текущая народная поддержка ниже 40
 与手下谈谈,Talk to subordinates,与手下谈谈,與手下談談,配下と話す,Поговорить с подчинёнными
 当前凑集资金：{currence}/{target},Current funds raised: {currence}/{target},当前凑集资金：{currence}/{target},當前湊集資金：{currence}/{target},現在の資金調達額：{currence}/{target},Текущий сбор средств: {currence}/{target}
-時間:{current_datetime}\n游戲天數：{day}\n擁有黃金：{coin}\n人心：{heart}\n勞夫：{people},Time: {current_datetime}\nGame Days: {day}\nGold: {coin}\nPopular Support: {heart}\nWorkforce: {people},時間:{current_datetime}\n游戲天數：{day}\n擁有黃金：{coin}\n人心：{heart}\n勞夫：{people},時間:{current_datetime}\n遊戲天數：{day}\n擁有黃金：{coin}\n人心：{heart}\n勞夫：{people},時間:{current_datetime}\nゲーム日数：{day}\n所持金：{coin}\n人心：{heart}\n労働力：{people},Время: {current_datetime}\nДни игры: {day}\nЗолото: {coin}\nНародная поддержка: {heart}\nРабочая сила: {people}
+savefiledata,Time: {current_datetime}\nGame Days: {day}\nGold: {coin}\nPopular Support: {heart}\nWorkforce: {people},時間:{current_datetime}\n游戲天數：{day}\n擁有黃金：{coin}\n人心：{heart}\n勞夫：{people},時間:{current_datetime}\n遊戲天數：{day}\n擁有黃金：{coin}\n人心：{heart}\n勞夫：{people},時間:{current_datetime}\nゲーム日数：{day}\n所持金：{coin}\n人心：{heart}\n労働力：{people},Время: {current_datetime}\nДни игры: {day}\nЗолото: {coin}\nНародная поддержка: {heart}\nРабочая сила: {people}
 自动存档,Auto Save,自动存档,自動存檔,自動セーブ,Автосохранение
 存,Save,存,存,貯,Сохранить
 讀,Read,讀,讀,読,Чтение
@@ -1803,3 +1799,6 @@ Scene: Inside a tattered military tent, Liu Bei and three fellow-veteran soldier
 丈八蛇矛+6%,Serpent Halberd +6%,丈八蛇矛+6%,丈八蛇矛+6%,丈八蛇矛+6%,Копьё Чжан Ба +6%
 龙胆亮银枪+10%,Dragon's Valor Silver Spear +10%,龙胆亮银枪+10%,龍膽亮銀槍+10%,龍胆亮銀槍+10%,Драконья отвага и серебряное копьё +10%
 雌雄双股剑+1%,Twin Swords of the Hero +1%,雌雄双股剑+1%,雌雄雙股劍+1%,雌雄双股剣+1%,Парные мечи супругов +1%
+商人,merchant,商人,商人,商人,Торговец
+当前商人没有需要从你手中收购商品的需要，请改日再来！,,当前商人没有需要从你手中收购商品的需要，请改日再来！,,,
+无数据,,,,,

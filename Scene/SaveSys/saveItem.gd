@@ -17,7 +17,7 @@ func refresh(sav:saveData):
 	label.show()
 
 	#GameManager.sav.current_datetime
-	var formatStr=tr("時間:{current_datetime}\n游戲天數：{day}\n擁有黃金：{coin}\n人心：{heart}\n勞夫：{people}")
+	var formatStr=tr("savefiledata")
 	if sav.autoSave == true:
 		formatStr=("({auto})").format({"auto":tr("自动存档")})+"\n"+formatStr
 

@@ -544,7 +544,7 @@ func secondMissonStart():
 	GameManager.sav.targetValue=10
 	GameManager.sav.currenceValue=0
 	GameManager.sav.targetResType=GameManager.ResType.battle
-	GameManager.sav.targetTxt="当前讨伐对象：{currence}/{target}"
+	GameManager.sav.targetTxt=tr("当前讨伐对象：{currence}/{target}")
 	GameManager.sav.TargetDestination="battle"
 	#win 10次90
 	#GameManager.sav.TargetDestination=="府邸"

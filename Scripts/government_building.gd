@@ -337,7 +337,7 @@ func victoryPartyEnd():
 	GameManager.sav.targetValue=15
 	GameManager.sav.currenceValue=0
 	GameManager.sav.targetResType=GameManager.ResType.battle
-	GameManager.sav.targetTxt="当前讨伐对象：{currence}/{target}"
+	GameManager.sav.targetTxt=tr("当前讨伐对象：{currence}/{target}")
 	GameManager.sav.TargetDestination="battle"
 
 
@@ -853,7 +853,7 @@ func StartTaishan():
 	GameManager.sav.targetValue=12
 	GameManager.sav.currenceValue=0
 	GameManager.sav.targetResType=GameManager.ResType.battle
-	GameManager.sav.targetTxt="当前讨伐对象：{currence}/{target}"
+	GameManager.sav.targetTxt=tr("当前讨伐对象：{currence}/{target}")
 	GameManager.sav.TargetDestination="battle"
 	#显示军事行动还有30把
 	pass
@@ -1108,7 +1108,7 @@ func lvbuJoin():
 	GameManager.sav.currenceValue=0
 	GameManager.sav.currenceDay=0
 	GameManager.sav.targetResType=GameManager.ResType.battle
-	GameManager.sav.targetTxt="当前讨伐对象：{currence}/{target}"
+	GameManager.sav.targetTxt=tr("当前讨伐对象：{currence}/{target}")
 	GameManager.sav.TargetDestination="battle"
 
 
