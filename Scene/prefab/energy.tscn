@@ -20,6 +20,7 @@ shader_parameter/outline_threshold = 0.5
 
 [sub_resource type="Animation" id="Animation_npsvx"]
 resource_name = "AUTO"
+length = 0.5
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -28,10 +29,10 @@ tracks/0/path = NodePath(".:text")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
+"times": PackedFloat32Array(0, 0.2, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": ["自动存档中...", "自动存档中.", "自动存档中.."]
+"values": ["自动存档中.", "自动存档中..", "自动存档中.."]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -40,7 +41,7 @@ tracks/1/path = NodePath("../saveButton:material:shader_parameter/outline_size")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
+"times": PackedFloat32Array(0, 0.2, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [1.0, 0.0, 0.0]
@@ -211,6 +212,10 @@ offset_bottom = 1683.0
 theme_override_font_sizes/font_size = 90
 text = "自动存档中..."
 horizontal_alignment = 1
+
+[node name="Timer" type="Timer" parent="AutoLabel"]
+wait_time = 2.0
+one_shot = true
 
 [node name="AutoPlayer" type="AnimationPlayer" parent="AutoLabel"]
 libraries = {

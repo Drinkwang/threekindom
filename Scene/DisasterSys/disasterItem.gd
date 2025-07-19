@@ -56,6 +56,7 @@ func _ready():
 	factionSurpuls=GameManager.getFractionByEnum(factionIndex)
 	refreshHaveGrain()	
 	changeLanguage()
+	SignalManager.changeLanguage.connect(changeLanguage)
 func changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()
 	if currencelanguage=="ja":
@@ -64,9 +65,11 @@ func changeLanguage():
 		
 		have_grain.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
 		detail_cotext.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
+	elif currencelanguage=="en":
+		pass#detail_cotext.add_theme_font_size_override("font_size",23)
 	else:
 		pass
-		
+		#detail_cotext.add_theme_font_size_override("font_size",25)
 		
 const NOT_JAM_UI_CONDENSED_16 = preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf")
 # Called every frame. 'delta' is the elapsed time since the previous frame.

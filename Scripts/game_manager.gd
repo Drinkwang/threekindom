@@ -1034,6 +1034,11 @@ func haveMirror()->bool:
 		
 		
 func AutoSaveFile():
+	
+	
+	if GameManager._setting!=null and GameManager._setting.isAutoSave==false:
+		return
+	
 	_engerge.showAutoSaveANI()
 	var tempSavs:Array=[null,null,null]
 	sav.autoSave=true	
@@ -1041,13 +1046,15 @@ func AutoSaveFile():
 		var path="user://save_data{index}.tres".format({"index":i})
 		if(FileAccess.file_exists(path)):
 			tempSavs[i-1]=load(path)
-			if tempSavs[i-1].sav==true:
-				ResourceSaver.save(GameManager.sav,"user://save_data{index}.tres".format({"index":str(i-1)}))
+			if tempSavs[i-1].autoSave==true:
+				ResourceSaver.save(GameManager.sav,"user://save_data{index}.tres".format({"index":str(i)}))
+				_engerge.endAutoSave()
 				return
 				
 	for i in range(1,4):
 		if tempSavs[i-1]==null:
-			ResourceSaver.save(GameManager.sav,"user://save_data{index}.tres".format({"index":str(i-1)}))
+			ResourceSaver.save(GameManager.sav,"user://save_data{index}.tres".format({"index":str(i)}))
+			_engerge.endAutoSave()
 			return
 	#获取tempSavs时间最小的 进行存档
  # If all slots are occupied, find the slot with the earliest current_datetime
@@ -1077,8 +1084,8 @@ func AutoSaveFile():
 	# Save to the slot with the earliest time
 	if earliest_index != -1:
 		ResourceSaver.save(GameManager.sav, "user://save_data{index}.tres".format({"index": str(earliest_index)}))
-	await 2
-	_engerge.hideAutoSaveANI()
+	#await 2
+	_engerge.endAutoSave()
 
 func _imporveRelation(data:cldata):
 	if DialogueManager.dialogBegin==false:
@@ -1099,6 +1106,9 @@ func play_music(file_path: String) -> void:
 		SoundManager.play_music(stream)
 	else:
 		print("载入音频出错"+file_path)
+
+func setCoin(value):
+	sav.coin=value
 
 
 

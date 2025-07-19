@@ -3,6 +3,7 @@ class_name SettingMenu
 @onready var resolution_option: OptionButton =$VBoxContainer/resolotionCon/OptionButton
 
 @onready var fullscreen_check: CheckBox=$VBoxContainer/fullsysCon/CheckBox
+@onready var AutoSavecheck = $VBoxContainer/isAutoSave/CheckBox
 
 @onready var music_slider: HSlider = $VBoxContainer/musicCon/HSlider2
 
@@ -78,7 +79,7 @@ func _ready():
 		system_locale= OS.get_locale_language()
 		current_resolution_index = find_closest_resolution(max_width, max_height)
 		
-		fullscreen_check.toggle_mode=true	
+		fullscreen_check.button_pressed=true	
 		music_slider.value=1
 		sfx_slider.value=1
 		GameManager._setting=SettingsResource.new()
@@ -90,7 +91,8 @@ func _ready():
 		current_resolution_index=find_closest_resolution(max_width, max_height)
 		music_slider.value=GameManager._setting.music_volume
 		sfx_slider.value=GameManager._setting.sfx_volume
-		fullscreen_check.toggle_mode=GameManager._setting.fullscreen
+		fullscreen_check.button_pressed=GameManager._setting.fullscreen
+		AutoSavecheck.button_pressed=GameManager._setting.isAutoSave
 	resolution_option.select(current_resolution_index)
 	apply_resolution(current_resolution_index)
 	TranslationServer.set_locale(system_locale)
@@ -244,3 +246,8 @@ func refreshLanguage(lan):
 		$"VBoxContainer/sfxCon/音效音量".remove_theme_font_override("font")
 		v_box_container.position.x=681	
 		
+
+
+func _on_IsSave_toggled(toggled_on):
+	GameManager._setting.isAutoSave=toggled_on
+# 确认按钮

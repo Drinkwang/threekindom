@@ -383,7 +383,7 @@ func showMizhuTouchMain():
 	mizhu.dialogue_start="府邸主线"
 	mizhu.dialogue_doubleclick="府邸主线"
 	GameManager.changeTaskLabel("与手下谈谈")
-	pass
+	GameManager.AutoSaveFile()
 
 func showFirstMission():
 	GameManager.sav.policyExcute=false

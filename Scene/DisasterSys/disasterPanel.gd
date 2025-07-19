@@ -14,7 +14,9 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_refreshStand()
+	changeLanguage()
+
+	SignalManager.changeLanguage.connect(changeLanguage)	
 	pass # Replace with function body.
 func _refreshStand():
 	var index=GameManager.sav.GrainIndex
@@ -29,7 +31,28 @@ func _refreshStand():
 	elif index==2:
 		GameManager.resideGrain=12
 	
-	str_standard.text=tr("欣然：{happy}（满足大幅度提升支持度）\n认可：{accept}（满足小幅度提升支持度）\n疑虑：{doubt}（满足不降低支持度）\n失望：{sad}(不满足降低好感度)").format({"happy":happy,"accept":accept,"doubt":doubt,"sad":sad})
+	str_standard.text=tr("_disaterPanelDetail").format({"happy":happy,"accept":accept,"doubt":doubt,"sad":sad})
+@onready var label_5 = $Label5
+
+const NOT_JAM_UI_CONDENSED_16 = preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf")
+func changeLanguage():
+	var currencelanguage=TranslationServer.get_locale()
+	if currencelanguage=="ja":
+		pass
+	elif currencelanguage=="ru":
+		str_reside.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
+		label_5.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
+		str_standard.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
+		str_standard.add_theme_font_size_override("font_size",25)
+		str_standard.add_theme_constant_override("line_spacing",-5)
+	elif currencelanguage=="en":
+		str_standard.add_theme_constant_override("line_spacing",0)
+		str_standard.add_theme_font_size_override("font_size",25)
+	else:
+		str_standard.add_theme_constant_override("line_spacing",0)
+		str_standard.add_theme_font_size_override("font_size",31)
+		#detail_cotext.add_theme_font_size_override("font_size",25)
+	_refreshStand()	
 
 func _refreshReside():
 	var resideNum=GameManager.resideGrain

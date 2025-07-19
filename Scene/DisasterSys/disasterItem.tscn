@@ -73,9 +73,10 @@ autowrap_mode = 3
 layout_mode = 0
 offset_left = 31.0
 offset_top = 421.0
-offset_right = 346.0
+offset_right = 371.0
 offset_bottom = 682.0
 theme_override_font_sizes/font_size = 25
+text = "11111111"
 autowrap_mode = 3
 
 [node name="buttons3" type="TextEdit" parent="."]

@@ -65,12 +65,20 @@ func showTargetLabel():
 	#target_label.text=target_label.text+
 @onready var animation_player = $TargetLabel/AnimationPlayer
 @onready var auto_label = $AutoLabel
+@onready var auto_player = $AutoLabel/AutoPlayer
 
+@onready var autotimer = $AutoLabel/Timer
 
 func showAutoSaveANI():
 	auto_label.show()
+	auto_player.play("AUTO")
+
+func endAutoSave():
+	autotimer.timeout.connect(hideAutoSaveANI)
+	autotimer.start()		
 func hideAutoSaveANI():
 	auto_label.hide()
+	auto_player.play("RESET")
 func playLabelChange():
 	animation_player.play("targetlabel")
 

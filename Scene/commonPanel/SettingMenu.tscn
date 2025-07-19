@@ -146,9 +146,28 @@ vertical_alignment = 1
 [node name="CheckBox" type="CheckBox" parent="VBoxContainer/fullsysCon"]
 layout_mode = 2
 theme = ExtResource("3_xifkc")
-button_pressed = true
 
 [node name="Control3" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+
+[node name="isAutoSave" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="是否自动存档" type="Label" parent="VBoxContainer/isAutoSave"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "自动存档开启"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CheckBox" type="CheckBox" parent="VBoxContainer/isAutoSave"]
+layout_mode = 2
+theme = ExtResource("3_xifkc")
+button_pressed = true
+
+[node name="Control4" type="Control" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 2)
 layout_mode = 2
 
@@ -196,9 +215,9 @@ value = 1.0
 
 [node name="confire" type="HBoxContainer" parent="."]
 offset_left = 681.0
-offset_top = 624.0
+offset_top = 702.0
 offset_right = 1520.0
-offset_bottom = 731.0
+offset_bottom = 809.0
 size_flags_vertical = 8
 
 [node name="Control5" type="Control" parent="confire"]
@@ -226,6 +245,7 @@ size_flags_horizontal = 3
 [connection signal="item_selected" from="VBoxContainer/lanSysCon/OptionButton2" to="." method="_on_option_button_item_selected"]
 [connection signal="item_selected" from="VBoxContainer/resolotionCon/OptionButton" to="." method="_on_resolution_selected"]
 [connection signal="toggled" from="VBoxContainer/fullsysCon/CheckBox" to="." method="_on_fullscreen_toggled"]
+[connection signal="toggled" from="VBoxContainer/isAutoSave/CheckBox" to="." method="_on_IsSave_toggled"]
 [connection signal="value_changed" from="VBoxContainer/musicCon/HSlider2" to="." method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/sfxCon/HSlider" to="." method="_on_sfx_slider_value_changed"]
 [connection signal="button_down" from="confire/Button" to="." method="_on_button_button_down"]
