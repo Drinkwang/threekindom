@@ -49,13 +49,15 @@ offset_bottom = 332.0
 
 [node name="context" type="Label" parent="Panel"]
 layout_mode = 0
-offset_left = 3.0
-offset_top = 9.0
-offset_right = 159.0
-offset_bottom = 33.0
+offset_left = -4.0
+offset_top = 2.0
+offset_right = 167.0
+offset_bottom = 40.0
 theme_override_font_sizes/font_size = 23
-text = "1111111111111111111111111111111111111"
+text = "11111111111"
 horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="haveGrain" type="Label" parent="."]
 layout_mode = 0
@@ -76,7 +78,6 @@ offset_top = 421.0
 offset_right = 371.0
 offset_bottom = 682.0
 theme_override_font_sizes/font_size = 25
-text = "11111111"
 autowrap_mode = 3
 
 [node name="buttons3" type="TextEdit" parent="."]

@@ -37,18 +37,25 @@ func _refreshStand():
 const NOT_JAM_UI_CONDENSED_16 = preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf")
 func changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()
-	if currencelanguage=="ja":
-		pass
-	elif currencelanguage=="ru":
+	if currencelanguage=="ru":
 		str_reside.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
 		label_5.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
 		str_standard.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
 		str_standard.add_theme_font_size_override("font_size",25)
 		str_standard.add_theme_constant_override("line_spacing",-5)
 	elif currencelanguage=="en":
+		
+		str_reside.remove_theme_font_override("font")
+		label_5.remove_theme_font_override("font")
+		str_standard.remove_theme_font_override("font")
+		
 		str_standard.add_theme_constant_override("line_spacing",0)
 		str_standard.add_theme_font_size_override("font_size",25)
 	else:
+		
+		str_reside.remove_theme_font_override("font")
+		label_5.remove_theme_font_override("font")
+		str_standard.remove_theme_font_override("font")
 		str_standard.add_theme_constant_override("line_spacing",0)
 		str_standard.add_theme_font_size_override("font_size",31)
 		#detail_cotext.add_theme_font_size_override("font_size",25)
