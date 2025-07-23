@@ -337,7 +337,7 @@ func victoryPartyEnd():
 	GameManager.sav.targetValue=15
 	GameManager.sav.currenceValue=0
 	GameManager.sav.targetResType=GameManager.ResType.battle
-	GameManager.sav.targetTxt=tr("当前讨伐对象：{currence}/{target}")
+	GameManager.sav.targetTxt="当前讨伐对象：{currence}/{target}"
 	GameManager.sav.TargetDestination="battle"
 
 
@@ -391,7 +391,7 @@ func showFirstMission():
 	GameManager.sav.have_event["糜竺推荐陈登"]=true
 	GameManager.sav.targetValue=1000
 	GameManager.sav.targetResType=GameManager.ResType.coin
-	GameManager.sav.targetTxt=tr("当前凑集资金：{currence}/{target}")
+	GameManager.sav.targetTxt="当前凑集资金：{currence}/{target}"
 	GameManager.sav.TargetDestination="府邸"
 
 	chenden.hide()
@@ -780,7 +780,7 @@ func collectMoneyComplete():
 	chenden.dialogue_start="与陈登对话2"
 	#ameManager.sav.targetResType=GameManager.ResType.rest
 	hp_panel.playLabelChange()
-	
+	GameManager.AutoSaveFile()
 
 func chaosBegin():
 	GameManager.sav.have_event["chaosBegin"]=true
@@ -789,7 +789,7 @@ func chaosBegin():
 	GameManager.changeTaskLabel(tr("与手下谈谈"))
 	mizhu.dialogue_start="混乱与糜竺对话"
 	chenden.dialogue_start="混乱与陈登对话"
-	pass
+	GameManager.AutoSaveFile()
 	
 func chaosMizhuEnd():
 	#糜竺会显示曹操的信
@@ -853,7 +853,7 @@ func StartTaishan():
 	GameManager.sav.targetValue=12
 	GameManager.sav.currenceValue=0
 	GameManager.sav.targetResType=GameManager.ResType.battle
-	GameManager.sav.targetTxt=tr("当前讨伐对象：{currence}/{target}")
+	GameManager.sav.targetTxt="当前讨伐对象：{currence}/{target}"
 	GameManager.sav.TargetDestination="battle"
 	#显示军事行动还有30把
 	pass
@@ -1108,7 +1108,7 @@ func lvbuJoin():
 	GameManager.sav.currenceValue=0
 	GameManager.sav.currenceDay=0
 	GameManager.sav.targetResType=GameManager.ResType.battle
-	GameManager.sav.targetTxt=tr("当前讨伐对象：{currence}/{target}")
+	GameManager.sav.targetTxt="当前讨伐对象：{currence}/{target}"
 	GameManager.sav.TargetDestination="battle"
 
 

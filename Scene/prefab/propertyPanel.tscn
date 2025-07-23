@@ -27,7 +27,7 @@ theme_override_constants/margin_bottom = 10
 custom_minimum_size = Vector2(8.155, 56.245)
 layout_mode = 2
 size_flags_vertical = 4
-color = Color(0.792157, 0, 0.223529, 0.313726)
+color = Color(0.79495, 0, 0.187428, 0.313726)
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2

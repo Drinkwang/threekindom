@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://d3v106p6d7mup"
 path.s3tc="res://.godot/imported/ItemControl.png-36f046c820ec65f5659689de341f39a0.s3tc.ctex"
+path.etc2="res://.godot/imported/ItemControl.png-36f046c820ec65f5659689de341f39a0.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://addons/inventory_editor/icons/ItemControl.png"
-dest_files=["res://.godot/imported/ItemControl.png-36f046c820ec65f5659689de341f39a0.s3tc.ctex"]
+dest_files=["res://.godot/imported/ItemControl.png-36f046c820ec65f5659689de341f39a0.s3tc.ctex", "res://.godot/imported/ItemControl.png-36f046c820ec65f5659689de341f39a0.etc2.ctex"]
 
 [params]
 

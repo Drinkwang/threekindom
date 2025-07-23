@@ -219,6 +219,7 @@ scale = Vector2(1.045, 1.143)
 copy_mode = 2
 
 [node name="blank" type="Sprite2D" parent="BackBufferCopy"]
+modulate = Color(1, 1, 1, 0.670588)
 position = Vector2(957, 544)
 scale = Vector2(2.26, 2.26)
 texture = ExtResource("9_r54bb")

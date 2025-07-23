@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bhao6sh7n033u"
 path.s3tc="res://.godot/imported/Ingredients.png-43eeba989182e3e3577664ab06762538.s3tc.ctex"
+path.etc2="res://.godot/imported/Ingredients.png-43eeba989182e3e3577664ab06762538.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://addons/inventory_example/textures/ingredients/Ingredients.png"
-dest_files=["res://.godot/imported/Ingredients.png-43eeba989182e3e3577664ab06762538.s3tc.ctex"]
+dest_files=["res://.godot/imported/Ingredients.png-43eeba989182e3e3577664ab06762538.s3tc.ctex", "res://.godot/imported/Ingredients.png-43eeba989182e3e3577664ab06762538.etc2.ctex"]
 
 [params]
 

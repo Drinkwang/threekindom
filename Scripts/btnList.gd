@@ -42,7 +42,7 @@ func _processList(data):
 		#var padding: Vector2 = Vector2(20, 10)  # 宽度和高度的内边距
 		#richTxt.set_size(Vector2(text_size.x + padding.x, text_size.y + padding.y))
 		richTxt.set_mouse_filter(Control.MOUSE_FILTER_IGNORE)
-
+		richTxt.set_size(Vector2(850,80))
 		#获取语言 并获取长度
 		#如果长度大于一个区间，可以将语言字体变小
 		var currencelanguage=TranslationServer.get_locale()
@@ -52,7 +52,7 @@ func _processList(data):
 			if(tr(btnContext).length()>=8):
 				richTxt.add_theme_font_size_override("normal_font_size",46)
 			else:
-				richTxt.add_theme_font_size_override("normal_font_size",55)
+				richTxt.add_theme_font_size_override("normal_font_size",50)
 		elif currencelanguage=="ru":
 			if(tr(btnContext).length()>=9):
 				richTxt.add_theme_font_size_override("normal_font_size",36)
@@ -95,7 +95,7 @@ func _processList(data):
 		index=index+1
 		$VBoxContainer.add_child(buttton)		
 
-		richTxt.set_size(Vector2(buttton.size.x,50))
+	#	richTxt.set_size(Vector2(buttton.size.x,50))
 
 func changeLanguage():
 	for e in $VBoxContainer.get_children():

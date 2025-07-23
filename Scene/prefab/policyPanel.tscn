@@ -1,13 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://n73q2fqj4htr"]
+[gd_scene load_steps=13 format=3 uid="uid://n73q2fqj4htr"]
 
 [ext_resource type="Theme" uid="uid://bklmr3xmk4m5u" path="res://global_theme.tres" id="1_q7yni"]
 [ext_resource type="Script" path="res://Scripts/policyPanel.gd" id="1_vilmr"]
 [ext_resource type="PackedScene" uid="uid://bit5bobykh81y" path="res://Scene/prefab/policyItem.tscn" id="2_emouu"]
+[ext_resource type="FontFile" uid="uid://to00njkwmxts" path="res://Asset/Font/1_sim.ttf" id="3_rbdc1"]
 [ext_resource type="Texture2D" uid="uid://cyhsitp3pce6e" path="res://Asset/上册.png" id="4_e2tu2"]
 [ext_resource type="FontFile" uid="uid://j7hxj2vlcx5l" path="res://Asset/YanShiXiaXingKai-2.ttf" id="5_i8b5x"]
 [ext_resource type="Texture2D" uid="uid://dic5yom1jx6pk" path="res://Asset/中策.png" id="5_ikicj"]
 [ext_resource type="PackedScene" uid="uid://dpw77mhy77404" path="res://Scene/prefab/lawpoint.tscn" id="6_0wkqx"]
 [ext_resource type="Texture2D" uid="uid://cyikut66dpmhv" path="res://Asset/下策.png" id="6_ebvwh"]
+[ext_resource type="FontFile" uid="uid://b46f8ie7tl4a6" path="res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf" id="7_c4b24"]
 [ext_resource type="Texture2D" uid="uid://dahuc8gb2blc" path="res://Asset/other/0_red.png" id="7_ogak8"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4sj3t"]
@@ -63,10 +65,12 @@ theme_override_constants/margin_right = 20
 [node name="currenceNoPolicy" type="Label" parent="PanelContainer/orderPanel"]
 visible = false
 layout_mode = 2
-theme_override_constants/shadow_offset_x = 215
-theme_override_constants/shadow_offset_y = 150
-theme_override_constants/outline_size = 10
-theme_override_constants/shadow_outline_size = 440
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("3_rbdc1")
 theme_override_font_sizes/font_size = 66
 text = "当前无政策可以实施，
 请改日再来看吧！"
@@ -106,6 +110,12 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="PanelContainer/orderPanel/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.99558, 0.99558, 0.99558, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/outline_size = -1
+theme_override_fonts/font = ExtResource("7_c4b24")
 theme_override_font_sizes/font_size = 31
 text = "请点击政策获取施政的详细信息"
 autowrap_mode = 3

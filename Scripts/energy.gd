@@ -45,9 +45,9 @@ func showTargetLabel():
 		elif GameManager.sav.TargetDestination=="大儒辩经":
 			target_label.text=tr("任务已完成，请前往城外和大儒辩经触发下一阶段剧情")
 		else:
-			target_label.text=GameManager.sav.TargetDestination	
+			target_label.text=tr(GameManager.sav.TargetDestination)	
 	else:
-		target_label.text=GameManager.sav.targetTxt.format({"target":targetValue,"currence":currenceValue})
+		target_label.text=tr(GameManager.sav.targetTxt).format({"target":targetValue,"currence":currenceValue})
 	for law in GameManager.sav.courtingLaws:
 
 		var cd

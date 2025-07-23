@@ -154,6 +154,7 @@ dialogue_start = ""
 [node name="CanvasButton" type="CanvasLayer" parent="."]
 
 [node name="CanvasInventory" type="CanvasLayer" parent="."]
+layer = 0
 
 [node name="supportPanel" parent="CanvasInventory" instance=ExtResource("14_o2p4h")]
 offset_left = 4.0

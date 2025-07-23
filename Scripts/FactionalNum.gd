@@ -33,7 +33,7 @@ func refreshData():
 	if itemData==null:
 		return
 	var supportValue=itemData._support_rate
-	label.text=tr(itemData._name)+tr("-支持度：")
+	label .text=tr(itemData._name)+tr("-支持度：")
 	progress_bar.value=itemData._support_rate
 	if itemData.isSuppressed==true:
 		var sb = StyleBoxFlat.new()

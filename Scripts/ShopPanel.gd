@@ -61,7 +61,7 @@ func generate_consumed_string(consumed: Dictionary) -> String:
 	var result = []
 	for item_type in consumed:
 		if consumed[item_type] > 0:  # 只处理消耗数量大于 0 的道具
-			var item_name = InventoryManager.get_item_db(item_type).name
+			var item_name = tr(InventoryManager.get_item_db(item_type).name)
 			result.append(tr("%sx%d") % [item_name, consumed[item_type]])
 	#
 	## 用逗号连接所有描述

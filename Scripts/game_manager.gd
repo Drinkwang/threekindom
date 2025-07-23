@@ -535,7 +535,7 @@ var RewardLaw
 func excuteLaw():
 	sav.laws[sav.curLawNum1].append(sav.curLawNum2)
 	#var arr:Array
-	RewardLaw=sav.RewardLaw
+	RewardLaw=tr(sav.RewardLaw)
 	lawAction= Callable() 
 	if sav.curLawName=="农田开坑":#只有buff
 		#RewardLaw="每日收入+50，徐州好感度+10，#一次性收入+200" #收入每日增加 徐州派好感度上升

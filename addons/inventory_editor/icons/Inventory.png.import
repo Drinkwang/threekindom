@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b1i08s3b1wkj3"
 path.s3tc="res://.godot/imported/Inventory.png-cbc41572a96b594eaae99013a224ba1c.s3tc.ctex"
+path.etc2="res://.godot/imported/Inventory.png-cbc41572a96b594eaae99013a224ba1c.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://addons/inventory_editor/icons/Inventory.png"
-dest_files=["res://.godot/imported/Inventory.png-cbc41572a96b594eaae99013a224ba1c.s3tc.ctex"]
+dest_files=["res://.godot/imported/Inventory.png-cbc41572a96b594eaae99013a224ba1c.s3tc.ctex", "res://.godot/imported/Inventory.png-cbc41572a96b594eaae99013a224ba1c.etc2.ctex"]
 
 [params]
 

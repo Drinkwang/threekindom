@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cda4765v12icm"]
+[gd_scene load_steps=5 format=3 uid="uid://cda4765v12icm"]
 
 [ext_resource type="Script" path="res://Scripts/parliamentary.gd" id="1_w6fnu"]
 [ext_resource type="Theme" uid="uid://bklmr3xmk4m5u" path="res://global_theme.tres" id="2_58k3h"]
+[ext_resource type="FontFile" uid="uid://to00njkwmxts" path="res://Asset/Font/1_sim.ttf" id="3_5pg10"]
 [ext_resource type="Texture2D" uid="uid://dahuc8gb2blc" path="res://Asset/other/0_red.png" id="7_pjis2"]
 
 [node name="Control" type="Control"]
@@ -52,6 +53,11 @@ theme = ExtResource("2_58k3h")
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("3_5pg10")
 theme_override_font_sizes/font_size = 51
 text = "本地派:外来派"
 
@@ -63,7 +69,13 @@ offset_right = 990.0
 offset_bottom = 799.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 0
 theme_override_constants/line_spacing = 20
+theme_override_fonts/font = ExtResource("3_5pg10")
 theme_override_font_sizes/font_size = 51
 horizontal_alignment = 1
 
@@ -75,7 +87,13 @@ offset_right = 1176.0
 offset_bottom = 799.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 0
 theme_override_constants/line_spacing = 20
+theme_override_fonts/font = ExtResource("3_5pg10")
 theme_override_font_sizes/font_size = 51
 horizontal_alignment = 1
 
@@ -88,7 +106,13 @@ offset_right = 1407.0
 offset_bottom = 799.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 0
 theme_override_constants/line_spacing = 20
+theme_override_fonts/font = ExtResource("3_5pg10")
 theme_override_font_sizes/font_size = 51
 text = "1
 1
@@ -100,12 +124,18 @@ horizontal_alignment = 1
 [node name="o1" type="Label" parent="."]
 layout_mode = 0
 offset_left = 735.0
-offset_top = 543.0
+offset_top = 524.0
 offset_right = 990.0
-offset_bottom = 811.0
+offset_bottom = 792.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 0
 theme_override_constants/line_spacing = 20
+theme_override_fonts/font = ExtResource("3_5pg10")
 theme_override_font_sizes/font_size = 51
 horizontal_alignment = 1
 
@@ -117,7 +147,10 @@ offset_right = 762.0
 offset_bottom = 789.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
 theme_override_constants/line_spacing = 20
+theme_override_fonts/font = ExtResource("3_5pg10")
 theme_override_font_sizes/font_size = 51
 text = "人数：
 摇摆人数：

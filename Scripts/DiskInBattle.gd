@@ -57,12 +57,13 @@ func changeLanguage():
 	if currencelanguage=="ja":
 		pass
 	elif currencelanguage=="ru":
-		$"VBoxContainer/无风险/Label".add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
-		$"VBoxContainer/低风险/Label".add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
-		#task_label.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
-		$"VBoxContainer/低风险2/Label".add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
-		$"VBoxContainer/低风险3/Label".add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
-		$"VBoxContainer/成功率/Label".add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
+		pass
+		#$"VBoxContainer/无风险/Label".add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
+		#$"VBoxContainer/低风险/Label".add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
+		##task_label.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
+		#$"VBoxContainer/低风险2/Label".add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
+		#$"VBoxContainer/低风险3/Label".add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
+		#$"VBoxContainer/成功率/Label".add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
 	else:
 		pass	
 	

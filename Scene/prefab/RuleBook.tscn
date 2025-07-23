@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cw66yiofu8q6f"]
+[gd_scene load_steps=3 format=3 uid="uid://cw66yiofu8q6f"]
 
 [ext_resource type="Script" path="res://Scripts/RuleBook.gd" id="1_c2y7g"]
 [ext_resource type="Texture2D" uid="uid://d31ve0oihgf7g" path="res://Asset/ui/paper_panel_1286_x_819.png" id="1_pig3i"]
-[ext_resource type="FontFile" uid="uid://j7hxj2vlcx5l" path="res://Asset/YanShiXiaXingKai-2.ttf" id="2_5k6li"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -11,6 +10,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 size_flags_horizontal = 4
 script = ExtResource("1_c2y7g")
+context = "111111111111111111111111111111111"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -59,7 +59,6 @@ theme_override_font_sizes/font_size = 31
 text = "翻页"
 
 [node name="读完了按钮" type="Button" parent="TextureRect"]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -83,10 +82,10 @@ offset_top = 22.0
 offset_right = 1273.0
 offset_bottom = 880.0
 rotation = -0.00535072
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_5k6li")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = -4
 theme_override_font_sizes/font_size = 34
+text = "111111111111111111111111111111111"
 autowrap_mode = 3
 
 [node name="realBox" type="Control" parent="TextureRect"]
@@ -115,6 +114,7 @@ offset_bottom = 972.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 38
+text = "111111111111111111111111111111111"
 autowrap_mode = 3
 
 [connection signal="gui_input" from="TextureRect" to="." method="_on_texture_rect_gui_input"]

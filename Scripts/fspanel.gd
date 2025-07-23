@@ -25,21 +25,22 @@ func _ready():
 	SignalManager.changeLanguage.connect(changeLanguage)
 	changeLanguage()
 	SignalManager.changeSupport.connect(_processList)
-	showCurrenceLaw()
+
 func changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()
 	#if currencelanguage=="ja":
 		#pass
 	if currencelanguage=="ru":
-		var newfont=preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf")
+		#var newfont=preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf")
 		if _label!=null:
-			_label.add_theme_font_override("font",newfont)
+		#	_label.add_theme_font_override("font",newfont)
 			_label.add_theme_constant_override("line_spacing",-2)			
 		if _label_2!=null:
-			_label_2.add_theme_font_override("font",newfont)
+		#	_label_2.add_theme_font_override("font",newfont)
 			_label_2.add_theme_constant_override("line_spacing",-2)
 		if currence_laws!=null:
-			currence_laws.add_theme_font_override("font",newfont)
+			pass
+		#	currence_laws.add_theme_font_override("font",newfont)
 	else:
 		if _label!=null:
 			#_label.remove_theme_font_override("font")
@@ -67,7 +68,7 @@ func _processList():
 		fs.init(item)
 		
 	
-	pass
+	showCurrenceLaw()
 	
 @onready var currence_laws = $PanelContainer/VBoxContainer/currenceLaws
 

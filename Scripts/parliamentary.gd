@@ -5,7 +5,7 @@ extends Control
 @onready var p_3 = $p3
 @onready var o_1 = $o1
 @onready var label_2 = $Label2
-@onready var title = $PanelContainer/Label
+@onready var title = $PanelContainer/Label#大概率没啥用
 @onready var button = $lawPanel/DetailPanel/Button
 
 var _isPass:bool=false
@@ -27,10 +27,9 @@ func refreshSysLanguageFont():
 	elif currencelanguage=="lzh":
 		label_2.add_theme_constant_override("line_spacing",4)	
 	elif currencelanguage=="ru":
-		var rufont=preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf")
-		label_2.add_theme_font_override("font",rufont)	
+	#待测试...
+
 		label_2.add_theme_constant_override("line_spacing",5)	
-		title.add_theme_font_override("font",rufont)	
 		label_2.position=Vector2(238,233)
 		#p_1.add_theme_font_override("font",rufont)	
 		#p_2.add_theme_font_override("font",rufont)	
@@ -43,11 +42,11 @@ func enter():
 	var has_separatist_forces=GameManager.sav.have_event["Factionalization"]
 	
 	if has_separatist_forces:
-		p_label.text=tr("士族派:外地派:豪族派")
+		p_label.text=tr("士族派:外来派:豪族派")
 		p_3.show()
 	else:
 		p_3.hide()
-		p_label.text=tr("本地派:外地派")
+		p_label.text=tr("本地派:外来派")
 	o_1.text="{AS}\n{AP}\n{RATE}\n{FINAL}".format({"AS": "__", "AP":"__" ,"RATE":"__","FINAL":"__"})
 	SoundManager.play_sound(bgmxuanhua)
 	button.hide()

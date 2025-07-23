@@ -86,9 +86,10 @@ func _changeLanguage():
 	if currencelanguage=="ja":
 		pass
 	elif currencelanguage=="ru":
-		
-		$TextureRect/Label2.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
-		$TextureRect/Label2.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
+		pass
+		#
+		#$TextureRect/Label2.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
+		#$TextureRect/Label2.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
 	else:
 		pass
 		

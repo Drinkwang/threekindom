@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://coikuxkb6lweo"
 path.s3tc="res://.godot/imported/HelmetKnight.png-a264d98a68f46ee2f2d2bed6da241d9c.s3tc.ctex"
+path.etc2="res://.godot/imported/HelmetKnight.png-a264d98a68f46ee2f2d2bed6da241d9c.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://addons/inventory_example/textures/helmets/HelmetKnight.png"
-dest_files=["res://.godot/imported/HelmetKnight.png-a264d98a68f46ee2f2d2bed6da241d9c.s3tc.ctex"]
+dest_files=["res://.godot/imported/HelmetKnight.png-a264d98a68f46ee2f2d2bed6da241d9c.s3tc.ctex", "res://.godot/imported/HelmetKnight.png-a264d98a68f46ee2f2d2bed6da241d9c.etc2.ctex"]
 
 [params]
 

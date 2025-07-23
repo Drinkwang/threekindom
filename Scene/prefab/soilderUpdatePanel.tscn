@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://ditcwds6nu8ga"]
+[gd_scene load_steps=10 format=3 uid="uid://ditcwds6nu8ga"]
 
 [ext_resource type="Script" path="res://Scripts/soilderUpdatePanel.gd" id="1_gnfkv"]
 [ext_resource type="Theme" uid="uid://bklmr3xmk4m5u" path="res://global_theme.tres" id="2_3ru2r"]
 [ext_resource type="PackedScene" uid="uid://dxj1s2d4grxwj" path="res://Scene/prefab/SoilderItem.tscn" id="2_7lggh"]
 [ext_resource type="Resource" uid="uid://d2qoinuor12dq" path="res://dialogues/演武场.dialogue" id="2_qb106"]
+[ext_resource type="FontFile" uid="uid://to00njkwmxts" path="res://Asset/Font/1_sim.ttf" id="4_xp2li"]
 [ext_resource type="Texture2D" uid="uid://bnxitska4niyt" path="res://Asset/人物/关羽close.png" id="5_v4w5d"]
 [ext_resource type="Texture2D" uid="uid://dgglf6m4jn2uc" path="res://Asset/人物/张飞open.png" id="6_gphpq"]
 [ext_resource type="Texture2D" uid="uid://dahuc8gb2blc" path="res://Asset/other/0_red.png" id="7_eqiyi"]
@@ -66,6 +67,11 @@ layout_mode = 2
 
 [node name="Label2" type="Label" parent="PanelContainer/orderPanel/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("4_xp2li")
 theme_override_font_sizes/font_size = 50
 text = "请选择你的武将进行练兵
 （练兵有一定概率提升武将等级）"
@@ -106,6 +112,13 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="PanelContainer/orderPanel/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 0
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("4_xp2li")
 theme_override_font_sizes/font_size = 36
 autowrap_mode = 2
 

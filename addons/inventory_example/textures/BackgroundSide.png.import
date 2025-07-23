@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://yc0j01w34y78"
 path.s3tc="res://.godot/imported/BackgroundSide.png-285191b4cdbff1fea9f5d062c4947bce.s3tc.ctex"
+path.etc2="res://.godot/imported/BackgroundSide.png-285191b4cdbff1fea9f5d062c4947bce.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://addons/inventory_example/textures/BackgroundSide.png"
-dest_files=["res://.godot/imported/BackgroundSide.png-285191b4cdbff1fea9f5d062c4947bce.s3tc.ctex"]
+dest_files=["res://.godot/imported/BackgroundSide.png-285191b4cdbff1fea9f5d062c4947bce.s3tc.ctex", "res://.godot/imported/BackgroundSide.png-285191b4cdbff1fea9f5d062c4947bce.etc2.ctex"]
 
 [params]
 

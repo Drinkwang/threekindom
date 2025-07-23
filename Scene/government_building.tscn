@@ -181,6 +181,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="disaterPanel" parent="CanvasLayer" instance=ExtResource("8_lgypm")]
+visible = false
 happys = Array[int]([4, 8, 10])
 accepts = Array[int]([2, 6, 8])
 

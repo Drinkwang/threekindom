@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bb3n0q8wag30f"
 path.s3tc="res://.godot/imported/Gold.png-508aebc9ae42674231d3003f76a6fc47.s3tc.ctex"
+path.etc2="res://.godot/imported/Gold.png-508aebc9ae42674231d3003f76a6fc47.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://addons/inventory_example/textures/ingredients/Gold.png"
-dest_files=["res://.godot/imported/Gold.png-508aebc9ae42674231d3003f76a6fc47.s3tc.ctex"]
+dest_files=["res://.godot/imported/Gold.png-508aebc9ae42674231d3003f76a6fc47.s3tc.ctex", "res://.godot/imported/Gold.png-508aebc9ae42674231d3003f76a6fc47.etc2.ctex"]
 
 [params]
 

@@ -10,6 +10,7 @@ extends baseComponent
 const NOT_JAM_UI_CONDENSED_16 = preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf")
 const FancyFade = preload("res://addons/transitions/FancyFade.gd")
 
+@onready var support_panel = $CanvasLayer/supportPanel
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -96,7 +97,7 @@ func _initData():
 		demo_end.show()
 		hp_panel.hide()
 		res_panel.hide()
-		$CanvasLayer/supportPanel.hide()
+		support_panel.hide()
 		return
 	control._processList(initData)
 	GameManager.currenceScene=self
@@ -169,6 +170,11 @@ func _initData():
 				GameManager.sav.have_event["竹简幻觉剧情"]=true
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁梦境")
 				SoundManager.stop_music()
+
+				hp_panel.hide()
+				res_panel.hide()
+				support_panel.hide()
+	
 				
 				GameManager.musicId=0
 				SoundManager.stop_all_ambient_sounds()
@@ -221,6 +227,10 @@ func PlayBitPlayer():
 
 func _on_video_player_finished():
 	bit_player.hide()
+	hp_panel.show()
+	res_panel.show()
+	support_panel.show()
+	
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁梦境结束")
 
 
@@ -544,7 +554,7 @@ func secondMissonStart():
 	GameManager.sav.targetValue=10
 	GameManager.sav.currenceValue=0
 	GameManager.sav.targetResType=GameManager.ResType.battle
-	GameManager.sav.targetTxt=tr("当前讨伐对象：{currence}/{target}")
+	GameManager.sav.targetTxt="当前讨伐对象：{currence}/{target}"
 	GameManager.sav.TargetDestination="battle"
 	#win 10次90
 	#GameManager.sav.TargetDestination=="府邸"

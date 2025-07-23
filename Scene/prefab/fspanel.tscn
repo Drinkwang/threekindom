@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://ervc6220fre7"]
+[gd_scene load_steps=7 format=3 uid="uid://ervc6220fre7"]
 
 [ext_resource type="Script" path="res://Scripts/fspanel.gd" id="1_k5460"]
 [ext_resource type="Resource" uid="uid://blfuk0ymk0m4m" path="res://Asset/tres/waidipai.tres" id="2_5mdgj"]
 [ext_resource type="Theme" uid="uid://bklmr3xmk4m5u" path="res://global_theme.tres" id="2_k7um3"]
 [ext_resource type="Resource" uid="uid://dh6qm466adpma" path="res://Asset/tres/bentupai.tres" id="3_e5ysh"]
 [ext_resource type="Resource" uid="uid://c4iedj4vt36ue" path="res://Asset/tres/haozupai.tres" id="4_ptglv"]
+[ext_resource type="FontFile" uid="uid://to00njkwmxts" path="res://Asset/Font/1_sim.ttf" id="8_wqy7k"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -38,6 +39,11 @@ layout_mode = 2
 visible = false
 layout_mode = 2
 size_flags_vertical = 8
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("8_wqy7k")
 theme_override_font_sizes/font_size = 23
 text = "当前待立法律【军事训诂】
 你需要去议事厅商讨通过"
@@ -46,6 +52,13 @@ horizontal_alignment = 1
 [node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("8_wqy7k")
 theme_override_font_sizes/font_size = 34
 text = "议政人数面板"
 horizontal_alignment = 1
@@ -55,6 +68,13 @@ text_overrun_behavior = 4
 custom_minimum_size = Vector2(0, 0.855)
 layout_mode = 2
 size_flags_vertical = 8
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/shadow_offset_x = -1
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 1
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("8_wqy7k")
 theme_override_font_sizes/font_size = 26
 text = "(支持:反对:摇摆)"
 horizontal_alignment = 1

@@ -202,7 +202,7 @@ do meetingEnd()
 
 ~ 决定镇压
 主簿: 主公，镇压固然能解决他们可能导致骚乱的因素，但恐埋后患无穷，我建议先施恩惠笼络人心，免生祸端。
-系统提示: 镇压{{getFactionByIndex()._name}}需要消耗劳动力{{ForValueGet}}和金币{{ForValueCost}}，你确定用武力镇压么?
+系统提示: 镇压{{getFactionByIndex().getTr()}}需要消耗劳动力{{ForValueGet}}和金币{{ForValueCost}}，你确定用武力镇压么?
 - 是
 	do confireSuppress()
 - 否
@@ -210,24 +210,24 @@ do meetingEnd()
 => END!
 ~ 赠礼完成
 
-成功赠送礼物，{{getFactionByIndex()._name}}好感度上升{{(15+GameManager.sav.randomIndex+GameManager.extraValue)}}
+成功赠送礼物，{{getFactionByIndex().getTr()}}好感度上升{{(15+GameManager.sav.randomIndex+GameManager.extraValue)}}
 do GameManager._imporveRelation(getFactionByIndex())
 #赠送礼物，好感度上升
 => END
 
 
 ~ 镇压成功
-系统提示: 成功{{getFactionByIndex()._name}}，其对主公您望而生畏，暂时臣服。然而，暴力镇压引发该派系持续不满，好感度每秒下降，恐埋后患。建议通过怀柔策略化解怨恨，满足特定条件后可解除不满，恢复派系关系。
+系统提示: 成功{{getFactionByIndex().getTr()}}，其对主公您望而生畏，暂时臣服。然而，暴力镇压引发该派系持续不满，好感度每秒下降，恐埋后患。建议通过怀柔策略化解怨恨，满足特定条件后可解除不满，恢复派系关系。
 
 
 => END!
 ~ 资金赠送完成
 
 if getFactionByIndex()._num_all+3+GameManager.sav.randomIndex<=100
-	赠送资金已顺利完成！{{getFactionByIndex()._name}}在你的慷慨支持下，人数激增{{3+GameManager.sav.randomIndex}}人，当前总人数为{{getFactionByIndex()._num_all}}。你的投入让{{getFactionByIndex()._name}}势力如虎添翼！
+	赠送资金已顺利完成！{{getFactionByIndex().getTr()}}在你的慷慨支持下，人数激增{{3+GameManager.sav.randomIndex}}人，当前总人数为{{getFactionByIndex()._num_all}}。你的投入让{{getFactionByIndex().getTr()}}势力如虎添翼！
 
 else
-	赠送资金已顺利完成！{{getFactionByIndex()._name}}在你的支持下已达到上限100人。
+	赠送资金已顺利完成！{{getFactionByIndex().getTr()}}在你的支持下已达到上限100人。
 
 do GameManager._imporveRelation(getFactionByIndex())	
 
@@ -241,7 +241,7 @@ do GameManager._imporveRelation(getFactionByIndex())
 提示：今日已与该派系完成面谈，请择日再来！
 => END
 ~ 索取完成
-你已成功从{{getFactionByIndex()._name}}手中获取资金{{ForValueGet}}，消耗{{ForValueCost}}点好感度
+你已成功从{{getFactionByIndex().getTr()}}手中获取资金{{ForValueGet}}，消耗{{ForValueCost}}点好感度
 #从xxx手中获取资金
 => END
 
@@ -274,9 +274,9 @@ if getFactionByIndex()._allNum<100
 
 	提示: 该选项可提升派系人数（最多100人），增强议事厅辩论优势。索取资源会更多但支持度消耗更大。
 	if getFactionByIndex()._num_all+3+GameManager.sav.randomIndex<=100
-		当前派系人数:{{getFactionByIndex()._num_all}}，是否消耗200金给 {{getFactionByIndex()._name}} 让其在议会中的人数提升{{(3+GameManager.sav.randomIndex)}}人
+		当前派系人数:{{getFactionByIndex()._num_all}}，是否消耗200金给 {{getFactionByIndex().getTr()}} 让其在议会中的人数提升{{(3+GameManager.sav.randomIndex)}}人
 	else
-		当前派系人数:{{getFactionByIndex()._num_all}}，是否消耗200金给 {{getFactionByIndex()._name}} 让其在议会中的人数提升{{(100-getFactionByIndex()._num_all)}}人
+		当前派系人数:{{getFactionByIndex()._num_all}}，是否消耗200金给 {{getFactionByIndex().getTr()}} 让其在议会中的人数提升{{(100-getFactionByIndex()._num_all)}}人
 	- 是
 		do financialConfort()
 	- 否
@@ -653,7 +653,7 @@ do hearSayEnd()
 #解决商路问题
 #解决饥荒问题
 ~ 索取从派系
-你通过索取可以获得{{ForValueGet}}金，但会消耗【{{getFactionByIndex()._name}}】{{ForValueCost}}点忠诚度，请问是否执行
+你通过索取可以获得{{ForValueGet}}金，但会消耗【{{getFactionByIndex().getTr()}}】{{ForValueCost}}点忠诚度，请问是否执行
 - 是
 	do CF_claim()
 - 否
@@ -853,7 +853,7 @@ do canSummonLvBu()
 
 
 ~ 政策拉拢
-根据{{getFactionByIndex()._name}}的要求，你需要在7天内在法律法规中通过[{{lawName}}]法案。通过后，你将提升{{getFactionByIndex()._name}}的好感度，并减少该派系的摇摆人数。
+根据{{getFactionByIndex().getTr()}}的要求，你需要在7天内在法律法规中通过[{{lawName}}]法案。通过后，你将提升{{getFactionByIndex().getTr()}}的好感度，并减少该派系的摇摆人数。
 - 答应
 	do consent()
 - 拒绝

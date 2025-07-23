@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dcydwatjg50hl"]
+[gd_scene load_steps=13 format=3 uid="uid://dcydwatjg50hl"]
 
 [ext_resource type="Script" path="res://Scripts/DiskInBattle.gd" id="1_0q3sx"]
 [ext_resource type="Texture2D" uid="uid://cale1h2nqfdrh" path="res://Asset/ui/circle.png" id="1_upy2s"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://1py5n0lr60f4" path="res://Asset/ui/Border.png" id="3_ipo41"]
 [ext_resource type="PackedScene" uid="uid://dxj1s2d4grxwj" path="res://Scene/prefab/SoilderItem.tscn" id="4_px0mi"]
 [ext_resource type="Texture2D" uid="uid://dahuc8gb2blc" path="res://Asset/other/0_red.png" id="5_mg3wr"]
+[ext_resource type="FontFile" uid="uid://to00njkwmxts" path="res://Asset/Font/1_sim.ttf" id="5_n2jvq"]
 [ext_resource type="Texture2D" uid="uid://cc2retfuupgvb" path="res://Asset/pointer_scifi_b.png" id="6_cexsq"]
 [ext_resource type="Texture2D" uid="uid://31w72gjd8mmu" path="res://Asset/人物/吕布.jpg" id="7_buuow"]
 
@@ -33,6 +34,14 @@ offset_left = 73.0
 offset_top = 273.0
 offset_right = 247.0
 offset_bottom = 364.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("5_n2jvq")
 theme_override_font_sizes/font_size = 36
 text = "0/0"
 horizontal_alignment = 1
@@ -43,6 +52,13 @@ offset_left = -2.0
 offset_top = 33.0
 offset_right = 172.0
 offset_bottom = 124.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 0
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("5_n2jvq")
 theme_override_font_sizes/font_size = 23
 text = "[胜/负/合]"
 horizontal_alignment = 1
@@ -204,6 +220,13 @@ layout_mode = 0
 offset_left = 24.0
 offset_right = 72.0
 offset_bottom = 16.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 1
+theme_override_constants/shadow_outline_size = 0
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("5_n2jvq")
 text = "无伤亡"
 
 [node name="低风险" type="ColorRect" parent="VBoxContainer"]
@@ -216,6 +239,13 @@ layout_mode = 0
 offset_left = 24.0
 offset_right = 72.0
 offset_bottom = 16.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 1
+theme_override_constants/shadow_outline_size = 0
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("5_n2jvq")
 text = "低伤亡"
 
 [node name="低风险2" type="ColorRect" parent="VBoxContainer"]
@@ -228,6 +258,13 @@ layout_mode = 0
 offset_left = 24.0
 offset_right = 72.0
 offset_bottom = 16.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 1
+theme_override_constants/shadow_outline_size = 0
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("5_n2jvq")
 text = "中伤亡"
 
 [node name="低风险3" type="ColorRect" parent="VBoxContainer"]
@@ -240,6 +277,13 @@ layout_mode = 0
 offset_left = 24.0
 offset_right = 72.0
 offset_bottom = 16.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 1
+theme_override_constants/shadow_outline_size = 0
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("5_n2jvq")
 text = "高伤亡"
 
 [node name="成功率" type="ColorRect" parent="VBoxContainer"]
@@ -252,6 +296,13 @@ layout_mode = 0
 offset_left = 24.0
 offset_right = 72.0
 offset_bottom = 16.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 1
+theme_override_constants/shadow_outline_size = 0
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("5_n2jvq")
 text = "成功率"
 
 [node name="ColorRect_1" type="ColorRect" parent="."]
@@ -388,6 +439,7 @@ theme_override_colors/font_color = Color(0.266667, 0.333333, 0.407843, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0.539858, 0.955164, 1)
 theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("5_n2jvq")
 theme_override_font_sizes/font_size = 23
 text = "道具加持+5%
 青龙偃月刀+5%"

@@ -1,11 +1,14 @@
 class_name cldata
 extends Resource
 
-@export var _name:String="":
-	get:
-		return tr(_name)
-	set(value):
-		_name=value
+@export var _name:String=""
+	#get:
+		#return tr(_name)
+	#set(value):
+		#if _name.length()==0:
+			#_name=value
+		#else:
+			#pass
 @export var _num_all:int#总人数
 @export var _num_rt:int #摇摆人数
 @export var _num_sp:int #支持人数
@@ -27,6 +30,10 @@ enum factionIndex{
 	lvbu
 	
 }
+
+func getTr():
+	return tr(_name)
+
 func ChangeAllPeople(num):
 	_num_all=_num_all+num
 	if _num_all>100:

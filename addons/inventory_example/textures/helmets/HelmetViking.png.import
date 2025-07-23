@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://ctvqdpgcf3nyv"
 path.s3tc="res://.godot/imported/HelmetViking.png-b5bfedd1ddbb1e25b4b02782031ae990.s3tc.ctex"
+path.etc2="res://.godot/imported/HelmetViking.png-b5bfedd1ddbb1e25b4b02782031ae990.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://addons/inventory_example/textures/helmets/HelmetViking.png"
-dest_files=["res://.godot/imported/HelmetViking.png-b5bfedd1ddbb1e25b4b02782031ae990.s3tc.ctex"]
+dest_files=["res://.godot/imported/HelmetViking.png-b5bfedd1ddbb1e25b4b02782031ae990.s3tc.ctex", "res://.godot/imported/HelmetViking.png-b5bfedd1ddbb1e25b4b02782031ae990.etc2.ctex"]
 
 [params]
 

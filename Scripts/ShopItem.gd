@@ -57,7 +57,7 @@ func set_Data(key,value):
 	if tr(detail["value"]).length()>0:
 		_context=tr(db.name)+":"+tr(detail["value"])
 	else:
-		_context=tr(db.name)+":"+"???"
+		_context=tr(db.name)+":"+"?"
 	TooltipManager.register_tooltip(self,_context)
 	
 	

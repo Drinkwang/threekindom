@@ -1,10 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://cy140f6kxm5ev"]
+[gd_scene load_steps=22 format=3 uid="uid://cy140f6kxm5ev"]
 
 [ext_resource type="Script" path="res://Scripts/ShopPanel.gd" id="1_ngsol"]
 [ext_resource type="Theme" uid="uid://bklmr3xmk4m5u" path="res://global_theme.tres" id="2_0of21"]
 [ext_resource type="Resource" uid="uid://bouswe15a440i" path="res://dialogues/商店.dialogue" id="2_gxgjo"]
 [ext_resource type="AudioStream" uid="uid://daxlyrk7pr0bu" path="res://Asset/sound/翻阅.mp3" id="3_32rtm"]
 [ext_resource type="PackedScene" uid="uid://5qxpn6avk7bx" path="res://Scene/prefab/ShopItem.tscn" id="4_iwehk"]
+[ext_resource type="FontFile" uid="uid://b8le0fd0ujbqx" path="res://Asset/Font/1_blod.ttf" id="5_tkcsx"]
 [ext_resource type="Texture2D" uid="uid://b1fhdo48wn43i" path="res://Asset/items/密谈3.png" id="7_2m2sr"]
 [ext_resource type="Texture2D" uid="uid://cphbecia7woet" path="res://Asset/items/益气.png" id="7_ubh4f"]
 [ext_resource type="Texture2D" uid="uid://hy8jdf2wnwq" path="res://Asset/items/胜战.png" id="8_080tv"]
@@ -16,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://cwannilraxnen" path="res://Asset/丈八蛇矛.png" id="13_xnv0q"]
 [ext_resource type="Texture2D" uid="uid://cmmqirxfkg16m" path="res://Asset/items/獬豸.png" id="14_bvea7"]
 [ext_resource type="Texture2D" uid="uid://dbkvahmqpu36o" path="res://Asset/items/洞察之镜.png" id="15_ptsft"]
+[ext_resource type="FontFile" uid="uid://to00njkwmxts" path="res://Asset/Font/1_sim.ttf" id="17_w8f0i"]
 
 [sub_resource type="Animation" id="Animation_g5rj7"]
 length = 0.001
@@ -165,6 +167,7 @@ offset_left = 1023.0
 offset_top = 200.0
 offset_right = 1247.0
 offset_bottom = 688.0
+theme_override_fonts/font = ExtResource("5_tkcsx")
 theme_override_font_sizes/font_size = 62
 text = "道具"
 autowrap_mode = 2
@@ -175,6 +178,7 @@ offset_left = 351.0
 offset_top = 200.0
 offset_right = 818.0
 offset_bottom = 263.0
+theme_override_fonts/font = ExtResource("5_tkcsx")
 theme_override_font_sizes/font_size = 62
 text = "装备"
 autowrap_mode = 2
@@ -200,6 +204,7 @@ offset_top = 810.0
 offset_right = 1140.75
 offset_bottom = 917.0
 size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("17_w8f0i")
 disabled = true
 text = "购买商品"
 
@@ -211,10 +216,11 @@ anchor_left = 0.5
 anchor_top = 0.187
 anchor_right = 0.5
 anchor_bottom = 0.187
-offset_left = -588.0
+offset_left = -624.0
 offset_top = 284.04
-offset_right = 631.0
+offset_right = 300.0
 offset_bottom = 361.04
+theme_override_fonts/font = ExtResource("5_tkcsx")
 theme_override_font_sizes/font_size = 31
 text = "今天商人想从你那边收购一些商品..."
 vertical_alignment = 1
@@ -222,11 +228,12 @@ autowrap_mode = 2
 
 [node name="buyBackButton" type="Button" parent="backTxt"]
 layout_mode = 0
-offset_left = 851.0
+offset_left = 892.0
 offset_top = -16.0
-offset_right = 1213.0
+offset_right = 1254.0
 offset_bottom = 91.0
 size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("17_w8f0i")
 text = "卖出商品"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="."]
@@ -334,6 +341,13 @@ offset_left = 432.0
 offset_top = 568.0
 offset_right = 1471.0
 offset_bottom = 821.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 0
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("17_w8f0i")
 theme_override_font_sizes/font_size = 31
 text = "当前商品价格:0"
 horizontal_alignment = 1

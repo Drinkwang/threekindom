@@ -57,18 +57,20 @@ func changeLanguage():
 
 	if currencelanguage=="ru":
 		expLenWidth=1325
+		currence_no_policy.add_theme_font_size_override("font_size",45)
 		ConfireButton.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
 		tab_bar.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
-		label.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
+		#label.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
 		law_label.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))	
-		currence_no_policy.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))	
+		#currence_no_policy.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))	
 	else:
+		currence_no_policy.add_theme_font_size_override("font_size",66)
 		expLenWidth=1240
 		ConfireButton.remove_theme_font_override("font")
 		tab_bar.remove_theme_font_override("font")
-		label.remove_theme_font_override("font")
+		#label.remove_theme_font_override("font")
 		law_label.remove_theme_font_override("font")
-		currence_no_policy.remove_theme_font_override("font")
+		#currence_no_policy.remove_theme_font_override("font")
 	point_label.text=tr("点数:%s")%GameManager.sav.Merit_points
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -186,8 +188,8 @@ func _on_control_3_gui_input(event):
 		canHideBlockShow()
 		
 func canHideBlockShow():		
-	var lines = label.text.split("\n", false)  # false 表示不包含空行
-	if lines.size() >= 9:
+	var lines = label.get_line_count()
+	if lines >= 5:
 		can_hide_block.hide()
 	else:
 		can_hide_block.show()	

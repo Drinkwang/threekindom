@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bw52ymer7ngwu"]
+[gd_scene load_steps=4 format=3 uid="uid://bw52ymer7ngwu"]
 
 [ext_resource type="Script" path="res://Scripts/gapanel.gd" id="1_5p17t"]
 [ext_resource type="Theme" uid="uid://bklmr3xmk4m5u" path="res://global_theme.tres" id="2_3oumb"]
+[ext_resource type="FontFile" uid="uid://to00njkwmxts" path="res://Asset/Font/1_sim.ttf" id="4_auij8"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -56,6 +57,12 @@ layout_mode = 2
 [node name="title" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("4_auij8")
 text = "当前还需要处理的政务："
 
 [node name="Control2" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer"]
@@ -78,6 +85,12 @@ size_flags_horizontal = 10
 [node name="context" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -2
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 0
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("4_auij8")
 theme_override_font_sizes/font_size = 48
 text = "当前天数：
 每日钱财收入：

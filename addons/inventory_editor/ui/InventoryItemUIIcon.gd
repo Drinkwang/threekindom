@@ -60,8 +60,12 @@ func _update_item() -> void:
 
 		
 					var detail=properties.filter(func(a):return a["name"]=="detail")[0]
-	
-					var _context=tr(_item_db.name)+":"+tr(detail["value"])
+					var _context
+					if tr(detail["value"]).length()>0:
+					
+						_context=tr(_item_db.name)+":"+tr(detail["value"])
+					else:
+						_context=tr(_item_db.name)+":"+"?"
 					TooltipManager.register_tooltip(self,_context)
 					#self.tooltip_text=_context
 			else:

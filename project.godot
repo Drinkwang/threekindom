@@ -28,7 +28,6 @@ SignalManager="*res://Scripts/signal_manager.gd"
 PanelManager="*res://Scene/commonPanel/panel_manager.gd"
 SoundManager="*res://addons/sound_manager/sound_manager.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
-Panku="*res://addons/panku_console/console.tscn"
 PolicyManager="*res://Scripts/enum/policy_manager.gd"
 TooltipManager="*res://Scripts/TooltipManager.gd"
 
@@ -41,7 +40,7 @@ window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/inventory_editor/plugin.cfg", "res://addons/panku_console/plugin.cfg", "res://addons/sound_manager/plugin.cfg", "res://addons/transitions/plugin.cfg")
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/inventory_editor/plugin.cfg", "res://addons/sound_manager/plugin.cfg", "res://addons/transitions/plugin.cfg")
 
 [gui]
 
@@ -81,3 +80,4 @@ types_split_offset=255
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true

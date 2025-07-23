@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://duyjjxlw14edn"
 path.s3tc="res://.godot/imported/BootsKnight.png-248a26d72c7ca4de3467e8fbe68de5f1.s3tc.ctex"
+path.etc2="res://.godot/imported/BootsKnight.png-248a26d72c7ca4de3467e8fbe68de5f1.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://addons/inventory_example/textures/boots/BootsKnight.png"
-dest_files=["res://.godot/imported/BootsKnight.png-248a26d72c7ca4de3467e8fbe68de5f1.s3tc.ctex"]
+dest_files=["res://.godot/imported/BootsKnight.png-248a26d72c7ca4de3467e8fbe68de5f1.s3tc.ctex", "res://.godot/imported/BootsKnight.png-248a26d72c7ca4de3467e8fbe68de5f1.etc2.ctex"]
 
 [params]
 

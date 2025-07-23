@@ -18,7 +18,7 @@ class_name saveData
 	set(value):
 
 		coin=value
-		
+		#bug
 		if GameManager.currenceScene is government_building:
 			GameManager.currenceScene.JudFundTask()
 

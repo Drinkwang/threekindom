@@ -55,16 +55,16 @@ func refreshData():
 	battle_circle.refreshPage()
 func changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()
-	if currencelanguage=="ru":
-		sliderlabel_1.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
-		sliderlabel_2.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
-		select_detail.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
-		title.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
-	else:
-		sliderlabel_1.remove_theme_font_override("font")
-		sliderlabel_2.remove_theme_font_override("font")
-		select_detail.remove_theme_font_override("font")
-		title.remove_theme_font_override("font")
+	#if currencelanguage=="ru":
+		#sliderlabel_1.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
+		#sliderlabel_2.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
+		#select_detail.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
+		#title.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
+	#else:
+		#sliderlabel_1.remove_theme_font_override("font")
+		#sliderlabel_2.remove_theme_font_override("font")
+		#select_detail.remove_theme_font_override("font")
+		#title.remove_theme_font_override("font")
 #可能会删除
 func initData():
 	battle_circle.refreshPage()

@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dq02758lr6w3e"
 path.s3tc="res://.godot/imported/GlovesRightKnight.png-5b0b3bc9972d98dfef1b848f4302f71a.s3tc.ctex"
+path.etc2="res://.godot/imported/GlovesRightKnight.png-5b0b3bc9972d98dfef1b848f4302f71a.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://addons/inventory_example/textures/glovesright/GlovesRightKnight.png"
-dest_files=["res://.godot/imported/GlovesRightKnight.png-5b0b3bc9972d98dfef1b848f4302f71a.s3tc.ctex"]
+dest_files=["res://.godot/imported/GlovesRightKnight.png-5b0b3bc9972d98dfef1b848f4302f71a.s3tc.ctex", "res://.godot/imported/GlovesRightKnight.png-5b0b3bc9972d98dfef1b848f4302f71a.etc2.ctex"]
 
 [params]
 
