@@ -1041,7 +1041,11 @@ func AutoSaveFile():
 	
 	_engerge.showAutoSaveANI()
 	var tempSavs:Array=[null,null,null]
-	sav.autoSave=true	
+	sav.autoSave=true
+	
+	if(GameManager.currenceScene!=null):
+		sav.saveScene.pack(GameManager.currenceScene)
+
 	for i in range(1,4):
 		var path="user://save_data{index}.tres".format({"index":i})
 		if(FileAccess.file_exists(path)):

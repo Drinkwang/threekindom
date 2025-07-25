@@ -59,6 +59,7 @@ layout_mode = 2
 layout_mode = 2
 theme_type_variation = &"HeaderLarge"
 text = "是否给徐州派赠送礼物,赠送可以增加15点好感度"
+autowrap_mode = 2
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Control/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2

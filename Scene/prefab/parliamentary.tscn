@@ -49,8 +49,12 @@ grow_vertical = 2
 pivot_offset = Vector2(630.615, 267.699)
 theme = ExtResource("2_58k3h")
 
-[node name="Label" type="Label" parent="PanelContainer"]
+[node name="Label" type="Label" parent="."]
 layout_mode = 2
+offset_left = 801.0
+offset_top = 169.0
+offset_right = 1118.0
+offset_bottom = 221.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -114,10 +118,7 @@ theme_override_constants/shadow_outline_size = 0
 theme_override_constants/line_spacing = 20
 theme_override_fonts/font = ExtResource("3_5pg10")
 theme_override_font_sizes/font_size = 51
-text = "1
-1
-1
-2
+text = "
 "
 horizontal_alignment = 1
 

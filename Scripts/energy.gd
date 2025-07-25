@@ -60,7 +60,7 @@ func showTargetLabel():
 		
 		if(cd>0):	
 			target_label.text=target_label.text+"\n"
-			var context=tr("%s指定《%s》，7天内通过，还剩%d天！")%[law,GameManager.sav.courtingLaws[law],cd]
+			var context=tr("%s指定《%s》，7天内通过，还剩%d天！")%[tr(law),GameManager.sav.courtingLaws[law],cd]
 			target_label.text=target_label.text+context
 	#target_label.text=target_label.text+
 @onready var animation_player = $TargetLabel/AnimationPlayer

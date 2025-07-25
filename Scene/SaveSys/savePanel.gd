@@ -88,6 +88,7 @@ func initLoad():
 var _GrainNum=0
 func loadFile():
 	if(savs[index-1]!=null):
+		SoundManager.stop_music()
 		DialogueManager.gameover=false
 		GameManager.sav=savs[index-1].duplicate(false)
 		GameManager.sav.ensure_default_fields()

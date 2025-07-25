@@ -209,7 +209,7 @@ showName = "陶谦的牌位"
 dialogue_doubleclick = "second"
 txt2d = ExtResource("7_av8xv")
 dialogue_resource = ExtResource("2_cebyh")
-dialogue_start = ""
+dialogue_start = "second"
 
 [node name="GPUParticles2D" parent="." instance=ExtResource("10_qif51")]
 position = Vector2(678, 395)

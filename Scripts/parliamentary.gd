@@ -5,7 +5,6 @@ extends Control
 @onready var p_3 = $p3
 @onready var o_1 = $o1
 @onready var label_2 = $Label2
-@onready var title = $PanelContainer/Label#大概率没啥用
 @onready var button = $lawPanel/DetailPanel/Button
 
 var _isPass:bool=false
@@ -26,17 +25,19 @@ func refreshSysLanguageFont():
 		
 	elif currencelanguage=="lzh":
 		label_2.add_theme_constant_override("line_spacing",4)	
+		p_label.position=Vector2(767,169)
 	elif currencelanguage=="ru":
 	#待测试...
 
 		label_2.add_theme_constant_override("line_spacing",5)	
 		label_2.position=Vector2(238,233)
-		#p_1.add_theme_font_override("font",rufont)	
+		p_label.position=Vector2(735,169)
+		#p_1.add_theme_font_overre("font",rufont)	
 		#p_2.add_theme_font_override("font",rufont)	
 		#p_3.add_theme_font_override("font",rufont)	
 		#o_1.add_theme_font_override("font",rufont)	
 
-@onready var p_label = $PanelContainer/Label
+@onready var p_label = $Label
 
 func enter():
 	var has_separatist_forces=GameManager.sav.have_event["Factionalization"]
