@@ -158,14 +158,19 @@ func _input(event):
 	# 检测 ESC 键
 	if event.is_action_pressed("ui_cancel") and not event.is_echo() and DialogueManager.dialogBegin==false and currenceScene!=null:
 		#pass
-		if PanelManager.isOpenSetting==true:
-			return
-		if !(currenceScene is mainHall):
-			DialogueManager.show_example_dialogue_balloon(sys,"ESC按钮")
-		else:
-			DialogueManager.show_example_dialogue_balloon(sys,"选项暂不可开")
+		openSetting()
 			
-			print("目前场景不能通过esc按钮执行任何操作")
+func openSetting():
+	if PanelManager.isOpenSetting==true:
+		return
+	if !(currenceScene is mainHall):
+		DialogueManager.show_example_dialogue_balloon(sys,"ESC按钮")
+	else:
+		DialogueManager.show_example_dialogue_balloon(sys,"选项暂不可开")	
+		print("目前场景不能通过esc按钮执行任何操作")	
+	
+				
+			
 func initBattle():
 	sav.UseGeneral=[]
 	#all改成any

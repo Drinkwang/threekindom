@@ -100,3 +100,7 @@ func _on_save_button_button_down():
 	#DialogueManager.show_example_dialogue_balloon(sys,"当前功能demo不开放")
 	PanelManager.show_Save_panel()
 	#demo注释
+
+
+func _on_click_hero_button_down():
+	GameManager.openSetting()

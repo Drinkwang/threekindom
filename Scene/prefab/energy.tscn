@@ -144,6 +144,13 @@ scale = Vector2(11.5, 11.5)
 texture = ExtResource("2_minpr")
 stretch_mode = 2
 
+[node name="clickHero" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 147.0
+offset_top = 141.0
+offset_right = 887.0
+offset_bottom = 904.0
+
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
 layout_mode = 0
 offset_left = 863.0
@@ -283,5 +290,6 @@ scale = Vector2(4, 4)
 inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
 metadata/_edit_use_anchors_ = true
 
+[connection signal="button_down" from="clickHero" to="." method="_on_click_hero_button_down"]
 [connection signal="button_down" from="itemButton" to="." method="_on_item_button_button_down"]
 [connection signal="button_down" from="saveButton" to="." method="_on_save_button_button_down"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://cjsb43uugkud4"]
+[gd_scene load_steps=55 format=3 uid="uid://cjsb43uugkud4"]
 
 [ext_resource type="Script" path="res://Scripts/battlePanel.gd" id="1_uyier"]
 [ext_resource type="Resource" uid="uid://d2qoinuor12dq" path="res://dialogues/演武场.dialogue" id="2_1p72a"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://dahuc8gb2blc" path="res://Asset/other/0_red.png" id="7_fydxo"]
 [ext_resource type="Texture2D" uid="uid://cqveha2p8ktj6" path="res://Asset/人物/赵云open.png" id="7_xltxl"]
 [ext_resource type="PackedScene" uid="uid://dcydwatjg50hl" path="res://Scene/battleSys/DiskInBattle.tscn" id="8_75jyp"]
+[ext_resource type="Script" path="res://Scripts/LineEditInBattle.gd" id="11_60csr"]
 [ext_resource type="Texture2D" uid="uid://drruce0ama0gw" path="res://addons/inventory_editor/test/test_model/icons/base 13.png" id="12_h80nc"]
 [ext_resource type="Texture2D" uid="uid://dkan2jd08uc4p" path="res://addons/inventory_editor/test/test_model/icons/Fail.svg" id="13_ugjcw"]
 [ext_resource type="Texture2D" uid="uid://cewxnaheces8p" path="res://Asset/fx/color5_blue_frame1/Frames/Slash_color5_frame1.png" id="15_7bqq5"]
@@ -400,6 +401,13 @@ offset_right = -54.0
 offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 0
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("4_cxtvu")
 theme_override_font_sizes/font_size = 21
 text = "0"
 horizontal_alignment = 1
@@ -412,12 +420,19 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -415.0
+offset_left = -416.0
 offset_top = 16.0
-offset_right = -53.0
+offset_right = -54.0
 offset_bottom = 39.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 0
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("4_cxtvu")
 theme_override_font_sizes/font_size = 21
 text = "0"
 horizontal_alignment = 1
@@ -440,6 +455,22 @@ theme_override_fonts/font = ExtResource("4_cxtvu")
 theme_override_font_sizes/font_size = 31
 text = "士兵人数："
 autowrap_mode = 2
+
+[node name="SoilderBlockClick" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 394.0
+offset_top = 509.0
+offset_right = 913.0
+offset_bottom = 560.0
+mouse_filter = 1
+
+[node name="coinBlockClick" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 557.0
+offset_right = 906.0
+offset_bottom = 608.0
+mouse_filter = 1
 
 [node name="sliderlabel2" type="Label" parent="."]
 layout_mode = 1
@@ -519,6 +550,15 @@ anchor_bottom = 0.545
 offset_right = 0.759949
 offset_bottom = 0.399963
 
+[node name="LineEdit" type="LineEdit" parent="coinSlider"]
+visible = false
+layout_mode = 0
+offset_left = 365.0
+offset_top = -10.0
+offset_right = 492.0
+offset_bottom = 21.0
+script = ExtResource("11_60csr")
+
 [node name="soildSlider" type="HSlider" parent="."]
 layout_mode = 2
 offset_left = 544.0
@@ -527,6 +567,15 @@ offset_right = 907.0
 offset_bottom = 547.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="LineEdit" type="LineEdit" parent="soildSlider"]
+visible = false
+layout_mode = 0
+offset_left = 365.0
+offset_top = -10.0
+offset_right = 492.0
+offset_bottom = 21.0
+script = ExtResource("11_60csr")
 
 [node name="battleCircle" parent="." instance=ExtResource("8_75jyp")]
 layout_mode = 1
@@ -874,6 +923,8 @@ autoplay = "slash"
 [connection signal="button_down" from="PanelContainer/orderPanel/VBoxContainer/HBoxContainer/Button" to="." method="_on_button_button_down"]
 [connection signal="tab_button_pressed" from="TabBar" to="." method="_on_tab_bar_tab_button_pressed"]
 [connection signal="tab_changed" from="TabBar" to="." method="_on_tab_bar_tab_changed"]
+[connection signal="button_down" from="SoilderBlockClick" to="." method="_on_soilderBlock_button_down"]
+[connection signal="button_down" from="coinBlockClick" to="." method="_on_texture_button_2_button_down"]
 [connection signal="gui_input" from="Control_1" to="." method="_on_control_1_gui_input"]
 [connection signal="gui_input" from="Control_2" to="." method="_on_control_2_gui_input"]
 [connection signal="gui_input" from="Control_3" to="." method="_on_control_3_gui_input"]

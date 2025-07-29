@@ -386,3 +386,18 @@ func sideQuestReturnT(iswin):
 	GameManager.bossmode=SceneManager.bossMode.tao
 	GameManager.bossmoderesult=iswin
 	SceneManager.changeScene(SceneManager.roomNode.BOULEUTERION,2)
+
+
+@onready var line_edit_coin = $coinSlider/LineEdit
+@onready var line_edit_soilder = $soildSlider/LineEdit
+
+
+
+func _on_coinBlock_button_down():
+	pass
+	#line_edit_coin.show()
+
+
+func _on_soilderBlock_button_down():
+	pass
+	#line_edit_soilder.show()
