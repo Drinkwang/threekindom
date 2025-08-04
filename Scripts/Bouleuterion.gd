@@ -130,7 +130,9 @@ func _initData():
 		chendeng.show()
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"陈登第三次市井")
 		return
-	
+		
+	if control.visible==true:	
+		items_in_scene.showItems()
 	control._processList(initData)
 	
 	if GameManager.sav.have_event["陈登支线1"]==false and GameManager.sav.day>=5:
@@ -351,3 +353,8 @@ func changePanelPos():
 	#f GameManager.sav.
 		factionView.position.y=730
 	pass
+	
+	
+	
+	
+@onready var items_in_scene: Node2D = $itemsInScene

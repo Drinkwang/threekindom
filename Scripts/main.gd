@@ -10,7 +10,7 @@ const FancyFade = preload("res://addons/transitions/FancyFade.gd")
 @export var clear_inventory:bool = true
 
 
-const HOUSE = preload("res://Scene/house.tscn")
+#const HOUSE = preload("res://Scene/house.tscn")
 @onready var rule_book = $CanvasBook/ruleBook
 
 const lightroom = preload("res://Asset/城镇建筑/灵堂亮.jpg")
@@ -194,8 +194,7 @@ func final():
 	
 func end():
 	#$title.show()
-	const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
-	FancyFade.new().custom_fade(HOUSE.instantiate(), 7, DISSOLVE_IMAGE)
+	SceneManager.changeScene(SceneManager.roomNode.HOUSE,7)
 	
 	pass
 

@@ -253,3 +253,31 @@ do _initData()
 do hearSayEnd()
 => END!
 
+
+
+
+~ 发现诡秘怪谈
+do SoundManager.play_sound(sounds.COLLECT_SMALL_JEWEL_3)
+刘备: （我发现了议事厅中某位士人遗留的残篇日记：）
+: 徐州城郊古坟，阴气森然，夜闻鬼哭，风水术士却称其为“龙脉宝地”。怪矣，城中权贵竞相葬此，墓碑林立，似隐秘谋。或传，坟中藏有不可告人之物，引得大族趋之若鹜。士人对此怪象深病其弊，欲求破解之道。若士族邀你共宴，婉拒探询公务，或能获其信任，托付此事。
+=> END!
+
+
+
+~ 发现场景道具1
+#待润色
+刘备: （我从议事厅的桌上发现了不知谁遗留下来的道具...）
+do GameManager.getItemAction.call() 
+=> END!
+
+~ 发现场景道具2
+#待润色
+刘备: （我从书架上发现了不知谁遗留下来的道具...）
+do GameManager.getItemAction.call() 
+=> END!
+
+~ 发现场景道具3
+#待润色
+刘备: （我从竹帘上发现了不知谁遗留下来的道具...）
+do GameManager.getItemAction.call() 
+=> END!

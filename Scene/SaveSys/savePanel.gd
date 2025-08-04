@@ -161,5 +161,3 @@ func _on_file_3_gui_input(event):
 		index=3
 		SaveOrLoad()
 	#pass # Replace with function body.
-
-

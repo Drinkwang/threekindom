@@ -32,9 +32,19 @@ func _input(event):
 			click_timer = 0.0
 			mouse_pos = get_viewport().get_mouse_position()
 		else:
-			is_click_held = false
-			tooltip_popup.hide()
+			pass
 
+			is_click_held = false
+			#tooltip_popup.hide()
+		if TooltipManager.current_target!=null:	
+			var rect = TooltipManager.current_target.get_global_rect()  # 获取 LineEdit 的全局矩形区域
+			var mouse_pos = TooltipManager.current_target.get_global_mouse_position()
+			if not rect.has_point(mouse_pos):
+			#is_click_held = false
+				TooltipManager.hide_tooltip()	
+	#if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			#is_click_held = false
+			#tooltip_popup.hide()
 var context=""
 func showText(_v):
 	context = _v
@@ -71,9 +81,12 @@ func _on_mouse_entered():
 	hover_timer = 0.0
 
 func _on_mouse_exited():
-	is_hovered = false
-	hover_timer = 0.0
-	tooltip_popup.hide()
+	pass
+	
+	#area2d
+	#is_hovered = false
+	#hover_timer = 0.0
+	#tooltip_popup.hide()
 
 func wrap_text(text: String) -> String:
 	if text == null or text == "":

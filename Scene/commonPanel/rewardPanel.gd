@@ -64,13 +64,13 @@ func showTitileReward(context,item):
 
 	_clear_view()
 	getItemSound()
-	
-	for key in item.items.keys():
-		var _count=item.items[key]
-		var item_ui:ShopItem = DaojuItem.instantiate()
-		item_ui.isShop=false
-		_grid_ui.add_child(item_ui)
-		item_ui.set_Data(key,_count)	
+	if item.items!=null:
+		for key in item.items.keys():
+			var _count=item.items[key]
+			var item_ui:ShopItem = DaojuItem.instantiate()
+			item_ui.isShop=false
+			_grid_ui.add_child(item_ui)
+			item_ui.set_Data(key,_count)	
 		#获取道具
 
 	#var getMoney=

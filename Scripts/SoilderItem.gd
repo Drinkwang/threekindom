@@ -131,6 +131,3 @@ func updateContext(value):
 			#利用这个判断
 			#pass
 	namelv=tr(str(_name))+":"+"LV"+str(_level)
-
-
-

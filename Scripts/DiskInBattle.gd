@@ -21,6 +21,7 @@ const fail=preload("res://Asset/other/0_red.png")
 var selectgeneral
 #ne
 func _endReward():
+	
 	pass
 	#print(点击完毕)
 	#点击通过
@@ -580,4 +581,3 @@ func refreshPage():
 	# 显示结果
 #定义一个枚举，然后显示当前win还是false
 #得保存
-

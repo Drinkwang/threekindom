@@ -1196,3 +1196,29 @@ do hearSayEnd()
 提示: 你当前的民心低于40
 
 => END!
+
+~ 发现诡秘怪谈
+do SoundManager.play_sound(sounds.COLLECT_SMALL_JEWEL_3)
+刘备: (这是我之前没看完的邸报，上面好像记载了一则诡闻：)
+城中某富家小姐，夜半出没，貌美如花，却传言嗜血食人。民谣暗唱：“月下红发轻舞，邀约莫回首。”据闻，她曾邀赴宴者，皆未生还，尸骨无存。然怪谈背后，或藏权贵阴谋，抑或妖魅作祟。若欲探寻真相，恐唯有赴宴一途。
+=> END!
+
+~ 发现场景道具1
+#待润色
+刘备: （我从灯笼上发现了不知谁遗留下来的道具...）
+do GameManager.getItemAction.call() 
+
+=> END!
+
+
+~ 发现场景道具2
+#待润色
+刘备: （我从花瓶里发现了不知谁遗留下来的道具...）
+do GameManager.getItemAction.call() 
+=> END!
+
+~ 发现场景道具3
+#待润色
+刘备: （我从桌上发现了不知谁遗留下来的道具...）
+do GameManager.getItemAction.call() 
+=> END!

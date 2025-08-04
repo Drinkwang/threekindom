@@ -129,7 +129,7 @@ var SIDEQUEST_MAP:Dictionary={
 @export var BENTUPAI:cldata=preload("res://Asset/tres/bentupai.tres").duplicate()
 @export var WAIDIPAI:cldata=preload("res://Asset/tres/waidipai.tres").duplicate()
 @export var LVBU:cldata=preload("res://Asset/tres/lvbu.tres").duplicate()
-
+@export var todayCanFindItems=[]
 @export var have_event = {
 	"firstmeetchenqun":false,
 	"firsthouse": false,

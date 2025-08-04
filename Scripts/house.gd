@@ -56,6 +56,7 @@ func _ready():
 
 			
 func _initData():
+	
 	GameManager.play_BGM()
 
 	var initData=[
@@ -99,6 +100,8 @@ func _initData():
 		res_panel.hide()
 		support_panel.hide()
 		return
+	if control.visible==true:	
+		items_in_scene.showItems()	
 	control._processList(initData)
 	GameManager.currenceScene=self
 	if GameManager.sav.day==1:
@@ -834,6 +837,11 @@ func generate_consumed_string(consumed: Dictionary) -> String:
 	## 用逗号连接所有描述
 	return "，".join(result)
 	
+@onready var items_in_scene: Node2D = $itemsInScene
+
+
+
+
 	
 func sheepGnawed():
 	pass

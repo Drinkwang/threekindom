@@ -195,6 +195,8 @@ func _initData():
 		initData[1].visible="true"
 	
 	if GameManager.sav.have_event["firstPolicyOpShow"]==true||GameManager.sav.day>1:
+		if control.visible==true:	
+			items_in_scene.showItems()
 		control._processList(initData)
 
 	if GameManager.sav.have_event["firstTabLaw"]==true or GameManager.sav.day>=5:
@@ -682,6 +684,7 @@ func deliverUncompleteTask():
 		if GameManager.sav.have_event["糜竺支线1"]==false and GameManager.sav.have_event["battleTaiShan"]==true:
 			mizhu.changeAllClick("糜竺嫁妹支线1")
 			mizhu.show()
+			tsty.hide()
 			mizhu.showEX=true
 			#插入糜贞送药
 			#糜竺嫁妹支线2
@@ -690,6 +693,7 @@ func deliverUncompleteTask():
 		elif GameManager.sav.have_event["糜竺支线2"]==false and GameManager.sav.mizhuSideWait==1:
 			if GameManager.sav.have_event["糜贞送药"]==false:
 				mizhu.show()
+				tsty.hide()
 				mizhu.showEX=false
 				GameManager.sav.have_event["糜贞送药"]=true
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"插入糜贞送药")
@@ -697,6 +701,7 @@ func deliverUncompleteTask():
 		elif GameManager.sav.have_event["糜竺支线2"]==false and GameManager.sav.mizhuSideWait==0:	
 			mizhu.changeAllClick("糜竺嫁妹支线2")
 			mizhu.show()
+			tsty.hide()
 			mizhu.showEX=true
 	else :
 		if GameManager.sav.day>5:
@@ -1102,7 +1107,7 @@ func CallingSoldier():
 func lvbuJoin():
 	GameManager.sav.have_event["lvbuJoin"]=true
 	GameManager.sav.labor_force=GameManager.sav.labor_force+1000
-	
+	#
 	#1
 	GameManager.sav.targetValue=3
 	GameManager.sav.currenceValue=0
@@ -1180,3 +1185,4 @@ func resumeMusic():
 	var music_file = "res://Asset/music/Ambient " + str(GameManager.musicId) + ".wav"
 	GameManager.play_music(music_file)	
 
+@onready var items_in_scene: Node2D = $itemsInScene

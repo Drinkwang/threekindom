@@ -272,3 +272,23 @@ do moreDayidness()
 系统提示: 士族派好感-5，豪族派好感-5，丹阳派好感-5
 do oneDayidleness()
 => END!
+
+
+
+~ 发现场景道具1
+#待润色
+刘备: （我从书桌里发现了可能是我遗留下来的物品...）
+do GameManager.getItemAction.call() 
+=> END!
+
+~ 发现场景道具2
+#待润色
+刘备: （我从床上发现了可能是我遗留下来的物品...）
+do GameManager.getItemAction.call() 
+=> END!
+
+~ 发现场景道具3
+#待润色
+刘备: （我从凳子底下发现了可能是我遗留下来的物品...）
+do GameManager.getItemAction.call() 
+=> END!

@@ -37,12 +37,12 @@ func register_tooltip(node: Node, tooltip_text: String):
 	
 	# 如果是 2D 节点，检查是否有 Area2D
 	elif node is Node2D and node.has_node("Area2D"):
-		var area = node.get_node("Area2D")
+		var area:Area2D = node.get_node("Area2D")
 		if not area.is_connected("mouse_entered", _on_mouse_entered.bind(node)):
 			area.mouse_entered.connect(_on_mouse_entered.bind(node))
 		if not area.is_connected("mouse_exited", _on_mouse_exited.bind(node)):
 			area.mouse_exited.connect(_on_mouse_exited.bind(node))
-
+			#area.click
 
 func unregister_tooltip(node: Node):
 	# 从 Tooltipable 分组移除
@@ -88,12 +88,14 @@ func _on_node_added(node: Node):
 
 func show_tooltip(target: Node, text: String, position: Vector2):
 	#hide_tooltip()
+
 	if(current_tooltip==null):
 		current_tooltip = tooltip_scene.instantiate()
+		#current_tooltip.area2d=target
 		current_tooltip.showText(text)
 		get_tree().root.add_child(current_tooltip)
 	current_tooltip.panel_container.global_position = position + Vector2(10, 10)
-	
+	#current_tooltip.area2d=target
 	# 防止溢出屏幕
 	var screen_size = get_viewport().get_visible_rect().size
 	var tooltip_size = current_tooltip.panel_container.size
@@ -101,7 +103,7 @@ func show_tooltip(target: Node, text: String, position: Vector2):
 		current_tooltip.panel_container.global_position.x = screen_size.x - tooltip_size.x - 10
 	if current_tooltip.panel_container.global_position.y + tooltip_size.y > screen_size.y:
 		current_tooltip.panel_container.global_position.y = screen_size.y - tooltip_size.y - 10
-	
+	current_tooltip.show_tooltip()
 	current_target = target
 
 func hide_tooltip():
@@ -114,11 +116,15 @@ func hide_tooltip():
 
 func _on_mouse_entered(target: Node):
 	if target.has_meta("tooltip_text"):
+	
 		var text = target.get_meta("tooltip_text")
 		var mouse_pos = get_viewport().get_mouse_position()
 		show_tooltip(target, text, mouse_pos)
+	else:
+		hide_tooltip()
 
 func _on_mouse_exited(target: Node):
+	pass
 	hide_tooltip()
 
 func _input(event):
@@ -136,23 +142,5 @@ func _on_hold_timeout():
 	if is_holding and current_target and current_target.has_meta("tooltip_text"):
 		var text = current_target.get_meta("tooltip_text")
 		var mouse_pos = get_viewport().get_mouse_position()
-		show_tooltip(current_target, text, mouse_pos)
-
-## 为 3D 物体处理射线检测
-#func _process(delta):
-	#var camera = get_viewport().get_camera_3d()
-	#if camera:
-		#var mouse_pos = get_viewport().get_mouse_position()
-		#var from = camera.project_ray_origin(mouse_pos)
-		#var to = from + camera.project_ray_normal(mouse_pos) * 1000
-		#var space_state = get_world_3d().direct_space_state
-		#var query = PhysicsRayQueryParameters3D.create(from, to)
-		#var result = space_state.intersect_ray(query)
-		#
-		#if result and result.collider.is_in_group("Tooltipable") and result.collider.has_meta("tooltip_text"):
-			#current_target = result.collider
-			#var text = current_target.get_meta("tooltip_text")
-			#show_tooltip(current_target, text, mouse_pos)
-		#else:
-			#if current_target and current_target is Node3D:
-				#hide_tooltip()
+		#show_tooltip(current_target, text, mouse_pos)
+		#暂时注销，如果是手机用户，这里不需要执行

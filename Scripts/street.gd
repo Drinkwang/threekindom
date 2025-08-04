@@ -7,13 +7,23 @@ const FancyFade = preload("res://addons/transitions/FancyFade.gd")
 const xiaopeiBuild = preload("res://Asset/城镇建筑/集市1.png")
 const newBuild = preload("res://Asset/城镇建筑/集市2.png")
 @onready var bg = $"内饰"
+
+
+@onready var node_2d_store: _cget_scene_item = $itemsInScene/Node2D_store
+@onready var node_2d_bamboo: _cget_scene_item = $itemsInScene/Node2D_bamboo
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GameManager.currenceScene=self
 	if GameManager.sav.have_event["initXuzhou"]==true:
 		bg.texture=newBuild
+		node_2d_store.position=Vector2(584,100)
+		node_2d_bamboo.position=Vector2(305,280)
 	else:
 		bg.texture=xiaopeiBuild
+		node_2d_store.position=Vector2(914,91)
+		node_2d_bamboo.position=Vector2(1188,524)
 	#方便测试,可能会删？我第一次看到方便测试很迷惑
 	GameManager.sav.have_event["firstmeetchenqun"]=true
 
@@ -40,6 +50,7 @@ func post_transition():
 	GameManager.CanClickUI=true
 	#print("fadedone")
 	_initData()
+
 	SoundManager.play_ambient_sound(MINISTREET)
 	if GameManager.sav.day==1:
 		if(GameManager.sav.have_event["firststreet"]==true):
@@ -78,7 +89,7 @@ func post_transition():
 	
 	
 func _initData():
-	
+
 	
 	#	"锦囊咨询丹阳派": false, #如果上个为true，到演武场，则令曹豹出现，并可以点击触发支线
 	#卖粮第几天
@@ -130,7 +141,7 @@ func _initData():
 		GameManager.hearsayID=-1
 		shop_panel.show()
 	
-
+	items_in_scene.showItems()
 	control._processList(initData)
 	if GameManager.hearsayBeforeNode==SceneManager.roomNode.Shop:
 		shop_panel.show()
@@ -488,3 +499,6 @@ func sideQuestReturnG(iswin):
 	battle_pane.sideQuestReturnG(iswin)
 func sideQuestReturnT(iswin):
 	battle_pane.sideQuestReturnT(iswin)
+
+@onready var items_in_scene: Node2D = $itemsInScene
+ 

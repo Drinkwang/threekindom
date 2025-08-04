@@ -1,12 +1,12 @@
-[gd_scene load_steps=22 format=3 uid="uid://cehg7t1h5f2ei"]
+[gd_scene load_steps=25 format=3 uid="uid://cehg7t1h5f2ei"]
 
 [ext_resource type="Script" path="res://Scripts/street.gd" id="1_jskmv"]
 [ext_resource type="Resource" uid="uid://qopivlttvt12" path="res://dialogues/街道.dialogue" id="2_a3tl4"]
 [ext_resource type="PackedScene" uid="uid://bv5ycsl0a50uq" path="res://Scene/prefab/btnList.tscn" id="2_eoq3e"]
 [ext_resource type="Texture2D" uid="uid://d2artvwe80df1" path="res://Asset/光明/正常背景.png" id="3_c4vad"]
-[ext_resource type="Texture2D" uid="uid://51ept05gln70" path="res://Asset/城镇建筑/集市1.png" id="3_ksyem"]
 [ext_resource type="Texture2D" uid="uid://5n7qchhi5h04" path="res://Asset/ui/底色.png" id="4_tt101"]
 [ext_resource type="PackedScene" uid="uid://bxw67mtklk4w5" path="res://Scene/prefab/ExpoundclassicsPanel.tscn" id="5_jclo7"]
+[ext_resource type="Texture2D" uid="uid://cej3eajnovwwy" path="res://Asset/城镇建筑/集市2.png" id="5_w16qo"]
 [ext_resource type="PackedScene" uid="uid://dfolt063spdso" path="res://Scene/prefab/energy.tscn" id="6_00ynb"]
 [ext_resource type="Texture2D" uid="uid://bwcri60nk00mv" path="res://Asset/光明/街道亮.png" id="6_imlfi"]
 [ext_resource type="Texture2D" uid="uid://bgqbxd6ppt5s2" path="res://Asset/光明/装饰1-正常.png" id="7_2c0vb"]
@@ -20,7 +20,10 @@
 [ext_resource type="Texture2D" uid="uid://yuphy67p1cut" path="res://Asset/人物/陶谦.png" id="18_fbh2q"]
 [ext_resource type="Texture2D" uid="uid://ywdj7u3flcmu" path="res://Asset/人物/假糜贞.png" id="18_ks6ru"]
 [ext_resource type="PackedScene" uid="uid://cjsb43uugkud4" path="res://Scene/battleSys/battlePanel.tscn" id="21_h0siw"]
+[ext_resource type="Script" path="res://Scripts/items_in_scene_manager.gd" id="22_jjdx3"]
 [ext_resource type="VideoStream" path="res://Asset/vedio/Tentacle.ogv" id="22_pmyge"]
+[ext_resource type="PackedScene" uid="uid://4ap7nnl7o6br" path="res://Scene/prefab/_CgetSceneItem.tscn" id="23_ugwgx"]
+[ext_resource type="Resource" uid="uid://cjbqxteqnpnrd" path="res://dialogues/议会厅.dialogue" id="24_8pksx"]
 
 [node name="Node2D2" type="Node2D"]
 script = ExtResource("1_jskmv")
@@ -42,7 +45,7 @@ flip_h = true
 [node name="内饰" type="Sprite2D" parent="."]
 position = Vector2(960, 537)
 scale = Vector2(2.23, 2.23)
-texture = ExtResource("3_ksyem")
+texture = ExtResource("5_w16qo")
 region_filter_clip_enabled = true
 
 [node name="标题" type="Sprite2D" parent="."]
@@ -84,10 +87,11 @@ offset_right = -1574.0
 offset_bottom = -10.0
 
 [node name="hpPanel" parent="CanvasLayer" instance=ExtResource("6_00ynb")]
+clip_contents = true
 offset_left = 1395.0
 offset_top = 20.0
-offset_right = 1395.0
-offset_bottom = 20.0
+offset_right = 2225.0
+offset_bottom = 2070.0
 scale = Vector2(0.2, 0.2)
 
 [node name="shopPanel" parent="CanvasLayer" instance=ExtResource("7_nhhnq")]
@@ -151,3 +155,34 @@ offset_right = 1931.0
 offset_bottom = 1081.0
 grow_horizontal = 1
 grow_vertical = 1
+
+[node name="itemsInScene" type="Node2D" parent="."]
+z_index = 4096
+position = Vector2(165, 153)
+script = ExtResource("22_jjdx3")
+OccurInScene = 2
+dialogue_resource = ExtResource("2_a3tl4")
+
+[node name="Node2D_cj" parent="itemsInScene" instance=ExtResource("23_ugwgx")]
+visible = false
+z_index = 1000
+position = Vector2(1188, 524)
+SceneID = 1
+dialogue_resource = ExtResource("24_8pksx")
+dialogue_start = "发现诡秘怪谈"
+
+[node name="Node2D_bamboo" parent="itemsInScene" instance=ExtResource("23_ugwgx")]
+visible = false
+z_index = 1000
+position = Vector2(305, 280)
+SceneID = 2
+dialogue_resource = ExtResource("24_8pksx")
+dialogue_start = "发现诡秘怪谈"
+
+[node name="Node2D_store" parent="itemsInScene" instance=ExtResource("23_ugwgx")]
+visible = false
+z_index = 1000
+position = Vector2(584, 100)
+SceneID = 3
+dialogue_resource = ExtResource("24_8pksx")
+dialogue_start = "发现诡秘怪谈"

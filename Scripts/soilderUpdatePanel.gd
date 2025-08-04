@@ -52,10 +52,12 @@ func update_ui():
 		control_1.canSelect=true
 		control_2.canSelect=true
 		control_3.canSelect=true
+		lvbutton.disabled=false	
 	else:
 		control_1.canSelect=false
 		control_2.canSelect=false
-		control_3.canSelect=false		
+		control_3.canSelect=false
+		lvbutton.disabled=true		
 	#level_label.text = "当前等级: " + str(selected_general["level"])
 	#gold_label.text = "当前金币: " + str(gold)
 	#upgrade_button.disabled = selected_general["level"] >= selected_general["max_level"] or gold < upgrade_cost

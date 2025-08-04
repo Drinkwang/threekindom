@@ -447,3 +447,22 @@ do battle_pane.hide()
 do sideQuestReturnT(false)
 => END!
 
+
+
+~ 发现场景道具1
+#待润色
+刘备: （我从杂货堆里发现了不知谁遗留下来的道具...）
+do GameManager.getItemAction.call() 
+=> END!
+
+~ 发现场景道具2
+#待润色
+刘备: （我从废竹篓前里发现了不知谁遗留下来的道具...）
+do GameManager.getItemAction.call() 
+=> END!
+
+~ 发现场景道具3
+#待润色
+刘备: （我从停业休息的商铺上发现了不知谁遗留下来的道具...）
+do GameManager.getItemAction.call() 
+=> END!

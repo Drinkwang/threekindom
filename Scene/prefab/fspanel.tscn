@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://ervc6220fre7"]
+[gd_scene load_steps=8 format=3 uid="uid://ervc6220fre7"]
 
 [ext_resource type="Script" path="res://Scripts/fspanel.gd" id="1_k5460"]
+[ext_resource type="Script" path="res://clData.gd" id="2_2uflo"]
 [ext_resource type="Resource" uid="uid://blfuk0ymk0m4m" path="res://Asset/tres/waidipai.tres" id="2_5mdgj"]
 [ext_resource type="Theme" uid="uid://bklmr3xmk4m5u" path="res://global_theme.tres" id="2_k7um3"]
 [ext_resource type="Resource" uid="uid://dh6qm466adpma" path="res://Asset/tres/bentupai.tres" id="3_e5ysh"]
@@ -19,7 +20,7 @@ offset_bottom = -7.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_k5460")
-datas = Array[Resource("res://clData.gd")]([ExtResource("2_5mdgj"), ExtResource("3_e5ysh"), ExtResource("4_ptglv")])
+datas = Array[ExtResource("2_2uflo")]([ExtResource("2_5mdgj"), ExtResource("3_e5ysh"), ExtResource("4_ptglv")])
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1

@@ -53,11 +53,11 @@ offset_top = 33.0
 offset_right = 172.0
 offset_bottom = 124.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 0
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 0
 theme_override_constants/outline_size = 0
 theme_override_constants/shadow_outline_size = 0
-theme_override_constants/line_spacing = 0
 theme_override_fonts/font = ExtResource("5_n2jvq")
 theme_override_font_sizes/font_size = 23
 text = "[胜/负/合]"
@@ -70,10 +70,10 @@ offset_bottom = 64.0
 scale = Vector2(5, 5)
 value = 100.0
 fill_mode = 5
+radial_fill_degrees = 90.0
 texture_progress = ExtResource("1_upy2s")
 tint_under = Color(0.981098, 0.850573, 0.852089, 1)
 tint_progress = Color(0, 0.962223, 0.342341, 1)
-radial_fill_degrees = 90.0
 
 [node name="LitterDamage" type="TextureProgressBar" parent="."]
 layout_mode = 0
@@ -82,11 +82,11 @@ offset_bottom = 64.0
 scale = Vector2(5, 5)
 value = 100.0
 fill_mode = 5
+radial_initial_angle = 90.0
+radial_fill_degrees = 90.0
 texture_progress = ExtResource("1_upy2s")
 tint_under = Color(0.981098, 0.850573, 0.852089, 1)
 tint_progress = Color(0.926972, 0.873791, 0.33644, 1)
-radial_initial_angle = 90.0
-radial_fill_degrees = 90.0
 
 [node name="MiddleDamage" type="TextureProgressBar" parent="."]
 layout_mode = 0
@@ -95,11 +95,11 @@ offset_bottom = 64.0
 scale = Vector2(5, 5)
 value = 100.0
 fill_mode = 5
+radial_initial_angle = 180.0
+radial_fill_degrees = 90.0
 texture_progress = ExtResource("1_upy2s")
 tint_under = Color(0.981098, 0.850573, 0.852089, 1)
 tint_progress = Color(0.850816, 0.507731, 0.0825511, 1)
-radial_initial_angle = 180.0
-radial_fill_degrees = 90.0
 
 [node name="BigDamage" type="TextureProgressBar" parent="."]
 layout_mode = 0
@@ -108,11 +108,11 @@ offset_bottom = 64.0
 scale = Vector2(5, 5)
 value = 100.0
 fill_mode = 5
+radial_initial_angle = 59.5
+radial_fill_degrees = 235.2
 texture_progress = ExtResource("1_upy2s")
 tint_under = Color(0.981098, 0.850573, 0.852089, 1)
 tint_progress = Color(0.851983, 0, 0.257883, 1)
-radial_initial_angle = 59.5
-radial_fill_degrees = 235.2
 
 [node name="POINT1" type="TextureProgressBar" parent="."]
 layout_mode = 0
@@ -122,11 +122,11 @@ scale = Vector2(5, 5)
 step = 2.0
 value = 100.0
 fill_mode = 5
+radial_initial_angle = 354.0
+radial_fill_degrees = 1.0
 texture_progress = ExtResource("1_upy2s")
 tint_under = Color(0.981098, 0.850573, 0.852089, 1)
 tint_progress = Color(0, 0, 0, 1)
-radial_initial_angle = 354.0
-radial_fill_degrees = 1.0
 
 [node name="POINT2" type="TextureProgressBar" parent="."]
 layout_mode = 0
@@ -135,11 +135,11 @@ offset_bottom = 64.0
 scale = Vector2(5, 5)
 value = 100.0
 fill_mode = 5
+radial_initial_angle = 263.7
+radial_fill_degrees = 1.0
 texture_progress = ExtResource("1_upy2s")
 tint_under = Color(0.981098, 0.850573, 0.852089, 1)
 tint_progress = Color(0, 0, 0, 1)
-radial_initial_angle = 263.7
-radial_fill_degrees = 1.0
 
 [node name="POINT3" type="TextureProgressBar" parent="."]
 layout_mode = 0
@@ -148,11 +148,11 @@ offset_bottom = 64.0
 scale = Vector2(5, 5)
 value = 100.0
 fill_mode = 5
+radial_initial_angle = 171.5
+radial_fill_degrees = 1.0
 texture_progress = ExtResource("1_upy2s")
 tint_under = Color(0.981098, 0.850573, 0.852089, 1)
 tint_progress = Color(0, 0, 0, 1)
-radial_initial_angle = 171.5
-radial_fill_degrees = 1.0
 
 [node name="POINT4" type="TextureProgressBar" parent="."]
 layout_mode = 0
@@ -161,11 +161,11 @@ offset_bottom = 64.0
 scale = Vector2(5, 5)
 value = 100.0
 fill_mode = 5
+radial_initial_angle = 83.5
+radial_fill_degrees = 1.0
 texture_progress = ExtResource("1_upy2s")
 tint_under = Color(0.981098, 0.850573, 0.852089, 1)
 tint_progress = Color(0, 0, 0, 1)
-radial_initial_angle = 83.5
-radial_fill_degrees = 1.0
 
 [node name="TextureRect" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_ahpuy")
@@ -185,11 +185,11 @@ offset_bottom = 64.0
 scale = Vector2(5, 5)
 value = 100.0
 fill_mode = 5
+radial_initial_angle = 90.0
+radial_fill_degrees = 0.0
 texture_progress = ExtResource("1_upy2s")
 tint_under = Color(0.981098, 0.850573, 0.852089, 1)
 tint_progress = Color(0.137255, 0.458824, 0.807843, 0.211765)
-radial_initial_angle = 90.0
-radial_fill_degrees = 0.0
 
 [node name="PointerScifiB" type="TextureRect" parent="."]
 visible = false
@@ -221,11 +221,11 @@ offset_left = 24.0
 offset_right = 72.0
 offset_bottom = 16.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 0
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 0
 theme_override_constants/outline_size = 1
 theme_override_constants/shadow_outline_size = 0
-theme_override_constants/line_spacing = 0
 theme_override_fonts/font = ExtResource("5_n2jvq")
 text = "无伤亡"
 
@@ -240,11 +240,11 @@ offset_left = 24.0
 offset_right = 72.0
 offset_bottom = 16.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 0
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 0
 theme_override_constants/outline_size = 1
 theme_override_constants/shadow_outline_size = 0
-theme_override_constants/line_spacing = 0
 theme_override_fonts/font = ExtResource("5_n2jvq")
 text = "低伤亡"
 
@@ -259,11 +259,11 @@ offset_left = 24.0
 offset_right = 72.0
 offset_bottom = 16.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 0
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 0
 theme_override_constants/outline_size = 1
 theme_override_constants/shadow_outline_size = 0
-theme_override_constants/line_spacing = 0
 theme_override_fonts/font = ExtResource("5_n2jvq")
 text = "中伤亡"
 
@@ -278,11 +278,11 @@ offset_left = 24.0
 offset_right = 72.0
 offset_bottom = 16.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 0
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 0
 theme_override_constants/outline_size = 1
 theme_override_constants/shadow_outline_size = 0
-theme_override_constants/line_spacing = 0
 theme_override_fonts/font = ExtResource("5_n2jvq")
 text = "高伤亡"
 
@@ -297,11 +297,11 @@ offset_left = 24.0
 offset_right = 72.0
 offset_bottom = 16.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 0
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 0
 theme_override_constants/outline_size = 1
 theme_override_constants/shadow_outline_size = 0
-theme_override_constants/line_spacing = 0
 theme_override_fonts/font = ExtResource("5_n2jvq")
 text = "成功率"
 

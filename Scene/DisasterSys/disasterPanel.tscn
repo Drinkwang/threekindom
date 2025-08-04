@@ -199,8 +199,8 @@ offset_right = 1588.0
 offset_bottom = 882.0
 theme_override_colors/font_color = Color(0.621959, 1, 0.672549, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 0
 theme_override_constants/line_spacing = 0
+theme_override_constants/outline_size = 0
 theme_override_font_sizes/font_size = 31
 text = "欣然：2（满足大幅度提升支持度）
 认可：2（满足小幅度提升支持度）

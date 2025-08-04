@@ -130,6 +130,76 @@ var battleCircle=[
 ]
 
 
+var CanFindItems=[
+	{"name":"item1InHouse","alreadyGet":false,"id":1,"scene":SceneManager.roomNode.HOUSE},
+	{"name":"item2InHouse","alreadyGet":false,"id":2,"scene":SceneManager.roomNode.HOUSE},
+	{"name":"item3InHouse","alreadyGet":false,"id":3,"scene":SceneManager.roomNode.HOUSE},
+	
+	
+	
+	{"name":"item1InStree","alreadyGet":false,"id":1,"scene":SceneManager.roomNode.STREET},
+	{"name":"item2InStree","alreadyGet":false,"id":2,"scene":SceneManager.roomNode.STREET},
+	{"name":"item3InStree","alreadyGet":false,"id":3,"scene":SceneManager.roomNode.STREET},
+	#{"name":"item4InStree","alreadyGet":false,"id":4,"scene":SceneManager.roomNode.STREET},
+	#{"name":"item5InStree","alreadyGet":false,"id":5,"scene":SceneManager.roomNode.STREET},
+	
+	
+	
+	
+	{"name":"item1InBouleuterion","alreadyGet":false,"id":1,"scene":SceneManager.roomNode.BOULEUTERION},
+	{"name":"item2InBouleuterion","alreadyGet":false,"id":2,"scene":SceneManager.roomNode.BOULEUTERION},
+	{"name":"item3InBouleuterion","alreadyGet":false,"id":3,"scene":SceneManager.roomNode.BOULEUTERION},
+	
+
+	{"name":"item1InBattle","alreadyGet":false,"id":1,"scene":SceneManager.roomNode.DRILL_GROUND},
+	{"name":"item2InBattle","alreadyGet":false,"id":2,"scene":SceneManager.roomNode.DRILL_GROUND},
+				
+	#初始值会带有一些随机元素，但会根据优势更偏进好的 初始成功率不大于30  做任务降低损失增大成功率 
+]
+
+
+var CanFindSecretItems=[
+	{"name":"key_item1","alreadyGet":false,"id":2,"scene":SceneManager.roomNode.BOULEUTERION},
+
+	{"name":"key_item2","alreadyGet":false,"id":1,"scene":SceneManager.roomNode.GOVERNMENT_BUILDING},
+	{"name":"key_item3","alreadyGet":false,"id":3,"scene":SceneManager.roomNode.DRILL_GROUND},
+
+	
+	#初始值会带有一些随机元素，但会根据优势更偏进好的 初始成功率不大于30  做任务降低损失增大成功率 
+]
+
+
+
+func initSecretFunc():
+	var available_items 
+	var available_secret_items
+	sav.todayCanFindItems=[]
+	var maxLen=randi_range(0,3)
+	if sav.day<4:
+		if sav.day==1:
+
+			available_secret_items=CanFindSecretItems[1]
+	
+		elif sav.day==2:
+			available_secret_items=CanFindSecretItems[0]
+		elif sav.day==3:
+			available_secret_items=CanFindSecretItems[2]
+
+		sav.todayCanFindItems.append(available_secret_items)
+		
+	for i in range(0,maxLen):
+		available_items = CanFindItems.filter(func(item): return not sav.todayCanFindItems.has(item.name))
+		var available_item = available_items[randi_range(0,available_items.size()-1)]
+		if available_secret_items!=null:
+			if available_secret_items.scene==available_item.scene and available_secret_items.id==available_item.id:
+				continue
+		available_item.alreadyGet=false
+		sav.todayCanFindItems.append(available_item)
+	
+	#如果在游戏后期则不会获取怪谈道具
+
+
+
 var currenceScene
 var restFadeScene
 
@@ -202,15 +272,16 @@ func refreshPaixis():
 	initPaixi(sav.BENTUPAI)
 	initPaixi(sav.WAIDIPAI)
 	#initPaixi(sav.HAOZUPAI)
-	if GameManager.sav.have_event["Factionalization"]:
+	if sav.have_event["Factionalization"]:
 		initPaixi(sav.HAOZUPAI)
 	#传递信号，政策看法
 
 func _enterDay(value=true):
 	if(value==true):
-		GameManager.sav.day=GameManager.sav.day+1
+		sav.day=sav.day+1
 	refreshPaixis()
 	initBattle()
+	initSecretFunc()#初始化获得道具相关
 	sav.isSoldItem=false
 	sav.hp=sav.maxHP
 	sav.isLevelUp=false;
@@ -219,37 +290,37 @@ func _enterDay(value=true):
 	sav.isVisitScholar=false
 	sav.randomIndex=randi_range(0,3)
 	sav.alreadyHP=0	
-	if GameManager.sav.xuzhouCD>0:
-		GameManager.sav.xuzhouCD-=1
+	if sav.xuzhouCD>0:
+		sav.xuzhouCD-=1
 
-	if GameManager.sav.haozuCD>0:
-		GameManager.sav.haozuCD-=1
+	if sav.haozuCD>0:
+		sav.haozuCD-=1
 
-	if GameManager.sav.danyangCD>0:
-		GameManager.sav.danyangCD-=1
+	if sav.danyangCD>0:
+		sav.danyangCD-=1
 
 
 #@export var mizhuSideWait=-1
 #@export var chendenSideWait=-1
 #@export var caobaoSideWait=-1
-	if GameManager.sav.mizhuSideWait!=-1 and GameManager.sav.mizhuSideWait>0:
-		GameManager.sav.mizhuSideWait-=1
-	if GameManager.sav.chendenSideWait!=-1 and GameManager.sav.chendenSideWait>0:
-		GameManager.sav.chendenSideWait-=1	
-	if GameManager.sav.caobaoSideWait!=-1 and GameManager.sav.caobaoSideWait>0:
-		GameManager.sav.caobaoSideWait-=1
+	if sav.mizhuSideWait!=-1 and sav.mizhuSideWait>0:
+		sav.mizhuSideWait-=1
+	if sav.chendenSideWait!=-1 and sav.chendenSideWait>0:
+		sav.chendenSideWait-=1	
+	if sav.caobaoSideWait!=-1 and sav.caobaoSideWait>0:
+		sav.caobaoSideWait-=1
 
-	if GameManager.sav.targetResType==GameManager.ResType.rest:
-		GameManager.sav.currenceValue=GameManager.sav.currenceValue+1
+	if sav.targetResType==ResType.rest:
+		sav.currenceValue=sav.currenceValue+1
 		
-		if GameManager.sav.have_event["chaosBegin"]==true:#第三个任务
-			if GameManager.sav.currenceValue==2:
+		if sav.have_event["chaosBegin"]==true:#第三个任务
+			if sav.currenceValue==2:
 				pass#克苏鲁现象
 
-	if GameManager.sav.have_event["chaoDialogEnd"]==true:
-		if(GameManager.sav.have_event["chaosEnd"]==false):	
+	if sav.have_event["chaoDialogEnd"]==true:
+		if(sav.have_event["chaosEnd"]==false):	
 			sav.currenceDay=sav.currenceDay+1#	
-		elif (GameManager.sav.have_event["lvbuJoin"]==true) and GameManager.sav.have_event["canSummonLvbu"]==false:
+		elif (sav.have_event["lvbuJoin"]==true) and sav.have_event["canSummonLvbu"]==false:
 			sav.currenceDay=sav.currenceDay+1#	
 			#判断是否能召见吕布，如果可以，依然执行这个方法
 #利用上这个把taskindex局限于0-3 选样，并把这个数量和攻克
@@ -388,16 +459,16 @@ func initPaixi(data:cldata):
 	
 	#data._num_sp=(data._num_all*data._support_rate)/100+0.5
 	data._num_op=(data._num_all*(100-data._support_rate))/100+0.5
-	var paixiindex=GameManager.getIndexByFractionIndex(data.index)
+	var paixiindex=getIndexByFractionIndex(data.index)
 	var lawOP=0
-	if paixiindex!=GameManager.sav.curLawNum1 and GameManager.sav.curLawNum1>0:
-		lawOP=((GameManager.sav.curLawNum2-1)*10.0/100.0)*(data._num_all-data._num_op)
+	if paixiindex!=sav.curLawNum1 and sav.curLawNum1>0:
+		lawOP=((sav.curLawNum2-1)*10.0/100.0)*(data._num_all-data._num_op)
 		lawOP=floor(lawOP)
 
 	#如果是相同派系，则为0，不同派系，将（index-1）*9到10 的百分比赋值给它
 	data._num_op=data._num_op+lawOP
 	var initRt=randf_range(0,min(data._num_op*2,data._num_all-data._num_op))
-	if GameManager.sav.curLawNum1<=0:
+	if sav.curLawNum1<=0:
 		initRt=0
 	data._num_rt=initRt
 	data._num_sp=(data._num_all-data._num_op-data._num_rt)
@@ -417,7 +488,7 @@ func getPolicyGroup() -> int:
 			return 1
 		if sav.day==5:
 			return 2
-		if GameManager.sav.have_event["chaoChendengEnd"]==true and GameManager.sav.have_event["chaoChenDenPolicyExcute"]==false:
+		if sav.have_event["chaoChendengEnd"]==true and sav.have_event["chaoChenDenPolicyExcute"]==false:
 			return 3
 
 
@@ -482,16 +553,16 @@ func getcldateByindex(factionIndex:int)->cldata:
 	#index==2 军方
 
 	if factionIndex==2:
-		return GameManager.sav.WAIDIPAI #preload("res://Asset/tres/waidipai.tres")
+		return sav.WAIDIPAI #preload("res://Asset/tres/waidipai.tres")
 		#index=2
 	elif factionIndex==0:
-		return GameManager.sav.BENTUPAI #preload("res://Asset/tres/bentupai.tres")
+		return sav.BENTUPAI #preload("res://Asset/tres/bentupai.tres")
 		#index=0
 	elif factionIndex==1:
-		return GameManager.sav.HAOZUPAI #preload("res://Asset/tres/haozupai.tres")
+		return sav.HAOZUPAI #preload("res://Asset/tres/haozupai.tres")
 		#index=1
 	elif factionIndex==cldata.factionIndex.lvbu:
-		return GameManager.sav.LVBU#preload("res://Asset/tres/haozupai.tres")
+		return sav.LVBU#preload("res://Asset/tres/haozupai.tres")
 		#index=3	
 	return null
 
@@ -502,16 +573,16 @@ func getFractionByEnum(factionIndex:cldata.factionIndex):
 	#index==2 军方
 
 	if factionIndex==cldata.factionIndex.weidipai:
-		return GameManager.sav.WAIDIPAI #preload("res://Asset/tres/waidipai.tres")
+		return sav.WAIDIPAI #preload("res://Asset/tres/waidipai.tres")
 		#index=2
 	elif factionIndex==cldata.factionIndex.bentupai:
-		return GameManager.sav.BENTUPAI #preload("res://Asset/tres/bentupai.tres")
+		return sav.BENTUPAI #preload("res://Asset/tres/bentupai.tres")
 		#index=0
 	elif factionIndex==cldata.factionIndex.haozupai:
-		return GameManager.sav.HAOZUPAI #preload("res://Asset/tres/haozupai.tres")
+		return sav.HAOZUPAI #preload("res://Asset/tres/haozupai.tres")
 		#index=1
 	elif factionIndex==cldata.factionIndex.lvbu:
-		return GameManager.sav.LVBU#preload("res://Asset/tres/haozupai.tres")
+		return sav.LVBU#preload("res://Asset/tres/haozupai.tres")
 		#index=3	
 	return null
 
@@ -536,6 +607,11 @@ const InventoryManagerName = "InventoryManager"
 
 var lawAction: Callable
 var policyAction:Callable
+
+var getItemAction:Callable
+
+
+
 var RewardLaw
 func excuteLaw():
 	sav.laws[sav.curLawNum1].append(sav.curLawNum2)
@@ -546,8 +622,8 @@ func excuteLaw():
 		#RewardLaw="每日收入+50，徐州好感度+10，#一次性收入+200" #收入每日增加 徐州派好感度上升
 		
 		lawAction= func():
-			GameManager.sav.coin_DayGet=GameManager.sav.coin_DayGet+50
-			#GameManager.sav.coin=GameManager.sav.coin+200
+			sav.coin_DayGet=sav.coin_DayGet+50
+			#sav.coin=sav.coin+200
 			#徐州好感度+10
 			sav.BENTUPAI.ChangeSupport(10)
 			print("农田开坑done")
@@ -556,7 +632,7 @@ func excuteLaw():
 		#RewardLaw="每日人口+10，徐州好感度+5，获得道具“诸子百家”x1 " #人口每日增加 徐州派好感上升 获得道具xxx
 		lawAction= func():
 			sav.BENTUPAI.ChangeSupport(5)
-			GameManager.sav.labor_DayGet=GameManager.sav.labor_DayGet+10
+			sav.labor_DayGet=sav.labor_DayGet+10
 			#获得诸子百家
 			
 			var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.诸子百家论集)
@@ -567,14 +643,14 @@ func excuteLaw():
 		#RewardLaw="一次性人口+100，徐州好感度+10，群众支持度+5 " #人口一次性增加 徐州派好感上升
 		
 		lawAction= func():
-			GameManager.sav.labor_force=GameManager.sav.labor_force+100
+			sav.labor_force=sav.labor_force+100
 			sav.BENTUPAI.ChangeSupport(10)
-			GameManager.changePeopleSupport(5)
+			changePeopleSupport(5)
 			print("整治街容done")			
 	elif sav.curLawName=="重农抑商":
 		#RewardLaw="收益：每日收入+80，徐州好感度+15 冲突：豪族好感度-20 " 
 		lawAction= func():
-			GameManager.sav.labor_DayGet=GameManager.sav.labor_DayGet+80
+			sav.labor_DayGet=sav.labor_DayGet+80
 			sav.BENTUPAI.ChangeSupport(15)
 			sav.HAOZUPAI.ChangeSupport(-20)
 			
@@ -696,8 +772,8 @@ func excuteLaw():
 	elif sav.curLawName=="商品流通法":
 		#RewardLaw="收益：每日收入+150，每日随机道具x1，一次性人口+200 冲突：徐州好感度-30，群众支持度-10  "
 		lawAction= func():
-			GameManager.sav.coin_DayGet=GameManager.sav.coin_DayGet+150
-			GameManager.sav.dailyGetRandomItem=true
+			sav.coin_DayGet=sav.coin_DayGet+150
+			sav.dailyGetRandomItem=true
 			sav.labor_force+=200
 			sav.BENTUPAI.ChangeSupport(-30)
 			changePeopleSupport(-10)
@@ -707,8 +783,8 @@ func excuteLaw():
 		lawAction= func():
 			var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.珍品礼盒)
 			var remainder = InventoryManager.add_item(inventoryPackege, itemid, 2, false)
-			GameManager.sav.coin_DayGet=GameManager.sav.coin_DayGet+200
-			GameManager.sav.coin=GameManager.sav.coin+1500
+			sav.coin_DayGet=sav.coin_DayGet+200
+			sav.coin=sav.coin+1500
 			sav.BENTUPAI.ChangeSupport(-40)
 			sav.WAIDIPAI.ChangeSupport(-20)
 #丹阳派
@@ -736,14 +812,14 @@ func excuteLaw():
 			InventoryManager.add_item(inventoryPackege, itemid, 1, false)
 
 
-			GameManager.sav.labor_force=GameManager.sav.labor_force+100
+			sav.labor_force=sav.labor_force+100
 	elif sav.curLawName=="边防法":#获得一些人口增加
 		#RewardLaw="一次性人口+100，丹阳派好感度+5，群众支持度+5，一次性收入+400  "
 		lawAction= func():
-			GameManager.sav.labor_force=GameManager.sav.labor_force+100
+			sav.labor_force=sav.labor_force+100
 			sav.WAIDIPAI.ChangeSupport(5)
-			GameManager.changePeopleSupport(5)
-			GameManager.sav.coin=GameManager.sav.coin+400
+			changePeopleSupport(5)
+			sav.coin=sav.coin+400
 			print("边防法")	
 	elif sav.curLawName=="军事训诂":
 		#RewardLaw="收益：丹阳派好感度+20，获得道具“胜战锦囊”x2，一次性人口+150 冲突：徐州好感度-15  "
@@ -757,7 +833,7 @@ func excuteLaw():
 	elif sav.curLawName=="军事装备法":
 		#RewardLaw="收益：每日收入+50，获得道具“益气丸”x2 冲突：豪族好感度-20 "
 		lawAction= func():
-			GameManager.sav.coin_DayGet=GameManager.sav.coin_DayGet+50
+			sav.coin_DayGet=sav.coin_DayGet+50
 			sav.HAOZUPAI.ChangeSupport(-20)
 			var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.益气丸)
 			var remainder = InventoryManager.add_item(inventoryPackege, itemid, 2, false)
@@ -769,33 +845,33 @@ func excuteLaw():
 			print("军事训练法")	
 			sav.WAIDIPAI.ChangeSupport(30)
 			sav.BENTUPAI.ChangeSupport(-25)
-			GameManager.sav.labor_DayGet=GameManager.sav.labor_DayGet+20
-			GameManager.sav.labor_force=GameManager.sav.labor_force+200
+			sav.labor_DayGet=sav.labor_DayGet+20
+			sav.labor_force=sav.labor_force+200
 	elif sav.curLawName=="军事优拔法":
 		#RewardLaw="收益：丹阳派好感度+40，获得道具“胜战锦囊”x3，一次性收入+800 冲突：豪族好感度-30，群众支持度-10  "									
 		lawAction= func():
 			sav.WAIDIPAI.ChangeAllPeople(40)
 			sav.HAOZUPAI.ChangeSupport(-30)
 			changePeopleSupport(-10)
-			GameManager.sav.coin=GameManager.sav.coin+800
+			sav.coin=sav.coin+800
 			var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.胜战锦囊)
 			var remainder = InventoryManager.add_item(inventoryPackege, itemid, 3, false)
 			print("军事优拔法")	
 	elif sav.curLawName=="律令兵制":
 		#RewardLaw="收益：每日人口+100，获得道具“珍品礼盒”x2，一次性人口+250 冲突：徐州好感度-35，豪族好感度-15  "#获得银月枪
 		lawAction= func():
-			GameManager.sav.labor_DayGet=GameManager.sav.labor_DayGet+100
+			sav.labor_DayGet=sav.labor_DayGet+100
 			var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.珍品礼盒)
 			var remainder = InventoryManager.add_item(inventoryPackege, itemid, 2, false)
-			GameManager.sav.labor_force=GameManager.sav.labor_force+250
+			sav.labor_force=sav.labor_force+250
 			sav.BENTUPAI.ChangeSupport(-35)
 			sav.HAOZUPAI.ChangeSupport(-15)
 			print("律令兵制")	
 	elif sav.curLawName=="国防策略法":
 		#RewardLaw="民心+50，每日人口+50，获得道具“胜战锦囊”x4，一次性收入+1200  ，徐州好感度-50，豪族好感度-40  "		
 		lawAction= func():
-			GameManager.sav.labor_DayGet=GameManager.sav.labor_DayGet+50
-			GameManager.changePeopleSupport(50)
+			sav.labor_DayGet=sav.labor_DayGet+50
+			changePeopleSupport(50)
 			sav.HAOZUPAI.ChangeSupport(-40)
 			sav.BENTUPAI.ChangeSupport(-50)
 			var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.胜战锦囊)
@@ -938,15 +1014,15 @@ func calculate_points(enemy_strength: int, tasks_completed: int, casualty_ratio:
 
 func recoverHp(value):
 	sav.hp=sav.hp+value
-	#GameManager.sav.hp=
+	#sav.hp=
 	pass
 
 func changeTaskLabel(_value:String):
 	if _value.length()>0:	
-		GameManager.sav.TargetDestinationBefore=tr("当前任务：")
+		sav.TargetDestinationBefore=tr("当前任务：")
 	else:
-		GameManager.sav.TargetDestinationBefore=""
-	GameManager.sav.TargetDestination=_value
+		sav.TargetDestinationBefore=""
+	sav.TargetDestination=_value
 	_engerge.changeTargetLabel()
 
 
@@ -1031,7 +1107,7 @@ func clear_children(parent: Node) -> void:
 
 
 func haveMirror()->bool:
-	var sxnum=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.洞察之镜) 
+	var sxnum=InventoryManager.inventory_item_quantity(inventoryPackege,InventoryManagerItem.洞察之镜) 
 	if sxnum>0:
 		return true
 	else:
@@ -1041,28 +1117,28 @@ func haveMirror()->bool:
 func AutoSaveFile():
 	
 	
-	if GameManager._setting!=null and GameManager._setting.isAutoSave==false:
+	if _setting!=null and _setting.isAutoSave==false:
 		return
 	
 	_engerge.showAutoSaveANI()
 	var tempSavs:Array=[null,null,null]
 	sav.autoSave=true
 	
-	if(GameManager.currenceScene!=null):
-		sav.saveScene.pack(GameManager.currenceScene)
+	if(currenceScene!=null):
+		sav.saveScene.pack(currenceScene)
 
 	for i in range(1,4):
 		var path="user://save_data{index}.tres".format({"index":i})
 		if(FileAccess.file_exists(path)):
 			tempSavs[i-1]=load(path)
 			if tempSavs[i-1].autoSave==true:
-				ResourceSaver.save(GameManager.sav,"user://save_data{index}.tres".format({"index":str(i)}))
+				ResourceSaver.save(sav,"user://save_data{index}.tres".format({"index":str(i)}))
 				_engerge.endAutoSave()
 				return
 				
 	for i in range(1,4):
 		if tempSavs[i-1]==null:
-			ResourceSaver.save(GameManager.sav,"user://save_data{index}.tres".format({"index":str(i)}))
+			ResourceSaver.save(sav,"user://save_data{index}.tres".format({"index":str(i)}))
 			_engerge.endAutoSave()
 			return
 	#获取tempSavs时间最小的 进行存档
@@ -1092,7 +1168,7 @@ func AutoSaveFile():
 
 	# Save to the slot with the earliest time
 	if earliest_index != -1:
-		ResourceSaver.save(GameManager.sav, "user://save_data{index}.tres".format({"index": str(earliest_index)}))
+		ResourceSaver.save(sav, "user://save_data{index}.tres".format({"index": str(earliest_index)}))
 	#await 2
 	_engerge.endAutoSave()
 
@@ -1122,16 +1198,16 @@ func setCoin(value):
 
 
 func play_BGM():
-	if GameManager.musicId <= 0:
+	if musicId <= 0:
 		var available_ids = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 		# 如果 musicId 是负数，排除对应的编号
-		if GameManager.musicId < 0:
-			var exclude_id = abs(GameManager.musicId)
+		if musicId < 0:
+			var exclude_id = abs(musicId)
 			if exclude_id >= 1 and exclude_id <= 10:
 				available_ids.erase(exclude_id)
 		# 从剩余编号中随机选择
-		GameManager.musicId = available_ids[randi() % available_ids.size()]	
+		musicId = available_ids[randi() % available_ids.size()]	
 	
 
-		var music_file = "res://Asset/music/Ambient " + str(GameManager.musicId) + ".wav"
+		var music_file = "res://Asset/music/Ambient " + str(musicId) + ".wav"
 		play_music(music_file)	

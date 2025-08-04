@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bwooyxcd4m6xs"]
+[gd_scene load_steps=26 format=3 uid="uid://bwooyxcd4m6xs"]
 
 [ext_resource type="Script" path="res://Scripts/house.gd" id="1_5nyes"]
 [ext_resource type="Resource" uid="uid://bmuiri1yjrdba" path="res://dialogues/屋舍.dialogue" id="2_6rtve"]
@@ -23,6 +23,8 @@
 [ext_resource type="Texture2D" uid="uid://d2artvwe80df1" path="res://Asset/光明/正常背景.png" id="16_h3uf7"]
 [ext_resource type="PackedScene" uid="uid://v5uv2iy3evkb" path="res://Scene/prefab/numPanel.tscn" id="18_bdm3x"]
 [ext_resource type="VideoStream" path="res://Asset/vedio/Tentacle.ogv" id="23_2xaha"]
+[ext_resource type="PackedScene" uid="uid://4ap7nnl7o6br" path="res://Scene/prefab/_CgetSceneItem.tscn" id="23_6q0tn"]
+[ext_resource type="Script" path="res://Scripts/items_in_scene_manager.gd" id="24_8pl0e"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_5nyes")
@@ -197,5 +199,31 @@ visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 stream = ExtResource("23_2xaha")
+
+[node name="itemsInScene" type="Node2D" parent="."]
+script = ExtResource("24_8pl0e")
+OccurInScene = 6
+dialogue_resource = ExtResource("2_6rtve")
+
+[node name="Node2D" parent="itemsInScene" instance=ExtResource("23_6q0tn")]
+visible = false
+position = Vector2(1202, 535)
+SceneID = 1
+dialogue_resource = ExtResource("2_6rtve")
+dialogue_start = "发现诡秘怪谈"
+
+[node name="Node2D2" parent="itemsInScene" instance=ExtResource("23_6q0tn")]
+visible = false
+position = Vector2(678, 533)
+SceneID = 2
+dialogue_resource = ExtResource("2_6rtve")
+dialogue_start = "发现诡秘怪谈"
+
+[node name="Node2D3" parent="itemsInScene" instance=ExtResource("23_6q0tn")]
+visible = false
+position = Vector2(1229, 739)
+SceneID = 3
+dialogue_resource = ExtResource("2_6rtve")
+dialogue_start = "发现诡秘怪谈"
 
 [connection signal="button_down" from="CanvasLayer/DemoEnd" to="." method="_on_demo_end_button_down"]

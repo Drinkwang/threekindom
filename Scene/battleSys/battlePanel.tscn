@@ -314,11 +314,11 @@ offset_right = 282.0
 offset_bottom = 56.0
 scale = Vector2(2, 2)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 0
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 0
 theme_override_constants/outline_size = 0
 theme_override_constants/shadow_outline_size = 0
-theme_override_constants/line_spacing = 0
 theme_override_fonts/font = ExtResource("4_cxtvu")
 theme_override_font_sizes/font_size = 21
 text = "勾选使用胜战锦囊
@@ -335,6 +335,7 @@ layout_mode = 2
 size_flags_vertical = 6
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/orderPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
 
 [node name="Control2" type="Control" parent="PanelContainer/orderPanel/VBoxContainer/HBoxContainer"]
@@ -376,11 +377,11 @@ offset_top = 768.0
 offset_right = 1594.0
 offset_bottom = 912.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -1
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 0
 theme_override_constants/outline_size = 0
 theme_override_constants/shadow_outline_size = 0
-theme_override_constants/line_spacing = -1
 theme_override_fonts/font = ExtResource("4_cxtvu")
 theme_override_font_sizes/font_size = 31
 text = "任务条件：
@@ -402,11 +403,11 @@ offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 0
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 0
 theme_override_constants/outline_size = 0
 theme_override_constants/shadow_outline_size = 0
-theme_override_constants/line_spacing = 0
 theme_override_fonts/font = ExtResource("4_cxtvu")
 theme_override_font_sizes/font_size = 21
 text = "0"
@@ -427,11 +428,11 @@ offset_bottom = 39.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 0
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 0
 theme_override_constants/outline_size = 0
 theme_override_constants/shadow_outline_size = 0
-theme_override_constants/line_spacing = 0
 theme_override_fonts/font = ExtResource("4_cxtvu")
 theme_override_font_sizes/font_size = 21
 text = "0"
@@ -446,11 +447,11 @@ offset_right = 875.0
 offset_bottom = 660.0
 mouse_force_pass_scroll_events = false
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 0
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 0
 theme_override_constants/outline_size = 0
 theme_override_constants/shadow_outline_size = 0
-theme_override_constants/line_spacing = 0
 theme_override_fonts/font = ExtResource("4_cxtvu")
 theme_override_font_sizes/font_size = 31
 text = "士兵人数："
@@ -486,11 +487,11 @@ offset_bottom = 161.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 0
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 0
 theme_override_constants/outline_size = 0
 theme_override_constants/shadow_outline_size = 0
-theme_override_constants/line_spacing = 0
 theme_override_fonts/font = ExtResource("4_cxtvu")
 theme_override_font_sizes/font_size = 31
 text = "资金数："
@@ -550,7 +551,7 @@ anchor_bottom = 0.545
 offset_right = 0.759949
 offset_bottom = 0.399963
 
-[node name="LineEdit" type="LineEdit" parent="coinSlider"]
+[node name="LineEdit" type="LineEdit" parent="coinSlider" node_paths=PackedStringArray("_slider")]
 visible = false
 layout_mode = 0
 offset_left = 365.0
@@ -558,6 +559,8 @@ offset_top = -10.0
 offset_right = 492.0
 offset_bottom = 21.0
 script = ExtResource("11_60csr")
+_slider = NodePath("..")
+resType = 1
 
 [node name="soildSlider" type="HSlider" parent="."]
 layout_mode = 2
@@ -568,7 +571,7 @@ offset_bottom = 547.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="LineEdit" type="LineEdit" parent="soildSlider"]
+[node name="LineEdit" type="LineEdit" parent="soildSlider" node_paths=PackedStringArray("_slider")]
 visible = false
 layout_mode = 0
 offset_left = 365.0
@@ -576,6 +579,8 @@ offset_top = -10.0
 offset_right = 492.0
 offset_bottom = 21.0
 script = ExtResource("11_60csr")
+_slider = NodePath("..")
+resType = 2
 
 [node name="battleCircle" parent="." instance=ExtResource("8_75jyp")]
 layout_mode = 1
@@ -924,7 +929,7 @@ autoplay = "slash"
 [connection signal="tab_button_pressed" from="TabBar" to="." method="_on_tab_bar_tab_button_pressed"]
 [connection signal="tab_changed" from="TabBar" to="." method="_on_tab_bar_tab_changed"]
 [connection signal="button_down" from="SoilderBlockClick" to="." method="_on_soilderBlock_button_down"]
-[connection signal="button_down" from="coinBlockClick" to="." method="_on_texture_button_2_button_down"]
+[connection signal="button_down" from="coinBlockClick" to="." method="_on_coinBlock_button_down"]
 [connection signal="gui_input" from="Control_1" to="." method="_on_control_1_gui_input"]
 [connection signal="gui_input" from="Control_2" to="." method="_on_control_2_gui_input"]
 [connection signal="gui_input" from="Control_3" to="." method="_on_control_3_gui_input"]

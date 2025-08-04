@@ -244,6 +244,8 @@ func _initData():
 		initData[0].visible="true"
 	if(GameManager.sav.day>=3):
 		initData[2].visible="true"
+		
+	items_in_scene.showItems()	
 	control._processList(initData)
 
 func drillKeComplete():
@@ -418,3 +420,7 @@ func _DayGet():
 	#GameManager._DayGet()
 	#if(GameManager.sav.targetTxt!=null and GameManager.sav.targetTxt.length()>0):	
 	#	_JudgeTask()
+
+
+
+@onready var items_in_scene: Node2D = $itemsInScene

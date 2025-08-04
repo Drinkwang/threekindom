@@ -69,6 +69,9 @@ func changeLanguage():
 func initData():
 	battle_circle.refreshPage()
 func endBattle():
+	if self.visible==false:
+		return
+		
 	battle_circle.selectgeneral=null
 	soild_slider.value=0
 	coin_slider.value=0
@@ -141,8 +144,13 @@ func _refreshGeneral():
 @onready var lauchBtn = $PanelContainer/orderPanel/VBoxContainer/HBoxContainer/Button
 
 func _refreshSlider():
+	
+	
+	soild_slider.max_value=GameManager.sav.labor_force
+	coin_slider.max_value=GameManager.sav.coin
 	if GameManager.sav.labor_force<0 or _mode==SceneManager.bossMode.mi:
 		soild_slider.editable=false
+
 	else:
 		soild_slider.editable=true
 	if GameManager.sav.coin<0 or _mode==SceneManager.bossMode.tao: 
@@ -225,8 +233,10 @@ var costsoild:int
 func _soilderNum_changed(value):
 	if battle_circle.isBoot==true:
 		return
-	#print (GameManager.labor_force)
-	costsoild=(GameManager.sav.labor_force*value/100)
+
+	#costsoild=(GameManager.sav.labor_force*value/100)
+	costsoild=value
+	
 	soild_num.set_text(str(costsoild))  #报错没有找到 先屏蔽，后续开启
 	if(battle_circle.selectgeneral):
 		_changeProgress()
@@ -235,7 +245,8 @@ func _soilderNum_changed(value):
 func _on_coin_slider_value_changed(value):
 	if battle_circle.isBoot==true:
 		return
-	costcoin=(GameManager.sav.coin*value/100)
+	#costcoin=(GameManager.sav.coin*value/100)
+	costcoin=value
 	coin_num.text=str(costcoin)
 	if(battle_circle.selectgeneral):
 		_changeProgress()
@@ -394,10 +405,10 @@ func sideQuestReturnT(iswin):
 
 
 func _on_coinBlock_button_down():
-	pass
-	#line_edit_coin.show()
+	if battle_circle.selectgeneral!=null and GameManager.sav.coin!=0:
+		line_edit_coin.show()
 
 
 func _on_soilderBlock_button_down():
-	pass
-	#line_edit_soilder.show()
+	if battle_circle.selectgeneral!=null and GameManager.sav.labor_force!=0:
+		line_edit_soilder.show()
