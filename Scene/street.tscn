@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cehg7t1h5f2ei"]
+[gd_scene load_steps=26 format=3 uid="uid://cehg7t1h5f2ei"]
 
 [ext_resource type="Script" path="res://Scripts/street.gd" id="1_jskmv"]
 [ext_resource type="Resource" uid="uid://qopivlttvt12" path="res://dialogues/街道.dialogue" id="2_a3tl4"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://bjmquyl6mhboo" path="res://Asset/光明/参考图明亮.png" id="10_0o7yc"]
 [ext_resource type="PackedScene" uid="uid://v5uv2iy3evkb" path="res://Scene/prefab/numPanel.tscn" id="12_koypy"]
 [ext_resource type="PackedScene" uid="uid://dqpklssxni160" path="res://Scene/prefab/clickBlock.tscn" id="17_w7ika"]
+[ext_resource type="Texture2D" uid="uid://c7ak04ev7bpyc" path="res://Asset/人物/镇魂龙最终.png" id="18_2o7ym"]
 [ext_resource type="Texture2D" uid="uid://yuphy67p1cut" path="res://Asset/人物/陶谦.png" id="18_fbh2q"]
 [ext_resource type="Texture2D" uid="uid://ywdj7u3flcmu" path="res://Asset/人物/假糜贞.png" id="18_ks6ru"]
 [ext_resource type="PackedScene" uid="uid://cjsb43uugkud4" path="res://Scene/battleSys/battlePanel.tscn" id="21_h0siw"]
@@ -98,7 +99,6 @@ scale = Vector2(0.2, 0.2)
 visible = false
 
 [node name="blank" type="ColorRect" parent="CanvasLayer"]
-visible = false
 offset_right = 1939.0
 offset_bottom = 1078.0
 mouse_filter = 1
@@ -121,6 +121,15 @@ showEX = true
 txt2d = ExtResource("18_fbh2q")
 dialogue_resource = ExtResource("2_a3tl4")
 dialogue_start = "boss战开始_陶谦"
+
+[node name="gulong" parent="CanvasLayer/blank" instance=ExtResource("17_w7ika")]
+visible = false
+position = Vector2(914, 537)
+showName = "石像龙"
+showEX = true
+txt2d = ExtResource("18_2o7ym")
+dialogue_resource = ExtResource("2_a3tl4")
+dialogue_start = "boss战开始_镇魂龙"
 
 [node name="battlePane" parent="CanvasLayer/blank" instance=ExtResource("21_h0siw")]
 visible = false

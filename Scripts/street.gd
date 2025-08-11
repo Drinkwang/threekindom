@@ -224,7 +224,7 @@ func _buttonListClick(item):
 			visitDrill()
 		
 
-
+const DUNGEON_3 = preload("res://Asset/bgm/dungeon3.wav")
 const WASTELAND_0 = preload("res://Asset/bgm/wasteland0.wav")
 func gotoWasteland():
 	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeIn)
@@ -246,6 +246,9 @@ func gotoTomb():
 @onready var blank = $CanvasLayer/blank
 @onready var taoqian = $CanvasLayer/blank/taoqian
 @onready var mizhen = $CanvasLayer/blank/mizhen
+@onready var gulong: Node2D = $CanvasLayer/blank/gulong
+
+
 @onready var battle_pane = $CanvasLayer/blank/battlePane
 
 func gotoMiMasion():
@@ -261,8 +264,12 @@ func gotoMiMasion():
 func gotoHuangDiMiao():
 	GameManager.initBattle()
 	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeIn)
-	SoundManager.play_ambient_sound(WASTELAND_0)
-	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"初次见面_骨龙")
+	SoundManager.play_ambient_sound(DUNGEON_3)
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"初次见面_镇魂龙")
+	blank.show()
+	gulong.show()
+
+
 	
 func PlayMizhen():
 	var lady = load("res://Asset/vedio/bloodLady.ogv")
@@ -274,11 +281,7 @@ func PlayMizhen():
 	playBossAni(lady,_func)
 
 
-func enterBattleMi():
-	pass
 
-func enterBattleTao():
-	pass
 	
 
 @onready var bit_player = $CanvasLayer/blank/bitPlayer
@@ -289,6 +292,16 @@ func PlayTaoQian():
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"动画播完_陶谦")
 		battle_pane.show()
 		battle_pane.enterBattleTao()
+	playBossAni(tao,_func)
+
+
+
+func PlayGulong():
+	var tao = load("res://Asset/vedio/GULONGTEST.ogv")
+	var _func=func():
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"动画播完_镇魂龙")
+		battle_pane.show()
+		battle_pane.enterBattleHuang()
 	playBossAni(tao,_func)
 
 
@@ -476,7 +489,9 @@ func _bossMode():
 	var to_inventory_tao= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.陶谦血袖)
 	var xue_quantity=InventoryManager.has_item_quantity(to_inventory_xue)
 	var tao_quantity=InventoryManager.has_item_quantity(to_inventory_tao)
-	
+	#if GameManager.winGulong==true:
+	#	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"战斗胜利_镇魂龙")
+	#	return
 	#改成判断持有的道具
 	if tao_quantity>0:
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"战斗胜利_陶谦结算")

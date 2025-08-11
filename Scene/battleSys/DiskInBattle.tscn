@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dahuc8gb2blc" path="res://Asset/other/0_red.png" id="5_mg3wr"]
 [ext_resource type="FontFile" uid="uid://to00njkwmxts" path="res://Asset/Font/1_sim.ttf" id="5_n2jvq"]
 [ext_resource type="Texture2D" uid="uid://cc2retfuupgvb" path="res://Asset/pointer_scifi_b.png" id="6_cexsq"]
-[ext_resource type="Texture2D" uid="uid://31w72gjd8mmu" path="res://Asset/人物/吕布.jpg" id="7_buuow"]
+[ext_resource type="Texture2D" uid="uid://r54ddkle3gwi" path="res://Asset/人物/huangjin3.png" id="9_xcv81"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ahpuy"]
 
@@ -403,7 +403,7 @@ offset_right = 430.0
 offset_bottom = 793.0
 scale = Vector2(0.75, 0.75)
 canSelect = false
-headImg = ExtResource("7_buuow")
+headImg = ExtResource("9_xcv81")
 namelv = "敌人战力：1000000"
 
 [node name="ColorRect_0" type="ColorRect" parent="."]

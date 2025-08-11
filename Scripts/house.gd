@@ -500,7 +500,7 @@ func extraTask():
 		if quantity>0:
 			GameManager.sav.have_event["查出药囊后休息前"]=true
 				#下一步去演武场，判断这个==true，将曹豹显示并修改任务
-	elif  GameManager.sav.day>9:
+	if  GameManager.sav.day>9:
 		GameManager.sav.have_event["支线发现羊尸"]=false
 		#将任务设置成false
 		var num1=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.论语简注)	

@@ -555,6 +555,8 @@ func refreshPage():
 		index=taskIndex
 	
 	enemy.namelv=tr("(当前战力:{targetValue})").format({"targetValue": GameManager.sav.battleTasks[index].index*50}) 
+	#可以刷新头像和技能 包括点击项
+	
 	var btresult= GameManager.BattleResult
 
 	var sd=GameManager.sav.battleTasks[index].sdType

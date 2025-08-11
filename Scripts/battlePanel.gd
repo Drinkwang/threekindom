@@ -93,11 +93,15 @@ func endBattle():
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"战斗胜利_陶谦")
 			elif  _mode==bossMode.mi:
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"战斗胜利_血姬")
+			elif _mode==bossMode.huang:
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"战斗胜利_镇魂龙")
 		else:
 			if _mode==bossMode.tao:
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"战斗失败_陶谦")
 			elif  _mode==bossMode.mi:
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"战斗失败_血姬")
+			elif  _mode==bossMode.huang:
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"战斗失败_镇魂龙")		
 @onready var useItemPanel = $PanelContainer/orderPanel/VBoxContainer/HBoxContainer2/TextureButton
 @onready var label = $PanelContainer/orderPanel/VBoxContainer/HBoxContainer2/TextureButton/CheckBox/Label
 
@@ -385,7 +389,14 @@ func enterBattleTao():
 
 	initTask()
 func enterBattleHuang():
-	pass
+	
+	var cha=load("res://Asset/人物/骨龙最终.png")
+	
+	battle_circle.changeHead(cha)	
+	#禁用任务
+	GameManager.sav.battleTasks.clear()
+	battle_circle.taskIndex=-1
+	initTask()
 
 
 func sideQuestReturnG(iswin):
@@ -398,6 +409,11 @@ func sideQuestReturnT(iswin):
 	GameManager.bossmoderesult=iswin
 	SceneManager.changeScene(SceneManager.roomNode.BOULEUTERION,2)
 
+
+func sideQuestReturnD(iswin):
+	GameManager.bossmode=SceneManager.bossMode.huang
+	GameManager.bossmoderesult=iswin
+	SceneManager.changeScene(SceneManager.roomNode.DRILL_GROUND,2)
 
 @onready var line_edit_coin = $coinSlider/LineEdit
 @onready var line_edit_soilder = $soildSlider/LineEdit
