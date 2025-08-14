@@ -99,6 +99,7 @@ scale = Vector2(0.2, 0.2)
 visible = false
 
 [node name="blank" type="ColorRect" parent="CanvasLayer"]
+visible = false
 offset_right = 1939.0
 offset_bottom = 1078.0
 mouse_filter = 1

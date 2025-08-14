@@ -23,3 +23,6 @@ const COLLECT_SMALL_JEWEL_3 = preload("res://Asset/sound/ui/Collect_Small_Jewel_
 
 const BAD_BATTLE = preload("res://Asset/sound/badBattle.wav")
 const GOOD_THING = preload("res://Asset/sound/goodThing.wav")
+
+
+const tunyan = preload("res://Asset/bgm/吞咽.mp3")

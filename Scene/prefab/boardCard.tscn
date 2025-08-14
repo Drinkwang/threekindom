@@ -1,0 +1,83 @@
+[gd_scene load_steps=6 format=3 uid="uid://dxxaa55tg3d1l"]
+
+[ext_resource type="Texture2D" uid="uid://bye5cypeps08s" path="res://Asset/ui/4.png" id="1_1gs07"]
+[ext_resource type="Script" path="res://Scene/prefab/board_card.gd" id="1_k4ugs"]
+[ext_resource type="Texture2D" uid="uid://v18r3lgfvy17" path="res://Asset/ui/白框.png" id="4_xjbl2"]
+[ext_resource type="Texture2D" uid="uid://dr424n1qw7y1o" path="res://Asset/ui/人心.png" id="5_u0fju"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eqsn2"]
+size = Vector2(32.3427, 44.5804)
+
+[node name="Node2D2" type="Node2D"]
+script = ExtResource("1_k4ugs")
+metadata/_edit_vertical_guides_ = [-329.0]
+
+[node name="8" type="Sprite2D" parent="."]
+position = Vector2(-0.905, -0.805)
+scale = Vector2(0.285, 0.285)
+texture = ExtResource("1_1gs07")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+offset_left = -75.0
+offset_top = -112.0
+offset_right = 111.0
+offset_bottom = 143.0
+texture = ExtResource("4_xjbl2")
+region_rect = Rect2(0, 0, 150, 152.186)
+patch_margin_left = 13
+patch_margin_top = 13
+patch_margin_right = 12
+patch_margin_bottom = 15
+
+[node name="pointValue" type="Label" parent="NinePatchRect"]
+offset_left = 43.0
+offset_top = 22.0
+offset_right = 154.0
+offset_bottom = 139.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_constants/line_spacing = 5
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 31
+text = "A"
+
+[node name="flowercolor" type="Label" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 8.0
+offset_right = 130.0
+offset_bottom = 125.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_constants/line_spacing = 5
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 31
+text = "♥"
+
+[node name="img" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -39.0
+offset_top = -44.0
+offset_right = 82.395
+offset_bottom = 77.395
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("5_u0fju")
+expand_mode = 2
+
+[node name="Area2D" type="Area2D" parent="."]
+priority = 10000
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(19.5, 16.5)
+scale = Vector2(5.72, 5.72)
+shape = SubResource("RectangleShape2D_eqsn2")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

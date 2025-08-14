@@ -1,0 +1,189 @@
+[gd_scene load_steps=23 format=3 uid="uid://b62to201rwvs3"]
+
+[ext_resource type="Script" path="res://Scripts/board_game.gd" id="1_34wyh"]
+[ext_resource type="Texture2D" uid="uid://cmbisvj1kshvi" path="res://Asset/黑暗/克苏鲁背景.png" id="1_q5ep7"]
+[ext_resource type="Texture2D" uid="uid://5n7qchhi5h04" path="res://Asset/ui/底色.png" id="2_yj176"]
+[ext_resource type="Texture2D" uid="uid://cej3eajnovwwy" path="res://Asset/城镇建筑/集市2.png" id="3_7yo7b"]
+[ext_resource type="Texture2D" uid="uid://bwcri60nk00mv" path="res://Asset/光明/街道亮.png" id="4_gjsbu"]
+[ext_resource type="Texture2D" uid="uid://bgqbxd6ppt5s2" path="res://Asset/光明/装饰1-正常.png" id="5_o3lsp"]
+[ext_resource type="Texture2D" uid="uid://b7rbhnxj7r7wi" path="res://Asset/光明/装饰2-正常.png" id="6_gtk0c"]
+[ext_resource type="Texture2D" uid="uid://dlpu2s7rm4k33" path="res://Asset/光明/装饰底板.png" id="7_2trsr"]
+[ext_resource type="Texture2D" uid="uid://bjmquyl6mhboo" path="res://Asset/光明/参考图明亮.png" id="8_kcjlu"]
+[ext_resource type="PackedScene" uid="uid://v5uv2iy3evkb" path="res://Scene/prefab/numPanel.tscn" id="10_5fg67"]
+[ext_resource type="PackedScene" uid="uid://dfolt063spdso" path="res://Scene/prefab/energy.tscn" id="11_4ljq2"]
+[ext_resource type="PackedScene" uid="uid://dqpklssxni160" path="res://Scene/prefab/clickBlock.tscn" id="12_ucf88"]
+[ext_resource type="Texture2D" uid="uid://bn4xfypysa6ry" path="res://Asset/人物/曹豹close.png" id="13_xjudg"]
+[ext_resource type="Resource" uid="uid://qopivlttvt12" path="res://dialogues/街道.dialogue" id="14_t24q4"]
+[ext_resource type="Texture2D" uid="uid://drj1r377gntrn" path="res://Asset/人物/糜竺睁眼.png" id="15_ejsfc"]
+[ext_resource type="Texture2D" uid="uid://crvsmgt0jscjy" path="res://Asset/人物/民.png" id="16_u2c7t"]
+[ext_resource type="Texture2D" uid="uid://bay47r68afgcm" path="res://Asset/人物/陈登睁眼喝茶.png" id="17_agoab"]
+[ext_resource type="Texture2D" uid="uid://v18r3lgfvy17" path="res://Asset/ui/白框.png" id="18_vsl4x"]
+[ext_resource type="PackedScene" uid="uid://dxxaa55tg3d1l" path="res://Scene/prefab/boardCard.tscn" id="20_0i7oh"]
+[ext_resource type="Texture2D" uid="uid://cale1h2nqfdrh" path="res://Asset/ui/circle.png" id="20_pga4l"]
+
+[sub_resource type="Curve" id="Curve_kx3s6"]
+_data = [Vector2(0.002331, 0.0102652), 0.0, 0.0, 0, 0, Vector2(0.48718, 0.856575), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_2phuc"]
+colors = PackedColorArray(0, 0, 0, 1, 1, 0, 0, 1)
+
+[node name="Node2D2" type="Node2D" node_paths=PackedStringArray("rects")]
+script = ExtResource("1_34wyh")
+rects = [NodePath("CanvasLayer/min"), NodePath("CanvasLayer/shi"), NodePath("CanvasLayer/shang"), NodePath("CanvasLayer/bin")]
+
+[node name="正常背景" type="Sprite2D" parent="."]
+position = Vector2(959, 540)
+scale = Vector2(2.23, 2.23)
+texture = ExtResource("1_q5ep7")
+
+[node name="底色" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(968, 544)
+scale = Vector2(2.25, 2.25)
+texture = ExtResource("2_yj176")
+flip_h = true
+
+[node name="内饰" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(960, 537)
+scale = Vector2(2.23, 2.23)
+texture = ExtResource("3_7yo7b")
+region_filter_clip_enabled = true
+
+[node name="标题" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(961, 538)
+scale = Vector2(2.23, 2.23)
+texture = ExtResource("4_gjsbu")
+
+[node name="左饰" type="Sprite2D" parent="."]
+position = Vector2(340, 538)
+scale = Vector2(2.23, 2.23)
+texture = ExtResource("5_o3lsp")
+
+[node name="右饰" type="Sprite2D" parent="."]
+position = Vector2(1664, 538)
+scale = Vector2(2.23, 2.23)
+texture = ExtResource("6_gtk0c")
+
+[node name="底饰" type="Sprite2D" parent="."]
+position = Vector2(960, 533)
+scale = Vector2(2.23, 2.23)
+texture = ExtResource("7_2trsr")
+
+[node name="正常背景2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(960, 537)
+scale = Vector2(2.23, 2.23)
+texture = ExtResource("8_kcjlu")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Node2D2" parent="CanvasLayer" instance=ExtResource("20_0i7oh")]
+position = Vector2(465, 895)
+rotation = -0.15708
+
+[node name="Node2D3" parent="CanvasLayer" instance=ExtResource("20_0i7oh")]
+position = Vector2(674, 880)
+
+[node name="supportPanel" parent="CanvasLayer" instance=ExtResource("10_5fg67")]
+visible = false
+offset_left = 4.0
+offset_top = 738.0
+offset_right = -1574.0
+offset_bottom = -10.0
+
+[node name="hpPanel" parent="CanvasLayer" instance=ExtResource("11_4ljq2")]
+visible = false
+clip_contents = true
+offset_left = 1395.0
+offset_top = 20.0
+offset_right = 2225.0
+offset_bottom = 2070.0
+scale = Vector2(0.2, 0.2)
+
+[node name="bin" parent="CanvasLayer" instance=ExtResource("12_ucf88")]
+position = Vector2(1217, 426)
+showName = "兵"
+txt2d = ExtResource("13_xjudg")
+dialogue_resource = ExtResource("14_t24q4")
+dialogue_start = "boss战开始_糜贞"
+
+[node name="Node2D4" parent="CanvasLayer" instance=ExtResource("20_0i7oh")]
+position = Vector2(660, 540)
+scale = Vector2(0.4, 0.4)
+
+[node name="Node2D5" parent="CanvasLayer" instance=ExtResource("20_0i7oh")]
+position = Vector2(582, 541)
+scale = Vector2(0.4, 0.4)
+
+[node name="shang" parent="CanvasLayer" instance=ExtResource("12_ucf88")]
+position = Vector2(927, 423)
+showName = "商"
+txt2d = ExtResource("15_ejsfc")
+dialogue_resource = ExtResource("14_t24q4")
+dialogue_start = "boss战开始_糜贞"
+
+[node name="min" parent="CanvasLayer" instance=ExtResource("12_ucf88")]
+position = Vector2(947, 656)
+showName = "民"
+txt2d = ExtResource("16_u2c7t")
+dialogue_resource = ExtResource("14_t24q4")
+dialogue_start = "boss战开始_陶谦"
+
+[node name="shi" parent="CanvasLayer" instance=ExtResource("12_ucf88")]
+position = Vector2(627, 422)
+showName = "士"
+showEX = true
+txt2d = ExtResource("17_agoab")
+dialogue_resource = ExtResource("14_t24q4")
+dialogue_start = "boss战开始_镇魂龙"
+
+[node name="Border" type="Sprite2D" parent="CanvasLayer"]
+visible = false
+modulate = Color(1, 0, 0, 1)
+position = Vector2(683, 222)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("20_pga4l")
+
+[node name="mouseline" type="Line2D" parent="CanvasLayer"]
+visible = false
+z_index = 100
+points = PackedVector2Array(0, 0, 100, 100)
+closed = true
+width_curve = SubResource("Curve_kx3s6")
+default_color = Color(1, 0, 0, 0)
+gradient = SubResource("Gradient_2phuc")
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+offset_left = 1358.0
+offset_top = 834.0
+offset_right = 1655.0
+offset_bottom = 992.0
+theme_override_font_sizes/font_size = 31
+text = "回合结束"
+
+[node name="NinePatchRect3" type="NinePatchRect" parent="."]
+offset_left = 1594.0
+offset_top = 64.0
+offset_right = 1780.0
+offset_bottom = 319.0
+texture = ExtResource("18_vsl4x")
+region_rect = Rect2(0, 0, 150, 152.186)
+patch_margin_left = 13
+patch_margin_top = 13
+patch_margin_right = 12
+patch_margin_bottom = 15
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="."]
+offset_left = 101.0
+offset_top = 713.0
+offset_right = 287.0
+offset_bottom = 968.0
+texture = ExtResource("18_vsl4x")
+region_rect = Rect2(0, 0, 150, 152.186)
+patch_margin_left = 13
+patch_margin_top = 13
+patch_margin_right = 12
+patch_margin_bottom = 15

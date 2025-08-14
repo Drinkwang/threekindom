@@ -142,6 +142,26 @@ func post_transition():
 		#GameManager.sav.have_event["战斗袁术血战模式"]=true
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"演武场宣战袁术")
 		return 
+	var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.龙胆亮银枪)	
+	if num==0:	
+		if GameManager.sav.have_event["预获得龙胆枪休息"]==true:
+			caobao.show() #也可以改成点击
+			caobao.ex_point=true
+			caobao.changeAllClick("获得龙胆枪")
+
+		
+	if GameManager.bossmode==scenemanager.bossMode.huang and GameManager.sav.have_event["曹豹支线3"]==false:
+		GameManager.sav.hp=0
+		caobao.show()
+		
+		if GameManager.bossmoderesult==true:
+			GameManager.sav.have_event["预获得龙胆枪"]=true
+			
+			pass #赢了，第二天获得龙胆影月枪
+		
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"曹豹结尾")
+		GameManager.sav.have_event["曹豹支线3"]=true #第二天可以获得新道具
+		return 	
 	_initData()
 
 const EAT_1 = preload("res://Asset/sound/eat1.mp3")
@@ -152,6 +172,19 @@ func enterOldSoilderEat():
 	SoundManager.play_sound(EAT_1)
 	pass
 	
+
+
+func getLongdan():
+	caobao.hide()
+	var _reward:rewardPanel=PanelManager.new_reward()
+	
+	var items={
+		"items": {InventoryManagerItem.ItemEnum.龙胆亮银枪:1},
+		"money": 0,
+		"population": 0
+	}
+	#GameManager.ScoreToItem()
+	_reward.showTitileReward(tr("恭喜你，你获得-龙胆亮银枪"),items)	
 	
 	
 var battleNum=0
@@ -189,6 +222,30 @@ func _initData():
 		caobao.dialogue_start="演武场克苏鲁剧情支线"
 		caobao.showEX=true
 		caobao.show()
+	
+	if GameManager.sav.have_event["曹豹支线1"]==false and GameManager.sav.have_event["battleTaiShan"]==true:
+		caobao.changeAllClick("曹豹支线1")
+		caobao.show()
+
+		caobao.showEX=true
+			#插入糜贞送药
+			#糜竺嫁妹支线2
+			#tsty.show()		
+			
+	elif GameManager.sav.have_event["曹豹支线2"]==false and GameManager.sav.caobaoSideWait==1:
+		if GameManager.sav.have_event["曹豹资助"]==false:#暂时没想好写啥
+			caobao.show()
+
+			#caobao.showEX=false
+			GameManager.sav.have_event["曹豹资助"]=true
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"插入曹豹资助")
+				
+	elif GameManager.sav.have_event["曹豹支线2"]==false and GameManager.sav.caobaoSideWait==0:	
+		caobao.changeAllClick("曹豹支线2")
+		caobao.show()
+
+		caobao.showEX=true	
+	
 	
 	var initData=[
 	{	
@@ -247,6 +304,23 @@ func _initData():
 		
 	items_in_scene.showItems()	
 	control._processList(initData)
+
+func select1(issuccuss):
+	GameManager.sav.mizhuSideWait=3
+	GameManager.sav.have_event["曹豹支线1"]=true
+	if issuccuss==true:
+		GameManager.sav.have_event["曹豹正确选择1"]=true
+	else:
+		GameManager.sav.have_event["曹豹正确选择1"]=false
+
+func select2(issuccuss):
+	GameManager.sav.have_event["曹豹支线2"]=true
+
+
+	if issuccuss==true:
+		GameManager.sav.have_event["曹豹正确选择2"]=true
+	else:
+		GameManager.sav.have_event["曹豹正确选择2"]=false
 
 func drillKeComplete():
 	caobao.hide()

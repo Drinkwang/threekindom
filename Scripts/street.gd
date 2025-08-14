@@ -515,5 +515,8 @@ func sideQuestReturnG(iswin):
 func sideQuestReturnT(iswin):
 	battle_pane.sideQuestReturnT(iswin)
 
+func sideQuestReturnD(iswin):
+	battle_pane.sideQuestReturnD(iswin)
+
 @onready var items_in_scene: Node2D = $itemsInScene
  

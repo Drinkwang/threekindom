@@ -92,6 +92,30 @@ func _changeLanguage():
 func _process(delta):
 	pass
 
+@onready var area_2d: Area2D = $Area2D
+
+
+
+func get_global_rect() -> Rect2:
+	# 查找 CollisionShape2D 子节点
+	var collision_shape = $Area2D/CollisionShape2D
+	if not collision_shape or not collision_shape.shape:
+		push_error("No CollisionShape2D found or shape is not set!")
+		return Rect2()
+	
+	# 获取形状
+	var shape = collision_shape.shape
+	
+	# 处理矩形形状（假设使用 RectangleShape2D）
+	if shape is RectangleShape2D:
+		var size = shape.extents * 2  # extents 是矩形的一半大小
+		var local_rect = Rect2(-shape.extents, size)  # 以形状中心为原点的矩形
+		var global_transform = collision_shape.global_transform
+		return global_transform * local_rect  # 转换为全局坐标
+	
+	# 如果是其他形状（例如 CircleShape2D 或多边形），需要额外处理
+	push_warning("Unsupported shape type, returning empty Rect2")
+	return Rect2()
 
 @export var isHide=true
 

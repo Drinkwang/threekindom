@@ -1,0 +1,83 @@
+@tool
+class_name boardCard
+extends Node2D
+var originScale
+@export var _value:int:
+	get: return _value
+	set(value): 
+		_value=value
+		var kvalue=_value
+		var reside:int=floori((kvalue)%13)
+		var devisor:int=floori((kvalue)/13)
+		setimg(reside,devisor)
+@onready var point_value: Label = $NinePatchRect/pointValue
+@onready var flowercolor: Label = $NinePatchRect/flowercolor
+@onready var img: TextureRect = $img
+			
+const binli = preload("res://Asset/ui/兵力.png")
+const renxin = preload("res://Asset/ui/人心.png")
+const coin = preload("res://Asset/ui/钱财.png")
+const zhanli = preload("res://Asset/ui/战力.png")			
+func setimg(reside,devisor):
+	var kvalue=reside+1
+	if point_value==null:
+		return
+	if kvalue==1:
+		point_value.text="A"
+	else:
+		point_value.text=var_to_str(kvalue)
+	if devisor==0:#红桃-民心
+		point_value.add_theme_color_override("font_color",Color.RED)
+		flowercolor.add_theme_color_override("font_color",Color.RED)
+		flowercolor.text="♥"
+		img.texture=renxin
+	elif devisor==1:#黑桃 -声望 帅旗
+		point_value.add_theme_color_override("font_color",Color.BLACK)
+		flowercolor.add_theme_color_override("font_color",Color.BLACK)
+		flowercolor.text="♠"
+		img.texture=zhanli
+	elif devisor==2:#梅花 -钱
+		point_value.add_theme_color_override("font_color",Color.BLACK)
+		flowercolor.add_theme_color_override("font_color",Color.BLACK)
+		flowercolor.text="♣"
+		img.texture=coin
+	elif devisor==3:#方片 兵力
+		point_value.add_theme_color_override("font_color",Color.RED)
+		flowercolor.add_theme_color_override("font_color",Color.RED)
+		flowercolor.text="♦"
+		img.texture=binli				
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	originScale=self.scale
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if !(event is InputEventMouseButton):
+		return
+
+	if(event is InputEventMouseButton and event.button_index==1):
+		SoundManager.play_sound(sounds.SFX_FAST_UI_CLICK)
+		var moupos=get_viewport().get_mouse_position()
+		GameManager.currenceScene.selectCard=self
+		GameManager.currenceScene.clickPoint(moupos)
+		#创建ui跟手
+		#创建红线
+		#这些东西可以在scene里写 也可以定义成专门的物体
+		#右键或者空左键时 需要点击
+
+	#pass
+
+func _on_area_2d_mouse_entered() -> void:
+	self.scale=Vector2(originScale.x*1.2,originScale.y*1.2)
+	self.z_index=10
+
+
+func _on_area_2d_mouse_exited() -> void:
+	self.scale=Vector2(originScale.x*1,originScale.y*1)
+	self.z_index=0

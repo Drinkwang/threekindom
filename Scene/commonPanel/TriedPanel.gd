@@ -37,6 +37,7 @@ func _on_jingliwan_button_down():
 		InventoryManager._remove_item(GameManager.inventoryPackege,InventoryManagerItem.益气丸,1)
 		GameManager.triedPanelDone.emit()
 		GameManager.recoverHp(40)
+		SoundManager.play_sound(sounds.tunyan)
 		self.hide()		
 		#itemUseLabel.text="点击图标使用\n快速结束辩经\n（库存：{num}）".format({"num":count-1})
 		#score=9000

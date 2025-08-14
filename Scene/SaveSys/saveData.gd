@@ -252,7 +252,9 @@ var SIDEQUEST_MAP:Dictionary={
 	"大儒辩经启动词2":false,
 	"大儒辩经启动词3":false,		
 	"大儒辩经完成":false,
-	"第一次民心政策":false
+	"第一次民心政策":false,
+	"预获得龙胆枪":false,
+	"预获得龙胆枪休息":false,
 }
 
 @export var mizhuSideWait=-1

@@ -511,6 +511,9 @@ func getTaskCurrenceValue():
 
 func _rest(value=true):
 	const DISSOLVE_IMAGE = preload("res://addons/transitions/images/circle-inverted.png")
+	
+	if GameManager.sav.have_event["预获得龙胆枪"]==true:
+		GameManager.sav.have_event["预获得龙胆枪休息"]=true
 	_enterDay(value)
 	
 	Transitions.change_scene_to_instance( SceneManager.SLEEP_BLANK.instantiate(), Transitions.FadeType.Instant)
