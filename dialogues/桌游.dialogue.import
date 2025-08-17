@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_12"
+type="Resource"
+uid="uid://dqlffrutdh2xc"
+path="res://.godot/imported/桌游.dialogue-bc08f3b21e89f24a107a214f6b94f762.tres"
+
+[deps]
+
+source_file="res://dialogues/桌游.dialogue"
+dest_files=["res://.godot/imported/桌游.dialogue-bc08f3b21e89f24a107a214f6b94f762.tres"]
+
+[params]
+
+defaults=true

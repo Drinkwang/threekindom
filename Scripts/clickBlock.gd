@@ -153,3 +153,14 @@ func changeAllClick(_value):
 func _on_timer_timeout():
 
 	pass # Replace with function body.
+
+
+func _on_area_2d_mouse_entered_board() -> void:
+	if GameManager.currenceScene is board_game and GameManager.currenceScene.mouseline.visible==true:
+		showEX=true
+	else:
+		showEX=false
+
+func _on_area_2d_mouse_exited_board() -> void:
+	if GameManager.currenceScene is board_game and GameManager.currenceScene:
+		showEX=false

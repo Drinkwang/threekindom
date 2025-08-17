@@ -1,27 +1,172 @@
-[gd_scene load_steps=6 format=3 uid="uid://dxxaa55tg3d1l"]
+[gd_scene load_steps=15 format=3 uid="uid://dxxaa55tg3d1l"]
 
-[ext_resource type="Texture2D" uid="uid://bye5cypeps08s" path="res://Asset/ui/4.png" id="1_1gs07"]
 [ext_resource type="Script" path="res://Scene/prefab/board_card.gd" id="1_k4ugs"]
+[ext_resource type="Texture2D" uid="uid://ce8ul5yv1m2l0" path="res://addons/transitions/images/noise.png" id="3_v8y0j"]
+[ext_resource type="Shader" path="res://Scene/prefab/boardCard.gdshader" id="4_csp7l"]
 [ext_resource type="Texture2D" uid="uid://v18r3lgfvy17" path="res://Asset/ui/白框.png" id="4_xjbl2"]
 [ext_resource type="Texture2D" uid="uid://dr424n1qw7y1o" path="res://Asset/ui/人心.png" id="5_u0fju"]
+[ext_resource type="Shader" path="res://shader/blankBoxBlink.gdshader" id="6_1hitc"]
+[ext_resource type="Texture2D" uid="uid://cale1h2nqfdrh" path="res://Asset/ui/circle.png" id="7_qif1v"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vl4ia"]
+shader = ExtResource("4_csp7l")
+shader_parameter/burn_progress = 0.0
+shader_parameter/burn_color = Color(1, 0.5, 0, 1)
+shader_parameter/burn_width = 0.05
+shader_parameter/noise_texture = ExtResource("3_v8y0j")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_68x2a"]
+shader = ExtResource("4_csp7l")
+shader_parameter/burn_progress = 0.0
+shader_parameter/burn_color = Color(1, 0.5, 0, 1)
+shader_parameter/burn_width = 0.05
+shader_parameter/noise_texture = ExtResource("3_v8y0j")
+
+[sub_resource type="Animation" id="Animation_1ksn2"]
+resource_name = "fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../NinePatchRect:material:shader_parameter/burn_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../NinePatchRect/img:material:shader_parameter/burn_progress")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../NinePatchRect/pointValue:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../NinePatchRect/flowercolor:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_i4i4s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../NinePatchRect:material:shader_parameter/burn_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../NinePatchRect/img:material:shader_parameter/burn_progress")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../NinePatchRect/pointValue:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../NinePatchRect/flowercolor:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ickq8"]
+_data = {
+"RESET": SubResource("Animation_i4i4s"),
+"fade": SubResource("Animation_1ksn2")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eqsn2"]
 size = Vector2(32.3427, 44.5804)
 
-[node name="Node2D2" type="Node2D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a3g30"]
+shader = ExtResource("6_1hitc")
+shader_parameter/glow_color = Color(0.870588, 0.823529, 0.8, 1)
+shader_parameter/glow_intensity = 2.0
+shader_parameter/glow_radius = 0.1
+shader_parameter/base_color = Color(0.627934, 0.766331, 0.70646, 1)
+
+[node name="Node2D2" type="Control"]
+custom_minimum_size = Vector2(190, 258)
+layout_mode = 3
+anchor_right = 0.099
+anchor_bottom = 0.24
+offset_right = -190.08
+offset_bottom = -259.2
+mouse_filter = 1
 script = ExtResource("1_k4ugs")
 metadata/_edit_vertical_guides_ = [-329.0]
 
-[node name="8" type="Sprite2D" parent="."]
-position = Vector2(-0.905, -0.805)
-scale = Vector2(0.285, 0.285)
-texture = ExtResource("1_1gs07")
-
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
-offset_left = -75.0
-offset_top = -112.0
-offset_right = 111.0
-offset_bottom = 143.0
+material = SubResource("ShaderMaterial_vl4ia")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -93.0
+offset_top = -127.5
+offset_right = 93.0
+offset_bottom = 127.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(92, 130)
+mouse_filter = 1
 texture = ExtResource("4_xjbl2")
 region_rect = Rect2(0, 0, 150, 152.186)
 patch_margin_left = 13
@@ -29,7 +174,26 @@ patch_margin_top = 13
 patch_margin_right = 12
 patch_margin_bottom = 15
 
+[node name="img" type="TextureRect" parent="NinePatchRect"]
+material = SubResource("ShaderMaterial_68x2a")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.498
+anchor_top = 0.5
+anchor_right = 0.498
+anchor_bottom = 0.5
+offset_left = -60.628
+offset_top = -60.5
+offset_right = 60.767
+offset_bottom = 60.895
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("5_u0fju")
+expand_mode = 2
+
 [node name="pointValue" type="Label" parent="NinePatchRect"]
+layout_mode = 0
 offset_left = 43.0
 offset_top = 22.0
 offset_right = 154.0
@@ -52,31 +216,47 @@ theme_override_constants/outline_size = 0
 theme_override_font_sizes/font_size = 31
 text = "♥"
 
-[node name="img" type="TextureRect" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -39.0
-offset_top = -44.0
-offset_right = 82.395
-offset_bottom = 77.395
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_filter = 2
-texture = ExtResource("5_u0fju")
-expand_mode = 2
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../ColorRect")
+libraries = {
+"": SubResource("AnimationLibrary_ickq8")
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 2.0
+offset_top = 1.5
+offset_right = 189.0
+offset_bottom = 253.5
+color = Color(1, 0, 0, 0.784314)
 
 [node name="Area2D" type="Area2D" parent="."]
+position = Vector2(77, 113.5)
 priority = 10000
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(19.5, 16.5)
 scale = Vector2(5.72, 5.72)
 shape = SubResource("RectangleShape2D_eqsn2")
+
+[node name="scoreBall" type="ColorRect" parent="."]
+visible = false
+light_mask = 2
+material = SubResource("ShaderMaterial_a3g30")
+layout_mode = 0
+offset_left = 91.0
+offset_top = 127.0
+offset_right = 111.0
+offset_bottom = 149.0
+scale = Vector2(0.535, 0.535)
+
+[node name="PointLight2D" type="PointLight2D" parent="scoreBall"]
+position = Vector2(10, 11)
+color = Color(0.870588, 0.823529, 0.8, 1)
+energy = 0.85
+texture = ExtResource("7_qif1v")
+texture_scale = 0.8
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b62to201rwvs3"]
+[gd_scene load_steps=30 format=3 uid="uid://b62to201rwvs3"]
 
 [ext_resource type="Script" path="res://Scripts/board_game.gd" id="1_34wyh"]
 [ext_resource type="Texture2D" uid="uid://cmbisvj1kshvi" path="res://Asset/黑暗/克苏鲁背景.png" id="1_q5ep7"]
@@ -13,13 +13,19 @@
 [ext_resource type="PackedScene" uid="uid://dfolt063spdso" path="res://Scene/prefab/energy.tscn" id="11_4ljq2"]
 [ext_resource type="PackedScene" uid="uid://dqpklssxni160" path="res://Scene/prefab/clickBlock.tscn" id="12_ucf88"]
 [ext_resource type="Texture2D" uid="uid://bn4xfypysa6ry" path="res://Asset/人物/曹豹close.png" id="13_xjudg"]
-[ext_resource type="Resource" uid="uid://qopivlttvt12" path="res://dialogues/街道.dialogue" id="14_t24q4"]
+[ext_resource type="Resource" uid="uid://dqlffrutdh2xc" path="res://dialogues/桌游.dialogue" id="14_c6n4h"]
 [ext_resource type="Texture2D" uid="uid://drj1r377gntrn" path="res://Asset/人物/糜竺睁眼.png" id="15_ejsfc"]
 [ext_resource type="Texture2D" uid="uid://crvsmgt0jscjy" path="res://Asset/人物/民.png" id="16_u2c7t"]
 [ext_resource type="Texture2D" uid="uid://bay47r68afgcm" path="res://Asset/人物/陈登睁眼喝茶.png" id="17_agoab"]
 [ext_resource type="Texture2D" uid="uid://v18r3lgfvy17" path="res://Asset/ui/白框.png" id="18_vsl4x"]
+[ext_resource type="Script" path="res://Scripts/dashline_stylebox.gd" id="19_c5av2"]
 [ext_resource type="PackedScene" uid="uid://dxxaa55tg3d1l" path="res://Scene/prefab/boardCard.tscn" id="20_0i7oh"]
+[ext_resource type="FontFile" uid="uid://b8le0fd0ujbqx" path="res://Asset/Font/1_blod.ttf" id="20_f0olx"]
 [ext_resource type="Texture2D" uid="uid://cale1h2nqfdrh" path="res://Asset/ui/circle.png" id="20_pga4l"]
+[ext_resource type="Texture2D" uid="uid://dr424n1qw7y1o" path="res://Asset/ui/人心.png" id="22_bsmks"]
+[ext_resource type="Texture2D" uid="uid://cv0u7qnjrl2kn" path="res://Asset/ui/兵力.png" id="23_a3in7"]
+[ext_resource type="Texture2D" uid="uid://dkdsrxwnvrdkc" path="res://Asset/ui/战力.png" id="24_1nbgk"]
+[ext_resource type="Texture2D" uid="uid://cjuiym6vktbwn" path="res://Asset/ui/钱财.png" id="25_cv1ap"]
 
 [sub_resource type="Curve" id="Curve_kx3s6"]
 _data = [Vector2(0.002331, 0.0102652), 0.0, 0.0, 0, 0, Vector2(0.48718, 0.856575), 0.0, 0.0, 0, 0]
@@ -28,9 +34,28 @@ point_count = 2
 [sub_resource type="Gradient" id="Gradient_2phuc"]
 colors = PackedColorArray(0, 0, 0, 1, 1, 0, 0, 1)
 
+[sub_resource type="StyleBox" id="StyleBox_p4fgk"]
+resource_local_to_scene = false
+resource_name = ""
+content_margin_left = -1.0
+content_margin_top = -1.0
+content_margin_right = -1.0
+content_margin_bottom = -1.0
+script = ExtResource("19_c5av2")
+corner_radius = 80
+width = 6
+corner_point_count = 20
+color = Color(1, 1, 1, 1)
+dash_length = 50.0
+dash_skip_length = 20.0
+dash_sub_step = 8
+round_edge = true
+
 [node name="Node2D2" type="Node2D" node_paths=PackedStringArray("rects")]
 script = ExtResource("1_34wyh")
+cardArr = null
 rects = [NodePath("CanvasLayer/min"), NodePath("CanvasLayer/shi"), NodePath("CanvasLayer/shang"), NodePath("CanvasLayer/bin")]
+_issole = null
 
 [node name="正常背景" type="Sprite2D" parent="."]
 position = Vector2(959, 540)
@@ -80,13 +105,6 @@ texture = ExtResource("8_kcjlu")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Node2D2" parent="CanvasLayer" instance=ExtResource("20_0i7oh")]
-position = Vector2(465, 895)
-rotation = -0.15708
-
-[node name="Node2D3" parent="CanvasLayer" instance=ExtResource("20_0i7oh")]
-position = Vector2(674, 880)
-
 [node name="supportPanel" parent="CanvasLayer" instance=ExtResource("10_5fg67")]
 visible = false
 offset_left = 4.0
@@ -103,42 +121,67 @@ offset_right = 2225.0
 offset_bottom = 2070.0
 scale = Vector2(0.2, 0.2)
 
+[node name="Node" type="Node" parent="CanvasLayer"]
+
+[node name="minGroup" type="GridContainer" parent="CanvasLayer/Node"]
+offset_left = 545.0
+offset_top = 506.0
+offset_right = 929.0
+offset_bottom = 810.0
+scale = Vector2(0.4, 0.4)
+columns = 2
+
+[node name="shiGroup" type="GridContainer" parent="CanvasLayer/Node"]
+offset_left = 777.0
+offset_top = 506.0
+offset_right = 1161.0
+offset_bottom = 810.0
+scale = Vector2(0.4, 0.4)
+columns = 2
+
+[node name="shangGroup" type="GridContainer" parent="CanvasLayer/Node"]
+offset_left = 1006.0
+offset_top = 506.0
+offset_right = 1390.0
+offset_bottom = 810.0
+scale = Vector2(0.4, 0.4)
+columns = 2
+
+[node name="binGroup" type="GridContainer" parent="CanvasLayer/Node"]
+offset_left = 1239.0
+offset_top = 506.0
+offset_right = 1623.0
+offset_bottom = 810.0
+scale = Vector2(0.4, 0.4)
+columns = 2
+
 [node name="bin" parent="CanvasLayer" instance=ExtResource("12_ucf88")]
-position = Vector2(1217, 426)
+position = Vector2(1314, 419)
 showName = "兵"
 txt2d = ExtResource("13_xjudg")
-dialogue_resource = ExtResource("14_t24q4")
-dialogue_start = "boss战开始_糜贞"
-
-[node name="Node2D4" parent="CanvasLayer" instance=ExtResource("20_0i7oh")]
-position = Vector2(660, 540)
-scale = Vector2(0.4, 0.4)
-
-[node name="Node2D5" parent="CanvasLayer" instance=ExtResource("20_0i7oh")]
-position = Vector2(582, 541)
-scale = Vector2(0.4, 0.4)
+dialogue_resource = ExtResource("14_c6n4h")
+dialogue_start = "选择牌堆_兵"
 
 [node name="shang" parent="CanvasLayer" instance=ExtResource("12_ucf88")]
-position = Vector2(927, 423)
+position = Vector2(1084, 420)
 showName = "商"
 txt2d = ExtResource("15_ejsfc")
-dialogue_resource = ExtResource("14_t24q4")
-dialogue_start = "boss战开始_糜贞"
+dialogue_resource = ExtResource("14_c6n4h")
+dialogue_start = "选择牌堆_商"
 
 [node name="min" parent="CanvasLayer" instance=ExtResource("12_ucf88")]
-position = Vector2(947, 656)
+position = Vector2(624, 420)
 showName = "民"
 txt2d = ExtResource("16_u2c7t")
-dialogue_resource = ExtResource("14_t24q4")
-dialogue_start = "boss战开始_陶谦"
+dialogue_resource = ExtResource("14_c6n4h")
+dialogue_start = "选择牌堆_民"
 
 [node name="shi" parent="CanvasLayer" instance=ExtResource("12_ucf88")]
-position = Vector2(627, 422)
+position = Vector2(855, 422)
 showName = "士"
-showEX = true
 txt2d = ExtResource("17_agoab")
-dialogue_resource = ExtResource("14_t24q4")
-dialogue_start = "boss战开始_镇魂龙"
+dialogue_resource = ExtResource("14_c6n4h")
+dialogue_start = "选择牌堆_士"
 
 [node name="Border" type="Sprite2D" parent="CanvasLayer"]
 visible = false
@@ -163,6 +206,91 @@ offset_right = 1655.0
 offset_bottom = 992.0
 theme_override_font_sizes/font_size = 31
 text = "回合结束"
+
+[node name="boardPanel" type="Panel" parent="CanvasLayer"]
+offset_left = 472.0
+offset_top = 267.0
+offset_right = 763.0
+offset_bottom = 841.0
+theme_override_styles/panel = SubResource("StyleBox_p4fgk")
+
+[node name="myhand" type="HBoxContainer" parent="CanvasLayer"]
+offset_left = 374.0
+offset_top = 874.0
+offset_right = 2027.0
+offset_bottom = 1148.0
+scale = Vector2(0.6, 0.6)
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Node2D3" parent="CanvasLayer/myhand" instance=ExtResource("20_0i7oh")]
+layout_mode = 2
+_value = 51
+
+[node name="enemyhand" type="HBoxContainer" parent="CanvasLayer"]
+visible = false
+offset_left = 458.0
+offset_top = 18.0
+offset_right = 2111.0
+offset_bottom = 292.0
+scale = Vector2(0.6, 0.6)
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Node2D3" parent="CanvasLayer/enemyhand" instance=ExtResource("20_0i7oh")]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+offset_left = 6.0
+offset_top = 42.0
+offset_right = 496.0
+offset_bottom = 346.0
+theme_override_fonts/font = ExtResource("20_f0olx")
+theme_override_font_sizes/font_size = 47
+text = "玩家得分：0"
+
+[node name="resideNum" type="Label" parent="CanvasLayer"]
+visible = false
+offset_left = 1258.0
+offset_top = 973.0
+offset_right = 1748.0
+offset_bottom = 1042.0
+theme_override_fonts/font = ExtResource("20_f0olx")
+theme_override_font_sizes/font_size = 41
+text = "剩余步数：2"
+horizontal_alignment = 1
+
+[node name="detailTxt" type="Label" parent="CanvasLayer"]
+visible = false
+offset_left = 406.0
+offset_top = 22.0
+offset_right = 1535.0
+offset_bottom = 131.0
+theme_override_fonts/font = ExtResource("20_f0olx")
+theme_override_font_sizes/font_size = 47
+text = "请支付你所需的惩罚："
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="img" type="Sprite2D" parent="CanvasLayer/detailTxt"]
+position = Vector2(539, 118)
+texture = ExtResource("22_bsmks")
+
+[node name="民" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(618, 320)
+texture = ExtResource("22_bsmks")
+
+[node name="兵力" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(1313, 320)
+texture = ExtResource("23_a3in7")
+
+[node name="民2" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(852, 320)
+texture = ExtResource("24_1nbgk")
+
+[node name="兵力2" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(1087, 320)
+texture = ExtResource("25_cv1ap")
 
 [node name="NinePatchRect3" type="NinePatchRect" parent="."]
 offset_left = 1594.0

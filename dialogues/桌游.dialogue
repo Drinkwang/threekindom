@@ -1,0 +1,25 @@
+~ 选择牌堆_民
+if selectCard!=null
+	do insertCard(groupType.min,selectCard._value)
+=> END
+
+
+
+~ 选择牌堆_士
+if selectCard!=null
+	do insertCard(groupType.shi,selectCard._value)
+
+=> END!
+
+
+~ 选择牌堆_商
+if selectCard!=null
+	do insertCard(groupType.shang,selectCard._value)
+=> END!
+
+
+~ 选择牌堆_兵
+if selectCard!=null
+	do insertCard(groupType.bin,selectCard._value)
+
+=> END!
