@@ -59,9 +59,17 @@ func setimg(reside,devisor):
 		flowercolor.text="♦"
 		img.texture=binli				
 # Called when the node enters the scene tree for the first time.
+
+
+
 func _ready() -> void:
 	originScale=self.scale
-	pass # Replace with function body.
+	
+
+	nine_patch_rect.material=nine_patch_rect.material.duplicate()
+
+	img.material=img.material.duplicate()
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -99,11 +107,14 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 		#创建红线
 		#这些东西可以在scene里写 也可以定义成专门的物体
 		#右键或者空左键时 需要点击
+		
+		
+#播这个的同时，1秒移动到deck区
+@onready var animation_player_reward: AnimationPlayer = $AnimationPlayer_reward
 
-var isbePunish=false	#pass
 
 func _on_area_2d_mouse_entered() -> void:
-	if holdType==board_game.cardHoldType.enemy or isbePunish==true:
+	if holdType==board_game.cardHoldType.enemy or GameManager.currenceScene._phaseName!=board_game.phaseName.useCard:
 		return
 		
 	self.scale=Vector2(originScale.x*1.2,originScale.y*1.2)
@@ -111,7 +122,7 @@ func _on_area_2d_mouse_entered() -> void:
 
 
 func _on_area_2d_mouse_exited() -> void:
-	if holdType==board_game.cardHoldType.enemy or isbePunish==true:
+	if holdType==board_game.cardHoldType.enemy or GameManager.currenceScene._phaseName!=board_game.phaseName.useCard:
 		return	
 	self.scale=Vector2(originScale.x*1,originScale.y*1)
 	self.z_index=0
