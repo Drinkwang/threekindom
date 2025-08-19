@@ -51,8 +51,9 @@ dash_skip_length = 20.0
 dash_sub_step = 8
 round_edge = true
 
-[node name="Node2D2" type="Node2D"]
+[node name="Node2D2" type="Node2D" node_paths=PackedStringArray("rects")]
 script = ExtResource("1_34wyh")
+rects = [NodePath("CanvasLayer/bin"), NodePath("CanvasLayer/shang"), NodePath("CanvasLayer/min"), NodePath("CanvasLayer/shi")]
 
 [node name="正常背景" type="Sprite2D" parent="."]
 position = Vector2(959, 540)
@@ -163,6 +164,7 @@ columns = 2
 [node name="bin" parent="CanvasLayer" instance=ExtResource("12_ucf88")]
 position = Vector2(1314, 419)
 showName = "兵"
+dialogue_doubleclick = "选择牌堆_兵"
 txt2d = ExtResource("13_xjudg")
 dialogue_resource = ExtResource("14_c6n4h")
 dialogue_start = "选择牌堆_兵"
@@ -170,6 +172,7 @@ dialogue_start = "选择牌堆_兵"
 [node name="shang" parent="CanvasLayer" instance=ExtResource("12_ucf88")]
 position = Vector2(1084, 420)
 showName = "商"
+dialogue_doubleclick = "选择牌堆_商"
 txt2d = ExtResource("15_ejsfc")
 dialogue_resource = ExtResource("14_c6n4h")
 dialogue_start = "选择牌堆_商"
@@ -177,6 +180,7 @@ dialogue_start = "选择牌堆_商"
 [node name="min" parent="CanvasLayer" instance=ExtResource("12_ucf88")]
 position = Vector2(624, 420)
 showName = "民"
+dialogue_doubleclick = "选择牌堆_民"
 txt2d = ExtResource("16_u2c7t")
 dialogue_resource = ExtResource("14_c6n4h")
 dialogue_start = "选择牌堆_民"
@@ -184,6 +188,7 @@ dialogue_start = "选择牌堆_民"
 [node name="shi" parent="CanvasLayer" instance=ExtResource("12_ucf88")]
 position = Vector2(855, 422)
 showName = "士"
+dialogue_doubleclick = "选择牌堆_士"
 txt2d = ExtResource("17_agoab")
 dialogue_resource = ExtResource("14_c6n4h")
 dialogue_start = "选择牌堆_士"
@@ -282,6 +287,30 @@ vertical_alignment = 1
 position = Vector2(539, 118)
 texture = ExtResource("22_bsmks")
 
+[node name="NinePatchRect3" type="NinePatchRect" parent="CanvasLayer"]
+offset_left = 1594.0
+offset_top = 64.0
+offset_right = 1780.0
+offset_bottom = 319.0
+texture = ExtResource("18_vsl4x")
+region_rect = Rect2(0, 0, 150, 152.186)
+patch_margin_left = 13
+patch_margin_top = 13
+patch_margin_right = 12
+patch_margin_bottom = 15
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="CanvasLayer"]
+offset_left = 101.0
+offset_top = 713.0
+offset_right = 287.0
+offset_bottom = 968.0
+texture = ExtResource("18_vsl4x")
+region_rect = Rect2(0, 0, 150, 152.186)
+patch_margin_left = 13
+patch_margin_top = 13
+patch_margin_right = 12
+patch_margin_bottom = 15
+
 [node name="民" type="Sprite2D" parent="CanvasLayer"]
 position = Vector2(618, 320)
 texture = ExtResource("22_bsmks")
@@ -297,29 +326,5 @@ texture = ExtResource("24_1nbgk")
 [node name="兵力2" type="Sprite2D" parent="CanvasLayer"]
 position = Vector2(1087, 320)
 texture = ExtResource("25_cv1ap")
-
-[node name="NinePatchRect3" type="NinePatchRect" parent="."]
-offset_left = 1594.0
-offset_top = 64.0
-offset_right = 1780.0
-offset_bottom = 319.0
-texture = ExtResource("18_vsl4x")
-region_rect = Rect2(0, 0, 150, 152.186)
-patch_margin_left = 13
-patch_margin_top = 13
-patch_margin_right = 12
-patch_margin_bottom = 15
-
-[node name="NinePatchRect2" type="NinePatchRect" parent="."]
-offset_left = 101.0
-offset_top = 713.0
-offset_right = 287.0
-offset_bottom = 968.0
-texture = ExtResource("18_vsl4x")
-region_rect = Rect2(0, 0, 150, 152.186)
-patch_margin_left = 13
-patch_margin_top = 13
-patch_margin_right = 12
-patch_margin_bottom = 15
 
 [connection signal="button_down" from="CanvasLayer/Button" to="." method="phaseEnd"]

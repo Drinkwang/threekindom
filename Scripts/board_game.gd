@@ -7,7 +7,7 @@ var cardsize
 const BOARD_CARD = preload("res://Scene/prefab/boardCard.tscn")
 
 @onready var board_panel: Panel = $CanvasLayer/boardPanel
-
+var turnAllnum=5
 
 
 var playerStage=2
@@ -25,7 +25,7 @@ func _ready() -> void:
 			cardsize+=1
 			cardArr.push_front(i)
 	cardsize-=1
-	startGame(3,true)
+	await startGame(3,true)
 #点击，然后创造线，松手取消线$CanvasLayer/Border
 @onready var mouseline: Line2D = $CanvasLayer/mouseline
 @onready var myhand: HBoxContainer = $CanvasLayer/myhand
@@ -57,11 +57,16 @@ func insertCard(group:groupType,value):
 		groudObj=bin_group
 	var cardone=BOARD_CARD.instantiate()
 	cardone.holdType=cardHoldType.stack
-	cardone._value=value
+
 	groudObj.add_child(cardone)
-	
+	cardone._value=value
 	if selectCard!=null:
 		selectCard.queue_free()
+		playerStage-=1
+		if playerStage<=0:
+			pass
+			#end_button.disabled=true
+		reside_num.text=tr("剩余步数：{s}").format({"s":playerStage})
 	stopClick()
 	
 var canClick:bool=false
@@ -79,7 +84,7 @@ func stopClick():
 	mouseline.hide()
 
 func SettlePunish():
-
+	
 	bepunishI.animation_player.play("fade")
 	bepusnishJ.animation_player.play("fade")
 	var tween =create_tween()
@@ -88,7 +93,7 @@ func SettlePunish():
 	tween.tween_property(bepunishI.img.material, "shader_parameter/burn_progress", 1, 1)
 	tween.tween_property(bepusnishJ.nine_patch_rect.material, "shader_parameter/burn_progress", 1, 1)
 	tween.tween_property(bepusnishJ.img.material, "shader_parameter/burn_progress", 1, 1)
-	
+	punishStage=false
 	
 	var tempfunc=func(anim_name: StringName):
 		bepunishI.queue_free()
@@ -145,17 +150,20 @@ func startGame(cardnum,issole):
 		if issole==false:
 			drawOne(false)	
 	#进入新阶段来判断
-	enterNewPhase(phaseName.drawCard)
+	await enterNewPhase(phaseName.drawCard)
 	
+@onready var reside_num: Label = $CanvasLayer/resideNum
+@onready var detail_img: Sprite2D = $CanvasLayer/detailTxt/img
 
 
 func enterNewPhase(stage:phaseName):
-	_phaseName=stage
-	if _phaseName==phaseName.drawCard:
+	if stage!=phaseName.punish:
+		_phaseName=stage
+	if _phaseName==phaseName.drawCard and stage!=phaseName.punish:
 		checkCardStart()
-	elif _phaseName==phaseName.checkStart:
+	elif _phaseName==phaseName.checkStart and stage!=phaseName.punish:
 		checkCardStage(groupType.min)	
-	elif _phaseName==phaseName.punish:
+	elif stage==phaseName.punish:
 		if groupPunishTyp==groupType.min:
 			checkCardStage(groupType.shi)
 		elif groupPunishTyp==groupType.shi:
@@ -163,17 +171,25 @@ func enterNewPhase(stage:phaseName):
 		elif groupPunishTyp==groupType.shang:
 			checkCardStage(groupType.bin)
 		elif groupPunishTyp==groupType.bin:
-			groupPunishTyp=groupType.none
-			enterNewPhase(phaseName.useCard)
+			if  _phaseName==phaseName.checkStart:
+				groupPunishTyp=groupType.none
+				enterNewPhase(phaseName.useCard)
+			elif _phaseName==phaseName.checkEnd:
+				groupPunishTyp=groupType.none
+				enterNewPhase(phaseName.endturn)
 	elif _phaseName==phaseName.useCard:
-		detail_txt.hide()
+		#end_button.disabled=false
+		playerStage=2
+		detail_txt.text="出牌阶段，请使用你的卡牌"
+		detail_img.texture=null
 		board_panel.hide()
 		end_button.text=tr("回合结束")
+		reside_num.show()
 		pass
 	elif _phaseName==phaseName.checkEnd:
 		checkCardStage(groupType.min)	
 	elif _phaseName==phaseName.endturn:
-		pass	
+		print("进入结束阶段")
 						
 func drawOne(isplayer):
 	var cardone=BOARD_CARD.instantiate()
@@ -198,7 +214,7 @@ func drawOne(isplayer):
 
 #支付一张
 func checkCardStart():
-	
+	await 0.2
 	insertCardRandom(groupType.min)
 	insertCardRandom(groupType.shi)
 	insertCardRandom(groupType.shang)
@@ -264,18 +280,23 @@ func checkCardStage(_groupType):
 							punishimg.textur=_soilder
 					#定义一个惩罚cardType，然后赋值非空
 						end_button.text=tr("支付惩罚")
+						#end_button.text=tr("支付民心惩罚")
+						#enterPunishStage()
+						punishStage=true
 						end_button.show()
 						cangoto=false
 						enterPunishStage(i,j)
 					elif _phaseName==phaseName.checkEnd:
-						await enterRewardStage(i,j)
+						enterRewardStage(i,j)
 						cangoto=false
 	if cangoto==true:
-		groupPunishTyp=_groupType					
+		groupPunishTyp=_groupType
+							
 		enterNewPhase(phaseName.punish)				
 #支付n张
 #根据group
-@onready var endpos: NinePatchRect = $NinePatchRect2
+@onready var endpos: NinePatchRect = $CanvasLayer/NinePatchRect2
+@onready var score_txt: Label = $CanvasLayer/Label2
 
 
 #进入结束检查阶段标注 并执行完结束检查阶段
@@ -285,25 +306,24 @@ func enterRewardStage(i:boardCard,j:boardCard):
 	
 	var tween = create_tween()
 
-	tween.tween_property(i, "position", endpos.position, 1)	
-	tween.tween_property(j, "position", endpos.position, 1)	
-	await 1
-	
+	tween.tween_property(i, "global_position", score_txt.global_position, 1)	
+	tween.tween_property(j, "global_position", score_txt.global_position, 1)	
 
-	i.queue_free()
-	j.queue_free()
-	if groupPunishTyp==groupType.min:
-		checkCardStage(groupType.shi)
-	elif groupPunishTyp==groupType.shi:
-		checkCardStage(groupType.shang)
-	elif groupPunishTyp==groupType.shang:
-		checkCardStage(groupType.bin)
-	elif groupPunishTyp==groupType.bin:
-		groupPunishTyp=groupType.none
-		enterNewPhase(phaseName.endturn)
-	#enterNewPhase()
-	#二个卡牌变红
-	#放大
+	
+	var tempfunc=func(anim_name,i_node, j_node):
+		#print("helloworld")
+		i_node.queue_free()
+		j_node.queue_free()
+		if groupPunishTyp==groupType.min:
+			checkCardStage(groupType.shi)
+		elif groupPunishTyp==groupType.shi:
+			checkCardStage(groupType.shang)
+		elif groupPunishTyp==groupType.shang:
+			checkCardStage(groupType.bin)
+		elif groupPunishTyp==groupType.bin:
+			groupPunishTyp=groupType.none
+			enterNewPhase(phaseName.endturn)
+	i.animation_player_reward.animation_finished.connect(tempfunc.bind(i,j))	
 	
 
 
@@ -316,17 +336,21 @@ var bepusnishJ:boardCard
 
 
 #进入惩罚阶段标注
-func enterPunishStage(i,j):
+func enterPunishStage(i=null,j=null):
 	detail_txt.show()
 	board_panel.show()
 	#pn=phaseName.punish
-	i._color_rect.show()
-	j._color_rect.show()
-	i.scale=Vector2(i.originScale.x*1.2,i.originScale.y*1.2)
-	j.scale=Vector2(j.originScale.x*1.2,j.originScale.y*1.2)
+	if i!=null:
+		i._color_rect.show()
+		i.scale=Vector2(i.originScale.x*1.2,i.originScale.y*1.2)
+		bepunishI=i		
+	if j!=null:	
+		j._color_rect.show()
 
-	bepunishI=i
-	bepusnishJ=j
+		j.scale=Vector2(j.originScale.x*1.2,j.originScale.y*1.2)
+
+
+		bepusnishJ=j
 
 	
 #不知道有啥用的，可以删
@@ -337,6 +361,7 @@ func enterPunishStage(i,j):
 	
 	
 func insertCardRandom(group:groupType):
+	#
 	var i=randi_range(0,cardsize)
 		#cardArr.
 	var carddate=cardArr[i]
@@ -349,7 +374,7 @@ func insertCardRandom(group:groupType):
 	cardArr[cardsize]=carddate
 	cardsize-=1	
 	
-	
+var punishStage=false
 #判断是什么阶段，如果是	
 func phaseEnd():
 	
@@ -357,14 +382,35 @@ func phaseEnd():
 		#插入一个代替阶段,如果无法插入
 		#先支付一张红桃
 		#如果没有红桃则扣hp-1
-		
+		if haveHeart():
+			end_button.text=tr("支付民心惩罚")
+			groupPunishTyp=groupType.min
+			punishimg.texture=_heart
+			punishStage=true
+			end_button.show()
+
+			enterPunishStage()
+		else:
+			hp-=1
+			if hp<=0:
+				pass#gameover
 		SettlePunish()
 		
-	else:
-		pass
+	elif _phaseName==phaseName.useCard:
+		end_button.hide()
+		enterNewPhase(phaseName.checkEnd)
 	#每个下面发一张牌
 	pass
 
+func haveHeart():
+	var cards=myhand.get_children()
+	for card:boardCard in cards:
+		var kvalue=card._value
+		var reside:int=floori((kvalue)%13)
+		var devisor:int=floori((kvalue)/13)
+		if devisor==0:
+			return true
+	return false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
