@@ -80,20 +80,27 @@ func _process(delta: float) -> void:
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if !(event is InputEventMouseButton):
 		return
-	if GameManager.currenceScene.groupPunishTyp!=board_game.groupType.none and holdType==board_game.cardHoldType.player:
+		
+	var gouppunishType
+	if 	GameManager.currenceScene.groupPunishTyp2!=board_game.groupType.none:
+		gouppunishType=GameManager.currenceScene.groupPunishTyp2
+	else:
+		gouppunishType=GameManager.currenceScene.groupPunishTyp
+	GameManager.currenceScene.groupPunishTyp2=board_game.groupType.none
+	if gouppunishType!=board_game.groupType.none and holdType==board_game.cardHoldType.player:
 		
 		var reside:int=floori((_value)%13)
 		var devisor:int=floori((_value)/13)
-		if devisor==0 and GameManager.currenceScene.groupPunishTyp==board_game.groupType.min and GameManager.currenceScene.punishStage==true:#红桃-民心
+		if devisor==0 and gouppunishType==board_game.groupType.min and GameManager.currenceScene.punishStage==true:#红桃-民心
 			queue_free()
 			GameManager.currenceScene.SettlePunish()
-		elif devisor==1  and GameManager.currenceScene.groupPunishTyp==board_game.groupType.shi and GameManager.currenceScene.punishStage==true:#黑桃 -声望 帅旗
+		elif devisor==1  and gouppunishType==board_game.groupType.shi and GameManager.currenceScene.punishStage==true:#黑桃 -声望 帅旗
 			queue_free()			
 			GameManager.currenceScene.SettlePunish()
-		elif devisor==2 and GameManager.currenceScene.groupPunishTyp==board_game.groupType.shang and GameManager.currenceScene.punishStage==true:#梅花 -钱
+		elif devisor==2 and gouppunishType==board_game.groupType.shang and GameManager.currenceScene.punishStage==true:#梅花 -钱
 			queue_free()			
 			GameManager.currenceScene.SettlePunish()
-		elif devisor==3 and GameManager.currenceScene.groupPunishTyp==board_game.groupType.bin and GameManager.currenceScene.punishStage==true:#方片 兵力
+		elif devisor==3 and gouppunishType==board_game.groupType.bin and GameManager.currenceScene.punishStage==true:#方片 兵力
 			queue_free()			
 			GameManager.currenceScene.SettlePunish()
 		

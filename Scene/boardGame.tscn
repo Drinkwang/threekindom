@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://b62to201rwvs3"]
+[gd_scene load_steps=35 format=3 uid="uid://b62to201rwvs3"]
 
 [ext_resource type="Script" path="res://Scripts/board_game.gd" id="1_34wyh"]
 [ext_resource type="Texture2D" uid="uid://cmbisvj1kshvi" path="res://Asset/黑暗/克苏鲁背景.png" id="1_q5ep7"]
@@ -22,6 +22,8 @@
 [ext_resource type="PackedScene" uid="uid://dxxaa55tg3d1l" path="res://Scene/prefab/boardCard.tscn" id="20_0i7oh"]
 [ext_resource type="FontFile" uid="uid://b8le0fd0ujbqx" path="res://Asset/Font/1_blod.ttf" id="20_f0olx"]
 [ext_resource type="Texture2D" uid="uid://cale1h2nqfdrh" path="res://Asset/ui/circle.png" id="20_pga4l"]
+[ext_resource type="Texture2D" uid="uid://c4tifw3jqmu6n" path="res://Scene/heart.png" id="22_0kksh"]
+[ext_resource type="Shader" path="res://shader/heart.gdshader" id="22_7vnbo"]
 [ext_resource type="Texture2D" uid="uid://dr424n1qw7y1o" path="res://Asset/ui/人心.png" id="22_bsmks"]
 [ext_resource type="Texture2D" uid="uid://cv0u7qnjrl2kn" path="res://Asset/ui/兵力.png" id="23_a3in7"]
 [ext_resource type="Texture2D" uid="uid://dkdsrxwnvrdkc" path="res://Asset/ui/战力.png" id="24_1nbgk"]
@@ -50,6 +52,69 @@ dash_length = 50.0
 dash_skip_length = 20.0
 dash_sub_step = 8
 round_edge = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1w48y"]
+shader = ExtResource("22_7vnbo")
+shader_parameter/time_factor = 0.0
+shader_parameter/progress = 0.0
+shader_parameter/oneshot = true
+shader_parameter/init_size = 0.1
+shader_parameter/init_interval = 0.2
+shader_parameter/init_offset = 0.1
+shader_parameter/init_num = 5.0
+shader_parameter/init_direction = Vector2(0, 0)
+shader_parameter/rnd_direction_factor = Vector2(1, 1)
+shader_parameter/rnd_size_factor = Vector2(1, 1)
+shader_parameter/rnd_rotate_factor = 0.0
+shader_parameter/rnd_rotate_offset = 0.0
+shader_parameter/angle_velocity_min = 0.0
+shader_parameter/angle_velocity_max = 0.0
+shader_parameter/expand_factor = Vector2(1, 1)
+shader_parameter/expand_offset = Vector2(0, 0)
+shader_parameter/bounce_thresh = 1.0
+shader_parameter/bounce_factor = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jmvkb"]
+shader = ExtResource("22_7vnbo")
+shader_parameter/time_factor = 0.0
+shader_parameter/progress = 0.0
+shader_parameter/oneshot = true
+shader_parameter/init_size = 0.1
+shader_parameter/init_interval = 0.2
+shader_parameter/init_offset = 0.1
+shader_parameter/init_num = 5.0
+shader_parameter/init_direction = Vector2(0, 0)
+shader_parameter/rnd_direction_factor = Vector2(1, 1)
+shader_parameter/rnd_size_factor = Vector2(1, 1)
+shader_parameter/rnd_rotate_factor = 0.0
+shader_parameter/rnd_rotate_offset = 0.0
+shader_parameter/angle_velocity_min = 0.0
+shader_parameter/angle_velocity_max = 0.0
+shader_parameter/expand_factor = Vector2(1, 1)
+shader_parameter/expand_offset = Vector2(0, 0)
+shader_parameter/bounce_thresh = 1.0
+shader_parameter/bounce_factor = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n6r6r"]
+shader = ExtResource("22_7vnbo")
+shader_parameter/time_factor = 0.0
+shader_parameter/progress = 0.0
+shader_parameter/oneshot = true
+shader_parameter/init_size = 0.1
+shader_parameter/init_interval = 0.2
+shader_parameter/init_offset = 0.1
+shader_parameter/init_num = 5.0
+shader_parameter/init_direction = Vector2(0, 0)
+shader_parameter/rnd_direction_factor = Vector2(1, 1)
+shader_parameter/rnd_size_factor = Vector2(1, 1)
+shader_parameter/rnd_rotate_factor = 0.0
+shader_parameter/rnd_rotate_offset = 0.0
+shader_parameter/angle_velocity_min = 0.0
+shader_parameter/angle_velocity_max = 0.0
+shader_parameter/expand_factor = Vector2(1, 1)
+shader_parameter/expand_offset = Vector2(0, 0)
+shader_parameter/bounce_thresh = 1.0
+shader_parameter/bounce_factor = 1.0
 
 [node name="Node2D2" type="Node2D" node_paths=PackedStringArray("rects")]
 script = ExtResource("1_34wyh")
@@ -129,14 +194,6 @@ offset_bottom = 810.0
 scale = Vector2(0.4, 0.4)
 columns = 2
 
-[node name="Node2D3" parent="CanvasLayer/Node/minGroup" instance=ExtResource("20_0i7oh")]
-layout_mode = 2
-_value = 51
-
-[node name="Node2D4" parent="CanvasLayer/Node/minGroup" instance=ExtResource("20_0i7oh")]
-layout_mode = 2
-_value = 51
-
 [node name="shiGroup" type="GridContainer" parent="CanvasLayer/Node"]
 offset_left = 777.0
 offset_top = 506.0
@@ -210,7 +267,6 @@ default_color = Color(1, 0, 0, 0)
 gradient = SubResource("Gradient_2phuc")
 
 [node name="Button" type="Button" parent="CanvasLayer"]
-visible = false
 offset_left = 1358.0
 offset_top = 834.0
 offset_right = 1655.0
@@ -251,10 +307,19 @@ alignment = 1
 [node name="Node2D3" parent="CanvasLayer/enemyhand" instance=ExtResource("20_0i7oh")]
 layout_mode = 2
 
+[node name="turnNum" type="Label" parent="CanvasLayer"]
+offset_left = 55.0
+offset_top = 109.0
+offset_right = 545.0
+offset_bottom = 413.0
+theme_override_fonts/font = ExtResource("20_f0olx")
+theme_override_font_sizes/font_size = 47
+text = "回合数：5"
+
 [node name="Label2" type="Label" parent="CanvasLayer"]
-offset_left = 6.0
+offset_left = 55.0
 offset_top = 42.0
-offset_right = 496.0
+offset_right = 545.0
 offset_bottom = 346.0
 theme_override_fonts/font = ExtResource("20_f0olx")
 theme_override_font_sizes/font_size = 47
@@ -270,6 +335,43 @@ theme_override_fonts/font = ExtResource("20_f0olx")
 theme_override_font_sizes/font_size = 41
 text = "剩余步数：2"
 horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 66.0
+offset_top = 991.0
+offset_right = 324.0
+offset_bottom = 1078.0
+theme_override_constants/line_spacing = 0
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("20_f0olx")
+theme_override_font_sizes/font_size = 36
+text = "生命点数"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="heartGroup" type="HBoxContainer" parent="CanvasLayer"]
+offset_left = 101.0
+offset_top = 974.0
+offset_right = 287.0
+offset_bottom = 1014.0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/heartGroup"]
+material = SubResource("ShaderMaterial_1w48y")
+layout_mode = 2
+texture = ExtResource("22_0kksh")
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/heartGroup"]
+material = SubResource("ShaderMaterial_jmvkb")
+layout_mode = 2
+texture = ExtResource("22_0kksh")
+
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/heartGroup"]
+material = SubResource("ShaderMaterial_n6r6r")
+layout_mode = 2
+texture = ExtResource("22_0kksh")
 
 [node name="detailTxt" type="Label" parent="CanvasLayer"]
 visible = false
@@ -326,5 +428,11 @@ texture = ExtResource("24_1nbgk")
 [node name="兵力2" type="Sprite2D" parent="CanvasLayer"]
 position = Vector2(1087, 320)
 texture = ExtResource("25_cv1ap")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_right = 1942.0
+offset_bottom = 1254.0
+color = Color(1, 0, 0, 0.231373)
 
 [connection signal="button_down" from="CanvasLayer/Button" to="." method="phaseEnd"]
