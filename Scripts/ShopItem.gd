@@ -41,6 +41,8 @@ const InventoryManagerName = "InventoryManager"
 		else:
 			item_context.hide()
 func set_Data(key,value):
+	if key==null:
+		key=itemstype
 	var itemname= InventoryManagerItem.item_by_enum(key)
 	quantity=value
 	txt_quantity.text=var_to_str(value)
@@ -86,9 +88,10 @@ func _ready():
 	
 #	if get_tree().get_root().has_node(InventoryManagerName):
 #		_inventoryManager = get_tree().get_root().get_node(InventoryManagerName)
+	context.texture=img
 	if isShop==false:
 		return
-	context.texture=img
+
 	
 	var itemname= InventoryManagerItem.item_by_enum(itemstype)
 	var db:InventoryItem=InventoryManager.get_item_db(itemname)
@@ -172,5 +175,6 @@ func _on_gui_input(event):
 			GameManager.shopPanel.refreshAlreadySoldTxt(index)
 			return
 		#如果是三把武器，判断玩家是否有，如果有，则调用无法购买已售出的文本
+		#这里可以加上桌游相关的逻辑
 		GameManager.shopPanel.refreshPage(price,detail)#价格和介绍
 	#pass # Replace with function body.

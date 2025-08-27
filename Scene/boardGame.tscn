@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://b62to201rwvs3"]
+[gd_scene load_steps=67 format=3 uid="uid://b62to201rwvs3"]
 
 [ext_resource type="Script" path="res://Scripts/board_game.gd" id="1_34wyh"]
 [ext_resource type="Texture2D" uid="uid://cmbisvj1kshvi" path="res://Asset/黑暗/克苏鲁背景.png" id="1_q5ep7"]
@@ -28,6 +28,35 @@
 [ext_resource type="Texture2D" uid="uid://cv0u7qnjrl2kn" path="res://Asset/ui/兵力.png" id="23_a3in7"]
 [ext_resource type="Texture2D" uid="uid://dkdsrxwnvrdkc" path="res://Asset/ui/战力.png" id="24_1nbgk"]
 [ext_resource type="Texture2D" uid="uid://cjuiym6vktbwn" path="res://Asset/ui/钱财.png" id="25_cv1ap"]
+[ext_resource type="Texture2D" uid="uid://cd5aooi3ctycq" path="res://Asset/particle/2/vnbvx_1.png" id="29_mg5ku"]
+[ext_resource type="Texture2D" uid="uid://b3gcl741a44k4" path="res://Asset/particle/2/vnbvx_2.png" id="30_at3wx"]
+[ext_resource type="Texture2D" uid="uid://dgsrglc1h3ehs" path="res://Asset/particle/2/vnbvx_3.png" id="31_kxd5a"]
+[ext_resource type="Texture2D" uid="uid://dcmy4wih2o3kk" path="res://Asset/particle/2/vnbvx_4.png" id="32_1erye"]
+[ext_resource type="Texture2D" uid="uid://cw01sgqmdablu" path="res://Asset/particle/2/vnbvx_5.png" id="33_rlsug"]
+[ext_resource type="Texture2D" uid="uid://cvedet12qfaff" path="res://Asset/particle/2/vnbvx_6.png" id="34_7hlt5"]
+[ext_resource type="Texture2D" uid="uid://cn8gfnnxj2g26" path="res://Asset/particle/2/vnbvx_7.png" id="35_lo5nd"]
+[ext_resource type="Texture2D" uid="uid://bfw3txo3h2d47" path="res://Asset/particle/2/vnbvx_8.png" id="36_fhkq6"]
+[ext_resource type="Texture2D" uid="uid://dsubrb1s7fd0l" path="res://Asset/particle/2/vnbvx_9.png" id="37_l0khx"]
+[ext_resource type="Texture2D" uid="uid://1te3owxrs7p3" path="res://Asset/particle/2/vnbvx_10.png" id="38_vks7h"]
+[ext_resource type="Texture2D" uid="uid://b50bq8o4gj7fm" path="res://Asset/particle/2/vnbvx_11.png" id="39_uelef"]
+[ext_resource type="Texture2D" uid="uid://c5dqowuemor4v" path="res://Asset/particle/2/vnbvx_12.png" id="40_mj2r3"]
+[ext_resource type="Texture2D" uid="uid://deyxqm3u0k2gd" path="res://Asset/particle/2/vnbvx_13.png" id="41_hb3py"]
+[ext_resource type="Texture2D" uid="uid://ck7bo3di13qjt" path="res://Asset/particle/2/vnbvx_14.png" id="42_l5fxb"]
+[ext_resource type="Texture2D" uid="uid://bre6e3sasavl6" path="res://Asset/particle/2/vnbvx_15.png" id="43_vw248"]
+[ext_resource type="Texture2D" uid="uid://bl1i3swlxhhbs" path="res://Asset/particle/2/vnbvx_16.png" id="44_ptpdj"]
+[ext_resource type="Texture2D" uid="uid://c67ko07lr14ns" path="res://Asset/particle/2/vnbvx_17.png" id="45_4ji0s"]
+[ext_resource type="Texture2D" uid="uid://gv33ldjtkpgn" path="res://Asset/particle/2/vnbvx_18.png" id="46_dita7"]
+[ext_resource type="Texture2D" uid="uid://dj6n331ktr5v6" path="res://Asset/particle/2/vnbvx_19.png" id="47_wd288"]
+[ext_resource type="Texture2D" uid="uid://cx6ih11314lk5" path="res://Asset/particle/2/vnbvx_20.png" id="48_xwj0w"]
+[ext_resource type="Texture2D" uid="uid://dgmttpsuayowi" path="res://Asset/particle/2/vnbvx_21.png" id="49_r28a2"]
+[ext_resource type="Texture2D" uid="uid://xb7yic2dti46" path="res://Asset/particle/2/vnbvx_22.png" id="50_5o87d"]
+[ext_resource type="Texture2D" uid="uid://bd3mfoewp785h" path="res://Asset/particle/2/vnbvx_23.png" id="51_xoq8m"]
+[ext_resource type="Texture2D" uid="uid://cqkc7j623aj5h" path="res://Asset/particle/2/vnbvx_24.png" id="52_i1f4q"]
+[ext_resource type="Texture2D" uid="uid://djwldjfn51oey" path="res://Asset/particle/2/vnbvx_25.png" id="53_5i2h6"]
+[ext_resource type="Texture2D" uid="uid://cbysxx8mso0x4" path="res://Asset/particle/2/vnbvx_26.png" id="54_dq8vs"]
+[ext_resource type="Texture2D" uid="uid://cct0spp0q00mp" path="res://Asset/particle/2/vnbvx_27.png" id="55_gg3ki"]
+[ext_resource type="Texture2D" uid="uid://de5u8jbrtr8nk" path="res://Asset/particle/2/vnbvx_28.png" id="56_4mba8"]
+[ext_resource type="Texture2D" uid="uid://0o5hddxuvape" path="res://Asset/particle/2/vnbvx_29.png" id="57_lia12"]
 
 [sub_resource type="Curve" id="Curve_kx3s6"]
 _data = [Vector2(0.002331, 0.0102652), 0.0, 0.0, 0, 0, Vector2(0.48718, 0.856575), 0.0, 0.0, 0, 0]
@@ -115,6 +144,42 @@ shader_parameter/expand_factor = Vector2(1, 1)
 shader_parameter/expand_offset = Vector2(0, 0)
 shader_parameter/bounce_thresh = 1.0
 shader_parameter/bounce_factor = 1.0
+
+[sub_resource type="Animation" id="Animation_sbwhj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("29_mg5ku")]
+}
+
+[sub_resource type="Animation" id="Animation_ygt83"]
+resource_name = "win"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6, 0.633333, 0.666667, 0.7, 0.733333, 0.766667, 0.8, 0.833333, 0.866667, 0.933333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("29_mg5ku"), ExtResource("30_at3wx"), ExtResource("31_kxd5a"), ExtResource("32_1erye"), ExtResource("33_rlsug"), ExtResource("34_7hlt5"), ExtResource("35_lo5nd"), ExtResource("36_fhkq6"), ExtResource("37_l0khx"), ExtResource("38_vks7h"), ExtResource("39_uelef"), ExtResource("40_mj2r3"), ExtResource("41_hb3py"), ExtResource("42_l5fxb"), ExtResource("43_vw248"), ExtResource("44_ptpdj"), ExtResource("45_4ji0s"), ExtResource("46_dita7"), ExtResource("47_wd288"), ExtResource("48_xwj0w"), ExtResource("49_r28a2"), ExtResource("50_5o87d"), ExtResource("51_xoq8m"), ExtResource("52_i1f4q"), ExtResource("53_5i2h6"), ExtResource("54_dq8vs"), ExtResource("55_gg3ki"), ExtResource("56_4mba8"), ExtResource("57_lia12")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qe0qn"]
+_data = {
+"RESET": SubResource("Animation_sbwhj"),
+"win": SubResource("Animation_ygt83")
+}
 
 [node name="Node2D2" type="Node2D" node_paths=PackedStringArray("rects")]
 script = ExtResource("1_34wyh")
@@ -292,10 +357,12 @@ alignment = 1
 
 [node name="Node2D3" parent="CanvasLayer/myhand" instance=ExtResource("20_0i7oh")]
 layout_mode = 2
-_value = 1
+
+[node name="Node2D4" parent="CanvasLayer/myhand" instance=ExtResource("20_0i7oh")]
+layout_mode = 2
+_value = 36
 
 [node name="enemyhand" type="HBoxContainer" parent="CanvasLayer"]
-visible = false
 offset_left = 458.0
 offset_top = 18.0
 offset_right = 2111.0
@@ -306,24 +373,7 @@ alignment = 1
 
 [node name="Node2D3" parent="CanvasLayer/enemyhand" instance=ExtResource("20_0i7oh")]
 layout_mode = 2
-
-[node name="turnNum" type="Label" parent="CanvasLayer"]
-offset_left = 55.0
-offset_top = 109.0
-offset_right = 545.0
-offset_bottom = 413.0
-theme_override_fonts/font = ExtResource("20_f0olx")
-theme_override_font_sizes/font_size = 47
-text = "回合数：5"
-
-[node name="Label2" type="Label" parent="CanvasLayer"]
-offset_left = 55.0
-offset_top = 42.0
-offset_right = 545.0
-offset_bottom = 346.0
-theme_override_fonts/font = ExtResource("20_f0olx")
-theme_override_font_sizes/font_size = 47
-text = "玩家得分：0"
+holdType = 1
 
 [node name="resideNum" type="Label" parent="CanvasLayer"]
 visible = false
@@ -350,6 +400,28 @@ theme_override_font_sizes/font_size = 36
 text = "生命点数"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="heartGroup_enemy" type="HBoxContainer" parent="CanvasLayer"]
+offset_left = 1639.0
+offset_top = 342.0
+offset_right = 1743.0
+offset_bottom = 382.0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/heartGroup_enemy"]
+material = SubResource("ShaderMaterial_1w48y")
+layout_mode = 2
+texture = ExtResource("22_0kksh")
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/heartGroup_enemy"]
+material = SubResource("ShaderMaterial_jmvkb")
+layout_mode = 2
+texture = ExtResource("22_0kksh")
+
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/heartGroup_enemy"]
+material = SubResource("ShaderMaterial_n6r6r")
+layout_mode = 2
+texture = ExtResource("22_0kksh")
 
 [node name="heartGroup" type="HBoxContainer" parent="CanvasLayer"]
 offset_left = 101.0
@@ -391,9 +463,9 @@ texture = ExtResource("22_bsmks")
 
 [node name="NinePatchRect3" type="NinePatchRect" parent="CanvasLayer"]
 offset_left = 1594.0
-offset_top = 64.0
+offset_top = 75.0
 offset_right = 1780.0
-offset_bottom = 319.0
+offset_bottom = 330.0
 texture = ExtResource("18_vsl4x")
 region_rect = Rect2(0, 0, 150, 152.186)
 patch_margin_left = 13
@@ -429,10 +501,141 @@ texture = ExtResource("24_1nbgk")
 position = Vector2(1087, 320)
 texture = ExtResource("25_cv1ap")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="winRect" type="ColorRect" parent="CanvasLayer"]
 visible = false
 offset_right = 1942.0
 offset_bottom = 1254.0
-color = Color(1, 0, 0, 0.231373)
+color = Color(0, 0, 0, 0.588235)
+
+[node name="Label" type="Label" parent="CanvasLayer/winRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -967.0
+offset_top = -468.0
+offset_right = 968.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.858198, 0.883128, 1)
+theme_override_fonts/font = ExtResource("20_f0olx")
+theme_override_font_sizes/font_size = 146
+text = "你赢了"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/winRect"]
+layout_mode = 0
+offset_left = 752.0
+offset_top = 542.0
+offset_right = 1163.0
+offset_bottom = 698.0
+text = "结束游戏"
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+offset_left = 55.0
+offset_top = 42.0
+offset_right = 545.0
+offset_bottom = 346.0
+theme_override_fonts/font = ExtResource("20_f0olx")
+theme_override_font_sizes/font_size = 47
+text = "玩家得分：0"
+
+[node name="turnNum" type="Label" parent="CanvasLayer"]
+offset_left = 55.0
+offset_top = 109.0
+offset_right = 545.0
+offset_bottom = 413.0
+theme_override_fonts/font = ExtResource("20_f0olx")
+theme_override_font_sizes/font_size = 47
+text = "回合数：5"
+
+[node name="enemyScore" type="Label" parent="CanvasLayer"]
+offset_left = 1553.0
+offset_top = 13.0
+offset_right = 2043.0
+offset_bottom = 317.0
+theme_override_fonts/font = ExtResource("20_f0olx")
+theme_override_font_sizes/font_size = 47
+text = "敌人得分：0"
+
+[node name="blinkRect" type="TextureRect" parent="CanvasLayer"]
+visible = false
+offset_left = 406.0
+offset_top = -271.0
+offset_right = 631.0
+offset_bottom = -71.0
+scale = Vector2(5, 5)
+texture = ExtResource("29_mg5ku")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/blinkRect"]
+libraries = {
+"": SubResource("AnimationLibrary_qe0qn")
+}
+
+[node name="LoseRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
+offset_right = 1942.0
+offset_bottom = 1254.0
+color = Color(1, 0, 0, 0.568627)
+
+[node name="Button2" type="Button" parent="CanvasLayer/LoseRect"]
+layout_mode = 0
+offset_left = 413.0
+offset_top = 576.0
+offset_right = 824.0
+offset_bottom = 732.0
+text = "再次尝试"
+
+[node name="Label" type="Label" parent="CanvasLayer/LoseRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -967.0
+offset_top = -622.0
+offset_right = 968.0
+offset_bottom = -128.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("20_f0olx")
+theme_override_font_sizes/font_size = 146
+text = "你输了"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/LoseRect"]
+layout_mode = 0
+offset_left = 1085.0
+offset_top = 577.0
+offset_right = 1496.0
+offset_bottom = 733.0
+text = "退出游戏"
+
+[node name="HoldEnegyPanel" type="Panel" parent="."]
+visible = false
+offset_top = 375.0
+offset_right = 442.0
+offset_bottom = 541.0
+
+[node name="RichTextLabel_HoldEnegyPanel" type="RichTextLabel" parent="HoldEnegyPanel"]
+visible = false
+layout_mode = 0
+offset_left = 16.0
+offset_top = 2.0
+offset_right = 430.0
+offset_bottom = 169.0
+theme_override_fonts/normal_font = ExtResource("20_f0olx")
+theme_override_font_sizes/normal_font_size = 38
+bbcode_enabled = true
+text = "玩家:
+[color=#ffffff88]♥♠♣♦[/color]
+敌人:
+[color=#ffffff88]♥♠♣♦[/color]"
 
 [connection signal="button_down" from="CanvasLayer/Button" to="." method="phaseEnd"]

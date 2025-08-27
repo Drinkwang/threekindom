@@ -4,7 +4,7 @@
 class_name InventoryManagerItem
 
 
-enum ItemEnum { NONE,  益气丸, 胜战锦囊, 诸子百家论集, 珍品礼盒, 迷魂木筒, 黄麻药囊, 饥蛊骨签, 市井秘闻, 市井秘闻_续, 市井秘闻_终, 血姬傀儡, 陶谦血袖, 雌雄双股剑, 青龙偃月刀, 丈八蛇矛, 龙胆亮银枪, 洞察之镜, 獬豸圣像, 论语简注, 礼记笺疏, 治国箴言, HelmetKnight, HelmetViking, ArmorKnight, ArmorViking, GlovesLeftKnight, GlovesLeftViking, GlovesRightKnight, GlovesRightViking, BootsKnight, BootsViking, ShieldKnight, ShieldViking, Gold2D, Metal2D, Horn2D, RecipeHelmetKnight2D, RecipeHelmetViking2D}
+enum ItemEnum { NONE,  益气丸, 胜战锦囊, 诸子百家论集, 珍品礼盒, 迷魂木筒, 黄麻药囊, 饥蛊骨签, 市井秘闻, 市井秘闻_续, 市井秘闻_终, 血姬傀儡, 陶谦血袖, 仕诡卡血姬, 仕诡卡骨龙, 仕诡卡尸皇, 仕诡卡黑商, 雌雄双股剑, 青龙偃月刀, 丈八蛇矛, 龙胆亮银枪, 洞察之镜, 獬豸圣像, 论语简注, 礼记笺疏, 治国箴言, HelmetKnight, HelmetViking, ArmorKnight, ArmorViking, GlovesLeftKnight, GlovesLeftViking, GlovesRightKnight, GlovesRightViking, BootsKnight, BootsViking, ShieldKnight, ShieldViking, Gold2D, Metal2D, Horn2D, RecipeHelmetKnight2D, RecipeHelmetViking2D}
 
 const 益气丸 = "f4352b3f-8500-419f-9617-9da134d822f5"
 const 胜战锦囊 = "63015407-55c9-4729-887f-493fe2a624b7"
@@ -18,6 +18,10 @@ const 市井秘闻_续 = "20074a58-ba8c-4f86-a293-e4d8c62ad7df"
 const 市井秘闻_终 = "266cc0b9-26cc-49ce-9871-1e60a81cd403"
 const 血姬傀儡 = "1a4591bd-8666-4773-b4e1-8af652eb7309"
 const 陶谦血袖 = "11a2e83b-338a-4028-a10f-1180db4c0b95"
+const 仕诡卡血姬 = "6cb801d9-77a5-4be2-9249-a34f859a8c75"
+const 仕诡卡骨龙 = "14e496d7-452d-4681-848f-6c4e4679f949"
+const 仕诡卡尸皇 = "f8db0af0-b6fb-4456-9b16-d5fcd3033d80"
+const 仕诡卡黑商 = "67b1f259-9220-4ebd-9345-9ac5212c99df"
 const 雌雄双股剑 = "cf240703-26ac-4a2a-88a7-1441ff6c6a0c"
 const 青龙偃月刀 = "5fa70d8d-c0d0-43d9-8260-6efa4fde008b"
 const 丈八蛇矛 = "52d0a7fa-b133-45f1-9b75-b9818c8599d2"
@@ -58,6 +62,10 @@ const ITEMS = [
  "市井秘闻_终",
  "血姬傀儡",
  "陶谦血袖",
+ "仕诡卡血姬",
+ "仕诡卡骨龙",
+ "仕诡卡尸皇",
+ "仕诡卡黑商",
  "雌雄双股剑",
  "青龙偃月刀",
  "丈八蛇矛",
@@ -112,6 +120,14 @@ static func item_by_enum(item_enum: ItemEnum) -> String:
 			return InventoryManagerItem.血姬傀儡
 		ItemEnum.陶谦血袖:
 			return InventoryManagerItem.陶谦血袖
+		ItemEnum.仕诡卡血姬:
+			return InventoryManagerItem.仕诡卡血姬
+		ItemEnum.仕诡卡骨龙:
+			return InventoryManagerItem.仕诡卡骨龙
+		ItemEnum.仕诡卡尸皇:
+			return InventoryManagerItem.仕诡卡尸皇
+		ItemEnum.仕诡卡黑商:
+			return InventoryManagerItem.仕诡卡黑商
 		ItemEnum.雌雄双股剑:
 			return InventoryManagerItem.雌雄双股剑
 		ItemEnum.青龙偃月刀:

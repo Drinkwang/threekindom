@@ -18,26 +18,55 @@ const binli = preload("res://Asset/ui/兵力.png")
 const renxin = preload("res://Asset/ui/人心.png")
 const coin = preload("res://Asset/ui/钱财.png")
 const zhanli = preload("res://Asset/ui/战力.png")		
-
+#@export var 
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
 @onready var nine_patch_rect: NinePatchRect = $NinePatchRect
 
+const gulong = preload("res://Asset/人物/骨龙最终.png")
+const mizhen = preload("res://Asset/人物/假糜贞.png")
+const shihuang = preload("res://Asset/人物/尸皇.png")
+const heishang = preload("res://Asset/items/高清诡异4.png")
 
 @onready var score_ball: ColorRect = $scoreBall
 @onready var _color_rect: ColorRect = $ColorRect
 
+@onready var back_rect: TextureRect = $TextureRect
 	
+	
+@onready var guiyi: TextureRect = $NinePatchRect/guiyi
+
 func setimg(reside,devisor):
 	var kvalue=reside+1
 	if point_value==null:
 		return
+	
+	if holdType==board_game.cardHoldType.enemy:
+		pass#测试暂时关闭
+		#back_rect.show()
+	else:
+		back_rect.hide()
+	
 	if kvalue==1:
 		point_value.text="A"
 	else:
 		point_value.text=var_to_str(kvalue)
+	if kvalue==12:
+		guiyi.show()
+		img.hide()
+		if kvalue==1:
+			guiyi.texture=mizhen
+		elif kvalue==2:
+			guiyi.texture=gulong
+		elif kvalue==3:
+			guiyi.texture=shihuang
+		elif kvalue==4:
+			guiyi.texture=heishang
+	else:
+		guiyi.hide()
+		img.show()	
 	if devisor==0:#红桃-民心
 		point_value.add_theme_color_override("font_color",Color.RED)
 		flowercolor.add_theme_color_override("font_color",Color.RED)
@@ -64,7 +93,11 @@ func setimg(reside,devisor):
 
 func _ready() -> void:
 	originScale=self.scale
-	
+	if holdType==board_game.cardHoldType.enemy:
+		pass
+		#back_rect.show()
+	else:
+		back_rect.hide()
 
 	nine_patch_rect.material=nine_patch_rect.material.duplicate()
 
@@ -80,7 +113,8 @@ func _process(delta: float) -> void:
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if !(event is InputEventMouseButton):
 		return
-		
+	#双击可以有效果，双击把卡牌直接销毁，销毁后获得效果
+	
 	var gouppunishType
 	if 	GameManager.currenceScene.groupPunishTyp2!=board_game.groupType.none:
 		gouppunishType=GameManager.currenceScene.groupPunishTyp2
@@ -109,7 +143,14 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 		SoundManager.play_sound(sounds.SFX_FAST_UI_CLICK)
 		var moupos=get_viewport().get_mouse_position()
 		GameManager.currenceScene.selectCard=self
+
 		GameManager.currenceScene.clickPoint(moupos)
+	
+	
+	elif(event is InputEventMouseButton and event.double_click==true  and holdType==board_game.cardHoldType.player and GameManager.currenceScene.playerStage>0):
+		queue_free()
+		var reside=floor(_value/13)+1
+		GameManager.currenceScene.useSecretCard(reside)
 		#创建ui跟手
 		#创建红线
 		#这些东西可以在scene里写 也可以定义成专门的物体
@@ -123,8 +164,12 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 func _on_area_2d_mouse_entered() -> void:
 	if holdType==board_game.cardHoldType.enemy or GameManager.currenceScene._phaseName!=board_game.phaseName.useCard:
 		return
+	
+	if holdType==board_game.cardHoldType.stack:
 		
-	self.scale=Vector2(originScale.x*1.2,originScale.y*1.2)
+		self.scale=Vector2(originScale.x*1.5,originScale.y*1.5)
+	else:
+		self.scale=Vector2(originScale.x*1.2,originScale.y*1.2)
 	self.z_index=10
 
 

@@ -1,6 +1,6 @@
 class_name sounds
 
-
+const DRAWCARD = preload("res://Asset/sound/ui/drawcard.mp3")
 
 const hoversound = preload("res://Asset/sound/ui/001_Hover_01.wav")
 const confiresound = preload("res://Asset/sound/ui/013_Confirm_03.wav")
@@ -23,6 +23,6 @@ const COLLECT_SMALL_JEWEL_3 = preload("res://Asset/sound/ui/Collect_Small_Jewel_
 
 const BAD_BATTLE = preload("res://Asset/sound/badBattle.wav")
 const GOOD_THING = preload("res://Asset/sound/goodThing.wav")
-
-
+const MATCH_STRIKING = preload("res://Asset/sound/Match_striking.wav")
+const SWORD_PANG = preload("res://Asset/sound/swordPang.wav")
 const tunyan = preload("res://Asset/bgm/吞咽.mp3")
