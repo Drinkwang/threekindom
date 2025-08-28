@@ -120,13 +120,15 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 		gouppunishType=GameManager.currenceScene.groupPunishTyp2
 	else:
 		gouppunishType=GameManager.currenceScene.groupPunishTyp
-	GameManager.currenceScene.groupPunishTyp2=board_game.groupType.none
+	
 	if gouppunishType!=board_game.groupType.none and holdType==board_game.cardHoldType.player:
 		
 		var reside:int=floori((_value)%13)
 		var devisor:int=floori((_value)/13)
 		if devisor==0 and gouppunishType==board_game.groupType.min and GameManager.currenceScene.punishStage==true:#红桃-民心
+			GameManager.currenceScene.groupPunishTyp2=board_game.groupType.none
 			queue_free()
+		
 			GameManager.currenceScene.SettlePunish()
 		elif devisor==1  and gouppunishType==board_game.groupType.shi and GameManager.currenceScene.punishStage==true:#黑桃 -声望 帅旗
 			queue_free()			

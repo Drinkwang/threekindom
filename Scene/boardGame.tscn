@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://b62to201rwvs3"]
+[gd_scene load_steps=69 format=3 uid="uid://b62to201rwvs3"]
 
 [ext_resource type="Script" path="res://Scripts/board_game.gd" id="1_34wyh"]
 [ext_resource type="Texture2D" uid="uid://cmbisvj1kshvi" path="res://Asset/黑暗/克苏鲁背景.png" id="1_q5ep7"]
@@ -19,7 +19,6 @@
 [ext_resource type="Texture2D" uid="uid://bay47r68afgcm" path="res://Asset/人物/陈登睁眼喝茶.png" id="17_agoab"]
 [ext_resource type="Texture2D" uid="uid://v18r3lgfvy17" path="res://Asset/ui/白框.png" id="18_vsl4x"]
 [ext_resource type="Script" path="res://Scripts/dashline_stylebox.gd" id="19_c5av2"]
-[ext_resource type="PackedScene" uid="uid://dxxaa55tg3d1l" path="res://Scene/prefab/boardCard.tscn" id="20_0i7oh"]
 [ext_resource type="FontFile" uid="uid://b8le0fd0ujbqx" path="res://Asset/Font/1_blod.ttf" id="20_f0olx"]
 [ext_resource type="Texture2D" uid="uid://cale1h2nqfdrh" path="res://Asset/ui/circle.png" id="20_pga4l"]
 [ext_resource type="Texture2D" uid="uid://c4tifw3jqmu6n" path="res://Scene/heart.png" id="22_0kksh"]
@@ -81,6 +80,69 @@ dash_length = 50.0
 dash_skip_length = 20.0
 dash_sub_step = 8
 round_edge = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e6qvi"]
+shader = ExtResource("22_7vnbo")
+shader_parameter/time_factor = 0.0
+shader_parameter/progress = 0.0
+shader_parameter/oneshot = true
+shader_parameter/init_size = 0.1
+shader_parameter/init_interval = 0.2
+shader_parameter/init_offset = 0.1
+shader_parameter/init_num = 5.0
+shader_parameter/init_direction = Vector2(0, 0)
+shader_parameter/rnd_direction_factor = Vector2(1, 1)
+shader_parameter/rnd_size_factor = Vector2(1, 1)
+shader_parameter/rnd_rotate_factor = 0.0
+shader_parameter/rnd_rotate_offset = 0.0
+shader_parameter/angle_velocity_min = 0.0
+shader_parameter/angle_velocity_max = 0.0
+shader_parameter/expand_factor = Vector2(1, 1)
+shader_parameter/expand_offset = Vector2(0, 0)
+shader_parameter/bounce_thresh = 1.0
+shader_parameter/bounce_factor = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w2srj"]
+shader = ExtResource("22_7vnbo")
+shader_parameter/time_factor = 0.0
+shader_parameter/progress = 0.0
+shader_parameter/oneshot = true
+shader_parameter/init_size = 0.1
+shader_parameter/init_interval = 0.2
+shader_parameter/init_offset = 0.1
+shader_parameter/init_num = 5.0
+shader_parameter/init_direction = Vector2(0, 0)
+shader_parameter/rnd_direction_factor = Vector2(1, 1)
+shader_parameter/rnd_size_factor = Vector2(1, 1)
+shader_parameter/rnd_rotate_factor = 0.0
+shader_parameter/rnd_rotate_offset = 0.0
+shader_parameter/angle_velocity_min = 0.0
+shader_parameter/angle_velocity_max = 0.0
+shader_parameter/expand_factor = Vector2(1, 1)
+shader_parameter/expand_offset = Vector2(0, 0)
+shader_parameter/bounce_thresh = 1.0
+shader_parameter/bounce_factor = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rlc41"]
+shader = ExtResource("22_7vnbo")
+shader_parameter/time_factor = 0.0
+shader_parameter/progress = 0.0
+shader_parameter/oneshot = true
+shader_parameter/init_size = 0.1
+shader_parameter/init_interval = 0.2
+shader_parameter/init_offset = 0.1
+shader_parameter/init_num = 5.0
+shader_parameter/init_direction = Vector2(0, 0)
+shader_parameter/rnd_direction_factor = Vector2(1, 1)
+shader_parameter/rnd_size_factor = Vector2(1, 1)
+shader_parameter/rnd_rotate_factor = 0.0
+shader_parameter/rnd_rotate_offset = 0.0
+shader_parameter/angle_velocity_min = 0.0
+shader_parameter/angle_velocity_max = 0.0
+shader_parameter/expand_factor = Vector2(1, 1)
+shader_parameter/expand_offset = Vector2(0, 0)
+shader_parameter/bounce_thresh = 1.0
+shader_parameter/bounce_factor = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1w48y"]
 shader = ExtResource("22_7vnbo")
@@ -355,13 +417,6 @@ scale = Vector2(0.6, 0.6)
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="Node2D3" parent="CanvasLayer/myhand" instance=ExtResource("20_0i7oh")]
-layout_mode = 2
-
-[node name="Node2D4" parent="CanvasLayer/myhand" instance=ExtResource("20_0i7oh")]
-layout_mode = 2
-_value = 36
-
 [node name="enemyhand" type="HBoxContainer" parent="CanvasLayer"]
 offset_left = 458.0
 offset_top = 18.0
@@ -370,10 +425,6 @@ offset_bottom = 292.0
 scale = Vector2(0.6, 0.6)
 theme_override_constants/separation = 10
 alignment = 1
-
-[node name="Node2D3" parent="CanvasLayer/enemyhand" instance=ExtResource("20_0i7oh")]
-layout_mode = 2
-holdType = 1
 
 [node name="resideNum" type="Label" parent="CanvasLayer"]
 visible = false
@@ -409,17 +460,17 @@ offset_bottom = 382.0
 alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/heartGroup_enemy"]
-material = SubResource("ShaderMaterial_1w48y")
+material = SubResource("ShaderMaterial_e6qvi")
 layout_mode = 2
 texture = ExtResource("22_0kksh")
 
 [node name="TextureRect2" type="TextureRect" parent="CanvasLayer/heartGroup_enemy"]
-material = SubResource("ShaderMaterial_jmvkb")
+material = SubResource("ShaderMaterial_w2srj")
 layout_mode = 2
 texture = ExtResource("22_0kksh")
 
 [node name="TextureRect3" type="TextureRect" parent="CanvasLayer/heartGroup_enemy"]
-material = SubResource("ShaderMaterial_n6r6r")
+material = SubResource("ShaderMaterial_rlc41")
 layout_mode = 2
 texture = ExtResource("22_0kksh")
 
@@ -445,21 +496,28 @@ material = SubResource("ShaderMaterial_n6r6r")
 layout_mode = 2
 texture = ExtResource("22_0kksh")
 
-[node name="detailTxt" type="Label" parent="CanvasLayer"]
-visible = false
-offset_left = 406.0
-offset_top = 22.0
-offset_right = 1535.0
-offset_bottom = 131.0
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+offset_left = 627.0
+offset_top = 11.0
+offset_right = 1316.0
+offset_bottom = 169.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="detailTxt" type="Label" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
 theme_override_fonts/font = ExtResource("20_f0olx")
 theme_override_font_sizes/font_size = 47
 text = "请支付你所需的惩罚："
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="img" type="Sprite2D" parent="CanvasLayer/detailTxt"]
-position = Vector2(539, 118)
+[node name="img" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
 texture = ExtResource("22_bsmks")
+stretch_mode = 2
 
 [node name="NinePatchRect3" type="NinePatchRect" parent="CanvasLayer"]
 offset_left = 1594.0

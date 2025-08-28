@@ -241,7 +241,7 @@ func stopClick():
 	mouseline.hide()
 
 func SettlePunish():
-	
+	punishStage=false
 	if bepunishI==null and bepusnishJ==null:
 		punishFade("")
 		return
@@ -255,7 +255,10 @@ func SettlePunish():
 	tween.tween_property(bepunishI.img.material, "shader_parameter/burn_progress", 1, 1)
 	tween.tween_property(bepusnishJ.nine_patch_rect.material, "shader_parameter/burn_progress", 1, 1)
 	tween.tween_property(bepusnishJ.img.material, "shader_parameter/burn_progress", 1, 1)
-	punishStage=false
+	
+	
+	
+
 	
 
 		
@@ -264,10 +267,21 @@ func SettlePunish():
 
 	
 func punishFade(anim_name: StringName):
+	
+	
+	
+
+	if 	groupPunishTyp==groupType.min and bepunishI==null and bepusnishJ==null:
+		groupPunishTyp=groupType.none
+		#end_button.show()
+		await get_tree().create_timer(0.2).timeout
+		await enterNewPhase(phaseName.useCard)			
+		
 	if bepunishI!=null:
 		bepunishI.queue_free()
 	if 	bepusnishJ!=null:
 		bepusnishJ.queue_free()
+
 	if groupPunishTyp==groupType.min:
 		checkCardStage(groupType.shi)
 	elif groupPunishTyp==groupType.shi:
@@ -277,6 +291,7 @@ func punishFade(anim_name: StringName):
 	elif groupPunishTyp==groupType.bin:
 		groupPunishTyp=groupType.none
 		end_button.show()
+		await get_tree().create_timer(0.2).timeout
 		await enterNewPhase(phaseName.useCard)		
 	
 	
@@ -323,7 +338,9 @@ func startGame(cardnum,issole):
 		enemy_score_txt.show()
 		heart_group_enemy.show()
 		enemyhand.show()
+		detail_h_box_container.position=Vector2(627,162)
 	else:
+		detail_h_box_container.position=Vector2(627,11)		
 		enemy_score_txt.hide()
 		heart_group_enemy.hide()
 		enemyhand.hide()
@@ -335,7 +352,9 @@ func startGame(cardnum,issole):
 	await enterNewPhase(phaseName.drawCard)
 	
 @onready var reside_num: Label = $CanvasLayer/resideNum
-@onready var detail_img: Sprite2D = $CanvasLayer/detailTxt/img
+
+@onready var detail_h_box_container: HBoxContainer = $CanvasLayer/HBoxContainer
+
 
 
 
@@ -372,6 +391,7 @@ func enterNewPhase(stage:phaseName):
 		elif groupPunishTyp==groupType.bin:
 			if  _phaseName==phaseName.checkStart:
 				groupPunishTyp=groupType.none
+				await get_tree().create_timer(0.2).timeout
 				await enterNewPhase(phaseName.useCard)
 			elif _phaseName==phaseName.checkEnd:
 				groupPunishTyp=groupType.none
@@ -383,7 +403,7 @@ func enterNewPhase(stage:phaseName):
 		if isPlayerTurn==true:
 			playerStage=2
 			detail_txt.text="出牌阶段，请使用你的卡牌"
-			detail_img.texture=null
+			punishimg.texture=null
 			board_panel.hide()
 			end_button.text=tr("回合结束")
 			reside_num.show()
@@ -462,7 +482,7 @@ func checkCardStart():
 #二个卡牌放大，然后要求支付卡牌，
 #如果没支付则受到伤害，
 #惩罚阶段结束后跳到下一个check阶段，直到check结束
-@onready var punishimg: Sprite2D = $CanvasLayer/detailTxt/img
+@onready var punishimg:TextureRect = $CanvasLayer/HBoxContainer/img
 
 var groupPunishTyp=groupType.none
 var groupPunishTyp2=groupType.none
@@ -523,9 +543,9 @@ func checkCardStage(_groupType):
 							groupPunishTyp=_groupType
 							punishStage=false
 							detail_txt.text="敌人支付惩罚中："
-							await get_tree().create_timer(0.5)
-							
-							AIDiscardCard(i,j)
+							await get_tree().create_timer(2)
+							#支付完了后 应该把状态清空
+							await AIDiscardCard(i,j)
 							cangoto=false
 							
 							#随机丢一个
@@ -563,7 +583,7 @@ func AIDiscardCard(i,j):
 	bepusnishJ=j
 	bepunishI=i
 	var index=floor(_value/13)
-	
+	await get_tree().create_timer(2)
 	payRandomPunish(index+1)	
 
 
@@ -584,7 +604,7 @@ func payRandomPunish(_grouptype:groupType):
 
 		if _grouptype==groupType.min:
 			var percent=100
-			if hp>=2:
+			if enemy_hp>=2:
 				if _suitNum==1:
 					percent-=50
 				elif _suitNum==2:
@@ -601,51 +621,42 @@ func payRandomPunish(_grouptype:groupType):
 			#else:
 			#	percent=100
 			isPay=chance(percent)
-			#如果 花色>2
-			#如果 手牌>1
-			#100%用
-			#如果花色小于2 且樟树大于1 且生命值大于2 or 1 50%用 反之100%用
-			pass
+
 		else:
 			var percent=100
 			
-			if hp+_minnum>=2:
+			if enemy_hp+_minnum>=2:
 				if _suitNum==1:
-					percent-=50
+					percent-=25
 				elif _suitNum==2:
-					percent-=40
-				elif _suitNum==3:
-					percent-=30
-				elif _suitNum==4:
 					percent-=20
+				elif _suitNum==3:
+					percent-=15
+				elif _suitNum==4:
+					percent-=5
 				if _havesuitnum<=2:
-					percent-=10	
-				
-			#if hp>=2 and _suitNum<=1 and  _havesuitnum<=2:
-			#	percent=50
-			#else:
-			#	percent=100
+					percent-=5	
 			isPay=chance(percent)
-			
-			#可能支付
-			
-		#if isPay==true:
-			#pass
-		#else:
-			#pass#不支付
 	else:
 		isPay=false
 		
 	if isPay==true:
 
+
+
+		#加入没清空的状态
 		var cancost=arrs.size()-1
 		var constindex=randi_range(0,cancost)
 		var discard=arrs[constindex]
 		discard.queue_free()
-		SettlePunish()
+		if bepusnishJ!=null and bepusnishJ!=null:
+			SettlePunish()
+		else:
+			punishFade("")
 	else:
 		if _grouptype!=groupType.min:
 			if _minnum>0:
+				print("拿民代替")
 				payRandomPunish(groupType.min)
 			else:
 				enemy_hp-=1
@@ -873,9 +884,14 @@ func enterRewardStage(i:boardCard,j:boardCard):
 	var tween = create_tween()
 	var tween2 = create_tween()
 
+	var desposition
+	if isPlayerTurn==true:
+		desposition=score_txt.global_position
+	else:
+		desposition=enemy_score_txt.global_position
 	#根据墓地判断牌
-	tween.tween_property(i, "global_position", score_txt.global_position, 1)	
-	tween2.tween_property(j, "global_position", score_txt.global_position, 1)	
+	tween.tween_property(i, "global_position", desposition, 1)	
+	tween2.tween_property(j, "global_position", desposition, 1)	
 
 	
 	var tempfunc=func(anim_name,i_node, j_node):
@@ -929,7 +945,7 @@ func enterRewardStage(i:boardCard,j:boardCard):
 
 
 
-@onready var detail_txt: Label = $CanvasLayer/detailTxt
+@onready var detail_txt: Label = $CanvasLayer/HBoxContainer/detailTxt
 var bepunishI:boardCard
 var bepusnishJ:boardCard
 

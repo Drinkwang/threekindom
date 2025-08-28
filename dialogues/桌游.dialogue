@@ -23,3 +23,15 @@ if selectCard!=null
 	do insertCard(groupType.bin,selectCard._value)
 
 => END!
+
+#小试牛刀
+~ 新手教程_初级
+#每回合开始时
+=> END!
+
+~ 新手教程_中级
+=> END!
+
+
+~ 新手教程_高级
+=> END!
