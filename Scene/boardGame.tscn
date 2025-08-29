@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://b62to201rwvs3"]
+[gd_scene load_steps=72 format=3 uid="uid://b62to201rwvs3"]
 
 [ext_resource type="Script" path="res://Scripts/board_game.gd" id="1_34wyh"]
 [ext_resource type="Texture2D" uid="uid://cmbisvj1kshvi" path="res://Asset/黑暗/克苏鲁背景.png" id="1_q5ep7"]
@@ -55,6 +55,7 @@
 [ext_resource type="Texture2D" uid="uid://cbysxx8mso0x4" path="res://Asset/particle/2/vnbvx_26.png" id="54_dq8vs"]
 [ext_resource type="Texture2D" uid="uid://cct0spp0q00mp" path="res://Asset/particle/2/vnbvx_27.png" id="55_gg3ki"]
 [ext_resource type="Texture2D" uid="uid://de5u8jbrtr8nk" path="res://Asset/particle/2/vnbvx_28.png" id="56_4mba8"]
+[ext_resource type="Shader" path="res://shader/screenblur.gdshader" id="57_0ucv8"]
 [ext_resource type="Texture2D" uid="uid://0o5hddxuvape" path="res://Asset/particle/2/vnbvx_29.png" id="57_lia12"]
 
 [sub_resource type="Curve" id="Curve_kx3s6"]
@@ -63,6 +64,20 @@ point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_2phuc"]
 colors = PackedColorArray(0, 0, 0, 1, 1, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_53uo3"]
+shader = ExtResource("57_0ucv8")
+shader_parameter/blur_amount = 0.01
+shader_parameter/blur_radius = 0.774
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/vignette_intensity = 0.618
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wc1dm"]
+shader = ExtResource("57_0ucv8")
+shader_parameter/blur_amount = 0.01
+shader_parameter/blur_radius = 0.774
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/vignette_intensity = 0.575
 
 [sub_resource type="StyleBox" id="StyleBox_p4fgk"]
 resource_local_to_scene = false
@@ -392,6 +407,42 @@ closed = true
 width_curve = SubResource("Curve_kx3s6")
 default_color = Color(1, 0, 0, 0)
 gradient = SubResource("Gradient_2phuc")
+
+[node name="heartColor" type="ColorRect" parent="CanvasLayer"]
+visible = false
+material = SubResource("ShaderMaterial_53uo3")
+use_parent_material = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -973.5
+offset_top = -561.0
+offset_right = 1087.5
+offset_bottom = 561.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.0883546, 0.0488055, 0.0887205, 1)
+
+[node name="damageColor" type="ColorRect" parent="CanvasLayer"]
+visible = false
+material = SubResource("ShaderMaterial_wc1dm")
+use_parent_material = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1002.0
+offset_top = -561.0
+offset_right = 1059.0
+offset_bottom = 561.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.8, 0, 0, 1)
 
 [node name="Button" type="Button" parent="CanvasLayer"]
 offset_left = 1358.0

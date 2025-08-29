@@ -255,6 +255,9 @@ var SIDEQUEST_MAP:Dictionary={
 	"第一次民心政策":false,
 	"预获得龙胆枪":false,
 	"预获得龙胆枪休息":false,
+	"卡牌新手教程":false,
+	"卡牌中级教程":false,
+	"卡牌高级教程":false,		
 }
 
 @export var mizhuSideWait=-1

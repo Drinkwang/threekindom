@@ -121,7 +121,7 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 	else:
 		gouppunishType=GameManager.currenceScene.groupPunishTyp
 	
-	if gouppunishType!=board_game.groupType.none and holdType==board_game.cardHoldType.player:
+	if gouppunishType!=board_game.groupType.none and holdType==board_game.cardHoldType.player and GameManager.currenceScene.isPlayerTurn==true:
 		
 		var reside:int=floori((_value)%13)
 		var devisor:int=floori((_value)/13)

@@ -17,7 +17,14 @@ var turnAllnum=5
 var playerStage=2
 var enemyStage=2
 
-func loseGame():
+@onready var lose_label: Label = $CanvasLayer/LoseRect/Label
+
+
+func loseGame(_str:String=""):
+	
+	if _str.length()>0:
+		lose_label.text=_str	
+		
 	lose_rect.show()
 	SoundManager.play_sound(sounds.BAD_BATTLE)
 
@@ -25,9 +32,12 @@ func loseGame():
 
 
 
+@onready var win_label: Label = $CanvasLayer/winRect/Label
 
 
-func winGame():
+func winGame(_str:String=""):
+	if _str.length()>0:
+		win_label.text=_str
 	blink_rect.show()
 	animation_player_BLINK.play("win")
 	var finishfunc=func(aniname):
@@ -53,6 +63,12 @@ func _ready() -> void:
 	cardsize-=1
 	changeHoldEnegyPanel()
 	await startGame(4,false)
+	
+
+	
+	
+
+	
 #点击，然后创造线，松手取消线$CanvasLayer/Border
 @onready var mouseline: Line2D = $CanvasLayer/mouseline
 @onready var myhand: HBoxContainer = $CanvasLayer/myhand
@@ -83,6 +99,7 @@ func _ready() -> void:
 		if hp>=0 and hp<3:
 			var tempheart:TextureRect=heart_group.get_child(hp)
 			var tween = create_tween()
+		
 			tween.tween_property(tempheart.material, "shader_parameter/progress", 1.0, 1.0).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
 			tween.tween_callback(on_tween_finished.bind(tempheart))  # 播放完成后调用函数
 		if hp<=0:
@@ -244,6 +261,7 @@ func SettlePunish():
 	punishStage=false
 	if bepunishI==null and bepusnishJ==null:
 		punishFade("")
+		heart_color.hide()
 		return
 	
 	
@@ -310,6 +328,7 @@ func _input(event: InputEvent) -> void:
 			# 点击在 LineEdit 外，隐藏 LineEdit
 		if isstop==true:
 			stopClick()
+			detail_txt.text=tr("必须靠近附庸出现红色感叹号才能使用卡牌")
 	#参考我炒的代码
 	
 	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
@@ -368,7 +387,17 @@ func turnGoto():
 		turn_num+=1
 		turn_num_Txt.text="回合数：{s}/5".format({"s":turn_num})
 	else:
-		winGame()	
+		#
+		if _issole==true:
+			winGame()
+		else:
+			if score>enemyscore:
+				winGame(tr("你的积分大于对手\n你赢了"))
+			elif score==enemyscore:
+				winGame()
+			else:
+				loseGame(tr("你的积分小于对手\n你输了"))
+
 @export var isPlayerTurn:bool=true
 func enterNewPhase(stage:phaseName):
 	
@@ -414,6 +443,7 @@ func enterNewPhase(stage:phaseName):
 		checkCardStage(groupType.min)	
 	elif _phaseName==phaseName.endturn:
 		detail_txt.text="结束阶段，请等待新回合开始"
+		punishimg.texture=null
 		SoundManager.play_sound(sounds.COLLECT_SMALL_JEWEL_1)
 		await get_tree().create_timer(1.5).timeout
 		if _issole==false:
@@ -533,6 +563,7 @@ func checkCardStage(_groupType):
 					#定义一个惩罚cardType，然后赋值非空
 					
 						if isPlayerTurn==true:
+							SoundManager.play_sound(sounds.deniedsound)
 							end_button.text=tr("拒付惩罚")
 							detail_txt.text="请支付你所需的惩罚："
 							punishStage=true
@@ -574,6 +605,17 @@ func checkCardStage(_groupType):
 		groupPunishTyp=_groupType
 							
 		await enterNewPhase(phaseName.punish)
+
+
+#玩家受伤动画
+#玩家支付代价动画
+#修改4步，以及打出牌就能获得奖励
+#润滑ai行为和动画
+
+@onready var heart_color: ColorRect = $CanvasLayer/heartColor
+@onready var damage_color: ColorRect = $CanvasLayer/damageColor
+
+
 
 func AIDiscardCard(i,j):
 	
@@ -1050,6 +1092,18 @@ func phaseEnd():
 		if haveHeart() and groupPunishTyp!=groupType.min and groupPunishTyp2!=groupType.min:
 			end_button.text=tr("拒付失去体力")
 			detail_txt.text=tr("是否支付民心替代惩罚：")
+			if isPlayerTurn==true:
+				#然后还要过度强度
+				var hearttween = get_tree().create_tween()
+				heart_color.material.set_shader_parameter("vignette_intensity", 0)
+				heart_color.show()
+				hearttween.tween_method(
+					func(value): heart_color.material.set_shader_parameter("vignette_intensity", value),
+					0.0, # Start value
+					1.0, # End value
+					1 # Duration in seconds
+				)	
+		
 			board_panel.modulate=Color.RED
 			groupPunishTyp2=groupType.min
 			#groupPunishTyp=groupType.min
@@ -1065,6 +1119,27 @@ func phaseEnd():
 			return
 		else:
 			SoundManager.play_sound(sounds.SWORD_PANG)
+			
+			
+			var hptween = create_tween()
+
+			heart_color.hide()
+			damage_color.material.set_shader_parameter("vignette_intensity", 0)
+			damage_color.show()
+			hptween.tween_method(
+				func(value): damage_color.material.set_shader_parameter("vignette_intensity", value),
+				0.0, # Start value
+				1.0, # End value
+				0.5 # Duration in seconds
+			)				
+			hptween.tween_method(
+				func(value): damage_color.material.set_shader_parameter("vignette_intensity", value),
+				1, # Start value
+				0, # End value
+				0.5 # Duration in seconds
+			)				
+			hptween.tween_callback(func(): damage_color.hide())	
+			
 			hp-=1
 			groupPunishTyp2=groupType.none
 			if hp<=0:
