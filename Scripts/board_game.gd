@@ -67,7 +67,7 @@ func _ready() -> void:
 
 	
 	
-
+#每次放卡牌进行一次检测阶段，结束后依然返回出牌阶段，将每次最多使用卡牌改为4张
 	
 #点击，然后创造线，松手取消线$CanvasLayer/Border
 @onready var mouseline: Line2D = $CanvasLayer/mouseline
@@ -196,10 +196,11 @@ func changeHoldEnegyPanel():
 #黑桃Q 商人
 
 var hasSecretCard=[true,true,true,true]
-
+var secretPanel
 func showSecretCard():
-	var secretPanel=PanelManager.new_SecretCardView()
-	secretPanel.initSecretCard(hasSecretCard)
+	if secretPanel!=null:
+		secretPanel=PanelManager.new_SecretCardView()
+		secretPanel.initSecretCard(hasSecretCard)
 
 
 func getSecretCard(cardId,isplayer=true):
@@ -239,8 +240,12 @@ func insertCard(group:groupType,value):
 		playerStage-=1
 		if playerStage<=0:
 			pass
-			#end_button.disabled=true
 		reside_num.text=tr("剩余步数：{s}").format({"s":playerStage})
+	
+	if  _phaseName==phaseName.useCard:
+		await get_tree().create_timer(0.2).timeout
+		settleOneGroup(groudObj)
+	
 	stopClick()
 	
 var canClick:bool=false
@@ -291,8 +296,7 @@ func punishFade(anim_name: StringName):
 
 	if 	groupPunishTyp==groupType.min and bepunishI==null and bepusnishJ==null:
 		groupPunishTyp=groupType.none
-		#end_button.show()
-		await get_tree().create_timer(0.2).timeout
+		await get_tree().create_timer(1).timeout
 		await enterNewPhase(phaseName.useCard)			
 		
 	if bepunishI!=null:
@@ -308,8 +312,9 @@ func punishFade(anim_name: StringName):
 		checkCardStage(groupType.bin)
 	elif groupPunishTyp==groupType.bin:
 		groupPunishTyp=groupType.none
-		end_button.show()
-		await get_tree().create_timer(0.2).timeout
+		if isPlayerTurn==true:
+			end_button.show()
+		await get_tree().create_timer(1).timeout
 		await enterNewPhase(phaseName.useCard)		
 	
 	
@@ -328,7 +333,8 @@ func _input(event: InputEvent) -> void:
 			# 点击在 LineEdit 外，隐藏 LineEdit
 		if isstop==true:
 			stopClick()
-			detail_txt.text=tr("必须靠近附庸出现红色感叹号才能使用卡牌")
+			if _phaseName==phaseName.useCard and isPlayerTurn==true:
+				detail_txt.text=tr("必须靠近出现感叹号才能使用卡牌")
 	#参考我炒的代码
 	
 	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
@@ -426,9 +432,6 @@ func enterNewPhase(stage:phaseName):
 				groupPunishTyp=groupType.none
 				await enterNewPhase(phaseName.endturn)
 	elif _phaseName==phaseName.useCard:
-		#end_button.disabled=false
-		
-		
 		if isPlayerTurn==true:
 			playerStage=2
 			detail_txt.text="出牌阶段，请使用你的卡牌"
@@ -786,27 +789,28 @@ func AIUseCard():
 	var bestIndex=-1
 	var alreadyUse=[]
 	#把ai用的牌和消除的牌全部记录一遍，不会重复计入
-	while enemyStage>0:
-		for _group in range(1,5):
-			var getscore=calculateStuckScore(_group)
+	#while enemyStage>0:
+	for _group in range(1,5):
+		var getscore=calculateStuckScore(_group)
 			
-			if bestScore<getscore:
-				print("currence"+var_to_str(bestScore)+",bestindex"+var_to_str(_group))
-				bestScore=getscore
-				bestIndex=_group
+		if bestScore<getscore:
+			print("currence"+var_to_str(bestScore)+",bestindex"+var_to_str(_group))
+			bestScore=getscore
+			bestIndex=_group
 	  #在bestIndex使用卡牌	
-		if 	bestIndex!=-1:
+	if 	bestIndex!=-1:
 		
-			AIUseCardInStuck(bestIndex,alreadyUse)
-			enemyStage-=1;
-			await get_tree().create_timer(1).timeout
+		AIUseCardInStuck(bestIndex,alreadyUse)
+		enemyStage-=1;
+		return
+			#await get_tree().create_timer(1).timeout
 			#可能得加个延迟代表思考时间
-		else:
-			print("it is problem")
-			enemyStage=0
-	
+	else:
+		print("it is problem")
+		enemyStage=0
+	if enemyStage<=0:
 	#进入下一个阶段
-	phaseEnd()
+		phaseEnd()
 		
 func AIUseCardInStuck(bestIndex,alreadyUse:Array):
 	var groupobj=getGroupObj(bestIndex)
@@ -831,13 +835,41 @@ func AIUseCardInStuck(bestIndex,alreadyUse:Array):
 						#tween.tween_property(tempheart.material, "shader_parameter/progress", 1.0, 1.0).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
 						var movefinish=func(_hand_card,groupobj):
 							if _hand_card!=null:
-								_hand_card.reparent(groupobj)	
+								_hand_card.reparent(groupobj)
+								await settleOneGroup(groupobj)
+								#调用结算函数	
 							pass
 						tween.tween_callback(movefinish.bind(hand_card,groupobj))  # 播放完成后调用函数
 						#实际用牌逻辑 将handcard打入到groupobj
 						break
 			if useCard==true:
 				break
+
+func settleOneGroup(_groupobj:GridContainer):
+	var groupobj=_groupobj.get_children()
+	var isbreak
+	for i:boardCard in groupobj:
+		for j:boardCard in groupobj:
+			if i!=j and i!=null and j!=null:
+				var residei:int=floori((i._value)/13)
+				var residej:int=floori((j._value)/13)
+
+				if residei==residej:
+
+		
+					punishStage=false
+					isbreak=true
+					await enterRewardStage(i,j)
+					break
+		if isbreak==true:
+			break				
+						
+						#await get_tree().create_timer(0.5)
+						
+
+
+			
+
 
 
 func getGroupObj(_group)->GridContainer:
@@ -917,6 +949,9 @@ func calculateStuckScoreInLoop(suitColor,cardValues:Array):
 var playerEngergyHold=[]
 var enemyEngergyHold=[]
 
+
+var issecretGame=false
+
 #进入结束检查阶段标注 并执行完结束检查阶段
 func enterRewardStage(i:boardCard,j:boardCard):
 
@@ -947,8 +982,7 @@ func enterRewardStage(i:boardCard,j:boardCard):
 			
 			if 	!playerEngergyHold.has(index+1):
 				playerEngergyHold.append(index+1)
-				if playerEngergyHold.size()>=4 and hasSecretCard.has(true) and _issole==false:
-					showSecretCard()#非单人模式才能触发
+
 		else:
 			enemyGraArr.append(i._value)
 			enemyGraArr.append(j._value)
@@ -972,17 +1006,26 @@ func enterRewardStage(i:boardCard,j:boardCard):
 		#print("helloworld")
 		i_node.queue_free()
 		j_node.queue_free()
-
-		if groupPunishTyp==groupType.min:
-			checkCardStage(groupType.shi)
-		elif groupPunishTyp==groupType.shi:
-			checkCardStage(groupType.shang)
-		elif groupPunishTyp==groupType.shang:
-			checkCardStage(groupType.bin)
-		elif groupPunishTyp==groupType.bin:
-			groupPunishTyp=groupType.none
-			await enterNewPhase(phaseName.endturn)		
-
+		await get_tree().create_timer(0.5).timeout
+		if playerEngergyHold.size()>=4 and hasSecretCard.has(true) and _issole==false:
+			showSecretCard()#非单人模式才能触发
+		if _phaseName==phaseName.checkEnd:
+			if groupPunishTyp==groupType.min:
+				checkCardStage(groupType.shi)
+			elif groupPunishTyp==groupType.shi:
+				checkCardStage(groupType.shang)
+			elif groupPunishTyp==groupType.shang:
+				checkCardStage(groupType.bin)
+			elif groupPunishTyp==groupType.bin:
+				groupPunishTyp=groupType.none
+				await enterNewPhase(phaseName.endturn)
+		elif _phaseName==phaseName.useCard:
+			if isPlayerTurn==false:
+				await get_tree().create_timer(0.2).timeout
+				if enemyStage>0:
+					AIUseCard()	
+				else:
+					phaseEnd()
 	i.animation_player_reward.animation_finished.connect(tempfunc.bind(i,j))	
 
 
@@ -1109,7 +1152,8 @@ func phaseEnd():
 			#groupPunishTyp=groupType.min
 			punishimg.texture=_heart
 			punishStage=true
-			end_button.show()
+			if isPlayerTurn==true:
+				end_button.show()
 			if bepunishI!=null:
 				bepunishI.queue_free()
 			if bepusnishJ!=null:
@@ -1151,7 +1195,8 @@ func phaseEnd():
 		punishFade("")
 		
 	elif _phaseName==phaseName.useCard:
-		end_button.hide()
+		if isPlayerTurn==true:
+			end_button.hide()
 		await enterNewPhase(phaseName.checkEnd)
 	#每个下面发一张牌
 	pass
