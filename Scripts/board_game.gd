@@ -862,15 +862,83 @@ func settleOneGroup(_groupobj:GridContainer):
 					await enterRewardStage(i,j)
 					break
 		if isbreak==true:
-			break				
-						
-						#await get_tree().create_timer(0.5)
-						
-
-
+			break	
 			
 
 
+
+		if isbreak==true:
+			break								
+	excuteSecret(_groupobj)					
+						#await get_tree().create_timer(0.5)
+
+			
+
+func excuteSecret(groupobj):
+	for secretCard:boardCard in groupobj:
+		var _secretValue=secretCard._value
+		var _secretsuit=floor(secretCard._value/13)+1
+		var _secretReside=floor(secretCard._value%13)
+		if _secretReside==12:
+			var tween=create_tween()
+			secretCard.reparent(canvas_layer)	
+			secretCard.holdType=cardHoldType.stack
+			secretCard.back_rect.hide()
+			tween.tween_property(secretCard, "global_position", Vector2(844,396), 1)
+
+			var movefinish=func(_hand_card,groupobj,_secretsuit):
+				if _hand_card!=null:
+					if _secretsuit==1:
+						if isPlayerTurn:
+							hp+=1
+							detail_txt.text=tr("你发动了血姬卡，恢复一点体力")
+						else:
+							enemy_hp+=1
+							detail_txt.text=tr("敌人发动血姬卡，恢复一点体力")
+					elif _secretsuit==2:
+						if isPlayerTurn:
+							var cards=myhand.get_children()
+							var _index=randi_range(0,cards.size()-1)
+							cards[_index].queue()
+							detail_txt.text=tr("你发动了骨龙卡，弃掉对手一张卡")
+							#拆一张牌
+							pass
+						else:
+							var cards=enemyhand.get_children()
+							var _index=randi_range(0,cards.size()-1)
+							detail_txt.text=tr("敌人发动了骨龙卡，弃掉你一张卡")
+							cards[_index].queue()
+					elif _secretsuit==3:
+						if isPlayerTurn:
+							drawOne(true)
+							detail_txt.text=tr("你发动尸皇卡，抽一张卡")
+						else:
+							drawOne(false)
+							detail_txt.text=tr("敌人发动尸皇卡，抽一张卡")
+					elif _secretsuit==4:
+						if isPlayerTurn:
+							
+							detail_txt.text=tr("你发动黑商卡，对手失去20分")
+							enemyscore-=20
+							enemy_score_txt.text="敌人得分：{s}".format({"s":enemyscore})		
+
+						else:
+							#扣积分
+							detail_txt.text=tr("敌人发动黑商卡，你失去20分")
+							score-=20
+							score_txt.text="玩家得分：{s}".format({"s":score})
+					await get_tree().create_timer(2)
+					_hand_card.queue()
+				await excuteSecret(groupobj)
+								#调用结算函数	
+
+			tween.tween_callback(movefinish.bind(secretCard,groupobj,_secretsuit))  # 播放完成后调用函数
+
+		else:
+			pass
+		#secretCard#移动到中间		
+
+#还差敌人发动secret的逻辑，以及把上面的逻辑加特效
 
 func getGroupObj(_group)->GridContainer:
 	var groudObj
@@ -988,7 +1056,7 @@ func enterRewardStage(i:boardCard,j:boardCard):
 			enemyGraArr.append(j._value)
 			if 	!enemyEngergyHold.has(index+1):
 				enemyEngergyHold.append(index+1)
-				if enemyEngergyHold.size()>=4 and hasSecretCard.has(true):
+				if enemyEngergyHold.size()>=4 and hasSecretCard.has(true) and issecretGame==true:
 					var indexRandom=randi_range(1,4)
 					getSecretCard(indexRandom,false)	
 					hasSecretCard[indexRandom-1]=false
@@ -1007,7 +1075,7 @@ func enterRewardStage(i:boardCard,j:boardCard):
 		i_node.queue_free()
 		j_node.queue_free()
 		await get_tree().create_timer(0.5).timeout
-		if playerEngergyHold.size()>=4 and hasSecretCard.has(true) and _issole==false:
+		if playerEngergyHold.size()>=4 and hasSecretCard.has(true) and _issole==false and issecretGame==true:
 			showSecretCard()#非单人模式才能触发
 		if _phaseName==phaseName.checkEnd:
 			if groupPunishTyp==groupType.min:

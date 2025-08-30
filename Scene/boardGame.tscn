@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://b62to201rwvs3"]
+[gd_scene load_steps=73 format=3 uid="uid://b62to201rwvs3"]
 
 [ext_resource type="Script" path="res://Scripts/board_game.gd" id="1_34wyh"]
 [ext_resource type="Texture2D" uid="uid://cmbisvj1kshvi" path="res://Asset/黑暗/克苏鲁背景.png" id="1_q5ep7"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bjmquyl6mhboo" path="res://Asset/光明/参考图明亮.png" id="8_kcjlu"]
 [ext_resource type="PackedScene" uid="uid://v5uv2iy3evkb" path="res://Scene/prefab/numPanel.tscn" id="10_5fg67"]
 [ext_resource type="PackedScene" uid="uid://dfolt063spdso" path="res://Scene/prefab/energy.tscn" id="11_4ljq2"]
+[ext_resource type="PackedScene" uid="uid://dxxaa55tg3d1l" path="res://Scene/prefab/boardCard.tscn" id="12_3fqfe"]
 [ext_resource type="PackedScene" uid="uid://dqpklssxni160" path="res://Scene/prefab/clickBlock.tscn" id="12_ucf88"]
 [ext_resource type="Texture2D" uid="uid://bn4xfypysa6ry" path="res://Asset/人物/曹豹close.png" id="13_xjudg"]
 [ext_resource type="Resource" uid="uid://dqlffrutdh2xc" path="res://dialogues/桌游.dialogue" id="14_c6n4h"]
@@ -359,6 +360,13 @@ offset_right = 1623.0
 offset_bottom = 810.0
 scale = Vector2(0.4, 0.4)
 columns = 2
+
+[node name="delete" parent="CanvasLayer" instance=ExtResource("12_3fqfe")]
+visible = false
+offset_left = 844.0
+offset_top = 396.0
+offset_right = 843.92
+offset_bottom = 394.8
 
 [node name="bin" parent="CanvasLayer" instance=ExtResource("12_ucf88")]
 position = Vector2(1314, 419)
