@@ -11,7 +11,7 @@ func _ready() -> void:
 
 
 
-@export var arrs=[false,false,false,false]
+@export var arrs=[true,true,true,true]
 
 func initSecretCard(_arrs):
 
@@ -28,7 +28,8 @@ func _process(delta: float) -> void:
 
 
 func _on_control_1_gui_input(event: InputEvent) -> void:
-	control_gui_press(1)
+	if event is InputEventMouseButton and event.button_index==1:
+		control_gui_press(1)
 @onready var button: Button = $Control/VBoxContainer/HBoxContainer/Button
 			
 func control_gui_press(index):

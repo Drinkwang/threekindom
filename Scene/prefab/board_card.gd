@@ -56,13 +56,13 @@ func setimg(reside,devisor):
 	if kvalue==12:
 		guiyi.show()
 		img.hide()
-		if kvalue==1:
+		if devisor==0:
 			guiyi.texture=mizhen
-		elif kvalue==2:
+		elif devisor==1:
 			guiyi.texture=gulong
-		elif kvalue==3:
+		elif devisor==2:
 			guiyi.texture=shihuang
-		elif kvalue==4:
+		elif devisor==3:
 			guiyi.texture=heishang
 	else:
 		guiyi.hide()

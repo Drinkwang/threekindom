@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://b62to201rwvs3"]
+[gd_scene load_steps=74 format=3 uid="uid://b62to201rwvs3"]
 
 [ext_resource type="Script" path="res://Scripts/board_game.gd" id="1_34wyh"]
 [ext_resource type="Texture2D" uid="uid://cmbisvj1kshvi" path="res://Asset/黑暗/克苏鲁背景.png" id="1_q5ep7"]
@@ -58,6 +58,7 @@
 [ext_resource type="Texture2D" uid="uid://de5u8jbrtr8nk" path="res://Asset/particle/2/vnbvx_28.png" id="56_4mba8"]
 [ext_resource type="Shader" path="res://shader/screenblur.gdshader" id="57_0ucv8"]
 [ext_resource type="Texture2D" uid="uid://0o5hddxuvape" path="res://Asset/particle/2/vnbvx_29.png" id="57_lia12"]
+[ext_resource type="PackedScene" uid="uid://ccwfks8124pm0" path="res://Scene/commonPanel/secretCardPanel.tscn" id="59_wjmuh"]
 
 [sub_resource type="Curve" id="Curve_kx3s6"]
 _data = [Vector2(0.002331, 0.0102652), 0.0, 0.0, 0, 0, Vector2(0.48718, 0.856575), 0.0, 0.0, 0, 0]
@@ -632,7 +633,7 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -967.0
-offset_top = -468.0
+offset_top = -511.0
 offset_right = 968.0
 offset_bottom = 26.0
 grow_horizontal = 2
@@ -734,6 +735,8 @@ offset_right = 1496.0
 offset_bottom = 733.0
 text = "退出游戏"
 
+[node name="CanvasLayer2" parent="." instance=ExtResource("59_wjmuh")]
+
 [node name="HoldEnegyPanel" type="Panel" parent="."]
 visible = false
 offset_top = 375.0
@@ -741,7 +744,6 @@ offset_right = 442.0
 offset_bottom = 541.0
 
 [node name="RichTextLabel_HoldEnegyPanel" type="RichTextLabel" parent="HoldEnegyPanel"]
-visible = false
 layout_mode = 0
 offset_left = 16.0
 offset_top = 2.0
