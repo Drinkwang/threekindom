@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://b62to201rwvs3"]
+[gd_scene load_steps=76 format=3 uid="uid://b62to201rwvs3"]
 
 [ext_resource type="Script" path="res://Scripts/board_game.gd" id="1_34wyh"]
 [ext_resource type="Texture2D" uid="uid://cmbisvj1kshvi" path="res://Asset/黑暗/克苏鲁背景.png" id="1_q5ep7"]
@@ -58,7 +58,7 @@
 [ext_resource type="Texture2D" uid="uid://de5u8jbrtr8nk" path="res://Asset/particle/2/vnbvx_28.png" id="56_4mba8"]
 [ext_resource type="Shader" path="res://shader/screenblur.gdshader" id="57_0ucv8"]
 [ext_resource type="Texture2D" uid="uid://0o5hddxuvape" path="res://Asset/particle/2/vnbvx_29.png" id="57_lia12"]
-[ext_resource type="PackedScene" uid="uid://ccwfks8124pm0" path="res://Scene/commonPanel/secretCardPanel.tscn" id="59_wjmuh"]
+[ext_resource type="Texture2D" uid="uid://rmaibsw1yjqd" path="res://Asset/城镇建筑/5_yellow.png" id="59_xlqph"]
 
 [sub_resource type="Curve" id="Curve_kx3s6"]
 _data = [Vector2(0.002331, 0.0102652), 0.0, 0.0, 0, 0, Vector2(0.48718, 0.856575), 0.0, 0.0, 0, 0]
@@ -258,6 +258,27 @@ tracks/0/keys = {
 _data = {
 "RESET": SubResource("Animation_sbwhj"),
 "win": SubResource("Animation_ygt83")
+}
+
+[sub_resource type="Animation" id="Animation_rms3s"]
+resource_name = "YELLOWGUILD"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -5), Vector2(0, 10), Vector2(0, 6.66666), Vector2(0, 3.33331), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4gull"]
+_data = {
+"YELLOWGUILD": SubResource("Animation_rms3s")
 }
 
 [node name="Node2D2" type="Node2D" node_paths=PackedStringArray("rects")]
@@ -462,6 +483,7 @@ theme_override_font_sizes/font_size = 31
 text = "回合结束"
 
 [node name="boardPanel" type="Panel" parent="CanvasLayer"]
+visible = false
 offset_left = 1206.0
 offset_top = 267.0
 offset_right = 1419.0
@@ -569,14 +591,12 @@ alignment = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("20_f0olx")
 theme_override_font_sizes/font_size = 47
-text = "请支付你所需的惩罚："
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="img" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
-texture = ExtResource("22_bsmks")
 stretch_mode = 2
 
 [node name="NinePatchRect3" type="NinePatchRect" parent="CanvasLayer"]
@@ -735,7 +755,213 @@ offset_right = 1496.0
 offset_bottom = 733.0
 text = "退出游戏"
 
-[node name="CanvasLayer2" parent="." instance=ExtResource("59_wjmuh")]
+[node name="pointGroup" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -55.0
+offset_top = 90.0
+offset_right = -55.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.04034, 1.0033)
+mouse_filter = 2
+
+[node name="1" type="Node2D" parent="CanvasLayer/pointGroup"]
+visible = false
+position = Vector2(746.871, 505.333)
+rotation = 1.16413
+
+[node name="Node2D" type="Node2D" parent="CanvasLayer/pointGroup/1"]
+position = Vector2(-111.03, 53.7)
+rotation = 0.406662
+scale = Vector2(0.5, 0.5)
+
+[node name="5Yellow" type="Sprite2D" parent="CanvasLayer/pointGroup/1/Node2D"]
+rotation = -1.5708
+scale = Vector2(4, 4)
+texture = ExtResource("59_xlqph")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/pointGroup/1/Node2D/5Yellow"]
+libraries = {
+"": SubResource("AnimationLibrary_4gull")
+}
+autoplay = "YELLOWGUILD"
+
+[node name="Label" type="Label" parent="CanvasLayer/pointGroup/1"]
+offset_left = -84.0
+offset_top = 111.0
+offset_right = 666.0
+offset_bottom = 235.0
+rotation = -1.16413
+theme_override_fonts/font = ExtResource("20_f0olx")
+theme_override_font_sizes/font_size = 86
+text = "我们是从属卡！"
+horizontal_alignment = 1
+
+[node name="Node2D2" type="Node2D" parent="CanvasLayer/pointGroup/1"]
+position = Vector2(-20.0749, -149.934)
+rotation = 0.406662
+scale = Vector2(0.5, 0.5)
+
+[node name="5Yellow" type="Sprite2D" parent="CanvasLayer/pointGroup/1/Node2D2"]
+rotation = -1.5708
+scale = Vector2(4, 4)
+texture = ExtResource("59_xlqph")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/pointGroup/1/Node2D2/5Yellow"]
+libraries = {
+"": SubResource("AnimationLibrary_4gull")
+}
+autoplay = "YELLOWGUILD"
+
+[node name="Node2D3" type="Node2D" parent="CanvasLayer/pointGroup/1"]
+position = Vector2(63.4869, -351.519)
+rotation = 0.406662
+scale = Vector2(0.5, 0.5)
+
+[node name="5Yellow" type="Sprite2D" parent="CanvasLayer/pointGroup/1/Node2D3"]
+rotation = -1.5708
+scale = Vector2(4, 4)
+texture = ExtResource("59_xlqph")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/pointGroup/1/Node2D3/5Yellow"]
+libraries = {
+"": SubResource("AnimationLibrary_4gull")
+}
+autoplay = "YELLOWGUILD"
+
+[node name="Node2D4" type="Node2D" parent="CanvasLayer/pointGroup/1"]
+position = Vector2(152.231, -555.059)
+rotation = 0.406662
+scale = Vector2(0.5, 0.5)
+
+[node name="5Yellow" type="Sprite2D" parent="CanvasLayer/pointGroup/1/Node2D4"]
+rotation = -1.5708
+scale = Vector2(4, 4)
+texture = ExtResource("59_xlqph")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/pointGroup/1/Node2D4/5Yellow"]
+libraries = {
+"": SubResource("AnimationLibrary_4gull")
+}
+autoplay = "YELLOWGUILD"
+
+[node name="2" type="Node2D" parent="CanvasLayer/pointGroup"]
+visible = false
+position = Vector2(651.71, 279.079)
+scale = Vector2(0.5, 0.5)
+
+[node name="5Yellow" type="Sprite2D" parent="CanvasLayer/pointGroup/2"]
+scale = Vector2(4, 4)
+texture = ExtResource("59_xlqph")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/pointGroup/2/5Yellow"]
+libraries = {
+"": SubResource("AnimationLibrary_4gull")
+}
+autoplay = "YELLOWGUILD"
+
+[node name="3" type="Node2D" parent="CanvasLayer/pointGroup"]
+visible = false
+position = Vector2(724.763, 203.329)
+
+[node name="Node2D3" parent="CanvasLayer/pointGroup/3" instance=ExtResource("12_3fqfe")]
+offset_left = 152.835
+offset_top = 201.336
+offset_right = 342.835
+offset_bottom = 459.336
+scale = Vector2(0.4, 0.4)
+
+[node name="Node2D2" parent="CanvasLayer/pointGroup/3" instance=ExtResource("12_3fqfe")]
+offset_left = 74.9755
+offset_top = 200.339
+offset_right = 264.975
+offset_bottom = 458.339
+scale = Vector2(0.4, 0.4)
+_value = 5
+
+[node name="Node2D4" type="Node2D" parent="CanvasLayer/pointGroup/3"]
+position = Vector2(232.616, 331.905)
+rotation = -1.5708
+scale = Vector2(2, 2)
+
+[node name="5Yellow3" type="Sprite2D" parent="CanvasLayer/pointGroup/3/Node2D4"]
+position = Vector2(0, 5)
+rotation = 1.28631
+scale = Vector2(1, 1)
+texture = ExtResource("59_xlqph")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/pointGroup/3/Node2D4/5Yellow3"]
+libraries = {
+"": SubResource("AnimationLibrary_4gull")
+}
+autoplay = "YELLOWGUILD"
+
+[node name="Node2D" type="Node2D" parent="CanvasLayer/pointGroup/3"]
+position = Vector2(200.896, 10.9639)
+rotation = -1.5708
+scale = Vector2(2, 2)
+
+[node name="5Yellow2" type="Sprite2D" parent="CanvasLayer/pointGroup/3/Node2D"]
+position = Vector2(0, 5)
+texture = ExtResource("59_xlqph")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/pointGroup/3/Node2D/5Yellow2"]
+libraries = {
+"": SubResource("AnimationLibrary_4gull")
+}
+autoplay = "YELLOWGUILD"
+
+[node name="4" type="Node2D" parent="CanvasLayer/pointGroup"]
+visible = false
+position = Vector2(570.006, 682.747)
+rotation = 3.91826
+
+[node name="5Yellow" type="Sprite2D" parent="CanvasLayer/pointGroup/4"]
+rotation = -1.5708
+scale = Vector2(4, 4)
+texture = ExtResource("59_xlqph")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/pointGroup/4/5Yellow"]
+libraries = {
+"": SubResource("AnimationLibrary_4gull")
+}
+autoplay = "YELLOWGUILD"
+
+[node name="5" type="Node2D" parent="CanvasLayer/pointGroup"]
+visible = false
+position = Vector2(239.345, 836.24)
+rotation = -1.5708
+
+[node name="5Yellow" type="Sprite2D" parent="CanvasLayer/pointGroup/5"]
+rotation = -1.5708
+scale = Vector2(4, 4)
+texture = ExtResource("59_xlqph")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/pointGroup/5/5Yellow"]
+libraries = {
+"": SubResource("AnimationLibrary_4gull")
+}
+autoplay = "YELLOWGUILD"
+
+[node name="6" type="Node2D" parent="CanvasLayer/pointGroup"]
+visible = false
+position = Vector2(357.575, 37.875)
+scale = Vector2(0.5, 0.5)
+
+[node name="5Yellow" type="Sprite2D" parent="CanvasLayer/pointGroup/6"]
+rotation = -1.5708
+scale = Vector2(4, 4)
+texture = ExtResource("59_xlqph")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/pointGroup/6/5Yellow"]
+libraries = {
+"": SubResource("AnimationLibrary_4gull")
+}
+autoplay = "YELLOWGUILD"
 
 [node name="HoldEnegyPanel" type="Panel" parent="."]
 visible = false

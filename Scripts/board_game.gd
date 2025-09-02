@@ -62,8 +62,24 @@ func _ready() -> void:
 			cardArr.push_front(i)
 	cardsize-=1
 	changeHoldEnegyPanel()
-	await startGame(4,false)
-	
+	#await startGame(4,false)
+	enterNtutorial()
+
+func showdetail(str:String,grouptype):
+
+	detail_txt.show()
+	punishimg.show()
+	detail_txt.text=tr(str)
+	if grouptype==groupType.min:
+		punishimg.texture=_heart
+	elif grouptype==groupType.shi:
+		punishimg.texture=_zhanli
+	elif grouptype==groupType.shang:
+		punishimg.texture=_coin
+	elif grouptype==groupType.bin:
+		punishimg.texture=_soilder
+	else:
+		punishimg.texture=null
 
 	
 	
@@ -949,6 +965,14 @@ func excuteSecret(groupobj:Array):
 			pass
 		#secretCard#移动到中间		
 
+	if isPlayerTurn==false:
+		await get_tree().create_timer(0.2).timeout
+		if enemyStage>0:
+			AIUseCard()	#这个我可能感觉ai可能也会需要
+		else:
+			phaseEnd()
+
+
 #还差敌人发动secret的逻辑，以及把上面的逻辑加特效
 
 func getGroupObj(_group)->GridContainer:
@@ -1099,6 +1123,7 @@ func enterRewardStage(i:boardCard,j:boardCard):
 		await get_tree().create_timer(0.5).timeout
 		if playerEngergyHold.size()>=4 and hasSecretCard.has(true) and _issole==false and issecretGame==true:
 			showSecretCard()#非单人模式才能触发
+			SoundManager.play_sound(sounds.HUI_1)
 		if _phaseName==phaseName.checkEnd:
 			if groupPunishTyp==groupType.min:
 				checkCardStage(groupType.shi)
@@ -1343,3 +1368,33 @@ enum groupType{
 	gt_gulong
 	
 }
+
+const dialogue_resource = preload("res://dialogues/桌游.dialogue")
+func enterNtutorial():
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新手教程_初级")
+	
+func enterMtutorial():
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新手教程_中级")
+
+func enterHtutorial():
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新手教程_高级")
+
+@onready var point_group: Control = $CanvasLayer/pointGroup
+
+
+@onready var guild_1: Node2D = $"CanvasLayer/pointGroup/1"
+@onready var guild_2: Node2D = $"CanvasLayer/pointGroup/2"
+@onready var guild_3: Node2D = $"CanvasLayer/pointGroup/3"
+@onready var guild_4: Node2D = $"CanvasLayer/pointGroup/4"
+@onready var guild_5: Node2D = $"CanvasLayer/pointGroup/5"
+@onready var guild_6: Node2D = $"CanvasLayer/pointGroup/6"
+
+
+
+func showtutorial(num,isshow):
+
+	if(num<8):
+		if isshow:
+			self["guild_"+str(num)].show()
+		else:
+			self["guild_"+str(num)].hide()

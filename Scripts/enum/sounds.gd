@@ -26,3 +26,7 @@ const GOOD_THING = preload("res://Asset/sound/goodThing.wav")
 const MATCH_STRIKING = preload("res://Asset/sound/Match_striking.wav")
 const SWORD_PANG = preload("res://Asset/sound/swordPang.wav")
 const tunyan = preload("res://Asset/bgm/吞咽.mp3")
+
+const HUI_1 = preload("res://Asset/sound/hui1.wav")
+const HUI_2 = preload("res://Asset/sound/hui2.wav")
+const HUI_3 = preload("res://Asset/sound/hui3.wav")
