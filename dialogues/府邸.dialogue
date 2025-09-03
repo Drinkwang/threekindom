@@ -1224,3 +1224,15 @@ do GameManager.getItemAction.call()
 刘备: （我从桌上发现了不知谁遗留下来的道具...）
 do GameManager.getItemAction.call() 
 => END!
+
+
+~ 来把仕诡牌
+糜竺: 主公，军资已备，粮草无忧，大业可成！
+- 来把仕诡牌吧
+	刘备: 来局仕诡牌如何？
+	糜竺: 来！我可是仕诡牌好手，这赢了比赚金子还痛快！快来！
+
+- 取消
+
+=> END!
+

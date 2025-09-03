@@ -891,7 +891,6 @@ scale = Vector2(2, 2)
 [node name="5Yellow3" type="Sprite2D" parent="CanvasLayer/pointGroup/3/Node2D4"]
 position = Vector2(0, 5)
 rotation = 1.28631
-scale = Vector2(1, 1)
 texture = ExtResource("59_xlqph")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/pointGroup/3/Node2D4/5Yellow3"]
@@ -963,8 +962,39 @@ libraries = {
 }
 autoplay = "YELLOWGUILD"
 
-[node name="HoldEnegyPanel" type="Panel" parent="."]
+[node name="7" type="Node2D" parent="CanvasLayer/pointGroup"]
 visible = false
+position = Vector2(112.463, 220.273)
+rotation = -1.5708
+
+[node name="5Yellow" type="Sprite2D" parent="CanvasLayer/pointGroup/7"]
+rotation = -1.5708
+scale = Vector2(4, 4)
+texture = ExtResource("59_xlqph")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/pointGroup/7/5Yellow"]
+libraries = {
+"": SubResource("AnimationLibrary_4gull")
+}
+autoplay = "YELLOWGUILD"
+
+[node name="8" type="Node2D" parent="CanvasLayer/pointGroup"]
+visible = false
+position = Vector2(1678.3, 355.826)
+rotation = -4.71239
+
+[node name="5Yellow" type="Sprite2D" parent="CanvasLayer/pointGroup/8"]
+rotation = -1.5708
+scale = Vector2(4, 4)
+texture = ExtResource("59_xlqph")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/pointGroup/8/5Yellow"]
+libraries = {
+"": SubResource("AnimationLibrary_4gull")
+}
+autoplay = "YELLOWGUILD"
+
+[node name="HoldEnegyPanel" type="Panel" parent="."]
 offset_top = 375.0
 offset_right = 442.0
 offset_bottom = 541.0

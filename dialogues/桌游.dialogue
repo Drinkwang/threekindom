@@ -64,7 +64,11 @@ do showtutorial(6,false)
 
 ~ 新手教程_中级
 规则指引: 在对局试炼中，玩家将会出现对手，当玩家回合结束时，会进入对手回合
+#显示对手
+do showtutorial(8,true)
 规则指引: 对手会同样执行玩家的操作，但对手回合不计入计数，也就是双方一共进行10回合
+#关闭显示对手
+do showtutorial(8,false)
 规则指引: 在此规则下，玩家可以让对手生命值为0获胜，也可以5回合结束后，分数不小于对手也能获胜。准备好，马上开始吧！
 => END!
 
@@ -73,6 +77,62 @@ do showtutorial(6,false)
 do showtutorial(7,true)
 规则指引: 在诡秘乱局规则下，游戏将出现特殊的诡异卡，当玩家在一种花色牌型得分，将会在能量槽点亮花色。
 规则指引: 当所有花色都被点亮，玩家将选择一张诡异卡加入手牌，当使用到场上则能发动。
+#点亮所有花色
+do isLightUpEnergPanel(true)
 规则指引: 每个诡异卡都对战局有不同的帮助，但每个诡异卡，一局只能发动一次，请利用好新规则战胜对手！
+#恢复原样
+do isLightUpEnergPanel(false)
 do showtutorial(7,false)
 => END!
+
+
+
+
+~ 欢迎进入初级
+规则指引: 大人，仕诡牌玄机暗藏，可否需要我给你提供指引？
+- 是
+	=> 新手教程_初级
+- 否
+
+=> END!
+
+
+~ 欢迎进入中级
+规则指引: 大人，你是否第一次接触对局试炼？需要我给你提供指引么？
+- 是  
+	=> 新手教程_中级
+- 否
+
+=> END!
+
+
+
+~ 欢迎进入高级
+规则指引: 大人，你是否第一次接触诡秘乱局？需要我给你提供指引么？
+- 是  
+	=> 新手教程_高级
+- 否
+
+=> END!
+
+~ 选择仕诡牌
+
+- 来把仕诡牌吧
+- 取消
+=> END!
+
+~ 选择仕诡牌2
+- （1）小试牛刀[boardgame=true]
+	do GameManager.enterBoardGame(0)
+- （2）对局试炼[boardgame=true]
+	do GameManager.enterBoardGame(1)
+- （3）诡秘乱局[boardgame=true]
+	do GameManager.enterBoardGame(2)
+- 当前排行榜
+	系统提示: 试玩版暂不开放
+- 重置教程
+	系统提示: 教程已重置
+	do GameManager.clearTutorial()
+- 取消
+=> END!
+

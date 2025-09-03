@@ -1214,3 +1214,19 @@ func play_BGM():
 
 		var music_file = "res://Asset/music/Ambient " + str(musicId) + ".wav"
 		play_music(music_file)	
+
+
+func clearTutorial():
+	sav.have_event["卡牌新手教程"]=false
+	sav.have_event["卡牌中级教程"]=false
+	sav.have_event["卡牌高级教程"]=false	
+
+var selectBoardCharacter:boardType.boardCharacter=boardType.boardCharacter.none
+func enterBoardGame(mode:boardType.boardMode):
+	if selectBoardCharacter==boardType.boardCharacter.caobao:
+		pass
+	elif selectBoardCharacter==boardType.boardCharacter.mizhu:
+		pass
+	elif selectBoardCharacter==boardType.boardCharacter.chenden:
+		pass	
+	

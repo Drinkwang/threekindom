@@ -160,6 +160,12 @@ const _zhanli = preload("res://Asset/ui/战力.png")
 
 @onready var lose_rect: ColorRect = $CanvasLayer/LoseRect
 
+func isLightUpEnergPanel(isshow):
+	if isshow==false:
+		rich_text_label_hold_enegy_panel.text="玩家:\n[color=#ffffff88]♥♠♣♦[/color]\n敌人:\n[color=#ffffff88]♥♠♣♦[/color]"
+	else:
+		rich_text_label_hold_enegy_panel.text="玩家:\n♥♠♣♦\n敌人:\n[color=#ffffff88]♥♠♣♦[/color]"
+
 
 func changeHoldEnegyPanel():
 	#从墓地区便利
@@ -1389,11 +1395,16 @@ func enterHtutorial():
 @onready var guild_5: Node2D = $"CanvasLayer/pointGroup/5"
 @onready var guild_6: Node2D = $"CanvasLayer/pointGroup/6"
 
+@onready var guild_7: Node2D = $"CanvasLayer/pointGroup/7"
+
+@onready var guild_8: Node2D = $"CanvasLayer/pointGroup/8"
+
+
 
 
 func showtutorial(num,isshow):
 
-	if(num<8):
+	if(num<9):
 		if isshow:
 			self["guild_"+str(num)].show()
 		else:
