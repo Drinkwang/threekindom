@@ -186,6 +186,7 @@ position = Vector2(669, 401)
 scale = Vector2(2.68435, 2.68435)
 showborder = false
 txt2d = null
+boardType = null
 dialogue_resource = ExtResource("2_cebyh")
 dialogue_start = "开灯"
 
@@ -195,6 +196,7 @@ position = Vector2(1029, 672)
 dialogue_doubleclick = "蜡烛"
 showborder = false
 txt2d = ExtResource("5_qjidl")
+boardType = null
 dialogue_resource = ExtResource("2_cebyh")
 dialogue_start = "蜡烛"
 
@@ -208,6 +210,7 @@ position = Vector2(975, 563)
 showName = "陶谦的牌位"
 dialogue_doubleclick = "second"
 txt2d = ExtResource("7_av8xv")
+boardType = null
 dialogue_resource = ExtResource("2_cebyh")
 dialogue_start = "second"
 

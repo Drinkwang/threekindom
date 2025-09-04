@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://ccwfks8124pm0"]
+[gd_scene load_steps=6 format=3 uid="uid://ccwfks8124pm0"]
 
 [ext_resource type="Script" path="res://Scene/commonPanel/rewardPanel.gd" id="1_nbkq4"]
 [ext_resource type="Theme" uid="uid://bklmr3xmk4m5u" path="res://global_theme.tres" id="2_gh1tc"]
 [ext_resource type="PackedScene" uid="uid://5qxpn6avk7bx" path="res://Scene/prefab/ShopItem.tscn" id="3_np5iq"]
 [ext_resource type="Texture2D" uid="uid://cnw7t4vywvfup" path="res://Asset/other/胜利.png" id="4_drk6n"]
+[ext_resource type="FontFile" uid="uid://to00njkwmxts" path="res://Asset/Font/1_sim.ttf" id="4_un31k"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_nbkq4")
@@ -57,6 +58,12 @@ autowrap_mode = 2
 [node name="title" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 0
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("4_un31k")
 horizontal_alignment = 1
 autowrap_mode = 3
 

@@ -1186,3 +1186,12 @@ func resumeMusic():
 	GameManager.play_music(music_file)	
 
 @onready var items_in_scene: Node2D = $itemsInScene
+
+
+func openBoardGame():
+	GameManager.selectBoardCharacter=boardType.boardCharacter.mizhu
+	GameManager.showBoardGameDialogue()
+
+
+func openBoardDialogue():
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"进入仕诡牌游戏")

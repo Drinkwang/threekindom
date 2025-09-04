@@ -123,11 +123,11 @@ do showtutorial(7,false)
 
 ~ 选择仕诡牌2
 - （1）小试牛刀[boardgame=true]
-	do GameManager.enterBoardGame(0)
+	do GameManager.selectBoardMode(boardType.boardMode.new)
 - （2）对局试炼[boardgame=true]
-	do GameManager.enterBoardGame(1)
+	do GameManager.selectBoardMode(boardType.boardMode.middle)
 - （3）诡秘乱局[boardgame=true]
-	do GameManager.enterBoardGame(2)
+	do GameManager.selectBoardMode(boardType.boardMode.high)
 - 当前排行榜
 	系统提示: 试玩版暂不开放
 - 重置教程

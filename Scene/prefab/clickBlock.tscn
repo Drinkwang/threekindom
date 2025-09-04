@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dqpklssxni160"]
+[gd_scene load_steps=11 format=3 uid="uid://dqpklssxni160"]
 
 [ext_resource type="Script" path="res://Scripts/clickBlock.gd" id="1_es4xp"]
 [ext_resource type="Texture2D" uid="uid://c1o6guigf68iu" path="res://Asset/城镇建筑/灵堂亮.jpg" id="2_cxpov"]
 [ext_resource type="Texture2D" uid="uid://bye5cypeps08s" path="res://Asset/ui/4.png" id="3_gdvxu"]
+[ext_resource type="Texture2D" uid="uid://v18r3lgfvy17" path="res://Asset/ui/白框.png" id="3_lv21x"]
 [ext_resource type="Texture2D" uid="uid://c8s24bx5r2xci" path="res://Asset/other/感叹号.png" id="4_es4ro"]
 [ext_resource type="Texture2D" uid="uid://c4tifw3jqmu6n" path="res://Scene/heart.png" id="5_3uyx0"]
 
@@ -47,10 +48,18 @@ _data = {
 [node name="Node2D2" type="Node2D"]
 script = ExtResource("1_es4xp")
 txt2d = ExtResource("2_cxpov")
+boardType = null
 isHide = null
 metadata/_edit_vertical_guides_ = [-329.0]
 
+[node name="9" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-2.83122e-06, -1)
+scale = Vector2(0.96, 0.96)
+texture = ExtResource("3_lv21x")
+
 [node name="8" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(-0.905, -0.805)
 scale = Vector2(0.285, 0.285)
 texture = ExtResource("3_gdvxu")
@@ -97,9 +106,9 @@ autowrap_mode = 3
 
 [node name="exPoint" type="TextureRect" parent="."]
 visible = false
-offset_left = 25.0
+offset_left = 30.0
 offset_top = -60.0
-offset_right = 153.0
+offset_right = 158.0
 offset_bottom = 68.0
 scale = Vector2(0.285, 0.285)
 mouse_filter = 2

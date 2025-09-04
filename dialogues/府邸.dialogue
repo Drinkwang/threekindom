@@ -1229,10 +1229,18 @@ do GameManager.getItemAction.call()
 ~ 来把仕诡牌
 糜竺: 主公，军资已备，粮草无忧，大业可成！
 - 来把仕诡牌吧
-	刘备: 来局仕诡牌如何？
-	糜竺: 来！我可是仕诡牌好手，这赢了比赚金子还痛快！快来！
+	do openBoardGame()
 
 - 取消
 
 => END!
 
+
+
+
+~ 进入仕诡牌游戏
+
+刘备: 来局仕诡牌如何？
+糜竺: 来！我可是仕诡牌好手，这赢了比赚金子还痛快！快来！
+do GameManager.enterBoardGame()
+=> END!

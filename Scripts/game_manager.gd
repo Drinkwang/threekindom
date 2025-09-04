@@ -1222,11 +1222,18 @@ func clearTutorial():
 	sav.have_event["卡牌高级教程"]=false	
 
 var selectBoardCharacter:boardType.boardCharacter=boardType.boardCharacter.none
-func enterBoardGame(mode:boardType.boardMode):
-	if selectBoardCharacter==boardType.boardCharacter.caobao:
-		pass
-	elif selectBoardCharacter==boardType.boardCharacter.mizhu:
-		pass
-	elif selectBoardCharacter==boardType.boardCharacter.chenden:
-		pass	
+var _boardMode:boardType.boardMode=boardType.boardMode.none
+func selectBoardMode(mode:boardType.boardMode):
+	_boardMode=mode
+	currenceScene.openBoardDialogue()
 	
+func enterBoardGame():
+	#切入boardGame场景
+	SceneManager.changeScene(SceneManager.roomNode.BoardGame,2)
+
+
+const boardDialogue = preload("res://dialogues/桌游.dialogue")
+
+func showBoardGameDialogue():
+	DialogueManager.show_example_dialogue_balloon(boardDialogue,"选择仕诡牌2")
+	pass

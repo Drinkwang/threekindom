@@ -496,5 +496,12 @@ func _DayGet():
 	#	_JudgeTask()
 
 
+func openBoardGame():
+	GameManager.selectBoardCharacter=boardType.boardCharacter.caobao
+	GameManager.showBoardGameDialogue()
 
+func openBoardDialogue():
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"进入仕诡牌游戏")
+	
+	
 @onready var items_in_scene: Node2D = $itemsInScene

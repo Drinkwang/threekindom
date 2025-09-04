@@ -155,6 +155,7 @@ visible = false
 position = Vector2(982, 546)
 showName = "曹豹"
 txt2d = ExtResource("15_1y7hu")
+boardType = null
 dialogue_resource = ExtResource("2_j02vm")
 dialogue_start = ""
 

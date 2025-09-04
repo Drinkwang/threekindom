@@ -17,17 +17,26 @@ extends baseComponent
 @export var showborder:bool=true:
 	set(isshow):
 		showborder=isshow
-		if $"8"!=null and isshow==false:
-			$"8".hide()
+		if _8!=null and _9!=null and isshow==false:
+			_8.hide()
+			_9.hide()
 		else: 
-			if $"8"!=null and isshow==true:
-				$"8".show()
+			if isshow==true:
+				if boardType==0:
+					if _8!=null:
+						_9.hide()
+						_8.show()
+				elif boardType==1:
+					if _9!=null:
+						_8.hide()
+						_9.show()
 			
 	get:
 		return showborder
 		
 
 @onready var ex_point = $exPoint
+@onready var _8: Sprite2D = $"8"
 
 
 @export var showEX:bool=false:
@@ -54,17 +63,23 @@ extends baseComponent
 
 	get:
 		return txt2d
+@onready var _9: Sprite2D = $"9"
 		
-
+@export var boardType=0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	img.texture=txt2d
 	
 	if showborder==false:
-		$"8".hide()
+		_8.hide()
+		_9.hide()
 	else: 
-		$"8".show()
-		
+		if boardType==0:
+			_9.hide()
+			_8.show()
+		elif boardType==1:
+			_8.hide()
+			_9.show()
 	if $Panel!=null and showName.length()>0:
 		$Panel.show()
 		$Panel/Label.text=showName;

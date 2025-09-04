@@ -519,4 +519,19 @@ func sideQuestReturnD(iswin):
 	battle_pane.sideQuestReturnD(iswin)
 
 @onready var items_in_scene: Node2D = $itemsInScene
- 
+@onready var people: Node2D = $people
+
+#-1 0 小试牛刀开启 1小试牛刀通过 2 对局试炼开启 3对局试验通过 4 诡秘怪谈开启 5诡秘怪谈通过
+func meetBoardGame(_value):
+	if _value==1:
+		GameManager.sav.caobaocardgame=0
+		GameManager.sav.mizhucardgame=0
+		GameManager.sav.chendencardgame=0
+	elif _value==2:
+		GameManager.sav.caobaocardgame=2
+		GameManager.sav.mizhucardgame=2
+		GameManager.sav.chendencardgame=2	
+	elif _value==3:
+		GameManager.sav.caobaocardgame=4
+		GameManager.sav.mizhucardgame=4
+		GameManager.sav.chendencardgame=4	

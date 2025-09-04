@@ -286,9 +286,19 @@ do GameManager.getItemAction.call()
 陈登: 主公，徐州赋税已清点，民心渐稳，治政可期。
 
 - 来把仕诡牌吧
-	刘备: 元龙，政务繁重，可愿玩局仕诡牌解乏？
-	陈登: 太好了，主公！仕诡牌才是真谋略！来，登陪您！
+	do openBoardGame()
+
 
 - 取消
 
 => END!
+
+~ 进入仕诡牌游戏
+
+刘备: 元龙，政务繁重，可愿玩局仕诡牌解乏？
+陈登: 太好了，主公！仕诡牌才是真谋略！来，登陪您！
+do GameManager.enterBoardGame()
+=> END!
+
+
+

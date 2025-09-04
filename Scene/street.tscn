@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cehg7t1h5f2ei"]
+[gd_scene load_steps=27 format=3 uid="uid://cehg7t1h5f2ei"]
 
 [ext_resource type="Script" path="res://Scripts/street.gd" id="1_jskmv"]
 [ext_resource type="Resource" uid="uid://qopivlttvt12" path="res://dialogues/街道.dialogue" id="2_a3tl4"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://ghiim2lkqkbe" path="res://Scene/prefab/propertyPanel.tscn" id="8_qssq7"]
 [ext_resource type="Texture2D" uid="uid://dlpu2s7rm4k33" path="res://Asset/光明/装饰底板.png" id="9_ide2q"]
 [ext_resource type="Texture2D" uid="uid://bjmquyl6mhboo" path="res://Asset/光明/参考图明亮.png" id="10_0o7yc"]
+[ext_resource type="Texture2D" uid="uid://crvsmgt0jscjy" path="res://Asset/人物/民.png" id="11_egoaw"]
 [ext_resource type="PackedScene" uid="uid://v5uv2iy3evkb" path="res://Scene/prefab/numPanel.tscn" id="12_koypy"]
 [ext_resource type="PackedScene" uid="uid://dqpklssxni160" path="res://Scene/prefab/clickBlock.tscn" id="17_w7ika"]
 [ext_resource type="Texture2D" uid="uid://c7ak04ev7bpyc" path="res://Asset/人物/镇魂龙最终.png" id="18_2o7ym"]
@@ -68,6 +69,17 @@ texture = ExtResource("8_h3v2d")
 position = Vector2(960, 533)
 scale = Vector2(2.23, 2.23)
 texture = ExtResource("9_ide2q")
+
+[node name="people" parent="." instance=ExtResource("17_w7ika")]
+visible = false
+position = Vector2(971, 573)
+showName = "民众"
+dialogue_doubleclick = "遇到诡异牌1"
+showEX = true
+txt2d = ExtResource("11_egoaw")
+boardType = 1
+dialogue_resource = ExtResource("2_a3tl4")
+dialogue_start = "遇到诡异牌1"
 
 [node name="正常背景2" type="Sprite2D" parent="."]
 visible = false
