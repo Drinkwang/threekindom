@@ -1235,5 +1235,5 @@ func enterBoardGame():
 const boardDialogue = preload("res://dialogues/桌游.dialogue")
 
 func showBoardGameDialogue():
-	DialogueManager.show_example_dialogue_balloon(boardDialogue,"选择仕诡牌2")
+	DialogueManager.show_example_dialogue_balloon(boardDialogue,"选择仕诡牌")
 	pass

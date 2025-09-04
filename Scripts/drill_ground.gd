@@ -501,7 +501,9 @@ func openBoardGame():
 	GameManager.showBoardGameDialogue()
 
 func openBoardDialogue():
-	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"进入仕诡牌游戏")
-	
+	if GameManager._boardMode!=boardType.boardMode.high:
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"进入仕诡牌游戏")
+	else:
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"来把仕诡牌2")
 	
 @onready var items_in_scene: Node2D = $itemsInScene

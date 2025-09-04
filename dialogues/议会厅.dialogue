@@ -294,11 +294,30 @@ do GameManager.getItemAction.call()
 => END!
 
 ~ 进入仕诡牌游戏
+if GameManager._boardMode==boardType.boardMode.high and GameManager.sav.chendencardgame==4
+	刘备: ...
+	陈登: 主公…牌局即命运…来吧…
+else
 
-刘备: 元龙，政务繁重，可愿玩局仕诡牌解乏？
-陈登: 太好了，主公！仕诡牌才是真谋略！来，登陪您！
+	刘备: 元龙，政务繁重，可愿玩局仕诡牌解乏？
+	陈登: 太好了，主公！仕诡牌才是真谋略！来，登陪您！
+
+
+
 do GameManager.enterBoardGame()
 => END!
 
 
 
+~ 一阶奖励
+
+=> END!
+
+~ 二阶奖励
+
+=> END!
+
+
+~ 诡异牌清醒
+
+=> END!

@@ -1240,7 +1240,14 @@ do GameManager.getItemAction.call()
 
 ~ 进入仕诡牌游戏
 
-刘备: 来局仕诡牌如何？
-糜竺: 来！我可是仕诡牌好手，这赢了比赚金子还痛快！快来！
+
+
+if GameManager._boardMode==boardType.boardMode.high and GameManager.sav.mizhucardgame==4
+	刘备: ...
+	糜竺: 主公…牌在召唤我们，来！进行黑暗游戏吧！
+else
+
+	刘备: 来局仕诡牌如何？
+	糜竺: 来！我可是仕诡牌好手，这赢了比赚金子还痛快！快来！
 do GameManager.enterBoardGame()
 => END!

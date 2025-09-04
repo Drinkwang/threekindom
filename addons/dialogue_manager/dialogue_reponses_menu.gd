@@ -50,6 +50,31 @@ var responses: Array = []:
 						var sxnum=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.獬豸圣像) 
 						if sxnum>0:
 							apply_highlight_effect(item)  # 应用高亮效果
+					
+					if "[boardgame=true]" in response.text:
+						response.text = response.text.replace("[boardgame=true]", "")
+						pass #判断有无人物
+						var mode:boardType.boardMode
+						if "1" in response.text:
+							mode=boardType.boardMode.new
+						elif "2" in response.text:
+							mode=boardType.boardMode.middle
+						elif "3" in response.text:
+							mode=boardType.boardMode.high
+						var characterScore=0	
+						if GameManager.selectBoardCharacter==boardType.boardCharacter.caobao:
+							characterScore=GameManager.sav.caobaocardgame
+						elif GameManager.selectBoardCharacter==boardType.boardCharacter.chenden:
+							characterScore=GameManager.sav.chendencardgame	
+						elif GameManager.selectBoardCharacter==boardType.boardCharacter.mizhu:
+							characterScore=GameManager.sav.mizhucardgame		
+						#0 小试牛刀开启 1小试牛刀通过 2 对局试炼开启 3对局试验通过 4 诡秘怪谈开启 5诡秘怪谈通过	
+						if 	(characterScore==1 and mode==boardType.boardMode.new) or (characterScore==3 and mode==boardType.boardMode.middle) or (characterScore==5 and mode==boardType.boardMode.high):
+							response.text+=tr("(已通过)")
+						elif (characterScore<2 and mode==boardType.boardMode.middle) or (characterScore<4 and mode==boardType.boardMode.high):
+							response.text+=tr("(未解锁)")
+						#根据角色获得分数，判断 score 如果score怎么样，那么会变成什么样	
+								
 					item.text = response.text
 					
 				item.set_meta("response", response)

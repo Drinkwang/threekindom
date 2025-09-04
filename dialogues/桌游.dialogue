@@ -115,13 +115,8 @@ do showtutorial(7,false)
 
 => END!
 
+
 ~ 选择仕诡牌
-
-- 来把仕诡牌吧
-- 取消
-=> END!
-
-~ 选择仕诡牌2
 - （1）小试牛刀[boardgame=true]
 	do GameManager.selectBoardMode(boardType.boardMode.new)
 - （2）对局试炼[boardgame=true]
@@ -136,3 +131,15 @@ do showtutorial(7,false)
 - 取消
 => END!
 
+
+
+~ 当前模式未解锁
+系统提示: 当前模式未解锁
+=> 选择仕诡牌
+=> END!
+
+
+~ 在试玩版中
+系统提示: 在试玩版中，你无法进行非小试牛刀外的其它的模式
+=> 选择仕诡牌
+=> END!
