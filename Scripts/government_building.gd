@@ -703,6 +703,17 @@ func deliverUncompleteTask():
 			mizhu.show()
 			tsty.hide()
 			mizhu.showEX=true
+		else:
+			#0 小试牛刀开启 1小试牛刀通过 2 对局试炼开启 3对局试验通过 4 诡秘怪谈开启 5诡秘怪谈通过
+			if GameManager.sav.mizhucardgame>=0:
+			
+				mizhu.changeAllClick("来把仕诡牌")
+
+					
+				mizhu.show()
+				mizhu.showEX=false
+			pass #卡牌逻辑
+			#
 	else :
 		if GameManager.sav.day>5:
 			if(GameManager.sav.have_event["initTask1"]==true):

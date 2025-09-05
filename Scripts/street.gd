@@ -106,13 +106,13 @@ func _initData():
 		return #选选项，另外点击百姓
 	else:
 		if GameManager.sav.caobaocardgame==-1 and GameManager.sav.mizhucardgame==-1 and  GameManager.sav.chendencardgame==-1:
-			people.dialogue_start="遇到诡异牌1"
+			people.changeAllClick("遇到诡异牌1")
 			people.show()
 		if GameManager.sav.caobaocardgame==1 and GameManager.sav.mizhucardgame==1 and  GameManager.sav.chendencardgame==1:
-			people.dialogue_start="遇到诡异牌2"
+			people.changeAllClick("遇到诡异牌2")
 			people.show()
 		if GameManager.sav.caobaocardgame==3 and GameManager.sav.mizhucardgame==3 and  GameManager.sav.chendencardgame==3:
-			people.dialogue_start="遇到诡异牌3"
+			people.changeAllClick("遇到诡异牌3")
 			people.show()		
 #-1 0 小试牛刀开启 1小试牛刀通过 2 对局试炼开启 3对局试验通过 4 诡秘怪谈开启 5诡秘怪谈通过		
 	var initData=[

@@ -121,7 +121,9 @@ do showtutorial(7,false)
 	do GameManager.selectBoardMode(boardType.boardMode.new)
 - （2）对局试炼[boardgame=true]
 	do GameManager.selectBoardMode(boardType.boardMode.middle)
-- （3）诡秘乱局[boardgame=true]
+
+
+- （3）诡秘乱局[boardgame=true] [if GameManager.sav.caobaocardgame>=5 or GameManager.selectBoardCharacter!=boardType.boardCharacter.caobao]
 	do GameManager.selectBoardMode(boardType.boardMode.high)
 - 当前排行榜
 	系统提示: 试玩版暂不开放

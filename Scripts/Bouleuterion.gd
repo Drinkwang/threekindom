@@ -138,7 +138,7 @@ func _initData():
 	if GameManager.sav.have_event["陈登支线1"]==false and GameManager.sav.day>=5:
 		chendeng.show()
 		chendeng.showEX=true
-		chendeng.dialogue_start="陈登爱吃鱼1"	
+		chendeng.changeAllClick("陈登爱吃鱼1")	
 		
 	elif GameManager.sav.have_event["陈登支线2"]==false and GameManager.sav.have_event["陈登支线1"]==true and GameManager.sav.chendenSideWait==1:
 		if GameManager.sav.have_event["陈登送礼"]==false:
@@ -150,8 +150,15 @@ func _initData():
 	elif GameManager.sav.have_event["陈登支线2"]==false and GameManager.sav.have_event["陈登支线1"]==true and GameManager.sav.chendenSideWait==0:
 		chendeng.show()
 		chendeng.showEX=true
-		chendeng.dialogue_start="陈登爱吃鱼2"	
-	
+		chendeng.changeAllClick("陈登爱吃鱼2")	
+	else:
+		if GameManager.sav.chendencardgame>=0:
+			#如果等于4 
+			chendeng.changeAllClick("来把仕诡牌")
+
+					
+			chendeng.show()
+			chendeng.showEX=false
 var costhp=50
 func chendengWantUpLevel():
 	chendeng.hide()

@@ -227,7 +227,6 @@ scale = Vector2(1.3, 1.3)
 showName = "糜竺"
 dialogue_doubleclick = "second"
 txt2d = ExtResource("7_ggy3f")
-boardType = null
 dialogue_resource = ExtResource("2_who4l")
 dialogue_start = "点击陈群"
 
@@ -238,7 +237,6 @@ scale = Vector2(1.2, 1.2)
 showName = "陈登"
 dialogue_doubleclick = "second"
 txt2d = ExtResource("7_0cx3q")
-boardType = null
 dialogue_resource = ExtResource("2_who4l")
 dialogue_start = "点击陈群"
 

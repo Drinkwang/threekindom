@@ -243,9 +243,23 @@ func _initData():
 	elif GameManager.sav.have_event["曹豹支线2"]==false and GameManager.sav.caobaoSideWait==0:	
 		caobao.changeAllClick("曹豹支线2")
 		caobao.show()
-
+		
 		caobao.showEX=true	
-	
+	else:
+		if GameManager.sav.caobaocardgame>=0:
+			#如果小于4 则移出3 
+			
+			if GameManager.sav.caobaocardgame==4:
+				caobao.changeAllClick("来把仕诡牌2")
+				caobao.show()
+
+				caobao.showEX=true
+			else:
+				caobao.changeAllClick("来把仕诡牌")
+
+					
+				caobao.show()
+				caobao.showEX=false
 	
 	var initData=[
 	{	

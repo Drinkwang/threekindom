@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dqpklssxni160"]
+[gd_scene load_steps=12 format=3 uid="uid://dqpklssxni160"]
 
 [ext_resource type="Script" path="res://Scripts/clickBlock.gd" id="1_es4xp"]
 [ext_resource type="Texture2D" uid="uid://c1o6guigf68iu" path="res://Asset/城镇建筑/灵堂亮.jpg" id="2_cxpov"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://v18r3lgfvy17" path="res://Asset/ui/白框.png" id="3_lv21x"]
 [ext_resource type="Texture2D" uid="uid://c8s24bx5r2xci" path="res://Asset/other/感叹号.png" id="4_es4ro"]
 [ext_resource type="Texture2D" uid="uid://c4tifw3jqmu6n" path="res://Scene/heart.png" id="5_3uyx0"]
+[ext_resource type="FontFile" uid="uid://b8le0fd0ujbqx" path="res://Asset/Font/1_blod.ttf" id="5_stxph"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eqsn2"]
 
@@ -58,6 +59,14 @@ position = Vector2(-2.83122e-06, -1)
 scale = Vector2(0.96, 0.96)
 texture = ExtResource("3_lv21x")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -61.0
+offset_top = -61.0
+offset_right = 61.0
+offset_bottom = 60.0
+mouse_filter = 2
+color = Color(0.359069, 0.359069, 0.359069, 0.360784)
+
 [node name="8" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(-0.905, -0.805)
@@ -101,6 +110,7 @@ offset_right = 62.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/line_spacing = 2
+theme_override_fonts/font = ExtResource("5_stxph")
 horizontal_alignment = 1
 autowrap_mode = 3
 

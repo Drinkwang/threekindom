@@ -84,7 +84,6 @@ position = Vector2(638, 775)
 showName = "主簿"
 dialogue_doubleclick = "second"
 txt2d = ExtResource("6_ys6bi")
-boardType = null
 dialogue_resource = ExtResource("2_6rtve")
 dialogue_start = "点击陈群"
 
@@ -94,7 +93,6 @@ position = Vector2(1288, 737)
 showName = "陈群"
 dialogue_doubleclick = "second"
 txt2d = ExtResource("6_8cvew")
-boardType = null
 dialogue_resource = ExtResource("2_6rtve")
 dialogue_start = "点击陈群"
 
@@ -177,7 +175,6 @@ scale = Vector2(1.55, 1.55)
 showName = "糜竺"
 dialogue_doubleclick = "second"
 txt2d = ExtResource("12_siufa")
-boardType = null
 dialogue_resource = ExtResource("2_6rtve")
 dialogue_start = "点击陈群"
 
@@ -188,7 +185,6 @@ scale = Vector2(1.4, 1.4)
 showName = "陈登"
 dialogue_doubleclick = "second"
 txt2d = ExtResource("13_yewon")
-boardType = null
 dialogue_resource = ExtResource("2_6rtve")
 dialogue_start = "点击陈群"
 

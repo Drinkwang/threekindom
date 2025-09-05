@@ -99,10 +99,10 @@ const NOT_JAM_UI_CONDENSED_16 = preload("res://addons/inventory_editor/default/f
 func _changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()
 
-	if currencelanguage=="ru":
-		label.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
-	else:
-		label.remove_theme_font_override("font")
+	#if currencelanguage=="ru":
+	#	label.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
+	#else:
+	#	label.remove_theme_font_override("font")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
@@ -171,11 +171,13 @@ func _on_timer_timeout():
 
 
 func _on_area_2d_mouse_entered_board() -> void:
-	if GameManager.currenceScene is board_game and GameManager.currenceScene.mouseline.visible==true:
-		showEX=true
-	else:
-		showEX=false
+	if GameManager.currenceScene!=null and GameManager.currenceScene is board_game:
+		if GameManager.currenceScene.mouseline.visible==true:
+			showEX=true
+		else:
+			showEX=false
 
 func _on_area_2d_mouse_exited_board() -> void:
-	if GameManager.currenceScene is board_game and GameManager.currenceScene:
-		showEX=false
+	if GameManager.currenceScene!=null and GameManager.currenceScene is board_game:
+		if GameManager.currenceScene:
+			showEX=false

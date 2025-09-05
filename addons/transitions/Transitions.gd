@@ -157,6 +157,7 @@ func _set_scene(new_scene:Node):
 	previous_scene.queue_free()
 	#scene_container.remove_child(previous_scene)
 	#new_scene.request_ready()
+	#这里报错，得研究
 	if(new_scene.readyInitData!=null):
 		new_scene.readyInitData=false
 	#还是有必要的，不让其没加载完就出来

@@ -395,7 +395,6 @@ position = Vector2(1314, 419)
 showName = "兵"
 dialogue_doubleclick = "选择牌堆_兵"
 txt2d = ExtResource("13_xjudg")
-boardType = null
 dialogue_resource = ExtResource("14_c6n4h")
 dialogue_start = "选择牌堆_兵"
 
@@ -404,7 +403,6 @@ position = Vector2(1084, 420)
 showName = "商"
 dialogue_doubleclick = "选择牌堆_商"
 txt2d = ExtResource("15_ejsfc")
-boardType = null
 dialogue_resource = ExtResource("14_c6n4h")
 dialogue_start = "选择牌堆_商"
 
@@ -413,7 +411,6 @@ position = Vector2(624, 420)
 showName = "民"
 dialogue_doubleclick = "选择牌堆_民"
 txt2d = ExtResource("16_u2c7t")
-boardType = null
 dialogue_resource = ExtResource("14_c6n4h")
 dialogue_start = "选择牌堆_民"
 
@@ -422,7 +419,6 @@ position = Vector2(855, 422)
 showName = "士"
 dialogue_doubleclick = "选择牌堆_士"
 txt2d = ExtResource("17_agoab")
-boardType = null
 dialogue_resource = ExtResource("14_c6n4h")
 dialogue_start = "选择牌堆_士"
 
