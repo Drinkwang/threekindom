@@ -158,8 +158,9 @@ func _set_scene(new_scene:Node):
 	#scene_container.remove_child(previous_scene)
 	#new_scene.request_ready()
 	#这里报错，得研究
-	if(new_scene.readyInitData!=null):
-		new_scene.readyInitData=false
+	if new_scene is baseComponent:
+		if( new_scene.readyInitData!=null):
+			new_scene.readyInitData=false
 	#还是有必要的，不让其没加载完就出来
 	#new_scene.request_ready()
 	if new_scene.get_parent() != scene_container:

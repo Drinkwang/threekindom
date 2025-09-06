@@ -109,10 +109,12 @@ do caobao.show()
 曹豹: 将军如此说，想必是有充分的理由。只是，陶大人的子女还年幼，他们未来的安危也需考虑。作为他曾经的亲信，我定不会袖手旁观。
 刘备: 这一点你可以放心。我会像对待自己的家人一样照顾他们，绝不会辜负陶谦大人的信任。
 曹豹: 既然如此，我相信将军会做出正确的决定。徐州需要一位明主来带领我们度过难关。
-if GameManager.sav.have_event["查出药囊后休息前"]==true and GameManager.sav.have_event["锦囊咨询丹阳派"]==false
-	do caobao.show()
-else	
-	do caobao.hide()
+
+do refreshData()
+#if GameManager.sav.have_event["查出药囊后休息前"]==true and GameManager.sav.have_event["锦囊咨询丹阳派"]==false
+#	do caobao.show()
+#else	
+#	do caobao.hide()
 => END
 
 ~ 遇到曹操

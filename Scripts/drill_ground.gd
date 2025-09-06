@@ -204,6 +204,15 @@ func enterBattleMode():
 	_initData()
 
 
+func refreshData():
+	#_initData()
+
+
+	if caobao.dialogue_start.length()>0:
+		caobao.show()
+	else:
+		caobao.hide()
+
 func _initData():
 	GameManager.currenceScene=self
 	if(GameManager.sav.day==1):
@@ -219,7 +228,7 @@ func _initData():
 			GameManager.sav.have_event["LiuBeiSucceed"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"刘备接任徐州之主")
 	if GameManager.sav.have_event["查出药囊后休息前"]==true and GameManager.sav.have_event["锦囊咨询丹阳派"]==false:
-		caobao.dialogue_start="演武场克苏鲁剧情支线"
+		caobao.changeAllClick("演武场克苏鲁剧情支线")
 		caobao.showEX=true
 		caobao.show()
 	

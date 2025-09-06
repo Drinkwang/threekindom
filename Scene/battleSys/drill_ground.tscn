@@ -151,6 +151,7 @@ position = Vector2(895, 333)
 scale = Vector2(1.6384, 1.6384)
 
 [node name="曹豹" parent="." instance=ExtResource("14_s83fw")]
+visible = false
 position = Vector2(982, 546)
 showName = "曹豹"
 txt2d = ExtResource("15_1y7hu")

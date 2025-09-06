@@ -44,6 +44,13 @@ func winGame(_str:String=""):
 		blink_rect.hide()
 	animation_player_BLINK.animation_finished.connect(finishfunc)
 	#曹豹 商人初级 中级 士族 高级 
+	#最后的开发，音效的加入
+	#0 小试牛刀开启 1小试牛刀通过 2 对局试炼开启 3对局试验通过 4 诡秘怪谈开启 5诡秘怪谈通过
+	
+	if GameManager._boardMode==boardType.boardMode.new:
+		pass
+		
+	
 	win_rect.show()
 	SoundManager.play_sound(sounds.GOOD_THING)
 
@@ -61,9 +68,53 @@ func _ready() -> void:
 			cardsize+=1
 			cardArr.push_front(i)
 	cardsize-=1
+	readyInGameData()
 	changeHoldEnegyPanel()
 	#await startGame(4,false)
-	enterNtutorial()
+	
+
+
+func readyInGameData():
+	if GameManager.sav.have_event["卡牌新手教程"]==false and GameManager._boardMode==boardType.boardMode.new:
+		GameManager.sav.have_event["卡牌新手教程"]=true
+		enterNtutorial()
+	elif GameManager.sav.have_event["卡牌中级教程"]==false and GameManager._boardMode==boardType.boardMode.middle:
+		GameManager.sav.have_event["卡牌中级教程"]=true
+		enterMtutorial()
+	elif GameManager.sav.have_event["卡牌高级教程"]==false and GameManager._boardMode==boardType.boardMode.high:
+		GameManager.sav.have_event["卡牌高级教程"]=true
+		enterHtutorial()		
+	else:
+		enterGame()
+
+
+func enterGame():
+	#根据model和character修改东西
+	var issole=true
+	if GameManager._boardMode==boardType.boardMode.new:
+		issole=true
+	else:
+		issole=false
+		
+		
+	if GameManager._boardMode==boardType.boardMode.high:
+		issecretGame=true
+	else:
+		issecretGame=false
+	var cardNum=5
+	
+	
+	if GameManager.selectBoardCharacter==boardType.boardCharacter.caobao:
+		
+		cardNum=5
+	elif GameManager.selectBoardCharacter==boardType.boardCharacter.mizhu:
+		
+		cardNum=4
+	elif GameManager.selectBoardCharacter==boardType.boardCharacter.chenden:
+		
+		cardNum=3
+	
+	startGame(cardNum,issole)
 
 func showdetail(str:String,grouptype):
 
@@ -1377,13 +1428,13 @@ enum groupType{
 
 const dialogue_resource = preload("res://dialogues/桌游.dialogue")
 func enterNtutorial():
-	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新手教程_初级")
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"欢迎进入初级")
 	
 func enterMtutorial():
-	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新手教程_中级")
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"欢迎进入中级")
 
 func enterHtutorial():
-	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新手教程_高级")
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"欢迎进入高级")
 
 @onready var point_group: Control = $CanvasLayer/pointGroup
 

@@ -59,7 +59,7 @@ do showtutorial(6,true)
 规则指引: 坚持到第5回合结束，你就胜利了！提示：合理管理资源和民心卡，优先匹配需求，避免惩罚。准备好，马上开始吧！
 
 do showtutorial(6,false)
-
+do enterGame()
 => END!
 
 ~ 新手教程_中级
@@ -70,6 +70,8 @@ do showtutorial(8,true)
 #关闭显示对手
 do showtutorial(8,false)
 规则指引: 在此规则下，玩家可以让对手生命值为0获胜，也可以5回合结束后，分数不小于对手也能获胜。准备好，马上开始吧！
+do enterGame()
+
 => END!
 
 
@@ -83,6 +85,7 @@ do isLightUpEnergPanel(true)
 #恢复原样
 do isLightUpEnergPanel(false)
 do showtutorial(7,false)
+do enterGame()
 => END!
 
 

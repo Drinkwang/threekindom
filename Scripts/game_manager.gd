@@ -1225,7 +1225,23 @@ var selectBoardCharacter:boardType.boardCharacter=boardType.boardCharacter.none
 var _boardMode:boardType.boardMode=boardType.boardMode.none
 func selectBoardMode(mode:boardType.boardMode):
 	_boardMode=mode
-	currenceScene.openBoardDialogue()
+	#提示
+	
+	
+
+	var characterScore=0	
+	if GameManager.selectBoardCharacter==boardType.boardCharacter.caobao:
+		characterScore=GameManager.sav.caobaocardgame
+	elif GameManager.selectBoardCharacter==boardType.boardCharacter.chenden:
+		characterScore=GameManager.sav.chendencardgame	
+	elif GameManager.selectBoardCharacter==boardType.boardCharacter.mizhu:
+		characterScore=GameManager.sav.mizhucardgame		
+	#0 小试牛刀开启 1小试牛刀通过 2 对局试炼开启 3对局试验通过 4 诡秘怪谈开启 5诡秘怪谈通过	
+
+	if (characterScore<2 and mode==boardType.boardMode.middle) or (characterScore<4 and mode==boardType.boardMode.high):
+		DialogueManager.show_example_dialogue_balloon(boardDialogue,"当前模式未解锁")
+	else:
+		currenceScene.openBoardDialogue()
 	
 func enterBoardGame():
 	#切入boardGame场景

@@ -267,6 +267,9 @@ var SIDEQUEST_MAP:Dictionary={
 @export var mizhucardgame=-1
 @export var chendencardgame=-1
 
+#9个最高分记录
+@export var highScore=[[0,0,0],[0,0,0],[0,0,0]]
+
 
 @export var mizhuSideWait=-1
 @export var chendenSideWait=-1
