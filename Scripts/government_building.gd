@@ -70,6 +70,9 @@ func post_transition():
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"糜竺第三次市井")
 
 		return	
+		
+		
+	
 	_initData()
 
 
@@ -167,7 +170,31 @@ func _initData():
 			candoSub=false
 			#判断任务完成 如果任务完成，那么就开始对话指令，且不能离开
 			pass
+	else:
+		
+		if GameManager.selectBoardCharacter==boardType.boardCharacter.mizhu and GameManager._boardMode!=boardType.boardMode.none and GameManager._boardGameWin==true:
+			
+			candoSub=false
+			GameManager.selectBoardCharacter=boardType.boardCharacter.none         
+			GameManager._boardMode=boardType.boardMode.none
+			if GameManager._boardReward!=boardType.boardRewardResult.BreakFree:
 
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"常规获胜")
+			else:
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"黑暗游戏获胜")	
+		elif GameManager.selectBoardCharacter==boardType.boardCharacter.mizhu and GameManager._boardMode!=boardType.boardMode.none and GameManager._boardGameWin==false:
+			candoSub=false
+			GameManager.selectBoardCharacter=boardType.boardCharacter.none
+			GameManager._boardMode=boardType.boardMode.none
+			
+			if GameManager._boardReward!=boardType.boardRewardResult.BreakFree:
+
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"常规失败") 
+			else:
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"黑暗游戏失败") 
+			
+				   
+	
 	GameManager.currenceScene=self
 	policy_panel.initControls()
 #	if GameManager.sav.day>=1:
@@ -382,8 +409,8 @@ func showMizhuTouchMain():
 	mizhu.show()
 	mizhu.showEX=true
 	#chenden.hide()
-	mizhu.dialogue_start="府邸主线"
-	mizhu.dialogue_doubleclick="府邸主线"
+	mizhu.changeAllClick("府邸主线")
+
 	GameManager.changeTaskLabel("与手下谈谈")
 	GameManager.AutoSaveFile()
 
@@ -605,8 +632,8 @@ func meetingEnd():
 func _firstPhaseBegin():
 	mizhu.show()
 	chenden.show()
-	
-
+	#mizhu.changeAllClick("点击糜竺")
+	#chenden.changeAllClick("点击陈登0")
 func cancel():
 	pass	
 
@@ -718,17 +745,7 @@ func deliverUncompleteTask():
 		if GameManager.sav.day>5:
 			if(GameManager.sav.have_event["initTask1"]==true):
 				pass
-				#if(GameManager.sav.have_event["initTask1"]==false):
-				#	chenden.show()
-				#	chenden.changeAllClick("点击陈登")
-				#if(GameManager.sav.have_event["initTask1"]==false):
-				#	mizhu.show()
-				#	mizhu.changeAllClick("点击糜竺")	
-					#chenden
-				#判断陈登有无第一次对话，若无则生成
-				#判断糜竺有无进行第一次对话，若无则生成	
-				#如果没有支线则生成
-			#pass							
+		
 			
 func deliverTask():
 	if GameManager.sav.TargetDestination=="府邸":
@@ -749,11 +766,11 @@ func deliverTask():
 		if GameManager.sav.have_event["战斗袁术开始"]==true and GameManager.sav.have_event["chaoDialogEnd"]==false:
 			if GameManager.sav.have_event["亲征跟糜竺对话"]==false:
 				mizhu.show()
-				mizhu.dialogue_start="亲征前跟糜竺对话"
+				mizhu.changeAllClick("亲征前跟糜竺对话")
 				
 			if GameManager.sav.have_event["亲征跟陈登对话"]==false:	
 				chenden.show()
-				chenden.dialogue_start="亲征前跟陈登对话"
+				chenden.changeAllClick("亲征前跟陈登对话")
 			
 			if GameManager.sav.have_event["亲征跟糜竺对话"]==false and GameManager.sav.have_event["亲征跟陈登对话"]==false: 
 				GameManager.sav.TargetDestinationBefore="交互提示："
@@ -790,10 +807,9 @@ func enterBattleModeBefore():
 @onready var hp_panel = $CanvasLayer/hpPanel
 func collectMoneyComplete():
 	GameManager.sav.TargetDestination="rest"	
-	#mizhu.show()
-	#chenden.show()
-	mizhu.dialogue_start="与糜竺对话2"
-	chenden.dialogue_start="与陈登对话2"
+
+	mizhu.changeAllClick("与糜竺对话2")
+	chenden.changeAllClick("与陈登对话2")
 	#ameManager.sav.targetResType=GameManager.ResType.rest
 	hp_panel.playLabelChange()
 	GameManager.AutoSaveFile()
@@ -803,8 +819,8 @@ func chaosBegin():
 	mizhu.show()
 	chenden.show()
 	GameManager.changeTaskLabel(tr("与手下谈谈"))
-	mizhu.dialogue_start="混乱与糜竺对话"
-	chenden.dialogue_start="混乱与陈登对话"
+	mizhu.changeAllClick("混乱与糜竺对话")
+	chenden.changeAllClick("混乱与陈登对话")
 	GameManager.AutoSaveFile()
 	
 func chaosMizhuEnd():
@@ -1206,3 +1222,37 @@ func openBoardGame():
 
 func openBoardDialogue():
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"进入仕诡牌游戏")
+
+
+func boardVictory():
+
+	if GameManager._boardReward==boardType.boardRewardResult.item:
+		var _reward:rewardPanel=PanelManager.new_reward()
+	
+		var items={
+			"items": null,
+			"money": 100,
+			"population": 0
+		}
+
+		_reward.showTitileReward(tr("你战胜了糜竺，你获得糜竺的100金"),items)	
+	elif GameManager._boardReward==boardType.boardRewardResult.card:
+		var _reward:rewardPanel=PanelManager.new_reward()
+	
+		var items={
+			"items": {InventoryManagerItem.ItemEnum.仕诡卡尸皇:1},
+			"money": 0,
+			"population": 0
+		}
+		_reward.showTitileReward(tr("你战胜了糜竺，你获得曹豹珍藏的诡异卡"),items)	
+	elif GameManager._boardReward==boardType.boardRewardResult.BreakFree:
+		pass
+	GameManager._boardReward=boardType.boardRewardResult.none
+
+	
+
+
+
+#黑暗游戏输了游戏	
+func cardLose():
+	GameManager.sav.hp-=20

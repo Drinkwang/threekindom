@@ -15,3 +15,12 @@ enum boardCharacter{
 	
 	
 }
+
+
+enum boardRewardResult{
+	none,
+	item,
+	card,
+	BreakFree
+	
+}

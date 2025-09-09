@@ -1223,6 +1223,9 @@ func clearTutorial():
 
 var selectBoardCharacter:boardType.boardCharacter=boardType.boardCharacter.none
 var _boardMode:boardType.boardMode=boardType.boardMode.none
+#初始
+var _boardReward:boardType.boardRewardResult=boardType.boardRewardResult.none
+var _boardGameWin:bool=false
 func selectBoardMode(mode:boardType.boardMode):
 	_boardMode=mode
 	#提示

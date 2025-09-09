@@ -142,13 +142,16 @@ func post_transition():
 		#GameManager.sav.have_event["战斗袁术血战模式"]=true
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"演武场宣战袁术")
 		return 
+		
+		
+		
 	var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.龙胆亮银枪)	
 	if num==0:	
 		if GameManager.sav.have_event["预获得龙胆枪休息"]==true:
 			caobao.show() #也可以改成点击
 			caobao.ex_point=true
 			caobao.changeAllClick("获得龙胆枪")
-
+	
 		
 	if GameManager.bossmode==scenemanager.bossMode.huang and GameManager.sav.have_event["曹豹支线3"]==false:
 		GameManager.sav.hp=0
@@ -156,12 +159,13 @@ func post_transition():
 		
 		if GameManager.bossmoderesult==true:
 			GameManager.sav.have_event["预获得龙胆枪"]=true
-			
-			pass #赢了，第二天获得龙胆影月枪
+			#赢了，第二天获得龙胆影月枪
 		
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"曹豹结尾")
 		GameManager.sav.have_event["曹豹支线3"]=true #第二天可以获得新道具
-		return 	
+		return 
+		
+
 	_initData()
 
 const EAT_1 = preload("res://Asset/sound/eat1.mp3")
@@ -227,12 +231,24 @@ func _initData():
 		if GameManager.sav.have_event["LiuBeiSucceed"]==false:
 			GameManager.sav.have_event["LiuBeiSucceed"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"刘备接任徐州之主")
-	if GameManager.sav.have_event["查出药囊后休息前"]==true and GameManager.sav.have_event["锦囊咨询丹阳派"]==false:
+	if GameManager.selectBoardCharacter==boardType.boardCharacter.caobao and GameManager._boardMode!=boardType.boardMode.none and GameManager._boardGameWin==true:
+		GameManager.selectBoardCharacter=boardType.boardCharacter.none 
+		GameManager._boardMode=boardType.boardMode.none 
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"常规获胜")
+	elif GameManager.selectBoardCharacter==boardType.boardCharacter.caobao and GameManager._boardMode!=boardType.boardMode.none and GameManager._boardGameWin==false:
+		GameManager.selectBoardCharacter=boardType.boardCharacter.none 
+		GameManager._boardMode=boardType.boardMode.none 
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"常规失败")	
+	elif GameManager.sav.have_event["曹豹牌局无人"] ==false and GameManager.sav.caobaocardgame==4:
+		GameManager.sav.have_event["曹豹牌局无人"] =true
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"牌局无人")
+		
+	elif GameManager.sav.have_event["查出药囊后休息前"]==true and GameManager.sav.have_event["锦囊咨询丹阳派"]==false and caobao.showEX==false:
 		caobao.changeAllClick("演武场克苏鲁剧情支线")
 		caobao.showEX=true
 		caobao.show()
 	
-	if GameManager.sav.have_event["曹豹支线1"]==false and GameManager.sav.have_event["battleTaiShan"]==true:
+	elif GameManager.sav.have_event["曹豹支线1"]==false and GameManager.sav.have_event["battleTaiShan"]==true and caobao.showEX==false:
 		caobao.changeAllClick("曹豹支线1")
 		caobao.show()
 
@@ -249,13 +265,13 @@ func _initData():
 			GameManager.sav.have_event["曹豹资助"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"插入曹豹资助")
 				
-	elif GameManager.sav.have_event["曹豹支线2"]==false and GameManager.sav.caobaoSideWait==0:	
+	elif GameManager.sav.have_event["曹豹支线2"]==false and GameManager.sav.caobaoSideWait==0 and caobao.showEX==false:	
 		caobao.changeAllClick("曹豹支线2")
 		caobao.show()
 		
 		caobao.showEX=true	
 	else:
-		if GameManager.sav.caobaocardgame>=0:
+		if GameManager.sav.caobaocardgame>=0  and caobao.showEX==false:
 			#如果小于4 则移出3 
 			
 			if GameManager.sav.caobaocardgame==4:
@@ -336,6 +352,29 @@ func select1(issuccuss):
 	else:
 		GameManager.sav.have_event["曹豹正确选择1"]=false
 
+
+func boardVictory():
+
+	if GameManager._boardReward==boardType.boardRewardResult.item:
+		var _reward:rewardPanel=PanelManager.new_reward()
+	
+		var items={
+			"items": null,
+			"money": 0,
+			"population": 80
+		}
+
+		_reward.showTitileReward(tr("你战胜了曹豹，你获得曹豹赠送你的80名士兵"),items)	
+	elif GameManager._boardReward==boardType.boardRewardResult.card:
+		var _reward:rewardPanel=PanelManager.new_reward()
+	
+		var items={
+			"items": {InventoryManagerItem.ItemEnum.仕诡卡血姬:1},
+			"money": 0,
+			"population": 0
+		}
+		_reward.showTitileReward(tr("你战胜了曹豹，你获得曹豹珍藏的诡异卡"),items)	
+	GameManager._boardReward=boardType.boardRewardResult.none
 func select2(issuccuss):
 	GameManager.sav.have_event["曹豹支线2"]=true
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=3 uid="uid://b62to201rwvs3"]
+[gd_scene load_steps=78 format=3 uid="uid://b62to201rwvs3"]
 
 [ext_resource type="Script" path="res://Scripts/board_game.gd" id="1_34wyh"]
 [ext_resource type="Texture2D" uid="uid://cmbisvj1kshvi" path="res://Asset/黑暗/克苏鲁背景.png" id="1_q5ep7"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://bay47r68afgcm" path="res://Asset/人物/陈登睁眼喝茶.png" id="17_agoab"]
 [ext_resource type="Texture2D" uid="uid://v18r3lgfvy17" path="res://Asset/ui/白框.png" id="18_vsl4x"]
 [ext_resource type="Script" path="res://Scripts/dashline_stylebox.gd" id="19_c5av2"]
+[ext_resource type="Texture2D" uid="uid://bqnt1tcxcsaxv" path="res://Asset/other/骷髅头.png" id="19_r45vc"]
 [ext_resource type="FontFile" uid="uid://b8le0fd0ujbqx" path="res://Asset/Font/1_blod.ttf" id="20_f0olx"]
 [ext_resource type="Texture2D" uid="uid://cale1h2nqfdrh" path="res://Asset/ui/circle.png" id="20_pga4l"]
 [ext_resource type="Texture2D" uid="uid://c4tifw3jqmu6n" path="res://Scene/heart.png" id="22_0kksh"]
@@ -59,6 +60,7 @@
 [ext_resource type="Shader" path="res://shader/screenblur.gdshader" id="57_0ucv8"]
 [ext_resource type="Texture2D" uid="uid://0o5hddxuvape" path="res://Asset/particle/2/vnbvx_29.png" id="57_lia12"]
 [ext_resource type="Texture2D" uid="uid://rmaibsw1yjqd" path="res://Asset/城镇建筑/5_yellow.png" id="59_xlqph"]
+[ext_resource type="Texture2D" uid="uid://dahuc8gb2blc" path="res://Asset/other/0_red.png" id="60_h5v2b"]
 
 [sub_resource type="Curve" id="Curve_kx3s6"]
 _data = [Vector2(0.002331, 0.0102652), 0.0, 0.0, 0, 0, Vector2(0.48718, 0.856575), 0.0, 0.0, 0, 0]
@@ -425,6 +427,24 @@ txt2d = ExtResource("17_agoab")
 boardType = 1
 dialogue_resource = ExtResource("14_c6n4h")
 dialogue_start = "选择牌堆_士"
+
+[node name="ExitButton" type="TextureButton" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -828.0
+offset_top = 48.0
+offset_right = -700.0
+offset_bottom = 176.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("19_r45vc")
+texture_pressed = ExtResource("19_r45vc")
+texture_hover = ExtResource("60_h5v2b")
+texture_disabled = ExtResource("19_r45vc")
+stretch_mode = 0
 
 [node name="Border" type="Sprite2D" parent="CanvasLayer"]
 visible = false
@@ -1017,4 +1037,8 @@ text = "玩家:
 敌人:
 [color=#ffffff88]♥♠♣♦[/color]"
 
+[connection signal="button_down" from="CanvasLayer/ExitButton" to="." method="_on_exitGameBtn_down"]
 [connection signal="button_down" from="CanvasLayer/Button" to="." method="phaseEnd"]
+[connection signal="button_down" from="CanvasLayer/winRect/Button" to="." method="_on_win_button_down"]
+[connection signal="button_down" from="CanvasLayer/LoseRect/Button2" to="." method="_on_button_restart"]
+[connection signal="button_down" from="CanvasLayer/LoseRect/Button" to="." method="_on_exitGame"]

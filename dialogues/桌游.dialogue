@@ -134,6 +134,7 @@ do enterGame()
 	系统提示: 教程已重置
 	do GameManager.clearTutorial()
 - 取消
+	do GameManager.selectBoardCharacter=null
 => END!
 
 

@@ -27,7 +27,16 @@ func loseGame(_str:String=""):
 		
 	lose_rect.show()
 	SoundManager.play_sound(sounds.BAD_BATTLE)
-
+	var cardgamefinal
+	if GameManager.selectBoardCharacter==boardType.boardCharacter.caobao:
+		cardgamefinal=GameManager.sav.caobaocardgame
+	elif GameManager.selectBoardCharacter==boardType.boardCharacter.mizhu:
+		cardgamefinal=GameManager.sav.mizhucardgame
+	elif GameManager.selectBoardCharacter==boardType.boardCharacter.chenden:
+		cardgamefinal=GameManager.sav.chendencardgame
+	if cardgamefinal==4:
+		GameManager._boardReward=boardType.boardRewardResult.BreakFree
+		
 @onready var animation_player_BLINK: AnimationPlayer = $CanvasLayer/blinkRect/AnimationPlayer
 
 
@@ -36,6 +45,7 @@ func loseGame(_str:String=""):
 
 
 func winGame(_str:String=""):
+	GameManager._boardGameWin=true
 	if _str.length()>0:
 		win_label.text=_str
 	blink_rect.show()
@@ -46,19 +56,64 @@ func winGame(_str:String=""):
 	#曹豹 商人初级 中级 士族 高级 
 	#最后的开发，音效的加入
 	#0 小试牛刀开启 1小试牛刀通过 2 对局试炼开启 3对局试验通过 4 诡秘怪谈开启 5诡秘怪谈通过
-	
-	if GameManager._boardMode==boardType.boardMode.new:
-		pass
+	var getCharacterScore
+	if GameManager.selectBoardCharacter==boardType.boardCharacter.caobao:
+		getCharacterScore=GameManager.sav.caobaocardgame
+	elif GameManager.selectBoardCharacter==boardType.boardCharacter.mizhu:
+		getCharacterScore=GameManager.sav.mizhucardgame
+	elif GameManager.selectBoardCharacter==boardType.boardCharacter.chenden:
+		getCharacterScore=GameManager.sav.chendencardgame
 		
-	
+	if GameManager._boardMode==boardType.boardMode.new and getCharacterScore<1 or \
+	GameManager._boardMode==boardType.boardMode.middle and getCharacterScore<3 or \
+	GameManager._boardMode==boardType.boardMode.high and getCharacterScore<5:	
+		winAddScore()
 	win_rect.show()
 	SoundManager.play_sound(sounds.GOOD_THING)
 
+func winAddScore():
+	var addScoreAfter
+	if GameManager.selectBoardCharacter==boardType.boardCharacter.caobao:
+		GameManager.sav.caobaocardgame+=1
+		addScoreAfter=GameManager.sav.caobaocardgame
+	elif GameManager.selectBoardCharacter==boardType.boardCharacter.mizhu:
+		GameManager.sav.mizhucardgame+=1
+		addScoreAfter=GameManager.sav.mizhucardgame
+	elif GameManager.selectBoardCharacter==boardType.boardCharacter.chenden:
+		GameManager.sav.chendencardgame+=1
+		addScoreAfter=GameManager.sav.chendencardgame
+		
+	#0 小试牛刀开启 1小试牛刀通过 2 对局试炼开启 3对局试验通过 4 诡秘怪谈开启 5诡秘怪谈通过	
+	if addScoreAfter==1:
+		GameManager._boardReward=boardType.boardRewardResult.item
+	elif addScoreAfter==3:
+		GameManager._boardReward=boardType.boardRewardResult.card
+	elif addScoreAfter==5:
+		GameManager._boardReward=boardType.boardRewardResult.BreakFree
+		
 # Called when the node enters the scene tree for the first tim"res://Scene/prefab/boardCard.tscn"e.
 func _ready() -> void:
+	GameManager._boardReward=boardType.boardRewardResult.none
+	initGame()
+	#await startGame(4,false)
+
+func clear_children(node: Node) -> void:
+	for child in node.get_children():
+		child.queue_free()  # 标记子节点进行删除
+	
+func initGame():
 	cardsize=0
 	turn_num=0
 	GameManager.currenceScene=self
+	playerEngergyHold=[]
+	enemyEngergyHold=[]
+	clear_children(myhand)#.clier
+	clear_children(enemyhand)
+	
+	clear_children(min_group)
+	clear_children(shang_group)
+	clear_children(bin_group)
+	clear_children(shi_group)			
 	cardArr=[]
 	for i in range(0,52):
 		var reside:int=floori((i)%13)
@@ -70,9 +125,6 @@ func _ready() -> void:
 	cardsize-=1
 	readyInGameData()
 	changeHoldEnegyPanel()
-	#await startGame(4,false)
-	
-
 
 func readyInGameData():
 	if GameManager.sav.have_event["卡牌新手教程"]==false and GameManager._boardMode==boardType.boardMode.new:
@@ -1460,3 +1512,33 @@ func showtutorial(num,isshow):
 			self["guild_"+str(num)].show()
 		else:
 			self["guild_"+str(num)].hide()
+
+
+func _on_button_restart() -> void:
+	initGame()
+	lose_rect.hide()
+
+
+func _on_exitGame() -> void:
+	fadeScene()
+
+
+func _on_exitGameBtn_down() -> void:
+	fadeScene()
+
+
+func _on_win_button_down() -> void:
+
+#进行跳转 none 获得物品 获得诡秘卡 获得清醒
+	fadeScene()
+
+
+func  fadeScene():
+	if GameManager.selectBoardCharacter==boardType.boardCharacter.chenden:
+		SceneManager.changeScene(SceneManager.roomNode.BOULEUTERION,2)
+	elif GameManager.selectBoardCharacter==boardType.boardCharacter.mizhu:
+		SceneManager.changeScene(SceneManager.roomNode.GOVERNMENT_BUILDING,2)
+	elif GameManager.selectBoardCharacter==boardType.boardCharacter.caobao:
+		SceneManager.changeScene(SceneManager.roomNode.DRILL_GROUND,2)
+					
+	

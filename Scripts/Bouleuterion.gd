@@ -135,7 +135,31 @@ func _initData():
 		items_in_scene.showItems()
 	control._processList(initData)
 	
-	if GameManager.sav.have_event["陈登支线1"]==false and GameManager.sav.day>=5:
+	
+	if GameManager.selectBoardCharacter==boardType.boardCharacter.chenden and GameManager._boardMode!=boardType.boardMode.none and GameManager._boardGameWin==true:
+			
+	
+		GameManager.selectBoardCharacter=boardType.boardCharacter.none         
+		GameManager._boardMode=boardType.boardMode.none
+		if GameManager._boardReward!=boardType.boardRewardResult.BreakFree:
+
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"常规获胜")
+		else:
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"黑暗游戏获胜")	
+	elif GameManager.selectBoardCharacter==boardType.boardCharacter.chenden and GameManager._boardMode!=boardType.boardMode.none and GameManager._boardGameWin==false:
+	
+		GameManager.selectBoardCharacter=boardType.boardCharacter.none
+		GameManager._boardMode=boardType.boardMode.none
+		
+		if GameManager._boardReward!=boardType.boardRewardResult.BreakFree:
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"常规失败") 
+		else:
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"黑暗游戏失败") 
+			
+				   
+		
+	
+	elif GameManager.sav.have_event["陈登支线1"]==false and GameManager.sav.day>=5:
 		chendeng.show()
 		chendeng.showEX=true
 		chendeng.changeAllClick("陈登爱吃鱼1")	
@@ -362,6 +386,35 @@ func changePanelPos():
 	pass
 	
 
+
+
+#黑暗游戏输了游戏	
+func cardLose():
+	GameManager.sav.hp-=20
+
+
+func boardVictory():
+
+	if GameManager._boardReward==boardType.boardRewardResult.item:
+		var _reward:rewardPanel=PanelManager.new_reward()
+	
+		var items={
+			"items": {InventoryManagerItem.ItemEnum.益气丸:1},
+			"money": 0,
+			"population": 0
+		}
+
+		_reward.showTitileReward(tr("你战胜了陈登，你获得益气丸一枚"),items)	
+	elif GameManager._boardReward==boardType.boardRewardResult.card:
+		var _reward:rewardPanel=PanelManager.new_reward()
+	
+		var items={
+			"items": {InventoryManagerItem.ItemEnum.仕诡卡骨龙:1},
+			"money": 0,
+			"population": 0
+		}
+		_reward.showTitileReward(tr("你战胜了糜竺，你获得陈登珍藏的诡异卡"),items)	
+	GameManager._boardReward=boardType.boardRewardResult.none
 
 func openBoardGame():
 	GameManager.selectBoardCharacter=boardType.boardCharacter.chenden

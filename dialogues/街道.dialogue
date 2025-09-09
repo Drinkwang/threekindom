@@ -539,6 +539,7 @@ do sideQuestReturnD(false)
 老农: 皇叔！您不知？城里正流行个“仕诡牌”！男女老少都玩，斗智斗勇，比种田还带劲！听说曹将军最爱摆弄这牌，您找他试试？  
 刘备: 好，我试着去找他！
 do people.hide()
+do SoundManager.play_sound(sounds.COLLECT_SMALL_JEWEL_1)
 系统提示: 仕诡卡-小试牛刀 模式解锁，玩家可以找城内大人物游玩仕诡卡
 do meetBoardGame(1)
 => END!
@@ -551,6 +552,7 @@ do meetBoardGame(1)
 刘备: 明白了！我会收集诡异卡的
 do people.hide()
 #（他手舞足蹈，忘了正事）选项：  
+do SoundManager.play_sound(sounds.COLLECT_SMALL_JEWEL_2)
 系统提示: 仕诡卡-对局试炼 模式解锁，玩家可以找城内权贵进行对局收集诡异卡
 do meetBoardGame(2)
 => END!
@@ -565,6 +567,7 @@ do meetBoardGame(2)
 : 这个小贩眼睛发红，似乎着魔一般..
 刘备: 看来我必须解决此事了..
 do people.hide()
+do SoundManager.play_sound(sounds.COLLECT_SMALL_JEWEL_3)
 系统提示: 仕诡卡-诡秘乱局 模式解锁，玩家可以找城内着魔的大人物进行对局，试着解救他们吧
 do meetBoardGame(3)
 => END!
