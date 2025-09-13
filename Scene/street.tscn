@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cehg7t1h5f2ei"]
+[gd_scene load_steps=28 format=3 uid="uid://cehg7t1h5f2ei"]
 
 [ext_resource type="Script" path="res://Scripts/street.gd" id="1_jskmv"]
 [ext_resource type="Resource" uid="uid://qopivlttvt12" path="res://dialogues/街道.dialogue" id="2_a3tl4"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://c7ak04ev7bpyc" path="res://Asset/人物/镇魂龙最终.png" id="18_2o7ym"]
 [ext_resource type="Texture2D" uid="uid://yuphy67p1cut" path="res://Asset/人物/陶谦.png" id="18_fbh2q"]
 [ext_resource type="Texture2D" uid="uid://ywdj7u3flcmu" path="res://Asset/人物/假糜贞.png" id="18_ks6ru"]
+[ext_resource type="Texture2D" uid="uid://bylf7f16rptf4" path="res://Asset/items/高清诡异4.png" id="20_3lpcl"]
 [ext_resource type="PackedScene" uid="uid://cjsb43uugkud4" path="res://Scene/battleSys/battlePanel.tscn" id="21_h0siw"]
 [ext_resource type="Script" path="res://Scripts/items_in_scene_manager.gd" id="22_jjdx3"]
 [ext_resource type="VideoStream" path="res://Asset/vedio/Tentacle.ogv" id="22_pmyge"]
@@ -70,17 +71,6 @@ position = Vector2(960, 533)
 scale = Vector2(2.23, 2.23)
 texture = ExtResource("9_ide2q")
 
-[node name="people" parent="." instance=ExtResource("17_w7ika")]
-visible = false
-position = Vector2(971, 573)
-showName = "民众"
-dialogue_doubleclick = "遇到诡异牌1"
-showEX = true
-txt2d = ExtResource("11_egoaw")
-boardType = 1
-dialogue_resource = ExtResource("2_a3tl4")
-dialogue_start = "遇到诡异牌1"
-
 [node name="正常背景2" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(960, 537)
@@ -91,6 +81,17 @@ texture = ExtResource("10_0o7yc")
 metadata/_edit_use_anchors_ = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="people" parent="CanvasLayer" instance=ExtResource("17_w7ika")]
+visible = false
+position = Vector2(971, 573)
+showName = "民众"
+dialogue_doubleclick = "遇到诡异牌1"
+showEX = true
+txt2d = ExtResource("11_egoaw")
+boardType = 1
+dialogue_resource = ExtResource("2_a3tl4")
+dialogue_start = "遇到诡异牌1"
 
 [node name="supportPanel" parent="CanvasLayer" instance=ExtResource("12_koypy")]
 visible = false
@@ -123,6 +124,7 @@ position = Vector2(965, 454)
 showName = "“糜贞”"
 showEX = true
 txt2d = ExtResource("18_ks6ru")
+boardType = 1
 dialogue_resource = ExtResource("2_a3tl4")
 dialogue_start = "boss战开始_糜贞"
 
@@ -132,6 +134,7 @@ position = Vector2(914, 537)
 showName = "\"陶谦\""
 showEX = true
 txt2d = ExtResource("18_fbh2q")
+boardType = 1
 dialogue_resource = ExtResource("2_a3tl4")
 dialogue_start = "boss战开始_陶谦"
 
@@ -141,6 +144,17 @@ position = Vector2(914, 537)
 showName = "石像龙"
 showEX = true
 txt2d = ExtResource("18_2o7ym")
+boardType = 1
+dialogue_resource = ExtResource("2_a3tl4")
+dialogue_start = "boss战开始_镇魂龙"
+
+[node name="merchant" parent="CanvasLayer/blank" instance=ExtResource("17_w7ika")]
+visible = false
+position = Vector2(914, 537)
+showName = "黑商"
+showEX = true
+txt2d = ExtResource("20_3lpcl")
+boardType = 1
 dialogue_resource = ExtResource("2_a3tl4")
 dialogue_start = "boss战开始_镇魂龙"
 

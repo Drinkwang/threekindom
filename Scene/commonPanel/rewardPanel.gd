@@ -41,6 +41,7 @@ const failPng = preload("res://Asset/other/骷髅头.png")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+
 	if(context!=null):
 		context.text=contextEX
 	if(title!=null):
@@ -215,7 +216,10 @@ func _process(delta):
 
 func _on_button_button_down():
 	SignalManager.endReward.emit()
+	self.hide()
+	await get_tree().create_timer(0.5).timeout
 	#结算完了
+	GameManager.rewardPanel=false
 	#endbattle.emit()
 	queue_free()
 	

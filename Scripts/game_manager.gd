@@ -1054,6 +1054,7 @@ func SkipPrologue():
 	for key in keys_to_change:
 		sav.have_event[key] = true
 	sav.day=5
+	initSecretFunc()
 
 var _setting:SettingsResource
 
@@ -1188,21 +1189,23 @@ func _imporveRelation(data:cldata):
 			else:
 				DialogueManager.show_example_dialogue_balloon(sys,"讨好叛乱2")
 			
-func play_music(file_path: String) -> void:
+func play_music(file_path: String) -> AudioStreamPlayer:
 	var stream = load(file_path)
+	var music=null
 	if stream!=null:
-		SoundManager.play_music(stream)
+		music= SoundManager.play_music(stream)
 	else:
 		print("载入音频出错"+file_path)
-
+	return music
 func setCoin(value):
 	sav.coin=value
 
 
 
 func play_BGM():
+	#, 5, 6, 7
 	if musicId <= 0:
-		var available_ids = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+		var available_ids = [1, 2, 3, 4, 8, 9, 10]
 		# 如果 musicId 是负数，排除对应的编号
 		if musicId < 0:
 			var exclude_id = abs(musicId)
@@ -1215,6 +1218,27 @@ func play_BGM():
 		var music_file = "res://Asset/music/Ambient " + str(musicId) + ".wav"
 		play_music(music_file)	
 
+
+func play_BoardBGM(speed=1):
+	#, 
+	SoundManager.stop_music()
+	var tempmusicId=-1
+	if tempmusicId <= 0:
+		var available_ids = [5, 6, 7]
+	
+
+		# 从剩余编号中随机选择
+		tempmusicId = available_ids[randi() % available_ids.size()]	
+	
+
+		var music_file = "res://Asset/music/Ambient " + str(tempmusicId) + ".wav"
+		var music=play_music(music_file)	
+		music.pitch_scale=speed
+func play_FinalBoardBGM():
+	
+	SoundManager.stop_music()
+	var music_file = "res://Asset/music/finalwork.wav"
+	play_music(music_file)	
 
 func clearTutorial():
 	sav.have_event["卡牌新手教程"]=false
@@ -1248,11 +1272,22 @@ func selectBoardMode(mode:boardType.boardMode):
 	
 func enterBoardGame():
 	#切入boardGame场景
+	SoundManager.stop_music()
 	SceneManager.changeScene(SceneManager.roomNode.BoardGame,2)
 
 
 const boardDialogue = preload("res://dialogues/桌游.dialogue")
-
+var rewardPanel:bool=false
 func showBoardGameDialogue():
 	DialogueManager.show_example_dialogue_balloon(boardDialogue,"选择仕诡牌")
 	pass
+func resumeMusic():
+	SoundManager.stop_music()
+
+	if GameManager.musicId==0:
+		return
+		
+	var music_file = "res://Asset/music/Ambient " + str(GameManager.musicId) + ".wav"
+	var music=GameManager.play_music(music_file)
+	if music!=null:	
+		music.pitch_scale=1

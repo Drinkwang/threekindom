@@ -936,7 +936,7 @@ do zhangyanChop()
 : _soilderblockzhangyan
 
 刘备: 张阎，你何故发狂？押下去，严加看守！
-do resumeMusic()
+do GameManager.resumeMusic()
 #恢复音乐
 刘备: 二位休惊，备必彻查此事，究其根由，定不使尔等无故受难。备将命令徐州内部调查此事，请明日再来此厅，获知详情。
 

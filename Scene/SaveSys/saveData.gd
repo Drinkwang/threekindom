@@ -259,7 +259,7 @@ var SIDEQUEST_MAP:Dictionary={
 	"卡牌中级教程":false,
 	"卡牌高级教程":false,	
 	"boss战开始":false,#这个还完全没做，曹豹的初高切换也没做，大家切入仕诡牌 还没做
-	"boss战获胜":false,	#改成5
+	"曹豹诡秘乱局启动":false,	#改成5
 	"曹豹牌局无人":false,
 }
 

@@ -136,7 +136,7 @@ func get_global_rect() -> Rect2:
 
 func _on_area_2d_input_event(viewport, event, shape_idx):
 	
-	if !(event is InputEventMouseButton):
+	if !(event is InputEventMouseButton) or DialogueManager.dialogBegin==true or GameManager.rewardPanel==true:
 		return
 	#print(dialogue_start+var_to_str(event.button_index))
 	if(event is InputEventMouseButton and event.button_index==1 and dialogue_start.length()>0):

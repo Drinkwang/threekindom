@@ -142,9 +142,10 @@ func _initData():
 		GameManager.selectBoardCharacter=boardType.boardCharacter.none         
 		GameManager._boardMode=boardType.boardMode.none
 		if GameManager._boardReward!=boardType.boardRewardResult.BreakFree:
-
+			GameManager.resumeMusic()
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"常规获胜")
 		else:
+			GameManager.resumeMusic()
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"黑暗游戏获胜")	
 	elif GameManager.selectBoardCharacter==boardType.boardCharacter.chenden and GameManager._boardMode!=boardType.boardMode.none and GameManager._boardGameWin==false:
 	
@@ -152,8 +153,10 @@ func _initData():
 		GameManager._boardMode=boardType.boardMode.none
 		
 		if GameManager._boardReward!=boardType.boardRewardResult.BreakFree:
+			GameManager.resumeMusic()
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"常规失败") 
 		else:
+			GameManager.resumeMusic()
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"黑暗游戏失败") 
 			
 				   

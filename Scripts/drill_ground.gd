@@ -232,14 +232,19 @@ func _initData():
 			GameManager.sav.have_event["LiuBeiSucceed"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"刘备接任徐州之主")
 	if GameManager.selectBoardCharacter==boardType.boardCharacter.caobao and GameManager._boardMode!=boardType.boardMode.none and GameManager._boardGameWin==true:
+		caobao.show()
 		GameManager.selectBoardCharacter=boardType.boardCharacter.none 
-		GameManager._boardMode=boardType.boardMode.none 
+		GameManager._boardMode=boardType.boardMode.none
+		GameManager.resumeMusic()
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"常规获胜")
 	elif GameManager.selectBoardCharacter==boardType.boardCharacter.caobao and GameManager._boardMode!=boardType.boardMode.none and GameManager._boardGameWin==false:
+		caobao.show()
+		GameManager.resumeMusic()
 		GameManager.selectBoardCharacter=boardType.boardCharacter.none 
 		GameManager._boardMode=boardType.boardMode.none 
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"常规失败")	
 	elif GameManager.sav.have_event["曹豹牌局无人"] ==false and GameManager.sav.caobaocardgame==4:
+		caobao.hide()
 		GameManager.sav.have_event["曹豹牌局无人"] =true
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"牌局无人")
 		
@@ -566,6 +571,16 @@ func openBoardDialogue():
 	if GameManager._boardMode!=boardType.boardMode.high:
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"进入仕诡牌游戏")
 	else:
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"来把仕诡牌2")
+		if GameManager.sav.have_event["曹豹诡秘乱局启动"]==false:
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"诡秘乱局初次启动")
+			GameManager.sav.have_event["曹豹诡秘乱局启动"]=true
+		else:
+			
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"进入仕诡牌游戏")
+			#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"来把仕诡牌2")
 	
 @onready var items_in_scene: Node2D = $itemsInScene
+
+
+func finalBossBefore():
+	GameManager.sav.have_event["boss战开始"]=true

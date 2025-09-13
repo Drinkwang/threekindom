@@ -178,9 +178,10 @@ func _initData():
 			GameManager.selectBoardCharacter=boardType.boardCharacter.none         
 			GameManager._boardMode=boardType.boardMode.none
 			if GameManager._boardReward!=boardType.boardRewardResult.BreakFree:
-
+				GameManager.resumeMusic()
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"常规获胜")
 			else:
+				GameManager.resumeMusic()
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"黑暗游戏获胜")	
 		elif GameManager.selectBoardCharacter==boardType.boardCharacter.mizhu and GameManager._boardMode!=boardType.boardMode.none and GameManager._boardGameWin==false:
 			candoSub=false
@@ -188,9 +189,10 @@ func _initData():
 			GameManager._boardMode=boardType.boardMode.none
 			
 			if GameManager._boardReward!=boardType.boardRewardResult.BreakFree:
-
+				GameManager.resumeMusic()
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"常规失败") 
 			else:
+				GameManager.resumeMusic()
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"黑暗游戏失败") 
 			
 				   
@@ -1178,13 +1180,13 @@ func JudFundTask():
 	#在府邸意外凑齐钱时会判断任务是否完成,这个会触发第一次赈灾，这是bug
 	if(GameManager.sav.have_event["completeTask1"]==false):#仅完成收集资金任务
 		_JudgeTask()
-const _2__MENTAL_VORTEX = preload("res://Asset/bgm/2- Mental Vortex.mp3")
+
 func zhangyanCrazy():
 	PanelManager.Fade_Blank(Color.RED,0.5,PanelManager.fadeType.fadeIn)
 	await 0.5
 	PanelManager.Fade_Blank(Color.RED,0.5,PanelManager.fadeType.fadeOut)
 	SoundManager.stop_music()
-	SoundManager.play_music(_2__MENTAL_VORTEX)
+	SoundManager.play_music(sounds._2__MENTAL_VORTEX)
 	#屏幕发红
 	#音乐切换
 	
@@ -1205,12 +1207,7 @@ func zhangyanChop():
 	#张yan挥刀，陶跑
 	pass
 
-func resumeMusic():
-	SoundManager.stop_music()
 
-	
-	var music_file = "res://Asset/music/Ambient " + str(GameManager.musicId) + ".wav"
-	GameManager.play_music(music_file)	
 
 @onready var items_in_scene: Node2D = $itemsInScene
 

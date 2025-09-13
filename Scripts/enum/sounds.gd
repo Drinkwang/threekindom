@@ -30,6 +30,6 @@ const tunyan = preload("res://Asset/bgm/吞咽.mp3")
 const HUI_1 = preload("res://Asset/sound/hui1.wav")
 const HUI_2 = preload("res://Asset/sound/hui2.wav")
 const HUI_3 = preload("res://Asset/sound/hui3.wav")
-
+const _2__MENTAL_VORTEX = preload("res://Asset/bgm/2- Mental Vortex.mp3")
 
 const guiyi = preload("res://Asset/sound/boardGame/17_Def_buff_01.wav")

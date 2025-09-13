@@ -96,7 +96,7 @@ do enterGame()
 - 是
 	=> 新手教程_初级
 - 否
-
+	do enterGame()
 => END!
 
 
@@ -105,7 +105,7 @@ do enterGame()
 - 是  
 	=> 新手教程_中级
 - 否
-
+	do enterGame()
 => END!
 
 
@@ -115,7 +115,7 @@ do enterGame()
 - 是  
 	=> 新手教程_高级
 - 否
-
+	do enterGame()
 => END!
 
 
@@ -128,11 +128,21 @@ do enterGame()
 
 - （3）诡秘乱局[boardgame=true] [if GameManager.sav.caobaocardgame>=5 or GameManager.selectBoardCharacter!=boardType.boardCharacter.caobao]
 	do GameManager.selectBoardMode(boardType.boardMode.high)
+- 仕诡档案
+	if GameManager.selectBoardCharacter==boardType.boardCharacter.caobao
+		 : 与曹豹对战，展开仕诡牌游戏。他牌技平庸，但在诡秘乱局中却意外展现惊人牌技。\n小试牛刀：单人游戏，玩家手牌3张，不抽牌，每回合最多使用4张牌。\n对局试炼：对战曹豹，双方各持4张手牌，每回合手牌少于5张时抽1张，每回合最多使用4张牌。\n诡秘乱局：引入诡秘卡规则，玩家手牌4张，对手手牌8张，每回合开始时手牌少于5张抽1张，每回合最多使用4张牌。
+	elif GameManager.selectBoardCharacter==boardType.boardCharacter.chenden
+		 : 与陈登对战，展开仕诡牌游戏。他善于谋略，是仕诡牌顶尖高手。\n小试牛刀：单人游戏，玩家手牌2张，不抽牌，每回合最多使用3张牌。\n对局试炼：对战陈登，玩家持4张手牌，敌人持6张手牌，每回合手牌少于5张时抽1张，每回合最多使用4张牌。\n诡秘乱局：引入诡秘卡规则，玩家持4张手牌，敌人持6张手牌，每回合开始时手牌少于5张抽1张，每回合最多使用2张牌。
+	elif GameManager.selectBoardCharacter==boardType.boardCharacter.mizhu
+		 : 与糜竺对战，展开仕诡牌游戏。他精于算计，是仕诡牌的好手。\n小试牛刀：单人游戏，玩家手牌4张，不抽牌，每回合最多使用2张牌。\n对局试炼：对战陈登，玩家持4张手牌，敌人持5张手牌，每回合手牌少于5张时抽1张，每回合最多使用4张牌。\n诡秘乱局：引入诡秘卡规则，玩家持4张手牌，敌人持5张手牌，每回合开始时手牌少于5张抽1张，每回合最多使用3张牌。
+	=> 选择仕诡牌
 - 当前排行榜
 	系统提示: 试玩版暂不开放
+	=> 选择仕诡牌
 - 重置教程
 	系统提示: 教程已重置
 	do GameManager.clearTutorial()
+	=> 选择仕诡牌
 - 取消
 	do GameManager.selectBoardCharacter=null
 => END!

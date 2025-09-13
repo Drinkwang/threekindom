@@ -237,6 +237,7 @@ scale = Vector2(1.2, 1.2)
 showName = "陈登"
 dialogue_doubleclick = "second"
 txt2d = ExtResource("7_0cx3q")
+boardType = 1
 dialogue_resource = ExtResource("2_who4l")
 dialogue_start = "点击陈群"
 

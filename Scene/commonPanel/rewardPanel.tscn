@@ -10,6 +10,10 @@
 script = ExtResource("1_nbkq4")
 DaojuItem = ExtResource("3_np5iq")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1951.0
+offset_bottom = 1126.0
+
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 8

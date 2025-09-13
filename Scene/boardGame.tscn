@@ -716,6 +716,7 @@ theme_override_font_sizes/font_size = 47
 text = "回合数：5"
 
 [node name="enemyScore" type="Label" parent="CanvasLayer"]
+visible = false
 offset_left = 1553.0
 offset_top = 13.0
 offset_right = 2043.0
@@ -1019,6 +1020,7 @@ libraries = {
 autoplay = "YELLOWGUILD"
 
 [node name="HoldEnegyPanel" type="Panel" parent="."]
+visible = false
 offset_top = 375.0
 offset_right = 442.0
 offset_bottom = 541.0

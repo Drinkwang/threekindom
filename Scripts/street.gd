@@ -104,6 +104,17 @@ func _initData():
 		elif keValue==1:
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"选项克苏鲁追杀")
 		return #选选项，另外点击百姓
+		
+	if GameManager._boardReward==boardType.boardRewardResult.BreakFree and GameManager._boardMode==boardType.boardMode.high and GameManager.selectBoardCharacter==boardType.boardCharacter.caobao:
+		GameManager._boardReward==boardType.boardRewardResult.none
+		GameManager.selectBoardCharacter=boardType.boardCharacter.none
+		GameManager._boardMode=boardType.boardMode.none
+		GameManager.resumeMusic()
+		
+		if GameManager._boardGameWin==true:
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"黑商输掉")
+		else:
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"玩家终局输掉")
 	else:
 		if GameManager.sav.caobaocardgame==-1 and GameManager.sav.mizhucardgame==-1 and  GameManager.sav.chendencardgame==-1:
 			people.changeAllClick("遇到诡异牌1")
@@ -159,6 +170,18 @@ func _initData():
 		shop_panel.show()
 		GameManager.hearsayBeforeNode=null
 		
+@onready var merchant: Node2D = $CanvasLayer/blank/merchant
+
+
+func getXuanYin():
+	var _reward:rewardPanel=PanelManager.new_reward()
+	var items={
+		"items": {InventoryManagerItem.ItemEnum.玄阴玉符:1},
+		"money": 0,
+		"population": 0
+	}
+	#GameManager.ScoreToItem()
+	_reward.showTitileReward(tr("恭喜你，你从黑商手中获得-玄阴玉符"),items)	
 	
 func HuntdownKe():
 	var _reward:rewardPanel=PanelManager.new_reward()
@@ -213,14 +236,18 @@ func _buttonListClick(item):
 			else:
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"商人已经走了")
 		else:
-			if GameManager.sav.have_event["徐州第一次见商人"]==false:
-				GameManager.sav.have_event["徐州第一次见商人"]=true
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"徐州第一次关顾")
+			
+			if GameManager.sav.have_event["boss战开始"]==true and GameManager.sav.caobaocardgame==5:
+				PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeOut)
+				blank.show()
+				
+				SoundManager.stop_music()
+				SoundManager.play_music(sounds._2__MENTAL_VORTEX)
+				#播放诡秘的曲子
+				merchant.show()
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"决战黑商boss战")
 			else:
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"徐州多次光顾")	
-			#第一次开张
-			shop_panel.show()
-			shop_panel.initData()
+				showPanelPage()
 		pass
 		#打开商店ui
 		#scene=GOVERNMENT_BUILDING
@@ -235,6 +262,27 @@ func _buttonListClick(item):
 		else:
 			visitDrill()
 		
+func showPanelPage():
+	if GameManager.sav.have_event["徐州第一次见商人"]==false:
+		GameManager.sav.have_event["徐州第一次见商人"]=true
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"徐州第一次关顾")
+		shop_panel.show()
+		shop_panel.initData()
+	else:
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"徐州多次光顾")	
+				#第一次开张
+		shop_panel.show()
+		shop_panel.initData()
+
+func finalBoardGame():
+	GameManager._boardMode=boardType.boardMode.high
+	GameManager.selectBoardCharacter=boardType.boardCharacter.caobao
+	SceneManager.changeScene(SceneManager.roomNode.BoardGame,2)
+	
+func cancelBlankMerchant():
+	
+	blank.hide()
+	merchant.hide()
 
 const DUNGEON_3 = preload("res://Asset/bgm/dungeon3.wav")
 const WASTELAND_0 = preload("res://Asset/bgm/wasteland0.wav")
@@ -531,7 +579,8 @@ func sideQuestReturnD(iswin):
 	battle_pane.sideQuestReturnD(iswin)
 
 @onready var items_in_scene: Node2D = $itemsInScene
-@onready var people: Node2D = $people
+@onready var people: Node2D = $CanvasLayer/people
+
 
 #-1 0 小试牛刀开启 1小试牛刀通过 2 对局试炼开启 3对局试验通过 4 诡秘怪谈开启 5诡秘怪谈通过
 func meetBoardGame(_value):

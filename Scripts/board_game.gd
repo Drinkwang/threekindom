@@ -24,7 +24,7 @@ func loseGame(_str:String=""):
 	
 	if _str.length()>0:
 		lose_label.text=_str	
-		
+	SoundManager.stop_music()	
 	lose_rect.show()
 	SoundManager.play_sound(sounds.BAD_BATTLE)
 	var cardgamefinal
@@ -69,6 +69,7 @@ func winGame(_str:String=""):
 	GameManager._boardMode==boardType.boardMode.high and getCharacterScore<5:	
 		winAddScore()
 	win_rect.show()
+	SoundManager.stop_music()
 	SoundManager.play_sound(sounds.GOOD_THING)
 
 func winAddScore():
@@ -93,9 +94,27 @@ func winAddScore():
 		
 # Called when the node enters the scene tree for the first tim"res://Scene/prefab/boardCard.tscn"e.
 func _ready() -> void:
+	Transitions.post_transition.connect(post_transition)
+
+
+	for i in range(0,3):
+		var tempheart:TextureRect=heart_group.get_child(i)
+		var enemyheart:TextureRect=heart_group_enemy.get_child(i)
+		if tempheart.visible==false:
+			tempheart.material.set_shader_parameter("progress",0)
+		if enemyheart.visible==false:
+			enemyheart.material.set_shader_parameter("progress",0)
+func post_transition():
+	if GameManager._boardMode==boardType.boardMode.high and GameManager.sav.caobaocardgame==4 and GameManager.selectBoardCharacter==boardType.boardCharacter.caobao:
+		GameManager.play_FinalBoardBGM()
+	else:
+		if GameManager._boardMode==boardType.boardMode.high:
+			GameManager.play_BoardBGM(1.5)
+		else:
+			GameManager.play_BoardBGM()
 	GameManager._boardReward=boardType.boardRewardResult.none
 	initGame()
-	#await startGame(4,false)
+
 
 func clear_children(node: Node) -> void:
 	for child in node.get_children():
@@ -154,19 +173,40 @@ func enterGame():
 	else:
 		issecretGame=false
 	var cardNum=5
-	
-	
-	if GameManager.selectBoardCharacter==boardType.boardCharacter.caobao:
-		
-		cardNum=5
-	elif GameManager.selectBoardCharacter==boardType.boardCharacter.mizhu:
-		
-		cardNum=4
-	elif GameManager.selectBoardCharacter==boardType.boardCharacter.chenden:
-		
-		cardNum=3
-	
-	startGame(cardNum,issole)
+	var extraCard=0
+	if GameManager._boardMode==boardType.boardMode.new:
+		if GameManager.selectBoardCharacter==boardType.boardCharacter.caobao:
+			maxUseCard=4
+			cardNum=3
+		elif GameManager.selectBoardCharacter==boardType.boardCharacter.mizhu:
+			maxUseCard=2
+			cardNum=4
+		elif GameManager.selectBoardCharacter==boardType.boardCharacter.chenden:
+			maxUseCard=3
+			cardNum=2
+	elif GameManager._boardMode==boardType.boardMode.middle:
+		if GameManager.selectBoardCharacter==boardType.boardCharacter.caobao:
+			maxUseCard=4
+			extraCard=0
+		elif GameManager.selectBoardCharacter==boardType.boardCharacter.mizhu:
+			maxUseCard=4
+			extraCard=1
+		elif GameManager.selectBoardCharacter==boardType.boardCharacter.chenden:
+			maxUseCard=4
+			extraCard=2
+			
+	elif GameManager._boardMode==boardType.boardMode.high:
+		if GameManager.selectBoardCharacter==boardType.boardCharacter.caobao:
+			maxUseCard=4
+			extraCard=4
+		elif GameManager.selectBoardCharacter==boardType.boardCharacter.mizhu:
+			maxUseCard=4
+			extraCard=1
+		elif GameManager.selectBoardCharacter==boardType.boardCharacter.chenden:
+			maxUseCard=4
+			extraCard=2		
+			
+	startGame(cardNum,issole,extraCard)
 
 func showdetail(str:String,grouptype):
 
@@ -201,7 +241,7 @@ func showdetail(str:String,grouptype):
 @onready var shi_group: GridContainer = $CanvasLayer/Node/shiGroup
 @onready var shang_group: GridContainer = $CanvasLayer/Node/shangGroup
 @onready var bin_group: GridContainer = $CanvasLayer/Node/binGroup
-@export var hp=3:
+@export var hp=1:
 	get:
 		return hp
 	set(value):
@@ -209,7 +249,7 @@ func showdetail(str:String,grouptype):
 
 			for i in range(0,value-1):
 				var tempheart:TextureRect=heart_group.get_child(i)
-				if tempheart.visible:
+				if tempheart.visible==false:
 					tempheart.show()
 					tempheart.material.set_shader_parameter("progress",0)
 		hp=value
@@ -225,7 +265,7 @@ func showdetail(str:String,grouptype):
 			loseGame()
 			
 			
-@export var enemy_hp=3:	
+@export var enemy_hp=1:	
 	get:
 		return enemy_hp
 	set(value):
@@ -481,7 +521,7 @@ func _input(event: InputEvent) -> void:
 # 恢复一点体力 士族
 
 @export var _issole:bool=false
-func startGame(cardnum,issole):
+func startGame(cardnum,issole,enemyExtraCard):
 	score=0
 	hp=3
 	enemy_hp=3
@@ -504,6 +544,11 @@ func startGame(cardnum,issole):
 		drawOne(true)
 		if issole==false:
 			drawOne(false)	
+			
+			
+	for i in range(0,enemyExtraCard):
+		if issole==false:
+			drawOne(false)				
 	#进入新阶段来判断
 	await enterNewPhase(phaseName.drawCard)
 	
@@ -534,7 +579,7 @@ func turnGoto():
 				winGame()
 			else:
 				loseGame(tr("你的积分小于对手\n你输了"))
-
+@export var maxUseCard=4
 @export var isPlayerTurn:bool=true
 func enterNewPhase(stage:phaseName):
 	
@@ -564,7 +609,9 @@ func enterNewPhase(stage:phaseName):
 				await enterNewPhase(phaseName.endturn)
 	elif _phaseName==phaseName.useCard:
 		if isPlayerTurn==true:
-			playerStage=4
+			playerStage=maxUseCard
+			reside_num.text=tr("剩余步数：{s}").format({"s":playerStage})
+	
 			detail_txt.text=tr("出牌阶段，请使用你的卡牌")
 			punishimg.texture=null
 			board_panel.hide()
@@ -574,7 +621,7 @@ func enterNewPhase(stage:phaseName):
 		else:
 			detail_txt.text=tr("敌人出牌阶段，正在使用卡牌")
 			punishimg.texture=null
-			enemyStage=4
+			enemyStage=maxUseCard
 			AIUseCard()
 	elif _phaseName==phaseName.checkEnd:
 		checkCardStage(groupType.min)	
@@ -602,7 +649,7 @@ func drawOne(isplayer,index=-1):
 		var carddate=newcardArr[i]
 		cardone._value=carddate
 		var j=cardArr.find(carddate)
-
+		#CARDSize为负的
 		cardArr[j]=cardArr[cardsize]
 
 
@@ -1223,7 +1270,8 @@ func enterRewardStage(i:boardCard,j:boardCard):
 		SoundManager.play_sound(sounds.MATCH_STRIKING)
 		
 		#var parent
-		drawOne(isPlayerTurn,gettype)
+		if getCardLength(isPlayerTurn)<5:
+			drawOne(isPlayerTurn,gettype)
 		#奖励消除卡牌
 	
 		#print("helloworld")
@@ -1258,7 +1306,13 @@ func enterRewardStage(i:boardCard,j:boardCard):
 var bepunishI:boardCard
 var bepusnishJ:boardCard
 
-
+func getCardLength(isplayer):
+	var _num
+	if isplayer==true:
+		_num=myhand.get_child_count()
+	else:
+		_num=enemyhand.get_child_count()
+	return _num
 func engergeHold(reside,isplayer=true):
 	var have
 	if isplayer==true:
@@ -1533,12 +1587,17 @@ func _on_win_button_down() -> void:
 	fadeScene()
 
 
-func  fadeScene():
+func fadeScene():
 	if GameManager.selectBoardCharacter==boardType.boardCharacter.chenden:
 		SceneManager.changeScene(SceneManager.roomNode.BOULEUTERION,2)
 	elif GameManager.selectBoardCharacter==boardType.boardCharacter.mizhu:
 		SceneManager.changeScene(SceneManager.roomNode.GOVERNMENT_BUILDING,2)
 	elif GameManager.selectBoardCharacter==boardType.boardCharacter.caobao:
+		if GameManager._boardMode==boardType.boardMode.high:
+			if GameManager._boardReward==boardType.boardRewardResult.BreakFree:
+				SceneManager.changeScene(SceneManager.roomNode.STREET,2)
+				return
+		
 		SceneManager.changeScene(SceneManager.roomNode.DRILL_GROUND,2)
 					
 	
