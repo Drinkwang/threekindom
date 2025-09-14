@@ -99,6 +99,8 @@ func start(dialogue_resource: DialogueResource, title: String, extra_game_states
 
 ## Go to the next line
 func next(next_id: String) -> void:
+	
+	DialogueManager.dialogBegin = true
 	self.dialogue_line = await resource.get_next_dialogue_line(next_id, temporary_game_states)
 
 

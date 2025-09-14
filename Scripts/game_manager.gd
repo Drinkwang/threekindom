@@ -228,7 +228,9 @@ func _input(event):
 	# 检测 ESC 键
 	if event.is_action_pressed("ui_cancel") and not event.is_echo() and DialogueManager.dialogBegin==false and currenceScene!=null:
 		#pass
-		openSetting()
+		var balloon= DialogueManager.get_dialogue_balloon()
+		if balloon==null:
+			openSetting()
 			
 func openSetting():
 	if PanelManager.isOpenSetting==true:

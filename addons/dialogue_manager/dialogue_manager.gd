@@ -94,6 +94,16 @@ func _ready() -> void:
 		_get_dotnet_dialogue_manager().Prepare()
 
 
+#func is_dialogue_active() -> bool:
+	# 方法1：检查是否有balloon实例存在
+#	pass
+	#var balloons = get_tree().get_nodes_in_group("dialogue_balloons")
+	#return resource.lines.size() > 0
+	
+	# 方法2：检查DialogueManager的状态（如果有公开接口）
+	# return DialogueManager.is_dialogue_running()
+
+
 ## Step through lines and run any mutations until we either hit some dialogue or the end of the conversation
 func get_next_dialogue_line(resource: DialogueResource, key: String = "", extra_game_states: Array = [], mutation_behaviour: MutationBehaviour = MutationBehaviour.Wait) -> DialogueLine:
 	# You have to provide a valid dialogue resource
@@ -276,6 +286,12 @@ func show_example_dialogue_balloon(resource: DialogueResource, title: String = "
 
 	return balloon
 
+func get_dialogue_balloon():
+	var current_scene = get_tree().current_scene
+	for child in current_scene.get_children():
+		if child.get_script() and child.get_script().resource_path.ends_with("example_balloon.gd"):
+			return child
+	return null
 
 ## Show the configured dialogue balloon
 func show_dialogue_balloon(resource: DialogueResource, title: String = "", extra_game_states: Array = []) -> Node:
@@ -396,6 +412,7 @@ func get_line(resource: DialogueResource, key: String, extra_game_states: Array)
 	elif data.type == DialogueConstants.TYPE_GOTO:
 		if data.is_snippet:
 			id_trail = "|" + data.next_id_after + id_trail
+		
 		return await get_line(resource, data.next_id + id_trail, extra_game_states)
 
 	elif data.type == DialogueConstants.TYPE_DIALOGUE:

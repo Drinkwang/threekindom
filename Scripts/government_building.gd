@@ -121,13 +121,41 @@ func hearSayEnd():
 
 func _initData():
 	candoSub=true
-	if GameManager.bossmode==scenemanager.bossMode.mi and GameManager.sav.have_event["糜竺支线3"]==false:
+	
+	if GameManager.selectBoardCharacter==boardType.boardCharacter.mizhu and GameManager._boardMode!=boardType.boardMode.none and GameManager._boardGameWin==true:
+			
+		candoSub=false
+		GameManager.selectBoardCharacter=boardType.boardCharacter.none         
+		GameManager._boardMode=boardType.boardMode.none
+		if GameManager._boardReward!=boardType.boardRewardResult.BreakFree:
+			GameManager.resumeMusic()
+			mizhu.show()
+			mizhu.changeAllClick("来把仕诡牌")
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"常规获胜")
+		else:
+			GameManager.resumeMusic()
+			mizhu.changeAllClick("来把仕诡牌")
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"黑暗游戏获胜")	
+	elif GameManager.selectBoardCharacter==boardType.boardCharacter.mizhu and GameManager._boardMode!=boardType.boardMode.none and GameManager._boardGameWin==false:
+		candoSub=false
+		GameManager.selectBoardCharacter=boardType.boardCharacter.none
+		GameManager._boardMode=boardType.boardMode.none
+		if GameManager._boardReward!=boardType.boardRewardResult.BreakFree:
+			GameManager.resumeMusic()
+			mizhu.changeAllClick("来把仕诡牌")
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"常规失败") 
+		else:
+			GameManager.resumeMusic()
+			mizhu.changeAllClick("来把仕诡牌")
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"黑暗游戏失败") 
+	
+	elif GameManager.bossmode==scenemanager.bossMode.mi and GameManager.sav.have_event["糜竺支线3"]==false:
 		GameManager.sav.hp=0
 		mizhu.show()
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"糜贞结尾")
 		GameManager.sav.have_event["糜竺支线3"]=true
 		return 
-	if GameManager.sav.day==1:
+	elif GameManager.sav.day==1:
 		if	GameManager.sav.have_event["firstgovernment"]==false:
 			#control._show_button_5_yellow(1)
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
@@ -171,30 +199,8 @@ func _initData():
 			#判断任务完成 如果任务完成，那么就开始对话指令，且不能离开
 			pass
 	else:
-		
-		if GameManager.selectBoardCharacter==boardType.boardCharacter.mizhu and GameManager._boardMode!=boardType.boardMode.none and GameManager._boardGameWin==true:
-			
-			candoSub=false
-			GameManager.selectBoardCharacter=boardType.boardCharacter.none         
-			GameManager._boardMode=boardType.boardMode.none
-			if GameManager._boardReward!=boardType.boardRewardResult.BreakFree:
-				GameManager.resumeMusic()
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"常规获胜")
-			else:
-				GameManager.resumeMusic()
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"黑暗游戏获胜")	
-		elif GameManager.selectBoardCharacter==boardType.boardCharacter.mizhu and GameManager._boardMode!=boardType.boardMode.none and GameManager._boardGameWin==false:
-			candoSub=false
-			GameManager.selectBoardCharacter=boardType.boardCharacter.none
-			GameManager._boardMode=boardType.boardMode.none
-			
-			if GameManager._boardReward!=boardType.boardRewardResult.BreakFree:
-				GameManager.resumeMusic()
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"常规失败") 
-			else:
-				GameManager.resumeMusic()
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"黑暗游戏失败") 
-			
+		pass
+
 				   
 	
 	GameManager.currenceScene=self

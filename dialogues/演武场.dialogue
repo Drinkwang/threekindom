@@ -858,12 +858,14 @@ do finalBossBefore()
 ~ 常规获胜
 曹豹: 哈哈，主公好手气！我这兵牌都被您碾了，服气！
 do boardVictory()
+do caobao.changeAllClick("来把仕诡牌")
 do refreshData()
 => END!
 
 
 ~ 常规失败
-曹豹: ：主公，牌技还得练！我的兵牌可不是白练的！
+曹豹: 主公，牌技还得练！我的兵牌可不是白练的！
+do caobao.changeAllClick("来把仕诡牌")
 do refreshData()
 
 => END!

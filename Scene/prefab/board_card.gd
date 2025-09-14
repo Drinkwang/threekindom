@@ -44,8 +44,8 @@ func setimg(reside,devisor):
 		return
 	
 	if holdType==board_game.cardHoldType.enemy:
-		pass#测试暂时关闭
-		#back_rect.show()
+		
+		back_rect.show()
 	else:
 		back_rect.hide()
 	

@@ -97,13 +97,7 @@ func _ready() -> void:
 	Transitions.post_transition.connect(post_transition)
 
 
-	for i in range(0,3):
-		var tempheart:TextureRect=heart_group.get_child(i)
-		var enemyheart:TextureRect=heart_group_enemy.get_child(i)
-		if tempheart.visible==false:
-			tempheart.material.set_shader_parameter("progress",0)
-		if enemyheart.visible==false:
-			enemyheart.material.set_shader_parameter("progress",0)
+
 func post_transition():
 	if GameManager._boardMode==boardType.boardMode.high and GameManager.sav.caobaocardgame==4 and GameManager.selectBoardCharacter==boardType.boardCharacter.caobao:
 		GameManager.play_FinalBoardBGM()
@@ -112,6 +106,14 @@ func post_transition():
 			GameManager.play_BoardBGM(1.5)
 		else:
 			GameManager.play_BoardBGM()
+			
+	for i in range(0,3):
+		var tempheart:TextureRect=heart_group.get_child(i)
+		var enemyheart:TextureRect=heart_group_enemy.get_child(i)
+		
+		tempheart.material.set_shader_parameter("progress",0)
+		
+		enemyheart.material.set_shader_parameter("progress",0)			
 	GameManager._boardReward=boardType.boardRewardResult.none
 	initGame()
 
@@ -188,24 +190,29 @@ func enterGame():
 		if GameManager.selectBoardCharacter==boardType.boardCharacter.caobao:
 			maxUseCard=4
 			extraCard=0
+			cardNum=4
 		elif GameManager.selectBoardCharacter==boardType.boardCharacter.mizhu:
 			maxUseCard=4
 			extraCard=1
+			cardNum=4
 		elif GameManager.selectBoardCharacter==boardType.boardCharacter.chenden:
 			maxUseCard=4
 			extraCard=2
+			cardNum=4
 			
 	elif GameManager._boardMode==boardType.boardMode.high:
 		if GameManager.selectBoardCharacter==boardType.boardCharacter.caobao:
 			maxUseCard=4
 			extraCard=4
+			cardNum=2
 		elif GameManager.selectBoardCharacter==boardType.boardCharacter.mizhu:
 			maxUseCard=4
-			extraCard=1
+			extraCard=2
+			cardNum=3
 		elif GameManager.selectBoardCharacter==boardType.boardCharacter.chenden:
-			maxUseCard=4
-			extraCard=2		
-			
+			maxUseCard=3
+			extraCard=1		
+			cardNum=4
 	startGame(cardNum,issole,extraCard)
 
 func showdetail(str:String,grouptype):
