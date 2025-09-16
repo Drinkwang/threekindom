@@ -527,6 +527,13 @@ func getXueJiItem():
 
 var bossBattleAfter=false
 
+
+func gotoXuanyin():
+	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeIn)
+	SoundManager.play_ambient_sound(WASTELAND_0)
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"探访玄阴")
+
+
 func getDaoQianItem():
 	
 	var _reward:rewardPanel=PanelManager.new_reward()

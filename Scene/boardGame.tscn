@@ -581,6 +581,7 @@ layout_mode = 2
 texture = ExtResource("22_0kksh")
 
 [node name="heartGroup" type="HBoxContainer" parent="CanvasLayer"]
+visible = false
 offset_left = 101.0
 offset_top = 974.0
 offset_right = 287.0

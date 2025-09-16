@@ -69,7 +69,7 @@ var responses: Array = []:
 						elif GameManager.selectBoardCharacter==boardType.boardCharacter.mizhu:
 							characterScore=GameManager.sav.mizhucardgame		
 						#0 小试牛刀开启 1小试牛刀通过 2 对局试炼开启 3对局试验通过 4 诡秘怪谈开启 5诡秘怪谈通过	
-						if 	(characterScore==1 and mode==boardType.boardMode.new) or (characterScore==3 and mode==boardType.boardMode.middle) or (characterScore==5 and mode==boardType.boardMode.high):
+						if 	(characterScore>=1 and mode==boardType.boardMode.new) or (characterScore>=3 and mode==boardType.boardMode.middle) or (characterScore>=5 and mode==boardType.boardMode.high):
 							response.text+=tr("(已通过)")
 						elif (characterScore<2 and mode==boardType.boardMode.middle) or (characterScore<4 and mode==boardType.boardMode.high):
 							response.text+=tr("(未解锁)")

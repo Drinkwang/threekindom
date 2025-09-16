@@ -123,6 +123,9 @@ func clear_children(node: Node) -> void:
 		child.queue_free()  # 标记子节点进行删除
 	
 func initGame():
+	hp=3
+	
+	enemy_hp=3
 	cardsize=0
 	turn_num=0
 	GameManager.currenceScene=self
@@ -134,16 +137,10 @@ func initGame():
 	clear_children(min_group)
 	clear_children(shang_group)
 	clear_children(bin_group)
-	clear_children(shi_group)			
-	cardArr=[]
-	for i in range(0,52):
-		var reside:int=floori((i)%13)
-		if reside>10:
-			continue
-		else:
-			cardsize+=1
-			cardArr.push_front(i)
-	cardsize-=1
+	clear_children(shi_group)		
+	
+	reshuffle()
+	
 	readyInGameData()
 	changeHoldEnegyPanel()
 
@@ -254,7 +251,7 @@ func showdetail(str:String,grouptype):
 	set(value):
 		if(value>hp):
 
-			for i in range(0,value-1):
+			for i in range(0,value):
 				var tempheart:TextureRect=heart_group.get_child(i)
 				if tempheart.visible==false:
 					tempheart.show()
@@ -467,11 +464,11 @@ func punishFade(anim_name: StringName):
 	
 	
 	
-
-	if 	bepunishI==null and bepusnishJ==null:
-		groupPunishTyp=groupType.none
-		await get_tree().create_timer(1).timeout
-		await enterNewPhase(phaseName.useCard)			
+	#进入这个阶段不该进
+	#if 	bepunishI==null and bepusnishJ==null:
+	#	groupPunishTyp=groupType.none
+	#	await get_tree().create_timer(1).timeout
+	#	await enterNewPhase(phaseName.useCard)			
 		
 	if bepunishI!=null:
 		bepunishI.queue_free()
@@ -533,6 +530,7 @@ func startGame(cardnum,issole,enemyExtraCard):
 	hp=3
 	enemy_hp=3
 	_issole=issole
+	heart_group.show()
 	if _issole==false:
 		enemy_score_txt.show()
 		heart_group_enemy.show()
@@ -640,8 +638,22 @@ func enterNewPhase(stage:phaseName):
 		if _issole==false:
 			isPlayerTurn=!isPlayerTurn
 		await checkCardStart()
-						
+
+func reshuffle():
+	cardArr=[]
+	for i in range(0,52):
+		var reside:int=floori((i)%13)
+		if reside>=10:
+			continue
+		else:
+			cardsize+=1
+			cardArr.push_front(i)
+	cardsize-=1
+
+
 func drawOne(isplayer,index=-1):
+
+		
 	var cardone=BOARD_CARD.instantiate()
 	if isplayer==true:
 
@@ -673,7 +685,9 @@ func drawOne(isplayer,index=-1):
 		#var temp=cardArr[cardsize]
 		cardArr[cardsize]=carddate
 		cardsize-=1
-
+	print("目前cardSize"+str(cardsize))
+	if cardsize<1:
+		reshuffle()
 #支付一张
 func checkCardStart():
 	SoundManager.play_sound(sounds.DRAWCARD)
@@ -695,7 +709,8 @@ func checkCardStart():
 	#		drawOne(false)
 	if isPlayerTurn==true:
 		turnGoto()
-	await enterNewPhase(phaseName.checkStart)
+	if (turn_num<5):
+		await enterNewPhase(phaseName.checkStart)
 @onready var end_button: Button = $CanvasLayer/Button
 
 #判断所有子物体
@@ -1411,7 +1426,9 @@ func insertCardRandom(group:groupType):
 		#var temp=cardArr[cardsize]
 	cardArr[cardsize]=carddate
 	cardsize-=1	
-	
+
+	if cardsize<1:
+		reshuffle()	
 var punishStage=false
 #判断是什么阶段，如果是	
 func phaseEnd():
