@@ -116,15 +116,26 @@ func _initData():
 		else:
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"玩家终局输掉")
 	else:
-		if GameManager.sav.caobaocardgame==-1 and GameManager.sav.mizhucardgame==-1 and  GameManager.sav.chendencardgame==-1:
-			people.changeAllClick("遇到诡异牌1")
+		
+		#加个xxx 需要执行完3天后才能遇到诡异牌
+		
+		if GameManager.sav.have_event["玄阴开放"]==false:
+			people.changeAllClick("玄阴秘境")
+			people.showEX=true
 			people.show()
-		if GameManager.sav.caobaocardgame==1 and GameManager.sav.mizhucardgame==1 and  GameManager.sav.chendencardgame==1:
-			people.changeAllClick("遇到诡异牌2")
-			people.show()
-		if GameManager.sav.caobaocardgame==3 and GameManager.sav.mizhucardgame==3 and  GameManager.sav.chendencardgame==3:
-			people.changeAllClick("遇到诡异牌3")
-			people.show()		
+		if GameManager.sav.XuanyinDay>=3:	
+			if GameManager.sav.caobaocardgame==-1 and GameManager.sav.mizhucardgame==-1 and  GameManager.sav.chendencardgame==-1:
+				people.changeAllClick("遇到诡异牌1")
+				people.showEX=false
+				people.show()
+			if GameManager.sav.caobaocardgame==1 and GameManager.sav.mizhucardgame==1 and  GameManager.sav.chendencardgame==1:
+				people.changeAllClick("遇到诡异牌2")
+				people.showEX=false
+				people.show()
+			if GameManager.sav.caobaocardgame==3 and GameManager.sav.mizhucardgame==3 and  GameManager.sav.chendencardgame==3:
+				people.changeAllClick("遇到诡异牌3")
+				people.showEX=false
+				people.show()		
 #-1 0 小试牛刀开启 1小试牛刀通过 2 对局试炼开启 3对局试验通过 4 诡秘怪谈开启 5诡秘怪谈通过		
 	var initData=[
 	{	
@@ -529,6 +540,7 @@ var bossBattleAfter=false
 
 
 func gotoXuanyin():
+	SoundManager.stop_music()
 	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeIn)
 	SoundManager.play_ambient_sound(WASTELAND_0)
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"探访玄阴")
@@ -603,3 +615,20 @@ func meetBoardGame(_value):
 		GameManager.sav.caobaocardgame=4
 		GameManager.sav.mizhucardgame=4
 		GameManager.sav.chendencardgame=4	
+
+
+func have_Xuanyin():
+	var have=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.玄阴玉符)
+	return have>=1
+func have_ThreeItems():
+	var have1=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.血姬傀儡)
+	var have2=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.陶谦血袖)
+	var have3=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.龙胆亮银枪)
+	return have1>=1 and have2>=1 and have3>=1 
+
+
+#返回大街 玄阴秘境
+func returnStreet():
+	SoundManager.stop_ambient_sound(WASTELAND_0)
+	playStageMusic()
+	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeOut)	

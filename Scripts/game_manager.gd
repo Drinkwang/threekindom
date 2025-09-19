@@ -300,7 +300,8 @@ func _enterDay(value=true):
 
 	if sav.danyangCD>0:
 		sav.danyangCD-=1
-
+	if GameManager.sav.XuanyinDay<3 and GameManager.sav.have_event["玄阴开放"]==true:
+		GameManager.sav.XuanyinDay+=1
 
 #@export var mizhuSideWait=-1
 #@export var chendenSideWait=-1
@@ -1274,6 +1275,7 @@ func selectBoardMode(mode:boardType.boardMode):
 	
 func enterBoardGame():
 	#切入boardGame场景
+	GameManager.sav.hp-=20
 	SoundManager.stop_music()
 	SceneManager.changeScene(SceneManager.roomNode.BoardGame,2)
 
@@ -1281,6 +1283,11 @@ func enterBoardGame():
 const boardDialogue = preload("res://dialogues/桌游.dialogue")
 var rewardPanel:bool=false
 func showBoardGameDialogue():
+	
+	if await GameManager.isTried(20):
+		return 	
+	
+	#tri 20
 	DialogueManager.show_example_dialogue_balloon(boardDialogue,"选择仕诡牌")
 	pass
 func resumeMusic():

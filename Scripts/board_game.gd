@@ -709,7 +709,7 @@ func checkCardStart():
 	#		drawOne(false)
 	if isPlayerTurn==true:
 		turnGoto()
-	if (turn_num<5):
+	if (turn_num<6):
 		await enterNewPhase(phaseName.checkStart)
 @onready var end_button: Button = $CanvasLayer/Button
 
@@ -1602,7 +1602,7 @@ func _on_exitGame() -> void:
 
 
 func _on_exitGameBtn_down() -> void:
-	fadeScene()
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"认输")
 
 
 func _on_win_button_down() -> void:
@@ -1625,3 +1625,12 @@ func fadeScene():
 		SceneManager.changeScene(SceneManager.roomNode.DRILL_GROUND,2)
 					
 	
+
+@onready var givelabel: Label = $CanvasLayer/ExitButton/Label
+
+func _on_exit_button_focus_entered() -> void:
+	givelabel.show()
+
+
+func _on_exit_button_focus_exited() -> void:
+	givelabel.hide()

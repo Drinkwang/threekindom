@@ -400,7 +400,7 @@ func changePanelPos():
 
 #黑暗游戏输了游戏	
 func cardLose():
-	GameManager.sav.hp-=20
+	GameManager.sav.hp=0
 
 
 func boardVictory():

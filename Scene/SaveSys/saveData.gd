@@ -4,8 +4,8 @@ class_name saveData
 
 #GameManager
 @export var day=0
-
-
+#玄阴秘境开始之前
+@export var XuanyinDay=0
 @export var chendenfav=70
 @export var mizhufav=70
 @export var caobaofav=70
@@ -261,6 +261,8 @@ var SIDEQUEST_MAP:Dictionary={
 	"boss战开始":false,#这个还完全没做，曹豹的初高切换也没做，大家切入仕诡牌 还没做
 	"曹豹诡秘乱局启动":false,	#改成5
 	"曹豹牌局无人":false,
+	"玄阴开放":false,
+	"玄阴首次":false
 }
 
 #0 小试牛刀开启 1小试牛刀通过 2 对局试炼开启 3对局试验通过 4 诡秘怪谈开启 5诡秘怪谈通过
