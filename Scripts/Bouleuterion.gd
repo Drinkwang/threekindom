@@ -389,10 +389,10 @@ func cancelLaw():
 
 func changePanelPos():
 	if GameManager.sav.have_event["Factionalization"]==true:
-		factionView.position.y=655
+		factionView.position.y=520
 	else:	
 	#f GameManager.sav.
-		factionView.position.y=730
+		factionView.position.y=594
 	pass
 	
 

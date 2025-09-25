@@ -29,6 +29,10 @@ func showItems():
 	#判断今天的item，如果没有捡起，则显示 否则设置成true
 
 
+func hideItems():
+	var arrs=self.get_children()
+	for e in arrs:
+		e.hide()
 
 func showitem(index,haskey):
 	var ele=itmes.filter(func(item): return item.SceneID==index)[0]

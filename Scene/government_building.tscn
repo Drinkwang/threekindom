@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dbk6u8kc33kq2"]
+[gd_scene load_steps=38 format=3 uid="uid://dbk6u8kc33kq2"]
 
 [ext_resource type="Script" path="res://Scripts/government_building.gd" id="1_xncth"]
 [ext_resource type="Resource" uid="uid://cqlt2sgkuk3na" path="res://dialogues/府邸.dialogue" id="2_yngd1"]
@@ -33,6 +33,7 @@
 [ext_resource type="Script" path="res://Scripts/items_in_scene_manager.gd" id="31_4rbvs"]
 [ext_resource type="PackedScene" uid="uid://4ap7nnl7o6br" path="res://Scene/prefab/_CgetSceneItem.tscn" id="32_1meer"]
 [ext_resource type="Resource" uid="uid://cjbqxteqnpnrd" path="res://dialogues/议会厅.dialogue" id="33_r2h6v"]
+[ext_resource type="Texture2D" uid="uid://cqh5dhr518rsp" path="res://Asset/板子.png" id="34_dqdog"]
 
 [sub_resource type="Animation" id="Animation_trdn5"]
 length = 0.001
@@ -138,16 +139,13 @@ position = Vector2(960, 533)
 scale = Vector2(2.23, 2.23)
 texture = ExtResource("9_ucpug")
 
-[node name="Control" parent="." instance=ExtResource("5_gv3ja")]
-metadata/_edit_use_anchors_ = true
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="supportPanel" parent="CanvasLayer" instance=ExtResource("12_5ydg1")]
-offset_left = 4.0
-offset_top = 743.0
-offset_right = -1574.0
-offset_bottom = -5.0
+offset_left = 74.0
+offset_top = 656.0
+offset_right = -1504.0
+offset_bottom = -92.0
 
 [node name="hpPanel" parent="CanvasLayer" instance=ExtResource("7_iy2fq")]
 offset_left = 1395.0
@@ -157,17 +155,20 @@ offset_bottom = 20.0
 scale = Vector2(0.2, 0.2)
 
 [node name="resPanel" parent="CanvasLayer" instance=ExtResource("16_rw7iu")]
-offset_left = 1529.0
-offset_top = 673.0
-offset_right = 1825.0
-offset_bottom = 1009.0
+offset_left = 1406.0
+offset_top = 619.0
+offset_right = 1894.0
+offset_bottom = 955.0
 
 [node name="faction" parent="CanvasLayer" instance=ExtResource("15_wrxcl")]
-offset_left = 9.0
-offset_top = 693.0
-offset_right = -1580.0
-offset_bottom = -224.0
+offset_left = 44.0
+offset_top = 529.0
+offset_right = -1545.0
+offset_bottom = -388.0
 size_flags_horizontal = 4
+
+[node name="Control" parent="CanvasLayer" instance=ExtResource("5_gv3ja")]
+metadata/_edit_use_anchors_ = true
 
 [node name="policyPanel" parent="CanvasLayer" instance=ExtResource("9_fdrkw")]
 visible = false
@@ -275,3 +276,9 @@ position = Vector2(1320, 280)
 SceneID = 3
 dialogue_resource = ExtResource("33_r2h6v")
 dialogue_start = "发现诡秘怪谈"
+
+[node name="板子" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(958, 537.5)
+scale = Vector2(2.23461, 2.21694)
+texture = ExtResource("34_dqdog")

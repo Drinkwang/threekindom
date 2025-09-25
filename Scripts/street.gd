@@ -175,8 +175,9 @@ func _initData():
 		GameManager.hearsayID=-1
 		shop_panel.show()
 	
-	items_in_scene.showItems()
+
 	control._processList(initData)
+	items_in_scene.showItems()
 	if GameManager.hearsayBeforeNode==SceneManager.roomNode.Shop:
 		shop_panel.show()
 		GameManager.hearsayBeforeNode=null
@@ -511,7 +512,7 @@ func BurySheep():
 	GameManager.sav.have_event["支线触发完毕调查过竹简"]=true
 
 func playStageMusic():
-	#SoundManager.stop_music()
+	SoundManager.stop_all_ambient_sounds()
 	SoundManager.play_ambient_sound(MINISTREET)	
 	
 func showbianji():
@@ -630,5 +631,6 @@ func have_ThreeItems():
 #返回大街 玄阴秘境
 func returnStreet():
 	SoundManager.stop_ambient_sound(WASTELAND_0)
+	GameManager.resumeMusic()
 	playStageMusic()
 	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeOut)	

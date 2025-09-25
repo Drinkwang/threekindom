@@ -66,9 +66,9 @@ func set_Data(key,value):
 	#var itemname= InventoryManagerItem.item_by_enum(key)
 	var remainder = InventoryManager.add_item(GameManager.inventoryPackege, itemname, quantity, false)
 
-	
-const COIN = preload("res://Asset/coin.png")
-const LABOR = preload("res://Asset/labor.png")	
+const LABOR = preload("res://Asset/ui/战力.png")	
+
+const COIN = preload("res://Asset/ui/钱财.png")
 func set_Money(_num):
 	context.texture=COIN
 	self.tooltip_text=tr("金币：持有的金钱数量(可购买道具)")#

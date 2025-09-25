@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://ddo166anpds0n"]
+[gd_scene load_steps=5 format=3 uid="uid://ddo166anpds0n"]
 
 [ext_resource type="Script" path="res://Scripts/FactionalNum.gd" id="1_wdq5u"]
+[ext_resource type="Texture2D" uid="uid://bo7klj0xrn8gc" path="res://Asset/星.png" id="2_5i7rk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yq7q3"]
 
@@ -8,9 +9,10 @@
 bg_color = Color(0.996078, 0.317647, 0.470588, 1)
 
 [node name="PanelContainer" type="PanelContainer"]
+self_modulate = Color(1, 1, 1, 0)
 offset_right = 235.0
 offset_bottom = 65.0
-theme_type_variation = &"PanelContainer_new"
+theme_type_variation = &"PanelContainerNew2"
 theme_override_styles/panel = SubResource("StyleBoxFlat_yq7q3")
 script = ExtResource("1_wdq5u")
 
@@ -20,15 +22,24 @@ theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 3
 theme_override_constants/margin_bottom = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+texture = ExtResource("2_5i7rk")
+stretch_mode = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "外地派系(丹阳)-支持度："
 
-[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer"]
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_2mory")
 value = 100.0

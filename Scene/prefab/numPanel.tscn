@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://v5uv2iy3evkb"]
+[gd_scene load_steps=8 format=3 uid="uid://v5uv2iy3evkb"]
 
 [ext_resource type="Script" path="res://Scripts/numPanel.gd" id="1_xwf3c"]
 [ext_resource type="Resource" uid="uid://blfuk0ymk0m4m" path="res://Asset/tres/waidipai.tres" id="2_onxnr"]
@@ -6,6 +6,7 @@
 [ext_resource type="Theme" uid="uid://bklmr3xmk4m5u" path="res://global_theme.tres" id="3_72qwc"]
 [ext_resource type="Resource" uid="uid://dh6qm466adpma" path="res://Asset/tres/bentupai.tres" id="3_dxnxg"]
 [ext_resource type="Resource" uid="uid://c4iedj4vt36ue" path="res://Asset/tres/haozupai.tres" id="4_wtmwg"]
+[ext_resource type="Texture2D" uid="uid://d3cyayah04ryr" path="res://Asset/绳子图.png" id="6_hk5rr"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -21,16 +22,31 @@ grow_vertical = 2
 script = ExtResource("1_xwf3c")
 datas = Array[ExtResource("2_rb3l8")]([ExtResource("2_onxnr"), ExtResource("3_dxnxg"), ExtResource("4_wtmwg")])
 
+[node name="绳子" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 70.0
+offset_top = -381.0
+offset_right = 262.0
+offset_bottom = -167.0
+grow_vertical = 0
+texture = ExtResource("6_hk5rr")
+
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
+offset_left = 13.0
 offset_top = -171.0
-offset_right = 336.0
+offset_right = 320.0
+offset_bottom = -5.0
 grow_vertical = 0
 pivot_offset = Vector2(630.615, 267.699)
 theme = ExtResource("3_72qwc")
+theme_type_variation = &"PanelContainerNew2"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
 layout_mode = 2

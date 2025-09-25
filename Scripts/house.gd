@@ -1,7 +1,7 @@
 extends baseComponent
 @onready var res_panel = $CanvasLayer/resPanel
 
-@onready var control = $Control
+@onready var control = $CanvasLayer/Control
 @onready var policyPanel = $"CanvasLayer/政务面板"
 
 @onready var propertyPanel = $"CanvasLayer/属性面板"
@@ -93,7 +93,7 @@ func _initData():
 	]
 	
 	#记得demo注销
-	if GameManager.sav.have_event["chaoMizhuEnd"]==true and GameManager.sav.isGetCoin==false:
+	if GameManager.sav.have_event["chaoMizhuEnd"]==true and GameManager.sav.isGetCoin==false and GameManager.sav.currenceValue>1:
 		title.show()
 		demo_end.show()
 		hp_panel.hide()
@@ -102,7 +102,10 @@ func _initData():
 		return
 	if control.visible==true:	
 		items_in_scene.showItems()	
+	else:
+		items_in_scene.hideItems()	
 	control._processList(initData)
+
 	GameManager.currenceScene=self
 	if GameManager.sav.day==1:
 		if(GameManager.sav.have_event["firstmeetchenqun"]==false):

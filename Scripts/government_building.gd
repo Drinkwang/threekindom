@@ -1,7 +1,7 @@
 extends baseComponent
 class_name  government_building
 
-@onready var control = $Control
+@onready var control = $CanvasLayer/Control
 const FancyFade = preload("res://addons/transitions/FancyFade.gd")
 @onready var policyBook = $"政府文书"
 @onready var policy_panel = $CanvasLayer/policyPanel
@@ -1176,10 +1176,10 @@ func changePanelPos():
 	if factionView==null:
 		return
 	if GameManager.sav.have_event["Factionalization"]==true:
-		factionView.position.y=655
+		factionView.position.y=529#待修改
 	else:	
 	#f GameManager.sav.
-		factionView.position.y=730
+		factionView.position.y=529
 	pass
 
 func JudFundTask():

@@ -1,7 +1,7 @@
 extends PanelContainer
 class_name factionalname
-@onready var progress_bar = $MarginContainer/VBoxContainer/ProgressBar
-@onready var label = $MarginContainer/VBoxContainer/Label
+@onready var progress_bar = $MarginContainer/HBoxContainer/VBoxContainer/ProgressBar
+@onready var label = $MarginContainer/HBoxContainer/VBoxContainer/Label
 var itemData
 # Called when the node enters the scene tree for the first time.
 func _ready():

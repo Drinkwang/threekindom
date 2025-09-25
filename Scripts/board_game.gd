@@ -21,7 +21,7 @@ var enemyStage=4
 
 
 func loseGame(_str:String=""):
-	
+	SoundManager.play_sound(youlosesound)
 	if _str.length()>0:
 		lose_label.text=_str	
 	SoundManager.stop_music()	
@@ -50,6 +50,7 @@ func winGame(_str:String=""):
 		win_label.text=_str
 	blink_rect.show()
 	animation_player_BLINK.play("win")
+	SoundManager.play_sound(youwinsound)
 	var finishfunc=func(aniname):
 		blink_rect.hide()
 	animation_player_BLINK.animation_finished.connect(finishfunc)
@@ -614,6 +615,7 @@ func enterNewPhase(stage:phaseName):
 				await enterNewPhase(phaseName.endturn)
 	elif _phaseName==phaseName.useCard:
 		if isPlayerTurn==true:
+			SoundManager.play_sound(useCardSound)
 			playerStage=maxUseCard
 			reside_num.text=tr("剩余步数：{s}").format({"s":playerStage})
 	
@@ -691,9 +693,16 @@ func drawOne(isplayer,index=-1):
 #支付一张
 func checkCardStart():
 	SoundManager.play_sound(sounds.DRAWCARD)
-	if _issole==false:
+
+	
+	if _issole==false and getCardLength(isPlayerTurn)<5:
 		drawOne(isPlayerTurn)
-		pass
+#		if isPlayerTurn==true:
+#			SoundManager.play_sound(drawCardSound)
+			
+	if isPlayerTurn==true:
+		SoundManager.play_sound(fillcardSound)		
+			
 	await get_tree().create_timer(0.1).timeout
 	insertCardRandom(groupType.min)
 	await get_tree().create_timer(0.1).timeout
@@ -769,6 +778,7 @@ func checkCardStage(_groupType):
 					#定义一个惩罚cardType，然后赋值非空
 					
 						if isPlayerTurn==true:
+							SoundManager.play_sound(payCostSound)
 							SoundManager.play_sound(sounds.deniedsound)
 							end_button.text=tr("拒付惩罚")
 							detail_txt.text="请支付你所需的惩罚："
@@ -1292,8 +1302,8 @@ func enterRewardStage(i:boardCard,j:boardCard):
 		SoundManager.play_sound(sounds.MATCH_STRIKING)
 		
 		#var parent
-		if getCardLength(isPlayerTurn)<5:
-			drawOne(isPlayerTurn,gettype)
+		
+		drawOne(isPlayerTurn,gettype)
 		#奖励消除卡牌
 	
 		#print("helloworld")
@@ -1596,6 +1606,18 @@ func _on_button_restart() -> void:
 	initGame()
 	lose_rect.hide()
 
+const youwinsound = preload("res://Asset/sound/boardGame/[普通青年男性的声音]你赢了.mp3")
+const youlosesound = preload("res://Asset/sound/boardGame/[普通青年男性的声音]你输了.mp3")
+
+const useCardSound = preload("res://Asset/sound/boardGame/[普通青年男性的声音]出牌阶段.mp3")
+const fillcardSound = preload("res://Asset/sound/boardGame/[普通青年男性的声音]发牌阶段.mp3")
+
+const drawCardSound = preload("res://Asset/sound/boardGame/[普通青年男性的声音]当前手牌少......张，抽一张.mp3")
+const fangpiansound = preload("res://Asset/sound/boardGame/[普通青年男性的声音]方片.mp3")
+const meihuaSound = preload("res://Asset/sound/boardGame/[普通青年男性的声音]梅花.mp3")
+const hongtaoSound = preload("res://Asset/sound/boardGame/[普通青年男性的声音]红桃.mp3")
+const payCostSound = preload("res://Asset/sound/boardGame/[普通青年男性的声音]请支付代价.mp3")
+const heitaoSound = preload("res://Asset/sound/boardGame/[普通青年男性的声音]黑桃.mp3")
 
 func _on_exitGame() -> void:
 	fadeScene()

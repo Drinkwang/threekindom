@@ -174,6 +174,7 @@ func initSecretFunc():
 	var available_items 
 	var available_secret_items
 	sav.todayCanFindItems=[]
+	randomize()
 	var maxLen=randi_range(0,3)
 	if sav.day<4:
 		if sav.day==1:

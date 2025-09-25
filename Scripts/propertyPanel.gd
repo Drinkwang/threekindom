@@ -1,9 +1,16 @@
 extends Control
 class_name propertyPanel
-@onready var coin_num = $PanelContainer/MarginContainer/GridContainer/coinNum
-@onready var heart_num = $PanelContainer/MarginContainer/GridContainer/heartNum
-@onready var labor_num = $PanelContainer/MarginContainer/GridContainer/laborNum
-@onready var dd222test = $PanelContainer/MarginContainer/GridContainer/TextureRect
+#@onready var coin_num = $PanelContainer/MarginContainer/GridContainer/coinNum
+#@onready var heart_num = $PanelContainer/MarginContainer/GridContainer/heartNum
+#@onready var labor_num = $PanelContainer/MarginContainer/GridContainer/laborNum
+#@onready var dd222test = $PanelContainer/MarginContainer/GridContainer/TextureRect
+
+
+
+@onready var coin_num = $MarginContainer/GridContainer/coinNum
+@onready var heart_num = $MarginContainer/GridContainer/heartNum
+@onready var labor_num = $MarginContainer/GridContainer/laborNum
+@onready var dd222test = $MarginContainer/GridContainer/TextureRect
 @onready var coin = $coin
 @onready var labor = $labor
 @onready var heart = $heart
@@ -18,15 +25,17 @@ func _ready():
 	#dd222test
 	pass # Replace with function body.
 
-@onready var color_rect = $PanelContainer/MarginContainer2/ColorRect
+@onready var color_rect = $MarginContainer2/ColorRect
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if(showValue==true):
-
-		coin_num.text=var_to_str(GameManager.sav.coin)
-		heart_num.text=var_to_str(GameManager.sav.people_surrport)
-		labor_num.text=var_to_str(GameManager.sav.labor_force)
+		coin_num.text = "%07d" % GameManager.sav.coin
+		heart_num.text = "%07d" % GameManager.sav.people_surrport
+		labor_num.text = "%07d" % GameManager.sav.labor_force
+		#coin_num.text=var_to_str(GameManager.sav.coin)
+		#heart_num.text=var_to_str(GameManager.sav.people_surrport)
+		#labor_num.text=var_to_str(GameManager.sav.labor_force)
 		color_rect.color.a=0.314+0.686*((100-GameManager.sav.people_surrport)/100.0)
 
 func GetValue(coinGet,heartGet,peopleGet):

@@ -340,7 +340,10 @@ func _on_button_button_down():
 #推出按钮，同时调用结束
 func _on_exit_button_button_down():
 	self.hide()
-	GameManager.currenceScene.res_panel.position.x=1529
+	GameManager.currenceScene.res_panel.position.x=1403
+	GameManager.currenceScene.res_panel.position.y=622
+	GameManager.currenceScene.res_panel.scale=Vector2(1,1)
+	
 	SoundManager.play_sound(sounds.declinesound)
 	#大人
 	if GameManager.sav.day==3:

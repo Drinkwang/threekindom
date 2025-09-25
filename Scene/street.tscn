@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cehg7t1h5f2ei"]
+[gd_scene load_steps=29 format=3 uid="uid://cehg7t1h5f2ei"]
 
 [ext_resource type="Script" path="res://Scripts/street.gd" id="1_jskmv"]
 [ext_resource type="Resource" uid="uid://qopivlttvt12" path="res://dialogues/街道.dialogue" id="2_a3tl4"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://ghiim2lkqkbe" path="res://Scene/prefab/propertyPanel.tscn" id="8_qssq7"]
 [ext_resource type="Texture2D" uid="uid://dlpu2s7rm4k33" path="res://Asset/光明/装饰底板.png" id="9_ide2q"]
 [ext_resource type="Texture2D" uid="uid://bjmquyl6mhboo" path="res://Asset/光明/参考图明亮.png" id="10_0o7yc"]
+[ext_resource type="Texture2D" uid="uid://cqh5dhr518rsp" path="res://Asset/板子.png" id="10_uc5f0"]
 [ext_resource type="Texture2D" uid="uid://crvsmgt0jscjy" path="res://Asset/人物/民.png" id="11_egoaw"]
 [ext_resource type="PackedScene" uid="uid://v5uv2iy3evkb" path="res://Scene/prefab/numPanel.tscn" id="12_koypy"]
 [ext_resource type="PackedScene" uid="uid://dqpklssxni160" path="res://Scene/prefab/clickBlock.tscn" id="17_w7ika"]
@@ -70,6 +71,12 @@ texture = ExtResource("8_h3v2d")
 position = Vector2(960, 533)
 scale = Vector2(2.23, 2.23)
 texture = ExtResource("9_ide2q")
+
+[node name="板子" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(958, 537.5)
+scale = Vector2(2.23461, 2.21694)
+texture = ExtResource("10_uc5f0")
 
 [node name="正常背景2" type="Sprite2D" parent="."]
 visible = false
@@ -175,10 +182,10 @@ offset_bottom = 40.0
 stream = ExtResource("22_pmyge")
 
 [node name="resPanel" parent="CanvasLayer" instance=ExtResource("8_qssq7")]
-offset_left = 1529.0
-offset_top = 673.0
-offset_right = 1825.0
-offset_bottom = 1009.0
+offset_left = 1404.0
+offset_top = 611.0
+offset_right = 1884.0
+offset_bottom = 947.0
 
 [node name="scholar" parent="CanvasLayer" instance=ExtResource("5_jclo7")]
 visible = false

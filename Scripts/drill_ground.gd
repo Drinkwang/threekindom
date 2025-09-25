@@ -424,7 +424,9 @@ func _buttonListClick(item):
 			battle_pane.point_group.hide()
 		battle_pane.show()
 		battle_pane.initData()
-		res_panel.position.x=1598
+		res_panel.position.x=1564
+		res_panel.position.y=803
+		res_panel.scale=Vector2(0.765,0.765)
 		if GameManager.sav.have_event["battleTaiShan"]==true:
 			if GameManager.sav.have_event["臧霸首战之前"]==false:
 				GameManager.sav.have_event["臧霸首战之前"]=true

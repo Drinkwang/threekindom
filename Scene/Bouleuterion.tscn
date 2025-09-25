@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://v5b54ln6hhwc"]
+[gd_scene load_steps=33 format=3 uid="uid://v5b54ln6hhwc"]
 
 [ext_resource type="Script" path="res://Scripts/Bouleuterion.gd" id="1_q6noc"]
 [ext_resource type="Resource" uid="uid://bte38wl3etklk" path="res://dialogues/灵堂.dialogue" id="2_56kjn"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://5n7qchhi5h04" path="res://Asset/ui/底色.png" id="4_wlpww"]
 [ext_resource type="Texture2D" uid="uid://wdgskqosf4fn" path="res://Asset/光明/议事厅-正常.png" id="6_dffsn"]
 [ext_resource type="PackedScene" uid="uid://ervc6220fre7" path="res://Scene/prefab/fspanel.tscn" id="6_mjg5e"]
+[ext_resource type="Texture2D" uid="uid://cqh5dhr518rsp" path="res://Asset/板子.png" id="6_ruusp"]
 [ext_resource type="Texture2D" uid="uid://doh7mxtgy0hm2" path="res://Asset/人物/陈登睁眼.png" id="7_0cx3q"]
 [ext_resource type="PackedScene" uid="uid://cda4765v12icm" path="res://Scene/prefab/parliamentary.tscn" id="7_1m0jr"]
 [ext_resource type="PackedScene" uid="uid://v5uv2iy3evkb" path="res://Scene/prefab/numPanel.tscn" id="7_3iegf"]
@@ -131,6 +132,12 @@ scale = Vector2(2.23, 2.23)
 texture = ExtResource("4_hs6t7")
 region_filter_clip_enabled = true
 
+[node name="板子" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(959, 533.5)
+scale = Vector2(2.21138, 2.19628)
+texture = ExtResource("6_ruusp")
+
 [node name="标题" type="Sprite2D" parent="."]
 position = Vector2(961, 538)
 scale = Vector2(2.23, 2.23)
@@ -165,10 +172,10 @@ offset_bottom = 20.0
 scale = Vector2(0.2, 0.2)
 
 [node name="resPanel" parent="ui" instance=ExtResource("11_1q5rr")]
-offset_left = 1529.0
-offset_top = 673.0
-offset_right = 1825.0
-offset_bottom = 1009.0
+offset_left = 1401.0
+offset_top = 614.0
+offset_right = 1856.0
+offset_bottom = 957.0
 
 [node name="bgs" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(895, 333)
@@ -241,22 +248,25 @@ boardType = 1
 dialogue_resource = ExtResource("2_who4l")
 dialogue_start = "点击陈群"
 
+[node name="Control2" parent="CanvasBook" instance=ExtResource("7_3iegf")]
+offset_left = 100.0
+offset_top = 884.0
+offset_right = -1478.0
+offset_bottom = -22.0
+
+[node name="faction" parent="CanvasBook" instance=ExtResource("6_mjg5e")]
+offset_left = 71.0
+offset_top = 594.0
+offset_right = -1518.0
+offset_bottom = -323.0
+size_flags_horizontal = 4
+
 [node name="Control" parent="CanvasBook" instance=ExtResource("16_ba2uq")]
 offset_left = -1.0
 offset_top = -3.0
 offset_right = 39.0
 offset_bottom = 37.0
 metadata/_edit_use_anchors_ = true
-
-[node name="Control2" parent="CanvasBook" instance=ExtResource("7_3iegf")]
-offset_top = 899.0
-offset_right = -1579.0
-
-[node name="faction" parent="CanvasBook" instance=ExtResource("6_mjg5e")]
-offset_top = 737.0
-offset_right = -1590.0
-offset_bottom = -180.0
-size_flags_horizontal = 4
 
 [node name="parliamentaryDetail" parent="CanvasBook" instance=ExtResource("7_1m0jr")]
 visible = false
