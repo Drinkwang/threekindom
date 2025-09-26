@@ -634,3 +634,15 @@ func returnStreet():
 	GameManager.resumeMusic()
 	playStageMusic()
 	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeOut)	
+
+
+func getZhenrenItem():
+	var _reward:rewardPanel=PanelManager.new_reward()
+	var items={
+		"items": {InventoryManagerItem.ItemEnum.霸道之息:1},
+		"money": 0,
+		"population": 0
+	}
+	#GameManager.ScoreToItem()
+	bossBattleAfter=true
+	_reward.showTitileReward(tr("恭喜你，修道真人陨落，他体内的气息转变为你的力量"),items)	

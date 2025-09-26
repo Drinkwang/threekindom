@@ -5,7 +5,7 @@ uniform vec4 outline_color : source_color = vec4(1.0, 1.0, 1.0, 1.0); // 描边�
 uniform vec4 bg_color : source_color = vec4(1.0, 1.0, 1.0, 1.0); // 描边颜色
 uniform float outline_width : hint_range(0.0, 0.1) = 0.02; // 描边宽度（比例）
 uniform float fill_degrees = 360.0; // 填充角度
-uniform float initial_angle = 0.0; 
+uniform float initial_angle = 0.0;
 uniform float radius_threshold : hint_range(0.0, 0.5) = 0.45; // 圆形外边缘的半径阈值
 void fragment() {
     vec2 uv = UV - vec2(0.5); // 将 UV 坐标移到中心

@@ -583,3 +583,9 @@ func refreshPage():
 	# 显示结果
 #定义一个枚举，然后显示当前win还是false
 #得保存
+
+@onready var se_task_hbox: HBoxContainer = $taskHbox
+
+
+func initSecretTask():
+	pass

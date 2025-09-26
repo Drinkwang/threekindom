@@ -392,7 +392,7 @@ func changePanelPos():
 		factionView.position.y=520
 	else:	
 	#f GameManager.sav.
-		factionView.position.y=594
+		factionView.position.y=590
 	pass
 	
 

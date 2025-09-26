@@ -392,6 +392,27 @@ root_node = NodePath("../C2-dis")
 [node name="C2-dis" type="AnimationPlayer" parent="."]
 root_node = NodePath("../C1")
 
+[node name="taskHbox" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 338.0
+offset_right = 367.0
+offset_bottom = 402.0
+scale = Vector2(0.3, 0.3)
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="taskHbox"]
+layout_mode = 2
+texture = ExtResource("1_upy2s")
+
+[node name="TextureRect2" type="TextureRect" parent="taskHbox"]
+layout_mode = 2
+texture = ExtResource("1_upy2s")
+
+[node name="TextureRect3" type="TextureRect" parent="taskHbox"]
+layout_mode = 2
+texture = ExtResource("1_upy2s")
+
 [node name="enemy" parent="." instance=ExtResource("4_px0mi")]
 custom_minimum_size = Vector2(380, 0)
 anchors_preset = 0

@@ -113,9 +113,9 @@ offset_right = 1866.0
 offset_bottom = 978.0
 
 [node name="supportPanel" parent="CanvasLayer" instance=ExtResource("18_bdm3x")]
-offset_left = 57.0
+offset_left = 96.0
 offset_top = 720.0
-offset_right = -1481.0
+offset_right = -1442.0
 offset_bottom = -59.0
 
 [node name="caocaoLetter" parent="CanvasLayer" instance=ExtResource("11_1wi74")]

@@ -249,16 +249,16 @@ dialogue_resource = ExtResource("2_who4l")
 dialogue_start = "点击陈群"
 
 [node name="Control2" parent="CanvasBook" instance=ExtResource("7_3iegf")]
-offset_left = 100.0
-offset_top = 884.0
-offset_right = -1478.0
-offset_bottom = -22.0
+offset_left = 82.0
+offset_top = 815.0
+offset_right = -1496.0
+offset_bottom = -91.0
 
 [node name="faction" parent="CanvasBook" instance=ExtResource("6_mjg5e")]
-offset_left = 71.0
-offset_top = 594.0
-offset_right = -1518.0
-offset_bottom = -323.0
+offset_left = 55.0
+offset_top = 590.0
+offset_right = -1534.0
+offset_bottom = -327.0
 size_flags_horizontal = 4
 
 [node name="Control" parent="CanvasBook" instance=ExtResource("16_ba2uq")]
