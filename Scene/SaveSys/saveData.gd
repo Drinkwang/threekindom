@@ -299,3 +299,10 @@ GameManager.RspEnum.SCISSORS:{"name": "张飞", "level": 1, "max_level": 10, "ra
 
 GameManager.RspEnum.PAPER:{"name": "赵云", "level": 1, "max_level": 10, "randominit": -1,"isBattle":false}
 }
+
+#触发胜利场次，触发目标数额 比如v=9 t=1000 触发当前数额
+var extraBattleTaskBootNum=-1
+var extraBattleTaskTargetNum=-1
+var extraBattleTaskEnum:SceneManager.etraTaskType=SceneManager.etraTaskType.none
+var extraCureenTaskCNum=0
+var extraBattleDialogContext=""

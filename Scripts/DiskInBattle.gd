@@ -471,11 +471,25 @@ func settleGame(end,issuccess):
 	_rewardPanel.coinCost=curCoin
 	
 	_rewardPanel.soilderCost=cost
+	if GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.costMoney:
+		GameManager.sav.extraCureenTaskCNum+=_rewardPanel.coinCost
+		refreshHideBattleTask()
 	if issuccess==true:
 		GameManager.sav.battleResults[taskIndex]=GameManager.BattleResult.win
 		print("你win了")
 		if GameManager.sav.targetResType==GameManager.ResType.battle:
 			GameManager.sav.currenceValue=GameManager.sav.currenceValue+1
+			
+			
+				# 如果你满足条件，则弹出对话
+			if GameManager.sav.extraCureenTaskCNum>=GameManager.sav.extraBattleTaskTargetNum and GameManager.sav.extraBattleTaskBootNum<=GameManager.sav.currenceValue:
+				DialogueManager.show_example_dialogue_balloon(yanwuchang,GameManager.sav.extraBattleDialogContext)
+				GameManager.sav.extraBattleTaskBootNum=-1
+				GameManager.sav.extraBattleTaskTargetNum=-1
+				GameManager.sav.extraBattleTaskEnum=SceneManager.etraTaskType.none
+				GameManager.sav.extraCureenTaskCNum=0
+				GameManager.sav.extraBattleDialogContext=""
+			
 		#判断胜利积分
 		var enemyPower=GameManager.sav.battleTasks[taskIndex].index*50
 
@@ -490,14 +504,21 @@ func settleGame(end,issuccess):
 			GameManager.sav.ctLoseBattleRate=GameManager.sav.ctLoseBattleRate-1
 		
 	else:
+		
+		if GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.loseGame or GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.dontLoseGame:
+			GameManager.sav.extraCureenTaskCNum+=1
+			refreshHideBattleTask()
+		
 		GameManager.sav.battleResults[taskIndex]=GameManager.BattleResult.fail
 		print("你输了")
+		if GameManager.currenceScene.battle_pane._mode==SceneManager.bossMode.zhenren:
+			DialogueManager.show_example_dialogue_balloon(yanwuchang,"战斗失败_真人")	
 		_rewardPanel.fail()
 		judgeLoseSentiment()
 	#bug 开始修改这里的问题
 	curCoin=0
 	curSoilder=0
-	
+
 	GameManager.sav.currenceTask=GameManager.sav.currenceTask+1
 	refreshPage()
 	if(selectgeneral!=null):
@@ -587,5 +608,45 @@ func refreshPage():
 @onready var se_task_hbox: HBoxContainer = $taskHbox
 
 
-func initSecretTask():
-	pass
+func refreshHideBattleTask():
+	if GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.none:
+		se_task_hbox.hide()
+	else:
+		se_task_hbox.show()
+		for i in range(0,3):
+			var ic:TextureRect=se_task_hbox.get_child(i)
+			var number_map = {1: 3, 2: 2, 3: 1}  # 定义替换规则
+			if(GameManager.sav.extraCureenTaskCNum>=GameManager.sav.extraBattleTaskTargetNum/number_map[i+1]):
+				if GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.costMoney or GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.loseGame:
+					ic.modulate=Color.YELLOW
+				elif GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.dontLoseGame:
+					ic.modulate=Color.RED
+			else:
+				ic.modulate=Color.WHITE
+		pass
+		
+		
+func refreshTempHideBattleTask():
+	if GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.none:
+		se_task_hbox.hide()
+	else:
+		se_task_hbox.show()
+		for i in range(0,3):
+			var ic:TextureRect=se_task_hbox.get_child(i)
+			var number_map = {1: 3, 2: 2, 3: 1}  # 定义替换规则
+			if(GameManager.sav.extraCureenTaskCNum>=GameManager.sav.extraBattleTaskTargetNum/number_map[i+1]):
+				if GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.costMoney or GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.loseGame:
+					ic.modulate=Color.GREEN
+				elif GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.dontLoseGame:
+					ic.modulate=Color.RED
+			else:
+				
+				
+				if(GameManager.sav.extraCureenTaskCNum+GameManager.currenceScene.battle_pane.costcoin>=GameManager.sav.extraBattleTaskTargetNum/number_map[i+1]):
+					if GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.costMoney or GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.loseGame:
+						if(ic.modulate!=Color.YELLOW):
+							ic.modulate=Color.YELLOW
+							#叮
+				else:
+					ic.modulate=Color.WHITE
+		pass				

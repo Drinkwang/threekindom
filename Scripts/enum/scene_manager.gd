@@ -89,7 +89,16 @@ enum bossMode{
 	none,
 	tao,
 	mi,
-	huang
+	huang,
+	zhenren
 	
+}
+
+
+enum etraTaskType{
+	none,
+	costMoney,
+	loseGame,
+	dontLoseGame
 	
 }

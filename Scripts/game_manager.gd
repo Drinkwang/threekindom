@@ -167,8 +167,8 @@ var CanFindSecretItems=[
 	
 	#初始值会带有一些随机元素，但会根据优势更偏进好的 初始成功率不大于30  做任务降低损失增大成功率 
 ]
-
-
+#存放替换战力的选项
+var secretBattleSav=-1
 
 func initSecretFunc():
 	var available_items 
@@ -1301,3 +1301,9 @@ func resumeMusic():
 	var music=GameManager.play_music(music_file)
 	if music!=null:	
 		music.pitch_scale=1
+
+
+func initSecretBattleContext(targetValue,mode,BootValue):
+	sav.extraBattleTaskBootNum=BootValue
+	sav.extraBattleTaskTargetNum= targetValue
+	sav.extraBattleTaskEnum=mode

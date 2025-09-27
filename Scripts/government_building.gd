@@ -376,7 +376,7 @@ func victoryPartyEnd():
 	GameManager.sav.targetResType=GameManager.ResType.battle
 	GameManager.sav.targetTxt="当前讨伐对象：{currence}/{target}"
 	GameManager.sav.TargetDestination="battle"
-
+	GameManager.initSecretBattleContext(3,SceneManager.etraTaskType.dontLoseGame,13)
 
 
 func optionSummonOnemen():

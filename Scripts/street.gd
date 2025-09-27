@@ -646,3 +646,11 @@ func getZhenrenItem():
 	#GameManager.ScoreToItem()
 	bossBattleAfter=true
 	_reward.showTitileReward(tr("恭喜你，修道真人陨落，他体内的气息转变为你的力量"),items)	
+
+
+
+func enterBattleZhenren():
+
+
+	battle_pane.show()
+	battle_pane.enterBattleZhenRen()

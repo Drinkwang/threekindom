@@ -95,6 +95,8 @@ func endBattle():
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"战斗胜利_血姬")
 			elif _mode==bossMode.huang:
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"战斗胜利_镇魂龙")
+			elif _mode==bossMode.zhenren:
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"战斗胜利_真人")	
 		else:
 			if _mode==bossMode.tao:
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"战斗失败_陶谦")
@@ -252,6 +254,8 @@ func _on_coin_slider_value_changed(value):
 	#costcoin=(GameManager.sav.coin*value/100)
 	costcoin=value
 	coin_num.text=str(costcoin)
+	if GameManager.sav.extraBattleTaskEnum!=SceneManager.etraTaskType.none:
+		battle_circle.refreshTempHideBattleTask()
 	if(battle_circle.selectgeneral):
 		_changeProgress()
 
@@ -392,7 +396,7 @@ func enterBattleTao():
 
 	initTask()
 func enterBattleHuang():
-	
+	_mode=SceneManager.bossMode.huang
 	var cha=load("res://Asset/人物/骨龙最终.png")
 	
 	battle_circle.changeHead(cha)	
@@ -431,3 +435,15 @@ func _on_coinBlock_button_down():
 func _on_soilderBlock_button_down():
 	if battle_circle.selectgeneral!=null and GameManager.sav.labor_force!=0:
 		line_edit_soilder.show()
+
+
+func enterBattleZhenRen():
+	_mode=SceneManager.bossMode.zhenren
+	const cha = preload("res://Asset/人物/真人.png")
+	battle_circle.changeHead(cha)	
+	#禁用任务
+	GameManager.sav.battleTasks.clear()
+	battle_circle.taskIndex=-1
+	GameManager.secretBattleSav=GameManager.sav.currenceTask
+	GameManager.sav.currenceTask=100
+	initTask()
