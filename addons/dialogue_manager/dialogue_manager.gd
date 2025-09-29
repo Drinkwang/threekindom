@@ -276,7 +276,7 @@ func create_resource_from_text(text: String) -> Resource:
 var gameover=false
 ## Show the example balloon
 func show_example_dialogue_balloon(resource: DialogueResource, title: String = "", extra_game_states: Array = []) -> CanvasLayer:
-	if gameover==true:
+	if gameover==true: 
 		return
 	var balloon: Node = load(_get_example_balloon_path()).instantiate()
 	

@@ -104,7 +104,7 @@ func _initData():
 		items_in_scene.showItems()	
 	else:
 		items_in_scene.hideItems()	
-	control._processList(initData)
+
 
 	GameManager.currenceScene=self
 	if GameManager.sav.day==1:
@@ -194,6 +194,7 @@ func _initData():
 			
 			GameManager.sav.isGetCoin=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"今日收入为")
+	control._processList(initData)
 const siku1 = preload("res://Asset/sound/似哭似笑1.mp3")
 const siku2 = preload("res://Asset/sound/似哭似笑2.mp3")
 func resumeBgm():
@@ -562,7 +563,7 @@ func secondMissonStart():
 	GameManager.sav.targetResType=GameManager.ResType.battle
 	GameManager.sav.targetTxt="当前讨伐对象：{currence}/{target}"
 	GameManager.sav.TargetDestination="battle"
-	GameManager.initSecretBattleContext(1000,SceneManager.etraTaskType.costMoney,9)
+	GameManager.initSecretBattleContext(1000,SceneManager.etraTaskType.costMoney,9,"黄巾军降伏")
 	#win 10次90
 	#GameManager.sav.TargetDestination=="府邸"
 	pass

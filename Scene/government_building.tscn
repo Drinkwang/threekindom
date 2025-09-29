@@ -216,6 +216,7 @@ position = Vector2(984, 625)
 showName = "政府文书"
 dialogue_doubleclick = "look"
 txt2d = ExtResource("9_qwmo3")
+boardType = 1
 dialogue_resource = ExtResource("2_yngd1")
 dialogue_start = "look"
 

@@ -166,7 +166,7 @@ bool is_in_area(area a, vec2 uv){
 
 }
 
-	
+
 
 void fragment() {
 
@@ -178,17 +178,17 @@ void fragment() {
 
 	COLOR = vec4(0.);
 
-	
+
 
 	for(float i = 0.0; i< init_num; i++){
 
 		for(float j = 0.0; j< init_num; j++){
 
- 
+
 
 			vec2 ns_max_life = noise_vec2(vec2(0.1, 0.3) * (0.0+11.0*i + j));
 
- 
+
 
 			float progress_time;
 
@@ -202,13 +202,13 @@ void fragment() {
 
 			else{
 
-				 progress_time = mod(TIME *time_factor + progress, 2.0 + ns_max_life.x); 
+				 progress_time = mod(TIME *time_factor + progress, 2.0 + ns_max_life.x);
 
 			}
 
 			float life_rate = progress_time/(2.0 + ns_max_life.x);
 
- 
+
 
 			vec2 org_center = init_offset + vec2( i * init_interval , j * init_interval);
 
@@ -220,7 +220,7 @@ void fragment() {
 
 			rnd_direction *= rotate2d(rnd_rotate_offset + ns_max_life.y * rnd_rotate_factor);
 
- 
+
 
 			//创建结构体 area a 方便存储区块信息
 
@@ -248,7 +248,7 @@ void fragment() {
 
 			//应用在(angle_velocity_min, angle_velocity_max)之间的随机角速度
 
-			float angle_velocity = angle_velocity_min +  
+			float angle_velocity = angle_velocity_min +
 
 					noise_vec2(vec2(13.1, 12.1) * (11.0*i + j)).x * 2.0 *
 
@@ -276,7 +276,7 @@ void fragment() {
 
 				vec2 back_uv = angle_reversed_uv - a.center + org_center;
 
- 
+
 
 				//使用back_uv取样, 并应用透明度曲线
 

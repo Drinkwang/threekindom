@@ -132,6 +132,10 @@ func _on_control_3_gui_input(event):
 
 func _on_exit_button_button_down():
 	self.hide()
+	GameManager.currenceScene.refreshData()
+	GameManager.currenceScene.res_panel.position.x=1403
+	GameManager.currenceScene.res_panel.position.y=622
+	GameManager.currenceScene.res_panel.scale=Vector2(1,1)	
 	if GameManager.sav.isLevelUp==true:
 		if GameManager.sav.have_event["firstTrain"]==false:
 			SoundManager.play_sound(sounds.declinesound)

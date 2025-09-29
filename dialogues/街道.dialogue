@@ -635,7 +635,7 @@ if GameManager.sav.have_event["玄阴首次"]==false
 	刘备细察石台，凹槽形制奇特，似需特定之物嵌入。
 else
 	石台旁有一密门，它现如今已经被打开
-if have_Xuanyin() #无护符
+if not have_Xuanyin() #无护符
 	刘备: (我并没有能放进去的道具，还是下次再来吧..)
 	do returnStreet()
 else #有护符但无三件道具

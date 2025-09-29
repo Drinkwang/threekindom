@@ -165,9 +165,9 @@ dialogue_start = ""
 layer = 0
 
 [node name="supportPanel" parent="CanvasInventory" instance=ExtResource("14_o2p4h")]
-offset_left = 4.0
+offset_left = 81.0
 offset_top = 738.0
-offset_right = -1574.0
+offset_right = -1497.0
 offset_bottom = -10.0
 
 [node name="hpPanel" parent="CanvasInventory" instance=ExtResource("14_hgva0")]
@@ -192,19 +192,6 @@ offset_bottom = 397.0
 grow_horizontal = 0
 inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
 metadata/_edit_use_anchors_ = true
-
-[node name="oldsoildereat" parent="CanvasInventory" instance=ExtResource("7_fpvim")]
-visible = false
-offset_left = 9.0
-offset_top = 5.0
-offset_right = 9.0
-offset_bottom = 5.0
-txt = ExtResource("8_phhxu")
-contextEX = "关羽、张飞、赵云现在可以被你调用！
-(或许将军可以试试练兵功能来快速提升武将等级）"
-titleEX = "老兵饭局："
-dialogue_resource = ExtResource("2_j02vm")
-clickEvent = "饭局结束"
 
 [node name="trainPanel" parent="CanvasInventory" instance=ExtResource("9_02127")]
 visible = false
@@ -243,6 +230,19 @@ context = "备弟足下：
                                曹操敬上"
 lookdoneDialog = " 遇到曹操2"
 dialogue_resource = ExtResource("2_j02vm")
+
+[node name="oldsoildereat" parent="CanvasInventory" instance=ExtResource("7_fpvim")]
+visible = false
+offset_left = 9.0
+offset_top = 5.0
+offset_right = 9.0
+offset_bottom = 5.0
+txt = ExtResource("8_phhxu")
+contextEX = "关羽、张飞、赵云现在可以被你调用！
+(或许将军可以试试练兵功能来快速提升武将等级）"
+titleEX = "老兵饭局："
+dialogue_resource = ExtResource("2_j02vm")
+clickEvent = "饭局结束"
 
 [node name="point" type="Node2D" parent="CanvasInventory"]
 visible = false

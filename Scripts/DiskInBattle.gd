@@ -50,6 +50,7 @@ func _ready():
 	#初始化玩家坐标系
 	datas[4].radial_initial_angle=btdatas[4].initPos
 	datas[4].radial_fill_degrees=btdatas[4].radian
+	refreshHideBattleTask()
 	changeLanguage()
 	refreshPage()
 const NOT_JAM_UI_CONDENSED_16 = preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf")	
@@ -482,7 +483,7 @@ func settleGame(end,issuccess):
 			
 			
 				# 如果你满足条件，则弹出对话
-			if GameManager.sav.extraCureenTaskCNum>=GameManager.sav.extraBattleTaskTargetNum and GameManager.sav.extraBattleTaskBootNum<=GameManager.sav.currenceValue:
+			if GameManager.sav.extraBattleDialogContext.length()>0 and GameManager.sav.extraBattleTaskTargetNum>0 and GameManager.sav.extraCureenTaskCNum>=GameManager.sav.extraBattleTaskTargetNum and GameManager.sav.extraBattleTaskBootNum<=GameManager.sav.currenceValue:
 				DialogueManager.show_example_dialogue_balloon(yanwuchang,GameManager.sav.extraBattleDialogContext)
 				GameManager.sav.extraBattleTaskBootNum=-1
 				GameManager.sav.extraBattleTaskTargetNum=-1

@@ -347,7 +347,7 @@ func _on_exit_button_button_down():
 	GameManager.currenceScene.res_panel.position.x=1403
 	GameManager.currenceScene.res_panel.position.y=622
 	GameManager.currenceScene.res_panel.scale=Vector2(1,1)
-	
+	GameManager.currenceScene.refreshData()
 	SoundManager.play_sound(sounds.declinesound)
 	#大人
 	if GameManager.sav.day==3:

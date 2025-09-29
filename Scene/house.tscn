@@ -112,6 +112,30 @@ offset_top = 628.0
 offset_right = 1866.0
 offset_bottom = 978.0
 
+[node name="title" type="RichTextLabel" parent="CanvasLayer"]
+visible = false
+offset_left = -9.0
+offset_top = 76.0
+offset_right = 1906.0
+offset_bottom = 312.0
+theme_override_fonts/normal_font = ExtResource("10_fk36n")
+theme_override_font_sizes/normal_font_size = 200
+bbcode_enabled = true
+text = "[center][rainbow]阴[/rainbow][wave amp=50 frep=100]三国[/wave][rainbow]谋论[/rainbow]-[tornado]徐州篇[/tornado][/center]"
+tab_size = 6
+
+[node name="绳子" type="TextureRect" parent="CanvasLayer"]
+visible = false
+offset_left = 197.0
+offset_top = 370.0
+offset_right = 389.0
+offset_bottom = 584.0
+texture = ExtResource("22_u1xrf")
+
+[node name="Control" parent="CanvasLayer" instance=ExtResource("4_ixb7g")]
+visible = false
+metadata/_edit_use_anchors_ = true
+
 [node name="supportPanel" parent="CanvasLayer" instance=ExtResource("18_bdm3x")]
 offset_left = 96.0
 offset_top = 720.0
@@ -141,30 +165,6 @@ clickEvent = ""
 visible = false
 clickEvent = ""
 
-[node name="title" type="RichTextLabel" parent="CanvasLayer"]
-visible = false
-offset_left = -9.0
-offset_top = 76.0
-offset_right = 1906.0
-offset_bottom = 312.0
-theme_override_fonts/normal_font = ExtResource("10_fk36n")
-theme_override_font_sizes/normal_font_size = 200
-bbcode_enabled = true
-text = "[center][rainbow]阴[/rainbow][wave amp=50 frep=100]三国[/wave][rainbow]谋论[/rainbow]-[tornado]徐州篇[/tornado][/center]"
-tab_size = 6
-
-[node name="绳子" type="TextureRect" parent="CanvasLayer"]
-visible = false
-offset_left = 197.0
-offset_top = 370.0
-offset_right = 389.0
-offset_bottom = 584.0
-texture = ExtResource("22_u1xrf")
-
-[node name="Control" parent="CanvasLayer" instance=ExtResource("4_ixb7g")]
-visible = false
-metadata/_edit_use_anchors_ = true
-
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
 visible = false
 offset_left = 95.0
@@ -175,19 +175,21 @@ texture = ExtResource("23_6dkku")
 
 [node name="文官" parent="." instance=ExtResource("7_7mriv")]
 visible = false
-position = Vector2(638, 775)
+position = Vector2(630, 631)
 showName = "主簿"
 dialogue_doubleclick = "second"
 txt2d = ExtResource("6_ys6bi")
+boardType = 1
 dialogue_resource = ExtResource("2_6rtve")
 dialogue_start = "点击陈群"
 
 [node name="陈群" parent="." instance=ExtResource("7_7mriv")]
 visible = false
-position = Vector2(1288, 737)
+position = Vector2(1282, 705)
 showName = "陈群"
 dialogue_doubleclick = "second"
 txt2d = ExtResource("6_8cvew")
+boardType = 1
 dialogue_resource = ExtResource("2_6rtve")
 dialogue_start = "点击陈群"
 
@@ -210,6 +212,7 @@ scale = Vector2(1.4, 1.4)
 showName = "陈登"
 dialogue_doubleclick = "second"
 txt2d = ExtResource("13_yewon")
+boardType = 1
 dialogue_resource = ExtResource("2_6rtve")
 dialogue_start = "点击陈群"
 

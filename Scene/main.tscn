@@ -208,6 +208,7 @@ position = Vector2(975, 563)
 showName = "陶谦的牌位"
 dialogue_doubleclick = "second"
 txt2d = ExtResource("7_av8xv")
+boardType = 1
 dialogue_resource = ExtResource("2_cebyh")
 dialogue_start = "second"
 

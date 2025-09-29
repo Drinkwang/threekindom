@@ -163,7 +163,9 @@ func _initData():
 			candoSub=false
 	#elif GameManager.day==2:
 	elif GameManager.sav.day==5:
+		
 		if	GameManager.sav.have_event["initXuzhou"]==false:
+			GameManager.musicId=-1
 			GameManager.sav.have_event["initXuzhou"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"府邸第一天")
 			GameManager.play_BGM()
@@ -376,7 +378,7 @@ func victoryPartyEnd():
 	GameManager.sav.targetResType=GameManager.ResType.battle
 	GameManager.sav.targetTxt="当前讨伐对象：{currence}/{target}"
 	GameManager.sav.TargetDestination="battle"
-	GameManager.initSecretBattleContext(3,SceneManager.etraTaskType.dontLoseGame,13)
+	GameManager.initSecretBattleContext(3,SceneManager.etraTaskType.dontLoseGame,13,"袁术军大胜")
 
 
 func optionSummonOnemen():

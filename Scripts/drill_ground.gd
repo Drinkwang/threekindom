@@ -410,8 +410,11 @@ func _buttonListClick(item):
 		SceneManager.changeScene(SceneManager.roomNode.STREET,2)#判断条件
 		#pass
 	elif item.context=="操练士兵":
+		res_panel.position.x=1564
+		res_panel.position.y=803
+		res_panel.scale=Vector2(0.765,0.765)
 		train_panel.show()
-		pass
+		caobao.hide()
 	elif item.context=="军事行动":
 		#第一次军事行动应该告诉你教程
 		if GameManager.sav.day==3:
@@ -422,6 +425,7 @@ func _buttonListClick(item):
 				battle_pane.point_group.hide()
 		else:
 			battle_pane.point_group.hide()
+		caobao.hide()	
 		battle_pane.show()
 		battle_pane.initData()
 		res_panel.position.x=1564
@@ -583,6 +587,11 @@ func openBoardDialogue():
 	
 @onready var items_in_scene: Node2D = $itemsInScene
 
+
+func huangjinSurrender():
+	GameManager.sav.labor_force+=100
+	GameManager.sav.currenceValue+=1
+	pass
 
 func finalBossBefore():
 	GameManager.sav.have_event["boss战开始"]=true

@@ -615,7 +615,8 @@ func enterNewPhase(stage:phaseName):
 				await enterNewPhase(phaseName.endturn)
 	elif _phaseName==phaseName.useCard:
 		if isPlayerTurn==true:
-			SoundManager.play_sound(useCardSound)
+			if turn_num<5:
+				SoundManager.play_sound(useCardSound)
 			playerStage=maxUseCard
 			reside_num.text=tr("剩余步数：{s}").format({"s":playerStage})
 	
@@ -701,7 +702,8 @@ func checkCardStart():
 #			SoundManager.play_sound(drawCardSound)
 			
 	if isPlayerTurn==true:
-		SoundManager.play_sound(fillcardSound)		
+		if turn_num<5:
+			SoundManager.play_sound(fillcardSound)		
 			
 	await get_tree().create_timer(0.1).timeout
 	insertCardRandom(groupType.min)
@@ -778,8 +780,9 @@ func checkCardStage(_groupType):
 					#定义一个惩罚cardType，然后赋值非空
 					
 						if isPlayerTurn==true:
-							SoundManager.play_sound(payCostSound)
-							SoundManager.play_sound(sounds.deniedsound)
+							if turn_num<5:
+								SoundManager.play_sound(payCostSound)
+								SoundManager.play_sound(sounds.deniedsound)
 							end_button.text=tr("拒付惩罚")
 							detail_txt.text="请支付你所需的惩罚："
 							punishStage=true

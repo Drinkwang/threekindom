@@ -142,6 +142,9 @@ func refreshAlreadySoldWeapon():
 	$HBoxContainer/Control2.refreshSold()
 	$HBoxContainer/Control3.refreshSold()
 func _on_texture_button_2_button_down():
+	GameManager.currenceScene.res_panel.position.x=1404
+	GameManager.currenceScene.res_panel.position.y=611
+	GameManager.currenceScene.res_panel.scale=Vector2(1,1)
 	self.hide()
 
 func settleAfter():

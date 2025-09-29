@@ -1303,7 +1303,8 @@ func resumeMusic():
 		music.pitch_scale=1
 
 
-func initSecretBattleContext(targetValue,mode,BootValue):
+func initSecretBattleContext(targetValue,mode,BootValue,dialogueContext):
 	sav.extraBattleTaskBootNum=BootValue
 	sav.extraBattleTaskTargetNum= targetValue
 	sav.extraBattleTaskEnum=mode
+	sav.extraBattleDialogContext=dialogueContext

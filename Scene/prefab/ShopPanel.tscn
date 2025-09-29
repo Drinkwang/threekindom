@@ -293,35 +293,35 @@ custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
 to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
 img = ExtResource("11_ysr0e")
-itemstype = 13
+itemstype = 19
 
 [node name="Control2" parent="HBoxContainer" instance=ExtResource("4_iwehk")]
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
 to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
 img = ExtResource("12_g3hr8")
-itemstype = 14
+itemstype = 20
 
 [node name="Control3" parent="HBoxContainer" instance=ExtResource("4_iwehk")]
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
 to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
 img = ExtResource("13_xnv0q")
-itemstype = 15
+itemstype = 21
 
 [node name="Control4" parent="HBoxContainer" instance=ExtResource("4_iwehk")]
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
 to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
 img = ExtResource("14_bvea7")
-itemstype = 18
+itemstype = 24
 
 [node name="Control5" parent="HBoxContainer" instance=ExtResource("4_iwehk")]
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
 to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
 img = ExtResource("15_ptsft")
-itemstype = 17
+itemstype = 23
 
 [node name="Label2" type="Label" parent="."]
 visible = false

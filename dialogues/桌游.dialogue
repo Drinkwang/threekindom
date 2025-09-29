@@ -132,7 +132,9 @@ do enterGame()
 - 其它设置
 	=> 其它设置
 - 取消
-	do GameManager.selectBoardCharacter=null
+	do GameManager.selectBoardCharacter=boardType.boardCharacter.none 
+	
+	do GameManager._boardMode=boardType.boardMode.none 
 => END!
 
 ~ 其它设置
@@ -170,5 +172,5 @@ do enterGame()
 ~ 认输
 系统提示: 你确定是否要认输？
 - 是
-	fadeScene()
+	do fadeScene()
 - 否

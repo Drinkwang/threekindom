@@ -119,11 +119,11 @@ func _initData():
 		
 		#加个xxx 需要执行完3天后才能遇到诡异牌
 		
-		if GameManager.sav.have_event["玄阴开放"]==false:
+		if GameManager.sav.day>=5 and GameManager.sav.have_event["玄阴开放"]==false:
 			people.changeAllClick("玄阴秘境")
 			people.showEX=true
 			people.show()
-		if GameManager.sav.XuanyinDay>=3:	
+		if GameManager.sav.day>=5 and GameManager.sav.XuanyinDay>=3:	
 			if GameManager.sav.caobaocardgame==-1 and GameManager.sav.mizhucardgame==-1 and  GameManager.sav.chendencardgame==-1:
 				people.changeAllClick("遇到诡异牌1")
 				people.showEX=false
@@ -209,6 +209,10 @@ func SurrenderKe():
 	GameManager.changePeopleSupport(-20)
 	#民心-20	
 #const HOUSE = preload("res://Scene/house.tscn")
+
+
+@onready var res_panel: propertyPanel = $CanvasLayer/resPanel
+
 #const BOULEUTERION = preload("res://Scene/Bouleuterion.tscn")
 func _buttonListClick(item):
 
@@ -248,7 +252,9 @@ func _buttonListClick(item):
 			else:
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"商人已经走了")
 		else:
-			
+			res_panel.position.x=1564
+			res_panel.position.y=803
+			res_panel.scale=Vector2(0.765,0.765)
 			if GameManager.sav.have_event["boss战开始"]==true and GameManager.sav.caobaocardgame==5:
 				PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeOut)
 				blank.show()

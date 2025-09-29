@@ -582,7 +582,7 @@ script = ExtResource("11_60csr")
 _slider = NodePath("..")
 resType = 2
 
-[node name="battleCircle" parent="." node_paths=PackedStringArray("datas") instance=ExtResource("8_75jyp")]
+[node name="battleCircle" parent="." instance=ExtResource("8_75jyp")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -595,7 +595,6 @@ offset_right = 939.0
 offset_bottom = 112.0
 grow_horizontal = 2
 grow_vertical = 2
-datas = []
 
 [node name="TextureButton" type="TextureButton" parent="."]
 layout_mode = 1
