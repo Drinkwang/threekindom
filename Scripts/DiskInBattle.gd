@@ -482,14 +482,7 @@ func settleGame(end,issuccess):
 			GameManager.sav.currenceValue=GameManager.sav.currenceValue+1
 			
 			
-				# 如果你满足条件，则弹出对话
-			if GameManager.sav.extraBattleDialogContext.length()>0 and GameManager.sav.extraBattleTaskTargetNum>0 and GameManager.sav.extraCureenTaskCNum>=GameManager.sav.extraBattleTaskTargetNum and GameManager.sav.extraBattleTaskBootNum<=GameManager.sav.currenceValue:
-				DialogueManager.show_example_dialogue_balloon(yanwuchang,GameManager.sav.extraBattleDialogContext)
-				GameManager.sav.extraBattleTaskBootNum=-1
-				GameManager.sav.extraBattleTaskTargetNum=-1
-				GameManager.sav.extraBattleTaskEnum=SceneManager.etraTaskType.none
-				GameManager.sav.extraCureenTaskCNum=0
-				GameManager.sav.extraBattleDialogContext=""
+
 			
 		#判断胜利积分
 		var enemyPower=GameManager.sav.battleTasks[taskIndex].index*50

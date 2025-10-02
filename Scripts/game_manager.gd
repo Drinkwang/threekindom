@@ -619,11 +619,8 @@ var getItemAction:Callable
 
 
 
-var RewardLaw
-func excuteLaw():
-	sav.laws[sav.curLawNum1].append(sav.curLawNum2)
-	#var arr:Array
-	RewardLaw=tr(sav.RewardLaw)
+#读档时
+func loadLaw():
 	lawAction= Callable() 
 	if sav.curLawName=="农田开坑":#只有buff
 		#RewardLaw="每日收入+50，徐州好感度+10，#一次性收入+200" #收入每日增加 徐州派好感度上升
@@ -883,6 +880,19 @@ func excuteLaw():
 			sav.BENTUPAI.ChangeSupport(-50)
 			var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.胜战锦囊)
 			var remainder = InventoryManager.add_item(inventoryPackege, itemid, 4, false)
+	
+
+
+
+var RewardLaw
+func excuteLaw():
+	sav.laws[sav.curLawNum1].append(sav.curLawNum2)
+	#var arr:Array
+	RewardLaw=tr(sav.RewardLaw)
+	
+	
+	
+	loadLaw()
 	
 
 	currenceScene.SettleLawRevenue()

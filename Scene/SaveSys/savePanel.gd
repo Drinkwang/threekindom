@@ -93,7 +93,7 @@ func loadFile():
 		GameManager.sav=savs[index-1].duplicate(false)
 		GameManager.sav.ensure_default_fields()
 		get_tree().change_scene_to_packed(savs[index-1].saveScene)
-
+		GameManager.loadLaw()
 	refresh()
 	self.hide()
 

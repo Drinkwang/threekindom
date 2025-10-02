@@ -56,11 +56,12 @@ func _ready():
 
 #@onready var grid = $Control/PanelContainer/MarginContainer/VBoxContainer/Margin/Grid
 
-func showTitileReward(context,item):
+func showTitileReward(context,item,addAfter=true):
 	imgTarget.texture=victoryPng
 	self.show()
 	var titleContext=context
-	titleContext=titleContext+tr(",获得以下道具:")
+	if addAfter==true:
+		titleContext=titleContext+tr(",获得以下道具:")
 	title.text=titleContext	
 
 	_clear_view()

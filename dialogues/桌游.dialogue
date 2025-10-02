@@ -124,7 +124,9 @@ do enterGame()
 - （1）小试牛刀[boardgame=true]
 	do GameManager.selectBoardMode(boardType.boardMode.new)
 - （2）对局试炼[boardgame=true]
-	do GameManager.selectBoardMode(boardType.boardMode.middle)
+	系统提示: 当前试玩版不开放，尽请期待
+	=> 选择仕诡牌
+	#do GameManager.selectBoardMode(boardType.boardMode.middle)
 
 
 - （3）诡秘乱局[boardgame=true] [if GameManager.sav.caobaocardgame>=5 or GameManager.selectBoardCharacter!=boardType.boardCharacter.caobao]

@@ -365,6 +365,7 @@ func PlayMizhen():
 @onready var bit_player = $CanvasLayer/blank/bitPlayer
 
 func PlayTaoQian():
+	SoundManager.stop_music()
 	var tao = load("res://Asset/vedio/bloodTao.ogv")
 	var _func=func():
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"动画播完_陶谦")
@@ -389,9 +390,14 @@ func _on_video_player_finished():
 
 func playBossAni(value,lambda:Callable):
 	bit_player.show()
+	res_panel.hide()
 	bit_player.stream=value
 	bit_player.play()
 	bit_player.finished.connect(func():
+		res_panel.show()
+		res_panel.position.x=1564
+		res_panel.position.y=803
+		res_panel.scale=Vector2(0.765,0.765)
 		_on_video_player_finished()
 		if lambda.is_valid():  # 检查 lambda 是否有效
 			lambda.call()

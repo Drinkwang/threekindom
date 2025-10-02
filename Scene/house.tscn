@@ -216,18 +216,6 @@ boardType = 1
 dialogue_resource = ExtResource("2_6rtve")
 dialogue_start = "点击陈群"
 
-[node name="btiRect" type="ColorRect" parent="."]
-visible = false
-offset_right = 1951.0
-offset_bottom = 1094.0
-color = Color(0, 0, 0, 1)
-
-[node name="bitPlayer" type="VideoStreamPlayer" parent="."]
-visible = false
-offset_right = 40.0
-offset_bottom = 40.0
-stream = ExtResource("23_2xaha")
-
 [node name="itemsInScene" type="Node2D" parent="."]
 script = ExtResource("24_8pl0e")
 OccurInScene = 6
@@ -253,5 +241,17 @@ position = Vector2(1229, 739)
 SceneID = 3
 dialogue_resource = ExtResource("2_6rtve")
 dialogue_start = "发现诡秘怪谈"
+
+[node name="btiRect" type="ColorRect" parent="."]
+visible = false
+offset_right = 1951.0
+offset_bottom = 1094.0
+color = Color(0, 0, 0, 1)
+
+[node name="bitPlayer" type="VideoStreamPlayer" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+stream = ExtResource("23_2xaha")
 
 [connection signal="button_down" from="CanvasLayer/DemoEnd" to="." method="_on_demo_end_button_down"]

@@ -196,7 +196,19 @@ func _initData():
 var costhp=50
 func chendengWantUpLevel():
 	chendeng.hide()
-	GameManager._propertyPanel.GetValue(200,0,0)
+	#GameManager._propertyPanel.GetValue(200,0,0)
+	
+	
+	var _reward:rewardPanel=PanelManager.new_reward()
+	
+	var items={
+		"items":null,
+		"money": 200,
+		"population": 0
+	}
+
+	_reward.showTitileReward(tr("你获得了陈登捐助的200金"),items,false)	
+	
 const kek = preload("res://Asset/sound/咳嗽1.wav")
 func eatFish1(issuccuss=false):
 	GameManager.sav.chendenSideWait=3
@@ -343,12 +355,13 @@ func GetLawClaimRevenue():
 	for i in GameManager.sav.laws[GameManager.sav.curLawNum1]:
 		if i<0:
 			if abs(i)==GameManager.sav.curLawNum2:
-				
+			
 				GameManager.sav.laws[GameManager.sav.curLawNum1].erase(i)
 				var factions=_date._name
-				GameManager.sav.courtingLaws.erase(faction)
+				 #GameManager.sav.courtingLaws[faction]=-1
+				GameManager.sav.courtingLaws.erase(factions)
 				var rindex=GameManager.sav.randomIndex
-				point=10+GameManager.sav.rindex
+				point=10+rindex
 				#暂时放在这里
 				_date.ChangeSupport(point)
 				#执行效果
@@ -356,14 +369,14 @@ func GetLawClaimRevenue():
 				#下面不一定执行
 	
 				var animation_player=$CanvasBook/ColorRect/AnimationPlayer
-				animation_player.playback.speed_scale = 1.0
+				animation_player.speed_scale = 1.0
 				animation_player.play("colorUp")
-				await 5
-				animation_player.playback.speed_scale = -1.0
+				await get_tree().create_timer(0.25).timeout
+				animation_player.speed_scale = -1.0
 				$CanvasBook/ColorRect/AnimationPlayer.play("colorUp")
 
 				GameManager._imporveRelation(_date)
-				
+			
 				#任务完成 获得忠诚度	
 	
 	GameManager.sav.curLawName=""
