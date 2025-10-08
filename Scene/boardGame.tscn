@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=3 uid="uid://b62to201rwvs3"]
+[gd_scene load_steps=79 format=3 uid="uid://b62to201rwvs3"]
 
 [ext_resource type="Script" path="res://Scripts/board_game.gd" id="1_34wyh"]
 [ext_resource type="Texture2D" uid="uid://cmbisvj1kshvi" path="res://Asset/黑暗/克苏鲁背景.png" id="1_q5ep7"]
@@ -61,6 +61,9 @@
 [ext_resource type="Texture2D" uid="uid://0o5hddxuvape" path="res://Asset/particle/2/vnbvx_29.png" id="57_lia12"]
 [ext_resource type="Texture2D" uid="uid://rmaibsw1yjqd" path="res://Asset/城镇建筑/5_yellow.png" id="59_xlqph"]
 [ext_resource type="Texture2D" uid="uid://dahuc8gb2blc" path="res://Asset/other/0_red.png" id="60_h5v2b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7w720"]
+size = Vector2(39.3357, 56.1539)
 
 [sub_resource type="Curve" id="Curve_kx3s6"]
 _data = [Vector2(0.002331, 0.0102652), 0.0, 0.0, 0, 0, Vector2(0.48718, 0.856575), 0.0, 0.0, 0, 0]
@@ -391,6 +394,42 @@ offset_left = 844.0
 offset_top = 396.0
 offset_right = 843.92
 offset_bottom = 394.8
+
+[node name="minArea" type="Area2D" parent="CanvasLayer"]
+position = Vector2(624, 559)
+priority = 10000
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/minArea"]
+position = Vector2(0.5, 103.4)
+scale = Vector2(5.72, 5.72)
+shape = SubResource("RectangleShape2D_7w720")
+
+[node name="shiArea" type="Area2D" parent="CanvasLayer"]
+position = Vector2(854, 559)
+priority = 10000
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/shiArea"]
+position = Vector2(0.5, 103.4)
+scale = Vector2(5.72, 5.72)
+shape = SubResource("RectangleShape2D_7w720")
+
+[node name="shangArea" type="Area2D" parent="CanvasLayer"]
+position = Vector2(1084, 559)
+priority = 10000
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/shangArea"]
+position = Vector2(0.5, 103.4)
+scale = Vector2(5.72, 5.72)
+shape = SubResource("RectangleShape2D_7w720")
+
+[node name="binArea" type="Area2D" parent="CanvasLayer"]
+position = Vector2(1314, 559)
+priority = 10000
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/binArea"]
+position = Vector2(0.5, 103.4)
+scale = Vector2(5.72, 5.72)
+shape = SubResource("RectangleShape2D_7w720")
 
 [node name="bin" parent="CanvasLayer" instance=ExtResource("12_ucf88")]
 position = Vector2(1314, 419)
@@ -1051,6 +1090,14 @@ text = "玩家:
 敌人:
 [color=#ffffff88]♥♠♣♦[/color]"
 
+[connection signal="mouse_entered" from="CanvasLayer/minArea" to="." method="_on_min_area_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/minArea" to="." method="_on_min_area_mouse_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/shiArea" to="." method="_on_shi_area_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/shiArea" to="." method="_on_shi_area_mouse_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/shangArea" to="." method="_on_shang_area_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/shangArea" to="." method="_on_shang_area_mouse_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/binArea" to="." method="_on_bin_area_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/binArea" to="." method="_on_bin_area_mouse_exited"]
 [connection signal="button_down" from="CanvasLayer/ExitButton" to="." method="_on_exitGameBtn_down"]
 [connection signal="focus_entered" from="CanvasLayer/ExitButton" to="." method="_on_exit_button_focus_entered"]
 [connection signal="focus_exited" from="CanvasLayer/ExitButton" to="." method="_on_exit_button_focus_exited"]

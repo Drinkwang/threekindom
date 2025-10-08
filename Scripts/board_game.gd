@@ -1659,3 +1659,43 @@ func _on_exit_button_focus_entered() -> void:
 
 func _on_exit_button_focus_exited() -> void:
 	givelabel.hide()
+
+@onready var min: Node2D = $CanvasLayer/min
+
+func _on_min_area_mouse_entered() -> void:
+	min._on_area_2d_mouse_entered_board()
+
+
+func _on_min_area_mouse_exited() -> void:
+	min._on_area_2d_mouse_exited_board()
+
+
+@onready var bin: Node2D = $CanvasLayer/bin
+
+
+func _on_bin_area_mouse_entered() -> void:
+	bin._on_area_2d_mouse_entered_board()
+
+
+func _on_bin_area_mouse_exited() -> void:
+	bin._on_area_2d_mouse_exited_board()
+
+@onready var shang: Node2D = $CanvasLayer/shang
+
+func _on_shang_area_mouse_entered() -> void:
+	shang._on_area_2d_mouse_entered_board()
+
+
+func _on_shang_area_mouse_exited() -> void:
+	shang._on_area_2d_mouse_exited_board()
+
+
+@onready var shi: Node2D = $CanvasLayer/shi
+
+
+func _on_shi_area_mouse_entered() -> void:
+	shi._on_area_2d_mouse_entered_board()
+
+
+func _on_shi_area_mouse_exited() -> void:
+	shi._on_area_2d_mouse_exited_board()

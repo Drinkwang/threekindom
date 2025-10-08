@@ -10,14 +10,14 @@
 [ext_resource type="Texture2D" uid="uid://cale1h2nqfdrh" path="res://Asset/ui/circle.png" id="7_qif1v"]
 [ext_resource type="Texture2D" uid="uid://d2artvwe80df1" path="res://Asset/光明/正常背景.png" id="8_sushl"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8o6jo"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r7qxb"]
 shader = ExtResource("4_csp7l")
 shader_parameter/burn_progress = 0.0
 shader_parameter/burn_color = Color(1, 0.5, 0, 1)
 shader_parameter/burn_width = 0.05
 shader_parameter/noise_texture = ExtResource("3_v8y0j")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2e8l4"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ebto4"]
 shader = ExtResource("4_csp7l")
 shader_parameter/burn_progress = 0.0
 shader_parameter/burn_color = Color(1, 0.5, 0, 1)
@@ -262,7 +262,7 @@ script = ExtResource("1_k4ugs")
 metadata/_edit_vertical_guides_ = [-329.0]
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
-material = SubResource("ShaderMaterial_8o6jo")
+material = SubResource("ShaderMaterial_r7qxb")
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -285,7 +285,7 @@ patch_margin_right = 12
 patch_margin_bottom = 15
 
 [node name="img" type="TextureRect" parent="NinePatchRect"]
-material = SubResource("ShaderMaterial_2e8l4")
+material = SubResource("ShaderMaterial_ebto4")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.498
@@ -314,11 +314,16 @@ texture = ExtResource("6_un7ps")
 expand_mode = 1
 
 [node name="pointValue" type="Label" parent="NinePatchRect"]
-layout_mode = 0
-offset_left = 43.0
-offset_top = 22.0
-offset_right = 154.0
-offset_bottom = 139.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.474
+anchor_right = 0.5
+anchor_bottom = 0.474
+offset_left = -50.0
+offset_top = -98.87
+offset_right = 61.0
+offset_bottom = 5.12999
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_constants/line_spacing = 5
 theme_override_constants/outline_size = 0
@@ -326,11 +331,16 @@ theme_override_font_sizes/font_size = 31
 text = "A"
 
 [node name="flowercolor" type="Label" parent="NinePatchRect"]
-layout_mode = 0
-offset_left = 19.0
-offset_top = 8.0
-offset_right = 130.0
-offset_bottom = 125.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.49
+anchor_right = 0.5
+anchor_bottom = 0.49
+offset_left = -74.0
+offset_top = -116.95
+offset_right = 37.0
+offset_bottom = 0.0499954
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_constants/line_spacing = 5
 theme_override_constants/outline_size = 0

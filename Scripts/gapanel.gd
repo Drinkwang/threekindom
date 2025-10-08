@@ -67,21 +67,39 @@ func refreshContext():
 		
 		contextEX=GameManager.sav.curGovAff
 	else:
+
 		var policycontext
-		if(GameManager.sav.TargetDestination=="rest"):
-			policycontext=tr("当前暂无")
-		elif GameManager.sav.TargetDestination=="自宅":
-			policycontext=tr("当前暂无")
-		elif GameManager.sav.TargetDestination=="府邸":
-			policycontext=tr("当前暂无")
-		elif GameManager.sav.TargetDestination=="议事厅":
-			policycontext=tr("当前暂无")
-		elif GameManager.sav.TargetDestination=="演武场":
-			policycontext=tr("当前暂无")
-		elif GameManager.sav.TargetDestination=="大儒辩经":
-			policycontext=tr("当前暂无")	
+		if GameManager.sav.TargetDestination=="rest" or \
+		GameManager.sav.TargetDestination=="自宅" or \
+		GameManager.sav.TargetDestination=="府邸" or \
+		GameManager.sav.TargetDestination=="议事厅" or \
+		GameManager.sav.TargetDestination=="演武场" or \
+		GameManager.sav.TargetDestination=="大儒辩经":	
+			var targetValue=GameManager.sav.targetValue
+			#获取当前值的枚举类型，根据枚举类型获取对应资源数值，并把资源数值填写进下面的函数
+			var currenceValue=GameManager.getTaskCurrenceValue()
+	# target，currence
+
+			if currenceValue>=targetValue:
+				if(GameManager.sav.TargetDestination=="rest"):
+					policycontext=tr("任务已完成，休息进入下一天推进剧情")
+				elif GameManager.sav.TargetDestination=="自宅":
+					policycontext=tr("任务已完成，请返回自宅触发下一阶段剧情")
+				elif GameManager.sav.TargetDestination=="府邸":
+					policycontext=tr("任务已完成，请前往府邸触发下一阶段剧情")
+				elif GameManager.sav.TargetDestination=="议事厅":
+					policycontext=tr("任务已完成，请前往议事厅触发下一阶段剧情")
+				elif GameManager.sav.TargetDestination=="演武场":
+					policycontext=tr("任务已完成，请前往演武场触发下一阶段剧情")
+				elif GameManager.sav.TargetDestination=="大儒辩经":
+					policycontext=tr("任务已完成，请前往城外和大儒辩经触发下一阶段剧情")
+				else:
+					policycontext=tr(GameManager.sav.TargetDestination)	
+			else:
+				policycontext=tr(GameManager.sav.targetTxt).format({"target":targetValue,"currence":currenceValue})			
 		else:
 			policycontext=GameManager.sav.TargetDestination	
+				
 		contextEX=tr("主线任务:")+policycontext
 		#每个支线有个名称（枚举）和键值对，如果键值队为数 那么则xxx
 		#把若干支线任务需要添加的写进，每个支线销毁，或者不销毁需要[xxx:xxxxx]

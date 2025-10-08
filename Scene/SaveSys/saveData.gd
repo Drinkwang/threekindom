@@ -262,7 +262,8 @@ var SIDEQUEST_MAP:Dictionary={
 	"曹豹诡秘乱局启动":false,	#改成5
 	"曹豹牌局无人":false,
 	"玄阴开放":false,
-	"玄阴首次":false
+	"玄阴首次":false,
+	"玄阴首次遇宝":false,
 }
 
 #0 小试牛刀开启 1小试牛刀通过 2 对局试炼开启 3对局试验通过 4 诡秘怪谈开启 5诡秘怪谈通过

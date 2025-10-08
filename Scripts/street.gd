@@ -646,6 +646,17 @@ func returnStreet():
 	GameManager.resumeMusic()
 	playStageMusic()
 	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeOut)	
+	if GameManager.sav.have_event["玄阴首次遇宝"]==false:
+		GameManager.sav.have_event["玄阴首次遇宝"]=true
+		var _reward:rewardPanel=PanelManager.new_reward()
+		var items={
+		"items": null,
+		"money": 100,
+		"population": 0
+		}
+	
+		_reward.showTitileReward(tr("恭喜你，你捡到一个钱袋"),items)	
+
 
 
 func getZhenrenItem():
