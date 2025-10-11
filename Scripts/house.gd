@@ -561,7 +561,7 @@ func secondMissonStart():
 	GameManager.sav.targetValue=10
 	GameManager.sav.currenceValue=0
 	GameManager.sav.targetResType=GameManager.ResType.battle
-	GameManager.sav.targetTxt="当前讨伐对象：{currence}/{target}"
+	GameManager.sav.targetTxt="征讨次数：{currence}/{target}"
 	GameManager.sav.TargetDestination="battle"
 	GameManager.initSecretBattleContext(1000,SceneManager.etraTaskType.costMoney,9,"黄巾军降伏")
 	#win 10次90

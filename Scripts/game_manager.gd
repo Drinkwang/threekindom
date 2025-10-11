@@ -1042,7 +1042,8 @@ func changeTaskLabel(_value:String):
 	sav.TargetDestination=_value
 	_engerge.changeTargetLabel()
 
-
+var trainGeneral=""
+var trainLevel=0
 func changeChendenHeart(addValue):
 	sav.chendenfav+=addValue
 

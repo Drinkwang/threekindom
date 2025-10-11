@@ -603,3 +603,20 @@ func huangjinSurrender():
 
 func finalBossBefore():
 	GameManager.sav.have_event["boss战开始"]=true
+
+
+func enterContest(mode):
+	GameManager.trainLevel=mode
+	GameManager.sav.hp-=20
+	if GameManager.trainGeneral=="关羽":
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"关羽比武")
+	elif GameManager.trainGeneral=="张飞":
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"张飞比武")
+	elif GameManager.trainGeneral=="赵云":
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"赵云比武")
+	#SoundManager.stop_music()
+	#SceneManager.changeScene(SceneManager.roomNode.BoardGame,2)
+
+func enterRealContest():
+	SoundManager.stop_music()
+	SceneManager.changeScene(SceneManager.roomNode.BoardGame,2)

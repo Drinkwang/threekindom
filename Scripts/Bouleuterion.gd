@@ -143,7 +143,12 @@ func _initData():
 		GameManager._boardMode=boardType.boardMode.none
 		if GameManager._boardReward!=boardType.boardRewardResult.BreakFree:
 			GameManager.resumeMusic()
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"常规获胜")
+			
+			
+			if GameManager._boardGameWin==true:
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"常规获胜")
+			else:
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"常规失败")	
 			chendeng.show()
 			chendeng.changeAllClick("来把仕诡牌")				
 		else:

@@ -376,7 +376,7 @@ func victoryPartyEnd():
 	GameManager.sav.targetValue=15
 	GameManager.sav.currenceValue=0
 	GameManager.sav.targetResType=GameManager.ResType.battle
-	GameManager.sav.targetTxt="当前讨伐对象：{currence}/{target}"
+	GameManager.sav.targetTxt="征讨次数：{currence}/{target}"
 	GameManager.sav.TargetDestination="battle"
 	GameManager.initSecretBattleContext(3,SceneManager.etraTaskType.dontLoseGame,13,"袁术军大胜")
 
@@ -430,7 +430,7 @@ func showFirstMission():
 	GameManager.sav.have_event["糜竺推荐陈登"]=true
 	GameManager.sav.targetValue=1000
 	GameManager.sav.targetResType=GameManager.ResType.coin
-	GameManager.sav.targetTxt="当前凑集资金：{currence}/{target}"
+	GameManager.sav.targetTxt="凑齐资金：{currence}/{target}"
 	GameManager.sav.TargetDestination="府邸"
 
 	chenden.hide()
@@ -474,19 +474,13 @@ func selectPolicy(data):
 		GameManager.sav.HAOZUPAI.ChangeSupport(-5)
 		
 		GameManager.sav.coin=GameManager.sav.coin+200
-		#@export var  coin=100 #金钱 数值
-		#@export var coin_DayGet=20
-		#labor_DayGet
-		# people_surrport-10
-		#GameManager.sav.targetTxt="当前凑集资金：{currence}/{target}"
+
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"军粮自给")
 		#军粮自给，维持现状
 	elif id== policymanager.policyID.P_RAISE_TAX:
 		policy_panel.bancontrol(3,policy_panel.itemStatus.ban)
 		hidePolicy()
-		#GameManager.sav.targetResType=GameManager.ResType.coin
-		#GameManager.sav.targetValue=200
-		#GameManager.sav.targetTxt="当前凑集资金：{currence}/{target}"
+
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"增加税率")
 		GameManager.sav.HAOZUPAI.ChangeSupport(10)
 		GameManager.sav.BENTUPAI.ChangeSupport(-20)
@@ -859,7 +853,7 @@ func chaosTaskBegin():
 	GameManager.sav.targetValue=10
 	GameManager.sav.currenceValue=0
 	GameManager.sav.targetResType=GameManager.ResType.rest
-	GameManager.sav.targetTxt="当前过去的天数：{currence}/{target}"
+	GameManager.sav.targetTxt="撑过天数：{currence}/{target}"
 	GameManager.sav.TargetDestination="rest"
 @onready var disater_panel = $CanvasLayer/disaterPanel
 
@@ -895,7 +889,7 @@ func StartTaishan():
 	GameManager.sav.targetValue=12
 	GameManager.sav.currenceValue=0
 	GameManager.sav.targetResType=GameManager.ResType.battle
-	GameManager.sav.targetTxt="当前讨伐对象：{currence}/{target}"
+	GameManager.sav.targetTxt="征讨次数：{currence}/{target}"
 	GameManager.sav.TargetDestination="battle"
 	#显示军事行动还有30把
 	pass
@@ -1150,7 +1144,7 @@ func lvbuJoin():
 	GameManager.sav.currenceValue=0
 	GameManager.sav.currenceDay=0
 	GameManager.sav.targetResType=GameManager.ResType.battle
-	GameManager.sav.targetTxt="当前讨伐对象：{currence}/{target}"
+	GameManager.sav.targetTxt="征讨次数：{currence}/{target}"
 	GameManager.sav.TargetDestination="battle"
 
 
