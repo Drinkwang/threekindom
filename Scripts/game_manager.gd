@@ -1044,6 +1044,7 @@ func changeTaskLabel(_value:String):
 
 var trainGeneral=""
 var trainLevel=0
+var trainResult:SceneManager.trainResult=SceneManager.trainResult.none
 func changeChendenHeart(addValue):
 	sav.chendenfav+=addValue
 

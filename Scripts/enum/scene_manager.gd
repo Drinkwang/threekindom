@@ -24,6 +24,13 @@ enum roomNode{
 	
 }
 
+enum trainResult{
+	none,
+	win,
+	fail
+}
+
+
 enum sideQuest{
 	CHENDENG,
 	MIZHU,

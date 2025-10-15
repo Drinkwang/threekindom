@@ -255,6 +255,33 @@ func _initData():
 		caobao.hide()
 		GameManager.sav.have_event["曹豹牌局无人"] =true
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"牌局无人")
+	
+	
+	elif GameManager.trainResult==SceneManager.trainResult.win:
+		if GameManager.trainGeneral=="关羽":
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"关羽比武胜利")
+
+		elif GameManager.trainGeneral=="张飞":
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"张飞比武胜利")
+	
+		elif GameManager.trainGeneral=="赵云":
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"赵云比武胜利")
+			
+		GameManager.trainResult==SceneManager.trainResult.none
+		GameManager.trainGeneral=""	
+	elif GameManager.trainResult==SceneManager.trainResult.fail:
+		if GameManager.trainGeneral=="关羽":
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"关羽比武失败")
+
+		elif GameManager.trainGeneral=="张飞":
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"张飞比武失败")
+	
+		elif GameManager.trainGeneral=="赵云":
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"赵云比武失败")
+			
+		GameManager.trainResult==SceneManager.trainResult.none
+		GameManager.trainGeneral=""	
+	
 		
 	elif GameManager.sav.have_event["查出药囊后休息前"]==true and GameManager.sav.have_event["锦囊咨询丹阳派"]==false and caobao.showEX==false:
 		caobao.changeAllClick("演武场克苏鲁剧情支线")
@@ -606,7 +633,7 @@ func finalBossBefore():
 
 
 func enterContest(mode):
-	GameManager.trainLevel=mode
+	GameManager.trainLevel=mode+1
 	GameManager.sav.hp-=20
 	if GameManager.trainGeneral=="关羽":
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"关羽比武")
@@ -620,3 +647,83 @@ func enterContest(mode):
 func enterRealContest():
 	SoundManager.stop_music()
 	SceneManager.changeScene(SceneManager.roomNode.BoardGame,2)
+
+#发放奖励，无事发生,首次2倍 3倍 5倍  1 1.3 1.5
+func winTrain():
+	var generals=GameManager.sav.generals
+	var found_general
+	for key in generals.keys():
+		if generals[key]["name"] == GameManager.trainGeneral:
+			found_general= generals[key]
+			break
+
+	var isFirst=false
+	if GameManager.trainGeneral=="关羽":
+		
+
+		if GameManager.sav.guanyuTrainNum+1<found_general["level"]:			
+			GameManager.sav.guanyuTrainNum+=1
+			found_general["level"] += 1	
+			isFirst=true
+		if GameManager.trainLevel==1:
+			if isFirst==true:
+				pass
+			else:
+				pass
+
+		elif GameManager.trainLevel==2:
+			if isFirst==true:
+				pass
+			else:
+				pass
+		elif GameManager.trainLevel==3:
+			if isFirst==true:
+				pass
+			else:
+				pass
+	elif GameManager.trainGeneral=="张飞":
+		if GameManager.sav.zhangfeiTrainNum+1<found_general["level"]:			
+			GameManager.sav.zhangfeiTrainNum+=1
+			found_general["level"] += 1	
+			isFirst=true		
+		if GameManager.trainLevel==1:
+			if isFirst==true:
+				pass
+			else:
+				pass
+
+		elif GameManager.trainLevel==2:
+			if isFirst==true:
+				pass
+			else:
+				pass
+		elif GameManager.trainLevel==3:
+			if isFirst==true:
+				pass
+			else:
+				pass
+	elif GameManager.trainGeneral=="赵云":
+		if GameManager.sav.zhaoyunTrainNum+1<found_general["level"]:			
+			GameManager.sav.zhaoyunTrainNum+=1
+			found_general["level"] += 1	
+			isFirst=true		
+		if GameManager.trainLevel==1:
+			if isFirst==true:
+				pass
+			else:
+				pass
+
+		elif GameManager.trainLevel==2:
+			if isFirst==true:
+				pass
+			else:
+				pass
+		elif GameManager.trainLevel==3:
+			if isFirst==true:
+				pass
+			else:
+				pass
+	
+	
+func loseTrain():
+	pass

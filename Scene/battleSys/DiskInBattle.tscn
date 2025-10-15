@@ -179,10 +179,11 @@ texture = ExtResource("3_ipo41")
 
 [node name="background-player" type="TextureProgressBar" parent="."]
 layout_mode = 0
-offset_top = -1.49608e-05
-offset_right = 64.0
-offset_bottom = 64.0
-scale = Vector2(5, 5)
+offset_left = -10.0
+offset_top = -9.0
+offset_right = 54.0
+offset_bottom = 55.0
+scale = Vector2(5.3, 5.3)
 value = 100.0
 fill_mode = 5
 radial_initial_angle = 90.0

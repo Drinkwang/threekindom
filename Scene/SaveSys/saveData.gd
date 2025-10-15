@@ -271,6 +271,9 @@ var SIDEQUEST_MAP:Dictionary={
 @export var mizhucardgame=-1
 @export var chendencardgame=-1
 
+@export var guanyuTrainNum=-1
+@export var zhaoyunTrainNum=-1
+@export var zhangfeiTrainNum=-1
 #9个最高分记录
 @export var highScore=[[0,0,0],[0,0,0],[0,0,0]]
 

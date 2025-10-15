@@ -131,7 +131,7 @@ do enterGame()
 
 - （3）诡秘乱局[boardgame=true] [if GameManager.sav.caobaocardgame>=5 or GameManager.selectBoardCharacter!=boardType.boardCharacter.caobao]
 	do GameManager.selectBoardMode(boardType.boardMode.high)
-- 其它设置
+- 牌局设置
 	=> 其它设置
 - 取消
 	do GameManager.selectBoardCharacter=boardType.boardCharacter.none 

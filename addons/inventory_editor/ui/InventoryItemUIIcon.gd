@@ -114,7 +114,7 @@ func _gui_input(event: InputEvent) -> void:
 			if _inventoryManager.is_craft_possible(inventory, _item_db.uuid):
 				_inventoryManager.craft_item(inventory, _item_db.uuid)
 		#加个字段判断使用 如果是精力丹 使用恢复精力 如果是神器龙胆银月枪，下一场战斗百分百获胜 cd 3，如果是傀儡娃娃，恢复精力50 cd5 ，如果是陶谦xx 消耗体力 恢复民心10 cd7
-		print("aaaa i be doubleclick  使用道具"+_item_db.name)
+		#print("aaaa i be doubleclick  使用道具"+_item_db.name)
 		
 		if 	InventoryManagerItem.益气丸==_item_db.uuid:
 
