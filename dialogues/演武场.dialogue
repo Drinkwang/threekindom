@@ -919,6 +919,7 @@ do huangjinSurrender()
 	=> 比武练兵选项
 - 花钱练兵
 	do trainUseMoney()
+- 取消	
 => END!
 
 
@@ -934,6 +935,10 @@ do huangjinSurrender()
 - 赵云
 	do GameManager.trainGeneral="赵云"
 	 => 比武训练选项2
+- 重置教程
+	do GameManager.sav.have_event["比武训练教程"]=false
+	系统提示: 教程已重置
+	=> 比武练兵选项	
 - 取消
 
 => END!
@@ -983,19 +988,19 @@ do enterRealContest()
 
 ~ 关羽比武胜利
 关羽: 主公武艺精进如斯，关某欣慰不已。此战令我颇有感悟，这身武艺，正当为主公的宏图效力。
-do winTrain(0)
+do winTrain()
 => END!
 
 
 
 ~ 张飞比武胜利
 张飞: 哈哈哈！大哥，你这身手一点儿没丢啊！当年在涿郡，你可是咱们兄弟里最能打的！现在当了主公不常动手，可真打起来，俺还是服你！
-do winTrain(1)
+do winTrain()
 => END!
 
 ~ 赵云比武胜利
 赵云: 主公技艺非凡，令云获益良多。愿以此身武艺，助主公早日安定天下。
-do winTrain(2)
+do winTrain()
 => END!
 
 ~ 关羽比武失败

@@ -224,18 +224,18 @@ theme_override_constants/separation = 15
 [node name="ColorRect" type="ColorRect" parent="CanvasInventory/CAOCAOBox/Control/HBoxContainer"]
 custom_minimum_size = Vector2(80, 10)
 layout_mode = 2
-color = Color(0.619608, 0, 0.152941, 1)
+color = Color(1, 0, 0, 1)
 
 [node name="ColorRect2" type="ColorRect" parent="CanvasInventory/CAOCAOBox/Control/HBoxContainer"]
 custom_minimum_size = Vector2(80, 10)
 layout_mode = 2
-color = Color(0.541176, 0.0235294, 0.14902, 1)
+color = Color(1, 0, 0, 1)
 
 [node name="ColorRect3" type="ColorRect" parent="CanvasInventory/CAOCAOBox/Control/HBoxContainer"]
 visible = false
 custom_minimum_size = Vector2(80, 10)
 layout_mode = 2
-color = Color(0.541176, 0.0235294, 0.14902, 1)
+color = Color(1, 0, 0, 1)
 metadata/_edit_group_ = true
 
 [node name="Label" type="Label" parent="CanvasInventory/CAOCAOBox/Control"]
@@ -244,7 +244,7 @@ offset_left = 1433.0
 offset_top = 15.0
 offset_right = 1579.0
 offset_bottom = 103.0
-theme_override_colors/font_color = Color(0.678431, 0, 0.164706, 1)
+theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 26
 text = "刘备："
 horizontal_alignment = 2
@@ -285,11 +285,11 @@ text = "结束游戏"
 
 [node name="blinkRect" type="TextureRect" parent="CanvasInventory"]
 visible = false
-offset_left = 406.0
-offset_top = -271.0
-offset_right = 631.0
-offset_bottom = -71.0
-scale = Vector2(5, 5)
+offset_left = -136.0
+offset_top = -107.0
+offset_right = 89.0
+offset_bottom = 92.9999
+scale = Vector2(10, 10)
 texture = ExtResource("7_pttkp")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasInventory/blinkRect"]
@@ -358,7 +358,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="caocao" parent="." node_paths=PackedStringArray("hparr") instance=ExtResource("13_y24ds")]
 position = Vector2(1015, 133)
-rotation = 6.19592
+rotation = 0.698132
 _name = 1
 hparr = [NodePath("../CanvasInventory/CAOCAOBox/HBoxContainer/ColorRect"), NodePath("../CanvasInventory/CAOCAOBox/HBoxContainer/ColorRect2"), NodePath("../CanvasInventory/CAOCAOBox/HBoxContainer/ColorRect3")]
 color = Color(0.22331, 1.90598e-05, 0.881381, 1)
@@ -366,8 +366,9 @@ hp = 2
 
 [node name="liubei" parent="." node_paths=PackedStringArray("hparr") instance=ExtResource("13_y24ds")]
 position = Vector2(1020, 859)
-rotation = 6.19592
+rotation = 0.698132
 hparr = [NodePath("../CanvasInventory/CAOCAOBox/Control/HBoxContainer/ColorRect"), NodePath("../CanvasInventory/CAOCAOBox/Control/HBoxContainer/ColorRect2"), NodePath("../CanvasInventory/CAOCAOBox/Control/HBoxContainer/ColorRect3")]
+color = Color(1, 0, 0, 1)
 hp = 2
 
 [node name="GPUParticles2D" parent="." instance=ExtResource("15_rjsb5")]

@@ -22,7 +22,7 @@ signal hit_body(who: swordMan)
 	set(value):
 		hp=value
 		if hparr!=null and hparr.size()>=3:
-			for i in range(0,2):
+			for i in range(0,3):
 				if i<hp:
 					hparr[i].show()
 				else:
@@ -51,7 +51,9 @@ func _ready():
 		sprite_2d.set_modulate(color)
 	#tween.tween_property(sword, "rotation_degrees", 360 * ROTATION_DURATION+stop_angle, 2)
 
-
+func changeColor(color):
+	color=color
+	sprite_2d.set_modulate(color)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	

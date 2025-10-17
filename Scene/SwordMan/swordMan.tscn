@@ -82,7 +82,7 @@ radius = 3.6
 height = 22.9168
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
-rotation = 3.29867
+rotation = 2.0944
 script = ExtResource("1_qdog1")
 color = Color(0.679011, 0, 0.166589, 1)
 _shader = ExtResource("3_7ivgi")

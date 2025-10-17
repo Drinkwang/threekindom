@@ -25,31 +25,43 @@ func _ready():
 	liubei.sword.hide()
 	caocao.hit_body.connect(_on_player_hit)
 	liubei.hit_body.connect(_on_player_hit)
-	#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"最终章节")
 	initBattleRect()
-
+	Transitions.post_transition.connect(startGame)
+func post_transition():
+	initBattleRect()
+	
 func initBattleRect():
 
 	if GameManager.trainGeneral=="张飞":
-		changeColor(Color.RED,tr(GameManager.trainGeneral))
+		changeColor(Color.DARK_RED,tr(GameManager.trainGeneral))
 	elif GameManager.trainGeneral=="关羽":
 		changeColor(Color.GREEN,tr(GameManager.trainGeneral))
 	elif GameManager.trainGeneral=="赵云":
 		changeColor(Color.WHITE,tr(GameManager.trainGeneral))
 	else:
 		pass
-		
-		
-	if GameManager.trainLevel==2:
+
+	if GameManager.trainLevel==3:
+		caocao.hp=3
+	elif GameManager.trainLevel==2:
 		caocao.hp=3
 	elif GameManager.trainLevel==1:
 		caocao.hp=2
-	elif GameManager.trainLevel==0:
-		caocao.hp=1
+
+
+
+func startGame():
+	if GameManager.sav.have_event["比武训练教程"]==false:
+		GameManager.sav.have_event["比武训练教程"]=true
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"是否第一次")
+	else:
+		dialogEnd()		
+		
 func changeColor(color,label):
 	var hps=h_box_container_hp.get_children()
 	for hp:ColorRect in hps:
 		hp.color=color
+	caocao.changeColor(color)
 	enemy_label.add_theme_color_override("font_color",color)
 	enemy_label.text=label
 func dialogEnd():
@@ -62,16 +74,27 @@ func dialogEnd():
 	
 	
 func _on_player_hit(_who: swordMan):
+
 	await 0.5
 	GameManager.swordManGameState=GameManager.gameState.pause
 	# 玩家被击中时，AI进入撤退状态
 	_who.hp-=1
 	if _who._name==_who.type_name.CaoCao:
-		if _who.hp==1:
-			if GameManager.trainGeneral.length()!=0:
+		SoundManager.play_sound(sounds.HUI_1)
+		if _who.hp==2:
+			
+			if GameManager.trainGeneral.length()==0:
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"击中曹操2")
+			else:
+				dialogEnd()			
+		elif _who.hp==1:
+			if GameManager.trainGeneral.length()==0:
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"击中曹操")
+			else:
+				dialogEnd()
+
 		elif _who.hp==0:
-			if GameManager.trainGeneral.length()!=0:
+			if GameManager.trainGeneral.length()==0:
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"赢曹操")
 			else:
 				blink_rect.show()
@@ -83,11 +106,19 @@ func _on_player_hit(_who: swordMan):
 				SoundManager.stop_music()
 				SoundManager.play_sound(sounds.GOOD_THING)
 	elif  _who._name==_who.type_name.LiuBei:
+		SoundManager.play_sound(sounds.HUI_1)
+		if _who.hp==2:
+			if GameManager.trainGeneral.length()==0:
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"被曹操击中2")
+			else:
+				dialogEnd()	
 		if _who.hp==1:
-			if GameManager.trainGeneral.length()!=0:
+			if GameManager.trainGeneral.length()==0:
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"被曹操击中")
+			else:
+				dialogEnd()
 		elif _who.hp==0:
-			if GameManager.trainGeneral.length()!=0:
+			if GameManager.trainGeneral.length()==0:
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"输曹操")
 			else:
 				SoundManager.stop_music()	

@@ -265,6 +265,7 @@ var SIDEQUEST_MAP:Dictionary={
 	"玄阴首次":false,
 	"玄阴首次遇宝":false,
 	"开启比武训练":false,
+	"比武训练教程":false,
 }
 
 #0 小试牛刀开启 1小试牛刀通过 2 对局试炼开启 3对局试验通过 4 诡秘怪谈开启 5诡秘怪谈通过
@@ -272,9 +273,9 @@ var SIDEQUEST_MAP:Dictionary={
 @export var mizhucardgame=-1
 @export var chendencardgame=-1
 
-@export var guanyuTrainNum=-1
-@export var zhaoyunTrainNum=-1
-@export var zhangfeiTrainNum=-1
+@export var guanyuTrainNum=0
+@export var zhaoyunTrainNum=0
+@export var zhangfeiTrainNum=0
 #9个最高分记录
 @export var highScore=[[0,0,0],[0,0,0],[0,0,0]]
 

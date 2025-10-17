@@ -267,8 +267,7 @@ func _initData():
 		elif GameManager.trainGeneral=="赵云":
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"赵云比武胜利")
 			
-		GameManager.trainResult==SceneManager.trainResult.none
-		GameManager.trainGeneral=""	
+
 	elif GameManager.trainResult==SceneManager.trainResult.fail:
 		if GameManager.trainGeneral=="关羽":
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"关羽比武失败")
@@ -279,8 +278,7 @@ func _initData():
 		elif GameManager.trainGeneral=="赵云":
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"赵云比武失败")
 			
-		GameManager.trainResult==SceneManager.trainResult.none
-		GameManager.trainGeneral=""	
+
 	
 		
 	elif GameManager.sav.have_event["查出药囊后休息前"]==true and GameManager.sav.have_event["锦囊咨询丹阳派"]==false and caobao.showEX==false:
@@ -697,19 +695,20 @@ func winTrain():
 	var isFirst=false
 	if GameManager.trainGeneral=="关羽":
 		
-		if GameManager.sav.guanyuTrainNum+1<found_general["level"]:			
+		
+		if GameManager.sav.guanyuTrainNum<GameManager.trainLevel:			
 			GameManager.sav.guanyuTrainNum+=1
 			found_general["level"] += 1	
 			isFirst=true
 		winReward(isFirst,GameManager.trainGeneral)
 	elif GameManager.trainGeneral=="张飞":
-		if GameManager.sav.zhangfeiTrainNum+1<found_general["level"]:			
+		if GameManager.sav.zhangfeiTrainNum<GameManager.trainLevel:			
 			GameManager.sav.zhangfeiTrainNum+=1
 			found_general["level"] += 1	
 			isFirst=true		
 		winReward(isFirst,GameManager.trainGeneral)
 	elif GameManager.trainGeneral=="赵云":
-		if GameManager.sav.zhaoyunTrainNum+1<found_general["level"]:			
+		if GameManager.sav.zhaoyunTrainNum<GameManager.trainLevel:			
 			GameManager.sav.zhaoyunTrainNum+=1
 			found_general["level"] += 1	
 			isFirst=true		
@@ -747,5 +746,8 @@ func winReward(isFirst,generalName):
 		_reward.showTitileReward(tr("你与{name}在【{modename}】模式下，首次比武获胜了，提升武将等级同时").format({"name":tr(generalName),"modename":modename}),items)	
 	else:
 		_reward.showTitileReward(tr("你与{name}在【{modename}】模式下，比武获胜了").format({"name":generalName,"modename":modename}),items)		
+	GameManager.trainResult==SceneManager.trainResult.none
+	GameManager.trainGeneral=""	
+
 func loseTrain():
 	pass

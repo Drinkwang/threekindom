@@ -176,3 +176,5 @@ do enterGame()
 - 是
 	do fadeScene()
 - 否
+
+=> END!
