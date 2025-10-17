@@ -9,6 +9,7 @@ var HOUSE = preload("res://Scene/house.tscn")
 const GAMEHALL = preload("res://Scene/game.tscn")
 const FancyFade = preload("res://addons/transitions/FancyFade.gd")
 const BOARD_GAME = preload("res://Scene/boardGame.tscn")
+const END = preload("res://Scene/end.tscn")
 var MAIN = preload("res://Scene/main.tscn")
 enum roomNode{
 	PRE_SCENE,
@@ -21,6 +22,7 @@ enum roomNode{
 	MainMenu,
 	Shop,
 	BoardGame,
+	TrainBattle
 	
 }
 
@@ -65,6 +67,8 @@ func changeScene(tempnode:roomNode,time:float):
 		FancyFade.new().custom_fade(STREET.instantiate(), time, DISSOLVE_IMAGE)
 	elif tempnode==roomNode.BoardGame:
 		FancyFade.new().custom_fade(BOARD_GAME.instantiate(), time, DISSOLVE_IMAGE)
+	elif tempnode==roomNode.TrainBattle:
+		FancyFade.new().custom_fade(END.instantiate(), time, DISSOLVE_IMAGE)
 
 func rest_scene(tempnode:roomNode):
 	

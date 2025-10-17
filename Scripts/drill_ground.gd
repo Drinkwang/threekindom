@@ -311,7 +311,11 @@ func _initData():
 		
 		caobao.showEX=true	
 	else:
-		if GameManager.sav.caobaocardgame>=0  and caobao.showEX==false:
+		if GameManager.sav.day>=7 and GameManager.sav.have_event["开启比武训练"]==false:
+			GameManager.sav.have_event["开启比武训练"]=true
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"比武训练解锁")
+		
+		elif GameManager.sav.caobaocardgame>=0  and caobao.showEX==false:
 			#如果小于4 则移出3 
 			
 			if GameManager.sav.caobaocardgame==4:
@@ -445,11 +449,11 @@ func _buttonListClick(item):
 		SceneManager.changeScene(SceneManager.roomNode.STREET,2)#判断条件
 		#pass
 	elif item.context=="操练士兵":
-		res_panel.position.x=1564
-		res_panel.position.y=803
-		res_panel.scale=Vector2(0.765,0.765)
-		train_panel.show()
-		caobao.hide()
+		if GameManager.sav.have_event["开启比武训练"]==true:
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"训练选项")
+		else:
+			trainUseMoney()
+
 	elif item.context=="军事行动":
 		#第一次军事行动应该告诉你教程
 		if GameManager.sav.day==3:
@@ -515,6 +519,13 @@ func _buttonListClick(item):
 	pass
 
 #练兵结束调用这个 初次练兵
+
+func trainUseMoney():
+	res_panel.position.x=1564
+	res_panel.position.y=803
+	res_panel.scale=Vector2(0.765,0.765)
+	train_panel.show()
+	caobao.hide()
 
 func trainBegin():
 	control._show_button_5_yellow(1)	
@@ -633,8 +644,34 @@ func finalBossBefore():
 
 
 func enterContest(mode):
+
+
+			
+	var characterScore
+	var haveWeapon=false	
+	if GameManager.trainGeneral=="关羽":
+		characterScore=GameManager.sav.guanyuTrainNum
+		haveWeapon=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.青龙偃月刀)>=1	
+	elif GameManager.trainGeneral=="张飞":
+		characterScore=GameManager.sav.zhangfeiTrainNum	
+		haveWeapon=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.丈八蛇矛)>=1
+	elif GameManager.trainGeneral=="赵云":
+		characterScore=GameManager.sav.zhaoyunTrainNum
+		haveWeapon=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.龙胆亮银枪)>=1
+
+
+	if (characterScore<1 and mode==1) or (characterScore<2 and mode==2):
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"当前比武未解锁")
+		GameManager.trainLevel=0
+		return
+	elif (characterScore>=2 and characterScore<3  and mode==2 and not haveWeapon):
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"当前比武未解锁2")
+		GameManager.trainLevel=0
+		return
+	
+
+	GameManager.sav.hp-=50
 	GameManager.trainLevel=mode+1
-	GameManager.sav.hp-=20
 	if GameManager.trainGeneral=="关羽":
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"关羽比武")
 	elif GameManager.trainGeneral=="张飞":
@@ -646,7 +683,7 @@ func enterContest(mode):
 
 func enterRealContest():
 	SoundManager.stop_music()
-	SceneManager.changeScene(SceneManager.roomNode.BoardGame,2)
+	SceneManager.changeScene(SceneManager.roomNode.TrainBattle,2)
 
 #发放奖励，无事发生,首次2倍 3倍 5倍  1 1.3 1.5
 func winTrain():
@@ -660,70 +697,55 @@ func winTrain():
 	var isFirst=false
 	if GameManager.trainGeneral=="关羽":
 		
-
 		if GameManager.sav.guanyuTrainNum+1<found_general["level"]:			
 			GameManager.sav.guanyuTrainNum+=1
 			found_general["level"] += 1	
 			isFirst=true
-		if GameManager.trainLevel==1:
-			if isFirst==true:
-				pass
-			else:
-				pass
-
-		elif GameManager.trainLevel==2:
-			if isFirst==true:
-				pass
-			else:
-				pass
-		elif GameManager.trainLevel==3:
-			if isFirst==true:
-				pass
-			else:
-				pass
+		winReward(isFirst,GameManager.trainGeneral)
 	elif GameManager.trainGeneral=="张飞":
 		if GameManager.sav.zhangfeiTrainNum+1<found_general["level"]:			
 			GameManager.sav.zhangfeiTrainNum+=1
 			found_general["level"] += 1	
 			isFirst=true		
-		if GameManager.trainLevel==1:
-			if isFirst==true:
-				pass
-			else:
-				pass
-
-		elif GameManager.trainLevel==2:
-			if isFirst==true:
-				pass
-			else:
-				pass
-		elif GameManager.trainLevel==3:
-			if isFirst==true:
-				pass
-			else:
-				pass
+		winReward(isFirst,GameManager.trainGeneral)
 	elif GameManager.trainGeneral=="赵云":
 		if GameManager.sav.zhaoyunTrainNum+1<found_general["level"]:			
 			GameManager.sav.zhaoyunTrainNum+=1
 			found_general["level"] += 1	
 			isFirst=true		
-		if GameManager.trainLevel==1:
-			if isFirst==true:
-				pass
-			else:
-				pass
+		winReward(isFirst,GameManager.trainGeneral)
+	
+func winReward(isFirst,generalName):
+	var _reward:rewardPanel=PanelManager.new_reward()
+	var score=0
+	var modename=""
+	if GameManager.trainLevel==1:
+		modename=tr("小试牛刀")
+		if isFirst==true:
+			score=1800
+		else:
+			score=900
 
-		elif GameManager.trainLevel==2:
-			if isFirst==true:
-				pass
-			else:
-				pass
-		elif GameManager.trainLevel==3:
-			if isFirst==true:
-				pass
-			else:
-				pass
-	
-	
+
+	elif GameManager.trainLevel==2:
+		if isFirst==true:
+			score=2700
+
+		else:
+			score=1000
+		modename=tr("锋芒初露")
+	elif GameManager.trainLevel==3:
+		if isFirst==true:
+			score=4000
+
+		else:
+			score=1200
+		modename=tr("炉火纯青")
+			
+	var items=GameManager.ScoreToItem(score)
+	if isFirst==true:
+		_reward.showTitileReward(tr("你与{name}在【{modename}】模式下，首次比武获胜了，提升武将等级同时").format({"name":tr(generalName),"modename":modename}),items)	
+	else:
+		_reward.showTitileReward(tr("你与{name}在【{modename}】模式下，比武获胜了").format({"name":generalName,"modename":modename}),items)		
 func loseTrain():
 	pass

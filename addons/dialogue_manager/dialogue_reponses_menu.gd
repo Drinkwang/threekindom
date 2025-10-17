@@ -74,7 +74,39 @@ var responses: Array = []:
 						elif (characterScore<2 and mode==boardType.boardMode.middle) or (characterScore<4 and mode==boardType.boardMode.high):
 							response.text+=tr("(未解锁)")
 						#根据角色获得分数，判断 score 如果score怎么样，那么会变成什么样	
-								
+					if 	"[istrain=true]" in response.text:
+						response.text = response.text.replace("[istrain=true]", "")
+						var mode=0
+						
+						if "1" in response.text:
+							mode=1
+						elif "2" in response.text:
+							mode=2
+						elif "3" in response.text:
+							mode=3
+						
+						var characterScore=0
+						var haveWeapon=false	
+						if GameManager.trainGeneral=="关羽":
+							characterScore=GameManager.sav.guanyuTrainNum
+							haveWeapon=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.青龙偃月刀)>=1
+							
+						elif GameManager.trainGeneral=="张飞":
+							characterScore=GameManager.sav.zhangfeiTrainNum	
+							haveWeapon=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.丈八蛇矛)>=1
+						elif GameManager.trainGeneral=="赵云":
+							characterScore=GameManager.sav.zhaoyunTrainNum
+							haveWeapon=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.龙胆亮银枪)>=1
+						#0 小试牛刀开启 1小试牛刀通过 2 对局试炼开启 3对局试验通过 
+						if 	(characterScore>=1 and mode==1) or (characterScore>=2 and mode==2) or (characterScore>=3 and mode==3):
+							response.text+=tr("(已通过)")
+						elif (characterScore<1 and mode==2) or (characterScore<2 and mode==3):
+							response.text+=tr("(未解锁)")	
+							
+						elif (characterScore>=2 and characterScore<3  and mode==3 and not haveWeapon):
+							response.text+=tr("(专属武器解锁)")
+	
+						
 					item.text = response.text
 					
 				item.set_meta("response", response)

@@ -94,10 +94,11 @@ func loadFile():
 		GameManager.sav.ensure_default_fields()
 		get_tree().change_scene_to_packed(savs[index-1].saveScene)
 		GameManager.loadLaw()
+
 	refresh()
 	self.hide()
-
-
+	
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"读取存档成功")
 
 
 func _on_close_button_down():

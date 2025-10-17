@@ -908,7 +908,7 @@ do huangjinSurrender()
 
 ~ 比武训练解锁
 
-刘备: 诸位，这演武场风光啊。何不借此地，与我对练切磋一番？不劳金银，只凭兄弟们心意。
+刘备: (这演武场风光不错啊,我何不借此地与兄弟们对练切磋一番？)
 
 系统提示: 解锁比武训练功能，现在可以通过比武训练不消耗金钱提升武将等级（每个模式仅能提升一次)
 => END!
@@ -916,9 +916,9 @@ do huangjinSurrender()
 ~ 训练选项
 : 你要选择那个选项进行练兵？
 - 比武训练
-
+	=> 比武练兵选项
 - 花钱练兵
-
+	do trainUseMoney()
 => END!
 
 
@@ -934,6 +934,7 @@ do huangjinSurrender()
 - 赵云
 	do GameManager.trainGeneral="赵云"
 	 => 比武训练选项2
+- 取消
 
 => END!
 
@@ -941,12 +942,24 @@ do huangjinSurrender()
 ~ 比武训练选项2
 
 系统提示: 请选择你的比武训练的模式
-- 小试牛刀
+- 1.小试牛刀[istrain=true]
 	do enterContest(0)
-- 锋芒初露
+- 2.锋芒初露[istrain=true]
 	do enterContest(1)
-- 炉火纯青(未解锁)
+- 3.炉火纯青[istrain=true]
 	do enterContest(2)
+- 取消
+	do GameManager.trainGeneral=""
+	=> 比武练兵选项
+=> END!
+
+~ 当前比武未解锁
+系统提示: 当前比武模式未解锁，需要通关一次之前的比武！
+=> END!
+
+
+~ 当前比武未解锁2
+系统提示: 最高比武模式需要拥有该武将的专属装备才能解锁！
 => END!
 
 ~ 赵云比武

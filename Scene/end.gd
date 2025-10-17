@@ -26,7 +26,7 @@ func _ready():
 	caocao.hit_body.connect(_on_player_hit)
 	liubei.hit_body.connect(_on_player_hit)
 	#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"最终章节")
-
+	initBattleRect()
 
 func initBattleRect():
 
