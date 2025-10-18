@@ -358,7 +358,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="caocao" parent="." node_paths=PackedStringArray("hparr") instance=ExtResource("13_y24ds")]
 position = Vector2(1015, 133)
-rotation = 4.34587
+rotation = 5.02655
 _name = 1
 hparr = [NodePath("../CanvasInventory/CAOCAOBox/HBoxContainer/ColorRect"), NodePath("../CanvasInventory/CAOCAOBox/HBoxContainer/ColorRect2"), NodePath("../CanvasInventory/CAOCAOBox/HBoxContainer/ColorRect3")]
 color = Color(0.22331, 1.90598e-05, 0.881381, 1)
@@ -366,7 +366,7 @@ hp = 2
 
 [node name="liubei" parent="." node_paths=PackedStringArray("hparr") instance=ExtResource("13_y24ds")]
 position = Vector2(1020, 859)
-rotation = 4.34587
+rotation = 5.02655
 hparr = [NodePath("../CanvasInventory/CAOCAOBox/Control/HBoxContainer/ColorRect"), NodePath("../CanvasInventory/CAOCAOBox/Control/HBoxContainer/ColorRect2"), NodePath("../CanvasInventory/CAOCAOBox/Control/HBoxContainer/ColorRect3")]
 color = Color(1, 0, 0, 1)
 hp = 2
@@ -396,8 +396,9 @@ shape = SubResource("CapsuleShape2D_0c80r")
 script = ExtResource("12_0mg6j")
 ai_swordman = NodePath("../caocao")
 player_swordman = NodePath("../liubei")
-ai_id = 2
+ai_id = 1
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="button_down" from="CanvasInventory/winRect/Button" to="." method="winGame"]
-[connection signal="button_down" from="CanvasInventory/LoseRect/Button2" to="." method="loseGame"]
+[connection signal="button_down" from="CanvasInventory/LoseRect/Button2" to="." method="retryGame"]
+[connection signal="button_down" from="CanvasInventory/LoseRect/Button" to="." method="loseGame"]

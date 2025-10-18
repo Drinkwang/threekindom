@@ -35,7 +35,7 @@ func _ready():
 	Transitions.post_transition.connect(startGame)
 	set_mouse_speed_limit(5)
 	# 初始化鼠标位置
-	last_mouse_position = get_global_mouse_position()
+	#last_mouse_position = get_global_mouse_position()
 func post_transition():
 	initBattleRect()
 	
@@ -49,7 +49,7 @@ func initBattleRect():
 		changeColor(Color.WHITE,tr(GameManager.trainGeneral))
 	else:
 		pass
-
+	liubei.hp=2
 	if GameManager.trainLevel==3:
 		caocao.hp=3
 	elif GameManager.trainLevel==2:
@@ -80,6 +80,11 @@ func dialogEnd():
 	caocao.sword.show()
 	liubei.sword.show()
 	GameManager.swordManGameState=GameManager.gameState.start
+	
+	# 将鼠标位置设置为刘备当前位置
+	Input.warp_mouse(liubeiPos)
+	last_mouse_position = liubeiPos
+	print("鼠标位置已设置为刘备位置: ", liubei.global_position)
 	
 	
 func _on_player_hit(_who: swordMan):
@@ -115,7 +120,7 @@ func _on_player_hit(_who: swordMan):
 				SoundManager.stop_music()
 				SoundManager.play_sound(sounds.GOOD_THING)
 	elif  _who._name==_who.type_name.LiuBei:
-		SoundManager.play_sound(sounds.HUI_1)
+		SoundManager.play_sound(sounds.HUI_2)
 		if _who.hp==2:
 			if GameManager.trainGeneral.length()==0:
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"被曹操击中2")
@@ -173,6 +178,13 @@ func loseGame():
 	restore_mouse_movement() # 恢复鼠标移动
 	GameManager.trainResult=SceneManager.trainResult.fail
 	SceneManager.changeScene(SceneManager.roomNode.DRILL_GROUND,2)
+	
+	
+func retryGame():
+	lose_rect.hide()
+	initBattleRect()
+	set_mouse_speed_limit(5)
+	dialogEnd()
 func enterNewTurn():
 	var target_position = Vector2(100, 100)  # 移动到 (100, 100) 像素
 	Input.warp_mouse(liubeiPos)
