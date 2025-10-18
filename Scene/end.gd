@@ -12,6 +12,7 @@ var last_mouse_position: Vector2
 var is_mouse_limited: bool = false
 var original_mouse_mode: bool = false
 
+@onready var ai_controller: AIController = $AIController
 
 @onready var enemy_label: Label = $CanvasInventory/CAOCAOBox/Label
 
@@ -43,12 +44,16 @@ func initBattleRect():
 
 	if GameManager.trainGeneral=="张飞":
 		changeColor(Color.DARK_RED,tr(GameManager.trainGeneral))
+		caocao.changeWaitTime(0.0065)
 	elif GameManager.trainGeneral=="关羽":
 		changeColor(Color.GREEN,tr(GameManager.trainGeneral))
+		caocao.changeWaitTime(0.0060)
 	elif GameManager.trainGeneral=="赵云":
 		changeColor(Color.WHITE,tr(GameManager.trainGeneral))
+		caocao.changeWaitTime(0.0055)
 	else:
-		pass
+		#更改ai类型以及ai的时长
+		caocao.changeWaitTime(0.01)
 	liubei.hp=2
 	if GameManager.trainLevel==3:
 		caocao.hp=3
@@ -65,11 +70,31 @@ func startGame():
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"是否第一次")
 	else:
 		dialogEnd()		
-		
+const zhangba = preload("res://addons/inventory_example/textures/weapons/丈八.png")
+
+const yinyueqiang = preload("res://addons/inventory_example/textures/weapons/银月.png")
+
+const qinglong = preload("res://addons/inventory_example/textures/weapons/青龙.png")
+
 func changeColor(color,label):
 	var hps=h_box_container_hp.get_children()
 	for hp:ColorRect in hps:
 		hp.color=color
+	if GameManager.trainLevel==3:
+		ai_controller.ai_id=2
+		ai_controller.ai_type=ai_controller.AIType.MIRROR
+		
+		if GameManager.trainGeneral=="赵云":
+			caocao.changeWeapon(yinyueqiang)
+			ai_controller.mirrorWaitTime=1.2
+		elif GameManager.trainGeneral=="关羽":
+			caocao.changeWeapon(qinglong)
+			ai_controller.mirrorWaitTime=0.6
+		elif GameManager.trainGeneral=="张飞":
+			caocao.changeWeapon(zhangba)
+			ai_controller.mirrorWaitTime=1.8
+		else:
+			ai_controller.mirrorWaitTime=2
 	caocao.changeColor(color)
 	enemy_label.add_theme_color_override("font_color",color)
 	enemy_label.text=label

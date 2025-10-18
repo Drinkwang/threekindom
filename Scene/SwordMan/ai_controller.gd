@@ -36,7 +36,7 @@ var body_attack_distance: float = 60.0 # 攻击玩家身体的距离
 var is_dodging: bool = false # 是否正在躲避
 var dodge_cooldown: float = 0.0 # 躲避冷却时间
 
-
+var mirrorWaitTime=2.0
 func _ready():
 	# 根据AI ID设置AI类型
 	match ai_id:
@@ -351,7 +351,7 @@ func _mirror_ai_behavior(delta):
 		history_timestamps.pop_front()
 	
 	# 如果有足够的历史数据，执行镜像行为
-	if player_position_history.size() >= 2:
+	if player_position_history.size() >= mirrorWaitTime:
 		var target_index = -1
 		
 		# 找到2秒前的位置索引
@@ -379,10 +379,10 @@ func _mirror_ai_behavior(delta):
 			ai_swordman.global_position = new_position
 		else:
 			# 如果没有足够的历史数据，使用基础AI行为
-			_basic_ai_behavior(delta)
+			_advanced_ai_behavior(delta)
 	else:
 		# 历史数据不足时，使用基础AI行为
-		_basic_ai_behavior(delta)
+		_advanced_ai_behavior(delta)
 
 func _on_player_hit(_who: swordMan):
 	# 玩家被击中时，AI进入撤退状态

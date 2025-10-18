@@ -3,6 +3,9 @@ class_name  swordMan
 extends Node
 @onready var sprite_2d = $Sprite2D
 const SPARK_2D = preload("res://Scene/prefab/spark2d.tscn")
+
+
+
 @onready var sword = $Sword9
 enum type_name { LiuBei, CaoCao }
 @export var _name:type_name
@@ -32,6 +35,10 @@ signal hit_body(who: swordMan)
 const SWORDMANMAT = preload("res://swordmanmat.tres")
 @export var _shader : Shader
 # Called when the node enters the scene tree for the first time.
+
+func changeWaitTime(waitT):
+	timer.wait_time=waitT
+
 func _ready():
 	 # 创建 ShaderMaterial 实例
 	#var material_instance = ShaderMaterial.new()
@@ -50,6 +57,10 @@ func _ready():
 	if sprite_2d!=null:
 		sprite_2d.set_modulate(color)
 	#tween.tween_property(sword, "rotation_degrees", 360 * ROTATION_DURATION+stop_angle, 2)
+
+func changeWeapon(txt):
+	sword.set_modulate(Color.WHITE)
+	sword.texture=txt
 
 func changeColor(color):
 	color=color
