@@ -6,6 +6,12 @@ const dialogue_resource = preload("res://dialogues/青梅煮酒.dialogue")
 var caocaoPos:Vector2
 var liubeiPos:Vector2
 
+# 鼠标移动限制相关变量
+var mouse_speed_limit: float = 0.0 # 0表示无限制
+var last_mouse_position: Vector2
+var is_mouse_limited: bool = false
+var original_mouse_mode: bool = false
+
 
 @onready var enemy_label: Label = $CanvasInventory/CAOCAOBox/Label
 
@@ -27,6 +33,9 @@ func _ready():
 	liubei.hit_body.connect(_on_player_hit)
 	initBattleRect()
 	Transitions.post_transition.connect(startGame)
+	set_mouse_speed_limit(5)
+	# 初始化鼠标位置
+	last_mouse_position = get_global_mouse_position()
 func post_transition():
 	initBattleRect()
 	
@@ -133,15 +142,35 @@ func _input(event):
 	if GameManager.swordManGameState==GameManager.gameState.pause:
 		return 
 	if event is InputEventMouseMotion:
-		liubei.position=event.global_position
-	#print(event)
-		pass
+		if is_mouse_limited and mouse_speed_limit > 0:
+			# 限制鼠标移动速度
+			var current_mouse_pos = event.global_position
+			var mouse_movement = current_mouse_pos - last_mouse_position
+			var movement_distance = mouse_movement.length()
+			
+			# 如果移动距离超过限制，则限制移动
+			if movement_distance > mouse_speed_limit:
+				var limited_movement = mouse_movement.normalized() * mouse_speed_limit
+				var limited_position = last_mouse_position + limited_movement
+				liubei.position = limited_position
+				last_mouse_position = limited_position
+				# 将鼠标位置强制设置到限制位置
+				Input.warp_mouse(limited_position)
+			else:
+				liubei.position = current_mouse_pos
+				last_mouse_position = current_mouse_pos
+		else:
+			# 无限制模式
+			liubei.position = event.global_position
+			last_mouse_position = event.global_position
 
 
 func winGame():
+	restore_mouse_movement() # 恢复鼠标移动
 	GameManager.trainResult=SceneManager.trainResult.win
 	SceneManager.changeScene(SceneManager.roomNode.DRILL_GROUND,2)
 func loseGame():
+	restore_mouse_movement() # 恢复鼠标移动
 	GameManager.trainResult=SceneManager.trainResult.fail
 	SceneManager.changeScene(SceneManager.roomNode.DRILL_GROUND,2)
 func enterNewTurn():
@@ -154,3 +183,20 @@ func enterNewTurn():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+# 设置鼠标移动速度限制
+func set_mouse_speed_limit(limit: float):
+	mouse_speed_limit = limit
+	is_mouse_limited = limit > 0
+	print("鼠标移动速度限制设置为: ", limit)
+
+# 移除鼠标移动速度限制
+func remove_mouse_speed_limit():
+	mouse_speed_limit = 0.0
+	is_mouse_limited = false
+	print("鼠标移动速度限制已移除")
+
+# 游戏结束时恢复鼠标移动
+func restore_mouse_movement():
+	remove_mouse_speed_limit()
+	print("游戏结束，鼠标移动已恢复正常")
