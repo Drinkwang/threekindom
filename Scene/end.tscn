@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://ptclmhhv84g6"]
+[gd_scene load_steps=51 format=3 uid="uid://ptclmhhv84g6"]
 
 [ext_resource type="Script" path="res://Scene/end.gd" id="1_g32r7"]
 [ext_resource type="AudioStream" uid="uid://brg1ltppwfyim" path="res://Asset/sound/闪电.mp3" id="3_lav2d"]
@@ -42,6 +42,7 @@
 [ext_resource type="Texture2D" uid="uid://cct0spp0q00mp" path="res://Asset/particle/2/vnbvx_27.png" id="33_wpuus"]
 [ext_resource type="Texture2D" uid="uid://de5u8jbrtr8nk" path="res://Asset/particle/2/vnbvx_28.png" id="34_henv3"]
 [ext_resource type="Texture2D" uid="uid://0o5hddxuvape" path="res://Asset/particle/2/vnbvx_29.png" id="35_0p8wn"]
+[ext_resource type="VideoStream" path="res://Asset/vedio/小球教程1.ogv" id="42_g32tj"]
 
 [sub_resource type="Animation" id="Animation_0bk4q"]
 resource_name = "闪烁"
@@ -358,7 +359,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="caocao" parent="." node_paths=PackedStringArray("hparr") instance=ExtResource("13_y24ds")]
 position = Vector2(1015, 133)
-rotation = 6.24828
+rotation = 4.32842
 _name = 1
 hparr = [NodePath("../CanvasInventory/CAOCAOBox/HBoxContainer/ColorRect"), NodePath("../CanvasInventory/CAOCAOBox/HBoxContainer/ColorRect2"), NodePath("../CanvasInventory/CAOCAOBox/HBoxContainer/ColorRect3")]
 color = Color(0.22331, 1.90598e-05, 0.881381, 1)
@@ -366,7 +367,7 @@ hp = 2
 
 [node name="liubei" parent="." node_paths=PackedStringArray("hparr") instance=ExtResource("13_y24ds")]
 position = Vector2(1020, 859)
-rotation = 6.24828
+rotation = 4.32842
 hparr = [NodePath("../CanvasInventory/CAOCAOBox/Control/HBoxContainer/ColorRect"), NodePath("../CanvasInventory/CAOCAOBox/Control/HBoxContainer/ColorRect2"), NodePath("../CanvasInventory/CAOCAOBox/Control/HBoxContainer/ColorRect3")]
 color = Color(1, 0, 0, 1)
 hp = 2
@@ -391,6 +392,12 @@ texture = ExtResource("14_vaajl")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Sword9/RigidBody2D"]
 rotation = -0.794125
 shape = SubResource("CapsuleShape2D_0c80r")
+
+[node name="bitPlayer" type="VideoStreamPlayer" parent="."]
+visible = false
+offset_right = 1920.0
+offset_bottom = 1088.0
+stream = ExtResource("42_g32tj")
 
 [node name="AIController" type="Node" parent="." node_paths=PackedStringArray("ai_swordman", "player_swordman")]
 script = ExtResource("12_0mg6j")

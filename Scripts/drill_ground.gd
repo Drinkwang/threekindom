@@ -642,9 +642,10 @@ func finalBossBefore():
 
 
 func enterContest(mode):
+	if(await GameManager.isTried(50)):
+		return 
 
 
-			
 	var characterScore
 	var haveWeapon=false	
 	if GameManager.trainGeneral=="关羽":
@@ -661,14 +662,21 @@ func enterContest(mode):
 	if (characterScore<1 and mode==1) or (characterScore<2 and mode==2):
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"当前比武未解锁")
 		GameManager.trainLevel=0
+		GameManager.trainGeneral=""
 		return
 	elif (characterScore>=2 and characterScore<3  and mode==2 and not haveWeapon):
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"当前比武未解锁2")
 		GameManager.trainLevel=0
+		GameManager.trainGeneral=""
 		return
-	
+	if GameManager.sav.isLevelUp==true:
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"已经练兵过了")
+		GameManager.trainLevel=0
+		GameManager.trainGeneral=""
+		return	
 
 	GameManager.sav.hp-=50
+	GameManager.sav.isLevelUp=true
 	GameManager.trainLevel=mode+1
 	if GameManager.trainGeneral=="关羽":
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"关羽比武")
@@ -718,6 +726,7 @@ func winReward(isFirst,generalName):
 	var _reward:rewardPanel=PanelManager.new_reward()
 	var score=0
 	var modename=""
+	var isFinal=false
 	if GameManager.trainLevel==1:
 		modename=tr("小试牛刀")
 		if isFirst==true:
@@ -735,6 +744,7 @@ func winReward(isFirst,generalName):
 		modename=tr("锋芒初露")
 	elif GameManager.trainLevel==3:
 		if isFirst==true:
+			isFinal=true
 			score=4000
 
 		else:
@@ -743,7 +753,11 @@ func winReward(isFirst,generalName):
 			
 	var items=GameManager.ScoreToItem(score)
 	if isFirst==true:
-		_reward.showTitileReward(tr("你与{name}在【{modename}】模式下，首次比武获胜了，提升武将等级同时").format({"name":tr(generalName),"modename":modename}),items)	
+		if isFinal==true:
+			GameManager.sav.maxHP+=10
+			_reward.showTitileReward(tr("首次通过{name}的至高难度！你的最大体力值永久提升10点，并立即晋升该武将等级！").format({"name":tr(generalName),"modename":modename}),items)	
+		else:
+			_reward.showTitileReward(tr("你与{name}在【{modename}】模式下，首次比武获胜了，提升武将等级").format({"name":tr(generalName),"modename":modename}),items)	
 	else:
 		_reward.showTitileReward(tr("你与{name}在【{modename}】模式下，比武获胜了").format({"name":generalName,"modename":modename}),items)		
 	GameManager.trainResult==SceneManager.trainResult.none

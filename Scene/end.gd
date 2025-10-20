@@ -54,7 +54,12 @@ func initBattleRect():
 	else:
 		#更改ai类型以及ai的时长
 		caocao.changeWaitTime(0.01)
-	liubei.hp=2
+	var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.雌雄双股剑)	
+	#判断有无武器
+	if num>=1:
+		liubei.hp=3
+	else:
+		liubei.hp=2
 	if GameManager.trainLevel==3:
 		caocao.hp=3
 	elif GameManager.trainLevel==2:
@@ -237,3 +242,25 @@ func remove_mouse_speed_limit():
 func restore_mouse_movement():
 	remove_mouse_speed_limit()
 	print("游戏结束，鼠标移动已恢复正常")
+@onready var bit_player: VideoStreamPlayer = $bitPlayer
+const c_1 = preload("res://Asset/vedio/小球教程1.ogv")
+const c_2 = preload("res://Asset/vedio/小球教程2.ogv")
+func bitPlayerCourse(index):
+	
+	bit_player.show()
+	bit_player.stop()
+	if index==0:
+		bit_player.stream=c_1
+	else:
+		bit_player.stream=c_2
+	#if index==1:
+	#	bit_player.finished.connect(_on_video_player_finished)
+	bit_player.play()
+
+#func _on_video_player_finished():
+#	bit_player.hide()
+	#hp_panel.show()
+	#res_panel.show()
+	#support_panel.show()
+	
+	#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁梦境结束")
