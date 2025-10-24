@@ -274,6 +274,18 @@ func create_resource_from_text(text: String) -> Resource:
 	return resource
 
 var gameover=false
+
+func show_exaple_top_dialogue_balloon(resource: DialogueResource, title: String = "", extra_game_states: Array = []) -> CanvasLayer:
+	if gameover==true: 
+		return
+	var balloon: Node = load(_get_example_top_balloon_path()).instantiate()
+	
+	dialogBegin=true
+	get_current_scene.call().add_child(balloon)
+	balloon.start(resource, title, extra_game_states)
+
+	return balloon
+
 ## Show the example balloon
 func show_example_dialogue_balloon(resource: DialogueResource, title: String = "", extra_game_states: Array = []) -> CanvasLayer:
 	if gameover==true: 
@@ -323,6 +335,13 @@ func show_dialogue_balloon_scene(balloon_scene, resource: DialogueResource, titl
 func _get_example_balloon_path() -> String:
 	var is_small_window: bool = ProjectSettings.get_setting("display/window/size/viewport_width") < 400
 	var balloon_path: String = "/example_balloon/small_example_balloon.tscn" if is_small_window else "/example_balloon/example_balloon.tscn"
+	return get_script().resource_path.get_base_dir() + balloon_path
+
+
+# Get the boardCardTop ballon
+func _get_example_top_balloon_path() -> String:
+	var is_small_window: bool = ProjectSettings.get_setting("display/window/size/viewport_width") < 400
+	var balloon_path: String = "/example_balloon/example_top_balloon.tscn" if is_small_window else "/example_balloon/example_top_balloon.tscn"
 	return get_script().resource_path.get_base_dir() + balloon_path
 
 

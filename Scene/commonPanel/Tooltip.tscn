@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://Scene/commonPanel/Tooltip.gd" id="1_b7hmj"]
 
 [node name="Control" type="CanvasLayer"]
+layer = 4
 script = ExtResource("1_b7hmj")
 
 [node name="Label" type="Label" parent="."]

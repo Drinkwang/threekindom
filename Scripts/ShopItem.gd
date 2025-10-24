@@ -71,14 +71,16 @@ const LABOR = preload("res://Asset/ui/战力.png")
 const COIN = preload("res://Asset/ui/钱财.png")
 func set_Money(_num):
 	context.texture=COIN
-	self.tooltip_text=tr("金币：持有的金钱数量(可购买道具)")#
+	TooltipManager.register_tooltip(self,tr("金币：持有的金钱数量(可购买道具)"))
+
 	txt_quantity.show()
 	txt_quantity.text=var_to_str(_num)
 @onready var txt_quantity = $frame/Quantity
 
 func set_Labor(_num):
 	context.texture=LABOR
-	self.tooltip_text=tr("人口：拥有空闲人口(可转换为士兵)")#
+	TooltipManager.register_tooltip(self,tr("人口：拥有空闲人口(可转换为士兵)"))
+
 	txt_quantity.show()
 	txt_quantity.text=var_to_str(_num)
 	

@@ -28,20 +28,20 @@ func register_tooltip(node: Node, tooltip_text: String):
 	
 	# 如果是 Control 节点，自动连接鼠标信号
 	if node is Control:
-		if not node.is_connected("mouse_entered", _on_mouse_entered.bind(node)):
-			node.mouse_entered.connect(_on_mouse_entered.bind(node))
-		if not node.is_connected("mouse_exited", _on_mouse_exited.bind(node)):
-			node.mouse_exited.connect(_on_mouse_exited.bind(node))
+		#if not node.is_connected("mouse_entered", _on_mouse_entered.bind(node)):
+		node.mouse_entered.connect(_on_mouse_entered.bind(node))
+		#if not node.is_connected("mouse_exited", _on_mouse_exited.bind(node)):
+		node.mouse_exited.connect(_on_mouse_exited.bind(node))
 		# 确保接收鼠标输入
 		node.mouse_filter = Control.MOUSE_FILTER_STOP
 	
 	# 如果是 2D 节点，检查是否有 Area2D
 	elif node is Node2D and node.has_node("Area2D"):
 		var area:Area2D = node.get_node("Area2D")
-		if not area.is_connected("mouse_entered", _on_mouse_entered.bind(node)):
-			area.mouse_entered.connect(_on_mouse_entered.bind(node))
-		if not area.is_connected("mouse_exited", _on_mouse_exited.bind(node)):
-			area.mouse_exited.connect(_on_mouse_exited.bind(node))
+		#if not area.is_connected("mouse_entered", _on_mouse_entered.bind(node)):
+		area.mouse_entered.connect(_on_mouse_entered.bind(node))
+		#if not area.is_connected("mouse_exited", _on_mouse_exited.bind(node)):
+		area.mouse_exited.connect(_on_mouse_exited.bind(node))
 			#area.click
 
 func unregister_tooltip(node: Node):
@@ -119,8 +119,10 @@ func _on_mouse_entered(target: Node):
 	
 		var text = target.get_meta("tooltip_text")
 		var mouse_pos = get_viewport().get_mouse_position()
+		print("showtip")
 		show_tooltip(target, text, mouse_pos)
 	else:
+		print("dontshowtip")
 		hide_tooltip()
 
 func _on_mouse_exited(target: Node):

@@ -218,9 +218,13 @@ func _process(delta):
 func _on_button_button_down():
 	SignalManager.endReward.emit()
 	self.hide()
+	
+	for ui in _grid_ui.get_children():
+		TooltipManager.unregister_tooltip(ui)
 	await get_tree().create_timer(0.5).timeout
 	#结算完了
 	GameManager.rewardPanel=false
+	
 	#endbattle.emit()
 	queue_free()
 	

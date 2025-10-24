@@ -96,8 +96,42 @@ func winAddScore():
 # Called when the node enters the scene tree for the first tim"res://Scene/prefab/boardCard.tscn"e.
 func _ready() -> void:
 	Transitions.post_transition.connect(post_transition)
+	
+	
+	if GameManager._boardMode==boardType.boardMode.new:
+		if GameManager.selectBoardCharacter==boardType.boardCharacter.caobao:
+			maxUseCard=4
 
+		elif GameManager.selectBoardCharacter==boardType.boardCharacter.mizhu:
+			maxUseCard=2
 
+		elif GameManager.selectBoardCharacter==boardType.boardCharacter.chenden:
+			maxUseCard=3
+
+	elif GameManager._boardMode==boardType.boardMode.middle:
+		if GameManager.selectBoardCharacter==boardType.boardCharacter.caobao:
+			maxUseCard=4
+
+		elif GameManager.selectBoardCharacter==boardType.boardCharacter.mizhu:
+			maxUseCard=4
+
+		elif GameManager.selectBoardCharacter==boardType.boardCharacter.chenden:
+			maxUseCard=4
+
+			
+	elif GameManager._boardMode==boardType.boardMode.high:
+		if GameManager.selectBoardCharacter==boardType.boardCharacter.caobao:
+			maxUseCard=4
+
+		elif GameManager.selectBoardCharacter==boardType.boardCharacter.mizhu:
+			maxUseCard=4
+
+		elif GameManager.selectBoardCharacter==boardType.boardCharacter.chenden:
+			maxUseCard=3
+
+	DialogueManager.show_exaple_top_dialogue_balloon(dialogue_resource,"新手教程_初级")
+	
+	#showtutorial(1,true)
 
 func post_transition():
 	if GameManager._boardMode==boardType.boardMode.high and GameManager.sav.caobaocardgame==4 and GameManager.selectBoardCharacter==boardType.boardCharacter.caobao:
@@ -239,6 +273,7 @@ func showdetail(str:String,grouptype):
 @onready var enemyhand: HBoxContainer = $CanvasLayer/enemyhand
 
 @onready var heart_group: HBoxContainer = $CanvasLayer/heartGroup
+
 
 @onready var turn_num_Txt: Label = $CanvasLayer/turnNum
 @export var turn_num=0
@@ -665,32 +700,53 @@ func drawOne(isplayer,index=-1):
 	else:
 		enemyhand.add_child(cardone)
 		cardone.holdType=cardHoldType.enemy
-	if index>0:
-		var newcardArr=cardArr.filter(func(a):return floor(a/13)==index-1)
-		var i=randi_range(0,newcardArr.size()-1)
-		var carddate=newcardArr[i]
-		cardone._value=carddate
-		var j=cardArr.find(carddate)
+	if istutorial==false:	
+		if index>0:
+			var newcardArr=cardArr.filter(func(a):return floor(a/13)==index-1)
+			var i=randi_range(0,newcardArr.size()-1)
+			var carddate=newcardArr[i]
+			cardone._value=carddate
+			var j=cardArr.find(carddate)
 		#CARDSize为负的
-		cardArr[j]=cardArr[cardsize]
+			cardArr[j]=cardArr[cardsize]
 
 
-		cardArr[cardsize]=carddate
-		cardsize-=1
-	else:
-		var i=randi_range(0,cardsize)
-		var carddate=cardArr[i]
+			cardArr[cardsize]=carddate
+			cardsize-=1
+		else:
+			var i=randi_range(0,cardsize)
+			var carddate=cardArr[i]
 
 		
-		cardone._value=carddate
-		cardArr[i]=cardArr[cardsize]
+			cardone._value=carddate
+			cardArr[i]=cardArr[cardsize]
 		
 		#var temp=cardArr[cardsize]
-		cardArr[cardsize]=carddate
-		cardsize-=1
-	print("目前cardSize"+str(cardsize))
-	if cardsize<1:
-		reshuffle()
+			cardArr[cardsize]=carddate
+			cardsize-=1
+		if cardsize<1:
+			reshuffle()	
+	else:
+		cardone._value=(index-1)*13+5
+	#print("目前cardSize"+str(cardsize))
+
+		
+		
+func drawOneInTour(index=-1)->boardCard:
+
+		
+	var cardone=BOARD_CARD.instantiate()
+
+
+	myhand.add_child(cardone)
+	cardone.holdType=cardHoldType.player
+
+
+	cardone._value=index
+	return cardone
+
+		
+		
 #支付一张
 func checkCardStart():
 	SoundManager.play_sound(sounds.DRAWCARD)
@@ -1533,9 +1589,10 @@ func haveHeart():
 func _process(delta: float) -> void:
 	var moupos=get_viewport().get_mouse_position()
 	if mouseline.visible==true:
-		mouseline.set_point_position(1,moupos)	
-		border.position=moupos
-
+		
+		if istutorial==false:
+			border.position=moupos
+		mouseline.set_point_position(1,border.position)	
 
 enum cardHoldType{
 	player,
@@ -1571,7 +1628,7 @@ enum groupType{
 
 const dialogue_resource = preload("res://dialogues/桌游.dialogue")
 func enterNtutorial():
-	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"欢迎进入初级")
+	DialogueManager.show_exaple_top_dialogue_balloon(dialogue_resource,"欢迎进入初级")
 	
 func enterMtutorial():
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"欢迎进入中级")
@@ -1593,16 +1650,149 @@ func enterHtutorial():
 
 @onready var guild_8: Node2D = $"CanvasLayer/pointGroup/8"
 
+var istutorial=false
 
+func clearTCard():
+	var arrs=myhand.get_children()
+	for arr in arrs:
+		arr.queue_free()
+		
+	arrs=shi_group.get_children()
+	for arr in arrs:
+		arr.queue_free()
+		
+	arrs=min_group.get_children()
+	for arr in arrs:
+		arr.queue_free()		
+		
+	arrs=bin_group.get_children()
+	for arr in arrs:
+		arr.queue_free()			
 
-
+	arrs=shang_group.get_children()
+	for arr in arrs:
+		arr.queue_free()			
+				
 func showtutorial(num,isshow):
-
+	istutorial=isshow
 	if(num<9):
 		if isshow:
+			if num==1 and isshow==true:
+				reside_num.show()
+				reside_num.text=tr("剩余步数：{s}").format({"s":maxUseCard})
+				drawOneInTour(5)
+				var usecard=drawOneInTour(13)
+				drawOneInTour(21)
+				drawOneInTour(32)
+				
+				insertCard(groupType.min,6)
+				await get_tree().create_timer(0.1).timeout
+				insertCard(groupType.shi,14)
+				await get_tree().create_timer(0.1).timeout
+				insertCard(groupType.shang,22)
+				await get_tree().create_timer(0.1).timeout
+				insertCard(groupType.bin,33)
+
+				#插入4张手牌
+				pass
+				
 			self["guild_"+str(num)].show()
+			if num==3 and isshow==true:
+				#出牌并得分
+				var obj:Control=myhand.get_child(2)
+				clickPoint(obj.global_position+Vector2(50,50))
+				border.position=obj.global_position
+				var otween = create_tween()
+				otween.tween_property(border, "position", shi.position, 1)
+				obj.reparent(canvas_layer)	
+				otween.tween_property(obj, "global_position", shi_group.global_position, 1)
+
+					
+
+				
+						#tween.tween_property(tempheart.material, "shader_parameter/progress", 1.0, 1.0).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
+				var movefinish=func(_hand_card,groupobj):
+					if _hand_card!=null:
+						_hand_card.reparent(groupobj)
+						await settleOneGroup(groupobj)
+								#调用结算函数	
+
+					
+					
+
+								#调用结算函数					
+				otween.tween_callback(movefinish.bind(obj,shi_group))  # 播放完成后调用函数
+			if num==4 and isshow==true:
+				#var obj:Control=myhand.get_child(2)
+				#obj.queue_free()
+				reside_num.text=tr("剩余步数：{s}").format({"s":maxUseCard-1})
+				var arrs=shi_group.get_children()
+				for a in arrs:
+					a.queue_free()
+			if num==6:
+				for j in bin_group.get_children():
+					if j!=null:
+						j._color_rect.show()
+						j.scale=Vector2(j.originScale.x*1.2,j.originScale.y*1.2)
+
+				
+				var hearttween = get_tree().create_tween()
+				heart_color.material.set_shader_parameter("vignette_intensity", 0)
+				heart_color.show()
+				hearttween.tween_method(
+					func(value): heart_color.material.set_shader_parameter("vignette_intensity", value),
+					0.0, # Start value
+					1.0, # End value
+					1 # Duration in seconds
+				)	
+		
+
+			if num ==5:
+				heart_color.hide()
+				damage_color.material.set_shader_parameter("vignette_intensity", 0)
+				damage_color.show()
+				board_panel.modulate=Color.RED
+				var hptween = create_tween()
+				hptween.tween_method(
+					func(value): damage_color.material.set_shader_parameter("vignette_intensity", value),
+					0.0, # Start value
+					1.0, # End value
+					0.5 # Duration in seconds
+				)				
+	
+
+			
+
+
 		else:
-			self["guild_"+str(num)].hide()
+
+			self["guild_"+str(num)].hide()			
+			
+			if num==4:
+
+				insertCard(groupType.min,16)
+				await get_tree().create_timer(0.1).timeout
+				insertCard(groupType.shi,22)
+				await get_tree().create_timer(0.1).timeout
+				insertCard(groupType.shang,35)
+				await get_tree().create_timer(0.1).timeout
+				insertCard(groupType.bin,34)
+				await get_tree().create_timer(0.1).timeout
+				#请支付惩罚的窗口
+			if num==5:
+				#var hptween = create_tween()
+
+				heart_color.hide()
+				damage_color.hide()
+				for j in bin_group.get_children():
+					if j!=null:
+						j.queue_free()
+
+				
+				
+	
+
+
 
 
 func _on_button_restart() -> void:

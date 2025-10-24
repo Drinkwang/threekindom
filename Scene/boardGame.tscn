@@ -286,9 +286,8 @@ _data = {
 "YELLOWGUILD": SubResource("Animation_rms3s")
 }
 
-[node name="Node2D2" type="Node2D" node_paths=PackedStringArray("rects")]
+[node name="Node2D2" type="Node2D"]
 script = ExtResource("1_34wyh")
-rects = [NodePath("CanvasLayer/bin"), NodePath("CanvasLayer/shang"), NodePath("CanvasLayer/min"), NodePath("CanvasLayer/shi")]
 
 [node name="正常背景" type="Sprite2D" parent="."]
 position = Vector2(959, 540)
@@ -850,80 +849,16 @@ visible = false
 position = Vector2(746.871, 505.333)
 rotation = 1.16413
 
-[node name="Node2D" type="Node2D" parent="CanvasLayer/pointGroup/1"]
-position = Vector2(-111.03, 53.7)
-rotation = 0.406662
-scale = Vector2(0.5, 0.5)
-
-[node name="5Yellow" type="Sprite2D" parent="CanvasLayer/pointGroup/1/Node2D"]
-rotation = -1.5708
-scale = Vector2(4, 4)
-texture = ExtResource("59_xlqph")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/pointGroup/1/Node2D/5Yellow"]
-libraries = {
-"": SubResource("AnimationLibrary_4gull")
-}
-autoplay = "YELLOWGUILD"
-
 [node name="Label" type="Label" parent="CanvasLayer/pointGroup/1"]
-offset_left = -84.0
-offset_top = 111.0
-offset_right = 666.0
-offset_bottom = 235.0
+offset_left = -402.387
+offset_top = -25.7301
+offset_right = 347.613
+offset_bottom = 98.2699
 rotation = -1.16413
 theme_override_fonts/font = ExtResource("20_f0olx")
-theme_override_font_sizes/font_size = 86
+theme_override_font_sizes/font_size = 72
 text = "我们是从属卡！"
 horizontal_alignment = 1
-
-[node name="Node2D2" type="Node2D" parent="CanvasLayer/pointGroup/1"]
-position = Vector2(-20.0749, -149.934)
-rotation = 0.406662
-scale = Vector2(0.5, 0.5)
-
-[node name="5Yellow" type="Sprite2D" parent="CanvasLayer/pointGroup/1/Node2D2"]
-rotation = -1.5708
-scale = Vector2(4, 4)
-texture = ExtResource("59_xlqph")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/pointGroup/1/Node2D2/5Yellow"]
-libraries = {
-"": SubResource("AnimationLibrary_4gull")
-}
-autoplay = "YELLOWGUILD"
-
-[node name="Node2D3" type="Node2D" parent="CanvasLayer/pointGroup/1"]
-position = Vector2(63.4869, -351.519)
-rotation = 0.406662
-scale = Vector2(0.5, 0.5)
-
-[node name="5Yellow" type="Sprite2D" parent="CanvasLayer/pointGroup/1/Node2D3"]
-rotation = -1.5708
-scale = Vector2(4, 4)
-texture = ExtResource("59_xlqph")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/pointGroup/1/Node2D3/5Yellow"]
-libraries = {
-"": SubResource("AnimationLibrary_4gull")
-}
-autoplay = "YELLOWGUILD"
-
-[node name="Node2D4" type="Node2D" parent="CanvasLayer/pointGroup/1"]
-position = Vector2(152.231, -555.059)
-rotation = 0.406662
-scale = Vector2(0.5, 0.5)
-
-[node name="5Yellow" type="Sprite2D" parent="CanvasLayer/pointGroup/1/Node2D4"]
-rotation = -1.5708
-scale = Vector2(4, 4)
-texture = ExtResource("59_xlqph")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/pointGroup/1/Node2D4/5Yellow"]
-libraries = {
-"": SubResource("AnimationLibrary_4gull")
-}
-autoplay = "YELLOWGUILD"
 
 [node name="2" type="Node2D" parent="CanvasLayer/pointGroup"]
 visible = false
@@ -943,21 +878,6 @@ autoplay = "YELLOWGUILD"
 [node name="3" type="Node2D" parent="CanvasLayer/pointGroup"]
 visible = false
 position = Vector2(724.763, 203.329)
-
-[node name="Node2D3" parent="CanvasLayer/pointGroup/3" instance=ExtResource("12_3fqfe")]
-offset_left = 152.835
-offset_top = 201.336
-offset_right = 342.835
-offset_bottom = 459.336
-scale = Vector2(0.4, 0.4)
-
-[node name="Node2D2" parent="CanvasLayer/pointGroup/3" instance=ExtResource("12_3fqfe")]
-offset_left = 74.9755
-offset_top = 200.339
-offset_right = 264.975
-offset_bottom = 458.339
-scale = Vector2(0.4, 0.4)
-_value = 5
 
 [node name="Node2D4" type="Node2D" parent="CanvasLayer/pointGroup/3"]
 position = Vector2(232.616, 331.905)
@@ -992,8 +912,8 @@ autoplay = "YELLOWGUILD"
 
 [node name="4" type="Node2D" parent="CanvasLayer/pointGroup"]
 visible = false
-position = Vector2(570.006, 682.747)
-rotation = 3.91826
+position = Vector2(1328.41, 913.984)
+rotation = 3.14159
 
 [node name="5Yellow" type="Sprite2D" parent="CanvasLayer/pointGroup/4"]
 rotation = -1.5708
@@ -1024,7 +944,7 @@ autoplay = "YELLOWGUILD"
 
 [node name="6" type="Node2D" parent="CanvasLayer/pointGroup"]
 visible = false
-position = Vector2(357.575, 37.875)
+position = Vector2(1358.21, 227.25)
 scale = Vector2(0.5, 0.5)
 
 [node name="5Yellow" type="Sprite2D" parent="CanvasLayer/pointGroup/6"]
