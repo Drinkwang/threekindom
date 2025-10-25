@@ -30,7 +30,7 @@ var isHide=true
 func setSecret(key):
 	currenceKey=key
 	if(currenceKey==true):
-		gpu_particles_2d.modulate=Color.DARK_GREEN
+		gpu_particles_2d.modulate=Color.GREEN
 	else:
 		gpu_particles_2d.modulate=Color.WHITE
 

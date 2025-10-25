@@ -19,10 +19,10 @@ class_name battlePanel
 @onready var guild_1 = $"pointGroup/1"
 @onready var guild_2 = $"pointGroup/2"
 @onready var guild_3 = $"pointGroup/3"
-@onready var guild_4 = $"pointGroup/4"
-@onready var guild_5 = $"pointGroup/5"
-@onready var guild_6 = $"pointGroup/6"
-@onready var guild_7 = $"pointGroup/7"
+#@onready var guild_4 = $"pointGroup/4"
+#@onready var guild_5 = $"pointGroup/5"
+#@onready var guild_6 = $"pointGroup/6"
+#@onready var guild_7 = $"pointGroup/7"
 #@onready var guild_8 = $"pointGroup/8"
 
 
@@ -267,7 +267,7 @@ func _on_control_3_gui_input(event):
 	if battle_circle.isBoot==true||control_3.canSelect==false||control_3.alreadyUse==true:
 		return	
 	
-	if(event is InputEventMouseButton and event.button_index==1):	
+	if(event is InputEventMouseButton and event.button_index==1 or istour==true):	
 		SoundManager.play_sound(sounds.CLICKHERO)		
 		control_3.check_box.button_pressed=true
 		control_2.check_box.button_pressed=false
@@ -286,7 +286,7 @@ func _on_control_2_gui_input(event):
 
 	if battle_circle.isBoot==true||control_2.canSelect==false||control_2.alreadyUse==true:
 		return	
-	if(event is InputEventMouseButton and event.button_index==1):	
+	if(event is InputEventMouseButton and event.button_index==1 or istour==true):	
 		SoundManager.play_sound(sounds.CLICKHERO)
 		control_1.check_box.button_pressed=false
 		control_2.check_box.button_pressed=true
@@ -296,11 +296,12 @@ func _on_control_2_gui_input(event):
 		battle_circle._juideCompeleteTask() 
 		_refreshSlider()
 
+var istour=false
 func _on_control_1_gui_input(event):
 
 	if battle_circle.isBoot==true||control_1.canSelect==false||control_1.alreadyUse==true:
 		return
-	if(event is InputEventMouseButton and event.button_index==1):		
+	if(event is InputEventMouseButton and event.button_index==1 or istour==true):		
 		SoundManager.play_sound(sounds.CLICKHERO)		
 		control_3.check_box.button_pressed=false
 		control_2.check_box.button_pressed=false

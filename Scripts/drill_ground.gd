@@ -545,19 +545,123 @@ func ConsultWithCaoBaoEnd():
 @onready var point = $CanvasInventory/point
 
 func showtutorial(num):
+	
 	if num ==1:
+		battle_pane.istour=true
+		#获得当前敌人种类
+		
+
+		
+		
+		var btdatas=GameManager.sav.battleTasks[0]
+		
+		if (btdatas.sdType==GameManager.RspEnum.SCISSORS):
+			#type==GameManager.RspEnum.PAPER
+			battle_pane._on_control_3_gui_input(null)
+		elif(btdatas.sdType==GameManager.RspEnum.PAPER):
+			battle_pane._on_control_2_gui_input(null)
+		elif(btdatas.sdType==GameManager.RspEnum.ROCK):
+			battle_pane._on_control_1_gui_input(null)
+
+			
+
+		
+		#选择一个非完成克制的武将，或者被克制的武将
 		battle_pane.point_group.show()
-		control._show_button_5_yellow(-1)		
-	if(num<8):
+		control._show_button_5_yellow(-1)
+		point.show()
+		#请做移动资源的曲线
+		var tween=get_tree().create_tween()
+		tween.tween_property(battle_pane.soild_slider, "value",30, 5)
+		tween.tween_property(battle_pane.soild_slider, "value",0, 5)
+		var tween2=get_tree().create_tween()
+		tween2.tween_property(battle_pane.coin_slider, "value",30, 5)
+		tween2.tween_property(battle_pane.coin_slider, "value",0, 5)		
+		
+	if(num<4):
 		battle_pane["guild_"+str(num)].show()
 	if(num>=2 and num<=8):
 		battle_pane["guild_"+str(num-1)].hide()
-		#battle_pane["guild_"+str(num)].Get# AnimationPlayer".play("YELLOWGUILD")
 
-	if num==8:
-		point.show()
-	elif num==9:
+	if num==2:
 		point.hide()
+		#调整value为完成任务，如果没有则不调整
+		
+		
+		var btdatas=GameManager.sav.battleTasks[0]
+		var tween=get_tree().create_tween()
+		var tween2=get_tree().create_tween()
+		var tasks=btdatas.task
+		var ResSlider
+		
+		for task in tasks:
+			var value=task.value
+			var minValue
+			if task.res=="coin":
+				ResSlider=battle_pane.coin_slider	
+				minValue=int(floor(value*2/3))
+			else:
+				ResSlider=battle_pane.soild_slider		
+				minValue=int(floor(value*3/5))
+			var sybol=task.symbol
+			var iscomplete=false
+			var movevalue
+			if sybol==GameManager.opcost.greater:
+				
+				movevalue=value+1
+			elif sybol==GameManager.opcost.less:
+		
+				movevalue=minValue+1
+			
+			elif sybol==GameManager.opcost.equal:
+				#把slider调整相等
+				movevalue=value
+
+			tween.tween_property(ResSlider, "value",movevalue, 2)
+		
+		
+		
+		#好难
+	
+	
+
+	
+
+	if  num==3:
+
+		
+		var btdatas=GameManager.sav.battleTasks[0]
+		
+		if (btdatas.sdType==GameManager.RspEnum.SCISSORS):
+			#type==GameManager.RspEnum.PAPER
+			battle_pane._on_control_1_gui_input(null)
+		elif(btdatas.sdType==GameManager.RspEnum.PAPER):
+			battle_pane._on_control_2_gui_input(null)
+		elif(btdatas.sdType==GameManager.RspEnum.ROCK):
+			battle_pane._on_control_3_gui_input(null)
+		
+
+		#请做选择克制武将的曲线
+		#
+	if num ==4:
+		#还原所有曲线，取消选择武将，金钱设置为0
+		battle_pane.istour=false
+		
+		
+		
+		battle_pane.control_3.check_box.button_pressed=false
+		battle_pane.control_2.check_box.button_pressed=false
+		battle_pane.control_1.check_box.button_pressed=false
+		
+		battle_pane.soild_slider.value=0
+		battle_pane.coin_slider.value=0
+		
+		
+		battle_pane.selectIndex=0
+
+		battle_pane.battle_circle._juideCompeleteTask()	 
+		battle_pane.battle_circle.selectgeneral=null
+		battle_pane._refreshSlider()
 		battle_pane.point_group.hide()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

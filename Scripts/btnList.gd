@@ -139,7 +139,7 @@ func _show_button_5_yellow(index):
 	var findpattern="button"+var_to_str(index)
 	var groups=$VBoxContainer.get_node(findpattern)
 	var texbtn:TextureButton=groups
-	print(texbtn.position)
+	#print(texbtn.position)
 	if(index>0 and texbtn.position.y==0):
 		node_2d.position=texbtn.position+Vector2(472,65)+Vector2(0,155*index)
 	else:

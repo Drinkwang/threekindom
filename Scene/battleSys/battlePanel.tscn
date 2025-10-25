@@ -711,7 +711,6 @@ offset_bottom = 47.0
 texture = ExtResource("13_ugjcw")
 
 [node name="pointGroup" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -724,72 +723,9 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.04034, 1.0033)
 
-[node name="1" type="Node2D" parent="pointGroup"]
-visible = false
-position = Vector2(746.871, 505.333)
-rotation = 1.16413
-
-[node name="5Yellow" type="Sprite2D" parent="pointGroup/1"]
-rotation = -1.5708
-scale = Vector2(4, 4)
-texture = ExtResource("7_5kst7")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="pointGroup/1/5Yellow"]
-libraries = {
-"": SubResource("AnimationLibrary_4gull")
-}
-autoplay = "YELLOWGUILD"
-
-[node name="2" type="Node2D" parent="pointGroup"]
-visible = false
-position = Vector2(1037.16, 162.464)
-
-[node name="5Yellow" type="Sprite2D" parent="pointGroup/2"]
-rotation = -1.5708
-scale = Vector2(4, 4)
-texture = ExtResource("7_5kst7")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="pointGroup/2/5Yellow"]
-libraries = {
-"": SubResource("AnimationLibrary_4gull")
-}
-autoplay = "YELLOWGUILD"
-
-[node name="Node2D3" type="Node2D" parent="pointGroup/2"]
-position = Vector2(-192.246, 90.7003)
-
-[node name="Node2D2" type="Node2D" parent="pointGroup/2/Node2D3"]
-position = Vector2(-242.227, -90.7003)
-
-[node name="5Yellow" type="Sprite2D" parent="pointGroup/2/Node2D3/Node2D2"]
-rotation = -1.5708
-scale = Vector2(4, 4)
-texture = ExtResource("7_5kst7")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="pointGroup/2/Node2D3/Node2D2/5Yellow"]
-libraries = {
-"": SubResource("AnimationLibrary_4gull")
-}
-autoplay = "YELLOWGUILD"
-
-[node name="Node2D2" type="Node2D" parent="pointGroup/2"]
-position = Vector2(-211.47, 3.98684)
-
-[node name="5Yellow" type="Sprite2D" parent="pointGroup/2/Node2D2"]
-rotation = -1.5708
-scale = Vector2(4, 4)
-texture = ExtResource("7_5kst7")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="pointGroup/2/Node2D2/5Yellow"]
-libraries = {
-"": SubResource("AnimationLibrary_4gull")
-}
-autoplay = "YELLOWGUILD"
-
 [node name="3" type="Node2D" parent="pointGroup"]
 visible = false
-position = Vector2(1255.36, 726.602)
-rotation = 0.968658
+position = Vector2(1037.16, 162.464)
 
 [node name="5Yellow" type="Sprite2D" parent="pointGroup/3"]
 rotation = -1.5708
@@ -802,92 +738,104 @@ libraries = {
 }
 autoplay = "YELLOWGUILD"
 
-[node name="4" type="Node2D" parent="pointGroup"]
-visible = false
-position = Vector2(1387.05, 456.492)
-rotation = 1.20428
+[node name="Node2D3" type="Node2D" parent="pointGroup/3"]
+position = Vector2(-192.246, 90.7003)
 
-[node name="5Yellow" type="Sprite2D" parent="pointGroup/4"]
+[node name="Node2D2" type="Node2D" parent="pointGroup/3/Node2D3"]
+position = Vector2(-242.227, -90.7003)
+
+[node name="5Yellow" type="Sprite2D" parent="pointGroup/3/Node2D3/Node2D2"]
 rotation = -1.5708
 scale = Vector2(4, 4)
 texture = ExtResource("7_5kst7")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="pointGroup/4/5Yellow"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="pointGroup/3/Node2D3/Node2D2/5Yellow"]
 libraries = {
 "": SubResource("AnimationLibrary_4gull")
 }
 autoplay = "YELLOWGUILD"
 
-[node name="5" type="Node2D" parent="pointGroup"]
-visible = false
-position = Vector2(1128, 357)
-rotation = 1.20428
+[node name="Node2D2" type="Node2D" parent="pointGroup/3"]
+position = Vector2(-211.47, 3.98684)
 
-[node name="5Yellow" type="Sprite2D" parent="pointGroup/5"]
-position = Vector2(0, 9.25774)
+[node name="5Yellow" type="Sprite2D" parent="pointGroup/3/Node2D2"]
 rotation = -1.5708
 scale = Vector2(4, 4)
 texture = ExtResource("7_5kst7")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="pointGroup/5/5Yellow"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="pointGroup/3/Node2D2/5Yellow"]
 libraries = {
 "": SubResource("AnimationLibrary_4gull")
 }
 autoplay = "YELLOWGUILD"
 
-[node name="6" type="Node2D" parent="pointGroup"]
-visible = false
-position = Vector2(616.145, 753.513)
-rotation = 3.91826
+[node name="Node2D4" type="Node2D" parent="pointGroup/3"]
+position = Vector2(456.582, 286.056)
 
-[node name="5Yellow" type="Sprite2D" parent="pointGroup/6"]
+[node name="5Yellow" type="Sprite2D" parent="pointGroup/3/Node2D4"]
 rotation = -1.5708
 scale = Vector2(4, 4)
 texture = ExtResource("7_5kst7")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="pointGroup/6/5Yellow"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="pointGroup/3/Node2D4/5Yellow"]
 libraries = {
 "": SubResource("AnimationLibrary_4gull")
 }
 autoplay = "YELLOWGUILD"
 
-[node name="7" type="Node2D" parent="pointGroup"]
+[node name="2" type="Node2D" parent="pointGroup"]
+visible = false
+position = Vector2(1255.36, 726.602)
+rotation = 0.968658
+
+[node name="5Yellow" type="Sprite2D" parent="pointGroup/2"]
+rotation = -1.5708
+scale = Vector2(4, 4)
+texture = ExtResource("7_5kst7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="pointGroup/2/5Yellow"]
+libraries = {
+"": SubResource("AnimationLibrary_4gull")
+}
+autoplay = "YELLOWGUILD"
+
+[node name="1" type="Node2D" parent="pointGroup"]
 visible = false
 position = Vector2(922.775, 425.596)
 
-[node name="5Yellow" type="Sprite2D" parent="pointGroup/7"]
+[node name="5Yellow" type="Sprite2D" parent="pointGroup/1"]
 rotation = -0.0349066
 scale = Vector2(4, 4)
 texture = ExtResource("7_5kst7")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="pointGroup/7/5Yellow"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="pointGroup/1/5Yellow"]
 libraries = {
 "": SubResource("AnimationLibrary_4gull")
 }
 autoplay = "YELLOWGUILD"
 
-[node name="Node2D3" type="Node2D" parent="pointGroup/7"]
+[node name="Node2D3" type="Node2D" parent="pointGroup/1"]
 position = Vector2(-213.393, 7.97363)
 
-[node name="5Yellow" type="Sprite2D" parent="pointGroup/7/Node2D3"]
+[node name="5Yellow" type="Sprite2D" parent="pointGroup/1/Node2D3"]
 scale = Vector2(4, 4)
 texture = ExtResource("7_5kst7")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="pointGroup/7/Node2D3/5Yellow"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="pointGroup/1/Node2D3/5Yellow"]
 libraries = {
 "": SubResource("AnimationLibrary_4gull")
 }
 autoplay = "YELLOWGUILD"
 
-[node name="Node2D2" type="Node2D" parent="pointGroup/7/Node2D3"]
+[node name="Node2D2" type="Node2D" parent="pointGroup/1/Node2D3"]
 position = Vector2(-206.664, -2.99014)
 
-[node name="5Yellow" type="Sprite2D" parent="pointGroup/7/Node2D3/Node2D2"]
+[node name="5Yellow" type="Sprite2D" parent="pointGroup/1/Node2D3/Node2D2"]
 rotation = -0.00872665
 scale = Vector2(4, 4)
 texture = ExtResource("7_5kst7")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="pointGroup/7/Node2D3/Node2D2/5Yellow"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="pointGroup/1/Node2D3/Node2D2/5Yellow"]
 libraries = {
 "": SubResource("AnimationLibrary_4gull")
 }
