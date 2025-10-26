@@ -107,6 +107,39 @@ func _initData():
 
 
 	GameManager.currenceScene=self
+
+	if GameManager.sav.day>=6:
+		if(GameManager.sav.isGetCoin==false):
+			#放幻觉 并return
+			
+			var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.迷魂木筒)
+
+			if num>=1 and GameManager.sav.have_event["竹简幻觉剧情"]==false:
+				bti_rect.show()
+				GameManager.sav.have_event["竹简幻觉剧情"]=true
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁梦境")
+				SoundManager.stop_music()
+
+				hp_panel.hide()
+				res_panel.hide()
+				support_panel.hide()
+	
+				
+				GameManager.musicId=0
+				SoundManager.stop_all_ambient_sounds()
+				SoundManager.play_ambient_sound(nightbgm)
+				#SoundManager.play_sound()#暂时不播放音效，待测试
+	
+		#竹筒剧情完了，再次调用这边
+		#竹筒幻觉剧情 播放音效，改变背景，然后吓醒了 我觉得这个剧情可以放在早上，如果早上没有主线，则触发这个剧情，然后得知是一场噩梦
+				return 
+
+			
+			GameManager.sav.isGetCoin=true
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"今日收入为")
+	control._processList(initData)
+	
+	
 	if GameManager.sav.day==1:
 		if(GameManager.sav.have_event["firstmeetchenqun"]==false):
 			GameManager.sav.have_event["firstmeetchenqun"]=true
@@ -118,7 +151,7 @@ func _initData():
 	if GameManager.sav.day==2:
 		if GameManager.sav.have_event["dayTwoInit"]==false:
 			GameManager.sav.have_event["dayTwoInit"]=true
-			control._show_button_5_yellow(1)
+			control._show_button_5_yellow(1)  #将这些逻辑放在
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新的一天")
 			
 			GameManager.sav.curGovAff=tr("1.前往府邸回见不同派系的领导人\n2.前往议会通过昨天立的法律")
@@ -164,37 +197,7 @@ func _initData():
 			control.hide()
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新手关结束")	
 	
-	#判断以下，是首日获取 还是第二次获取
-	if GameManager.sav.day>=6:
-		if(GameManager.sav.isGetCoin==false):
-			#放幻觉 并return
-			
-			var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.迷魂木筒)
-
-			if num>=1 and GameManager.sav.have_event["竹简幻觉剧情"]==false:
-				bti_rect.show()
-				GameManager.sav.have_event["竹简幻觉剧情"]=true
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁梦境")
-				SoundManager.stop_music()
-
-				hp_panel.hide()
-				res_panel.hide()
-				support_panel.hide()
-	
-				
-				GameManager.musicId=0
-				SoundManager.stop_all_ambient_sounds()
-				SoundManager.play_ambient_sound(nightbgm)
-				#SoundManager.play_sound()#暂时不播放音效，待测试
-	
-		#竹筒剧情完了，再次调用这边
-		#竹筒幻觉剧情 播放音效，改变背景，然后吓醒了 我觉得这个剧情可以放在早上，如果早上没有主线，则触发这个剧情，然后得知是一场噩梦
-				return 
-
-			
-			GameManager.sav.isGetCoin=true
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"今日收入为")
-	control._processList(initData)
+	#判断以下，是首日获取 还是第二次获取	
 const siku1 = preload("res://Asset/sound/似哭似笑1.mp3")
 const siku2 = preload("res://Asset/sound/似哭似笑2.mp3")
 func resumeBgm():

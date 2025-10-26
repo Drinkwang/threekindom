@@ -8,6 +8,12 @@ class_name policyPanel
 @onready var point_label = $lawPanel/PointLabel
 @onready var law_label = $lawPanel/DetailPanel/Label2
 @onready var exp_len = $PanelContainer/orderPanel2/VBoxContainer/expLen
+@onready var tourPoint: Node2D = $Node2D
+
+
+func showTourPoint():
+	tourPoint.show()
+	$"Node2D/5Yellow/AnimationPlayer".play("YELLOWGUILD")
 
 var costhp=35
 #@onready var button = $PanelContainer/orderPanel/VBoxContainer/HBoxContainer/Button
@@ -117,6 +123,7 @@ func refreshLawPoint():
 
 
 func _on_tab_bar_tab_changed(tab):
+	tourPoint.hide()
 	if tab==0:
 		$lawPanel.hide()
 		LawPanelBoard.hide()

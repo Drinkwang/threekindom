@@ -44,7 +44,9 @@ func implementpolicy():
 func showTab():
 	GameManager.sav.have_event["firstTabLaw"]=true
 	control._show_button_5_yellow(-1)
+	policy_panel.showTourPoint()
 	_initData()
+
 const 府邸 = preload("res://Asset/bgm/办公.wav")	
 #const 府邸 = preload("res://Asset/bgm/府邸.mp3")
 func post_transition():
