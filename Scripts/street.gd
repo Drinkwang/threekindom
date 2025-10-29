@@ -110,7 +110,7 @@ func tstyDie():
 		sword_sprite_2d.hide()
 		var tween=get_tree().create_tween()
 		
-		tween.tween_property(tsty, "modulate",Color.WHITE, 5)
+		tween.tween_property(tsty, "modulate:a",0, 5)
 		
 		#播放tsty透明度隐藏动画
 	chop_animation.animation_finished.connect(_func)
