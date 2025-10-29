@@ -741,9 +741,9 @@ func deliverUncompleteTask():
 			
 		elif GameManager.sav.have_event["糜竺支线2"]==false and GameManager.sav.mizhuSideWait==1:
 			if GameManager.sav.have_event["糜贞送药"]==false:
-				mizhu.show()
+				mizhu.hide()
 				tsty.hide()
-				mizhu.showEX=false
+				#mizhu.showEX=false
 				GameManager.sav.have_event["糜贞送药"]=true
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"插入糜贞送药")
 				
@@ -1206,7 +1206,8 @@ func JudFundTask():
 
 @onready var mizhen: Node2D = $"糜贞"
 
-
+func jiaMizhenShow():
+	pass
 
 func mizhuCrazy():
 	var newColor=Color.RED

@@ -23,7 +23,7 @@ func fade(color:Color,time:float,type:PanelManager.fadeType):
 	
 	
 	if type==PanelManager.fadeType.fadeIn:
-		tcolor=Color(tcolor,1)
+		tcolor=color#Color(tcolor,1)
 		tween.tween_property(color_rect, "color",tcolor, time)
 		pass
 	elif type==PanelManager.fadeType.fadeOut:

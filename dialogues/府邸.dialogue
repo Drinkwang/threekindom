@@ -1130,28 +1130,34 @@ do mizhu.show()
 	糜竺: 哈哈哈，主公，我妹这双手泡茶细腻，捏肩更妙，哈哈！
 	糜贞: 兄长再乱说，我泼你茶！
 	do eatTea2(true)
-	系统提示: 豪族派忠诚+10，民心+5（豪族传“主公赏识糜氏女”）。  
+	do mizhen.hide()
 	do mizhu.hide()
+	系统提示: 豪族派忠诚+10，民心+5（豪族传“主公赏识糜氏女”）。  
+
 - 保持礼节，避免亲近
 	刘备: 子仲佳妹，茶香可人，备谢款待。
 	糜贞: 将军客气，贞不敢当。
 	糜竺笑: 主公正派，竺佩服！  
-	系统提示: 豪族派忠诚+5（糜竺仍信任刘备）。
 	do mizhu.hide()
+	do mizhen.hide()
+	系统提示: 豪族派忠诚+5（糜竺仍信任刘备）。
+
 	do eatTea2(false)
-if GameManager.sav.have_event["糜竺正确选择1"]==true	
+if GameManager.sav.have_event["糜竺正确选择1"]==true and GameManager.sav.have_event["糜竺正确选择2"]==true
 	#播放怪异音效，屏幕变红
 	do mizhuCrazy()
 	刘备离开糜府时，路过回廊转角，空气中弥漫着一丝血腥味，一抹熟悉的身影出现在转角——“糜贞”站在阴影中，容貌与献茶少女无二，但气质诡异。嘴角挂着癫狂的笑意，身体却在轻微颤抖，似在恐惧什么。
+	do mizhen.show()
 	“糜贞”: 刘将军，茶好喝吗？嘻嘻……你可知，这茶里差一点……差一点就多了些“特别的味道”！
 	刘备: 你是谁？为何在此地？此地血腥味，又是何故？  
 	“糜贞”: 别问！别问！他们……他们会杀了我的！嘿嘿嘿..若想知道真相，不如到郊外豪宅陪我吧!
 	（她随即扔下一把古朴的铜钥匙，转身跌跌撞撞地跑入黑暗中）
 	刘备: 此女疯癫，与贞妹子平日模样截然不同……莫非糜家有隐情？
 	#恢复正常
+	do mizhen.hide()
 	do mizhuNormal()
 	系统提示: 发现“糜家郊外秘宅”，通过城外入口可以前往
-elif GameManager.sav.have_event["糜竺正确选择1"]==false
+elif GameManager.sav.have_event["糜竺正确选择1"]==true
 	do mizhen.hide()
 	#屏幕变红
 	do mizhuCrazy()
@@ -1162,7 +1168,7 @@ elif GameManager.sav.have_event["糜竺正确选择1"]==false
 	刘备仔细搜寻，但并没有发现任何迹象
 	刘备: 罢了，或许是我眼花了...
 
-do mizhen.hide()
+
 => END!
 
 ~ 糜贞结尾

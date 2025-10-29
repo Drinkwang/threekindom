@@ -223,7 +223,7 @@ showEX = true
 txt2d = ExtResource("18_ks6ru")
 boardType = 1
 dialogue_resource = ExtResource("2_a3tl4")
-dialogue_start = "boss战开始_糜贞"
+dialogue_start = "boss战开始_血姬"
 
 [node name="taoqian" parent="CanvasLayer/blank" instance=ExtResource("17_w7ika")]
 visible = false
