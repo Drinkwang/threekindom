@@ -403,14 +403,17 @@ func cancelLaw():
 	GameManager.sav.curLawNum2=-1
 	faction.refreshData()
 
+@onready var control_2: supportPanel = $CanvasBook/Control2
 
 
 func changePanelPos():
 	if GameManager.sav.have_event["Factionalization"]==true:
-		factionView.position.y=520
+		factionView.position.y=590
+		control_2.position.y=835
 	else:	
 	#f GameManager.sav.
-		factionView.position.y=590
+		factionView.position.y=520
+		control_2.position.y=815
 	pass
 	
 

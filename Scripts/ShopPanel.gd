@@ -39,6 +39,9 @@ func _ready():
 		hearsay.show()
 		hearsay.itemstype=InventoryManagerItem.ItemEnum.市井秘闻	
 		hearsay.img=load("res://Asset/items/密谈3.png")
+		#hearsay.itemstype=InventoryManagerItem.ItemEnum.市井秘闻_续
+		#waitTime
+		#if hearsay.alreaysold.visible
 		hearsay.itemContext="1"
 	elif haveone and !havetwo and GameManager.sav.have_event["Factionalization"]==true:#拥有市井1 没有2 然后特定事件
 		hearsay.show()	
@@ -53,7 +56,7 @@ func _ready():
 	else:
 		hearsay.hide()	
 	#pass # Replace with function body.
-
+	hearsay.refreshSold()
 @export var dialogue_resource:DialogueResource
 
 

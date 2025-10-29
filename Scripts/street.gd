@@ -87,7 +87,43 @@ func post_transition():
 		#拜访大儒
 		pass		
 	
+@onready var tsty: Node2D = $CanvasLayer/tsty
+@onready var chop_animation: AnimationPlayer = $CanvasLayer/Sprite2D/AnimationPlayer
+@onready var sword_sprite_2d: Sprite2D = $CanvasLayer/Sprite2D
 
+const HUI_3 = preload("res://Asset/sound/hui3.wav")	
+func tstyDie():
+	sword_sprite_2d.show()
+	chop_animation.play("chop")
+	
+	
+	
+	
+
+
+
+
+	SoundManager.play_sound(HUI_3)
+
+
+	var _func=func(stringname):
+		sword_sprite_2d.hide()
+		var tween=get_tree().create_tween()
+		
+		tween.tween_property(tsty, "modulate",Color.WHITE, 5)
+		
+		#播放tsty透明度隐藏动画
+	chop_animation.animation_finished.connect(_func)
+	
+	
+
+
+func zhangyanDie():
+	#PanelManager.Fade_Blank(Color.RED,0.5,PanelManager.fadeType.fadeIn)
+	#await 0.5
+	PanelManager.Fade_Blank(Color.RED,0.5,PanelManager.fadeType.fadeOut)
+	#播放红光和抹脖子音效
+	pass
 	
 func _initData():
 
@@ -204,9 +240,13 @@ func HuntdownKe():
 	}
 	#GameManager.ScoreToItem()
 	_reward.showTitileReward(tr("恭喜你，你获得-饥蛊骨签"),items)	
+	_initData()
+	#执行完返回府邸有新动画
 
 func SurrenderKe():
 	GameManager.changePeopleSupport(-20)
+	_initData()
+	#执行完返回府邸有新动画
 	#民心-20	
 #const HOUSE = preload("res://Scene/house.tscn")
 

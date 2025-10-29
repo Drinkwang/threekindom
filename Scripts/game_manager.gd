@@ -282,27 +282,27 @@ func refreshPaixis():
 func _enterDay(value=true):
 	if(value==true):
 		sav.day=sav.day+1
-	refreshPaixis()
-	initBattle()
-	initSecretFunc()#初始化获得道具相关
-	sav.isSoldItem=false
-	sav.hp=sav.maxHP
-	sav.isLevelUp=false;
-	sav.isMeet=false
-	sav.isGetCoin=false
-	sav.isVisitScholar=false
-	sav.randomIndex=randi_range(0,3)
-	sav.alreadyHP=0	
-	if sav.xuzhouCD>0:
-		sav.xuzhouCD-=1
+		refreshPaixis()
+		initBattle()
+		initSecretFunc()#初始化获得道具相关
+		sav.isSoldItem=false
+		sav.hp=sav.maxHP
+		sav.isLevelUp=false;
+		sav.isMeet=false
+		sav.isGetCoin=false
+		sav.isVisitScholar=false
+		sav.randomIndex=randi_range(0,3)
+		sav.alreadyHP=0	
+		if sav.xuzhouCD>0:
+			sav.xuzhouCD-=1
 
-	if sav.haozuCD>0:
-		sav.haozuCD-=1
+		if sav.haozuCD>0:
+			sav.haozuCD-=1
 
-	if sav.danyangCD>0:
-		sav.danyangCD-=1
-	if GameManager.sav.XuanyinDay<3 and GameManager.sav.have_event["玄阴开放"]==true:
-		GameManager.sav.XuanyinDay+=1
+		if sav.danyangCD>0:
+			sav.danyangCD-=1
+		if GameManager.sav.XuanyinDay<3 and GameManager.sav.have_event["玄阴开放"]==true:
+			GameManager.sav.XuanyinDay+=1
 
 #@export var mizhuSideWait=-1
 #@export var chendenSideWait=-1
@@ -368,8 +368,9 @@ func intBattleTask():
 			var sy2=opcost.values()[syTyoe2]
 			sav.battleTasks[battleTarget].task=[{"res":"coin","symbol":sy1,"value":15*sav.battleTasks[battleTarget].index,"reward":nums[0]},{"res":"human","symbol":sy2,"value":50*sav.battleTasks[battleTarget].index,"reward":nums[1]}]
 			sav.battleTasks[battleTarget].reward=nums[2]
-		var sdType:int=randf_range(0, 3)
-		sav.battleTasks[battleTarget].sdType=RspEnum.values()[sdType-1]
+		var sdType:int=randf_range(0, 2)#从3修改
+		sav.battleTasks[battleTarget].sdType=sdType
+		#RspEnum.values()[sdType-1]
 
 #func _ready():
 	#var numbers = generate_random_numbers(100, 2, 3)

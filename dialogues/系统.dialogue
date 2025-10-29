@@ -1,7 +1,7 @@
 ~ 有内乱禀报
 主簿: 主公，还有城中叛乱禀报...
 do determineInternalUnrestXuzhou()
-
+=> END!
 
 ~ 民乱四起
 do DialogueManager.gameover=true

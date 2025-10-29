@@ -20,6 +20,9 @@ func _ready():
 	pass # Replace with function body.
 func _refreshStand():
 	var index=GameManager.sav.GrainIndex
+	
+	if index>2:
+		return	
 	var happy=happys[index]
 	var accept=accepts[index]
 	var doubt=doubts[index]

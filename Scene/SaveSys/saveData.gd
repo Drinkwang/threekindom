@@ -220,6 +220,7 @@ var SIDEQUEST_MAP:Dictionary={
 	"锦囊咨询丹阳派": false, #如果上个为true，到演武场，则令曹豹出现，并可以点击触发支线
 	#卖粮第几天
 	"支线触发完毕获得骨杖":false,#
+	"支线终府邸线索获取完成":false,
 	"军事行动大败提示":false,
 	"军事行动大败":false,
 	
@@ -307,8 +308,8 @@ GameManager.RspEnum.PAPER:{"name": "赵云", "level": 1, "max_level": 10, "rando
 }
 
 #触发胜利场次，触发目标数额 比如v=9 t=1000 触发当前数额
-var extraBattleTaskBootNum=-1
-var extraBattleTaskTargetNum=-1
-var extraBattleTaskEnum:SceneManager.etraTaskType=SceneManager.etraTaskType.none
-var extraCureenTaskCNum=0
-var extraBattleDialogContext=""
+@export var extraBattleTaskBootNum=-1
+@export var extraBattleTaskTargetNum=-1
+@export var extraBattleTaskEnum:SceneManager.etraTaskType=SceneManager.etraTaskType.none
+@export var extraCureenTaskCNum=0
+@export var extraBattleDialogContext=""

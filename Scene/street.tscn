@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cehg7t1h5f2ei"]
+[gd_scene load_steps=40 format=3 uid="uid://cehg7t1h5f2ei"]
 
 [ext_resource type="Script" path="res://Scripts/street.gd" id="1_jskmv"]
 [ext_resource type="Resource" uid="uid://qopivlttvt12" path="res://dialogues/街道.dialogue" id="2_a3tl4"]
@@ -18,16 +18,85 @@
 [ext_resource type="Texture2D" uid="uid://cqh5dhr518rsp" path="res://Asset/板子.png" id="10_uc5f0"]
 [ext_resource type="Texture2D" uid="uid://crvsmgt0jscjy" path="res://Asset/人物/民.png" id="11_egoaw"]
 [ext_resource type="PackedScene" uid="uid://v5uv2iy3evkb" path="res://Scene/prefab/numPanel.tscn" id="12_koypy"]
+[ext_resource type="Texture2D" uid="uid://bb3edpq2iva10" path="res://Asset/人物/陶商陶应.png" id="14_fsp8r"]
+[ext_resource type="Texture2D" uid="uid://mb7wj00b7s8p" path="res://Asset/fx/zhangyan_Frames/Slash2_color2_frame1.png" id="15_r310u"]
+[ext_resource type="Texture2D" uid="uid://cxodneuue05m4" path="res://Asset/fx/zhangyan_Frames/Slash2_color2_frame2.png" id="16_qw11s"]
+[ext_resource type="Texture2D" uid="uid://b4nhuitfqto1b" path="res://Asset/fx/zhangyan_Frames/Slash2_color2_frame3.png" id="17_s07ii"]
 [ext_resource type="PackedScene" uid="uid://dqpklssxni160" path="res://Scene/prefab/clickBlock.tscn" id="17_w7ika"]
 [ext_resource type="Texture2D" uid="uid://c7ak04ev7bpyc" path="res://Asset/人物/镇魂龙最终.png" id="18_2o7ym"]
+[ext_resource type="Texture2D" uid="uid://5f7l2pp1xe7d" path="res://Asset/fx/zhangyan_Frames/Slash2_color2_frame4.png" id="18_2vhyo"]
 [ext_resource type="Texture2D" uid="uid://yuphy67p1cut" path="res://Asset/人物/陶谦.png" id="18_fbh2q"]
 [ext_resource type="Texture2D" uid="uid://ywdj7u3flcmu" path="res://Asset/人物/假糜贞.png" id="18_ks6ru"]
+[ext_resource type="Texture2D" uid="uid://dme188pn6ks8" path="res://Asset/fx/zhangyan_Frames/Slash2_color2_frame5.png" id="19_m72y8"]
 [ext_resource type="Texture2D" uid="uid://bylf7f16rptf4" path="res://Asset/items/高清诡异4.png" id="20_3lpcl"]
+[ext_resource type="Texture2D" uid="uid://d1dl7ni55wrps" path="res://Asset/fx/zhangyan_Frames/Slash2_color2_frame6.png" id="20_lilfs"]
 [ext_resource type="PackedScene" uid="uid://cjsb43uugkud4" path="res://Scene/battleSys/battlePanel.tscn" id="21_h0siw"]
+[ext_resource type="Texture2D" uid="uid://c4o3chacp3emp" path="res://Asset/fx/zhangyan_Frames/Slash2_color2_frame7.png" id="21_vycft"]
 [ext_resource type="Script" path="res://Scripts/items_in_scene_manager.gd" id="22_jjdx3"]
 [ext_resource type="VideoStream" path="res://Asset/vedio/Tentacle.ogv" id="22_pmyge"]
 [ext_resource type="PackedScene" uid="uid://4ap7nnl7o6br" path="res://Scene/prefab/_CgetSceneItem.tscn" id="23_ugwgx"]
 [ext_resource type="Resource" uid="uid://cjbqxteqnpnrd" path="res://dialogues/议会厅.dialogue" id="24_8pksx"]
+
+[sub_resource type="Animation" id="Animation_trdn5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("15_r310u")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../陶商陶应:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(955, 639)]
+}
+
+[sub_resource type="Animation" id="Animation_hoxs8"]
+resource_name = "chop"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("15_r310u"), ExtResource("16_qw11s"), ExtResource("17_s07ii"), ExtResource("18_2vhyo"), ExtResource("19_m72y8"), ExtResource("20_lilfs"), ExtResource("21_vycft")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../陶商陶应:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(955, 639), Vector2(992, 639), Vector2(992, 639), Vector2(955, 639)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_got6o"]
+_data = {
+"RESET": SubResource("Animation_trdn5"),
+"chop": SubResource("Animation_hoxs8")
+}
 
 [node name="Node2D2" type="Node2D"]
 script = ExtResource("1_jskmv")
@@ -88,6 +157,27 @@ texture = ExtResource("10_0o7yc")
 metadata/_edit_use_anchors_ = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="tsty" parent="CanvasLayer" instance=ExtResource("17_w7ika")]
+visible = false
+position = Vector2(1112, 376)
+showName = "陶商/陶应"
+dialogue_doubleclick = "遇到诡异牌1"
+showEX = true
+txt2d = ExtResource("14_fsp8r")
+boardType = 1
+dialogue_resource = ExtResource("2_a3tl4")
+dialogue_start = "遇到诡异牌1"
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+visible = false
+position = Vector2(1113, 373)
+texture = ExtResource("15_r310u")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_got6o")
+}
 
 [node name="people" parent="CanvasLayer" instance=ExtResource("17_w7ika")]
 visible = false

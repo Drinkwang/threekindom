@@ -23,6 +23,18 @@ grow_vertical = 2
 script = ExtResource("1_k5460")
 datas = Array[ExtResource("2_2uflo")]([ExtResource("2_5mdgj"), ExtResource("3_e5ysh"), ExtResource("4_ptglv")])
 
+[node name="绳子" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 70.0
+offset_top = -381.0
+offset_right = 262.0
+offset_bottom = -167.0
+grow_vertical = 0
+texture = ExtResource("8_rco4s")
+
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 2
@@ -81,15 +93,3 @@ theme_override_fonts/font = ExtResource("8_wqy7k")
 theme_override_font_sizes/font_size = 26
 text = "(支持:反对:摇摆)"
 horizontal_alignment = 1
-
-[node name="绳子" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 70.0
-offset_top = -381.0
-offset_right = 262.0
-offset_bottom = -167.0
-grow_vertical = 0
-texture = ExtResource("8_rco4s")

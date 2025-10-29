@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://dbk6u8kc33kq2"]
+[gd_scene load_steps=39 format=3 uid="uid://dbk6u8kc33kq2"]
 
 [ext_resource type="Script" path="res://Scripts/government_building.gd" id="1_xncth"]
 [ext_resource type="Resource" uid="uid://cqlt2sgkuk3na" path="res://dialogues/府邸.dialogue" id="2_yngd1"]
@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://bb3edpq2iva10" path="res://Asset/人物/陶商陶应.png" id="13_f851a"]
 [ext_resource type="PackedScene" uid="uid://ervc6220fre7" path="res://Scene/prefab/fspanel.tscn" id="15_wrxcl"]
 [ext_resource type="PackedScene" uid="uid://ghiim2lkqkbe" path="res://Scene/prefab/propertyPanel.tscn" id="16_rw7iu"]
+[ext_resource type="Texture2D" uid="uid://ywdj7u3flcmu" path="res://Asset/人物/假糜贞.png" id="20_u361t"]
 [ext_resource type="Texture2D" uid="uid://mb7wj00b7s8p" path="res://Asset/fx/zhangyan_Frames/Slash2_color2_frame1.png" id="22_u8c3t"]
 [ext_resource type="Texture2D" uid="uid://cxodneuue05m4" path="res://Asset/fx/zhangyan_Frames/Slash2_color2_frame2.png" id="23_ssyf0"]
 [ext_resource type="Texture2D" uid="uid://b4nhuitfqto1b" path="res://Asset/fx/zhangyan_Frames/Slash2_color2_frame3.png" id="24_gm54n"]
@@ -199,6 +200,16 @@ clickEvent = "宴会结束"
 
 [node name="sendGiftPanel" parent="." instance=ExtResource("9_2k5hb")]
 visible = false
+
+[node name="糜贞" parent="." instance=ExtResource("6_ibudm")]
+visible = false
+position = Vector2(953, 631)
+showName = "糜竺"
+dialogue_doubleclick = "点击糜竺"
+txt2d = ExtResource("20_u361t")
+boardType = 1
+dialogue_resource = ExtResource("2_yngd1")
+dialogue_start = "点击糜竺"
 
 [node name="糜竺" parent="." instance=ExtResource("6_ibudm")]
 visible = false

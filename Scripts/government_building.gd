@@ -379,7 +379,7 @@ func victoryPartyEnd():
 	GameManager.sav.currenceValue=0
 	GameManager.sav.targetResType=GameManager.ResType.battle
 	GameManager.sav.targetTxt="征讨次数：{currence}/{target}"
-	GameManager.sav.TargetDestination="battle"
+	#觉得无用的注释GameManager.sav.TargetDestination="battle"
 	GameManager.initSecretBattleContext(3,SceneManager.etraTaskType.dontLoseGame,13,"袁术军大胜")
 
 
@@ -684,21 +684,21 @@ func _JudgeTask():
 func deliverUncompleteTask():
 	if GameManager.sav.have_event["chaoDialogEnd"]==true:
 		if(GameManager.sav.have_event["chaosEnd"]==false):	
-			if GameManager.sav.currenceDay>=2:
+			if GameManager.sav.currenceDay>=3:
 				GameManager.sav.currenceDay=0
 				if GameManager.sav.have_event["firstDisaster"]==false:
 					GameManager.sav.have_event["firstDisaster"]=true
 					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第一次赈灾开始")#显示对话
-						#第一次赈灾启动 还没设定
+					return	#第一次赈灾启动 还没设定
 				elif GameManager.sav.have_event["secondDisaster"]==false:	
 					GameManager.sav.have_event["secondDisaster"]=true
 					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第二次分配粮食")#显示对话
-						#第二次赈灾开始
+					return	#第二次赈灾开始
 				elif GameManager.sav.have_event["thirdDisaster"]==false:
 					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第三次分配粮食")#显示对话			
 					GameManager.sav.have_event["thirdDisaster"]=true
-						#第三次赈灾开始	
-	elif candoSub==true:
+					return	#第三次赈灾开始	
+	if candoSub==true:
 		if GameManager.sav.have_event["竹简幻觉剧情"]==true and GameManager.sav.have_event["支线触发完毕查出锦囊"]==false:
 			
 			
@@ -712,9 +712,25 @@ func deliverUncompleteTask():
 			GameManager.sav.have_event["支线触发完毕获得锦囊之前"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁府邸调查支线")
 			return
+		elif GameManager.sav.have_event["支线触发完毕获得骨杖"]==true and GameManager.sav.have_event["支线终府邸线索获取完成"]==false:
+			GameManager.sav.have_event["支线终府邸线索获取完成"]=true
+			
+			var to_inventory= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.饥蛊骨签)
+			var quantity=InventoryManager.has_item_quantity(to_inventory)
+			if quantity>=1:
+			
+		
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"徐州派揭露真相")
+			else:
+		
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"保护陶商揭露真相")
+			return
 		#今日重点完成任务
 		#判断该不该显示糜竺邀请，同时时间节点到中期，显示任务糜竺-中央，点击触发额外剧情,进入平定泰山诸将时，这里弹出
-		if GameManager.sav.have_event["糜竺支线1"]==false and GameManager.sav.have_event["battleTaiShan"]==true:
+		if GameManager.sav.have_event["糜竺支线1"]==false and GameManager.sav.have_event["chaoMizhuEnd"]==true and GameManager.sav.currenceValue>1:
+			
+			
+
 			mizhu.changeAllClick("糜竺嫁妹支线1")
 			mizhu.show()
 			tsty.hide()
@@ -892,7 +908,7 @@ func StartTaishan():
 	GameManager.sav.currenceValue=0
 	GameManager.sav.targetResType=GameManager.ResType.battle
 	GameManager.sav.targetTxt="征讨次数：{currence}/{target}"
-	GameManager.sav.TargetDestination="battle"
+	#觉得无用的注释GameManager.sav.TargetDestination="battle"
 	#显示军事行动还有30把
 	pass
 	
@@ -1147,7 +1163,7 @@ func lvbuJoin():
 	GameManager.sav.currenceDay=0
 	GameManager.sav.targetResType=GameManager.ResType.battle
 	GameManager.sav.targetTxt="征讨次数：{currence}/{target}"
-	GameManager.sav.TargetDestination="battle"
+	#觉得无用的注释GameManager.sav.TargetDestination="battle"
 
 
 func burnSac():
@@ -1169,12 +1185,14 @@ func holdSac():
 	_reward.showTitileReward(tr("恭喜你，你获得-黄麻药囊"),items)	
 	
 @onready var factionView= $CanvasLayer/faction
+@onready var support_panel: supportPanel = $CanvasLayer/supportPanel
 
 func changePanelPos():
 	if factionView==null:
 		return
 	if GameManager.sav.have_event["Factionalization"]==true:
-		factionView.position.y=529#待修改
+		factionView.position.y=589#待修改
+		support_panel.position.y=686#待修改
 	else:	
 	#f GameManager.sav.
 		factionView.position.y=529
@@ -1184,6 +1202,26 @@ func JudFundTask():
 	#在府邸意外凑齐钱时会判断任务是否完成,这个会触发第一次赈灾，这是bug
 	if(GameManager.sav.have_event["completeTask1"]==false):#仅完成收集资金任务
 		_JudgeTask()
+
+
+@onready var mizhen: Node2D = $"糜贞"
+
+
+
+func mizhuCrazy():
+	var newColor=Color.RED
+	newColor.a=0.5
+	PanelManager.Fade_Blank(newColor,0.5,PanelManager.fadeType.fadeIn)
+	#await 0.5
+	#PanelManager.Fade_Blank(Color.RED,0.5,PanelManager.fadeType.fadeOut)
+	SoundManager.stop_music()
+	SoundManager.play_music(sounds._2__MENTAL_VORTEX)
+
+
+func mizhuNormal():
+	PanelManager.Fade_Blank(Color.RED,0.5,PanelManager.fadeType.fadeOut)
+	SoundManager.stop_music()
+	GameManager.resumeMusic()	
 
 func zhangyanCrazy():
 	PanelManager.Fade_Blank(Color.RED,0.5,PanelManager.fadeType.fadeIn)

@@ -94,12 +94,13 @@ func _initData():
 	
 	#记得demo注销
 	if GameManager.sav.have_event["chaoMizhuEnd"]==true and GameManager.sav.isGetCoin==false and GameManager.sav.currenceValue>1:
-		title.show()
-		demo_end.show()
-		hp_panel.hide()
-		res_panel.hide()
-		support_panel.hide()
-		return
+		#title.show()
+		#demo_end.show()
+		#hp_panel.hide()
+		#res_panel.hide()
+		#support_panel.hide()
+		#return
+		pass
 	if control.visible==true:	
 		items_in_scene.showItems()	
 	else:
@@ -565,7 +566,7 @@ func secondMissonStart():
 	GameManager.sav.currenceValue=0
 	GameManager.sav.targetResType=GameManager.ResType.battle
 	GameManager.sav.targetTxt="征讨次数：{currence}/{target}"
-	GameManager.sav.TargetDestination="battle"
+	#觉得无用的注释GameManager.sav.TargetDestination="battle"
 	GameManager.initSecretBattleContext(1000,SceneManager.etraTaskType.costMoney,9,"黄巾军降伏")
 	#win 10次90
 	#GameManager.sav.TargetDestination=="府邸"

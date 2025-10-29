@@ -50,7 +50,7 @@ func _ready():
 	if(txt!=null):
 		img.texture=txt
 	#hide()
-	#GameManager._rewardPanel=self
+
 	pass # Replace with function body.
 @onready var imgTarget = $"骷髅头"
 

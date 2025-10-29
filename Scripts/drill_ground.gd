@@ -212,7 +212,7 @@ func enterBattleMode():
 	GameManager.sav.targetResType=GameManager.ResType.battle
 
 	GameManager.sav.targetTxt="10天完成20次军事行动：{currence}/{target}"
-	GameManager.sav.TargetDestination="battle"
+	#觉得无用的注释GameManager.sav.TargetDestination="battle"
 	_initData()
 
 
