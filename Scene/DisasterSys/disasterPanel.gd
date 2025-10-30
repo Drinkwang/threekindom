@@ -157,9 +157,10 @@ func afterAllocation():
 	pass
 
 func cancelAllocation():
-	control_1.resetZero()
-	control_2.resetZero()
-	control_3.resetZero()		
+	pass
+	#control_1.resetZero()
+	#control_2.resetZero()
+	#control_3.resetZero()		
 	#pass
 
 

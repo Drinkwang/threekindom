@@ -1063,6 +1063,9 @@ do mizhen.show()
 糜竺: 主公，我妹不仅聪慧，而且身段窈窕，错过可不行！
 糜贞: 兄长胡言，我不理你了！  
 - 顺着玩笑回应，探情况[highlight=true]
+	do GameManager.changeMizhuHeart(10)
+	do mizhu.showHeart(GameManager.sav.mizhufav)
+	do mizhen.showHeart(GameManager.sav.mizhufav+10)
 	刘备: 子仲醉话，我姑且听之，贵妹怎么看？
 	糜竺: 好！贞儿眉如远山，眼似秋水，配主公再妙不过！
 
@@ -1075,6 +1078,9 @@ do mizhen.show()
 #后续：糜竺醉态：“明日请主公再来，贞儿露个面！”
 
 - 轻描淡写回避 
+	do GameManager.changeMizhuHeart(-10)
+	do mizhu.showHeart(GameManager.sav.mizhufav)
+	do mizhen.showHeart(GameManager.sav.mizhufav+10)
 	刘备: 子仲好意，备谢之，军务为先，家事稍后。 
 
 	糜竺: 主公稳重，我不急，慢慢来！
@@ -1095,12 +1101,15 @@ do mizhen.hide()
 
 ~ 插入糜贞送药
 do mizhen.show()
+do mizhen.showHeart(GameManager.sav.mizhufav+15)
 徐州府邸，刘备正埋首处理公务，案上文书堆积。糜贞款款而入，身后跟着仆人拿着几箱药材，面带忧色，似有话欲言。
 刘备: 糜贞妹子，你神色慌乱，所为何事？政务繁忙，若有要事，不妨直言。  
+
 糜贞: 刘大人，近日您操劳过度，恐伤贵体。我备下药材若干，望将军调养身体，以安徐州民心。 
 do mizhen.hide()
 说罢，她急忙跑开了...
 
+	
 系统提示: 糜贞送来调养药材，刘备体力+10，豪族派忠诚+5，获得补气丸x2
 
 do mizhenGift()
@@ -1122,6 +1131,9 @@ do mizhu.show()
 茶香扑鼻，她眼波微转，似羞似笑。  
 糜贞: 兄长老提将军，贞耳朵都热了。
 - 称赞糜贞，迎合气氛  [highlight=true]
+	do GameManager.changeMizhuHeart(10)
+	do mizhu.showHeart(GameManager.sav.mizhufav)
+	do mizhen.showHeart(GameManager.sav.mizhufav+10)
 	刘备: 贞妹子端庄贤淑，茶艺不凡，若备有此佳人每日奉茶，怕是军务都要忘了！
 
 	糜贞: 将军过奖，贞手拙而已，怎敢扰将军大事！ 
@@ -1135,6 +1147,9 @@ do mizhu.show()
 	系统提示: 豪族派忠诚+10，民心+5（豪族传“主公赏识糜氏女”）。  
 
 - 保持礼节，避免亲近
+	do GameManager.changeMizhuHeart(-10)
+	do mizhu.showHeart(GameManager.sav.mizhufav)
+	do mizhen.showHeart(GameManager.sav.mizhufav+10)
 	刘备: 子仲佳妹，茶香可人，备谢款待。
 	糜贞: 将军客气，贞不敢当。
 	糜竺笑: 主公正派，竺佩服！  

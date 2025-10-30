@@ -723,13 +723,16 @@ do GameManager.getItemAction.call()
 
 曹豹: 不过是乡野传闻，遗迹久无人问津，恐早已荒废。
 - 询问徐州军务安排，是否近期有修缮古迹的计划[highlight=true]
-
+	do GameManager.changeCaobaoHeart(-10)
+	do caobao.showHeart(GameManager.sav.caobaofav)
 	曹豹: 主公有所不知，军中确有修缮遗迹之议，但此事颇为蹊跷，似有人借机行事。某不便多言，主公若有心，可再探究竟。
 	刘备: 好，我下次再来问你
 
 	do select1(true)
 
 - 提及民间传闻，盗墓贼夜扰遗迹，是否需要派兵清剿。
+	#do GameManager.changeCaobaoHeart(10)
+	do caobao.showHeart(GameManager.sav.caobaofav)
 	曹豹: 盗墓贼不足为虑，些许宵小，地方自会处置。主公不必挂怀。
 	刘备: 嗯...
 	do select1(false)
@@ -744,7 +747,8 @@ do caobao.hide()
 - 追问城中何人主导此事[highlight=true]
 	曹豹: 我已经查清了，这件事是一个匠人私自勾结城中大族，欲借修缮之名，掩盖盗宝之实。
 	
-
+	do GameManager.changeCaobaoHeart(10)
+	do caobao.showHeart(GameManager.sav.caobaofav)
 	if GameManager.sav.have_event["曹豹正确选择1"]==true
 		曹豹: 但我不好对这些人发难，如果主公想要知道，可今晚亲往遗迹一探。
 		系统提示: 发现“黄帝遗迹”，通过城外入口可以前往	
@@ -754,7 +758,8 @@ do caobao.hide()
 		刘备: 嗯...
 	do select2(true)	
 - 询问古龙石像详情，是否真有神力。
-
+	do GameManager.changeCaobaoHeart(-10)
+	do caobao.showHeart(GameManager.sav.caobaofav)
 	曹豹: 古龙石像不过石雕，传闻多为夸大。主公若无他事，某尚有军务。
 	刘备: 嗯...
 	do select2(false)

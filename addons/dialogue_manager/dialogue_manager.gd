@@ -71,6 +71,7 @@ var _autoloads: Dictionary = {}
 
 var _node_properties: Array = []
 
+#有严重bug 有时会导致无法点击人物
 var dialogBegin=false
 
 func _on_dialogue_ended(ens):

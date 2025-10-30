@@ -1050,10 +1050,10 @@ func changeChendenHeart(addValue):
 	sav.chendenfav+=addValue
 
 func changeMizhuHeart(addValue):
-	sav.chendenfav+=addValue
+	sav.mizhufav+=addValue
 	
 func changeCaobaoHeart(addValue):
-	sav.chendenfav+=addValue
+	sav.caobaofav+=addValue
 	
 
 #这里用作跳过序章
