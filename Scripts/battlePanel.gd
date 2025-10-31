@@ -85,6 +85,8 @@ func endBattle():
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"真相揭露_陶谦")
 		elif  _mode==bossMode.mi:
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"真相揭露_血姬")
+		elif _mode==bossMode.huang:
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"真相揭露_镇魂龙")
 	elif battle_circle.taskIndex==0:
 		battle_circle.taskIndex=-1
 		var wincount=battle_circle.getWinCount()
@@ -221,8 +223,13 @@ func initTask():
 		pass
 		context=context+taskcontext
 	pass
-	task_label.text=context
-
+	var ta=[]
+	ta.size()
+	if currence.task.size()==0:
+		
+		task_label.text=context+tr("无")
+	else:
+		task_label.text=context
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	pass
@@ -397,13 +404,16 @@ func enterBattleTao():
 
 	initTask()
 func enterBattleHuang():
+	close_btn.hide()
 	_mode=SceneManager.bossMode.huang
 	var cha=load("res://Asset/人物/骨龙最终.png")
 	
 	battle_circle.changeHead(cha)	
 	#禁用任务
-	GameManager.sav.battleTasks.clear()
-	battle_circle.taskIndex=-1
+	for  data in GameManager.sav.battleTasks.values():
+		data.task=[]
+	#GameManager.sav.battleTasks.task=[]#clear()
+	#battle_circle.taskIndex=-1
 	initTask()
 
 

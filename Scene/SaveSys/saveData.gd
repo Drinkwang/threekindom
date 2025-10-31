@@ -244,6 +244,7 @@ var SIDEQUEST_MAP:Dictionary={
 	"曹豹支线1":false,
 	"曹豹支线2":false,
 	"曹豹支线3":false,
+	"曹豹资助":false,
 	"曹豹正确选择1":false,
 	"曹豹正确选择2":false,
 	"大儒支线1":false,

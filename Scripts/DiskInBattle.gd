@@ -90,8 +90,15 @@ func _juideCompeleteTask():
 	var targetGet=0
 	#print("befoer"+str(targetGet))
 	#等级 （reward/100）*mustrewad
-	var btdatas=GameManager.sav.battleTasks[taskIndex]
-	var tasks=btdatas.task
+	var btdatas
+	var tasks
+	if GameManager.sav.battleTasks.size()>0:
+		btdatas=GameManager.sav.battleTasks[taskIndex]
+		tasks=btdatas.task
+	else:
+		btdatas=null
+		tasks=[]
+	
 	var haveRes
 
 	for task in tasks:

@@ -488,7 +488,7 @@ do GameManager.getItemAction.call()
 盗宝贼-匠人: 这里雾气好大.我爷爷打造的石龙应该就在这里...今天就物归原主了，嘿嘿
 镇魂石龙: ...
 当盗宝匠人取走宝珠时，巨龙突然震动起来..
-do PlayShilong()
+do PlayGulong()
 do gulong.hide()
 => END!
 

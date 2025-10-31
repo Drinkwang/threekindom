@@ -157,7 +157,7 @@ func post_transition():
 	if num==0:	
 		if GameManager.sav.have_event["预获得龙胆枪休息"]==true:
 			caobao.show() #也可以改成点击
-			caobao.ex_point=true
+			caobao.showEX=true
 			caobao.changeAllClick("获得龙胆枪")
 	
 		
@@ -167,6 +167,7 @@ func post_transition():
 		
 		if GameManager.bossmoderesult==true:
 			GameManager.sav.have_event["预获得龙胆枪"]=true
+			print("可以拿到龙胆枪")
 			#赢了，第二天获得龙胆影月枪
 		
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"曹豹结尾")
@@ -517,6 +518,21 @@ func _buttonListClick(item):
 	pass
 
 #练兵结束调用这个 初次练兵
+
+func caobaoLevelUpSoilder():
+	refreshData()
+	#GameManager._propertyPanel.GetValue(200,0,0)
+	
+	
+	var _reward:rewardPanel=PanelManager.new_reward()
+	
+	var items={
+		"items":null,
+		"money": 0,
+		"population": 100
+	}
+
+	_reward.showTitileReward(tr("你获得了曹豹帮你训练的100士兵"),items,false)	
 
 func trainUseMoney():
 	res_panel.position.x=1564

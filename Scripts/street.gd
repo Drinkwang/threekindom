@@ -384,6 +384,11 @@ func gotoHuangDiMiao():
 	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeIn)
 	SoundManager.play_ambient_sound(DUNGEON_3)
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"初次见面_镇魂龙")
+	
+	
+	await 0.5
+	PanelManager.Fade_Blank(Color.BLACK,0,PanelManager.fadeType.fadeOut)
+	
 	blank.show()
 	gulong.show()
 
