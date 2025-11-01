@@ -485,7 +485,7 @@ func settleGame(end,issuccess):
 	if issuccess==true:
 		GameManager.sav.battleResults[taskIndex]=GameManager.BattleResult.win
 		print("你win了")
-		if GameManager.sav.targetResType==GameManager.ResType.battle:
+		if GameManager.sav.targetResType==GameManager.ResType.battle and GameManager.currenceScene.battle_pane._mode==SceneManager.bossMode.none:
 			GameManager.sav.currenceValue=GameManager.sav.currenceValue+1
 			
 			
