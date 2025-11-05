@@ -1271,7 +1271,7 @@ func boardVictory():
 	
 		var items={
 			"items": null,
-			"money": 100,
+			"money": 50,
 			"population": 0
 		}
 

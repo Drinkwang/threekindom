@@ -404,10 +404,10 @@ func boardVictory():
 		var items={
 			"items": null,
 			"money": 0,
-			"population": 80
+			"population": 40
 		}
 
-		_reward.showTitileReward(tr("你战胜了曹豹，你获得曹豹赠送你的80名士兵"),items)	
+		_reward.showTitileReward(tr("你战胜了曹豹，你获得曹豹赠送你的40名士兵"),items)	
 	elif GameManager._boardReward==boardType.boardRewardResult.card:
 		var _reward:rewardPanel=PanelManager.new_reward()
 	

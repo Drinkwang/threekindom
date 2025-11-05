@@ -268,6 +268,7 @@ var SIDEQUEST_MAP:Dictionary={
 	"玄阴首次遇宝":false,
 	"开启比武训练":false,
 	"比武训练教程":false,
+	"解锁高级成就":false
 }
 
 #0 小试牛刀开启 1小试牛刀通过 2 对局试炼开启 3对局试验通过 4 诡秘怪谈开启 5诡秘怪谈通过
@@ -311,20 +312,20 @@ GameManager.RspEnum.PAPER:{"name": "赵云", "level": 1, "max_level": 10, "rando
 
 
 
-@export var card_achives = [{"enemy":"曹豹","level":"小试牛刀","detail":"每回合结束不能让自己手牌低于3张","holdcard":3,"MaxUsecard":-1,"ScoreNum":-1,"Mustkill":false,"iscom":false},
-{"enemy":"陈登","level":"小试牛刀","detail":"你最多只能使用2张卡牌","holdcard":-1,"MaxUsecard":2,"ScoreNum":-1,"Mustkill":false,"iscom":false},
-{"enemy":"糜竺","level":"小试牛刀","detail":"你最多只能用3张牌，但不能让自己手牌小于2张","holdcard":2,"MaxUsecard":3,"ScoreNum":-1,"Mustkill":false,"iscom":false},
+@export var card_achives = [{"enemy":"曹豹","level":"小试牛刀","detail":"回合结束不能让自己手牌低于3张","holdcard":3,"MaxUsecard":-1,"ScoreNum":-1,"Mustkill":false,"iscom":0,"index":0,"coinGet":0,"peopleGet":40},
+{"enemy":"陈登","level":"小试牛刀","detail":"每回合最多只能使用2张卡牌","holdcard":-1,"MaxUsecard":2,"ScoreNum":-1,"Mustkill":false,"iscom":0,"index":1,"coinGet":25,"peopleGet":20},
+{"enemy":"糜竺","level":"小试牛刀","detail":"每回合最多只能用3张牌且不能自己手牌小于2张","holdcard":2,"MaxUsecard":3,"ScoreNum":-1,"Mustkill":false,"iscom":0,"index":2,"coinGet":50,"peopleGet":0},
 
-{"enemy":"曹豹","level":"对局试炼","detail":"游戏结束时取得260分","holdcard":-1,"MaxUsecard":-1,"ScoreNum":260,"Mustkill":false,"iscom":false},
-{"enemy":"陈登","level":"对局试炼","detail":"你至少保证有一张手牌，且最多每回合只能用三张牌","holdcard":1,"MaxUsecard":3,"ScoreNum":-1,"Mustkill":false,"iscom":false},
-{"enemy":"糜竺","level":"对局试炼","detail":"以将对手生命值归0的方式取得胜利","holdcard":-1,"MaxUsecard":-1,"ScoreNum":-1,"Mustkill":true,"iscom":false},
+{"enemy":"曹豹","level":"对局试炼","detail":"游戏结束时取得260分","holdcard":-1,"MaxUsecard":-1,"ScoreNum":260,"Mustkill":false,"iscom":0,"index":3,"coinGet":0,"peopleGet":80},
+{"enemy":"陈登","level":"对局试炼","detail":"每回合你保证至少有一张手牌且最多只能用三张牌","holdcard":1,"MaxUsecard":3,"ScoreNum":-1,"Mustkill":false,"iscom":0,"index":4,"coinGet":50,"peopleGet":40},
+{"enemy":"糜竺","level":"对局试炼","detail":"以将对手生命值归0的方式取得胜利","holdcard":-1,"MaxUsecard":-1,"ScoreNum":-1,"Mustkill":true,"iscom":0,"index":5,"coinGet":100,"peopleGet":0},
 
-{"enemy":"曹豹","level":"诡秘乱局","detail":"取得300分","holdcard":-1,"MaxUsecard":-1,"ScoreNum":300,"Mustkill":false,"iscom":false},
-{"enemy":"陈登","level":"诡秘乱局","detail":"以将对手生命值归0的方式取得胜利","holdcard":-1,"MaxUsecard":-1,"ScoreNum":-1,"Mustkill":true,"iscom":false},
-{"enemy":"糜竺","level":"诡秘乱局","detail":"每回合最多只能用2张牌，且不能让手牌低于2张","holdcard":2,"MaxUsecard":2,"ScoreNum":-1,"Mustkill":false,"iscom":false},
+{"enemy":"曹豹","level":"诡秘乱局","detail":"游戏结束时取得300分","holdcard":-1,"MaxUsecard":-1,"ScoreNum":300,"Mustkill":false,"iscom":0,"index":6,"coinGet":0,"peopleGet":120},
+{"enemy":"陈登","level":"诡秘乱局","detail":"以将对手生命值归0的方式取得胜利","holdcard":-1,"MaxUsecard":-1,"ScoreNum":-1,"Mustkill":true,"iscom":0,"index":7,"coinGet":75,"peopleGet":60},
+{"enemy":"糜竺","level":"诡秘乱局","detail":"每回合最多只能用2张牌且不能让手牌低于2张","holdcard":2,"MaxUsecard":2,"ScoreNum":-1,"Mustkill":false,"iscom":0,"index":8,"coinGet":150,"peopleGet":0},
 
 ]
-
+#@export var unlock
 #触发胜利场次，触发目标数额 比如v=9 t=1000 触发当前数额
 @export var extraBattleTaskBootNum=-1
 @export var extraBattleTaskTargetNum=-1

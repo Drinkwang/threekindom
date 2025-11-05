@@ -125,6 +125,7 @@ offset_left = 35.0
 offset_top = 18.0
 offset_right = 410.0
 offset_bottom = 121.0
+mouse_filter = 1
 color = Color(0, 0, 0, 0.8)
 
 [node name="context" type="Label" parent="."]
@@ -155,6 +156,7 @@ offset_left = 36.0
 offset_top = 17.0
 offset_right = 411.0
 offset_bottom = 120.0
+mouse_filter = 1
 color = Color(0, 0, 0, 0.8)
 
 [node name="Link" type="Sprite2D" parent="lock"]
@@ -197,6 +199,7 @@ expand_mode = 1
 
 [node name="reward" type="TextureRect" parent="TextureRect"]
 visible = false
+layout_mode = 0
 offset_left = 322.0
 offset_top = 43.0
 offset_right = 378.0
@@ -213,9 +216,9 @@ scale = Vector2(0.5, 0.5)
 visible = false
 layout_mode = 0
 offset_left = 317.0
-offset_top = 44.0
+offset_top = 38.0
 offset_right = 373.0
-offset_bottom = 100.0
+offset_bottom = 94.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_7uqjx")
 expand_mode = 1
@@ -224,3 +227,17 @@ expand_mode = 1
 libraries = {
 "": SubResource("AnimationLibrary_l14ph")
 }
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 198.0
+offset_top = 27.0
+offset_right = 250.0
+offset_bottom = 90.0
+mouse_filter = 1
+color = Color(0, 0, 0, 0)
+
+[connection signal="gui_input" from="NinePatchRect" to="." method="_on_nine_patch_rect_gui_input"]
+[connection signal="gui_input" from="ColorRect" to="." method="_on_color_rect_gui_input"]
+[connection signal="gui_input" from="ColorRect2" to="." method="_on_color_rect_gui_input"]

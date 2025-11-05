@@ -192,3 +192,5 @@ texture_hover = ExtResource("3_qqaeq")
 texture_disabled = ExtResource("3_qqaeq")
 texture_focused = ExtResource("3_qqaeq")
 stretch_mode = 0
+
+[connection signal="button_down" from="confire/Button" to="." method="_on_exit_button_down"]
