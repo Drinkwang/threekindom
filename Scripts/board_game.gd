@@ -19,7 +19,7 @@ var enemyStage=4
 
 @onready var lose_label: Label = $CanvasLayer/LoseRect/Label
 
-
+var achiIndex=-1
 func loseGame(_str:String=""):
 	#SoundManager.play_sound(youlosesound)
 	if _str.length()>0:
@@ -39,12 +39,17 @@ func loseGame(_str:String=""):
 		
 @onready var animation_player_BLINK: AnimationPlayer = $CanvasLayer/blinkRect/AnimationPlayer
 
+@export var useCardNumMax=-1
+#回合结束用牌比这个大，就改成这个
 
+@export var holdCardNumMin=10
+#回合结束手牌比这个小 就改成这个
 
 @onready var win_label: Label = $CanvasLayer/winRect/Label
 
 
 func winGame(_str:String=""):
+	judgeAchive()
 	GameManager._boardGameWin=true
 	if _str.length()>0:
 		win_label.text=_str
@@ -73,6 +78,32 @@ func winGame(_str:String=""):
 	SoundManager.stop_music()
 	SoundManager.play_sound(sounds.GOOD_THING)
 
+var killenemy=false
+func judgeAchive():
+	
+	var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.玄阴玉符)
+	
+	if GameManager._boardMode!=boardType.boardMode.new and num<1:
+		return 
+	
+	var achiData=GameManager.sav.card_achives[achiIndex]
+	#{"enemy":"糜竺","level":"诡秘乱局","detail":"每回合最多只能用2张牌且不能让手牌低于2张","holdcard":2,"MaxUsecard":2,"ScoreNum":-1,"Mustkill":false,"iscom":0,"index":8,"coinGet":150,"peopleGet":0},
+	#可解锁
+	if achiData.iscom==0:
+		var unlock=false
+		#"holdcard":2,"MaxUsecard":2,"ScoreNum":-1,"Mustkill":false
+		if ((achiData.holdcard>=0 and holdCardNumMin>=achiData.holdcard)||achiData.holdcard<0) and \
+		 ((achiData.MaxUsecard>=0 and maxUseCard<=achiData.MaxUsecard) or achiData.MaxUsecard<0) and \
+		((achiData.ScoreNum>0 and score>=achiData.ScoreNum) or achiData.ScoreNum<0) and (achiData.Mustkill==killenemy or achiData.Mustkill==false):
+			unlock=true
+		if unlock==true:
+			achiData.iscom=1
+			#成就已完成
+			
+	#判断成就 判断成就==x，如果为x 判断有无完成，如果完成，设置成就为true，甚至可以播放一个成就完成的动画
+	#判断是否该有成就，成就没完成，且已经解锁
+	pass
+
 func winAddScore():
 	var addScoreAfter
 	if GameManager.selectBoardCharacter==boardType.boardCharacter.caobao:
@@ -93,6 +124,13 @@ func winAddScore():
 	elif addScoreAfter==5:
 		GameManager._boardReward=boardType.boardRewardResult.BreakFree
 		
+		
+		
+		
+		
+		
+
+		
 # Called when the node enters the scene tree for the first tim"res://Scene/prefab/boardCard.tscn"e.
 func _ready() -> void:
 	Transitions.post_transition.connect(post_transition)
@@ -100,34 +138,42 @@ func _ready() -> void:
 	
 	if GameManager._boardMode==boardType.boardMode.new:
 		if GameManager.selectBoardCharacter==boardType.boardCharacter.caobao:
+			achiIndex=0
 			maxUseCard=4
 
 		elif GameManager.selectBoardCharacter==boardType.boardCharacter.mizhu:
-			maxUseCard=2
-
+			maxUseCard=4
+			achiIndex=2
 		elif GameManager.selectBoardCharacter==boardType.boardCharacter.chenden:
-			maxUseCard=3
+			maxUseCard=4
+			achiIndex=1
 
 	elif GameManager._boardMode==boardType.boardMode.middle:
 		if GameManager.selectBoardCharacter==boardType.boardCharacter.caobao:
 			maxUseCard=4
+			achiIndex=3
 
 		elif GameManager.selectBoardCharacter==boardType.boardCharacter.mizhu:
 			maxUseCard=4
+			achiIndex=5
 
 		elif GameManager.selectBoardCharacter==boardType.boardCharacter.chenden:
 			maxUseCard=4
+			achiIndex=4
 
 			
 	elif GameManager._boardMode==boardType.boardMode.high:
 		if GameManager.selectBoardCharacter==boardType.boardCharacter.caobao:
 			maxUseCard=4
+			achiIndex=6
 
 		elif GameManager.selectBoardCharacter==boardType.boardCharacter.mizhu:
 			maxUseCard=4
+			achiIndex=8
 
 		elif GameManager.selectBoardCharacter==boardType.boardCharacter.chenden:
 			maxUseCard=3
+			achiIndex=7
 
 	DialogueManager.show_exaple_top_dialogue_balloon(dialogue_resource,"新手教程_初级")
 	
@@ -193,6 +239,11 @@ func readyInGameData():
 		enterGame()
 
 
+
+
+
+
+
 func enterGame():
 	#根据model和character修改东西
 	var issole=true
@@ -211,40 +262,50 @@ func enterGame():
 	if GameManager._boardMode==boardType.boardMode.new:
 		if GameManager.selectBoardCharacter==boardType.boardCharacter.caobao:
 			maxUseCard=4
-			cardNum=3
-		elif GameManager.selectBoardCharacter==boardType.boardCharacter.mizhu:
-			maxUseCard=2
 			cardNum=4
+			achiIndex=0
+			#显示成就并显示
+			
+		elif GameManager.selectBoardCharacter==boardType.boardCharacter.mizhu:
+			maxUseCard=4
+			cardNum=4
+			achiIndex=2
 		elif GameManager.selectBoardCharacter==boardType.boardCharacter.chenden:
-			maxUseCard=3
-			cardNum=2
+			maxUseCard=4
+			cardNum=4
+			achiIndex=1
 	elif GameManager._boardMode==boardType.boardMode.middle:
 		if GameManager.selectBoardCharacter==boardType.boardCharacter.caobao:
 			maxUseCard=4
 			extraCard=0
 			cardNum=4
+			achiIndex=3
 		elif GameManager.selectBoardCharacter==boardType.boardCharacter.mizhu:
 			maxUseCard=4
 			extraCard=1
 			cardNum=4
+			achiIndex=5
 		elif GameManager.selectBoardCharacter==boardType.boardCharacter.chenden:
 			maxUseCard=4
 			extraCard=2
 			cardNum=4
-			
+			achiIndex=4
 	elif GameManager._boardMode==boardType.boardMode.high:
 		if GameManager.selectBoardCharacter==boardType.boardCharacter.caobao:
 			maxUseCard=4
 			extraCard=4
 			cardNum=2
+			achiIndex=6
 		elif GameManager.selectBoardCharacter==boardType.boardCharacter.mizhu:
 			maxUseCard=4
 			extraCard=2
 			cardNum=3
+			achiIndex=8
 		elif GameManager.selectBoardCharacter==boardType.boardCharacter.chenden:
 			maxUseCard=3
 			extraCard=1		
 			cardNum=4
+			achiIndex=7
 	startGame(cardNum,issole,extraCard)
 
 func showdetail(str:String,grouptype):
@@ -325,6 +386,7 @@ func showdetail(str:String,grouptype):
 			tween.tween_property(tempheart.material, "shader_parameter/progress", 1.0, 1.0).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
 			tween.tween_callback(on_tween_finished.bind(tempheart))  # 播放完成后调用函数
 		if enemy_hp<=0:
+			killenemy=true
 			winGame()	
 	
 		
@@ -531,12 +593,23 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		# 检查点击位置是否在 LineEdit 外
 		for recti in rects:
-		
-			var rect = recti.get_global_rect()  # 获取 LineEdit 的全局矩形区域
 			var mouse_pos = get_global_mouse_position()
-			if  rect.has_point(mouse_pos):
-				isstop=false
-				break
+			if recti is baseComponent:
+				var rect = recti.get_global_rect()  # 获取 LineEdit 的全局矩形区域
+				
+				if  rect.has_point(mouse_pos):
+					isstop=false
+					break
+			else:
+				var collision_shape = recti.get_node("CollisionShape2D")  # 调整路径如果不同
+				if collision_shape and collision_shape.shape is RectangleShape2D:
+					var shape = collision_shape.shape as RectangleShape2D
+					var shape_local_pos = collision_shape.to_local(mouse_pos)  # 转换为形状局部坐标（自动处理变换）
+					var half_size = shape.size / 2.0
+			# 检查是否在中心矩形内（支持旋转/缩放，因为 to_local 已应用逆变换）
+					if abs(shape_local_pos.x) <= half_size.x and abs(shape_local_pos.y) <= half_size.y:
+						isstop = false
+						break
 			# 点击在 LineEdit 外，隐藏 LineEdit
 		if isstop==true:
 			stopClick()
@@ -1571,6 +1644,13 @@ func phaseEnd():
 	elif _phaseName==phaseName.useCard:
 		if isPlayerTurn==true:
 			end_button.hide()
+			var holdCardNum=myhand.get_child_count()
+			if holdCardNumMin>holdCardNum:
+				holdCardNumMin=holdCardNum
+			if useCardNumMax<(4-playerStage):
+				useCardNumMax=4-playerStage
+			
+			
 		await enterNewPhase(phaseName.checkEnd)
 	#每个下面发一张牌
 	pass
@@ -1889,3 +1969,19 @@ func _on_shi_area_mouse_entered() -> void:
 
 func _on_shi_area_mouse_exited() -> void:
 	shi._on_area_2d_mouse_exited_board()
+
+
+func _on_bin_area_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	bin._on_area_2d_input_event(viewport,event,shape_idx)
+
+
+func _on_shang_area_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	shang._on_area_2d_input_event(viewport,event,shape_idx)
+
+
+func _on_shi_area_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	shi._on_area_2d_input_event(viewport,event,shape_idx)
+
+
+func _on_min_area_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	min._on_area_2d_input_event(viewport,event,shape_idx)

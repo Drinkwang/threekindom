@@ -286,8 +286,9 @@ _data = {
 "YELLOWGUILD": SubResource("Animation_rms3s")
 }
 
-[node name="Node2D2" type="Node2D"]
+[node name="Node2D2" type="Node2D" node_paths=PackedStringArray("rects")]
 script = ExtResource("1_34wyh")
+rects = [NodePath("CanvasLayer/shi"), NodePath("CanvasLayer/min"), NodePath("CanvasLayer/shang"), NodePath("CanvasLayer/bin"), NodePath("CanvasLayer/minArea"), NodePath("CanvasLayer/shiArea"), NodePath("CanvasLayer/shangArea"), NodePath("CanvasLayer/binArea")]
 
 [node name="正常背景" type="Sprite2D" parent="."]
 position = Vector2(959, 540)
@@ -1010,12 +1011,16 @@ text = "玩家:
 敌人:
 [color=#ffffff88]♥♠♣♦[/color]"
 
+[connection signal="input_event" from="CanvasLayer/minArea" to="." method="_on_min_area_input_event"]
 [connection signal="mouse_entered" from="CanvasLayer/minArea" to="." method="_on_min_area_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/minArea" to="." method="_on_min_area_mouse_exited"]
+[connection signal="input_event" from="CanvasLayer/shiArea" to="." method="_on_shi_area_input_event"]
 [connection signal="mouse_entered" from="CanvasLayer/shiArea" to="." method="_on_shi_area_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/shiArea" to="." method="_on_shi_area_mouse_exited"]
+[connection signal="input_event" from="CanvasLayer/shangArea" to="." method="_on_shang_area_input_event"]
 [connection signal="mouse_entered" from="CanvasLayer/shangArea" to="." method="_on_shang_area_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/shangArea" to="." method="_on_shang_area_mouse_exited"]
+[connection signal="input_event" from="CanvasLayer/binArea" to="." method="_on_bin_area_input_event"]
 [connection signal="mouse_entered" from="CanvasLayer/binArea" to="." method="_on_bin_area_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/binArea" to="." method="_on_bin_area_mouse_exited"]
 [connection signal="button_down" from="CanvasLayer/ExitButton" to="." method="_on_exitGameBtn_down"]
