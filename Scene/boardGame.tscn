@@ -715,7 +715,6 @@ position = Vector2(1087, 320)
 texture = ExtResource("25_cv1ap")
 
 [node name="winRect" type="ColorRect" parent="CanvasLayer"]
-visible = false
 offset_right = 1942.0
 offset_bottom = 1254.0
 color = Color(0, 0, 0, 0.588235)
@@ -739,6 +738,24 @@ theme_override_font_sizes/font_size = 146
 text = "你赢了"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="achiwin" type="Label" parent="CanvasLayer/winRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -961.0
+offset_top = -608.0
+offset_right = 974.0
+offset_bottom = -71.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.858198, 0.883128, 1)
+theme_override_fonts/font = ExtResource("20_f0olx")
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="CanvasLayer/winRect"]
 layout_mode = 0
@@ -990,6 +1007,23 @@ libraries = {
 "": SubResource("AnimationLibrary_4gull")
 }
 autoplay = "YELLOWGUILD"
+
+[node name="Label3" type="Label" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0)
+offset_left = 1574.0
+offset_top = 390.0
+offset_right = 2505.0
+offset_bottom = 615.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.2, 0.00392157, 0.00784314, 1)
+theme_override_constants/line_spacing = 0
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 3
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("20_f0olx")
+theme_override_font_sizes/font_size = 31
 
 [node name="HoldEnegyPanel" type="Panel" parent="."]
 visible = false

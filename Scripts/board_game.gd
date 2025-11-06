@@ -98,12 +98,22 @@ func judgeAchive():
 			unlock=true
 		if unlock==true:
 			achiData.iscom=1
+			achiwin.text=tr("成就：")+tr(achiData.detail)+"\n"+tr("已完成")
+		else:
+			achiwin.text=tr("成就：")+tr(achiData.detail)+"\n"+tr("已失败")
 			#成就已完成
 			
 	#判断成就 判断成就==x，如果为x 判断有无完成，如果完成，设置成就为true，甚至可以播放一个成就完成的动画
 	#判断是否该有成就，成就没完成，且已经解锁
-	pass
+@onready var achi_label: Label = $CanvasLayer/Label3
+@onready var achiwin: Label = $CanvasLayer/winRect/achiwin
 
+func initAchive():
+	var achiData=GameManager.sav.card_achives[achiIndex]
+	achi_label.text=tr("成就：")+tr(achiData.detail)
+	var tween=create_tween()
+	tween.tween_property(achi_label,"modulate:a",1,1)
+	
 func winAddScore():
 	var addScoreAfter
 	if GameManager.selectBoardCharacter==boardType.boardCharacter.caobao:
@@ -129,6 +139,9 @@ func winAddScore():
 		
 		
 		
+		
+		
+
 
 		
 # Called when the node enters the scene tree for the first tim"res://Scene/prefab/boardCard.tscn"e.
@@ -306,6 +319,16 @@ func enterGame():
 			extraCard=1		
 			cardNum=4
 			achiIndex=7
+			
+			
+			
+			
+	var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.玄阴玉符)
+	var achiData=GameManager.sav.card_achives[achiIndex]
+	if GameManager._boardMode==boardType.boardMode.new or num>=1:
+		if achiData.iscom==0:
+			initAchive() 
+	
 	startGame(cardNum,issole,extraCard)
 
 func showdetail(str:String,grouptype):
