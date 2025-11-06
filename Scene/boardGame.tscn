@@ -715,6 +715,7 @@ position = Vector2(1087, 320)
 texture = ExtResource("25_cv1ap")
 
 [node name="winRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
 offset_right = 1942.0
 offset_bottom = 1254.0
 color = Color(0, 0, 0, 0.588235)
@@ -1012,10 +1013,9 @@ autoplay = "YELLOWGUILD"
 modulate = Color(1, 1, 1, 0)
 offset_left = 1574.0
 offset_top = 390.0
-offset_right = 2505.0
+offset_right = 1899.0
 offset_bottom = 615.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(1, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0.2, 0.00392157, 0.00784314, 1)
 theme_override_constants/line_spacing = 0
 theme_override_constants/shadow_offset_x = 0
@@ -1024,6 +1024,7 @@ theme_override_constants/outline_size = 3
 theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/font = ExtResource("20_f0olx")
 theme_override_font_sizes/font_size = 31
+autowrap_mode = 3
 
 [node name="HoldEnegyPanel" type="Panel" parent="."]
 visible = false
