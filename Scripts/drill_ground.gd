@@ -757,6 +757,26 @@ func huangjinSurrender():
 	GameManager.sav.currenceValue+=1
 	_completeTask()	
 
+
+func cangxiSurrender():
+	
+	
+	var _reward:rewardPanel=PanelManager.new_reward()
+	var items={
+		"items": {InventoryManagerItem.ItemEnum.珍品礼盒:2},
+		"money": 200,
+		"population": 0
+	}
+	#GameManager.ScoreToItem()
+	_reward.showTitileReward(tr("恭喜你，你获得昌豨献上的财宝"),items)		
+	GameManager.sav.currenceValue+=2
+	pass
+	
+func jilinEscape():
+	GameManager.sav.people_surrport+=10
+	GameManager.sav.currenceValue+=1
+	pass
+
 func finalBossBefore():
 	GameManager.sav.have_event["boss战开始"]=true
 

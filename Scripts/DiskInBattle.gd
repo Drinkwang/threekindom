@@ -449,6 +449,11 @@ func settleGame(end,issuccess):
 	#中风险 扣除30-40%
 	#高风险 扣除50-100%
 	#如果道具用完，则改成不用道具
+	
+	#暂时迁移过来一个，另外二个保留在下面，防止有啥bug
+	if GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.useItem and GameManager.sav.useItemInBattle==true:
+		GameManager.sav.extraCureenTaskCNum+=1
+		refreshHideBattleTask()
 	if GameManager.sav.useItemInBattle==true:
 		var resideCount=InventoryManager._remove_item(GameManager.inventoryPackege,InventoryManagerItem.胜战锦囊,1)
 		if resideCount<=0:
@@ -477,11 +482,17 @@ func settleGame(end,issuccess):
 
 	var _rewardPanel:rewardPanel=PanelManager.new_reward()
 	_rewardPanel.coinCost=curCoin
-	
+	var sussusss= battleCircleClone[4]
+	print(GameManager.sav.useItemInBattle)
 	_rewardPanel.soilderCost=cost
 	if GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.costMoney:
 		GameManager.sav.extraCureenTaskCNum+=_rewardPanel.coinCost
 		refreshHideBattleTask()
+		
+	elif GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.dontLoseGame and sussusss.radian>=360:
+		GameManager.sav.extraCureenTaskCNum+=1
+		refreshHideBattleTask()
+
 	if issuccess==true:
 		GameManager.sav.battleResults[taskIndex]=GameManager.BattleResult.win
 		print("你win了")

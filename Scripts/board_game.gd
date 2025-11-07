@@ -136,11 +136,6 @@ func winAddScore():
 		
 		
 		
-		
-		
-		
-		
-		
 
 
 		

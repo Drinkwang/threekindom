@@ -110,6 +110,7 @@ enum etraTaskType{
 	none,
 	costMoney,
 	loseGame,
-	dontLoseGame
+	dontLoseGame,
+	useItem,
 	
 }
