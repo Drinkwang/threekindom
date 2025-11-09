@@ -169,9 +169,9 @@ func post_transition():
 			GameManager.sav.have_event["预获得龙胆枪"]=true
 			print("可以拿到龙胆枪")
 			#赢了，第二天获得龙胆影月枪
-		
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"曹豹结尾")
 		GameManager.sav.have_event["曹豹支线3"]=true #第二天可以获得新道具
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"曹豹结尾")
+		
 		return 
 		
 

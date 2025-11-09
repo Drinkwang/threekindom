@@ -238,6 +238,7 @@ offset_bottom = 90.0
 mouse_filter = 1
 color = Color(0, 0, 0, 0)
 
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="gui_input" from="NinePatchRect" to="." method="_on_nine_patch_rect_gui_input"]
 [connection signal="gui_input" from="ColorRect" to="." method="_on_color_rect_gui_input"]
 [connection signal="gui_input" from="ColorRect2" to="." method="_on_color_rect_gui_input"]

@@ -123,10 +123,27 @@ func _on_nine_patch_rect_gui_input(event: InputEvent) -> void:
 			var _reward:rewardPanel=PanelManager.new_reward()
 			var items={
 			"items": null,
-			"money": 0,
-			"population": 0
+			"money": _data.coinGet,
+			"population": _data.peopleGet
 			}
 			
+			_reward.showTitileReward(tr("恭喜你完成了成就"),items)
+			
+			
+			changeState(lockState.after)
+
+
+func _on_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index==1:
+		
+		if lstate==lockState.canReward:
+			var _reward:rewardPanel=PanelManager.new_reward()
+			var items={
+			"items": null,
+			"money": _data.coinGet,
+			"population": _data.peopleGet
+			}
+			_data.iscom=2
 			_reward.showTitileReward(tr("恭喜你完成了成就"),items)
 			
 			

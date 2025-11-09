@@ -334,6 +334,10 @@ func _enterDay(value=true):
 #并重新计算copletetask
 #		{"name":"高风险","initPos":0,"radian":90},
 
+
+func showGuimiAchi():
+	PanelManager.new_GuiMiAchiView()
+
 func intBattleTask():
 	var nums={}
 

@@ -161,7 +161,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 8
-text = "返回主菜单"
+text = "离开成就页面"
 
 [node name="Control4" type="Control" parent="confire"]
 visible = false

@@ -90,10 +90,11 @@ func judgeAchive():
 	#{"enemy":"糜竺","level":"诡秘乱局","detail":"每回合最多只能用2张牌且不能让手牌低于2张","holdcard":2,"MaxUsecard":2,"ScoreNum":-1,"Mustkill":false,"iscom":0,"index":8,"coinGet":150,"peopleGet":0},
 	#可解锁
 	if achiData.iscom==0:
+		detail_txt.hide()
 		var unlock=false
 		#"holdcard":2,"MaxUsecard":2,"ScoreNum":-1,"Mustkill":false
 		if ((achiData.holdcard>=0 and holdCardNumMin>=achiData.holdcard)||achiData.holdcard<0) and \
-		 ((achiData.MaxUsecard>=0 and maxUseCard<=achiData.MaxUsecard) or achiData.MaxUsecard<0) and \
+		 ((achiData.MaxUsecard>=0 and useCardNumMax<=achiData.MaxUsecard) or achiData.MaxUsecard<0) and \
 		((achiData.ScoreNum>0 and score>=achiData.ScoreNum) or achiData.ScoreNum<0) and (achiData.Mustkill==killenemy or achiData.Mustkill==false):
 			unlock=true
 		if unlock==true:
@@ -101,6 +102,29 @@ func judgeAchive():
 			achiwin.text=tr("成就：")+tr(achiData.detail)+"\n"+tr("已完成")
 		else:
 			achiwin.text=tr("成就：")+tr(achiData.detail)+"\n"+tr("已失败")
+			#成就已完成
+
+func judgeAchiveInPer():
+	var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.玄阴玉符)
+	
+	if GameManager._boardMode!=boardType.boardMode.new and num<1:
+		return 
+	
+	var achiData=GameManager.sav.card_achives[achiIndex]
+	#{"enemy":"糜竺","level":"诡秘乱局","detail":"每回合最多只能用2张牌且不能让手牌低于2张","holdcard":2,"MaxUsecard":2,"ScoreNum":-1,"Mustkill":false,"iscom":0,"index":8,"coinGet":150,"peopleGet":0},
+	#可解锁
+	if achiData.iscom==0:
+
+		var unlock=true
+		#"holdcard":2,"MaxUsecard":2,"ScoreNum":-1,"Mustkill":false
+		if not (((achiData.holdcard>=0 and holdCardNumMin>=achiData.holdcard)||achiData.holdcard<0) and \
+		 ((achiData.MaxUsecard>=0 and useCardNumMax<=achiData.MaxUsecard) or achiData.MaxUsecard<0) and \
+		((achiData.ScoreNum>0 and score>=achiData.ScoreNum) or achiData.ScoreNum<0) and (achiData.Mustkill==killenemy or achiData.Mustkill==false)):
+			unlock=false
+		if unlock==false:
+
+			achi_label.text=tr("成就：已失败")
+			achi_label.self_modulate=Color.GRAY
 			#成就已完成
 			
 	#判断成就 判断成就==x，如果为x 判断有无完成，如果完成，设置成就为true，甚至可以播放一个成就完成的动画
@@ -110,6 +134,7 @@ func judgeAchive():
 
 func initAchive():
 	var achiData=GameManager.sav.card_achives[achiIndex]
+	achi_label.self_modulate=Color.WHITE
 	achi_label.text=tr("成就：")+tr(achiData.detail)
 	var tween=create_tween()
 	tween.tween_property(achi_label,"modulate:a",1,1)
@@ -214,6 +239,10 @@ func clear_children(node: Node) -> void:
 func initGame():
 	hp=3
 	
+	
+	useCardNumMax=-1
+#回合结束用牌比这个大，就改成这个
+	holdCardNumMin=10
 	enemy_hp=3
 	cardsize=0
 	turn_num=0
@@ -530,9 +559,17 @@ func insertCard(group:groupType,value):
 		reside_num.text=tr("剩余步数：{s}").format({"s":playerStage})
 	
 	if  _phaseName==phaseName.useCard:
+		
+		#每次出卡，如果成就不行，就变红
 		await get_tree().create_timer(0.2).timeout
 		settleOneGroup(groudObj)
-	
+		var holdCardNum=myhand.get_child_count()
+		if holdCardNumMin>holdCardNum:
+			holdCardNumMin=holdCardNum
+		if useCardNumMax<(4-playerStage):
+			useCardNumMax=4-playerStage
+			
+		judgeAchiveInPer()	
 	stopClick()
 	
 var canClick:bool=false
@@ -1662,13 +1699,7 @@ func phaseEnd():
 	elif _phaseName==phaseName.useCard:
 		if isPlayerTurn==true:
 			end_button.hide()
-			var holdCardNum=myhand.get_child_count()
-			if holdCardNumMin>holdCardNum:
-				holdCardNumMin=holdCardNum
-			if useCardNumMax<(4-playerStage):
-				useCardNumMax=4-playerStage
-			
-			
+
 		await enterNewPhase(phaseName.checkEnd)
 	#每个下面发一张牌
 	pass

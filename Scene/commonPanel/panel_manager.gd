@@ -190,3 +190,20 @@ func _get_secretCard_path()-> String:
 	var is_small_window: bool = ProjectSettings.get_setting("display/window/size/viewport_width") < 400
 	var balloon_path: String = "/secretCardPanel.tscn" #if is_small_window else "/example_balloon/example_balloon.tscn"
 	return get_script().resource_path.get_base_dir() + balloon_path	
+
+
+
+## S
+func new_GuiMiAchiView( title: String = "") -> CanvasLayer:
+	var balloon_path: String# = DialogueSettings.get_setting(&"balloon_path", _get_example_balloon_path())
+	if not ResourceLoader.exists(balloon_path):
+		balloon_path = _get_GuimiAchi_path()
+	return show_reward_scene(balloon_path, title)
+
+	
+	
+func _get_GuimiAchi_path()-> String:
+	
+	var is_small_window: bool = ProjectSettings.get_setting("display/window/size/viewport_width") < 400
+	var balloon_path: String = "/AchievementSystemPanel.tscn" #if is_small_window else "/example_balloon/example_balloon.tscn"
+	return get_script().resource_path.get_base_dir() + balloon_path	
