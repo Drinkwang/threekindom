@@ -444,7 +444,7 @@ func boardVictory():
 			"money": 0,
 			"population": 0
 		}
-		_reward.showTitileReward(tr("你战胜了糜竺，你获得陈登珍藏的诡异卡"),items)	
+		_reward.showTitileReward(tr("你战胜了陈登，你获得陈登珍藏的诡异卡"),items)	
 	GameManager._boardReward=boardType.boardRewardResult.none
 
 func openBoardGame():

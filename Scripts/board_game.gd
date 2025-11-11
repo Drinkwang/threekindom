@@ -239,13 +239,16 @@ func clear_children(node: Node) -> void:
 func initGame():
 	hp=3
 	
-	
+	score=0
 	useCardNumMax=-1
 #回合结束用牌比这个大，就改成这个
 	holdCardNumMin=10
 	enemy_hp=3
 	cardsize=0
 	turn_num=0
+	enemyscore=0
+	score_txt.text=tr("玩家得分：{s}").format({"s":score})	
+	enemy_score_txt.text=tr("敌人得分：{s}").format({"s":enemyscore})	
 	GameManager.currenceScene=self
 	playerEngergyHold=[]
 	enemyEngergyHold=[]
@@ -356,6 +359,8 @@ func enterGame():
 	startGame(cardNum,issole,extraCard)
 
 func showdetail(str:String,grouptype):
+	if win_rect.visible==true:
+		return
 
 	detail_txt.show()
 	punishimg.show()
@@ -394,7 +399,8 @@ func showdetail(str:String,grouptype):
 		return hp
 	set(value):
 		if(value>hp):
-
+			if value>=4:
+				value=3
 			for i in range(0,value):
 				var tempheart:TextureRect=heart_group.get_child(i)
 				if tempheart.visible==false:
@@ -418,10 +424,11 @@ func showdetail(str:String,grouptype):
 		return enemy_hp
 	set(value):
 		if(value>enemy_hp):
-
-			for i in range(0,value-1):
+			if value>=4:
+				value=3
+			for i in range(0,value):
 				var tempheart:TextureRect=heart_group_enemy.get_child(i)
-				if tempheart.visible:
+				if tempheart!=null and tempheart.visible:
 					tempheart.show()
 					tempheart.material.set_shader_parameter("progress",0)
 		enemy_hp=value
@@ -437,6 +444,7 @@ func showdetail(str:String,grouptype):
 			winGame()	
 	
 		
+var isWaiting=false
 
 func on_tween_finished(a):
 	a.hide()
@@ -1449,7 +1457,7 @@ func enterRewardStage(i:boardCard,j:boardCard):
 	tween.tween_property(i, "global_position", desposition, 1)	
 	tween2.tween_property(j, "global_position", desposition, 1)	
 
-	
+	isWaiting=true
 	var tempfunc=func(anim_name,i_node, j_node):
 				
 		var gettype:groupType
@@ -1492,7 +1500,7 @@ func enterRewardStage(i:boardCard,j:boardCard):
 		
 		drawOne(isPlayerTurn,gettype)
 		#奖励消除卡牌
-	
+		isWaiting=false
 		#print("helloworld")
 		i_node.queue_free()
 		j_node.queue_free()
@@ -1568,7 +1576,7 @@ func changeScore(i:boardCard):
 			score+=10
 		else:
 			score+=5
-		score_txt.text="玩家得分：{s}".format({"s":score})
+		score_txt.text=tr("玩家得分：{s}").format({"s":score})
 	else:
 		have=enemyGraArr.any(func(a):return a/13==reside)
 	
@@ -1579,7 +1587,8 @@ func changeScore(i:boardCard):
 		else:
 			enemyscore+=5
 		
-		enemy_score_txt.text="敌人得分：{s}".format({"s":enemyscore})		
+		enemy_score_txt.text=tr("敌人得分：{s}").format({"s":enemyscore})		
+		
 	changeHoldEnegyPanel()		
 		
 
@@ -1801,11 +1810,17 @@ func clearTCard():
 	arrs=shang_group.get_children()
 	for arr in arrs:
 		arr.queue_free()			
+		
+		
+
 				
 func showtutorial(num,isshow):
 	istutorial=isshow
 	if(num<9):
 		if isshow:
+			if num==7:
+				if issecretGame==true:
+					hold_enegy_panel.show()
 			if num==1 and isshow==true:
 				reside_num.show()
 				reside_num.text=tr("剩余步数：{s}").format({"s":maxUseCard})

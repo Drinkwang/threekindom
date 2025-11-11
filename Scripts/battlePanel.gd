@@ -110,6 +110,7 @@ func endBattle():
 @onready var label = $PanelContainer/orderPanel/VBoxContainer/HBoxContainer2/TextureButton/CheckBox/Label
 
 
+@onready var check_box: CheckBox = $PanelContainer/orderPanel/VBoxContainer/HBoxContainer2/TextureButton/CheckBox
 
 
 func refreshUseItemPanel():

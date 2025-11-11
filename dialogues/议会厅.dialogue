@@ -295,6 +295,7 @@ do GameManager.getItemAction.call()
 
 ~ 进入仕诡牌游戏
 if GameManager._boardMode==boardType.boardMode.high and GameManager.sav.chendencardgame==4
+	do GameManager.enterCrazy()
 	刘备: ...
 	陈登: 主公…牌局即命运…来吧…
 else
@@ -325,6 +326,7 @@ do boardVictory()
 => END!
 
 ~ 黑暗游戏获胜
+do GameManager.enterNormal()
 陈登: 主公！您破了牌中邪术！我方才如鬼附身，谢您！
 系统提示: 陈登已经恢复正常！
 do boardVictory()
@@ -332,7 +334,11 @@ do boardVictory()
 
 
 ~ 黑暗游戏失败
+do GameManager.enterCrazy()
 陈登: 主公…牌已锁你心，交出代价吧！
+do GameManager.enterNormal()
+do SoundManager.play_sound(sounds.BLOOD)
 系统提示: 诡秘乱局中输了牌局，体力值为0
+
 do cardLose()#特效和体力值-20
 => END!

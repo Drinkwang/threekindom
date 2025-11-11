@@ -312,7 +312,7 @@ GameManager.RspEnum.PAPER:{"name": "赵云", "level": 1, "max_level": 10, "rando
 
 
 
-@export var card_achives = [{"enemy":"曹豹","level":"小试牛刀","detail":"回合结束不能让自己手牌低于3张","holdcard":3,"MaxUsecard":-1,"ScoreNum":-1,"Mustkill":false,"iscom":0,"index":0,"coinGet":0,"peopleGet":40},
+@export var card_achives = [{"enemy":"曹豹","level":"小试牛刀","detail":"不能让自己手牌低于3张","holdcard":3,"MaxUsecard":-1,"ScoreNum":-1,"Mustkill":false,"iscom":0,"index":0,"coinGet":0,"peopleGet":40},
 {"enemy":"陈登","level":"小试牛刀","detail":"每回合最多只能使用2张卡牌","holdcard":-1,"MaxUsecard":2,"ScoreNum":-1,"Mustkill":false,"iscom":0,"index":1,"coinGet":25,"peopleGet":20},
 {"enemy":"糜竺","level":"小试牛刀","detail":"每回合最多只能用3张牌且不能自己手牌小于2张","holdcard":2,"MaxUsecard":3,"ScoreNum":-1,"Mustkill":false,"iscom":0,"index":2,"coinGet":50,"peopleGet":0},
 

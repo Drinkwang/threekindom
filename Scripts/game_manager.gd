@@ -1325,3 +1325,20 @@ func initSecretBattleContext(targetValue,mode,BootValue,dialogueContext):
 	sav.extraBattleTaskTargetNum= targetValue
 	sav.extraBattleTaskEnum=mode
 	sav.extraBattleDialogContext=dialogueContext
+
+
+func enterCrazy():
+	var newColor=Color.RED
+	newColor.a=0.5
+	PanelManager.Fade_Blank(newColor,0.5,PanelManager.fadeType.fadeIn)
+	#await 0.5
+	#PanelManager.Fade_Blank(Color.RED,0.5,PanelManager.fadeType.fadeOut)
+	SoundManager.stop_music()
+	SoundManager.play_music(sounds._2__MENTAL_VORTEX)
+
+
+func enterNormal():
+	
+	PanelManager.Fade_Blank(Color.RED,0.5,PanelManager.fadeType.fadeOut)
+	SoundManager.stop_music()
+	GameManager.resumeMusic()	

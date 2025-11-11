@@ -639,6 +639,14 @@ func _bossMode():
 func _process(delta):
 	pass
 
+
+func meetBoardCrazy():
+	SoundManager.stop_music()
+	SoundManager.play_music(sounds._2__MENTAL_VORTEX)
+	var colornew=Color.RED
+	colornew.a=0.5
+	PanelManager.Fade_Blank(colornew,0.5,PanelManager.fadeType.fadeIn)
+
 func confireSold():
 	shop_panel.confireSold()
 
@@ -672,7 +680,10 @@ func meetBoardGame(_value):
 	elif _value==3:
 		GameManager.sav.caobaocardgame=4
 		GameManager.sav.mizhucardgame=4
-		GameManager.sav.chendencardgame=4	
+		GameManager.sav.chendencardgame=4
+		PanelManager.Fade_Blank(Color.RED,0.5,PanelManager.fadeType.fadeOut)
+		SoundManager.stop_music()
+		GameManager.resumeMusic()		
 
 
 func have_Xuanyin():

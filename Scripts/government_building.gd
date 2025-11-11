@@ -1206,24 +1206,20 @@ func JudFundTask():
 
 
 @onready var mizhen: Node2D = $"糜贞"
-
+const zhen = preload("res://Asset/人物/真糜贞.png")
 func jiaMizhenShow():
-	pass
-
-func mizhuCrazy():
-	var newColor=Color.RED
-	newColor.a=0.5
-	PanelManager.Fade_Blank(newColor,0.5,PanelManager.fadeType.fadeIn)
-	#await 0.5
-	#PanelManager.Fade_Blank(Color.RED,0.5,PanelManager.fadeType.fadeOut)
-	SoundManager.stop_music()
-	SoundManager.play_music(sounds._2__MENTAL_VORTEX)
+	mizhen.show()
+	mizhen.txt2d=zhen
 
 
-func mizhuNormal():
-	PanelManager.Fade_Blank(Color.RED,0.5,PanelManager.fadeType.fadeOut)
-	SoundManager.stop_music()
-	GameManager.resumeMusic()	
+func haveWaWa()->bool:
+	
+	var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.血姬傀儡)
+	
+	return num>=1
+
+
+
 
 func zhangyanCrazy():
 	PanelManager.Fade_Blank(Color.RED,0.5,PanelManager.fadeType.fadeIn)
@@ -1234,7 +1230,7 @@ func zhangyanCrazy():
 	#屏幕发红
 	#音乐切换
 	
-	pass
+
 const HUI_3 = preload("res://Asset/sound/hui3.wav")	
 
 @onready var hui_animation_player = $Sprite2D/AnimationPlayer

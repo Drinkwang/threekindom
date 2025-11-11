@@ -36,7 +36,7 @@ func _ready():
 	if GameManager.sav.battleTasks==null or GameManager.sav.battleTasks.size()==0:
 		return 
 	_initBattleTypePng(0,GameManager.sav.battleTasks[taskIndex].sdType)
-	for i in range(1,3):
+	for i in range(1,4):
 		var sd=GameManager.sav.battleTasks[i-1].sdType
 		_initBattleTypePng(i,sd)
 	#初始化其中一个，然后随机获取一个 初始化按照gamemanager数据来
@@ -158,8 +158,8 @@ func _juideCompeleteTask():
 	
 	buff_txt.text=""
 	if GameManager.sav.useItemInBattle==true:
-		levelup=levelup*1.05
-		buff_txt.text="道具加持+5%" #未来要注销
+		levelup=levelup*1.1
+		buff_txt.text="道具加持+10%" #未来要注销
 		buff_txt.show()
 	else:
 		buff_txt.hide()
@@ -455,10 +455,12 @@ func settleGame(end,issuccess):
 		GameManager.sav.extraCureenTaskCNum+=1
 		refreshHideBattleTask()
 	if GameManager.sav.useItemInBattle==true:
-		var resideCount=InventoryManager._remove_item(GameManager.inventoryPackege,InventoryManagerItem.胜战锦囊,1)
+		InventoryManager._remove_item(GameManager.inventoryPackege,InventoryManagerItem.胜战锦囊,1)
+		var resideCount=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.胜战锦囊)
+
 		if resideCount<=0:
 			GameManager.sav.useItemInBattle=false
-		
+			GameManager.currenceScene.battle_pane.check_box.toggle_mode=false
 
 	var cost=10000
 	var percentage=0
@@ -532,15 +534,16 @@ func settleGame(end,issuccess):
 	curSoilder=0
 
 	GameManager.sav.currenceTask=GameManager.sav.currenceTask+1
-	refreshPage()
+	
 	if(selectgeneral!=null):
 		GameManager.sav.UseGeneral.push_front(selectgeneral)
 	taskIndex=taskIndex+1
+	
 	if(taskIndex>=3):
 		GameManager.initBattleCircle()
 		taskIndex=0
 	Txtcount.text=str(GameManager.sav.completeTask)+"/"+str(GameManager.sav.currenceTask-GameManager.sav.completeTask)+"/"+str(GameManager.sav.currenceTask)
-
+	refreshPage()
 
 func getWinCount()->int:
 	var win_count = GameManager.sav.battleResults.count(GameManager.BattleResult.win)
@@ -565,10 +568,10 @@ func judgeLoseSentiment():
 	
 	GameManager.sav.ctLoseBattle+=1	
 	GameManager.sav.ctLoseBattleRate=GameManager.sav.ctLoseBattleRate+1
-	if GameManager.sav.ctLoseBattle>=3:
+	if GameManager.sav.ctLoseBattle>=3 and GameManager.bossmode==SceneManager.bossMode.none:
 		DialogueManager.show_example_dialogue_balloon(yanwuchang,"连续多次败北")	
 		#连续多日怠惰
-	else:
+	elif GameManager.bossmode==SceneManager.bossMode.none:
 		var lazyRan=0.1*GameManager.sav.ctLoseBattleRate
 		var random_value = randf()  # 生成0.0到1.0的随机数
 		if random_value <= lazyRan:

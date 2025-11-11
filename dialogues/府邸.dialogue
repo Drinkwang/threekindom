@@ -1160,7 +1160,7 @@ do mizhu.show()
 	do eatTea2(false)
 if GameManager.sav.have_event["糜竺正确选择1"]==true and GameManager.sav.have_event["糜竺正确选择2"]==true
 	#播放怪异音效，屏幕变红
-	do mizhuCrazy()
+	do GameManager.enterCrazy()
 	刘备离开糜府时，路过回廊转角，空气中弥漫着一丝血腥味，一抹熟悉的身影出现在转角——“糜贞”站在阴影中，容貌与献茶少女无二，但气质诡异。嘴角挂着癫狂的笑意，身体却在轻微颤抖，似在恐惧什么。
 	do mizhen.show()
 	“糜贞”: 刘将军，茶好喝吗？嘻嘻……你可知，这茶里差一点……差一点就多了些“特别的味道”！
@@ -1170,14 +1170,14 @@ if GameManager.sav.have_event["糜竺正确选择1"]==true and GameManager.sav.h
 	刘备: 此女疯癫，与贞妹子平日模样截然不同……莫非糜家有隐情？
 	#恢复正常
 	do mizhen.hide()
-	do mizhuNormal()
+	do GameManager.enterNormal()
 	系统提示: 发现“糜家郊外秘宅”，通过城外入口可以前往
 elif GameManager.sav.have_event["糜竺正确选择1"]==true
 	do mizhen.hide()
 	#屏幕变红
-	do mizhuCrazy()
+	do GameManager.enterCrazy()
 	刘备离开糜府时，路过回廊转角，空气中弥漫着一丝血腥味，一抹熟悉的身影出现在转角似一阵风一样跑开了..
-	do mizhuNormal()
+	do GameManager.enterNormal()
 	#恢复正常
 	刘备: 方才似有人影闪过，是谁？
 	刘备仔细搜寻，但并没有发现任何迹象
@@ -1187,7 +1187,7 @@ elif GameManager.sav.have_event["糜竺正确选择1"]==true
 => END!
 
 ~ 糜贞结尾
-do mizhu.hide()
+do mizhu.show()
 刘备: 糜竺，郊外豪宅一事，我已知晓。糜贞是血姬幻化而成、下人失踪，豪族以人血供养，你可否给个解释？  
 
 糜竺: 主公何出此言？我从未听闻什么血姬！贞儿自幼长于府中，绝无替身！  
@@ -1199,6 +1199,8 @@ do jiaMizhenShow()
 糜竺: 主公可能为政务操劳过度，精神疲惫，请好好休息吧。府中备下清茶，若需调养，随时唤我。
 if haveWaWa()
 	(: 她……或许无辜，但你永远是我一个人的……嘻嘻……)
+do mizhu.hide()
+do mizhen.hide()
 游戏提示: 支线任务-血姬已完成
 do mizhu.hide()
 do _initData()
@@ -1283,6 +1285,9 @@ do GameManager.getItemAction.call()
 
 
 if GameManager._boardMode==boardType.boardMode.high and GameManager.sav.mizhucardgame==4
+	
+	
+	do GameManager.enterCrazy()
 	刘备: ...
 	糜竺: 主公…牌在召唤我们，来！进行黑暗游戏吧！
 else
@@ -1306,6 +1311,7 @@ do boardVictory()
 => END!
 
 ~ 黑暗游戏获胜
+do GameManager.enterNormal()
 糜竺: 主公…您破了牌局的魔障！我方才如坠梦魇，谢您！
 
 系统提示: 糜竺已恢复正常
@@ -1314,7 +1320,11 @@ do boardVictory()
 
 
 ~ 黑暗游戏失败
+do GameManager.enterCrazy()
+
 糜竺: 主公…牌局已噬你魂，献上代价吧！
 系统提示: 诡秘乱局中输了牌局，体力值为0
+do GameManager.enterNormal()
+do SoundManager.play_sound(sounds.BLOOD)
 do cardLose()#特效和体力值-20
 => END!
