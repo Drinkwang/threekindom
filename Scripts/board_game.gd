@@ -398,14 +398,14 @@ func showdetail(str:String,grouptype):
 	get:
 		return hp
 	set(value):
-		if(value>hp):
-			if value>=4:
-				value=3
-			for i in range(0,value):
-				var tempheart:TextureRect=heart_group.get_child(i)
-				if tempheart.visible==false:
-					tempheart.show()
-					tempheart.material.set_shader_parameter("progress",0)
+
+		if value>=4:
+			value=3
+		for i in range(0,value):
+			var tempheart:TextureRect=heart_group.get_child(i)
+			if tempheart.visible==false:
+				tempheart.show()
+				tempheart.material.set_shader_parameter("progress",0)
 		hp=value
 		#这里如果value>hp 将大于的部分恢复原样
 		
@@ -423,14 +423,14 @@ func showdetail(str:String,grouptype):
 	get:
 		return enemy_hp
 	set(value):
-		if(value>enemy_hp):
-			if value>=4:
-				value=3
-			for i in range(0,value):
-				var tempheart:TextureRect=heart_group_enemy.get_child(i)
-				if tempheart!=null and tempheart.visible:
-					tempheart.show()
-					tempheart.material.set_shader_parameter("progress",0)
+		#if(value>enemy_hp):
+		if value>=4:
+			value=3
+		for i in range(0,value):
+			var tempheart:TextureRect=heart_group_enemy.get_child(i)
+			if tempheart!=null and tempheart.visible==false:
+				tempheart.show()
+				tempheart.material.set_shader_parameter("progress",0)
 		enemy_hp=value
 		#这里如果value>hp 将大于的部分恢复原样
 		
@@ -567,17 +567,17 @@ func insertCard(group:groupType,value):
 		reside_num.text=tr("剩余步数：{s}").format({"s":playerStage})
 	
 	if  _phaseName==phaseName.useCard:
-		
+		if isPlayerTurn:
 		#每次出卡，如果成就不行，就变红
-		await get_tree().create_timer(0.2).timeout
-		settleOneGroup(groudObj)
-		var holdCardNum=myhand.get_child_count()
-		if holdCardNumMin>holdCardNum:
-			holdCardNumMin=holdCardNum
-		if useCardNumMax<(4-playerStage):
-			useCardNumMax=4-playerStage
+			await get_tree().create_timer(0.2).timeout
+			settleOneGroup(groudObj)
+			var holdCardNum=myhand.get_child_count()
+			if holdCardNumMin>holdCardNum:
+				holdCardNumMin=holdCardNum
+			if useCardNumMax<(4-playerStage):
+				useCardNumMax=4-playerStage
 			
-		judgeAchiveInPer()	
+			judgeAchiveInPer()	
 	stopClick()
 	
 var canClick:bool=false
@@ -646,7 +646,7 @@ func punishFade(anim_name: StringName):
 		groupPunishTyp=groupType.none
 		if isPlayerTurn==true:
 			end_button.show()
-		await get_tree().create_timer(1).timeout
+		await get_tree().create_timer(0.2).timeout
 		await enterNewPhase(phaseName.useCard)		
 	
 	
@@ -1165,69 +1165,72 @@ func suitNum(_groupType:groupType) -> int:
 
 	
 func AIUseCard():
-	#var demandGroup=[1,2,3,4]
-#
-	#demandGroup.sort_custom(
-		#func(a,b):
-			#if a==1:
-				#return false
-			#elif b==1:
-				#return true
-			#if suitNum(a)>suitNum(b):
-				#return true
-			#else:
-				#return false
-	#)
-	#var groudObj:GridContainer	
-	#for _group in demandGroup:
-		#if _group==groupType.min:
-			#groudObj=min_group
-		#elif _group==groupType.shi:
-			#groudObj=shi_group
-	#
-		#elif _group==groupType.shang:
-			#groudObj=shang_group
-#
-		#elif _group==groupType.bin:
-			#groudObj=bin_group
-#
-	#var stuckcards=groudObj.get_children()
-	#for stuckcard in stuckcards:
-		#pass #如果别的能用 有50%放弃		
-	#
-	#
-	var bestScore=0	
-	var bestIndex=-1
+
+	
+	#var bestScore=0	
+	#var bestIndex=-1
 	var alreadyUse=[]
 	#把ai用的牌和消除的牌全部记录一遍，不会重复计入
-	#while enemyStage>0:
-	for _group in range(1,5):
-		var getscore=calculateStuckScore(_group)
-			
-		if bestScore<getscore:
-			print("currence"+var_to_str(bestScore)+",bestindex"+var_to_str(_group))
-			bestScore=getscore
-			bestIndex=_group
-	  #在bestIndex使用卡牌	
-	if 	bestIndex!=-1:
-		#忽略12，待开发
-		AIUseCardInStuck(bestIndex,alreadyUse)
-		enemyStage-=1;
-		return
+	
+	
+	
 
-	else:
-		print("it is problem")
-		enemyStage=0
-	if enemyStage<=0:
-	#进入下一个阶段
-		phaseEnd()
+	while enemyStage > 0:
+		var bestScore := 0
+		var bestIndex := -1
+		for _group in range(1, 5):
+			var getscore = calculateStuckScore(_group)
+			if bestScore < getscore:
+				bestScore = getscore
+				bestIndex = _group
+		if bestIndex == -1:
+			enemyStage = 0
+			break
+
+		# 一次完整出牌（含移动、入组、配对奖励、技能结算），严格等待完成
+		await AIUseCardInStuck(bestIndex, alreadyUse)
+		enemyStage -= 1
+
+		# 可选：节奏停顿，避免连打过快
+		await get_tree().create_timer(0.3).timeout
+	# 回合结束的统一出口
+	#await get_tree().create_timer(1).timeout
+	phaseEnd()	
+	
+	
+	##while enemyStage>0:
+	#for _group in range(1,5):
+		#var getscore=calculateStuckScore(_group)
+			#
+		#if bestScore<getscore:
+			#print("currence"+var_to_str(bestScore)+",bestindex"+var_to_str(_group))
+			#bestScore=getscore
+			#bestIndex=_group
+#
+	#if 	bestIndex!=-1:
+#
+		#await AIUseCardInStuck(bestIndex,alreadyUse)
+		#enemyStage-=1;
+		#return
+#
+	#else:
+		#print("it is problem")
+		#enemyStage=0
+	#if enemyStage<=0:
+		#await get_tree().create_timer(1)
+	##进入下一个阶段
+		#phaseEnd()
 		
 func AIUseCardInStuck(bestIndex,alreadyUse:Array):
-	var groupobj=getGroupObj(bestIndex)
+	var _groupobj=getGroupObj(bestIndex)
 	#能凑齐，加分
 	var useCard=false
-	var cards=groupobj.get_children()
+	var cards=_groupobj.get_children()
 	var handCard=enemyhand.get_children()
+		
+		
+		
+	
 		
 	for hand_card in handCard:
 		if hand_card is boardCard:
@@ -1241,22 +1244,35 @@ func AIUseCardInStuck(bestIndex,alreadyUse:Array):
 						hand_card.reparent(canvas_layer)	
 						hand_card.holdType=cardHoldType.stack
 						hand_card.back_rect.hide()
-						tween.tween_property(hand_card, "global_position", groupobj.global_position, 1)
+						tween.tween_property(hand_card, "global_position", _groupobj.global_position, 1)
 						#tween.tween_property(tempheart.material, "shader_parameter/progress", 1.0, 1.0).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
-						var movefinish=func(_hand_card,groupobj):
-							if _hand_card!=null:
-								_hand_card.reparent(groupobj)
-								await settleOneGroup(groupobj)
+
+						await tween.finished
+						
+						if hand_card!=null:
+							hand_card.reparent(_groupobj)
+					
+						await settleOneGroup(_groupobj)
 								#调用结算函数	
-							pass
-						tween.tween_callback(movefinish.bind(hand_card,groupobj))  # 播放完成后调用函数
+						
+						#tween.tween_callback(movefinish.bind(hand_card,groupobj))  # 播放完成后调用函数
 						#实际用牌逻辑 将handcard打入到groupobj
 						break
 			if useCard==true:
 				break
+func get_valid_children(node: Node) -> Array:
+	var valid:Array = []
+	for child in node.get_children():
+		if child != null and is_instance_valid(child) and not child.is_queued_for_deletion():
+			valid.append(child)
+	return valid
+
+
 
 func settleOneGroup(_groupobj:GridContainer):
-	var groupobj=_groupobj.get_children()
+
+	var groupobj=get_valid_children(_groupobj)#.get_children()
+
 	var isbreak
 	for i:boardCard in groupobj:
 		for j:boardCard in groupobj:
@@ -1264,7 +1280,7 @@ func settleOneGroup(_groupobj:GridContainer):
 				var residei:int=floori((i._value)/13)
 				var residej:int=floori((j._value)/13)
 
-				if residei==residej:
+				if residei==residej  and (i._value%13)!=11 and (j._value%13)!=11 :
 
 		
 					punishStage=false
@@ -1279,25 +1295,106 @@ func settleOneGroup(_groupobj:GridContainer):
 
 		if isbreak==true:
 			break								
-	excuteSecret(groupobj)					
+	await excuteSecret(groupobj)					
 						#await get_tree().create_timer(0.5)
 
-			
+const fireexp = preload("res://Asset/sound/04_Fire_explosion_04_medium.wav")			
 
 func excuteSecret(groupobj:Array):
+	groupobj= groupobj.filter(func(c): return c != null and is_instance_valid(c) and not c.is_queued_for_deletion())
+	var useCard=false
 	for secretCard:boardCard in groupobj:
+		if secretCard==null:
+			continue
 		var _secretValue=secretCard._value
 		var _secretsuit=floor(secretCard._value/13)+1
 		var _secretReside=floor(secretCard._value%13)
+		
+		
+	
 		if _secretReside==11:
+			useCard=true
 			var tween=create_tween()
 			secretCard.reparent(canvas_layer)	
 			secretCard.holdType=cardHoldType.stack
 			secretCard.back_rect.hide()
 			tween.tween_property(secretCard, "global_position", Vector2(844,396), 1)
+			secretCard.animation_player_reward.play("skill")
+			#var movefinish=func(_hand_card,groupobj,_secretsuit):
+				#if _hand_card!=null:
+					#if _secretsuit==1:
+						#if isPlayerTurn:
+							#hp+=1
+							#detail_txt.text=tr("你发动了血姬卡，恢复一点体力")
+						#else:
+							#enemy_hp+=1
+							#detail_txt.text=tr("敌人发动血姬卡，恢复一点体力")
+					#elif _secretsuit==2:
+						#if isPlayerTurn:
+							#var cards=enemyhand.get_children()
+							#var _index=randi_range(0,cards.size()-1)
+							#cards[_index].queue_free()
+							#detail_txt.text=tr("你发动了骨龙卡，弃掉对手一张卡")
+							##拆一张牌
+							#pass
+						#else:
+							#var cards=myhand.get_children()
+							#var _index=randi_range(0,cards.size()-1)
+							#detail_txt.text=tr("敌人发动了骨龙卡，弃掉你一张卡")
+							#cards[_index].queue_free()
+					#elif _secretsuit==3:
+						#if isPlayerTurn:
+							#drawOne(true)
+							#detail_txt.text=tr("你发动尸皇卡，抽一张卡")
+						#else:
+							#drawOne(false)
+							#detail_txt.text=tr("敌人发动尸皇卡，抽一张卡")
+					#elif _secretsuit==4:
+						#if isPlayerTurn:
+							#
+							#detail_txt.text=tr("你发动黑商卡，对手失去20分")
+							#enemyscore-=20
+							#enemy_score_txt.text="敌人得分：{s}".format({"s":enemyscore})		
+#
+						#else:
+							##扣积分
+							#detail_txt.text=tr("敌人发动黑商卡，你失去20分")
+							#score-=20
+							#score_txt.text="玩家得分：{s}".format({"s":score})
+					#await get_tree().create_timer(2)
+					#_hand_card.queue_free()
 
-			var movefinish=func(_hand_card,groupobj,_secretsuit):
-				if _hand_card!=null:
+			#groupobj.any(func(a):return a._value%13==11)					#调用结算函数	
+			if secretCard!=null and groupobj!=null and _secretsuit>0:
+				#tween.tween_callback(movefinish.bind(secretCard,groupobj,_secretsuit))  # 播放完成后调用函数
+				
+				if secretCard!=null:
+					if _secretsuit==1:
+						if isPlayerTurn:
+							detail_txt.text=tr("你发动了血姬卡，恢复一点体力")
+						else:
+							detail_txt.text=tr("敌人发动血姬卡，恢复一点体力")
+					elif _secretsuit==2:
+						if isPlayerTurn:
+							detail_txt.text=tr("你发动了骨龙卡，弃掉对手一张卡")
+						else:
+							detail_txt.text=tr("敌人发动了骨龙卡，弃掉你一张卡")
+					elif _secretsuit==3:
+						if isPlayerTurn:
+							detail_txt.text=tr("你发动尸皇卡，抽一张卡")
+						else:
+							detail_txt.text=tr("敌人发动尸皇卡，抽一张卡")
+					elif _secretsuit==4:
+						if isPlayerTurn:
+							detail_txt.text=tr("你发动黑商卡，对手失去20分")
+						else:
+							#扣积分
+							detail_txt.text=tr("敌人发动黑商卡，你失去20分")
+	
+				
+				await tween.finished
+				SoundManager.play_sound(fireexp)
+				if secretCard!=null:
 					if _secretsuit==1:
 						if isPlayerTurn:
 							hp+=1
@@ -1337,23 +1434,38 @@ func excuteSecret(groupobj:Array):
 							detail_txt.text=tr("敌人发动黑商卡，你失去20分")
 							score-=20
 							score_txt.text="玩家得分：{s}".format({"s":score})
-					await get_tree().create_timer(2)
-					_hand_card.queue_free()
-
-			#groupobj.any(func(a):return a._value%13==11)					#调用结算函数	
-			if secretCard!=null and groupobj!=null and _secretsuit>0:
-				tween.tween_callback(movefinish.bind(secretCard,groupobj,_secretsuit))  # 播放完成后调用函数
+					await get_tree().create_timer(2.1)
+					
+					secretCard.queue_free()				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
 				
 		else:
 			pass
 		#secretCard#移动到中间		
 
-	if isPlayerTurn==false:
-		await get_tree().create_timer(0.2).timeout
-		if enemyStage>0:
-			AIUseCard()	#这个我可能感觉ai可能也会需要
-		else:
-			phaseEnd()
+	#if isPlayerTurn==false:
+		#await get_tree().create_timer(0.2).timeout
+		#if useCard ==true:
+		#	await get_tree().create_timer(0.8).timeout
+		#if enemyStage>0:
+		#	AIUseCard()	#这个我可能感觉ai可能也会需要
+		#else:
+		#	phaseEnd()
 
 
 #还差敌人发动secret的逻辑，以及把上面的逻辑加特效
@@ -1458,74 +1570,145 @@ func enterRewardStage(i:boardCard,j:boardCard):
 	tween2.tween_property(j, "global_position", desposition, 1)	
 
 	isWaiting=true
-	var tempfunc=func(anim_name,i_node, j_node):
-				
-		var gettype:groupType
-		var parent_type=i_node.get_parent()
-		if parent_type==min_group:
-			gettype=groupType.min
-		elif parent_type==shi_group:
-			gettype=groupType.shi
-		elif parent_type==shang_group:
-			gettype=groupType.shang		
-		elif parent_type==bin_group:
-			gettype=groupType.bin				
-		var index=i._value/13	
+	#var tempfunc=func(anim_name,i_node, j_node):
+				#
+		#var gettype:groupType
+		#var parent_type=i_node.get_parent()
+		#if parent_type==min_group:
+			#gettype=groupType.min
+		#elif parent_type==shi_group:
+			#gettype=groupType.shi
+		#elif parent_type==shang_group:
+			#gettype=groupType.shang		
+		#elif parent_type==bin_group:
+			#gettype=groupType.bin				
+		#var index=i._value/13	
+		#
+		#if isPlayerTurn==true:
+			#GraveyardArr.append(i._value)
+			#GraveyardArr.append(j._value)
+			#
+			#if 	!playerEngergyHold.has(index+1):
+				#playerEngergyHold.append(index+1)
+#
+		#else:
+			#enemyGraArr.append(i._value)
+			#enemyGraArr.append(j._value)
+			#if 	!enemyEngergyHold.has(index+1):
+				#enemyEngergyHold.append(index+1)
+				#if enemyEngergyHold.size()>=4 and hasSecretCard.has(true) and issecretGame==true:
+					#var indexRandom=randi_range(1,4)
+					#getSecretCard(indexRandom,false)	
+					#hasSecretCard[indexRandom-1]=false
+					##播放一个动画，拿到某张诡异卡
+#
+#
+		#changeScore(i_node)
+		#changeScore(j_node)
+		#
+		#SoundManager.play_sound(sounds.MATCH_STRIKING)
+		#
+		##var parent
+		#
+		#drawOne(isPlayerTurn,gettype)
+		##奖励消除卡牌
+		#isWaiting=false
+		##print("helloworld")
+		#i_node.queue_free()
+		#j_node.queue_free()
+		#await get_tree().create_timer(0.5).timeout
+		#if playerEngergyHold.size()>=4 and hasSecretCard.has(true) and _issole==false and issecretGame==true:
+			#showSecretCard()#非单人模式才能触发
+			#SoundManager.play_sound(sounds.HUI_1)
+		#if _phaseName==phaseName.checkEnd:
+			#if groupPunishTyp==groupType.min:
+				#checkCardStage(groupType.shi)
+			#elif groupPunishTyp==groupType.shi:
+				#checkCardStage(groupType.shang)
+			#elif groupPunishTyp==groupType.shang:
+				#checkCardStage(groupType.bin)
+			#elif groupPunishTyp==groupType.bin:
+				#groupPunishTyp=groupType.none
+				#await enterNewPhase(phaseName.endturn)
+		#elif _phaseName==phaseName.useCard:
+			#if isPlayerTurn==false:
+				#await get_tree().create_timer(0.2).timeout
+				#if enemyStage>0:
+					#AIUseCard()	#这个我可能感觉ai可能也会需要
+				#else:
+					#phaseEnd()
+					
+	await i.animation_player_reward.animation_finished
+	
+	var gettype:groupType
+	var parent_type=i.get_parent()
+	if parent_type==min_group:
+		gettype=groupType.min
+	elif parent_type==shi_group:
+		gettype=groupType.shi
+	elif parent_type==shang_group:
+		gettype=groupType.shang		
+	elif parent_type==bin_group:
+		gettype=groupType.bin				
+	var index=i._value/13	
 		
-		if isPlayerTurn==true:
-			GraveyardArr.append(i._value)
-			GraveyardArr.append(j._value)
+	if isPlayerTurn==true:
+		GraveyardArr.append(i._value)
+		GraveyardArr.append(j._value)
 			
-			if 	!playerEngergyHold.has(index+1):
-				playerEngergyHold.append(index+1)
+		if 	!playerEngergyHold.has(index+1):
+			playerEngergyHold.append(index+1)
 
-		else:
-			enemyGraArr.append(i._value)
-			enemyGraArr.append(j._value)
-			if 	!enemyEngergyHold.has(index+1):
-				enemyEngergyHold.append(index+1)
-				if enemyEngergyHold.size()>=4 and hasSecretCard.has(true) and issecretGame==true:
-					var indexRandom=randi_range(1,4)
-					getSecretCard(indexRandom,false)	
-					hasSecretCard[indexRandom-1]=false
+	else:
+		enemyGraArr.append(i._value)
+		enemyGraArr.append(j._value)
+		if 	!enemyEngergyHold.has(index+1):
+			enemyEngergyHold.append(index+1)
+			if enemyEngergyHold.size()>=4 and hasSecretCard.has(true) and issecretGame==true:
+				var indexRandom=randi_range(1,4)
+				getSecretCard(indexRandom,false)	
+				hasSecretCard[indexRandom-1]=false
 					#播放一个动画，拿到某张诡异卡
 
 
-		changeScore(i_node)
-		changeScore(j_node)
+	changeScore(i)
+	changeScore(j)
 		
-		SoundManager.play_sound(sounds.MATCH_STRIKING)
+	SoundManager.play_sound(sounds.MATCH_STRIKING)
 		
 		#var parent
 		
-		drawOne(isPlayerTurn,gettype)
+	drawOne(isPlayerTurn,gettype)
 		#奖励消除卡牌
-		isWaiting=false
+	isWaiting=false
 		#print("helloworld")
-		i_node.queue_free()
-		j_node.queue_free()
-		await get_tree().create_timer(0.5).timeout
-		if playerEngergyHold.size()>=4 and hasSecretCard.has(true) and _issole==false and issecretGame==true:
-			showSecretCard()#非单人模式才能触发
-			SoundManager.play_sound(sounds.HUI_1)
-		if _phaseName==phaseName.checkEnd:
-			if groupPunishTyp==groupType.min:
-				checkCardStage(groupType.shi)
-			elif groupPunishTyp==groupType.shi:
-				checkCardStage(groupType.shang)
-			elif groupPunishTyp==groupType.shang:
-				checkCardStage(groupType.bin)
-			elif groupPunishTyp==groupType.bin:
-				groupPunishTyp=groupType.none
-				await enterNewPhase(phaseName.endturn)
-		elif _phaseName==phaseName.useCard:
-			if isPlayerTurn==false:
-				await get_tree().create_timer(0.2).timeout
-				if enemyStage>0:
-					AIUseCard()	#这个我可能感觉ai可能也会需要
-				else:
-					phaseEnd()
-	i.animation_player_reward.animation_finished.connect(tempfunc.bind(i,j))	
+	i.queue_free()
+	j.queue_free()
+	await get_tree().create_timer(0.5).timeout
+	if playerEngergyHold.size()>=4 and hasSecretCard.has(true) and _issole==false and issecretGame==true:
+		showSecretCard()#非单人模式才能触发
+		SoundManager.play_sound(sounds.HUI_1)
+	if _phaseName==phaseName.checkEnd:
+		if groupPunishTyp==groupType.min:
+			checkCardStage(groupType.shi)
+		elif groupPunishTyp==groupType.shi:
+			checkCardStage(groupType.shang)
+		elif groupPunishTyp==groupType.shang:
+			checkCardStage(groupType.bin)
+		elif groupPunishTyp==groupType.bin:
+			groupPunishTyp=groupType.none
+			await enterNewPhase(phaseName.endturn)
+	#elif _phaseName==phaseName.useCard:
+	#	if isPlayerTurn==false:
+	#		await get_tree().create_timer(0.2).timeout
+	#		if enemyStage>0:
+	#			AIUseCard()	#这个我可能感觉ai可能也会需要
+	#		else:
+	#			phaseEnd()
+						
+	
+					
+#	i.animation_player_reward.animation_finished.connect(tempfunc.bind(i,j))	
 
 
 

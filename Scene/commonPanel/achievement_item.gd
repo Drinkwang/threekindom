@@ -93,7 +93,7 @@ func initData(data):
 	
 
 
-	if data.index>2 and num==0:
+	if data.index>5 and num==0:
 		changeState(lockState.lock)
 	else:
 		if data.iscom==0:
