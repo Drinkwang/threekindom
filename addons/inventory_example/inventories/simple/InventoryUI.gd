@@ -35,7 +35,8 @@ func _draw_view() -> void:
 		var inventory_db = _inventoryManager.get_inventory_db(inventory) as InventoryInventory
 		if inventory_db:
 			for index in range(inventory_db.stacks):
-				var item_ui = Item.instantiate()
-				_grid_ui.add_child(item_ui)
-				item_ui.set_index(index)
+				if inventory_db.uuid!=InventoryManagerItem.市井秘闻 and inventory_db.uuid!=InventoryManagerItem.市井秘闻_终 and inventory_db.uuid!=InventoryManagerItem.市井秘闻_续:
+					var item_ui = Item.instantiate()
+					_grid_ui.add_child(item_ui)
+					item_ui.set_index(index)
 			_set_inventory_manager_to_stacks(self)

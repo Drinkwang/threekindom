@@ -582,7 +582,7 @@ do meetBoardCrazy()
 刘备: 看来我必须解决此事了..
 do people.hide()
 do SoundManager.play_sound(sounds.guiyi)
-系统提示: 仕诡卡-诡秘乱局 模式解锁，玩家可以找城内着魔的大人物进行对局，试着解救他们吧
+系统提示: 玩家的仕诡卡道具已添加进仕诡卡卡池，【诡秘乱局】模式解锁，玩家可以找城内着魔的大人物进行对局，试着解救他们吧
 do meetBoardGame(3)
 => END!
 
@@ -602,6 +602,16 @@ do meetBoardGame(3)
 	do cancelBlankMerchant()
 => END!
 
+~ 决战黑商boss战2
+黑商: 刺史大人…我卖的诡异牌只择强者，乱象非我意，只因人心贪婪。买些道具助你？或…来盘仕诡牌?
+- 好，摆牌吧，让我来破你的诡秘乱局！  
+	do finalBoardGame() 
+- 先看看你的货物！
+	do cancelBlankMerchant()
+	do showPanelPage()
+- 取消
+	do cancelBlankMerchant()
+=> END!
 
 ~ 玩家终局输掉
 黑商: 刺史大人…你的心也已被贪欲吞噬…献上代价吧！

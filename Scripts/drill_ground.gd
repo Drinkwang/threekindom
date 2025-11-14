@@ -252,7 +252,7 @@ func _initData():
 		GameManager.selectBoardCharacter=boardType.boardCharacter.none 
 		GameManager._boardMode=boardType.boardMode.none 
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"常规失败")	
-	elif GameManager.sav.have_event["曹豹牌局无人"] ==false and GameManager.sav.caobaocardgame==4:
+	elif GameManager.sav.have_event["曹豹牌局无人"] ==false and GameManager.sav.caobaocardgame==4 and (GameManager.sav.mizhucardgame<5 or GameManager.sav.chendencardgame<=5):
 		caobao.hide()
 		GameManager.sav.have_event["曹豹牌局无人"] =true
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"牌局无人")
@@ -317,11 +317,17 @@ func _initData():
 		elif GameManager.sav.caobaocardgame>=0  and caobao.showEX==false:
 			#如果小于4 则移出3 
 			
-			if GameManager.sav.caobaocardgame==4:
+			
+			#@export var mizhucardgame=-1
+			#@export var chendencardgame=-1
+			
+			if GameManager.sav.have_event["boss战开始"]==false and GameManager.sav.caobaocardgame==4 and GameManager.sav.mizhucardgame==5 and GameManager.sav.chendencardgame==5:
 				caobao.changeAllClick("来把仕诡牌2")
 				caobao.show()
 
 				caobao.showEX=true
+			elif GameManager.sav.have_event["boss战开始"]==false and GameManager.sav.caobaocardgame==4 and (GameManager.sav.mizhucardgame<5 or GameManager.sav.chendencardgame<=5):
+				caobao.hide()
 			else:
 				caobao.changeAllClick("来把仕诡牌")
 
@@ -779,7 +785,7 @@ func jilinEscape():
 
 func finalBossBefore():
 	GameManager.sav.have_event["boss战开始"]=true
-
+	caobao.hide()
 
 func enterContest(mode):
 	if(await GameManager.isTried(50)):

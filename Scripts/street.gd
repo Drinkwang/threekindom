@@ -295,12 +295,15 @@ func _buttonListClick(item):
 			res_panel.position.x=1564
 			res_panel.position.y=803
 			res_panel.scale=Vector2(0.765,0.765)
-			if GameManager.sav.have_event["boss战开始"]==true and GameManager.sav.caobaocardgame==5:
-				PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeOut)
-				blank.show()
+			if GameManager.sav.have_event["boss战开始"]==true and GameManager.sav.caobaocardgame==4:
 				
 				SoundManager.stop_music()
 				SoundManager.play_music(sounds._2__MENTAL_VORTEX)
+				
+				PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeOut)
+				blank.show()
+				
+
 				#播放诡秘的曲子
 				merchant.show()
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"决战黑商boss战")
@@ -319,6 +322,15 @@ func _buttonListClick(item):
 			
 		else:
 			visitDrill()
+
+func enterBlackMerchant():
+	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeOut)
+	blank.show()
+				
+
+				#播放诡秘的曲子
+	merchant.show()
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"决战黑商boss战2")
 		
 func showPanelPage():
 	if GameManager.sav.have_event["徐州第一次见商人"]==false:
@@ -338,7 +350,7 @@ func finalBoardGame():
 	SceneManager.changeScene(SceneManager.roomNode.BoardGame,2)
 	
 func cancelBlankMerchant():
-	
+	GameManager.resumeMusic()
 	blank.hide()
 	merchant.hide()
 
@@ -678,6 +690,9 @@ func meetBoardGame(_value):
 		GameManager.sav.mizhucardgame=2
 		GameManager.sav.chendencardgame=2	
 	elif _value==3:
+		InventoryManager._remove_item(GameManager.inventoryPackege,InventoryManagerItem.仕诡卡尸皇,1)
+		InventoryManager._remove_item(GameManager.inventoryPackege,InventoryManagerItem.仕诡卡骨龙,1)
+		InventoryManager._remove_item(GameManager.inventoryPackege,InventoryManagerItem.仕诡卡血姬,1)
 		GameManager.sav.caobaocardgame=4
 		GameManager.sav.mizhucardgame=4
 		GameManager.sav.chendencardgame=4

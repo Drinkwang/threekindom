@@ -149,6 +149,8 @@ func _on_texture_button_2_button_down():
 	GameManager.currenceScene.res_panel.position.y=611
 	GameManager.currenceScene.res_panel.scale=Vector2(1,1)
 	self.hide()
+	if GameManager.sav.have_event["boss战开始"]==true and GameManager.sav.caobaocardgame==4:
+		GameManager.currenceScene.enterBlackMerchant()
 
 func settleAfter():
 	pass#后续可能会修改

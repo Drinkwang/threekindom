@@ -1414,7 +1414,8 @@ func excuteSecret(groupobj:Array):
 							var cards=myhand.get_children()
 							var _index=randi_range(0,cards.size()-1)
 							detail_txt.text=tr("敌人发动了骨龙卡，弃掉你一张卡")
-							cards[_index].queue_free()
+							if cards.size()>0:
+								cards[_index].queue_free()
 					elif _secretsuit==3:
 						if isPlayerTurn:
 							drawOne(true)
@@ -1999,11 +2000,46 @@ func clearTCard():
 				
 func showtutorial(num,isshow):
 	istutorial=isshow
-	if(num<9):
+	if(num<=10):
 		if isshow:
 			if num==7:
 				if issecretGame==true:
 					hold_enegy_panel.show()
+			if	num==9:
+				insertCard(groupType.shi,6)
+				await get_tree().create_timer(0.1).timeout
+				insertCard(groupType.shi,14)
+				await get_tree().create_timer(0.1).timeout
+				insertCard(groupType.shi,28)
+			if num==10:
+				pass	
+			if num==8:
+				reside_num.show()
+				reside_num.text=tr("剩余步数：{s}").format({"s":maxUseCard})
+				drawOneInTour(5)
+				var usecard=drawOneInTour(32)
+				drawOneInTour(42)
+				drawOneInTour(14)
+				var obj:Control=myhand.get_child(2)
+				clickPoint(obj.global_position+Vector2(50,50))
+				border.position=obj.global_position
+				var otween = create_tween()
+				otween.tween_property(border, "position", shi.position, 1)
+				obj.reparent(canvas_layer)	
+				otween.tween_property(obj, "global_position", shi_group.global_position, 1)
+				var movefinish=func(_hand_card,groupobj):
+					if _hand_card!=null:
+						_hand_card.reparent(groupobj)
+						#await settleOneGroup(groupobj)
+								#调用结算函数	
+
+					
+					
+
+								#调用结算函数					
+				otween.tween_callback(movefinish.bind(obj,shi_group))  # 播放完成后调用函数
+				#await get_tree().create_timer(0.1).timeout
+				#insertCard(groupType.shi,33)
 			if num==1 and isshow==true:
 				reside_num.show()
 				reside_num.text=tr("剩余步数：{s}").format({"s":maxUseCard})
@@ -2022,8 +2058,8 @@ func showtutorial(num,isshow):
 
 				#插入4张手牌
 				pass
-				
-			self["guild_"+str(num)].show()
+			if num<=8:	
+				self["guild_"+str(num)].show()
 			if num==3 and isshow==true:
 				#出牌并得分
 				var obj:Control=myhand.get_child(2)

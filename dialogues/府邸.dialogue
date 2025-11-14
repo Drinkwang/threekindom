@@ -1298,28 +1298,34 @@ do GameManager.enterBoardGame()
 => END!
 
 ~ 常规获胜
+do mizhu.show()
 糜竺: 主公！您这牌技，我的家产都要输光了！再来一局？
 
 do boardVictory()
+do _initData()
 => END!
 
 
 ~ 常规失败
+do mizhu.show()
 糜竺: 主公，手气不佳啊！但牌局如商场，我略胜一筹！
-
+do _initData()
 
 => END!
 
 ~ 黑暗游戏获胜
+do mizhu.show()
 do GameManager.enterNormal()
 糜竺: 主公…您破了牌局的魔障！我方才如坠梦魇，谢您！
 
 系统提示: 糜竺已恢复正常
 do boardVictory()
+do mizhu.hide()
 => END!
 
 
 ~ 黑暗游戏失败
+do mizhu.show()
 do GameManager.enterCrazy()
 
 糜竺: 主公…牌局已噬你魂，献上代价吧！
@@ -1327,4 +1333,5 @@ do GameManager.enterCrazy()
 do GameManager.enterNormal()
 do SoundManager.play_sound(sounds.BLOOD)
 do cardLose()#特效和体力值-20
+do mizhu.hide()
 => END!
