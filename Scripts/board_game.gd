@@ -2196,7 +2196,7 @@ func fadeScene():
 		SceneManager.changeScene(SceneManager.roomNode.GOVERNMENT_BUILDING,2)
 	elif GameManager.selectBoardCharacter==boardType.boardCharacter.caobao:
 		if GameManager._boardMode==boardType.boardMode.high:
-			if GameManager._boardReward==boardType.boardRewardResult.BreakFree:
+			if GameManager.sav.caobaocardgame==4:
 				SceneManager.changeScene(SceneManager.roomNode.STREET,2)
 				return
 		

@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cale1h2nqfdrh" path="res://Asset/ui/circle.png" id="7_qif1v"]
 [ext_resource type="Texture2D" uid="uid://d2artvwe80df1" path="res://Asset/光明/正常背景.png" id="8_sushl"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ioh8j"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6a1r8"]
 shader = ExtResource("4_csp7l")
 shader_parameter/burn_progress = 0.0
 shader_parameter/burn_color = Color(1, 0.5, 0, 1)
@@ -21,7 +21,7 @@ shader_parameter/skill_glow_strength = 0.0
 shader_parameter/skill_glow_frequency = 6.0
 shader_parameter/noise_texture = ExtResource("3_v8y0j")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_r0al8"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jglq6"]
 shader = ExtResource("4_csp7l")
 shader_parameter/burn_progress = 0.0
 shader_parameter/burn_color = Color(1, 0.5, 0, 1)
@@ -335,7 +335,7 @@ script = ExtResource("1_k4ugs")
 metadata/_edit_vertical_guides_ = [-329.0]
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
-material = SubResource("ShaderMaterial_ioh8j")
+material = SubResource("ShaderMaterial_6a1r8")
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -358,7 +358,7 @@ patch_margin_right = 12
 patch_margin_bottom = 15
 
 [node name="img" type="TextureRect" parent="NinePatchRect"]
-material = SubResource("ShaderMaterial_r0al8")
+material = SubResource("ShaderMaterial_jglq6")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.498

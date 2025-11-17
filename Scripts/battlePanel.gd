@@ -395,6 +395,9 @@ func enterBattleMi():
 @onready var close_btn = $TextureButton
 
 func enterBattleTao():
+	
+	
+	
 	close_btn.hide()
 	_mode=SceneManager.bossMode.tao
 	ban_2_coin.show()
@@ -405,6 +408,12 @@ func enterBattleTao():
 
 	initTask()
 func enterBattleHuang():
+	
+	_refreshSlider()
+	_refreshGeneral()
+	initTask()	
+	
+	
 	close_btn.hide()
 	_mode=SceneManager.bossMode.huang
 	var cha=load("res://Asset/人物/骨龙最终.png")
@@ -450,12 +459,26 @@ func _on_soilderBlock_button_down():
 
 
 func enterBattleZhenRen():
+	close_btn.hide()
 	_mode=SceneManager.bossMode.zhenren
+	for i in range(0,3):
+		var datas=GameManager.sav.battleTasks.values()
+		var data=datas[i]
+		data.task=[]
+		data.index=i+40	
+	refreshData()
+	
+
 	const cha = preload("res://Asset/人物/真人.png")
 	battle_circle.changeHead(cha)	
 	#禁用任务
-	GameManager.sav.battleTasks.clear()
-	battle_circle.taskIndex=-1
+	#GameManager.sav.battleTasks.clear()
+
+	#for  data in GameManager.sav.battleTasks.values():
+		#data.task=[]
+		
+		#GameManager.sav.battleTasks[taskIndex]
+		
 	GameManager.secretBattleSav=GameManager.sav.currenceTask
-	GameManager.sav.currenceTask=100
+	GameManager.sav.currenceTask=200
 	initTask()

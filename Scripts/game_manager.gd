@@ -59,9 +59,9 @@ func changePeopleSupport(num):
 	elif sav.people_surrport<0:
 		sav.people_surrport=0
 		_engerge.hide()
-		
-		DialogueManager.show_example_dialogue_balloon(sys,"民乱四起")
 		DialogueManager.gameover=true
+		DialogueManager.show_example_dialogue_balloon(sys,"民乱四起")
+		
 		PanelManager.new_ChaoView()
 		#展示gameover
 		#隐藏血条
@@ -264,6 +264,26 @@ func array_sum(arr: Array) -> int:
 	for i in arr:
 		sum += i
 	return sum
+
+func tempRestoreGeneral():
+	GameManager.sav.sideUseGeneral=GameManager.sav.UseGeneral
+	GameManager.sav.UseGeneral=[]
+
+
+	sav.tempsavbattleResults=sav.battleResults
+	sav.battleResults=[
+		BattleResult.none,
+		BattleResult.none,
+		BattleResult.none
+	#初始值会带有一些随机元素，但会根据优势更偏进好的 初始成功率不大于30  做任务降低损失增大成功率 
+	]
+
+func endtempRestoreGeneral():
+	GameManager.sav.UseGeneral=GameManager.sav.sideUseGeneral
+
+
+	sav.battleResults=sav.tempsavbattleResults
+
 
 func costHp(value):
 	#sav.alreadyHP+=value
@@ -1272,6 +1292,8 @@ var _boardMode:boardType.boardMode=boardType.boardMode.none
 var _boardReward:boardType.boardRewardResult=boardType.boardRewardResult.none
 var _boardGameWin:bool=false
 func selectBoardMode(mode:boardType.boardMode):
+	if await GameManager.isTried(20):
+		return
 	_boardMode=mode
 	#提示
 	
@@ -1302,8 +1324,7 @@ const boardDialogue = preload("res://dialogues/桌游.dialogue")
 var rewardPanel:bool=false
 func showBoardGameDialogue():
 	
-	if await GameManager.isTried(20):
-		return 	
+
 	
 	#tri 20
 	DialogueManager.show_example_dialogue_balloon(boardDialogue,"选择仕诡牌")

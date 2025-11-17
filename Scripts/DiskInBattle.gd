@@ -526,7 +526,12 @@ func settleGame(end,issuccess):
 		GameManager.sav.battleResults[taskIndex]=GameManager.BattleResult.fail
 		print("你输了")
 		if GameManager.currenceScene.battle_pane._mode==SceneManager.bossMode.zhenren:
+			#GameManager.bossmoderesult=false
+			$"..".hide()
+			_rewardPanel.hide()
 			DialogueManager.show_example_dialogue_balloon(yanwuchang,"战斗失败_真人")	
+			
+			return
 		_rewardPanel.fail()
 		judgeLoseSentiment()
 	#bug 开始修改这里的问题
@@ -553,13 +558,13 @@ func getWinCount()->int:
 func judgeLoseSentiment():
 	var loseNum=GameManager.sav.currenceTask-GameManager.sav.completeTask
 	var allNum=GameManager.sav.currenceTask
-	if(loseNum)>=10 and (loseNum)>allNum/2 and GameManager.sav.have_event["军事行动大败"]==false:
+	if(loseNum)>=10 and (loseNum)>allNum/2 and GameManager.sav.have_event["军事行动大败"]==false and GameManager.currenceScene.battle_pane._mode==SceneManager.bossMode.none:
 		#需要加入事件 有且仅能触发一次
 		GameManager.sav.have_event["军事行动大败"]=true
 		DialogueManager.show_example_dialogue_balloon(yanwuchang,"大败")	
 		#return
 		#pass#大败 可以在sav加入一次
-	if loseNum>=8 and loseNum>allNum/2 and GameManager.sav.have_event["军事行动大败提示"]==false:
+	if loseNum>=8 and loseNum>allNum/2 and GameManager.sav.have_event["军事行动大败提示"]==false and GameManager.currenceScene.battle_pane._mode==SceneManager.bossMode.none:
 		#需要加入事件 有且仅能触发一次
 		GameManager.sav.have_event["军事行动大败提示"]=true
 		DialogueManager.show_example_dialogue_balloon(yanwuchang,"大败提示")	
@@ -568,10 +573,10 @@ func judgeLoseSentiment():
 	
 	GameManager.sav.ctLoseBattle+=1	
 	GameManager.sav.ctLoseBattleRate=GameManager.sav.ctLoseBattleRate+1
-	if GameManager.sav.ctLoseBattle>=3 and GameManager.bossmode==SceneManager.bossMode.none:
+	if GameManager.sav.ctLoseBattle>=3 and GameManager.currenceScene.battle_pane._mode==SceneManager.bossMode.none:
 		DialogueManager.show_example_dialogue_balloon(yanwuchang,"连续多次败北")	
 		#连续多日怠惰
-	elif GameManager.bossmode==SceneManager.bossMode.none:
+	elif GameManager.currenceScene.battle_pane._mode==SceneManager.bossMode.none:
 		var lazyRan=0.1*GameManager.sav.ctLoseBattleRate
 		var random_value = randf()  # 生成0.0到1.0的随机数
 		if random_value <= lazyRan:

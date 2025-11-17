@@ -7,6 +7,7 @@ const FancyFade = preload("res://addons/transitions/FancyFade.gd")
 const xiaopeiBuild = preload("res://Asset/城镇建筑/集市1.png")
 const newBuild = preload("res://Asset/城镇建筑/集市2.png")
 @onready var bg = $"内饰"
+@onready var zhenren: Node2D = $CanvasLayer/blank/zhenren
 
 
 @onready var node_2d_store: _cget_scene_item = $itemsInScene/Node2D_store
@@ -141,7 +142,7 @@ func _initData():
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"选项克苏鲁追杀")
 		return #选选项，另外点击百姓
 		
-	if GameManager._boardReward==boardType.boardRewardResult.BreakFree and GameManager._boardMode==boardType.boardMode.high and GameManager.selectBoardCharacter==boardType.boardCharacter.caobao:
+	if (GameManager._boardReward==boardType.boardRewardResult.BreakFree or GameManager._boardGameWin==false) and GameManager._boardMode==boardType.boardMode.high and GameManager.selectBoardCharacter==boardType.boardCharacter.caobao:
 		GameManager._boardReward==boardType.boardRewardResult.none
 		GameManager.selectBoardCharacter=boardType.boardCharacter.none
 		GameManager._boardMode=boardType.boardMode.none
@@ -296,7 +297,8 @@ func _buttonListClick(item):
 			res_panel.position.y=803
 			res_panel.scale=Vector2(0.765,0.765)
 			if GameManager.sav.have_event["boss战开始"]==true and GameManager.sav.caobaocardgame==4:
-				
+				if await GameManager.isTried(20):
+					return 		
 				SoundManager.stop_music()
 				SoundManager.play_music(sounds._2__MENTAL_VORTEX)
 				
@@ -642,11 +644,12 @@ func _bossMode():
 	#	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"战斗胜利_镇魂龙")
 	#	return
 	#改成判断持有的道具
-	if tao_quantity>0:
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"战斗胜利_陶谦结算")
-	elif xue_quantity>0:
+	if battle_pane._mode==SceneManager.bossMode.mi:
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"战斗胜利_血姬结算")	
-	#GameManager.bossmode=SceneManager.bossMode.none
+	elif battle_pane._mode==SceneManager.bossMode.tao:
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"战斗胜利_陶谦结算")
+	elif battle_pane._mode==SceneManager.bossMode.zhenren:
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"战斗胜利_真人结算")
 
 func _process(delta):
 	pass
@@ -740,11 +743,25 @@ func getZhenrenItem():
 	#GameManager.ScoreToItem()
 	bossBattleAfter=true
 	_reward.showTitileReward(tr("恭喜你，修道真人陨落，他体内的气息转变为你的力量"),items)	
-
-
+const ZHENREN = preload("res://Asset/vedio/zhenren.ogv")
+func playzhenren():
+	#var tao = load("res://Asset/vedio/GULONGTEST.ogv")
+	var _func=func():
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"真相揭露_真人")
+		battle_pane.show()
+		#battle_pane.enterBattleHuang()
+	playBossAni(ZHENREN,_func)
+	
 
 func enterBattleZhenren():
-
-
+	GameManager.tempRestoreGeneral()
+	res_panel.position.x=1564
+	res_panel.position.y=803
+	res_panel.scale=Vector2(0.765,0.765)
 	battle_pane.show()
 	battle_pane.enterBattleZhenRen()
+
+
+func zhenrenFinish():
+	blank.hide()
+	GameManager.sav.have_event["玄阴开放"]=false

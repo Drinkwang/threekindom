@@ -867,6 +867,9 @@ do GameManager.enterBoardGame()
 => END!
 
 
+
+
+
 #我想改成不显示第三个模式 点击触发对话 击败最终boss 
 ~ 来把仕诡牌2
 刘备: 曹将军，可愿玩一局 仕诡牌进阶版本-诡异怪谈？
@@ -1072,4 +1075,23 @@ do loseTrain()
 
 ~ 已经练兵过了
 系统提示: 今天已经训练过了，明天再来吧！
+=> END!
+
+
+~ 战斗失败_真人
+do GameManager.bossmoderesult=false
+do GameManager.enterCrazy()
+长者: 玄德公，真龙之气，尽归吾用！
+
+刘备: 我死不足惜…但苍生何辜…
+
+长者: 凡民如蝼蚁，仙道将成，天下当由吾重塑！
+Game Over: 刘备被长者炼化，诡秘修仙之力降临，世界陷入混乱！
+do DialogueManager.gameover=true
+- 载入存档
+	do PanelManager.show_Save_panel()
+- 退回主菜单
+	do GameManager.ReturnMenu()
+- 退出游戏
+	do get_tree().quit()
 => END!
