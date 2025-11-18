@@ -526,12 +526,16 @@ func settleGame(end,issuccess):
 		GameManager.sav.battleResults[taskIndex]=GameManager.BattleResult.fail
 		print("你输了")
 		if GameManager.currenceScene.battle_pane._mode==SceneManager.bossMode.zhenren:
-			#GameManager.bossmoderesult=false
-			$"..".hide()
-			_rewardPanel.hide()
-			DialogueManager.show_example_dialogue_balloon(yanwuchang,"战斗失败_真人")	
 			
-			return
+			
+			var clickAfter=func():
+				$"..".hide()
+			
+				DialogueManager.show_example_dialogue_balloon(yanwuchang,"战斗失败_真人")	
+			SignalManager.endReward.connect(clickAfter)
+			#GameManager.bossmoderesult=false
+
+
 		_rewardPanel.fail()
 		judgeLoseSentiment()
 	#bug 开始修改这里的问题

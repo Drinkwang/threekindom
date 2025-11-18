@@ -739,8 +739,9 @@ do enterBattleZhenren()
 ~ 战斗胜利_真人
 do GameManager.bossmoderesult=true
 刘备: 老道，汝欲以仙道乱天下，吾刘备虽微末，亦不容尔祸害苍生！
+do GameManager.enterNormal()
 长者: 玄德公…真龙之志，贫道…认败…
-
+do SoundManager.play_sound(sounds.BLOOD)
 do zhenren.hide()
 do battle_pane.hide()
 #刘备: 可怜之人，备定查明真相！  

@@ -1084,7 +1084,7 @@ do GameManager.enterCrazy()
 长者: 玄德公，真龙之气，尽归吾用！
 
 刘备: 我死不足惜…但苍生何辜…
-
+do SoundManager.play_sound(sounds.BLOOD)
 长者: 凡民如蝼蚁，仙道将成，天下当由吾重塑！
 Game Over: 刘备被长者炼化，诡秘修仙之力降临，世界陷入混乱！
 do DialogueManager.gameover=true

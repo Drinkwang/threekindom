@@ -36,9 +36,10 @@ func load_data() -> void:
 	#		GameManager.sav._data.inventories = loaded_data.inventories
 
 func save() -> void:
-	var state = ResourceSaver.save(GameManager.sav._data, _path_to_type)
-	if state != OK:
-		printerr("Can't save inventories data")
+	pass
+	#var state = ResourceSaver.save(GameManager.sav._data, _path_to_type)
+	#if state != OK:
+	#	printerr("Can't save inventories data")
 
 func reset_data() -> void:
 	GameManager.sav._data.reset()

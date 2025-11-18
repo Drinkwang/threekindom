@@ -88,12 +88,15 @@ func initLoad():
 var _GrainNum=0
 func loadFile():
 	if(savs[index-1]!=null):
+		InventoryManager.reset_data()
+		#InventoryManager._db = InventoryData.new()
 		SoundManager.stop_music()
 		DialogueManager.gameover=false
-		GameManager.sav=savs[index-1].duplicate(false)
+		GameManager.sav=savs[index-1].duplicate(true)
 		GameManager.sav.ensure_default_fields()
 		get_tree().change_scene_to_packed(savs[index-1].saveScene)
 		GameManager.loadLaw()
+		emit_signal("inventory_changed", GameManager.inventoryPackege)	
 
 	refresh()
 	self.hide()
