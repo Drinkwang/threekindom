@@ -119,6 +119,8 @@ func refreshUseItemPanel():
 	if num>0:
 		useItemPanel.show()
 		label.text=tr("_battleUseItem").format({"_num":num})
+		if GameManager.sav.useItemInBattle:
+			check_box.button_pressed=true
 	else:
 		useItemPanel.hide()
 	

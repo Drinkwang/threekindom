@@ -30,7 +30,30 @@ func _endReward():
 
 @onready var enemy = $enemy
 
+func changeHeadInMainTask():
+	
+	const CANGXI_2 = preload("res://Asset/人物/cangxi2.png")
+	const CANGXI = preload("res://Asset/人物/cangxi.png")
+	const HUANGJIN_3 = preload("res://Asset/人物/huangjin3.png")
+	const ZANGBA = preload("res://Asset/人物/zangba.png")
+	if GameManager.sav.have_event["battleTaiShan"]==true and GameManager.sav.have_event["昌豨求饶"]==false:
+		changeHead(CANGXI)
+		
+	elif GameManager.sav.have_event["昌豨求饶"]==true and GameManager.sav.have_event["昌豨求饶2"]==false:
+		changeHead(CANGXI_2)		
+	elif  GameManager.sav.have_event["臧霸首战"]==true and GameManager.sav.have_event["温侯降伏臧霸"]==false:
+		changeHead(ZANGBA)
+	else:
+		changeHead(HUANGJIN_3)	
+		
+#"臧霸首战之前":false,#泰山诸将1
+#	"昌豨求饶":false,#泰山诸将2
+#	"臧霸首战":false,#泰山诸将3
+#	"昌豨求饶2":false,#泰山诸将3
+	#最后是黄巾
+
 func _ready():
+	changeHeadInMainTask()
 	SignalManager.changeLanguage.connect(changeLanguage)		
 	SignalManager.endReward.connect(_endReward)
 	if GameManager.sav.battleTasks==null or GameManager.sav.battleTasks.size()==0:
@@ -562,22 +585,24 @@ func getWinCount()->int:
 func judgeLoseSentiment():
 	var loseNum=GameManager.sav.currenceTask-GameManager.sav.completeTask
 	var allNum=GameManager.sav.currenceTask
+	
+	GameManager.sav.ctLoseBattle+=1	
+	GameManager.sav.ctLoseBattleRate=GameManager.sav.ctLoseBattleRate+1	
 	if(loseNum)>=10 and (loseNum)>allNum/2 and GameManager.sav.have_event["军事行动大败"]==false and GameManager.currenceScene.battle_pane._mode==SceneManager.bossMode.none:
 		#需要加入事件 有且仅能触发一次
 		GameManager.sav.have_event["军事行动大败"]=true
 		DialogueManager.show_example_dialogue_balloon(yanwuchang,"大败")	
 		#return
 		#pass#大败 可以在sav加入一次
-	if loseNum>=8 and loseNum>allNum/2 and GameManager.sav.have_event["军事行动大败提示"]==false and GameManager.currenceScene.battle_pane._mode==SceneManager.bossMode.none:
+	elif loseNum>=8 and loseNum>allNum/2 and GameManager.sav.have_event["军事行动大败提示"]==false and GameManager.currenceScene.battle_pane._mode==SceneManager.bossMode.none:
 		#需要加入事件 有且仅能触发一次
 		GameManager.sav.have_event["军事行动大败提示"]=true
 		DialogueManager.show_example_dialogue_balloon(yanwuchang,"大败提示")	
 	
 
 	
-	GameManager.sav.ctLoseBattle+=1	
-	GameManager.sav.ctLoseBattleRate=GameManager.sav.ctLoseBattleRate+1
-	if GameManager.sav.ctLoseBattle>=3 and GameManager.currenceScene.battle_pane._mode==SceneManager.bossMode.none:
+
+	elif GameManager.sav.ctLoseBattle>=3 and GameManager.currenceScene.battle_pane._mode==SceneManager.bossMode.none:
 		DialogueManager.show_example_dialogue_balloon(yanwuchang,"连续多次败北")	
 		#连续多日怠惰
 	elif GameManager.currenceScene.battle_pane._mode==SceneManager.bossMode.none:

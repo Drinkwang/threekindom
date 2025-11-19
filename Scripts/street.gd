@@ -412,7 +412,7 @@ func PlayMizhen():
 	var lady = load("res://Asset/vedio/bloodLady.ogv")
 	#不能这样写，因为boss战
 	var _func=func():
-		GameManager.tempRestoreGeneral()
+
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"动画播完_血姬")
 		battle_pane.show()
 		battle_pane.enterBattleMi()
@@ -428,7 +428,7 @@ func PlayTaoQian():
 	SoundManager.stop_music()
 	var tao = load("res://Asset/vedio/bloodTao.ogv")
 	var _func=func():
-		#GameManager.tempRestoreGeneral()
+
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"动画播完_陶谦")
 		battle_pane.show()
 		battle_pane.enterBattleTao()
@@ -439,7 +439,7 @@ func PlayTaoQian():
 func PlayGulong():
 	var tao = load("res://Asset/vedio/GULONGTEST.ogv")
 	var _func=func():
-		#GameManager.tempRestoreGeneral()
+
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"动画播完_镇魂龙")
 		battle_pane.show()
 		battle_pane.enterBattleHuang()
@@ -599,7 +599,7 @@ func bianjiEnd():
 	
 	
 func getXueJiItem():
-	#GameManager.endtempRestoreGeneral()
+
 	var _reward:rewardPanel=PanelManager.new_reward()
 	var items={
 		"items": {InventoryManagerItem.ItemEnum.血姬傀儡:1},
@@ -623,7 +623,6 @@ func gotoXuanyin():
 
 
 func getDaoQianItem():
-	#GameManager.endtempRestoreGeneral()
 	var _reward:rewardPanel=PanelManager.new_reward()
 	var items={
 		"items": {InventoryManagerItem.ItemEnum.陶谦血袖:1},
@@ -766,10 +765,14 @@ func enterBattleZhenren():
 	battle_pane.show()
 	battle_pane.enterBattleZhenRen()
 
+func dontHaveDominance():
+	var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.霸道之息)	
+
+	return num==0
 
 func zhenrenFinish():
 	blank.hide()
-	GameManager.sav.have_event["玄阴开放"]=false
+
 	GameManager.currenceScene.res_panel.position.x=1403
 	GameManager.currenceScene.res_panel.position.y=622
 	GameManager.currenceScene.res_panel.scale=Vector2(1,1)	

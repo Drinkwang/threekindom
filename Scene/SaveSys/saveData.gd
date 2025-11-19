@@ -38,7 +38,7 @@ class_name saveData
 @export var cLaw:int=-1
 #寄存使用过的将军
 @export var UseGeneral:Array
-@export var sideUseGeneral:Array
+@export var sideValue=-1
 @export var tempsavbattleResults:Array[GameManager.BattleResult]=[]
 @export var battleResults:Array[GameManager.BattleResult]=[]
 

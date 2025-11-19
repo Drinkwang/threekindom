@@ -266,9 +266,13 @@ func array_sum(arr: Array) -> int:
 	return sum
 
 func tempRestoreGeneral():
-	GameManager.sav.sideUseGeneral=GameManager.sav.UseGeneral
+	#GameManager.sav.sideUseGeneral=GameManager.sav.UseGeneral
 	GameManager.sav.UseGeneral=[]
-
+	#for i in range(0,3):
+	var datas=GameManager.sav.battleTasks.values()
+	var data=datas[0]
+	#data.task=[]
+	GameManager.sav.sideValue=data.index
 
 	sav.tempsavbattleResults=sav.battleResults
 	sav.battleResults=[
@@ -279,10 +283,13 @@ func tempRestoreGeneral():
 	]
 
 func endtempRestoreGeneral():
-	GameManager.sav.UseGeneral=GameManager.sav.sideUseGeneral
+	for i in range(0,3):
+		var datas=GameManager.sav.battleTasks.values()
+		var data=datas[i]
 
+		data.index=GameManager.sav.sideValue+i
 
-	sav.battleResults=sav.tempsavbattleResults
+	#sav.battleResults=sav.tempsavbattleResults
 
 
 func costHp(value):
