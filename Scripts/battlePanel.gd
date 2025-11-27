@@ -382,7 +382,8 @@ func _on_Usecheck_box_toggled(toggled_on):
 @onready var ban_1_soilder = $ban1
 
 @export var _mode:SceneManager.bossMode=SceneManager.bossMode.none
-
+func refreshHead():
+	battle_circle.changeHeadInMainTask()
 
 func enterBattleMi():
 	_mode=SceneManager.bossMode.mi

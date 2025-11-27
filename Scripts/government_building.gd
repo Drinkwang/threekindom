@@ -179,6 +179,8 @@ func _initData():
 				candoSub=false #征讨袁术开始*/	
 		elif GameManager.sav.have_event["findLvbu"]==true and GameManager.sav.have_event["discussLvbu"]==false:
 				GameManager.sav.have_event["discussLvbu"]=true
+				mizhu.show()
+				chenden.show()
 				candoSub=false#此处需要跟曹豹将军沟通
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"商讨吕布是否留下") 
 				#修改任务目标为跟曹豹谈一谈 
@@ -895,8 +897,25 @@ func FractionalDiff():
 	SignalManager.changeSupport.emit()
 	GameManager.sav.have_event["Factionalization"]=true
 	changePanelPos()
+	GameManager.sav.targetValue=3
+	GameManager.sav.currenceValue=0
+	GameManager.sav.currenceDay=0
+	GameManager.sav.targetResType=GameManager.ResType.battle
+	GameManager.sav.targetTxt="征讨次数：{currence}/{target}"	
+	
 	#存档
 	#派系分化成2个
+	
+func canSummonLvBu():
+	GameManager.sav.LVBU.isshow=true
+	#GameManager.sav.LVBU._num_all=GameManager.sav.BENTUPAI._num_all/2
+	#GameManager.sav.LVBU._num_all=GameManager.sav.BENTUPAI._num_all-GameManager.sav.HAOZUPAI._num_all
+
+	GameManager.initPaixi(GameManager.sav.LVBU)
+
+	SignalManager.changeSupport.emit()
+	#GameManager.sav.have_event["Factionalization"]=true	
+	
 func ShowDisterPanel():
 	disater_panel.show()
 	pass
@@ -1157,13 +1176,9 @@ func CallingSoldier():
 func lvbuJoin():
 	GameManager.sav.have_event["lvbuJoin"]=true
 	GameManager.sav.labor_force=GameManager.sav.labor_force+1000
-	#
+	GameManager.changeTaskLabel(tr("歇整一日来到府邸召见吕布"))	#
 	#1
-	GameManager.sav.targetValue=3
-	GameManager.sav.currenceValue=0
-	GameManager.sav.currenceDay=0
-	GameManager.sav.targetResType=GameManager.ResType.battle
-	GameManager.sav.targetTxt="征讨次数：{currence}/{target}"
+
 	#觉得无用的注释GameManager.sav.TargetDestination="battle"
 
 

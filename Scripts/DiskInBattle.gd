@@ -39,7 +39,7 @@ func changeHeadInMainTask():
 	if GameManager.sav.have_event["battleTaiShan"]==true and GameManager.sav.have_event["昌豨求饶"]==false:
 		changeHead(CANGXI)
 		
-	elif GameManager.sav.have_event["昌豨求饶"]==true and GameManager.sav.have_event["昌豨求饶2"]==false:
+	elif GameManager.sav.have_event["昌豨求饶"]==true and GameManager.sav.have_event["臧霸首战"]==false:
 		changeHead(CANGXI_2)		
 	elif  GameManager.sav.have_event["臧霸首战"]==true and GameManager.sav.have_event["温侯降伏臧霸"]==false:
 		changeHead(ZANGBA)
@@ -248,6 +248,10 @@ func _processSuccussCircle(coin,soilder):
 	
 
 var battleCircleClone:Array;
+
+func updateInfrastruture():
+	pass
+
 func _changeCircle(rewardGet):
 	#获取的reward去由高到底转换
 	

@@ -20,13 +20,9 @@ func _ready():
 		bg.texture=newBuild
 	else:
 		bg.texture=xiaopeiBuild
-	if GameManager.sav.have_event["discussLvbu"]==true and GameManager.sav.have_event["征询曹将军意见"]==false:
-		#可改成显示曹将军立绘
-		caobao.show()
-		GameManager.sav.have_event["征询曹将军意见"]=true
-		#pass
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"征询曹将军意见")
-		#pass
+		
+		
+
 const bgm = preload("res://Asset/bgm/校场.wav")
 
 func _judWin():
@@ -50,10 +46,13 @@ func _judWin():
 				elif GameManager.sav.currenceValue>=5 and GameManager.sav.have_event["臧霸首战"]==false:
 					GameManager.sav.have_event["臧霸首战"]=true
 					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"臧霸首战")
+					battle_pane.refreshHead()
+					#修改头像
 					#内部分裂
 				elif GameManager.sav.currenceValue>=3 and GameManager.sav.have_event["昌豨求饶"]==false:
 					GameManager.sav.have_event["昌豨求饶"]=true
 					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"昌豨求饶")
+					battle_pane.refreshHead()
 					#吕布来了	
 		if GameManager.sav.have_event["战斗袁术开始"]==true:
 			
@@ -82,6 +81,11 @@ func _judWin():
 			GameManager.sav.extraCureenTaskCNum=0
 			GameManager.sav.extraBattleDialogContext=""
 			#_completeTask()				
+
+func zhangbaQianlai():
+	#此处改臧霸头像
+	pass
+
 
 func _completeTask():#将完成任务移动到外层
 	if(GameManager.sav.have_event["completeTask2"]==false):
@@ -145,7 +149,16 @@ func post_transition():
 	SoundManager.stop_all_ambient_sounds()
 	SoundManager.play_ambient_sound(bgm)
 	print("fadedone")
-	
+		#移出ready
+	if GameManager.sav.have_event["discussLvbu"]==true and GameManager.sav.have_event["征询曹将军意见"]==false:
+		#可改成显示曹将军立绘
+		caobao.show()
+		GameManager.sav.have_event["征询曹将军意见"]=true
+		#pass
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"征询曹将军意见")
+		#pass
+		return
+		
 	if GameManager.sav.have_event["亲征对话结束"]==true and GameManager.sav.have_event["战斗袁术血战模式"]==false:
 		#GameManager.sav.have_event["战斗袁术血战模式"]=true
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"演武场宣战袁术")
@@ -560,6 +573,7 @@ func endtrain():
 	control._show_button_5_yellow(0)
 
 func ConsultWithCaoBaoEnd():
+	_initData()
 	caobao.hide()
 	GameManager.sav.TargetDestination="府邸"	
 	GameManager.sav.have_event["lvbuDiscussInCaoBao"]=true

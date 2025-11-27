@@ -269,7 +269,8 @@ var SIDEQUEST_MAP:Dictionary={
 	"玄阴首次遇宝":false,
 	"开启比武训练":false,
 	"比武训练教程":false,
-	"解锁高级成就":false
+	"解锁高级成就":false,
+	"温侯降伏臧霸":false
 }
 
 #0 小试牛刀开启 1小试牛刀通过 2 对局试炼开启 3对局试验通过 4 诡秘怪谈开启 5诡秘怪谈通过
