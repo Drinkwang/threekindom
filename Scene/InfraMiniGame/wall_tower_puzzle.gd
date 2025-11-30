@@ -301,10 +301,16 @@ func movetoDeck():
 			#
 	#return adjacent
 
+func initRandomRotate():
+	pass
+	
+func initRandomBase():
+	pass
+
 # 检查拼图是否完成
 func check_puzzle_complete():
 	for i in range(puzzle_pieces.size()):
-		if puzzle_pieces[i].position != original_positions[i]:
+		if puzzle_pieces[i].position != original_positions[i] or puzzle_pieces[i].rotation!=0:
 			return
 			
 	# 所有拼图块都在正确位置
@@ -353,8 +359,19 @@ func _update_bg_color(target_color: Color):
 
 
 func _on_rotate_button_button_down() -> void:
-	pass # Replace with function body.
-
+	if selectPiece != null:
+		var tween = get_tree().create_tween()
+		tween.tween_property(
+			selectPiece,
+			"rotation_degrees", 
+			(selectPiece.rotation_degrees + 90)%360,   # 直接操作角度
+			0.25
+		).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+		
+		var _on_rotation_finished=func():
+			check_puzzle_complete()
+		tween.finished.connect(_on_rotation_finished)
+	
 var canclick=true
 func _input(event: InputEvent) -> void:
 	var isstop:bool=true
@@ -374,15 +391,17 @@ func _input(event: InputEvent) -> void:
 				canclick=false
 				await  get_tree().create_timer(0.5).timeout
 				canclick=true
+				check_puzzle_complete()
 		#判断离所有方格，且小于50 则强行变位
 
 	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed and selectPiece!=null:
-		set_piece_z_index(selectPiece, 0)
-		selectPiece=null
-		tempclopos=null
-		
-		if visualClubPos!=null:
-			visualClubPos.queue_free()
+		_on_rotate_button_button_down()
+		#set_piece_z_index(selectPiece, 0)
+		#selectPiece=null
+		#tempclopos=null
+		#
+		#if visualClubPos!=null:
+			#visualClubPos.queue_free()
 #func disable_input_recursively(node: Node):
 	## 只在物理碰撞对象上禁用输入拾取（Area2D 等）
 	#if node is CollisionObject2D:

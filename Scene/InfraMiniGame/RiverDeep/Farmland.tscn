@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxclptcivv1ck"]
+
+[ext_resource type="Script" path="res://Scene/InfraMiniGame/RiverDeep/Farmland.gd" id="1"]
+
+[node name="Farmland" type="ColorRect"]
+offset_right = 64.0
+offset_bottom = 64.0
+script = ExtResource("1")

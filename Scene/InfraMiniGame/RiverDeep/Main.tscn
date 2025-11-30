@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://cpoq2sq8e3gmv"]
+
+[ext_resource type="Script" path="res://scripts/Main.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://7fqmbolpy7yv" path="res://Scene/InfraMiniGame/RiverDeep/Board.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://cxclptcivv1ck" path="res://Scene/InfraMiniGame/RiverDeep/Farmland.tscn" id="3"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1")
+
+[node name="Board" parent="." instance=ExtResource("2")]
+position = Vector2(659, 252)
+script = null
+
+[node name="FarmlandPanel" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1219.0
+offset_top = 252.0
+offset_right = 1419.0
+offset_bottom = 852.0
+
+[node name="Farmland1" parent="FarmlandPanel" instance=ExtResource("3")]
+layout_mode = 0
+script = null
+
+[node name="Farmland2" parent="FarmlandPanel" instance=ExtResource("3")]
+visible = false
+layout_mode = 0
+offset_top = 80.0
+offset_bottom = 144.0
+script = null
+
+[node name="Farmland3" parent="FarmlandPanel" instance=ExtResource("3")]
+visible = false
+layout_mode = 0
+offset_top = 160.0
+offset_bottom = 224.0
+script = null
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Victory" type="Label" parent="UI"]
+visible = false
+offset_left = 200.0
+offset_top = 20.0
+offset_right = 200.0
+offset_bottom = 20.0
+text = "胜利！全部农田已浇灌"
