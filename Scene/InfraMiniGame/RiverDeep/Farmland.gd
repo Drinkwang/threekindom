@@ -37,9 +37,13 @@ func _gui_input(event: InputEvent) -> void:
 		required_depth = int(round(new_y / float(cell_size)))
 		if irrigated:
 			_update_visual()
+const nongtian = preload("res://Asset/RiverDeep/农田.png")
+const handi = preload("res://Asset/RiverDeep/旱地.png")
+@onready var texture_rect: TextureRect = $TextureRect
 
 func _update_visual() -> void:
 	if irrigated:
-		color = Color(0.4, 0.9, 0.4, 1.0)
+		texture_rect.texture=nongtian
 	else:
-		color = Color(0.8, 0.7, 0.4, 1.0)
+		#color = Color(0.8, 0.7, 0.4, 1.0)
+		texture_rect.texture=handi

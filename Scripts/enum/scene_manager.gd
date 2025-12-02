@@ -114,3 +114,10 @@ enum etraTaskType{
 	useItem,
 	
 }
+
+enum puzzlediffucult{
+	none,
+	easy,
+	middle,
+	high
+}

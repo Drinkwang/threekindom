@@ -2,8 +2,11 @@ extends Control
 
 @onready var board: Node2D = $Board
 @onready var farmland_panel: Control = $FarmlandPanel
-@onready var victory_label: Label = $PanelContainer/Label2
+@onready var victory_label: Label =  $PanelContainer/Label2
 
+#var connector: ColorRect
+var conn_shader: Shader
+var conn_material: ShaderMaterial
 
 func _ready() -> void:
 	victory_label.visible = false
@@ -14,6 +17,53 @@ func _ready() -> void:
 			child.set("max_depth", board.get("grid_height") - 1)
 			var req := int(child.get("required_depth"))
 			child.position.y = float(req) * float(board.get("cell_size"))
+	conn_shader = Shader.new()
+	conn_shader.code = """
+shader_type canvas_item;
+uniform vec4 base_color = vec4(0.1, 0.6, 1.0, 0.22);
+uniform float flow_speed = 0.5;
+uniform float noise_scale = 4.0;
+uniform int fbm_octaves = 3;
+
+float hash(vec2 p){
+	return fract(sin(dot(p, vec2(12.9898,78.233))) * 43758.5453);
+}
+float noise2d(vec2 p){
+	vec2 i = floor(p);
+	vec2 f = fract(p);
+	float a = hash(i);
+	float b = hash(i + vec2(1.0,0.0));
+	float c = hash(i + vec2(0.0,1.0));
+	float d = hash(i + vec2(1.0,1.0));
+	vec2 u = f*f*(3.0-2.0*f);
+	return mix(a,b,u.x) + (c-a)*u.y*(1.0-u.x) + (d-b)*u.x*u.y;
+}
+float fbm(vec2 p, int oct){
+	float v = 0.0;
+	float a = 0.5;
+	for(int i=0;i<8;i++){
+		if(i>=oct) break;
+		v += a * noise2d(p);
+		p *= 2.0;
+		a *= 0.5;
+	}
+	return v;
+}
+
+void fragment(){
+	vec2 uv = UV;
+	float t = TIME * flow_speed;
+	vec2 flow_uv = vec2(uv.x - t, uv.y);
+	float n = fbm(flow_uv * noise_scale, fbm_octaves);
+	float bright = 0.55 + 0.45 * n;
+	vec3 col = base_color.rgb * bright;
+	COLOR = vec4(col, base_color.a);
+}
+"""
+	conn_material = ShaderMaterial.new()
+	conn_material.shader = conn_shader
+
+	#_update_connector(-1)
 
 func _on_water_depth_changed(depth: int) -> void:
 	var all_done := true
@@ -22,8 +72,48 @@ func _on_water_depth_changed(depth: int) -> void:
 			child.update_irrigation(depth)
 			if not child.irrigated and child.visible==true:
 				all_done = false
+	for i in range(0,depth+1):
+		_update_connector(depth)
 	if all_done:
 		_show_victory()
 
 func _show_victory() -> void:
 	victory_label.visible = true
+@onready var colorrect: Control = $colorrect
+@onready var color_rect_1: ColorRect = $colorrect/ColorRect3
+@onready var color_rect_2: ColorRect = $colorrect/ColorRect4
+@onready var color_rect_3: ColorRect = $colorrect/ColorRect5
+
+func _get_first_visible_farmland(deep) -> Control:
+	for child in farmland_panel.get_children():
+		if child is Control and child.visible and child.has_method("update_irrigation") and deep==child.required_depth:
+			#return child
+			if deep==1:
+				return color_rect_1
+			elif deep==3:
+				return color_rect_2
+			elif deep==5:
+				return color_rect_3	
+	return null
+
+
+
+
+func _update_connector(depth: int) -> void:
+	var target := _get_first_visible_farmland(depth)
+	if target == null:
+	
+		return
+	var cs: int = int(board.get("cell_size"))
+	var gh: int = int(board.get("grid_height"))
+	var bw: int = int(board.get("grid_width"))
+	var board_right := board.position.x + float(bw * cs)
+	var panel_x := farmland_panel.position.x
+	var gap = max(8.0, panel_x - board_right - 6.0)
+	var h := float(cs) * 0.25
+	var y := board.position.y + target.position.y + float(cs) * 0.5 - h * 0.5
+
+	if target.color!=Color(0.6, 0.6, 0.6, 1.0):
+		target.material = conn_material
+		target.color = Color(0.6, 0.6, 0.6, 1.0)
+		pass

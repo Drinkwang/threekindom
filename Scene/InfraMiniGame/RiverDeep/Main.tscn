@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cpoq2sq8e3gmv"]
 
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1"]
-[ext_resource type="PackedScene" uid="uid://7fqmbolpy7yv" path="res://Scene/InfraMiniGame/RiverDeep/Board.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://Scene/InfraMiniGame/RiverDeep/Board.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://cxclptcivv1ck" path="res://Scene/InfraMiniGame/RiverDeep/Farmland.tscn" id="3"]
 
 [node name="Main" type="Node2D"]

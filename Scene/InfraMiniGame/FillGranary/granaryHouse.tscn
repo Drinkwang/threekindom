@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://cn0a85r85dcnn"]
+
+[ext_resource type="Texture2D" uid="uid://cr20e50l0fssd" path="res://Asset/RiverDeep/粮仓.png" id="1_a1mto"]
+[ext_resource type="Script" path="res://Scene/InfraMiniGame/FillGranary/granary_house.gd" id="1_rhtsa"]
+[ext_resource type="FontFile" uid="uid://to00njkwmxts" path="res://Asset/Font/1_sim.ttf" id="2_t8b2x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ssjyh"]
+size = Vector2(357, 100)
+
+[node name="GranaryHouse" type="Node2D"]
+script = ExtResource("1_rhtsa")
+
+[node name="TextureRect6" type="TextureRect" parent="."]
+offset_left = 8.0
+offset_top = 11.0
+offset_right = 75.0
+offset_bottom = 73.0
+texture = ExtResource("1_a1mto")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 75.0
+offset_top = 28.0
+offset_right = 326.0
+offset_bottom = 70.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = 0
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 7
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("2_t8b2x")
+theme_override_font_sizes/font_size = 36
+text = "2号粮仓(0/100)"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(168.5, 40)
+shape = SubResource("RectangleShape2D_ssjyh")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

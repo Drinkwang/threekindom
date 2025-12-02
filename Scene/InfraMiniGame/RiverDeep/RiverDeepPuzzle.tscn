@@ -5,7 +5,7 @@
 [ext_resource type="FontFile" uid="uid://to00njkwmxts" path="res://Asset/Font/1_sim.ttf" id="3_1fufw"]
 [ext_resource type="Texture2D" uid="uid://dpe4rybr273da" path="res://Asset/斧子.png" id="13_o858j"]
 [ext_resource type="FontFile" uid="uid://b8le0fd0ujbqx" path="res://Asset/Font/1_blod.ttf" id="14_27i6h"]
-[ext_resource type="PackedScene" uid="uid://7fqmbolpy7yv" path="res://Scene/InfraMiniGame/RiverDeep/Board.tscn" id="15_hkw7v"]
+[ext_resource type="PackedScene" path="res://Scene/InfraMiniGame/RiverDeep/Board.tscn" id="15_hkw7v"]
 [ext_resource type="Script" path="res://Scene/InfraMiniGame/RiverDeep/Board.gd" id="16_6a04r"]
 [ext_resource type="PackedScene" uid="uid://cxclptcivv1ck" path="res://Scene/InfraMiniGame/RiverDeep/Farmland.tscn" id="17_gg7u3"]
 
@@ -84,7 +84,7 @@ theme_override_constants/outline_size = 0
 theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/font = ExtResource("3_1fufw")
 theme_override_font_sizes/font_size = 48
-text = "剩余时间:60秒"
+text = "剩余时间:60秒22"
 
 [node name="ColorRect2" type="ColorRect" parent="."]
 visible = false
@@ -104,9 +104,9 @@ color = Color(0.2, 0.2, 0.2, 0)
 
 [node name="SettleButton" type="TextureButton" parent="."]
 layout_mode = 2
-offset_left = 396.0
+offset_left = 432.0
 offset_top = 664.0
-offset_right = 558.0
+offset_right = 594.0
 offset_bottom = 811.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -117,9 +117,9 @@ stretch_mode = 5
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 370.0
+offset_left = 406.0
 offset_top = 822.0
-offset_right = 590.0
+offset_right = 626.0
 offset_bottom = 908.0
 theme_override_colors/font_color = Color(0.920739, 0.825048, 0.614126, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -134,16 +134,16 @@ text = "放弃基建"
 horizontal_alignment = 1
 
 [node name="Board" parent="." instance=ExtResource("15_hkw7v")]
-position = Vector2(659, 252)
+position = Vector2(708, 289)
 script = ExtResource("16_6a04r")
 
 [node name="FarmlandPanel" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 1219.0
-offset_top = 252.0
-offset_right = 1419.0
-offset_bottom = 852.0
+offset_left = 1268.0
+offset_top = 289.0
+offset_right = 1468.0
+offset_bottom = 889.0
 
 [node name="Farmland" parent="FarmlandPanel" instance=ExtResource("17_gg7u3")]
 layout_mode = 0
@@ -160,30 +160,40 @@ offset_top = 160.0
 offset_bottom = 224.0
 required_depth = 5
 
-[node name="ColorRect3" type="ColorRect" parent="."]
+[node name="colorrect" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 2488.0
+offset_top = 924.0
+offset_right = 2688.0
+offset_bottom = 1524.0
+
+[node name="ColorRect3" type="ColorRect" parent="colorrect"]
 z_index = -1
 layout_mode = 0
-offset_left = 1171.0
-offset_top = 332.0
-offset_right = 1229.0
-offset_bottom = 349.0
-color = Color(0.101961, 0.6, 1, 0.180392)
+offset_left = -1268.0
+offset_top = -555.0
+offset_right = -1210.0
+offset_bottom = -538.0
+color = Color(0.74902, 0.545098, 0.317647, 1)
 
-[node name="ColorRect4" type="ColorRect" parent="."]
+[node name="ColorRect4" type="ColorRect" parent="colorrect"]
 z_index = -1
-offset_left = 1171.0
-offset_top = 472.0
-offset_right = 1229.0
-offset_bottom = 489.0
-color = Color(0.101961, 0.6, 1, 0.180392)
+layout_mode = 0
+offset_left = -1268.0
+offset_top = -415.0
+offset_right = -1210.0
+offset_bottom = -398.0
+color = Color(0.74902, 0.545098, 0.317647, 1)
 
-[node name="ColorRect5" type="ColorRect" parent="."]
+[node name="ColorRect5" type="ColorRect" parent="colorrect"]
 z_index = -1
-offset_left = 1171.0
-offset_top = 598.0
-offset_right = 1229.0
-offset_bottom = 615.0
-color = Color(0.101961, 0.6, 1, 0.180392)
+layout_mode = 0
+offset_left = -1268.0
+offset_top = -289.0
+offset_right = -1210.0
+offset_bottom = -272.0
+color = Color(0.74902, 0.545098, 0.317647, 1)
 
 [connection signal="button_down" from="SettleButton" to="." method="_on_giveup_button_down"]
 [connection signal="mouse_entered" from="SettleButton" to="." method="_on_giveup_button_mouse_entered"]

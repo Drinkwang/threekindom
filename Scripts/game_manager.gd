@@ -13,6 +13,8 @@ var hearsayBeforeNode=null
 #用于临时储存的值
 var resideValue
 var resideValue2
+var selectPuzzleDiffcult:SceneManager.puzzlediffucult=SceneManager.puzzlediffucult.none
+var PuzzleScene
 enum RspEnum{
 	PAPER=0,
 	ROCK=1,

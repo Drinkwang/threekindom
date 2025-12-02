@@ -25,6 +25,8 @@ var anim_layer: Node2D
 var tile_tex: Texture2D
 var board_layer: Node2D
 var is_animating: bool = false
+var water_shader: Shader
+var water_material: ShaderMaterial
 
 func _tile_color(idx: int) -> Color:
 	var n: int = colors.size()
@@ -45,6 +47,58 @@ func _ready() -> void:
 	add_child(anim_layer)
 	board_layer.z_index = 0
 	anim_layer.z_index = 100
+	water_shader = Shader.new()
+	water_shader.code = """
+shader_type canvas_item;
+uniform vec4 base_color = vec4(0.1, 0.6, 1.0, 0.22);
+uniform float flow_speed = 0.5;
+uniform float depth_darkness = 0.42;
+uniform float depth_alpha_boost = 0.12;
+uniform float bottom_slow = 0.65;
+uniform float noise_scale = 4.0;
+uniform int fbm_octaves = 4;
+
+float hash(vec2 p){
+	return fract(sin(dot(p, vec2(12.9898,78.233))) * 43758.5453);
+}
+float noise2d(vec2 p){
+	vec2 i = floor(p);
+	vec2 f = fract(p);
+	float a = hash(i);
+	float b = hash(i + vec2(1.0,0.0));
+	float c = hash(i + vec2(0.0,1.0));
+	float d = hash(i + vec2(1.0,1.0));
+	vec2 u = f*f*(3.0-2.0*f);
+	return mix(a,b,u.x) + (c-a)*u.y*(1.0-u.x) + (d-b)*u.x*u.y;
+}
+float fbm(vec2 p, int oct){
+	float v = 0.0;
+	float a = 0.5;
+	for(int i=0;i<8;i++){
+		if(i>=oct) break;
+		v += a * noise2d(p);
+		p *= 2.0;
+		a *= 0.5;
+	}
+	return v;
+}
+
+void fragment(){
+	vec2 uv = UV;
+	float depth = uv.y;
+	float speed = mix(1.0, bottom_slow, depth);
+	float t = TIME * flow_speed * speed;
+	vec2 flow_uv = vec2(uv.x - t, uv.y);
+	float n = fbm(flow_uv * noise_scale, fbm_octaves);
+	float bright = 0.55 + 0.45 * n;
+	float shade = 1.0 - depth_darkness * pow(depth, 1.35);
+	vec3 col = base_color.rgb * bright * shade;
+	float alpha = clamp(base_color.a + depth_alpha_boost * depth, 0.0, 1.0);
+	COLOR = vec4(col, alpha);
+}
+"""
+	water_material = ShaderMaterial.new()
+	water_material.shader = water_shader
 	_init_arrays()
 	_spawn_initial_tiles()
 	_init_water()
@@ -93,7 +147,7 @@ func _rebuild_visuals() -> void:
 			child.queue_free()
 	if current_water_depth >= 0:
 		var bg := ColorRect.new()
-		bg.color = Color(0.1, 0.6, 1.0, 0.18)
+		bg.material = water_material
 		bg.size = Vector2(grid_width * cell_size, (current_water_depth + 1) * cell_size)
 		bg.position = Vector2(0, 0)
 		bg.z_index = -1

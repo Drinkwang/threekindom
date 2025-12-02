@@ -364,7 +364,7 @@ func _on_rotate_button_button_down() -> void:
 		tween.tween_property(
 			selectPiece,
 			"rotation_degrees", 
-			(selectPiece.rotation_degrees + 90)%360,   # 直接操作角度
+			fposmod(selectPiece.rotation_degrees + 90.0, 360.0),
 			0.25
 		).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 		

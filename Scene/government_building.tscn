@@ -196,8 +196,6 @@ titleEX = "宴会完美举办成功！"
 dialogue_resource = ExtResource("2_yngd1")
 clickEvent = "宴会结束"
 
-[node name="Control2" parent="CanvasLayer" instance=ExtResource("18_vel0s")]
-
 [node name="sendGiftPanel" parent="." instance=ExtResource("9_2k5hb")]
 visible = false
 
