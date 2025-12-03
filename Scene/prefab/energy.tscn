@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://dfolt063spdso"]
+[gd_scene load_steps=20 format=3 uid="uid://dfolt063spdso"]
 
 [ext_resource type="Script" path="res://Scripts/energy.gd" id="1_jga5a"]
 [ext_resource type="Texture2D" uid="uid://cokwnsbgr1bbx" path="res://Asset/ui/进度条1.png" id="2_minpr"]
+[ext_resource type="FontFile" uid="uid://b8le0fd0ujbqx" path="res://Asset/Font/1_blod.ttf" id="3_b24ag"]
 [ext_resource type="Texture2D" uid="uid://bl3r57njbdry0" path="res://Asset/ui/进度条背景.png" id="3_te6ew"]
 [ext_resource type="Texture2D" uid="uid://i3ibtlwjd72k" path="res://Asset/ui/进度条填色.png" id="4_2kuei"]
 [ext_resource type="Texture2D" uid="uid://djtlal0bexgms" path="res://Asset/人物/刘备2.png" id="6_e7d3e"]
@@ -151,6 +152,23 @@ offset_top = 141.0
 offset_right = 887.0
 offset_bottom = 904.0
 
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 903.0
+offset_top = -7.0
+offset_right = 2514.0
+offset_bottom = 230.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 30
+theme_override_fonts/font = ExtResource("3_b24ag")
+theme_override_font_sizes/font_size = 156
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="Label"]
+autostart = true
+
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
 layout_mode = 0
 offset_left = 863.0
@@ -287,5 +305,6 @@ inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
 metadata/_edit_use_anchors_ = true
 
 [connection signal="button_down" from="clickHero" to="." method="_on_click_hero_button_down"]
+[connection signal="timeout" from="Label/Timer" to="." method="_on_timer_timeout"]
 [connection signal="button_down" from="itemButton" to="." method="_on_item_button_button_down"]
 [connection signal="button_down" from="saveButton" to="." method="_on_save_button_button_down"]

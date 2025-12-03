@@ -104,3 +104,16 @@ func _on_save_button_button_down():
 
 func _on_click_hero_button_down():
 	GameManager.openSetting()
+
+@onready var label: Label = $Label
+
+func _on_timer_timeout() -> void:
+	if GameManager.sav.remaining_seconds >= 0:
+		GameManager.sav.remaining_seconds -= 1
+		_update_label()
+func _update_label() -> void:
+	if not label:
+		return
+	var m := GameManager.sav.remaining_seconds / 60
+	var s := GameManager.sav.remaining_seconds % 60
+	label.text = "剩余试玩时间 %02d:%02d" % [m, s]

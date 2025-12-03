@@ -24,6 +24,12 @@ enum RspEnum{
 	
 }
 
+# 总试玩时间（秒）
+const TOTAL_Play_Test_SECONDS := 15 * 60   # 15 分钟
+
+func _on_trial_time_up():
+	DialogueManager.show_example_dialogue_balloon(sys,"本次试玩时间已到")
+
 enum ResType{
 	none,
 	coin,

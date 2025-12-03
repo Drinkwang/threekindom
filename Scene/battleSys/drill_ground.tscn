@@ -262,6 +262,7 @@ libraries = {
 autoplay = "YELLOWGUILD"
 
 [node name="baseSettle" parent="CanvasInventory" instance=ExtResource("25_x6378")]
+visible = false
 
 [node name="title" type="RichTextLabel" parent="."]
 visible = false

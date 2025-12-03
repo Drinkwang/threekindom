@@ -19,7 +19,7 @@ class_name saveData
 
 		coin=value
 		#bug
-		if GameManager.currenceScene is government_building:
+		if is_instance_valid(GameManager.currenceScene) and GameManager.currenceScene is government_building:
 			GameManager.currenceScene.JudFundTask()
 
 
@@ -334,3 +334,14 @@ GameManager.RspEnum.PAPER:{"name": "赵云", "level": 1, "max_level": 10, "rando
 @export var extraBattleTaskEnum:SceneManager.etraTaskType=SceneManager.etraTaskType.none
 @export var extraCureenTaskCNum=0
 @export var extraBattleDialogContext=""
+@export var remaining_seconds :int= GameManager.TOTAL_Play_Test_SECONDS :
+	set(value):
+		if DialogueManager.gameover==false:
+			remaining_seconds = maxi(value, 0)
+		#_update_label()
+			if remaining_seconds <= 0:
+				remaining_seconds = 0
+			#if not _has_emitted:
+				#_has_emitted = true
+				#emit_signal("trial_time_up")
+				GameManager._on_trial_time_up()   # 也可以直接在这里写结束逻辑
