@@ -120,7 +120,6 @@ visible = false
 position = Vector2(3, 44)
 
 [node name="FillGrannaryHorse2" parent="hourses" instance=ExtResource("4_mwbjf")]
-visible = false
 position = Vector2(0, 132)
 
 [node name="FillGrannaryHorse3" parent="hourses" instance=ExtResource("4_mwbjf")]
@@ -255,23 +254,18 @@ vertical_alignment = 1
 position = Vector2(1351, 874)
 
 [node name="GranaryHouse1" parent="granarys" instance=ExtResource("15_dyhny")]
-visible = false
 position = Vector2(-85, -600)
 
 [node name="GranaryHouse2" parent="granarys" instance=ExtResource("15_dyhny")]
-visible = false
 position = Vector2(-86, -506)
 
 [node name="GranaryHouse3" parent="granarys" instance=ExtResource("15_dyhny")]
-visible = false
 position = Vector2(-85, -416)
 
 [node name="GranaryHouse4" parent="granarys" instance=ExtResource("15_dyhny")]
-visible = false
 position = Vector2(-86, -326)
 
 [node name="GranaryHouse5" parent="granarys" instance=ExtResource("15_dyhny")]
-visible = false
 position = Vector2(-86, -234)
 
 [connection signal="button_down" from="SettleButton" to="." method="_on_giveup_button_down"]

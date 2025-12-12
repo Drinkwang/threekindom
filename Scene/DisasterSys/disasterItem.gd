@@ -48,11 +48,12 @@ var factionSurpuls:cldata
 func _ready():
 	if(headImg!=null):
 		$TextureRect.texture=headImg# Replace with function body.
-
-	factionSurpuls=GameManager.getFractionByEnum(factionIndex)
+	if is_instance_valid(GameManager):	
+		factionSurpuls=GameManager.getFractionByEnum(factionIndex)
 
 	changeLanguage()
-	SignalManager.changeLanguage.connect(changeLanguage)
+	if is_instance_valid(SignalManager):	
+		SignalManager.changeLanguage.connect(changeLanguage)
 func changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()
 	if currencelanguage=="ru":

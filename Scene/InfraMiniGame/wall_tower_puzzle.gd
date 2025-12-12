@@ -17,6 +17,7 @@ var original_positions: Array = []
 @export var PiecesContainer:Node2D
 func _ready():
 	# 确保有源图片
+	switchDiffucult()#可修改图片
 	if source_texture:
 		create_puzzle()
 	else:
@@ -30,6 +31,18 @@ func _ready():
 
 var tempclopos=null
 var clopos=null
+var dontMoveIndex=[]
+func switchDiffucult():
+	var difficult=GameManager.selectPuzzleDiffcult
+	#var farmlands=farmland_panel.get_children()
+	#var colorrects=colorrect.get_children()	
+	if difficult==SceneManager.puzzlediffucult.easy:
+		pass
+	elif difficult==SceneManager.puzzlediffucult.middle:
+		pass
+	elif difficult==SceneManager.puzzlediffucult.high:
+		pass
+
 func _process(delta: float) -> void:
 	
 	var moupos=get_viewport().get_mouse_position()
@@ -276,6 +289,8 @@ func get_position_index(pos: Vector2) -> int:
 
 func movetoDeck():
 	for i in range(0,puzzle_pieces.size()):
+		if dontMoveIndex.size()>0 and dontMoveIndex.find(i)==-1:
+			continue
 		var piece=puzzle_pieces[i]
 		piece.position=Vector2(-160,100+i*50)
 	#for piece in puzzle_pieces:

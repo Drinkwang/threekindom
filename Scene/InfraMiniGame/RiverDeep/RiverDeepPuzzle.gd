@@ -62,7 +62,7 @@ void fragment(){
 """
 	conn_material = ShaderMaterial.new()
 	conn_material.shader = conn_shader
-
+	switch_Difficult()
 	#_update_connector(-1)
 
 func _on_water_depth_changed(depth: int) -> void:
@@ -97,7 +97,27 @@ func _get_first_visible_farmland(deep) -> Control:
 	return null
 
 
+func switch_Difficult():
+	var difficult=GameManager.selectPuzzleDiffcult
+	var farmlands=farmland_panel.get_children()
+	var colorrects=colorrect.get_children()	
+	if difficult==SceneManager.puzzlediffucult.easy:
 
+		farmlands[0].show()
+		colorrects[0].show()
+		for i in range(1,3):
+			farmlands[i].hide()
+			colorrects[i].hide()
+	elif difficult==SceneManager.puzzlediffucult.middle:
+		for i in range(0,2):
+			farmlands[i].show()
+			colorrects[i].show()
+		farmlands[2].hide()
+		colorrects[2].hide()	
+	elif difficult==SceneManager.puzzlediffucult.high:
+		for i in range(0,3):
+			farmlands[i].show()
+			colorrects[i].show()
 
 func _update_connector(depth: int) -> void:
 	var target := _get_first_visible_farmland(depth)

@@ -13,7 +13,7 @@ var hearsayBeforeNode=null
 #用于临时储存的值
 var resideValue
 var resideValue2
-var selectPuzzleDiffcult:SceneManager.puzzlediffucult=SceneManager.puzzlediffucult.none
+var selectPuzzleDiffcult:SceneManager.puzzlediffucult=SceneManager.puzzlediffucult.easy
 var PuzzleScene
 enum RspEnum{
 	PAPER=0,
@@ -190,6 +190,7 @@ func initSecretFunc():
 			available_secret_items=CanFindSecretItems[1]
 	
 		elif sav.day==2:
+			sav.todayCanFindItems.append(CanFindSecretItems[1])
 			available_secret_items=CanFindSecretItems[0]
 		elif sav.day==3:
 			available_secret_items=CanFindSecretItems[2]

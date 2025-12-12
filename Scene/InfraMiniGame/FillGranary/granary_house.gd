@@ -12,8 +12,13 @@ func _process(delta: float) -> void:
 	pass
 @onready var detail: Label = $Label3
 
-var currenceValue=0
-var maxValue=-1
+@export var currenceValue=0
+@export var maxValue=-1
+
+
+
+
+
 var numGranary
 var _index
 func initData(index):
@@ -36,7 +41,7 @@ func initData(index):
 var isOverFill=false
 func refreshText():
 	if currenceValue<=maxValue:
-		detail.text=numGranary+"({num1/num2})".format({"num1":currenceValue,"num2":maxValue})
+		detail.text=numGranary+"({num1}/{num2})".format({"num1":currenceValue,"num2":maxValue})
 	else:
 		isOverFill=true
 		detail.text=numGranary+"(已报废)"

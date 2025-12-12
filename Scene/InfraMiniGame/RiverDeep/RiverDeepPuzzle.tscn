@@ -1,12 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bm1gg2igpma53"]
+[gd_scene load_steps=8 format=3 uid="uid://bm1gg2igpma53"]
 
 [ext_resource type="Script" path="res://Scene/InfraMiniGame/RiverDeep/RiverDeepPuzzle.gd" id="1_uvmr4"]
 [ext_resource type="Theme" uid="uid://bklmr3xmk4m5u" path="res://global_theme.tres" id="2_frgxu"]
 [ext_resource type="FontFile" uid="uid://to00njkwmxts" path="res://Asset/Font/1_sim.ttf" id="3_1fufw"]
 [ext_resource type="Texture2D" uid="uid://dpe4rybr273da" path="res://Asset/斧子.png" id="13_o858j"]
 [ext_resource type="FontFile" uid="uid://b8le0fd0ujbqx" path="res://Asset/Font/1_blod.ttf" id="14_27i6h"]
-[ext_resource type="PackedScene" path="res://Scene/InfraMiniGame/RiverDeep/Board.tscn" id="15_hkw7v"]
-[ext_resource type="Script" path="res://Scene/InfraMiniGame/RiverDeep/Board.gd" id="16_6a04r"]
+[ext_resource type="PackedScene" uid="uid://7fqmbolpy7yv" path="res://Scene/InfraMiniGame/RiverDeep/RiverBoard.tscn" id="15_hkw7v"]
 [ext_resource type="PackedScene" uid="uid://cxclptcivv1ck" path="res://Scene/InfraMiniGame/RiverDeep/Farmland.tscn" id="17_gg7u3"]
 
 [node name="Control" type="Control"]
@@ -135,7 +134,6 @@ horizontal_alignment = 1
 
 [node name="Board" parent="." instance=ExtResource("15_hkw7v")]
 position = Vector2(708, 289)
-script = ExtResource("16_6a04r")
 
 [node name="FarmlandPanel" type="Control" parent="."]
 layout_mode = 3

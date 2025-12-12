@@ -51,7 +51,8 @@ func _ready():
 		self.isUnlock=true
 	
 	_initData()
-	SignalManager.changeLanguage.connect(_changeLanguage)			
+	if SignalManager and SignalManager.has_signal("changeLanguage"):
+		SignalManager.changeLanguage.connect(_changeLanguage)			
 	_changeLanguage()
 	pass # Replace with function body.
 

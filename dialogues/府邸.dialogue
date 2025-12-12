@@ -1334,7 +1334,7 @@ do GameManager.getItemAction.call()
 糜竺: 主公，军资已备，粮草无忧，大业可成！
 - 来把仕诡牌吧
 	do openBoardGame()
-- 修建基建【深挖护城河】
+#- 修建基建【深挖护城河】
 - 取消
 
 => END!

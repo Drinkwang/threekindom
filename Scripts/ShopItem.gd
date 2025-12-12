@@ -103,7 +103,8 @@ func _ready():
 	var detail=properties.filter(func(a):return a["name"]=="detail")[0]
 	
 	var _context=tr(db.name)+":"+tr(detail["value"])
-	TooltipManager.register_tooltip(self,_context)
+	if TooltipManager and TooltipManager.has_method("register_tooltip"):
+		TooltipManager.register_tooltip(self,_context)
 
 	if isShop==true:
 		refreshSold()
