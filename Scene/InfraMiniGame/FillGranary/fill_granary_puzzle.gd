@@ -9,6 +9,7 @@ func _ready() -> void:
 	_initTrack()
 	initTargetAndHourse()
 	updatehourse()
+	_updateMainContext()
 #简单初始3 复杂初始5
 #10 12 15
 #1 2 3 随机
@@ -61,9 +62,7 @@ func _on_piece_input_event(viewport: Node, event: InputEvent, shape_idx: int, ho
 		selecthourse=hourse
 @onready var color_rect_5: ColorRect = $tracks/ColorRect5
 @onready var color_rect_6: ColorRect = $tracks/ColorRect6
-@onready var reside_car_label: Label = $resideCar
-@onready var currence_value_label: Label = $currenceValue
-@onready var target_num_label: Label = $TargetNum
+
 
 
 func selectGrannary(select):
@@ -150,12 +149,8 @@ func initTargetAndHourse():
 		resideHorse=15
 		targetValue=700
 		resideValue=800
-	pass
+	target_num_label.text=tr("目标粮食：{allnum}").format({"allnum":targetValue})
 
-func _distrutionGrand(value):
-	resideValue+=0
-	currence_value_label.text=tr("当前粮食：{_num}").format({"_num":resideValue})
-	#更新当前粮食
 
 #场上的车
 
@@ -182,9 +177,57 @@ func updatehourse():
 		
 				var load=next_cart_load()
 				sideTrackCar.append(load)	
+		_updateMainContext()		
 	else:
-		#游戏结束
-		pass
+		var residevalue=getCurrenceValue()
+		if residevalue>=targetValue:
+			winGame()
+		else:
+			loseGame()
+
+func winGame():
+	pass
+
+
+func loseGame():
+	pass
+			
+@onready var txt_detail: Label = $detail
+@onready var reside_car_label: Label = $resideCar
+@onready var currence_value_label: Label = $currenceValue
+@onready var target_num_label: Label = $TargetNum
+
+
+func _updateMainContext():
+	_updateFillGrannary()
+	_updateTxtDetail()
+	_update_reside_car_label()
+
+func _update_reside_car_label():
+	reside_car_label.text=tr("剩余粮车:{_num}").format({"_num":resideHorse})
+
+func _updateTxtDetail():
+	
+	if sideTrackCar.size()>0:
+		var str_comma = ",".join(sideTrackCar)
+		txt_detail.text=tr("接下来运粮车：{s}".format({"s":str_comma}))
+	
+		txt_detail.text=txt_detail.text+"\n"+tr("游戏提示：请选中左边粮车和未满的粮仓")
+	else:
+		txt_detail.text=tr("游戏提示：请选中左边粮车和未满的粮仓")
+func _updateFillGrannary():
+	#获取三个粮仓的粮食合计
+	var residevalue=getCurrenceValue()
+	currence_value_label.text=tr("当前粮食：{s}").format({"s":var_to_str(residevalue)})
+	#更新当前粮食
+
+
+func getCurrenceValue():
+	var residevalue=0
+	for i in granarysArr:
+		if i.isOverFill==false:
+			residevalue+=i.currenceValue
+	return 	residevalue
 
 func refreshHorse():
 	var isrefresh=true

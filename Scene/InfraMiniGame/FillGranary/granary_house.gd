@@ -59,4 +59,4 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 func addValue(_value):
 	currenceValue+=_value
 	refreshText()
-	GameManager.PuzzleScene._distrutionGrand(_value)
+	GameManager.PuzzleScene._updateMainContext()
