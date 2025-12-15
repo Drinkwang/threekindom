@@ -16,7 +16,7 @@ var original_positions: Array = []
 @export var ResetButton:Button
 @export var PiecesContainer:Node2D
 func _ready():
-
+	initGame()
 	ShuffleButton.pressed.connect(_on_shuffle_button_pressed)
 	ResetButton.pressed.connect(_on_reset_button_pressed)
 
@@ -324,7 +324,7 @@ func win():
 	print("拼图完成!")
 	isVictory=true
 	win_rect.show()
-	blink_animation_player.show()
+	blink_rect.show()
 	blink_animation_player.play("win")
 	var finishfunc=func(aniname):
 		blink_rect.hide()
@@ -438,9 +438,16 @@ func initGame():
 
 
 func _on_winAfter_button_down() -> void:
-	if GameManager.selectPuzzleDiffcult==SceneManager.puzzlediffucult.easy:
-		DialogueManager.show_dialogue_balloon(GameManager.sys,"基建铸塔成功")
-	elif GameManager.selectPuzzleDiffcult==SceneManager.puzzlediffucult.middle:
-		pass
-	elif GameManager.selectPuzzleDiffcult==SceneManager.puzzlediffucult.high:
-		pass
+	if GameManager.sav.constructTower<GameManager.selectPuzzleDiffcult:
+		GameManager.sav.constructTower=GameManager.selectPuzzleDiffcult
+		if GameManager.selectPuzzleDiffcult==SceneManager.puzzlediffucult.easy:
+			GameManager.resideValue=1
+		elif GameManager.selectPuzzleDiffcult==SceneManager.puzzlediffucult.middle:
+			GameManager.resideValue=1
+		elif GameManager.selectPuzzleDiffcult==SceneManager.puzzlediffucult.high:
+			GameManager.resideValue=1
+	else:
+		#无奖励
+		GameManager.resideValue=0
+	self.hide()
+	DialogueManager.show_dialogue_balloon(GameManager.sys,"基建铸塔成功")

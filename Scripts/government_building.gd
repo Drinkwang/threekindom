@@ -1312,7 +1312,8 @@ func cardLose():
 	GameManager.sav.hp=0
 
 @onready var puzzle_game: Control = $CanvasLayer/puzzleGame
-
+func loseGame():
+	puzzle_game.loseGame()
 func confirmBuild():
 	GameManager.sav.coin-=GameManager.puzzleCostMoney
 	GameManager.sav.labor_force-=GameManager.puzzleCostPeople

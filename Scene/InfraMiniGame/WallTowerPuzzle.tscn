@@ -328,6 +328,7 @@ horizontal_alignment = 1
 
 [node name="winRect" type="ColorRect" parent="."]
 visible = false
+z_index = 4096
 layout_mode = 0
 offset_right = 1942.0
 offset_bottom = 1254.0

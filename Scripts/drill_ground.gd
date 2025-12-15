@@ -934,6 +934,8 @@ func confirmBuild():
 		DialogueManager.show_example_dialogue_balloon(GameManager.sys,"基建筑墙教程")
 		GameManager.sav.have_event["基建修塔教程"]=true			
 	puzzle_game.initGame()
+func loseGame():
+	puzzle_game.loseGame()
 
 func loseTrain():
 	pass

@@ -460,7 +460,8 @@ func confirmBuild():
 		GameManager.sav.have_event["基建运河教程"]=true		
 	
 	puzzle_game.initGame()
-	
+func loseGame():
+	puzzle_game.loseGame()	
 func openBoardDialogue():
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"进入仕诡牌游戏")
 		
