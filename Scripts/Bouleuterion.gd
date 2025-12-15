@@ -1,6 +1,6 @@
 extends baseComponent
 
-
+class_name  bouleuterion
 @onready var control =$CanvasBook/Control
 @onready var yishimianban = $CanvasBook/yishimianban
 
@@ -450,10 +450,20 @@ func boardVictory():
 func openBoardGame():
 	GameManager.selectBoardCharacter=boardType.boardCharacter.chenden
 	GameManager.showBoardGameDialogue()
+@onready var puzzle_game: Control = $CanvasBook/puzzleGame
 	
-
+func confirmBuild():
+	GameManager.sav.coin-=GameManager.puzzleCostMoney
+	GameManager.sav.labor_force-=GameManager.puzzleCostPeople
+	if GameManager.sav.have_event["基建运河教程"]==false:
+		DialogueManager.show_example_dialogue_balloon(GameManager.sys,"基建挖深运河教程")
+		GameManager.sav.have_event["基建运河教程"]=true		
+	
+	puzzle_game.initGame()
+	
 func openBoardDialogue():
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"进入仕诡牌游戏")
 		
-	
+func returnMain():
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"来把仕诡牌")		
 @onready var items_in_scene: Node2D = $itemsInScene

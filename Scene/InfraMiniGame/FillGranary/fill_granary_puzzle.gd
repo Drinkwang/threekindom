@@ -190,7 +190,7 @@ func winGame():
 
 
 func loseGame():
-	pass
+	DialogueManager.show_dialogue_balloon(GameManager.sys,"基建运粮失败")
 			
 @onready var txt_detail: Label = $detail
 @onready var reside_car_label: Label = $resideCar

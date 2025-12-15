@@ -1303,8 +1303,22 @@ func boardVictory():
 
 	
 
+func updateInfrastruture():
+	GameManager.sav.have_event["基建项目开启"]=true 
 
 
 #黑暗游戏输了游戏	
 func cardLose():
 	GameManager.sav.hp=0
+
+@onready var puzzle_game: Control = $CanvasLayer/puzzleGame
+
+func confirmBuild():
+	GameManager.sav.coin-=GameManager.puzzleCostMoney
+	GameManager.sav.labor_force-=GameManager.puzzleCostPeople
+	if GameManager.sav.have_event["基建运粮教程"]==false:
+		DialogueManager.show_example_dialogue_balloon(GameManager.sys,"基建运粮车教程")
+		GameManager.sav.have_event["基建运粮教程"]=true	
+	puzzle_game.initGame()
+func returnMain():
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"来把仕诡牌")	

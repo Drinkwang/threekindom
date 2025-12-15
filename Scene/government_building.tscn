@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://dbk6u8kc33kq2"]
+[gd_scene load_steps=40 format=3 uid="uid://dbk6u8kc33kq2"]
 
 [ext_resource type="Script" path="res://Scripts/government_building.gd" id="1_xncth"]
 [ext_resource type="Resource" uid="uid://cqlt2sgkuk3na" path="res://dialogues/府邸.dialogue" id="2_yngd1"]
@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://bb3edpq2iva10" path="res://Asset/人物/陶商陶应.png" id="13_f851a"]
 [ext_resource type="PackedScene" uid="uid://ervc6220fre7" path="res://Scene/prefab/fspanel.tscn" id="15_wrxcl"]
 [ext_resource type="PackedScene" uid="uid://ghiim2lkqkbe" path="res://Scene/prefab/propertyPanel.tscn" id="16_rw7iu"]
+[ext_resource type="PackedScene" uid="uid://d1e8i71sm0pf1" path="res://Scene/InfraMiniGame/FillGranary/FillGranaryPuzzle.tscn" id="18_5cnus"]
 [ext_resource type="PackedScene" uid="uid://bvlh16yfcevdj" path="res://Scene/InfraMiniGame/WallTowerPuzzle.tscn" id="18_vel0s"]
 [ext_resource type="Texture2D" uid="uid://ywdj7u3flcmu" path="res://Asset/人物/假糜贞.png" id="20_u361t"]
 [ext_resource type="Texture2D" uid="uid://mb7wj00b7s8p" path="res://Asset/fx/zhangyan_Frames/Slash2_color2_frame1.png" id="22_u8c3t"]
@@ -195,6 +196,13 @@ contextEX = "
 titleEX = "宴会完美举办成功！"
 dialogue_resource = ExtResource("2_yngd1")
 clickEvent = "宴会结束"
+
+[node name="puzzleGame" parent="CanvasLayer" instance=ExtResource("18_5cnus")]
+visible = false
+offset_left = -2.0
+offset_top = -14.0
+offset_right = -2.0
+offset_bottom = -14.0
 
 [node name="sendGiftPanel" parent="." instance=ExtResource("9_2k5hb")]
 visible = false

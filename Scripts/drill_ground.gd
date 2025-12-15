@@ -1,5 +1,5 @@
 extends baseComponent
-
+class_name  drill_ground
 @onready var control= $Control2
 @onready var oldsoildereat = $CanvasInventory/oldsoildereat
 @onready var train_panel = $CanvasInventory/trainPanel
@@ -923,5 +923,19 @@ func winReward(isFirst,generalName):
 	GameManager.trainResult==SceneManager.trainResult.none
 	GameManager.trainGeneral=""	
 
+
+@onready var puzzle_game: Control = $CanvasInventory/puzzleGame
+
+func confirmBuild():
+	GameManager.sav.coin-=GameManager.puzzleCostMoney
+	GameManager.sav.labor_force-=GameManager.puzzleCostPeople
+	
+	if GameManager.sav.have_event["基建修塔教程"]==false:
+		DialogueManager.show_example_dialogue_balloon(GameManager.sys,"基建筑墙教程")
+		GameManager.sav.have_event["基建修塔教程"]=true			
+	puzzle_game.initGame()
+
 func loseTrain():
 	pass
+func returnMain():
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"来把仕诡牌")	

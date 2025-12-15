@@ -16,14 +16,7 @@ var original_positions: Array = []
 @export var ResetButton:Button
 @export var PiecesContainer:Node2D
 func _ready():
-	# 确保有源图片
-	switchDiffucult()#可修改图片
-	if source_texture:
-		create_puzzle()
-	else:
-		print("请设置源图片")
-	
-	# 连接UI按钮信号 - Godot 4 语法
+
 	ShuffleButton.pressed.connect(_on_shuffle_button_pressed)
 	ResetButton.pressed.connect(_on_reset_button_pressed)
 
@@ -37,11 +30,11 @@ func switchDiffucult():
 	#var farmlands=farmland_panel.get_children()
 	#var colorrects=colorrect.get_children()	
 	if difficult==SceneManager.puzzlediffucult.easy:
-		pass
+		initRandomBase()
 	elif difficult==SceneManager.puzzlediffucult.middle:
 		pass
 	elif difficult==SceneManager.puzzlediffucult.high:
-		pass
+		initRandomRotate()
 
 func _process(delta: float) -> void:
 	
@@ -81,6 +74,7 @@ func _process(delta: float) -> void:
 			
 	pass
 var visualClubPos=null
+var isVictory=false
 # 拆两个函数方便维护
 func _add_grid_background():
 	var grid_bg = NinePatchRect.new()
@@ -222,7 +216,7 @@ var selectPiece=null
 # 处理拼图块输入事件 - Godot 4 参数顺序变化
 func _on_piece_input_event(viewport: Node, event: InputEvent, shape_idx: int, piece: Sprite2D):
 	#print("haveClickEvent")
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT and selectPiece==null and canclick==true:
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT and selectPiece==null and canclick==true and isVictory==false:
 		#try_move_piece(piece)#选中图块，跟手，tick阶段判断拼图和场上块接近么接近，发挥效果，并拼上
 		if selectPiece==null:
 			selectPiece=piece
@@ -251,27 +245,7 @@ func checkMinPos(opos):
 	else:
 		return null
 
-# 尝试移动拼图块
-#func try_move_piece(piece: Sprite2D):
-	#var piece_index = puzzle_pieces.find(piece)
-	#if piece_index == -1:
-		#return
-		#
-	#var piece_pos = piece.position
-	#var empty_pos = original_positions[empty_slot_index]
-	#
-	## 检查是否与空位相邻
-	#if is_adjacent(piece_pos, empty_pos):
-		## 交换位置
-		#var target_pos = empty_pos
-		#empty_pos = piece_pos
-		#piece.position = target_pos
-		#
-		## 更新空位索引
-		#empty_slot_index = get_position_index(piece_pos)
-		#
-		## 检查是否完成拼图
-		##check_puzzle_complete()
+
 
 # 检查两个位置是否相邻
 func is_adjacent(pos1: Vector2, pos2: Vector2) -> bool:
@@ -289,7 +263,7 @@ func get_position_index(pos: Vector2) -> int:
 
 func movetoDeck():
 	for i in range(0,puzzle_pieces.size()):
-		if dontMoveIndex.size()>0 and dontMoveIndex.find(i)==-1:
+		if dontMoveIndex.size()>0 and dontMoveIndex.find(i)!=-1:
 			continue
 		var piece=puzzle_pieces[i]
 		piece.position=Vector2(-160,100+i*50)
@@ -317,21 +291,47 @@ func movetoDeck():
 	#return adjacent
 
 func initRandomRotate():
-	pass
+	for i in puzzle_pieces:
+		var randi=randi_range(0,3)
+		
+		puzzle_pieces[i].rotation=randi*90
 	
 func initRandomBase():
-	pass
+	
+	var numbers: Array = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+	numbers.shuffle()  # 随机打乱数组顺序
+	#return numbers.slice(0, 3)  # 取前 3 个元素
+	dontMoveIndex=numbers.slice(0, 3)  # 取前 3 个元素
 
+
+var isrotate=false
 # 检查拼图是否完成
 func check_puzzle_complete():
 	for i in range(puzzle_pieces.size()):
 		if puzzle_pieces[i].position != original_positions[i] or puzzle_pieces[i].rotation!=0:
 			return
 			
-	# 所有拼图块都在正确位置
-	print("拼图完成!")
+	win()
 	# 可以在这里添加完成效果或回调
+	
+	
+@onready var win_rect: ColorRect = $winRect
+@onready var blink_rect: TextureRect = $winRect/blinkRect
+	
+@onready var blink_animation_player: AnimationPlayer = $winRect/blinkRect/AnimationPlayer
+	
+func win():
+	print("拼图完成!")
+	isVictory=true
+	win_rect.show()
+	blink_animation_player.show()
+	blink_animation_player.play("win")
+	var finishfunc=func(aniname):
+		blink_rect.hide()
+	blink_animation_player.animation_finished.connect(finishfunc)	
+	
 
+	SoundManager.play_sound(sounds.GOOD_THING)
 # UI按钮功能 - Godot 4 信号连接方法
 func _on_shuffle_button_pressed():
 	movetoDeck()
@@ -374,23 +374,25 @@ func _update_bg_color(target_color: Color):
 
 
 func _on_rotate_button_button_down() -> void:
-	if selectPiece != null:
+	if selectPiece != null and isrotate==false and isVictory==false:
 		var tween = get_tree().create_tween()
 		tween.tween_property(
 			selectPiece,
 			"rotation_degrees", 
-			fposmod(selectPiece.rotation_degrees + 90.0, 360.0),
+			selectPiece.rotation_degrees + 90.0,
 			0.25
 		).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-		
+		isrotate=true
 		var _on_rotation_finished=func():
+			selectPiece.rotation_degrees = fposmod(selectPiece.rotation_degrees, 360.0)
 			check_puzzle_complete()
+			isrotate=false
 		tween.finished.connect(_on_rotation_finished)
 	
 var canclick=true
 func _input(event: InputEvent) -> void:
 	var isstop:bool=true
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed and canclick==true:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed and canclick==true and isVictory==false:
 		if selectPiece!=null:
 	
 
@@ -400,7 +402,7 @@ func _input(event: InputEvent) -> void:
 		
 				tempclopos=null
 
-				set_piece_z_index(selectPiece, 0)
+				set_piece_z_index(selectPiece, 100)
 				selectPiece.position = clopos#+Vector2(648,248)
 				selectPiece=null
 				canclick=false
@@ -409,26 +411,36 @@ func _input(event: InputEvent) -> void:
 				check_puzzle_complete()
 		#判断离所有方格，且小于50 则强行变位
 
-	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed and selectPiece!=null:
-		_on_rotate_button_button_down()
-		#set_piece_z_index(selectPiece, 0)
-		#selectPiece=null
-		#tempclopos=null
-		#
-		#if visualClubPos!=null:
-			#visualClubPos.queue_free()
-#func disable_input_recursively(node: Node):
-	## 只在物理碰撞对象上禁用输入拾取（Area2D 等）
-	#if node is CollisionObject2D:
-		#node.input_pickable = false
-		#if node is Area2D:
-			#node.monitoring = false
-			#node.monitorable = false
-	#
-	## Control 节点：忽略鼠标
-	#if node is Control:
-		#node.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	#
-	## 递归所有子节点
-	#for child in node.get_children():
-		#disable_input_recursively(child)
+	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed and selectPiece!=null and isVictory==false:
+		#_on_rotate_button_button_down()
+		set_piece_z_index(selectPiece, 100)
+		selectPiece=null
+		tempclopos=null
+		
+		if visualClubPos!=null:
+			visualClubPos.queue_free()
+func loseGame():
+	DialogueManager.show_dialogue_balloon(GameManager.sys,"基建铸塔失败")
+	self.hide()
+
+func initGame():
+	# 确保有源图片
+	self.show()
+	switchDiffucult()#可修改图片
+	if source_texture:
+		create_puzzle()
+	else:
+		print("请设置源图片")
+	if GameManager.sav.have_event["基建修塔教程"]==false:
+		GameManager.sav.have_event["基建修塔教程"]=true
+		DialogueManager.show_example_dialogue_balloon(GameManager.sys,"基建筑墙教程")	
+	# 连接UI按钮信号 - Godot 4 语法
+
+
+func _on_winAfter_button_down() -> void:
+	if GameManager.selectPuzzleDiffcult==SceneManager.puzzlediffucult.easy:
+		DialogueManager.show_dialogue_balloon(GameManager.sys,"基建铸塔成功")
+	elif GameManager.selectPuzzleDiffcult==SceneManager.puzzlediffucult.middle:
+		pass
+	elif GameManager.selectPuzzleDiffcult==SceneManager.puzzlediffucult.high:
+		pass

@@ -270,7 +270,26 @@ var SIDEQUEST_MAP:Dictionary={
 	"开启比武训练":false,
 	"比武训练教程":false,
 	"解锁高级成就":false,
-	"温侯降伏臧霸":false
+	"温侯降伏臧霸":false,
+	"基建项目开启":false,
+	"基建运河教程":false,
+	"基建修塔教程":false,
+	"基建运粮教程":false,
+	
+	
+	#待注释
+	"运粮初级完成":false,
+	"运粮中级完成":false,
+	"运粮高级完成":false,
+	
+	"筑塔初级完成":false,
+	"筑塔中级完成":false,
+	"筑塔高级完成":false,	
+	
+	"挖河初级完成":false,
+	"挖河中级完成":false,
+	"挖河高级完成":false,		
+	
 }
 
 #0 小试牛刀开启 1小试牛刀通过 2 对局试炼开启 3对局试验通过 4 诡秘怪谈开启 5诡秘怪谈通过
@@ -289,6 +308,10 @@ var SIDEQUEST_MAP:Dictionary={
 @export var chendenSideWait=-1
 @export var caobaoSideWait=-1
 
+
+@export var constructRiver=0
+@export var constructTower=0
+@export var constructGrain=0
 func ensure_default_fields():
 	var default_data = saveData.new().have_event
 	for key in default_data.keys():
@@ -308,7 +331,7 @@ func testFunc():
 
 GameManager.RspEnum.SCISSORS:{"name": "张飞", "level": 1, "max_level": 10, "randominit": -1,"isBattle":false},
 
-GameManager.RspEnum.PAPER:{"name": "赵云", "level": 1, "max_level": 10, "randominit": -1,"isBattle":false}
+GameManager.RspEnum.PAPER:{"name": "无名", "level": 1, "max_level": 10, "randominit": -1,"isBattle":false}
 }
 
 

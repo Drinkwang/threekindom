@@ -137,3 +137,8 @@ func _update_connector(depth: int) -> void:
 		target.material = conn_material
 		target.color = Color(0.6, 0.6, 0.6, 1.0)
 		pass
+
+
+func loseGame():
+	DialogueManager.show_dialogue_balloon(GameManager.sys,"基建挖河失败")
+	self.hide()

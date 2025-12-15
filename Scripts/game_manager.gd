@@ -1379,3 +1379,33 @@ func enterNormal():
 	PanelManager.Fade_Blank(Color.RED,0.5,PanelManager.fadeType.fadeOut)
 	SoundManager.stop_music()
 	GameManager.resumeMusic()	
+
+var puzzleCostMoney=0
+var puzzleCostPeople=0
+func doContructtion(diff):
+	if diff==0:
+		GameManager.selectPuzzleDiffcult=scenemanager.puzzlediffucult.easy
+		puzzleCostMoney=100
+		puzzleCostPeople=50
+	elif diff==1:
+		GameManager.selectPuzzleDiffcult=scenemanager.puzzlediffucult.middle
+		puzzleCostMoney=150
+		puzzleCostPeople=75
+	elif diff==2:
+		GameManager.selectPuzzleDiffcult=scenemanager.puzzlediffucult.high
+		puzzleCostMoney=150
+		puzzleCostPeople=100
+	DialogueManager.show_example_dialogue_balloon(sys,"基建选项2")
+
+func resetConstructTutorial():
+	if GameManager.currenceScene is government_building:
+		GameManager.sav.have_event["基建运粮教程"]=false
+	elif currenceScene is bouleuterion:
+		GameManager.sav.have_event["基建运河教程"]=false
+	elif currenceScene is drill_ground:
+		GameManager.sav.have_event["基建修塔教程"]=false
+	pass
+
+
+func cancelContructtion():
+	currenceScene.returnMain()

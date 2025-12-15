@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://v5b54ln6hhwc"]
+[gd_scene load_steps=34 format=3 uid="uid://v5b54ln6hhwc"]
 
 [ext_resource type="Script" path="res://Scripts/Bouleuterion.gd" id="1_q6noc"]
 [ext_resource type="Resource" uid="uid://bte38wl3etklk" path="res://dialogues/灵堂.dialogue" id="2_56kjn"]
@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://dqpklssxni160" path="res://Scene/prefab/clickBlock.tscn" id="15_2mi3t"]
 [ext_resource type="PackedScene" uid="uid://bv5ycsl0a50uq" path="res://Scene/prefab/btnList.tscn" id="16_ba2uq"]
 [ext_resource type="FontFile" uid="uid://qv74ebpr4i31" path="res://Asset/Font/VonwaonBitmap-16px.ttf" id="17_dfqgc"]
+[ext_resource type="PackedScene" uid="uid://bm1gg2igpma53" path="res://Scene/InfraMiniGame/RiverDeep/RiverDeepPuzzle.tscn" id="25_sk32b"]
 
 [sub_resource type="Animation" id="Animation_vtpf1"]
 length = 0.001
@@ -285,6 +286,14 @@ context = "士族生存法则
 5.士族只有牢牢把控资源才能得到他人的信任
 6.如果一个地方存在本地/士族，本地士族如果吞并不成就会将外来士族干掉，士族对外论派，对内论系，当士族解决掉外部矛盾时，自身会因为内部矛盾分成多股势力"
 dialogue_resource = ExtResource("2_56kjn")
+
+[node name="puzzleGame" parent="CanvasBook" instance=ExtResource("25_sk32b")]
+visible = false
+z_index = 4096
+offset_left = -2.0
+offset_top = -14.0
+offset_right = -2.0
+offset_bottom = -14.0
 
 [node name="yishimianban" parent="CanvasBook" instance=ExtResource("11_gm57k")]
 visible = false

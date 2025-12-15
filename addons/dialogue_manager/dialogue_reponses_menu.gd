@@ -74,6 +74,8 @@ var responses: Array = []:
 						elif (characterScore<2 and mode==boardType.boardMode.middle) or (characterScore<4 and mode==boardType.boardMode.high):
 							response.text+=tr("(未解锁)")
 						#根据角色获得分数，判断 score 如果score怎么样，那么会变成什么样	
+					if 	"[infra=true]" in response.text:#暂时无用
+						pass
 					if 	"[istrain=true]" in response.text:
 						response.text = response.text.replace("[istrain=true]", "")
 						var mode=0

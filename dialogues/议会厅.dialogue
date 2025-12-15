@@ -288,7 +288,9 @@ do GameManager.getItemAction.call()
 - 来把仕诡牌吧
 	do openBoardGame()
 
-#- 修建基建【兴建粮仓】
+- 修建基建【深挖护城河】 [if GameManager.sav.have_event["基建项目开启"]==true]
+	陈登: 主公，我虽对大兴木土多有顾虑，恐扰民心，但深挖护城河乃某亲献之策！护城固守之余，还可引水灌溉农田，一举两得，何乐而不为？ 
+	do GameManager.selectPuzzleLevel()
 - 取消
 
 => END!

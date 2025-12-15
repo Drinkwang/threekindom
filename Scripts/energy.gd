@@ -108,9 +108,10 @@ func _on_click_hero_button_down():
 @onready var label: Label = $Label
 
 func _on_timer_timeout() -> void:
-	if GameManager.sav.remaining_seconds >= 0:
-		GameManager.sav.remaining_seconds -= 1
-		_update_label()
+	pass
+	#if GameManager.sav.remaining_seconds >= 0:
+	#	GameManager.sav.remaining_seconds -= 1
+	#	_update_label()
 func _update_label() -> void:
 	if not label:
 		return

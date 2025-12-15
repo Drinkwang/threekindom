@@ -249,8 +249,6 @@ func _processSuccussCircle(coin,soilder):
 
 var battleCircleClone:Array;
 
-func updateInfrastruture():
-	pass
 
 func _changeCircle(rewardGet):
 	#获取的reward去由高到底转换
