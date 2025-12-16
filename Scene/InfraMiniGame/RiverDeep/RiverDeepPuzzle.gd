@@ -62,8 +62,31 @@ void fragment(){
 """
 	conn_material = ShaderMaterial.new()
 	conn_material.shader = conn_shader
-	switch_Difficult()
+	#switch_Difficult()
 	#_update_connector(-1)
+@onready var timer: Timer = $Timer
+
+
+
+
+@onready var resideTimeLabel: Label = $PanelContainer/Label2
+
+func _on_timeout():
+	if isvictory==true:
+		return
+	time_left -= 1
+	resideTimeLabel.text = tr("剩余时间:{s}秒").format({"s":time_left})  # 每秒更新UI（极省性能）
+	if time_left <= 0:
+		timer.stop()
+		loseGame()  # 超时逻辑：失败、显示星星
+var time_left=0
+func initGame():
+	switch_Difficult()
+	timer.wait_time = 1.0
+	timer.one_shot = false  # 重复触发
+	time_left=60
+	timer.timeout.connect(_on_timeout)  # 连接信号（编辑器也可连）
+	timer.start()  # 启动（autostart=true也可）
 
 func _on_water_depth_changed(depth: int) -> void:
 	var all_done := true
@@ -77,8 +100,24 @@ func _on_water_depth_changed(depth: int) -> void:
 	if all_done:
 		_show_victory()
 
+@onready var win_rect: ColorRect = $winRect
+@onready var blink_rect: TextureRect = $winRect/blinkRect
+@onready var blink_animation_player: AnimationPlayer = $winRect/blinkRect/AnimationPlayer
+
+var isvictory=false
 func _show_victory() -> void:
-	victory_label.visible = true
+	isvictory=true
+	timer.stop()
+	win_rect.show()
+	blink_rect.show()
+	blink_animation_player.play("win")
+	var finishfunc=func(aniname):
+		blink_rect.hide()
+	blink_animation_player.animation_finished.connect(finishfunc)	
+	
+
+	SoundManager.play_sound(sounds.GOOD_THING)	
+	
 @onready var colorrect: Control = $colorrect
 @onready var color_rect_1: ColorRect = $colorrect/ColorRect3
 @onready var color_rect_2: ColorRect = $colorrect/ColorRect4
@@ -138,7 +177,43 @@ func _update_connector(depth: int) -> void:
 		target.color = Color(0.6, 0.6, 0.6, 1.0)
 		pass
 
+@onready var lose_rect: ColorRect = $LoseRect
 
 func loseGame():
+	lose_rect.show()
+	timer.stop()
+
+func _on_afterWin_button_down() -> void:
+	if GameManager.sav.constructRiver<GameManager.selectPuzzleDiffcult:
+		var tc=0
+		if GameManager.sav.constructRiver==1:
+			tc=10
+		elif GameManager.sav.constructRiver==2:
+			tc=20
+		elif GameManager.sav.constructRiver==3:
+			tc=30
+		
+		if GameManager.selectPuzzleDiffcult==SceneManager.puzzlediffucult.easy:
+			GameManager.resideValue=10
+		elif GameManager.selectPuzzleDiffcult==SceneManager.puzzlediffucult.middle:
+			GameManager.resideValue=20
+		elif GameManager.selectPuzzleDiffcult==SceneManager.puzzlediffucult.high:
+			GameManager.resideValue=30
+		var allDayget=GameManager.resideValue-tc
+		GameManager.sav.labor_DayGet+=allDayget
+		GameManager.sav.constructTower=GameManager.selectPuzzleDiffcult
+
+	else:
+		#无奖励
+		GameManager.resideValue=0
+	self.hide()
+	DialogueManager.show_dialogue_balloon(GameManager.sys,"基建挖河成功")
+
+
+func _on_lose_button_down() -> void:
 	DialogueManager.show_dialogue_balloon(GameManager.sys,"基建挖河失败")
 	self.hide()
+
+
+func _on_giveup_button_down() -> void:
+	DialogueManager.show_dialogue_balloon(GameManager.sys,"放弃基建")

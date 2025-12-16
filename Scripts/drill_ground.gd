@@ -935,7 +935,7 @@ func confirmBuild():
 		GameManager.sav.have_event["基建修塔教程"]=true			
 	puzzle_game.initGame()
 func loseGame():
-	puzzle_game.loseGame()
+	puzzle_game._on_lose_button_down()
 
 func loseTrain():
 	pass

@@ -1313,7 +1313,7 @@ func cardLose():
 
 @onready var puzzle_game: Control = $CanvasLayer/puzzleGame
 func loseGame():
-	puzzle_game.loseGame()
+	puzzle_game.loseGameBtn()
 func confirmBuild():
 	GameManager.sav.coin-=GameManager.puzzleCostMoney
 	GameManager.sav.labor_force-=GameManager.puzzleCostPeople

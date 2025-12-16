@@ -461,7 +461,7 @@ func confirmBuild():
 	
 	puzzle_game.initGame()
 func loseGame():
-	puzzle_game.loseGame()	
+	puzzle_game._on_lose_button_down()	
 func openBoardDialogue():
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"进入仕诡牌游戏")
 		

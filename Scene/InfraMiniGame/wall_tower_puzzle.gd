@@ -15,10 +15,16 @@ var original_positions: Array = []
 @export var ShuffleButton:Button
 @export var ResetButton:Button
 @export var PiecesContainer:Node2D
+
+@onready var timer: Timer = $Timer
+
 func _ready():
-	initGame()
+	#initGame()
 	ShuffleButton.pressed.connect(_on_shuffle_button_pressed)
 	ResetButton.pressed.connect(_on_reset_button_pressed)
+
+
+
 
 
 
@@ -322,6 +328,7 @@ func check_puzzle_complete():
 	
 func win():
 	print("拼图完成!")
+	timer.stop()
 	isVictory=true
 	win_rect.show()
 	blink_rect.show()
@@ -362,6 +369,9 @@ func _on_giveup_button_down() -> void:
 	tween = create_tween()
 	tween.tween_property(texture_button,"scale",Vector2(1.2,1.2),0.05)
 	tween.tween_property(texture_button,"scale",Vector2(1,1),0.05)
+	
+	DialogueManager.show_dialogue_balloon(GameManager.sys,"放弃基建")	
+		
 	#tween.tween_property(texture_button,"scale",1.0,1)
 var tween: Tween  # 用于平滑颜色过渡
 @onready var texture_button: TextureButton = $SettleButton
@@ -420,9 +430,13 @@ func _input(event: InputEvent) -> void:
 		if visualClubPos!=null:
 			visualClubPos.queue_free()
 func loseGame():
-	DialogueManager.show_dialogue_balloon(GameManager.sys,"基建铸塔失败")
-	self.hide()
+	lose_rect.show()
+	timer.stop()
 
+
+@onready var lose_rect: ColorRect = $LoseRect
+
+var time_left=0
 func initGame():
 	# 确保有源图片
 	self.show()
@@ -435,19 +449,38 @@ func initGame():
 		GameManager.sav.have_event["基建修塔教程"]=true
 		DialogueManager.show_example_dialogue_balloon(GameManager.sys,"基建筑墙教程")	
 	# 连接UI按钮信号 - Godot 4 语法
+	timer.wait_time = 1.0
+	timer.one_shot = false  # 重复触发
+	time_left=60
+	timer.timeout.connect(_on_timeout)  # 连接信号（编辑器也可连）
+	timer.start()  # 启动（autostart=true也可）
+@onready var resideTimeLabel: Label = $PanelContainer/Label2
 
+func _on_timeout():
+	if isVictory==true:
+		return
+	time_left -= 1
+	resideTimeLabel.text = tr("剩余时间:{s}秒").format({"s":time_left})  # 每秒更新UI（极省性能）
+	if time_left <= 0:
+		timer.stop()
+		loseGame()  # 超时逻辑：失败、显示星星
 
 func _on_winAfter_button_down() -> void:
 	if GameManager.sav.constructTower<GameManager.selectPuzzleDiffcult:
 		GameManager.sav.constructTower=GameManager.selectPuzzleDiffcult
 		if GameManager.selectPuzzleDiffcult==SceneManager.puzzlediffucult.easy:
-			GameManager.resideValue=1
+			GameManager.resideValue=6
 		elif GameManager.selectPuzzleDiffcult==SceneManager.puzzlediffucult.middle:
-			GameManager.resideValue=1
+			GameManager.resideValue=8
 		elif GameManager.selectPuzzleDiffcult==SceneManager.puzzlediffucult.high:
-			GameManager.resideValue=1
+			GameManager.resideValue=10
 	else:
 		#无奖励
 		GameManager.resideValue=0
 	self.hide()
 	DialogueManager.show_dialogue_balloon(GameManager.sys,"基建铸塔成功")
+
+
+func _on_lose_button_down() -> void:
+	DialogueManager.show_dialogue_balloon(GameManager.sys,"基建铸塔失败")
+	self.hide()

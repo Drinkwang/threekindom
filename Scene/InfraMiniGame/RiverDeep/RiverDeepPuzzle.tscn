@@ -1,12 +1,77 @@
-[gd_scene load_steps=8 format=3 uid="uid://bm1gg2igpma53"]
+[gd_scene load_steps=40 format=3 uid="uid://bm1gg2igpma53"]
 
 [ext_resource type="Script" path="res://Scene/InfraMiniGame/RiverDeep/RiverDeepPuzzle.gd" id="1_uvmr4"]
 [ext_resource type="Theme" uid="uid://bklmr3xmk4m5u" path="res://global_theme.tres" id="2_frgxu"]
 [ext_resource type="FontFile" uid="uid://to00njkwmxts" path="res://Asset/Font/1_sim.ttf" id="3_1fufw"]
+[ext_resource type="Texture2D" uid="uid://cd5aooi3ctycq" path="res://Asset/particle/2/vnbvx_1.png" id="8_1mq5s"]
+[ext_resource type="Texture2D" uid="uid://b3gcl741a44k4" path="res://Asset/particle/2/vnbvx_2.png" id="9_1s3jo"]
+[ext_resource type="Texture2D" uid="uid://dgsrglc1h3ehs" path="res://Asset/particle/2/vnbvx_3.png" id="10_vfbkq"]
+[ext_resource type="Texture2D" uid="uid://dcmy4wih2o3kk" path="res://Asset/particle/2/vnbvx_4.png" id="11_u5qvv"]
+[ext_resource type="Texture2D" uid="uid://cw01sgqmdablu" path="res://Asset/particle/2/vnbvx_5.png" id="12_dw4oq"]
 [ext_resource type="Texture2D" uid="uid://dpe4rybr273da" path="res://Asset/斧子.png" id="13_o858j"]
+[ext_resource type="Texture2D" uid="uid://cvedet12qfaff" path="res://Asset/particle/2/vnbvx_6.png" id="13_swogf"]
+[ext_resource type="Texture2D" uid="uid://cn8gfnnxj2g26" path="res://Asset/particle/2/vnbvx_7.png" id="14_3jw03"]
 [ext_resource type="FontFile" uid="uid://b8le0fd0ujbqx" path="res://Asset/Font/1_blod.ttf" id="14_27i6h"]
+[ext_resource type="Texture2D" uid="uid://bfw3txo3h2d47" path="res://Asset/particle/2/vnbvx_8.png" id="15_hfl52"]
 [ext_resource type="PackedScene" uid="uid://7fqmbolpy7yv" path="res://Scene/InfraMiniGame/RiverDeep/RiverBoard.tscn" id="15_hkw7v"]
+[ext_resource type="Texture2D" uid="uid://dsubrb1s7fd0l" path="res://Asset/particle/2/vnbvx_9.png" id="16_jfhkd"]
+[ext_resource type="Texture2D" uid="uid://1te3owxrs7p3" path="res://Asset/particle/2/vnbvx_10.png" id="17_ck6q1"]
 [ext_resource type="PackedScene" uid="uid://cxclptcivv1ck" path="res://Scene/InfraMiniGame/RiverDeep/Farmland.tscn" id="17_gg7u3"]
+[ext_resource type="Texture2D" uid="uid://b50bq8o4gj7fm" path="res://Asset/particle/2/vnbvx_11.png" id="18_8nbaw"]
+[ext_resource type="Texture2D" uid="uid://c5dqowuemor4v" path="res://Asset/particle/2/vnbvx_12.png" id="19_ij4ps"]
+[ext_resource type="Texture2D" uid="uid://deyxqm3u0k2gd" path="res://Asset/particle/2/vnbvx_13.png" id="20_wo4sf"]
+[ext_resource type="Texture2D" uid="uid://ck7bo3di13qjt" path="res://Asset/particle/2/vnbvx_14.png" id="21_7ilww"]
+[ext_resource type="Texture2D" uid="uid://bre6e3sasavl6" path="res://Asset/particle/2/vnbvx_15.png" id="22_adlnu"]
+[ext_resource type="Texture2D" uid="uid://bl1i3swlxhhbs" path="res://Asset/particle/2/vnbvx_16.png" id="23_0sxbu"]
+[ext_resource type="Texture2D" uid="uid://c67ko07lr14ns" path="res://Asset/particle/2/vnbvx_17.png" id="24_t0xi7"]
+[ext_resource type="Texture2D" uid="uid://gv33ldjtkpgn" path="res://Asset/particle/2/vnbvx_18.png" id="25_5tlno"]
+[ext_resource type="Texture2D" uid="uid://dj6n331ktr5v6" path="res://Asset/particle/2/vnbvx_19.png" id="26_pqvmj"]
+[ext_resource type="Texture2D" uid="uid://cx6ih11314lk5" path="res://Asset/particle/2/vnbvx_20.png" id="27_wgntf"]
+[ext_resource type="Texture2D" uid="uid://dgmttpsuayowi" path="res://Asset/particle/2/vnbvx_21.png" id="28_nmk4r"]
+[ext_resource type="Texture2D" uid="uid://xb7yic2dti46" path="res://Asset/particle/2/vnbvx_22.png" id="29_w3vyy"]
+[ext_resource type="Texture2D" uid="uid://bd3mfoewp785h" path="res://Asset/particle/2/vnbvx_23.png" id="30_4m3pd"]
+[ext_resource type="Texture2D" uid="uid://cqkc7j623aj5h" path="res://Asset/particle/2/vnbvx_24.png" id="31_m8370"]
+[ext_resource type="Texture2D" uid="uid://djwldjfn51oey" path="res://Asset/particle/2/vnbvx_25.png" id="32_y4j21"]
+[ext_resource type="Texture2D" uid="uid://cbysxx8mso0x4" path="res://Asset/particle/2/vnbvx_26.png" id="33_cis25"]
+[ext_resource type="Texture2D" uid="uid://cct0spp0q00mp" path="res://Asset/particle/2/vnbvx_27.png" id="34_p8o87"]
+[ext_resource type="Texture2D" uid="uid://de5u8jbrtr8nk" path="res://Asset/particle/2/vnbvx_28.png" id="35_ax72c"]
+[ext_resource type="Texture2D" uid="uid://0o5hddxuvape" path="res://Asset/particle/2/vnbvx_29.png" id="36_vxicg"]
+
+[sub_resource type="Animation" id="Animation_sbwhj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("8_1mq5s")]
+}
+
+[sub_resource type="Animation" id="Animation_ygt83"]
+resource_name = "win"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6, 0.633333, 0.666667, 0.7, 0.733333, 0.766667, 0.8, 0.833333, 0.866667, 0.933333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("8_1mq5s"), ExtResource("9_1s3jo"), ExtResource("10_vfbkq"), ExtResource("11_u5qvv"), ExtResource("12_dw4oq"), ExtResource("13_swogf"), ExtResource("14_3jw03"), ExtResource("15_hfl52"), ExtResource("16_jfhkd"), ExtResource("17_ck6q1"), ExtResource("18_8nbaw"), ExtResource("19_ij4ps"), ExtResource("20_wo4sf"), ExtResource("21_7ilww"), ExtResource("22_adlnu"), ExtResource("23_0sxbu"), ExtResource("24_t0xi7"), ExtResource("25_5tlno"), ExtResource("26_pqvmj"), ExtResource("27_wgntf"), ExtResource("28_nmk4r"), ExtResource("29_w3vyy"), ExtResource("30_4m3pd"), ExtResource("31_m8370"), ExtResource("32_y4j21"), ExtResource("33_cis25"), ExtResource("34_p8o87"), ExtResource("35_ax72c"), ExtResource("36_vxicg")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qe0qn"]
+_data = {
+"RESET": SubResource("Animation_sbwhj"),
+"win": SubResource("Animation_ygt83")
+}
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -193,6 +258,116 @@ offset_right = -1210.0
 offset_bottom = -272.0
 color = Color(0.74902, 0.545098, 0.317647, 1)
 
+[node name="winRect" type="ColorRect" parent="."]
+visible = false
+z_index = 4096
+layout_mode = 0
+offset_right = 1942.0
+offset_bottom = 1254.0
+color = Color(0, 0, 0, 0.588235)
+
+[node name="Label" type="Label" parent="winRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -967.0
+offset_top = -511.0
+offset_right = 968.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.858198, 0.883128, 1)
+theme_override_fonts/font = ExtResource("14_27i6h")
+theme_override_font_sizes/font_size = 146
+text = "你灌溉了所有农田
+基建完成"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="achiwin" type="Label" parent="winRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -961.0
+offset_top = -608.0
+offset_right = 974.0
+offset_bottom = -71.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.858198, 0.883128, 1)
+theme_override_fonts/font = ExtResource("14_27i6h")
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="winRect"]
+z_index = 4096
+layout_mode = 0
+offset_left = 752.0
+offset_top = 542.0
+offset_right = 1163.0
+offset_bottom = 698.0
+text = "结束游戏"
+
+[node name="blinkRect" type="TextureRect" parent="winRect"]
+visible = false
+layout_mode = 0
+offset_left = 403.0
+offset_top = 80.0
+offset_right = 628.0
+offset_bottom = 280.0
+scale = Vector2(5, 5)
+texture = ExtResource("8_1mq5s")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="winRect/blinkRect"]
+libraries = {
+"": SubResource("AnimationLibrary_qe0qn")
+}
+
+[node name="LoseRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 1942.0
+offset_bottom = 1254.0
+color = Color(1, 0, 0, 0.568627)
+
+[node name="Label" type="Label" parent="LoseRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -967.0
+offset_top = -622.0
+offset_right = 968.0
+offset_bottom = -128.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("14_27i6h")
+theme_override_font_sizes/font_size = 146
+text = "规定时间未完成
+基建失败"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="LoseRect"]
+layout_mode = 0
+offset_left = 747.0
+offset_top = 577.0
+offset_right = 1158.0
+offset_bottom = 733.0
+text = "放弃基建"
+
+[node name="Timer" type="Timer" parent="."]
+
 [connection signal="button_down" from="SettleButton" to="." method="_on_giveup_button_down"]
 [connection signal="mouse_entered" from="SettleButton" to="." method="_on_giveup_button_mouse_entered"]
 [connection signal="mouse_exited" from="SettleButton" to="." method="_on_giveup_button_mouse_exited"]
+[connection signal="button_down" from="winRect/Button" to="." method="_on_afterWin_button_down"]
+[connection signal="button_down" from="LoseRect/Button" to="." method="_on_lose_button_down"]

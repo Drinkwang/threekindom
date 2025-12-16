@@ -5,12 +5,15 @@ var grandNum:int=100
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GameManager.PuzzleScene=self
+
+#简单初始3 复杂初始5
+
+func initGame():
 	initGranary() # Replace with function body.
 	_initTrack()
 	initTargetAndHourse()
 	updatehourse()
 	_updateMainContext()
-#简单初始3 复杂初始5
 #10 12 15
 #1 2 3 随机
 #概率生成
@@ -184,15 +187,36 @@ func updatehourse():
 			winGame()
 		else:
 			loseGame()
+@onready var win_rect: ColorRect = $winRect
+@onready var blink_rect: TextureRect = $winRect/blinkRect
+@onready var blink_animation_player: AnimationPlayer = $winRect/blinkRect/AnimationPlayer
 
+var isVictory=false
+#这个等于true 无法操作
 func winGame():
-	pass
+	print("拼图完成!")
+	isVictory=true
+	win_rect.show()
+	blink_rect.show()
+	blink_animation_player.play("win")
+	var finishfunc=func(aniname):
+		blink_rect.hide()
+	blink_animation_player.animation_finished.connect(finishfunc)	
+	
+
+	SoundManager.play_sound(sounds.GOOD_THING)
+
+
+@onready var lose_rect: ColorRect = $LoseRect
 
 
 func loseGame():
+	lose_rect.show()
+
+
+func loseGameBtn():
 	self.hide()
 	DialogueManager.show_dialogue_balloon(GameManager.sys,"基建运粮失败")
-			
 @onready var txt_detail: Label = $detail
 @onready var reside_car_label: Label = $resideCar
 @onready var currence_value_label: Label = $currenceValue
@@ -243,3 +267,34 @@ func refreshHorse():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+
+func _on_winAfter_button_down() -> void:
+	if GameManager.sav.constructGrain<GameManager.selectPuzzleDiffcult:
+		var tc=0
+		if GameManager.sav.constructGrain==1:
+			tc=10
+		elif GameManager.sav.constructGrain==2:
+			tc=20
+		elif GameManager.sav.constructGrain==3:
+			tc=30
+		
+		if GameManager.selectPuzzleDiffcult==SceneManager.puzzlediffucult.easy:
+			GameManager.resideValue=10
+		elif GameManager.selectPuzzleDiffcult==SceneManager.puzzlediffucult.middle:
+			GameManager.resideValue=20
+		elif GameManager.selectPuzzleDiffcult==SceneManager.puzzlediffucult.high:
+			GameManager.resideValue=30
+		var allDayget=GameManager.resideValue-tc
+		GameManager.sav.coin_DayGet+=allDayget
+		GameManager.sav.constructTower=GameManager.selectPuzzleDiffcult
+
+	else:
+		#无奖励
+		GameManager.resideValue=0
+	self.hide()
+	DialogueManager.show_dialogue_balloon(GameManager.sys,"基建运粮成功")
+
+
+func _on_giveup_button_down() -> void:
+	DialogueManager.show_dialogue_balloon(GameManager.sys,"放弃基建")
