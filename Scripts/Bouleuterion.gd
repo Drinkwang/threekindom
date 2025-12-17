@@ -468,3 +468,5 @@ func openBoardDialogue():
 func returnMain():
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"来把仕诡牌")		
 @onready var items_in_scene: Node2D = $itemsInScene
+func succussAfter():
+	pass

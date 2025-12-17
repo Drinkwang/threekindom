@@ -399,6 +399,7 @@ libraries = {
 
 [node name="LoseRect" type="ColorRect" parent="."]
 visible = false
+layout_mode = 0
 offset_right = 1942.0
 offset_bottom = 1254.0
 color = Color(1, 0, 0, 0.568627)

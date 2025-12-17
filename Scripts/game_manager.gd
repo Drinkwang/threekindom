@@ -38,6 +38,7 @@ enum ResType{
 	heart,
 	battle,
 	rest,
+	construct#基建和人口
 	
 }
 
@@ -546,10 +547,23 @@ func getTaskCurrenceValue():
 		cur=sav.coin
 	elif sav.targetResType==ResType.people:
 		cur=sav.labor_force
+	elif sav.targetResType==ResType.construct:
+		cur=[sav.labor_force,getConstructValue()]
 	else:
 		cur=sav.currenceValue#暂时该值未定义
 	return cur
 
+
+func getConstructValue():
+	var cv=0
+	if sav.constructRiver>0:
+		cv+=1
+	if sav.constructGrain>0:
+		cv+=1
+	if sav.constructTower>0:
+		cv+=1
+	return cv
+	#pass
 
 	#sav.coin=sav.coin+sav.coin_DayGet
 	#sav.labor_force=sav.labor_force+sav.labor_DayGet

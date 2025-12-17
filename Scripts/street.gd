@@ -172,7 +172,15 @@ func _initData():
 			if GameManager.sav.caobaocardgame==3 and GameManager.sav.mizhucardgame==3 and  GameManager.sav.chendencardgame==3:
 				people.changeAllClick("遇到诡异牌3")
 				people.showEX=false
-				people.show()		
+				people.show()	
+		if 	GameManager.sav.have_event["庆功宴结束"]==true and GameManager.sav.currenceValue>=1:
+			people.changeAllClick("基建前置剧情")
+			people.showEX=true
+			people.show()		
+		if GameManager.sav.have_event["基建项目开启"]==true and GameManager.getConstructValue()>=3 and GameManager.sav.have_event["三基建完成"]==false:
+			GameManager.sav.have_event["三基建完成"]=true
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"基建完成提示")
+			
 #-1 0 小试牛刀开启 1小试牛刀通过 2 对局试炼开启 3对局试验通过 4 诡秘怪谈开启 5诡秘怪谈通过		
 	var initData=[
 	{	
@@ -221,6 +229,8 @@ func _initData():
 		
 @onready var merchant: Node2D = $CanvasLayer/blank/merchant
 
+func constructBefore():
+	GameManager.sav.TargetDestination="府邸"	
 
 func getXuanYin():
 	var _reward:rewardPanel=PanelManager.new_reward()

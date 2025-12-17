@@ -30,8 +30,17 @@ func showTargetLabel():
 	#获取当前值的枚举类型，根据枚举类型获取对应资源数值，并把资源数值填写进下面的函数
 	var currenceValue=GameManager.getTaskCurrenceValue()
 	# target，currence
-	
-	if currenceValue>=targetValue:
+
+
+	var iscompleteTask=false    
+	if  currenceValue is Array:
+		if currenceValue[0]>=GameManager.sav.targetValue and currenceValue[1]>=3:
+			iscompleteTask=true
+		else:
+			if currenceValue>=GameManager.sav.targetValue:
+				iscompleteTask=true
+				
+	if iscompleteTask:
 		if(GameManager.sav.TargetDestination=="rest"):
 			target_label.text=tr("任务已完成，休息进入下一天推进剧情")
 		elif GameManager.sav.TargetDestination=="自宅":
@@ -47,7 +56,16 @@ func showTargetLabel():
 		else:
 			target_label.text=tr(GameManager.sav.TargetDestination)	
 	else:
-		target_label.text=tr(GameManager.sav.targetTxt).format({"target":targetValue,"currence":currenceValue})
+		
+		if  currenceValue is Array:
+			if currenceValue[1]<3:
+				target_label.text=tr(GameManager.sav.targetTxt).format({"target":targetValue,"currence1":currenceValue[0],"currence2":currenceValue[1]})
+			else:
+				var strContext=tr("基建已完成，请征集民夫完成后前往府邸触发下一阶段剧情")	
+				strContext+=tr("征集民夫数量：{currence1}/{target}").format({"target":targetValue,"currence1":currenceValue[0]})
+				target_label.text=strContext
+		else:
+			target_label.text=tr(GameManager.sav.targetTxt).format({"target":targetValue,"currence":currenceValue})
 	for law in GameManager.sav.courtingLaws:
 
 		var cd

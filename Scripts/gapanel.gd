@@ -80,8 +80,20 @@ func refreshContext():
 			#获取当前值的枚举类型，根据枚举类型获取对应资源数值，并把资源数值填写进下面的函数
 			var currenceValue=GameManager.getTaskCurrenceValue()
 	# target，currence
-
-			if currenceValue>=targetValue:
+			#判断时不时construct
+			#if
+			
+			
+			var iscompleteTask=false    
+			if  currenceValue is Array:
+				if currenceValue[0]>=GameManager.sav.targetValue and currenceValue[1]>=3:
+					iscompleteTask=true
+			else:
+				if currenceValue>=GameManager.sav.targetValue:
+					iscompleteTask=true
+			
+			
+			if currenceValue:
 				if(GameManager.sav.TargetDestination=="rest"):
 					policycontext=tr("任务已完成，休息进入下一天推进剧情")
 				elif GameManager.sav.TargetDestination=="自宅":

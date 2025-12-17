@@ -1095,3 +1095,7 @@ do DialogueManager.gameover=true
 - 退出游戏
 	do get_tree().quit()
 => END!
+
+~ 刘备的成长
+
+=> END!

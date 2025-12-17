@@ -941,3 +941,5 @@ func loseTrain():
 	pass
 func returnMain():
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"来把仕诡牌")	
+func succussAfter():
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"刘备的成长")	

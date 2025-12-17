@@ -376,12 +376,22 @@ func _buttonListClick(item):
 	print(item)
 	pass
 func victoryPartyEnd():
+	
+	GameManager.sav.have_event["庆功宴结束"]=true
+	GameManager.sav.targetValue=1
+	GameManager.sav.currenceValue=0
+	GameManager.sav.targetResType=GameManager.ResType.rest
+	GameManager.sav.targetTxt=""
+	GameManager.sav.TargetDestination=""
+	#GameManager.initSecretBattleContext(3,SceneManager.etraTaskType.useItem,13,"袁术军大胜")	
+	
+func oldvictoryPartyEnd():
 	GameManager.sav.have_event["战斗袁术开始"]=true
 	GameManager.sav.targetValue=15
 	GameManager.sav.currenceValue=0
 	GameManager.sav.targetResType=GameManager.ResType.battle
 	GameManager.sav.targetTxt="征讨次数：{currence}/{target}"
-	#觉得无用的注释GameManager.sav.TargetDestination="battle"
+	
 	GameManager.initSecretBattleContext(3,SceneManager.etraTaskType.useItem,13,"袁术军大胜")
 
 
@@ -661,9 +671,16 @@ func _JudgeTask():
 	#	value=GameManager.sav.coin
 	#elif GameManager.sav.targetResType==GameManager.ResType.people:
 	#	pass
-	#判断地点	
+	#判断地点
+	var iscompleteTask=false	
+	if  value is Array:
+		if value[0]>=GameManager.sav.targetValue and value[1]>=3:
+			iscompleteTask=true
+	else:
+		if value>=GameManager.sav.targetValue:
+			iscompleteTask=true
 	
-	if value>=GameManager.sav.targetValue:
+	if iscompleteTask==true:
 		if(GameManager.sav.have_event["completeTask1"]==false):
 			#ameManager.clearTask()
 			GameManager.sav.have_event["completeTask1"]=true
@@ -1305,7 +1322,15 @@ func boardVictory():
 
 func updateInfrastruture():
 	GameManager.sav.have_event["基建项目开启"]=true 
+	#当前目标改成both
+	#设立目标完成
+	GameManager.sav.targetValue=2000
+	GameManager.sav.currenceValue=0
 
+	GameManager.sav.targetResType=GameManager.ResType.construct	
+	GameManager.sav.targetTxt="征集民夫数量：{currence1}/{target}\n基建工程数量：{currence2}/3"	
+	
+	#如果民夫完成前往府邸
 
 #黑暗游戏输了游戏	
 func cardLose():
@@ -1323,3 +1348,8 @@ func confirmBuild():
 	puzzle_game.initGame()
 func returnMain():
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"来把仕诡牌")	
+
+
+func succussAfter():
+	pass
+	
