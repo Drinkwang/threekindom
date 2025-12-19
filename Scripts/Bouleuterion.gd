@@ -87,6 +87,11 @@ func changeLanguage():
 func _initFaction():
 	pass
 
+
+func liubeiGrowup():
+	#GameManager.hearsayID=-1
+	SceneManager.changeScene(SceneManager.roomNode.DRILL_GROUND,2)
+
 func _initData():
 	#if	GameManager.sav.have_event["firstgovernment"]==false:
 		#DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
@@ -117,6 +122,17 @@ func _initData():
 		chendeng.show()
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"陈登结尾")
 		GameManager.sav.have_event["陈登支线3"]=true
+		return 	
+	
+	
+	if GameManager.sav.have_event["刘备成长0"]==true and GameManager.sav.have_event["刘备成长1"]==false:
+
+		chendeng.show()
+		mizhu.show()
+		mizhu.showEX=false
+		chendeng.showEX=false
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"刘备的成长")
+		GameManager.sav.have_event["刘备成长1"]=true
 		return 	
 	
 	if GameManager.sav.day==4:

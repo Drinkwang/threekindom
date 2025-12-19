@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://dbk6u8kc33kq2"]
+[gd_scene load_steps=42 format=3 uid="uid://dbk6u8kc33kq2"]
 
 [ext_resource type="Script" path="res://Scripts/government_building.gd" id="1_xncth"]
 [ext_resource type="Resource" uid="uid://cqlt2sgkuk3na" path="res://dialogues/府邸.dialogue" id="2_yngd1"]
@@ -24,6 +24,8 @@
 [ext_resource type="PackedScene" uid="uid://ghiim2lkqkbe" path="res://Scene/prefab/propertyPanel.tscn" id="16_rw7iu"]
 [ext_resource type="PackedScene" uid="uid://d1e8i71sm0pf1" path="res://Scene/InfraMiniGame/FillGranary/FillGranaryPuzzle.tscn" id="18_5cnus"]
 [ext_resource type="PackedScene" uid="uid://bvlh16yfcevdj" path="res://Scene/InfraMiniGame/WallTowerPuzzle.tscn" id="18_vel0s"]
+[ext_resource type="PackedScene" uid="uid://cw66yiofu8q6f" path="res://Scene/prefab/RuleBook.tscn" id="19_b7wfr"]
+[ext_resource type="Resource" uid="uid://d2qoinuor12dq" path="res://dialogues/演武场.dialogue" id="20_i0wth"]
 [ext_resource type="Texture2D" uid="uid://ywdj7u3flcmu" path="res://Asset/人物/假糜贞.png" id="20_u361t"]
 [ext_resource type="Texture2D" uid="uid://mb7wj00b7s8p" path="res://Asset/fx/zhangyan_Frames/Slash2_color2_frame1.png" id="22_u8c3t"]
 [ext_resource type="Texture2D" uid="uid://cxodneuue05m4" path="res://Asset/fx/zhangyan_Frames/Slash2_color2_frame2.png" id="23_ssyf0"]
@@ -203,6 +205,19 @@ offset_left = -2.0
 offset_top = -14.0
 offset_right = -2.0
 offset_bottom = -14.0
+
+[node name="caocaoLetter" parent="CanvasLayer" instance=ExtResource("19_b7wfr")]
+visible = false
+offset_left = 969.0
+offset_top = 468.0
+offset_right = 1009.0
+offset_bottom = 508.0
+context = "备弟足下：
+ 你此前求任徐州牧，我实愿成人之美——自你到徐州以来，安抚百姓、安定边境、整顿秩序，你本就是治理徐州的最合适人选。只是有一件事，我必须坦白告诉你：如今徐州部分土地被袁术占据，他在那里觊觎整个徐州。如果不除掉这个祸害、收复失地，你即使得了徐州牧的名分，也名不副实，还是会引来非议。最近天子已经东归，平安驻跸在许都。我亲自率兵护驾，看到宫殿残破、百官饥寒，实在痛心。当今天下，只有忠义之士才能扶助汉室社稷；如果只是拥兵自重、忘记君父，即使占据四州之地，又和当年祸乱天下的董卓有什么区别？袁术正是这种奸佞之人，你一定知道他是徐州的心腹大患。这样，我先上表朝廷，荐举你为镇东将军、封宜城亭侯，来为你壮大声势、安定民心。如果你能起兵讨伐袁术、收复徐州失地，我一定派兵从侧后牵制，助你一臂之力。等到全徐州平定那天，我再全力向朝廷奏请，正式授予你徐州牧之职，让你名正言顺地统领徐州。天下英雄，当同心扫除奸邪、安定百姓。望你早下决断，与我一同匡扶汉室。
+
+                               曹操敬上"
+lookdoneDialog = " 曹操的信_2"
+dialogue_resource = ExtResource("20_i0wth")
 
 [node name="sendGiftPanel" parent="." instance=ExtResource("9_2k5hb")]
 visible = false

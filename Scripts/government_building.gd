@@ -280,6 +280,9 @@ func subHoldWoold():
 	
 var costHp_SummonOne=50
 var costHp_policy=35
+
+@onready var caocao_letter: Control = $CanvasLayer/caocaoLetter
+
 func _buttonListClick(item):
 	#35点
 	if item.context == "执行政策":

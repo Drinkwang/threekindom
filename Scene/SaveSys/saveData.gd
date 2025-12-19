@@ -290,6 +290,9 @@ var SIDEQUEST_MAP:Dictionary={
 	"挖河中级完成":false,
 	"挖河高级完成":false,		
 	"三基建完成":false,
+	"刘备成长0":false,
+	"刘备成长1":false,
+	"刘备成长2":false,
 }
 
 #0 小试牛刀开启 1小试牛刀通过 2 对局试炼开启 3对局试验通过 4 诡秘怪谈开启 5诡秘怪谈通过
