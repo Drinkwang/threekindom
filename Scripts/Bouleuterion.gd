@@ -134,7 +134,14 @@ func _initData():
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"刘备的成长")
 		GameManager.sav.have_event["刘备成长1"]=true
 		return 	
-	
+	if GameManager.sav.have_event["曹豹和吕布勾连0"]==true and GameManager.sav.have_event["曹豹和吕布勾连1"]==false:
+		chendeng.show()
+		mizhu.show()
+		mizhu.showEX=false
+		chendeng.showEX=false
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"曹豹吕布联姻")
+		GameManager.sav.have_event["曹豹和吕布勾连1"]=true
+		return 	
 	if GameManager.sav.day==4:
 		if GameManager.sav.have_event["firstNewEnd"]==true:
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新手教程结束_阴谋论")

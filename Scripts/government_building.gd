@@ -201,7 +201,7 @@ func _initData():
 			candoSub=false
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"徐州得安")
 		elif GameManager.sav.have_event["战斗袁术开始"]==true: 
-			candoSub=false
+			#candoSub=false
 			#判断任务完成 如果任务完成，那么就开始对话指令，且不能离开
 			pass
 	else:
