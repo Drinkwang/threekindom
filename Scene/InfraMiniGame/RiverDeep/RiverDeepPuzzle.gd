@@ -81,6 +81,7 @@ func _on_timeout():
 		loseGame()  # 超时逻辑：失败、显示星星
 var time_left=0
 func initGame():
+	self.show()
 	switch_Difficult()
 	timer.wait_time = 1.0
 	timer.one_shot = false  # 重复触发

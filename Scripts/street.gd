@@ -231,7 +231,7 @@ func _initData():
 
 func constructBefore():
 	GameManager.sav.have_event["新剧情_基建开始"]=true
-	#GameManager.sav.TargetDestination="府邸"
+	GameManager.sav.TargetDestination=tr("请前往府邸触发下一阶段剧情")
 	GameManager.sav.targetTxt=tr("请前往府邸触发下一阶段剧情")
 	#GameManager.sav.currenceValue=1
 	#people.hide()

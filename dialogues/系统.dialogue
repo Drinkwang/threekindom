@@ -222,10 +222,9 @@ do DialogueManager.gameover=true
 
 
 系统提示: 基建将消耗以下资源：\n• 金币 ×{{GameManager.puzzleCostMoney}}\n• 人口 ×{{GameManager.puzzleCostPeople}}\n资源充足，确认执行吗？
-- 立即启动基建！ 
-  do GameManager.currenceScene.confirmBuild()
-
-- 重新考虑，返回选项。 
+- 立即启动基建！
+	do GameManager.currenceScene.confirmBuild()
+- 重新考虑，返回选项。
 	do GameManager.selectPuzzleDiffcult=0 
 	=> 基建选项
 

@@ -959,14 +959,14 @@ func canSummonLvBu():
 	#GameManager.sav.LVBU._num_all=GameManager.sav.BENTUPAI._num_all-GameManager.sav.HAOZUPAI._num_all
 
 	GameManager.initPaixi(GameManager.sav.LVBU)
-
+	
 	SignalManager.changeSupport.emit()
 	GameManager.sav.targetValue=3
 	GameManager.sav.currenceValue=0
 	GameManager.sav.currenceDay=0
 	GameManager.sav.targetResType=GameManager.ResType.battle
 	GameManager.sav.targetTxt="征讨次数：{currence}/{target}"	
-	
+	changePanelPos()
 func ShowDisterPanel():
 	disater_panel.show()
 	pass
@@ -1257,7 +1257,10 @@ func holdSac():
 func changePanelPos():
 	if factionView==null:
 		return
-	if GameManager.sav.have_event["Factionalization"]==true:
+	if GameManager.sav.have_event["canSummonLvbu"]==true:
+		factionView.position.y=589#待修改
+		support_panel.position.y=742.3#待修改
+	elif GameManager.sav.have_event["Factionalization"]==true:
 		factionView.position.y=589#待修改
 		support_panel.position.y=686#待修改
 	else:	
@@ -1376,10 +1379,11 @@ func loseGame():
 func confirmBuild():
 	GameManager.sav.coin-=GameManager.puzzleCostMoney
 	GameManager.sav.labor_force-=GameManager.puzzleCostPeople
+	puzzle_game.initGame()	
 	if GameManager.sav.have_event["基建运粮教程"]==false:
 		DialogueManager.show_example_dialogue_balloon(GameManager.sys,"基建运粮车教程")
 		GameManager.sav.have_event["基建运粮教程"]=true	
-	puzzle_game.initGame()
+
 func returnMain():
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"来把仕诡牌")	
 

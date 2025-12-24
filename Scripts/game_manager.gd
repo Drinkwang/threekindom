@@ -1435,6 +1435,10 @@ func doContructtion(diff):
 		puzzleCostPeople=100
 	DialogueManager.show_example_dialogue_balloon(sys,"基建选项2")
 
+
+func selectPuzzleLevel():
+	DialogueManager.show_example_dialogue_balloon(sys,"基建选项")
+
 func resetConstructTutorial():
 	if GameManager.currenceScene is government_building:
 		GameManager.sav.have_event["基建运粮教程"]=false

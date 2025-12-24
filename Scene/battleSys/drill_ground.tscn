@@ -261,6 +261,12 @@ libraries = {
 }
 autoplay = "YELLOWGUILD"
 
+[node name="miniGameColor" type="ColorRect" parent="CanvasInventory"]
+visible = false
+offset_right = 2016.0
+offset_bottom = 1269.0
+color = Color(0, 0, 0, 0.545098)
+
 [node name="puzzleGame" parent="CanvasInventory" instance=ExtResource("25_x6378")]
 visible = false
 

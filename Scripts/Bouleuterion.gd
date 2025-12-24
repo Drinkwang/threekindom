@@ -430,7 +430,10 @@ func cancelLaw():
 
 
 func changePanelPos():
-	if GameManager.sav.have_event["Factionalization"]==true:
+	if GameManager.sav.have_event["canSummonLvbu"]==true:
+		factionView.position.y=590
+		control_2.position.y=902
+	elif GameManager.sav.have_event["Factionalization"]==true:
 		factionView.position.y=590
 		control_2.position.y=835
 	else:	
@@ -478,11 +481,12 @@ func openBoardGame():
 func confirmBuild():
 	GameManager.sav.coin-=GameManager.puzzleCostMoney
 	GameManager.sav.labor_force-=GameManager.puzzleCostPeople
+	puzzle_game.initGame()
 	if GameManager.sav.have_event["基建运河教程"]==false:
 		DialogueManager.show_example_dialogue_balloon(GameManager.sys,"基建挖深运河教程")
 		GameManager.sav.have_event["基建运河教程"]=true		
 	
-	puzzle_game.initGame()
+
 func loseGame():
 	puzzle_game._on_lose_button_down()	
 func openBoardDialogue():

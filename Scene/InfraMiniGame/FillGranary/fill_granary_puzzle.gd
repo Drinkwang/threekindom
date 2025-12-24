@@ -9,6 +9,7 @@ func _ready() -> void:
 #简单初始3 复杂初始5
 
 func initGame():
+	self.show()
 	initGranary() # Replace with function body.
 	_initTrack()
 	initTargetAndHourse()
