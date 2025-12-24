@@ -204,6 +204,7 @@ var SIDEQUEST_MAP:Dictionary={
 	"袁术来使":false,
 	"战斗袁术开始":false,
 	"袁术也进军":false,
+	"袁术首次击败":false,
 	"战斗袁术任务完成":false,
 	"亲征跟糜竺对话":false,
 	"亲征跟陈登对话":false,
@@ -298,6 +299,9 @@ var SIDEQUEST_MAP:Dictionary={
 	"刘备成长0":false,
 	"刘备成长1":false,
 	"刘备成长2":false,
+	"派系安稳任务触发":false,
+	"派系安稳完成":false,
+	#"亲征对话完成":false,
 }
 
 #0 小试牛刀开启 1小试牛刀通过 2 对局试炼开启 3对局试验通过 4 诡秘怪谈开启 5诡秘怪谈通过

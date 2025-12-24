@@ -364,6 +364,10 @@ func refreshPropertyPanel():
 		comindex=0
 	elif GameManager.sav.targetResType==GameManager.ResType.none:
 		comindex=2
+	elif GameManager.sav.targetResType==GameManager.ResType.govern:
+		comindex=4
+	elif GameManager.sav.targetResType==GameManager.ResType.construct:
+		comindex=3
 	else:
 		comindex=1	
 	#通过演武场、大儒辩经、立法、从其它派系索取钱财 尽可能实现收集资金的目标
@@ -390,6 +394,25 @@ func getrecommendStr(index):
 			Rstr=tr("可以选择武将进行升级，确保在军事行动中拥有更强的作战能力。")
 		elif rindex==2:
 			Rstr=tr("可以购买增益类道具在军事行动中取得更大的优势。	")
+	elif index==3:
+		if rindex==0:
+			Rstr=tr("完成演武场、府邸、议事厅高阶基建，可获取更强属性增益")
+		elif rindex==1:
+			Rstr=tr("先在初级基建玩法中熟悉策略，再挑战高阶关卡")
+		elif rindex==2:
+			Rstr=tr("任意难度下，完成3类不同基建即可达成基建计划")
+		
+	elif index==4:
+		if GameManager.dontHaveDominance():
+			Rstr=tr("赠送礼物、推动派系法案通过，可提升派系支持度")
+		else:
+			if rindex==0:
+				Rstr=tr("赠送礼物、推动派系法案通过，可提升派系支持度")
+			elif rindex==1:
+				Rstr=tr("面对派系忠诚度不足的局面，除怀柔安抚外，亦可采取强硬手段。")
+			elif rindex==2:
+			
+				Rstr=tr("累计镇压3次后，派系将对你永远保持忠诚")
 	else:
 		Rstr=tr("暂无")	
 	return Rstr

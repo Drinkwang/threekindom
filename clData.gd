@@ -14,7 +14,7 @@ extends Resource
 @export var _num_sp:int #支持人数
 @export var _num_op:int #反对人数
 @export var _num_grain:int#分配的粮食
-@export var _num_defections:int=0
+@export var _num_defections:int=0 
 @export var rebellionUpdateNum:int=0
 @export var isAlertRisk=false
 @export var isrebellion:bool=false

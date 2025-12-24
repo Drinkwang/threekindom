@@ -59,7 +59,7 @@ do streetTwo()
 
 - 黄帝的祀庙 [if GameManager.sav.have_event["曹豹正确选择1"]==true and GameManager.sav.have_event["曹豹正确选择2"]==true and GameManager.sav.have_event["曹豹支线3"]==false]
 	do gotoHuangDiMiao()	
-- 玄阴秘境 [if GameManager.sav.have_event["玄阴开放"]==true and dontHaveDominance()]
+- 玄阴秘境 [if GameManager.sav.have_event["玄阴开放"]==true and GameManager.dontHaveDominance()]
 	do gotoXuanyin()				
 #如果这个逻辑可以，那么支线就好加了，不可以的话，那就很难加，那我就只能使之 只存在一个支线了
 - 取消

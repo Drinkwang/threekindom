@@ -105,6 +105,10 @@ func _completeTask():#将完成任务移动到外层
 		if(GameManager.sav.have_event["completebattleTaiShan"]==false):
 			GameManager.sav.have_event["completebattleTaiShan"]=true		
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"温侯降伏臧霸")
+	elif  GameManager.sav.have_event["曹操协天子以令诸侯"]==true and GameManager.sav.have_event["袁术首次击败"]==false:
+		GameManager.sav.have_event["袁术首次击败"]=true
+		
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"征讨袁术结束")
 	elif GameManager.sav.have_event["战斗袁术血战模式"]==true and GameManager.sav.have_event["血战袁术完成"]==false:
 		GameManager.sav.have_event["血战袁术完成"]=true
 		#吕布背叛，3种可能 丹阳派 叛变，徐州派叛变-豪族派 or 士族派叛变

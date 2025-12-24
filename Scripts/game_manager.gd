@@ -38,7 +38,8 @@ enum ResType{
 	heart,
 	battle,
 	rest,
-	construct#基建和人口
+	construct,#基建和人口,
+	govern
 	
 }
 
@@ -372,6 +373,12 @@ func _enterDay(value=true):
 #		{"name":"高风险","initPos":0,"radian":90},
 
 
+func dontHaveDominance():
+	var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.霸道之息)	
+
+	return num==0
+
+
 func showGuimiAchi():
 	PanelManager.new_GuiMiAchiView()
 
@@ -549,10 +556,24 @@ func getTaskCurrenceValue():
 		cur=sav.labor_force
 	elif sav.targetResType==ResType.construct:
 		cur=[sav.labor_force,getConstructValue()]
+	elif sav.targetResType==ResType.govern:
+		cur=getgovernValue()
 	else:
 		cur=sav.currenceValue#暂时该值未定义
 	return cur
 
+
+func getgovernValue():
+	var cv=0
+	if sav.WAIDIPAI._support_rate>=60 or sav.WAIDIPAI._num_defections>=3:
+		cv+=1
+	elif sav.BENTUPAI._support_rate>=60 or sav.BENTUPAI._num_defections>=3:
+		cv+=1
+	elif sav.LVBU._support_rate>=60 or sav.LVBU._num_defections>=3:
+		cv+=1	
+	elif sav.HAOZUPAI._support_rate>=60 or sav.HAOZUPAI._num_defections>=3:
+		cv+=1
+	return cv
 
 func getConstructValue():
 	var cv=0

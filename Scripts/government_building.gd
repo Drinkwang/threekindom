@@ -200,10 +200,10 @@ func _initData():
 			GameManager.sav.have_event["庆功宴是否举办"]=true
 			candoSub=false
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"徐州得安")
-		elif GameManager.sav.have_event["战斗袁术开始"]==true: 
-			#candoSub=false
-			#判断任务完成 如果任务完成，那么就开始对话指令，且不能离开
-			pass
+		elif GameManager.sav.have_event["袁术首次击败"]==true and GameManager.sav.have_event["派系安稳任务触发"]==false: 
+			GameManager.sav.have_event["派系安稳任务触发"]==true
+			candoSub=false
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"安抚众人任务开始")
 	else:
 		pass
 
@@ -282,6 +282,25 @@ var costHp_SummonOne=50
 var costHp_policy=35
 
 @onready var caocao_letter: Control = $CanvasLayer/caocaoLetter
+
+func Loss_of_loyalty():
+	pass
+
+
+func ReconciliatoryFaction():
+	#GameManager.sav.have_event["战斗袁术开始"]=true
+	GameManager.sav.targetValue=4
+	GameManager.sav.currenceValue=0
+	GameManager.sav.targetResType=GameManager.ResType.govern
+	#好感度大于60 且
+	
+	
+	if GameManager.dontHaveDominance():
+		GameManager.sav.targetTxt="安抚派系: {currence}/{target}"
+	else:
+		GameManager.sav.targetTxt="统御派系: {currence}/{target}"
+
+	#GameManager.initSecretBattleContext(3,SceneManager.etraTaskType.useItem,13,"袁术军大胜")
 
 func _buttonListClick(item):
 	#35点
@@ -807,10 +826,11 @@ func deliverTask():
 				GameManager.clearTask()
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"打跑袁术")#显示对话
 
-		if GameManager.sav.have_event["战斗袁术开始"]==true and GameManager.sav.have_event["chaoDialogEnd"]==false:
+		if GameManager.sav.have_event["派系安稳完成"]==true and GameManager.sav.have_event["亲征对话结束"]==false:
 			if GameManager.sav.have_event["亲征跟糜竺对话"]==false:
 				mizhu.show()
 				mizhu.changeAllClick("亲征前跟糜竺对话")
+				#得改
 				
 			if GameManager.sav.have_event["亲征跟陈登对话"]==false:	
 				chenden.show()
@@ -818,13 +838,14 @@ func deliverTask():
 			
 			if GameManager.sav.have_event["亲征跟糜竺对话"]==false and GameManager.sav.have_event["亲征跟陈登对话"]==false: 
 				GameManager.sav.TargetDestinationBefore="交互提示："
-				GameManager.sav.TargetDestination="你需要跟糜竺和陈登分别对话"
+				GameManager.sav.TargetDestination=tr("你需要跟糜竺和陈登分别对话")
 			elif GameManager.sav.have_event["亲征跟糜竺对话"]==true and GameManager.sav.have_event["亲征跟陈登对话"]==false: 
 				
 				GameManager.sav.TargetDestination="你需要跟陈登对话"
 			elif GameManager.sav.have_event["亲征跟糜竺对话"]==false and GameManager.sav.have_event["亲征跟陈登对话"]==true:
-				GameManager.sav.TargetDestination="你需要跟糜竺对话" 
-
+				GameManager.sav.TargetDestination=tr("你需要跟糜竺对话") 
+		#elif:
+		#	pass
 
 func liubeiBattleAfterMizhu():
 	mizhu.hide()
@@ -854,7 +875,7 @@ func collectMoneyComplete():
 
 	mizhu.changeAllClick("与糜竺对话2")
 	chenden.changeAllClick("与陈登对话2")
-	#ameManager.sav.targetResType=GameManager.ResType.rest
+
 	hp_panel.playLabelChange()
 	GameManager.AutoSaveFile()
 

@@ -775,10 +775,6 @@ func enterBattleZhenren():
 	battle_pane.show()
 	battle_pane.enterBattleZhenRen()
 
-func dontHaveDominance():
-	var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.霸道之息)	
-
-	return num==0
 
 func zhenrenFinish():
 	blank.hide()
