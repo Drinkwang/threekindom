@@ -10,6 +10,8 @@ func _ready() -> void:
 
 func initGame():
 	self.show()
+	win_rect.hide()
+	lose_rect.hide()
 	initGranary() # Replace with function body.
 	_initTrack()
 	initTargetAndHourse()
@@ -144,14 +146,14 @@ func initTargetAndHourse():
 	if GameManager.selectPuzzleDiffcult==SceneManager.puzzlediffucult.easy:
 		resideHorse=10
 		resideValue=300
-		targetValue=200
+		targetValue=150
 	elif GameManager.selectPuzzleDiffcult==SceneManager.puzzlediffucult.middle:
 		resideHorse=12
 		resideValue=500
-		targetValue=400
+		targetValue=300
 	elif GameManager.selectPuzzleDiffcult==SceneManager.puzzlediffucult.high:
 		resideHorse=15
-		targetValue=700
+		targetValue=600
 		resideValue=800
 	target_num_label.text=tr("目标粮食：{allnum}").format({"allnum":targetValue})
 

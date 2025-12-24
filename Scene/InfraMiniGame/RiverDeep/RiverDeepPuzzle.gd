@@ -82,6 +82,8 @@ func _on_timeout():
 var time_left=0
 func initGame():
 	self.show()
+	win_rect.hide()
+	lose_rect.hide()
 	switch_Difficult()
 	timer.wait_time = 1.0
 	timer.one_shot = false  # 重复触发

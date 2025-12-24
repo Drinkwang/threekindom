@@ -953,15 +953,17 @@ func winReward(isFirst,generalName):
 func confirmBuild():
 	GameManager.sav.coin-=GameManager.puzzleCostMoney
 	GameManager.sav.labor_force-=GameManager.puzzleCostPeople
-	mini_game_color.show()
+	caobao.hide()
+	items_in_scene.hide()
 	puzzle_game.initGame()	
 	if GameManager.sav.have_event["基建修塔教程"]==false:
 		DialogueManager.show_example_dialogue_balloon(GameManager.sys,"基建筑墙教程")
 		GameManager.sav.have_event["基建修塔教程"]=true			
-@onready var mini_game_color: ColorRect = $CanvasInventory/miniGameColor
 
 func loseGame():
-	mini_game_color.hide()
+	caobao.show()
+	items_in_scene.show()
+	
 	puzzle_game._on_lose_button_down()
 
 func loseTrain():
@@ -969,7 +971,9 @@ func loseTrain():
 func returnMain():
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"来把仕诡牌")	
 func succussAfter():
-	mini_game_color.hide()
+	caobao.show()
+	items_in_scene.show()
+	
 	GameManager.sav.have_event["刘备成长0"]=true
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"刘备的成长")	
 #func gotoYIHUI():
