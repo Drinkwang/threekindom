@@ -184,6 +184,7 @@ var SIDEQUEST_MAP:Dictionary={
 	"thirdDisaster":false,#第三次赈灾 征伐袁术后 5天进入府邸 触发第二次赈灾后过了2天  赈灾支线
 	"completebattleTaiShan":false,
 	"庆功宴是否举办":false,
+	"新剧情_基建开始":false,
 	"deliverYuanShu":false,
 	"征询曹将军意见":false,
 	"泰山诸将曹操消息":false,#未知变量

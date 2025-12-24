@@ -101,7 +101,7 @@ func _completeTask():#将完成任务移动到外层
 
 		
 	#在吕布帮助下取得三次军事行动	
-	elif GameManager.sav.have_event["lvbuJoin"]==true&&GameManager.sav.have_event["battleTaiShan"]==true:
+	elif GameManager.sav.have_event["canSummonLvbu"]==true&&GameManager.sav.have_event["battleTaiShan"]==true:
 		if(GameManager.sav.have_event["completebattleTaiShan"]==false):
 			GameManager.sav.have_event["completebattleTaiShan"]=true		
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"温侯降伏臧霸")

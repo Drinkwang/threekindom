@@ -36,9 +36,9 @@ func showTargetLabel():
 	if  currenceValue is Array:
 		if currenceValue[0]>=GameManager.sav.targetValue and currenceValue[1]>=3:
 			iscompleteTask=true
-		else:
-			if currenceValue>=GameManager.sav.targetValue:
-				iscompleteTask=true
+	else:
+		if currenceValue>=GameManager.sav.targetValue:
+			iscompleteTask=true
 				
 	if iscompleteTask:
 		if(GameManager.sav.TargetDestination=="rest"):

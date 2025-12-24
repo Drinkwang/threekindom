@@ -39,7 +39,8 @@ enum ResType{
 	battle,
 	rest,
 	construct,#基建和人口,
-	govern
+	govern,
+	complete
 	
 }
 
@@ -558,6 +559,8 @@ func getTaskCurrenceValue():
 		cur=[sav.labor_force,getConstructValue()]
 	elif sav.targetResType==ResType.govern:
 		cur=getgovernValue()
+	elif sav.targetResType==ResType.complete:
+		cur=99999999
 	else:
 		cur=sav.currenceValue#暂时该值未定义
 	return cur

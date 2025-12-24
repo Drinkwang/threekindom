@@ -198,8 +198,14 @@ func _initData():
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"可召见吕布")
 		elif GameManager.sav.have_event["completebattleTaiShan"]==true and GameManager.sav.have_event["庆功宴是否举办"]==false:
 			GameManager.sav.have_event["庆功宴是否举办"]=true
+			GameManager.clearTask()
 			candoSub=false
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"徐州得安")
+		elif GameManager.sav.have_event["新剧情_基建开始"]==true and GameManager.sav.have_event["基建项目开启"]==false:
+			mizhu.show()
+			chenden.show()
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"凑集2000民夫任务")
+			
 		elif GameManager.sav.have_event["袁术首次击败"]==true and GameManager.sav.have_event["派系安稳任务触发"]==false: 
 			GameManager.sav.have_event["派系安稳任务触发"]==true
 			candoSub=false
@@ -403,6 +409,8 @@ func victoryPartyEnd():
 	GameManager.sav.targetValue=1
 	GameManager.sav.currenceValue=0
 	GameManager.sav.targetResType=GameManager.ResType.rest
+	
+	#后面把process改成发送信号
 	GameManager.sav.targetTxt=""
 	GameManager.sav.TargetDestination=""
 	#GameManager.initSecretBattleContext(3,SceneManager.etraTaskType.useItem,13,"袁术军大胜")	
@@ -820,18 +828,20 @@ func deliverTask():
 				GameManager.sav.have_event["deliverTask2"]=true
 				GameManager.clearTask()
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"打跑黄巾军")#显示对话
-		elif  GameManager.sav.have_event["deliverYuanShu"]==false:
-			if(GameManager.sav.have_event["completebattleTaiShan"]==true):
-				GameManager.sav.have_event["deliverYuanShu"]=true
-				GameManager.clearTask()
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"打跑袁术")#显示对话
+				
+		#暂时屏蔽		
+		#elif  GameManager.sav.have_event["deliverYuanShu"]==false:
+		#	if(GameManager.sav.have_event["completebattleTaiShan"]==true):
+		#		GameManager.sav.have_event["deliverYuanShu"]=true
+		#		GameManager.clearTask()
+		#		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"打跑袁术")#显示对话
 
 		if GameManager.sav.have_event["派系安稳完成"]==true and GameManager.sav.have_event["亲征对话结束"]==false:
 			if GameManager.sav.have_event["亲征跟糜竺对话"]==false:
 				mizhu.show()
 				mizhu.changeAllClick("亲征前跟糜竺对话")
 				#得改
-				
+	
 			if GameManager.sav.have_event["亲征跟陈登对话"]==false:	
 				chenden.show()
 				chenden.changeAllClick("亲征前跟陈登对话")
@@ -938,11 +948,7 @@ func FractionalDiff():
 	SignalManager.changeSupport.emit()
 	GameManager.sav.have_event["Factionalization"]=true
 	changePanelPos()
-	GameManager.sav.targetValue=3
-	GameManager.sav.currenceValue=0
-	GameManager.sav.currenceDay=0
-	GameManager.sav.targetResType=GameManager.ResType.battle
-	GameManager.sav.targetTxt="征讨次数：{currence}/{target}"	
+
 	
 	#存档
 	#派系分化成2个
@@ -955,7 +961,11 @@ func canSummonLvBu():
 	GameManager.initPaixi(GameManager.sav.LVBU)
 
 	SignalManager.changeSupport.emit()
-	#GameManager.sav.have_event["Factionalization"]=true	
+	GameManager.sav.targetValue=3
+	GameManager.sav.currenceValue=0
+	GameManager.sav.currenceDay=0
+	GameManager.sav.targetResType=GameManager.ResType.battle
+	GameManager.sav.targetTxt="征讨次数：{currence}/{target}"	
 	
 func ShowDisterPanel():
 	disater_panel.show()

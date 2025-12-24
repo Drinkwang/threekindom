@@ -999,9 +999,11 @@ do ReconciliatoryFaction()
 刘备: 工程必须启动，不过在招募民夫的方式上，我可以稍作让步。就依你们征召2000人
 
 刘备: 至于那朝廷名分 —— 你们放心，我迟早会亲自向曹操讨来这个 “正式” 的徐州牧职位！
+
 do updateInfrastruture()
 任务更新: 请完成3项基建工程，并召集两千壮丁。
-
+do mizhu.hide()
+do chenden.hide()
 => END!
 
 ~ 城外克苏鲁事件触发

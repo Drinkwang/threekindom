@@ -173,7 +173,7 @@ func _initData():
 				people.changeAllClick("遇到诡异牌3")
 				people.showEX=false
 				people.show()	
-		if 	GameManager.sav.have_event["庆功宴结束"]==true and GameManager.sav.currenceValue>=1:
+		if 	GameManager.sav.have_event["庆功宴结束"]==true and GameManager.sav.currenceValue>=1 and GameManager.sav.have_event["新剧情_基建开始"]==false:
 			people.changeAllClick("基建前置剧情")
 			people.showEX=true
 			people.show()		
@@ -230,7 +230,11 @@ func _initData():
 @onready var merchant: Node2D = $CanvasLayer/blank/merchant
 
 func constructBefore():
-	GameManager.sav.TargetDestination="府邸"	
+	GameManager.sav.have_event["新剧情_基建开始"]=true
+	#GameManager.sav.TargetDestination="府邸"
+	GameManager.sav.targetTxt=tr("请前往府邸触发下一阶段剧情")
+	#GameManager.sav.currenceValue=1
+	#people.hide()
 
 func getXuanYin():
 	var _reward:rewardPanel=PanelManager.new_reward()
