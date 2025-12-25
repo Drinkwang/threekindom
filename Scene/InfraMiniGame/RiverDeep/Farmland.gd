@@ -18,7 +18,9 @@ func update_irrigation(current_depth: int) -> void:
 	if current_depth >= required_depth:
 		irrigated = true
 		_update_visual()
-
+	else:
+		irrigated = false
+		_update_visual()
 func _apply_position_from_depth() -> void:
 	position.y = float(required_depth) * float(cell_size)
 

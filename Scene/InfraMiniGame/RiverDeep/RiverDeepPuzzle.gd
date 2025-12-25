@@ -9,7 +9,7 @@ var conn_shader: Shader
 var conn_material: ShaderMaterial
 
 func _ready() -> void:
-
+	clearData()
 	board.connect("water_depth_changed", Callable(self, "_on_water_depth_changed"))
 	for child in farmland_panel.get_children():
 		if child is Control and child.has_method("update_irrigation"):
@@ -82,8 +82,15 @@ func _on_timeout():
 		loseGame()  # 超时逻辑：失败、显示星星
 var time_left=0
 
+@onready var colorrect: Control = $colorrect
+
 
 func clearData():
+	
+	var childs=colorrect.get_children()
+	for c in childs:
+		c.color=Color(0.73,0.54,0.31,1)
+		c.material=null
 	board.clearData()
 	for child in farmland_panel.get_children():
 		if child is Control and child.has_method("update_irrigation"):
@@ -98,7 +105,8 @@ func initGame():
 	timer.wait_time = 1.0
 	timer.one_shot = false  # 重复触发
 	time_left=60
-	timer.timeout.connect(_on_timeout)  # 连接信号（编辑器也可连）
+	if not timer.timeout.is_connected(_on_timeout):	
+		timer.timeout.connect(_on_timeout)  # 连接信号（编辑器也可连）
 	timer.start()  # 启动（autostart=true也可）
 	board.initData()
 	
@@ -136,7 +144,7 @@ func _show_victory() -> void:
 
 	SoundManager.play_sound(sounds.GOOD_THING)	
 	
-@onready var colorrect: Control = $colorrect
+
 @onready var color_rect_1: ColorRect = $colorrect/ColorRect3
 @onready var color_rect_2: ColorRect = $colorrect/ColorRect4
 @onready var color_rect_3: ColorRect = $colorrect/ColorRect5

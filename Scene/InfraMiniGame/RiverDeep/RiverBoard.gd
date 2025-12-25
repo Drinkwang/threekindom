@@ -19,7 +19,7 @@ var colors: Array[Color] = [
 	Color("#9b59b6"),
 ]
 var selected: Vector2i = Vector2i(-1, -1)
-var last_emitted_depth: int = -1
+
 var current_water_depth: int = -1
 var anim_layer: Node2D
 var tile_tex: Texture2D
@@ -381,13 +381,13 @@ func _update_water_and_emit() -> void:
 		var rc := grid_width - 1
 		for r in range(grid_height - 1, -1, -1):
 			if water[r][rc]:
-				#right_depth = r
+				right_depth = r
 				
-				right_depth = max(right_depth, r)  
+				#right_depth = max(right_depth, r)  
 				
 				#break
-	if right_depth != last_emitted_depth:
-		last_emitted_depth = right_depth
+	
+
 		current_water_depth = depth
 		water_depth_changed.emit(right_depth)
 	else:
