@@ -292,6 +292,9 @@ else:
 	系统提示: 【获得增益加持：每日金钱 +{{GameManager.resideValue}}】挑战高级基建，可获更强增益（仅保留最优一个）
 
 do succussAfter()
+=> END!
+
+
 ~ 基建运粮失败
 糜竺: 主公，粮仓筑造失败，资财尽丧……
     

@@ -2,14 +2,14 @@ extends Control
 
 @onready var board: Node2D = $Board
 @onready var farmland_panel: Control = $FarmlandPanel
-@onready var victory_label: Label =  $PanelContainer/Label2
+
 
 #var connector: ColorRect
 var conn_shader: Shader
 var conn_material: ShaderMaterial
 
 func _ready() -> void:
-	victory_label.visible = false
+
 	board.connect("water_depth_changed", Callable(self, "_on_water_depth_changed"))
 	for child in farmland_panel.get_children():
 		if child is Control and child.has_method("update_irrigation"):
@@ -78,10 +78,20 @@ func _on_timeout():
 	resideTimeLabel.text = tr("剩余时间:{s}秒").format({"s":time_left})  # 每秒更新UI（极省性能）
 	if time_left <= 0:
 		timer.stop()
+		board.set_process_input(false)
 		loseGame()  # 超时逻辑：失败、显示星星
 var time_left=0
+
+
+func clearData():
+	board.clearData()
+	for child in farmland_panel.get_children():
+		if child is Control and child.has_method("update_irrigation"):
+			child.irrigated=false#(depth)	
+			child._update_visual()
 func initGame():
 	self.show()
+	isvictory=false
 	win_rect.hide()
 	lose_rect.hide()
 	switch_Difficult()
@@ -90,7 +100,10 @@ func initGame():
 	time_left=60
 	timer.timeout.connect(_on_timeout)  # 连接信号（编辑器也可连）
 	timer.start()  # 启动（autostart=true也可）
-
+	board.initData()
+	
+	
+	
 func _on_water_depth_changed(depth: int) -> void:
 	var all_done := true
 	for child in farmland_panel.get_children():
@@ -98,6 +111,8 @@ func _on_water_depth_changed(depth: int) -> void:
 			child.update_irrigation(depth)
 			if not child.irrigated and child.visible==true:
 				all_done = false
+	if board.isset==false:
+		all_done = false
 	for i in range(0,depth+1):
 		_update_connector(depth)
 	if all_done:
@@ -204,7 +219,7 @@ func _on_afterWin_button_down() -> void:
 			GameManager.resideValue=30
 		var allDayget=GameManager.resideValue-tc
 		GameManager.sav.labor_DayGet+=allDayget
-		GameManager.sav.constructTower=GameManager.selectPuzzleDiffcult
+		GameManager.sav.constructRiver=GameManager.selectPuzzleDiffcult
 
 	else:
 		#无奖励

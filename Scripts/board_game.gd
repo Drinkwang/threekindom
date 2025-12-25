@@ -19,6 +19,9 @@ var enemyStage=4
 
 @onready var lose_label: Label = $CanvasLayer/LoseRect/Label
 
+
+
+
 var achiIndex=-1
 func loseGame(_str:String=""):
 	#SoundManager.play_sound(youlosesound)

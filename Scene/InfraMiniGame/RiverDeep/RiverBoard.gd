@@ -37,6 +37,10 @@ func _tile_color(idx: int) -> Color:
 	return colors[idx]
 
 func _ready() -> void:
+	pass
+
+@export var isset=false
+func initData():
 	randomize()
 	var img := Image.create(1, 1, false, Image.FORMAT_RGBA8)
 	img.fill(Color(1, 1, 1, 1))
@@ -105,7 +109,11 @@ void fragment(){
 	_update_water_and_emit()
 	_rebuild_visuals()
 	set_process_input(true)
-
+	isset=true
+func clearData():
+	for child in get_children():
+		child.queue_free()
+	isset=false
 func _init_arrays() -> void:
 	grid.resize(grid_height)
 	water.resize(grid_height)
@@ -178,6 +186,10 @@ func _rebuild_visuals() -> void:
 
 
 func _input(event: InputEvent) -> void:
+	
+	if not is_visible_in_tree():  # 检查节点及其父节点是否可见
+		return
+	
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		if is_animating:
 			return
@@ -369,8 +381,11 @@ func _update_water_and_emit() -> void:
 		var rc := grid_width - 1
 		for r in range(grid_height - 1, -1, -1):
 			if water[r][rc]:
-				right_depth = r
-				break
+				#right_depth = r
+				
+				right_depth = max(right_depth, r)  
+				
+				#break
 	if right_depth != last_emitted_depth:
 		last_emitted_depth = right_depth
 		current_water_depth = depth

@@ -482,6 +482,8 @@ func confirmBuild():
 	GameManager.sav.coin-=GameManager.puzzleCostMoney
 	GameManager.sav.labor_force-=GameManager.puzzleCostPeople
 	puzzle_game.initGame()
+	chendeng.hide()
+	items_in_scene.hide()
 	if GameManager.sav.have_event["基建运河教程"]==false:
 		DialogueManager.show_example_dialogue_balloon(GameManager.sys,"基建挖深运河教程")
 		GameManager.sav.have_event["基建运河教程"]=true		
@@ -489,6 +491,9 @@ func confirmBuild():
 
 func loseGame():
 	puzzle_game._on_lose_button_down()	
+	chendeng.show()
+	items_in_scene.show()
+	puzzle_game.clearData()
 func openBoardDialogue():
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"进入仕诡牌游戏")
 		
@@ -496,4 +501,6 @@ func returnMain():
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"来把仕诡牌")		
 @onready var items_in_scene: Node2D = $itemsInScene
 func succussAfter():
-	pass
+	chendeng.show()
+	items_in_scene.show()
+	puzzle_game.clearData()

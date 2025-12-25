@@ -290,7 +290,7 @@ func _on_winAfter_button_down() -> void:
 			GameManager.resideValue=30
 		var allDayget=GameManager.resideValue-tc
 		GameManager.sav.coin_DayGet+=allDayget
-		GameManager.sav.constructTower=GameManager.selectPuzzleDiffcult
+		GameManager.sav.constructGrain=GameManager.selectPuzzleDiffcult
 
 	else:
 		#无奖励
