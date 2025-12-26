@@ -22,6 +22,8 @@ func _process(delta: float) -> void:
 var numGranary
 var _index
 func initData(index):
+	self.show()
+	texture_rect_6.modulate=Color.WHITE
 	currenceValue=0
 	isOverFill=false
 	numGranary="{num}号粮仓".format({"num":index})

@@ -33,6 +33,7 @@ func start_flash():
 @onready var label: Label = $Label
 var orighinpos
 func crateHorse(value):
+	targetValue=-1
 	holdValue=value
 	updateDetail()
 	self.show()

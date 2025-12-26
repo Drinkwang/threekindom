@@ -126,6 +126,9 @@ func zhangyanDie():
 	#播放红光和抹脖子音效
 	pass
 	
+	
+func baseComplete():
+	GameManager.sav.TargetDestination="府邸"
 func _initData():
 
 	

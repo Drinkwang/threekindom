@@ -25,7 +25,7 @@ func _ready():
 
 
 
-
+var isHigh=false
 
 
 var tempclopos=null
@@ -35,12 +35,28 @@ func switchDiffucult():
 	var difficult=GameManager.selectPuzzleDiffcult
 	#var farmlands=farmland_panel.get_children()
 	#var colorrects=colorrect.get_children()	
+	isHigh=false
 	if difficult==SceneManager.puzzlediffucult.easy:
+
 		initRandomBase()
 	elif difficult==SceneManager.puzzlediffucult.middle:
 		pass
 	elif difficult==SceneManager.puzzlediffucult.high:
+		isHigh=true
 		initRandomRotate()
+	setHighRotateButton()
+@onready var rotate_button: TextureButton = $RotateButton
+@onready var rotate_label: Label = $Label2
+
+
+
+func setHighRotateButton():
+	if isHigh==true:
+		rotate_button.show()
+		rotate_label.show()
+	else:
+		rotate_button.hide()
+		rotate_label.hide()
 
 func _process(delta: float) -> void:
 	
@@ -383,13 +399,22 @@ func _update_bg_color(target_color: Color):
 	tween.tween_property(texture_button,"modulate",target_color,0.05)
 
 
+
+
+
+var rotateDegress=0
 func _on_rotate_button_button_down() -> void:
-	if selectPiece != null and isrotate==false and isVictory==false:
+	rotateDegress=90
+	excuteRotate()
+
+
+func excuteRotate():
+	if selectPiece != null and isrotate==false and isVictory==false and isHigh==true:
 		var tween = get_tree().create_tween()
 		tween.tween_property(
 			selectPiece,
 			"rotation_degrees", 
-			selectPiece.rotation_degrees + 90.0,
+			selectPiece.rotation_degrees + rotateDegress,
 			0.25
 		).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 		isrotate=true
@@ -397,7 +422,7 @@ func _on_rotate_button_button_down() -> void:
 			selectPiece.rotation_degrees = fposmod(selectPiece.rotation_degrees, 360.0)
 			check_puzzle_complete()
 			isrotate=false
-		tween.finished.connect(_on_rotation_finished)
+		tween.finished.connect(_on_rotation_finished)	
 	
 var canclick=true
 func _input(event: InputEvent) -> void:
@@ -422,13 +447,37 @@ func _input(event: InputEvent) -> void:
 		#判断离所有方格，且小于50 则强行变位
 
 	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed and selectPiece!=null and isVictory==false:
-		#_on_rotate_button_button_down()
+
 		set_piece_z_index(selectPiece, 100)
 		selectPiece=null
 		tempclopos=null
 		
 		if visualClubPos!=null:
 			visualClubPos.queue_free()
+			
+		# 检查事件是否为键盘按下事件，并且是“R”键
+	elif event is InputEventKey and event.pressed and event.keycode == KEY_R:
+		rotateDegress=90
+		excuteRotate()
+	elif event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_WHEEL_UP and event.pressed:
+			on_mouse_wheel_up()
+		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN and event.pressed:
+			on_mouse_wheel_down()	
+			
+func on_mouse_wheel_up():
+	rotateDegress=-90
+	excuteRotate()		
+	# 在这里写你想要执行的逻辑，例如：
+	# zoom_in()  # 放大相机
+	# change_weapon_next()  # 切换到下一个武器
+	# volume_up()  # 音量增加
+
+# 滚轮向下时触发
+func on_mouse_wheel_down():
+	rotateDegress=90
+	excuteRotate()		
+			
 func loseGame():
 	lose_rect.show()
 	timer.stop()
@@ -440,6 +489,8 @@ var time_left=0
 func initGame():
 	# 确保有源图片
 	self.show()
+	win_rect.hide()
+	lose_rect.hide()
 	switchDiffucult()#可修改图片
 	if source_texture:
 		create_puzzle()

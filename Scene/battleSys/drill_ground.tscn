@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://00xr1q336bgu"]
+[gd_scene load_steps=35 format=3 uid="uid://00xr1q336bgu"]
 
 [ext_resource type="Script" path="res://Scripts/drill_ground.gd" id="1_bhlt2"]
 [ext_resource type="Resource" uid="uid://d2qoinuor12dq" path="res://dialogues/演武场.dialogue" id="2_j02vm"]
@@ -29,6 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://bvlh16yfcevdj" path="res://Scene/InfraMiniGame/WallTowerPuzzle.tscn" id="25_x6378"]
 [ext_resource type="PackedScene" uid="uid://4ap7nnl7o6br" path="res://Scene/prefab/_CgetSceneItem.tscn" id="26_3j8u5"]
 [ext_resource type="Resource" uid="uid://cjbqxteqnpnrd" path="res://dialogues/议会厅.dialogue" id="27_oqtuy"]
+[ext_resource type="Texture2D" uid="uid://j3kowe2tkoss" path="res://Asset/人物/关羽open.png" id="30_s1tb2"]
 
 [sub_resource type="Animation" id="Animation_0bk4q"]
 resource_name = "闪烁"
@@ -302,5 +303,14 @@ isKeyPoint = true
 SceneID = 3
 dialogue_resource = ExtResource("27_oqtuy")
 dialogue_start = "发现诡秘怪谈"
+
+[node name="guanyu" parent="." instance=ExtResource("14_s83fw")]
+visible = false
+position = Vector2(982, 546)
+showName = "关羽"
+txt2d = ExtResource("30_s1tb2")
+boardType = 1
+dialogue_resource = ExtResource("2_j02vm")
+dialogue_start = ""
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

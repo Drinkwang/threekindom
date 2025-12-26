@@ -277,6 +277,7 @@ do succussAfter()
 => END!
 
 ~ 基建铸塔失败
+do caobao.show()
 曹豹: 主公，城墙工程失手，物料尽耗……
     
 => END!
