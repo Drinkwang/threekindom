@@ -210,6 +210,7 @@ func _initData():
 			GameManager.sav.have_event["派系安稳任务触发"]==true
 			candoSub=false
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"安抚众人任务开始")
+		#elif GameManager
 	else:
 		pass
 
@@ -719,7 +720,9 @@ func _JudgeTask():
 			policy_panel.hide()
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"收集资金任务完成")#显示对话
 			return
-		elif(true):
+		elif(GameManager.sav.have_event["三基建完成"]==true and GameManager.sav.have_event["曹操协天子以令诸侯"]==false):
+			GameManager.sav.have_event["曹操协天子以令诸侯"]=true
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"曹操的信_击败袁术才有委任状")#显示对话
 			pass
 		#任务完成交付任务
 		if GameManager.sav.TargetDestination.length()>0:
