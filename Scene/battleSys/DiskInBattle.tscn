@@ -192,6 +192,51 @@ texture_progress = ExtResource("1_upy2s")
 tint_under = Color(0.981098, 0.850573, 0.852089, 1)
 tint_progress = Color(0.137255, 0.458824, 0.807843, 0.211765)
 
+[node name="stateLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 54.0
+offset_top = -21.0
+offset_right = 261.0
+offset_bottom = 51.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 0
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("5_n2jvq")
+theme_override_font_sizes/font_size = 38
+text = "战情全图"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="sussLabel" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 57.0
+offset_top = 121.0
+offset_right = 264.0
+offset_bottom = 193.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 0
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("5_n2jvq")
+theme_override_font_sizes/font_size = 23
+text = "成功率:0%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = -152.0
+offset_top = 127.0
+offset_right = 58.0
+offset_bottom = 234.0
+text = "切换战情图"
+
 [node name="PointerScifiB" type="TextureRect" parent="."]
 visible = false
 layout_mode = 0
@@ -466,3 +511,5 @@ theme_override_font_sizes/font_size = 23
 text = "道具加持+5%
 青龙偃月刀+5%"
 horizontal_alignment = 1
+
+[connection signal="button_down" from="Button" to="." method="_on_Switch_button_down"]

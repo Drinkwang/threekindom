@@ -319,8 +319,14 @@ func _changeCircle(rewardGet):
 		else:
 			nextInitIndex=nextInitIndex+1
 		
-	
-	
+	var success_rate: float = battleCircleClone[4].radian / 360.0
+
+# 2. 转换为百分比并保留0位小数（如0.8 → 80%）
+	var success_rate_percent: int = int(success_rate * 100)
+
+# 3. 拼接成目标文本格式（假设文本节点名为 "SuccessRateText"）
+	suss_label.text = "成功率:%d%%" % success_rate_percent	
+
 	refresh()
 
 
@@ -344,10 +350,12 @@ var isBoot:bool=false
 
 func changeHead(value):
 	enemy.headImg=value
+@onready var check_button: Button = $Button
 
 func lauchProgress(hp):
 	if isBoot ==false:
 		isBoot=true
+		check_button.hide()
 		_hp=hp
 		_on_SpinButton_pressed()
 
@@ -376,8 +384,8 @@ func _on_SpinButton_pressed():
 	#tween.interpolate_property(self, "rotation_degrees", 360 * ROTATION_DURATION, ROTATION_DURATION, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 #	tween.start()
 	stop_angle = randf_range(0, 360)
-	
-	
+	current_state=battleStete.all
+	switchStete()
 	for data in battleCircleClone:
 
 		if(data.radian>0):
@@ -453,7 +461,7 @@ func _on_Tween_tween_all_completed():
 	#将风险值和成功率一起输入
 	#print(real_angle)
 	isBoot=false
-	
+	check_button.show()
 	# 计算停止位置
 	
 	#
@@ -701,3 +709,103 @@ func refreshTempHideBattleTask():
 				else:
 					ic.modulate=Color.WHITE
 		pass				
+var current_state:battleStete=battleStete.all
+
+func _on_Switch_button_down() -> void:
+	if isBoot==true:
+		return
+		
+	var state_list: Array = battleStete.values()
+	# 找到当前状态的索引
+	var current_index: int = state_list.find(current_state)
+	
+	# 计算下一个索引（最后一个索引则回到0）
+	var next_index: int = (current_index + 1) % state_list.size()
+	# 更新当前状态
+	current_state = state_list[next_index]
+	switchStete()
+	# 可选：打印当前状态，方便调试
+	#print("当前切换状态：", battleStete.keys()[next_index])
+@onready var state_label: Label = $stateLabel
+
+
+@onready var rect_no: ColorRect = $"VBoxContainer/无风险"
+@onready var rect_low: ColorRect = $"VBoxContainer/低风险"
+@onready var rect_low2: ColorRect = $"VBoxContainer/低风险2"
+@onready var rect_low3: ColorRect = $"VBoxContainer/低风险3"
+@onready var rect_suss: ColorRect = $"VBoxContainer/成功率"
+@onready var suss_label: Label = $sussLabel
+
+@onready var background_player: TextureProgressBar = $"background-player"
+
+
+func switchStete():
+	
+	# 这里可以添加切换状态后的逻辑（比如更新扇形图显示）
+	match current_state:
+		battleStete.all:
+			# 显示全维度战情图的逻辑
+			datas[0].show()
+			datas[1].show()
+			datas[2].show()
+			datas[3].show()
+			datas[4].show()
+			#background_player.show()
+			rect_suss.show()
+			rect_no.show()
+			rect_low.show()
+			rect_low2.show()
+			rect_low3.show()			
+			state_label.text=tr("战情全图")
+			point_1.show()
+			point_2.show()
+			point_3.show()
+			point_4.show()
+			suss_label.hide()
+		battleStete.victory:
+			# 显示成功率图的逻辑
+			rect_suss.show()
+			suss_label.show()
+			background_player.show()
+			rect_no.hide()
+			rect_low.hide()
+			rect_low2.hide()
+			rect_low3.hide()
+			datas[0].hide()
+			datas[1].hide()
+			datas[2].hide()
+			datas[3].hide()
+			point_1.hide()
+			point_2.hide()
+			point_3.hide()
+			point_4.hide()			
+			
+			datas[4].show()
+			
+			state_label.text=tr("征战胜算图")
+		battleStete.damage:
+			# 显示伤亡率图的逻辑
+			suss_label.hide()
+			rect_suss.hide()
+			datas[0].show()
+			datas[1].show()
+			datas[2].show()
+			datas[3].show()
+			datas[4].hide()			
+			background_player.hide()
+			rect_no.show()
+			rect_low.show()
+			rect_low2.show()
+			rect_low3.show()		
+			
+			point_1.show()
+			point_2.show()
+			point_3.show()
+			point_4.show()			
+			state_label.text=tr("折损态势图")
+
+enum battleStete{
+	all,
+	victory,
+	damage
+}
