@@ -1978,6 +1978,7 @@ func enterHtutorial():
 var istutorial=false
 
 func clearTCard():
+	score=0
 	var arrs=myhand.get_children()
 	for arr in arrs:
 		arr.queue_free()

@@ -422,7 +422,8 @@ func oldvictoryPartyEnd():
 	GameManager.sav.currenceValue=0
 	GameManager.sav.targetResType=GameManager.ResType.battle
 	GameManager.sav.targetTxt="征讨次数：{currence}/{target}"
-	
+	chenden.hide()
+	mizhu.hide()
 	GameManager.initSecretBattleContext(3,SceneManager.etraTaskType.useItem,13,"袁术军大胜")
 
 

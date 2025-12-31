@@ -644,7 +644,7 @@ func showtutorial(num):
 		battle_pane["guild_"+str(num-1)].hide()
 
 	if num==2:
-		point.hide()
+		
 		#调整value为完成任务，如果没有则不调整
 		
 		
@@ -677,7 +677,7 @@ func showtutorial(num):
 				#把slider调整相等
 				movevalue=value
 
-			tween.tween_property(ResSlider, "value",movevalue, 2)
+			tween.tween_property(ResSlider, "value",movevalue, 0.05)
 		
 		
 		
@@ -723,6 +723,8 @@ func showtutorial(num):
 		battle_pane.battle_circle.selectgeneral=null
 		battle_pane._refreshSlider()
 		battle_pane.point_group.hide()
+	elif num==5:
+		point.hide()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass

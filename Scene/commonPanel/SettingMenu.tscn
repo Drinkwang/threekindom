@@ -48,7 +48,7 @@ anchor_bottom = 0.5
 offset_left = -606.0
 offset_top = -370.0
 offset_right = 604.0
-offset_bottom = 287.0
+offset_bottom = 318.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(630.615, 267.699)
@@ -73,9 +73,9 @@ autowrap_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 offset_left = 681.0
-offset_top = 364.0
+offset_top = 297.0
 offset_right = 1520.0
-offset_bottom = 737.0
+offset_bottom = 776.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
 
@@ -106,6 +106,32 @@ popup/item_3/text = "日语"
 popup/item_3/id = 3
 popup/item_4/text = "俄语"
 popup/item_4/id = 4
+
+[node name="Control6" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+
+[node name="lanSysCon2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="语言系统" type="Label" parent="VBoxContainer/lanSysCon2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "配音语言设置："
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="lansoundOptionButton" type="OptionButton" parent="VBoxContainer/lanSysCon2"]
+layout_mode = 2
+theme = ExtResource("4_wlupd")
+theme_override_font_sizes/font_size = 31
+selected = 0
+fit_to_longest_item = false
+item_count = 2
+popup/item_0/text = "无配音"
+popup/item_1/text = "中文配音"
+popup/item_1/id = 1
 
 [node name="Control" type="Control" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 2)
@@ -170,6 +196,29 @@ button_pressed = true
 custom_minimum_size = Vector2(0, 2)
 layout_mode = 2
 
+[node name="peopleCon" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="音效音量" type="Label" parent="VBoxContainer/peopleCon"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "配音音量"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/peopleCon"]
+custom_minimum_size = Vector2(373, 45)
+layout_mode = 2
+theme_override_icons/grabber = ExtResource("2_3w1gj")
+max_value = 1.0
+step = 0.1
+value = 1.0
+
+[node name="Control7" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+
 [node name="musicCon" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
@@ -212,11 +261,30 @@ max_value = 1.0
 step = 0.1
 value = 1.0
 
+[node name="bgsCon" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="音效音量" type="Label" parent="VBoxContainer/bgsCon"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "环境音量"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/bgsCon"]
+custom_minimum_size = Vector2(373, 45)
+layout_mode = 2
+theme_override_icons/grabber = ExtResource("2_3w1gj")
+max_value = 1.0
+step = 0.1
+value = 1.0
+
 [node name="confire" type="HBoxContainer" parent="."]
 offset_left = 681.0
-offset_top = 702.0
+offset_top = 743.0
 offset_right = 1520.0
-offset_bottom = 809.0
+offset_bottom = 850.0
 size_flags_vertical = 8
 
 [node name="Control5" type="Control" parent="confire"]
@@ -242,6 +310,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [connection signal="item_selected" from="VBoxContainer/lanSysCon/OptionButton2" to="." method="_on_option_button_item_selected"]
+[connection signal="item_selected" from="VBoxContainer/lanSysCon2/lansoundOptionButton" to="." method="_on_lansound_option_button_item_selected"]
 [connection signal="item_selected" from="VBoxContainer/resolotionCon/OptionButton" to="." method="_on_resolution_selected"]
 [connection signal="toggled" from="VBoxContainer/fullsysCon/CheckBox" to="." method="_on_fullscreen_toggled"]
 [connection signal="toggled" from="VBoxContainer/isAutoSave/CheckBox" to="." method="_on_IsSave_toggled"]

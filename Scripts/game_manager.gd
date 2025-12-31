@@ -1165,6 +1165,8 @@ func load_settings():
 
 	SoundManager.set_sound_volume(_setting.sfx_volume)
 	SoundManager.set_music_volume(_setting.music_volume)
+	SoundManager.set_sound_ui_volume(_setting.people_volume)
+	SoundManager.set_ambient_sound_volume(_setting.bgs_volume)
 	if _setting.fullscreen:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	else:
@@ -1292,6 +1294,16 @@ func play_music(file_path: String) -> AudioStreamPlayer:
 	else:
 		print("载入音频出错"+file_path)
 	return music
+	
+	
+func play_PeopleVolume(file_path: String) -> AudioStreamPlayer:
+	var stream = load(file_path)
+	var music=null
+	if stream!=null:
+		music= SoundManager.play_ui_sound(stream)
+	else:
+		print("载入音频出错"+file_path)
+	return music	
 func setCoin(value):
 	sav.coin=value
 

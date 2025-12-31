@@ -7,7 +7,10 @@ func play(resource: AudioStream, override_bus: String = "") -> AudioStreamPlayer
 	return player
 
 
-func stop(resource: AudioStream) -> void:
+func stop(resource: AudioStream=null) -> void:
 	for player in busy_players:
 		if player.stream == resource:
 			player.call_deferred("stop")
+		elif resource==null:
+			player.call_deferred("stop")
+			

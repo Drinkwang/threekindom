@@ -62,14 +62,19 @@ func get_ui_sound_volume() -> float:
 	return db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index(ui_sound_effects.bus)))
 
 
+
+
 func set_sound_volume(volume_between_0_and_1: float) -> void:
 	_show_shared_bus_warning()
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(sound_effects.bus), linear_to_db(volume_between_0_and_1))
+#	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(ui_sound_effects.bus), linear_to_db(volume_between_0_and_1))
+
+
+func set_sound_ui_volume(volume_between_0_and_1: float) -> void:
+
+	_show_shared_bus_warning()
+
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(ui_sound_effects.bus), linear_to_db(volume_between_0_and_1))
-
-
-
-
 
 
 func play_sound(resource: AudioStream, override_bus: String = "") -> AudioStreamPlayer:
@@ -96,7 +101,7 @@ func play_ui_sound_with_pitch(resource: AudioStream, pitch: float = 1.0, overrid
 	return player
 
 
-func stop_ui_sound(resource: AudioStream) -> void:
+func stop_ui_sound(resource: AudioStream=null) -> void:
 	return ui_sound_effects.stop(resource)
 
 

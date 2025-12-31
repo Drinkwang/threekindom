@@ -45,6 +45,49 @@ var dialogue_line:
 	set(next_dialogue_line):
 		dialogue_line = next_dialogue_line
 		custom_minimum_size = Vector2.ZERO
+		
+		
+		
+		var targetText=dialogue_line.text
+		
+		if "[voice:" in targetText:
+			#var targetText=dialogue_line.text
+
+			var regex = RegEx.new()
+
+			var compile_ok = regex.compile(r"\[voice:([^\]]+)\]")
+	
+						# 检查正则表达式是否编译成功（避免规则写错）
+			if not compile_ok:
+				print("正则表达式规则错误！")
+	
+			var match_result = regex.search(targetText)
+			#GameManager._setting.peopleVlan="zh"
+
+			if match_result and GameManager._setting.peopleVlan!="none" and GameManager._setting.peopleVlan!="":
+				SoundManager.stop_ui_sound()
+				var id_value = match_result.get_string(1)
+				print("检测到ID内容，提取结果：", id_value)
+				var music_base_path = "res://Asset/sound/peopleVoice/" + GameManager._setting.peopleVlan + "/" + id_value
+				var music_file = ""
+
+				# 优化1：优先检测WAV，不存在则检测MP3（可调整优先级）
+				if ResourceLoader.exists(music_base_path + ".wav"):
+					music_file = music_base_path + ".wav"
+				elif ResourceLoader.exists(music_base_path + ".mp3"):
+					music_file = music_base_path + ".mp3"
+				else:
+				# 无匹配文件时的容错处理
+					print("警告：未找到音频文件 - WAV/MP3格式均不存在 | 路径：", music_base_path)
+
+				var music=GameManager.play_PeopleVolume(music_file)
+				#regex.replace()
+				#targetText = targetText.replace(match_result, "")
+			dialogue_line.text = targetText.replace(match_result.strings[0], "")
+		
+		
+		#在这添加
+		
 		text = dialogue_line.text
 	get:
 		return dialogue_line

@@ -196,6 +196,16 @@ func _on_music_slider_value_changed(value: float):
 func _on_sfx_slider_value_changed(value: float):
 	SoundManager.set_music_volume(value)
 	GameManager._setting.sfx_volume=value
+	
+	
+	
+func _on_bgs_slider_value_changed(value: float):
+	SoundManager.set_ambient_sound_volume(value)
+	GameManager._setting.bgs_volume=value
+
+func _on_people_slider_value_changed(value: float):
+	SoundManager.set_sound_ui_volume(value)
+	GameManager._setting.people_volume=value	
 
 func _on_button_button_down():
 	#保存
@@ -251,3 +261,21 @@ func refreshLanguage(lan):
 func _on_IsSave_toggled(toggled_on):
 	GameManager._setting.isAutoSave=toggled_on
 # 确认按钮
+
+
+func _on_lansound_option_button_item_selected(index: int) -> void:
+	var lan
+	if index==0:
+		lan="none"
+
+	elif index==1:
+		lan="zh"
+	
+	elif index==2:
+		lan="en"
+
+		
+	#TranslationServer.set_locale(lan)
+	GameManager._setting.peopleVlan=lan
+	#SignalManager.changeLanguage.emit()
+	#refreshLanguage(lan)
