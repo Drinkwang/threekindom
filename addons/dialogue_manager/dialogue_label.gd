@@ -62,7 +62,7 @@ var dialogue_line:
 				print("正则表达式规则错误！")
 	
 			var match_result = regex.search(targetText)
-			#GameManager._setting.peopleVlan="zh"
+			GameManager._setting.peopleVlan="zh"
 
 			if match_result and GameManager._setting.peopleVlan!="none" and GameManager._setting.peopleVlan!="":
 				SoundManager.stop_ui_sound()
