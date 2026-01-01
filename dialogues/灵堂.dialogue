@@ -1,7 +1,7 @@
 ~ this_is_a_node_title
- : 风好大，灯笼被吹灭了
+ : 风好大，灯笼被吹灭了[voice:ts_fenghaoda]
 
- : 太黑了，我觉得我头有亿点点晕
+ : 太黑了，我觉得我头有亿点点晕[voice:ts_taiheile]
  : 我的眼神看的不是很清楚...这里肯定有什么东西，可以照亮这块区域
 do showFirst()
 教程: 请拾起未熄灭的蜡烛
@@ -14,7 +14,7 @@ do setTuLabel("教程：请拾起未熄灭的蜡烛")
 ~ 蜡烛
 do getcandle()
 do setTuLabel("")
- : 我可以用这微弱的火源寻找熄灭的灯并点亮它
+ : 我可以用这微弱的火源寻找熄灭的灯并点亮它[voice:ts_yonghuoyuan]
 教程: 找到熄灭的灯源并点亮它
 do setTuLabel("教程：找到熄灭的灯源并点亮它")
 => END
@@ -23,10 +23,10 @@ do setTuLabel("教程：找到熄灭的灯源并点亮它")
 ~ 开灯
 do openLight()
 do setTuLabel("")
- : 很好，我可以看清整个房间里的东西了
- : 等等 这是
- : 陶谦的牌位...他怎么会？而我为什么会在这里
- : 好像 牌位上有什么机关，点击看看
+ : 很好，我可以看清整个房间里的东西了[voice:ts_henhaowokeyi]
+ : 等等 这是[voice:ts_dengdengzheshi]
+ : 陶谦的牌位...他怎么会？而我为什么会在这里[voice:ts_tqdepaiwei]
+ : 好像 牌位上有什么机关，点击看看[voice:]
 教程: 请点击陶谦的牌位
 do setTuLabel("教程：请点击陶谦的牌位")
 => END
@@ -34,8 +34,8 @@ do setTuLabel("教程：请点击陶谦的牌位")
 ~ second
 do getBook()
 do setTuLabel("")
- : 有什么东西被打开了
- : 这是...书？
+ : 有什么东西被打开了[voice:ts_yousmbeidakaile]
+ : 这是...书？[voice:ts_zheshishu]
 do showBook()
  : 士族生存法则，这是啥?
 => END
