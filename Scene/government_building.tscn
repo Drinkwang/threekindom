@@ -281,6 +281,7 @@ libraries = {
 }
 
 [node name="陶商陶应" parent="." instance=ExtResource("6_ibudm")]
+visible = false
 position = Vector2(955, 639)
 showName = "陶商/陶应"
 dialogue_doubleclick = "城外克苏鲁事件触发"
