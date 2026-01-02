@@ -640,7 +640,7 @@ func showtutorial(num):
 		
 	if(num<4):
 		battle_pane["guild_"+str(num)].show()
-	if(num>=2 and num<=8):
+	if(num>=2 and num<=3):
 		battle_pane["guild_"+str(num-1)].hide()
 
 	if num==2:
