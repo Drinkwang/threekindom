@@ -26,7 +26,7 @@ do showResult()
 主簿 : 第一次会议圆满结束了，将军您全票通过了法律[voice:zhubo_diyicihuiyi]
 主簿 : 毕竟大家都在将军您的领导下众志成城，法律通过是必然的事情！[voice:zhubo_jiangjundelingdao]
 主簿 : 不过人和人之间不总是完全利益一致，有可能未来有些通过不了的法律[voice:zhubo_buguorenherenzhijian]
-主簿 : 如果支持您的人数不达到一半，就得另外想想办法了...[voice:zhubo_ruguozhich]
+主簿 : 如果支持您的人数不达到一半，就得另外想想办法了...[voice:zhubo_ruguozhichi]
 主簿 : 比如讨好他们，但这也并不明智，有的时候您讨好1个人，就会得罪10个人[voice:zhubo_taohaotamen]
 主簿 : 哈哈哈，我今天失言说太多了，将军您也累了，您可以返回自己的住所休息了[voice:zhubo_shiyanshuotaiduole]
 do meetingEnd()
