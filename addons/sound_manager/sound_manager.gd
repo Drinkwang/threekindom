@@ -5,9 +5,9 @@ const SoundEffectsPlayer = preload("./sound_effects.gd")
 const AmbientSoundsPlayer = preload("./ambient_sounds.gd")
 const MusicPlayer = preload("./music.gd")
 
-var sound_effects: SoundEffectsPlayer = SoundEffectsPlayer.new(["Sounds", "SFX"], 8)
-var ui_sound_effects: SoundEffectsPlayer = SoundEffectsPlayer.new(["UI", "Interface", "Sounds", "SFX"], 8)
-var ambient_sounds: AmbientSoundsPlayer = AmbientSoundsPlayer.new(["Sounds", "SFX"], 1)
+var sound_effects: SoundEffectsPlayer = SoundEffectsPlayer.new(["Sounds"], 4)
+var ui_sound_effects: SoundEffectsPlayer = SoundEffectsPlayer.new(["UI"], 4)
+var ambient_sounds: AmbientSoundsPlayer = AmbientSoundsPlayer.new(["SFX"], 2)
 var music: MusicPlayer = MusicPlayer.new(["Music"], 2)
 
 var sound_process_mode: ProcessMode:
@@ -66,6 +66,7 @@ func get_ui_sound_volume() -> float:
 
 func set_sound_volume(volume_between_0_and_1: float) -> void:
 	_show_shared_bus_warning()
+
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(sound_effects.bus), linear_to_db(volume_between_0_and_1))
 #	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(ui_sound_effects.bus), linear_to_db(volume_between_0_and_1))
 
@@ -152,6 +153,8 @@ func get_music_volume() -> float:
 
 
 func set_music_volume(volume_between_0_and_1: float) -> void:
+
+
 	_show_shared_bus_warning()
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(music.bus), linear_to_db(volume_between_0_and_1))
 

@@ -17,6 +17,10 @@ boot_splash/bg_color=Color(0.0692378, 0, 0.450078, 1)
 boot_splash/image="res://Asset/logo設計.png"
 config/icon="res://Asset/icon.png"
 
+[audio]
+
+buses/default_bus_layout="res://new_audio_bus_layout.tres"
+
 [autoload]
 
 SceneManager="*res://Scripts/enum/scene_manager.gd"

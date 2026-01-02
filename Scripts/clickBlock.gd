@@ -137,7 +137,7 @@ func get_global_rect() -> Rect2:
 
 func _on_area_2d_input_event(viewport, event, shape_idx):
 	
-	if !(event is InputEventMouseButton) or DialogueManager.dialogBegin==true or GameManager.rewardPanel==true:
+	if !(event is InputEventMouseButton) or DialogueManager.dialogBegin==true or GameManager.rewardPanel==true or PanelManager.isOpenSetting==true:
 		return
 	#大概率是后面二项导致的	
 	print("dialogBegin "+var_to_str(DialogueManager.dialogBegin))

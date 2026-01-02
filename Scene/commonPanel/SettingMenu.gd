@@ -80,7 +80,7 @@ func _ready():
 		current_resolution_index = find_closest_resolution(max_width, max_height)
 		
 		fullscreen_check.button_pressed=true	
-		music_slider.value=1
+		music_slider.value=0.5
 		sfx_slider.value=1
 		GameManager._setting=SettingsResource.new()
 		GameManager._setting.language=system_locale
@@ -190,11 +190,11 @@ func _on_reset_pressed():
 
 # 音量滑块（示例）
 func _on_music_slider_value_changed(value: float):
-	SoundManager.set_sound_volume(value)
+	SoundManager.set_music_volume(value)
 	GameManager._setting.music_volume=value
 
 func _on_sfx_slider_value_changed(value: float):
-	SoundManager.set_music_volume(value)
+	SoundManager.set_sound_volume(value)
 	GameManager._setting.sfx_volume=value
 	
 	

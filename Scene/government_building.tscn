@@ -143,6 +143,26 @@ position = Vector2(960, 533)
 scale = Vector2(2.23, 2.23)
 texture = ExtResource("9_ucpug")
 
+[node name="陈登" parent="." instance=ExtResource("6_ibudm")]
+visible = false
+position = Vector2(1264, 624)
+showName = "陈登"
+dialogue_doubleclick = "点击陈登0"
+txt2d = ExtResource("12_quqka")
+boardType = 1
+dialogue_resource = ExtResource("2_yngd1")
+dialogue_start = "点击陈登0"
+
+[node name="糜竺" parent="." instance=ExtResource("6_ibudm")]
+visible = false
+position = Vector2(674, 628)
+showName = "糜竺"
+dialogue_doubleclick = "点击糜竺"
+txt2d = ExtResource("10_73x55")
+boardType = 1
+dialogue_resource = ExtResource("2_yngd1")
+dialogue_start = "点击糜竺"
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="supportPanel" parent="CanvasLayer" instance=ExtResource("12_5ydg1")]
@@ -250,16 +270,6 @@ boardType = 1
 dialogue_resource = ExtResource("2_yngd1")
 dialogue_start = "点击糜竺"
 
-[node name="糜竺" parent="." instance=ExtResource("6_ibudm")]
-visible = false
-position = Vector2(674, 628)
-showName = "糜竺"
-dialogue_doubleclick = "点击糜竺"
-txt2d = ExtResource("10_73x55")
-boardType = 1
-dialogue_resource = ExtResource("2_yngd1")
-dialogue_start = "点击糜竺"
-
 [node name="政府文书" parent="." instance=ExtResource("6_ibudm")]
 visible = false
 position = Vector2(984, 625)
@@ -290,16 +300,6 @@ txt2d = ExtResource("13_f851a")
 boardType = 1
 dialogue_resource = ExtResource("2_yngd1")
 dialogue_start = "城外克苏鲁事件触发"
-
-[node name="陈登" parent="." instance=ExtResource("6_ibudm")]
-visible = false
-position = Vector2(1264, 624)
-showName = "陈登"
-dialogue_doubleclick = "点击陈登0"
-txt2d = ExtResource("12_quqka")
-boardType = 1
-dialogue_resource = ExtResource("2_yngd1")
-dialogue_start = "点击陈登0"
 
 [node name="itemsInScene" type="Node2D" parent="."]
 script = ExtResource("31_4rbvs")

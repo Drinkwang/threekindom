@@ -44,7 +44,7 @@ func initLoadContinus():
 			break
 	if	showContinus==true:
 		$continue.disabled=false
-	GameManager.load_settings()	
+
 
 func _on_exit_button_down():
 	get_tree().quit()

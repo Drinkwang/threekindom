@@ -1157,16 +1157,14 @@ func initSetting():
 	var path="user://save_data_setting.tres"
 	if(FileAccess.file_exists(path)):
 		_setting=load(path)
-		load_settings()#把语言系统设置，然后应用分辨率 应用全屏，引用音效、没了
+
+		_load_settings()#把语言系统设置，然后应用分辨率 应用全屏，引用音效、没了
 	#else:
 		
-func load_settings():
+func _load_settings():
 	
 
-	SoundManager.set_sound_volume(_setting.sfx_volume)
-	SoundManager.set_music_volume(_setting.music_volume)
-	SoundManager.set_sound_ui_volume(_setting.people_volume)
-	SoundManager.set_ambient_sound_volume(_setting.bgs_volume)
+
 	if _setting.fullscreen:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	else:
@@ -1189,17 +1187,14 @@ func load_settings():
 	var window_pos = (screen_size - Vector2i(width, height)) / 2
 	DisplayServer.window_set_position(window_pos)	
 	
-	#current_resolution_index = resolutions.find(settings.resolution)
-	#apply_resolution(current_resolution_index)
-	
-	#fullscreen_check.button_pressed = settings.fullscreen
-	#_on_fullscreen_toggled(settings.fullscreen)
-	
-	#music_slider.value = settings.music_volume
-	#_on_music_slider_value_changed(settings.music_volume)
-	
-	#sfx_slider.value = settings.sfx_volume
-	#_on_sfx_slider_value_changed(settings.sfx_volume)
+	SoundManager.set_sound_volume(GameManager._setting.sfx_volume)
+	#await get_tree().create_timer(0.1).timeout
+	SoundManager.set_music_volume(GameManager._setting.music_volume)
+	#await get_tree().create_timer(0.1).timeout
+	#SoundManager.set_sound_ui_volume(GameManager._setting.people_volume)
+	#await get_tree().create_timer(0.1).timeout
+	SoundManager.set_ambient_sound_volume(GameManager._setting.bgs_volume)
+
 func clear_children(parent: Node) -> void:
 	for child in parent.get_children():
 		if !(child is Label):
