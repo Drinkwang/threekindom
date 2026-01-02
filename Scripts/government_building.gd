@@ -470,6 +470,9 @@ func showMizhuTouchMain():
 	GameManager.changeTaskLabel("与手下谈谈")
 	GameManager.AutoSaveFile()
 
+@onready var zhubu: Node2D = $"主簿"
+
+
 func showFirstMission():
 	GameManager.sav.policyExcute=false
 	GameManager.changeTaskLabel("")

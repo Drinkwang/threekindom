@@ -1,4 +1,5 @@
 ~ init
+do zhubu.show()
 主簿: 将军您好[voice:jiangjunninhao]
  : 我终于回来了，是不是积攒了不少公务？
 主簿: 哦，不，其实将军不在时，大部分事务别驾都代您处理妥当了……[voice:biejiadainiwanc]
@@ -6,16 +7,19 @@
 主簿: 哦，不，大人您至关重要！政府的决策、法令的颁布，都得您亲自定夺。只是些琐碎的政策杂务，我们觉得不必劳烦您罢了……[voice:darennizhiguan]
  : 不，我之前跟陈群说过，我要亲自过目所有公务文书。
 主簿: 哦，这个陈大人也交代过了。这里是上个月的所有公务文书，大人请随时核查。  [voice:chendarenjiaodaiguole]
+do zhubu.hide()
 do showwrit()
 => END
 
 ~ look
 do lookDown()
 : 刘备翻开厚厚一摞文书，埋头看了好几个时辰。可这些内容繁琐杂乱，若要细读，恐怕数年都看不完。
+do zhubu.show()
 刘备: 《村民迁移事宜》《小沛市场商人管理》《农田种植指南》《府邸蜡烛采购清单》……
 刘备: 这文书也太多了，难道是想让我鞠躬尽瘁，累死在这上面？
 主簿: 不不不，刘将军，您误会了！这些文书只是日常政务所需，我们绝无意让您这样的大人物耗费心力于此。[voice:darenniwuhuile]
 主簿: 这些琐事惯由我们幕僚整理，提取核心内容。大人只需定夺大事即可。[voice:ZHEXIESUOSHI]
+do zhubu.hide()
 do implementpolicy()
 教程: 请点击“执行政策”按钮，进入施政面板。  
 => END
@@ -43,6 +47,7 @@ do selectCorrectBefore()
 
 
 ~ 正确决策0之后引导
+do zhubu.show()
 主簿: 大人，完成这一步后，您还需安排颁布法令的议程。目前您有3个政策点，不同法令会消耗相应的点数，每日都会获得新的政策点。[voice:banbufalvlichen]
 主簿: 当然，大人可自由颁布任何法令，但法令生效前，需明日前往议事厅，征询城中各派系大人物的意见。只有大多数同意，法令才能正式施行。[voice:darenkeziyouban]
 刘备: 嗯？为何如此？我不是这城的刺史吗？为何还要征询他们的意见？
@@ -52,6 +57,7 @@ do selectCorrectBefore()
 刘备: 那就不能调查他们吗？
 主簿: 将军，若您正式调查，他们定会装得“积极”无比，可这只是假象。磨洋工的手法隐秘难查，甚至会事先安排替罪羊暗中捣乱。一旦如此，大人的计划就难以推进了。因此，最好一开始便征询他们的意见，避免这些麻烦。[voice:jiangjunruonizhenshidiaocha]
 刘备: 好，我明白了。  
+do zhubu.hide()
 do showTab()
 教程: 请切换选项，安排明日法律
 #do hidePolicy()
@@ -77,13 +83,14 @@ do showTab()
 => END!
 
 ~ 第一次指定法律完成
-
+do zhubu.show()
 #安排完了，
 主簿: 大人，今日公务已毕。听说将军接下来要去校场探望老部下？[voice:darenjinrigongwuyibi]
 刘备: 是啊，我在外奔波了一周，也该跟弟兄们聚一聚了。
 主簿: 您说得是，只是还请提防那丹阳派……[voice:nishuodeshidifangdanyangpai]
 刘备: 丹阳派？他们又惹了什么祸？
 主簿: 这话不便由我细说，但他们欺行霸市已非一日，譬如抢夺百姓的米钱，民怨颇深。  [voice:zhehuabubianyouwoxishuo]
+do zhubu.hide()
 do arrangeDone()
 => END
 
@@ -119,11 +126,14 @@ do meetingEnd()
 
 
 ~ 召见手下1
+do zhubu.show()
 主簿: 第一次召见手下，大人最好请大家吃一顿饭，后面大人就可以单独约饭局上认识的人聊聊了[voice:diyicizhaojianshouxia]
+
 - 设宴[highlight=true]
 	do meeting()
 - 取消
 	do cancel()
+do zhubu.hide()	
 => END
 
 ~ 召见手下2

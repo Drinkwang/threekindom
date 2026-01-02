@@ -237,6 +237,10 @@ func chendengWantUpLevel():
 
 	_reward.showTitileReward(tr("你获得了陈登捐助的200金"),items,false)	
 	
+	
+@onready var zhubu: Node2D = $CanvasBook/zhubu
+	
+	
 const kek = preload("res://Asset/sound/咳嗽1.wav")
 func eatFish1(issuccuss=false):
 	GameManager.sav.chendenSideWait=3

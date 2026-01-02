@@ -871,8 +871,11 @@ func generate_consumed_string(consumed: Dictionary) -> String:
 	
 @onready var items_in_scene: Node2D = $itemsInScene
 
+@onready var caobao: Node2D = $caobao
 
 
+@onready var wenguan: Node2D = $"文官"
+@onready var chenqun: Node2D = $"陈群"
 
 	
 func sheepGnawed():

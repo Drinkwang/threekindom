@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://dbk6u8kc33kq2"]
+[gd_scene load_steps=43 format=3 uid="uid://dbk6u8kc33kq2"]
 
 [ext_resource type="Script" path="res://Scripts/government_building.gd" id="1_xncth"]
 [ext_resource type="Resource" uid="uid://cqlt2sgkuk3na" path="res://dialogues/府邸.dialogue" id="2_yngd1"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://cjgwjw0xpgmys" path="res://Asset/人物/糜竺眨眼.png" id="10_73x55"]
 [ext_resource type="PackedScene" uid="uid://v5uv2iy3evkb" path="res://Scene/prefab/numPanel.tscn" id="12_5ydg1"]
 [ext_resource type="Texture2D" uid="uid://doh7mxtgy0hm2" path="res://Asset/人物/陈登睁眼.png" id="12_quqka"]
+[ext_resource type="Texture2D" uid="uid://bnjbt2sitl545" path="res://Asset/人物/主簿open.png" id="13_6lqxm"]
 [ext_resource type="Texture2D" uid="uid://bb3edpq2iva10" path="res://Asset/人物/陶商陶应.png" id="13_f851a"]
 [ext_resource type="PackedScene" uid="uid://ervc6220fre7" path="res://Scene/prefab/fspanel.tscn" id="15_wrxcl"]
 [ext_resource type="PackedScene" uid="uid://ghiim2lkqkbe" path="res://Scene/prefab/propertyPanel.tscn" id="16_rw7iu"]
@@ -162,6 +163,14 @@ txt2d = ExtResource("10_73x55")
 boardType = 1
 dialogue_resource = ExtResource("2_yngd1")
 dialogue_start = "点击糜竺"
+
+[node name="主簿" parent="." instance=ExtResource("6_ibudm")]
+visible = false
+position = Vector2(948, 636)
+showName = "主簿"
+txt2d = ExtResource("13_6lqxm")
+boardType = 1
+dialogue_start = ""
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

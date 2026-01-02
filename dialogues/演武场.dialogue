@@ -1,5 +1,5 @@
 ~ 初入演武场
-
+do caobao.show()
 曹豹: 刘将军，你来了，有给我们丹阳兄弟带什么好处没有 我们可是陶刺史亲自派过来的[voice:caobao_liujiangjunnilaile]
 
 张飞: 嗯！[voice:zhangfei_en]
@@ -14,6 +14,7 @@
 曹豹: 我们是陶谦大人派来帮您的，哪怕我和你的二位兄弟处得不好，但只要陶谦大人在世一天，我们就是统一战线..[voice:caobao_tongyizhanxian]
 刘备: 行吧，我一定会明断的，曹将军，容我和我的二个弟兄说一句话可否
 曹豹: 请便，将军，您一定得还我们清白，我们可是陶谦大人嫡系部队，可没有必要做出这种事情..[voice:caobao_qingbian]
+do caobao.hide()
  : 曹豹离开了此地，但依然在军营不远处巡视着
 
 张飞: 大哥，你也发现了吧..这个人实际上是安排在我们周边的卧底，我们这边人员调动都得受到限制[voice:zhangfei_dageniyefaxian]
@@ -52,10 +53,12 @@ do endtrain()
 => END
 
 ~ 初次派遣
+do caobao.show()
 曹豹: 刘将军，等候您多时了[voice:caobao_liujiangjundenghou]
 刘备: 嗯，我会立刻派我的手下关羽、张飞、那位将军，协助你一起征伐
 曹豹: 好，就让我们二路分别进军，就看贼寇如何逃窜！[voice:caobao_haofenbiejinjun]
 教程: 点击‘军事行动’，为这场战争合理的分配资源
+do caobao.hide()
 => END
 
 #没有展示
@@ -106,9 +109,11 @@ do showtutorial(5)
 => END
 
 ~ 军事行动结束
+do caobao.show()
 曹豹: 将军，不管怎么样，你都完成了陶谦刺史交代你的所有任务[voice:caobao_jiangjunbuguan]
 曹豹: 我这边也在你的协助下，成功剿灭了所有敌人！[voice:caobao_xiezhuxia]
 曹豹: 你可以接着留在这里操练士兵，或者早点回去休息[voice:caobao_nikeyi]
+do caobao.hide()
 => END
 
 

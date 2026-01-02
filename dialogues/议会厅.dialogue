@@ -1,5 +1,5 @@
 ~ 第一次开始议事
-
+do zhubu.show()
 主簿 : 将军，我在这里候您多时了[voice:zhubo_jiangjunhouni1]
 主簿 : 这些是当地的名门望族，不过总体来说，可以分为2个阵营[voice:zhubo_zhexieshiminmen]
 do showGuild()
@@ -8,7 +8,7 @@ do showGuild()
 主簿 : 本土派是本地的士族、豪族，他们出生在这里，当然因为三户法的影响，他们当不了这里的长官，往往只能由外地人当长官，他们只能被长官任命当这里的二把手[voice:zhubo_sanhufa]
 主簿 : 而外来派是和仗着陶谦大人 上任一起来的丹阳人，很多本土人一开始并不看好他们，但他们也逐渐根基多年，逐渐也行成这里一个不可忽视的大势力[voice:zhubo_danyangren]
 主簿 : 将军大人的法律需要得到二个派系的承认，当然目前大人的法律 在下看起来并无侵害他们利益之处，我想二个派系都会支持您的[voice:zhubo_jiangjunfalv]
-
+do zhubu.hide()
 do hideGuild()
 => END
 
@@ -23,12 +23,14 @@ do showResult()
 => END
 
 ~ 第一次会议结束
+do zhubu.show()
 主簿 : 第一次会议圆满结束了，将军您全票通过了法律[voice:zhubo_diyicihuiyi]
 主簿 : 毕竟大家都在将军您的领导下众志成城，法律通过是必然的事情！[voice:zhubo_jiangjundelingdao]
 主簿 : 不过人和人之间不总是完全利益一致，有可能未来有些通过不了的法律[voice:zhubo_buguorenherenzhijian]
 主簿 : 如果支持您的人数不达到一半，就得另外想想办法了...[voice:zhubo_ruguozhichi]
 主簿 : 比如讨好他们，但这也并不明智，有的时候您讨好1个人，就会得罪10个人[voice:zhubo_taohaotamen]
 主簿 : 哈哈哈，我今天失言说太多了，将军您也累了，您可以返回自己的住所休息了[voice:zhubo_shiyanshuotaiduole]
+do zhubu.hide()
 do meetingEnd()
 => END
 
