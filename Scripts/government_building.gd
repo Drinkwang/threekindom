@@ -344,7 +344,7 @@ func _buttonListClick(item):
 				#pass 跳转到下一个政策
 				#GameManager.sav.have_event["initTask1"]=true
 				policy_panel.show()
-				
+				policy_panel.tab_bar.current_tab=0
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"主线第一次指定政策")
 			elif GameManager.sav.have_event["糜竺推荐陈登"]==false:
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"没有对话前不能执行政策")

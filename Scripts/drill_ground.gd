@@ -562,6 +562,10 @@ func _buttonListClick(item):
 
 #练兵结束调用这个 初次练兵
 
+func showbattletutorial():
+	DialogueManager.show_exaple_top_dialogue_balloon(dialogue_resource,"第一次军事行动教程_上")
+	
+
 func caobaoLevelUpSoilder():
 	refreshData()
 	#GameManager._propertyPanel.GetValue(200,0,0)
@@ -604,6 +608,9 @@ func ConsultWithCaoBaoEnd():
 
 @onready var point = $CanvasInventory/point
 
+var _tween:Tween
+var _tween2:Tween
+
 func showtutorial(num):
 	
 	if num ==1:
@@ -631,12 +638,12 @@ func showtutorial(num):
 		control._show_button_5_yellow(-1)
 		point.show()
 		#请做移动资源的曲线
-		var tween=get_tree().create_tween()
-		tween.tween_property(battle_pane.soild_slider, "value",30, 5)
-		tween.tween_property(battle_pane.soild_slider, "value",0, 5)
-		var tween2=get_tree().create_tween()
-		tween2.tween_property(battle_pane.coin_slider, "value",30, 5)
-		tween2.tween_property(battle_pane.coin_slider, "value",0, 5)		
+		_tween=get_tree().create_tween()
+		_tween.tween_property(battle_pane.soild_slider, "value",30, 5)
+		_tween.tween_property(battle_pane.soild_slider, "value",0, 5)
+		_tween2=get_tree().create_tween()
+		_tween2.tween_property(battle_pane.coin_slider, "value",30, 5)
+		_tween2.tween_property(battle_pane.coin_slider, "value",0, 5)		
 		
 	if(num<4):
 		battle_pane["guild_"+str(num)].show()
@@ -649,8 +656,8 @@ func showtutorial(num):
 		
 		
 		var btdatas=GameManager.sav.battleTasks[0]
-		var tween=get_tree().create_tween()
-		var tween2=get_tree().create_tween()
+		_tween=get_tree().create_tween()
+		_tween2=get_tree().create_tween()
 		var tasks=btdatas.task
 		var ResSlider
 		
@@ -677,7 +684,7 @@ func showtutorial(num):
 				#把slider调整相等
 				movevalue=value
 
-			tween.tween_property(ResSlider, "value",movevalue, 0.05)
+			_tween.tween_property(ResSlider, "value",movevalue, 0.05)
 		
 		
 		
@@ -706,9 +713,10 @@ func showtutorial(num):
 	if num ==4:
 		#还原所有曲线，取消选择武将，金钱设置为0
 		battle_pane.istour=false
-		
-		
-		
+		battle_pane.coin_slider.value=0
+		battle_pane.soild_slider.value=0
+		_tween.stop()
+		_tween2.stop()
 		battle_pane.control_3.check_box.button_pressed=false
 		battle_pane.control_2.check_box.button_pressed=false
 		battle_pane.control_1.check_box.button_pressed=false
