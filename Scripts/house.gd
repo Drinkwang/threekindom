@@ -440,6 +440,7 @@ func showFirstGuild():
 	$"陈群".hide()
 	#这句代码没有作用，以防万一添加进行初始化
 	GameManager.sav.policyExcute=false
+	GameManager.initSecretFunc()
 	GameManager.changeTaskLabel(tr("完成今日政务所有事项"))
 	pass
 	

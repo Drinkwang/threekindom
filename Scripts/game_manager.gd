@@ -189,7 +189,7 @@ func initSecretFunc():
 	var maxLen=randi_range(0,3)
 	if sav.day<4:
 		if sav.day==1:
-
+			
 			available_secret_items=CanFindSecretItems[1]
 	
 		elif sav.day==2:

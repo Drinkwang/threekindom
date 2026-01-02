@@ -243,7 +243,7 @@ func _initData():
 		initData[1].visible="true"
 	
 	if GameManager.sav.have_event["firstPolicyOpShow"]==true||GameManager.sav.day>1:
-		if control.visible==true:	
+		if control.visible==true:
 			items_in_scene.showItems()
 		control._processList(initData)
 

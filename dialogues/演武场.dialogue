@@ -15,17 +15,22 @@ do caobao.show()
 刘备: 行吧，我一定会明断的，曹将军，容我和我的二个弟兄说一句话可否
 曹豹: 请便，将军，您一定得还我们清白，我们可是陶谦大人嫡系部队，可没有必要做出这种事情..[voice:caobao_qingbian]
 do caobao.hide()
+do zhangfei.show()
+do guanyu.show()
  : 曹豹离开了此地，但依然在军营不远处巡视着
 
 张飞: 大哥，你也发现了吧..这个人实际上是安排在我们周边的卧底，我们这边人员调动都得受到限制[voice:zhangfei_dageniyefaxian]
 张飞: 我们不能把这样的人留在身边...[voice:zhangfei_womenbuneng]
 关羽: 但是大哥也没办法 陶谦看上去是拨给了我们3000士兵，实际上是安排了3000眼线 [voice:guanyu_danshi1]
 刘备: 先不提这个，我们三人也算重聚了，先小酌一番吧..对了，把那家伙也给叫上###这句待翻译
+do zhangfei.hide()
+do guanyu.hide()
 do enterOldSoilderEat()
 => END
 
 
 ~ 饭局结束
+do zhangfei.show()
 : 酒足饭饱后，刘备开始与他的手下相谈
 张飞: 大哥，你可不知，这些中原的士兵超级呆..[voice:zhangfei_zhexiezhong1]
 刘备: 此话怎讲？
@@ -33,6 +38,7 @@ do enterOldSoilderEat()
 刘备: 确实，为难你们了,为兄后续会和你们一起亲自操刀训练，我们能留在这里，恰恰就是陶刺史想让我们给他训练一支能打的部队
 张飞: 哈哈哈，不用担心，经过我、关大哥，那位兄弟三人协助训练下，现在，这些家伙大为改善！[voice:zhangfei_hahaha3]
 刘备: 好！就让我们再接再厉，接着在训练场上将自己实力进一步提升！
+do zhangfei.hide()
  : 练兵场是用来让将领训练，获得成长的地方，只要有足够的资金，就能让自己的手下快速将等级提升上去(满级10级)
 教程: 点击训练，为自己想要升级的将领，为他提升一个等级吧
 do trainBegin()
@@ -40,13 +46,18 @@ do trainBegin()
 
 ~ 初次练兵
 do endtrain0()
+do zhangfei.show()
+do guanyu.show()
 张飞: 哈哈哈，可惜不是真刀实枪，不过瘾啊[voice:zhangfei_kexibushi4]
 关羽: 如今天下大乱，我们应该珍惜眼下的机会..不过大哥的目的可不限于此[voice:guanyu_dage2]
 刘备: 没错，珍惜眼前暂时的‘和平’吧..战场是残酷的。但只有在上战场前把刀磨利了，我们才能在战场上真正战胜对手并减少不必要的牺牲！
 众人: 是！
 张飞: 大哥也该回去休息了..明天还该处理政务呢[voice:zhangfei_gaixiuxi5]
 刘备: 好
+do zhangfei.hide()
+do guanyu.hide()
 教程: 返回自宅，休息结束这一天
+
 do endtrain()
 #刘备: 曹将军这里练兵场武备充裕否？
 #曹豹: 当然，我们也会积极配合，毕竟我们受陶谦大人命令和您一起练兵，绝不会敷衍，你们这些幽州人是练兵专业户，我们一定会认真学习..

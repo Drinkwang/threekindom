@@ -304,6 +304,7 @@ enum itemStatus{ban,select,normal}
 
 func arrangeDone():
 	_on_exit_button_button_down()
+	#$"../.."._initData()
 	
 func _on_law_confire_button_down():
 	excuteLaw(selectLawPoint)
@@ -323,4 +324,5 @@ func getPolicyName(lawIndex,policyIndex)->String:
 func _on_exit_button_button_down():
 	SoundManager.play_sound(sounds.declinesound)
 	self.hide()
+	
 	pass # Replace with function body.

@@ -605,6 +605,7 @@ func ConsultWithCaoBaoEnd():
 	caobao.hide()
 	GameManager.sav.TargetDestination="府邸"	
 	GameManager.sav.have_event["lvbuDiscussInCaoBao"]=true
+@onready var zhangfei: Node2D = $zhangfei
 
 @onready var point = $CanvasInventory/point
 
@@ -656,6 +657,8 @@ func showtutorial(num):
 		
 		
 		var btdatas=GameManager.sav.battleTasks[0]
+		_tween.kill()
+		_tween2.kill()
 		_tween=get_tree().create_tween()
 		_tween2=get_tree().create_tween()
 		var tasks=btdatas.task
@@ -713,10 +716,7 @@ func showtutorial(num):
 	if num ==4:
 		#还原所有曲线，取消选择武将，金钱设置为0
 		battle_pane.istour=false
-		battle_pane.coin_slider.value=0
-		battle_pane.soild_slider.value=0
-		_tween.stop()
-		_tween2.stop()
+
 		battle_pane.control_3.check_box.button_pressed=false
 		battle_pane.control_2.check_box.button_pressed=false
 		battle_pane.control_1.check_box.button_pressed=false
@@ -732,6 +732,12 @@ func showtutorial(num):
 		battle_pane._refreshSlider()
 		battle_pane.point_group.hide()
 	elif num==5:
+
+		_tween.kill()
+		_tween2.kill()
+		
+		battle_pane.coin_slider.value=0
+		battle_pane.soild_slider.value=0		
 		point.hide()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
