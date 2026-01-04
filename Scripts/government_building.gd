@@ -22,11 +22,15 @@ var lvbu=cldata.factionIndex.lvbu
 	#},
 
 func showwrit():
+	point.show()
 	policyBook.show()
 	control._show_button_5_yellow(-1)
 	#pass
 const fanyuesound = preload("res://Asset/sound/翻阅.mp3")
+@onready var point: Node2D = $point
+
 func lookDown():
+	point.hide()
 	SoundManager.play_sound(fanyuesound)
 	policyBook.hide()
 	pass

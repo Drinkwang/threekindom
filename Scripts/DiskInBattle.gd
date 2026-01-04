@@ -325,7 +325,9 @@ func _changeCircle(rewardGet):
 	var success_rate_percent: int = int(success_rate * 100)
 
 # 3. 拼接成目标文本格式（假设文本节点名为 "SuccessRateText"）
-	suss_label.text = "成功率:%d%%" % success_rate_percent	
+
+	if canchange==true:
+		suss_label.text =tr("征战胜算图")+"\n"+"成功率:%d%%" % success_rate_percent	
 
 	refresh()
 
@@ -726,7 +728,7 @@ func _on_Switch_button_down() -> void:
 	switchStete()
 	# 可选：打印当前状态，方便调试
 	#print("当前切换状态：", battleStete.keys()[next_index])
-@onready var state_label: Label = $stateLabel
+#@onready var state_label: Label = $stateLabel
 
 
 @onready var rect_no: ColorRect = $"VBoxContainer/无风险"
@@ -739,11 +741,14 @@ func _on_Switch_button_down() -> void:
 @onready var background_player: TextureProgressBar = $"background-player"
 
 
+var canchange=false
 func switchStete():
 	
 	# 这里可以添加切换状态后的逻辑（比如更新扇形图显示）
 	match current_state:
 		battleStete.all:
+			canchange=false
+			
 			# 显示全维度战情图的逻辑
 			datas[0].show()
 			datas[1].show()
@@ -756,16 +761,17 @@ func switchStete():
 			rect_low.show()
 			rect_low2.show()
 			rect_low3.show()			
-			state_label.text=tr("战情全图")
+			suss_label.text=tr("战情全图")
 			point_1.show()
 			point_2.show()
 			point_3.show()
 			point_4.show()
-			suss_label.hide()
+			#suss_label.hide()
 		battleStete.victory:
+			canchange=true
 			# 显示成功率图的逻辑
 			rect_suss.show()
-			suss_label.show()
+			#suss_label.show()
 			background_player.show()
 			rect_no.hide()
 			rect_low.hide()
@@ -782,10 +788,10 @@ func switchStete():
 			
 			datas[4].show()
 			
-			state_label.text=tr("征战胜算图")
+			suss_label.text=tr("征战胜算图")
 		battleStete.damage:
+			canchange=false
 			# 显示伤亡率图的逻辑
-			suss_label.hide()
 			rect_suss.hide()
 			datas[0].show()
 			datas[1].show()
@@ -802,7 +808,7 @@ func switchStete():
 			point_2.show()
 			point_3.show()
 			point_4.show()			
-			state_label.text=tr("折损态势图")
+			suss_label.text=tr("折损态势图")
 
 enum battleStete{
 	all,

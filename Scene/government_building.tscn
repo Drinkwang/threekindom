@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://dbk6u8kc33kq2"]
+[gd_scene load_steps=46 format=3 uid="uid://dbk6u8kc33kq2"]
 
 [ext_resource type="Script" path="res://Scripts/government_building.gd" id="1_xncth"]
 [ext_resource type="Resource" uid="uid://cqlt2sgkuk3na" path="res://dialogues/府邸.dialogue" id="2_yngd1"]
@@ -35,10 +35,32 @@
 [ext_resource type="Texture2D" uid="uid://dme188pn6ks8" path="res://Asset/fx/zhangyan_Frames/Slash2_color2_frame5.png" id="26_dmvci"]
 [ext_resource type="Texture2D" uid="uid://d1dl7ni55wrps" path="res://Asset/fx/zhangyan_Frames/Slash2_color2_frame6.png" id="27_02a0d"]
 [ext_resource type="Texture2D" uid="uid://c4o3chacp3emp" path="res://Asset/fx/zhangyan_Frames/Slash2_color2_frame7.png" id="28_nttis"]
+[ext_resource type="Texture2D" uid="uid://rmaibsw1yjqd" path="res://Asset/城镇建筑/5_yellow.png" id="28_ucvcr"]
 [ext_resource type="Script" path="res://Scripts/items_in_scene_manager.gd" id="31_4rbvs"]
 [ext_resource type="PackedScene" uid="uid://4ap7nnl7o6br" path="res://Scene/prefab/_CgetSceneItem.tscn" id="32_1meer"]
 [ext_resource type="Resource" uid="uid://cjbqxteqnpnrd" path="res://dialogues/议会厅.dialogue" id="33_r2h6v"]
 [ext_resource type="Texture2D" uid="uid://cqh5dhr518rsp" path="res://Asset/板子.png" id="34_dqdog"]
+
+[sub_resource type="Animation" id="Animation_rms3s"]
+resource_name = "YELLOWGUILD"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -5), Vector2(0, 10), Vector2(0, 6.66666), Vector2(0, 3.33331), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4gull"]
+_data = {
+"YELLOWGUILD": SubResource("Animation_rms3s")
+}
 
 [sub_resource type="Animation" id="Animation_trdn5"]
 length = 0.001
@@ -288,6 +310,24 @@ txt2d = ExtResource("9_qwmo3")
 boardType = 1
 dialogue_resource = ExtResource("2_yngd1")
 dialogue_start = "look"
+
+[node name="point" type="Node2D" parent="."]
+visible = false
+position = Vector2(977, 514)
+rotation = -1.5708
+scale = Vector2(0.5, 0.5)
+
+[node name="5Yellow" type="Sprite2D" parent="point"]
+position = Vector2(0, 1.21728)
+rotation = -1.5708
+scale = Vector2(4, 4)
+texture = ExtResource("28_ucvcr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="point/5Yellow"]
+libraries = {
+"": SubResource("AnimationLibrary_4gull")
+}
+autoplay = "YELLOWGUILD"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false

@@ -241,7 +241,7 @@ offset_top = 5.0
 offset_right = 9.0
 offset_bottom = 5.0
 txt = ExtResource("8_phhxu")
-contextEX = "关羽、张飞、赵云现在可以被你调用！
+contextEX = "关羽、张飞、无名现在可以被你调用！
 (或许将军可以试试练兵功能来快速提升武将等级）"
 titleEX = "老兵饭局："
 dialogue_resource = ExtResource("2_j02vm")

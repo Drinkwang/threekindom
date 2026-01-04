@@ -436,6 +436,7 @@ func _process(delta):
 	
 func showFirstGuild():
 	control.show()
+	point.hide()
 	control._show_button_5_yellow(0)
 	$"陈群".hide()
 	#这句代码没有作用，以防万一添加进行初始化
@@ -443,9 +444,13 @@ func showFirstGuild():
 	GameManager.initSecretFunc()
 	GameManager.changeTaskLabel(tr("完成今日政务所有事项"))
 	pass
+
+
+@onready var point: Node2D = $point
 	
 func showchenqun():
 	$"陈群".show()
+	point.show()
 	GameManager.changeTaskLabel(tr("跟陈群对话"))
 	pass
 

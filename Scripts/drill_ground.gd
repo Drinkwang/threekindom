@@ -273,100 +273,98 @@ func _initData():
 		elif GameManager.sav.have_event["刘备成长1"]==true and GameManager.sav.have_event["刘备成长2"]==false:
 			GameManager.sav.have_event["刘备成长2"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"刘备的成长2")
-	if GameManager.selectBoardCharacter==boardType.boardCharacter.caobao and GameManager._boardMode!=boardType.boardMode.none and GameManager._boardGameWin==true:
-		caobao.show()
-		GameManager.selectBoardCharacter=boardType.boardCharacter.none 
-		GameManager._boardMode=boardType.boardMode.none
-		GameManager.resumeMusic()
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"常规获胜")
-	elif GameManager.selectBoardCharacter==boardType.boardCharacter.caobao and GameManager._boardMode!=boardType.boardMode.none and GameManager._boardGameWin==false:
-		caobao.show()
-		GameManager.resumeMusic()
-		GameManager.selectBoardCharacter=boardType.boardCharacter.none 
-		GameManager._boardMode=boardType.boardMode.none 
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"常规失败")	
-	elif GameManager.sav.have_event["曹豹牌局无人"] ==false and GameManager.sav.caobaocardgame==4 and (GameManager.sav.mizhucardgame<5 or GameManager.sav.chendencardgame<=5):
-		caobao.hide()
-		GameManager.sav.have_event["曹豹牌局无人"] =true
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"牌局无人")
+		elif GameManager.selectBoardCharacter==boardType.boardCharacter.caobao and GameManager._boardMode!=boardType.boardMode.none and GameManager._boardGameWin==true:
+			caobao.show()
+			GameManager.selectBoardCharacter=boardType.boardCharacter.none 
+			GameManager._boardMode=boardType.boardMode.none
+			GameManager.resumeMusic()
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"常规获胜")
+		elif GameManager.selectBoardCharacter==boardType.boardCharacter.caobao and GameManager._boardMode!=boardType.boardMode.none and GameManager._boardGameWin==false:
+			caobao.show()
+			GameManager.resumeMusic()
+			GameManager.selectBoardCharacter=boardType.boardCharacter.none 
+			GameManager._boardMode=boardType.boardMode.none 
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"常规失败")	
+		elif GameManager.sav.have_event["曹豹牌局无人"] ==false and GameManager.sav.caobaocardgame==4 and (GameManager.sav.mizhucardgame<5 or GameManager.sav.chendencardgame<=5):
+			caobao.hide()
+			GameManager.sav.have_event["曹豹牌局无人"] =true
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"牌局无人")
 	
 	
-	elif GameManager.trainResult==SceneManager.trainResult.win:
-		if GameManager.trainGeneral=="关羽":
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"关羽比武胜利")
+		elif GameManager.trainResult==SceneManager.trainResult.win:
+			if GameManager.trainGeneral=="关羽":
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"关羽比武胜利")
 
-		elif GameManager.trainGeneral=="张飞":
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"张飞比武胜利")
+			elif GameManager.trainGeneral=="张飞":
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"张飞比武胜利")
 	
-		elif GameManager.trainGeneral=="赵云":
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"赵云比武胜利")
+			elif GameManager.trainGeneral=="赵云":
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"赵云比武胜利")
 			
 
-	elif GameManager.trainResult==SceneManager.trainResult.fail:
-		if GameManager.trainGeneral=="关羽":
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"关羽比武失败")
+		elif GameManager.trainResult==SceneManager.trainResult.fail:
+			if GameManager.trainGeneral=="关羽":
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"关羽比武失败")
 
-		elif GameManager.trainGeneral=="张飞":
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"张飞比武失败")
+			elif GameManager.trainGeneral=="张飞":
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"张飞比武失败")
 	
-		elif GameManager.trainGeneral=="赵云":
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"赵云比武失败")
+			elif GameManager.trainGeneral=="赵云":
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"赵云比武失败")
 			
 
 	
 		
-	elif GameManager.sav.have_event["查出药囊后休息前"]==true and GameManager.sav.have_event["锦囊咨询丹阳派"]==false and caobao.showEX==false:
-		caobao.changeAllClick("演武场克苏鲁剧情支线")
-		caobao.showEX=true
-		caobao.show()
+		elif GameManager.sav.have_event["查出药囊后休息前"]==true and GameManager.sav.have_event["锦囊咨询丹阳派"]==false and caobao.showEX==false:
+			caobao.changeAllClick("演武场克苏鲁剧情支线")
+			caobao.showEX=true
+			caobao.show()
 	
-	elif GameManager.sav.have_event["曹豹支线1"]==false and GameManager.sav.have_event["battleTaiShan"]==true and caobao.showEX==false:
-		caobao.changeAllClick("曹豹支线1")
-		caobao.show()
-
-		caobao.showEX=true
-			#插入糜贞送药
-			#糜竺嫁妹支线2
-			#tsty.show()		
-			
-	elif GameManager.sav.have_event["曹豹支线2"]==false and GameManager.sav.caobaoSideWait==1:
-		if GameManager.sav.have_event["曹豹资助"]==false:#暂时没想好写啥
+		elif GameManager.sav.have_event["曹豹支线1"]==false and GameManager.sav.have_event["battleTaiShan"]==true and caobao.showEX==false:
+			caobao.changeAllClick("曹豹支线1")
 			caobao.show()
 
-			#caobao.showEX=false
-			GameManager.sav.have_event["曹豹资助"]=true
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"插入曹豹资助")
+			caobao.showEX=true
+	
+			
+		elif GameManager.sav.have_event["曹豹支线2"]==false and GameManager.sav.caobaoSideWait==1:
+			if GameManager.sav.have_event["曹豹资助"]==false:#暂时没想好写啥
+				caobao.show()
+
+
+				GameManager.sav.have_event["曹豹资助"]=true
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"插入曹豹资助")
 				
-	elif GameManager.sav.have_event["曹豹支线2"]==false and GameManager.sav.caobaoSideWait==0 and caobao.showEX==false:	
-		caobao.changeAllClick("曹豹支线2")
-		caobao.show()
+		elif GameManager.sav.have_event["曹豹支线2"]==false and GameManager.sav.caobaoSideWait==0 and caobao.showEX==false:	
+			caobao.changeAllClick("曹豹支线2")
+			caobao.show()
 		
-		caobao.showEX=true	
-	else:
-		if GameManager.sav.day>=7 and GameManager.sav.have_event["开启比武训练"]==false:
-			GameManager.sav.have_event["开启比武训练"]=true
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"比武训练解锁")
+			caobao.showEX=true	
+		else:
+			if GameManager.sav.day>=7 and GameManager.sav.have_event["开启比武训练"]==false:
+				GameManager.sav.have_event["开启比武训练"]=true
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"比武训练解锁")
 		
-		elif GameManager.sav.caobaocardgame>=0  and caobao.showEX==false:
+			elif GameManager.sav.caobaocardgame>=0  and caobao.showEX==false:
 			#如果小于4 则移出3 
 			
 			
 			#@export var mizhucardgame=-1
 			#@export var chendencardgame=-1
 			
-			if GameManager.sav.have_event["boss战开始"]==false and GameManager.sav.caobaocardgame==4 and GameManager.sav.mizhucardgame==5 and GameManager.sav.chendencardgame==5:
-				caobao.changeAllClick("来把仕诡牌2")
-				caobao.show()
+				if GameManager.sav.have_event["boss战开始"]==false and GameManager.sav.caobaocardgame==4 and GameManager.sav.mizhucardgame==5 and GameManager.sav.chendencardgame==5:
+					caobao.changeAllClick("来把仕诡牌2")
+					caobao.show()
 
-				caobao.showEX=true
-			elif GameManager.sav.have_event["boss战开始"]==false and GameManager.sav.caobaocardgame==4 and (GameManager.sav.mizhucardgame<5 or GameManager.sav.chendencardgame<=5):
-				caobao.hide()
-			else:
-				caobao.changeAllClick("来把仕诡牌")
+					caobao.showEX=true
+				elif GameManager.sav.have_event["boss战开始"]==false and GameManager.sav.caobaocardgame==4 and (GameManager.sav.mizhucardgame<5 or GameManager.sav.chendencardgame<=5):
+					caobao.hide()
+				else:
+					caobao.changeAllClick("来把仕诡牌")
 
 					
-				caobao.show()
-				caobao.showEX=false
+					caobao.show()
+					caobao.showEX=false
 	
 	var initData=[
 	{	

@@ -22,7 +22,7 @@ func _ready():
 func register_tooltip(node: Node, tooltip_text: String):
 	# 为节点设置 Tooltip 元数据
 	node.set_meta("tooltip_text", tooltip_text)
-	unregister_tooltip(node)
+	
 	# 自动加入分组（可选）
 	node.add_to_group("Tooltipable")
 	
