@@ -1317,13 +1317,13 @@ elif GameManager.sav.have_event["糜竺正确选择1"]==true
 do mizhu.show()
 刘备: 糜竺，郊外豪宅一事，我已知晓。糜贞是血姬幻化而成、下人失踪，豪族以人血供养，你可否给个解释？  
 
-糜竺: 主公何出此言？我从未听闻什么血姬！贞儿自幼长于府中，绝无替身！  
+糜竺: 主公何出此言？我从未听闻什么血姬！贞儿自幼长于府中，绝无替身！  [voice:mizhu_zhenerwutisheng]
 do jiaMizhenShow()
 （糜贞从内室走出，容貌如常，语气平静，但眼中似有复杂情绪。）  
 
 糜贞: 将军，兄长所言不虚，贞从未去过郊外豪宅。将军若不信，可查我行踪。将军，前日送去的药材，可还合用？  [voice:zhenmizhen]
 刘备:  !!!，是我多疑了……
-糜竺: 主公可能为政务操劳过度，精神疲惫，请好好休息吧。府中备下清茶，若需调养，随时唤我。
+糜竺: 主公可能为政务操劳过度，精神疲惫，请好好休息吧。府中备下清茶，若需调养，随时唤我。[voice:mizhu_fushangqincha]
 if haveWaWa()
 	(: 她……或许无辜，但你永远是我一个人的……嘻嘻……)[voice:mizhen_wugu]
 do mizhu.hide()
@@ -1400,7 +1400,7 @@ do GameManager.getItemAction.call()
 - 来把仕诡牌吧
 	do openBoardGame()
 - 修建基建【兴建粮仓】 [if GameManager.sav.have_event["基建项目开启"]==true]
-	糜竺: 主公既执意兴建粮仓……虽某以为当下军资尚可周转，但主公深谋远虑，我也不好再劝。便依主公之言，全力筹措物料，务求早日建成！
+	糜竺: 主公既执意兴建粮仓……虽某以为当下军资尚可周转，但主公深谋远虑，我也不好再劝。便依主公之言，全力筹措物料，务求早日建成！[voice:mizhu_xiujianliangcang]
 	do GameManager.selectPuzzleLevel()
 - 取消
 
@@ -1418,7 +1418,7 @@ if GameManager._boardMode==boardType.boardMode.high and GameManager.sav.mizhucar
 	
 	do GameManager.enterCrazy()
 	刘备: ...
-	糜竺: 主公…牌在召唤我们，来！进行黑暗游戏吧！
+	糜竺: 主公…牌在召唤我们，来！进行黑暗游戏吧！[voice:mizhu_heianyouxi]
 else
 
 	刘备: 来局仕诡牌如何？
@@ -1445,7 +1445,7 @@ do _initData()
 ~ 黑暗游戏获胜
 do mizhu.show()
 do GameManager.enterNormal()
-糜竺: 主公…您破了牌局的魔障！我方才如坠梦魇，谢您！
+糜竺: 主公…您破了牌局的魔障！我方才如坠梦魇，谢您！[voice:mizhu_nipojiele]
 
 系统提示: 糜竺已恢复正常
 do boardVictory()
@@ -1457,7 +1457,7 @@ do mizhu.hide()
 do mizhu.show()
 do GameManager.enterCrazy()
 
-糜竺: 主公…牌局已噬你魂，献上代价吧！
+糜竺: 主公…牌局已噬你魂，献上代价吧！[voice:mizhu_paijushihun]
 系统提示: 诡秘乱局中输了牌局，体力值为0
 do GameManager.enterNormal()
 do SoundManager.play_sound(sounds.BLOOD)
