@@ -703,14 +703,14 @@ do xiapei()
 
 
 ~ 大败
-主簿: 主公，穷兵黩武之策已使我们深陷危亡时刻，败绩连连，远超胜绩。百姓怨愤冲天，徐州恐将倾覆！
+主簿: 主公，穷兵黩武之策已使我们深陷危亡时刻，败绩连连，远超胜绩。百姓怨愤冲天，徐州恐将倾覆！[voice:zhubo_qiongbinduwu]
 系统提示: 民心大减40，局势危殞！
 do GameManager.changePeopleSupport(-40)
 => END!
 
 
 ~ 大败提示
-主簿: 主公，近期我军屡战屡败，百姓怨愤渐生，民心动荡。若再失利，徐州恐将面临崩盘之祸！
+主簿: 主公，近期我军屡战屡败，百姓怨愤渐生，民心动荡。若再失利，徐州恐将面临崩盘之祸！[voice:zhubo_xuzhoubenpan]
 系统提示: 注意，军事行动已进入警戒线，如果继续失利，恐将遭到严重反噬！
 => END!
 
@@ -718,7 +718,7 @@ do GameManager.changePeopleSupport(-40)
 => END!
 
 ~ 连续多次败北
-主簿: 主公，三战连败，百姓对连番失利颇有微词。
+主簿: 主公，三战连败，百姓对连番失利颇有微词。[voice:zhubo_baixingweici]
 系统提示: 民心-10，民众对连续败北不满！
 do GameManager.changePeopleSupport(-10)
 
@@ -726,7 +726,7 @@ do GameManager.changePeopleSupport(-10)
 
 
 ~ 一次败北引发民愤
-主簿: 主公，此番败北，百姓已生不满之情。
+主簿: 主公，此番败北，百姓已生不满之情。[voice:zhubo_baixinbuman]
 系统提示: 民心-5，民众对败北有所不满！
 do GameManager.changePeopleSupport(-5)
 => END!
@@ -765,11 +765,11 @@ do GameManager.getItemAction.call()
 ~ 曹豹支线1
 刘备: 曹将军，徐州地灵人杰，近日城外可有异事？听闻黄帝遗迹颇具神异，是否真有其事？
 
-曹豹: 不过是乡野传闻，遗迹久无人问津，恐早已荒废。不过那里古迹已有荒废，听说有盗墓贼出没..
+曹豹: 不过是乡野传闻，遗迹无人问津，恐早已荒废。听说有盗墓贼出没..[voice:caobao_yijiwurenwenjing]
 - 询问徐州军务安排，是否近期有修缮古迹的计划[highlight=true]
 	do GameManager.changeCaobaoHeart(-10)
 	do caobao.showHeart(GameManager.sav.caobaofav)
-	曹豹: 主公有所不知，咱们确有修缮遗迹之议，但此事颇为蹊跷，似有人借机行事。某不便多言，主公若有心，可再探究竟。
+	曹豹: 主公有所不知，咱们确有修缮遗迹之议，但此事颇为蹊跷，似有人借机行事。某不便多言，主公若有心，可再探究竟。[voice:caobao_zanqueyou]
 	刘备: 好，我下次再来问你
 
 	do select1(true)
@@ -777,7 +777,7 @@ do GameManager.getItemAction.call()
 - 提及民间传闻，盗墓贼夜扰遗迹，是否需要派兵清剿。
 	#do GameManager.changeCaobaoHeart(10)
 	do caobao.showHeart(GameManager.sav.caobaofav)
-	曹豹: 盗墓贼不足为虑，些许宵小，地方自会处置。主公不必挂怀。
+	曹豹: 盗墓贼不足为虑，些许宵小，地方自会处置。主公不必挂怀。[voice:caobao_daomuzeixiaoxiao]
 	刘备: 嗯...
 	do select1(false)
 do GameManager.sav.caobaoSideWait=3	
@@ -788,24 +788,24 @@ do caobao.hide()
 ~ 曹豹支线2
 
 刘备: 曹将军，前日所言遗迹之事，似有隐情。某闻城外黄帝遗迹有古龙石像，是否真藏秘宝？将军可否直言？
-曹豹: 主公既有此问，某不敢隐瞒。遗迹确有古龙石像，名‘镇魂古龙’，传为黄帝神器。但近日城内大族有人假借修缮，实则掘墓，欲夺秘宝。
+曹豹: 主公既有此问，某不敢隐瞒。遗迹确有古龙石像，名‘镇魂古龙’，传为黄帝神器。但近日城内大族有人假借修缮，实则掘墓，欲夺秘宝。[voice:caobao_duobao]
 - 追问城中何人主导此事[highlight=true]
-	曹豹: 我已经查清了，这件事是一个匠人私自勾结城中大族，欲借修缮之名，掩盖盗宝之实。
+	曹豹: 我已经查清了，这件事是一个匠人私自勾结城中大族，欲借修缮之名，掩盖盗宝之实。[voice:caobao_woyijingchaqingle]
 	
 	do GameManager.changeCaobaoHeart(10)
 	do caobao.showHeart(GameManager.sav.caobaofav)
 	if GameManager.sav.have_event["曹豹正确选择1"]==true
-		曹豹: 但我不好对这些人发难，如果主公想要知道，可今晚亲往遗迹一探。
+		曹豹: 但我不好对这些人发难，如果主公想要知道，可今晚亲往遗迹一探。[voice:caobao_danwobuhaofanan]
 		系统提示: 发现“黄帝遗迹”，通过城外入口可以前往	
 
 	else		
-		曹豹: 不过无需主公操心了，如果主公只是对这件事好奇的话，那么也没别的事了
+		曹豹: 不过无需主公操心了，如果主公只是对这件事好奇的话，那么也没别的事了[voice:caobao_ruguonizhishihaoqi]
 		刘备: 嗯...
 	do select2(true)	
 - 询问古龙石像详情，是否真有神力。
 	do GameManager.changeCaobaoHeart(-10)
 	do caobao.showHeart(GameManager.sav.caobaofav)
-	曹豹: 古龙石像不过石雕，传闻多为夸大。主公若无他事，某尚有军务。
+	曹豹: 古龙石像不过石雕，传闻多为夸大。主公若无他事，某尚有军务。[voice:caobao_shidiao]
 	刘备: 嗯...
 	do select2(false)
 
@@ -824,7 +824,7 @@ do caobao.hide()
 if GameManager.bossmoderesult==true
 
 	刘备: 曹将军，遗迹无神鬼，唯风声光影惑人。匠人李铁受大族蛊惑，已盗龙珠，应当惩处
-	曹豹: 此人如何处置
+	曹豹: 此人如何处置[voice:caobao_cirenruhe]
 	李铁: 大人饶命啊~
 	刘备: 罢了，就让他留在你这里打造军械，毕竟也是被他人蛊惑，罪不至死，
 	李铁: 大人仁德！小人定为军中打造最精良兵器！此龙珠乃先祖所铸，留于大人，愿助徐州军威！
@@ -833,7 +833,7 @@ else
 
 #如果没龙珠
 	刘备: 曹将军，遗迹真相我已知晓， 石龙怪响光影，实为风声与地底烟雾，但匠人李铁受大族、士人蛊惑盗珠，现已逃遁。 需严查城中大族，勿纵罪魁
-	曹豹: 主公明察，我这就命人追捕李铁，严惩不待！石龙真相，主公既知，某将惭愧未早察。
+	曹豹: 主公明察，我这就命人追捕李铁，严惩不待！石龙真相，主公既知，末将惭愧未早察。[voice:caobao_zhuibulitie]
 
 #公共
 刘备: 对了，李铁告诉我，曾有一个地方官铸石龙安民，其后人今何在？
@@ -1124,11 +1124,11 @@ do loseTrain()
 ~ 战斗失败_真人
 do GameManager.bossmoderesult=false
 do GameManager.enterCrazy()
-长者: 玄德公，真龙之气，尽归吾用！
+长者: 玄德公，真龙之气，尽归吾用！[voice:xiuxianzhe_xuandegong]
 
 刘备: 我死不足惜…但苍生何辜…
 do SoundManager.play_sound(sounds.BLOOD)
-长者: 凡民如蝼蚁，仙道将成，天下当由吾重塑！
+长者: 凡民如蝼蚁，仙道将成，天下当由吾重塑！[voice:xiuxianzhe_fanrenrulouyi]
 Game Over: 刘备被长者炼化，诡秘修仙之力降临，世界陷入混乱！
 do DialogueManager.gameover=true
 - 载入存档
@@ -1143,7 +1143,7 @@ do DialogueManager.gameover=true
 do caobao.hide()
 : 此项基建工程结束后，关羽向刘备反映一些情况
 do guanyu.show()
-关羽: 主公，糜竺、陈登等文官屡屡阻挠基建之事，动辄以民力、财用为由百般拖延。若非他们从中作梗，我等早已粮足兵强，何至如今步步艰难？主公为何不严加处置，甚至……除之而后快？
+关羽: 主公，糜竺、陈登等文官屡屡阻挠基建之事，动辄以民力、财用为由百般拖延。若非他们从中作梗，我等早已粮足兵强，何至如今步步艰难？主公为何不严加处置，甚至……除之而后快？[voice:guanyu_chuzhihoukuai]
 刘备: 云长有所不知。基建之事，绝非急躁可成。我深知糜竺、陈登二人用心，故而早有布置。前些时日，我密探回报，尽闻议会厅中他二人的私议，方知一切皆在情理之中。
 
 do SceneManager.changeScene(SceneManager.roomNode.BOULEUTERION,2)
@@ -1155,21 +1155,21 @@ do SceneManager.changeScene(SceneManager.roomNode.BOULEUTERION,2)
 ~ 刘备的成长2
 do caobao.hide()
 do guanyu.show()
-关羽: 原来如此，主公早已对这些事务了如指掌了
+关羽: 原来如此，主公早已对这些事务了如指掌了[voice:guanyu_yuanlairuci]
 刘备: 云长，我也在成长，糜竺、陈登虽阻基建，实为吾虑。昔日徐州刺史，仓促兴修水利、屯田，反引民生凋敝、水利崩塌，州郡几陷。他们的敷衍，看似拖延，实则护我根基，避免重蹈覆辙。
 
-关羽: 主公说得有理……我明白了，不能急。
+关羽: 主公说得有理……我明白了，不能急。[voice:guanyu_bunengji]
 
 
 刘备: 事不能不做，但大修粮仓、水利这些事，现在确实不能急着一口吃个大胖子。我其实更早就向曹操讨要官职了。
-关羽: 更早之前，主公就料到了？
+关羽: 更早之前，主公就料到了？[voice:guanyu_gengzaozhiqian]
 
 刘备: 名分是立业的关键，一切都在我的计划里。等基建慢慢有点成效，曹操的任命状也会到。
 
 
 关羽: 主公英明，云长服了
 
-关羽: 不过，主公，我还是看不惯这些文官。嘴上说得天花乱坠，心里各打各的小算盘。今日他们拖是为了主公好，可若有一日他们拖是为了自己……哼，关某的刀绝不留情。
+关羽: 不过，主公，我还是看不惯这些文官。嘴上说得天花乱坠，心里各打各的小算盘。今日他们拖是为了主公好，可若有一日他们拖是为了自己……哼，关某的刀绝不留情。[voice:guanyu_daobuliuqin]
 do guanyu.hide()
 
 => END!

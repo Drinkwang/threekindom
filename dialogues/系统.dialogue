@@ -6,8 +6,8 @@ do determineInternalUnrestXuzhou()
 ~ 民乱四起
 do DialogueManager.gameover=true
 刘备: 徐州百姓，备未能安抚，竟至如此……
-主簿: 主公，民怨沸腾，城外乱民已破门而入。
-关羽/张飞: 大哥，徐州已不可守！我们掩护你撤退..  
+主簿: 主公，民怨沸腾，城外乱民已破门而入。[voice:zhubo_luanminerru]
+关羽/张飞: 大哥，徐州已不可守！我们掩护你撤退..  [voice:guanyuzhangfeiyanhu]
 Game Over: 民心尽失，徐州陷于暴乱，游戏结束。
 - 载入存档
 	do PanelManager.show_Save_panel()

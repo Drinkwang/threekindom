@@ -91,7 +91,7 @@ do cancelLaw()
 ~ 陈登爱吃鱼1
 do chendeng.showEX=false
 刘备: 陈登，你怎在此议事厅备食？  
-陈登: 主公有所不知，竺兄掌财粮，常居府中，我则日驻议事厅，主持杂务。闲暇之时，喜食生鱼片，徐州鲤鱼肥美，新制鱼脍，愿与主公共尝，如何？
+陈登: 主公有所不知，竺兄掌财粮，常居府中，我则日驻议事厅，主持杂务。闲暇之时，喜食生鱼片，徐州鲤鱼肥美，新制鱼脍，愿与主公共尝，如何？[voice:chenden_xuzhoushengyu]
 
 刘备: (陈登职责繁重，尚有此兴致……近日徐州流言四起，旧主陶谦之墓似有异动，莫非他因此烦忧？）
 - 与陈登共食
@@ -99,10 +99,10 @@ do chendeng.showEX=false
 	do chendeng.showHeart(GameManager.sav.chendenfav)
 	do eatFishSound()
 	刘备: 这个生鱼片我尝了，果然鲜美。
-	陈登: 主公豪气，我敬你一盏！
+	陈登: 主公豪气，我敬你一盏！[voice:chenden_zhugonghaoqi]
 
 	刘备: 此味甚佳，你的盛情可感。
-	陈登: 徐州水美鱼肥，不尝此脍，枉活矣！
+	陈登: 徐州水美鱼肥，不尝此脍，枉活矣！[voice:chenden_xuzhouyuhaochi]
 	#这里更改体力
 	do GameManager.sav.BENTUPAI.ChangeSupport(10)
 	do GameManager.changePeopleSupport(5)
@@ -116,14 +116,14 @@ do chendeng.showEX=false
 	do chendeng.showHeart(GameManager.sav.chendenfav)
 	刘备: 你的盛情，我心领了，但肠胃不惯生食，还是算了吧。元龙，你近日似有烦忧，可与公务有关？不妨与我一谈。  
 
-	陈登: 主公谨慎，我独享便是！不过是些琐事，不值一提，主公不必挂心。 
+	陈登: 主公谨慎，我独享便是！不过是些琐事，不值一提，主公不必挂心。 [voice:chenden_zhugongjinshen]
 
 	刘备: 元龙自得其乐，备亦欣然。 
 	刘备: （元龙似有隐情，改日再问吧。）  
 
 	do GameManager.sav.BENTUPAI.ChangeSupport(5)
 	提示: 士族派忠诚+5，虽然你拒绝共食生鱼，陈登欣赏刘备坦诚。  
-	陈登: 好吃好吃，鱼脍至味，吃了死也无憾了！
+	陈登: 好吃好吃，鱼脍至味，吃了死也无憾了！[voice:chenden_haochi]
 
 	do eatFish1(true)
 
@@ -134,12 +134,12 @@ do chendeng.hide()
 => END!
 
 ~ 陈登赞助
-陈登: 主公，徐州虽然事务繁杂，但主公无需频至议事厅，我与诸僚自然会化解。
+陈登: 主公，徐州虽然事务繁杂，但主公无需频至议事厅，我与诸僚自然会化解。[voice:chenden_yuzhuliao]
 刘备: 徐州民心动荡，皆因生计艰难所致，若能救助他们，我受点累没什么
-陈登: 主公对徐州百姓关心，我深感佩...
-陈登: 我是这里大族，并且是一个徐州人...
-陈登: 自然我得承担一个大族责任和义务...
-陈登: 这样吧，我做个表率，愿先捐金些许，赈济百姓，助主公安徐州。  
+陈登: 主公对徐州百姓关心，我深感佩...[voice:chenden_zhugongguanxinxuzhou]
+陈登: 我是这里大族，并且是一个徐州人...[voice:chenden_woshixuzhouren]
+陈登: 自然我得承担一个大族责任和义务...[voice:chenden_zirandeicengdan]
+陈登: 这样吧，我做个表率，愿先捐金些许，赈济百姓，助主公安徐州。  [voice:chenden_zuobiaoshuai]
 系统提示: 陈登被你言语感化，他捐献金钱200。
 do chendengWantUpLevel()
 
@@ -149,7 +149,7 @@ do chendengWantUpLevel()
 ~ 陈登爱吃鱼2
 do chendeng.showEX=false
 刘备: 元龙，又见鱼脍，公务繁忙，你脸色蜡黄，莫非因生鱼片而起？
-陈登: 主公何言生鱼片之过？公务压心，烦恼伤神，唯有此味解忧！这鱼刚捞，鲜嫩可口，主公可愿再尝？
+陈登: 主公何言生鱼片之过？公务压心，烦恼伤神，唯有此味解忧！这鱼刚捞，鲜嫩可口，主公可愿再尝？[voice:chenden_shengyuwuguo]
 
 刘备: （元龙嗜脍，豪情不减，然古医书有云，生食宜少，我是否该告诫他？近日陶氏陵墓异动的传闻愈发诡异，莫非与他烦忧有关？）
 - 拒绝并提醒陈登，继续询问公务 [highlight=true]
@@ -157,21 +157,21 @@ do chendeng.showEX=false
 	do chendeng.showHeart(GameManager.sav.chendenfav)
 
 	刘备: 元龙，生食虽鲜，恐伤身，备肠胃素弱，不敢再尝，劝你亦宜慎之。近日徐州流言四起，陶氏陵墓似有异动，你既掌杂务，可知内情？  
-	陈登: 主公之言，我已知晓，然此味半生相伴，戒不下的，哈哈！
+	陈登: 主公之言，我已知晓，然此味半生相伴，戒不下的，哈哈！[voice:chenden_jiebuxiade]
 	#showHeart()
 	#刘备:
 	#判断上次是否追问
 	if GameManager.sav.have_event["陈登正确选择1"]==true
 	
-		陈登: 主公既问，我不敢隐瞒。近日陶谦旧主之墓，尸体竟不翼而飞，恐被盗墓贼所为，士族议论纷纷，我正为此事烦忧。  
+		陈登: 主公既问，我不敢隐瞒。近日陶谦旧主之墓，尸体竟不翼而飞，恐被盗墓贼所为，士族议论纷纷，我正为此事烦忧。  [voice:chenden_taoqianbuyierfei]
 
 		刘备: 陶谦之墓失尸，事关重大，你可有线索？  
-		陈登: 我查到一处可疑之地，在徐州城外墓地附近，主公若有意，可持此信前往一探。
+		陈登: 我查到一处可疑之地，在徐州城外墓地附近，主公若有意，可持此信前往一探。[voice:chenden_xiecixin]
 		（他递给刘备一封密信，信封上指明了陶谦墓地所在地）  
 		刘备: 既如此，备唯愿你安康，此事我必查清！
 		系统提示: 发现“乱葬岗”，通过城外入口可以前往
 	else
-		陈登: 对了，主公问的那些事不过是些琐事，不值一提，主公不必挂心。  
+		陈登: 对了，主公问的那些事不过是些琐事，不值一提，主公不必挂心。  [voice:chenden_zhugongbubiguaxin]
 		刘备: 既如此，备唯愿你安康。  
 
 	do eatFish2(true)
@@ -182,7 +182,7 @@ do chendeng.showEX=false
 	do chendeng.showHeart(GameManager.sav.chendenfav)
 	刘备: 元龙好兴致，备再尝此味。
 	do eatFishSound()
-	陈登: 还是主公懂我，元龙幸甚！
+	陈登: 还是主公懂我，元龙幸甚！[voice:chenden_haishizhugongdongwo]
 	刘备: (鱼脍虽好，但享用后总觉得有一些不舒服）
 	do eatFish2(false)
 	do GameManager.costHp(10)
@@ -201,10 +201,10 @@ do chendeng.hide()
 
 ~ 陈登结尾
 刘备: 陈登，陶谦尸体已于乱葬岗找回，我记忆中他尸身已变，我挥剑与之激战，然一切如梦幻一场。
-陈登: 主公说笑了！人怎会死而复生？若真有此记忆，定是尸气迷乱了心智，引发幻觉，我愚见如此。
+陈登: 主公说笑了！人怎会死而复生？若真有此记忆，定是尸气迷乱了心智，引发幻觉，我愚见如此。[voice:chenden_shiqihuanjue]
 刘备: 可是..但那感觉如此真实，似有蹊跷。
-陈登: 不管真假，主公！您都了大忙！陶公尸身找回，士族安稳，荒唐流言可歇了，我感激不尽！
-陈登: 主公也该调养调养，近日操劳过重，望主公早作休息。
+陈登: 不管真假，主公！您都帮了大忙！陶公尸身找回，士族安稳，荒唐流言可歇了，我感激不尽！[voice:chenden_liuyankexie]
+陈登: 主公也该调养调养，近日操劳过重，望主公早作休息。[voice:chenden_wangzhugongzaoxiuxi]
 游戏提示: 支线任务-尸皇陶谦已完成
 do chendeng.hide()
 do _initData()
@@ -247,11 +247,11 @@ do _initData()
 => END!
 
 ~ 陈登第三次市井
-陈登: 徐州之地，乱世之中如一盘珍馐，群雄皆欲染指。
-陈登: 但他们的争端与我何干？我们家世代扎根徐州，地位无人可撼。主公之位，换谁来坐，皆需仰我等鼻息。
-陈登: 毕竟粮草、兵马、民心，皆由士族掌控。
-陈登: 刘玄德虽仁德可嘉，然根基未稳，可惜..我虽敬其人品，然徐州乃我的家乡，怎可弃之追逐虚名？
-陈登: 罢了罢了，乱世之中，唯保家族利益，方能屹立不倒。无论谁主徐州，吾自可运筹帷幄，笑看风云。
+陈登: 徐州之地，乱世之中如一盘珍馐，群雄皆欲染指。[voice:mizhu_xuzhouruzhenxiu]
+陈登: 但他们的争端与我何干？我们家世代扎根徐州，地位无人可撼。主公之位，换谁来坐，皆需仰我等鼻息。[voice:chenden_jiexuyaoyangwo]
+陈登: 毕竟粮草、兵马、民心，皆由士族掌控。[voice:chenden_bijingjieyoushizu]
+陈登: 刘玄德虽仁德可嘉，然根基未稳，可惜..我虽敬其人品，然徐州乃我的家乡，怎可弃之追逐虚名？[voice:chenden_liuxuande]
+陈登: 罢了罢了，乱世之中，唯保家族利益，方能屹立不倒。无论谁主徐州，吾自可运筹帷幄，笑看风云。[voice:chenden_balebale]
 do hearSayEnd()
 => END!
 
@@ -285,13 +285,13 @@ do GameManager.getItemAction.call()
 => END!
 
 ~ 来把仕诡牌
-陈登: 主公，徐州赋税已清点，民心渐稳，治政可期。
+陈登: 主公，徐州赋税已清点，民心渐稳，治政可期。[voice:chenden_zhizhengkeqi]
 
 - 来把仕诡牌吧
 	do openBoardGame()
 
 - 修建基建【深挖护城河】 [if GameManager.sav.have_event["基建项目开启"]==true]
-	陈登: 主公，我虽对大兴木土多有顾虑，恐扰民心，但深挖护城河乃某亲献之策！护城固守之余，还可引水灌溉农田，一举两得，何乐而不为？ 
+	陈登: 主公，我虽对大兴土木多有顾虑，恐扰民心，但深挖护城河乃某亲献之策！护城固守之余，还可引水灌溉农田，一举两得，何乐而不为？ [voice:chenden_huchenghe]
 	do GameManager.selectPuzzleLevel()
 - 取消
 
@@ -301,11 +301,11 @@ do GameManager.getItemAction.call()
 if GameManager._boardMode==boardType.boardMode.high and GameManager.sav.chendencardgame==4
 	do GameManager.enterCrazy()
 	刘备: ...
-	陈登: 主公…牌局即命运…来吧…
+	陈登: 主公…牌局即命运…来吧…[voice:chenden_heianyouxi]
 else
 
 	刘备: 元龙，政务繁重，可愿玩局仕诡牌解乏？
-	陈登: 太好了，主公！仕诡牌才是真谋略！来，登陪您！
+	陈登: 太好了，主公！仕诡牌才是真谋略！来，登陪您！[voice:chenden_shiguipai]
 
 
 
@@ -315,7 +315,7 @@ do GameManager.enterBoardGame()
 
 
 ~ 常规获胜
-陈登: 主公牌技超凡，我的谋略竟落了下风，佩服！
+陈登: 主公牌技超凡，我的谋略竟落了下风，佩服！[voice:chenden_peifu]
 do boardVictory()
 #第一次获胜，获得reward
 #士族钱*80，商贾道具*1，曹豹士兵50
@@ -324,14 +324,14 @@ do boardVictory()
 
 
 ~ 常规失败
-陈登: 主公，牌局如棋局，我略占先机，再战如何？
+陈登: 主公，牌局如棋局，我略占先机，再战如何？[voice:chenden_tawinshiguipai]
 
 
 => END!
 
 ~ 黑暗游戏获胜
 do GameManager.enterNormal()
-陈登: 主公！您破了牌中邪术！我方才如鬼附身，谢您！
+陈登: 主公！您破了牌中邪术！我方才如鬼附身，谢您！[voice:chenden_poxieshu]
 系统提示: 陈登已经恢复正常！
 do boardVictory()
 => END!
@@ -339,7 +339,7 @@ do boardVictory()
 
 ~ 黑暗游戏失败
 do GameManager.enterCrazy()
-陈登: 主公…牌已锁你心，交出代价吧！
+陈登: 主公…牌已锁你心，交出代价吧！[voice:chenden_paisuoxin]
 do GameManager.enterNormal()
 do SoundManager.play_sound(sounds.BLOOD)
 系统提示: 诡秘乱局中输了牌局，体力值为0

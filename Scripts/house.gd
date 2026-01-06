@@ -728,7 +728,7 @@ func determineInternalUnrestDanyang():
 		#判断道具总数之和
 		var _num=InventoryManager.canUseItemNum()
 
-		if randf() < 0.5 and _num<determineValue1:
+		if randf() < 0.5 and _num>=determineValue1:
 
 			determineValue1=InventoryManager.costItemRandom(determineValue1)
 			determineDetail=generate_consumed_string(determineValue1)
