@@ -545,10 +545,10 @@ func extraTask():
 		if(GameManager.sav.have_event["大儒支线1"]==false):
 			GameManager.sav.have_event["大儒支线1"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大儒辩经1启动之前")	
-		elif GameManager.sav.have_event["大儒支线2"]==false and num1>=1:
+		elif GameManager.sav.have_event["大儒支线2"]==false and num1>=1 and GameManager.sav.have_event["泰山诸将曹操消息"]==true:
 			GameManager.sav.have_event["大儒支线2"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大儒辩经2启动之前")			
-		elif GameManager.sav.have_event["大儒支线3"]==false and num2>=1:
+		elif GameManager.sav.have_event["大儒支线3"]==false and num2>=1 and GameManager.sav.have_event["基建项目开启"]==true:
 			GameManager.sav.have_event["大儒支线3"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大儒辩经3启动之前")							
 	#判断忠诚度

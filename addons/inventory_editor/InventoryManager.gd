@@ -86,6 +86,12 @@ func add_item(inventory_uuid: String, item_uuid: String, quantity: int = 1, do_s
 	if not db_item:
 		printerr("Can't find item in itemlist")
 		return remainder
+	var is_hidden_item=false
+	if item_uuid==InventoryManagerItem.市井秘闻||item_uuid==InventoryManagerItem.市井秘闻_终||item_uuid==InventoryManagerItem.市井秘闻_续:
+		is_hidden_item=true
+		
+	if is_hidden_item:
+		return _add_hidden_item(inventory_uuid, item_uuid, quantity, save)
 	if not GameManager.sav._data.inventories.has(inventory_uuid):
 		create_inventory(inventory_uuid)
 	_add_item_with_quantity(db_inventory, db_item, quantity)
@@ -93,6 +99,44 @@ func add_item(inventory_uuid: String, item_uuid: String, quantity: int = 1, do_s
 		save()
 	emit_signal("inventory_changed", inventory_uuid)
 	return remainder
+
+
+
+func get_hidden_item_quantity(inventory_uuid: String, item_uuid: String) -> int:
+	var hidden_key = "_hidden_" + inventory_uuid
+	if not GameManager.sav._data.inventories.has(hidden_key):
+		return 0
+	
+	for hidden_item in GameManager.sav._data.inventories[hidden_key]:
+		if hidden_item.item_uuid == item_uuid:
+			return hidden_item.quantity
+	return 0
+
+func _add_hidden_item(inventory_uuid: String, item_uuid: String, quantity: int, save) -> int:
+	# 使用特殊的隐藏存储键
+	var hidden_key = "_hidden_" + inventory_uuid
+	if not GameManager.sav._data.inventories.has(hidden_key):
+		GameManager.sav._data.inventories[hidden_key] = []
+	
+	var hidden_items = GameManager.sav._data.inventories[hidden_key]
+	
+	# 查找是否已存在该隐藏物品
+	var item = null
+	for hidden_item in hidden_items:
+		if hidden_item.item_uuid == item_uuid:
+			item = hidden_item
+			break
+	
+	if item:
+		item.quantity += quantity
+	else:
+		hidden_items.append({"item_uuid": item_uuid, "quantity": quantity})
+	
+	if save:
+		save()
+	
+	# 隐藏物品不触发UI更新信号，但可以触发内部逻辑
+	return 0  # 隐藏物品不需要处理remainder
 
 func create_inventory(inventory_uuid:String) -> void:
 	var inventory_db = get_inventory_db(inventory_uuid) as InventoryInventory
@@ -239,6 +283,9 @@ func inventory_item_quantity_by_name(inventory_name: String, item_name: String) 
 	return inventory_item_quantity(inventory.uuid, item.uuid)
 
 func inventory_item_quantity(inventory_uuid: String, item_uuid: String) -> int:
+	
+	if item_uuid==InventoryManagerItem.市井秘闻||item_uuid==InventoryManagerItem.市井秘闻_终||item_uuid==InventoryManagerItem.市井秘闻_续:
+		return get_hidden_item_quantity(inventory_uuid,item_uuid)
 	var quantity = 0
 	
 	if GameManager.sav!=null and GameManager.sav._data.inventories.has(inventory_uuid):

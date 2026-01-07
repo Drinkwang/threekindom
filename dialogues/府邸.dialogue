@@ -532,6 +532,8 @@ do chendenHide()
 => END!
 
 ~ 打跑黄巾军
+do mizhu.show()
+do chenden.show()
 糜竺: 托将军妙策，商队已与袁绍结成同盟。袁绍对此极为满意，特意提到：‘刘豫州举荐我儿袁谭为茂才，诚意可鉴，此恩我铭记于心。’曹操也感念旧情，盛赞将军胸怀。此番结盟能成，全赖将军在袁、曹之间的人脉深厚。[voice:mizhu_renmaishenhou]
 糜竺: 不过，途中生出许多我未曾料及的变故，还是让陈登向您细说吧。[voice:mihzu_buguobiangu]
 陈登: 大人，眼下粮食正有条不紊地运回，一切看似欣欣向荣。[voice:chenden_yiqiekaisixiangrong]

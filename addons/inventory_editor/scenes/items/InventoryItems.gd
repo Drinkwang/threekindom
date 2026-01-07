@@ -50,7 +50,8 @@ func _draw_view() -> void:
 	var type = _data.selected_type()
 	if type:
 		for item in type.items:
-			_draw_item(item)
+			if item.uuid!=InventoryManagerItem.市井秘闻 and item.uuid!=InventoryManagerItem.市井秘闻_终 and item.uuid!=InventoryManagerItem.市井秘闻_续:
+				_draw_item(item)
 
 func _draw_item(item: InventoryItem) -> void:
 	var item_ui = InventoryItemUI.instantiate()

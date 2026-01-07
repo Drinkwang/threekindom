@@ -17,5 +17,6 @@ do settleAfter()#应该已经销毁
 - 同意收购
 	do confireSold()
 	系统提示: 你已成功出售商品，获得{{GameManager.SoldCoin}}金
+	do SoundManager.play_sound(sounds.buysellsound)
 - 拒绝
 => END

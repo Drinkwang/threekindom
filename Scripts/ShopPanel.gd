@@ -32,9 +32,9 @@ func _ready():
 	else:
 		back_txt.hide()
 	
-	var haveone=((InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.市井秘闻) )>0)	
-	var havetwo=((InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.市井秘闻_续) )>0)
-	var havethree=((InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.市井秘闻_终) )>0)	
+	var haveone=((InventoryManager.get_hidden_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.市井秘闻) )>0)	
+	var havetwo=((InventoryManager.get_hidden_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.市井秘闻_续) )>0)
+	var havethree=((InventoryManager.get_hidden_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.市井秘闻_终) )>0)	
 	if not haveone and GameManager.sav.have_event["completeTask1"]==true:#没有1 然后特定事件
 		hearsay.show()
 		hearsay.itemstype=InventoryManagerItem.ItemEnum.市井秘闻	
