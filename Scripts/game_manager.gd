@@ -347,7 +347,10 @@ func _enterDay(value=true):
 #@export var chendenSideWait=-1
 #@export var caobaoSideWait=-1
 	if sav.mizhuSideWait!=-1 and sav.mizhuSideWait>0:
-		sav.mizhuSideWait-=1
+		if sav.have_event["糜贞送药"]==false and sav.mizhuSideWait==1:
+			pass
+		else:
+			sav.mizhuSideWait-=1
 	if sav.chendenSideWait!=-1 and sav.chendenSideWait>0:
 		sav.chendenSideWait-=1	
 	if sav.caobaoSideWait!=-1 and sav.caobaoSideWait>0:

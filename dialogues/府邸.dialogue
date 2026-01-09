@@ -605,6 +605,8 @@ do StartTaishan()
 => END!
 
 ~ 第一次赈灾开始
+do mizhu.show()
+do chenden.show()
 糜竺: 主公。袁绍送来的首批5万吨粮食已经运到了，后续还有8万和12万，总计25万吨。我们可以用这批粮食进行赈灾，缓解当前的粮食危机。[voice:mizhu_yuanshaoliangshi]
 陈登: 我同意。粮食已经到位，但我们应该如何具体进行赈灾？[voice:chenden_wotongyizhenzai]
 刘备: 这是一项重要任务。我们不能有丝毫马虎。
@@ -614,6 +616,8 @@ do ShowDisterPanel()
 提示: 按照文本提示，分配完粮食，使不同派系满意
 提示: 商赈模式将会影响豪族的支持度，士赈模式将会影响士族的支持度，军赈模式将会影响丹阳派的支持度
 提示: 给不同派系分配不同的资源，来平衡各个派系的支持度
+do mizhu.hide()
+do chenden.hiede()
 => END!
 #讨好吕布
 #吕布会定期掉忠诚
@@ -1182,25 +1186,26 @@ do enterBattleModeBefore()
 => END!
 
 ~ 糜竺嫁妹支线1
-糜竺: 主公，徐州初定，竺备薄酒小宴，顺便聊点家事，可愿赏光？
+do mizhu.showEX=false
+糜竺: 主公，徐州初定，竺备薄酒小宴，顺便聊点家事，可愿赏光？[voice:mizhu_beijiu]
 刘备: 子仲盛情，我岂能推辞？
 宅邸厅堂，酒香四溢，烛影摇曳，案上摆放简朴酒菜，糜竺频频敬酒，气氛渐酣。此时气氛已经达到高潮，糜竺很明显有些醉了...
-糜竺: 主公，竺有一妹，名贞，年方十七，貌美如花，尚未许人。主公仁义无双，若将来结为亲家，我们与主公更亲近，哈哈！
+糜竺: 主公，竺有一妹，名贞，年方十七，貌美如花，尚未许人。主公仁义无双，若将来结为亲家，我们与主公更亲近，哈哈！[voice:mizhu_zhuyouyimei]
 门外传来轻咳，一少女身影闪过。糜竺看着门外走过的少女打趣说道 
 do mizhen.show() 
 刘备: 原来是贞妹子……前几日在粮仓清点时，我见过她，她还细心提醒注意粮草防潮，果然聪慧。  
-糜竺: 主公，我妹不仅聪慧，而且身段窈窕，错过可不行！
+糜竺: 主公，我妹不仅聪慧，而且身段窈窕，错过可不行！[voice:mizhu_cuoguobuxing]
 糜贞: 兄长胡言，我不理你了！  [voice:mizhen_xiongzhanghuyan]
 - 顺着玩笑回应，探情况[highlight=true]
 	do GameManager.changeMizhuHeart(10)
 	do mizhu.showHeart(GameManager.sav.mizhufav)
 	do mizhen.showHeart(GameManager.sav.mizhufav+10)
 	刘备: 子仲醉话，我姑且听之，贵妹怎么看？
-	糜竺: 好！贞儿眉如远山，眼似秋水，配主公再妙不过！
+	糜竺: 好！贞儿眉如远山，眼似秋水，配主公再妙不过！[voice:mizhu_zaimiaobuguo]
 
 	糜贞: 兄长醉了，莫信！[voice:mizhen_xiongzhangzuile]
-	门外那位少女低声说道，说完便脸红缩了回区。  
-
+	门外那位少女低声说道，说完便脸红缩了回去。  
+	do mizhen.hide() 
 	系统提示: 豪族派忠诚+10，民心+5（士人传“主公与糜氏亲近”）。  
 	do eatTea1(true)
 	do mizhu.hide()
@@ -1212,7 +1217,7 @@ do mizhen.show()
 	do mizhen.showHeart(GameManager.sav.mizhufav+10)
 	刘备: 子仲好意，备谢之，军务为先，家事稍后。 
 
-	糜竺: 主公稳重，我不急，慢慢来！
+	糜竺: 主公稳重，我不急，慢慢来！[voice:mizhu_manmanlai]
 	门外少女: 哼，还好没乱来。 [voice:mizhen_haihaomeiluanlai]
 	系统提示: 豪族派忠诚+5（糜竺仍感刘备可靠）。
 	do eatTea1(false)
@@ -1248,12 +1253,14 @@ do mizhenGift()
 
 
 ~ 糜竺嫁妹支线2
+do mizhu.showEX=false
 次日，刘备应邀再访糜府，近日徐州局势稍稳，但城中流言四起，传言糜氏府中常有诡异哭声，夜半时分还有下人失踪，弄得人心惶惶。刘备对此有所耳闻，心中暗生警惕。此外，糜贞多日来以糜家代表的身份，为刘备送去药材，助他调养身体，两人因此颇为熟悉，糜贞对刘备的关心也显而易见。
 do mizhen.show()
 
 
 do mizhu.show()
-糜竺: 主公，前些时日醉言莫怪，今日我敬酒赔罪！
+
+糜竺: 主公，前些时日醉言莫怪，今日我敬茶赔罪！[voice:mizhu_jincha]
 一少女缓步入内，身着素裙，眉目清秀，正是糜贞。她端茶走上前来
 刘备: 贞妹子有心了。前些日子你送来的药材，备用后身体大好，至今感激不尽。
 糜贞: 刘将军，前些日子兄长失言，小女子也替他赔礼。[voice:mizhen_xiaonvzi]
@@ -1268,7 +1275,7 @@ do mizhu.show()
 	糜贞: 将军过奖，贞手拙而已，怎敢扰将军大事！ [voice:mizhen_jiangjunguojiang]
 
 
-	糜竺: 哈哈哈，主公，我妹这双手泡茶细腻，捏肩更妙，哈哈！
+	糜竺: 哈哈哈，主公，我妹这双手泡茶细腻，捏肩更妙![voice:mizhu_womeizhenhao]
 	糜贞: 兄长再乱说，我泼你茶！[voice:mizhen_pocha]
 	do eatTea2(true)
 	do mizhen.hide()
@@ -1281,7 +1288,7 @@ do mizhu.show()
 	do mizhen.showHeart(GameManager.sav.mizhufav+10)
 	刘备: 子仲佳妹，茶香可人，备谢款待。
 	糜贞: 将军客气，贞不敢当。[voice:mizhen_bugandang]
-	糜竺笑: 主公正派，竺佩服！  
+	糜竺: 主公正派，竺佩服！  [voice:mizhu_zhugongzhengpai]
 	do mizhu.hide()
 	do mizhen.hide()
 	系统提示: 豪族派忠诚+5（糜竺仍信任刘备）。

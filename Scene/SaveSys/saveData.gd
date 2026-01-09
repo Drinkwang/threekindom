@@ -92,8 +92,9 @@ var SIDEQUEST_MAP:Dictionary={
 	SceneManager.sideQuest.CHENDENG:"",
 	SceneManager.sideQuest.CAOBAO:"",
 	SceneManager.sideQuest.MIZHU:"",
-	SceneManager.sideQuest.DARU:"",
-	SceneManager.sideQuest.KESULU:""
+	SceneManager.sideQuest.BADAO:"",#卡牌支线 和仙人 done 
+	SceneManager.sideQuest.DARU:"",# 大儒辩论相关 done
+	SceneManager.sideQuest.KESULU:""# 克苏鲁支线相关 done
 }
 
 @export var RewardLaw=""

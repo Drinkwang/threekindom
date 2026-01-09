@@ -284,7 +284,7 @@ func mizhenGift():
 
 func subHoldWoold():
 	GameManager.sav.have_event["支线触发完毕查出锦囊"]=true
-				
+	GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.KESULU]=tr("明日返回府邸，查探张阎发狂刺杀陶氏的真相")
 	pass
 	#DialogueManlogue_balloon(dialogue_resource,"城外克苏鲁事件触发")
 	#dialog
@@ -309,6 +309,7 @@ func ReconciliatoryFaction():
 	if GameManager.dontHaveDominance():
 		GameManager.sav.targetTxt="安抚派系: {currence}/{target}"
 	else:
+		
 		GameManager.sav.targetTxt="统御派系: {currence}/{target}"
 
 	#GameManager.initSecretBattleContext(3,SceneManager.etraTaskType.useItem,13,"袁术军大胜")
@@ -461,6 +462,8 @@ func eatTea2(issuccuss=false):
 
 	if issuccuss==true:
 		GameManager.sav.have_event["糜竺正确选择2"]=true
+		if GameManager.sav.have_event["糜竺正确选择2"]==true and GameManager.sav.have_event["糜竺正确选择1"]==true:
+			GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.MIZHU]=tr("携铜钥赴糜家的郊外秘宅，探糜贞疯癫之因与糜家隐情")
 	else:
 		GameManager.sav.have_event["糜竺正确选择2"]=false
 
@@ -1247,6 +1250,7 @@ func lvbuJoin():
 func burnSac():
 	#pass
 	#民心-5
+	GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.KESULU]=("")
 	GameManager.changePeopleSupport(-5)
 	
 
@@ -1259,6 +1263,7 @@ func holdSac():
 		"money": 0,
 		"population": 0
 	}
+	GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.KESULU]=("携药囊赴校场见曹豹，深究张阎事件隐情与毒物之谜。")
 	#GameManager.ScoreToItem()
 	_reward.showTitileReward(tr("恭喜你，你获得-黄麻药囊"),items)	
 	

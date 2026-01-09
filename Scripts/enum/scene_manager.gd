@@ -34,13 +34,15 @@ enum trainResult{
 
 
 enum sideQuest{
+	BADAO,#
+
+	KESULU,#
+
+	DARU,#
+	
 	CHENDENG,
-	MIZHU,
-	KESULU,
 	CAOBAO,
-	DARU,
-	
-	
+	MIZHU,
 }
 var beforeNode
 func changeScene(tempnode:roomNode,time:float):

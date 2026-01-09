@@ -94,12 +94,12 @@ func _initData():
 	
 	#记得demo注销
 	if GameManager.sav.have_event["chaoMizhuEnd"]==true and GameManager.sav.isGetCoin==false and GameManager.sav.currenceValue>1:
-		title.show()
-		demo_end.show()
-		hp_panel.hide()
-		res_panel.hide()
-		support_panel.hide()
-		return
+		#title.show()
+		#demo_end.show()
+		#hp_panel.hide()
+		#res_panel.hide()
+		#support_panel.hide()
+		#return
 		pass
 	if control.visible==true:	
 		items_in_scene.showItems()	
@@ -241,7 +241,7 @@ func _on_video_player_finished():
 	hp_panel.show()
 	res_panel.show()
 	support_panel.show()
-	
+	GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.KESULU]=tr("回府邸召见陶商、陶应，借税率事宜打探二人虚实，拆解梦境的预示")
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁梦境结束")
 
 
@@ -526,11 +526,13 @@ func extraTask():
 	if GameManager.sav.day>6 and GameManager.sav.day<=9:
 		if GameManager.sav.have_event["支线发现羊尸"]==false:
 			GameManager.sav.have_event["支线发现羊尸"]=true
+			GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.KESULU]=tr("前往城外荒地调查被啃食的羊尸，查明是否为妖邪作祟，以此决断是否采纳主簿掩埋之计。")
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"支线开始")	
 		#将任务可检索设置成true
 		#如果任务为false  设置成true 并触发对话
 		elif GameManager.sav.have_event["支线触发完毕查出锦囊"]==true and GameManager.sav.have_event["支线触发完毕查出锦囊休息"]==false:
 			GameManager.sav.have_event["支线触发完毕查出锦囊休息"]=true
+			GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.KESULU]=tr("返回府邸，查探张阎发狂刺杀陶氏的真相")
 	if GameManager.sav.have_event["查出药囊后休息前"]==false:  #支线都不该在血战模式后触发
 		var to_inventory= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.黄麻药囊)
 		var quantity=InventoryManager.has_item_quantity(to_inventory)
@@ -538,18 +540,24 @@ func extraTask():
 			GameManager.sav.have_event["查出药囊后休息前"]=true
 				#下一步去演武场，判断这个==true，将曹豹显示并修改任务
 	if  GameManager.sav.day>9:
-		GameManager.sav.have_event["支线发现羊尸"]=false
+		if GameManager.sav.have_event["支线发现羊尸"]==true:
+			GameManager.sav.have_event["支线发现羊尸"]=false
+		if GameManager.sav.have_event["支线发现羊尸"]==false and GameManager.sav.have_event["支线触发完毕调查过竹简"]==false and GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.KESULU]!="":
+			GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.KESULU]=""
 		#将任务设置成false
 		var num1=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.论语简注)	
 		var num2=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.礼记笺疏)	
 		if(GameManager.sav.have_event["大儒支线1"]==false):
 			GameManager.sav.have_event["大儒支线1"]=true
+			GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.DARU]=tr("前往近郊拜访经学泰斗郑玄，借其名望以安徐州士人之心，稳固统治根基。")
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大儒辩经1启动之前")	
 		elif GameManager.sav.have_event["大儒支线2"]==false and num1>=1 and GameManager.sav.have_event["泰山诸将曹操消息"]==true:
 			GameManager.sav.have_event["大儒支线2"]=true
+			GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.DARU]=tr("与郑玄探讨《礼记》之道，以经义化解徐州士人的怨怼，平息民生动荡。")
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大儒辩经2启动之前")			
 		elif GameManager.sav.have_event["大儒支线3"]==false and num2>=1 and GameManager.sav.have_event["基建项目开启"]==true:
 			GameManager.sav.have_event["大儒支线3"]=true
+			GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.DARU]=tr("前往郑玄隐居处，聆听其注《周礼》之心得，纵论治国之道，受其教化。")
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大儒辩经3启动之前")							
 	#判断忠诚度
 	var chaonum=0	

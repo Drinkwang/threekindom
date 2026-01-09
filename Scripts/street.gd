@@ -246,7 +246,7 @@ func getXuanYin():
 		"money": 0,
 		"population": 0
 	}
-	#GameManager.ScoreToItem()
+	GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.BADAO]=""
 	_reward.showTitileReward(tr("恭喜你，你从黑商手中获得-玄阴玉符"),items)	
 	
 func HuntdownKe():
@@ -384,6 +384,7 @@ func gotoWasteland():
 
 
 func gotoTomb():
+	GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.CHENDENG]=tr("")
 	GameManager.initBattle()
 	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeIn)
 	SoundManager.play_ambient_sound(WASTELAND_0)
@@ -401,6 +402,7 @@ func gotoTomb():
 @onready var battle_pane = $CanvasLayer/blank/battlePane
 
 func gotoMiMasion():
+	GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.MIZHU]=tr("")
 	GameManager.initBattle()
 	#清空战斗面板，做记录，临时
 	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeIn)
@@ -411,6 +413,7 @@ func gotoMiMasion():
 	blank.show()
 	mizhen.show()
 func gotoHuangDiMiao():
+	GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.CAOBAO]=tr("")
 	GameManager.initBattle()
 	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeIn)
 	SoundManager.play_ambient_sound(DUNGEON_3)
@@ -551,6 +554,7 @@ func getScholarReward1():
 		"money": 0,
 		"population": 0
 	}
+	GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.DARU]=""
 	#GameManager.ScoreToItem()
 	_reward.showTitileReward(tr("恭喜你，你获得-论语简注"),items)	
 func getScholarReward2():
@@ -560,12 +564,13 @@ func getScholarReward2():
 		"money": 0,
 		"population": 0
 	}
+	GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.DARU]=""
 	#GameManager.ScoreToItem()
 	_reward.showTitileReward(tr("恭喜你，你获得-礼记笺疏"),items)	
 	
 func getScholarReward3Before():
 	GameManager.sav.have_event["大儒辩经完成"]=true	
-	
+	GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.DARU]=""
 	
 func getScholarReward3():
 	var _reward:rewardPanel=PanelManager.new_reward()
@@ -601,6 +606,7 @@ func BurySheep():
 	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeOut)
 	GameManager.changePeopleSupport(-10)
 	GameManager.sav.have_event["支线触发完毕调查过竹简"]=true
+	GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.KESULU]=""
 
 func playStageMusic():
 	SoundManager.stop_all_ambient_sounds()
@@ -705,14 +711,18 @@ func sideQuestReturnD(iswin):
 #-1 0 小试牛刀开启 1小试牛刀通过 2 对局试炼开启 3对局试验通过 4 诡秘怪谈开启 5诡秘怪谈通过
 func meetBoardGame(_value):
 	if _value==1:
+		GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.BADAO]=tr("前往寻访曹豹、陈登、糜竺，开启仕诡牌 “小试牛刀” 模式，体验城中流行的卡牌对决。")
 		GameManager.sav.caobaocardgame=0
 		GameManager.sav.mizhucardgame=0
 		GameManager.sav.chendencardgame=0
 	elif _value==2:
+		
+		GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.BADAO]=tr("挑战曹豹、陈登、糜竺的仕诡牌 “对局试炼” 模式，赢取稀有的诡异卡。")
 		GameManager.sav.caobaocardgame=2
 		GameManager.sav.mizhucardgame=2
 		GameManager.sav.chendencardgame=2	
 	elif _value==3:
+		GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.BADAO]=tr("开启仕诡牌 “诡秘乱局” 模式，对战着魔者，以卡牌之力破解诡异影响")
 		InventoryManager._remove_item(GameManager.inventoryPackege,InventoryManagerItem.仕诡卡尸皇,1)
 		InventoryManager._remove_item(GameManager.inventoryPackege,InventoryManagerItem.仕诡卡骨龙,1)
 		InventoryManager._remove_item(GameManager.inventoryPackege,InventoryManagerItem.仕诡卡血姬,1)
