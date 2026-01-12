@@ -6,7 +6,7 @@ do zhubu.show()
  : 那我这个刺史还有什么用处？
 主簿: 哦，不，大人您至关重要！政府的决策、法令的颁布，都得您亲自定夺。只是些琐碎的政策杂务，我们觉得不必劳烦您罢了……[voice:darennizhiguan]
  : 不，我之前跟陈群说过，我要亲自过目所有公务文书。
-主簿: 哦，这个陈大人也交代过了。这里是上个月的所有公务文书，大人请随时核查。  [voice:chendarenjiaodaiguole]
+主簿: 哦，这个陈大人也交代过了。这里是上个月的所有公务文书，大人请随时核查。[voice:chendarenjiaodaiguole]
 do zhubu.hide()
 do showwrit()
 => END
@@ -30,7 +30,7 @@ do implementpolicy()
 刘备: 嗯，做得不错。
 刘备: （不过凭我以往的经验，一旦涉及派系争斗，士族给我的消息未必全真。不如问问主簿，看他怎么看。）
 刘备: 对了，主簿，你觉得士族反馈的消息可信吗？
-主簿: 大人，这话不好由我断言。双方确有矛盾冲突，不排除一方借机打压另一方的可能。  [voice:yifangdayalingyifang]
+主簿: 大人，这话不好由我断言。双方确有矛盾冲突，不排除一方借机打压另一方的可能。[voice:yifangdayalingyifang]
 => END
 
 ~ 错误决策0
@@ -89,7 +89,7 @@ do zhubu.show()
 刘备: 是啊，我在外奔波了一周，也该跟弟兄们聚一聚了。
 主簿: 您说得是，只是还请提防那丹阳派……[voice:nishuodeshidifangdanyangpai]
 刘备: 丹阳派？他们又惹了什么祸？
-主簿: 这话不便由我细说，但他们欺行霸市已非一日，譬如抢夺百姓的米钱，民怨颇深。  [voice:zhehuabubianyouwoxishuo]
+主簿: 这话不便由我细说，但他们欺行霸市已非一日，譬如抢夺百姓的米钱，民怨颇深。[voice:zhehuabubianyouwoxishuo]
 do zhubu.hide()
 do arrangeDone()
 => END
@@ -359,7 +359,7 @@ do mizhu.showEX=false
 糜竺: 不过这不是长久之计，大人，我们需筹措1000金，向盟友购粮，以解燃眉之急。[voice:mizhu_xiangmou2]
 刘备: 看来我得想办法凑钱了？
 糜竺: 没错，不过不用担心，陈从事已经有了对策，别看他只是一介幕僚，但他可是徐州士族的陈家的代表！[voice:mizhu_chencongshi1]
-陈登: 糜别驾过誉了，主公，在下不才，我这里愿意提供上、中、下三策，或许能助你更好的筹齐资金。  [voice:chenden_mibiejiaguoyu1]
+陈登: 糜别驾过誉了，主公，在下不才，我这里愿意提供上、中、下三策，或许能助你更好的筹齐资金。[voice:chenden_mibiejiaguoyu1]
 do showFirstMission()
 => END
 
@@ -540,7 +540,7 @@ do chenden.show()
 陈登: 然而，城中似有内应作祟。我们与袁绍交易的消息，竟已被袁术截获。[voice:chenden_chenzhongyouneiying]
 陈登: 袁术得知我们联袁绍后勃然大怒，已命徐州城内的内应散布不利流言，意欲扰乱我方局势。[voice:chenden_yuanshudanu]
 陈登: 他们宣扬徐州粮荒之困境，诬称我们背弃盟约，只购袁绍之粮，却不分予军民。[voice:chenden_beiwuxian]
-陈登: 若谣言不止，徐州恐将陷入严重的内乱危机。  [voice:chenden_ruoyaoyan]
+陈登: 若谣言不止，徐州恐将陷入严重的内乱危机。[voice:chenden_ruoyaoyan]
 do chaosBegin()
 #糜竺：我们需要平衡各个派系，争取舆论支持。士族们必须看到我们是为了徐州的长远利益而行动。同时，我会加强内部管理，杜绝内应的活动空间。
 => END!
@@ -554,7 +554,7 @@ do chaosBegin()
 刘备: 这确能暂解燃眉之急，但长远之计呢？
 糜竺: 主公所言极是，此乃权宜之策。待此危急时段过去，便可逐步恢复常制。眼下关键在于，借此展现主公的公正与关怀，赢得民心信任。[voice:mizhu_yingquminxinfenhua]
 刘备: 好，就依你之计速行。我们必须尽快稳定局势。
-糜竺: 主公放心，我这就安排妥当。同时加强内务监管，杜绝此类隐患再发。  [voice:mizhu_dujueyinhuan]
+糜竺: 主公放心，我这就安排妥当。同时加强内务监管，杜绝此类隐患再发。[voice:mizhu_dujueyinhuan]
 do chaosMizhuEnd()
 => END!
 ~ 混乱与陈登对话
@@ -617,7 +617,7 @@ do ShowDisterPanel()
 提示: 商赈模式将会影响豪族的支持度，士赈模式将会影响士族的支持度，军赈模式将会影响丹阳派的支持度
 提示: 给不同派系分配不同的资源，来平衡各个派系的支持度
 do mizhu.hide()
-do chenden.hiede()
+do chenden.hide()
 => END!
 #讨好吕布
 #吕布会定期掉忠诚
@@ -1027,10 +1027,10 @@ do chenden.hide()
 ~ 城外克苏鲁事件触发
 do tsty.showEX=false
 刘备: 今日召二位共议赋税。徐州初定，粮赋艰难，陶公遗泽未散，备代管此地，非为己利。陶商、陶应，你二人若能历练成才，待乱平，徐州自当归还。赋税之事，备欲托以重任，二位可有良策？
-陶商: 将军厚恩！我父在时，赋税依田亩而定，今粮少，可减小户负担，聚民心。我愿为将军效力！ [voice:ts_jiangjunhouen]
-陶应: 兄长言之有理，将军若信我等，我兄弟愿献家财，助粮仓充实，报将军栽培之恩！
+陶商: 将军厚恩！我父在时，赋税依田亩而定，今粮少，可减小户负担，聚民心。我愿为将军效力！[voice:ts_jiangjunhouen]
+陶应: 兄长言之有理，将军若信我等，我兄弟愿献家财，助粮仓充实，报将军栽培之恩！[voice:ty_xiongzhangshuodeshi]
 糜竺: 主公且慢！陶氏年少无知，减税空话何益？各大族的佃户若闻小户减赋，必然不平，粮仓未满先乱民心，这重任怎担得起？徐州派自有稳妥之法，何须他们插手！[voice:mizhu_xuzhoupaiyiwentuo]
-陈登: 主公，陶公遗诏由我等定下，徐州托付于您，已是定局。陶氏兄弟难堪大用，若予重任，恐乱纲纪，坏大事，最多让他们安享余荫罢了。 [voice:chenden_xuzhoutuofuni]
+陈登: 主公，陶公遗诏由我等定下，徐州托付于您，已是定局。陶氏兄弟难堪大用，若予重任，恐乱纲纪，坏大事，最多让他们安享余荫罢了。[voice:chenden_xuzhoutuofuni]
 刘备: _liubeiwish
 do zhangyanCrazy()
 : 张阎突然猛然抬头，双目赤红，身体僵硬如木，声音低沉而诡异，似附体一般
@@ -1039,7 +1039,7 @@ do zhangyanChop()
 : _zhangyanfushen
 陶商: 将军！他疯了！救命！[voice:ts_jiangjuntafengle]
 
-陶应: 妖人！别杀我！
+陶应: 妖人！别杀我！[voice:ty_bieshawo]
 
 刘备: 张阎！住手！左右，速拿下！
 
@@ -1051,7 +1051,7 @@ do GameManager.resumeMusic()
 刘备: 二位休惊，备必彻查此事，究其根由，定不使尔等无故受难。备将命令徐州内部调查此事，请明日再来此厅，获知详情。
 
 陶商: 将军…多谢救命！此人为何如此恨我兄弟？可有外人撺掇？请将军明察！[voice:ts_duoxiejiuming]
-陶应: 他…他像被鬼神附身…
+陶应: 他…他像被鬼神附身…[voice:ty_beiguishenfushen]
 do subHoldWoold()
 do tsty.hide()
 任务更新: 张阎发狂刺杀陶氏未遂，已被押下。刘备下令内部调查，明日后返回府邸，可获知调查情况。
@@ -1078,6 +1078,8 @@ do tsty.hide()
 #任务更新: 徐州派推测张阎自导自演，陶氏求丹阳派保护被拒。刘备疑心未消，决定拜访丹阳派领袖曹豹。次日前往校场，可获知曹豹对张阎事件的见解。若未前往，徐州派将封存此事，支线进度受限。
 
 => END!
+
+
 
 
 

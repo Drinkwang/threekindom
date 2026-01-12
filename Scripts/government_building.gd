@@ -1263,7 +1263,7 @@ func holdSac():
 		"money": 0,
 		"population": 0
 	}
-	GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.KESULU]=("携药囊赴校场见曹豹，深究张阎事件隐情与毒物之谜。")
+	GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.KESULU]=tr("携药囊赴校场见曹豹，深究张阎事件隐情与毒物之谜。")
 	#GameManager.ScoreToItem()
 	_reward.showTitileReward(tr("恭喜你，你获得-黄麻药囊"),items)	
 	

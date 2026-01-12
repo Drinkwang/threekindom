@@ -205,7 +205,7 @@ func _juideCompeleteTask():
 		haveWeaponTxt="丈八蛇矛+6%"
 		weaponRate=0.06
 		pass
-	elif selectgeneral.name=="赵云":
+	elif selectgeneral.name=="无名":
 		#有无龙胆银月枪
 		#道具加持xxx
 		haveWeaponNum=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.龙胆亮银枪)

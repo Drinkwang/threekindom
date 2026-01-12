@@ -25,7 +25,7 @@ func _ready():
 				var price=int(item["value"])
 				price=floor(price*0.6)
 				GameManager.SoldCoin=GameManager.SoldCoin+price
-		GameManager.SoldItemStr=tr("我将以%d金收购你手上的")%GameManager.SoldCoin+GameManager.SoldItemStr
+		GameManager.SoldItemStr=tr("我将以%d金收购你手上的")%GameManager.SoldCoin+" ["+GameManager.SoldItemStr+"]"
 		back_txt.show()
 		#
 		

@@ -298,7 +298,7 @@ func _initData():
 			elif GameManager.trainGeneral=="张飞":
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"张飞比武胜利")
 	
-			elif GameManager.trainGeneral=="赵云":
+			elif GameManager.trainGeneral=="无名":
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"赵云比武胜利")
 			
 
@@ -309,7 +309,7 @@ func _initData():
 			elif GameManager.trainGeneral=="张飞":
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"张飞比武失败")
 	
-			elif GameManager.trainGeneral=="赵云":
+			elif GameManager.trainGeneral=="无名":
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"赵云比武失败")
 			
 
@@ -859,7 +859,7 @@ func enterContest(mode):
 	elif GameManager.trainGeneral=="张飞":
 		characterScore=GameManager.sav.zhangfeiTrainNum	
 		haveWeapon=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.丈八蛇矛)>=1
-	elif GameManager.trainGeneral=="赵云":
+	elif GameManager.trainGeneral=="无名":
 		characterScore=GameManager.sav.zhaoyunTrainNum
 		haveWeapon=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.龙胆亮银枪)>=1
 
@@ -887,7 +887,7 @@ func enterContest(mode):
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"关羽比武")
 	elif GameManager.trainGeneral=="张飞":
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"张飞比武")
-	elif GameManager.trainGeneral=="赵云":
+	elif GameManager.trainGeneral=="无名":
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"赵云比武")
 	#SoundManager.stop_music()
 	#SceneManager.changeScene(SceneManager.roomNode.BoardGame,2)
@@ -920,7 +920,7 @@ func winTrain():
 			found_general["level"] += 1	
 			isFirst=true		
 		winReward(isFirst,GameManager.trainGeneral)
-	elif GameManager.trainGeneral=="赵云":
+	elif GameManager.trainGeneral=="无名":
 		if GameManager.sav.zhaoyunTrainNum<GameManager.trainLevel:			
 			GameManager.sav.zhaoyunTrainNum+=1
 			found_general["level"] += 1	

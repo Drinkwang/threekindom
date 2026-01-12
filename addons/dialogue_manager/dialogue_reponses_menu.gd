@@ -70,9 +70,9 @@ var responses: Array = []:
 							characterScore=GameManager.sav.mizhucardgame		
 						#0 小试牛刀开启 1小试牛刀通过 2 对局试炼开启 3对局试验通过 4 诡秘怪谈开启 5诡秘怪谈通过	
 						if 	(characterScore>=1 and mode==boardType.boardMode.new) or (characterScore>=3 and mode==boardType.boardMode.middle) or (characterScore>=5 and mode==boardType.boardMode.high):
-							response.text+=tr("(已通过)")
+							response.text=tr(response.text)+tr("(已通过)")
 						elif (characterScore<2 and mode==boardType.boardMode.middle) or (characterScore<4 and mode==boardType.boardMode.high):
-							response.text+=tr("(未解锁)")
+							response.text=tr(response.text)+tr("(未解锁)")
 						#根据角色获得分数，判断 score 如果score怎么样，那么会变成什么样	
 					if 	"[infra=true]" in response.text:#暂时无用
 						pass
@@ -101,9 +101,9 @@ var responses: Array = []:
 							haveWeapon=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.龙胆亮银枪)>=1
 						#0 小试牛刀开启 1小试牛刀通过 2 对局试炼开启 3对局试验通过 
 						if 	(characterScore>=1 and mode==1) or (characterScore>=2 and mode==2) or (characterScore>=3 and mode==3):
-							response.text+=tr("(已通过)")
+							response.text=tr(response.text)+tr("(已通过)")
 						elif (characterScore<1 and mode==2) or (characterScore<2 and mode==3):
-							response.text+=tr("(未解锁)")	
+							response.text=tr(response.text)+tr("(未解锁)")	
 							
 						elif (characterScore>=2 and characterScore<3  and mode==3 and not haveWeapon):
 							response.text+=tr("(专属武器解锁)")

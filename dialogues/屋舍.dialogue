@@ -130,7 +130,7 @@ do SoundManager.play_sound(siku2)
 
 刘备: 此为何声？似哭似啸，深夜扰人……门外何人?
 血债，今夜偿还！ 
-救命！！
+救命！！[voice:ty_jiumin]
 刘备听到呼救立马起床拿着剑冲出门去，看到却是怪异的场景，一个满身触须的家伙，挟持着两个似乎很眼熟的家伙，他们身上也长满了触须..
 do PlayBitPlayer()
 do SoundManager.stop_sound(siku2)
