@@ -94,6 +94,7 @@ func post_transition():
 
 const HUI_3 = preload("res://Asset/sound/hui3.wav")	
 func tstyDie():
+	
 	sword_sprite_2d.show()
 	chop_animation.play("chop")
 	
@@ -110,7 +111,7 @@ func tstyDie():
 	var _func=func(stringname):
 		sword_sprite_2d.hide()
 		var tween=get_tree().create_tween()
-		
+		SoundManager.play_sound(sounds.BLOODCC_1)
 		tween.tween_property(tsty, "modulate:a",0, 5)
 		
 		#播放tsty透明度隐藏动画

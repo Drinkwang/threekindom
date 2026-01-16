@@ -94,12 +94,12 @@ func _initData():
 	
 	#记得demo注销
 	if GameManager.sav.have_event["chaoMizhuEnd"]==true and GameManager.sav.isGetCoin==false and GameManager.sav.currenceValue>1:
-		#title.show()
-		#demo_end.show()
-		#hp_panel.hide()
-		#res_panel.hide()
-		#support_panel.hide()
-		#return
+		title.show()
+		demo_end.show()
+		hp_panel.hide()
+		res_panel.hide()
+		support_panel.hide()
+		return
 		pass
 	if control.visible==true:	
 		items_in_scene.showItems()	
@@ -218,7 +218,7 @@ func post_transition():
 	if GameManager.sav.hp<=20:
 		SoundManager.play_ambient_sound(nightbgm)
 		#判断条件做最终支线，显示任务主簿，和点击点击事件
-		if GameManager.sav.have_event["锦囊咨询丹阳派"]==true and GameManager.sav.have_event["支线触发完毕获得骨杖"]==false:
+		if GameManager.sav.have_event["锦囊咨询丹阳派"]==true and GameManager.sav.have_event["支线触发完毕获得骨杖"]==false :#and GameManager.sav.have_event["温侯降伏臧霸"]==true:
 			zhubu.show()
 			zhubu.showEX=true
 		#特殊事件触发时

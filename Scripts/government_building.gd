@@ -326,7 +326,7 @@ func _buttonListClick(item):
 		#判断自己的逻辑
 	#应该是第二天
 
-		if group==-1 and GameManager.sav.policyExcute==false and GameManager.sav.day>=5:
+		if group==-1 and GameManager.sav.policyExcute==true and GameManager.sav.day>=5:
 			if GameManager.sav.have_event["第一次民心政策"]==false and GameManager.sav.randomIndex<=1:
 				GameManager.sav.have_event["第一次民心政策"]=true
 				DialogueManager.show_example_dialogue_balloon(GameManager.currenceScene.dialogue_resource,"民生政策")		
@@ -1357,7 +1357,7 @@ func boardVictory():
 			"population": 0
 		}
 
-		_reward.showTitileReward(tr("你战胜了糜竺，你获得糜竺的100金"),items)	
+		_reward.showTitileReward(tr("你战胜了糜竺"),items)	
 	elif GameManager._boardReward==boardType.boardRewardResult.card:
 		var _reward:rewardPanel=PanelManager.new_reward()
 	
@@ -1366,7 +1366,7 @@ func boardVictory():
 			"money": 0,
 			"population": 0
 		}
-		_reward.showTitileReward(tr("你战胜了糜竺，你获得曹豹珍藏的诡异卡"),items)	
+		_reward.showTitileReward(tr("你战胜了糜竺"),items)	
 	elif GameManager._boardReward==boardType.boardRewardResult.BreakFree:
 		pass
 	GameManager._boardReward=boardType.boardRewardResult.none

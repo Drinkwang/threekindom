@@ -60,9 +60,10 @@ var expLenWidth=1240
 
 func changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()
-
+	
 	if currencelanguage=="ru":
 		expLenWidth=1325
+		tourPoint.position.x=-130
 		currence_no_policy.add_theme_font_size_override("font_size",45)
 		ConfireButton.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
 		tab_bar.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
@@ -70,6 +71,12 @@ func changeLanguage():
 		law_label.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))	
 		#currence_no_policy.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))	
 	else:
+		if currencelanguage=="en":
+			tourPoint.position.x=-405
+		elif currencelanguage=="ja":
+			tourPoint.position.x=-250
+		else:
+			tourPoint.position.x=-344
 		currence_no_policy.add_theme_font_size_override("font_size",66)
 		expLenWidth=1240
 		ConfireButton.remove_theme_font_override("font")
@@ -215,7 +222,7 @@ func _disableAll():
 
 func _on_button_button_down():
 
-	if await GameManager.isTried(costhp) and index==0:
+	if await GameManager.isTried(costhp) or index==0:
 		return
 	GameManager.sav.hp=GameManager.sav.hp-costhp
 	SoundManager.play_sound(sounds.SFX_FAST_UI_CLICK_MECHANICAL_03_WAV)

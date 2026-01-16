@@ -102,7 +102,7 @@ func initData(data):
 			changeState(lockState.canReward)
 		elif data.iscom==2:
 			changeState(lockState.after)
-	context.text=tr(data.enemy+"："+data.level+"\n"+data.detail)
+	context.text=tr(data.enemy)+"："+tr(data.level)+"\n"+tr(data.detail)
 	
 enum lockState{
 	lock,

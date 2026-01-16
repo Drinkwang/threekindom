@@ -137,8 +137,8 @@ do enterGame()
 - （1）小试牛刀[boardgame=true]
 	do GameManager.selectBoardMode(boardType.boardMode.new)
 - （2）对局试炼[boardgame=true]
-	#系统提示: 当前试玩版不开放，尽请期待
-	#=> 选择仕诡牌
+	系统提示: 当前试玩版不开放，尽请期待
+	=> 选择仕诡牌
 	do GameManager.selectBoardMode(boardType.boardMode.middle)
 
 
@@ -160,7 +160,7 @@ do enterGame()
 	elif GameManager.selectBoardCharacter==boardType.boardCharacter.chenden
 		 : 与陈登对战，展开仕诡牌游戏。他善于谋略，是仕诡牌顶尖高手。\n小试牛刀：单人游戏，玩家手牌2张，不抽牌，每回合最多使用3张牌。\n对局试炼：对战陈登，玩家持4张手牌，敌人持6张手牌，每回合手牌少于5张时抽1张，每回合最多使用4张牌。\n诡秘乱局：引入诡秘卡规则，玩家持3张手牌，敌人持5张手牌，每回合开始时手牌少于5张抽1张，每回合最多使用4张牌。
 	elif GameManager.selectBoardCharacter==boardType.boardCharacter.mizhu
-		 : 与糜竺对战，展开仕诡牌游戏。他精于算计，是仕诡牌的好手。\n小试牛刀：单人游戏，玩家手牌4张，不抽牌，每回合最多使用2张牌。\n对局试炼：对战陈登，玩家持4张手牌，敌人持5张手牌，每回合手牌少于5张时抽1张，每回合最多使用4张牌。\n诡秘乱局：引入诡秘卡规则，玩家持4张手牌，敌人持5张手牌，每回合开始时手牌少于5张抽1张，每回合最多使用3张牌。
+		 : 与糜竺对战，展开仕诡牌游戏。他精于算计，是仕诡牌的好手。\n小试牛刀：单人游戏，玩家手牌4张，不抽牌，每回合最多使用2张牌。\n对局试炼：对战糜竺，玩家持4张手牌，敌人持5张手牌，每回合手牌少于5张时抽1张，每回合最多使用4张牌。\n诡秘乱局：引入诡秘卡规则，玩家持4张手牌，敌人持5张手牌，每回合开始时手牌少于5张抽1张，每回合最多使用3张牌。
 	=> 选择仕诡牌
 - 诡秘成就录
 	do GameManager.showGuimiAchi()

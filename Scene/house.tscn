@@ -202,7 +202,7 @@ dialogue_doubleclick = "second"
 txt2d = ExtResource("6_ys6bi")
 boardType = 1
 dialogue_resource = ExtResource("2_6rtve")
-dialogue_start = "点击陈群"
+dialogue_start = "支线克苏鲁最终开始"
 
 [node name="caobao" parent="." instance=ExtResource("7_7mriv")]
 visible = false

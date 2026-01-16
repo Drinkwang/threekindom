@@ -139,7 +139,7 @@ do chendeng.hide()
 陈登: 主公对徐州百姓关心，我深感佩...[voice:chenden_zhugongguanxinxuzhou]
 陈登: 我是这里大族，并且是一个徐州人...[voice:chenden_woshixuzhouren]
 陈登: 自然我得承担一个大族责任和义务...[voice:chenden_zirandeicengdan]
-陈登: 这样吧，我做个表率，愿先捐金些许，赈济百姓，助主公安徐州。  [voice:chenden_zuobiaoshuai]
+陈登: 这样吧，我做个表率，愿先捐金些许，赈济百姓，助主公安徐州。[voice:chenden_zuobiaoshuai]
 系统提示: 陈登被你言语感化，他捐献金钱200。
 do chendengWantUpLevel()
 

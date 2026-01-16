@@ -164,7 +164,6 @@ visible = false
 position = Vector2(1112, 376)
 showName = "陶商/陶应"
 dialogue_doubleclick = "遇到诡异牌1"
-showEX = true
 txt2d = ExtResource("14_fsp8r")
 boardType = 1
 dialogue_resource = ExtResource("2_a3tl4")

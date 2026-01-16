@@ -126,7 +126,7 @@ func judgeAchiveInPer():
 			unlock=false
 		if unlock==false:
 
-			achi_label.text=tr("成就：已失败")
+			achiwin.text=tr("成就：")+tr("已失败")
 			achi_label.self_modulate=Color.GRAY
 			#成就已完成
 			
@@ -212,8 +212,22 @@ func _ready() -> void:
 			achiIndex=7
 
 	DialogueManager.show_exaple_top_dialogue_balloon(dialogue_resource,"新手教程_初级")
-	
+
+
+	SignalManager.changeLanguage.connect(changeLanguage)
+
+	#initControls()
+	changeLanguage()	
 	#showtutorial(1,true)
+func changeLanguage():
+	var currencelanguage=TranslationServer.get_locale()
+
+	if currencelanguage=="ru" or currencelanguage=="en":
+		we_label.add_theme_font_size_override("font_size",50)
+		detail_txt.add_theme_font_size_override("font_size",40)
+	else:
+		we_label.add_theme_font_size_override("font_size",72)
+		detail_txt.add_theme_font_size_override("font_size",47)
 
 func post_transition():
 	if GameManager._boardMode==boardType.boardMode.high and GameManager.sav.caobaocardgame==4 and GameManager.selectBoardCharacter==boardType.boardCharacter.caobao:
@@ -710,9 +724,9 @@ func startGame(cardnum,issole,enemyExtraCard):
 		enemy_score_txt.show()
 		heart_group_enemy.show()
 		enemyhand.show()
-		detail_h_box_container.position=Vector2(627,162)
+		detail_h_box_container.position=Vector2(6,162)
 	else:
-		detail_h_box_container.position=Vector2(627,11)		
+		detail_h_box_container.position=Vector2(6,11)		
 		enemy_score_txt.hide()
 		heart_group_enemy.hide()
 		enemyhand.hide()
@@ -747,7 +761,7 @@ func startGame(cardnum,issole,enemyExtraCard):
 func turnGoto():
 	if turn_num<5:
 		turn_num+=1
-		turn_num_Txt.text="回合数：{s}/5".format({"s":turn_num})
+		turn_num_Txt.text=tr("回合数：{s}/5").format({"s":turn_num})
 	else:
 		#
 		if _issole==true:
@@ -808,7 +822,7 @@ func enterNewPhase(stage:phaseName):
 	elif _phaseName==phaseName.checkEnd:
 		checkCardStage(groupType.min)	
 	elif _phaseName==phaseName.endturn:
-		detail_txt.text="结束阶段，请等待新回合开始"
+		detail_txt.text=tr("结束阶段，请等待新回合开始")
 		punishimg.texture=null
 		SoundManager.play_sound(sounds.COLLECT_SMALL_JEWEL_1)
 		await get_tree().create_timer(1.5).timeout
@@ -979,7 +993,7 @@ func checkCardStage(_groupType):
 								#SoundManager.play_sound(payCostSound)
 								SoundManager.play_sound(sounds.deniedsound)
 							end_button.text=tr("拒付惩罚")
-							detail_txt.text="请支付你所需的惩罚："
+							detail_txt.text=tr("请支付你所需的惩罚：")
 							punishStage=true
 							end_button.show()
 							cangoto=false
@@ -987,7 +1001,7 @@ func checkCardStage(_groupType):
 						else:
 							groupPunishTyp=_groupType
 							punishStage=false
-							detail_txt.text="敌人支付惩罚中："
+							detail_txt.text=tr("敌人支付惩罚中：")
 							await get_tree().create_timer(2)
 							#支付完了后 应该把状态清空
 							await AIDiscardCard(i,j)
@@ -1323,77 +1337,37 @@ func excuteSecret(groupobj:Array):
 			secretCard.back_rect.hide()
 			tween.tween_property(secretCard, "global_position", Vector2(844,396), 1)
 			secretCard.animation_player_reward.play("skill")
-			#var movefinish=func(_hand_card,groupobj,_secretsuit):
-				#if _hand_card!=null:
-					#if _secretsuit==1:
-						#if isPlayerTurn:
-							#hp+=1
-							#detail_txt.text=tr("你发动了血姬卡，恢复一点体力")
-						#else:
-							#enemy_hp+=1
-							#detail_txt.text=tr("敌人发动血姬卡，恢复一点体力")
-					#elif _secretsuit==2:
-						#if isPlayerTurn:
-							#var cards=enemyhand.get_children()
-							#var _index=randi_range(0,cards.size()-1)
-							#cards[_index].queue_free()
-							#detail_txt.text=tr("你发动了骨龙卡，弃掉对手一张卡")
-							##拆一张牌
-							#pass
-						#else:
-							#var cards=myhand.get_children()
-							#var _index=randi_range(0,cards.size()-1)
-							#detail_txt.text=tr("敌人发动了骨龙卡，弃掉你一张卡")
-							#cards[_index].queue_free()
-					#elif _secretsuit==3:
-						#if isPlayerTurn:
-							#drawOne(true)
-							#detail_txt.text=tr("你发动尸皇卡，抽一张卡")
-						#else:
-							#drawOne(false)
-							#detail_txt.text=tr("敌人发动尸皇卡，抽一张卡")
-					#elif _secretsuit==4:
-						#if isPlayerTurn:
-							#
-							#detail_txt.text=tr("你发动黑商卡，对手失去20分")
-							#enemyscore-=20
-							#enemy_score_txt.text="敌人得分：{s}".format({"s":enemyscore})		
-#
-						#else:
-							##扣积分
-							#detail_txt.text=tr("敌人发动黑商卡，你失去20分")
-							#score-=20
-							#score_txt.text="玩家得分：{s}".format({"s":score})
-					#await get_tree().create_timer(2)
-					#_hand_card.queue_free()
 
-			#groupobj.any(func(a):return a._value%13==11)					#调用结算函数	
+
+			var whoRunCard=""
+			var effectTxt=""
 			if secretCard!=null and groupobj!=null and _secretsuit>0:
-				#tween.tween_callback(movefinish.bind(secretCard,groupobj,_secretsuit))  # 播放完成后调用函数
-				
+			
 				if secretCard!=null:
+					if isPlayerTurn:
+						whoRunCard=tr("你发动了诡异卡")
+					else:
+						whoRunCard=tr("敌人发动诡异卡")
+
+					
 					if _secretsuit==1:
-						if isPlayerTurn:
-							detail_txt.text=tr("你发动了血姬卡，恢复一点体力")
-						else:
-							detail_txt.text=tr("敌人发动血姬卡，恢复一点体力")
-					elif _secretsuit==2:
-						if isPlayerTurn:
-							detail_txt.text=tr("你发动了骨龙卡，弃掉对手一张卡")
-						else:
-							detail_txt.text=tr("敌人发动了骨龙卡，弃掉你一张卡")
-					elif _secretsuit==3:
-						if isPlayerTurn:
-							detail_txt.text=tr("你发动尸皇卡，抽一张卡")
-						else:
-							detail_txt.text=tr("敌人发动尸皇卡，抽一张卡")
-					elif _secretsuit==4:
-						if isPlayerTurn:
-							detail_txt.text=tr("你发动黑商卡，对手失去20分")
-						else:
-							#扣积分
-							detail_txt.text=tr("敌人发动黑商卡，你失去20分")
 	
+							effectTxt=tr("恢复一点体力")
+	
+	
+					elif _secretsuit==2:
+	
+							effectTxt=tr("弃掉对手一张卡")
+
+					elif _secretsuit==3:
+
+							effectTxt=tr("抽一张卡")
+
+					elif _secretsuit==4:
+		
+							effectTxt=tr("对手失去20分")
+
+					detail_txt.text=whoRunCard+","+effectTxt
 				
 				await tween.finished
 				SoundManager.play_sound(fireexp)
@@ -1401,43 +1375,43 @@ func excuteSecret(groupobj:Array):
 					if _secretsuit==1:
 						if isPlayerTurn:
 							hp+=1
-							detail_txt.text=tr("你发动了血姬卡，恢复一点体力")
+							
 						else:
 							enemy_hp+=1
-							detail_txt.text=tr("敌人发动血姬卡，恢复一点体力")
+							
 					elif _secretsuit==2:
 						if isPlayerTurn:
 							var cards=enemyhand.get_children()
 							var _index=randi_range(0,cards.size()-1)
 							cards[_index].queue_free()
-							detail_txt.text=tr("你发动了骨龙卡，弃掉对手一张卡")
+							
 							#拆一张牌
 							pass
 						else:
 							var cards=myhand.get_children()
 							var _index=randi_range(0,cards.size()-1)
-							detail_txt.text=tr("敌人发动了骨龙卡，弃掉你一张卡")
+							
 							if cards.size()>0:
 								cards[_index].queue_free()
 					elif _secretsuit==3:
 						if isPlayerTurn:
 							drawOne(true)
-							detail_txt.text=tr("你发动尸皇卡，抽一张卡")
+							
 						else:
 							drawOne(false)
-							detail_txt.text=tr("敌人发动尸皇卡，抽一张卡")
+							
 					elif _secretsuit==4:
 						if isPlayerTurn:
 							
-							detail_txt.text=tr("你发动黑商卡，对手失去20分")
+						
 							enemyscore-=20
-							enemy_score_txt.text="敌人得分：{s}".format({"s":enemyscore})		
+							enemy_score_txt.text=tr("敌人得分：{s}").format({"s":enemyscore})		
 
 						else:
 							#扣积分
-							detail_txt.text=tr("敌人发动黑商卡，你失去20分")
+							
 							score-=20
-							score_txt.text="玩家得分：{s}".format({"s":score})
+							score_txt.text=tr("玩家得分：{s}").format({"s":score})
 					await get_tree().create_timer(2.1)
 					
 					secretCard.queue_free()				
@@ -1460,16 +1434,6 @@ func excuteSecret(groupobj:Array):
 				
 		else:
 			pass
-		#secretCard#移动到中间		
-
-	#if isPlayerTurn==false:
-		#await get_tree().create_timer(0.2).timeout
-		#if useCard ==true:
-		#	await get_tree().create_timer(0.8).timeout
-		#if enemyStage>0:
-		#	AIUseCard()	#这个我可能感觉ai可能也会需要
-		#else:
-		#	phaseEnd()
 
 
 #还差敌人发动secret的逻辑，以及把上面的逻辑加特效
@@ -1963,6 +1927,7 @@ func enterHtutorial():
 
 @onready var point_group: Control = $CanvasLayer/pointGroup
 
+@onready var we_label: Label = $"CanvasLayer/pointGroup/1/Label"
 
 @onready var guild_1: Node2D = $"CanvasLayer/pointGroup/1"
 @onready var guild_2: Node2D = $"CanvasLayer/pointGroup/2"

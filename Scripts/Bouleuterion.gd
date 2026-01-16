@@ -467,7 +467,7 @@ func boardVictory():
 			"population": 0
 		}
 
-		_reward.showTitileReward(tr("你战胜了陈登，你获得益气丸一枚"),items)	
+		_reward.showTitileReward(tr("你战胜了陈登"),items)	
 	elif GameManager._boardReward==boardType.boardRewardResult.card:
 		var _reward:rewardPanel=PanelManager.new_reward()
 	
@@ -476,7 +476,7 @@ func boardVictory():
 			"money": 0,
 			"population": 0
 		}
-		_reward.showTitileReward(tr("你战胜了陈登，你获得陈登珍藏的诡异卡"),items)	
+		_reward.showTitileReward(tr("你战胜了陈登"),items)	
 	GameManager._boardReward=boardType.boardRewardResult.none
 
 func openBoardGame():

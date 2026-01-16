@@ -177,6 +177,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_q7yni")
 theme_type_variation = &"FlatButton"
+disabled = true
 text = "确认信息"
 
 [node name="Control3" type="Control" parent="PanelContainer/orderPanel/VBoxContainer/HBoxContainer"]

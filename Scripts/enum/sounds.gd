@@ -34,3 +34,7 @@ const _2__MENTAL_VORTEX = preload("res://Asset/bgm/2- Mental Vortex.mp3")
 
 const guiyi = preload("res://Asset/sound/boardGame/17_Def_buff_01.wav")
 const BLOOD = preload("res://Asset/sound/blood.mp3")
+
+const BLOODCC_0 = preload("res://Asset/sound/bloodcc0.mp3")
+const BLOODXX = preload("res://Asset/sound/bloodxx.mp3")
+const BLOODCC_1 = preload("res://Asset/sound/bloodcc1.mp3")

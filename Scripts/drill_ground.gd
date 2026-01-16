@@ -444,7 +444,7 @@ func boardVictory():
 			"population": 40
 		}
 
-		_reward.showTitileReward(tr("你战胜了曹豹，你获得曹豹赠送你的40名士兵"),items)	
+		_reward.showTitileReward(tr("你战胜了曹豹"),items)	
 	elif GameManager._boardReward==boardType.boardRewardResult.card:
 		var _reward:rewardPanel=PanelManager.new_reward()
 	
@@ -453,7 +453,7 @@ func boardVictory():
 			"money": 0,
 			"population": 0
 		}
-		_reward.showTitileReward(tr("你战胜了曹豹，你获得曹豹珍藏的诡异卡"),items)	
+		_reward.showTitileReward(tr("你战胜了曹豹"),items)	
 	GameManager._boardReward=boardType.boardRewardResult.none
 func select2(issuccuss):
 	GameManager.sav.have_event["曹豹支线2"]=true

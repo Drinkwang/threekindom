@@ -654,9 +654,9 @@ layout_mode = 2
 texture = ExtResource("22_0kksh")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
-offset_left = 627.0
+offset_left = 6.0
 offset_top = 11.0
-offset_right = 1316.0
+offset_right = 1918.0
 offset_bottom = 169.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -773,7 +773,6 @@ offset_right = 545.0
 offset_bottom = 346.0
 theme_override_fonts/font = ExtResource("20_f0olx")
 theme_override_font_sizes/font_size = 47
-text = "玩家得分：0"
 
 [node name="turnNum" type="Label" parent="CanvasLayer"]
 offset_left = 55.0
@@ -782,7 +781,6 @@ offset_right = 545.0
 offset_bottom = 413.0
 theme_override_fonts/font = ExtResource("20_f0olx")
 theme_override_font_sizes/font_size = 47
-text = "回合数：5"
 
 [node name="enemyScore" type="Label" parent="CanvasLayer"]
 visible = false
@@ -869,10 +867,10 @@ position = Vector2(746.871, 505.333)
 rotation = 1.16413
 
 [node name="Label" type="Label" parent="CanvasLayer/pointGroup/1"]
-offset_left = -402.387
-offset_top = -25.7301
-offset_right = 347.613
-offset_bottom = 98.2699
+offset_left = -622.0
+offset_top = 484.0
+offset_right = 1221.0
+offset_bottom = 608.0
 rotation = -1.16413
 theme_override_fonts/font = ExtResource("20_f0olx")
 theme_override_font_sizes/font_size = 72

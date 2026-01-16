@@ -59,7 +59,7 @@ text = "开始游戏"
 [node name="continue" type="Button" parent="."]
 offset_left = 110.0
 offset_top = 652.0
-offset_right = 400.0
+offset_right = 424.0
 offset_bottom = 783.0
 theme_override_font_sizes/font_size = 36
 disabled = true
