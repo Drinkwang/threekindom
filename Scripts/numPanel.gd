@@ -18,6 +18,7 @@ func _ready():
 	SignalManager.changeSupport.connect(_processList)
 
 func _processList():
+	GameManager.maxResPanelX=0
 	GameManager.clear_children(v_box_container)
 	for item:cldata in datas:
 		if item.isshow==false:
@@ -30,7 +31,10 @@ func _processList():
 		fs.init(item)
 		
 	
-	pass
+	for c:factionalname in v_box_container.get_children():
+
+	
+		c.refreshSameX()
 
 func refreshData():
 	var items=v_box_container.get_children()		

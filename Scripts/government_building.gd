@@ -211,7 +211,7 @@ func _initData():
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"凑集2000民夫任务")
 			
 		elif GameManager.sav.have_event["袁术首次击败"]==true and GameManager.sav.have_event["派系安稳任务触发"]==false: 
-			GameManager.sav.have_event["派系安稳任务触发"]==true
+			GameManager.sav.have_event["派系安稳任务触发"]=true
 			candoSub=false
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"安抚众人任务开始")
 		#elif GameManager
@@ -423,13 +423,13 @@ func victoryPartyEnd():
 	
 func oldvictoryPartyEnd():
 	GameManager.sav.have_event["战斗袁术开始"]=true
-	GameManager.sav.targetValue=15
+	GameManager.sav.targetValue=12
 	GameManager.sav.currenceValue=0
 	GameManager.sav.targetResType=GameManager.ResType.battle
 	GameManager.sav.targetTxt="征讨次数：{currence}/{target}"
 	chenden.hide()
 	mizhu.hide()
-	GameManager.initSecretBattleContext(3,SceneManager.etraTaskType.useItem,13,"袁术军大胜")
+	GameManager.initSecretBattleContext(3,SceneManager.etraTaskType.useItem,10,"袁术军大胜")
 
 
 func optionSummonOnemen():

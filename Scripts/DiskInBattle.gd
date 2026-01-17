@@ -678,8 +678,8 @@ func refreshHideBattleTask():
 			var ic:TextureRect=se_task_hbox.get_child(i)
 			var number_map = {1: 3, 2: 2, 3: 1}  # 定义替换规则
 			if(GameManager.sav.extraCureenTaskCNum>=GameManager.sav.extraBattleTaskTargetNum/number_map[i+1]):
-				if GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.costMoney or GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.loseGame:
-					ic.modulate=Color.YELLOW
+				if GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.costMoney or GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.loseGame or GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.useItem:
+					ic.modulate=Color.GREEN
 				elif GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.dontLoseGame:
 					ic.modulate=Color.RED
 			else:
@@ -696,7 +696,7 @@ func refreshTempHideBattleTask():
 			var ic:TextureRect=se_task_hbox.get_child(i)
 			var number_map = {1: 3, 2: 2, 3: 1}  # 定义替换规则
 			if(GameManager.sav.extraCureenTaskCNum>=GameManager.sav.extraBattleTaskTargetNum/number_map[i+1]):
-				if GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.costMoney or GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.loseGame:
+				if GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.costMoney or GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.loseGame or GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.useItem:
 					ic.modulate=Color.GREEN
 				elif GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.dontLoseGame:
 					ic.modulate=Color.RED

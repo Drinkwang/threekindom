@@ -1,13 +1,18 @@
 extends PanelContainer
 class_name factionalname
 @onready var progress_bar = $MarginContainer/HBoxContainer/VBoxContainer/ProgressBar
-@onready var label = $MarginContainer/HBoxContainer/VBoxContainer/Label
+@onready var label:Label = $MarginContainer/HBoxContainer/VBoxContainer/Label
 var itemData
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	SignalManager.changeLanguage.connect(changeLanguage)		
 	changeLanguage()
 	pass # Replace with function body.
+	
+	
+
+@onready var v_box_container: VBoxContainer = $MarginContainer/HBoxContainer/VBoxContainer
+	
 
 func changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()
@@ -82,7 +87,21 @@ func refreshData():
 		timer.start()
 	else:
 		timer.stop()
+		
+		
+	var font_size = label.get_theme_font_size("font_size")	
+	var text_width = label.get_theme_font("font").get_string_size(label.text,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size).x
+	if GameManager.maxResPanelX<=text_width:
+		GameManager.maxResPanelX=text_width
+
+		
+	
 @onready var timer = $Timer
+
+
+func refreshSameX():
+	label.custom_minimum_size.x=GameManager.maxResPanelX
+
 
 func _on_timer_timeout():
 	if itemData.isSuppressed==true:

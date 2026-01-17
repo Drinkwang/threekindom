@@ -46,7 +46,11 @@ func showTargetLabel():
 		elif GameManager.sav.TargetDestination=="自宅":
 			target_label.text=tr("任务已完成，请返回自宅触发下一阶段剧情")
 		elif GameManager.sav.TargetDestination=="府邸":
-			target_label.text=tr("任务已完成，请前往府邸触发下一阶段剧情")
+			if GameManager.sav.targetResType==GameManager.ResType.govern and not GameManager.dontHaveDominance():
+
+				target_label.text=tr("主线已毕，霸道镇压尚未达成。\n可继续镇压派系，亦可返回府邸交付任务。")
+			else:
+				target_label.text=tr("任务已完成，请前往府邸触发下一阶段剧情")
 		elif GameManager.sav.TargetDestination=="议事厅":
 			target_label.text=tr("任务已完成，请前往议事厅触发下一阶段剧情")
 		elif GameManager.sav.TargetDestination=="演武场":

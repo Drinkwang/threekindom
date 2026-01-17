@@ -94,12 +94,12 @@ func _initData():
 	
 	#记得demo注销
 	if GameManager.sav.have_event["chaoMizhuEnd"]==true and GameManager.sav.isGetCoin==false and GameManager.sav.currenceValue>1:
-		title.show()
-		demo_end.show()
-		hp_panel.hide()
-		res_panel.hide()
-		support_panel.hide()
-		return
+		#title.show()
+		#demo_end.show()
+		#hp_panel.hide()
+		#res_panel.hide()
+		#support_panel.hide()
+		#return
 		pass
 	if control.visible==true:	
 		items_in_scene.showItems()	

@@ -571,13 +571,13 @@ func getTaskCurrenceValue():
 
 func getgovernValue():
 	var cv=0
-	if sav.WAIDIPAI._support_rate>=60 or sav.WAIDIPAI._num_defections>=3:
+	if sav.WAIDIPAI._support_rate>=80 or sav.WAIDIPAI._num_defections>=3:
 		cv+=1
-	elif sav.BENTUPAI._support_rate>=60 or sav.BENTUPAI._num_defections>=3:
+	if sav.BENTUPAI._support_rate>=80 or sav.BENTUPAI._num_defections>=3:
 		cv+=1
-	elif sav.LVBU._support_rate>=60 or sav.LVBU._num_defections>=3:
+	if sav.LVBU._support_rate>=80 or sav.LVBU._num_defections>=3:
 		cv+=1	
-	elif sav.HAOZUPAI._support_rate>=60 or sav.HAOZUPAI._num_defections>=3:
+	if sav.HAOZUPAI._support_rate>=80 or sav.HAOZUPAI._num_defections>=3:
 		cv+=1
 	return cv
 
@@ -964,7 +964,7 @@ func loadLaw():
 			var remainder = InventoryManager.add_item(inventoryPackege, itemid, 4, false)
 	
 
-
+var maxResPanelX=0
 
 var RewardLaw
 func excuteLaw():

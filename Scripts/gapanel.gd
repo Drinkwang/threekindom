@@ -109,7 +109,12 @@ func refreshContext():
 				else:
 					policycontext=tr(GameManager.sav.TargetDestination)	
 			else:
-				policycontext=tr(GameManager.sav.targetTxt).format({"target":targetValue,"currence":currenceValue})			
+				policycontext=tr(GameManager.sav.targetTxt).format({"target":targetValue,"currence":currenceValue})
+				if GameManager.sav.targetResType==GameManager.ResType.govern:
+					if GameManager.dontHaveDominance():
+						policycontext=policycontext+"\n"+tr("安抚徐州各派系，将豪族派、士族派、丹阳派、吕布好感度均提升至80。")
+					else:
+						policycontext=policycontext+"\n"+tr("徐州权柄之路开启！你持有霸道之息解锁霸道线，可镇压所有派系至顺从；或者选用怀柔之策，将所有派系好感度均提至 80，稳固州治")
 		else:
 			policycontext=GameManager.sav.TargetDestination	
 				

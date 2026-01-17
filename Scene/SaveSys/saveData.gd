@@ -215,6 +215,7 @@ var SIDEQUEST_MAP:Dictionary={
 	"战斗袁术血战模式":false,
 	"血战袁术完成":false,
 	"曹操协天子以令诸侯":false,#明天开发完成
+	"曹操没法来援助":false,
 	"小沛第一次见商人":false,
 	"徐州第一次见商人":false,
 	"支线发现羊尸":false,#

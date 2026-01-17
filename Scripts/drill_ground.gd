@@ -67,8 +67,9 @@ func _judWin():
 				###
 				#GameManager.sav.have_event["袁术来使"]=true
 				#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"征讨袁公路来了使者")
-	
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"曹操挟天子开始")
+				if GameManager.sav.have_event["曹操没法来援助"]==false:
+					GameManager.sav.have_event["曹操没法来援助"]=true
+					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"曹操挟天子开始")
 		if GameManager.sav.have_event["战斗袁术血战模式"]==true:
 			if GameManager.sav.currenceValue>=6:
 				pass
@@ -101,8 +102,8 @@ func _completeTask():#将完成任务移动到外层
 
 		
 	#在吕布帮助下取得三次军事行动	
-	elif GameManager.sav.have_event["canSummonLvbu"]==true&&GameManager.sav.have_event["battleTaiShan"]==true:
-		if(GameManager.sav.have_event["completebattleTaiShan"]==false):
+	elif GameManager.sav.have_event["canSummonLvbu"]==true&&GameManager.sav.have_event["completebattleTaiShan"]==false:
+
 			GameManager.sav.have_event["completebattleTaiShan"]=true		
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"温侯降伏臧霸")
 	elif  GameManager.sav.have_event["曹操协天子以令诸侯"]==true and GameManager.sav.have_event["袁术首次击败"]==false:
@@ -179,7 +180,7 @@ func post_transition():
 		#mizhu.showEX=false
 		#chendeng.showEX=false
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"得知吕布和曹豹勾连2")
-		GameManager.sav.have_event["曹豹和吕布勾连1"]=true
+		GameManager.sav.have_event["曹豹和吕布勾连2"]=true
 		return 		
 		
 	var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.龙胆亮银枪)	
@@ -515,10 +516,10 @@ func _buttonListClick(item):
 			if GameManager.sav.have_event["臧霸首战之前"]==false:
 				GameManager.sav.have_event["臧霸首战之前"]=true
 				DialogueManager.show_dialogue_balloon(dialogue_resource,"臧霸首战之前")
-		elif GameManager.sav.have_event["战斗袁术开始"]==true:
-			if GameManager.sav.have_event["袁术也进军"]==false:
-				GameManager.sav.have_event["袁术也进军"]==true
-				DialogueManager.show_dialogue_balloon(dialogue_resource,"征讨袁术开始")
+			elif GameManager.sav.have_event["战斗袁术开始"]==true:
+				if GameManager.sav.have_event["袁术也进军"]==false:
+					GameManager.sav.have_event["袁术也进军"]=true
+					DialogueManager.show_dialogue_balloon(dialogue_resource,"征讨袁术开始")
 		#if(GameManager.sav.have_event["firstBattleTutorial"]==true)：
 		#暂时不能发动军事行动
 	elif item.context=="休息":
