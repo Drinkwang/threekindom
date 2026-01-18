@@ -173,7 +173,10 @@ func post_transition():
 		#GameManager.sav.have_event["战斗袁术血战模式"]=true
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"演武场宣战袁术")
 		return 
-		
+	if GameManager.sav.have_event["袁术首次击败"]==true and GameManager.sav.have_event["关押曹豹"]==true:
+		GameManager.sav.have_event["关押曹豹"]=false
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"放出曹豹")
+		return
 	if GameManager.sav.have_event["曹豹和吕布勾连1"]==true and GameManager.sav.have_event["曹豹和吕布勾连2"]==false:
 		#chendeng.show()
 		#mizhu.show()
@@ -363,9 +366,9 @@ func _initData():
 				else:
 					caobao.changeAllClick("来把仕诡牌")
 
-					
-					caobao.show()
-					caobao.showEX=false
+					if GameManager.sav.have_event["关押曹豹"]==false:
+						caobao.show()
+						caobao.showEX=false
 	
 	var initData=[
 	{	
@@ -770,7 +773,9 @@ func yuanshuComplete():
 	pass
 	
 func tempLockCaoBao():
-	pass
+	GameManager.sav.WAIDIPAI.ChangeSupport(-10)
+	GameManager.sav.LVBU.ChangeSupport(20)
+	GameManager.sav.have_event["关押曹豹"]=true
 	
 func fireLetter():
 	pass

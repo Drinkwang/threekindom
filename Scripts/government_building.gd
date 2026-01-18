@@ -356,6 +356,13 @@ func _buttonListClick(item):
 			else:
 				policy_panel.show()
 		else:
+			if GameManager.sav.have_event["chaosBegin"]==true and GameManager.sav.have_event["chaoDialogEnd"]==false:
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"城中混乱状况")
+				return
+			elif GameManager.sav.have_event["派系安稳完成"]==true and GameManager.sav.have_event["亲征对话结束"]==false:	
+
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"亲征状况")	
+				return
 			policy_panel.show()
 
 	#50点	
@@ -366,6 +373,14 @@ func _buttonListClick(item):
 		if(GameManager.sav.have_event["initTask1"]==false and GameManager.sav.have_event["initXuzhou"]==true):
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"未完成前召见手下")
 			return	
+			
+		elif GameManager.sav.have_event["chaosBegin"]==true and GameManager.sav.have_event["chaoDialogEnd"]==false:
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"城中混乱状况")
+			return
+		elif GameManager.sav.have_event["派系安稳完成"]==true and GameManager.sav.have_event["亲征对话结束"]==false:	
+
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"亲征状况")	
+			return
 		#GameManager.hp=GameManager.hp-costHp_SummonOne
 		if GameManager.sav.isMeet==false:
 			optionSummonOnemen()
@@ -399,8 +414,9 @@ func _buttonListClick(item):
 				elif GameManager.sav.have_event["chaosBegin"]==true and GameManager.sav.have_event["chaoDialogEnd"]==false:
 					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"城中混乱状况")
 				#elif GameManager.sav.have_event["战斗袁术开始"]==true and GameManager.sav.TargetDestination=="你需要跟糜竺和陈登分别对话":
-					
-				#	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"城中混乱状况")
+				elif GameManager.sav.have_event["派系安稳完成"]==true and GameManager.sav.have_event["亲征对话结束"]==false:	
+
+					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"亲征状况")
 				else:	
 				#先提示对话 然后
 					exit()	
@@ -843,33 +859,34 @@ func deliverTask():
 				GameManager.clearTask()
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"打跑黄巾军")#显示对话
 				
+		
 		#暂时屏蔽		
-		#elif  GameManager.sav.have_event["deliverYuanShu"]==false:
-		#	if(GameManager.sav.have_event["completebattleTaiShan"]==true):
-		#		GameManager.sav.have_event["deliverYuanShu"]=true
-		#		GameManager.clearTask()
-		#		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"打跑袁术")#显示对话
+		elif  GameManager.sav.have_event["派系安稳完成"]==false:
+			if(GameManager.sav.have_event["派系安稳任务触发"]==true):
+				GameManager.sav.have_event["派系安稳完成"]=true
+				#GameManager.clearTask()
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"刘备决定亲征")#显示对话
 
 		if GameManager.sav.have_event["派系安稳完成"]==true and GameManager.sav.have_event["亲征对话结束"]==false:
-			if GameManager.sav.have_event["亲征跟糜竺对话"]==false:
-				mizhu.show()
-				mizhu.changeAllClick("亲征前跟糜竺对话")
-				#得改
-	
-			if GameManager.sav.have_event["亲征跟陈登对话"]==false:	
-				chenden.show()
-				chenden.changeAllClick("亲征前跟陈登对话")
-			
-			if GameManager.sav.have_event["亲征跟糜竺对话"]==false and GameManager.sav.have_event["亲征跟陈登对话"]==false: 
-				GameManager.sav.TargetDestinationBefore="交互提示："
-				GameManager.sav.TargetDestination=tr("你需要跟糜竺和陈登分别对话")
-			elif GameManager.sav.have_event["亲征跟糜竺对话"]==true and GameManager.sav.have_event["亲征跟陈登对话"]==false: 
-				
-				GameManager.sav.TargetDestination="你需要跟陈登对话"
-			elif GameManager.sav.have_event["亲征跟糜竺对话"]==false and GameManager.sav.have_event["亲征跟陈登对话"]==true:
-				GameManager.sav.TargetDestination=tr("你需要跟糜竺对话") 
+			GameManager.sav.TargetDestination=""
+
 		#elif:
 		#	pass
+
+func PersonalCampaignBefore():
+	
+	mizhu.show()
+	mizhu.changeAllClick("亲征前跟糜竺对话")
+				#得改
+	GameManager.changeTaskLabel(tr("与手下谈谈"))
+
+	GameManager.AutoSaveFile()	
+
+	chenden.show()
+	chenden.changeAllClick("亲征前跟陈登对话")
+
+
+
 
 func liubeiBattleAfterMizhu():
 	mizhu.hide()
@@ -885,7 +902,7 @@ func liubeiBattleAfterEvent():
 	if GameManager.sav.have_event["亲征跟糜竺对话"]==true and GameManager.sav.have_event["亲征跟陈登对话"]==true:
 		#后续剧情
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"亲征对话陈登和糜竺")#显示对话			
-		#pass	
+		GameManager.sav.have_event["亲征对话结束"]=true
 
 func enterBattleModeBefore():
 	#任务改变去演武场

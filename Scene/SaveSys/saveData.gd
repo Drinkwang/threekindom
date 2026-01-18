@@ -204,6 +204,7 @@ var SIDEQUEST_MAP:Dictionary={
 	"曹豹和吕布勾连1":false,
 	"曹豹和吕布勾连2":false,
 	"袁术来使":false,
+	"关押曹豹":false,
 	"战斗袁术开始":false,
 	"袁术也进军":false,
 	"袁术首次击败":false,
