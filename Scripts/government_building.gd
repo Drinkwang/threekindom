@@ -704,7 +704,7 @@ func meetingEnd():
 	control._show_button_5_yellow(-1)	
 @onready var mizhu = $"糜竺"
 @onready var chenden = $"陈登"
-
+@onready var zhangfei= $zhangfei
 func _firstPhaseBegin():
 	mizhu.show()
 	chenden.show()
@@ -847,6 +847,8 @@ func deliverUncompleteTask():
 			if(GameManager.sav.have_event["initTask1"]==true):
 				pass
 		
+
+
 			
 func deliverTask():
 	if GameManager.sav.TargetDestination=="府邸":

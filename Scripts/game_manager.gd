@@ -42,7 +42,8 @@ enum ResType{
 	rest,
 	construct,#基建和人口,
 	govern,
-	complete
+	complete,
+	stayFight
 	
 }
 

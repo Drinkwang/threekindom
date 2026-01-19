@@ -529,7 +529,11 @@ func settleGame(end,issuccess):
 	elif GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.dontLoseGame and sussusss.radian>=360:
 		GameManager.sav.extraCureenTaskCNum+=1
 		refreshHideBattleTask()
-
+	if GameManager.sav.targetResType==GameManager.ResType.stayFight and GameManager.currenceScene.battle_pane._mode==SceneManager.bossMode.none:
+			GameManager.sav.currenceValue=GameManager.sav.currenceValue+1
+			
+			if GameManager.sav.currenceValue==24 and GameManager.sav.have_event["战斗袁术血战模式"]==true and GameManager.sav.have_event["血战袁术完成"]==false:
+				DialogueManager.show_example_dialogue_balloon(yanwuchang,"张飞杀曹豹")	
 	if issuccess==true:
 		GameManager.sav.battleResults[taskIndex]=GameManager.BattleResult.win
 		print("你win了")

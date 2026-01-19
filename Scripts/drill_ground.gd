@@ -162,7 +162,7 @@ func post_transition():
 		#移出ready
 	if GameManager.sav.have_event["discussLvbu"]==true and GameManager.sav.have_event["征询曹将军意见"]==false:
 		#可改成显示曹将军立绘
-		caobao.show()
+		caobaoshow()
 		GameManager.sav.have_event["征询曹将军意见"]=true
 		#pass
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"征询曹将军意见")
@@ -189,14 +189,15 @@ func post_transition():
 	var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.龙胆亮银枪)	
 	if num==0:	
 		if GameManager.sav.have_event["预获得龙胆枪休息"]==true:
-			caobao.show() #也可以改成点击
+			caobaoshow() #也可以改成点击
 			caobao.showEX=true
 			caobao.changeAllClick("获得龙胆枪")
 	
 		
 	if GameManager.bossmode==scenemanager.bossMode.huang and GameManager.sav.have_event["曹豹支线3"]==false:
 		GameManager.sav.hp=0
-		caobao.show()
+		
+		caobaoshow()
 		
 		if GameManager.bossmoderesult==true:
 			GameManager.sav.have_event["预获得龙胆枪"]=true
@@ -210,6 +211,9 @@ func post_transition():
 
 	_initData()
 
+func caobaoshow():
+	if GameManager.sav.have_event["关押曹豹"]==false and GameManager.sav.have_event["战斗袁术血战模式"]==false:
+		caobao.show()
 const EAT_1 = preload("res://Asset/sound/eat1.mp3")
 func enterOldSoilderEat():
 	oldsoildereat.show()
@@ -241,21 +245,21 @@ func enterBattleMode():
 	GameManager.sav.hp=100
 	#任务开始，10天完成20次duel
 	
-	GameManager.sav.targetValue=20
+	GameManager.sav.targetValue=35
 	GameManager.sav.currenceValue=0
-	GameManager.sav.targetResType=GameManager.ResType.battle
+	GameManager.sav.targetResType=GameManager.ResType.stayFight
 
-	GameManager.sav.targetTxt="10天完成20次军事行动：{currence}/{target}"
+	GameManager.sav.targetTxt="血战模式：{currence}/{target}"
 	#觉得无用的注释GameManager.sav.TargetDestination="battle"
 	_initData()
-
+	battle_pane.refreshData()
 
 func refreshData():
 	#_initData()
 
 
 	if caobao.dialogue_start.length()>0:
-		caobao.show()
+		caobaoshow()
 	else:
 		caobao.hide()
 @onready var guanyu: Node2D = $guanyu
@@ -322,18 +326,17 @@ func _initData():
 		elif GameManager.sav.have_event["查出药囊后休息前"]==true and GameManager.sav.have_event["锦囊咨询丹阳派"]==false and caobao.showEX==false:
 			caobao.changeAllClick("演武场克苏鲁剧情支线")
 			caobao.showEX=true
-			caobao.show()
+			caobaoshow()
 	
 		elif GameManager.sav.have_event["曹豹支线1"]==false and GameManager.sav.have_event["battleTaiShan"]==true and caobao.showEX==false:
 			caobao.changeAllClick("曹豹支线1")
-			caobao.show()
-
+			caobaoshow()
 			caobao.showEX=true
 	
 			
 		elif GameManager.sav.have_event["曹豹支线2"]==false and GameManager.sav.caobaoSideWait==1:
 			if GameManager.sav.have_event["曹豹资助"]==false:#暂时没想好写啥
-				caobao.show()
+				caobaoshow()
 
 
 				GameManager.sav.have_event["曹豹资助"]=true
@@ -341,7 +344,7 @@ func _initData():
 				
 		elif GameManager.sav.have_event["曹豹支线2"]==false and GameManager.sav.caobaoSideWait==0 and caobao.showEX==false:	
 			caobao.changeAllClick("曹豹支线2")
-			caobao.show()
+			caobaoshow()
 		
 			caobao.showEX=true	
 		else:
@@ -357,18 +360,17 @@ func _initData():
 			#@export var chendencardgame=-1
 			
 				if GameManager.sav.have_event["boss战开始"]==false and GameManager.sav.caobaocardgame==4 and GameManager.sav.mizhucardgame==5 and GameManager.sav.chendencardgame==5:
+					
 					caobao.changeAllClick("来把仕诡牌2")
-					caobao.show()
-
+					caobaoshow()
 					caobao.showEX=true
 				elif GameManager.sav.have_event["boss战开始"]==false and GameManager.sav.caobaocardgame==4 and (GameManager.sav.mizhucardgame<5 or GameManager.sav.chendencardgame<=5):
 					caobao.hide()
 				else:
 					caobao.changeAllClick("来把仕诡牌")
+					caobaoshow()
 
-					if GameManager.sav.have_event["关押曹豹"]==false:
-						caobao.show()
-						caobao.showEX=false
+					caobao.showEX=false
 	
 	var initData=[
 	{	
@@ -397,24 +399,25 @@ func _initData():
 	if GameManager.sav.have_event["战斗袁术血战模式"]==true:
 		initData[3].visible="true"
 		initData[0].visible="false"
-		if GameManager.sav.currenceValue<9:
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"今日收入为")
+		if GameManager.sav.currenceValue<18:
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"每日物质送来")
 		#==5张飞惩戒	
-		elif GameManager.sav.currenceValue==9 and GameManager.sav.currenceValue==12:
+		
+		elif GameManager.sav.currenceValue==18 or GameManager.sav.currenceValue==21:
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"每日物质送不来")
-		elif GameManager.sav.currenceValue==15:
+		elif GameManager.sav.currenceValue==24:
 			#进入克苏鲁
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁线自相啖食0")
-		elif GameManager.sav.currenceValue==18:
+		elif GameManager.sav.currenceValue==27:
 			#克苏鲁第一天
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁线自相啖食")
 			
 			pass
-		elif GameManager.sav.currenceValue==21:
+		elif GameManager.sav.currenceValue==30:
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁线2")
-		elif GameManager.sav.currenceValue==24:
+		elif GameManager.sav.currenceValue==33:
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁线3")
-		elif GameManager.sav.currenceValue==27:
+		elif GameManager.sav.currenceValue==35:
 			#视情况修改代码
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"张飞杀曹豹")
 		#30进入结尾
@@ -556,8 +559,8 @@ func _buttonListClick(item):
 				#没歼灭
 			#血战结束
 			#判断3天取得9次胜利没有 如果取得
-
-		if(GameManager.sav.hp>10):
+		#得修改，只要当日决斗为3即可，没必要非得10，否则有bug
+		if GameManager.sav.UseGeneral.size()<3:
 			DialogueManager.show_dialogue_balloon(dialogue_resource,"血战模式无法提前休息")
 			return
 		#暂时不用rest文本来修改，未来可能会用，把代码移动到这里更直观	
@@ -593,6 +596,8 @@ func trainUseMoney():
 	res_panel.position.y=803
 	res_panel.scale=Vector2(0.765,0.765)
 	train_panel.show()
+	if GameManager.sav.have_event["战斗袁术血战模式"]==true and GameManager.sav.have_event["血战袁术完成"]==false:
+		train_panel.control_2.hide()
 	caobao.hide()
 
 func trainBegin():
@@ -797,10 +802,19 @@ func _DayGet():
 	SoundManager.play_sound(sounds.buysellsound)
 	await 1
 	res_panel.showValue=true
+	
+	
+	if GameManager.sav.currenceValue==9:
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"张飞鞭挞讨好士族")
+		#==5张飞惩戒		
 	#GameManager._DayGet()
 	#if(GameManager.sav.targetTxt!=null and GameManager.sav.targetTxt.length()>0):	
 	#	_JudgeTask()
-
+func _dontGet():
+	
+	if GameManager.sav.currenceValue==21:
+		
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"张飞杀曹豹")
 
 func openBoardGame():
 	GameManager.selectBoardCharacter=boardType.boardCharacter.caobao
@@ -999,7 +1013,7 @@ func loseTrain():
 func returnMain():
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"来把仕诡牌")	
 func succussAfter():
-	caobao.show()
+	guanyu.show()
 	items_in_scene.show()
 	
 	GameManager.sav.have_event["刘备成长0"]=true
