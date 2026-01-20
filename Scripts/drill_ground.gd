@@ -210,7 +210,7 @@ func post_transition():
 		
 
 	_initData()
-
+	wuminBanView()
 func caobaoshow():
 	if GameManager.sav.have_event["关押曹豹"]==false and GameManager.sav.have_event["战斗袁术血战模式"]==false:
 		caobao.show()
@@ -245,13 +245,14 @@ func enterBattleMode():
 	GameManager.sav.hp=100
 	#任务开始，10天完成20次duel
 	
-	GameManager.sav.targetValue=35
+	GameManager.sav.targetValue=32
 	GameManager.sav.currenceValue=0
 	GameManager.sav.targetResType=GameManager.ResType.stayFight
 
 	GameManager.sav.targetTxt="血战模式：{currence}/{target}"
 	#觉得无用的注释GameManager.sav.TargetDestination="battle"
 	_initData()
+	
 	battle_pane.refreshData()
 
 func refreshData():
@@ -408,18 +409,20 @@ func _initData():
 		elif GameManager.sav.currenceValue==24:
 			#进入克苏鲁
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁线自相啖食0")
-		elif GameManager.sav.currenceValue==27:
+		elif GameManager.sav.currenceValue==26:
 			#克苏鲁第一天
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁线自相啖食")
 			
 			pass
-		elif GameManager.sav.currenceValue==30:
+		elif GameManager.sav.currenceValue==28:
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁线2")
-		elif GameManager.sav.currenceValue==33:
+		elif GameManager.sav.currenceValue==30:
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁线3")
-		elif GameManager.sav.currenceValue==35:
+		elif GameManager.sav.currenceValue==32:
+			pass
+			#结尾
 			#视情况修改代码
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"张飞杀曹豹")
+			#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"张飞杀曹豹")
 		#30进入结尾
 		#守9天 进入大结局，青梅煮酒
 	else:
@@ -560,7 +563,7 @@ func _buttonListClick(item):
 			#血战结束
 			#判断3天取得9次胜利没有 如果取得
 		#得修改，只要当日决斗为3即可，没必要非得10，否则有bug
-		if GameManager.sav.UseGeneral.size()<3:
+		if (GameManager.sav.UseGeneral.size()<3 and GameManager.sav.have_event["关羽求援期间"]==false) or(GameManager.sav.UseGeneral.size()<2 and GameManager.sav.have_event["关羽求援期间"]==true and GameManager.sav.have_event["关羽求援结束"]==false):
 			DialogueManager.show_dialogue_balloon(dialogue_resource,"血战模式无法提前休息")
 			return
 		#暂时不用rest文本来修改，未来可能会用，把代码移动到这里更直观	
@@ -761,6 +764,7 @@ func quest2Complete():
 	#任务目标 前往府邸
 	pass
 
+
 func taishanComplete():
 	#未来此处可能改成具体文本内容
 	GameManager.sav.TargetDestination="府邸"
@@ -771,6 +775,22 @@ func taishanComplete():
 	#任务完成
 	#GameManager.clearTask()
 	
+func guanyuBan():
+	GameManager.sav.have_event["关羽求援期间"]=true
+	battle_pane.control_1.hide()
+	#无需写实，但需要屏蔽注册 比武对话
+	train_panel.control_1.hide()
+	pass	
+	
+func wuminBan():
+	#写实ban
+	GameManager.sav.have_event["无名之死"]=true
+	wuminBanView()
+	
+func wuminBanView():
+	if GameManager.sav.have_event["无名之死"]==true:
+		battle_pane.control_3.hide()
+		train_panel.control_3.hide()	
 	
 func yuanshuComplete():
 	GameManager.sav.TargetDestination="府邸"
@@ -1020,3 +1040,7 @@ func succussAfter():
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"刘备的成长")	
 #func gotoYIHUI():
 	#SceneManager.changeScene(SceneManager.roomNode.BOULEUTERION,2)
+func xiaopei():
+	GameManager.sav.have_event["血战袁术完成"]=true
+	GameManager.restFadeScene=SceneManager.HOUSE	
+	GameManager._rest()
