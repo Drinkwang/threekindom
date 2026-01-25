@@ -358,6 +358,11 @@ func showPanelPage():
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"徐州第一次关顾")
 		shop_panel.show()
 		shop_panel.initData()
+	elif GameManager.sav.endPath==GameManager.endPath.xiaopei and GameManager.sav.have_event["小沛再见商人"]==false:
+		GameManager.sav.have_event["小沛再见商人"]=true
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"商人回归小沛")
+		shop_panel.show()
+		shop_panel.initData()
 	else:
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"徐州多次光顾")	
 				#第一次开张

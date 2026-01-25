@@ -70,7 +70,7 @@ func _judWin():
 				if GameManager.sav.have_event["曹操没法来援助"]==false:
 					GameManager.sav.have_event["曹操没法来援助"]=true
 					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"曹操挟天子开始")
-		if GameManager.sav.have_event["战斗袁术血战模式"]==true:
+		if GameManager.sav.have_event["战斗袁术血战模式"]==true and GameManager.sav.have_event["血战袁术完成"]==false:
 			if GameManager.sav.currenceValue>=6:
 				pass
 			elif GameManager.sav.currenceValue>3:
@@ -299,7 +299,10 @@ func _initData():
 			GameManager.sav.have_event["曹豹牌局无人"] =true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"牌局无人")
 	
-	
+		elif GameManager.sav.endPath!=GameManager.endPath.none and GameManager.sav.have_event["回忆无名"]==false:
+			GameManager.sav.have_event["回忆无名"]=true
+			#还没开发完毕，滤镜，还有回忆的场景，明天测试和开发
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"前置剧情·赵云荐士")
 		elif GameManager.trainResult==SceneManager.trainResult.win:
 			if GameManager.trainGeneral=="关羽":
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"关羽比武胜利")
@@ -372,7 +375,7 @@ func _initData():
 					caobaoshow()
 
 					caobao.showEX=false
-	
+		
 	var initData=[
 	{	
 		"id":"1",
@@ -397,7 +400,7 @@ func _initData():
 
 	]
 
-	if GameManager.sav.have_event["战斗袁术血战模式"]==true:
+	if GameManager.sav.have_event["战斗袁术血战模式"]==true and GameManager.sav.have_event["血战袁术完成"]==false:
 		initData[3].visible="true"
 		initData[0].visible="false"
 		if GameManager.sav.currenceValue<18:
@@ -494,7 +497,7 @@ func _buttonListClick(item):
 			if GameManager.sav.hp>10:
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"三场战斗还没有结束")
 				return 
-		if GameManager.sav.have_event["战斗袁术血战模式"]==true:
+		if GameManager.sav.have_event["战斗袁术血战模式"]==true and GameManager.sav.have_event["血战袁术完成"]==false:
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"血战模式无法离开演武场")
 			return
 		SceneManager.changeScene(SceneManager.roomNode.STREET,2)#判断条件
@@ -1042,5 +1045,13 @@ func succussAfter():
 	#SceneManager.changeScene(SceneManager.roomNode.BOULEUTERION,2)
 func xiaopei():
 	GameManager.sav.have_event["血战袁术完成"]=true
+	
+	
+	GameManager.sav.endPath=GameManager.endPath.xiaopei
+	GameManager.restLabel=tr("昔日徐州牧已成过眼云烟，今日刘备退守小沛。咽下屈辱，只为在绝境中苟全火种。这一步隐忍，不仅是为了活下去，更是为了在未来的某一天，将失去的一切都拿回来！")
+
+
+	#播放声音
+	#SoundManager.play_sound(bgs194)	
 	GameManager.restFadeScene=SceneManager.HOUSE	
 	GameManager._rest()

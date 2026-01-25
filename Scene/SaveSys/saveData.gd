@@ -66,6 +66,8 @@ class_name saveData
 @export var targetTxt=""
 @export var targetValue=10000
 @export var targetResType:GameManager.ResType
+@export var endPath:GameManager.endPath=GameManager.endPath.none
+
 @export var policy_Item_index=1#政策数量
 @export var policyExcute=false
 @export var isAlertRisk=false
@@ -308,7 +310,13 @@ var SIDEQUEST_MAP:Dictionary={
 	"关羽求援期间":false,
 	"关羽求援结束":false,
 	"无名之死":false,
-
+	"主簿的追随":false,
+	"小沛再见商人":false,
+	"最终陈登":false,
+	"最终糜竺":false,
+	"最终丹阳":false,
+	"最终泰山":false,
+	"回忆无名":false,
 }
 
 #0 小试牛刀开启 1小试牛刀通过 2 对局试炼开启 3对局试验通过 4 诡秘怪谈开启 5诡秘怪谈通过

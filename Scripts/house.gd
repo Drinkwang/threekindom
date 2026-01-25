@@ -12,6 +12,10 @@ const FancyFade = preload("res://addons/transitions/FancyFade.gd")
 
 @onready var support_panel = $CanvasLayer/supportPanel
 
+
+const xiaopeiBuild = preload("res://Asset/城镇建筑/小沛自宅.png")
+const newBuild = preload("res://Asset/城镇建筑/徐州自宅.png")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	preload("res://Asset/tres/bentupai.tres")#没用但必须有，让资源提前单例加载
@@ -52,9 +56,15 @@ func _ready():
 @onready var bti_rect = $btiRect
 @onready var bit_player = $bitPlayer
 
+@onready var guanyu: Node2D = $guanyu
 
-
-			
+func xiaopeiStart():
+	GameManager.sav.targetValue=14
+	GameManager.sav.currenceValue=0
+	GameManager.sav.targetResType=GameManager.ResType.rest
+	GameManager.sav.targetTxt="撑过天数：{currence}/{target}"
+	GameManager.sav.TargetDestination="rest"
+	#暂时先这样写
 func _initData():
 	
 	GameManager.play_BGM()
@@ -134,8 +144,10 @@ func _initData():
 		#竹筒剧情完了，再次调用这边
 		#竹筒幻觉剧情 播放音效，改变背景，然后吓醒了 我觉得这个剧情可以放在早上，如果早上没有主线，则触发这个剧情，然后得知是一场噩梦
 				return 
-
-			
+			elif GameManager.sav.have_event["关羽求援期间"]==true and GameManager.sav.have_event["关羽求援结束"]==false:
+				GameManager.sav.have_event["关羽求援结束"]=true
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"关羽回来")
+				return
 			GameManager.sav.isGetCoin=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"今日收入为")
 	control._processList(initData)
@@ -627,6 +639,9 @@ func yuanshuChaos(value):
 		GameManager.changePeopleSupport(-10)
 		#全部下降10
 @onready var caocao_letter = $CanvasLayer/caocaoLetter
+		
+	
+@onready var caocao_letter_2: Control = $CanvasLayer/caocaoLetter2
 		
 func showCaoCaoLetter():
 	caocao_letter.show()

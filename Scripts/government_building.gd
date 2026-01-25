@@ -214,7 +214,9 @@ func _initData():
 			GameManager.sav.have_event["派系安稳任务触发"]=true
 			candoSub=false
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"安抚众人任务开始")
-		#elif GameManager
+		elif  GameManager.sav.have_event["关羽求援结束"]==true and GameManager.sav.have_event["主簿的追随"]==false: 
+			GameManager.sav.have_event["主簿的追随"]=true
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"主簿的追随")
 	else:
 		pass
 

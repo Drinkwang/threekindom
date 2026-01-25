@@ -15,11 +15,36 @@ Game Over: 民心尽失，徐州陷于暴乱，游戏结束。
 	do GameManager.ReturnMenu()
 - 退出游戏
 	do get_tree().quit()
+
 => END
+
+
+
+
+
+~ 军心溃散刘备力竭被俘
+
+do DialogueManager.gameover=true
+
+刘备: 将士们……为何……为何都不肯再战了？
+亲兵: 主公！弟兄们都跑光了！没人敢拼了！敌军的骑兵已经冲过来了，您再不逃，就来不及了！
+刘备: 逃？我亲率大军出征，如今军心尽失，纵能逃，又有何颜面见徐州百姓……
+
+Game Over: 血战数日，军心彻底溃散，游戏结束。
+- 载入存档
+	do PanelManager.show_Save_panel()
+- 退回主菜单
+	do GameManager.ReturnMenu()
+- 退出游戏
+	do get_tree().quit()
+=> END
+
 
 ~ 警告叛乱风险
 警告: 注意，因为你的{{GameManager.resideValue}}的支持度低于60，内部不稳，叛乱风险加剧！
 => END
+
+
 
 
 ~ 讨好叛乱1

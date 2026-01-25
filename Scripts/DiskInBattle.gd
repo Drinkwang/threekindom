@@ -606,26 +606,42 @@ func judgeLoseSentiment():
 	GameManager.sav.ctLoseBattleRate=GameManager.sav.ctLoseBattleRate+1	
 	if(loseNum)>=10 and (loseNum)>allNum/2 and GameManager.sav.have_event["军事行动大败"]==false and GameManager.currenceScene.battle_pane._mode==SceneManager.bossMode.none:
 		#需要加入事件 有且仅能触发一次
+		
+		
 		GameManager.sav.have_event["军事行动大败"]=true
-		DialogueManager.show_example_dialogue_balloon(yanwuchang,"大败")	
+		
+		if GameManager.sav.have_event["战斗袁术血战模式"]==true and GameManager.sav.have_event["血战袁术完成"]==false:
+			DialogueManager.show_example_dialogue_balloon(yanwuchang,"血战大败")
+		else:
+			DialogueManager.show_example_dialogue_balloon(yanwuchang,"大败")	
 		#return
 		#pass#大败 可以在sav加入一次
 	elif loseNum>=8 and loseNum>allNum/2 and GameManager.sav.have_event["军事行动大败提示"]==false and GameManager.currenceScene.battle_pane._mode==SceneManager.bossMode.none:
 		#需要加入事件 有且仅能触发一次
 		GameManager.sav.have_event["军事行动大败提示"]=true
-		DialogueManager.show_example_dialogue_balloon(yanwuchang,"大败提示")	
+		if GameManager.sav.have_event["战斗袁术血战模式"]==true and GameManager.sav.have_event["血战袁术完成"]==false:
+			DialogueManager.show_example_dialogue_balloon(yanwuchang,"血战大败提示")
+		else:
+			DialogueManager.show_example_dialogue_balloon(yanwuchang,"大败提示")	
 	
 
 	
 
 	elif GameManager.sav.ctLoseBattle>=3 and GameManager.currenceScene.battle_pane._mode==SceneManager.bossMode.none:
-		DialogueManager.show_example_dialogue_balloon(yanwuchang,"连续多次败北")	
+		
+		if GameManager.sav.have_event["战斗袁术血战模式"]==true and GameManager.sav.have_event["血战袁术完成"]==false:
+			DialogueManager.show_example_dialogue_balloon(yanwuchang,"血战连续多次败北")
+		else:
+			DialogueManager.show_example_dialogue_balloon(yanwuchang,"连续多次败北")	
 		#连续多日怠惰
 	elif GameManager.currenceScene.battle_pane._mode==SceneManager.bossMode.none:
 		var lazyRan=0.1*GameManager.sav.ctLoseBattleRate
 		var random_value = randf()  # 生成0.0到1.0的随机数
 		if random_value <= lazyRan:
-			DialogueManager.show_example_dialogue_balloon(yanwuchang,"一次败北引发民愤")
+			if GameManager.sav.have_event["战斗袁术血战模式"]==true and GameManager.sav.have_event["血战袁术完成"]==false:
+				DialogueManager.show_example_dialogue_balloon(yanwuchang,"血战一次败北引发民愤")
+			else:
+				DialogueManager.show_example_dialogue_balloon(yanwuchang,"一次败北引发民愤")
 				#怠惰概率 1次 10% 	
 		
 	#后面加入一些判断胜利次数的
