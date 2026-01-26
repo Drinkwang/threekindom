@@ -1559,6 +1559,7 @@ if GameManager.sav.endPath==GameManager.endPath.xiaopei
 
 糜竺: 竺筹粮万石，今来资助主公，不过此刻要事相商！贞儿，端酒来！
 糜贞端酒入内，羞涩说道
+do jiaMizhenShow()
 糜贞: 将军，贞敬您一盏
 糜竺: 主公，若将来与贞儿结亲，你我共力，徐州可定，主公可愿一思？
   
@@ -1579,4 +1580,7 @@ if GameManager.sav.endPath==GameManager.endPath.xiaopei
 	糜贞: 将军真忙，贞白端酒了。  
 
 	奖励: 豪族派忠诚+10（糜竺仍全力支持）。
+do mizhen.hide()
+do mizhu.hide()	
+do mizhufinal()
 => END!

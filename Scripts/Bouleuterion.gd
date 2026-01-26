@@ -216,12 +216,26 @@ func _initData():
 	else:
 		if GameManager.sav.chendencardgame>=0:
 			#如果等于4 
-			chendeng.changeAllClick("来把仕诡牌")
+			if GameManager.sav.endPath!=GameManager.endPath.xiaopei:
+				chendeng.changeAllClick("来把仕诡牌")
 
 					
-			chendeng.show()
-			chendeng.showEX=false
+				chendeng.show()
+				chendeng.showEX=false
+			elif GameManager.sav.have_event["最终陈登"]==false and GameManager.sav.BENTUPAI._support_rate>=80 and GameManager.sav.have_event["主簿的追随"]==true:
+				chendeng.changeAllClick("陈登最终赞助")
+
+					
+				chendeng.show()
+				chendeng.showEX=true
 var costhp=50
+
+func chendenFinal():
+	GameManager.sav.have_event["最终陈登"]=true
+	#获得一些道具
+	
+@onready var huatuo: Node2D = $"CanvasBook/华佗"
+
 func chendengWantUpLevel():
 	chendeng.hide()
 	#GameManager._propertyPanel.GetValue(200,0,0)

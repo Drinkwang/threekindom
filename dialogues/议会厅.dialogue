@@ -367,7 +367,7 @@ do SceneManager.changeScene(SceneManager.roomNode.DRILL_GROUND,2)
 ~ 陈登最终赞助
 
 陈登，脸色微黄，咳嗽不止，随行一位老医师跟在一旁。  
-
+do huatuo.show()
 if GameManager.sav.endPath==GameManager.endPath.xiaopei
 	刘备: 陈登，你怎会来小沛这种地方？
 	陈登: 主公，徐州虽暂附吕布，然心向汉室。今日愿携钱粮与士族私兵相助，助公固守小沛，抵御袁术！
@@ -402,5 +402,7 @@ else
 	提示: 士族派忠诚+10，陈登捐粮万石。  
 
 	华佗: (陈元龙不戒脍，恐难长寿，老夫尽力矣。)
-
+do chenden.hide()
+do mizhu.hide()
+do chendenFinal()
 => END!

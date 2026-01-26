@@ -9,8 +9,26 @@ class_name  drill_ground
 
 const xiaopeiBuild = preload("res://Asset/城镇建筑/演武场1.png")
 const newBuild = preload("res://Asset/城镇建筑/演武场2.png")
+
+@onready var fade: AnimationPlayer = $CanvasLayer/ColorRect/fade
+
+@onready var zhaoyun: Node2D = $zhaoyun
+@onready var wumin: Node2D = $wumin
+
+@onready var danyangSoilder: Node2D = $"丹阳军官"
+
+func danyangFinal():
+	GameManager.sav.have_event["最终丹阳"]=true
+	#获得人口奖励，待编辑
+
+func wumindissipate():
+	fade.play("RESET")
+	var tween=create_tween()
+	tween.tween_property(zhaoyun, "modulate:a",0, 5)
+	#无名消散
 # Called when the node enters the scene tree for the first time.
 func _ready():
+
 	SignalManager.endReward.connect(_judWin)
 	#判断剧情
 	Transitions.post_transition.connect(post_transition)
@@ -362,19 +380,23 @@ func _initData():
 			
 			#@export var mizhucardgame=-1
 			#@export var chendencardgame=-1
-			
-				if GameManager.sav.have_event["boss战开始"]==false and GameManager.sav.caobaocardgame==4 and GameManager.sav.mizhucardgame==5 and GameManager.sav.chendencardgame==5:
+				if GameManager.sav.endPath!=GameManager.endPath.xiaopei:
+					if GameManager.sav.have_event["boss战开始"]==false and GameManager.sav.caobaocardgame==4 and GameManager.sav.mizhucardgame==5 and GameManager.sav.chendencardgame==5:
 					
-					caobao.changeAllClick("来把仕诡牌2")
-					caobaoshow()
-					caobao.showEX=true
-				elif GameManager.sav.have_event["boss战开始"]==false and GameManager.sav.caobaocardgame==4 and (GameManager.sav.mizhucardgame<5 or GameManager.sav.chendencardgame<=5):
-					caobao.hide()
-				else:
-					caobao.changeAllClick("来把仕诡牌")
-					caobaoshow()
+						caobao.changeAllClick("来把仕诡牌2")
+						caobaoshow()
+						caobao.showEX=true
+					elif GameManager.sav.have_event["boss战开始"]==false and GameManager.sav.caobaocardgame==4 and (GameManager.sav.mizhucardgame<5 or GameManager.sav.chendencardgame<=5):
+						caobao.hide()
+					else:
+						caobao.changeAllClick("来把仕诡牌")
+						caobaoshow()
+						caobao.showEX=false
+				elif GameManager.sav.have_event["最终丹阳"]==false and GameManager.sav.WAIDIPAI._support_rate>=80 and GameManager.sav.have_event["主簿的追随"]==true:
+					danyangSoilder.show()
+					
 
-					caobao.showEX=false
+					
 		
 	var initData=[
 	{	
@@ -1050,8 +1072,8 @@ func xiaopei():
 	GameManager.sav.endPath=GameManager.endPath.xiaopei
 	GameManager.restLabel=tr("昔日徐州牧已成过眼云烟，今日刘备退守小沛。咽下屈辱，只为在绝境中苟全火种。这一步隐忍，不仅是为了活下去，更是为了在未来的某一天，将失去的一切都拿回来！")
 
-
+	SceneManager.rest_scene(SceneManager.roomNode.HOUSE)
 	#播放声音
 	#SoundManager.play_sound(bgs194)	
-	GameManager.restFadeScene=SceneManager.HOUSE	
-	GameManager._rest()
+	#GameManager.restFadeScene=SceneManager.HOUSE	
+	#GameManager._rest()

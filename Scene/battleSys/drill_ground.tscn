@@ -1,7 +1,8 @@
-[gd_scene load_steps=36 format=3 uid="uid://00xr1q336bgu"]
+[gd_scene load_steps=44 format=3 uid="uid://00xr1q336bgu"]
 
 [ext_resource type="Script" path="res://Scripts/drill_ground.gd" id="1_bhlt2"]
 [ext_resource type="Resource" uid="uid://d2qoinuor12dq" path="res://dialogues/演武场.dialogue" id="2_j02vm"]
+[ext_resource type="Shader" path="res://Asset/shader/memories_filter.gdshader" id="3_0goxf"]
 [ext_resource type="Texture2D" uid="uid://d2artvwe80df1" path="res://Asset/光明/正常背景.png" id="3_6mpdg"]
 [ext_resource type="AudioStream" uid="uid://brg1ltppwfyim" path="res://Asset/sound/闪电.mp3" id="3_et4pg"]
 [ext_resource type="Texture2D" uid="uid://5n7qchhi5h04" path="res://Asset/ui/底色.png" id="4_jcaye"]
@@ -24,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://v5uv2iy3evkb" path="res://Scene/prefab/numPanel.tscn" id="14_o2p4h"]
 [ext_resource type="PackedScene" uid="uid://dqpklssxni160" path="res://Scene/prefab/clickBlock.tscn" id="14_s83fw"]
 [ext_resource type="Texture2D" uid="uid://bn4xfypysa6ry" path="res://Asset/人物/曹豹close.png" id="15_1y7hu"]
+[ext_resource type="Texture2D" uid="uid://dxln0b2qkw8sj" path="res://Asset/人物/丹阳军官.png" id="15_2o7m6"]
 [ext_resource type="Texture2D" uid="uid://rmaibsw1yjqd" path="res://Asset/城镇建筑/5_yellow.png" id="15_acxub"]
 [ext_resource type="Script" path="res://Scripts/items_in_scene_manager.gd" id="25_rwto1"]
 [ext_resource type="PackedScene" uid="uid://bvlh16yfcevdj" path="res://Scene/InfraMiniGame/WallTowerPuzzle.tscn" id="25_x6378"]
@@ -31,6 +33,64 @@
 [ext_resource type="Resource" uid="uid://cjbqxteqnpnrd" path="res://dialogues/议会厅.dialogue" id="27_oqtuy"]
 [ext_resource type="Texture2D" uid="uid://bol8v0a4a87yg" path="res://Asset/人物/张飞close.png" id="30_qlwmh"]
 [ext_resource type="Texture2D" uid="uid://j3kowe2tkoss" path="res://Asset/人物/关羽open.png" id="30_s1tb2"]
+[ext_resource type="Texture2D" uid="uid://cxmha84jpy0ne" path="res://Asset/人物/真赵云.png" id="33_senbu"]
+[ext_resource type="Texture2D" uid="uid://cwa6dylndnoey" path="res://Asset/人物/赵云close.png" id="34_tw1rc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ntk5c"]
+shader = ExtResource("3_0goxf")
+shader_parameter/intensity = 0.0
+shader_parameter/desaturation_amount = 0.6
+shader_parameter/sepia_strength = 0.8
+shader_parameter/vignette_strength = 1.2
+shader_parameter/blur_size = 1.0
+
+[sub_resource type="Animation" id="Animation_n6r5a"]
+resource_name = "fadetime"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/intensity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_y02ln"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/intensity")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ddvs7"]
+_data = {
+"RESET": SubResource("Animation_y02ln"),
+"fadetime": SubResource("Animation_n6r5a")
+}
 
 [sub_resource type="Animation" id="Animation_0bk4q"]
 resource_name = "闪烁"
@@ -78,6 +138,23 @@ _data = {
 script = ExtResource("1_bhlt2")
 dialogue_resource = ExtResource("2_j02vm")
 dialogue_start = "初入演武场"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 128
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_ntk5c")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="fade" type="AnimationPlayer" parent="CanvasLayer/ColorRect"]
+libraries = {
+"": SubResource("AnimationLibrary_ddvs7")
+}
 
 [node name="正常背景" type="Sprite2D" parent="."]
 position = Vector2(959, 540)
@@ -152,6 +229,17 @@ stream = ExtResource("3_et4pg")
 [node name="bgs" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(895, 333)
 scale = Vector2(1.6384, 1.6384)
+
+[node name="丹阳军官" parent="." instance=ExtResource("14_s83fw")]
+visible = false
+position = Vector2(982, 553)
+showName = "丹阳军官"
+dialogue_doubleclick = "丹阳将领投靠"
+showEX = true
+txt2d = ExtResource("15_2o7m6")
+boardType = 1
+dialogue_resource = ExtResource("2_j02vm")
+dialogue_start = ""
 
 [node name="曹豹" parent="." instance=ExtResource("14_s83fw")]
 visible = false
@@ -324,6 +412,24 @@ visible = false
 position = Vector2(970, 683)
 showName = "关羽"
 txt2d = ExtResource("30_s1tb2")
+boardType = 1
+dialogue_resource = ExtResource("2_j02vm")
+dialogue_start = ""
+
+[node name="zhaoyun" parent="." instance=ExtResource("14_s83fw")]
+visible = false
+position = Vector2(977, 660)
+showName = "赵云"
+txt2d = ExtResource("33_senbu")
+boardType = 1
+dialogue_resource = ExtResource("2_j02vm")
+dialogue_start = ""
+
+[node name="wumin" parent="." instance=ExtResource("14_s83fw")]
+visible = false
+position = Vector2(976, 439)
+showName = "无名"
+txt2d = ExtResource("34_tw1rc")
 boardType = 1
 dialogue_resource = ExtResource("2_j02vm")
 dialogue_start = ""

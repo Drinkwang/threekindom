@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://ccl8v8vlwyauo"]
+[gd_scene load_steps=34 format=3 uid="uid://ccl8v8vlwyauo"]
 
 [ext_resource type="Script" path="res://Scripts/house.gd" id="1_5nyes"]
 [ext_resource type="Resource" uid="uid://bmuiri1yjrdba" path="res://dialogues/屋舍.dialogue" id="2_6rtve"]
@@ -29,6 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://bn4xfypysa6ry" path="res://Asset/人物/曹豹close.png" id="23_84sra"]
 [ext_resource type="Script" path="res://Scripts/items_in_scene_manager.gd" id="24_8pl0e"]
 [ext_resource type="Texture2D" uid="uid://rmaibsw1yjqd" path="res://Asset/城镇建筑/5_yellow.png" id="25_385i8"]
+[ext_resource type="Texture2D" uid="uid://stke52ld5got" path="res://Asset/人物/泰山军官.png" id="25_xyni8"]
 [ext_resource type="Texture2D" uid="uid://j3kowe2tkoss" path="res://Asset/人物/关羽open.png" id="30_l2y66"]
 
 [sub_resource type="Animation" id="Animation_rms3s"]
@@ -231,6 +232,16 @@ showName = "曹豹"
 txt2d = ExtResource("23_84sra")
 boardType = 1
 dialogue_start = ""
+
+[node name="泰山军官" parent="." instance=ExtResource("7_7mriv")]
+visible = false
+position = Vector2(723, 681)
+showName = "泰山军官"
+dialogue_doubleclick = "second"
+txt2d = ExtResource("25_xyni8")
+boardType = 1
+dialogue_resource = ExtResource("2_6rtve")
+dialogue_start = "泰山诸将任务开始"
 
 [node name="陈群" parent="." instance=ExtResource("7_7mriv")]
 visible = false
