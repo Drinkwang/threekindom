@@ -1,6 +1,6 @@
 extends Node2D
 @onready var option_button = $OptionButton
-@onready var title = $title
+@onready var title = $CanvasLayer/title
 
 const ARVOSTUS = preload("res://Asset/bgm/4- Arvostus.mp3")
 func _ready():

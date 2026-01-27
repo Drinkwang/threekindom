@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://d4gn0dc6c7sdk"]
+[gd_scene load_steps=8 format=3 uid="uid://d4gn0dc6c7sdk"]
 
 [ext_resource type="Texture2D" uid="uid://bwemo6ul0yagq" path="res://Scene/lake.jpg" id="1_3lq2u"]
 [ext_resource type="Script" path="res://Scene/game.gd" id="1_y5dta"]
-[ext_resource type="FontFile" uid="uid://to00njkwmxts" path="res://Asset/Font/1_sim.ttf" id="3_1o3rx"]
+[ext_resource type="Texture2D" uid="uid://bym1hqj50vlm1" path="res://Asset/黑暗/参考图克苏鲁.png" id="3_wm0re"]
 [ext_resource type="PackedScene" uid="uid://cld4rbco4yjhr" path="res://Scene/prefab/initDetail.tscn" id="4_nv5v8"]
+[ext_resource type="FontFile" uid="uid://cun6m123qy35r" path="res://Asset/Font/VonwaonBitmap-12px.ttf" id="4_v34v6"]
 [ext_resource type="Theme" uid="uid://bd3x65u7e06d8" path="res://new_theme.tres" id="5_gwxjm"]
 [ext_resource type="PackedScene" uid="uid://bvg8vtc1k62f1" path="res://Scene/commonPanel/newerGuildPanel.tscn" id="6_mi3hr"]
 
@@ -11,17 +12,27 @@
 script = ExtResource("1_y5dta")
 
 [node name="主宣传画" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(961.5, 539)
 scale = Vector2(1.41087, 1.33659)
 texture = ExtResource("1_3lq2u")
 
-[node name="title" type="RichTextLabel" parent="."]
-offset_top = 253.0
-offset_right = 2031.0
-offset_bottom = 732.0
+[node name="主宣传画2" type="Sprite2D" parent="."]
+position = Vector2(958, 546.5)
+scale = Vector2(4.20209, 3.90702)
+texture = ExtResource("3_wm0re")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="title" type="RichTextLabel" parent="CanvasLayer"]
+offset_top = 92.0
+offset_right = 2041.0
+offset_bottom = 594.0
 scale = Vector2(0.946, 0.994)
-theme_override_constants/outline_size = 5
-theme_override_fonts/normal_font = ExtResource("3_1o3rx")
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("4_v34v6")
 theme_override_font_sizes/normal_font_size = 200
 bbcode_enabled = true
 text = "[center][rainbow]阴[/rainbow][wave amp=50 frep=100]三国[/wave][rainbow]谋论[/rainbow]-[tornado][color=#ff0000]徐州篇[/color][/tornado][/center]"
@@ -29,34 +40,34 @@ tab_size = 6
 
 [node name="exit" type="Button" parent="."]
 offset_left = 1569.0
-offset_top = 652.0
+offset_top = 727.501
 offset_right = 1852.0
-offset_bottom = 783.0
+offset_bottom = 858.501
 theme_override_font_sizes/font_size = 36
 text = "退出游戏"
 
 [node name="begin" type="Button" parent="."]
 offset_left = 566.0
-offset_top = 652.0
+offset_top = 727.501
 offset_right = 856.0
-offset_bottom = 783.0
+offset_bottom = 858.501
 theme_override_font_sizes/font_size = 36
 text = "开始游戏"
 
 [node name="continue" type="Button" parent="."]
 offset_left = 110.0
-offset_top = 652.0
+offset_top = 727.501
 offset_right = 424.0
-offset_bottom = 783.0
+offset_bottom = 858.501
 theme_override_font_sizes/font_size = 36
 disabled = true
 text = "继续游戏"
 
 [node name="credit" type="Button" parent="."]
 offset_left = 1075.0
-offset_top = 655.0
+offset_top = 730.501
 offset_right = 1365.0
-offset_bottom = 786.0
+offset_bottom = 861.501
 rotation = -0.0189686
 theme_override_font_sizes/font_size = 36
 disabled = true
