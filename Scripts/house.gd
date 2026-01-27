@@ -227,7 +227,7 @@ const nightbgm = preload("res://Asset/bgm/夜晚在家.wav")
 func post_transition():
 	GameManager.CanClickUI=true
 	SoundManager.stop_all_ambient_sounds()
-	if GameManager.sav.hp<=20:
+	if GameManager.sav.alreadyHP>=80:
 		SoundManager.play_ambient_sound(nightbgm)
 		#判断条件做最终支线，显示任务主簿，和点击点击事件
 		if GameManager.sav.have_event["锦囊咨询丹阳派"]==true and GameManager.sav.have_event["支线触发完毕获得骨杖"]==false :#and GameManager.sav.have_event["温侯降伏臧霸"]==true:
@@ -235,9 +235,15 @@ func post_transition():
 			zhubu.showEX=true
 		#特殊事件触发时
 			zhubu.dialogue_start="支线克苏鲁最终开始"
+		elif GameManager.sav.endPath==GameManager.endPath.xiaopei and GameManager.sav.have_event["泰山预备"]==false:
+			taishanSoilder.show()
 	else:
 		SoundManager.play_ambient_sound(daybgm)
 	_initData()
+	
+	
+@onready var taishanSoilder: Node2D = $"泰山军官"
+
 func gotostreetAndKe(value):
 	GameManager.sav.finalKeChoice=value
 	SceneManager.changeScene(SceneManager.roomNode.STREET,2)
@@ -570,7 +576,11 @@ func extraTask():
 		elif GameManager.sav.have_event["大儒支线3"]==false and num2>=1 and GameManager.sav.have_event["基建项目开启"]==true:
 			GameManager.sav.have_event["大儒支线3"]=true
 			GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.DARU]=tr("前往郑玄隐居处，聆听其注《周礼》之心得，纵论治国之道，受其教化。")
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大儒辩经3启动之前")							
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大儒辩经3启动之前")
+		elif GameManager.sav.have_event["泰山预备"]==true and GameManager.sav.have_event["最终泰山"]==false and GameManager.sav.taishanWait>=2 and GameManager.sav.have_event["夏侯偷马"]==false:
+			GameManager.sav.taishanWait=50
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"泰山诸将任务完成")
+			GameManager.sav.have_event["最终泰山"]=true
 	#判断忠诚度
 	var chaonum=0	
 	enterdetermineInternalUnrest()

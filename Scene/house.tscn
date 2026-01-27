@@ -238,6 +238,7 @@ visible = false
 position = Vector2(723, 681)
 showName = "泰山军官"
 dialogue_doubleclick = "second"
+showEX = true
 txt2d = ExtResource("25_xyni8")
 boardType = 1
 dialogue_resource = ExtResource("2_6rtve")

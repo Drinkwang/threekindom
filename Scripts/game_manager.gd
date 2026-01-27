@@ -356,6 +356,8 @@ func _enterDay(value=true):
 			sav.danyangCD-=1
 		if GameManager.sav.XuanyinDay<3 and GameManager.sav.have_event["玄阴开放"]==true:
 			GameManager.sav.XuanyinDay+=1
+		if GameManager.sav.have_event["泰山预备"]==true and GameManager.sav.have_event["最终泰山"]==false:
+			GameManager.sav.taishanWait+=1
 
 #@export var mizhuSideWait=-1
 #@export var chendenSideWait=-1
