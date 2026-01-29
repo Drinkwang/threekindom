@@ -924,14 +924,14 @@ do GameManager.getItemAction.call()
 
 
 ~ 曹豹支线1
-刘备: 曹将军，徐州地灵人杰，近日城外可有异事？听闻黄帝遗迹颇具神异，是否真有其事？
+刘备: 曹将军，徐州地灵人杰，近日城外可有异事？听闻黄帝遗迹颇具神异，是否真有其事？[voice:liubei_huangdiyijijiangshen]
 
 曹豹: 不过是乡野传闻，遗迹无人问津，恐早已荒废。听说有盗墓贼出没..[voice:caobao_yijiwurenwenjing]
 - 询问徐州军务安排，是否近期有修缮古迹的计划[highlight=true]
 	do GameManager.changeCaobaoHeart(-10)
 	do caobao.showHeart(GameManager.sav.caobaofav)
 	曹豹: 主公有所不知，咱们确有修缮遗迹之议，但此事颇为蹊跷，似有人借机行事。某不便多言，主公若有心，可再探究竟。[voice:caobao_zanqueyou]
-	刘备: 好，我下次再来问你
+	刘备: 好，我下次再来问你[voice:liubei_haoxiayici]
 
 	do select1(true)
 
@@ -939,7 +939,7 @@ do GameManager.getItemAction.call()
 	#do GameManager.changeCaobaoHeart(10)
 	do caobao.showHeart(GameManager.sav.caobaofav)
 	曹豹: 盗墓贼不足为虑，些许宵小，地方自会处置。主公不必挂怀。[voice:caobao_daomuzeixiaoxiao]
-	刘备: 嗯...
+	刘备: 嗯...[voice:liubei_enqueding]
 	do select1(false)
 do GameManager.sav.caobaoSideWait=3	
 do caobao.hide()	
@@ -948,7 +948,7 @@ do caobao.hide()
 
 ~ 曹豹支线2
 
-刘备: 曹将军，前日所言遗迹之事，似有隐情。某闻城外黄帝遗迹有古龙石像，是否真藏秘宝？将军可否直言？
+刘备: 曹将军，前日所言遗迹之事，似有隐情。某闻城外黄帝遗迹有古龙石像，是否真藏秘宝？将军可否直言？[voice:liubei_huangdikefouzhiyan]
 曹豹: 主公既有此问，某不敢隐瞒。遗迹确有古龙石像，名‘镇魂古龙’，传为黄帝神器。但近日城内大族有人假借修缮，实则掘墓，欲夺秘宝。[voice:caobao_duobao]
 - 追问城中何人主导此事[highlight=true]
 	曹豹: 我已经查清了，这件事是一个匠人私自勾结城中大族，欲借修缮之名，掩盖盗宝之实。[voice:caobao_woyijingchaqingle]
@@ -961,13 +961,13 @@ do caobao.hide()
 
 	else		
 		曹豹: 不过无需主公操心了，如果主公只是对这件事好奇的话，那么也没别的事了[voice:caobao_ruguonizhishihaoqi]
-		刘备: 嗯...
+		刘备: 嗯...[voice:liubei_enqueding]
 	do select2(true)	
 - 询问古龙石像详情，是否真有神力。
 	do GameManager.changeCaobaoHeart(-10)
 	do caobao.showHeart(GameManager.sav.caobaofav)
 	曹豹: 古龙石像不过石雕，传闻多为夸大。主公若无他事，某尚有军务。[voice:caobao_shidiao]
-	刘备: 嗯...
+	刘备: 嗯...[voice:liubei_enqueding]
 	do select2(false)
 
 do caobao.hide()			
@@ -984,24 +984,24 @@ do caobao.hide()
 
 if GameManager.bossmoderesult==true
 
-	刘备: 曹将军，遗迹无神鬼，唯风声光影惑人。匠人李铁受大族蛊惑，已盗龙珠，应当惩处
+	刘备: 曹将军，遗迹无神鬼，唯风声光影惑人。匠人李铁受大族蛊惑，已盗龙珠，应当惩处[voice:liubei_chenchulongzhu]
 	曹豹: 此人如何处置[voice:caobao_cirenruhe]
 	李铁: 大人饶命啊~
-	刘备: 罢了，就让他留在你这里打造军械，毕竟也是被他人蛊惑，罪不至死，
+	刘备: 罢了，就让他留在你这里打造军械，毕竟也是被他人蛊惑，罪不至死，[voice:liubei_bale]
 	李铁: 大人仁德！小人定为军中打造最精良兵器！此龙珠乃先祖所铸，留于大人，愿助徐州军威！
-	刘备: 既如此，龙珠暂留军中，待查明用途。
+	刘备: 既如此，龙珠暂留军中，待查明用途。[voice:liubei_longzhuliuzaijunzhong]
 else
 
 #如果没龙珠
-	刘备: 曹将军，遗迹真相我已知晓， 石龙怪响光影，实为风声与地底烟雾，但匠人李铁受大族、士人蛊惑盗珠，现已逃遁。 需严查城中大族，勿纵罪魁
+	刘备: 曹将军，遗迹真相我已知晓， 石龙怪响光影，实为风声与地底烟雾，但匠人李铁受大族、士人蛊惑盗珠，现已逃遁。 需严查城中大族，勿纵罪魁[voice:liubei_caojiangjunzhenxiang]
 	曹豹: 主公明察，我这就命人追捕李铁，严惩不待！石龙真相，主公既知，末将惭愧未早察。[voice:caobao_zhuibulitie]
 
 #公共
-刘备: 对了，李铁告诉我，曾有一个地方官铸石龙安民，其后人今何在？
+刘备: 对了，李铁告诉我，曾有一个地方官铸石龙安民，其后人今何在？[voice:liubei_zhaohouren]
 
 
 曹豹: 这个我略有耳闻，那个地方官，生前非常清廉，没有为后代留下多余财产，死后，后代就丧失了生计，今天徐州城内粮食暴涨，而他们家贫如洗，其母病重，子女已经沦落到欲卖身救母的地步了[voice:caobao_zhegelueyouerwen]
-刘备: 人生无常，这样好的官员的后人也论为这个地步，也是我的过错啊！你速赐粮赈助，妥善安置。
+刘备: 人生无常，这样好的官员的后人也论为这个地步，也是我的过错啊！你速赐粮赈助，妥善安置。[voice:liubei_tuoshananzhi]
 曹豹: 主公英明，我这就照办[voice:caobao_zhugongyinmin]
 
 
@@ -1038,7 +1038,7 @@ do caobaoLevelUpSoilder()
 
 ~ 获得龙胆枪
 军匠李铁: 主公，俺用陨铁最精华处铸了这把‘龙胆亮银枪’，枪身硬得像铁，寒光闪闪，绝对是把神兵！
-刘备: 好枪！锋芒如龙，月下生辉。曹将军，你怎么看？
+刘备: 好枪！锋芒如龙，月下生辉。曹将军，你怎么看？[voice:liubei_haoqiang]
 曹豹: 主公，这把枪亮眼如辉，主公如收下此物，赏赐自己的骁勇的部将，才能发挥此物最大价值，况且遗迹事情也是主公解决的，收下此物合情合理。[voice:caobao_songqiang]
 刘备: 好！召那家伙，赐他‘龙胆银月枪’。
 （一段时间后，无名前来..）
@@ -1065,7 +1065,7 @@ do getLongdan()
 
 ~ 进入仕诡牌游戏
 
-刘备: 曹将军，军务辛苦，可愿来局仕诡牌？
+刘备: 曹将军，军务辛苦，可愿来局仕诡牌？[voice:liubei_shiguipaicaobao]
 曹豹: 哈哈！主公好眼力！军务算啥，仕诡牌才过瘾！来，我教你玩！[voice:caobao_funshigui]
 do GameManager.enterBoardGame()
 => END!
@@ -1076,11 +1076,11 @@ do GameManager.enterBoardGame()
 
 #我想改成不显示第三个模式 点击触发对话 击败最终boss 
 ~ 来把仕诡牌2
-刘备: 曹将军，可愿玩一局 仕诡牌进阶版本-诡异怪谈？
+刘备: 曹将军，可愿玩一局 仕诡牌进阶版本-诡异怪谈？[voice:liubei_keyuanwanyiju]
 曹豹: 不！我不玩这个！这个模式邪门，很多人被牌影响了！[voice:caobao_wobuwan]
-刘备: 你竟然没被影响？可有线索？
+刘备: 你竟然没被影响？可有线索？[voice:liubei_nimeibeiyinxiang]
 曹豹: 我很早就注意到了，一直秘密调查这个，这牌出自街上商人，阴得很！主公，咱找他去！[voice:caobao_zhaoshangren]
-刘备: 我正有此意...
+刘备: 我正有此意...[voice:liubei_wozhengyouciyi]
 系统提示: 和街道的商人进行最终卡牌对局
 do finalBossBefore()
 => END!
@@ -1105,9 +1105,9 @@ do refreshData()
 ~ 牌局无人
 
 
-刘备: 曹将军何在？既集齐诡异卡，欲与他一试一局！
+刘备: 曹将军何在？既集齐诡异卡，欲与他一试一局！[voice:liubei_caobaoyishiyiju]
 丹阳兵: 主公，曹将军…方才还在校场练兵，可突然匆匆走了！
-刘备: (罢了，我先寻糜竺与陈登，探这诡秘乱局的玄机！)
+刘备: (罢了，我先寻糜竺与陈登，探这诡秘乱局的玄机！)[voice:liubei_mizhuyuchenden]
 
 => END!
 
@@ -1131,13 +1131,13 @@ do huangjinSurrender()
 ~ 昌豨求饶支线
 系统提示: 【隐藏击败敌人方式达成：泰山折服,条件揭示：玩家三次绝对胜率满100%】
 使者: 我家昌豨将军无意与将军交锋。三战连大败，恳请刘备大人开恩，愿献上贡品，率残部退兵百里，不再扰边。
-刘备: 昌豨将军乃泰山豪杰，也是徐州旧部。我镇守此地，为平定内乱而来。贡品既已送达……嗯，就收下吧。但徐州要真正太平，还需扫清这些内敌，方能稳固大局。
+刘备: 昌豨将军乃泰山豪杰，也是徐州旧部。我镇守此地，为平定内乱而来。贡品既已送达……嗯，就收下吧。但徐州要真正太平，还需扫清这些内敌，方能稳固大局。[voice:liubei_zangbaweihaojie]
 
 
 使者: 这……大人，昌豨将军的贡品已然献上……
 
 
-刘备: 贡品是贡品，可这又何尝不是缓兵之计？使者还是先回去吧。若真有诚意，和你家将军商量后再来吧！
+刘备: 贡品是贡品，可这又何尝不是缓兵之计？使者还是先回去吧。若真有诚意，和你家将军商量后再来吧！[voice:liubei_gongpinhebushihuanbin]
 
 
 
@@ -1153,7 +1153,7 @@ do cangxiSurrender()
 
 系统提示: 【隐藏击败敌人方式达成：智谋退敌,条件揭示：玩家在军事行动三次使用道具】
 部将 : 主公，斥候回报，袁术帐下纪灵大军已然撤退，淮南方向尘土渐息，不见旌旗。似是连番败绩，士气低落，纪灵疑心袁术内有异动，不敢再轻犯。
-刘备: 嗯，纪灵勇悍，此番退兵，定是我军计策连番奏效！
+刘备: 嗯，纪灵勇悍，此番退兵，定是我军计策连番奏效！[voice:liubei_jilinyonghan]
 系统提示: 纪灵此前连番中计，决定暂时撤退，民心+10，战斗进度+1。
 #民心+10
 do jilinEscape()
@@ -1166,7 +1166,7 @@ do jilinEscape()
 
 ~ 比武训练解锁
 
-刘备: (这演武场风光不错啊,我何不借此地与兄弟们对练切磋一番？)
+刘备: (这演武场风光不错啊,我何不借此地与兄弟们对练切磋一番？)[voice:liubei_yanwuchangbucuo]
 
 系统提示: 解锁比武训练功能，现在可以通过比武训练不消耗金钱提升武将等级（每个模式仅能提升一次)
 => END!
@@ -1291,7 +1291,7 @@ do GameManager.bossmoderesult=false
 do GameManager.enterCrazy()
 长者: 玄德公，真龙之气，尽归吾用！[voice:xiuxianzhe_xuandegong]
 
-刘备: 我死不足惜…但苍生何辜…
+刘备: 我死不足惜…但苍生何辜…[voice:liubei_sibuzuxi]
 do SoundManager.play_sound(sounds.BLOOD)
 长者: 凡民如蝼蚁，仙道将成，天下当由吾重塑！[voice:xiuxianzhe_fanrenrulouyi]
 Game Over: 刘备被长者炼化，诡秘修仙之力降临，世界陷入混乱！
@@ -1309,7 +1309,7 @@ do caobao.hide()
 : 此项基建工程结束后，关羽向刘备反映一些情况
 do guanyu.show()
 关羽: 主公，糜竺、陈登等文官屡屡阻挠基建之事，动辄以民力、财用为由百般拖延。若非他们从中作梗，我等早已粮足兵强，何至如今步步艰难？主公为何不严加处置，甚至……除之而后快？[voice:guanyu_chuzhihoukuai]
-刘备: 云长有所不知。基建之事，绝非急躁可成。我深知糜竺、陈登二人用心，故而早有布置。前些时日，我密探回报，尽闻议会厅中他二人的私议，方知一切皆在情理之中。
+刘备: 云长有所不知。基建之事，绝非急躁可成。我深知糜竺、陈登二人用心，故而早有布置。前些时日，我密探回报，尽闻议会厅中他二人的私议，方知一切皆在情理之中。[voice:liubei_yiqieqinlizhizhong]
 
 do SceneManager.changeScene(SceneManager.roomNode.BOULEUTERION,2)
 #~镜头一转 来到议会厅
@@ -1321,15 +1321,15 @@ do SceneManager.changeScene(SceneManager.roomNode.BOULEUTERION,2)
 do caobao.hide()
 do guanyu.show()
 关羽: 原来如此，主公早已对这些事务了如指掌了[voice:guanyu_yuanlairuci]
-刘备: 云长，我也在成长，糜竺、陈登虽阻基建，实为吾虑。昔日徐州刺史，仓促兴修水利、屯田，反引民生凋敝、水利崩塌，州郡几陷。他们的敷衍，看似拖延，实则护我根基，避免重蹈覆辙。
+刘备: 云长，我也在成长，糜竺、陈登虽阻基建，实为吾虑。昔日徐州刺史，仓促兴修水利、屯田，反引民生凋敝、水利崩塌，州郡几陷。他们的敷衍，看似拖延，实则护我根基，避免重蹈覆辙。[voice:liubei_bimianchongdaofuze]
 
 关羽: 主公说得有理……我明白了，不能急。[voice:guanyu_bunengji]
 
 
-刘备: 事不能不做，但大修粮仓、水利这些事，现在确实不能急着一口吃个大胖子。我其实更早就向曹操讨要官职了。
+刘备: 事不能不做，但大修粮仓、水利这些事，现在确实不能急着一口吃个大胖子。我其实更早就向曹操讨要官职了。[voice:liubei_gengzaotaoyaoguanzhi]
 关羽: 更早之前，主公就料到了？[voice:guanyu_gengzaozhiqian]
 
-刘备: 名分是立业的关键，一切都在我的计划里。等基建慢慢有点成效，曹操的任命状也会到。
+刘备: 名分是立业的关键，一切都在我的计划里。等基建慢慢有点成效，曹操的任命状也会到。[voice:liubei_caocaorenmin]
 
 
 关羽: 主公英明，云长服了[voice:guanyu_fule]
@@ -1342,7 +1342,7 @@ do guanyu.hide()
 ~ 得知吕布和曹豹勾连
 刘备正亲临营中视察将士备战袁术的情况，查看着军备粮草与布防细节，忽有一密探快步闯入营中。
 密探: 主公，属下奉您之命监视下邳城内的动静，昨夜，吕布于议事厅设宴款待曹豹将军，似有要事相商，特此前来传回消息。
-刘备: 温侯与豹将军深夜私宴，我倒要看看是何缘由。
+刘备: 温侯与豹将军深夜私宴，我倒要看看是何缘由。[voice:liubei_wenhousiyan]
 do SceneManager.changeScene(SceneManager.roomNode.BOULEUTERION,2)
 => END!
 
@@ -1365,7 +1365,7 @@ do wumin.show()
 
 赵云: 主公，云本欲随主公共创大业，奈何赵范以乡梓宗族相胁，需回桂阳料理后事，暂不能伴主公左右。
 
-刘备: 子龙去留，自在你心。待你诸事了结，备自当扫榻相迎。只是……你这一去，我的心头终究空落落的。
+刘备: 子龙去留，自在你心。待你诸事了结，备自当扫榻相迎。只是……你这一去，我的心头终究空落落的。[voice:liubei_zilongquliu]
 
 
 
@@ -1375,7 +1375,7 @@ do wumin.show()
 
 无名: 无名，愿护主公周全。
 
-刘备: 好男儿，往后便随我左右。待子龙归来，你二人同掌亲卫，不负你的那一口涿县乡音。
+刘备: 好男儿，往后便随我左右。待子龙归来，你二人同掌亲卫，不负你的那一口涿县乡音。[voice:liubei_haonaner]
 赵云在一旁静静看着，低声向无名叮嘱了数句，便不再多言。他转身拾枪，大步走向堂外，翻身上马。马蹄声渐远，身影一点点没入苍茫暮色里。无名站在原地，重重地、极郑重地向那远去的背影点了点头。自此，他再未离刘备左右半步。如同一柄沉默的刀，永远插在最靠近主公的那一寸风里。
 do zhaoyun.hide()
 风又起，吹得刘备衣袍猎猎作响。
@@ -1394,12 +1394,12 @@ do fade.play("RESET")
 纪灵默然无语，次日各罢兵而归。
 吕布屏退左右，引刘备至营外一旁
 吕布: 玄德，今日布亲至，方保小沛无虞。不过……吾部曲中有人，近日在帐前为你多说了几句好话，替你洗雪了与曹操暗通之谤，布才来得及时。此恩，你可记在心上？ 
-刘备: 温侯大德，备铭心刻骨！小沛得保，百姓免遭兵祸，皆赖温侯仗义。
+刘备: 温侯大德，备铭心刻骨！小沛得保，百姓免遭兵祸，皆赖温侯仗义。[voice:liubei_wenhoudade]
 #他日若有尺寸之进，必不忘今日相助之恩。  
 吕布: 哈哈哈，好！玄德既知恩，便好生记着。若日后布再闻你与曹操有甚勾连……哼，布的箭，可不只射枝，也会射人！
 #张飞: 大哥，这吕布匹夫，帮忙还来威胁人…… 
 #刘备: 咳咳咳...
-刘备: 温侯，备铭记在心。
+刘备: 温侯，备铭记在心。[voice:liubei_wenhou_beizaiji]
 #yuanmensheji结束回到府邸
 => END!
 

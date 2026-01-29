@@ -5,7 +5,7 @@ do determineInternalUnrestXuzhou()
 
 ~ 民乱四起
 do DialogueManager.gameover=true
-刘备: 徐州百姓，备未能安抚，竟至如此……
+刘备: 徐州百姓，备未能安抚，竟至如此……[voice:liubei_xuzhoubaixin]
 主簿: 主公，民怨沸腾，城外乱民已破门而入。[voice:zhubo_luanminerru]
 关羽/张飞: 大哥，徐州已不可守！我们掩护你撤退..  [voice:guanyuzhangfeiyanhu]
 Game Over: 民心尽失，徐州陷于暴乱，游戏结束。
@@ -26,9 +26,9 @@ Game Over: 民心尽失，徐州陷于暴乱，游戏结束。
 
 do DialogueManager.gameover=true
 
-刘备: 将士们……为何……为何都不肯再战了？
+刘备: 将士们……为何……为何都不肯再战了？[voice:liubei_jiangshimenweihe]
 亲兵: 主公！弟兄们都跑光了！没人敢拼了！敌军的骑兵已经冲过来了，您再不逃，就来不及了！
-刘备: 逃？我亲率大军出征，如今军心尽失，纵能逃，又有何颜面见徐州百姓……
+刘备: 逃？我亲率大军出征，如今军心尽失，纵能逃，又有何颜面见徐州百姓……[voice:liubei_taobuliao]
 
 Game Over: 血战数日，军心彻底溃散，游戏结束。
 - 载入存档

@@ -1,19 +1,19 @@
 ~ start
 #do GameManager.hello()
- : 啊..原来是一场噩梦..
- : 前些日子一直在徐州办事，昨天晚上刚回来，劳累太大
- : (不过能做这样的噩梦，很可能与这边的烂摊子有关..)
-仆人: 大人，外面有人求见
- : 好吧 让他进来吧
- : （我总是预感有什么大事要发生，我想花时间筹备下）
+ : 啊..原来是一场噩梦..[voice:liubei_yuanlaiemeng]
+ : 前些日子一直在徐州办事，昨天晚上刚回来，劳累太大[voice:liubei_qianxierizi]
+ : (不过能做这样的噩梦，很可能与这边的烂摊子有关..)[voice:liubei_lantanzi]
+主簿: 大人，外面有人求见[voice:zhubo_darenyourenqiujian]
+ : 好吧 让他进来吧[voice:liubei_rangtajin]
+ : （我总是预感有什么大事要发生，我想花时间筹备下）[voice:liubei_huashijian]
 do showchenqun()
 => END
 #陈群出现在房间
 ~ 点击陈群
 陈群: 将军 时候不早了，该去处理政务了
- : 会有很多政务需要处理么...
+ : 会有很多政务需要处理么...[voice:liubei_huiyouhenduo]
 陈群: 当然，不过如果将军你想图清闲，可以把这些事情交给我们这些当地的大家族，你只需要在上面签字就行
- : 不，不行，我之前说过，陶公把 所有小沛的事务交给，是对我的信任，再者，我也得向治下百姓负责，以后徐州所有事情必须一一向我请示
+ : 不，不行，我之前说过，陶公把 所有小沛的事务交给我，是对我的信任，再者，我也得向治下百姓负责，以后徐州所有事情必须一一向我请示[voice:liubei_bubuxingtaoqian]
 陈群: 如果真要这样的话 ，如你所愿 将军 
 陈群: 让我们重新熟悉下政务操作..
 陈群: 您需要前往府邸，在哪里你可以处理基础的政府公文
@@ -27,11 +27,11 @@ do showFirstGuild()
 => END!
 
 ~ 第三天
-仆人: 大人，外面有军情急报
-刘备: 快请进
+主簿: 大人，外面有军情急报[voice:zhubo_waimianjunqing]
+刘备: 快请进[voice:liubei_kuaiqinjin]
 do caobao.show()
 曹豹: 将军，我的前同事 也就是杀害曹操他老爹的 如今遁入山林，并当土匪作乱、祸害百姓，陶大人令刘将军派人去协助处理此事[voice:caobao_shahaicaocao]
-刘备: 好，我这就安排..
+刘备: 好，我这就安排..[voice:liubei_hao_woanpai]
 do caobao.hide()
 教程: 前往演武场进行征伐任务
 => END!
@@ -39,9 +39,9 @@ do caobao.hide()
 ~ 第四天
 do chenqun.show()
 陈群: 将军，您去小沛开会之前 多次想让我约见一些学者，有好消息传来。郑玄大师愿意接见您！
-刘备: 真的？郑大师同意见我了
+刘备: 真的？郑大师同意见我了[voice:liubei_zhendashitongyi]
 陈群: 正是。属下派人多次拜访，终于说服了郑大师。他听说您对学问颇有兴趣，愿意与您交流一番。
-刘备: 好，真是太好了！郑大师是当今的大儒，能得到他的指导，对我们治理大有裨益。我立刻出发，前去见他
+刘备: 好，真是太好了！郑大师是当今的大儒，能得到他的指导，对我们治理大有裨益。我立刻出发，前去见他[voice:liubei_zhenshitaihaole]
 do chenqun.hide()
 教程: 前往城外及军事驻地 可以选择拜见城外的学者
 => END!
@@ -50,37 +50,37 @@ do chenqun.hide()
 do fadeInAndOut()
 do wait(1)
 do demoFinishWenGuanShow()
-刘备: 什么，陶刺史，让我来当徐州之主？
+刘备: 什么，陶刺史，让我来当徐州之主？[voice:liubei_smtaocishirangwo]
 主簿: 信件上是这么说，糜竺大人和陈登大人再等着你呢？[voice:zhubo_xinjianshi]
-刘备: (这是真的么？虽然他隐约透露这种意思..但我本能告诉我，不太对)
-刘备: 我怎么感觉你在忽悠我，骨肉至亲，陶刺史怎么可能放弃自己儿子呢？况且陶谦对我有恩..
+刘备: (这是真的么？虽然他隐约透露这种意思..但我本能告诉我，不太对)[voice:liubei_zheshizhendeme]
+刘备: 我怎么感觉你在忽悠我，骨肉至亲，陶刺史怎么可能放弃自己儿子呢？况且陶谦对我有恩..[voice:liubei_wozmganjuenihuyouwo]
 主簿: 将军可是大才，治理徐州，百姓有福，陶大人可是“放心”才把徐州交给你[voice:zhubo_jiangjunkeshi]
-刘备: 容我考虑考虑..
+刘备: 容我考虑考虑..[voice:liubei_rongwokaolv]
 
 do fadeInAndOut()
 do wait(1)
 do demoFinishChenQunShow()
 #过度
-刘备: 陈群您怎么看?
+刘备: 陈群您怎么看?[voice:liubei_chenqunnin]
 陈群: 将军，你是希望我以官员的身份来跟你说，还是朋友的身份..
 刘备: ...
-刘备: 那就以朋友身份跟我说吧
+刘备: 那就以朋友身份跟我说吧[voice:liubei_najiuyipengyou]
 陈群: 将军，徐州的水很深..我不希望将军去塌这个浑水，哪里势力复杂，他们并不是让你摘桃子才把刺史给您的
-刘备: 明白了..
+刘备: 明白了..[voice:liubei_mingbaile]
 #过度
 
 do fadeInAndOut()
 do wait(1)
 do demoFinishWenGuanShow()
 主簿: 大人考虑怎么样了？[voice:zhubo_darenkaolv]
-刘备: 我觉得...
+刘备: 我觉得...[voice:liubei_wojuede]
 主簿: 将军，容下官说一句话，将军究竟是陶谦的下属 还是大汉的臣子？[voice:zhubo_jiangjunjiujjingshi]
 刘备: !??
 主簿: 如今天下大乱，诸侯并起之时，如若将军有自己理想和抱负，绝不会放弃此等大任，作为子民，将军和陶刺史都是皇帝的官员，并无高低贵贱之分，首要还是考虑百姓的福祉[voice:zhubo_rujintianxiadaluan]
 主簿: 况且，这个位置如果你不做，那么不该做这个位置的就做了..所谓丹阳的眼线还在盯着你呢？将军觉得不接受，就能在这里旧居么？[voice:zhubo_kuangqie]
-刘备: （这话就是谬谈了..我在这边深得民心，哪怕曹豹也不能拿我怎么样，但是如若 想成就一番事业，他恰恰是说出我心中所言）
-刘备: （其实我本来就打算接受的）
-刘备: 看来，我没法拒绝你..不过我有条件，徐州可以接，但需约法三章：不增民赋、不扰农耕，州治移至下邳。
+刘备: （这话就是谬谈了..我在这边深得民心，哪怕曹豹也不能拿我怎么样，但是如若 想成就一番事业，他恰恰是说出我心中所言）[voice:liubei_zhehuamiutanle]
+刘备: （其实我本来就打算接受的）[voice:liubei_qishiwobenlaijiudasuan]
+刘备: 看来，我没法拒绝你..不过我有条件，徐州可以接，但需约法三章：不增民赋、不扰农耕，州治移至下邳。[voice:liubei_yuefasanzhang]
 主簿: 大人，你的想法和陈登是一样的，他已经秘派广陵士兵处理迁至州治事项了[voice:zhubo_nidexiangfahechenden]
 刘备: ！！！
 #这句话放在黑屏转场并且播放央视声音
@@ -90,11 +90,11 @@ do demoFinish()
 
 #大儒辩经
 ~ 还不能休息_新手教程
- : 政务面板的事情还没忙完，我还不能那么早休息
+ : 政务面板的事情还没忙完，我还不能那么早休息[voice:liubei_haibunengzhengwu]
 => END!
 
 ~ 确定休息么
- : 我的体力值还有很多，确定要休息么
+ : 我的体力值还有很多，确定要休息么[voice:liubei_wodetilizhi]
 - 休息
 
 - 取消
@@ -102,21 +102,21 @@ do demoFinish()
 => END!
 
 ~ 新的一天
- : 新的一天又开始了，幕僚们已经把该天需要处理的政务放进我的政务面板了
+ : 新的一天又开始了，幕僚们已经把该天需要处理的政务放进我的政务面板了[voice:liubei_muliaoyijing]
 => END!
 ~ 今日收入为
- : 大人今日收入为{{GameManager.sav.coin_DayGet}}，招募的士兵为{{GameManager.sav.labor_DayGet}}
+ : 大人今日收入为{{GameManager.sav.coin_DayGet}}，招募的士兵为{{GameManager.sav.labor_DayGet}}[voice:zhubo_darenruzhangpofeng]
 
 do _DayGet()
 => END!
 
 ~ 有拦路虎
-主簿: 大人，糜竺先生探明了一个重要情况。
-刘备: 什么情况？
+主簿: 大人，糜竺先生探明了一个重要情况。[voice:zhubo_mizhuxianshengqingkuang]
+刘备: 什么情况？[voice:liubei_smqingkuang]
 主簿: 糜竺先生已派人探明，黄巾军在粮道上活动频繁。我们的小股商队虽能与袁绍保持联络，但大量粮食却难以通过这条不安稳的路线运回。[voice:zhubo_mizhuliangdao]
-刘备: 那该如何解决？
+刘备: 那该如何解决？[voice:liubei_nagairuhejiejue]
 主簿: 糜竺大人提议，将军可率军清剿粮道上的黄巾军，以确保运输无虞。不过……糜竺大人还提及，黄巾军中有些头领似乎对钱财颇有兴趣，若能巧妙施以财物，或许可不动刀兵便化解部分阻碍，只是此事需谨慎为之，以免授人以柄。[voice:zhubo_qianhuiluhuangjin]
-刘备: 嗯，清剿粮道是当务之急，至于其他手段……我自有分寸。立刻下令整军，准备清剿黄巾军，确保粮道安全！
+刘备: 嗯，清剿粮道是当务之急，至于其他手段……我自有分寸。立刻下令整军，准备清剿黄巾军，确保粮道安全！[voice:liubei_qingjiaoliangdao]
 do secondMissonStart()
 提示: 在军事行动中取得10场胜利
 #主簿：“主公英明，糜竺先生也建议尽快行动，以免延误。”
@@ -128,20 +128,21 @@ do secondMissonStart()
 do SoundManager.play_sound(siku2)
 昏暗寝室，烛光微弱，窗外风声低啸，刘备卧于榻上，门外雾气弥漫，怪声如泣如诉。
 
-刘备: 此为何声？似哭似啸，深夜扰人……门外何人?
+刘备: 此为何声？似哭似啸，深夜扰人……门外何人?[voice:liubei_menwaiheren]
 血债，今夜偿还！ 
 救命！！[voice:ty_jiumin]
 刘备听到呼救立马起床拿着剑冲出门去，看到却是怪异的场景，一个满身触须的家伙，挟持着两个似乎很眼熟的家伙，他们身上也长满了触须..
 do PlayBitPlayer()
 do SoundManager.stop_sound(siku2)
-刘备: 陶商、陶应？！
+刘备: 陶商、陶应？！[voice:liubei_taoshangtaoying2]
 
 => END!
 
 ~ 克苏鲁梦境结束
-刘备: 竟然是一场梦..
-刘备: 然此梦诡异无比，似乎预示着什么，莫非城中有人暗藏祸心？
-刘备: 近日徐州诸多官员行事隐秘，或与此有关。恰好税率之事需问陶商、陶应，我当借机一探究竟。  
+刘备: 竟然是一场梦..[voice:liubei_jingranmengyichang]
+刘备: 然此梦诡异无比，似乎预示着什么，莫非城中有人暗藏祸心？[voice:liubei_cimengguiyi]
+刘备: 近日徐州诸多官员行事隐秘，或与此有关。恰好税率之事需问陶商、陶应，我当借机一探究竟。[voice:liubei_xuzhousuilvzhishi]
+#去空格
 提示: 前往府邸继续进行支线
 
 do resumeBgm()
@@ -151,7 +152,7 @@ do _initData()
 
 
 ~ 每天袁术内应搞事
-刘备: 很好，继续努力。
+刘备: 很好，继续努力。[voice:liubei_henhaojixu]
 %2 => 袁术搞事1
 %2 => 袁术搞事2
 %2 => 袁术搞事3
@@ -173,44 +174,44 @@ do _initData()
 
 ~ 袁术搞事1
 主簿: 另外，内应在城中散布粮食短缺谣言，百姓人心惶惶。[voice:zhubo_neiyingshanboliangshiduanque]
-刘备: 看来我得想办法处理此事
+刘备: 看来我得想办法处理此事[voice:liubei_kanlaideixiangbanfa]
 提示: 徐州城内 民心下降10点
 do yuanshuChaos(1)
 => END!
 
 ~ 袁术搞事2
 主簿: 另外，主公，内应的谣言让丹阳派士兵军心动摇。[voice:zhubo_neiyingrangdanyangpaijunxin]
-刘备: 看来我得想办法处理此事
+刘备: 看来我得想办法处理此事[voice:liubei_kanlaideixiangbanfa]
 提示: 丹阳派 对你的忠诚度下降10点
 do yuanshuChaos(2)
 => END!
 
 ~ 袁术搞事3
 主簿: 另外，内应散播背弃盟约的消息，士族们感到不满。[voice:zhubo_beiqimenyue]
-刘备: 看来我得想办法处理此事
+刘备: 看来我得想办法处理此事[voice:liubei_kanlaideixiangbanfa]
 提示: 徐州派 对你的忠诚度下降10点
 do yuanshuChaos(3)
 => END!
 
 ~ 袁术搞事4
 主簿: 另外，内应的谣言同时影响了百姓、士族和士兵，局势紧张。[voice:zhubo_neiyingjushijinzhang]
-刘备: 看来我得想办法处理此事
+刘备: 看来我得想办法处理此事[voice:liubei_kanlaideixiangbanfa]
 提示: 徐州城内 民心下降10点，徐州派支持度下降10点，丹阳派支持度下降5点
 do yuanshuChaos(4)
 => END!
 
 ~ 袁术之乱结束
-刘备: 很好，继续努力。
+刘备: 很好，继续努力。[voice:liubei_henhaojixu]
 主簿: 另外，糜竺大人传来消息，内乱的内鬼已经被捉住了，是军队里的奸细。他们跟泰山诸将有关，他们已经供认不讳。[voice:zhubo_zhuozhutaishan]
-刘备: 这是一条重要的消息。内鬼问题已彻底解决，可以放心了。
+刘备: 这是一条重要的消息。内鬼问题已彻底解决，可以放心了。[voice:liubei_neiguiyijiejue]
 主簿: 是，将军。还有，有曹操的使者求见，并带来了一封信。[voice:zhubo_caocaoshizhe]
-刘备: 嗯……
+刘备: 嗯……[voice:liubei_en]
 do showCaoCaoLetter()
 => END!
 
 ~ 袁术之乱看曹操信件
-刘备: (不愧是曹操，这招借刀杀人玩的不赖啊...)
-刘备: 曹操的建议值得考虑。我拿着这封信去府邸找糜竺和陈登商量，你先退下吧。
+刘备: (不愧是曹操，这招借刀杀人玩的不赖啊...)[voice:liubei_jiedaosharen]
+刘备: 曹操的建议值得考虑。我拿着这封信去府邸找糜竺和陈登商量，你先退下吧。[voice:liubei_caocaodexinzhidekaolv]
 主簿: 是，将军[voice:zhubo_shijiangjun]
 do lookDoneCaoCaoLetter()
 => END!
@@ -218,10 +219,10 @@ do lookDoneCaoCaoLetter()
 
 ~ 支线开始
 主簿: 主公，今晨城外荒地现怪事，一只羊被啃得只剩骨架，皮肉皆无，村民喧嚷‘不详之兆，天降灾厄’。[voice:zhubo_huangdi]
-刘备: 羊尸？何时发现？可有异状？
+刘备: 羊尸？何时发现？可有异状？[voice:liubei_yangshikeyouyizhuang]
 主簿: 寅时巡哨所见，骨头散乱，附近草木略枯，村民惶恐，传是妖物作祟。下官已备一策——掩埋羊尸，对外说是野狗啮咬，数日便可平息谣言。主公若无他意，下官自会办妥，断不扰您大事。[voice:zhubo_chuli]
-刘备: 知道了，此事我自有计较。你先下去，若有变故，速报我。
-刘备: (羊尸被啃食…不过是野外常事，主簿之计也算妥当。但如若有空，我也可以亲自去城外解决此事)
+刘备: 知道了，此事我自有计较。你先下去，若有变故，速报我。[voice:liubei_ruoyoubiangusubaowo]
+刘备: (羊尸被啃食…不过是野外常事，主簿之计也算妥当。但如若有空，我也可以亲自去城外解决此事)[voice:liubei_keqinzichengwai]
 系统提示: 支线任务触发：城外怪事。可前往城外荒地调查羊尸真相。若3日内未前往，主簿将自行处理，谣言平息，支线关闭。
 do sheepGnawed()
 
@@ -229,14 +230,14 @@ do sheepGnawed()
 
 
 ~ 支线克苏鲁最终开始
-刘备: 深夜来报，必有要事，速说。
+刘备: 深夜来报，必有要事，速说。[voice:liubei_shenyebiyouyaoshi]
 主簿: 主公，大事不妙！张阎今夜越狱，狱卒追之不及，徐州粮食告急，百姓缺粮，食不果腹。城外现骨头祭坛，插一根恶臭骨棒，坊间传言‘饕餮饥渴，陶氏血肉是祭品’，百姓受惑，聚众喊‘献陶氏平神怒’，皆言灾荒乃陶氏所致！[voice:zhubo_taoshizuzhou]
 
-刘备: 张阎越狱？此人持毒囊血信刺陶氏，备疑其背后有因，怎会突生此乱？百姓因缺粮受惑，城中诸人作何想法？
+刘备: 张阎越狱？此人持毒囊血信刺陶氏，备疑其背后有因，怎会突生此乱？百姓因缺粮受惑，城中诸人作何想法？[voice:liubei_zhangyanzhiluan]
 
 主簿: 丹阳派近日暗查，报称此番祭坛异动与张阎脱不了干系，另外陈登、糜竺两位大人命我向主公献策，言‘以陶氏为饵，或可引出张阎，平乱有望’，似有意借机擒贼。[voice:zhubo_jiejiqinzei]
 
-刘备: （此事我该如何决断？）
+刘备: （此事我该如何决断？）[voice:liubei_cishiwogairuhe]
 - 让陶氏去当诱饵[highlight=true]
 	do gotostreetAndKe(0)
 - 无需诱饵带兵追捕  
@@ -281,19 +282,19 @@ do oneDayidleness()
 
 ~ 发现场景道具1
 #待润色
-刘备: （我从书桌里发现了可能是我遗留下来的物品...）
+刘备: （我从书桌里发现了可能是我遗留下来的物品...）[voice:liubei_zizaishuzhuo]
 do GameManager.getItemAction.call() 
 => END!
 
 ~ 发现场景道具2
 #待润色
-刘备: （我从床上发现了可能是我遗留下来的物品...）
+刘备: （我从床上发现了可能是我遗留下来的物品...）[voice:liubei_congchuangshang]
 do GameManager.getItemAction.call() 
 => END!
 
 ~ 发现场景道具3
 #待润色
-刘备: （我从凳子底下发现了可能是我遗留下来的物品...）
+刘备: （我从凳子底下发现了可能是我遗留下来的物品...）[voice:liubei_dengzidixia]
 do GameManager.getItemAction.call() 
 => END!
 
@@ -330,9 +331,9 @@ do caocao_letter_2.show()
 ~ 小沛信件看完
 刘备读罢密信，久久无言，缓缓将信纸合拢，眼中闪过一丝复杂的光芒。
 
-刘备: （曹操挟天子以令诸侯，徐州不过是他布下的棋盘；袁绍坐拥四州，倒也如同曹操所说，可能也无匡扶天下之心。两人迟早反目成仇，到那时无论我助曹还是投袁，最终都不过是成为他们争霸天下的牺牲品——大汉的未来，不能寄望于他们。）
+刘备: （曹操挟天子以令诸侯，徐州不过是他布下的棋盘；袁绍坐拥四州，倒也如同曹操所说，可能也无匡扶天下之心。两人迟早反目成仇，到那时无论我助曹还是投袁，最终都不过是成为他们争霸天下的牺牲品——大汉的未来，不能寄望于他们。）[voice:liubei_dahanweilaibuneng]
 
-刘备: （从前我只求立足徐州、存身小沛，如今方知，真正的匡汉大业，既不容假手于人，更不容再做他人棋盘上的棋子。既如此，从今往后，我刘玄德当聚豪杰、练精兵、收民心，一步一步，亲手打出一片属于自己的江山——汉室复兴，终究只能由我自己来完成。）
+刘备: （从前我只求立足徐州、存身小沛，如今方知，真正的匡汉大业，既不容假手于人，更不容再做他人棋盘上的棋子。既如此，从今往后，我刘玄德当聚豪杰、练精兵、收民心，一步一步，亲手打出一片属于自己的江山——汉室复兴，终究只能由我自己来完成。）[voice:liubei_hanshifuxinzjwanc]
 
 
 系统提示: 武将夏侯惇已临时加入麾下，可在出征列表中调遣使用。
@@ -343,7 +344,7 @@ do caocao_letter_2.show()
 天刚蒙蒙亮，主簿传来吕布进犯的消息
 主簿: 主公！夏侯惇将军率部成功截获吕布购得的数百匹良马，不过吕布得知战马被截，勃然大怒，已亲率大军出徐州，直奔小沛而来，如今已在城外十里处！[voice:zhubo_xiahoujiema]
 
-刘备: 夏侯将军，抢马既是你家家主之意，如今吕布大军压境，此事你如何看？
+刘备: 夏侯将军，抢马既是你家家主之意，如今吕布大军压境，此事你如何看？[voice:liubei_qiangmaruhekan]
 夏侯惇: 使君莫忧！吕布此举，看似因战马被截而动怒，实则早有预谋。家主早已料到，吕布早已暗中安丹内应在小沛，而吕布素来忌惮使君仁义之名与感召之力，并麾下将士多有倾心使君者，吕布对此日夜不安。抢马的报复，不过是他的幌子，其真实目的，便是借机兴兵，铲除使君这一心腹大患。
 
 夏侯惇: 不过一切皆在我家家主预料之中，此番布局，正是要将吕布诱出徐州，使其陷入孤立无援之境。
@@ -354,10 +355,10 @@ do caocao_letter_2.show()
 
 
 ~ 终局
-刘备: 曹操并未食言，在我军即将溃败之际，他的援军终于抵达，我也得以全身而退，撤出小沛。
-刘备: 历经一年半的苦战，终破下邳。吕布向我乞命，我并没有放过他，但其实即便我不进言，以曹操之明，断不会留此虎患。
-刘备: 其后数载，我身在许都，心却暗通河北，时刻向袁绍传递着曹操的虚实动向。
-刘备: 就这样，在这名为礼遇、实为软禁的日子里，时间悄然来到了建安五年。
+刘备: 曹操并未食言，在我军即将溃败之际，他的援军终于抵达，我也得以全身而退，撤出小沛。[voice:liubei_chequxiaopei]
+刘备: 历经一年半的苦战，终破下邳。吕布向我乞命，我并没有放过他，但其实即便我不进言，以曹操之明，断不会留此虎患。[voice:liubei_yicaocaozhimin]
+刘备: 其后数载，我身在许都，心却暗通河北，时刻向袁绍传递着曹操的虚实动向。[voice:liubei_chuandicaocaodongxiang]
+刘备: 就这样，在这名为礼遇、实为软禁的日子里，时间悄然来到了建安五年。[voice:liubei_shijianqiaoranlaidaojiananwunian]
 => END!
 
 
@@ -367,13 +368,13 @@ do caocao_letter_2.show()
 ~ 关羽回来
 刘备回到小沛不久，关羽返回了，并带来援军的消息与资助。
 do guanyu.show()
-刘备: 云长，你终于回来了！情况怎么样？
+刘备: 云长，你终于回来了！情况怎么样？[voice:liubei_yunchangzmy]
 关羽: 大哥，袁绍、曹孟德闻知兄长暂屈吕布帐下，赞赏有加：大丈夫能屈能伸，汉室栋梁当如是。曹公已表兄长为豫州刺史，他们共同遣我送来钱财一千、兵甲五百。
-刘备: 云长辛苦了。他们还有何言？
-关羽: 大哥，曹公私下对我说：吕布与袁术，皆不足为虑，不过跳梁小丑耳。眼下我虽与袁绍同奉朝廷大义，共抗僭逆，但袁绍好谋无断，终究难成大事。你家将军先屯小沛，积蓄力量，抵御袁术前锋，牵制其之势。待河北稍定，我自有主张，共图大局。
+刘备: 云长辛苦了。他们还有何言？[voice:liubei_yunchangxinkule]
+关羽: 大哥，曹公私下对我说：吕布与袁术，皆不足为虑，不过跳梁小丑耳。眼下我虽与袁绍同奉朝廷大义，共抗僭逆，但袁绍好谋无断，终究难成大事。你家将军先屯小沛，积蓄力量，抵御袁术前锋，牵制其之势。待河北稍定，我自有主张，共图大局。[voice:guanyu_yuyuanshaotongyi]
 
-刘备: （曹操挟天子已久，对袁绍盟主已生不满……恐为后患，但当下仍利用借助曹操的力量，方能稳住阵脚，或许后续我该把这个局面给袁绍反映...）
-刘备: 既如此，我们当与曹操、袁绍 同心协力，勿使僭逆得逞。即刻整军，任务勿怠！
+刘备: （曹操挟天子已久，对袁绍盟主已生不满……恐为后患，但当下仍利用借助曹操的力量，方能稳住阵脚，或许后续我该把这个局面给袁绍反映...）[voice:liubei_renjiezhu]
+刘备: 既如此，我们当与曹操、袁绍 同心协力，勿使僭逆得逞。即刻整军，任务勿怠！[voice:liubei_zhengjun]
 系统提示: 自此以后，你的使命便是死守小沛，坚持十二日。袁术对徐州垂涎已久，此番更誓要灭你而后快。你必须每日完成一次军事行动，巩固小沛防线，否则袁术大军压境，民心必将急剧流失，城池危在旦夕！
 do xiaopeiStart()
 #修改任务为最终任务
@@ -383,12 +384,12 @@ do _initData()
 #待实装
 ~ 泰山诸将任务开始
 do taishanSoilder.showEX=false
-刘备: 深夜潜入我私宅，所为何来？你怎会来小沛这种地方？
+刘备: 深夜潜入我私宅，所为何来？你怎会来小沛这种地方？[voice:liubei_taishanweihelaixiaopei]
 下级军官: 主公，小人是泰山诸将麾下下层军官，我仰慕主公仁德，目前泰山派系 受吕布直接控制，近日袁术遣细作入徐州，向吕布告密：说主公虽暂屈吕布帐下，却暗受曹操援助——吕布闻讯大怒，已生疑心，暗中派人监视主公动静，恐生变故！
-刘备: 袁术小人，竟如此……你今天来此有何话说？
+刘备: 袁术小人，竟如此……你今天来此有何话说？[voice:liubei_nijintianlaiciyouhehuashuo]
 下级军官: 主公明鉴！我深知主公乃汉室栋梁，然吕布性烈多疑，袁术言已入其耳，若不及时化解，主公处境危矣。我愿助主公一臂之力——若主公日后能厚待泰山派系，我可找理由，让上层入吕布幕府时游说，我会散布消息、去洗清袁术构陷，让吕布放下对主公的戒备
 
-刘备: 多谢你的帮助，备记于心。他日必有厚报。
+刘备: 多谢你的帮助，备记于心。他日必有厚报。[voice:liubei_jiyuxintarihoubao]
 下级军官: 主公，小人今夜只为通告，不敢久留。后续，我自当全力相助为你游说，化解此劫！
 do taishanSoilder.hide()
 系统提示: 若提升泰山诸将好感度至80，将后续解锁内应的专属助力，为后续收复徐州、扩充势力提供关键支撑。
@@ -399,11 +400,11 @@ do taishanSoilder.hide()
 ~ 泰山诸将任务完成
 do zhubu.show()
 主簿: 主公！袁术遣大将纪灵率步骑三万，已围小沛城下，遣使入城，逼主公归降，否则即刻攻城！[voice:zhubo_jilinlaifan]
-刘备: 三万兵马……小沛兵少粮寡，难办了
+刘备: 三万兵马……小沛兵少粮寡，难办了[voice:liubei_xiaopeibinshaonanban]
 主簿: 主公勿忧！听闻温侯吕布已亲率步兵千人、骑兵二百，自下邳星夜疾驰而来。纪灵闻温侯兵至，惧其断绝后路，已收兵退屯，不敢再逼城下！[voice:zhubo_jilinpalvbu]
 #刘备: 天不绝我……  
 主簿: 温侯现已于小沛西南演武场，特遣人来请纪灵等将领饮酒议事，又请主公前往，共商大事。[voice:zhubo_jilingdashi]
-刘备: 既如此，备即刻前往。  
+刘备: 既如此，备即刻前往。[voice:liubei_jirucibeilike]
 do switchGatepost()
 
 => END!
