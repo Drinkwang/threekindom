@@ -533,10 +533,10 @@ do sideQuestReturnD(false)
 
 
 ~ 遇到诡异牌1
-种田老农: 大人仁德，徐州渐安！
+种田老农: 大人仁德，徐州渐安！[voice:laolong_darenrende]
 刘备: 老人家，最近状态如何？可有啥新鲜玩意儿消遣？[voice:liubei_keyouxinxianwanyi]
 
-种田老农: 大人！您不知？城里正流行个“仕诡牌”！男女老少都玩，斗智斗勇，比种田还带劲！听说曹将军最爱摆弄这牌，您找他试试？  
+种田老农: 大人！您不知？城里正流行个“仕诡牌”！男女老少都玩，斗智斗勇，比种田还带劲！听说曹将军最爱摆弄这牌，您找他试试？[voice:laolongshiguipai]
 刘备: 好，我试着去找他！[voice:liubei_woshizhezhaota]
 do people.hide()
 do SoundManager.play_sound(sounds.COLLECT_SMALL_JEWEL_1)
@@ -560,12 +560,12 @@ do meetBoardGame(2)
 
 ~ 遇到诡异牌3
 
-卖菜小贩: 最近生意很难做啊...都是仕诡牌惹的祸！
+卖菜小贩: 最近生意很难做啊...都是仕诡牌惹的祸！[voice:liumin_shiguipaidehuo]
 刘备: 城中近况如何？仕诡牌还流行吗？最近怎么没看到人玩[voice:liubei_shiguipaimeikandaorenwan]
-卖菜小贩: 大人，仕诡牌…让全城都着魔了！人人玩得眼红，我已经不玩了，但连我都梦见牌在说话！
+卖菜小贩: 大人，仕诡牌…让全城都着魔了！人人玩得眼红，我已经不玩了，但连我都梦见牌在说话！[voice:liumin_lianwodoumengdao]
 #红屏特效加xxx
 do meetBoardCrazy()
-卖菜小贩: 大人…您也逃不过…去，找陈大人、糜老爷，玩吧…
+卖菜小贩: 大人…您也逃不过…去，找陈大人、糜老爷，玩吧…[voice:liumin_quzhaochendaren]
 : 这个小贩眼睛发红，似乎着魔一般..
 刘备: 看来我必须解决此事了..[voice:liubei_kanlaiwobixu]
 do people.hide()
@@ -627,9 +627,9 @@ do getXuanYin()
 
 
 ~ 玄阴秘境
-村民: 主公仁德泽被徐州，草民感戴！城外有山，名字叫做玄阴秘境，终年云雾不散，村人莫敢近。或藏重宝，愿为主公大业添助！
+村民: 主公仁德泽被徐州，草民感戴！城外有山，名字叫做玄阴秘境，终年云雾不散，村人莫敢近。或藏重宝，愿为主公大业添助！[voice:caomin_zhugongrende]
 刘备: 玄阴秘境？此地有何不同？[voice:liubei_cidihebutong]
-村民: 草民我也不清楚，只曾听先辈所说，那山中有石台颇为不凡，似蕴天机。主公若感兴趣，可以前往。
+村民: 草民我也不清楚，只曾听先辈所说，那山中有石台颇为不凡，似蕴天机。主公若感兴趣，可以前往。[voice:nongmin_caominbuqingchu]
 刘备: 老人家有心了，我记下了[voice:liubei_laorenjiawojixiale]
 do GameManager.sav.have_event["玄阴开放"]=true
 do SoundManager.play_sound(sounds.COLLECT_SMALL_JEWEL_3)
@@ -761,14 +761,14 @@ do baseComplete()
 
 
 ~ 基建前置剧情
-流民: 使君慢行！您瞧瞧这城墙，裂缝能塞下半个人，盗贼夜里翻进来跟走平地似的！我们这些苦命人，连个遮风挡雨的窝都没有啊！
+流民: 使君慢行！您瞧瞧这城墙，裂缝能塞下半个人，盗贼夜里翻进来跟走平地似的！我们这些苦命人，连个遮风挡雨的窝都没有啊！[voice:liumin_shijunmanxing]
 商贩: 何止城墙！护城河干得见底，开春洪水一冲，城外良田全得淹！如今粮价一日三涨，小的这摊子，眼看就要撑不下去了！[voice:shangren_liangjiasanzhang]
 农妇: 还有这路、这沟！孩子昨天摔进去，满身是泥，哭着喊着要吃饭，可家里粮仓早就空了！使君，您可得为我们做主啊！[voice:nv_haiyouzheluzhegou]
 孩童: 我想有安稳的家，不想再怕盗贼……
 刘备: (徐州内乱已除，却民生凋敝至此。百姓流离，食不果腹，这岂是我刘备想要的安定？城防、水利、粮仓，桩桩件件，皆是民生根本，绝不能再拖！）[voice:liubei_minshengbunengtuo]
 刘备: 诸位父老，刘备愧对徐州百姓！今日亲见诸位疾苦，我在此立誓，即刻启动城内的基建工程！[voice:liubei_jijianqidong]
 百姓们: 使君仁德！若真如此，我们愿披星戴月，出力相助！
-乞丐: 老朽一把老骨头，也能搬砖运土！
+乞丐: 老朽一把老骨头，也能搬砖运土！[voice:liumin_laoxiulaogutou]
 商贩: 小的愿捐出一些钱，支援工程！[voice:shangren_zhiyuangongcheng]
 刘备: 好！民心所向，大事可成！来人，速回府邸传我命令：召糜竺、陈登议事，徐州基建，刻不容缓！[voice:liubei_xuzhoujijianburonghuan]
 do people.hide()

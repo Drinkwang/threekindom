@@ -90,36 +90,37 @@ do cancelLaw()
 
 ~ 陈登爱吃鱼1
 do chendeng.showEX=false
-刘备: 陈登，你怎在此议事厅备食？  
+刘备: 陈登，你怎在此议事厅备食？[voice:liubei_chendenruhebeishi]
+#删空格
 陈登: 主公有所不知，竺兄掌财粮，常居府中，我则日驻议事厅，主持杂务。闲暇之时，喜食生鱼片，徐州鲤鱼肥美，新制鱼脍，愿与主公共尝，如何？[voice:chenden_xuzhoushengyu]
 
-刘备: (陈登职责繁重，尚有此兴致……近日徐州流言四起，旧主陶谦之墓似有异动，莫非他因此烦忧？）
+刘备: (陈登职责繁重，尚有此兴致……近日徐州流言四起，旧主陶谦之墓似有异动，莫非他因此烦忧？）[voice:liubei_chendenfanyou]
 - 与陈登共食
 	do GameManager.changeChendenHeart(10)
 	do chendeng.showHeart(GameManager.sav.chendenfav)
 	do eatFishSound()
-	刘备: 这个生鱼片我尝了，果然鲜美。
+	刘备: 这个生鱼片我尝了，果然鲜美。[voice:liubei_shengyuwochile]
 	陈登: 主公豪气，我敬你一盏！[voice:chenden_zhugonghaoqi]
 
-	刘备: 此味甚佳，你的盛情可感。
+	刘备: 此味甚佳，你的盛情可感。[voice:liubei_ciweishenjia]
 	陈登: 徐州水美鱼肥，不尝此脍，枉活矣！[voice:chenden_xuzhouyuhaochi]
 	#这里更改体力
 	do GameManager.sav.BENTUPAI.ChangeSupport(10)
 	do GameManager.changePeopleSupport(5)
 	提示: 士族派忠诚+10，民心+5，士人传“主公与陈元龙同好鱼脍”。 
 
-	刘备: (生鱼虽鲜，似有隐忧。)
+	刘备: (生鱼虽鲜，似有隐忧。)[voice:liubei_shengyusuixian]
 	do GameManager.costHp(10)
 	提示: 因为食用了生鱼，你的体力值下降了。
 	do eatFish1(false)
 - 避免生食并询问公务[highlight=true]
 	do chendeng.showHeart(GameManager.sav.chendenfav)
-	刘备: 你的盛情，我心领了，但肠胃不惯生食，还是算了吧。元龙，你近日似有烦忧，可与公务有关？不妨与我一谈。  
+	刘备: 你的盛情，我心领了，但肠胃不惯生食，还是算了吧。元龙，你近日似有烦忧，可与公务有关？不妨与我一谈。[voice:liubei_gongwubufangyitan]
 
 	陈登: 主公谨慎，我独享便是！不过是些琐事，不值一提，主公不必挂心。[voice:chenden_zhugongjinshen]
 
-	刘备: 元龙自得其乐，备亦欣然。 
-	刘备: （元龙似有隐情，改日再问吧。）  
+	刘备: 元龙自得其乐，备亦欣然。[voice:liubei_beiyixinran]
+	刘备: （元龙似有隐情，改日再问吧。） [voice:liubei_yuanlonggairi]
 
 	do GameManager.sav.BENTUPAI.ChangeSupport(5)
 	提示: 士族派忠诚+5，虽然你拒绝共食生鱼，陈登欣赏刘备坦诚。  
@@ -135,7 +136,7 @@ do chendeng.hide()
 
 ~ 陈登赞助
 陈登: 主公，徐州虽然事务繁杂，但主公无需频至议事厅，我与诸僚自然会化解。[voice:chenden_yuzhuliao]
-刘备: 徐州民心动荡，皆因生计艰难所致，若能救助他们，我受点累没什么
+刘备: 徐州民心动荡，皆因生计艰难所致，若能救助他们，我受点累没什么[voice:liubei_woleimeism]
 陈登: 主公对徐州百姓关心，我深感佩...[voice:chenden_zhugongguanxinxuzhou]
 陈登: 我是这里大族，并且是一个徐州人...[voice:chenden_woshixuzhouren]
 陈登: 自然我得承担一个大族责任和义务...[voice:chenden_zirandeicengdan]
@@ -148,15 +149,16 @@ do chendengWantUpLevel()
 
 ~ 陈登爱吃鱼2
 do chendeng.showEX=false
-刘备: 元龙，又见鱼脍，公务繁忙，你脸色蜡黄，莫非因生鱼片而起？
+刘备: 元龙，又见鱼脍，公务繁忙，你脸色蜡黄，莫非因生鱼片而起？[voice:liubei_shengyupianerqi]
 陈登: 主公何言生鱼片之过？公务压心，烦恼伤神，唯有此味解忧！这鱼刚捞，鲜嫩可口，主公可愿再尝？[voice:chenden_shengyuwuguo]
 
-刘备: （元龙嗜脍，豪情不减，然古医书有云，生食宜少，我是否该告诫他？近日陶氏陵墓异动的传闻愈发诡异，莫非与他烦忧有关？）
+刘备: （元龙嗜脍，豪情不减，然古医书有云，生食宜少，我是否该告诫他？近日陶氏陵墓异动的传闻愈发诡异，莫非与他烦忧有关？）[voice:liubei_yufanyouyouguan]
 - 拒绝并提醒陈登，继续询问公务 [highlight=true]
 	do GameManager.changeChendenHeart(-10)
 	do chendeng.showHeart(GameManager.sav.chendenfav)
 
-	刘备: 元龙，生食虽鲜，恐伤身，备肠胃素弱，不敢再尝，劝你亦宜慎之。近日徐州流言四起，陶氏陵墓似有异动，你既掌杂务，可知内情？  
+	刘备: 元龙，生食虽鲜，恐伤身，备肠胃素弱，不敢再尝，劝你亦宜慎之。近日徐州流言四起，陶氏陵墓似有异动，你既掌杂务，可知内情？[voice:liubei_yuanlongshengshisuixian]
+	
 	陈登: 主公之言，我已知晓，然此味半生相伴，戒不下的，哈哈！[voice:chenden_jiebuxiade]
 	#showHeart()
 	#刘备:
@@ -165,14 +167,15 @@ do chendeng.showEX=false
 	
 		陈登: 主公既问，我不敢隐瞒。近日陶谦旧主之墓，尸体竟不翼而飞，恐被盗墓贼所为，士族议论纷纷，我正为此事烦忧。[voice:chenden_taoqianbuyierfei]
 
-		刘备: 陶谦之墓失尸，事关重大，你可有线索？  
+		刘备: 陶谦之墓失尸，事关重大，你可有线索？[voice:liube_taoqianshishi]
 		陈登: 我查到一处可疑之地，在徐州城外墓地附近，主公若有意，可持此信前往一探。[voice:chenden_xiecixin]
 		（他递给刘备一封密信，信封上指明了陶谦墓地所在地）
-		刘备: 既如此，备唯愿你安康，此事我必查清！
+		刘备: 既如此，备唯愿你安康，此事我必查清！[voice:liubei_ruorucibeiweiankang]
 		系统提示: 发现“乱葬岗”，通过城外入口可以前往
 	else
 		陈登: 对了，主公问的那些事不过是些琐事，不值一提，主公不必挂心。  [voice:chenden_zhugongbubiguaxin]
-		刘备: 既如此，备唯愿你安康。  
+		刘备: 既如此，备唯愿你安康。[voice:liubei_ankang2]
+		#qukongge
 
 	do eatFish2(true)
 
@@ -180,10 +183,10 @@ do chendeng.showEX=false
 - 再次尝试生鱼片
 	do GameManager.changeChendenHeart(10)
 	do chendeng.showHeart(GameManager.sav.chendenfav)
-	刘备: 元龙好兴致，备再尝此味。
+	刘备: 元龙好兴致，备再尝此味。[voice:liubei_yuanlonghaoxinzhi]
 	do eatFishSound()
 	陈登: 还是主公懂我，元龙幸甚！[voice:chenden_haishizhugongdongwo]
-	刘备: (鱼脍虽好，但享用后总觉得有一些不舒服）
+	刘备: (鱼脍虽好，但享用后总觉得有一些不舒服）[voice:liubei_yukuaisuihao]
 	do eatFish2(false)
 	do GameManager.costHp(10)
 	提示: 因为食用了生鱼，你的体力值下降了。
@@ -200,9 +203,9 @@ do chendeng.hide()
 
 
 ~ 陈登结尾
-刘备: 陈登，陶谦尸体已于乱葬岗找回，我记忆中他尸身已变，我挥剑与之激战，然一切如梦幻一场。
+刘备: 陈登，陶谦尸体已于乱葬岗找回，我记忆中他尸身已变，我挥剑与之激战，然一切如梦幻一场。[voice:liubei_luanzhangchang]
 陈登: 主公说笑了！人怎会死而复生？若真有此记忆，定是尸气迷乱了心智，引发幻觉，我愚见如此。[voice:chenden_shiqihuanjue]
-刘备: 可是..但那感觉如此真实，似有蹊跷。
+刘备: 可是..但那感觉如此真实，似有蹊跷。[voice:liubei_ganjuezhenshi]
 陈登: 不管真假，主公！您都帮了大忙！陶公尸身找回，士族安稳，荒唐流言可歇了，我感激不尽！[voice:chenden_liuyankexie]
 陈登: 主公也该调养调养，近日操劳过重，望主公早作休息。[voice:chenden_wangzhugongzaoxiuxi]
 游戏提示: 支线任务-尸皇陶谦已完成
@@ -227,27 +230,27 @@ do hearSayEnd()
 
 ~ 发现诡秘怪谈
 do SoundManager.play_sound(sounds.COLLECT_SMALL_JEWEL_3)
-刘备: （我发现了议事厅中某位士人遗留的残篇日记：）
-: 徐州城郊古坟，阴气森然，夜闻鬼哭，风水术士却称其为“龙脉宝地”。怪矣，城中权贵竞相葬此，墓碑林立，似隐秘谋。或传，坟中藏有不可告人之物，引得大族趋之若鹜。士人对此怪象深病其弊，欲求破解之道。若士族邀你共宴，婉拒探询公务，或能获其信任，托付此事。
+刘备: （我发现了议事厅中某位士人遗留的残篇日记：）[voice:liubei_Wofaxianleriji]
+: 徐州城郊古坟，阴气森然，夜闻鬼哭，风水术士却称其为“龙脉宝地”。怪矣，城中权贵竞相葬此，墓碑林立，似隐秘谋。或传，坟中藏有不可告人之物，引得大族趋之若鹜。士人对此怪象深病其弊，欲求破解之道。若士族邀你共宴，婉拒探询公务，或能获其信任，托付此事。[voice:liubei_guaidanyishiting]
 => END!
 
 
 
 ~ 发现场景道具1
 #待润色
-刘备: （我从议事厅的桌上发现了不知谁遗留下来的道具...）
+刘备: （我从议事厅的桌上发现了不知谁遗留下来的道具...）[voice:liubei_yishitingzhuoshang]
 do GameManager.getItemAction.call() 
 => END!
 
 ~ 发现场景道具2
 #待润色
-刘备: （我从书架上发现了不知谁遗留下来的道具...）
+刘备: （我从书架上发现了不知谁遗留下来的道具...）[voice:liubei_shujiadaoju]
 do GameManager.getItemAction.call() 
 => END!
 
 ~ 发现场景道具3
 #待润色
-刘备: （我从竹帘上发现了不知谁遗留下来的道具...）
+刘备: （我从竹帘上发现了不知谁遗留下来的道具...）[voice:liubei_zhuliandaoju]
 do GameManager.getItemAction.call() 
 => END!
 
@@ -271,7 +274,7 @@ if GameManager._boardMode==boardType.boardMode.high and GameManager.sav.chendenc
 	陈登: 主公…牌局即命运…来吧…[voice:chenden_heianyouxi]
 else
 
-	刘备: 元龙，政务繁重，可愿玩局仕诡牌解乏？
+	刘备: 元龙，政务繁重，可愿玩局仕诡牌解乏？[voice:liubei_yuanlongzhengwu]
 	陈登: 太好了，主公！仕诡牌才是真谋略！来，登陪您！[voice:chenden_shiguipai]
 
 
@@ -346,19 +349,19 @@ do SceneManager.changeScene(SceneManager.roomNode.DRILL_GROUND,2)
 ~ 曹豹吕布联姻
 
 吕布: 曹豹将军，快请坐！今晚不谈军务，就你我二人小酌几杯。玄德公把下邳托付给你镇守，我在城外御北，也算替他分忧。来，先干这杯！
-曹豹: 温侯客气。下官奉玄德主公之命守下邳，北面流寇全仰仗温侯铁骑震慑。主公常说，徐州安稳，全靠温侯神勇。
+曹豹: 温侯客气。下官奉玄德主公之命守下邳，北面流寇全仰仗温侯铁骑震慑。主公常说，徐州安稳，全靠温侯神勇。[voice:caobao_wenhoukeqi]
 
 吕布: 将军这话中听。玄德公待我不薄，我非忘恩负义之人。今日请你来，有桩私事商议。
 
-曹豹: 温侯有话但讲，下官听着。
+曹豹: 温侯有话但讲，下官听着。[voice:caobao_wenhouyouhua]
 
 吕布: 我家严氏早逝，身边无人照料。听闻你家千金妙龄贤惠，我想娶她为侧室。非我好色，实乃徐州刚定，丹阳子弟是本地根基，并州旧部是我心腹，两家结亲方能军心合一。玄德公重仁义，知晓后也会认我们是一家人。将军看可行？
 
-曹豹: 温侯抬爱小女，是她的福气，也是曹家荣耀！我早敬温侯为英雄，这门亲再好不过。玄德主公宽厚，听闻必喜，徐州也更稳固。我这就回去安排择日完婚。
+曹豹: 温侯抬爱小女，是她的福气，也是曹家荣耀！我早敬温侯为英雄，这门亲再好不过。玄德主公宽厚，听闻必喜，徐州也更稳固。我这就回去安排择日完婚。[voice:caobao_zheriwanhun]
 
 吕布: 痛快！将军果然爽快！这事咱们先私下定，不声张。玄德公那边我去说，他只会夸我们周全。
 
-曹豹: 正是！徐州上下同心，方能更好。
+曹豹: 正是！徐州上下同心，方能更好。[voice:caobao_xuzhougenghao]
 do SceneManager.changeScene(SceneManager.roomNode.DRILL_GROUND,2)
 => END!
 
@@ -369,39 +372,40 @@ do chenden.showEX=false
 陈登，脸色微黄，咳嗽不止，随行一位老医师跟在一旁。  
 do huatuo.show()
 if GameManager.sav.endPath==GameManager.endPath.xiaopei
-	刘备: 陈登，你怎会来小沛这种地方？
+	刘备: 陈登，你怎会来小沛这种地方？[voice:liubei_chendennizmhui]
 	陈登: 主公，徐州虽暂附吕布，然心向汉室。今日愿携钱粮与士族私兵相助，助公固守小沛，抵御袁术！[voice:chenden_diyuyuanshu]
 
 else
 	陈登: 主公，我愿携钱粮与士族人马助你！[voice:chenden_woyuanzhuni]
-刘备: 元龙生病了仍然愿意帮助我，恩重如山……你的身体是怎么回事？  
+刘备: 元龙生病了仍然愿意帮助我，恩重如山……你的身体是怎么回事？[voice:liubei_yuanlongenzhongrushan]
 陈登: 主公料事如神，我近日腹痛难解，果然因生鱼片而病，途中有先生诊治，方能至此相助。[voice:chenden_fangnengzhici]
-刘备: 元龙所言何人？救你之恩，我当亲自感谢他。
+刘备: 元龙所言何人？救你之恩，我当亲自感谢他。[voice:liubei_jiunizhien]
 陈登: 先生的名字叫华佗，医术超凡，我赖他的药方痊愈，特携其同来！[voice:chenden_huatuo]
-刘备: 华先生神技，救陈登于病痛，我当以重礼谢之！
-华佗: 无需谢我，救人乃医者天职。陈元龙食生鱼过多，肝脉受损，虫疾缠身。老夫以茵陈蒿汤驱虫，已愈，然我观其心未断鱼脍，恐复发难久，主公宜劝其戒之。
+刘备: 华先生神技，救陈登于病痛，我当以重礼谢之！[voice:liubei_huaxianshengshenji]
+华佗: 无需谢我，救人乃医者天职。陈元龙食生鱼过多，肝脉受损，虫疾缠身。老夫以茵陈蒿汤驱虫，已愈，然我观其心未断鱼脍，恐复发难久，大人宜劝其戒之。[voice:huatuo_laofuyiyong]
+#大人
 
 
 #陈登（点头苦笑）：“元化神技，元龙谢之！鱼脍乃吾半生之乐，暂缓可也，戒之难矣！”  
 
-刘备: (华先生之言有理，性命攸关，备当如何……)
+刘备: (华先生之言有理，性命攸关，备当如何……)[voice:liubei_huaxianshengyouli]
 
 - 进行劝说
-	刘备: 陈登，性命为重，鱼脍可缓，备不忍你受病苦。
+	刘备: 陈登，性命为重，鱼脍可缓，备不忍你受病苦。[voice:liubei_chendenburen]
 	陈登: 主公关怀，我非常感动，既有此疾，暂缓便是。[voice:chenden_zanhuanbianshi]
 	提示: 士族派忠诚+5，陈登捐粮万石.  
 
-	华佗: （此人嗜好生鱼难改，此刻也并无诚心戒食，虫疾根未断，再食生，或命不久。)
+	华佗: （此人嗜好生鱼难改，此刻也并无诚心戒食，虫疾根未断，再食生，或命不久。)[voice:huatuo_cirenshengyunangai]
 - 尊重选择[highlight=true]
  
-	刘备: 元龙自有主张，备信你。
+	刘备: 元龙自有主张，备信你。[voice:liubei_yuanlongziyouzhuzhangxinni]
 
 	陈登: 主公信我，元龙必效死！[voice:chenden_bixiaosi]
 
 
 	提示: 士族派忠诚+10，陈登捐粮万石。  
 
-	华佗: (陈元龙不戒脍，恐难长寿，老夫尽力矣。)
+	华佗: (陈元龙不戒脍，恐难长寿，老夫尽力矣。)[voice:huatuo_laofujinlile]
 do chenden.hide()
 do mizhu.hide()
 do chendenFinal()
