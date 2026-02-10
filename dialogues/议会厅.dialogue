@@ -120,7 +120,7 @@ do chendeng.showEX=false
 	陈登: 主公谨慎，我独享便是！不过是些琐事，不值一提，主公不必挂心。[voice:chenden_zhugongjinshen]
 
 	刘备: 元龙自得其乐，备亦欣然。[voice:liubei_beiyixinran]
-	刘备: （元龙似有隐情，改日再问吧。） [voice:liubei_yuanlonggairi]
+	刘备: （元龙似有隐情，改日再问吧。）[voice:liubei_yuanlonggairi]
 
 	do GameManager.sav.BENTUPAI.ChangeSupport(5)
 	提示: 士族派忠诚+5，虽然你拒绝共食生鱼，陈登欣赏刘备坦诚。  

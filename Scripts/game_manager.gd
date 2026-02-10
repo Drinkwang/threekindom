@@ -346,6 +346,9 @@ func _enterDay(value=true):
 		sav.isVisitScholar=false
 		sav.randomIndex=randi_range(0,3)
 		sav.alreadyHP=0	
+		
+		
+		sav.policyExcute=false
 		if sav.xuzhouCD>0:
 			sav.xuzhouCD-=1
 
@@ -1401,7 +1404,7 @@ func enterBoardGame():
 
 
 const boardDialogue = preload("res://dialogues/桌游.dialogue")
-var rewardPanel:bool=false
+#var rewardPanel:bool=false
 func showBoardGameDialogue():
 	
 

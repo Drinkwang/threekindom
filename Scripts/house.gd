@@ -411,7 +411,7 @@ func getrecommendStr(index):
 		elif rindex==1:
 			Rstr=tr("可以选择武将进行升级，确保在军事行动中拥有更强的作战能力。")
 		elif rindex==2:
-			Rstr=tr("可以购买增益类道具在军事行动中取得更大的优势。	")
+			Rstr=tr("可以购买增益类道具在军事行动中取得更大的优势。")
 	elif index==3:
 		if rindex==0:
 			Rstr=tr("完成演武场、府邸、议事厅高阶基建，可获取更强属性增益")

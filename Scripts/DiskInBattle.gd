@@ -486,7 +486,7 @@ func settleGame(end,issuccess):
 	#如果道具用完，则改成不用道具
 	
 	#暂时迁移过来一个，另外二个保留在下面，防止有啥bug
-	if GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.useItem and GameManager.sav.useItemInBattle==true:
+	if GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.useItem and GameManager.sav.useItemInBattle==true and GameManager.currenceScene.battle_pane._mode==SceneManager.bossMode.none:
 		GameManager.sav.extraCureenTaskCNum+=1
 		refreshHideBattleTask()
 	if GameManager.sav.useItemInBattle==true:
@@ -526,7 +526,7 @@ func settleGame(end,issuccess):
 		GameManager.sav.extraCureenTaskCNum+=_rewardPanel.coinCost
 		refreshHideBattleTask()
 		
-	elif GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.dontLoseGame and sussusss.radian>=360:
+	elif GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.dontLoseGame and sussusss.radian>=360 and GameManager.currenceScene.battle_pane._mode==SceneManager.bossMode.none:
 		GameManager.sav.extraCureenTaskCNum+=1
 		refreshHideBattleTask()
 	if GameManager.sav.targetResType==GameManager.ResType.stayFight and GameManager.currenceScene.battle_pane._mode==SceneManager.bossMode.none:
@@ -558,7 +558,7 @@ func settleGame(end,issuccess):
 		
 	else:
 		
-		if GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.loseGame or GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.dontLoseGame:
+		if GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.loseGame or GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.dontLoseGame and GameManager.currenceScene.battle_pane._mode==SceneManager.bossMode.none: 
 			GameManager.sav.extraCureenTaskCNum+=1
 			refreshHideBattleTask()
 		
@@ -686,11 +686,14 @@ func refreshPage():
 #定义一个枚举，然后显示当前win还是false
 #得保存
 
+@onready var battlepanel: battlePanel = $".."
+
+
 @onready var se_task_hbox: HBoxContainer = $taskHbox
 
 
 func refreshHideBattleTask():
-	if GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.none:
+	if GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.none or battlepanel._mode!=SceneManager.bossMode.none:
 		se_task_hbox.hide()
 	else:
 		se_task_hbox.show()
@@ -708,7 +711,7 @@ func refreshHideBattleTask():
 		
 		
 func refreshTempHideBattleTask():
-	if GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.none:
+	if GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.none or battlepanel._mode!=SceneManager.bossMode.none:
 		se_task_hbox.hide()
 	else:
 		se_task_hbox.show()

@@ -531,8 +531,9 @@ func visitScholar():
 	#播放高山流水音效
 	#离开大儒辩经，取消高山流水音效
 	if GameManager.sav.have_event["firstVisitScholarsEnd"]==false:
+		#bug
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大儒辩经的剧情")
-	if GameManager.sav.have_event["大儒支线1"]==true and GameManager.sav.have_event["大儒辩经启动词1"]==false:
+	elif GameManager.sav.have_event["大儒支线1"]==true and GameManager.sav.have_event["大儒辩经启动词1"]==false:
 		GameManager.sav.have_event["大儒辩经启动词1"]=true
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大儒辩经支线1")
 	elif GameManager.sav.have_event["大儒支线2"]==true and GameManager.sav.have_event["大儒辩经启动词2"]==false:	

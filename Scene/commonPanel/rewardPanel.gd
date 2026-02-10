@@ -223,7 +223,7 @@ func _on_button_button_down():
 		TooltipManager.unregister_tooltip(ui)
 	await get_tree().create_timer(0.5).timeout
 	#结算完了
-	GameManager.rewardPanel=false
+	#GameManager.rewardPanel=false
 	
 	#endbattle.emit()
 	queue_free()

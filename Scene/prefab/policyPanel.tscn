@@ -220,6 +220,7 @@ offset_right = 530.0
 offset_bottom = -378.0
 grow_horizontal = 2
 grow_vertical = 2
+current_tab = 0
 tab_count = 2
 tab_0/title = "命令面板"
 tab_1/title = "法律法规"

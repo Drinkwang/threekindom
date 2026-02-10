@@ -44,7 +44,7 @@ func show_tied_scene(tied_scene) -> TiredPanel:
 
 ## Show the configured dialogue balloon
 func new_reward( title: String = "") -> rewardPanel:
-	GameManager.rewardPanel=true
+	#GameManager.rewardPanel=true
 	var balloon_path: String# = DialogueSettings.get_setting(&"balloon_path", _get_example_balloon_path())
 	if not ResourceLoader.exists(balloon_path):
 		balloon_path = _get_example_balloon_path()

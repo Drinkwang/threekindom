@@ -127,7 +127,24 @@ theme_override_font_sizes/italics_font_size = 38
 theme_override_font_sizes/mono_font_size = 38
 theme_override_font_sizes/normal_font_size = 38
 theme_override_font_sizes/bold_font_size = 38
-text = "Dialogue..."
+text = "Dialogue...
+1
+1
+1
+1
+1
+1
+
+1
+1
+1
+1
+1
+1
+1
+1
+
+1"
 
 [node name="Responses" type="MarginContainer" parent="Balloon"]
 layout_mode = 1

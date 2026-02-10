@@ -246,7 +246,7 @@ dialogue_start = "泰山诸将任务开始"
 
 [node name="陈群" parent="." instance=ExtResource("7_7mriv")]
 visible = false
-position = Vector2(1282, 705)
+position = Vector2(728, 655)
 showName = "陈群"
 dialogue_doubleclick = "second"
 txt2d = ExtResource("6_8cvew")
@@ -256,7 +256,7 @@ dialogue_start = "点击陈群"
 
 [node name="point" type="Node2D" parent="."]
 visible = false
-position = Vector2(1290, 798)
+position = Vector2(728, 749)
 rotation = -4.71239
 scale = Vector2(0.5, 0.5)
 
