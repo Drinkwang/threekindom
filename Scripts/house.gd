@@ -52,7 +52,13 @@ func _ready():
 	#目前没有调用新一天开始重置选项，放在了休息
 	#每次睡眠起床都调用这个选项
 	
-	
+	if GameManager.sav.have_event["chaoMizhuEnd"]==true and GameManager.sav.isGetCoin==false and GameManager.sav.currenceValue>1:
+
+		
+		demo_end_v.show()
+		demo_end_v.play()		
+		
+
 @onready var bti_rect = $btiRect
 @onready var bit_player = $bitPlayer
 
@@ -65,6 +71,10 @@ func xiaopeiStart():
 	GameManager.sav.targetTxt="撑过天数：{currence}/{target}"
 	GameManager.sav.TargetDestination="rest"
 	#暂时先这样写
+	
+@onready var demo_end_v: VideoStreamPlayer = $demoEnd
+	
+	
 func _initData():
 	
 	GameManager.play_BGM()
@@ -104,12 +114,18 @@ func _initData():
 	
 	#记得demo注销
 	if GameManager.sav.have_event["chaoMizhuEnd"]==true and GameManager.sav.isGetCoin==false and GameManager.sav.currenceValue>1:
-		#title.show()
-		#demo_end.show()
-		#hp_panel.hide()
-		#res_panel.hide()
-		#support_panel.hide()
-		#return
+		title.show()
+		demo_end.show()
+		hp_panel.hide()
+		res_panel.hide()
+		support_panel.hide()
+		SoundManager.stop_all_ambient_sounds()
+		SoundManager.stop_music()
+		
+		#demo_end_v.show()
+		#demo_end_v.play()		
+		
+		return
 		pass
 	if control.visible==true:	
 		items_in_scene.showItems()	
@@ -149,6 +165,7 @@ func _initData():
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"关羽回来")
 				return
 			GameManager.sav.isGetCoin=true
+			GameManager.resideValue=tr("大人今日收入为{_coin}，招募的士兵为{_labor}").format({"_coin":GameManager.sav.coin_DayGet,"_labor":GameManager.sav.labor_DayGet})
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"今日收入为")
 	control._processList(initData)
 	
@@ -259,7 +276,7 @@ func _on_video_player_finished():
 	hp_panel.show()
 	res_panel.show()
 	support_panel.show()
-	GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.KESULU]=tr("回府邸召见陶商、陶应，借税率事宜打探二人虚实，拆解梦境的预示")
+	GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.KESULU]=tr("召见陶商、陶应，解梦境预示")
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁梦境结束")
 
 
@@ -544,13 +561,13 @@ func extraTask():
 	if GameManager.sav.day>6 and GameManager.sav.day<=9:
 		if GameManager.sav.have_event["支线发现羊尸"]==false:
 			GameManager.sav.have_event["支线发现羊尸"]=true
-			GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.KESULU]=tr("前往城外荒地调查被啃食的羊尸，查明是否为妖邪作祟，以此决断是否采纳主簿掩埋之计。")
+			GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.KESULU]=tr("探查城外羊尸，判断妖邪与否")
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"支线开始")	
 		#将任务可检索设置成true
 		#如果任务为false  设置成true 并触发对话
 		elif GameManager.sav.have_event["支线触发完毕查出锦囊"]==true and GameManager.sav.have_event["支线触发完毕查出锦囊休息"]==false:
 			GameManager.sav.have_event["支线触发完毕查出锦囊休息"]=true
-			GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.KESULU]=tr("返回府邸，查探张阎发狂刺杀陶氏的真相")
+			GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.KESULU]=tr("回府邸彻查张阎刺陶一案")
 	if GameManager.sav.have_event["查出药囊后休息前"]==false:  #支线都不该在血战模式后触发
 		var to_inventory= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.黄麻药囊)
 		var quantity=InventoryManager.has_item_quantity(to_inventory)
@@ -567,15 +584,15 @@ func extraTask():
 		var num2=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.礼记笺疏)	
 		if(GameManager.sav.have_event["大儒支线1"]==false):
 			GameManager.sav.have_event["大儒支线1"]=true
-			GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.DARU]=tr("前往近郊拜访经学泰斗郑玄，借其名望以安徐州士人之心，稳固统治根基。")
+			GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.DARU]=tr("拜访郑玄，借名望安定徐州人心")
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大儒辩经1启动之前")	
 		elif GameManager.sav.have_event["大儒支线2"]==false and num1>=1 and GameManager.sav.have_event["泰山诸将曹操消息"]==true:
 			GameManager.sav.have_event["大儒支线2"]=true
-			GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.DARU]=tr("与郑玄探讨《礼记》之道，以经义化解徐州士人的怨怼，平息民生动荡。")
+			GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.DARU]=tr("与郑玄论《礼记》，安抚徐州士人")
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大儒辩经2启动之前")			
 		elif GameManager.sav.have_event["大儒支线3"]==false and num2>=1 and GameManager.sav.have_event["基建项目开启"]==true:
 			GameManager.sav.have_event["大儒支线3"]=true
-			GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.DARU]=tr("前往郑玄隐居处，聆听其注《周礼》之心得，纵论治国之道，受其教化。")
+			GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.DARU]=tr("前往郑玄隐居处，听学《周礼》")
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大儒辩经3启动之前")
 		elif GameManager.sav.have_event["泰山预备"]==true and GameManager.sav.have_event["最终泰山"]==false and GameManager.sav.taishanWait>=2 and GameManager.sav.have_event["夏侯偷马"]==false:
 			GameManager.sav.taishanWait=50

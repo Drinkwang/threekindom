@@ -499,7 +499,7 @@ func select2(issuccuss):
 		
 		if GameManager.sav.have_event["曹豹支线2"]==true and GameManager.sav.have_event["曹豹正确选择1"]==true:
 			
-			GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.CAOBAO]=tr("依曹豹之言，夜探城外黄帝遗迹，揭露大族勾结匠人借修缮之名盗宝的阴谋。")
+			GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.CAOBAO]=tr("夜探黄帝遗迹，揭穿盗宝阴谋")
 	else:
 		GameManager.sav.have_event["曹豹正确选择2"]=false
 
@@ -908,7 +908,7 @@ func jilinEscape():
 func finalBossBefore():
 	GameManager.sav.have_event["boss战开始"]=true
 	
-	GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.BADAO]=("前往街道寻得售卖仕诡牌的商人，开启终极仕诡牌对局")
+	GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.BADAO]=("寻访商人，揭示仕诡牌真相")
 	caobao.hide()
 
 func enterContest(mode):

@@ -533,6 +533,7 @@ do sideQuestReturnD(false)
 
 
 ~ 遇到诡异牌1
+do people.showEX=false
 种田老农: 大人仁德，徐州渐安！[voice:laolong_darenrende]
 刘备: 老人家，最近状态如何？可有啥新鲜玩意儿消遣？[voice:liubei_keyouxinxianwanyi]
 
@@ -546,6 +547,7 @@ do meetBoardGame(1)
 
 
 ~ 遇到诡异牌2
+do people.showEX=false
 酒馆老板: 州牧大人，酒肆生意靠您恩泽才红火！[voice:nv_zhousidaren]
 刘备: 商家，市井可有新鲜事？仕诡牌玩得如何？[voice:liubei_shangjiashijinkeyouxinxianshi]
 酒馆老板: 大人！仕诡牌全城都疯玩！听说有种“诡异卡”，稀罕得很，能翻盘逆天！有人在牌局里赢到，个个眼红！您试试找城中权贵，他们牌技高，也能赢到好卡！[voice:nv_paijigao]
@@ -559,7 +561,7 @@ do meetBoardGame(2)
 
 
 ~ 遇到诡异牌3
-
+do people.showEX=false
 卖菜小贩: 最近生意很难做啊...都是仕诡牌惹的祸！[voice:liumin_shiguipaidehuo]
 刘备: 城中近况如何？仕诡牌还流行吗？最近怎么没看到人玩[voice:liubei_shiguipaimeikandaorenwan]
 卖菜小贩: 大人，仕诡牌…让全城都着魔了！人人玩得眼红，我已经不玩了，但连我都梦见牌在说话！[voice:liumin_lianwodoumengdao]
@@ -627,6 +629,7 @@ do getXuanYin()
 
 
 ~ 玄阴秘境
+do people.showEX=false
 村民: 主公仁德泽被徐州，草民感戴！城外有山，名字叫做玄阴秘境，终年云雾不散，村人莫敢近。或藏重宝，愿为主公大业添助！[voice:caomin_zhugongrende]
 刘备: 玄阴秘境？此地有何不同？[voice:liubei_cidihebutong]
 村民: 草民我也不清楚，只曾听先辈所说，那山中有石台颇为不凡，似蕴天机。主公若感兴趣，可以前往。[voice:nongmin_caominbuqingchu]

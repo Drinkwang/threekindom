@@ -1214,7 +1214,7 @@ do jilinEscape()
 - 3.炉火纯青[istrain=true]
 	系统提示: 当前试玩版不开放，尽请期待
 	=> 比武训练选项2
-	do enterContest(2)
+	#do enterContest(2)
 - 取消
 	do GameManager.trainGeneral=""
 	=> 比武练兵选项

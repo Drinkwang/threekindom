@@ -82,7 +82,7 @@ func _on_texture_rect_gui_input(event):
 
 	if(event is InputEventMouseButton and event.button_index==1):
 		#$"TextureRect/翻页按钮".show()
-		$TextureRect/realBox.show()
+		#$TextureRect/realBox.show()
 		$"TextureRect/读完了按钮".show()
 		print("done")
 		#DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
@@ -97,6 +97,6 @@ const _翻阅 = preload("res://Asset/sound/翻阅.mp3")
 func _on_翻页按钮_button_down():
 	SoundManager.play_sound(_翻阅)
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,pageDownDialog)
-	$"TextureRect/realBox/正常文本".text=context
-	$TextureRect/realBox.hide()
+	#$"TextureRect/realBox/正常文本".text=context
+	#$TextureRect/realBox.hide()
 	pass # Replace with function body.

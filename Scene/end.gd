@@ -48,7 +48,7 @@ func initBattleRect():
 	elif GameManager.trainGeneral=="关羽":
 		changeColor(Color.GREEN,tr(GameManager.trainGeneral))
 		caocao.changeWaitTime(0.0060)
-	elif GameManager.trainGeneral=="赵云":
+	elif GameManager.trainGeneral=="无名":
 		changeColor(Color.WHITE,tr(GameManager.trainGeneral))
 		caocao.changeWaitTime(0.0055)
 	else:
@@ -89,7 +89,7 @@ func changeColor(color,label):
 		ai_controller.ai_id=2
 		ai_controller.ai_type=ai_controller.AIType.MIRROR
 		
-		if GameManager.trainGeneral=="赵云":
+		if GameManager.trainGeneral=="无名":
 			caocao.changeWeapon(yinyueqiang)
 			ai_controller.mirrorWaitTime=1.2
 		elif GameManager.trainGeneral=="关羽":

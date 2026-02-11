@@ -718,18 +718,18 @@ func sideQuestReturnD(iswin):
 #-1 0 小试牛刀开启 1小试牛刀通过 2 对局试炼开启 3对局试验通过 4 诡秘怪谈开启 5诡秘怪谈通过
 func meetBoardGame(_value):
 	if _value==1:
-		GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.BADAO]=tr("前往寻访曹豹、陈登、糜竺，开启仕诡牌 “小试牛刀” 模式，体验城中流行的卡牌对决。")
+		GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.BADAO]=tr("寻访城内卡牌高手，体验仕诡牌对局")
 		GameManager.sav.caobaocardgame=0
 		GameManager.sav.mizhucardgame=0
 		GameManager.sav.chendencardgame=0
 	elif _value==2:
 		
-		GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.BADAO]=tr("挑战曹豹、陈登、糜竺的仕诡牌 “对局试炼” 模式，赢取稀有的诡异卡。")
+		GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.BADAO]=tr("挑战仕诡牌对局，赢取诡异卡")
 		GameManager.sav.caobaocardgame=2
 		GameManager.sav.mizhucardgame=2
 		GameManager.sav.chendencardgame=2	
 	elif _value==3:
-		GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.BADAO]=tr("开启仕诡牌 “诡秘乱局” 模式，对战着魔者，以卡牌之力破解诡异影响")
+		GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.BADAO]=tr("仕诡牌「诡秘乱局」，破解诡异之力")
 		InventoryManager._remove_item(GameManager.inventoryPackege,InventoryManagerItem.仕诡卡尸皇,1)
 		InventoryManager._remove_item(GameManager.inventoryPackege,InventoryManagerItem.仕诡卡骨龙,1)
 		InventoryManager._remove_item(GameManager.inventoryPackege,InventoryManagerItem.仕诡卡血姬,1)

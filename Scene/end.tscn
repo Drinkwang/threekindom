@@ -359,7 +359,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="caocao" parent="." node_paths=PackedStringArray("hparr") instance=ExtResource("13_y24ds")]
 position = Vector2(1015, 133)
-rotation = 3.22886
+rotation = 6.07375
 _name = 1
 hparr = [NodePath("../CanvasInventory/CAOCAOBox/HBoxContainer/ColorRect"), NodePath("../CanvasInventory/CAOCAOBox/HBoxContainer/ColorRect2"), NodePath("../CanvasInventory/CAOCAOBox/HBoxContainer/ColorRect3")]
 color = Color(0.22331, 1.90598e-05, 0.881381, 1)
@@ -367,7 +367,7 @@ hp = 2
 
 [node name="liubei" parent="." node_paths=PackedStringArray("hparr") instance=ExtResource("13_y24ds")]
 position = Vector2(1020, 859)
-rotation = 3.22886
+rotation = 6.07375
 hparr = [NodePath("../CanvasInventory/CAOCAOBox/Control/HBoxContainer/ColorRect"), NodePath("../CanvasInventory/CAOCAOBox/Control/HBoxContainer/ColorRect2"), NodePath("../CanvasInventory/CAOCAOBox/Control/HBoxContainer/ColorRect3")]
 color = Color(1, 0, 0, 1)
 hp = 2

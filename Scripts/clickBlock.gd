@@ -141,7 +141,7 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 		return
 	#大概率是后面二项导致的	
 	print("dialogBegin "+var_to_str(DialogueManager.dialogBegin))
-	print("rewardPanel "+var_to_str(GameManager.rewardPanel))
+
 	if(event is InputEventMouseButton and event.button_index==1 and dialogue_start.length()>0):
 		SoundManager.play_sound(sounds.SFX_FAST_UI_CLICK)
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)

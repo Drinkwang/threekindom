@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://ccl8v8vlwyauo"]
+[gd_scene load_steps=37 format=3 uid="uid://ccl8v8vlwyauo"]
 
 [ext_resource type="Script" path="res://Scripts/house.gd" id="1_5nyes"]
 [ext_resource type="Resource" uid="uid://bmuiri1yjrdba" path="res://dialogues/屋舍.dialogue" id="2_6rtve"]
@@ -31,6 +31,8 @@
 [ext_resource type="Texture2D" uid="uid://rmaibsw1yjqd" path="res://Asset/城镇建筑/5_yellow.png" id="25_385i8"]
 [ext_resource type="Texture2D" uid="uid://stke52ld5got" path="res://Asset/人物/泰山军官.png" id="25_xyni8"]
 [ext_resource type="Texture2D" uid="uid://j3kowe2tkoss" path="res://Asset/人物/关羽open.png" id="30_l2y66"]
+[ext_resource type="VideoStream" path="res://Asset/vedio/2月11日_1_ (1).ogv" id="32_mcnqn"]
+[ext_resource type="Shader" path="res://Scene/test.gdshader" id="32_mpwvk"]
 
 [sub_resource type="Animation" id="Animation_rms3s"]
 resource_name = "YELLOWGUILD"
@@ -52,6 +54,13 @@ tracks/0/keys = {
 _data = {
 "YELLOWGUILD": SubResource("Animation_rms3s")
 }
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t4pje"]
+shader = ExtResource("32_mpwvk")
+shader_parameter/bg_threshold = 0.1
+shader_parameter/edge_threshold = 0.2
+shader_parameter/stroke_pixels = 1.43
+shader_parameter/stroke_color = Vector3(0, 0, 0)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_5nyes")
@@ -111,17 +120,21 @@ texture = ExtResource("6_5idfh")
 
 [node name="DemoEnd" type="Button" parent="CanvasLayer"]
 visible = false
-offset_left = 657.0
-offset_top = 416.0
-offset_right = 971.0
-offset_bottom = 523.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -349.0
+offset_top = -94.0
+offset_right = 17.0
+offset_bottom = 94.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(2, 2)
+size_flags_horizontal = 4
 text = "【试玩版体验结束】
-感谢您的参与！
-存档可继承至正式版
-敬请期待完整内容发布！"
+感谢您的参与！"
 
 [node name="hpPanel" parent="CanvasLayer" instance=ExtResource("10_vpbf8")]
 offset_left = 1395.0
@@ -317,5 +330,12 @@ txt2d = ExtResource("30_l2y66")
 boardType = 1
 dialogue_resource = ExtResource("21_eyp0q")
 dialogue_start = ""
+
+[node name="demoEnd" type="VideoStreamPlayer" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_t4pje")
+offset_right = 1920.0
+offset_bottom = 1088.0
+stream = ExtResource("32_mcnqn")
 
 [connection signal="button_down" from="CanvasLayer/DemoEnd" to="." method="_on_demo_end_button_down"]

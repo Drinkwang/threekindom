@@ -504,9 +504,11 @@ do GameManager.policyAction=null
 陈登: 主公，得道多助，失道寡助。袁术、公孙瓒已失道义，难成气候。况且公孙瓒杀刘氏皇族，已令我方失了道义依凭。弃之乃明智之举，可保我名声。[voice:chenden_baominshen]
 刘备: 确实，这也是我曾离他而去的缘由之一。[voice:liubei_yuanyouzhiyi]
 糜竺: 陶谦也曾多次提及，此举仅为购粮，不过军阀间的利益外交。本就是远交近攻，各取所需罢了。[voice:mizhu_liyijiaohuan]
-刘备: 好，我能接受这样的说法，但最后一个问题，陈登，徐州士族会否有异议？[voice:liubei_xuzhoushizushifouyiyi]
-#改成是否
-陈登: 主公无需忧虑。士族重视名利与长远之计。只要粮食危机得解，徐州局势稳定，他们自会支持。[voice:chenden_shizuzhongshi]
+刘备: 好，我能接受这样的说法，但最后一个问题，陈登，徐州士族会否有异议？毕竟，曹操曾屠戮徐州..[voice:liubei_xuzhoushizushifouyiyi]
+#毕竟曹操曾屠戮徐州
+#陈登: 主公无需忧虑。士族重视名利与长远之计。只要粮食危机得解，徐州局势稳定，他们自会支持。[voice:chenden_shizuzhongshi]
+
+陈登: 主公无需忧虑，此前曹操曾屠戮徐州，不过是他为报私仇所为，袁绍素来宽仁，如今正好缓和旧怨，借袁绍之势约束曹操，为徐州求得一份和平，士族们深谙此理，绝不会有异议。[voice:chenden_jieyuanshao]
 刘备: 好，既然如此，糜竺，我们便向袁绍购粮。但此事需谨慎行事，确保无虞。[voice:liubei_quebaowuyu]
 糜竺: 主公英明！我即刻安排使者与商会前往邺城，与袁绍商定详情。[voice:mizhu_qianwangyechen]
 刘备: 好，按你们之计施行。粮食问题刻不容缓，徐州稳定为先。[voice:liubei_xuzhouwendingweixian]
@@ -526,11 +528,13 @@ do collectMoneyComplete()
 do mizhuHide()
 => END!
 
-#未润色
+#未润色 把曹操屠杀徐州加入这段剧情里 
 ~ 与陈登对话2
+#之前曹操曾经屠戮徐州
 刘备: 陈登，我还是有些忧虑。改换门庭，徐州士族真不会有异议吗？[voice:liubei_gaihuanmenting]
 陈登: 主公无需担忧。实则改换门庭正是许多士族的期盼。[voice:chenden_gaihuanmentin]
 刘备: 此话怎讲？[voice:liubei_cihuazmjiang]
+#而曹操之前是因为私仇才屠戮的徐州，但曹操只是袁绍手中一员大将，当时是为了报私仇，如今我们加入袁绍阵营，反而能缓解仇恨，为徐州带来和平
 陈登: 如今士族对袁术与公孙瓒早已失了信心。公孙瓒杀德高望重的刘虞，寒了天下之心；袁术则妄图称帝，已埋下灭亡之兆。徐州若随他们而行，无异于自蹈坟墓。[voice:chenden_rujinyijinhanxin]
 刘备: 嗯，明白了。[voice:liubei_enmingbaile]
 #空格

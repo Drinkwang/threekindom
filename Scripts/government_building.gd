@@ -286,7 +286,8 @@ func mizhenGift():
 
 func subHoldWoold():
 	GameManager.sav.have_event["支线触发完毕查出锦囊"]=true
-	GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.KESULU]=tr("明日返回府邸，查探张阎发狂刺杀陶氏的真相")
+	#待改
+	GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.KESULU]=tr("回府邸彻查张阎刺陶一案")
 	pass
 	#DialogueManlogue_balloon(dialogue_resource,"城外克苏鲁事件触发")
 	#dialog
@@ -484,7 +485,7 @@ func eatTea2(issuccuss=false):
 	if issuccuss==true:
 		GameManager.sav.have_event["糜竺正确选择2"]=true
 		if GameManager.sav.have_event["糜竺正确选择2"]==true and GameManager.sav.have_event["糜竺正确选择1"]==true:
-			GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.MIZHU]=tr("携铜钥赴糜家的郊外秘宅，探糜贞疯癫之因与糜家隐情")
+			GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.MIZHU]=tr("持铜钥入糜家秘宅，探寻糜贞疯癫缘由")
 	else:
 		GameManager.sav.have_event["糜竺正确选择2"]=false
 
@@ -1291,7 +1292,7 @@ func holdSac():
 		"money": 0,
 		"population": 0
 	}
-	GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.KESULU]=tr("携药囊赴校场见曹豹，深究张阎事件隐情与毒物之谜。")
+	GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.KESULU]=tr("携药囊见曹豹，调查张阎毒杀之谜")
 	#GameManager.ScoreToItem()
 	_reward.showTitileReward(tr("恭喜你，你获得-黄麻药囊"),items)	
 	
