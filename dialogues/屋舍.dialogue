@@ -102,6 +102,8 @@ do demoFinish()
 
 => END!
 
+
+
 ~ 新的一天
  : 新的一天又开始了，幕僚们已经把该天需要处理的政务放进我的政务面板了[voice:liubei_muliaoyijing]
 => END!
@@ -412,3 +414,9 @@ do switchGatepost()
 
 
 
+~ demo结束
+: 演示流程已结束，是否退出游戏？
+- 确认退出
+	do get_tree().quit()
+- 取消
+=> END!

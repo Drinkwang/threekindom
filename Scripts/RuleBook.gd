@@ -83,7 +83,7 @@ func _on_texture_rect_gui_input(event):
 	if(event is InputEventMouseButton and event.button_index==1):
 		#$"TextureRect/翻页按钮".show()
 		#$TextureRect/realBox.show()
-		$"TextureRect/读完了按钮".show()
+		#$"TextureRect/读完了按钮".show()
 		print("done")
 		#DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
 	pass # Replace with function body.

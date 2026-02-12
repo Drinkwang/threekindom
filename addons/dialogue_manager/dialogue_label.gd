@@ -54,7 +54,7 @@ var dialogue_line:
 			#var targetText=dialogue_line.text
 
 			var regex = RegEx.new()
-
+			
 			var compile_ok = regex.compile(r"\[voice:([^\]]+)\]")
 	
 						# 检查正则表达式是否编译成功（避免规则写错）

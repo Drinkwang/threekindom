@@ -1181,7 +1181,16 @@ func initSetting():
 		_setting=load(path)
 
 		_load_settings()#把语言系统设置，然后应用分辨率 应用全屏，引用音效、没了
-	#else:
+	else:
+		_setting = SettingsResource.new()
+		# 可选：自定义默认值（如果不想用类里的默认值）
+		# _setting.peopleVlan = "zh"
+		# _setting.resolution = Vector2i(1920, 1080)
+		# _setting.is_fullscreen = false
+		# _setting.sound_volume = 0.8
+		
+		# 保存默认配置到文件（避免下次启动重复创建）
+		ResourceSaver.save(GameManager._setting,"user://save_data_setting.tres")
 		
 func _load_settings():
 	

@@ -146,7 +146,7 @@ func _initData():
 		if GameManager.sav.have_event["firstNewEnd"]==true:
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新手教程结束_阴谋论")
 			return
-	elif GameManager.sav.day==2:
+	elif GameManager.sav.day==2 and GameManager.sav.have_event["firstParliamentary"]==false:
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
 	
 	if GameManager.hearsayID==3:
@@ -295,11 +295,12 @@ func _buttonListClick(item):
 		#显示接下来要点击啥
 		pass
 	elif item.context == "离开":
-		if GameManager.sav.day<5:
+		if GameManager.sav.day<5 and GameManager.sav.have_event["firstMeetingEnd"]==true:
 			if(GameManager.sav.have_event["firstParliamentary"]==true):
 				SceneManager.changeScene(SceneManager.roomNode.STREET,2)
 			else:
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"不能离开")
+					
 		else:
 				SceneManager.changeScene(SceneManager.roomNode.STREET,2)
 		#显示金钱 民心 xx 武将面板

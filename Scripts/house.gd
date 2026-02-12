@@ -372,8 +372,8 @@ func refreshPropertyPanel():
 	contextEx=contextEx+"------------------------------"+"\n"
 	contextEx=contextEx+tr("武将等级（括弧为战斗力）")+"\n"
 	contextEx=contextEx+tr("关羽：lv%d（%d）")%[GameManager.sav.generals[GameManager.RspEnum.ROCK].level,500]+"\n"
-	contextEx=contextEx+tr("张飞：lv%d（%d）")%[GameManager.sav.generals[GameManager.RspEnum.PAPER].level,500]+"\n"
-	contextEx=contextEx+tr("无名：lv%d（%d）")%[GameManager.sav.generals[GameManager.RspEnum.SCISSORS].level,500]+"\n"	
+	contextEx=contextEx+tr("张飞：lv%d（%d）")%[GameManager.sav.generals[GameManager.RspEnum.SCISSORS].level,500]+"\n"
+	contextEx=contextEx+tr("无名：lv%d（%d）")%[GameManager.sav.generals[GameManager.RspEnum.PAPER].level,500]+"\n"	
 	contextEx=contextEx+"------------------------------"+"\n"
 	contextEx=contextEx+tr("当前派系对你的看法")+"\n"
 	
@@ -531,7 +531,7 @@ func fadeInAndOut():
 
 
 func _on_demo_end_button_down():
-	get_tree().quit()
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"demo结束")
 	pass # Replace with function body.
 
 

@@ -259,7 +259,7 @@ func _initData():
 		policy_panel.tab_bar.hide()
 	policy_panel._initData()
 
-	if GameManager.sav.day==2:
+	if GameManager.sav.day==2 and GameManager.sav.have_event["firstMeetingEnd"]==false:
 		control._show_button_5_yellow(1)
 		
 

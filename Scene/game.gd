@@ -9,11 +9,12 @@ func _ready():
 	GameManager.musicId=0
 	SoundManager.play_music(ARVOSTUS)
 	var system_locale	
-	if GameManager._setting==null:
+	if GameManager._setting==null or GameManager._setting.language.length()<=0:
 		system_locale= OS.get_locale_language()
+		#GameManager.initSetting()
 	else:
 		system_locale=GameManager._setting.language
-
+		
 
 	TranslationServer.set_locale(system_locale)
 	if system_locale=="zh_HK" or system_locale=="zh_TW" or system_locale=="lzh":
