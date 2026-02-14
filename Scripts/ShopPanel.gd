@@ -144,6 +144,8 @@ func refreshAlreadySoldWeapon():
 	$HBoxContainer/Control1.refreshSold()
 	$HBoxContainer/Control2.refreshSold()
 	$HBoxContainer/Control3.refreshSold()
+	$HBoxContainer/Control4.refreshSold()
+	$HBoxContainer/Control5.refreshSold()
 func _on_texture_button_2_button_down():
 	GameManager.currenceScene.res_panel.position.x=1404
 	GameManager.currenceScene.res_panel.position.y=611
@@ -153,10 +155,12 @@ func _on_texture_button_2_button_down():
 		GameManager.currenceScene.enterBlackMerchant()
 
 func settleAfter():
-	pass#后续可能会修改
-	#refreshAlreadySoldTxt
 	
-
+	#if selectGoods.isspecial():
+	detail.text=tr("点击商品获取详细信息")
+	buy_button.disabled=true
+	selectGoods=null
+	refreshAlreadySoldWeapon()
 
 func _on_Sold_button_down():
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"是否售出商品")

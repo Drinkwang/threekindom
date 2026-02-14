@@ -88,7 +88,13 @@ func over():
 	isboot=false
 	#reward弹出
 	var _reward:rewardPanel=PanelManager.new_reward()
-	var items=GameManager.ScoreToItem(score/10)
+	var maxScore=15000
+	var items
+	if score>=15000:
+		items=GameManager.ScoreToItem(1500)
+		#reward
+	else:
+		items=GameManager.ScoreToItem(score/10)
 	_reward.showTitileReward(tr("你从郑玄哪里受益良多"),items)
 	texture_button.show()
 	GameManager.sav.isVisitScholar=true

@@ -1436,3 +1436,10 @@ func returnMain():
 func succussAfter():
 	pass
 	
+	
+	
+func hidePeople():
+	mizhu.hide()
+
+func showPeople():
+	mizhu.show()

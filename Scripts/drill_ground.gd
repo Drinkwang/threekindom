@@ -1077,3 +1077,8 @@ func xiaopei():
 	#SoundManager.play_sound(bgs194)	
 	#GameManager.restFadeScene=SceneManager.HOUSE	
 	#GameManager._rest()
+func hidePeople():
+	caobao.hide()
+
+func showPeople():
+	caobao.show()

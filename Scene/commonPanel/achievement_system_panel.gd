@@ -26,7 +26,7 @@ func unlockHighReward():
 
 	if GameManager.sav.have_event["解锁高级成就"]==false:
 		GameManager.sav.have_event["解锁高级成就"]=true
-		for i in range(6,10):
+		for i in range(6,9):
 			achis[i].changeState(achiClass.lockState.unlock)
 	pass
 	#播放解锁声，播完播锁链声音
@@ -40,3 +40,4 @@ func _process(delta: float) -> void:
 
 func _on_exit_button_down() -> void:
 	self.hide()
+	GameManager.currenceScene.showPeople()

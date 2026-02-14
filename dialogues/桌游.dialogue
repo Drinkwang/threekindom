@@ -164,7 +164,9 @@ do enterGame()
 	=> 选择仕诡牌
 - 诡秘成就录
 	do GameManager.showGuimiAchi()
-
+	#: 诡秘成就录已展卷，完成的诡秘宝箱可点击领取嘉奖
+	do GameManager.currenceScene.hidePeople()
+	#do GameManager.currenceScene.showPeople()
 - 重置教程
 	系统提示: 教程已重置
 	do GameManager.clearTutorial()

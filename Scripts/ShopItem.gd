@@ -181,3 +181,15 @@ func _on_gui_input(event):
 		#这里可以加上桌游相关的逻辑
 		GameManager.shopPanel.refreshPage(price,detail)#价格和介绍
 	#pass # Replace with function body.
+func isspecial():
+	var index=0
+	var havedec=(itemstype==InventoryManagerItem.ItemEnum.洞察之镜 or itemstype==InventoryManagerItem.ItemEnum.獬豸圣像)
+	var havesecret=(itemstype==InventoryManagerItem.ItemEnum.市井秘闻 or itemstype==InventoryManagerItem.ItemEnum.市井秘闻_续 or itemstype==InventoryManagerItem.ItemEnum.市井秘闻_终)
+	var havewea=(itemstype==InventoryManagerItem.ItemEnum.雌雄双股剑 or itemstype==InventoryManagerItem.ItemEnum.青龙偃月刀 or itemstype==InventoryManagerItem.ItemEnum.丈八蛇矛)
+	if havedec==true:
+		index=2
+	elif  havesecret==true:
+		index=3
+	elif havewea==true:
+		index=1
+	return index>0

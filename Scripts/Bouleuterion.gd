@@ -230,6 +230,13 @@ func _initData():
 				chendeng.showEX=true
 var costhp=50
 
+func hidePeople():
+	chendeng.hide()
+
+func showPeople():
+	chendeng.show()
+	
+
 func chendenFinal():
 	GameManager.sav.have_event["最终陈登"]=true
 	#获得一些道具
