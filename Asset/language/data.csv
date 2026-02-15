@@ -483,7 +483,7 @@ Xiaopei:
 (资金等于{targetValue}),(Funds equal to {targetValue}),(资金等于{targetValue}),(資金等於{targetValue}),(資金が{targetValue}と等しい),(Средства равны {targetValue})
 (资金超过{targetValue}),(Funds exceed {targetValue}),(资金超过{targetValue}),"(資金超過{targetValue})"" ",(資金が{targetValue}を超える),(Средства больше {targetValue})
 开始议事,Start council,开始议事,開始議事,議事開始,Начать совет
-议事说明,Instructions,仪事说明,議事說明,議事説明,Объяснение
+议事说明,Instructions,议事说明,議事說明,議事説明,Объяснение
 出征,Deploy,出征,出征,出征,Поход
 升级,Upgrade,升级,升級,アップグレード,Уровень
 众人,All,众人,眾人,皆,Все
@@ -497,12 +497,12 @@ Xiaopei:
 主公可以在自己的府邸约见代表，来让政策更容易通过！","The council is a process where the lord discusses with representatives and ministers. The law's approval depends on the support of the factions. Based on the panel data, you can estimate how many will support or oppose, while swing votes may go either way.
 Although in the Three Kingdoms era the lord had the power to decide everything, to successfully enforce a policy, it usually went through internal discussions with support from most factions. The lord can also meet faction leaders before issuing the policy, using rewards or pressure to make them agree.
 The lord can meet representatives at his residence to make the policy easier to pass!
-","仪事是主公和管辖地代表以及臣子商议的过程，根据手下各大派系的支持度得出该法案是否通过的重要流程！
+","议事是主公和管辖地代表以及臣子商议的过程，根据手下各大派系的支持度得出该法案是否通过的重要流程！
 所以此处根据面板数据，知道大体会支持自己的人数和反对自己的人数来确定法案是否通过，而摇摆人数指的是可能会支持，也可能会反对的人
 
 虽然说在三国时代，主公有权决定一切，是绝对的独裁者，但实际上如果想要政策完美落实，主公在外宣布一项‘独裁’的政策时，其实政策已经在内部经过充分的协商，并得到派系大多数人的支持和认同，当然，主公有权在政策发布之前约见那些派系领袖，用利益或者威压逼迫他们做出符合自己认知的决策！
 
-主公可以在自己的府邸约见代表，来让政策更容易通过！","儀事是主公與代表及臣子商議的過程，根據派系支持度決定法案是否通過。依據面板數據，可以知道支持和反對的人數，搖擺不定的人可能支持也可能反對。
+主公可以在自己的府邸约见代表，来让政策更容易通过！","議事是主公與代表及臣子商議的過程，根據派系支持度決定法案是否通過。依據面板數據，可以知道支持和反對的人數，搖擺不定的人可能支持也可能反對。
 雖然在三國時代主公有權決定一切，但實際上，為了政策順利實行，政策會先經過內部協商，並得到大多數派系的支持。主公也可以在政策發布前，約見派系領袖，用利益或威脅讓他們同意。
 主公可以在府邸約見代表，讓政策更容易通過！
 ","議事は、主君が代表者や臣下と話し合うプロセスです。派閥の支持に基づき、法案が通るかどうかが決まります。パネルデータに基づいて、支持する人と反対する人の数を把握し、揺れ動く人はどちらに転ぶか分かりません。

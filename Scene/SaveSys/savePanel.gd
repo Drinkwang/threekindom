@@ -168,3 +168,13 @@ func _on_file_3_gui_input(event):
 		index=3
 		SaveOrLoad()
 	#pass # Replace with function body.
+
+var deleteData=null
+func showDialogueDelete():
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"DeleteFile")
+
+
+
+func confirmDeleteFile():
+	deleteData.confiredelete()
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"存档已删除")

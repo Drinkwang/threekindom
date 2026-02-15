@@ -9,11 +9,19 @@
 ~ 读取存档成功
 系统提示: 存档读取完毕。
 => END
-#~ LoadFile
 
-#- 读档
-#	Nathan: You picked the first one.
-#- 取消
-	Nathan: You picked the second one.
 
-#=> END
+
+
+
+~ DeleteFile
+系统提示: 当前位置检测到已存在的存档文件，删除后将无法恢复，你确定要删除该存档么?
+- 确定删除
+	do confirmDeleteFile()
+- 取消删除
+
+=> END
+
+~ 存档已删除
+系统提示: 当前位置存档已删除！
+=> END

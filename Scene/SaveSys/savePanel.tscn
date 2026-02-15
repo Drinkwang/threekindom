@@ -56,16 +56,19 @@ offset_bottom = 668.87
 custom_minimum_size = Vector2(370, 150)
 layout_mode = 2
 size_flags_horizontal = 0
+index = 0
 
 [node name="file2" parent="Control/HBoxContainer" instance=ExtResource("1_6ch1t")]
 custom_minimum_size = Vector2(370, 150)
 layout_mode = 2
 size_flags_horizontal = 0
+index = 1
 
 [node name="file3" parent="Control/HBoxContainer" instance=ExtResource("1_6ch1t")]
 custom_minimum_size = Vector2(370, 143.175)
 layout_mode = 2
 size_flags_horizontal = 0
+index = 2
 
 [node name="select" type="Label" parent="Control"]
 layout_mode = 1
