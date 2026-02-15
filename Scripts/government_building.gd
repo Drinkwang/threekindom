@@ -629,7 +629,7 @@ func selectPolicy(data):
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"执行政策")
 		GameManager.changePeopleSupport(5)
 	elif id==policymanager.policyID.P_LessLabor:
-		if GameManager.sav.labor_force<1000:
+		if GameManager.sav.labor_force<500:
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"劳动力无法支持")
 			GameManager.sav.hp=GameManager.sav.hp+35
 			return

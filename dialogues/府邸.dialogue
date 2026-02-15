@@ -108,7 +108,7 @@ do meetingEnd()
 => END
 
 ~ 确认法律
-: 是否同意将次法律条款{{policy_panel.selectLawPoint.context_tr}}放在下一次议程
+: 是否同意将法律条款{{policy_panel.selectLawPoint.context_tr}}放在下一次议程
 - 同意
 	do agreelaw()
 - 取消
