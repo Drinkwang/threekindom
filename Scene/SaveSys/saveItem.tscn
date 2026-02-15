@@ -23,10 +23,10 @@ mouse_filter = 2
 [node name="nodate" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
-offset_left = -133.0
-offset_top = 117.0
-offset_right = 482.0
-offset_bottom = 191.0
+offset_left = -124.0
+offset_top = 169.0
+offset_right = 491.0
+offset_bottom = 243.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -56,6 +56,14 @@ text = "時間：2024/12/21
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 290.0
+offset_top = 11.0
+offset_right = 352.0
+offset_bottom = 71.0
+color = Color(1, 1, 1, 0)
 
 [node name="closeButton" type="TextureButton" parent="."]
 layout_mode = 0

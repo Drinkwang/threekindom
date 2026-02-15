@@ -100,11 +100,11 @@ func loadFile():
 		#inventory_changed
 		InventoryManager.inventory_changed.emit(GameManager.inventoryPackege)
 		#emit_signal("inventory_changed", GameManager.inventoryPackege)	
-
-	refresh()
-	self.hide()
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"读取存档成功")
+		refresh()
+		self.hide()
 	
-	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"读取存档成功")
+
 
 
 func _on_close_button_down():

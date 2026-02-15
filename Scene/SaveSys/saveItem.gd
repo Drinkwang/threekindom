@@ -33,6 +33,10 @@ func update_close_button_position() -> void:
 	#var button_pos: Vector2 = Vector2(panel_size.x, 0) + offset
 	#
 	#close_button.rect_position = button_pos
+	
+@onready var color_rect: ColorRect = $ColorRect
+	
+	
 func confiredelete():
 	var path="user://save_data{index}.tres".format({"index":index+1})
 
@@ -40,7 +44,8 @@ func confiredelete():
 		DirAccess.remove_absolute(path)
 
 		save_panel.savs[index] = null
-
+		color_rect.hide()
+		close_button.hide()
 		nodate.show()
 		label.hide()
 		print("存档 {index} 已删除".format({"index": index + 1}))	
@@ -109,6 +114,7 @@ func refresh(sav:saveData):
 	nodate.hide()
 	label.show()
 	close_button.show()
+	color_rect.show()
 	#GameManager.sav.current_datetime
 	var formatStr=tr("savefiledata")
 	if sav.autoSave == true:
@@ -123,4 +129,5 @@ func delete():
 	nodate.show()
 	label.hide()
 	close_button.hide()
+	color_rect.hide()
 	

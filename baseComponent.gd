@@ -18,9 +18,9 @@ func _initData():
 	pass
 func confireSaveFile():
 	GameManager._savePanel.confireSaveFile()
-	pass
+
 	
-	
+
 	
 func _enter_tree():
 	self.request_ready()

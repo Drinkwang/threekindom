@@ -17,7 +17,7 @@
 ~ DeleteFile
 系统提示: 当前位置检测到已存在的存档文件，删除后将无法恢复，你确定要删除该存档么?
 - 确定删除
-	do confirmDeleteFile()
+	do GameManager.confirmDeleteFile()
 - 取消删除
 
 => END

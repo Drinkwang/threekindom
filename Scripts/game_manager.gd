@@ -1011,6 +1011,10 @@ var items = [
 	{"name": InventoryManagerItem.ItemEnum.珍品礼盒, "cost": 350}
 ]
 const POPULATION_PER_POINT=2
+
+
+func confirmDeleteFile():
+	_savePanel.confirmDeleteFile()	
 func ScoreToItem(player_score,num=-1):
 	var gained_items: Dictionary = {}  # 使用字典记录道具和数量
 	var rng = RandomNumberGenerator.new()
