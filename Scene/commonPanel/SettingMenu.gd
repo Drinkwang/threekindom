@@ -86,9 +86,12 @@ func _ready():
 		GameManager._setting.language=system_locale
 		GameManager._setting.resolution=resolutions[current_resolution_index]
 	else:
-
+	
 		system_locale=GameManager._setting.language #= OS.get_locale_language()
-		current_resolution_index=find_closest_resolution(max_width, max_height)
+		if GameManager._setting.fullscreen:
+			current_resolution_index=find_closest_resolution(max_width, max_height)
+		else:
+			find_res(GameManager._setting.resolution)
 		music_slider.value=GameManager._setting.music_volume
 		sfx_slider.value=GameManager._setting.sfx_volume
 		fullscreen_check.button_pressed=GameManager._setting.fullscreen
@@ -143,16 +146,38 @@ func find_closest_resolution(max_width: int, max_height: int) -> int:
 	
 	return closest_index
 
+func find_res(resolution):
+	var index=resolutions.find(resolution)
+	current_resolution_index=index
+	#apply_resolution(index)
+
 # 应用分辨率
 func apply_resolution(index: int):
 	var res = resolutions[index].split("x")
 	var width = int(res[0])
 	var height = int(res[1])
+	
+	
+	var current_screen_idx = DisplayServer.window_get_current_screen()
+	
+	# 2. 获取该屏幕的实际尺寸
+	var screen_size = DisplayServer.screen_get_size(current_screen_idx)
+	
 	DisplayServer.window_set_size(Vector2i(width, height))
 	# 居中窗口
-	var screen_size = DisplayServer.screen_get_size()
+	#var screen_size = DisplayServer.screen_get_size()
 	var window_pos = (screen_size - Vector2i(width, height)) / 2
-	DisplayServer.window_set_position(window_pos)
+	
+	#防止超出屏幕边界
+	window_pos.x = max(window_pos.x, 0)
+	window_pos.y = max(window_pos.y, 0)
+	# 确保位置不超过屏幕边界（防止右下侧出屏）
+	window_pos.x = min(window_pos.x, screen_size.x - width)
+	window_pos.y = min(window_pos.y, screen_size.y - height)
+		
+	
+	
+	DisplayServer.window_set_position(window_pos,current_screen_idx)
 	return resolutions[index]	
 
 

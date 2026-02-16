@@ -256,7 +256,7 @@ theme_override_constants/outline_size = 0
 theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/font = ExtResource("4_cxtvu")
 theme_override_font_sizes/font_size = 31
-text = "选择将领进行出征，你可以自由调节士兵数量和资金数量，注意完成右侧任务和猜拳，可以降低伤亡和提高成功率！"
+text = "选择将领进行出征，你可以自由调节士兵数量和资金数量，注意完成右侧行动和猜拳，可以降低伤亡和提高成功率！"
 autowrap_mode = 3
 
 [node name="Control2" type="Control" parent="PanelContainer/orderPanel/VBoxContainer"]

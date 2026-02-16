@@ -182,7 +182,7 @@ func initTask():
 		
 
 	var currence= GameManager.sav.battleTasks[battle_circle.taskIndex]
-	var context=tr("任务条件：")
+	var context=tr("风险行动：")
 	var index=1;
 	var taskcontext=""
 	var targetValue

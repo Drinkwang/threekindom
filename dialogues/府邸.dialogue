@@ -95,7 +95,7 @@ do arrangeDone()
 => END
 
 ~ 宴会结束
-主簿: 大人，您的设宴管用了，您可以前去议会厅，看看法律是否能安稳的通过[voice:darennidesheyanguanyongle]
+主簿: 大人，您的设宴管用了，您可以前去议事厅，看看法律是否能安稳的通过[voice:darennidesheyanguanyongle]
 do meetingEnd()
 => END
 
@@ -246,7 +246,7 @@ do GameManager._imporveRelation(getFactionByIndex())
 => END
 
 ~ 当前还在cd中
-提示: 当前派系已有一项法律[{{lawName}}]用于争取支持，请在{{GameManager.getCDByFaction(_faction)}}天内完成该法律的制定，否则将损失派系好感度。
+提示: 当前派系已有一项法律[{{GameManager.sav.courtingLaws[getFactionByIndex()._name]}}]用于争取支持，请在{{GameManager.getCDByFaction(_faction)}}天内完成该法律的制定，否则将损失派系好感度。
 => END
 ~ 已经约过该派系
 提示: 今日已与该派系完成面谈，请择日再来！
@@ -285,9 +285,9 @@ if getFactionByIndex()._allNum<100
 
 	提示: 该选项可提升派系人数（最多100人），增强议事厅辩论优势。索取资源会更多但支持度消耗更大。
 	if getFactionByIndex()._num_all+3+GameManager.sav.randomIndex<=100
-		当前派系人数:{{getFactionByIndex()._num_all}}，是否消耗200金给 {{getFactionByIndex().getTr()}} 让其在议会中的人数提升{{(3+GameManager.sav.randomIndex)}}人
+		当前派系人数:{{getFactionByIndex()._num_all}}，是否消耗200金给 {{getFactionByIndex().getTr()}} 让其在议事厅中的人数提升{{(3+GameManager.sav.randomIndex)}}人
 	else
-		当前派系人数:{{getFactionByIndex()._num_all}}，是否消耗200金给 {{getFactionByIndex().getTr()}} 让其在议会中的人数提升{{(100-getFactionByIndex()._num_all)}}人
+		当前派系人数:{{getFactionByIndex()._num_all}}，是否消耗200金给 {{getFactionByIndex().getTr()}} 让其在议事厅中的人数提升{{(100-getFactionByIndex()._num_all)}}人
 	- 是
 		do financialConfort()
 	- 否

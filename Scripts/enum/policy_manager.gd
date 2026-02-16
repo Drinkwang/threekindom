@@ -118,10 +118,8 @@ enum policyID{
 	P_PrecisionPurge,#精准除奸
 	P_BalancePurge,#平衡除奸
 	P_SwiftPurge, #速清公斥策
-	
-	
-	P_LessCoin,#花费金币买民心
 	P_LessLabor,#降低劳动力买民心
+	P_LessCoin,#花费金币买民心
 	P_MoreBlood #增加血汗降低劳动力
 	
 	

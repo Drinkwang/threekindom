@@ -96,7 +96,7 @@ func _initData():
 	else:
 		$TextureButton.show()
 	if GameManager.sav.curLawName.length()>0:
-		law_label.text=tr("当前【%s】法案已被立项，请先在议会厅通过该法案，才能立项其他法律。")%tr(GameManager.sav.curLawName)
+		law_label.text=tr("当前【%s】法案已被立项，请先在议事厅通过该法案，才能立项其他法律。")%tr(GameManager.sav.curLawName)
 		
 		changeexp_len()
 		#var label_height = 81
