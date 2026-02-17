@@ -62,8 +62,12 @@ do pageTwo()
 ~ final
 do final()
 家仆(邪恶) : 少爷，我进来了 嘿嘿
+do whyDao()
+
 : 你...你为什么带着刀
 do end()
+do GameManager.enterCrazy()
 : 啊
 
+#屏幕变红
 => END

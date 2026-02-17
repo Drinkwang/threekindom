@@ -890,7 +890,7 @@ func PersonalCampaignBefore():
 	mizhu.show()
 	mizhu.changeAllClick("亲征前跟糜竺对话")
 				#得改
-	GameManager.changeTaskLabel(tr("与手下谈谈"))
+	GameManager.changeTaskLabel("与手下谈谈")
 
 	GameManager.AutoSaveFile()	
 
@@ -936,7 +936,7 @@ func chaosBegin():
 	GameManager.sav.have_event["chaosBegin"]=true
 	mizhu.show()
 	chenden.show()
-	GameManager.changeTaskLabel(tr("与手下谈谈"))
+	GameManager.changeTaskLabel("与手下谈谈")
 	mizhu.changeAllClick("混乱与糜竺对话")
 	chenden.changeAllClick("混乱与陈登对话")
 	GameManager.AutoSaveFile()
@@ -1270,7 +1270,7 @@ func CallingSoldier():
 func lvbuJoin():
 	GameManager.sav.have_event["lvbuJoin"]=true
 	GameManager.sav.labor_force=GameManager.sav.labor_force+1000
-	GameManager.changeTaskLabel(tr("歇整一日来到府邸召见吕布"))	#
+	GameManager.changeTaskLabel("歇整一日来到府邸召见吕布")
 	#1
 
 	#觉得无用的注释GameManager.sav.TargetDestination="battle"

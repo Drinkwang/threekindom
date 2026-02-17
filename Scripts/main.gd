@@ -14,9 +14,18 @@ const FancyFade = preload("res://addons/transitions/FancyFade.gd")
 @onready var rule_book = $CanvasBook/ruleBook
 
 const lightroom = preload("res://Asset/城镇建筑/灵堂亮.jpg")
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+
+
+#@onready var sprite_2d: Sprite2D = $Sprite2D
+#const NEW_ATLAS_TEXTURE:AnimatedTexture = preload("res://Asset/other/new_atlas_texture.tres").atlas
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
+	#sprite_2d.texture=NEW_ATLAS_TEXTURE
+	#NEW_ATLAS_TEXTURE.play()
+	
 	Transitions.post_transition.connect(post_transition)
 	SoundManager.play_music(_10__TIME_WHISTLE)
 	mask.hide()
@@ -186,17 +195,31 @@ const _10__TIME_WHISTLE = preload("res://Asset/bgm/10- Time Whistle.mp3")
 
 const ROBOTIC_GROAN_3 = preload("res://Asset/sound/robotic_groan_3.wav")
 func final():
+	atman.show()
 	$CanvasBook.hide()
-	monster.show()
+
+	$BackBufferCopy/blank.show()
+	$BackBufferCopy/mask2.hide()	
 	SoundManager.play_sound(ROBOTIC_GROAN_3)
 	#播放恐怖音效
 	pass
+@onready var atman: Sprite2D = $atman
+
+func whyDao():
+	
+	atman.hide()
+	#$title.show()
+	monster.show()
+
 	
 func end():
-	#$title.show()
-	SceneManager.changeScene(SceneManager.roomNode.HOUSE,7)
-	
-	pass
+	monster.play("default")
+
+	var _on_animation_finished=func():
+		
+		SceneManager.changeScene(SceneManager.roomNode.HOUSE,7)
+	monster.animation_finished.connect(_on_animation_finished)	
+
 
 func _on_timer_timeout():
 	$"Canvas闪电".hide()

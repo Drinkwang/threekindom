@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://s5nlht40cbgw"]
+[gd_scene load_steps=40 format=3 uid="uid://s5nlht40cbgw"]
 
 [ext_resource type="PackedScene" uid="uid://dqpklssxni160" path="res://Scene/prefab/clickBlock.tscn" id="1_1yudk"]
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_di8p8"]
@@ -23,10 +23,17 @@
 [ext_resource type="Texture2D" uid="uid://b05amgnpr3yut" path="res://Asset/黑暗/黑暗灵堂.png" id="12_f76dl"]
 [ext_resource type="PackedScene" uid="uid://cw66yiofu8q6f" path="res://Scene/prefab/RuleBook.tscn" id="12_phx3k"]
 [ext_resource type="FontFile" uid="uid://qv74ebpr4i31" path="res://Asset/Font/VonwaonBitmap-16px.ttf" id="14_vuyqr"]
-[ext_resource type="Texture2D" uid="uid://b0ar00as8flf" path="res://Asset/other/Siren head for games.png" id="17_ggnt5"]
 [ext_resource type="PackedScene" uid="uid://dfolt063spdso" path="res://Scene/prefab/energy.tscn" id="22_iqts8"]
 [ext_resource type="PackedScene" uid="uid://ghiim2lkqkbe" path="res://Scene/prefab/propertyPanel.tscn" id="23_ensiq"]
-[ext_resource type="Shader" path="res://shader/brightness_outline.gdshader" id="26_wtvsq"]
+[ext_resource type="Texture2D" uid="uid://bsvrbojfq2q2r" path="res://Asset/other/purenani/new_atlas_texture 1.tres" id="27_pvgc8"]
+[ext_resource type="Texture2D" uid="uid://baeem3spkf745" path="res://Asset/other/purenani/new_atlas_texture 2.tres" id="28_euu4q"]
+[ext_resource type="Texture2D" uid="uid://cdqbswa4kfdjo" path="res://Asset/other/purenani/new_atlas_texture 3.tres" id="29_vxqmf"]
+[ext_resource type="Texture2D" uid="uid://1hqlsbtky5fb" path="res://Asset/other/purenani/new_atlas_texture 4.tres" id="30_lxp35"]
+[ext_resource type="Texture2D" uid="uid://bwi2wk2dxxu6n" path="res://Asset/other/purenani/new_atlas_texture 5.tres" id="31_46kx8"]
+[ext_resource type="Texture2D" uid="uid://dogofc6o36bhf" path="res://Asset/other/purenani/new_atlas_texture 6.tres" id="32_8nfd5"]
+[ext_resource type="Texture2D" uid="uid://bp6sfjbimteew" path="res://Asset/other/purenani/new_atlas_texture 7.tres" id="33_labbx"]
+[ext_resource type="Texture2D" uid="uid://dh6xuljoe5er1" path="res://Asset/other/purenani/new_atlas_texture 8.tres" id="34_0ouyf"]
+[ext_resource type="Texture2D" uid="uid://b0hagnr86t5wl" path="res://Asset/other/purenani/new_atlas_texture 9.tres" id="35_lixji"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_21veu"]
 shader = ExtResource("5_yxgd7")
@@ -52,112 +59,40 @@ _data = {
 "闪烁": SubResource("Animation_0bk4q")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0pih0"]
-shader = ExtResource("26_wtvsq")
-shader_parameter/brightness = 1.1
-shader_parameter/global_alpha = 1.0
-shader_parameter/outline_size = 0.5
-shader_parameter/outline_color_1 = Color(0, 0, 0, 1)
-shader_parameter/outline_color_2 = Color(0.512884, 0, 0.145131, 1)
-shader_parameter/outline_color_3 = Color(0.400493, 6.257e-07, 0.225525, 1)
-shader_parameter/outline_threshold = 0.5
-shader_parameter/outline_step = 1.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ejvyd"]
-atlas = ExtResource("17_ggnt5")
-region = Rect2(13, 16, 36, 85)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0xfev"]
-atlas = ExtResource("17_ggnt5")
-region = Rect2(53, 16, 36, 85)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_133h6"]
-atlas = ExtResource("17_ggnt5")
-region = Rect2(93, 16, 36, 85)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lxe2a"]
-atlas = ExtResource("17_ggnt5")
-region = Rect2(13, 101, 36, 85)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_enaa8"]
-atlas = ExtResource("17_ggnt5")
-region = Rect2(53, 101, 36, 85)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_uw4vr"]
-atlas = ExtResource("17_ggnt5")
-region = Rect2(93, 101, 36, 85)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sq3ck"]
-atlas = ExtResource("17_ggnt5")
-region = Rect2(133, 101, 36, 85)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bc187"]
-atlas = ExtResource("17_ggnt5")
-region = Rect2(173, 101, 36, 85)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_y18fm"]
-atlas = ExtResource("17_ggnt5")
-region = Rect2(13, 186, 36, 85)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_02ijr"]
-atlas = ExtResource("17_ggnt5")
-region = Rect2(53, 186, 36, 85)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5cwc2"]
-atlas = ExtResource("17_ggnt5")
-region = Rect2(93, 186, 36, 85)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dtagt"]
-atlas = ExtResource("17_ggnt5")
-region = Rect2(133, 186, 36, 85)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tfqsd"]
-atlas = ExtResource("17_ggnt5")
-region = Rect2(173, 186, 36, 85)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m3aj1"]
+shader = ExtResource("5_yxgd7")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0bccw"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ejvyd")
+"texture": ExtResource("27_pvgc8")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0xfev")
+"texture": ExtResource("28_euu4q")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_133h6")
+"texture": ExtResource("29_vxqmf")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lxe2a")
+"texture": ExtResource("30_lxp35")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_enaa8")
+"texture": ExtResource("31_46kx8")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_uw4vr")
+"texture": ExtResource("32_8nfd5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_sq3ck")
+"texture": ExtResource("33_labbx")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bc187")
+"texture": ExtResource("34_0ouyf")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_y18fm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_02ijr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5cwc2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dtagt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tfqsd")
+"texture": ExtResource("35_lixji")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
 "speed": 5.0
 }]
@@ -387,16 +322,18 @@ vertical_alignment = 1
 [node name="Control2" parent="." instance=ExtResource("11_j50k8")]
 visible = false
 
+[node name="atman" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(950, 649)
+texture = ExtResource("27_pvgc8")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 visible = false
-modulate = Color(1, 1, 1, 0.431373)
-self_modulate = Color(1, 1, 1, 0.388235)
-material = SubResource("ShaderMaterial_0pih0")
-position = Vector2(719, 626)
-scale = Vector2(5.5, 5.5)
+material = SubResource("ShaderMaterial_m3aj1")
+position = Vector2(950, 649)
 sprite_frames = SubResource("SpriteFrames_0bccw")
-autoplay = "default"
-frame_progress = 0.499834
+frame = 8
+frame_progress = 1.0
 
 [connection signal="ready" from="." to="蜡烛" method="_on_node_2d_ready"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://bp6sfjbimteew"]
+
+[ext_resource type="Texture2D" uid="uid://bdxkgvgi511re" path="res://Asset/other/harman.png" id="1_pwwxx"]
+
+[resource]
+atlas = ExtResource("1_pwwxx")
+region = Rect2(634, 535, 244, 233)

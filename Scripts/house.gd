@@ -174,7 +174,6 @@ func _initData():
 		if(GameManager.sav.have_event["firstmeetchenqun"]==false):
 			GameManager.sav.have_event["firstmeetchenqun"]=true
 			GameManager.sav.curGovAff=tr("1.前往府邸看看堆积的工作\n2.前往演武场会见自己的老下属")
-			#GameManager.changeTaskLabel(tr("完成今日政务所有事项"))
 		
 		
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
@@ -185,7 +184,7 @@ func _initData():
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新的一天")
 			
 			GameManager.sav.curGovAff=tr("1.前往府邸回见不同派系的领导人\n2.前往议会通过昨天立的法律")
-			GameManager.changeTaskLabel(tr("完成今日政务所有事项"))
+			GameManager.changeTaskLabel("完成今日政务所有事项")
 			GameManager.sav.destination="府邸"
 		#设置des
 	elif GameManager.sav.day==3:
@@ -194,7 +193,7 @@ func _initData():
 			GameManager.sav.have_event["dayThreeInit"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第三天")
 			GameManager.sav.curGovAff=tr("1.前往城外军事驻地，讨伐土匪")
-			GameManager.changeTaskLabel(tr("完成今日政务所有事项"))
+			GameManager.changeTaskLabel("完成今日政务所有事项")
 			GameManager.sav.destination="城门-军事驻地"
 
 	elif GameManager.sav.day==4:
@@ -477,7 +476,7 @@ func showFirstGuild():
 	#这句代码没有作用，以防万一添加进行初始化
 	GameManager.sav.policyExcute=false
 	GameManager.initSecretFunc()
-	GameManager.changeTaskLabel(tr("完成今日政务所有事项"))
+	GameManager.changeTaskLabel("完成今日政务所有事项")
 	pass
 
 
@@ -486,7 +485,7 @@ func showFirstGuild():
 func showchenqun():
 	$"陈群".show()
 	point.show()
-	GameManager.changeTaskLabel(tr("跟陈群对话"))
+	GameManager.changeTaskLabel("跟陈群对话")
 	pass
 
 func demoFinishChenQunShow():
