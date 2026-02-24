@@ -642,7 +642,8 @@ func secondMissonStart():
 	GameManager.sav.targetResType=GameManager.ResType.battle
 	GameManager.sav.targetTxt="征讨次数：{currence}/{target}"
 	#觉得无用的注释GameManager.sav.TargetDestination="battle"
-	GameManager.initSecretBattleContext(1000,SceneManager.etraTaskType.costMoney,9,"黄巾军降伏")
+	#从9改变成8 可能有bug 如果触发需要改回9
+	GameManager.initSecretBattleContext(1000,SceneManager.etraTaskType.costMoney,8,"黄巾军降伏")
 	#win 10次90
 	#GameManager.sav.TargetDestination=="府邸"
 	pass
@@ -755,7 +756,7 @@ func determineInternalUnrestXuzhou():
 func determineInternalUnrestHaozu():
 	settleDeterminValue()
 	resetDeterminValue()
-	if GameManager.sav.HAOZUPAI.isrebellion==true:
+	if GameManager.sav.HAOZUPAI.isrebellion==true and GameManager.sav.have_event["Factionalization"]==true:
 		GameManager.sav.HAOZUPAI._num_defections=GameManager.sav.HAOZUPAI._num_defections+1
 		determineValue1=50*randomIndex+(GameManager.sav.HAOZUPAI._num_defections)*50
 		if randf() < 0.5||GameManager.sav.coin<determineValue1:
@@ -778,7 +779,7 @@ func determineInternalUnrestDanyang():
 		var _num=InventoryManager.canUseItemNum()
 
 		if randf() < 0.5 and _num>=determineValue1:
-
+			#bug
 			determineValue1=InventoryManager.costItemRandom(determineValue1)
 			determineDetail=generate_consumed_string(determineValue1)
 			determineType=GameManager.ResType.item	

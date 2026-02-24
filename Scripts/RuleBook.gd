@@ -26,8 +26,8 @@ func _ready():
 		label.add_theme_font_size_override("font_size", 34)
 		reallabel.add_theme_font_size_override("font_size", 38)
 	elif currencelanguage=="zh":
-		label.add_theme_font_size_override("font_size", 40)
-		reallabel.add_theme_font_size_override("font_size", 40)
+		label.add_theme_font_size_override("font_size", 34)
+		reallabel.add_theme_font_size_override("font_size", 34)
 	elif currencelanguage=="ja":	
 		label.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
 	elif currencelanguage=="ru":

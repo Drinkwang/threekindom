@@ -28,7 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://dxln0b2qkw8sj" path="res://Asset/人物/丹阳军官.png" id="15_2o7m6"]
 [ext_resource type="Texture2D" uid="uid://rmaibsw1yjqd" path="res://Asset/城镇建筑/5_yellow.png" id="15_acxub"]
 [ext_resource type="Script" path="res://Scripts/items_in_scene_manager.gd" id="25_rwto1"]
-[ext_resource type="PackedScene" uid="uid://bvlh16yfcevdj" path="res://Scene/InfraMiniGame/WallTowerPuzzle.tscn" id="25_x6378"]
+[ext_resource type="PackedScene" uid="uid://qr7a32uptncc" path="res://Scene/InfraMiniGame/WallTowerPuzzle.tscn" id="25_x6378"]
 [ext_resource type="PackedScene" uid="uid://4ap7nnl7o6br" path="res://Scene/prefab/_CgetSceneItem.tscn" id="26_3j8u5"]
 [ext_resource type="Resource" uid="uid://cjbqxteqnpnrd" path="res://dialogues/议会厅.dialogue" id="27_oqtuy"]
 [ext_resource type="Texture2D" uid="uid://bol8v0a4a87yg" path="res://Asset/人物/张飞close.png" id="30_qlwmh"]

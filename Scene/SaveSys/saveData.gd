@@ -81,7 +81,9 @@ class_name saveData
 @export var ctLoseBattle=0
 @export var ctLoseBattleRate=0
 
-
+#-1未开启 0 开启 1 2 3 可查看需求 
+			#4支付月例 5 最后需求时间(如果需求没有完成) 可查看需求 （提示下一天需要新的月历） 
+@export var allocationDay=-1
 @export var dailyGetRandomItem=false
 #@export var policy
 var number_bool_map: Dictionary = {

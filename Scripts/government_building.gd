@@ -234,7 +234,7 @@ func _initData():
 	},
 	{
 		"id":"2",
-		"context":"召见手下", #前往花园并通向小道
+		"context":"召见派系", #前往花园并通向小道
 		"visible":"false"
 	},
 	{
@@ -1091,16 +1091,16 @@ func getFactionByIndex()->cldata:
 #选项赠送礼物
 func sendgift():
 	var _c=getFactionByIndex()
-	var rindex=GameManager.sav.randomIndex
+	#var rindex=GameManager.sav.randomIndex
 	InventoryManager._remove_item(GameManager.inventoryPackege,InventoryManagerItem.珍品礼盒,1)
 	#+5
 	var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.礼记笺疏)
 	if num>=1:
 		GameManager.extraValue=5
-		_c.ChangeSupport(20+rindex)
+		_c.ChangeSupport(20)
 	else:
 		GameManager.extraValue=0
-		_c.ChangeSupport(15+rindex)
+		_c.ChangeSupport(15)
 	_c.isDoneOp=true
 	GameManager.sav.hp-=costHp_SummonOne
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"赠礼完成")
@@ -1109,7 +1109,7 @@ func sendgift():
 #《经济刺激法案》需通过，还剩6天！
 	
 func sendgiftChoice():
-	var rindex=GameManager.sav.randomIndex
+	#var rindex=GameManager.sav.randomIndex
 	var _c=getFactionByIndex()
 
 	var to_inventory= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.珍品礼盒)
@@ -1117,7 +1117,12 @@ func sendgiftChoice():
 	var quantity=_inventoryManager.has_item_quantity(to_inventory)
 	if quantity>=1:#拥有礼物
 		send_gift_panel.show()
-		send_gift_panel._initPanel(_c._name,quantity,int(15+rindex))
+		
+		var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.礼记笺疏)
+		if num>=1:
+			send_gift_panel._initPanel(_c._name,quantity,int(20))	
+		else:
+			send_gift_panel._initPanel(_c._name,quantity,int(15))	
 		#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"消耗资金")#显示对话
 	else:
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"你没有礼物")#显示对话

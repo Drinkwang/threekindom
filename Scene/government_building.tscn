@@ -25,7 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://ghiim2lkqkbe" path="res://Scene/prefab/propertyPanel.tscn" id="16_rw7iu"]
 [ext_resource type="PackedScene" uid="uid://d1e8i71sm0pf1" path="res://Scene/InfraMiniGame/FillGranary/FillGranaryPuzzle.tscn" id="18_5cnus"]
 [ext_resource type="PackedScene" uid="uid://cw66yiofu8q6f" path="res://Scene/prefab/RuleBook.tscn" id="19_b7wfr"]
-[ext_resource type="PackedScene" uid="uid://bvlh16yfcevdj" path="res://Scene/InfraMiniGame/WallTowerPuzzle.tscn" id="20_6ab6m"]
+[ext_resource type="PackedScene" uid="uid://bvlh16yfcevdj" path="res://Scene/DisasterSys/disasterPanel.tscn" id="20_6ab6m"]
 [ext_resource type="Resource" uid="uid://d2qoinuor12dq" path="res://dialogues/演武场.dialogue" id="20_i0wth"]
 [ext_resource type="Texture2D" uid="uid://ywdj7u3flcmu" path="res://Asset/人物/假糜贞.png" id="20_u361t"]
 [ext_resource type="Texture2D" uid="uid://mb7wj00b7s8p" path="res://Asset/fx/zhangyan_Frames/Slash2_color2_frame1.png" id="22_u8c3t"]

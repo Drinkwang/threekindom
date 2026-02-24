@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cw66yiofu8q6f"]
+[gd_scene load_steps=4 format=3 uid="uid://cw66yiofu8q6f"]
 
 [ext_resource type="Script" path="res://Scripts/RuleBook.gd" id="1_c2y7g"]
 [ext_resource type="Texture2D" uid="uid://d31ve0oihgf7g" path="res://Asset/ui/paper_panel_1286_x_819.png" id="1_pig3i"]
+[ext_resource type="FontFile" uid="uid://to00njkwmxts" path="res://Asset/Font/1_sim.ttf" id="3_0pyf1"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -84,6 +85,7 @@ offset_bottom = 880.0
 rotation = -0.00535072
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = -4
+theme_override_fonts/font = ExtResource("3_0pyf1")
 theme_override_font_sizes/font_size = 34
 text = "111111111111111111111111111111111"
 autowrap_mode = 3

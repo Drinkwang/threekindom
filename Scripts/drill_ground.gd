@@ -97,7 +97,8 @@ func _judWin():
 		if GameManager.sav.currenceValue>=GameManager.sav.targetValue:
 			_completeTask()
 				# 如果你满足条件，则弹出对话
-		if GameManager.sav.extraBattleDialogContext.length()>0 and GameManager.sav.extraBattleTaskTargetNum>0 and GameManager.sav.extraCureenTaskCNum>=GameManager.sav.extraBattleTaskTargetNum and GameManager.sav.extraBattleTaskBootNum<=GameManager.sav.currenceValue:
+		elif GameManager.sav.extraBattleDialogContext.length()>0 and GameManager.sav.extraBattleTaskTargetNum>0 and GameManager.sav.extraCureenTaskCNum>=GameManager.sav.extraBattleTaskTargetNum and GameManager.sav.extraBattleTaskBootNum<=GameManager.sav.currenceValue:
+			#不能胜利后 触发剧情 然后再触发这个
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,GameManager.sav.extraBattleDialogContext)
 			GameManager.sav.extraBattleTaskBootNum=-1
 			GameManager.sav.extraBattleTaskTargetNum=-1
@@ -115,6 +116,7 @@ func _completeTask():#将完成任务移动到外层
 	if(GameManager.sav.have_event["completeTask2"]==false):
 		GameManager.sav.have_event["completeTask2"]=true
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"征讨结束")
+		#这个被黄巾那个打断
 	elif GameManager.sav.have_event["lvbuJoin"]==false&&GameManager.sav.have_event["battleTaiShan"]==true:	
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"发现吕布")
 

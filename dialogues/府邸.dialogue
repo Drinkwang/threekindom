@@ -127,8 +127,8 @@ do meetingEnd()
 
 ~ 召见手下1
 do zhubu.show()
-主簿: 第一次召见手下，大人最好请大家吃一顿饭，后面大人就可以单独约饭局上认识的人聊聊了[voice:diyicizhaojianshouxia]
-
+#主簿: 第一次召见手下，大人最好请大家吃一顿饭，后面大人就可以单独约饭局上认识的人聊聊了[voice:diyicizhaojianshouxia]
+主簿: 初次召见各派系，大人不妨先设宴款待，日后便可单独邀约席间之人详谈。[voice:zhubo_chucizhaojian]
 - 设宴[highlight=true]
 	do meeting()
 - 取消

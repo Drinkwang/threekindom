@@ -174,30 +174,79 @@ func _on_player_hit(_who: swordMan):
 	_who.animation_player.seek(0, true)
 	#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"SaveFile")
 func _input(event):
-	if GameManager.swordManGameState==GameManager.gameState.pause:
+	
+	
+
+
+
+	# 暂停状态直接返回
+	if GameManager.swordManGameState == GameManager.gameState.pause:
 		return 
+	
+	# 仅处理鼠标移动事件
 	if event is InputEventMouseMotion:
 		if is_mouse_limited and mouse_speed_limit > 0:
-			# 限制鼠标移动速度
-			var current_mouse_pos = event.global_position
+			# 关键修改1：使用视口坐标（游戏内）而非系统全局坐标
+			var current_mouse_pos = get_global_mouse_position()
 			var mouse_movement = current_mouse_pos - last_mouse_position
 			var movement_distance = mouse_movement.length()
 			
-			# 如果移动距离超过限制，则限制移动
 			if movement_distance > mouse_speed_limit:
 				var limited_movement = mouse_movement.normalized() * mouse_speed_limit
 				var limited_position = last_mouse_position + limited_movement
+				
+				# 更新角色/节点位置
 				liubei.position = limited_position
 				last_mouse_position = limited_position
-				# 将鼠标位置强制设置到限制位置
-				Input.warp_mouse(limited_position)
+				
+				# 关键：转换为系统屏幕坐标（Godot 4专属写法）
+				# get_viewport().get_window().position 获取游戏窗口在系统屏幕的位置
+				var screen_pos =Vector2(get_viewport().get_window().position) + limited_position
+				# 限制坐标在屏幕范围内，防止超出边界导致跳左上角
+				var screen_size = DisplayServer.screen_get_size()
+				screen_pos.x = clamp(screen_pos.x, 0, screen_size.x - 1)
+				screen_pos.y = clamp(screen_pos.y, 0, screen_size.y - 1)
+				
+				# Godot 4中强制设置鼠标位置的函数是warp_mouse_position
+				Input.warp_mouse(screen_pos)
 			else:
 				liubei.position = current_mouse_pos
 				last_mouse_position = current_mouse_pos
 		else:
-			# 无限制模式
-			liubei.position = event.global_position
-			last_mouse_position = event.global_position
+			# 无限制模式也统一使用视口坐标
+			var current_mouse_pos = get_global_mouse_position()
+			liubei.position = current_mouse_pos
+			last_mouse_position = current_mouse_pos
+
+
+	
+	
+	
+	
+	#if GameManager.swordManGameState==GameManager.gameState.pause:
+		#return 
+	#if event is InputEventMouseMotion:
+		#if is_mouse_limited and mouse_speed_limit > 0:
+			## 限制鼠标移动速度
+			#var current_mouse_pos = event.global_position
+			#var mouse_movement = current_mouse_pos - last_mouse_position
+			#var movement_distance = mouse_movement.length()
+			#
+			## 如果移动距离超过限制，则限制移动
+			#if movement_distance > mouse_speed_limit:
+				#var limited_movement = mouse_movement.normalized() * mouse_speed_limit
+				#var limited_position = last_mouse_position + limited_movement
+				#liubei.position = limited_position
+				#last_mouse_position = limited_position
+				## 将鼠标位置强制设置到限制位置
+				#Input.warp_mouse(limited_position)
+			#else:
+				#liubei.position = current_mouse_pos
+				#last_mouse_position = current_mouse_pos
+		#else:
+			## 无限制模式
+			#liubei.position = event.global_position
+			#last_mouse_position = event.global_position
 
 
 func winGame():

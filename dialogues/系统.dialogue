@@ -118,13 +118,13 @@ do determineInternalUnrestHaozu()
 
 ~ 豪族叛乱1
 主簿: 主公,叛乱的豪族组织商会和私人武装囤积居奇，物价暴涨，民心将失！
-提示: {{determineDetail}}，需丹阳派好感度至60或镇压
+提示: 民心-{{determineValue1}}，需豪族派好感度至60或镇压
 do determineInternalUnrestDanyang()
 => END
 
 ~ 豪族叛乱2
 主簿: 主公,不满的豪族导致府库的财政出现亏空，账面上已有得资金出现损失！
-提示: 资金-{{determineValue1}}，需丹阳派好感度至60或镇压
+提示: 资金-{{determineValue1}}，需豪族派好感度至60或镇压
 do determineInternalUnrestDanyang()
 => END
 
@@ -154,18 +154,18 @@ do determineInternalUnrestMinxin()
 => END
 
 ~ 士族法律未通过
-提示: 你许诺{{GameManager.BENTUPAI._name}}的法律没有通过，丧失10点支持度。
+提示: 你许诺{{GameManager.sav.BENTUPAI._name}}的法律没有通过，丧失10点支持度。
 do haozuLawTest()
 => END
 
 
 ~ 豪族法律未通过
-提示: 你许诺{{GameManager.HAOZUPAI._name}}的法律没有通过，丧失10点支持度。
+提示: 你许诺{{GameManager.sav.HAOZUPAI._name}}的法律没有通过，丧失10点支持度。
 do danyangLawTest()
 => END
 
 ~ 丹阳法律未通过
-提示: 你许诺{{GameManager.WAIDIPAI._name}}的法律没有通过，丧失10点支持度。
+提示: 你许诺{{GameManager.sav.WAIDIPAI._name}}的法律没有通过，丧失10点支持度。
 => END
 
 ~ ESC按钮

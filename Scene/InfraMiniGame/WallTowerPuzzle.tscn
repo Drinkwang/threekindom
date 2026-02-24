@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://bvlh16yfcevdj"]
+[gd_scene load_steps=52 format=3 uid="uid://qr7a32uptncc"]
 
 [ext_resource type="Script" path="res://Scene/InfraMiniGame/wall_tower_puzzle.gd" id="1_uopbu"]
 [ext_resource type="Texture2D" uid="uid://coekrh8wj6iwp" path="res://Asset/城镇建筑/puzzleGameScene.png" id="2_7knxp"]
@@ -119,18 +119,13 @@ _data = {
 "win": SubResource("Animation_ygt83")
 }
 
-[node name="Control" type="Control" node_paths=PackedStringArray("ShuffleButton", "ResetButton", "PiecesContainer")]
+[node name="WallTowerPuzzleNew" type="Control" node_paths=PackedStringArray("ShuffleButton", "ResetButton", "PiecesContainer")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -1.0
-offset_top = -7.0
-offset_right = -1.0
-offset_bottom = -7.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
 script = ExtResource("1_uopbu")
 source_texture = ExtResource("2_7knxp")
 piece_size = Vector2(200, 200)
@@ -200,7 +195,6 @@ theme_override_font_sizes/font_size = 48
 text = "剩余时间:60秒"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 2
 offset_left = 370.0
 offset_top = 777.0
 offset_right = 1549.0
@@ -233,7 +227,6 @@ size_flags_horizontal = 3
 
 [node name="TextureRect" type="TextureRect" parent="."]
 visible = false
-layout_mode = 0
 offset_left = 758.0
 offset_top = 305.0
 offset_right = 1270.0
@@ -267,7 +260,6 @@ grow_vertical = 2
 color = Color(0.2, 0.2, 0.2, 0)
 
 [node name="RotateButton" type="TextureButton" parent="."]
-layout_mode = 0
 offset_left = 1343.0
 offset_top = 647.0
 offset_right = 1505.0
@@ -278,7 +270,6 @@ ignore_texture_size = true
 stretch_mode = 5
 
 [node name="Label2" type="Label" parent="."]
-layout_mode = 0
 offset_left = 1317.0
 offset_top = 805.0
 offset_right = 1537.0
@@ -296,7 +287,6 @@ text = "旋转拼图"
 horizontal_alignment = 1
 
 [node name="SettleButton" type="TextureButton" parent="."]
-layout_mode = 2
 offset_left = 1346.0
 offset_top = 231.0
 offset_right = 1508.0
@@ -309,7 +299,6 @@ ignore_texture_size = true
 stretch_mode = 5
 
 [node name="Label" type="Label" parent="."]
-layout_mode = 0
 offset_left = 1320.0
 offset_top = 389.0
 offset_right = 1540.0
@@ -331,7 +320,6 @@ horizontal_alignment = 1
 [node name="winRect" type="ColorRect" parent="."]
 visible = false
 z_index = 4096
-layout_mode = 0
 offset_right = 1942.0
 offset_bottom = 1254.0
 color = Color(0, 0, 0, 0.588235)
@@ -400,7 +388,6 @@ libraries = {
 [node name="LoseRect" type="ColorRect" parent="."]
 visible = false
 z_index = 4096
-layout_mode = 0
 offset_right = 1942.0
 offset_bottom = 1254.0
 color = Color(1, 0, 0, 0.568627)
@@ -432,10 +419,3 @@ offset_top = 577.0
 offset_right = 1158.0
 offset_bottom = 733.0
 text = "放弃基建"
-
-[connection signal="button_down" from="RotateButton" to="." method="_on_rotate_button_button_down"]
-[connection signal="button_down" from="SettleButton" to="." method="_on_giveup_button_down"]
-[connection signal="mouse_entered" from="SettleButton" to="." method="_on_giveup_button_mouse_entered"]
-[connection signal="mouse_exited" from="SettleButton" to="." method="_on_giveup_button_mouse_exited"]
-[connection signal="button_down" from="winRect/Button" to="." method="_on_winAfter_button_down"]
-[connection signal="button_down" from="LoseRect/Button" to="." method="_on_lose_button_down"]

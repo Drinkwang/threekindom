@@ -1,0 +1,114 @@
+[gd_scene load_steps=7 format=3 uid="uid://dlou7q503kxoi"]
+
+[ext_resource type="Texture2D" uid="uid://7lnklxgva7pn" path="res://Asset/ui/panel_Example1.png" id="1_h5dg1"]
+[ext_resource type="Script" path="res://Scene/AllocationSys/allcation_item.gd" id="1_xg37g"]
+[ext_resource type="Texture2D" uid="uid://drj1r377gntrn" path="res://Asset/人物/糜竺睁眼.png" id="2_owqsc"]
+[ext_resource type="FontFile" uid="uid://to00njkwmxts" path="res://Asset/Font/1_sim.ttf" id="3_p4m4m"]
+[ext_resource type="Texture2D" uid="uid://c8s24bx5r2xci" path="res://Asset/other/感叹号.png" id="4_3ui7g"]
+[ext_resource type="Texture2D" uid="uid://diy7vtqj0dsb6" path="res://addons/inventory_editor/test/test_model/icons/Success.svg" id="5_m0bmt"]
+
+[node name="AllcationItemNew" type="Control"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 180.0
+offset_bottom = 655.0
+script = ExtResource("1_xg37g")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+offset_left = 5.0
+offset_top = 6.0
+offset_right = 348.0
+offset_bottom = 325.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_h5dg1")
+region_rect = Rect2(27.3333, 26.3333, 397.333, 98.2222)
+patch_margin_left = 12
+patch_margin_top = 19
+patch_margin_right = 14
+patch_margin_bottom = 14
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 10.0
+offset_top = 11.0
+offset_right = 332.0
+offset_bottom = 311.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_owqsc")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="."]
+offset_left = -45.0
+offset_top = 397.0
+offset_right = 228.0
+offset_bottom = 509.0
+disabled = true
+text = "支付派系需求"
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 9.0
+offset_top = 121.0
+offset_right = 173.0
+offset_bottom = 162.0
+
+[node name="context" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = -4.0
+offset_top = 2.0
+offset_right = 167.0
+offset_bottom = 40.0
+theme_override_font_sizes/font_size = 23
+text = "11111111111"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="delay" type="TextureRect" parent="."]
+offset_left = 118.0
+offset_top = 8.0
+offset_right = 174.0
+offset_bottom = 64.0
+texture = ExtResource("4_3ui7g")
+expand_mode = 1
+
+[node name="CheckBox" type="CheckBox" parent="."]
+offset_left = 38.0
+offset_top = 553.0
+offset_right = 134.0
+offset_bottom = 649.0
+
+[node name="Label" type="Label" parent="CheckBox"]
+layout_mode = 0
+offset_left = -69.0
+offset_top = -26.0
+offset_right = 177.0
+offset_bottom = 16.0
+theme_override_fonts/font = ExtResource("3_p4m4m")
+theme_override_font_sizes/font_size = 41
+text = "自动支付需求"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="alreadyGive" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = 63.0
+offset_top = 277.0
+offset_right = 119.0
+offset_bottom = 333.0
+texture = ExtResource("5_m0bmt")
+expand_mode = 1
+
+[node name="Grid" type="GridContainer" parent="."]
+custom_minimum_size = Vector2(0, 100)
+layout_direction = 1
+offset_left = 8.0
+offset_top = 174.0
+offset_right = 171.0
+offset_bottom = 413.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/h_separation = 80
+theme_override_constants/v_separation = 80
+columns = 2
+
+[connection signal="toggled" from="CheckBox" to="." method="_on_check_box_toggled"]

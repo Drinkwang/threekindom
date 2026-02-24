@@ -1452,7 +1452,10 @@ func enterCrazy():
 	#PanelManager.Fade_Blank(Color.RED,0.5,PanelManager.fadeType.fadeOut)
 	SoundManager.stop_music()
 	SoundManager.play_music(sounds._2__MENTAL_VORTEX)
-
+	if sav.allocationDay>0:
+		sav.allocationDay+=1
+		if sav.allocationDay>3:
+			sav.allocationDay=1
 
 func enterNormal():
 	

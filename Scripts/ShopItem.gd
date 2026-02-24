@@ -64,7 +64,7 @@ func set_Data(key,value):
 	
 	
 	#var itemname= InventoryManagerItem.item_by_enum(key)
-	var remainder = InventoryManager.add_item(GameManager.inventoryPackege, itemname, quantity, false)
+	#var remainder = InventoryManager.add_item(GameManager.inventoryPackege, itemname, quantity, false)
 
 const LABOR = preload("res://Asset/ui/战力.png")	
 

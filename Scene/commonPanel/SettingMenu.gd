@@ -304,3 +304,9 @@ func _on_lansound_option_button_item_selected(index: int) -> void:
 	GameManager._setting.peopleVlan=lan
 	#SignalManager.changeLanguage.emit()
 	#refreshLanguage(lan)
+
+
+func _on_openSaveDir_down() -> void:
+	var save_dir = ProjectSettings.globalize_path("user://")
+	# 调用系统命令打开文件夹
+	OS.shell_open(save_dir)

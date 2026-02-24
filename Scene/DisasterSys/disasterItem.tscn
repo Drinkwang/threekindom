@@ -6,7 +6,7 @@
 [ext_resource type="Theme" uid="uid://bd3x65u7e06d8" path="res://new_theme.tres" id="5_qcrwr"]
 [ext_resource type="Texture2D" uid="uid://bb76dl3aocsjo" path="res://addons/ui_extensions/dropdown/Arrow.svg" id="6_d634v"]
 
-[node name="Control" type="Control"]
+[node name="Control2" type="Control"]
 layout_mode = 3
 anchor_right = 0.2
 anchor_bottom = 0.589

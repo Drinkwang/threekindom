@@ -72,7 +72,8 @@ func showTitileReward(context,item,addAfter=true):
 			var item_ui:ShopItem = DaojuItem.instantiate()
 			item_ui.isShop=false
 			_grid_ui.add_child(item_ui)
-			item_ui.set_Data(key,_count)	
+			item_ui.set_Data(key,_count)
+			item_ui.getItem()	
 		#获取道具
 
 	#var getMoney=
@@ -129,7 +130,8 @@ func showReward(item):
 		var item_ui:ShopItem = DaojuItem.instantiate()
 		item_ui.isShop=false
 		_grid_ui.add_child(item_ui)
-		item_ui.set_Data(key,_count)	
+		item_ui.set_Data(key,_count)
+		item_ui.getItem()	
 		#获取道具
 
 	if item.money>0:
