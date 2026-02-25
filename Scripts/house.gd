@@ -255,6 +255,7 @@ func post_transition():
 			taishanSoilder.show()
 	else:
 		SoundManager.play_ambient_sound(daybgm)
+	allocationMuliao()
 	_initData()
 	
 	
@@ -727,6 +728,52 @@ func resetDeterminValue():
 	determineType=GameManager.ResType.none
 	determineDetail=""
 
+var alldata
+
+func allocationAllSettle():
+	if GameManager.sav.allocationDay==3:
+		allocationSettle(0)
+	else:
+		
+		var allCost=GameManager.cuclulateAllAllocation()
+		determineDetail=generate_cost_allocate(allCost)
+		#把allCost转换成文本
+		if allCost!=null:
+			if GameManager.justHaveDemand(allCost):
+				GameManager.playDemand(allCost)
+				GameManager.completeAutoAll()
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"津贴发放")
+			else:
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"未完成津贴发放")
+func allocationSettle(index):
+	#allocationMuliao()
+	#处理民心时调用 剩下方法会屏蔽，四个阶段依次有不满，然后扣除民心
+	if index>3 or (index==3 and GameManager.sav.have_event["lvbuJoin"]==false) :
+		
+		#or GameManager.sav.allocationDay!=3
+		#处理自动发放
+		return 
+	if GameManager.sav.allocationDay==3:
+		alldata=GameManager.getcldateByindex(index)
+
+		if alldata.allocationStatue==0:
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"派系扣除好感")
+		else:
+			allocationSettle(index+1)
+func allocationMuliao():
+	
+	if zhubu.visible==false:
+		if GameManager.sav.allocationDay==1:
+			zhubu.show()
+			zhubu.changeAllClick("月例发放日")
+		elif GameManager.sav.allocationDay==2:
+			zhubu.show()
+			zhubu.changeAllClick("最后支给日")
+		elif GameManager.sav.allocationDay==3:
+			zhubu.show()
+			zhubu.changeAllClick("月例预期日")
+	pass
+
 func settleDeterminValue():
 	if(determineType==GameManager.ResType.coin):
 		GameManager.sav.coin=GameManager.sav.coin-determineValue1
@@ -924,6 +971,38 @@ func generate_consumed_string(consumed: Dictionary) -> String:
 	#
 	## 用逗号连接所有描述
 	return "，".join(result)
+	
+func generate_cost_allocate(items_data: Dictionary)-> String:
+	# 存储拼接的各个部分
+	var parts = []
+	
+
+	if items_data.has("money") and items_data.money > 0:
+		# "ui.money" 是你翻译字典中对应“金钱”的key，可自定义
+		var money_name = tr("金钱")
+		parts.append("%s ×%s" % [money_name, str(items_data.money)])
+	
+	# 2. 劳动力（多语言翻译）
+	if items_data.has("population") and items_data.population > 0:
+		# "ui.population" 是你翻译字典中对应“劳动力”的key
+		var population_name = tr("劳动力")
+		parts.append("%s ×%s" % [population_name, str(items_data.population)])
+	# 3. 添加各类道具（通过item_type获取名称）
+	if items_data.has("items") and items_data.items is Dictionary:
+		for item_type in items_data.items:
+			var count = items_data.items[item_type]
+			if count > 0:
+				# 方式1：如果InventoryManager返回的name是翻译key，需要tr
+				var item_name_key = InventoryManager.get_item_db(item_type).name
+				var item_name = tr(item_name_key) # 翻译道具名称
+				
+				# 方式2：如果InventoryManager返回的是已翻译的显示名，直接用
+				# var item_name = InventoryManager.get_item_db(item_type).name
+				
+				parts.append("%s ×%s" % [item_name, str(count)])
+	
+	# 4. 拼接所有部分，用顿号分隔；如果无数据返回空字符串
+	return "、".join(parts) if parts.size() > 0 else ""
 	
 @onready var items_in_scene: Node2D = $itemsInScene
 

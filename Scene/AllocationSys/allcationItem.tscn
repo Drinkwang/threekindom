@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dlou7q503kxoi"]
+[gd_scene load_steps=20 format=3 uid="uid://dlou7q503kxoi"]
 
 [ext_resource type="Texture2D" uid="uid://7lnklxgva7pn" path="res://Asset/ui/panel_Example1.png" id="1_h5dg1"]
 [ext_resource type="Script" path="res://Scene/AllocationSys/allcation_item.gd" id="1_xg37g"]
@@ -6,6 +6,86 @@
 [ext_resource type="FontFile" uid="uid://to00njkwmxts" path="res://Asset/Font/1_sim.ttf" id="3_p4m4m"]
 [ext_resource type="Texture2D" uid="uid://c8s24bx5r2xci" path="res://Asset/other/感叹号.png" id="4_3ui7g"]
 [ext_resource type="Texture2D" uid="uid://diy7vtqj0dsb6" path="res://addons/inventory_editor/test/test_model/icons/Success.svg" id="5_m0bmt"]
+[ext_resource type="Texture2D" uid="uid://dk31jdste0gp3" path="res://Asset/link.png" id="7_c7u4m"]
+[ext_resource type="Texture2D" uid="uid://by88epas8fuuy" path="res://Asset/greyLock.png" id="8_s0khh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vmryt"]
+atlas = ExtResource("8_s0khh")
+region = Rect2(0, 0, 16, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xuuid"]
+atlas = ExtResource("8_s0khh")
+region = Rect2(16, 0, 16, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jlfb"]
+atlas = ExtResource("8_s0khh")
+region = Rect2(32, 0, 16, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_54cof"]
+atlas = ExtResource("8_s0khh")
+region = Rect2(48, 0, 16, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pbiyn"]
+atlas = ExtResource("8_s0khh")
+region = Rect2(64, 0, 16, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sixuj"]
+atlas = ExtResource("8_s0khh")
+region = Rect2(80, 0, 16, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dejct"]
+atlas = ExtResource("8_s0khh")
+region = Rect2(96, 0, 16, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t1173"]
+atlas = ExtResource("8_s0khh")
+region = Rect2(112, 0, 16, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0dnm1"]
+atlas = ExtResource("8_s0khh")
+region = Rect2(128, 0, 16, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w5ejy"]
+atlas = ExtResource("8_s0khh")
+region = Rect2(144, 0, 16, 22)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f5ihf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vmryt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xuuid")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1jlfb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_54cof")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pbiyn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sixuj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dejct")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t1173")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0dnm1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w5ejy")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
 
 [node name="AllcationItemNew" type="Control"]
 custom_minimum_size = Vector2(180, 0)
@@ -16,6 +96,7 @@ offset_bottom = 655.0
 script = ExtResource("1_xg37g")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 0
 offset_left = 5.0
 offset_top = 6.0
 offset_right = 348.0
@@ -29,6 +110,7 @@ patch_margin_right = 14
 patch_margin_bottom = 14
 
 [node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = 10.0
 offset_top = 11.0
 offset_right = 332.0
@@ -38,6 +120,7 @@ texture = ExtResource("2_owqsc")
 expand_mode = 1
 
 [node name="Button" type="Button" parent="."]
+layout_mode = 0
 offset_left = -45.0
 offset_top = 397.0
 offset_right = 228.0
@@ -46,6 +129,7 @@ disabled = true
 text = "支付派系需求"
 
 [node name="Panel" type="Panel" parent="."]
+layout_mode = 0
 offset_left = 9.0
 offset_top = 121.0
 offset_right = 173.0
@@ -64,6 +148,8 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="delay" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
 offset_left = 118.0
 offset_top = 8.0
 offset_right = 174.0
@@ -72,6 +158,7 @@ texture = ExtResource("4_3ui7g")
 expand_mode = 1
 
 [node name="CheckBox" type="CheckBox" parent="."]
+layout_mode = 0
 offset_left = 38.0
 offset_top = 553.0
 offset_right = 134.0
@@ -90,6 +177,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="alreadyGive" type="TextureRect" parent="."]
+visible = false
 layout_mode = 2
 offset_left = 63.0
 offset_top = 277.0
@@ -101,6 +189,7 @@ expand_mode = 1
 [node name="Grid" type="GridContainer" parent="."]
 custom_minimum_size = Vector2(0, 100)
 layout_direction = 1
+layout_mode = 0
 offset_left = 8.0
 offset_top = 174.0
 offset_right = 171.0
@@ -111,4 +200,36 @@ theme_override_constants/h_separation = 80
 theme_override_constants/v_separation = 80
 columns = 2
 
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -40.0
+offset_top = -16.0
+offset_right = 227.0
+offset_bottom = 667.0
+color = Color(0, 0, 0, 0.486275)
+
+[node name="Link2" type="Sprite2D" parent="ColorRect"]
+modulate = Color(0.215686, 0.215686, 0.215686, 1)
+position = Vector2(144, 343)
+rotation = -3.08923
+scale = Vector2(1, 1.55771)
+skew = 0.284111
+texture = ExtResource("7_c7u4m")
+
+[node name="Link" type="Sprite2D" parent="ColorRect"]
+modulate = Color(0.215686, 0.215686, 0.215686, 1)
+position = Vector2(140.044, 339.551)
+rotation = 2.7958
+scale = Vector2(1, 1.55771)
+texture = ExtResource("7_c7u4m")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ColorRect"]
+modulate = Color(0.215686, 0.215686, 0.215686, 1)
+position = Vector2(132, 317)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_f5ihf")
+animation = &"new_animation"
+
+[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
 [connection signal="toggled" from="CheckBox" to="." method="_on_check_box_toggled"]

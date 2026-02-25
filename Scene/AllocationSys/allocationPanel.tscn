@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dlou7q503kxoi" path="res://Scene/AllocationSys/allcationItem.tscn" id="4_n1j3h"]
 [ext_resource type="Texture2D" uid="uid://bkjl4axp5wn2g" path="res://Asset/人物/曹豹open.png" id="4_vkkn1"]
 [ext_resource type="Texture2D" uid="uid://dahuc8gb2blc" path="res://Asset/other/0_red.png" id="5_stw0y"]
-[ext_resource type="Texture2D" uid="uid://njt83qhv4wm8" path="res://Asset/人物/吕布.png" id="6_0jitv"]
+[ext_resource type="Texture2D" uid="uid://bmg7cdctm1v4k" path="res://Asset/人物/吕布隐藏.png" id="7_l0c0x"]
 
 [node name="AllocationPanel" type="Control" node_paths=PackedStringArray("arrs")]
 layout_mode = 3
@@ -128,11 +128,13 @@ theme_override_constants/separation = 155
 
 [node name="Control" parent="HBoxContainer2" instance=ExtResource("4_n1j3h")]
 layout_mode = 2
+factionIndex = 1
 headImg = ExtResource("3_ebxyw")
 namelv = "士族派"
 
 [node name="Control2" parent="HBoxContainer2" instance=ExtResource("4_n1j3h")]
 layout_mode = 2
+factionIndex = 2
 namelv = "豪族派"
 
 [node name="Control3" parent="HBoxContainer2" instance=ExtResource("4_n1j3h")]
@@ -141,11 +143,10 @@ headImg = ExtResource("4_vkkn1")
 namelv = "丹阳派"
 
 [node name="Control4" parent="HBoxContainer2" instance=ExtResource("4_n1j3h")]
-visible = false
 layout_mode = 2
 factionIndex = 3
-headImg = ExtResource("6_0jitv")
-namelv = "泰山派"
+headImg = ExtResource("7_l0c0x")
+namelv = "待解锁"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 visible = false

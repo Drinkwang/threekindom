@@ -1496,3 +1496,61 @@ func resetConstructTutorial():
 
 func cancelContructtion():
 	currenceScene.returnMain()
+
+#判断有无需求
+func justHaveDemand(item):
+	if GameManager.sav.coin<item.money or GameManager.sav.labor_force<item.population:
+		return false
+	for key in item.items.keys():
+		var _count=item.items[key]
+		#查询指定id 自己的数量
+		#判断物品数量是否大于cont 如果没有 return false
+		var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,key)
+		if num<_count:
+			return false
+	return true
+
+func cuclulateAllAllocation():
+	var items={}
+	items.money =0
+	items.population=0
+	items.items={}
+	for i in range(0,4):
+	
+		var data=getcldateByindex(i)
+		var demand=data.demand
+		if demand.is_empty() or data.allocationStatue==1 or data.isAutoAllocation==false:
+			continue
+		items.money+=demand.money
+		items.population+=demand.population
+		if demand.items is Dictionary:
+			for key in demand.items:
+			# 如果目标字典已有该键，可根据需求选择累加/覆盖
+			# 累加示例（比如物品数量）：
+				if key in items.items:
+					items.items[key] += demand.items[key]
+				else:
+					items.items[key] = demand.items[key]
+	if items.is_empty():
+		return null
+	else:
+		return items
+		
+func completeAutoAll():
+	for i in range(0,4):
+	
+		var data=getcldateByindex(i)
+		if data.isAutoAllocation==true:
+			data.allocationStatue=1
+func playDemand(item):
+	GameManager.sav.coin-=item.money 
+	GameManager.sav.labor_force-item.population
+	#if GameManager.sav.coin<item.money or GameManager.sav.labor_force<item.population:
+	#	return false
+	for key in item.items.keys():
+		var _count=item.items[key]
+		InventoryManager._remove_item(inventoryPackege,key,_count)
+		#查询指定id 自己的数量
+		#item_ui.set_Data(key,_count)	
+		#消耗指定数量的物品
+	

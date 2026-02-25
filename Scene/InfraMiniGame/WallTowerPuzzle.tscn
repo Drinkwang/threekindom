@@ -195,6 +195,7 @@ theme_override_font_sizes/font_size = 48
 text = "剩余时间:60秒"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
 offset_left = 370.0
 offset_top = 777.0
 offset_right = 1549.0
@@ -227,6 +228,7 @@ size_flags_horizontal = 3
 
 [node name="TextureRect" type="TextureRect" parent="."]
 visible = false
+layout_mode = 0
 offset_left = 758.0
 offset_top = 305.0
 offset_right = 1270.0
@@ -260,6 +262,7 @@ grow_vertical = 2
 color = Color(0.2, 0.2, 0.2, 0)
 
 [node name="RotateButton" type="TextureButton" parent="."]
+layout_mode = 0
 offset_left = 1343.0
 offset_top = 647.0
 offset_right = 1505.0
@@ -270,6 +273,7 @@ ignore_texture_size = true
 stretch_mode = 5
 
 [node name="Label2" type="Label" parent="."]
+layout_mode = 0
 offset_left = 1317.0
 offset_top = 805.0
 offset_right = 1537.0
@@ -287,6 +291,7 @@ text = "旋转拼图"
 horizontal_alignment = 1
 
 [node name="SettleButton" type="TextureButton" parent="."]
+layout_mode = 0
 offset_left = 1346.0
 offset_top = 231.0
 offset_right = 1508.0
@@ -299,6 +304,7 @@ ignore_texture_size = true
 stretch_mode = 5
 
 [node name="Label" type="Label" parent="."]
+layout_mode = 0
 offset_left = 1320.0
 offset_top = 389.0
 offset_right = 1540.0
@@ -320,6 +326,7 @@ horizontal_alignment = 1
 [node name="winRect" type="ColorRect" parent="."]
 visible = false
 z_index = 4096
+layout_mode = 0
 offset_right = 1942.0
 offset_bottom = 1254.0
 color = Color(0, 0, 0, 0.588235)
@@ -388,6 +395,7 @@ libraries = {
 [node name="LoseRect" type="ColorRect" parent="."]
 visible = false
 z_index = 4096
+layout_mode = 0
 offset_right = 1942.0
 offset_bottom = 1254.0
 color = Color(1, 0, 0, 0.568627)

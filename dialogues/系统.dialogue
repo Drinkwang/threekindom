@@ -166,6 +166,7 @@ do danyangLawTest()
 
 ~ 丹阳法律未通过
 提示: 你许诺{{GameManager.sav.WAIDIPAI._name}}的法律没有通过，丧失10点支持度。
+do allocationSettle(0)
 => END
 
 ~ ESC按钮
