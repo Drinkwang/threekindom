@@ -32,7 +32,7 @@ enum factionIndex{
 }
 #1 2 3 4可支付 
 
-@export var allocationStatue=-1
+@export var allocationStatue=0
 #-1没开启 0未支付  1 已经支付
 @export var demand={}
 @export var isAutoAllocation=false

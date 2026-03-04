@@ -114,7 +114,7 @@ offset_right = 1525.0
 offset_bottom = 225.0
 theme_override_fonts/font = ExtResource("2_d11ry")
 theme_override_font_sizes/font_size = 55
-text = "月例配给管理面板"
+text = "月例配给管理面板【俸给筹备期】"
 autowrap_mode = 2
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="."]
@@ -189,3 +189,5 @@ texture_hover = ExtResource("5_stw0y")
 texture_disabled = ExtResource("5_stw0y")
 texture_focused = ExtResource("5_stw0y")
 stretch_mode = 0
+
+[connection signal="button_down" from="TextureButton" to="." method="_on_texture_button_button_down"]

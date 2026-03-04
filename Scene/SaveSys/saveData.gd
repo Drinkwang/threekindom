@@ -323,6 +323,8 @@ var SIDEQUEST_MAP:Dictionary={
 	"回忆无名":false,
 	"夏侯偷马":false,
 	"吕布之怒":false,
+	"津贴系统开始":false,
+	"第一次津贴教程":false,
 }
 @export var taishanWait=0
 #0 小试牛刀开启 1小试牛刀通过 2 对局试炼开启 3对局试验通过 4 诡秘怪谈开启 5诡秘怪谈通过

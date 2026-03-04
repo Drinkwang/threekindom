@@ -369,7 +369,7 @@ func _buttonListClick(item):
 			policy_panel.show()
 
 	#50点	
-	elif item.context == "召见手下":
+	elif item.context == "召见派系":
 		if await GameManager.isTried(costHp_SummonOne):
 			return
 
@@ -793,6 +793,12 @@ func deliverUncompleteTask():
 				tsty.show()
 				return
 				#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"城外克苏鲁事件触发")
+		elif GameManager.sav.have_event["津贴系统开始"]==false and GameManager.sav.have_event["battleTaiShan"]==true:
+			GameManager.sav.have_event["津贴系统开始"]=true
+			GameManager.sav.allocationDay=1
+			GameManager.initDemand()
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"津贴开始")
+			return
 		elif GameManager.sav.have_event["支线触发完毕查出锦囊休息"]==true and GameManager.sav.have_event["支线触发完毕获得锦囊之前"]==false:
 			GameManager.sav.have_event["支线触发完毕获得锦囊之前"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁府邸调查支线")
@@ -857,9 +863,20 @@ func deliverUncompleteTask():
 			if(GameManager.sav.have_event["initTask1"]==true):
 				pass
 		
+@onready var allocation_panel: Control = $CanvasLayer/AllocationPanel
 
-
-			
+func openMonthlySupplyPanel():
+	allocation_panel.initData()
+	allocation_panel.show()
+	if GameManager.sav.have_event["第一次津贴教程"]==false:
+		GameManager.sav.have_event["第一次津贴教程"]=true
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"津贴教程")
+	elif GameManager.sav.allocationDay==1:
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"上旬通知")
+	elif GameManager.sav.allocationDay==2:
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"中旬通知")
+	elif GameManager.sav.allocationDay==3:
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"下旬通知")
 func deliverTask():
 	if GameManager.sav.TargetDestination=="府邸":
 		#任务2完成 来这边兑现奖励

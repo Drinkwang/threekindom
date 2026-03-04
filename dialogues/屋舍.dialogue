@@ -440,10 +440,10 @@ do switchGatepost()
 
 #依次调用四次 改这个
 ~ 派系扣除好感
-主簿: 主公，本月{{xxx.name}}月例未能按时发放，{{xxx.name}}支持度下降 {{xxx}} 点。
+主簿: 主公，本月{{alldata._name}}月例未能按时发放，{{alldata._name}}支持度下降 5 点。
 #voice  主公，本月月例未能按时发放，该派系心生不满，对主公信赖有所下降。
 #提示: {{determineDetail}}，需丹阳派好感度至60或镇压
-do allocationAllSettle()
+do allocationSettle(alldata.index+1)
 => END!
 
 

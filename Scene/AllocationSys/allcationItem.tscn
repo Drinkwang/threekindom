@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://dlou7q503kxoi"]
+[gd_scene load_steps=21 format=3 uid="uid://dlou7q503kxoi"]
 
 [ext_resource type="Texture2D" uid="uid://7lnklxgva7pn" path="res://Asset/ui/panel_Example1.png" id="1_h5dg1"]
 [ext_resource type="Script" path="res://Scene/AllocationSys/allcation_item.gd" id="1_xg37g"]
+[ext_resource type="PackedScene" uid="uid://5qxpn6avk7bx" path="res://Scene/prefab/ShopItem.tscn" id="2_7vlov"]
 [ext_resource type="Texture2D" uid="uid://drj1r377gntrn" path="res://Asset/人物/糜竺睁眼.png" id="2_owqsc"]
 [ext_resource type="FontFile" uid="uid://to00njkwmxts" path="res://Asset/Font/1_sim.ttf" id="3_p4m4m"]
 [ext_resource type="Texture2D" uid="uid://c8s24bx5r2xci" path="res://Asset/other/感叹号.png" id="4_3ui7g"]
@@ -94,6 +95,7 @@ anchors_preset = 0
 offset_right = 180.0
 offset_bottom = 655.0
 script = ExtResource("1_xg37g")
+DaojuItem = ExtResource("2_7vlov")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 0
@@ -157,35 +159,6 @@ offset_bottom = 64.0
 texture = ExtResource("4_3ui7g")
 expand_mode = 1
 
-[node name="CheckBox" type="CheckBox" parent="."]
-layout_mode = 0
-offset_left = 38.0
-offset_top = 553.0
-offset_right = 134.0
-offset_bottom = 649.0
-
-[node name="Label" type="Label" parent="CheckBox"]
-layout_mode = 0
-offset_left = -69.0
-offset_top = -26.0
-offset_right = 177.0
-offset_bottom = 16.0
-theme_override_fonts/font = ExtResource("3_p4m4m")
-theme_override_font_sizes/font_size = 41
-text = "自动支付需求"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="alreadyGive" type="TextureRect" parent="."]
-visible = false
-layout_mode = 2
-offset_left = 63.0
-offset_top = 277.0
-offset_right = 119.0
-offset_bottom = 333.0
-texture = ExtResource("5_m0bmt")
-expand_mode = 1
-
 [node name="Grid" type="GridContainer" parent="."]
 custom_minimum_size = Vector2(0, 100)
 layout_direction = 1
@@ -199,6 +172,17 @@ size_flags_vertical = 4
 theme_override_constants/h_separation = 80
 theme_override_constants/v_separation = 80
 columns = 2
+
+[node name="alreadyGive" type="TextureRect" parent="."]
+visible = false
+z_index = 100
+layout_mode = 2
+offset_left = 63.0
+offset_top = 277.0
+offset_right = 119.0
+offset_bottom = 333.0
+texture = ExtResource("5_m0bmt")
+expand_mode = 1
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
@@ -230,6 +214,26 @@ position = Vector2(132, 317)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_f5ihf")
 animation = &"new_animation"
+
+[node name="CheckBox" type="CheckBox" parent="."]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 553.0
+offset_right = 134.0
+offset_bottom = 649.0
+action_mode = 0
+
+[node name="Label" type="Label" parent="CheckBox"]
+layout_mode = 0
+offset_left = -69.0
+offset_top = -26.0
+offset_right = 177.0
+offset_bottom = 16.0
+theme_override_fonts/font = ExtResource("3_p4m4m")
+theme_override_font_sizes/font_size = 41
+text = "自动支付需求"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
 [connection signal="toggled" from="CheckBox" to="." method="_on_check_box_toggled"]

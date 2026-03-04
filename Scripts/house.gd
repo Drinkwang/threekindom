@@ -54,9 +54,9 @@ func _ready():
 	
 	if GameManager.sav.have_event["chaoMizhuEnd"]==true and GameManager.sav.isGetCoin==false and GameManager.sav.currenceValue>1:
 
-		
-		demo_end_v.show()
-		demo_end_v.play()		
+		pass
+		#demo_end_v.show()
+		#demo_end_v.play()		
 		
 
 @onready var bti_rect = $btiRect
@@ -114,18 +114,18 @@ func _initData():
 	
 	#记得demo注销
 	if GameManager.sav.have_event["chaoMizhuEnd"]==true and GameManager.sav.isGetCoin==false and GameManager.sav.currenceValue>1:
-		title.show()
-		demo_end.show()
-		hp_panel.hide()
-		res_panel.hide()
-		support_panel.hide()
-		SoundManager.stop_all_ambient_sounds()
-		SoundManager.stop_music()
+		#title.show()
+		#demo_end.show()
+		#hp_panel.hide()
+		#res_panel.hide()
+		#support_panel.hide()
+		#SoundManager.stop_all_ambient_sounds()
+		#SoundManager.stop_music()
 		
 		#demo_end_v.show()
 		#demo_end_v.play()		
 		
-		return
+		#return
 		pass
 	if control.visible==true:	
 		items_in_scene.showItems()	
@@ -598,6 +598,9 @@ func extraTask():
 			GameManager.sav.taishanWait=50
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"泰山诸将任务完成")
 			GameManager.sav.have_event["最终泰山"]=true
+		else:
+			pass
+			#allocationAllSettle()
 	#判断忠诚度
 	var chaonum=0	
 	enterdetermineInternalUnrest()
@@ -720,6 +723,8 @@ func determineInternalUnrest():
 	
 	if _UnrestNum>0:
 		DialogueManager.show_example_dialogue_balloon(sys,"有内乱禀报")
+	else:
+		shizuLawTest()
 var determineValue1=0
 var determineType:GameManager.ResType=GameManager.ResType.none
 var determineDetail=""
@@ -731,19 +736,24 @@ func resetDeterminValue():
 var alldata
 
 func allocationAllSettle():
-	if GameManager.sav.allocationDay==3:
+	if GameManager.sav.allocationDay<1:
+		return
+		
+	if GameManager.sav.allocationDay==1:
 		allocationSettle(0)
 	else:
 		
 		var allCost=GameManager.cuclulateAllAllocation()
-		determineDetail=generate_cost_allocate(allCost)
+		
 		#把allCost转换成文本
-		if allCost!=null:
+		if allCost!=null and !allCost.is_empty():
+			determineDetail=generate_cost_allocate(allCost)
 			if GameManager.justHaveDemand(allCost):
 				GameManager.playDemand(allCost)
 				GameManager.completeAutoAll()
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"津贴发放")
 			else:
+				
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"未完成津贴发放")
 func allocationSettle(index):
 	#allocationMuliao()
@@ -753,25 +763,29 @@ func allocationSettle(index):
 		#or GameManager.sav.allocationDay!=3
 		#处理自动发放
 		return 
-	if GameManager.sav.allocationDay==3:
+	if GameManager.sav.allocationDay==1:
 		alldata=GameManager.getcldateByindex(index)
 
 		if alldata.allocationStatue==0:
+			alldata.ChangeSupport(-5)
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"派系扣除好感")
 		else:
 			allocationSettle(index+1)
 func allocationMuliao():
 	
 	if zhubu.visible==false:
-		if GameManager.sav.allocationDay==1:
+		if GameManager.sav.allocationDay==2:
 			zhubu.show()
 			zhubu.changeAllClick("月例发放日")
-		elif GameManager.sav.allocationDay==2:
-			zhubu.show()
-			zhubu.changeAllClick("最后支给日")
+			
+			
 		elif GameManager.sav.allocationDay==3:
 			zhubu.show()
+			zhubu.changeAllClick("最后支给日")
+		elif GameManager.sav.allocationDay==1:
+			zhubu.show()
 			zhubu.changeAllClick("月例预期日")
+			#allocationAllSettle
 	pass
 
 func settleDeterminValue():
@@ -959,7 +973,7 @@ func danyangLawTest():
 		GameManager.sav.courtingLaws.erase(GameManager.sav.WAIDIPAI._name)
 		DialogueManager.show_example_dialogue_balloon(sys,"丹阳法律未通过")
 		GameManager.sav.WAIDIPAI.ChangeSupport(-10)
-		return
+	allocationAllSettle()#test工资系统 加到另外的后面
 
 
 func generate_consumed_string(consumed: Dictionary) -> String:
@@ -993,7 +1007,8 @@ func generate_cost_allocate(items_data: Dictionary)-> String:
 			var count = items_data.items[item_type]
 			if count > 0:
 				# 方式1：如果InventoryManager返回的name是翻译key，需要tr
-				var item_name_key = InventoryManager.get_item_db(item_type).name
+				var itemname= InventoryManagerItem.item_by_enum(item_type)
+				var item_name_key = InventoryManager.get_item_db(itemname).name
 				var item_name = tr(item_name_key) # 翻译道具名称
 				
 				# 方式2：如果InventoryManager返回的是已翻译的显示名，直接用

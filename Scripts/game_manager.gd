@@ -361,7 +361,18 @@ func _enterDay(value=true):
 			GameManager.sav.XuanyinDay+=1
 		if GameManager.sav.have_event["泰山预备"]==true and GameManager.sav.have_event["最终泰山"]==false:
 			GameManager.sav.taishanWait+=1
-
+		if sav.allocationDay>0:
+			sav.allocationDay+=1
+			if sav.allocationDay>3:
+				initDemand()
+				sav.WAIDIPAI.demand={}
+				sav.BENTUPAI.demand={}
+				sav.LVBU.demand={}
+				sav.HAOZUPAI.demand={}
+				
+			#
+			if sav.allocationDay>3:
+				sav.allocationDay=1
 #@export var mizhuSideWait=-1
 #@export var chendenSideWait=-1
 #@export var caobaoSideWait=-1
@@ -396,6 +407,22 @@ func _enterDay(value=true):
 #		{"name":"高风险","initPos":0,"radian":90},
 
 
+func initDemand():
+	var point=GameManager.sav.day*10+50
+	initSoleDemand(sav.WAIDIPAI,point)
+	initSoleDemand(sav.BENTUPAI,point)
+	initSoleDemand(sav.HAOZUPAI,point)		
+	#sav.WAIDIPAI.demand={}
+	#sav.BENTUPAI.demand={}
+	#
+	#sav.HAOZUPAI.demand={}
+	if GameManager.sav.have_event["lvbuJoin"]==true:
+		initSoleDemand(sav.LVBU,point*2)
+		#sav.LVBU.demand={}
+
+func initSoleDemand(sav,value):
+	var items=GameManager.ScoreToItem(value)				
+	sav.demand=items
 func dontHaveDominance():
 	var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.霸道之息)	
 
@@ -1452,10 +1479,7 @@ func enterCrazy():
 	#PanelManager.Fade_Blank(Color.RED,0.5,PanelManager.fadeType.fadeOut)
 	SoundManager.stop_music()
 	SoundManager.play_music(sounds._2__MENTAL_VORTEX)
-	if sav.allocationDay>0:
-		sav.allocationDay+=1
-		if sav.allocationDay>3:
-			sav.allocationDay=1
+
 
 func enterNormal():
 	
@@ -1499,13 +1523,14 @@ func cancelContructtion():
 
 #判断有无需求
 func justHaveDemand(item):
-	if GameManager.sav.coin<item.money or GameManager.sav.labor_force<item.population:
+	if item.is_empty() or GameManager.sav.coin<item.money or GameManager.sav.labor_force<item.population:
 		return false
 	for key in item.items.keys():
 		var _count=item.items[key]
 		#查询指定id 自己的数量
 		#判断物品数量是否大于cont 如果没有 return false
-		var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,key)
+		var itemname= InventoryManagerItem.item_by_enum(key)
+		var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,itemname)
 		if num<_count:
 			return false
 	return true
@@ -1531,7 +1556,9 @@ func cuclulateAllAllocation():
 					items.items[key] += demand.items[key]
 				else:
 					items.items[key] = demand.items[key]
-	if items.is_empty():
+	if items.is_empty() or items.get("money", 0) ==0 and \
+		   items.get("population", 0) == 0 and \
+		   items.get("items", {}).is_empty():
 		return null
 	else:
 		return items
@@ -1542,6 +1569,8 @@ func completeAutoAll():
 		var data=getcldateByindex(i)
 		if data.isAutoAllocation==true:
 			data.allocationStatue=1
+			
+	
 func playDemand(item):
 	GameManager.sav.coin-=item.money 
 	GameManager.sav.labor_force-item.population
@@ -1549,8 +1578,10 @@ func playDemand(item):
 	#	return false
 	for key in item.items.keys():
 		var _count=item.items[key]
-		InventoryManager._remove_item(inventoryPackege,key,_count)
+		var itemname= InventoryManagerItem.item_by_enum(key)
+		InventoryManager._remove_item(inventoryPackege,itemname,_count)
+	#调用事件刷新面板	
 		#查询指定id 自己的数量
 		#item_ui.set_Data(key,_count)	
 		#消耗指定数量的物品
-	
+	SignalManager.playDemand.emit()

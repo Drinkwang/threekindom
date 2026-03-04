@@ -47,6 +47,7 @@ func _ready():
 	changeLanguage()
 	if is_instance_valid(SignalManager):	
 		SignalManager.changeLanguage.connect(changeLanguage)
+
 func changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()
 	if currencelanguage=="ru":
@@ -76,9 +77,9 @@ const lvbupng = preload("res://Asset/人物/吕布.png")
 func initData():
 	data=GameManager.getFractionByEnum(factionIndex)
 	if data.isAutoAllocation==true:
-		check_box.toggle_mode=true
+		check_box.button_pressed=true
 	else:
-		check_box.toggle_mode=false
+		check_box.button_pressed=false
 	if GameManager.sav.have_event["lvbuJoin"]==false and data.index==cldata.factionIndex.lvbu:
 		
 		color_rect.show()
@@ -91,7 +92,7 @@ func initData():
 		color_rect.hide()
 	if GameManager.sav.have_event["lvbuJoin"]==true and data.index==cldata.factionIndex.lvbu:
 		headImg=lvbupng
-	if GameManager.sav.allocationDay==3:
+	if GameManager.sav.allocationDay==1:
 		button.disabled=true
 		button.text=tr("待发放")
 		#新的需求来了，必定为false
@@ -102,20 +103,20 @@ func initData():
 			
 			
 			if GameManager.justHaveDemand(data.demand):
-				button.disabled=true
+				button.disabled=false
 				button.text=tr("支付派系需求")
 			else:
-				button.disabled=false
+				button.disabled=true
 				button.text=tr("你的资源不足")			
 		else:
 			already_give.show()
 			#已经支付
 			button.text=tr("已支付")
 			button.disabled=true
-		if GameManager.sav.allocationDay==2:
+		if GameManager.sav.allocationDay==3:
 			delay.show()
 			TooltipManager.register_tooltip(delay,tr("今日为月例最终支给日，未发将影响各方心意！"))
-		elif GameManager.sav.allocationDay==1:
+		elif GameManager.sav.allocationDay==2:
 			delay.hide()
 			#already_give.show()
 	showReward(data.demand)
@@ -175,7 +176,7 @@ func _on_check_box_toggled(toggled_on: bool) -> void:
 
 const fudi = preload("res://dialogues/府邸.dialogue")
 func _on_button_button_down() -> void:
-	if data.allocationStatue==0 and GameManager.sav.allocationDay!=3:
+	if data.allocationStatue==0 and GameManager.sav.allocationDay!=1:
 		GameManager.resideValue=data
 		DialogueManager.show_example_dialogue_balloon(fudi,"是否完成津贴")#显示对话
 	else:

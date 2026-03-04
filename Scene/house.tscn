@@ -230,7 +230,7 @@ dialogue_resource = ExtResource("21_eyp0q")
 
 [node name="文官" parent="." instance=ExtResource("7_7mriv")]
 visible = false
-position = Vector2(630, 631)
+position = Vector2(701, 631)
 showName = "主簿"
 dialogue_doubleclick = "second"
 txt2d = ExtResource("6_ys6bi")

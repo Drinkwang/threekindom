@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://dbk6u8kc33kq2"]
+[gd_scene load_steps=48 format=3 uid="uid://dbk6u8kc33kq2"]
 
 [ext_resource type="Script" path="res://Scripts/government_building.gd" id="1_xncth"]
 [ext_resource type="Resource" uid="uid://cqlt2sgkuk3na" path="res://dialogues/府邸.dialogue" id="2_yngd1"]
@@ -32,6 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://cxodneuue05m4" path="res://Asset/fx/zhangyan_Frames/Slash2_color2_frame2.png" id="23_ssyf0"]
 [ext_resource type="Texture2D" uid="uid://b4nhuitfqto1b" path="res://Asset/fx/zhangyan_Frames/Slash2_color2_frame3.png" id="24_gm54n"]
 [ext_resource type="Texture2D" uid="uid://5f7l2pp1xe7d" path="res://Asset/fx/zhangyan_Frames/Slash2_color2_frame4.png" id="25_4ooeq"]
+[ext_resource type="PackedScene" uid="uid://bsex8ep42piyc" path="res://Scene/AllocationSys/allocationPanel.tscn" id="25_ae563"]
 [ext_resource type="Texture2D" uid="uid://dme188pn6ks8" path="res://Asset/fx/zhangyan_Frames/Slash2_color2_frame5.png" id="26_dmvci"]
 [ext_resource type="Texture2D" uid="uid://d1dl7ni55wrps" path="res://Asset/fx/zhangyan_Frames/Slash2_color2_frame6.png" id="27_02a0d"]
 [ext_resource type="Texture2D" uid="uid://c4o3chacp3emp" path="res://Asset/fx/zhangyan_Frames/Slash2_color2_frame7.png" id="28_nttis"]
@@ -266,6 +267,9 @@ offset_left = -2.0
 offset_top = -14.0
 offset_right = -2.0
 offset_bottom = -14.0
+
+[node name="AllocationPanel" parent="CanvasLayer" instance=ExtResource("25_ae563")]
+visible = false
 
 [node name="caocaoLetter" parent="CanvasLayer" instance=ExtResource("19_b7wfr")]
 visible = false
