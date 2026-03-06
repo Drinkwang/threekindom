@@ -365,10 +365,10 @@ func _enterDay(value=true):
 			sav.allocationDay+=1
 			if sav.allocationDay>3:
 				initDemand()
-				sav.WAIDIPAI.demand={}
-				sav.BENTUPAI.demand={}
-				sav.LVBU.demand={}
-				sav.HAOZUPAI.demand={}
+				#sav.WAIDIPAI.demand={}
+				#sav.BENTUPAI.demand={}
+				#sav.LVBU.demand={}
+				#sav.HAOZUPAI.demand={}
 				
 			#
 			if sav.allocationDay>3:
@@ -423,6 +423,11 @@ func initDemand():
 func initSoleDemand(sav,value):
 	var items=GameManager.ScoreToItem(value)				
 	sav.demand=items
+	sav.allocationStatue=0
+	
+	
+func canDistributeAllowance():
+	return sav.BENTUPAI.allocationStatue==0 or sav.WAIDIPAI.allocationStatue==0 or sav.HAOZUPAI.allocationStatue or (sav.LVBU.allocationStatue==0 and GameManager.sav.have_event["lvbuJoin"]==true)	
 func dontHaveDominance():
 	var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.霸道之息)	
 

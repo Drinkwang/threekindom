@@ -228,7 +228,9 @@ func post_transition():
 		
 		return 
 		
-
+	if GameManager.sav.have_event["最终泰山"]==true and GameManager.sav.have_event["辕门射戟"]==false:# 吕布辕门射戟
+		GameManager.sav.have_event["辕门射戟"]=true
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"吕布辕门射戟")
 	_initData()
 	wuminBanView()
 func caobaoshow():
@@ -396,7 +398,7 @@ func _initData():
 						caobao.showEX=false
 				elif GameManager.sav.have_event["最终丹阳"]==false and GameManager.sav.WAIDIPAI._support_rate>=80 and GameManager.sav.have_event["主簿的追随"]==true:
 					danyangSoilder.show()
-					
+					danyangSoilder.changeAllClick("丹阳将领投靠")
 
 					
 		
@@ -556,6 +558,10 @@ func _buttonListClick(item):
 				if GameManager.sav.have_event["袁术也进军"]==false:
 					GameManager.sav.have_event["袁术也进军"]=true
 					DialogueManager.show_dialogue_balloon(dialogue_resource,"征讨袁术开始")
+		elif GameManager.sav.have_event["吕布之怒"]==true and GameManager.sav.have_event["吕布怒气_演武场"]==false:
+			GameManager.sav.have_event["吕布怒气_演武场"]=true
+			#这个过后就变成吕布
+			DialogueManager.show_dialogue_balloon(dialogue_resource,"吕布的怒气")
 		#if(GameManager.sav.have_event["firstBattleTutorial"]==true)：
 		#暂时不能发动军事行动
 	elif item.context=="休息":

@@ -36,6 +36,11 @@ func changeHeadInMainTask():
 	const CANGXI = preload("res://Asset/人物/cangxi.png")
 	const HUANGJIN_3 = preload("res://Asset/人物/huangjin3.png")
 	const ZANGBA = preload("res://Asset/人物/zangba.png")
+	const ma = preload("res://Asset/人物/马儿.png")
+	const jiling = preload("res://Asset/人物/纪灵.png")
+	
+	const lvbu = preload("res://Asset/人物/吕布.png")
+	
 	if GameManager.sav.have_event["battleTaiShan"]==true and GameManager.sav.have_event["昌豨求饶"]==false:
 		changeHead(CANGXI)
 		
@@ -43,6 +48,12 @@ func changeHeadInMainTask():
 		changeHead(CANGXI_2)		
 	elif  GameManager.sav.have_event["臧霸首战"]==true and GameManager.sav.have_event["温侯降伏臧霸"]==false:
 		changeHead(ZANGBA)
+	elif GameManager.sav.have_event["夏侯偷马"]==false and GameManager.sav.have_event["xxxx"]==true:
+		changeHead(jiling)
+	elif GameManager.sav.have_event["吕布之怒"]==false and GameManager.sav.have_event["夏侯偷马"]==true:
+		changeHead(ma)
+	elif GameManager.sav.have_event["吕布之怒"]==true:
+		changeHead(lvbu)
 	else:
 		changeHead(HUANGJIN_3)	
 		

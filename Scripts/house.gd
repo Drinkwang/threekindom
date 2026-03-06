@@ -16,6 +16,26 @@ const FancyFade = preload("res://addons/transitions/FancyFade.gd")
 const xiaopeiBuild = preload("res://Asset/城镇建筑/小沛自宅.png")
 const newBuild = preload("res://Asset/城镇建筑/徐州自宅.png")
 
+@onready var titlefinal: Sprite2D = $"标题"
+@onready var bg: Sprite2D = $"内饰"
+
+const yanwuchangpaizi = preload("res://Asset/光明/演武场-正常.png")
+const yanwuchang = preload("res://Asset/城镇建筑/演武场2.png")
+const caofu = preload("res://Asset/光明/曹府.png")
+@onready var fade: AnimationPlayer = $CanvasLayer/ColorRect2/fade
+const qingmei = preload("res://Asset/城镇建筑/青梅煮酒.png")
+
+func changeToFinalScene(index):
+	if index==0:
+		fade.play("fadetime")
+	elif index==1:
+		bg.texture=yanwuchang
+		titlefinal.texture=yanwuchangpaizi
+		#显示吕布
+		#显示吕布三国志台词
+	elif index==2:
+		bg.texture=qingmei
+		titlefinal.texture=caofu	
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	preload("res://Asset/tres/bentupai.tres")#没用但必须有，让资源提前单例加载
@@ -65,10 +85,10 @@ func _ready():
 @onready var guanyu: Node2D = $guanyu
 
 func xiaopeiStart():
-	GameManager.sav.targetValue=14
+	GameManager.sav.targetValue=12
 	GameManager.sav.currenceValue=0
 	GameManager.sav.targetResType=GameManager.ResType.rest
-	GameManager.sav.targetTxt="撑过天数：{currence}/{target}"
+	GameManager.sav.targetTxt="撑过回合数：{currence}/{target}"
 	GameManager.sav.TargetDestination="rest"
 	#暂时先这样写
 	
@@ -598,12 +618,21 @@ func extraTask():
 			GameManager.sav.taishanWait=50
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"泰山诸将任务完成")
 			GameManager.sav.have_event["最终泰山"]=true
+		elif GameManager.sav.have_event["辕门射戟"]==true and GameManager.sav.have_event["辕门射戟结束"]==false:
+			GameManager.sav.have_event["辕门射戟结束"]=true
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"辕门射戟完成")
 		else:
 			pass
 			#allocationAllSettle()
 	#判断忠诚度
 	var chaonum=0	
 	enterdetermineInternalUnrest()
+
+
+@onready var xiahouchun: Node2D = $xiahouchun
+
+func switchGatepost():
+	SceneManager.changeScene(SceneManager.roomNode.DRILL_GROUND,2)
 
 func _JudgeTask():
 	var hasSide=true
@@ -627,6 +656,15 @@ func _JudgeTask():
 				else:
 					hasSide=false
 					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"每天袁术内应搞事")	
+		elif GameManager.sav.have_event["关羽求援结束"]==true:
+			if value>=8 and GameManager.sav.have_event["夏侯偷马"]==false:
+				GameManager.sav.have_event["夏侯偷马"]=true
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"小沛信件")	
+			elif value>=10 and GameManager.sav.have_event["吕布之怒"]==false:
+				GameManager.sav.have_event["吕布之怒"]=true
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"吕布最终进犯")	
+			elif value>=GameManager.sav.targetValue:
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"终局")	
 	if(GameManager.sav.have_event["completeTask1"]==true):
 		if(GameManager.sav.have_event["initTask2"]==false):
 			GameManager.sav.have_event["initTask2"]=true
@@ -774,12 +812,12 @@ func allocationSettle(index):
 func allocationMuliao():
 	
 	if zhubu.visible==false:
-		if GameManager.sav.allocationDay==2:
+		if GameManager.sav.allocationDay==2 and GameManager.canDistributeAllowance():
 			zhubu.show()
 			zhubu.changeAllClick("月例发放日")
 			
 			
-		elif GameManager.sav.allocationDay==3:
+		elif GameManager.sav.allocationDay==3 and GameManager.canDistributeAllowance():
 			zhubu.show()
 			zhubu.changeAllClick("最后支给日")
 		elif GameManager.sav.allocationDay==1:

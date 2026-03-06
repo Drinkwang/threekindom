@@ -320,9 +320,12 @@ var SIDEQUEST_MAP:Dictionary={
 	"泰山预备":false,
 	"最终泰山":false,
 	"辕门射戟":false,
+	"辕门射戟结束":false,
 	"回忆无名":false,
 	"夏侯偷马":false,
 	"吕布之怒":false,
+	"吕布怒气_演武场":false,
+	"非霸道线完成":false,
 	"津贴系统开始":false,
 	"第一次津贴教程":false,
 }
