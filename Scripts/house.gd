@@ -18,25 +18,84 @@ const newBuild = preload("res://Asset/城镇建筑/徐州自宅.png")
 
 @onready var titlefinal: Sprite2D = $"标题"
 @onready var bg: Sprite2D = $"内饰"
+@onready var cikezu: Node2D = $cikezu
 
 const yanwuchangpaizi = preload("res://Asset/光明/演武场-正常.png")
 const yanwuchang = preload("res://Asset/城镇建筑/演武场2.png")
 const caofu = preload("res://Asset/光明/曹府.png")
-@onready var fade: AnimationPlayer = $CanvasLayer/ColorRect2/fade
+@onready var fade: AnimationPlayer =$fade/ColorRect2/fade
 const qingmei = preload("res://Asset/城镇建筑/青梅煮酒.png")
+@onready var lvbu: Node2D = $"吕布"
+
+const luoyang = preload("res://Asset/城镇建筑/洛阳街头.png")
+const luoyangtitle = preload("res://Asset/光明/洛阳街巷标牌.png")
+const zizhailiang = preload("res://Asset/光明/自宅-正常.png")
+const zizhaian = preload("res://Asset/黑暗/自宅-暗.png")
+const xiaopei = preload("res://Asset/城镇建筑/小沛自宅.png")
+const xuzhou = preload("res://Asset/城镇建筑/徐州自宅.png")
+@onready var dao: Sprite2D = $dao
+@onready var dao_animation_player: AnimationPlayer = $dao/AnimationPlayer
+const caoliu1 = preload("res://Asset/music/曹刘过场1.mp3")
+const caoliu2 = preload("res://Asset/music/曹刘过场2.mp3")
+
+@onready var caocao_old: Node2D = $"曹操老"
+@onready var cikegroup: Node2D = $cikegroup
 
 func changeToFinalScene(index):
+	
+	if index==-1:
+		fade.play("RESET")
 	if index==0:
+		SoundManager.stop_music()
+		SoundManager.play_music(caoliu1)
 		fade.play("fadetime")
 	elif index==1:
 		bg.texture=yanwuchang
 		titlefinal.texture=yanwuchangpaizi
+		lvbu.show()
+		dao.show()
+		dao_animation_player.play("chop")
+		#var _func=func(stringname):
+		#sword_sprite_2d.hide()
+		var tween=get_tree().create_tween()
+		#SoundManager.play_sound(sounds.BLOODXX)
+		tween.tween_property(lvbu, "modulate:a",0, 5)
+		
 		#显示吕布
 		#显示吕布三国志台词
 	elif index==2:
+		lvbu.hide()
+		dao.hide()
+		#caocao_old.show()
+		cikegroup.hide()
+		GameManager.sav.have_event["进入曹府"]=true
 		bg.texture=qingmei
-		titlefinal.texture=caofu	
+		titlefinal.texture=caofu
+	elif index==3:
+		
+		GameManager.sav.have_event["进入青梅煮酒"]=true
+		GameManager.restLabel=tr("公元200年，曹操挟天子以令诸侯，为袁绍所忌。刘备表面亲附，暗奉衣带诏欲诛曹，几番迟疑。暮春，曹操青梅煮酒，邀刘备共饮。")
+
+		#GameManager.restFadeScene=SceneManager.HOUSE
+	
+
+		#GameManager.restFadeScene=SceneManager.HOUSE
+		#播放声音
+		SoundManager.play_sound(bgs194)
+		GameManager.wait_time=bgs194.get_length()
+		GameManager._rest(false)#正式游戏false
+		
+	elif index==4:
+		caocao_old.hide()
+		
+		bg.texture=luoyang
+		titlefinal.texture=luoyangtitle	
+	elif index==5:
+		cikegroup.show()	
 # Called when the node enters the scene tree for the first time.
+func enterFinalBiwu():
+	SoundManager.stop_music()
+	SceneManager.changeScene(SceneManager.roomNode.TrainBattle,2)
 func _ready():
 	preload("res://Asset/tres/bentupai.tres")#没用但必须有，让资源提前单例加载
 	
@@ -71,7 +130,18 @@ func _ready():
 		title.text="[center]The [rainbow]Three Kingdoms[/rainbow] of [wave amp=50 frep=100]Shadows[/wave]:[tornado]Xuzhou[/tornado][/center]"
 	#目前没有调用新一天开始重置选项，放在了休息
 	#每次睡眠起床都调用这个选项
-	
+	if GameManager.sav.have_event["进入曹府"]==true:
+		caocao_old.show()
+		bg.texture=qingmei
+		titlefinal.texture=caofu
+	else:
+		if GameManager.sav.have_event["initXuzhou"]==true and GameManager.sav.endPath!=GameManager.endPath.xiaopei:
+			bg.texture=xuzhou
+			
+		else:
+			bg.texture=xiaopei
+		titlefinal.texture=zizhailiang
+		#如果体力值不够，则点亮暗
 	if GameManager.sav.have_event["chaoMizhuEnd"]==true and GameManager.sav.isGetCoin==false and GameManager.sav.currenceValue>1:
 
 		pass
@@ -279,7 +349,41 @@ func post_transition():
 	_initData()
 	
 	
+	if GameManager.sav.have_event["进入曹府"]==true and GameManager.sav.have_event["最终比武结束"]==false:
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"最终章节")	
+		hidecanvas()
+	elif GameManager.sav.have_event["最终比武结束"]==true:
+		SoundManager.stop_music()
+		SoundManager.play_music(caoliu2)
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"最终章节2")	
+		hidecanvas()
+	else:
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"终局")	
+		hidecanvas()
 @onready var taishanSoilder: Node2D = $"泰山军官"
+
+
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $"Canvas闪电/ColorRect/AnimationPlayer/AudioStreamPlayer2D"
+
+func lightning():
+	#SoundManager.play_music(sounds._2__MENTAL_VORTEX)
+
+	$"Canvas闪电".show()
+	#timer.start()
+	$"Canvas闪电/ColorRect/AnimationPlayer".play("闪烁")
+	audio_stream_player_2d.play()
+	await get_tree().create_timer(1.5).timeout
+	$"Canvas闪电".hide()
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"最终章节3")	
+
+	GameManager.sav.currenceValue=0
+	GameManager.sav.targetValue=3
+	GameManager.sav.targetResType=GameManager.ResType.battle
+	GameManager.sav.targetTxt="击退的刺客：{currence}/{target}"
+	
+func hidecanvas():
+	canvas_layer.hide()
+	items_in_scene.hide()
 
 func gotostreetAndKe(value):
 	GameManager.sav.finalKeChoice=value
@@ -575,6 +679,9 @@ func _DayGet():
 	# 对，还有一键
 	# 很好，继续努力。如果任务没有完成 提示三选一
 
+@onready var canvas_layer: CanvasLayer = $CanvasLayer
+
+
 
 func extraTask():
 	
@@ -664,7 +771,9 @@ func _JudgeTask():
 				GameManager.sav.have_event["吕布之怒"]=true
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"吕布最终进犯")	
 			elif value>=GameManager.sav.targetValue:
+				#屏蔽三个地方
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"终局")	
+				canvas_layer.hide()
 	if(GameManager.sav.have_event["completeTask1"]==true):
 		if(GameManager.sav.have_event["initTask2"]==false):
 			GameManager.sav.have_event["initTask2"]=true
@@ -1065,7 +1174,40 @@ func generate_cost_allocate(items_data: Dictionary)-> String:
 @onready var wenguan: Node2D = $"文官"
 @onready var chenqun: Node2D = $"陈群"
 
-	
+@onready var cike1: Node2D = $"cikegroup/刺客甲"
+@onready var cike2: Node2D = $"cikegroup/刺客乙"
+@onready var cike3: Node2D = $"cikegroup/刺客丙"
+
+@onready var ani_1: Sprite2D = $"cikegroup/刺客甲/ani_1"
+
+@onready var ani_2: Sprite2D = $"cikegroup/刺客乙/ani_2"
+@onready var ani_3: Sprite2D = $"cikegroup/刺客丙/ani_3"
+
+func killCike(index):
+	var animation:AnimationPlayer
+	var tween=create_tween()
+	if index==0:
+		ani_1.show()
+		cike1.changeAllClick("")
+		SoundManager.play_sound(sounds.HUI_1)
+		animation=ani_1.get_child(0) as AnimationPlayer
+		tween.tween_property(cike1, "modulate:a",0, 0.8)
+	elif index==1:
+		ani_2.show()
+		cike2.changeAllClick("")
+		SoundManager.play_sound(sounds.HUI_2)
+		animation=ani_2.get_child(0) as AnimationPlayer
+		tween.tween_property(cike2, "modulate:a",0, 0.8)
+	elif index==2:
+		ani_3.show()
+		cike3.changeAllClick("")
+		SoundManager.play_sound(sounds.BLOODCC_1)
+		animation=ani_3.get_child(0) as AnimationPlayer
+		tween.tween_property(cike3, "modulate:a",0, 0.8)
+	animation.play("slash")	
+	GameManager.sav.currenceValue+=1
+	if GameManager.sav.currenceValue>=3:
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"最终章节_洛阳街头2")
 func sheepGnawed():
 	pass
 	#street 显示xxx

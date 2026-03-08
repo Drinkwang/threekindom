@@ -48,7 +48,7 @@ func changeHeadInMainTask():
 		changeHead(CANGXI_2)		
 	elif  GameManager.sav.have_event["臧霸首战"]==true and GameManager.sav.have_event["温侯降伏臧霸"]==false:
 		changeHead(ZANGBA)
-	elif GameManager.sav.have_event["夏侯偷马"]==false and GameManager.sav.have_event["xxxx"]==true:
+	elif GameManager.sav.have_event["夏侯偷马"]==false and GameManager.sav.have_event["战斗袁术开始"]==true:
 		changeHead(jiling)
 	elif GameManager.sav.have_event["吕布之怒"]==false and GameManager.sav.have_event["夏侯偷马"]==true:
 		changeHead(ma)
