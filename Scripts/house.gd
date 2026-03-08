@@ -87,12 +87,23 @@ func changeToFinalScene(index):
 		
 	elif index==4:
 		caocao_old.hide()
-		
+		PanelManager.Fade_Blank(Color.RED,0.5,PanelManager.fadeType.fadeOut)
 		bg.texture=luoyang
 		titlefinal.texture=luoyangtitle	
 	elif index==5:
+		
 		cikegroup.show()	
+		var tween=get_tree().create_tween()
+		#SoundManager.play_sound(sounds.BLOODXX)
+		tween.tween_property(caocao_youth, "modulate", Color(0.8, 0, 0, 1), 5)
+	elif index==6:
+		pass
+	elif index==7:
+		
+		PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeIn)
 # Called when the node enters the scene tree for the first time.
+@onready var caocao_youth: Node2D = $"cikegroup/曹操年轻"
+
 func enterFinalBiwu():
 	SoundManager.stop_music()
 	SceneManager.changeScene(SceneManager.roomNode.TrainBattle,2)
@@ -1208,6 +1219,47 @@ func killCike(index):
 	GameManager.sav.currenceValue+=1
 	if GameManager.sav.currenceValue>=3:
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"最终章节_洛阳街头2")
+	_screen_shake(0.5, 4)  # 震动0.1秒，幅度2px
+	GameManager.sav.targetTxt=tr("击退的刺客：{currence}/3").format({"currence":GameManager.sav.currenceValue})
+	#$Label.text=tr("击退的刺客：{currence}/3").format({"currence":GameManager.sav.currenceValue})
+# 2. 快速切（小游戏触发）
+# 辅助：屏幕震动（可选，强化紧张感）
+
+func _screen_shake(duration: float, strength: float):
+	# 直接获取根节点（你的场景根就是 Node2D，没有 Camera）
+	var root = $"."
+	if not root:
+		print("❌ 找不到根节点！")
+		return
+
+	# 记录初始位置（统一转成 Vector2，避免类型错误）
+	var start_pos = Vector2(root.position)
+	var timer = 0.0
+
+	# 测试阶段：强制放大参数，确保你能看到震动
+	#strength = max(strength, 8)   # 至少8像素
+	#duration = max(duration, 0.5) # 至少0.5秒
+
+	# 逐帧震动循环
+	while timer < duration:
+		var delta = get_process_delta_time()
+		timer += delta
+
+		# 生成随机偏移
+		var shake_offset = Vector2(
+			randf_range(-strength, strength),
+			randf_range(-strength, strength)
+		)
+
+		# 根节点 position 是 Vector2i，必须取整后赋值
+		root.position = (start_pos + shake_offset).round()
+
+		# 等待下一帧（不会报错）
+		await get_tree().process_frame
+
+	# 震动结束，恢复原位
+	root.position = start_pos.round()
+
 func sheepGnawed():
 	pass
 	#street 显示xxx

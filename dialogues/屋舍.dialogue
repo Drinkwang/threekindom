@@ -451,8 +451,8 @@ do changeToFinalScene(6)
 刘备: 孟德，快走...
 do changeToFinalScene(7)
 曹操握住那只手，二人并肩消失在雨幕中。  
-
 do changeToFinalScene(2)
+do PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeOut)
 => 最终章节4
 => END!
 ~ 最终章节4
@@ -571,4 +571,8 @@ do killCike(1)
 
 ~ 刺客丙
 do killCike(2)
+=> END!
+
+~ 点击曹操
+刘备: （必须保护曹操，击退刺客！）
 => END!

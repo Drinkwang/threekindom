@@ -617,9 +617,10 @@ autoplay = "slash"
 
 [node name="曹操年轻" parent="cikegroup" instance=ExtResource("7_7mriv")]
 position = Vector2(-194, -124)
-showName = "曹操"
+showName = "点击曹操"
 txt2d = ExtResource("27_amxpt")
 boardType = 1
+dialogue_start = ""
 
 [node name="吕布" parent="." instance=ExtResource("7_7mriv")]
 visible = false
@@ -774,5 +775,15 @@ libraries = {
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Canvas闪电/ColorRect/AnimationPlayer"]
 stream = ExtResource("45_etki5")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = 415.0
+offset_top = 891.0
+offset_right = 1172.0
+offset_bottom = 1023.0
+theme_override_font_sizes/font_size = 46
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="button_down" from="CanvasLayer/DemoEnd" to="." method="_on_demo_end_button_down"]
