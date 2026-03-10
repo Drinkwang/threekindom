@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://5n7qchhi5h04" path="res://Asset/ui/底色.png" id="4_fmvnl"]
 [ext_resource type="PackedScene" uid="uid://bv5ycsl0a50uq" path="res://Scene/prefab/btnList.tscn" id="4_ixb7g"]
 [ext_resource type="Texture2D" uid="uid://d1tgmh6i316g7" path="res://Asset/光明/自宅-正常.png" id="5_2qpcs"]
-[ext_resource type="Texture2D" uid="uid://dbwfmmavqo3p3" path="res://Asset/城镇建筑/洛阳街头.png" id="5_6ehrr"]
+[ext_resource type="Texture2D" uid="uid://12qyfvti3ght" path="res://Asset/城镇建筑/青梅煮酒.png" id="5_a2xip"]
 [ext_resource type="Texture2D" uid="uid://dlpu2s7rm4k33" path="res://Asset/光明/装饰底板.png" id="5_ph6k3"]
 [ext_resource type="Texture2D" uid="uid://bjmquyl6mhboo" path="res://Asset/光明/参考图明亮.png" id="6_5idfh"]
 [ext_resource type="Texture2D" uid="uid://dvo1grdq52jil" path="res://Asset/人物/主簿2.png" id="6_8cvew"]
@@ -372,7 +372,7 @@ flip_h = true
 [node name="内饰" type="Sprite2D" parent="."]
 position = Vector2(960, 537)
 scale = Vector2(2.23, 2.23)
-texture = ExtResource("5_6ehrr")
+texture = ExtResource("5_a2xip")
 region_filter_clip_enabled = true
 
 [node name="标题" type="Sprite2D" parent="."]
