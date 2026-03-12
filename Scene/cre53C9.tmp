@@ -1,0 +1,536 @@
+[gd_scene load_steps=41 format=3 uid="uid://dkau7bjygf8l7"]
+
+[ext_resource type="Texture2D" uid="uid://d2artvwe80df1" path="res://Asset/光明/正常背景.png" id="1_filqm"]
+[ext_resource type="Script" path="res://Scripts/credit.gd" id="1_lakog"]
+[ext_resource type="Texture2D" uid="uid://5n7qchhi5h04" path="res://Asset/ui/底色.png" id="2_r61sl"]
+[ext_resource type="Texture2D" uid="uid://12qyfvti3ght" path="res://Asset/城镇建筑/青梅煮酒.png" id="3_5im4a"]
+[ext_resource type="Texture2D" uid="uid://d1tgmh6i316g7" path="res://Asset/光明/自宅-正常.png" id="4_3mhr6"]
+[ext_resource type="Texture2D" uid="uid://bv200apmoc2t1" path="res://Asset/城镇建筑/宅邸亮.png" id="4_bs7a0"]
+[ext_resource type="Texture2D" uid="uid://c63q7binrr7kk" path="res://Asset/光明/府邸-正常.png" id="5_b6lqx"]
+[ext_resource type="Texture2D" uid="uid://bgqbxd6ppt5s2" path="res://Asset/光明/装饰1-正常.png" id="5_ejtwv"]
+[ext_resource type="Texture2D" uid="uid://b7rbhnxj7r7wi" path="res://Asset/光明/装饰2-正常.png" id="6_c2vxj"]
+[ext_resource type="Texture2D" uid="uid://dlpu2s7rm4k33" path="res://Asset/光明/装饰底板.png" id="7_ci443"]
+[ext_resource type="Texture2D" uid="uid://cqh5dhr518rsp" path="res://Asset/板子.png" id="8_04ywr"]
+[ext_resource type="Texture2D" uid="uid://bjmquyl6mhboo" path="res://Asset/光明/参考图明亮.png" id="9_jo5l7"]
+[ext_resource type="Texture2D" uid="uid://jfuh2y0g3eqh" path="res://Asset/logo/中文logo.png" id="10_15oj5"]
+[ext_resource type="Script" path="res://Scripts/SubtitleSystem.gd" id="12_y5b0b"]
+[ext_resource type="FontFile" uid="uid://b8le0fd0ujbqx" path="res://Asset/Font/1_blod.ttf" id="13_tqclm"]
+[ext_resource type="Texture2D" uid="uid://c55poolb2pxld" path="res://Asset/城镇建筑/会议室新.png" id="14_2k107"]
+[ext_resource type="Texture2D" uid="uid://co4gx5oho7htc" path="res://Asset/城镇建筑/演武场1.png" id="15_kedjq"]
+[ext_resource type="Texture2D" uid="uid://dbwfmmavqo3p3" path="res://Asset/城镇建筑/洛阳街头.png" id="17_hdldf"]
+[ext_resource type="Texture2D" uid="uid://wdgskqosf4fn" path="res://Asset/光明/议事厅-正常.png" id="17_wjtu3"]
+[ext_resource type="Texture2D" uid="uid://dyv7h8ljf7sm0" path="res://Asset/城镇建筑/官渡场景.png" id="18_3c0vc"]
+[ext_resource type="Texture2D" uid="uid://cvvmn6dd4m0to" path="res://Asset/光明/演武场-正常.png" id="18_26b8r"]
+[ext_resource type="Texture2D" uid="uid://sucxcfw8vsn0" path="res://Asset/光明/曹府.png" id="19_1g3g8"]
+[ext_resource type="Texture2D" uid="uid://kbmm5hvasqtl" path="res://Asset/城镇建筑/小沛自宅.png" id="19_l10gq"]
+[ext_resource type="Texture2D" uid="uid://c028x4n7tekhb" path="res://Asset/黑暗/会议室旧克.png" id="20_1vr3l"]
+[ext_resource type="Texture2D" uid="uid://dv4iq2sgg6cyv" path="res://Asset/光明/洛阳街巷标牌.png" id="24_rt8ow"]
+[ext_resource type="Texture2D" uid="uid://baat2dh1tcacc" path="res://Asset/光明/官渡.png" id="25_hmx0o"]
+
+[sub_resource type="Animation" id="Animation_n18vh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../内饰:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_iosqj"]
+resource_name = "fadein"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../内饰:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_eqyj6"]
+resource_name = "fadeout"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../内饰:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_016a4"]
+_data = {
+"RESET": SubResource("Animation_n18vh"),
+"fadein": SubResource("Animation_iosqj"),
+"fadeout": SubResource("Animation_eqyj6")
+}
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rmcpn"]
+
+[sub_resource type="Animation" id="Animation_sb8il"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_fqtjv"]
+resource_name = "new_animation"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f553f"]
+_data = {
+"RESET": SubResource("Animation_sb8il"),
+"new_animation": SubResource("Animation_fqtjv")
+}
+
+[sub_resource type="Animation" id="Animation_j7stp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_t1nsq"]
+resource_name = "colorRect"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lg2ph"]
+_data = {
+"RESET": SubResource("Animation_j7stp"),
+"colorRect": SubResource("Animation_t1nsq")
+}
+
+[sub_resource type="Animation" id="Animation_qjyqv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("内饰:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_bs7a0")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("标题:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_b6lqx")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("内饰:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("creditAnimation/制作人:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("creditAnimation/美术:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("creditAnimation/制作人:text")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["制作人 / 策划 / 程序 ：
+鹏砚"]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("creditAnimation/美术:text")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["美术协力：
+屈梦涵"]
+}
+
+[sub_resource type="Animation" id="Animation_f3yso"]
+resource_name = "credit"
+length = 116.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(30, 43, 59.5, 76.1333, 85.2, 93.6, 101.133, 115, 116),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"fade"
+}, {
+"args": [],
+"method": &"fade"
+}, {
+"args": [],
+"method": &"fade"
+}, {
+"args": [],
+"method": &"fade"
+}, {
+"args": [],
+"method": &"fade"
+}, {
+"args": [],
+"method": &"fade"
+}, {
+"args": [],
+"method": &"fade"
+}, {
+"args": [],
+"method": &"fade"
+}, {
+"args": [],
+"method": &"eggFunc"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("内饰:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.166667, 31, 44, 60.5, 77.1333, 86.2, 94.6, 102.2, 115),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("4_bs7a0"), ExtResource("14_2k107"), ExtResource("15_kedjq"), ExtResource("3_5im4a"), ExtResource("17_hdldf"), ExtResource("18_3c0vc"), ExtResource("19_l10gq"), ExtResource("20_1vr3l"), ExtResource("3_5im4a")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("标题:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 31, 44, 60.4, 77.1333, 86.2, 94.6, 102.2, 115),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("5_b6lqx"), ExtResource("17_wjtu3"), ExtResource("18_26b8r"), ExtResource("19_1g3g8"), ExtResource("24_rt8ow"), ExtResource("25_hmx0o"), ExtResource("4_3mhr6"), ExtResource("17_wjtu3"), ExtResource("19_1g3g8")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("内饰:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(8, 12.7333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("creditAnimation/制作人:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(15.3667, 16.0333, 21, 22, 31.2333, 31.9, 42.4, 43.4, 51.9958, 52.6624, 59.2753, 60.2753, 70.6667, 71.3333, 76.2851, 77.2841, 87.4, 88.0667, 93.0278, 94.0278, 103.767, 104.433, 113.367, 114.367),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("creditAnimation/美术:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(22.3333, 23.3333, 28.3, 29.3, 44.0782, 45.0782, 50.9333, 51.9333, 61.3811, 62.3811, 68.2365, 69.2354, 77.6928, 78.6927, 84.5482, 85.5477, 95.2742, 96.2741, 101.633, 102.632),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("creditAnimation/制作人:text")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 31.2, 50.8054, 69.4774, 86.2096, 103.267),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": ["制作人 / 策划 / 程序 ：
+鹏砚", "特别感谢以下创作者在 itch.io 提供的素材：
+Atelier Magicae (UI SFX)
+leohpaz (Button SFX)
+alkakrab (BGM)", "测试协力：人员一", "测试协力：人员丙", "测试协力：人员丙", "感谢所有玩家，你的体验，是我所有努力的最终意义。"]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("creditAnimation/美术:text")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 43.6667, 61.0417, 77.354, 94.9392),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": ["美术协力：
+Blight", "测试协力：
+人员甲", "测试协力：
+人员丁", "测试协力：
+人员丁", "测试协力：
+人员丁"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5mnls"]
+_data = {
+"RESET": SubResource("Animation_qjyqv"),
+"credit": SubResource("Animation_f3yso")
+}
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_lakog")
+
+[node name="正常背景" type="Sprite2D" parent="."]
+position = Vector2(959, 540)
+scale = Vector2(2.23, 2.23)
+texture = ExtResource("1_filqm")
+
+[node name="底色" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(968, 544)
+scale = Vector2(2.25, 2.25)
+texture = ExtResource("2_r61sl")
+flip_h = true
+
+[node name="内饰" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(960, 537)
+scale = Vector2(2.23, 2.23)
+texture = ExtResource("4_bs7a0")
+region_filter_clip_enabled = true
+
+[node name="bgfade" type="AnimationPlayer" parent="内饰"]
+root_node = NodePath("../../ColorRect")
+libraries = {
+"": SubResource("AnimationLibrary_016a4")
+}
+
+[node name="标题" type="Sprite2D" parent="."]
+position = Vector2(961, 538)
+scale = Vector2(2.23, 2.23)
+texture = ExtResource("5_b6lqx")
+
+[node name="左饰" type="Sprite2D" parent="."]
+position = Vector2(340, 538)
+scale = Vector2(2.23, 2.23)
+texture = ExtResource("5_ejtwv")
+
+[node name="右饰" type="Sprite2D" parent="."]
+position = Vector2(1664, 538)
+scale = Vector2(2.23, 2.23)
+texture = ExtResource("6_c2vxj")
+
+[node name="底饰" type="Sprite2D" parent="."]
+position = Vector2(960, 533)
+scale = Vector2(2.23, 2.23)
+texture = ExtResource("7_ci443")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(961.25, 544.5)
+scale = Vector2(2.22706, 2.22934)
+texture = ExtResource("8_04ywr")
+
+[node name="正常背景2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(960, 537)
+scale = Vector2(2.23, 2.23)
+texture = ExtResource("9_jo5l7")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -348.0
+offset_top = -195.0
+offset_right = 2217.0
+offset_bottom = 1195.0
+color = Color(0, 0, 0, 1)
+
+[node name="中文logo" type="Sprite2D" parent="ColorRect"]
+modulate = Color(0, 0, 0, 1)
+material = SubResource("CanvasItemMaterial_rmcpn")
+position = Vector2(1267, 693)
+texture = ExtResource("10_15oj5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect/中文logo"]
+libraries = {
+"": SubResource("AnimationLibrary_f553f")
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect"]
+libraries = {
+"": SubResource("AnimationLibrary_lg2ph")
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("subtitle_label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -5.0
+offset_top = 1.0
+offset_right = -5.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("12_y5b0b")
+subtitle_label = NodePath("Label")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = 901.0
+offset_right = 1929.0
+offset_bottom = 974.0
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 4
+theme_override_constants/shadow_outline_size = 3
+theme_override_fonts/font = ExtResource("13_tqclm")
+theme_override_font_sizes/font_size = 36
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="creditAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5mnls")
+}
+
+[node name="美术" type="Label" parent="creditAnimation"]
+modulate = Color(1, 1, 1, 0)
+offset_left = 1136.0
+offset_top = 592.0
+offset_right = 1417.0
+offset_bottom = 661.0
+theme_override_colors/font_outline_color = Color(0.658824, 0.290196, 0.290196, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("13_tqclm")
+theme_override_font_sizes/font_size = 32
+text = "美术协力：
+屈梦涵"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="制作人" type="Label" parent="creditAnimation"]
+modulate = Color(1, 1, 1, 0)
+offset_left = 536.0
+offset_top = 595.0
+offset_right = 817.0
+offset_bottom = 664.0
+theme_override_colors/font_outline_color = Color(0.658824, 0.290196, 0.290196, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("13_tqclm")
+theme_override_font_sizes/font_size = 32
+text = "制作人 / 策划 / 程序 ：
+鹏砚"
+horizontal_alignment = 1
+vertical_alignment = 1

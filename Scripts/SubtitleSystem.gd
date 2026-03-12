@@ -18,6 +18,11 @@ var subtitle_data: Array = []   # 解析后的字幕数据 [{start, end, text}]
 var game_start_ts: float = 0.0  # 游戏启动时间戳（秒）
 var update_timer: Timer         # 字幕更新计时器
 
+# 暂停功能新增变量
+var is_paused: bool = false     # 暂停状态标记
+var pause_time: float = 0.0     # 暂停时记录的累计播放时间
+var pause_system_ts: float = 0.0 # 暂停时的系统时间戳
+
 # 节点就绪时初始化
 func _ready() -> void:
 	# 记录游戏启动时间（用于精准计算流逝时间）
@@ -38,8 +43,10 @@ func _ready() -> void:
 
 # 初始化字幕Label的样式和位置
 func _init_subtitle_label() -> void:
-	
-
+	# 如果没有手动指定Label节点，自动创建
+	if not is_instance_valid(subtitle_label):
+		subtitle_label = Label.new()
+		add_child(subtitle_label)
 	
 	# 基础设置
 	subtitle_label.name = "SubtitleLabel"
@@ -49,13 +56,13 @@ func _init_subtitle_label() -> void:
 	
 	# 自适应分辨率的锚点（关键：不同屏幕都能显示在底部居中）
 
-	# 样式赋值
-	subtitle_label.add_theme_font_size_override("font_size", font_size)
-	#subtitle_label.custom_colors.font_color = font_color
-	#subtitle_label.custom_colors.background_color = bg_color
+	
+
+	subtitle_label.modulate = Color(1,1,1,1)
+
 func _parse_srt() -> void:
 	if not FileAccess.file_exists(srt_file_path):
-		print("❌ 字幕文件不存在：{srt_file_path}")
+		print("❌ 字幕文件不存在：", srt_file_path)
 		print("💡 请确认文件路径正确，且后缀是.srt（不是.txt）")
 		return
 	
@@ -102,7 +109,7 @@ func _parse_srt() -> void:
 		var start = _time_str_to_sec(time_parts[0])
 		var end = _time_str_to_sec(time_parts[1])
 		if start == 0 or end == 0 or start >= end:
-			print("⚠️ 无效时间范围：{start} - {end}，跳过该字幕块")
+			print("⚠️ 无效时间范围：", start, " - ", end, "，跳过该字幕块")
 			continue
 		
 		# 拼接字幕内容（块的第3行及以后）
@@ -118,7 +125,8 @@ func _parse_srt() -> void:
 			"text": text
 		})
 	
-	print("✅ 字幕解析完成，共加载 {subtitle_data.size()} 条")
+	print("✅ 字幕解析完成，共加载 ", subtitle_data.size(), " 条")
+
 # 辅助函数：把SRT时间字符串转成秒（00:00:05,000 → 5.0秒）
 func _time_str_to_sec(time_str: String) -> float:
 	time_str = time_str.replace(",", ".")  # 兼容逗号/点分隔毫秒
@@ -133,6 +141,10 @@ func _time_str_to_sec(time_str: String) -> float:
 
 # 实时更新字幕显示
 func _update_subtitle() -> void:
+	# 如果暂停，直接返回（不更新字幕）
+	if is_paused:
+		return
+	
 	# 计算游戏运行的真实时间（扣除启动耗时）
 	var current_time = (Time.get_ticks_msec() / 1000.0) - game_start_ts
 	var show_text = ""
@@ -147,12 +159,51 @@ func _update_subtitle() -> void:
 	subtitle_label.text = show_text
 	subtitle_label.visible = show_text != ""
 
+# ===================== 新增：暂停/继续功能 =====================
+# 暂停字幕播放
+func pause_subtitle() -> void:
+	if not is_paused:
+		is_paused = true
+		# 记录暂停时的累计播放时间
+		pause_time = (Time.get_ticks_msec() / 1000.0) - game_start_ts
+		pause_system_ts = Time.get_ticks_msec() / 1000.0
+		print("📌 字幕已暂停，当前播放时间：", pause_time, "秒")
+
+# 继续字幕播放
+func resume_subtitle() -> void:
+	if is_paused:
+		is_paused = false
+		# 计算暂停的时长，修正启动时间戳（让时间继续流逝）
+		var pause_duration = (Time.get_ticks_msec() / 1000.0) - pause_system_ts
+		game_start_ts += pause_duration
+		print("▶️ 字幕已继续，暂停时长：", pause_duration, "秒")
+		# 立即更新一次字幕（避免延迟）
+		_update_subtitle()
+
+# 切换暂停/继续状态（一键切换）
+func toggle_pause() -> void:
+	if is_paused:
+		resume_subtitle()
+	else:
+		pause_subtitle()
+
+# ===================== 原有功能保留 =====================
 # 可选：手动跳转到指定时间的字幕（场景切换时调用）
 func jump_to_time(sec: float) -> void:
-	var text = ""
-	for sub in subtitle_data:
-		if sec >= sub.start and sec <= sub.end:
-			text = sub.text
-			break
-	subtitle_label.text = text
-	subtitle_label.visible = text != ""
+	# 处理暂停状态下的跳转
+	if is_paused:
+		pause_time = sec
+		var text = ""
+		for sub in subtitle_data:
+			if sec >= sub.start and sec <= sub.end:
+				text = sub.text
+				break
+		subtitle_label.text = text
+		subtitle_label.visible = text != ""
+		print("🔍 暂停状态下跳转到：", sec, "秒，显示字幕：", text)
+	else:
+		# 非暂停状态下跳转（修改启动时间戳）
+		var current_system_time = Time.get_ticks_msec() / 1000.0
+		game_start_ts = current_system_time - sec
+		_update_subtitle()
+		print("🔍 跳转到：", sec, "秒，显示字幕：", subtitle_label.text)

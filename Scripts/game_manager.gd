@@ -262,8 +262,13 @@ func _input(event):
 func openSetting():
 	if PanelManager.isOpenSetting==true:
 		return
-	if !(currenceScene is mainHall):
+	if !(currenceScene is mainHall) and !(currenceScene is credit):
 		DialogueManager.show_example_dialogue_balloon(sys,"ESC按钮")
+	elif currenceScene is credit:
+		currenceScene.pauseCredit()
+		DialogueManager.show_example_dialogue_balloon(sys,"退出名单")
+		
+		print("test")
 	else:
 		DialogueManager.show_example_dialogue_balloon(sys,"选项暂不可开")	
 		print("目前场景不能通过esc按钮执行任何操作")	
@@ -1406,7 +1411,7 @@ func play_BoardBGM(speed=1):
 func play_FinalBoardBGM():
 	
 	SoundManager.stop_music()
-	var music_file = "res://Asset/music/finalwork.wav"
+	var music_file = "res://Asset/music/.wav"
 	play_music(music_file)	
 
 func clearTutorial():
