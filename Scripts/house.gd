@@ -156,8 +156,8 @@ func _ready():
 	if GameManager.sav.have_event["chaoMizhuEnd"]==true and GameManager.sav.isGetCoin==false and GameManager.sav.currenceValue>1:
 
 		pass
-		#demo_end_v.show()
-		#demo_end_v.play()		
+		demo_end_v.show()
+		demo_end_v.play()		
 		
 
 @onready var bti_rect = $btiRect
@@ -215,18 +215,18 @@ func _initData():
 	
 	#记得demo注销
 	if GameManager.sav.have_event["chaoMizhuEnd"]==true and GameManager.sav.isGetCoin==false and GameManager.sav.currenceValue>1:
-		#title.show()
-		#demo_end.show()
-		#hp_panel.hide()
-		#res_panel.hide()
-		#support_panel.hide()
-		#SoundManager.stop_all_ambient_sounds()
-		#SoundManager.stop_music()
+		title.show()
+		demo_end.show()
+		hp_panel.hide()
+		res_panel.hide()
+		support_panel.hide()
+		SoundManager.stop_all_ambient_sounds()
+		SoundManager.stop_music()
 		
 		#demo_end_v.show()
 		#demo_end_v.play()		
 		
-		#return
+		return
 		pass
 	if control.visible==true:	
 		items_in_scene.showItems()	
@@ -369,8 +369,9 @@ func post_transition():
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"最终章节2")	
 		hidecanvas()
 	else:
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"终局")	
-		hidecanvas()
+		pass
+		#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"终局")	
+		#hidecanvas()
 @onready var taishanSoilder: Node2D = $"泰山军官"
 
 
@@ -805,7 +806,7 @@ func secondMissonStart():
 	GameManager.sav.targetTxt="征讨次数：{currence}/{target}"
 	#觉得无用的注释GameManager.sav.TargetDestination="battle"
 	#从9改变成8 可能有bug 如果触发需要改回9
-	GameManager.initSecretBattleContext(1000,SceneManager.etraTaskType.costMoney,8,"黄巾军降伏")
+	GameManager.initSecretBattleContext(1000,SceneManager.etraTaskType.costMoney,9,"黄巾军降伏")
 	#win 10次90
 	#GameManager.sav.TargetDestination=="府邸"
 	pass

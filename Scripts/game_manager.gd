@@ -1374,6 +1374,9 @@ func play_PeopleVolume(file_path: String) -> AudioStreamPlayer:
 func setCoin(value):
 	sav.coin=value
 
+func setLabor(value):
+	sav.labor_force=value
+
 
 
 func play_BGM():
@@ -1595,3 +1598,6 @@ func playDemand(item):
 		#item_ui.set_Data(key,_count)	
 		#消耗指定数量的物品
 	SignalManager.playDemand.emit()
+
+func get_exploration_percent():
+	pass

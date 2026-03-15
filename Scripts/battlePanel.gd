@@ -19,6 +19,12 @@ class_name battlePanel
 @onready var guild_1 = $"pointGroup/1"
 @onready var guild_2 = $"pointGroup/2"
 @onready var guild_3 = $"pointGroup/3"
+@onready var rect_1: ColorRect = $sliderRect
+@onready var rect_2: ColorRect = $fengxianRect
+@onready var rect_3: ColorRect = $currenceRect
+@onready var rect_4: ColorRect = $nextRect
+
+
 #@onready var guild_4 = $"pointGroup/4"
 #@onready var guild_5 = $"pointGroup/5"
 #@onready var guild_6 = $"pointGroup/6"

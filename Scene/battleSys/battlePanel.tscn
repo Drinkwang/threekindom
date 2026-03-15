@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://cjsb43uugkud4"]
+[gd_scene load_steps=58 format=3 uid="uid://cjsb43uugkud4"]
 
 [ext_resource type="Script" path="res://Scripts/battlePanel.gd" id="1_uyier"]
 [ext_resource type="Resource" uid="uid://d2qoinuor12dq" path="res://dialogues/演武场.dialogue" id="2_1p72a"]
@@ -43,6 +43,115 @@
 [ext_resource type="Texture2D" uid="uid://cyoosguk88jyf" path="res://Asset/fx/zhangfei_Frames_1/Slash_color4_frame7.png" id="30_1le41"]
 [ext_resource type="Texture2D" uid="uid://xe42wyg2wpsh" path="res://Asset/fx/zhangfei_Frames_1/Slash_color4_frame8.png" id="31_8b8yb"]
 [ext_resource type="Texture2D" uid="uid://cio88hkk4d20o" path="res://Asset/fx/zhangfei_Frames_1/Slash_color4_frame9.png" id="32_ptive"]
+
+[sub_resource type="Animation" id="Animation_ap145"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../sliderRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0.078, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../nextRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0.078, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../fengxianRect:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0.078, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../currenceRect:color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0.078, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6fkod"]
+resource_name = "drag"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../sliderRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.466667, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0.078, 0), Color(1, 0, 0.078, 0.427), Color(1, 0, 0.078, 0.092)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../fengxianRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.466667, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0.078, 0), Color(1, 0, 0.078, 0.427), Color(1, 0, 0.078, 0.092)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../currenceRect:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.466667, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0.078, 0), Color(1, 0, 0.078, 0.427), Color(1, 0, 0.078, 0.092)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../nextRect:color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.466667, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0.078, 0), Color(1, 0, 0.078, 0.427), Color(1, 0, 0.078, 0.092)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e2rn3"]
+_data = {
+"RESET": SubResource("Animation_ap145"),
+"drag": SubResource("Animation_6fkod")
+}
 
 [sub_resource type="Animation" id="Animation_rms3s"]
 resource_name = "YELLOWGUILD"
@@ -256,7 +365,7 @@ theme_override_constants/outline_size = 0
 theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/font = ExtResource("4_cxtvu")
 theme_override_font_sizes/font_size = 31
-text = "选择将领进行出征，你可以自由调节士兵数量和资金数量，注意完成右侧行动和猜拳，可以降低伤亡和提高成功率！"
+text = "选择将领出征（每个将领限一次），拖动滑块调配资源，资源越多胜率越高。完成特殊行动或克制关系，可减少伤亡。"
 autowrap_mode = 3
 
 [node name="Control2" type="Control" parent="PanelContainer/orderPanel/VBoxContainer"]
@@ -541,6 +650,26 @@ scale = Vector2(0.6, 0.6)
 headImg = ExtResource("7_xltxl")
 namelv = "赵云:lv1"
 
+[node name="sliderRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 537.999
+offset_top = 502.0
+offset_right = 923.999
+offset_bottom = 613.0
+mouse_filter = 2
+color = Color(1, 0, 0.078, 0)
+
+[node name="fengxianRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 1035.0
+offset_top = 738.0
+offset_right = 1592.0
+offset_bottom = 915.0
+mouse_filter = 2
+color = Color(1, 0, 0.078, 0)
+
 [node name="coinSlider" type="HSlider" parent="."]
 layout_mode = 1
 anchors_preset = -1
@@ -595,6 +724,13 @@ offset_right = 939.0
 offset_bottom = 112.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../soildSlider")
+libraries = {
+"": SubResource("AnimationLibrary_e2rn3")
+}
+autoplay = "drag"
 
 [node name="TextureButton" type="TextureButton" parent="."]
 layout_mode = 1
@@ -711,7 +847,6 @@ offset_bottom = 47.0
 texture = ExtResource("13_ugjcw")
 
 [node name="pointGroup" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -726,7 +861,8 @@ scale = Vector2(1.04034, 1.0033)
 
 [node name="3" type="Node2D" parent="pointGroup"]
 visible = false
-position = Vector2(1037.16, 162.464)
+position = Vector2(1472.6, 455.497)
+scale = Vector2(0.5, 0.5)
 
 [node name="5Yellow" type="Sprite2D" parent="pointGroup/3"]
 rotation = -1.5708
@@ -739,55 +875,11 @@ libraries = {
 }
 autoplay = "YELLOWGUILD"
 
-[node name="Node2D3" type="Node2D" parent="pointGroup/3"]
-position = Vector2(-192.246, 90.7003)
-
-[node name="Node2D2" type="Node2D" parent="pointGroup/3/Node2D3"]
-position = Vector2(-242.227, -90.7003)
-
-[node name="5Yellow" type="Sprite2D" parent="pointGroup/3/Node2D3/Node2D2"]
-rotation = -1.5708
-scale = Vector2(4, 4)
-texture = ExtResource("7_5kst7")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="pointGroup/3/Node2D3/Node2D2/5Yellow"]
-libraries = {
-"": SubResource("AnimationLibrary_4gull")
-}
-autoplay = "YELLOWGUILD"
-
-[node name="Node2D2" type="Node2D" parent="pointGroup/3"]
-position = Vector2(-211.47, 3.98684)
-
-[node name="5Yellow" type="Sprite2D" parent="pointGroup/3/Node2D2"]
-rotation = -1.5708
-scale = Vector2(4, 4)
-texture = ExtResource("7_5kst7")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="pointGroup/3/Node2D2/5Yellow"]
-libraries = {
-"": SubResource("AnimationLibrary_4gull")
-}
-autoplay = "YELLOWGUILD"
-
-[node name="Node2D4" type="Node2D" parent="pointGroup/3"]
-position = Vector2(456.582, 286.056)
-
-[node name="5Yellow" type="Sprite2D" parent="pointGroup/3/Node2D4"]
-rotation = -1.5708
-scale = Vector2(4, 4)
-texture = ExtResource("7_5kst7")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="pointGroup/3/Node2D4/5Yellow"]
-libraries = {
-"": SubResource("AnimationLibrary_4gull")
-}
-autoplay = "YELLOWGUILD"
-
 [node name="2" type="Node2D" parent="pointGroup"]
 visible = false
-position = Vector2(1255.36, 726.602)
+position = Vector2(1240.94, 807.336)
 rotation = 0.968658
+scale = Vector2(0.5, 0.5)
 
 [node name="5Yellow" type="Sprite2D" parent="pointGroup/2"]
 rotation = -1.5708
@@ -802,7 +894,8 @@ autoplay = "YELLOWGUILD"
 
 [node name="1" type="Node2D" parent="pointGroup"]
 visible = false
-position = Vector2(922.775, 425.596)
+position = Vector2(751.677, 535.234)
+scale = Vector2(0.5, 0.5)
 
 [node name="5Yellow" type="Sprite2D" parent="pointGroup/1"]
 rotation = -0.0349066
@@ -810,33 +903,6 @@ scale = Vector2(4, 4)
 texture = ExtResource("7_5kst7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="pointGroup/1/5Yellow"]
-libraries = {
-"": SubResource("AnimationLibrary_4gull")
-}
-autoplay = "YELLOWGUILD"
-
-[node name="Node2D3" type="Node2D" parent="pointGroup/1"]
-position = Vector2(-213.393, 7.97363)
-
-[node name="5Yellow" type="Sprite2D" parent="pointGroup/1/Node2D3"]
-scale = Vector2(4, 4)
-texture = ExtResource("7_5kst7")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="pointGroup/1/Node2D3/5Yellow"]
-libraries = {
-"": SubResource("AnimationLibrary_4gull")
-}
-autoplay = "YELLOWGUILD"
-
-[node name="Node2D2" type="Node2D" parent="pointGroup/1/Node2D3"]
-position = Vector2(-206.664, -2.99014)
-
-[node name="5Yellow" type="Sprite2D" parent="pointGroup/1/Node2D3/Node2D2"]
-rotation = -0.00872665
-scale = Vector2(4, 4)
-texture = ExtResource("7_5kst7")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="pointGroup/1/Node2D3/Node2D2/5Yellow"]
 libraries = {
 "": SubResource("AnimationLibrary_4gull")
 }
@@ -861,6 +927,26 @@ texture = ExtResource("24_s3r1q")
 libraries = {
 "": SubResource("AnimationLibrary_es4tc")
 }
+
+[node name="currenceRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 1405.0
+offset_top = 537.0
+offset_right = 1446.0
+offset_bottom = 576.0
+mouse_filter = 2
+color = Color(1, 0, 0.078, 0)
+
+[node name="nextRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 1498.0
+offset_top = 172.0
+offset_right = 1538.0
+offset_bottom = 287.0
+mouse_filter = 2
+color = Color(1, 0, 0.078, 0)
 
 [node name="ani_3" type="Sprite2D" parent="."]
 visible = false

@@ -54,8 +54,36 @@ func eggFunc():
 
 @onready var finalBG: ColorRect = $CanvasLayer/final
 
-	
+@onready var what_final: Label = $CanvasLayer/final/whatFinal
+@onready var detial: Label = $CanvasLayer/final/detial
+
+
+
+
+
+#完成所有怪谈支线，
+#将解锁霸道结局线索。
+
+
+#打破历史桎梏，驯服所有怪谈支线，
+#你以霸主之姿，叩响复兴汉室的大门。
+
+
+
+
 func settleGame():
+	var finaldec
+	if GameManager.sav.endPath==GameManager.endPath.xiaopei:
+		what_final.text=tr("【恭喜你，通关正史结局】")
+		finaldec=tr("完成所有怪谈支线，\n将解锁霸道结局线索。")
+	if GameManager.sav.endPath==GameManager.endPath.xuzhou:
+		what_final.text=tr("【恭喜你，通关霸道结局】")
+		finaldec=tr("打破历史桎梏，驯服所有怪谈支线，\n你以霸主之姿，叩响复兴汉室的大门。")
+	var line1=tr("游玩难度：{difficult}").format({"difficult":1})
+	var line2=tr("游戏天数：{day}").format({"day":GameManager.sav.day})
+	var line3=tr("探索进度：{process}").format({"process":GameManager.get_exploration_percent()})
+	
+	detial.text=line1+"\n"+line2+"\n"+line3+"\n"+finaldec
 	finalBG.show()
 	#修改finalBG
 

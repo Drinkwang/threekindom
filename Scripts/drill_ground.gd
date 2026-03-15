@@ -39,12 +39,13 @@ func _ready():
 	else:
 		bg.texture=xiaopeiBuild
 		
-		
+
+
 
 const bgm = preload("res://Asset/bgm/校场.wav")
 
 func _judWin():
-	if(not (GameManager.sav.targetTxt!=null and GameManager.sav.targetTxt.length()>0)):
+	if(not (GameManager.sav.targetTxt!=null and GameManager.sav.targetTxt.length()>0) or DialogueManager.dialogBegin==true):
 		return
 	if GameManager.sav.targetResType==GameManager.ResType.battle:
 		if(GameManager.sav.have_event["firstMeetCaoCao"]==false):
@@ -611,7 +612,9 @@ func _buttonListClick(item):
 func showbattletutorial():
 	DialogueManager.show_exaple_top_dialogue_balloon(dialogue_resource,"第一次军事行动教程_上")
 	
-
+func showbattletutorial2():
+	DialogueManager.show_dialogue_balloon(dialogue_resource,"第一次军事行动教程_下")
+	
 func caobaoLevelUpSoilder():
 	refreshData()
 	#GameManager._propertyPanel.GetValue(200,0,0)
@@ -660,7 +663,7 @@ func ConsultWithCaoBaoEnd():
 var _tween:Tween
 var _tween2:Tween
 
-func showtutorial(num):
+func showtutorial_back(num):
 	
 	if num ==1:
 		battle_pane.istour=true
@@ -737,13 +740,6 @@ func showtutorial(num):
 
 			_tween.tween_property(ResSlider, "value",movevalue, 0.05)
 		
-		
-		
-		#好难
-	
-	
-
-	
 
 	if  num==3:
 
@@ -788,6 +784,42 @@ func showtutorial(num):
 		battle_pane.soild_slider.value=0		
 		point.hide()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+
+
+
+
+@onready var animation_player: AnimationPlayer = $CanvasInventory/battlePane/AnimationPlayer
+
+
+
+func showtutorial(num):
+
+	if num==1:
+		battle_pane.guild_1.show()
+		battle_pane.istour=true
+		battle_pane.rect_1.show()
+	elif num==2:
+		battle_pane.guild_1.hide()
+		battle_pane.guild_2.show()
+		battle_pane.rect_2.show()
+		battle_pane.rect_1.hide()
+	elif num==3:
+		battle_pane.guild_2.hide()
+		battle_pane.guild_3.show()
+		battle_pane.rect_3.show()
+		battle_pane.rect_2.hide()		
+	elif num==4:
+		battle_pane.guild_3.hide()
+		battle_pane.rect_4.show()
+		battle_pane.rect_3.hide()				
+	elif num==5:
+		battle_pane.istour=false
+		battle_pane.point_group.hide()
+		var target_guild_node = battle_pane["rect_4"]
+		target_guild_node.hide()
+		battle_pane.rect_4.hide()
+	
+	
 func _process(delta):
 	pass
 
@@ -891,7 +923,8 @@ func openBoardDialogue():
 func huangjinSurrender():
 	GameManager.sav.labor_force+=100
 	GameManager.sav.currenceValue+=1
-	_completeTask()	
+	DialogueManager.dialogBegin=false
+	_judWin()	
 
 
 func cangxiSurrender():

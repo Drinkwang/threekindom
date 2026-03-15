@@ -617,10 +617,10 @@ autoplay = "slash"
 
 [node name="曹操年轻" parent="cikegroup" instance=ExtResource("7_7mriv")]
 position = Vector2(-194, -124)
-showName = "点击曹操"
+showName = "曹操"
 txt2d = ExtResource("27_amxpt")
 boardType = 1
-dialogue_start = ""
+dialogue_start = "点击曹操"
 
 [node name="吕布" parent="." instance=ExtResource("7_7mriv")]
 visible = false
