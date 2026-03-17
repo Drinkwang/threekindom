@@ -129,7 +129,6 @@ func _initData():
 	candoSub=true
 	
 	if GameManager.selectBoardCharacter==boardType.boardCharacter.mizhu and GameManager._boardMode!=boardType.boardMode.none and GameManager._boardGameWin==true:
-			
 		candoSub=false
 		GameManager.selectBoardCharacter=boardType.boardCharacter.none         
 		GameManager._boardMode=boardType.boardMode.none
@@ -144,6 +143,7 @@ func _initData():
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"黑暗游戏获胜")	
 	elif GameManager.selectBoardCharacter==boardType.boardCharacter.mizhu and GameManager._boardMode!=boardType.boardMode.none and GameManager._boardGameWin==false:
 		candoSub=false
+	
 		GameManager.selectBoardCharacter=boardType.boardCharacter.none
 		GameManager._boardMode=boardType.boardMode.none
 		if GameManager._boardReward!=boardType.boardRewardResult.BreakFree:
@@ -181,37 +181,43 @@ func _initData():
 				GameManager.sav.have_event["泰山诸将曹操消息"]=true
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"告知曹操信件")
 				candoSub=false #征讨袁术开始*/	
+				GameManager.sav.hasMainTask=true
 		elif GameManager.sav.have_event["findLvbu"]==true and GameManager.sav.have_event["discussLvbu"]==false:
 				GameManager.sav.have_event["discussLvbu"]=true
 				mizhu.show()
 				chenden.show()
 				candoSub=false#此处需要跟曹豹将军沟通
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"商讨吕布是否留下") 
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"商讨吕布是否留下")
+				GameManager.sav.hasMainTask=true 
 				#修改任务目标为跟曹豹谈一谈 
 				GameManager.sav.TargetDestination="演武场"
 				#征讨袁术开始*/	
 		elif  GameManager.sav.have_event["lvbuDiscussInCaoBao"]==true and GameManager.sav.have_event["lvBuFinalDiscuss"]==false:
 				GameManager.sav.have_event["lvBuFinalDiscuss"]=true
 				candoSub=false
-
+				GameManager.sav.hasMainTask=true
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第二次商讨吕布是否留下") #征讨袁术开始*/	
 		elif GameManager.sav.have_event["lvbuJoin"]==true and GameManager.sav.have_event["canSummonLvbu"]==false:
 			if GameManager.sav.currenceDay>=1:
 				GameManager.sav.have_event["canSummonLvbu"]=true
 				candoSub=false
+				GameManager.sav.hasMainTask=true
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"可召见吕布")
 		elif GameManager.sav.have_event["completebattleTaiShan"]==true and GameManager.sav.have_event["庆功宴是否举办"]==false:
 			GameManager.sav.have_event["庆功宴是否举办"]=true
 			GameManager.clearTask()
 			candoSub=false
+			GameManager.sav.hasMainTask=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"徐州得安")
 		elif GameManager.sav.have_event["新剧情_基建开始"]==true and GameManager.sav.have_event["基建项目开启"]==false:
 			mizhu.show()
+			GameManager.sav.hasMainTask=true
 			chenden.show()
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"凑集2000民夫任务")
 			
 		elif GameManager.sav.have_event["袁术首次击败"]==true and GameManager.sav.have_event["派系安稳任务触发"]==false: 
 			GameManager.sav.have_event["派系安稳任务触发"]=true
+			GameManager.sav.hasMainTask=true
 			candoSub=false
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"安抚众人任务开始")
 		elif  GameManager.sav.have_event["关羽求援结束"]==true and GameManager.sav.have_event["主簿的追随"]==false: 
@@ -360,10 +366,11 @@ func _buttonListClick(item):
 				policy_panel.show()
 		else:
 			if GameManager.sav.have_event["chaosBegin"]==true and GameManager.sav.have_event["chaoDialogEnd"]==false:
+				GameManager.sav.hasMainTask=true
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"城中混乱状况")
 				return
 			elif GameManager.sav.have_event["派系安稳完成"]==true and GameManager.sav.have_event["亲征对话结束"]==false:	
-
+				GameManager.sav.hasMainTask=true
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"亲征状况")	
 				return
 			policy_panel.show()
@@ -518,6 +525,7 @@ func exit():
 var getCoin
 func selectPolicy(data):
 	var id=data.id
+	GameManager.sav.hasMainTask=true
 	GameManager.sav.policyExcute=true
 	if id==1:
 		#额外buff填写
@@ -597,7 +605,7 @@ func selectPolicy(data):
 		var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.益气丸)
 		var remainder = InventoryManager.add_item(GameManager.inventoryPackege, itemid, 1, false)
 		
-		GameManager.resideValue=tr("士族派好感上升5，豪族派好感上升5，每日获取金额+10，每日获得劳动力+5，获得益气丸x2")
+		GameManager.resideValue=tr("士族派好感上升5，豪族派好感上升5，每旬获取金额+10，每旬获得劳动力+5，获得益气丸x2")
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"平衡除奸")
 		GameManager.sav.have_event["chaoChenDenPolicyExcute"]=true
 	elif id==policymanager.policyID.P_SwiftPurge:
@@ -610,7 +618,7 @@ func selectPolicy(data):
 		GameManager.sav.labor_DayGet-=5
 		GameManager.sav.coin+=300
 		GameManager.sav.labor_force+=150
-		GameManager.resideValue=tr("士族派好感下降5，豪族派好感下降5，丹阳派好感下降5，每日获取金额-5，每日获取劳动力-5，金钱+300,劳动力+150")
+		GameManager.resideValue=tr("士族派好感下降5，豪族派好感下降5，丹阳派好感下降5，每旬获取金额-5，每旬获取劳动力-5，金钱+300,劳动力+150")
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"加速除奸")
 		GameManager.sav.have_event["chaoChenDenPolicyExcute"]=true		
 	elif id==policymanager.policyID.P_LessCoin:
@@ -745,8 +753,10 @@ func _JudgeTask():
 			iscompleteTask=true
 	
 	if iscompleteTask==true:
+		
 		if(GameManager.sav.have_event["completeTask1"]==false):
 			#ameManager.clearTask()
+			GameManager.sav.hasMainTask=true
 			GameManager.sav.have_event["completeTask1"]=true
 			mizhu.show()
 			chenden.show()
@@ -754,6 +764,7 @@ func _JudgeTask():
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"收集资金任务完成")#显示对话
 			return
 		elif(GameManager.sav.have_event["三基建完成"]==true and GameManager.sav.have_event["曹操协天子以令诸侯"]==false):
+			GameManager.sav.hasMainTask=true
 			GameManager.sav.have_event["曹操协天子以令诸侯"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"曹操的信_击败袁术才有委任状")#显示对话
 			pass
@@ -887,18 +898,19 @@ func deliverTask():
 				GameManager.sav.have_event["deliverTask2"]=true
 				GameManager.clearTask()
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"打跑黄巾军")#显示对话
-				
+				GameManager.sav.hasMainTask=true
 		
 		#暂时屏蔽		
 		elif  GameManager.sav.have_event["派系安稳完成"]==false:
 			if(GameManager.sav.have_event["派系安稳任务触发"]==true):
 				GameManager.sav.have_event["派系安稳完成"]=true
 				#GameManager.clearTask()
+				GameManager.sav.hasMainTask=true
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"刘备决定亲征")#显示对话
 
 		if GameManager.sav.have_event["派系安稳完成"]==true and GameManager.sav.have_event["亲征对话结束"]==false:
 			GameManager.sav.TargetDestination=""
-
+			
 		#elif:
 		#	pass
 
@@ -984,7 +996,7 @@ func chaosTaskBegin():
 	GameManager.sav.targetValue=10
 	GameManager.sav.currenceValue=0
 	GameManager.sav.targetResType=GameManager.ResType.rest
-	GameManager.sav.targetTxt="撑过天数：{currence}/{target}"
+	GameManager.sav.targetTxt="追查进度：{currence}/{target}"
 	GameManager.sav.TargetDestination="rest"
 @onready var disater_panel = $CanvasLayer/disaterPanel
 

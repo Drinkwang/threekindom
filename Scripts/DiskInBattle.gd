@@ -436,7 +436,8 @@ func _initBattleTypePng(index,type):
 
 
 func _on_Tween_tween_all_completed():
-	await 2
+	
+	await get_tree().create_timer(0.1).timeout   # 建议等一小会儿再取最终角度，更稳
 	$PointerScifiB.rotation_degrees=fmod(stop_angle,360)
 	var real_angle=stop_angle-45 #减去图片偏差的45度
 	var issuccess=false;
@@ -483,6 +484,7 @@ func _on_Tween_tween_all_completed():
 	#{"name":"中风险","initPos":0,"radian":90,"index":2},
 	#{"name":"高风险","initPos":0,"radian":90,"index":3},
 	#{"name":"成功率
+
 
 var buffMultiple=1
 var finalScore

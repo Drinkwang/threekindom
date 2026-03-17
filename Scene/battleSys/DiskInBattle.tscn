@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dcydwatjg50hl"]
+[gd_scene load_steps=14 format=3 uid="uid://dcydwatjg50hl"]
 
 [ext_resource type="Script" path="res://Scripts/DiskInBattle.gd" id="1_0q3sx"]
 [ext_resource type="Texture2D" uid="uid://cale1h2nqfdrh" path="res://Asset/ui/circle.png" id="1_upy2s"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dahuc8gb2blc" path="res://Asset/other/0_red.png" id="5_mg3wr"]
 [ext_resource type="FontFile" uid="uid://to00njkwmxts" path="res://Asset/Font/1_sim.ttf" id="5_n2jvq"]
 [ext_resource type="Texture2D" uid="uid://cc2retfuupgvb" path="res://Asset/pointer_scifi_b.png" id="6_cexsq"]
+[ext_resource type="FontFile" uid="uid://b8le0fd0ujbqx" path="res://Asset/Font/1_blod.ttf" id="6_thswh"]
 [ext_resource type="Texture2D" uid="uid://r54ddkle3gwi" path="res://Asset/人物/huangjin3.png" id="9_xcv81"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ahpuy"]
@@ -192,23 +193,6 @@ texture_progress = ExtResource("1_upy2s")
 tint_under = Color(0.981098, 0.850573, 0.852089, 1)
 tint_progress = Color(0.137255, 0.458824, 0.807843, 0.211765)
 
-[node name="sussLabel" type="Label" parent="."]
-layout_mode = 0
-offset_left = 57.0
-offset_top = 121.0
-offset_right = 264.0
-offset_bottom = 193.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/line_spacing = 0
-theme_override_constants/shadow_offset_x = 0
-theme_override_constants/shadow_offset_y = 0
-theme_override_constants/outline_size = 0
-theme_override_constants/shadow_outline_size = 0
-theme_override_fonts/font = ExtResource("5_n2jvq")
-theme_override_font_sizes/font_size = 23
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="PointerScifiB" type="TextureRect" parent="."]
 visible = false
 layout_mode = 0
@@ -219,6 +203,24 @@ offset_bottom = 177.0
 rotation = 2.39285
 pivot_offset = Vector2(49.75, 48.42)
 texture = ExtResource("6_cexsq")
+
+[node name="sussLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 57.0
+offset_top = 121.0
+offset_right = 264.0
+offset_bottom = 193.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 0
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 4
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("6_thswh")
+theme_override_font_sizes/font_size = 23
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2

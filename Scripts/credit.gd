@@ -80,7 +80,7 @@ func settleGame():
 		what_final.text=tr("【恭喜你，通关霸道结局】")
 		finaldec=tr("打破历史桎梏，驯服所有怪谈支线，\n你以霸主之姿，叩响复兴汉室的大门。")
 	var line1=tr("游玩难度：{difficult}").format({"difficult":1})
-	var line2=tr("游戏天数：{day}").format({"day":GameManager.sav.day})
+	var line2=tr("游戏旬数：{day}").format({"day":GameManager.sav.day})
 	var line3=tr("探索进度：{process}").format({"process":GameManager.get_exploration_percent()})
 	
 	detial.text=line1+"\n"+line2+"\n"+line3+"\n"+finaldec

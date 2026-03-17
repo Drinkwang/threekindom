@@ -409,3 +409,4 @@ GameManager.RspEnum.PAPER:{"name": "无名", "level": 1, "max_level": 10, "rando
 				#_has_emitted = true
 				#emit_signal("trial_time_up")
 				GameManager._on_trial_time_up()   # 也可以直接在这里写结束逻辑
+@export var hasMainTask=false

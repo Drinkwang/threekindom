@@ -339,6 +339,7 @@ func refreshPaixis():
 
 func _enterDay(value=true):
 	if(value==true):
+		sav.hasMainTask=false
 		sav.day=sav.day+1
 		refreshPaixis()
 		initBattle()

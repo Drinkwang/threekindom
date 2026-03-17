@@ -95,7 +95,7 @@ func refreshContext():
 			
 			if iscompleteTask:
 				if(GameManager.sav.TargetDestination=="rest"):
-					policycontext=tr("任务已完成，休息进入下一天推进剧情")
+					policycontext=tr("任务已完成，休息进入下一旬推进剧情")
 				elif GameManager.sav.TargetDestination=="自宅":
 					policycontext=tr("任务已完成，请返回自宅触发下一阶段剧情")
 				elif GameManager.sav.TargetDestination=="府邸":

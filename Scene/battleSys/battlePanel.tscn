@@ -365,7 +365,7 @@ theme_override_constants/outline_size = 0
 theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/font = ExtResource("4_cxtvu")
 theme_override_font_sizes/font_size = 31
-text = "选择将领出征（每个将领限一次），拖动滑块调配资源，资源越多胜率越高。完成特殊行动或克制关系，可减少伤亡。"
+text = "选择将领出征（每名将领限出战一次），拖动滑块调配资源。投入越多，胜率越高；完成特殊行动或触发克制关系，有概率降低部队伤亡。"
 autowrap_mode = 3
 
 [node name="Control2" type="Control" parent="PanelContainer/orderPanel/VBoxContainer"]

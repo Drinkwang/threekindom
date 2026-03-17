@@ -42,7 +42,7 @@ func showTargetLabel():
 				
 	if iscompleteTask:
 		if(GameManager.sav.TargetDestination=="rest"):
-			target_label.text=tr("任务已完成，休息进入下一天推进剧情")
+			target_label.text=tr("任务已完成，休息进入下一旬推进剧情")
 		elif GameManager.sav.TargetDestination=="自宅":
 			target_label.text=tr("任务已完成，请返回自宅触发下一阶段剧情")
 		elif GameManager.sav.TargetDestination=="府邸":
@@ -82,7 +82,7 @@ func showTargetLabel():
 		
 		if(cd>0):	
 			target_label.text=target_label.text+"\n"
-			var context=tr("%s指定《%s》，7天内通过，还剩%d天！")%[tr(law),GameManager.sav.courtingLaws[law],cd]
+			var context=tr("%s指定《%s》，7旬内通过，还剩%d旬！")%[tr(law),GameManager.sav.courtingLaws[law],cd]
 			target_label.text=target_label.text+context
 	#target_label.text=target_label.text+
 @onready var animation_player = $TargetLabel/AnimationPlayer

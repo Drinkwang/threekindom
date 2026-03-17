@@ -198,7 +198,7 @@ func _initData():
 	},
 	{
 		"id":"4",
-		"context":"今日政务",#打开人物面板
+		"context":"待办事项",#打开人物面板
 		"visible":"true"
 	},
 	{
@@ -266,7 +266,7 @@ func _initData():
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"关羽回来")
 				return
 			GameManager.sav.isGetCoin=true
-			GameManager.resideValue=tr("大人今日收入为{_coin}，招募的士兵为{_labor}").format({"_coin":GameManager.sav.coin_DayGet,"_labor":GameManager.sav.labor_DayGet})
+			GameManager.resideValue=tr("大人本旬收入为{_coin}，招募的士兵为{_labor}").format({"_coin":GameManager.sav.coin_DayGet,"_labor":GameManager.sav.labor_DayGet})
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"今日收入为")
 	control._processList(initData)
 	
@@ -285,7 +285,7 @@ func _initData():
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新的一天")
 			
 			GameManager.sav.curGovAff=tr("1.前往府邸回见不同派系的领导人\n2.前往议会通过昨天立的法律")
-			GameManager.changeTaskLabel("完成今日政务所有事项")
+			GameManager.changeTaskLabel("完成所有待办事项")
 			GameManager.sav.destination="府邸"
 		#设置des
 	elif GameManager.sav.day==3:
@@ -294,7 +294,7 @@ func _initData():
 			GameManager.sav.have_event["dayThreeInit"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第三天")
 			GameManager.sav.curGovAff=tr("1.前往城外军事驻地，讨伐土匪")
-			GameManager.changeTaskLabel("完成今日政务所有事项")
+			GameManager.changeTaskLabel("完成所有待办事项")
 			GameManager.sav.destination="城门-军事驻地"
 
 	elif GameManager.sav.day==4:
@@ -420,7 +420,7 @@ func _buttonListClick(item):
 
 	if item.context == "外出":
 		SceneManager.changeScene(SceneManager.roomNode.STREET,2)
-	elif item.context == "今日政务":
+	elif item.context == "待办事项":
 		control._show_button_5_yellow(-1)
 		policyPanel.refreshContext()
 		policyPanel.show()
@@ -460,7 +460,7 @@ func _buttonListClick(item):
 		
 		
 		#逻辑不能放在这里
-		if(GameManager.sav.alreadyHP<10):
+		if(GameManager.sav.alreadyHP<10 and GameManager.sav.hasMainTask==false):
 			GameManager.sav.lazydays+=1	
 			GameManager.sav.lazyValue=GameManager.sav.lazyValue+1
 			if GameManager.sav.lazydays>=3:
@@ -502,9 +502,9 @@ func moreDayidness():
 	GameManager._rest()	 
 func refreshPropertyPanel():
 
-	var contextEx=tr("当前天数：%d")%GameManager.sav.day+"\n"
-	contextEx=contextEx+tr("每日钱财收入：%d")%GameManager.sav.coin_DayGet+"\n"
-	contextEx=contextEx+tr("每日劳动力获取：%d")%GameManager.sav.labor_DayGet+"\n"
+	var contextEx=tr("当前旬数：%d")%GameManager.sav.day+"\n"
+	contextEx=contextEx+tr("每旬钱财收入：%d")%GameManager.sav.coin_DayGet+"\n"
+	contextEx=contextEx+tr("每旬劳动力获取：%d")%GameManager.sav.labor_DayGet+"\n"
 	contextEx=contextEx+"------------------------------"+"\n"
 	contextEx=contextEx+tr("武将等级（括弧为战斗力）")+"\n"
 	contextEx=contextEx+tr("关羽：lv%d（%d）")%[GameManager.sav.generals[GameManager.RspEnum.ROCK].level,500]+"\n"
@@ -613,7 +613,7 @@ func showFirstGuild():
 	#这句代码没有作用，以防万一添加进行初始化
 	GameManager.sav.policyExcute=false
 	GameManager.initSecretFunc()
-	GameManager.changeTaskLabel("完成今日政务所有事项")
+	GameManager.changeTaskLabel("完成所有待办事项")
 	pass
 
 
