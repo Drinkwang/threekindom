@@ -901,7 +901,8 @@ func deliverTask():
 				GameManager.sav.hasMainTask=true
 		
 		#暂时屏蔽		
-		elif  GameManager.sav.have_event["派系安稳完成"]==false:
+		elif  GameManager.sav.have_event["派系安稳完成"]==false and GameManager.sav.targetResType==GameManager.ResType.govern:
+			
 			if(GameManager.sav.have_event["派系安稳任务触发"]==true):
 				GameManager.sav.have_event["派系安稳完成"]=true
 				#GameManager.clearTask()

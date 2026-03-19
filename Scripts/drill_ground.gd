@@ -15,6 +15,11 @@ const newBuild = preload("res://Asset/城镇建筑/演武场2.png")
 @onready var zhaoyun: Node2D = $zhaoyun
 @onready var wumin: Node2D = $wumin
 
+@onready var color_rect: ColorRect = $ColorRect
+@onready var fog: TextureRect = $Fog
+
+
+
 @onready var danyangSoilder: Node2D = $"丹阳军官"
 
 func danyangFinal():
@@ -38,10 +43,31 @@ func _ready():
 		bg.texture=newBuild
 	else:
 		bg.texture=xiaopeiBuild
+	initFogAndRect()	
+
+func initFogAndRect():
+	if GameManager.sav.have_event["亲征对话结束"]==true and GameManager.sav.have_event["血战袁术完成"]==false:
+		if color_rect!=null:
+			color_rect.show()
+			var day =GameManager.get_bloodmode_day()
+		#	var double
+		#	if day<8:
+		#		double=day
+		#	else:
+		#		double=8
+			color_rect.color.a=0.078+0.02*day
 		
-
-
-
+		#0.13+0.0
+		if GameManager.sav.currenceValue>=21:
+			fog.show()
+		if not SoundManager.is_music_playing():
+			pass
+			#要么音乐a
+			if GameManager.sav.currenceValue<26:
+				#SoundManager.stop_music()
+				SoundManager.play_music(sounds.bloodmusic0)
+			else:
+				SoundManager.play_music(sounds.bloodmusic1)
 const bgm = preload("res://Asset/bgm/校场.wav")
 
 func _judWin():
@@ -193,6 +219,13 @@ func post_transition():
 	if GameManager.sav.have_event["亲征对话结束"]==true and GameManager.sav.have_event["战斗袁术血战模式"]==false:
 		#GameManager.sav.have_event["战斗袁术血战模式"]=true
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"演武场宣战袁术")
+		#如果没播放音乐 就播放
+		
+		SoundManager.stop_music()
+		SoundManager.play_music(sounds.bloodmusic0)		
+		initFogAndRect()
+		#20-120
+		#32 12
 		return 
 	if GameManager.sav.have_event["袁术首次击败"]==true and GameManager.sav.have_event["关押曹豹"]==true:
 		GameManager.sav.have_event["关押曹豹"]=false
@@ -271,7 +304,7 @@ func enterBattleMode():
 	GameManager.sav.targetValue=32
 	GameManager.sav.currenceValue=0
 	GameManager.sav.targetResType=GameManager.ResType.stayFight
-
+	GameManager.initBattle()
 	GameManager.sav.targetTxt="血战模式：{currence}/{target}"
 	#觉得无用的注释GameManager.sav.TargetDestination="battle"
 	_initData()
@@ -430,31 +463,28 @@ func _initData():
 	if GameManager.sav.have_event["战斗袁术血战模式"]==true and GameManager.sav.have_event["血战袁术完成"]==false:
 		initData[3].visible="true"
 		initData[0].visible="false"
-		if GameManager.sav.currenceValue<18:
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"每日物质送来")
-		#==5张飞惩戒	
-		
-		elif GameManager.sav.currenceValue==18 or GameManager.sav.currenceValue==21:
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"每日物质送不来")
-		elif GameManager.sav.currenceValue==24:
-			#进入克苏鲁
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁线自相啖食0")
-		elif GameManager.sav.currenceValue==26:
-			#克苏鲁第一天
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁线自相啖食")
+		if  GameManager.sav.isGetCoin==false:
+			if GameManager.sav.currenceValue<15:
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"每日物质送来")
+			elif GameManager.sav.currenceValue==15 or GameManager.sav.currenceValue==18:
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"每日物质送不来")
+			elif GameManager.sav.currenceValue==21:
+				#进入克苏鲁
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁线自相啖食0")
+			elif GameManager.sav.currenceValue==26:
+				#克苏鲁第一天
+				SoundManager.stop_music()
+				SoundManager.play_music(sounds.bloodmusic1)				
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁线自相啖食")
 			
-			pass
-		elif GameManager.sav.currenceValue==28:
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁线2")
-		elif GameManager.sav.currenceValue==30:
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁线3")
-		elif GameManager.sav.currenceValue==32:
-			pass
-			#结尾
-			#视情况修改代码
-			#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"张飞杀曹豹")
-		#30进入结尾
-		#守9天 进入大结局，青梅煮酒
+				pass
+			elif GameManager.sav.currenceValue==28:
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁线2")
+			elif GameManager.sav.currenceValue==30:
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁线3")
+			elif GameManager.sav.currenceValue==32:
+				pass
+
 	else:
 		#initData[3].visible="false"
 		initData[0].visible="true"
@@ -897,7 +927,7 @@ func _DayGet():
 	#	_JudgeTask()
 func _dontGet():
 	
-	if GameManager.sav.currenceValue==21:
+	if GameManager.sav.currenceValue==24:
 		
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"张飞杀曹豹")
 

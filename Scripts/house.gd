@@ -156,8 +156,8 @@ func _ready():
 	if GameManager.sav.have_event["chaoMizhuEnd"]==true and GameManager.sav.isGetCoin==false and GameManager.sav.currenceValue>1:
 
 		pass
-		demo_end_v.show()
-		demo_end_v.play()		
+		#demo_end_v.show()
+		#demo_end_v.play()		
 		
 
 @onready var bti_rect = $btiRect
@@ -215,18 +215,14 @@ func _initData():
 	
 	#记得demo注销
 	if GameManager.sav.have_event["chaoMizhuEnd"]==true and GameManager.sav.isGetCoin==false and GameManager.sav.currenceValue>1:
-		title.show()
-		demo_end.show()
-		hp_panel.hide()
-		res_panel.hide()
-		support_panel.hide()
-		SoundManager.stop_all_ambient_sounds()
-		SoundManager.stop_music()
-		
-		#demo_end_v.show()
-		#demo_end_v.play()		
-		
-		return
+		#title.show()
+		#demo_end.show()
+		#hp_panel.hide()
+		#res_panel.hide()
+		#support_panel.hide()
+		#SoundManager.stop_all_ambient_sounds()
+		#SoundManager.stop_music()
+		#return
 		pass
 	if control.visible==true:	
 		items_in_scene.showItems()	

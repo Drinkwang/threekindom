@@ -12,8 +12,8 @@ dest_files=["res://.godot/imported/曹刘针锋相对.mp3-5a3dd3838685a037154443
 
 [params]
 
-loop=false
-loop_offset=0
-bpm=0
+loop=true
+loop_offset=0.0
+bpm=0.0
 beat_count=0
 bar_beats=4

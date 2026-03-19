@@ -1602,3 +1602,21 @@ func playDemand(item):
 
 func get_exploration_percent():
 	pass
+
+func get_bloodmode_day():
+	var day
+	var num = floor(GameManager.sav.currenceValue / 3)
+	if num >=10:
+		if GameManager.sav.currenceValue==30:
+			day=11
+		elif GameManager.sav.currenceValue==31:
+			day=12
+		elif GameManager.sav.currenceValue==32:
+			day=13
+		elif num>=8:
+			day=8+floor((GameManager.sav.currenceValue-24)/2)
+		  # 假设 godot 是你要计算的数值，比如 godot=10，则 num=3.333...
+	else:
+		day=num
+	return day
+#var bloodmusicid=-1

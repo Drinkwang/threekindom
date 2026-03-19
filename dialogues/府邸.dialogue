@@ -948,7 +948,7 @@ do mizhu.show()
 糜竺: 主公，如今城内人心惶惶。商会、族人忧战事再起、生意难以为继，屡屡来问对策；士家大族则担心徐州不稳、辖内生变；丹阳军与泰山诸将更怕无援之下，难挡袁术反扑、折损过多。各派系民心大跌，若不尽快安抚，恐生内乱，届时内外交困，徐州危矣！[voice:mizhu_zhanshizaiqi]
 陈登: 我同意糜竺的看法。当下最要紧的，是稳住各派系人心。士族这边，我已尽力安抚，但众人忧惧未消；后续各大派系还需主公亲自出面表态。唯有让徐州各派系拧成一股绳，团结一心，才能重新稳固局面，应对后续袁术可能的任何动作。否则，人心一散，再难聚合。[voice:chenden_renxinyisan]
 do Loss_of_loyalty()
-系统提示: 因军情泄露，城内人心惶惶，各方势力因恐惧而对您产生动摇。\n豪族派好感度 下降 {{resideValue}}士族派好感度 下降 {{resideValue2}}\n丹阳派下降 {{resideValue3}}\n吕布好感度 下降 {{resideValue4}}
+系统提示: 因军情泄露，城内人心惶惶，各方势力因恐惧而对您产生动摇。\n豪族派好感度 下降 {{GameManager.resideValue}}\n士族派好感度 下降 {{GameManager.resideValue2}}\n丹阳派下降 {{GameManager.resideValue3}}\n吕布好感度 下降 {{GameManager.resideValue4}}
 if GameManager.dontHaveDominance()
 	刘备: 我知道了。[voice:liubei_wozhidaole]
 	系统提示: 安抚徐州各派系，将豪族派、士族派、丹阳派、吕布好感度均提升至80。
@@ -1123,6 +1123,8 @@ do chenden.hide()
 
 
 ~ 刘备决定亲征
+do mizhu.show()
+do chenden.show()
 糜竺: 主公，此番安抚得当，各派系已然归心，徐州内部总算稳住了。[voice:mizhu_xuzhouneibuzongsuanwendingle]
 刘备: 幸得二位相助。只是袁术贼心不死，此事怕是还未了结。[voice:liubei_xindeerweixiangzu]
 陈登: 主公所言极是，我等仍需严加戒备。[voice:chenden_zhugongsuoyanjishi]
@@ -1144,7 +1146,7 @@ do liubeiBattleAfterMizhu()
 
 ~ 亲征前跟陈登对话
 陈登: 袁术此番来势汹汹，主公亲征需速战速决，切不可陷入持久战，以免消耗我军元气。属下以为，可先寻机与袁术正面决战，挫其锐气；待其军势稍缓，再派精锐偷袭其粮道，断其补给，如此双管齐下，袁术必速速退军！[voice:chenden_yuanshubituijun]
-刘备: 好![voice:liubei_hao]
+刘备: 好![voice:liubei_hao2]
 do liubeiBattleAfterChenDen()
 => END!
 
@@ -1156,6 +1158,8 @@ do liubeiBattleAfterChenDen()
 #
 #=> END!
 ~ 亲征对话陈登和糜竺
+do mizhu.show()
+do chenden.show()
 刘备: (幕僚建议和我不谋而合，我必须亲率主力迂回截击。)[voice:liubei_muliaojianyibumouerhe]
 刘备: 来人，传张飞吾弟进来，我有重事相商[voice:liubei_zhangfeiwudi]
 一段时间后，张飞进了府邸
@@ -1164,8 +1168,8 @@ do zhangfei.show()
 刘备​: 下邳乃根基所在，城中尚有丹阳旧部与陶氏故吏。此番守城重任，唯有你可担。[voice:liubei_xiapilaizhongren]
 张飞​: 蒙大哥信重，飞有三誓：城防必固、粮道必通、军民必安。若有差池，当提首来见！[voice:zhangfei_mengdage]
 刘备: 吾弟治军严整，昔在涿郡时便善抚乡勇。此剑随我多年，今日赠予徐州屏障。从今天起，张飞管理徐州，糜竺和陈登负责协助他[voice:liubei_zhangfeizhilixuzhou]
-do mizhu.show()
-do chenden.show()
+#do mizhu.show()
+#do chenden.show()
 糜竺: 嗯..[voice:mizhu_en]
 陈登: 我一定会协助好张将军[voice:chenden_woyidingxiezhuhaozhangjiangjun]
 提示: 张飞暂时代理玩家管理徐州城，每日军需物资由他负责交管与你。进入演武场则进一步触发剧情，将进入血战模式。玩家角色代替张飞，一旦进入演武场，将不能离开，直到完成9次军事行动。请准备好物资，在演武场中迎接挑战！

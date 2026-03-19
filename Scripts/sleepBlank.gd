@@ -9,7 +9,21 @@ func _ready():
 	#GameManager.currenceScene=self
 	Transitions.post_transition.connect(post_transition)
 	if GameManager.restLabel.length()<=0:
-		var day=GameManager.sav.currenceValue
+		var day
+		var num = floor(GameManager.sav.currenceValue / 3)
+		if num >=10:
+				if GameManager.sav.currenceValue==30:
+					day=11
+				elif GameManager.sav.currenceValue==31:
+					day=12
+				elif GameManager.sav.currenceValue==32:
+					day=13
+		elif num>=8:
+			day=8+floor((GameManager.sav.currenceValue-24)/2)
+		  # 假设 godot 是你要计算的数值，比如 godot=10，则 num=3.333...
+		else:
+			day=num
+		#/3 if >xxx 会加1
 		if GameManager.sav.have_event["战斗袁术血战模式"]==true and GameManager.sav.have_event["血战袁术完成"]==false:
 			label.text=tr("血战模式第{n}旬").format({"n":day})+"\n"+tr(wisdoms[randi() % wisdoms.size()])
 		else:
