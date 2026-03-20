@@ -116,14 +116,28 @@ func Use():
 	alreadyUse=true
 	pass
 	
+@onready var isdie: TextureRect = $isdie
+@onready var isexit: TextureRect = $isexit
+
+	
 var liubeitxt=preload("res://Asset/人物/刘备.png")
+var xiahoutxt=preload("res://Asset/人物/夏侯淳.png")
 #赵云：lv1	
 #{"name": "张飞", "level": 1, "max_level": 10, "randominit": -1,"isBattle":false}
 func updateContext(value):
 	var general=GameManager.sav.generals[repImg]
 	var _name=general.name
 	var _level=general.level
-	if value==1:
+	if value==0:
+		if GameManager.sav.have_event["关羽求援期间"]==true and GameManager.sav.have_event["关羽求援结束"]==false:
+			isexit.show()
+			#alreadyUse=false
+			#canSelect=false
+			check_box.hide()
+			already_use.hide()			
+		#关羽且无法点击
+	
+	elif value==1:
 		#是张飞
 
 		if GameManager.sav.have_event["战斗袁术血战模式"]==true and GameManager.sav.have_event["血战袁术完成"]==false:
@@ -132,4 +146,16 @@ func updateContext(value):
 			headImg=liubeitxt
 			#利用这个判断
 			#pass
+	elif value==2:
+		if GameManager.sav.have_event["无名之死"]==true and GameManager.sav.have_event["夏侯偷马"]==false:
+			isdie.show()
+			#alreadyUse=false
+			#canSelect=false
+			check_box.hide()
+			already_use.hide()
+		elif GameManager.sav.have_event["夏侯偷马"]==true:
+			_name="夏侯淳"
+			_level=10
+			headImg=xiahoutxt
+		#赵云之死
 	namelv=tr(str(_name))+":"+"LV"+str(_level)

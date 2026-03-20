@@ -54,6 +54,7 @@ func update_ui():
 		control_3.canSelect=true
 		lvbutton.disabled=false	
 	else:
+		#加个注释 特定情况才行
 		control_1.canSelect=false
 		control_2.canSelect=false
 		control_3.canSelect=false
@@ -67,7 +68,8 @@ func update_ui():
 
 # 升级按钮被按下时运行
 func _on_upgrade_button_pressed():
-	if GameManager.sav.isLevelUp==true:
+	if GameManager.sav.isLevelUp==true or (GameManager.sav.have_event["无名之死"]==true and GameManager.sav.have_event["夏侯偷马"]==false and selected_general_index==3) or\
+(GameManager.sav.have_event["关羽求援期间"]==true and GameManager.sav.have_event["关羽求援结束"]==false and selected_general_index==1):
 		return
 	
 	if(await GameManager.isTried(costhp)):
@@ -97,7 +99,7 @@ func add_gold(amount):
 
 
 func _on_control_1_gui_input(event):
-	if(event is InputEventMouseButton and event.button_index==1):	
+	if(event is InputEventMouseButton and event.button_index==1) and not (GameManager.sav.have_event["关羽求援期间"]==true and GameManager.sav.have_event["关羽求援结束"]==false and selected_general_index==1):	
 		SoundManager.play_sound(sounds.SELECT_HERO)
 		selected_general_index=1		
 		control_1.check_box.button_pressed=true
@@ -119,7 +121,7 @@ func _on_control_2_gui_input(event):
 
 
 func _on_control_3_gui_input(event):
-	if(event is InputEventMouseButton and event.button_index==1):	
+	if(event is InputEventMouseButton and event.button_index==1) and not (GameManager.sav.have_event["无名之死"]==true and GameManager.sav.have_event["夏侯偷马"]==false and selected_general_index==3):	
 		selected_general_index=0
 				
 		SoundManager.play_sound(sounds.SELECT_HERO)		

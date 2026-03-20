@@ -266,7 +266,7 @@ func post_transition():
 		GameManager.sav.have_event["辕门射戟"]=true
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"吕布辕门射戟")
 	_initData()
-	wuminBanView()
+	#wuminBanView()
 func caobaoshow():
 	if GameManager.sav.have_event["关押曹豹"]==false and GameManager.sav.have_event["战斗袁术血战模式"]==false:
 		caobao.show()
@@ -481,6 +481,7 @@ func _initData():
 			elif GameManager.sav.currenceValue==28:
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁线2")
 			elif GameManager.sav.currenceValue==30:
+				GameManager.sav.have_event["无名之死"]=true
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁线3")
 			elif GameManager.sav.currenceValue==32:
 				pass
@@ -493,6 +494,20 @@ func _initData():
 		
 	items_in_scene.showItems()	
 	control._processList(initData)
+
+#@onready var eatpeople: Node2D = $eatpeople
+
+@onready var jia: Node2D = $eatpeople/jia
+@onready var jia_body: clickBlock = $eatpeople/jiaBody
+
+
+@onready var meat:clickBlock  = $eatpeople/meat
+@onready var yi: Node2D = $eatpeople/yi
+@onready var wumin_inmeat: Node2D = $eatpeople/wumin
+@onready var finger: Node2D = $eatpeople/finger
+
+
+
 
 func select1(issuccuss):
 	GameManager.sav.mizhuSideWait=3
@@ -577,7 +592,9 @@ func _buttonListClick(item):
 			battle_pane.point_group.hide()
 		caobao.hide()	
 		battle_pane.show()
+		
 		battle_pane.initData()
+		#battle_pane._refreshGeneral()
 		res_panel.position.x=1564
 		res_panel.position.y=803
 		res_panel.scale=Vector2(0.765,0.765)
@@ -627,7 +644,9 @@ func _buttonListClick(item):
 			#血战结束
 			#判断3天取得9次胜利没有 如果取得
 		#得修改，只要当日决斗为3即可，没必要非得10，否则有bug
-		if (GameManager.sav.UseGeneral.size()<3 and GameManager.sav.have_event["关羽求援期间"]==false) or(GameManager.sav.UseGeneral.size()<2 and GameManager.sav.have_event["关羽求援期间"]==true and GameManager.sav.have_event["关羽求援结束"]==false):
+		if (GameManager.sav.UseGeneral.size()<3 and GameManager.sav.have_event["关羽求援期间"]==false) \
+		or(GameManager.sav.UseGeneral.size()<2 and GameManager.sav.have_event["关羽求援期间"]==true and GameManager.sav.have_event["关羽求援结束"]==false and GameManager.sav.have_event["无名之死"]==false) \
+		or(GameManager.sav.UseGeneral.size()==0 and GameManager.sav.have_event["无名之死"]==true and GameManager.sav.have_event["关羽求援结束"]==false):
 			DialogueManager.show_dialogue_balloon(dialogue_resource,"血战模式无法提前休息")
 			return
 		#暂时不用rest文本来修改，未来可能会用，把代码移动到这里更直观	
@@ -820,7 +839,107 @@ func showtutorial_back(num):
 
 @onready var animation_player: AnimationPlayer = $CanvasInventory/battlePane/AnimationPlayer
 
+func changePot(type:SceneManager.potType):
+	if type==SceneManager.potType.Full:
+		meat.txt2d=full_pot
+	elif type==SceneManager.potType.Empty:
+		meat.txt2d=empty_pot
+	elif type==SceneManager.potType.Strange:
+		meat.txt2d=strange_pot
+	elif type==SceneManager.potType.Dying:
+		meat.txt2d=dying_pot
+	elif type==SceneManager.potType.Herbal:
+		meat.txt2d=herbal_pot
+	elif type==SceneManager.potType.Blood:
+		meat.txt2d=blood_pot
+const dying_pot = preload("res://Asset/锅_将熄.png")
+const blood_pot = preload("res://Asset/锅_带血.png")
+const herbal_pot = preload("res://Asset/锅_草药.png")
+const strange_pot= preload("res://Asset/肉汤怪异.png")
+const empty_pot = preload("res://Asset/肉汤无.png")
+const full_pot = preload("res://Asset/肉汤满.png")
+#人物被刀受伤
+func makePeoplehurt(_c):
+	var tween=get_tree().create_tween()
+	
+	tween.tween_property(_c, "modulate", Color(0.8, 0, 0, 1), 5)
 
+#逐渐消失，消失后hide
+func makePeopleDie(_c):
+		#sword_sprite_2d.hide()
+	var tween=get_tree().create_tween()
+	#SoundManager.play_sound(sounds.BLOODCC_1)
+	tween.tween_property(_c, "modulate:a",0, 2)
+	await get_tree().create_timer(2).timeout
+	_c.hide()
+
+#从甲的的尸体崩出手指然后放到移动到无名旁边，是对话框外
+
+@onready var fog_player: AnimationPlayer = $Fog/fogPlayer
+
+func addExtraFog():
+	fog_player.play("fogadd")
+
+func findFinger():
+	finger.show()
+	var tween=get_tree().create_tween()
+
+	tween.tween_property(finger, "scale", Vector2(0.5,0.5), 1)
+	tween.tween_property(finger, "position", Vector2(-3,-161), 1)
+	tween.chain()
+	tween.tween_property(finger, "modulate:a", 0, 1)
+	await get_tree().create_timer(2).timeout
+	finger.hide()
+#移动到甲的尸体旁边
+func wuminandjia():
+	
+	var tween=get_tree().create_tween()
+
+	tween.tween_property(wumin_inmeat, "position", Vector2(145,-161), 2)
+	#wumin_inmeat
+#移动到乙的旁边被推开
+func wuminandyi1():
+	
+	finger.position=Vector2(-153,-8)
+	wumin_inmeat.position=Vector2(-271,-33)
+
+func wuminandyi2():
+	var tween=get_tree().create_tween()
+
+	tween.tween_property(yi, "position", Vector2(-226,-166), 1)
+
+#func wuminandyi3():
+	#var tween = get_tree().create_tween()
+	##tween.set_target(wumin_inmeat)
+	#
+	## ========== 第一步：快速冲过去 ==========
+	## 移动到目标位置（快进）
+	#tween.tween_property(wumin_inmeat, "position", Vector2(-226,-166), 0.25)
+	## 冲击感缓动：先快后慢
+	#tween.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
+	#
+	## 可选：冲过去时放大到0.5倍（同步执行缩放）
+#
+	#tween.parallel().tween_property(wumin_inmeat, "scale", Vector2(1.2, 1.2), 0.25)
+	#
+	## ========== 第二步：立刻弹回原位置 ==========
+	## chain() 表示“上一步完成后立刻执行”
+	#tween.chain()
+	## 弹回初始位置（慢一点，有被推开的惯性感）
+	#tween.tween_property(wumin_inmeat, "position", Vector2(-271,-33), 0.45)
+	## 回弹缓动：先慢后快，模拟被推开的弹力
+	#tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
+	#
+	## 可选：回弹时恢复原缩放
+	#
+	#tween.parallel().tween_property(wumin_inmeat, "scale", Vector2(1, 1), 0.45)
+	#
+func wuminmove():
+	var tween=get_tree().create_tween()
+
+	tween.tween_property(wumin_inmeat, "position", Vector2(-73,-320), 2)
+	
+	#wumin_inmeat.position=Vector2(-271,-33)
 
 func showtutorial(num):
 
@@ -872,20 +991,20 @@ func taishanComplete():
 	
 func guanyuBan():
 	GameManager.sav.have_event["关羽求援期间"]=true
-	battle_pane.control_1.hide()
+	#battle_pane.control_1.hide()
 	#无需写实，但需要屏蔽注册 比武对话
-	train_panel.control_1.hide()
+	#train_panel.control_1.hide()
 	pass	
 	
 func wuminBan():
 	#写实ban
 	GameManager.sav.have_event["无名之死"]=true
-	wuminBanView()
+	#wuminBanView()
 	
-func wuminBanView():
-	if GameManager.sav.have_event["无名之死"]==true:
-		battle_pane.control_3.hide()
-		train_panel.control_3.hide()	
+#func wuminBanView():
+	#if GameManager.sav.have_event["无名之死"]==true:
+		#battle_pane.control_3.hide()
+		#train_panel.control_3.hide()	
 	
 func yuanshuComplete():
 	GameManager.sav.TargetDestination="府邸"

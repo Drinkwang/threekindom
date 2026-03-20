@@ -152,7 +152,9 @@ func _refreshGeneral():
 	else:
 		for i in range(1,4):
 			var soider:SoilderItem=self.find_child("Control_"+str(i))
+
 			soider.alreadyUse=false	
+			soider.updateContext(i-1)
 
 #
 #将任务给创建出来
@@ -280,7 +282,7 @@ var selectIndex
 #{"name": "关羽", "level": 1, "max_level": 10, "randominit": -1}
 func _on_control_3_gui_input(event):
 
-	if battle_circle.isBoot==true||control_3.canSelect==false||control_3.alreadyUse==true:
+	if battle_circle.isBoot==true||control_3.canSelect==false||control_3.alreadyUse==true or(GameManager.sav.have_event["无名之死"]==true and GameManager.sav.have_event["夏侯偷马"]==false):
 		return	
 	
 	if(event is InputEventMouseButton and event.button_index==1 or istour==true):	
@@ -315,7 +317,7 @@ func _on_control_2_gui_input(event):
 var istour=false
 func _on_control_1_gui_input(event):
 
-	if battle_circle.isBoot==true||control_1.canSelect==false||control_1.alreadyUse==true:
+	if battle_circle.isBoot==true||control_1.canSelect==false||control_1.alreadyUse==true or (GameManager.sav.have_event["关羽求援期间"]==true and GameManager.sav.have_event["关羽求援结束"]==false):
 		return
 	if(event is InputEventMouseButton and event.button_index==1 or istour==true):		
 		SoundManager.play_sound(sounds.CLICKHERO)		
@@ -336,7 +338,9 @@ func _on_control_1_gui_input(event):
 #出征按钮
 func _on_button_button_down():
 	if GameManager.currenceScene.battle_pane._mode==SceneManager.bossMode.none:
-		if await GameManager.isTried(costhp):
+		if await GameManager.isTried(costhp) or \
+		(GameManager.sav.have_event["无名之死"]==true and GameManager.sav.have_event["夏侯偷马"]==false and selectIndex==3) or\
+		(GameManager.sav.have_event["关羽求援期间"]==true and GameManager.sav.have_event["关羽求援结束"]==false and selectIndex==1):
 			return 
 	if battle_circle.isBoot==false:
 		

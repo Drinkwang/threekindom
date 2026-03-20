@@ -123,3 +123,13 @@ enum puzzlediffucult{
 	middle,
 	high
 }
+
+enum potType{
+	Full,
+	Empty,
+	Strange,
+	Dying,
+	Herbal,
+	Blood
+	
+}

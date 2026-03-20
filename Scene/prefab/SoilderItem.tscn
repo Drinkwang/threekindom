@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dxj1s2d4grxwj"]
+[gd_scene load_steps=8 format=3 uid="uid://dxj1s2d4grxwj"]
 
 [ext_resource type="Script" path="res://Scripts/SoilderItem.gd" id="1_t53yr"]
 [ext_resource type="Texture2D" uid="uid://7lnklxgva7pn" path="res://Asset/ui/panel_Example1.png" id="2_fwr36"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://diy7vtqj0dsb6" path="res://addons/inventory_editor/test/test_model/icons/Success.svg" id="4_jpu1k"]
 [ext_resource type="FontFile" uid="uid://to00njkwmxts" path="res://Asset/Font/1_sim.ttf" id="4_oa0j8"]
 [ext_resource type="Texture2D" uid="uid://cenkv3g08buoj" path="res://Asset/测试边框.png" id="5_5ywna"]
+[ext_resource type="Texture2D" uid="uid://dw8hrf0oxuugf" path="res://Asset/测试关羽求援3.png" id="6_kk0eh"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -90,13 +91,15 @@ offset_right = 287.0
 offset_bottom = 288.0
 color = Color(0.341, 0.349, 0.345, 0.848)
 
-[node name="isdie2" type="TextureRect" parent="."]
+[node name="isexit" type="TextureRect" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0.848)
+layout_mode = 0
 offset_left = 27.0
 offset_top = 30.0
 offset_right = 286.0
 offset_bottom = 287.0
+texture = ExtResource("6_kk0eh")
 
 [node name="Panel" type="Panel" parent="."]
 visible = false

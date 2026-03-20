@@ -1,4 +1,5 @@
 @tool
+class_name clickBlock
 extends baseComponent
 @onready var img = $img
 @export var showName:String="":
