@@ -43,6 +43,7 @@ const InventoryManagerName = "InventoryManager"
 func set_Data(key,value):
 	if key==null:
 		key=itemstype
+	itemstype=key
 	var itemname= InventoryManagerItem.item_by_enum(key)
 	quantity=value
 	txt_quantity.text=var_to_str(value)
@@ -139,7 +140,7 @@ func refreshSold():
 func getItem():
 	print(to_inventory)
 	var itemname= InventoryManagerItem.item_by_enum(itemstype)
-	var remainder = InventoryManager.add_item(to_inventory, itemname, quantity, false)
+	var remainder = InventoryManager.add_item(GameManager.inventoryPackege, itemname, quantity, false)
 	#if remove_collected and remainder == 0:
 		#queue_free()
 		#if questManager and questManager.is_quest_started():

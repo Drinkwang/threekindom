@@ -130,9 +130,10 @@ theme_override_constants/separation = 155
 layout_mode = 2
 factionIndex = 1
 headImg = ExtResource("3_ebxyw")
-namelv = "士族派"
+namelv = "徐州派"
 
 [node name="Control2" parent="HBoxContainer2" instance=ExtResource("4_n1j3h")]
+visible = false
 layout_mode = 2
 factionIndex = 2
 namelv = "豪族派"

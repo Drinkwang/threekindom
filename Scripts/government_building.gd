@@ -804,11 +804,11 @@ func deliverUncompleteTask():
 				tsty.show()
 				return
 				#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"城外克苏鲁事件触发")
-		elif GameManager.sav.have_event["津贴系统开始"]==false and GameManager.sav.have_event["battleTaiShan"]==true:
+		elif GameManager.sav.have_event["津贴系统开始"]==false and GameManager.sav.mizhucardgame>=0:#正式版条件 and GameManager.sav.have_event["battleTaiShan"]==true:
 			GameManager.sav.have_event["津贴系统开始"]=true
 			GameManager.sav.allocationDay=1
 			GameManager.initDemand()
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"津贴开始")
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"津贴开始2")
 			return
 		elif GameManager.sav.have_event["支线触发完毕查出锦囊休息"]==true and GameManager.sav.have_event["支线触发完毕获得锦囊之前"]==false:
 			GameManager.sav.have_event["支线触发完毕获得锦囊之前"]=true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://00xr1q336bgu"]
+[gd_scene load_steps=55 format=3 uid="uid://00xr1q336bgu"]
 
 [ext_resource type="Script" path="res://Scripts/drill_ground.gd" id="1_bhlt2"]
 [ext_resource type="Resource" uid="uid://d2qoinuor12dq" path="res://dialogues/演武场.dialogue" id="2_j02vm"]
@@ -36,7 +36,6 @@
 [ext_resource type="Texture2D" uid="uid://cxmha84jpy0ne" path="res://Asset/人物/真赵云.png" id="33_senbu"]
 [ext_resource type="Texture2D" uid="uid://cwa6dylndnoey" path="res://Asset/人物/赵云close.png" id="34_tw1rc"]
 [ext_resource type="Texture2D" uid="uid://u2hqgvtitj7r" path="res://Asset/人物/老兵甲.png" id="36_fb2d8"]
-[ext_resource type="Texture2D" uid="uid://cfjq0q6ymi5oc" path="res://Asset/肉汤满.png" id="37_4t6ia"]
 [ext_resource type="Shader" path="res://shader/fogshader.gdshader" id="37_6bff1"]
 [ext_resource type="Texture2D" uid="uid://cb8t2qsmenalt" path="res://Asset/人物/老兵乙.png" id="37_kgreu"]
 [ext_resource type="Texture2D" uid="uid://dc87m2ysuj3cf" path="res://Asset/甲的尸体.png" id="37_vug2l"]
@@ -110,21 +109,6 @@ frequency = 0.0063
 seamless = true
 noise = SubResource("FastNoiseLite_xy8fj")
 
-[sub_resource type="Animation" id="Animation_kco42"]
-resource_name = "fogadd"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/location_fade")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.2, 1.515]
-}
-
 [sub_resource type="Animation" id="Animation_evf5p"]
 length = 0.001
 tracks/0/type = "value"
@@ -138,6 +122,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.2]
+}
+
+[sub_resource type="Animation" id="Animation_kco42"]
+resource_name = "fogadd"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/location_fade")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.2, 1.515]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w1g8a"]
@@ -229,6 +228,7 @@ texture = ExtResource("4_n3gnp")
 region_filter_clip_enabled = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 offset_right = 1917.0
 offset_bottom = 1072.0
 mouse_filter = 2
@@ -521,11 +521,9 @@ dialogue_start = ""
 [node name="meat" parent="eatpeople" instance=ExtResource("14_s83fw")]
 visible = false
 position = Vector2(-71, -166)
-showName = "锅"
-txt2d = ExtResource("37_4t6ia")
-boardType = 1
-dialogue_resource = ExtResource("2_j02vm")
-dialogue_start = ""
+txt2d = null
+boardType = 0
+isHide = true
 
 [node name="yi" parent="eatpeople" instance=ExtResource("14_s83fw")]
 visible = false

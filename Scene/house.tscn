@@ -740,6 +740,7 @@ visible = false
 material = SubResource("ShaderMaterial_t4pje")
 offset_right = 1920.0
 offset_bottom = 1088.0
+mouse_filter = 2
 stream = ExtResource("32_mcnqn")
 
 [node name="fade" type="CanvasLayer" parent="."]

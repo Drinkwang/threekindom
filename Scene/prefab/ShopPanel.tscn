@@ -349,10 +349,10 @@ theme_override_constants/outline_size = 0
 theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/font = ExtResource("17_w8f0i")
 theme_override_font_sizes/font_size = 31
-text = "当前商品价格:0"
+text = "当前商品价格:"
 horizontal_alignment = 1
 vertical_alignment = 2
-autowrap_mode = 2
+autowrap_mode = 3
 
 [node name="TextureButton2" type="TextureButton" parent="."]
 layout_mode = 1

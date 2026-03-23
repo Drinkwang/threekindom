@@ -33,7 +33,7 @@ const failPng = preload("res://Asset/other/骷髅头.png")
 		if(title!=null):
 			title.text=titleEX
 		
-@onready var context = $Control/PanelContainer/MarginContainer/VBoxContainer/context
+@onready var context = $Control/PanelContainer/MarginContainer/VBoxContainer/context2
 
 @onready var title = $Control/PanelContainer/MarginContainer/VBoxContainer/title
 

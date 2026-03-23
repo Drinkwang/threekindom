@@ -55,8 +55,6 @@ layout_mode = 2
 layout_mode = 2
 theme_type_variation = &"HeaderLarge"
 theme_override_font_sizes/font_size = 48
-text = "
-"
 autowrap_mode = 2
 
 [node name="title" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer"]

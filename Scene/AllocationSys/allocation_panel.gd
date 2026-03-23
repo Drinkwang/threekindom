@@ -22,8 +22,9 @@ func initData():
 
 	label_2.text=tr("月例配给管理面板")+"【"+ contextstr+"】"
 	for i in range(0,4):
-		arrs[i].show()
-		arrs[i].initData()
+		if i !=1:
+			arrs[i].show()
+			arrs[i].initData()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass

@@ -501,7 +501,7 @@ func _initData():
 @onready var jia_body: clickBlock = $eatpeople/jiaBody
 
 
-@onready var meat:clickBlock  = $eatpeople/meat
+@onready var meat:Node2D  = $eatpeople/meat
 @onready var yi: Node2D = $eatpeople/yi
 @onready var wumin_inmeat: Node2D = $eatpeople/wumin
 @onready var finger: Node2D = $eatpeople/finger

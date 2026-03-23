@@ -67,6 +67,7 @@ func _ready():
 	changeHeadInMainTask()
 	SignalManager.changeLanguage.connect(changeLanguage)		
 	SignalManager.endReward.connect(_endReward)
+	taskIndex=getTaskIndex()
 	if GameManager.sav.battleTasks==null or GameManager.sav.battleTasks.size()==0:
 		return 
 	_initBattleTypePng(0,GameManager.sav.battleTasks[taskIndex].sdType)
@@ -698,7 +699,20 @@ func refreshPage():
 	# 显示结果
 #定义一个枚举，然后显示当前win还是false
 #得保存
+func getTaskIndex():
+	var index=0
+	var btresult= GameManager.BattleResult
+	for i in range(0,GameManager.sav.battleResults.size()):
+		var _ColorRect=find_child("ColorRect_"+str(i+1))
+	
+	
 
+		if (GameManager.sav.battleResults[i]!=btresult.none):
+			index+=1
+	if index>2:
+		index=0		
+	return index		
+	
 @onready var battlepanel: battlePanel = $".."
 
 

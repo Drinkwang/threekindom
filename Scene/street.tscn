@@ -198,7 +198,6 @@ offset_right = -1574.0
 offset_bottom = -10.0
 
 [node name="hpPanel" parent="CanvasLayer" instance=ExtResource("6_00ynb")]
-clip_contents = true
 offset_left = 1395.0
 offset_top = 20.0
 offset_right = 2225.0

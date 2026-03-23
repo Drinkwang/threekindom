@@ -417,7 +417,7 @@ func initDemand():
 	var point=GameManager.sav.day*10+50
 	initSoleDemand(sav.WAIDIPAI,point)
 	initSoleDemand(sav.BENTUPAI,point)
-	initSoleDemand(sav.HAOZUPAI,point)		
+	#initSoleDemand(sav.HAOZUPAI,point)		
 	#sav.WAIDIPAI.demand={}
 	#sav.BENTUPAI.demand={}
 	#
