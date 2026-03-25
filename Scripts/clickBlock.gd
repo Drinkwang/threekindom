@@ -14,6 +14,9 @@ extends baseComponent
 			
 	get:
 		return showName
+func changeName(_name):
+	showName=_name		
+		
 @export var dialogue_doubleclick:String
 @export var showborder:bool=true:
 	set(isshow):

@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_vy71u")
-_name = "外地派"
+_name = "丹阳派"
 _num_all = 5
 _num_rt = 0
 _num_sp = 0
@@ -14,7 +14,13 @@ _num_defections = 0
 rebellionUpdateNum = 0
 isAlertRisk = false
 isrebellion = false
+isSuppressed = false
+supressNum = 0
 _support_rate = 100
 isshow = true
 index = 0
 isDoneOp = false
+detail = "陶谦旧部核心军力，为随陶谦迁任徐州的丹阳籍武将集团，以曹豹为首，掌徐州重兵，同乡抱团，对刘备归附之意淡薄。"
+allocationStatue = 0
+demand = {}
+isAutoAllocation = false

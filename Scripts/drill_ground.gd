@@ -73,7 +73,7 @@ const bgm = preload("res://Asset/bgm/校场.wav")
 func _judWin():
 	if(not (GameManager.sav.targetTxt!=null and GameManager.sav.targetTxt.length()>0) or DialogueManager.dialogBegin==true):
 		return
-	if GameManager.sav.targetResType==GameManager.ResType.battle:
+	if GameManager.sav.targetResType==GameManager.ResType.battle or GameManager.sav.targetResType==GameManager.ResType.stayFight:
 		if(GameManager.sav.have_event["firstMeetCaoCao"]==false):
 			if GameManager.sav.currenceValue>=3:
 				GameManager.sav.have_event["firstMeetCaoCao"]=true
@@ -115,12 +115,7 @@ func _judWin():
 				if GameManager.sav.have_event["曹操没法来援助"]==false:
 					GameManager.sav.have_event["曹操没法来援助"]=true
 					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"曹操挟天子开始")
-		if GameManager.sav.have_event["战斗袁术血战模式"]==true and GameManager.sav.have_event["血战袁术完成"]==false:
-			if GameManager.sav.currenceValue>=6:
-				pass
-			elif GameManager.sav.currenceValue>3:
-				pass
-		
+
 		if GameManager.sav.currenceValue>=GameManager.sav.targetValue:
 			_completeTask()
 				# 如果你满足条件，则弹出对话
@@ -158,29 +153,24 @@ func _completeTask():#将完成任务移动到外层
 		
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"征讨袁术结束")
 	elif GameManager.sav.have_event["战斗袁术血战模式"]==true and GameManager.sav.have_event["血战袁术完成"]==false:
-		GameManager.sav.have_event["血战袁术完成"]=true
-		#吕布背叛，3种可能 丹阳派 叛变，徐州派叛变-豪族派 or 士族派叛变
-		#胜利次数大于一半 不进入克苏鲁
-		#败北数达到一半 克苏鲁 败北达到6 人吃人绝境  5天 15场duel 3天后不送粮草  报告 大人 徐州粮草出现问题
-		#判断是否进入人吃人惨案 胜率低于50%
-		#if GameManager.sav.currenceDay<=6:
-			#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁线")
-			#return 
-			#血战 30 场决斗 3天给与选择 5天断粮 7天判断有无克苏鲁 如果输了15场 就自动进入克苏鲁 仅以身免，刘备的最好兄弟牺牲 兄弟甲乙丙 都是同乡 甲被人吃，乙想吃刘备肉被甲劝说，无果，年老的丙用自己肉保住主公，最终乙因为自己最好兄弟甲之死，自己割自己肉给刘备吃 ，最后甲乙丙都死，如果活下来，他们也是新的关羽和张飞，乙也有傲气 
-			#21 11
-		if GameManager.sav.WAIDIPAI._support_rate<60:
+		#GameManager.sav.have_event["血战袁术完成"]=true
+		if GameManager.dontHaveDominance()==false and GameManager.sav.HAOZUPAI.supressNum>=3 and GameManager.sav.WAIDIPAI.supressNum>=3 and \
+		GameManager.sav.LVBU.supressNum>=3 and GameManager.sav.BENTUPAI.supressNum>=3:
+			
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"不丢徐州线")
+		else:
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"丹阳线")
 	
-		elif GameManager.sav.BENTUPAI._support_rate<60:
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"士族线")
+	#	elif GameManager.sav.BENTUPAI._support_rate<60:
+	#		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"士族线")
 	
-		elif GameManager.sav.HAOZUPAI._support_rate<60:
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"豪族线")
+	#	elif GameManager.sav.HAOZUPAI._support_rate<60:
+	#		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"豪族线")
 			#pass #其实以上三种都是丢徐州 但是通过战斗胜利次数，判断有无进入克苏鲁线
-		else:
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"不丢徐州线")
+	#	else:
+	#		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"不丢徐州线")
 			#进入非丢徐州线路 反攻吕布和袁术 受x天
-			pass
+	#		pass
 		
 @onready var caocao_letter = $CanvasInventory/caocaoLetter
 @onready var caocao_letter_xie_tian_zi = $CanvasInventory/caocaoLetterXieTianZi
@@ -484,7 +474,7 @@ func _initData():
 				GameManager.sav.have_event["无名之死"]=true
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁线3")
 			elif GameManager.sav.currenceValue==32:
-				pass
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁线3")
 
 	else:
 		#initData[3].visible="false"
@@ -500,6 +490,7 @@ func _initData():
 @onready var jia: Node2D = $eatpeople/jia
 @onready var jia_body: clickBlock = $eatpeople/jiaBody
 
+@onready var bing: clickBlock = $eatpeople/bing
 
 @onready var meat:Node2D  = $eatpeople/meat
 @onready var yi: Node2D = $eatpeople/yi
@@ -663,6 +654,10 @@ func showbattletutorial():
 	
 func showbattletutorial2():
 	DialogueManager.show_dialogue_balloon(dialogue_resource,"第一次军事行动教程_下")
+	
+	
+@onready var chendao: clickBlock = $"陈到"
+	
 	
 func caobaoLevelUpSoilder():
 	refreshData()
@@ -885,11 +880,16 @@ func findFinger():
 	var tween=get_tree().create_tween()
 
 	tween.tween_property(finger, "scale", Vector2(0.5,0.5), 1)
-	tween.tween_property(finger, "position", Vector2(-3,-161), 1)
+	tween.tween_property(finger, "position", wumin_inmeat.position, 1)
 	tween.chain()
 	tween.tween_property(finger, "modulate:a", 0, 1)
 	await get_tree().create_timer(2).timeout
 	finger.hide()
+	
+#
+func jiaLeave():
+	var tween=get_tree().create_tween()
+	tween.tween_property(jia, "position", Vector2(0,250), 1)
 #移动到甲的尸体旁边
 func wuminandjia():
 	

@@ -1,18 +1,26 @@
 [gd_resource type="Resource" script_class="cldata" load_steps=2 format=3 uid="uid://ct2v8fjy8wbus"]
 
-[ext_resource type="Script" uid="uid://c758vekv6fu83" path="res://clData.gd" id="1_83imj"]
+[ext_resource type="Script" path="res://clData.gd" id="1_83imj"]
 
 [resource]
 script = ExtResource("1_83imj")
-_name = "吕布"
+_name = "泰山派"
 _num_all = 0
 _num_rt = 0
 _num_sp = 0
 _num_op = 0
 _num_grain = 0
 _num_defections = 0
+rebellionUpdateNum = 0
 isAlertRisk = false
 isrebellion = false
+isSuppressed = false
+supressNum = 0
 _support_rate = 100
 isshow = false
 index = 3
+isDoneOp = false
+detail = "泰山群寇归降的半独立边军，以臧霸等人为首，名义隶属徐州，刘备令吕布节制，不预州内政务，需徐州供给粮饷，可作北疆屏障却难完全统御。"
+allocationStatue = 0
+demand = {}
+isAutoAllocation = false

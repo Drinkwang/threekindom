@@ -1018,6 +1018,7 @@ func FractionalDiff():
 	GameManager.initPaixi(GameManager.sav.HAOZUPAI)
 	GameManager.initPaixi(GameManager.sav.BENTUPAI)
 	GameManager.sav.BENTUPAI._name="士族派"
+	GameManager.sav.BENTUPAI.detail="徐州本土名门士族集团，以陈登为首，世代宦居徐州，深谙州郡治理与地缘谋略，心向安稳，辅佐刘备以保徐州全境。"
 	SignalManager.changeSupport.emit()
 	GameManager.sav.have_event["Factionalization"]=true
 	changePanelPos()
@@ -1268,7 +1269,7 @@ func confireSuppress():
 	_c.isDoneOp=true
 	_c._support_rate=100
 	_c.isSuppressed=true
-	_c._num_defections+=1
+	_c.supressNum+=1
 	SignalManager.changeFraction.emit()
 	#发一个信号，有派系确认为对你没有敌意的派系
 

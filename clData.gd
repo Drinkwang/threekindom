@@ -19,6 +19,7 @@ extends Resource
 @export var isAlertRisk=false
 @export var isrebellion:bool=false
 @export var isSuppressed=false
+@export var supressNum=0
 @export var _support_rate:int=100 #支持率
 @export var isshow:bool=true 
 @export var index:factionIndex
@@ -31,7 +32,7 @@ enum factionIndex{
 	
 }
 #1 2 3 4可支付 
-
+@export var detail=""
 @export var allocationStatue=0
 #-1没开启 0未支付  1 已经支付
 @export var demand={}
@@ -48,6 +49,9 @@ func ChangeAllPeople(num):
 	#发送信号
 
 func ChangeSupport(num):
+	if supressNum>=3:
+		_support_rate=100
+		return
 	_support_rate=_support_rate+num
 	if _support_rate>100:
 		_support_rate=100

@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://00xr1q336bgu"]
+[gd_scene load_steps=58 format=3 uid="uid://00xr1q336bgu"]
 
 [ext_resource type="Script" path="res://Scripts/drill_ground.gd" id="1_bhlt2"]
 [ext_resource type="Resource" uid="uid://d2qoinuor12dq" path="res://dialogues/演武场.dialogue" id="2_j02vm"]
@@ -39,7 +39,10 @@
 [ext_resource type="Shader" path="res://shader/fogshader.gdshader" id="37_6bff1"]
 [ext_resource type="Texture2D" uid="uid://cb8t2qsmenalt" path="res://Asset/人物/老兵乙.png" id="37_kgreu"]
 [ext_resource type="Texture2D" uid="uid://dc87m2ysuj3cf" path="res://Asset/甲的尸体.png" id="37_vug2l"]
+[ext_resource type="Texture2D" uid="uid://gm6qd1oxj8sy" path="res://Asset/肉汤无.png" id="38_155q7"]
+[ext_resource type="Texture2D" uid="uid://ckn04i6bx1np0" path="res://Asset/有边线饼.png" id="39_w14kw"]
 [ext_resource type="Texture2D" uid="uid://brm7d5qn2r6y2" path="res://Asset/断了手指1.png" id="40_filcj"]
+[ext_resource type="Texture2D" uid="uid://cs8746bub3k5t" path="res://Asset/人物/陈到.png" id="43_uc4j2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ntk5c"]
 shader = ExtResource("3_0goxf")
@@ -473,7 +476,6 @@ dialogue_resource = ExtResource("27_oqtuy")
 dialogue_start = "发现诡秘怪谈"
 
 [node name="zhangfei" parent="." instance=ExtResource("14_s83fw")]
-visible = false
 position = Vector2(973, 468)
 showName = "张飞"
 txt2d = ExtResource("30_qlwmh")
@@ -502,6 +504,15 @@ dialogue_start = ""
 [node name="eatpeople" type="Node2D" parent="."]
 position = Vector2(1015, 659)
 
+[node name="bing" parent="eatpeople" instance=ExtResource("14_s83fw")]
+visible = false
+position = Vector2(2, -1)
+showName = "半块饼"
+txt2d = ExtResource("39_w14kw")
+boardType = 1
+dialogue_resource = ExtResource("2_j02vm")
+dialogue_start = ""
+
 [node name="jia" parent="eatpeople" instance=ExtResource("14_s83fw")]
 visible = false
 showName = "无名小卒-甲"
@@ -521,9 +532,11 @@ dialogue_start = ""
 [node name="meat" parent="eatpeople" instance=ExtResource("14_s83fw")]
 visible = false
 position = Vector2(-71, -166)
-txt2d = null
-boardType = 0
+txt2d = ExtResource("38_155q7")
+boardType = 1
 isHide = true
+dialogue_resource = ExtResource("2_j02vm")
+dialogue_start = ""
 
 [node name="yi" parent="eatpeople" instance=ExtResource("14_s83fw")]
 visible = false
@@ -548,6 +561,14 @@ visible = false
 position = Vector2(-3, -8)
 scale = Vector2(0.5, 0.5)
 txt2d = ExtResource("40_filcj")
+boardType = 1
+dialogue_resource = ExtResource("2_j02vm")
+dialogue_start = ""
+
+[node name="陈到" parent="." instance=ExtResource("14_s83fw")]
+visible = false
+position = Vector2(936, 523)
+txt2d = ExtResource("43_uc4j2")
 boardType = 1
 dialogue_resource = ExtResource("2_j02vm")
 dialogue_start = ""

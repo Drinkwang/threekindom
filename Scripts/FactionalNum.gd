@@ -2,11 +2,12 @@ extends PanelContainer
 class_name factionalname
 @onready var progress_bar = $MarginContainer/HBoxContainer/VBoxContainer/ProgressBar
 @onready var label:Label = $MarginContainer/HBoxContainer/VBoxContainer/Label
-var itemData
+var itemData:cldata
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	SignalManager.changeLanguage.connect(changeLanguage)		
 	changeLanguage()
+	
 	pass # Replace with function body.
 	
 	
@@ -94,7 +95,7 @@ func refreshData():
 	if GameManager.maxResPanelX<=text_width:
 		GameManager.maxResPanelX=text_width
 
-		
+	TooltipManager.register_tooltip(self,itemData.detail)	
 	
 @onready var timer = $Timer
 

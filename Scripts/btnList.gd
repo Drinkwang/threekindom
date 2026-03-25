@@ -42,7 +42,8 @@ func _processList(data):
 		#var padding: Vector2 = Vector2(20, 10)  # 宽度和高度的内边距
 		#richTxt.set_size(Vector2(text_size.x + padding.x, text_size.y + padding.y))
 		richTxt.set_mouse_filter(Control.MOUSE_FILTER_IGNORE)
-		richTxt.set_size(Vector2(850,80))
+		richTxt.set_size(Vector2(400,80))
+		richTxt.mouse_filter=Control.MOUSE_FILTER_PASS
 		#获取语言 并获取长度
 		#如果长度大于一个区间，可以将语言字体变小
 		var currencelanguage=TranslationServer.get_locale()
@@ -82,7 +83,7 @@ func _processList(data):
 		#buttton.ignore_texture_size=true
 		#buttton.stretch_mode=TextureButton.STRETCH_KEEP_ASPECT
 		buttton.add_child(richTxt)
-		
+		buttton.mouse_filter=Control.MOUSE_FILTER_PASS
 		buttton.texture_normal=normalbtn
 		buttton.texture_pressed=pressbtn
 		buttton.texture_hover=hoverbtn

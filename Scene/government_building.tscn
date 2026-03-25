@@ -207,12 +207,6 @@ dialogue_start = ""
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="supportPanel" parent="CanvasLayer" instance=ExtResource("12_5ydg1")]
-offset_left = 74.0
-offset_top = 656.0
-offset_right = -1504.0
-offset_bottom = -92.0
-
 [node name="hpPanel" parent="CanvasLayer" instance=ExtResource("7_iy2fq")]
 offset_left = 1395.0
 offset_top = 20.0
@@ -225,16 +219,6 @@ offset_left = 1406.0
 offset_top = 619.0
 offset_right = 1894.0
 offset_bottom = 955.0
-
-[node name="faction" parent="CanvasLayer" instance=ExtResource("15_wrxcl")]
-offset_left = 44.0
-offset_top = 529.0
-offset_right = -1545.0
-offset_bottom = -388.0
-size_flags_horizontal = 4
-
-[node name="Control" parent="CanvasLayer" instance=ExtResource("5_gv3ja")]
-metadata/_edit_use_anchors_ = true
 
 [node name="policyPanel" parent="CanvasLayer" instance=ExtResource("9_fdrkw")]
 visible = false
@@ -285,6 +269,23 @@ context = "备弟足下：
                                                                                                                                                 曹操顿首"
 lookdoneDialog = " 曹操的信_2"
 dialogue_resource = ExtResource("2_yngd1")
+
+[node name="supportPanel" parent="CanvasLayer" instance=ExtResource("12_5ydg1")]
+offset_left = 74.0
+offset_top = 656.0
+offset_right = -1504.0
+offset_bottom = -92.0
+
+[node name="faction" parent="CanvasLayer" instance=ExtResource("15_wrxcl")]
+offset_left = 44.0
+offset_top = 529.0
+offset_right = -1545.0
+offset_bottom = -388.0
+size_flags_horizontal = 4
+
+[node name="Control" parent="CanvasLayer" instance=ExtResource("5_gv3ja")]
+mouse_filter = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="sendGiftPanel" parent="." instance=ExtResource("9_2k5hb")]
 visible = false

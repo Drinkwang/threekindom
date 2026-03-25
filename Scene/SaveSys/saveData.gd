@@ -284,7 +284,7 @@ var SIDEQUEST_MAP:Dictionary={
 	"开启比武训练":false,
 	"比武训练教程":false,
 	"解锁高级成就":false,
-	"温侯降伏臧霸":false,
+	"温侯降伏臧霸":false,#注释
 	"基建项目开启":false,
 	"基建运河教程":false,
 	"基建修塔教程":false,
