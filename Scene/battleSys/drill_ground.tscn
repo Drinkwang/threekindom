@@ -476,6 +476,7 @@ dialogue_resource = ExtResource("27_oqtuy")
 dialogue_start = "发现诡秘怪谈"
 
 [node name="zhangfei" parent="." instance=ExtResource("14_s83fw")]
+visible = false
 position = Vector2(973, 468)
 showName = "张飞"
 txt2d = ExtResource("30_qlwmh")

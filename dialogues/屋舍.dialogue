@@ -489,6 +489,12 @@ do xiaopeiStart()
 do _initData()
 => END!
 
+
+~ 小沛最终不能休息
+
+刘备: （今日乃是死守小沛的开端，局势危如累卵，一刻也不能松懈。我当先往府衙处理政务，安定军心民心，为御敌做好万全准备。）[voice:liubei_zuihouquxiaopei]
+=> END!
+
 #待实装
 ~ 泰山诸将任务开始
 do taishanSoilder.showEX=false

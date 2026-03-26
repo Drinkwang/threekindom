@@ -654,6 +654,8 @@ func getConstructValue():
 
 func _rest(value=true):
 	const DISSOLVE_IMAGE = preload("res://addons/transitions/images/circle-inverted.png")
+	if DialogueManager.gameover==true:
+		return
 	
 	if GameManager.sav.have_event["预获得龙胆枪"]==true:
 		GameManager.sav.have_event["预获得龙胆枪休息"]=true
@@ -1267,7 +1269,7 @@ func _load_settings():
 	#SoundManager.set_sound_ui_volume(GameManager._setting.people_volume)
 	#await get_tree().create_timer(0.1).timeout
 	SoundManager.set_ambient_sound_volume(GameManager._setting.bgs_volume)
-
+	SoundManager.set_sound_ui_volume(GameManager._setting.people_volume)
 func clear_children(parent: Node) -> void:
 	for child in parent.get_children():
 		if !(child is Label):

@@ -177,7 +177,7 @@ func xiaopeiStart():
 	
 	
 func _initData():
-	
+	var canMuliao=true
 	GameManager.play_BGM()
 
 	var initData=[
@@ -243,11 +243,11 @@ func _initData():
 				GameManager.sav.have_event["竹简幻觉剧情"]=true
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁梦境")
 				SoundManager.stop_music()
-
+				canMuliao=false
 				hp_panel.hide()
 				res_panel.hide()
 				support_panel.hide()
-	
+				
 				
 				GameManager.musicId=0
 				SoundManager.stop_all_ambient_sounds()
@@ -256,14 +256,18 @@ func _initData():
 	
 		#竹筒剧情完了，再次调用这边
 		#竹筒幻觉剧情 播放音效，改变背景，然后吓醒了 我觉得这个剧情可以放在早上，如果早上没有主线，则触发这个剧情，然后得知是一场噩梦
-				return 
+				return canMuliao
 			elif GameManager.sav.have_event["关羽求援期间"]==true and GameManager.sav.have_event["关羽求援结束"]==false:
 				GameManager.sav.have_event["关羽求援结束"]=true
+				canMuliao=false
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"关羽回来")
-				return
+				return canMuliao
 			GameManager.sav.isGetCoin=true
-			GameManager.resideValue=tr("大人本旬收入为{_coin}，招募的士兵为{_labor}").format({"_coin":GameManager.sav.coin_DayGet,"_labor":GameManager.sav.labor_DayGet})
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"今日收入为")
+			if not (GameManager.sav.have_event["关羽求援结束"] ==true and GameManager.sav.have_event["主簿的追随"] ==false):
+				GameManager.resideValue=tr("大人本旬收入为{_coin}，招募的士兵为{_labor}").format({"_coin":GameManager.sav.coin_DayGet,"_labor":GameManager.sav.labor_DayGet})
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"今日收入为")
+			else:
+				canMuliao=false	
 	control._processList(initData)
 	
 	
@@ -322,7 +326,7 @@ func _initData():
 			GameManager.sav.have_event["DemoFinish"]=true
 			control.hide()
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新手关结束")	
-	
+	return canMuliao
 	#判断以下，是首日获取 还是第二次获取	
 const siku1 = preload("res://Asset/sound/似哭似笑1.mp3")
 const siku2 = preload("res://Asset/sound/似哭似笑2.mp3")
@@ -338,6 +342,7 @@ func resumeBgm():
 const daybgm = preload("res://Asset/bgm/白天在家or办公.wav")	
 const nightbgm = preload("res://Asset/bgm/夜晚在家.wav")
 func post_transition():
+	var canMuliao=true
 	GameManager.CanClickUI=true
 	SoundManager.stop_all_ambient_sounds()
 	if GameManager.sav.alreadyHP>=80:
@@ -346,15 +351,18 @@ func post_transition():
 		if GameManager.sav.have_event["锦囊咨询丹阳派"]==true and GameManager.sav.have_event["支线触发完毕获得骨杖"]==false :#and GameManager.sav.have_event["温侯降伏臧霸"]==true:
 			zhubu.show()
 			zhubu.showEX=true
+			canMuliao=false
 		#特殊事件触发时
 			zhubu.dialogue_start="支线克苏鲁最终开始"
 		elif GameManager.sav.endPath==GameManager.endPath.xiaopei and GameManager.sav.have_event["泰山预备"]==false:
 			taishanSoilder.show()
+			canMuliao=false
 	else:
 		SoundManager.play_ambient_sound(daybgm)
-	allocationMuliao()
-	_initData()
-	
+	if canMuliao==true:
+		canMuliao=_initData()
+	else:
+		_initData()
 	
 	if GameManager.sav.have_event["进入曹府"]==true and GameManager.sav.have_event["最终比武结束"]==false:
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"最终章节")	
@@ -365,7 +373,8 @@ func post_transition():
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"最终章节2")	
 		hidecanvas()
 	else:
-		pass
+		if canMuliao==true:
+			allocationMuliao()
 		#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"终局")	
 		#hidecanvas()
 @onready var taishanSoilder: Node2D = $"泰山军官"
@@ -450,13 +459,23 @@ func _buttonListClick(item):
 			#if GameManager.sav.have_event["xxxx"]==false:
 			#	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"xxxx")	
 			#	return	
+			
+		if GameManager.sav.have_event["关羽求援结束"] ==true and GameManager.sav.have_event["主簿的追随"] ==false:
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"小沛最终不能休息")	
 		control._show_button_5_yellow(-1)
 		if GameManager.musicId!=0:
 			GameManager.musicId=-GameManager.musicId
 		
-		
+		if GameManager.sav.endPath!=GameManager.endPath.none:
+			var allcount = GameManager.sav.battleResults.count(not GameManager.BattleResult.none)
+			if allcount<3:
+				if GameManager.sav.have_event["主簿的追随"]==false:
+					DialogueManager.show_example_dialogue_balloon(sys,"最终自言自语")
+				else:
+					DialogueManager.show_example_dialogue_balloon(sys,"最终主簿告知")
+			
 		#逻辑不能放在这里
-		if(GameManager.sav.alreadyHP<10 and GameManager.sav.hasMainTask==false):
+		elif(GameManager.sav.alreadyHP<10 and GameManager.sav.hasMainTask==false):
 			GameManager.sav.lazydays+=1	
 			GameManager.sav.lazyValue=GameManager.sav.lazyValue+1
 			if GameManager.sav.lazydays>=3:
@@ -759,27 +778,30 @@ func _JudgeTask():
 		#value	
 	elif GameManager.sav.targetResType==GameManager.ResType.rest:
 		value=GameManager.sav.currenceValue
-		if GameManager.sav.have_event["chaosBegin"]==true:
-			if GameManager.sav.have_event["chaosEnd"]==false:
-				if value>=GameManager.sav.targetValue:
-					GameManager.sav.have_event["chaosEnd"]=true
+		if GameManager.sav.have_event["chaosBegin"]==true and GameManager.sav.have_event["chaosEnd"]==false:
+			
+			if value>=GameManager.sav.targetValue:
+				GameManager.sav.have_event["chaosEnd"]=true
 					#完成城中之乱-泰山
-					hp_panel.playLabelChange()
-					GameManager.sav.TargetDestination="府邸"
-					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"袁术之乱结束")	
-					hasSide=false
-				else:
-					hasSide=false
-					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"每天袁术内应搞事")	
+				hp_panel.playLabelChange()
+				GameManager.sav.TargetDestination="府邸"
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"袁术之乱结束")	
+				hasSide=false
+			else:
+				hasSide=false
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"每天袁术内应搞事")	
 		elif GameManager.sav.have_event["关羽求援结束"]==true:
 			if value>=8 and GameManager.sav.have_event["夏侯偷马"]==false:
+				hasSide=false
 				GameManager.sav.have_event["夏侯偷马"]=true
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"小沛信件")	
 			elif value>=10 and GameManager.sav.have_event["吕布之怒"]==false:
+				hasSide=false
 				GameManager.sav.have_event["吕布之怒"]=true
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"吕布最终进犯")	
 			elif value>=GameManager.sav.targetValue:
 				#屏蔽三个地方
+				hasSide=false
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"终局")	
 				canvas_layer.hide()
 	if(GameManager.sav.have_event["completeTask1"]==true):
@@ -793,7 +815,9 @@ func _JudgeTask():
 			#if GameManager.sav.have_event["battleYuanshu"]==true:
 			#if(GameManager.sav.have_event["completebattleYuanshu"]==false):	
 	if hasSide==true:
-		extraTask()		
+		extraTask()	
+	else:
+		zhubu.hide()#后续改动逻辑，今日工作已经写完了	
 	
 func secondMissonStart():
 	GameManager.sav.targetValue=10
