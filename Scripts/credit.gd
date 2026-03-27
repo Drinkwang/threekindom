@@ -72,7 +72,7 @@ func eggFunc():
 
 
 func settleGame():
-	var finaldec
+	var finaldec=""
 	if GameManager.sav.endPath==GameManager.endPath.xiaopei:
 		what_final.text=tr("【恭喜你，通关正史结局】")
 		finaldec=tr("完成所有怪谈支线，\n将解锁霸道结局线索。")

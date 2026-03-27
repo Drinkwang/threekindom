@@ -263,6 +263,12 @@ func _initData():
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"关羽回来")
 				return canMuliao
 			GameManager.sav.isGetCoin=true
+			if GameManager.sav.have_event["夏侯偷马"]==true:
+				var value=GameManager.sav.currenceValue
+
+				if value>=GameManager.sav.targetValue:
+					_JudgeTask()
+					return false
 			if not (GameManager.sav.have_event["关羽求援结束"] ==true and GameManager.sav.have_event["主簿的追随"] ==false):
 				GameManager.resideValue=tr("大人本旬收入为{_coin}，招募的士兵为{_labor}").format({"_coin":GameManager.sav.coin_DayGet,"_labor":GameManager.sav.labor_DayGet})
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"今日收入为")
@@ -372,6 +378,10 @@ func post_transition():
 		SoundManager.play_music(caoliu2)
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"最终章节2")	
 		hidecanvas()
+	elif GameManager.sav.have_event["辕门射戟"]==true and GameManager.sav.have_event["辕门射戟结束"]==false:
+		GameManager.sav.have_event["辕门射戟结束"]=true
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"辕门射戟完成")
+
 	else:
 		if canMuliao==true:
 			allocationMuliao()
@@ -471,9 +481,10 @@ func _buttonListClick(item):
 			if allcount<3:
 				if GameManager.sav.have_event["主簿的追随"]==false:
 					DialogueManager.show_example_dialogue_balloon(sys,"最终自言自语")
+					return
 				else:
 					DialogueManager.show_example_dialogue_balloon(sys,"最终主簿告知")
-			
+					return
 		#逻辑不能放在这里
 		elif(GameManager.sav.alreadyHP<10 and GameManager.sav.hasMainTask==false):
 			GameManager.sav.lazydays+=1	
@@ -740,21 +751,23 @@ func extraTask():
 			GameManager.sav.have_event["大儒支线1"]=true
 			GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.DARU]=tr("拜访郑玄，借名望安定徐州人心")
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大儒辩经1启动之前")	
+			return
 		elif GameManager.sav.have_event["大儒支线2"]==false and num1>=1 and GameManager.sav.have_event["泰山诸将曹操消息"]==true:
 			GameManager.sav.have_event["大儒支线2"]=true
 			GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.DARU]=tr("与郑玄论《礼记》，安抚徐州士人")
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大儒辩经2启动之前")			
+			return
 		elif GameManager.sav.have_event["大儒支线3"]==false and num2>=1 and GameManager.sav.have_event["基建项目开启"]==true:
 			GameManager.sav.have_event["大儒支线3"]=true
 			GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.DARU]=tr("前往郑玄隐居处，听学《周礼》")
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大儒辩经3启动之前")
+			return
 		elif GameManager.sav.have_event["泰山预备"]==true and GameManager.sav.have_event["最终泰山"]==false and GameManager.sav.taishanWait>=2 and GameManager.sav.have_event["夏侯偷马"]==false:
 			GameManager.sav.taishanWait=50
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"泰山诸将任务完成")
 			GameManager.sav.have_event["最终泰山"]=true
-		elif GameManager.sav.have_event["辕门射戟"]==true and GameManager.sav.have_event["辕门射戟结束"]==false:
-			GameManager.sav.have_event["辕门射戟结束"]=true
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"辕门射戟完成")
+			return
+		
 		else:
 			pass
 			#allocationAllSettle()

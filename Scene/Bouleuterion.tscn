@@ -244,7 +244,6 @@ dialogue_start = "点击陈群"
 [node name="华佗" parent="CanvasBook" instance=ExtResource("15_2mi3t")]
 visible = false
 position = Vector2(1382, 546)
-showName = "华佗"
 dialogue_doubleclick = "second"
 txt2d = ExtResource("18_8m44b")
 boardType = 1

@@ -132,6 +132,7 @@ func _judWin():
 func zhangbaQianlai():
 	#此处改臧霸头像
 	pass
+@onready var lvbu: clickBlock = $"吕布"
 
 
 func _completeTask():#将完成任务移动到外层
@@ -255,6 +256,7 @@ func post_transition():
 	if GameManager.sav.have_event["最终泰山"]==true and GameManager.sav.have_event["辕门射戟"]==false:# 吕布辕门射戟
 		GameManager.sav.have_event["辕门射戟"]=true
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"吕布辕门射戟")
+		return
 	_initData()
 	#wuminBanView()
 func caobaoshow():

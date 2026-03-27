@@ -517,7 +517,7 @@ context = "玄德贤弟如晤：
                                                                 
                                                                操 顿首"
 lookdoneDialog = " 小沛信件看完"
-dialogue_resource = ExtResource("21_eyp0q")
+dialogue_resource = ExtResource("2_6rtve")
 
 [node name="文官" parent="." instance=ExtResource("7_7mriv")]
 visible = false
@@ -620,6 +620,7 @@ position = Vector2(-194, -124)
 showName = "曹操"
 txt2d = ExtResource("27_amxpt")
 boardType = 1
+dialogue_resource = ExtResource("2_6rtve")
 dialogue_start = "点击曹操"
 
 [node name="吕布" parent="." instance=ExtResource("7_7mriv")]
@@ -655,7 +656,6 @@ visible = false
 position = Vector2(712, 628)
 showName = "夏侯惇"
 dialogue_doubleclick = "second"
-showEX = true
 txt2d = ExtResource("26_3sjlr")
 boardType = 1
 dialogue_resource = ExtResource("2_6rtve")

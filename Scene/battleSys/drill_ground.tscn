@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://00xr1q336bgu"]
+[gd_scene load_steps=59 format=3 uid="uid://00xr1q336bgu"]
 
 [ext_resource type="Script" path="res://Scripts/drill_ground.gd" id="1_bhlt2"]
 [ext_resource type="Resource" uid="uid://d2qoinuor12dq" path="res://dialogues/演武场.dialogue" id="2_j02vm"]
@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://bn4xfypysa6ry" path="res://Asset/人物/曹豹close.png" id="15_1y7hu"]
 [ext_resource type="Texture2D" uid="uid://dxln0b2qkw8sj" path="res://Asset/人物/丹阳军官.png" id="15_2o7m6"]
 [ext_resource type="Texture2D" uid="uid://rmaibsw1yjqd" path="res://Asset/城镇建筑/5_yellow.png" id="15_acxub"]
+[ext_resource type="Texture2D" uid="uid://njt83qhv4wm8" path="res://Asset/人物/吕布.png" id="16_wc60d"]
 [ext_resource type="Script" path="res://Scripts/items_in_scene_manager.gd" id="25_rwto1"]
 [ext_resource type="PackedScene" uid="uid://qr7a32uptncc" path="res://Scene/InfraMiniGame/WallTowerPuzzle.tscn" id="25_x6378"]
 [ext_resource type="PackedScene" uid="uid://4ap7nnl7o6br" path="res://Scene/prefab/_CgetSceneItem.tscn" id="26_3j8u5"]
@@ -305,6 +306,16 @@ stream = ExtResource("3_et4pg")
 [node name="bgs" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(895, 333)
 scale = Vector2(1.6384, 1.6384)
+
+[node name="吕布" parent="." instance=ExtResource("14_s83fw")]
+visible = false
+position = Vector2(997, 562)
+showName = "吕布"
+dialogue_doubleclick = "丹阳将领投靠"
+txt2d = ExtResource("16_wc60d")
+boardType = 1
+dialogue_resource = ExtResource("2_j02vm")
+dialogue_start = ""
 
 [node name="丹阳军官" parent="." instance=ExtResource("14_s83fw")]
 visible = false
