@@ -372,7 +372,7 @@ do settleGame()
 ~ 退出名单
 
 系统提示: 是否要退出制作名单界面？
-- 1.确认退出
+- 1.确认跳过
 	do settleGame()
 - 2.继续观看
 	do continusCredit()

@@ -522,9 +522,9 @@ vertical_alignment = 1
 
 [node name="detial" type="Label" parent="CanvasLayer/final"]
 layout_mode = 0
-offset_left = -22.0
+offset_left = -1.0
 offset_top = 382.0
-offset_right = 1896.0
+offset_right = 1917.0
 offset_bottom = 771.0
 theme_override_fonts/font = ExtResource("13_tqclm")
 theme_override_font_sizes/font_size = 52
@@ -537,12 +537,19 @@ text = "游玩难度：xxx
 horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="CanvasLayer/final"]
-layout_mode = 0
-offset_left = 827.0
-offset_top = 795.0
-offset_right = 1016.0
-offset_bottom = 902.0
-text = "返回"
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.5
+offset_top = 225.5
+offset_right = 110.5
+offset_bottom = 356.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "返回主菜单"
 
 [node name="creditAnimation" type="AnimationPlayer" parent="."]
 libraries = {

@@ -104,6 +104,11 @@ func changeToFinalScene(index):
 # Called when the node enters the scene tree for the first time.
 @onready var caocao_youth: Node2D = $"cikegroup/曹操年轻"
 
+#@onready var label2: Label = $"cikegroup/曹操年轻/Label"
+#@onready var label1: Label = $"曹操老/Label"
+
+
+
 func enterFinalBiwu():
 	SoundManager.stop_music()
 	SceneManager.changeScene(SceneManager.roomNode.TrainBattle,2)
@@ -1298,3 +1303,6 @@ func sheepGnawed():
 	pass
 	#street 显示xxx
 	#GameManager.sav.have_event["支线发现羊尸"]=true
+
+func enterCredit():
+	SceneManager.changeScene(SceneManager.roomNode.Credit,2)

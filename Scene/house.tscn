@@ -548,6 +548,30 @@ boardType = 1
 dialogue_resource = ExtResource("2_6rtve")
 dialogue_start = "泰山诸将任务开始"
 
+[node name="Label3" type="Label" parent="."]
+visible = false
+offset_left = 709.0
+offset_top = 677.0
+offset_right = 1219.0
+offset_bottom = 726.0
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("27_qfeow")
+theme_override_font_sizes/font_size = 22
+text = "注释：曹操与刘备密言，备泄之於袁绍，绍知操有图己之意。操自咋其舌流血，以失言戒后世。"
+autowrap_mode = 1
+
+[node name="Label2" type="Label" parent="."]
+visible = false
+offset_left = 810.0
+offset_top = 237.0
+offset_right = 1118.0
+offset_bottom = 286.0
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("27_qfeow")
+theme_override_font_sizes/font_size = 22
+text = "注释：灵帝末年，备尝在京师，
+复与曹公俱还沛国，募召合众。"
+
 [node name="曹操老" parent="." instance=ExtResource("7_7mriv")]
 visible = false
 position = Vector2(705, 591)
