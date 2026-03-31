@@ -268,7 +268,7 @@ func _initData():
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"关羽回来")
 				return canMuliao
 			GameManager.sav.isGetCoin=true
-			if GameManager.sav.have_event["夏侯偷马"]==true:
+			if GameManager.sav.have_event["夏侯偷马"]==true and GameManager.sav.endPath==GameManager.endPath.xiaopei:
 				var value=GameManager.sav.currenceValue
 
 				if value>=GameManager.sav.targetValue:
@@ -825,7 +825,7 @@ func _JudgeTask():
 			elif value>=GameManager.sav.targetValue and GameManager.sav.endPath==GameManager.endPath.xuzhou:
 				hasSide=false
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"最终霸道任务")	
-				canvas_layer.hide()
+				#canvas_layer.hide()
 				
 				
 				GameManager.sav.targetValue=3

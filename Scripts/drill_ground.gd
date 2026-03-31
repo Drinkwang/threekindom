@@ -163,7 +163,10 @@ func _completeTask():#将完成任务移动到外层
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"丹阳线")
 	elif GameManager.sav.endPath==GameManager.endPath.xuzhou:
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"霸道线收尾")
-	
+		control.hide()
+		hp_panel.hide()
+		res_panel.hide()
+		support_panel.hide()
 	#	elif GameManager.sav.BENTUPAI._support_rate<60:
 	#		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"士族线")
 	
@@ -174,6 +177,10 @@ func _completeTask():#将完成任务移动到外层
 	#		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"不丢徐州线")
 			#进入非丢徐州线路 反攻吕布和袁术 受x天
 	#		pass
+	
+@onready var support_panel: supportPanel = $CanvasInventory/supportPanel
+	
+@onready var hp_panel: energe = $CanvasInventory/hpPanel
 		
 @onready var caocao_letter = $CanvasInventory/caocaoLetter
 @onready var caocao_letter_xie_tian_zi = $CanvasInventory/caocaoLetterXieTianZi
@@ -1293,20 +1300,29 @@ func changeToFinalScene(index):
 		SoundManager.stop_all_ambient_sounds()
 		SoundManager.stop_music()
 		SoundManager.play_music(sounds.dragonHeart)
-		PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeIn)
-		bg.texture=guandubg
-		titlefinal.texture=guandutitle
+
 
 		
 		#显示吕布
 		#显示吕布三国志台词
 	elif index==2:
-		PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeIn)
+		
+		PanelManager.Fade_Blank(Color.BLACK,2,PanelManager.fadeType.fadeOut)
+		bg.texture=guandubg
+		titlefinal.texture=guandutitle
+		await get_tree().create_timer(0.35).timeout
+	elif index==3:
+		await get_tree().create_timer(0.35).timeout
+		PanelManager.Fade_Blank(Color.BLACK,2,PanelManager.fadeType.fadeOut)
 		bg.texture=yechengbg
 		titlefinal.texture=yechengTitle
-
-	
-	elif index==3:
-		
+		await get_tree().create_timer(0.35).timeout  #本土派		
 		#PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeIn)
-		SceneManager.changeScene(SceneManager.roomNode.Credit,2)
+
+func enterCredit():
+	await get_tree().create_timer(1).timeout 
+	SceneManager.changeScene(SceneManager.roomNode.Credit,2)
+
+
+func awaittest():
+	await get_tree().create_timer(0.5).timeout
