@@ -809,19 +809,31 @@ func _JudgeTask():
 				hasSide=false
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"每天袁术内应搞事")	
 		elif GameManager.sav.have_event["关羽求援结束"]==true:
-			if value>=8 and GameManager.sav.have_event["夏侯偷马"]==false:
+			if value>=8 and GameManager.sav.have_event["夏侯偷马"]==false and GameManager.sav.endPath==GameManager.endPath.xiaopei:
 				hasSide=false
 				GameManager.sav.have_event["夏侯偷马"]=true
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"小沛信件")	
-			elif value>=10 and GameManager.sav.have_event["吕布之怒"]==false:
+			elif value>=10 and GameManager.sav.have_event["吕布之怒"]==false and GameManager.sav.endPath==GameManager.endPath.xiaopei:
 				hasSide=false
 				GameManager.sav.have_event["吕布之怒"]=true
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"吕布最终进犯")	
-			elif value>=GameManager.sav.targetValue:
+			elif value>=GameManager.sav.targetValue and GameManager.sav.endPath==GameManager.endPath.xiaopei:
 				#屏蔽三个地方
 				hasSide=false
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"终局")	
 				canvas_layer.hide()
+			elif value>=GameManager.sav.targetValue and GameManager.sav.endPath==GameManager.endPath.xuzhou:
+				hasSide=false
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"最终霸道任务")	
+				canvas_layer.hide()
+				
+				
+				GameManager.sav.targetValue=3
+				GameManager.sav.currenceValue=0
+				GameManager.sav.currenceDay=0
+				GameManager.sav.targetResType=GameManager.ResType.battle
+				GameManager.sav.targetTxt="征讨次数：{currence}/{target}"	
+						
 	if(GameManager.sav.have_event["completeTask1"]==true):
 		if(GameManager.sav.have_event["initTask2"]==false):
 			GameManager.sav.have_event["initTask2"]=true

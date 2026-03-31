@@ -42,3 +42,5 @@ const BLOODCC_1 = preload("res://Asset/sound/bloodcc1.mp3")
 const FOOTSTEPS_WALKING = preload("res://Asset/sound/Footsteps_walking.wav")
 const bloodmusic1 = preload("res://Asset/music/一将陨.mp3")
 const bloodmusic0 = preload("res://Asset/music/决死阵.mp3")
+
+const dragonHeart = preload("res://Asset/music/龙的雄心.mp3")

@@ -220,7 +220,13 @@ func _initData():
 			GameManager.sav.hasMainTask=true
 			candoSub=false
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"安抚众人任务开始")
-		elif  GameManager.sav.have_event["关羽求援结束"]==true and GameManager.sav.have_event["主簿的追随"]==false: 
+		elif GameManager.sav.have_event["关羽求援期间"]==true and GameManager.sav.have_event["关羽求援结束"]==false and GameManager.sav.endPath==GameManager.endPath.xuzhou: 
+			GameManager.sav.have_event["关羽求援结束"]=true
+			candoSub=false
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"霸道线路开启")
+			
+
+		elif  GameManager.sav.have_event["关羽求援结束"]==true and GameManager.sav.have_event["主簿的追随"]==false and GameManager.sav.endPath==GameManager.endPath.xiaopei: 
 			GameManager.sav.have_event["主簿的追随"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"主簿的追随")
 	else:
@@ -276,8 +282,18 @@ func _initData():
 	
 	
 
-#
-
+func xuzhouStart():
+	GameManager.sav.targetValue=12
+	GameManager.sav.currenceValue=0
+	GameManager.sav.targetResType=GameManager.ResType.rest
+	GameManager.sav.targetTxt="撑过回合数：{currence}/{target}"
+	GameManager.sav.TargetDestination="rest"
+	#lvbu
+	
+	#如果所有派系都是忠诚，那么就不需要再发工资了，也加个这方面的剧情
+	GameManager.sav.LVBU.isshow=false
+	GameManager.initPaixi(GameManager.sav.LVBU)
+	SignalManager.changeSupport.emit()
 func mizhenGift():
 	mizhu.hide()
 	var _reward:rewardPanel=PanelManager.new_reward()
@@ -1029,8 +1045,6 @@ func FractionalDiff():
 	
 func canSummonLvBu():
 	GameManager.sav.LVBU.isshow=true
-	#GameManager.sav.LVBU._num_all=GameManager.sav.BENTUPAI._num_all/2
-	#GameManager.sav.LVBU._num_all=GameManager.sav.BENTUPAI._num_all-GameManager.sav.HAOZUPAI._num_all
 
 	GameManager.initPaixi(GameManager.sav.LVBU)
 	

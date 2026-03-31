@@ -161,6 +161,8 @@ func _completeTask():#将完成任务移动到外层
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"不丢徐州线")
 		else:
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"丹阳线")
+	elif GameManager.sav.endPath==GameManager.endPath.xuzhou:
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"霸道线收尾")
 	
 	#	elif GameManager.sav.BENTUPAI._support_rate<60:
 	#		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"士族线")
@@ -1021,13 +1023,9 @@ func tempLockCaoBao():
 func fireLetter():
 	pass
 
-func xiapei():
-	#小沛故事线-正史
-	pass
 
-func xiapi():
-	#下邳故事线-if
-	pass
+
+
 
 
 @onready var res_panel = $CanvasInventory/resPanel
@@ -1269,8 +1267,46 @@ func xiaopei():
 	#SoundManager.play_sound(bgs194)	
 	#GameManager.restFadeScene=SceneManager.HOUSE	
 	#GameManager._rest()
+	
+func xiapi():
+	GameManager.sav.have_event["血战袁术完成"]=true
+	GameManager.sav.endPath=GameManager.endPath.xuzhou
+	GameManager.restLabel=tr("刘备星夜兼程，整军励士，终抵下邳城外。见城防依旧森严，守卒整肃，悬心方安。城门开处，张飞披甲出迎，众将欣喜归府。此番归来，不仅是为安定徐州，更是为凝聚人心，再图霸业！")
+
+	SceneManager.rest_scene(SceneManager.roomNode.GOVERNMENT_BUILDING)
 func hidePeople():
 	caobao.hide()
 
 func showPeople():
 	caobao.show()
+
+@onready var titlefinal: Sprite2D = $"标题"
+
+const yechengbg = preload("res://Asset/光明/邺城.png")
+const yechengTitle = preload("res://Asset/城镇建筑/邺城场景.png")
+const guandutitle = preload("res://Asset/光明/官渡.png")
+const guandubg = preload("res://Asset/城镇建筑/官渡场景.png")
+func changeToFinalScene(index):
+	
+
+	if index==1:
+		SoundManager.stop_all_ambient_sounds()
+		SoundManager.stop_music()
+		SoundManager.play_music(sounds.dragonHeart)
+		PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeIn)
+		bg.texture=guandubg
+		titlefinal.texture=guandutitle
+
+		
+		#显示吕布
+		#显示吕布三国志台词
+	elif index==2:
+		PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeIn)
+		bg.texture=yechengbg
+		titlefinal.texture=yechengTitle
+
+	
+	elif index==3:
+		
+		#PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeIn)
+		SceneManager.changeScene(SceneManager.roomNode.Credit,2)
