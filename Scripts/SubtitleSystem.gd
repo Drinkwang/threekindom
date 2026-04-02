@@ -25,6 +25,10 @@ var pause_system_ts: float = 0.0 # 暂停时的系统时间戳
 
 # 节点就绪时初始化
 func _ready() -> void:
+	if GameManager.sav.endPath==GameManager.endPath.xiaopei:
+		srt_file_path= "res://credit_sub.srt"
+	elif GameManager.sav.endPath==GameManager.endPath.xuzhou:
+		srt_file_path= "res://credit2.srt"
 	# 记录游戏启动时间（用于精准计算流逝时间）
 	game_start_ts = Time.get_ticks_msec() / 1000.0
 	
@@ -87,7 +91,7 @@ func _parse_srt() -> void:
 		current_block.append(line)
 		# 判定字幕块结束：下一行是数字（新序号），且当前块至少3行
 		var next_idx = clean_lines.find(line) + 1
-		if next_idx>=60:
+		if next_idx>=clean_lines.size()-1:
 			continue
 		if next_idx < clean_lines.size() and clean_lines[next_idx].to_int() != 0 or clean_lines[next_idx] == "0":
 			if current_block.size() >= 3:

@@ -2,14 +2,24 @@ class_name credit
 extends Node2D
 
 const __CREDIT__ = preload("res://Asset/other/常规credit曲子.MP3")
+
+const badaoxian = preload("res://Asset/other/霸道线曲子.mp3")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GameManager.currenceScene=self
 	initData()
-	SoundManager.play_music(__CREDIT__)
-	credit_animation.play("credit")
+	if GameManager.sav.endPath==GameManager.endPath.xiaopei:
+		SoundManager.play_music(__CREDIT__)
+	elif GameManager.sav.endPath==GameManager.endPath.xuzhou:
+		SoundManager.play_music(badaoxian)
+	
 
+	if GameManager.sav.endPath==GameManager.endPath.xuzhou:
 
+		credit_animation.play("credit_2")
+	else:
+		credit_animation.play("credit")
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
@@ -46,6 +56,8 @@ func fade():
 	bgfade.play("fadeout")
 
 const final = preload("res://Asset/bgm/会议室.wav")
+
+
 func eggFunc():
 	PanelManager.Fade_Blank(Color.BLACK,1,PanelManager.fadeType.fadeOut)
 	SoundManager.play_ambient_sound(final)
@@ -106,5 +118,8 @@ func continusCredit():
 	SoundManager.resume_music()
 	
 	control_sub.resume_subtitle()
-	credit_animation.play("credit", paused_animation_time)
+	if GameManager.sav.endPath==GameManager.endPath.xuzhou:
+		credit_animation.play("credit_2", paused_animation_time)
+	else:
+		credit_animation.play("credit", paused_animation_time)
 	

@@ -34,7 +34,10 @@ PolicyManager="*res://Scripts/enum/policy_manager.gd"
 TooltipManager="*res://Scripts/TooltipManager.gd"
 SignalManager="*res://Scripts/signal_manager.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
-Panku="*res://addons/panku_console/console.tscn"
+
+[debug]
+
+file_logging/enable_file_logging=true
 
 [display]
 
@@ -45,7 +48,7 @@ window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/GodotPrivacyPlugin/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg", "res://addons/inventory_editor/plugin.cfg", "res://addons/panku_console/plugin.cfg", "res://addons/sound_manager/plugin.cfg", "res://addons/transitions/plugin.cfg")
+enabled=PackedStringArray("res://addons/GodotPrivacyPlugin/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg", "res://addons/inventory_editor/plugin.cfg", "res://addons/sound_manager/plugin.cfg", "res://addons/transitions/plugin.cfg")
 
 [gui]
 
@@ -83,6 +86,4 @@ types_split_offset=255
 
 [rendering]
 
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
