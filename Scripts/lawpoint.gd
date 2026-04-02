@@ -51,10 +51,12 @@ func _ready():
 		self.isUnlock=true
 	
 	_initData()
-	if SignalManager and SignalManager.has_signal("changeLanguage"):
-		SignalManager.changeLanguage.connect(_changeLanguage)			
+	
+	if OS.has_feature("editor"): return	
+	
+	SignalManager.changeLanguage.connect(_changeLanguage)			
 	_changeLanguage()
-	pass # Replace with function body.
+
 
 
 func _changeLanguage():

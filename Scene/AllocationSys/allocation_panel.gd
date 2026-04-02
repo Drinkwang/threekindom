@@ -4,9 +4,29 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	SignalManager.playDemand.connect(initData)
-
+	if GameManager.sav.have_event["Factionalization"]==true:
+		swap_controls()
 @onready var label_2: Label = $Label2
 
+
+func swap_controls():
+	# 1. 通过名称找到两个目标控件
+	var hbox=$HBoxContainer2
+	var control3 = $HBoxContainer2/Control3
+	var control2 =$HBoxContainer2/Control2
+	
+	# 2. 安全校验：确保两个节点都存在
+	if not control3 or not control2:
+		push_error("Control3 或 Control2 不存在，无法交换位置！")
+		return
+	
+	# 3. 获取两个节点在容器中的当前索引
+	var index3 = hbox.get_child_index(control3)
+	var index2 = hbox.get_child_index(control2)
+	
+	# 4. 交换两个节点的位置
+	hbox.move_child(control3, index2)
+	hbox.move_child(control2, index3)
 
 func initData():
 	var contextstr=""
@@ -22,9 +42,9 @@ func initData():
 
 	label_2.text=tr("月例配给管理面板")+"【"+ contextstr+"】"
 	for i in range(0,4):
-		if i !=1:
-			arrs[i].show()
-			arrs[i].initData()
+		
+		arrs[i].show()
+		arrs[i].initData()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass

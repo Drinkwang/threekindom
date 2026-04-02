@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bsex8ep42piyc"]
+[gd_scene load_steps=10 format=3 uid="uid://bsex8ep42piyc"]
 
 [ext_resource type="Script" path="res://Scene/AllocationSys/allocation_panel.gd" id="1_7ik2b"]
 [ext_resource type="FontFile" uid="uid://b8le0fd0ujbqx" path="res://Asset/Font/1_blod.ttf" id="2_d11ry"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dlou7q503kxoi" path="res://Scene/AllocationSys/allcationItem.tscn" id="4_n1j3h"]
 [ext_resource type="Texture2D" uid="uid://bkjl4axp5wn2g" path="res://Asset/人物/曹豹open.png" id="4_vkkn1"]
 [ext_resource type="Texture2D" uid="uid://dahuc8gb2blc" path="res://Asset/other/0_red.png" id="5_stw0y"]
+[ext_resource type="Texture2D" uid="uid://xjrwxtqyevg3" path="res://Asset/人物/糜竺黑影.png" id="6_r65lo"]
 [ext_resource type="Texture2D" uid="uid://bmg7cdctm1v4k" path="res://Asset/人物/吕布隐藏.png" id="7_l0c0x"]
 
 [node name="AllocationPanel" type="Control" node_paths=PackedStringArray("arrs")]
@@ -132,16 +133,16 @@ factionIndex = 1
 headImg = ExtResource("3_ebxyw")
 namelv = "徐州派"
 
-[node name="Control2" parent="HBoxContainer2" instance=ExtResource("4_n1j3h")]
-visible = false
-layout_mode = 2
-factionIndex = 2
-namelv = "豪族派"
-
 [node name="Control3" parent="HBoxContainer2" instance=ExtResource("4_n1j3h")]
 layout_mode = 2
 headImg = ExtResource("4_vkkn1")
 namelv = "丹阳派"
+
+[node name="Control2" parent="HBoxContainer2" instance=ExtResource("4_n1j3h")]
+layout_mode = 2
+factionIndex = 2
+headImg = ExtResource("6_r65lo")
+namelv = "豪族派"
 
 [node name="Control4" parent="HBoxContainer2" instance=ExtResource("4_n1j3h")]
 layout_mode = 2

@@ -41,6 +41,9 @@ var factionSurpuls:cldata
 func _ready():
 	if(headImg!=null):
 		$TextureRect.texture=headImg# Replace with function body.
+		
+		
+	if OS.has_feature("editor"): return	
 	if is_instance_valid(GameManager):	
 		factionSurpuls=GameManager.getFractionByEnum(factionIndex)
 
@@ -74,13 +77,15 @@ func _process(delta):
 var data:cldata
 @onready var color_rect: ColorRect = $ColorRect
 const lvbupng = preload("res://Asset/人物/吕布.png")
+const mizhu = preload("res://Asset/人物/糜竺睁眼.png")
 func initData():
 	data=GameManager.getFractionByEnum(factionIndex)
 	if data.isAutoAllocation==true:
 		check_box.button_pressed=true
 	else:
 		check_box.button_pressed=false
-	if GameManager.sav.have_event["lvbuJoin"]==false and data.index==cldata.factionIndex.lvbu:
+	if (GameManager.sav.have_event["lvbuJoin"]==false and data.index==cldata.factionIndex.lvbu) or\
+	(data.index==cldata.factionIndex.haozupai and GameManager.sav.have_event["Factionalization"]==false):
 		
 		color_rect.show()
 		namelv=tr("待解锁")
@@ -92,6 +97,9 @@ func initData():
 		color_rect.hide()
 	if GameManager.sav.have_event["lvbuJoin"]==true and data.index==cldata.factionIndex.lvbu:
 		headImg=lvbupng
+		
+	if GameManager.sav.have_event["Factionalization"]==true and data.index==cldata.factionIndex.haozupai:
+		headImg=mizhu
 	if GameManager.sav.allocationDay==1:
 		button.disabled=true
 		button.text=tr("待发放")

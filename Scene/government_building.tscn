@@ -182,7 +182,7 @@ dialogue_start = "点击陈登0"
 visible = false
 position = Vector2(674, 628)
 showName = "糜竺"
-dialogue_doubleclick = "点击糜竺"
+dialogue_doubleclick = "来把仕诡牌"
 txt2d = ExtResource("10_73x55")
 boardType = 1
 dialogue_resource = ExtResource("2_yngd1")
@@ -219,6 +219,23 @@ offset_left = 1406.0
 offset_top = 619.0
 offset_right = 1894.0
 offset_bottom = 955.0
+
+[node name="supportPanel" parent="CanvasLayer" instance=ExtResource("12_5ydg1")]
+offset_left = 74.0
+offset_top = 656.0
+offset_right = -1504.0
+offset_bottom = -92.0
+
+[node name="faction" parent="CanvasLayer" instance=ExtResource("15_wrxcl")]
+offset_left = 44.0
+offset_top = 529.0
+offset_right = -1545.0
+offset_bottom = -388.0
+size_flags_horizontal = 4
+
+[node name="Control" parent="CanvasLayer" instance=ExtResource("5_gv3ja")]
+mouse_filter = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="policyPanel" parent="CanvasLayer" instance=ExtResource("9_fdrkw")]
 visible = false
@@ -270,23 +287,6 @@ context = "备弟足下：
 lookdoneDialog = " 曹操的信_2"
 dialogue_resource = ExtResource("2_yngd1")
 
-[node name="supportPanel" parent="CanvasLayer" instance=ExtResource("12_5ydg1")]
-offset_left = 74.0
-offset_top = 656.0
-offset_right = -1504.0
-offset_bottom = -92.0
-
-[node name="faction" parent="CanvasLayer" instance=ExtResource("15_wrxcl")]
-offset_left = 44.0
-offset_top = 529.0
-offset_right = -1545.0
-offset_bottom = -388.0
-size_flags_horizontal = 4
-
-[node name="Control" parent="CanvasLayer" instance=ExtResource("5_gv3ja")]
-mouse_filter = 1
-metadata/_edit_use_anchors_ = true
-
 [node name="sendGiftPanel" parent="." instance=ExtResource("9_2k5hb")]
 visible = false
 
@@ -317,7 +317,6 @@ rotation = -1.5708
 scale = Vector2(0.5, 0.5)
 
 [node name="5Yellow" type="Sprite2D" parent="point"]
-position = Vector2(0, 1.21728)
 rotation = -1.5708
 scale = Vector2(4, 4)
 texture = ExtResource("28_ucvcr")

@@ -417,7 +417,9 @@ func initDemand():
 	var point=GameManager.sav.day*10+50
 	initSoleDemand(sav.WAIDIPAI,point)
 	initSoleDemand(sav.BENTUPAI,point)
-	#initSoleDemand(sav.HAOZUPAI,point)		
+	
+	if GameManager.sav.have_event["Factionalization"]==true:
+		initSoleDemand(sav.HAOZUPAI,point)		
 	#sav.WAIDIPAI.demand={}
 	#sav.BENTUPAI.demand={}
 	#
@@ -1551,8 +1553,11 @@ func justHaveDemand(item):
 			return false
 	return true
 
+
+
 func cuclulateAllAllocation():
 	var items={}
+
 	items.money =0
 	items.population=0
 	items.items={}
@@ -1562,6 +1567,7 @@ func cuclulateAllAllocation():
 		var demand=data.demand
 		if demand.is_empty() or data.allocationStatue==1 or data.isAutoAllocation==false:
 			continue
+
 		items.money+=demand.money
 		items.population+=demand.population
 		if demand.items is Dictionary:
@@ -1578,14 +1584,16 @@ func cuclulateAllAllocation():
 		return null
 	else:
 		return items
-		
+var getLawPoint=0		
 func completeAutoAll():
+	getLawPoint=0
 	for i in range(0,4):
-	
+			
 		var data=getcldateByindex(i)
 		if data.isAutoAllocation==true:
 			data.allocationStatue=1
-			
+			GameManager.sav.Merit_points+=1
+			getLawPoint+=1
 	
 func playDemand(item):
 	GameManager.sav.coin-=item.money 

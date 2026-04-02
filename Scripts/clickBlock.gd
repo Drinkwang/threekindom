@@ -89,16 +89,17 @@ func _ready():
 		$Panel/Label.text=showName;
 	else:
 		$Panel.hide()
-	if SignalManager and SignalManager.has_signal("changeLanguage"):
-		SignalManager.changeLanguage.connect(_changeLanguage)			
-	_changeLanguage()	
+
 	
 	
 	if showEX==true:
 		ex_point.show()
 	else:
 		ex_point.hide()
-
+	if OS.has_feature("editor"): return	
+	
+	SignalManager.changeLanguage.connect(_changeLanguage)			
+	_changeLanguage()	
 @onready var label = $Panel/Label
 const NOT_JAM_UI_CONDENSED_16 = preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf")
 func _changeLanguage():
@@ -117,6 +118,7 @@ func _process(delta):
 
 
 func get_global_rect() -> Rect2:
+
 	# 查找 CollisionShape2D 子节点
 	var collision_shape = $Area2D/CollisionShape2D
 	if not collision_shape or not collision_shape.shape:

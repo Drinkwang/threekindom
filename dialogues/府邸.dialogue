@@ -48,7 +48,9 @@ do selectCorrectBefore()
 
 ~ 正确决策0之后引导
 do zhubu.show()
-主簿: 大人，完成这一步后，您还需安排颁布法令的议程。目前您有3个政策点，不同法令会消耗相应的点数，每旬都会获得新的政策点。[voice:banbufalvlichen]
+主簿: 大人，完成这一步后，您还需安排颁布法令的议程。目前您有3个政策点，不同法令会消耗相应的点数，日后处理要务、完成事件可获得新的政策点。[voice:banbufalvlichen]
+
+#日后处理要务、完成事件可获得新的政策点。
 主簿: 当然，大人可自由颁布任何法令，但法令生效前，需下一旬前往议事厅，征询城中各派系大人物的意见。只有大多数同意，法令才能正式施行。[voice:darenkeziyouban]
 刘备: 嗯？为何如此？我不是这城的刺史吗？为何还要征询他们的意见？[voice:liubei_weihezhengxun]
 主簿: 哦，将军，您自然是刺史无疑。只是这些大人物掌控着城中的核心资源，许多事离不开他们的配合。若他们对您心生不满，表面不敢违抗，可背地里出工不出力却是常事。[voice:ziranshicishiwuyi]
@@ -74,7 +76,7 @@ do showTab()
 
 #优先级中，体力优先级最低
 ~ 你的政策点不够
- : 我必须有3点政策点数才能立法(每旬恢复1点，最大为3)
+ : 我必须有3点政策点数才能立法
 #(每旬回复一天，最大为3)
 => END!
 
@@ -363,6 +365,8 @@ do mizhu.showEX=false
 刘备: 看来我得想办法凑钱了？[voice:liubei_kanlaiwodeicouqian]
 糜竺: 没错，不过不用担心，陈从事已经有了对策，别看他只是一介幕僚，但他可是徐州士族的陈家的代表！[voice:mizhu_chencongshi1]
 陈登: 糜别驾过誉了，主公，在下不才，我这里愿意提供上、中、下三策，或许能助你更好的筹齐资金。[voice:chenden_mibiejiaguoyu1]
+系统提示: 主线已推进，获得3点政策点数。
+do GameManager.sav.Merit_points=3
 do showFirstMission()
 => END
 
@@ -1417,7 +1421,7 @@ do GameManager.getItemAction.call()
 
 ~ 来把仕诡牌
 糜竺: 主公，军资已备，粮草无忧，大业可成！[voice:mizhu_shiguipaiketao]
-- 来把仕诡牌吧
+- 来把仕诡牌吧 [if GameManager.sav.mizhucardgame>=0]
 	do openBoardGame()
 - 修建基建【兴建粮仓】 [if GameManager.sav.have_event["基建项目开启"]==true]
 	糜竺: 主公既执意兴建粮仓……虽某以为当下军资尚可周转，但主公深谋远虑，我也不好再劝。便依主公之言，全力筹措物料，务求早日建成！[voice:mizhu_xiujianliangcang]
@@ -1564,8 +1568,9 @@ do mizhufinal()
 系统提示: 确认发放本月月例？\n勾选「自动支付」，将在每月当日自动扣除资源支给，无需手动操作。
 - 是
 	
-	系统提示: 月例发放成功！
+	系统提示: 月例发放完毕，军心安定！获得 1 点政策点数，当前政策点数：{{GameManager.sav.Merit_points}}
 	do GameManager.resideValue.allocationStatue=1
+	do GameManager.sav.Merit_points=GameManager.sav.Merit_points+1
 	do GameManager.playDemand(GameManager.resideValue.demand)
 - 否
 => END!
@@ -1591,6 +1596,7 @@ do _initData()
 => END!
 
 ~ 津贴开始2
+do zhubu.show()
 主簿: 主公，近来州内渐安，军务、民政皆已步入常序。属下今日前来，是有一桩国之常制，需请主公定夺。
 刘备: 但说无妨。
 do mizhu.show()
@@ -1603,7 +1609,7 @@ do chenden.hide()
 主簿: 糜竺先生所言极是。月例配给，乃治国治军之根本，制度一定，四方皆有依赖，主公基业方能更稳。
 刘备: 好。便依你二人所言，设立月例配给，今后按期施行。
 do zhubu.hide()
-系统提示：可与糜竺对话开启月例配给管理面板，每次完成交付可获得 1 点律法点数
+系统提示: 可与糜竺对话开启月例配给管理面板，每次完成交付可获得 1 点律法点数
 do _initData()
 => END!
 ~ 津贴教程

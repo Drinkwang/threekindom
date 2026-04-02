@@ -48,6 +48,10 @@ var factionSurpuls:cldata
 func _ready():
 	if(headImg!=null):
 		$TextureRect.texture=headImg# Replace with function body.
+		
+		
+		
+	if OS.has_feature("editor"): return	
 	if is_instance_valid(GameManager):	
 		factionSurpuls=GameManager.getFractionByEnum(factionIndex)
 

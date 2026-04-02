@@ -949,7 +949,9 @@ func allocationAllSettle():
 		return
 		
 	if GameManager.sav.allocationDay==1:
+		allcontext=""
 		allocationSettle(0)
+		
 	else:
 		
 		var allCost=GameManager.cuclulateAllAllocation()
@@ -964,11 +966,18 @@ func allocationAllSettle():
 			else:
 				
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"未完成津贴发放")
+				
+				
+var cnames:Array=[]
+var allcontext=""
 func allocationSettle(index):
 	#allocationMuliao()
 	#处理民心时调用 剩下方法会屏蔽，四个阶段依次有不满，然后扣除民心
 	if index>3 or (index==3 and GameManager.sav.have_event["lvbuJoin"]==false) :
 		
+		
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"派系扣除好感")
+		#定义一个数组。。多个执行
 		#or GameManager.sav.allocationDay!=3
 		#处理自动发放
 		return 
@@ -976,8 +985,16 @@ func allocationSettle(index):
 		alldata=GameManager.getcldateByindex(index)
 
 		if alldata.allocationStatue==0:
-			alldata.ChangeSupport(-5)
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"派系扣除好感")
+			#alldata.ChangeSupport(-5)
+			#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"派系扣除好感")
+			cnames.append(alldata)
+			#if allcontext.length()==0:
+			var point=5
+			if alldata.index==3:
+				point=10
+			allcontext+=tr("{_name}月例拖欠，支持度下降{point}点\n").format({"_name":alldata._name,"point":point})
+			allocationSettle(index+1)
+			
 		else:
 			allocationSettle(index+1)
 func allocationMuliao():

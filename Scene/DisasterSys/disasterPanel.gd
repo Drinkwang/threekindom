@@ -78,7 +78,7 @@ func _process(delta):
 @export var DanYangValue=0
 
 @onready var animation_player = $TextureRect/AnimationPlayer
-@onready var animation_player2 = $"运动的马尔,/AnimationPlayer"
+
 
 @onready var texture_rect = $TextureRect
 

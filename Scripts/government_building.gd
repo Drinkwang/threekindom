@@ -820,7 +820,7 @@ func deliverUncompleteTask():
 				tsty.show()
 				return
 				#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"城外克苏鲁事件触发")
-		elif GameManager.sav.have_event["津贴系统开始"]==false and GameManager.sav.mizhucardgame>=0:#正式版条件 and GameManager.sav.have_event["battleTaiShan"]==true:
+		elif GameManager.sav.have_event["津贴系统开始"]==false and GameManager.sav.day>=7:#正式版条件 and GameManager.sav.have_event["battleTaiShan"]==true:
 			GameManager.sav.have_event["津贴系统开始"]=true
 			GameManager.sav.allocationDay=1
 			GameManager.initDemand()
@@ -875,7 +875,7 @@ func deliverUncompleteTask():
 			
 			if GameManager.sav.endPath!=GameManager.endPath.xiaopei:
 			#0 小试牛刀开启 1小试牛刀通过 2 对局试炼开启 3对局试验通过 4 诡秘怪谈开启 5诡秘怪谈通过
-				if GameManager.sav.mizhucardgame>=0:
+				if GameManager.sav.mizhucardgame>=0 or GameManager.sav.have_event["津贴系统开始"]==true:
 					mizhu.changeAllClick("来把仕诡牌")
 					mizhu.show()
 					mizhu.showEX=false

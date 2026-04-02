@@ -32,9 +32,7 @@ extends Control
 			
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if is_instance_valid(SignalManager):	
-		SignalManager.changeLanguage.connect(_changeLanguage)		
-	_changeLanguage()
+
 	if contextUI!=null:
 		contextUI.text=context	
 	if texture_rect!=null:
@@ -43,7 +41,9 @@ func _ready():
 		panel.show()
 	else:
 		panel.hide()
-
+	if OS.has_feature("editor"): return	
+	SignalManager.changeLanguage.connect(_changeLanguage)		
+	_changeLanguage()
 func _changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()
 	if currencelanguage=="ru":
