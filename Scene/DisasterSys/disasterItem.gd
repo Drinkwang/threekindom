@@ -51,7 +51,8 @@ func _ready():
 		
 		
 		
-	if OS.has_feature("editor"): return	
+	if GameManager==null or GameManager.sav==null:
+		return		
 	if is_instance_valid(GameManager):	
 		factionSurpuls=GameManager.getFractionByEnum(factionIndex)
 

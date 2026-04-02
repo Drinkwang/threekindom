@@ -4,10 +4,39 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	SignalManager.playDemand.connect(initData)
+	changeLanguage()
+	SignalManager.changeLanguage.connect(changeLanguage)
 	if GameManager.sav.have_event["Factionalization"]==true:
 		swap_controls()
 @onready var label_2: Label = $Label2
 
+
+
+
+func changeLanguage():
+	var currencelanguage=TranslationServer.get_locale()
+	
+	if currencelanguage=="ru":
+		label_2.add_theme_font_size_override("font_size",32)
+	else:
+		if currencelanguage=="en":
+			label_2.add_theme_font_size_override("font_size",32)
+		elif currencelanguage=="ja":
+			label_2.add_theme_font_size_override("font_size",32)
+		else:
+			label_2.add_theme_font_size_override("font_size",55)
+			
+	var contextstr=""
+	if GameManager.sav.allocationDay==1:
+		contextstr=tr("俸给筹备期")
+		#弹出不同的教程
+	elif GameManager.sav.allocationDay==2:
+		contextstr=tr("月例派发期")
+	elif GameManager.sav.allocationDay==3:
+		contextstr=tr("延发清缴日")
+					
+	label_2.text=tr("月例配给管理面板")+"【"+ contextstr+"】"
+	
 
 func swap_controls():
 	# 1. 通过名称找到两个目标控件

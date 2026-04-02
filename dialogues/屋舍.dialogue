@@ -270,17 +270,25 @@ do sheepGnawed()
 
 
 ~ 连续多日怠惰
-主簿: 主公，徐州丹阳派、士族派、豪族派因您多日未理政务，已颇有微词，恐生不安。[voice:zhubo_sanpaixixbuan]
 
-系统提示: 士族派好感-10，豪族派好感-10，丹阳派好感-10，民心-5
+if GameManager.sav.have_event["Factionalization"]==true:
+	主簿: 主公，徐州丹阳派、士族派、豪族派因您多日未理政务，已颇有微词，恐生不安。[voice:zhubo_sanpaixixbuan]
+	系统提示: 士族派好感-10，豪族派好感-10，丹阳派好感-10，民心-5
+else
+	主簿: 主公，本土派、丹阳派因您多日未理政务，已颇有微词，恐生不安。[voice:zhubo_sanpaixixbuan2]
+	系统提示: 本土派好感-10，丹阳派好感-10，民心-5
+
 do moreDayidness()
 => END!
 
 
 ~ 单日概率怠惰
-主簿: 主公，今日您未处理政务，丹阳派、士族派、豪族派已有不满之声。[voice:zhubo_bumanzhisheng]
-
-系统提示: 士族派好感-5，豪族派好感-5，丹阳派好感-5
+if GameManager.sav.have_event["Factionalization"]==true:
+	主簿: 主公，今日您未处理政务，丹阳派、士族派、豪族派已有不满之声。[voice:zhubo_bumanzhisheng]
+	系统提示: 士族派好感-5，豪族派好感-5，丹阳派好感-5
+else
+	主簿: 主公，今日您未处理政务，本土派、丹阳派已有不满之声。[voice:zhubo_bumanzhisheng2]
+	系统提示: 本土派好感-5，豪族派好感-5
 do oneDayidleness()
 => END!
 
@@ -562,7 +570,7 @@ do switchGatepost()
 
 #依次调用四次 改这个
 ~ 派系扣除好感
-主簿: 主公，本月俸禄未能按时足额发放，各部怨声渐起：{{allcontext}}府中钱粮紧张，若再不调度补给，恐生内乱。
+主簿: 主公，本月俸禄未能按时足额发放，各部怨声渐起：\n{{allcontext}}府中钱粮紧张，若再不调度补给，恐生内乱。
 
 => END!
 

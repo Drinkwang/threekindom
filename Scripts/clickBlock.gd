@@ -96,8 +96,9 @@ func _ready():
 		ex_point.show()
 	else:
 		ex_point.hide()
-	if OS.has_feature("editor"): return	
-	
+	if GameManager==null or GameManager.sav==null:
+		return		
+		
 	SignalManager.changeLanguage.connect(_changeLanguage)			
 	_changeLanguage()	
 @onready var label = $Panel/Label

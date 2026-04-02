@@ -161,8 +161,8 @@ func _ready():
 	if GameManager.sav.have_event["chaoMizhuEnd"]==true and GameManager.sav.isGetCoin==false and GameManager.sav.currenceValue>1:
 
 		pass
-	#	demo_end_v.show()
-	#	demo_end_v.play()		
+		demo_end_v.show()
+		demo_end_v.play()		
 		
 
 @onready var bti_rect = $btiRect
@@ -220,14 +220,14 @@ func _initData():
 	
 	#记得demo注销
 	if GameManager.sav.have_event["chaoMizhuEnd"]==true and GameManager.sav.isGetCoin==false and GameManager.sav.currenceValue>1:
-		#title.show()
-		#demo_end.show()
-		#hp_panel.hide()
-		#res_panel.hide()
-		#support_panel.hide()
-		#SoundManager.stop_all_ambient_sounds()
-		#SoundManager.stop_music()
-		#return
+		title.show()
+		demo_end.show()
+		hp_panel.hide()
+		res_panel.hide()
+		support_panel.hide()
+		SoundManager.stop_all_ambient_sounds()
+		SoundManager.stop_music()
+		return
 		pass
 	if control.visible==true:	
 		items_in_scene.showItems()	
@@ -519,13 +519,16 @@ func _buttonListClick(item):
 
 
 func oneDayidleness():
-	GameManager.sav.HAOZUPAI.ChangeSupport(-5)
+	if GameManager.sav.have_event["Factionalization"]==true:
+		GameManager.sav.HAOZUPAI.ChangeSupport(-5)
 	GameManager.sav.BENTUPAI.ChangeSupport(-5)
 	GameManager.sav.WAIDIPAI.ChangeSupport(-5)
 	SoundManager.stop_music()	
 	GameManager._rest()	 	
 func moreDayidness():
-	GameManager.sav.HAOZUPAI.ChangeSupport(-10)
+	if GameManager.sav.have_event["Factionalization"]==true:
+		
+		GameManager.sav.HAOZUPAI.ChangeSupport(-10)
 	GameManager.sav.BENTUPAI.ChangeSupport(-10)
 	GameManager.sav.WAIDIPAI.ChangeSupport(-10)
 	GameManager.changePeopleSupport(-5)
@@ -988,7 +991,7 @@ func allocationSettle(index):
 			#alldata.ChangeSupport(-5)
 			#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"派系扣除好感")
 			cnames.append(alldata)
-			#if allcontext.length()==0:
+				
 			var point=5
 			if alldata.index==3:
 				point=10

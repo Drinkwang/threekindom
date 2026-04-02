@@ -116,6 +116,7 @@ offset_bottom = 225.0
 theme_override_fonts/font = ExtResource("2_d11ry")
 theme_override_font_sizes/font_size = 55
 text = "月例配给管理面板【俸给筹备期】"
+vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="."]

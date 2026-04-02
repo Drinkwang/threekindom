@@ -348,8 +348,8 @@ var SIDEQUEST_MAP:Dictionary={
 @export var mizhuSideWait=-1
 @export var chendenSideWait=-1
 @export var caobaoSideWait=-1
-
-
+#中级难度试玩版仅能玩一次
+@export var middledemoPlay=false
 @export var constructRiver=0
 @export var constructTower=0
 @export var constructGrain=0

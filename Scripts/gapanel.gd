@@ -44,7 +44,8 @@ func _ready():
 		title.show()	
 	if(txt!=null):
 		img.texture=txt
-	if OS.has_feature("editor"): return
+	if GameManager==null or GameManager.sav==null:
+		return		
 	SignalManager.changeLanguage.connect(_changeLanguage)				
 	_changeLanguage() # Replace with function body.
 

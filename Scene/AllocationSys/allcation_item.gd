@@ -35,15 +35,22 @@ var factionSurpuls:cldata
 		if(namelv!=null and context!=null):
 			context.text=namelv
 
+@onready var label: Label = $CheckBox/Label
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if(headImg!=null):
 		$TextureRect.texture=headImg# Replace with function body.
-		
-		
-	if OS.has_feature("editor"): return	
+	
+	
+	
+	#if OS.has_feature("editor") and not OS.has_feature("standalone"):
+		#return		
+	if GameManager==null or GameManager.sav==null:
+		return	
+	#if OS.has_feature("editor"): 
+		#return	
 	if is_instance_valid(GameManager):	
 		factionSurpuls=GameManager.getFractionByEnum(factionIndex)
 
@@ -57,9 +64,14 @@ func changeLanguage():
 		context.add_theme_font_size_override("font_size",15)
 		context.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
 
-
-
+		label.add_theme_font_size_override("font_size",28)
+	elif currencelanguage=="ja" or currencelanguage=="en":
+		label.add_theme_font_size_override("font_size",32)
+		#label.add_theme_font_size_override("font_size",41)
+		context.add_theme_font_size_override("font_size",23)
+		context.remove_theme_font_override("font")		
 	else:
+		label.add_theme_font_size_override("font_size",41)
 		context.add_theme_font_size_override("font_size",23)
 		context.remove_theme_font_override("font")
 

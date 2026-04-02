@@ -52,8 +52,8 @@ func _ready():
 	
 	_initData()
 	
-	if OS.has_feature("editor"): return	
-	
+	if GameManager==null or GameManager.sav==null:
+		return		
 	SignalManager.changeLanguage.connect(_changeLanguage)			
 	_changeLanguage()
 

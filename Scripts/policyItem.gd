@@ -41,7 +41,10 @@ func _ready():
 		panel.show()
 	else:
 		panel.hide()
-	if OS.has_feature("editor"): return	
+
+	if GameManager==null or GameManager.sav==null:
+		return		
+		
 	SignalManager.changeLanguage.connect(_changeLanguage)		
 	_changeLanguage()
 func _changeLanguage():

@@ -1452,6 +1452,8 @@ func selectBoardMode(mode:boardType.boardMode):
 	if (characterScore<2 and mode==boardType.boardMode.middle) or (characterScore<4 and mode==boardType.boardMode.high):
 		DialogueManager.show_example_dialogue_balloon(boardDialogue,"当前模式未解锁")
 	else:
+		if mode==boardType.boardMode.middle and GameManager.sav.middledemoPlay==false:
+			GameManager.sav.middledemoPlay=true
 		currenceScene.openBoardDialogue()
 	
 func enterBoardGame():
