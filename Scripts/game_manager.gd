@@ -1286,7 +1286,14 @@ func haveMirror()->bool:
 	else:
 		return false
 		
-		
+
+func haveUnicornIcon()->bool:
+	var sxnum=InventoryManager.inventory_item_quantity(inventoryPackege,InventoryManagerItem.獬豸圣像) 
+	if sxnum>0:
+		return true
+	else:
+		return false	
+
 func AutoSaveFile():
 	
 	

@@ -107,10 +107,10 @@ func _on_gui_input(event):
 		return 
 
 	
-	if isUnlock==true:
+	if isUnlock==true and !GameManager.haveUnicornIcon():
 		return
 	if lawpoins.size()>0:
-		if lawpoins.any(func(value):return value.isUnlock==true)==false:
+		if lawpoins.any(func(value):return value.isUnlock==true)==false and !GameManager.haveUnicornIcon():
 			return
 	if event is InputEventMouseButton and event.button_index==1:
 		control.preLaw(self)

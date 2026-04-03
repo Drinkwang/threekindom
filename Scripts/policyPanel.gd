@@ -121,9 +121,9 @@ func changeexp_len():
 func refreshLawPoint():
 	get_tree().call_group("lawpoints","_initData")
 	if GameManager.sav.curLawName.length()>0 or GameManager.sav.curLawNum1!=-1 or GameManager.sav.curLawNum2!=-1:
-		$lawPanel/DetailPanel/Button.disabled=true
+		ConfireButton.disabled=true
 	else:
-		$lawPanel/DetailPanel/Button.disabled=false
+		ConfireButton.disabled=false
 	point_label.text=tr("点数:%s")%GameManager.sav.Merit_points
 
 @onready var LawPanelBoard = $PanelContainer/orderPanel2
@@ -238,10 +238,14 @@ var selectLawPoint:lawpoint
 func preLaw(value:lawpoint):
 	if await GameManager.isTried(costhp):
 		return
-	lawbutton.show()
+	ConfireButton.show()
 	selectLawPoint=value
 	law_label.text=value.detail
-	
+
+	ConfireButton.disabled=false
+	if value.lawpoins.size()>0:
+		if value.lawpoins.any(func(value):return value.isUnlock==true)==false:# and !GameManager.haveMirror():
+			ConfireButton.disabled=true		
 	changeexp_len()
 	#var label_height = 81
 	#var label_line_count = law_label.get_line_count()  # 获取行数（可选）
@@ -254,7 +258,6 @@ func preLaw(value:lawpoint):
 	#exp_len.custom_minimum_size=Vector2(expLenWidth,new_size.y-81)
 	#detail_panel.size=new_size
 	pass
-@onready var lawbutton = $lawPanel/DetailPanel/Button
 
 func excuteLaw(value:lawpoint):
 
