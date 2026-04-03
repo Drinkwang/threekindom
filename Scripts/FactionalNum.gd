@@ -80,10 +80,11 @@ func refreshData():
 	if(supportValue<60 and itemData.index!=cldata.factionIndex.lvbu and itemData.isAlertRisk==false and DialogueManager.dialogBegin==false):#必须没有其它对话
 		itemData.isAlertRisk=true
 		GameManager.resideValue=itemData._name
-		DialogueManager.show_example_dialogue_balloon(sys,"警告叛乱风险")
+		#必须在第一时间调用，错过了不该调用
+		#DialogueManager.show_example_dialogue_balloon(sys,"警告叛乱风险")
 	elif (supportValue<80 and itemData.index==cldata.factionIndex.lvbu and itemData.isAlertRisk==false):	
 		itemData.isAlertRisk=true
-		DialogueManager.show_example_dialogue_balloon(sys,"吕布风险")	
+		#DialogueManager.show_example_dialogue_balloon(sys,"吕布风险")	
 	if itemData.isSuppressed==true:
 		timer.start()
 	else:

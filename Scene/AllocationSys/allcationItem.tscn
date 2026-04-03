@@ -127,8 +127,10 @@ offset_left = -45.0
 offset_top = 397.0
 offset_right = 228.0
 offset_bottom = 509.0
+theme_override_fonts/font = ExtResource("3_p4m4m")
 disabled = true
 text = "支付派系需求"
+autowrap_mode = 2
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0

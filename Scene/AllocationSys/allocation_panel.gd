@@ -50,8 +50,8 @@ func swap_controls():
 		return
 	
 	# 3. 获取两个节点在容器中的当前索引
-	var index3 = hbox.get_child_index(control3)
-	var index2 = hbox.get_child_index(control2)
+	var index3 = control3.get_index()
+	var index2 = control2.get_index()
 	
 	# 4. 交换两个节点的位置
 	hbox.move_child(control3, index2)

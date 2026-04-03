@@ -114,7 +114,7 @@ func initData():
 		headImg=mizhu
 	if GameManager.sav.allocationDay==1:
 		button.disabled=true
-		button.text=tr("待发放")
+		button.text="待发放"
 		#新的需求来了，必定为false
 	else:
 		if data.allocationStatue==0:
@@ -124,14 +124,14 @@ func initData():
 			
 			if GameManager.justHaveDemand(data.demand):
 				button.disabled=false
-				button.text=tr("支付派系需求")
+				button.text="支付派系需求"
 			else:
 				button.disabled=true
-				button.text=tr("你的资源不足")			
+				button.text="你的资源不足"	
 		else:
 			already_give.show()
 			#已经支付
-			button.text=tr("已支付")
+			button.text="已支付"
 			button.disabled=true
 		if GameManager.sav.allocationDay==3:
 			delay.show()
