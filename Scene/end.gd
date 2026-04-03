@@ -212,7 +212,7 @@ func _input(event):
 				screen_pos.y = clamp(screen_pos.y, 0, screen_size.y - 1)
 				
 				# Godot 4中强制设置鼠标位置的函数是warp_mouse_position
-				Input.warp_mouse(screen_pos)
+				get_viewport().warp_mouse(limited_position)
 			else:
 				liubei.position = current_mouse_pos
 				last_mouse_position = current_mouse_pos
