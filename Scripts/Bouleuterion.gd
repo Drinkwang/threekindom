@@ -50,6 +50,7 @@ func _ready():
 
 	Transitions.post_transition.connect(post_transition)
 	control.buttonClick.connect(_buttonListClick)
+	control.buttonHover.connect(_buttonListHover)
 	
 	if GameManager.sav.day==4:
 		ymlShow()
@@ -313,6 +314,13 @@ func _buttonListClick(item):
 		#显示金钱 民心 xx 武将面板
 	print(item)
 	pass
+
+func _buttonListHover(item):
+	if item.context == "开始议事":
+		if GameManager.getCurLawExist()==true and GameManager.haveMirror():
+			GameManager._engerge.startPreviewHp(costhp)
+
+
 
 
 

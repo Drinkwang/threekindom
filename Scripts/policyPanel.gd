@@ -145,6 +145,7 @@ func _on_tab_bar_tab_changed(tab):
 			DialogueManager.show_example_dialogue_balloon(GameManager.currenceScene.dialogue_resource,"第一次指定法律")
 		#判断剧情是否触发，如果没触发触发剧情
 	#pass # Replace with function body.
+	previewCostView()
 	_initData()
 
 @onready var control_1 = $PanelContainer/orderPanel/VBoxContainer/orderVbox/Control_1
@@ -186,6 +187,20 @@ func _on_control_2_gui_input(event):
 @onready var can_hide_block = $PanelContainer/orderPanel/VBoxContainer/canHideBlock
 
 
+func previewCostView():
+	if GameManager.haveMirror()==false:
+		return
+	if tab_bar.current_tab==0:
+		if index!=0:
+			GameManager._engerge.startPreviewHp(costhp)
+		else:
+			GameManager._engerge.stopPreviewHP()
+	elif tab_bar.current_tab==1:
+		if selectLawPoint!=null:
+			GameManager._engerge.startPreviewHp(costhp)
+		else:
+			GameManager._engerge.stopPreviewHP()		
+
 func _on_control_3_gui_input(event):
 	
 
@@ -207,6 +222,8 @@ func canHideBlockShow():
 		can_hide_block.hide()
 	else:
 		can_hide_block.show()	
+		
+	previewCostView()	
 func bancontrol(_index,status):
 	#get("ban%d"%index)=boolvalue
 	#set("ban%d"%index,boolvalue)
@@ -246,6 +263,9 @@ func preLaw(value:lawpoint):
 	if value.lawpoins.size()>0:
 		if value.lawpoins.any(func(value):return value.isUnlock==true)==false:# and !GameManager.haveMirror():
 			ConfireButton.disabled=true		
+			
+	if ConfireButton.disabled==false:
+		previewCostView()
 	changeexp_len()
 	#var label_height = 81
 	#var label_line_count = law_label.get_line_count()  # 获取行数（可选）
@@ -333,6 +353,7 @@ func getPolicyName(lawIndex,policyIndex)->String:
 
 func _on_exit_button_button_down():
 	SoundManager.play_sound(sounds.declinesound)
+	GameManager._engerge.stopPreviewHP()
 	self.hide()
 	
 	pass # Replace with function body.

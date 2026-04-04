@@ -1134,11 +1134,11 @@ do getLongdan()
 ~ 来把仕诡牌
 曹豹: 主公，丹阳兵已操练完毕，徐州防务固若金汤！[voice:caobao_xuzhoufangwuguruo]
 
-- 来把仕诡牌吧
+- 来把仕诡牌吧[costHp=20]
 	#进入游戏前
 	#选择角色 打开菜单
 	do openBoardGame()
-- 修建基建【加固城墙】 [if GameManager.sav.have_event["基建项目开启"]==true]
+- 修建基建【加固城墙】[costHp=20] [if GameManager.sav.have_event["基建项目开启"]==true]
 	曹豹: 主公，加固城墙，确实是巩固徐州的好办法，我愿祝你一臂之力[voice:caobao_zhuzhugongjijian]
 	do GameManager.selectPuzzleLevel()
 - 取消
@@ -1258,9 +1258,9 @@ do jilinEscape()
 
 ~ 训练选项
 : 你要选择那个选项进行练兵？
-- 比武训练
+- 比武训练[costHp=10]
 	=> 比武练兵选项
-- 花钱练兵
+- 花钱练兵[costHp=10]
 	do trainUseMoney()
 - 取消	
 => END!
@@ -1269,13 +1269,13 @@ do jilinEscape()
 ~ 比武练兵选项
 系统提示: 你要选择跟哪一个将领进行比武训练呢？
 
-- 关羽 [if GameManager.sav.have_event["关羽求援期间"]==false or GameManager.sav.have_event["关羽求援结束"]==true]
+- 关羽[costHp=10] [if GameManager.sav.have_event["关羽求援期间"]==false or GameManager.sav.have_event["关羽求援结束"]==true]
 	do GameManager.trainGeneral="关羽"
 	=> 比武训练选项2
-- 张飞 [if GameManager.sav.have_event["战斗袁术血战模式"]==false or GameManager.sav.have_event["血战袁术完成"]==true]
+- 张飞[costHp=10] [if GameManager.sav.have_event["战斗袁术血战模式"]==false or GameManager.sav.have_event["血战袁术完成"]==true]
 	do GameManager.trainGeneral="张飞"
 	=> 比武训练选项2
-- 无名 [if GameManager.sav.have_event["无名之死"]==false]
+- 无名[costHp=10] [if GameManager.sav.have_event["无名之死"]==false]
 	do GameManager.trainGeneral="无名"
 	 => 比武训练选项2
 - 重置教程
@@ -1290,13 +1290,13 @@ do jilinEscape()
 ~ 比武训练选项2
 
 系统提示: 请选择你的比武训练的模式
-- 1.小试牛刀[istrain=true]
+- 1.小试牛刀[costHp=10][istrain=true]
 	do enterContest(0)
-- 2.锋芒初露[istrain=true]
+- 2.锋芒初露[costHp=10][istrain=true]
 	系统提示: 当前试玩版不开放，尽请期待
 	=> 比武训练选项2
 	do enterContest(1)
-- 3.炉火纯青[istrain=true]
+- 3.炉火纯青[costHp=10][istrain=true]
 	系统提示: 当前试玩版不开放，尽请期待
 	=> 比武训练选项2
 	#do enterContest(2)

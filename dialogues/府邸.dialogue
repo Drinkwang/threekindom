@@ -143,9 +143,9 @@ do zhubu.hide()
 主簿: 主公，您想要召见哪个派系的手下呢？[voice:zhugongxiangzhaojianshui]
 #- 设宴
 #do meeting(cldate.factionIndex.bentupai)
-- 召见徐州派
+- 召见徐州派[costHp=50]
 	do SummonFaction(bentupai)
-- 召见丹阳派
+- 召见丹阳派[costHp=50]
 	do SummonFaction(waidipai)
 - 取消
 	do cancel()
@@ -155,11 +155,11 @@ do zhubu.hide()
 主簿: 主公，您想要召见哪个派系的手下呢？[voice:zhugongxiangzhaojianshui]
 #- 设宴
 #do meeting()
-- 召见士族派
+- 召见士族派[costHp=50]
 	do SummonFaction(bentupai)
-- 召见豪族派
+- 召见豪族派[costHp=50]
 	do SummonFaction(haozupai)
-- 召见丹阳派
+- 召见丹阳派[costHp=50]
 	do SummonFaction(waidipai)
 - 取消
 	do cancel()
@@ -171,13 +171,13 @@ do zhubu.hide()
 #- 设宴
 #do meeting()
 主簿: 主公，您想要召见哪个派系的手下呢？[voice:zhugongxiangzhaojianshui]
-- 召见士族派
+- 召见士族派[costHp=50]
 	do SummonFaction(bentupai)
-- 召见豪族派
+- 召见豪族派[costHp=50]
 	do SummonFaction(haozupai)
-- 召见丹阳派
+- 召见丹阳派[costHp=50]
 	do SummonFaction(waidipai)
-- 召见吕布
+- 召见吕布[costHp=50]
 	do SummonFaction(lvbu)
 - 取消
 	do cancel()
@@ -187,18 +187,18 @@ do zhubu.hide()
 ~ 选项
 主簿: 大人，你想对该派系的人做什么呢？[voice:darennixiangyaozuosm]
 #花费xxx增加其好感度
-- 资金资助
+- 资金资助[costHp=50]
 	do financialConfortChoice()
-- 赠送礼物  
+- 赠送礼物[costHp=50]
 	do sendgiftChoice()
 #优先级a
-- 政策拉拢
+- 政策拉拢[costHp=50]
 	do policyCo_opt()
 #政策拉拢极难开发 优先级d
-- 索取
+- 索取[costHp=50]
 #优先级b
 	do claim()
-- 镇压
+- 镇压[costHp=50]
 	do suppress()
 - (重新选择)
 	do optionSummonOnemen()
@@ -216,7 +216,7 @@ do zhubu.hide()
 ~ 决定镇压
 主簿: 主公，镇压固然能解决他们可能导致骚乱的因素，但恐埋后患无穷，我建议先施恩惠笼络人心，免生祸端。[voice:jianyishien]
 系统提示: 镇压{{getFactionByIndex().getTr()}}需要消耗劳动力{{ForValueGet}}和金币{{ForValueCost}}，你确定用武力镇压么?
-- 是
+- 是[costHp=50]
 	do confireSuppress()
 - 否
 	do SummonFaction(_faction)
@@ -272,11 +272,11 @@ do GameManager._imporveRelation(getFactionByIndex())
 
 ~ 选项吕布
 主簿: 大人，你想对吕布做什么呢？
-- 资金资助
+- 资金资助[costHp=50]
 	do financialConfortChoice()
-- 赠送礼物
+- 赠送礼物[costHp=50]
 	do sendgiftChoice()
-- 调用其手中士兵
+- 调用其手中士兵[costHp=50]
 #优先级c
 	do CallingSoldier()
 - (重新选择)
@@ -292,7 +292,7 @@ if getFactionByIndex()._allNum<100
 		当前派系人数:{{getFactionByIndex()._num_all}}，是否消耗200金给 {{getFactionByIndex().getTr()}} 让其在议事厅中的人数提升{{(3+GameManager.sav.randomIndex)}}人
 	else
 		当前派系人数:{{getFactionByIndex()._num_all}}，是否消耗200金给 {{getFactionByIndex().getTr()}} 让其在议事厅中的人数提升{{(100-getFactionByIndex()._num_all)}}人
-	- 是
+	- 是[costHp=50]
 		do financialConfort()
 	- 否
 		do SummonFaction(_faction)
@@ -309,7 +309,7 @@ if getFactionByIndex()._allNum<100
 		当前吕布手下人数:{{getFactionByIndex()._num_all}}，是否消耗200金让 吕布 手下的将领数量提升{{(3+GameManager.sav.randomIndex)}}人
 	else
 		当前吕布手下人数:{{getFactionByIndex()._num_all}}，是否消耗200金让 吕布 手下的将领数量提升{{(100-getFactionByIndex()._num_all)}}人	
-	- 是
+	- 是[costHp=50]
 		do financialConfort()
 	- 否
 		do SummonFaction(_faction)
@@ -691,7 +691,7 @@ do hearSayEnd()
 #解决饥荒问题
 ~ 索取从派系
 你通过索取可以获得{{ForValueGet}}金，但会消耗【{{getFactionByIndex().getTr()}}】{{ForValueCost}}点忠诚度，请问是否执行
-- 是
+- 是[costHp=50]
 	do CF_claim()
 - 否
 	do SummonFaction(_faction)
@@ -700,7 +700,7 @@ do hearSayEnd()
 
 ~ 征兵从吕布
 调用可征集{{ForValueCost}}名吕布士兵，但将消耗{{ForValueGet}}点吕布忠诚度。是否执行？
-- 是
+- 是[costHp=50]
 	do CF_CallingSoldier()
 - 否
 	do SummonFaction(_faction)
@@ -900,7 +900,7 @@ do canSummonLvBu()
 
 ~ 政策拉拢
 根据{{getFactionByIndex().getTr()}}的要求，你需要在7旬内在法律法规中通过[{{lawName}}]法案。通过后，你将提升{{getFactionByIndex().getTr()}}的好感度，并减少该派系的摇摆人数。
-- 答应
+- 答应[costHp=50]
 	do consent()
 - 拒绝
 	do cancelConsent()
@@ -1421,9 +1421,9 @@ do GameManager.getItemAction.call()
 
 ~ 来把仕诡牌
 糜竺: 主公，军资已备，粮草无忧，大业可成！[voice:mizhu_shiguipaiketao]
-- 来把仕诡牌吧 [if GameManager.sav.mizhucardgame>=0]
+- 来把仕诡牌吧[costHp=20] [if GameManager.sav.mizhucardgame>=0] 
 	do openBoardGame()
-- 修建基建【兴建粮仓】 [if GameManager.sav.have_event["基建项目开启"]==true]
+- 修建基建【兴建粮仓】[costHp=20] [if GameManager.sav.have_event["基建项目开启"]==true]
 	糜竺: 主公既执意兴建粮仓……虽某以为当下军资尚可周转，但主公深谋远虑，我也不好再劝。便依主公之言，全力筹措物料，务求早日建成！[voice:mizhu_xiujianliangcang]
 	do GameManager.selectPuzzleLevel()
 	

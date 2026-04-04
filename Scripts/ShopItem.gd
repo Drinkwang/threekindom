@@ -94,7 +94,8 @@ func _ready():
 	context.texture=img
 	if isShop==false:
 		return
-
+	if GameManager==null or GameManager.sav==null:
+		return
 	
 	var itemname= InventoryManagerItem.item_by_enum(itemstype)
 	var db:InventoryItem=InventoryManager.get_item_db(itemname)
@@ -104,11 +105,15 @@ func _ready():
 	var detail=properties.filter(func(a):return a["name"]=="detail")[0]
 	
 	var _context=tr(db.name)+":"+tr(detail["value"])
-	if TooltipManager and TooltipManager.has_method("register_tooltip"):
-		TooltipManager.register_tooltip(self,_context)
+
 
 	if isShop==true:
 		refreshSold()
+	
+	
+
+	if TooltipManager and TooltipManager.has_method("register_tooltip"):
+		TooltipManager.register_tooltip(self,_context)		
 	#if get_tree().get_root().has_node(questManagerName):
 	#	questManager = get_tree().get_root().get_node(questManagerName)
 

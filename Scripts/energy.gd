@@ -19,19 +19,33 @@ func changeTargetLabel():
 func _process(delta):
 	if(GameManager.sav.targetTxt!=null and GameManager.sav.targetTxt.length()>0):
 		showTargetLabel()
+@onready var flash_animation_player: AnimationPlayer = $TextureProgressBar/AnimationPlayer
+		
+var previewValue=0
 func changerate(rate):
-	progress_bar.value=rate
-	rateLabel.text=var_to_str(rate)+"%"
-
+	progress_bar.value=rate-previewValue
+	if previewValue==0:
+		rateLabel.text=var_to_str(rate)+"%"
+		flash_animation_player.stop()
+	else:
+		rateLabel.text="("+var_to_str(rate)+"→"+var_to_str(rate-previewValue)+")%"
+		flash_animation_player.play("flash")
+		
 @onready var target_label = $TargetLabel
+
+func startPreviewHp(costpreview):
+	previewValue=costpreview
+	changerate(GameManager.sav.hp)	
+
+func stopPreviewHP():
+	previewValue=0
+	changerate(GameManager.sav.hp)
 
 func showTargetLabel():
 	var targetValue=GameManager.sav.targetValue
 	#获取当前值的枚举类型，根据枚举类型获取对应资源数值，并把资源数值填写进下面的函数
 	var currenceValue=GameManager.getTaskCurrenceValue()
 	# target，currence
-
-
 	var iscompleteTask=false    
 	if  currenceValue is Array:
 		if currenceValue[0]>=GameManager.sav.targetValue and currenceValue[1]>=3:

@@ -107,8 +107,22 @@ var responses: Array = []:
 							
 						elif (characterScore>=2 and characterScore<3  and mode==3 and not haveWeapon):
 							response.text+=tr("(专属武器解锁)")
-	
-						
+
+					
+					var regex = RegEx.new()
+
+					regex.compile("\\[costHp=(\\d+)\\]") 
+					var previewCostHp=0 
+					var result = regex.search(response.text)
+					if result:
+						var hp_str = result.get_string(1) 
+						previewCostHp= hp_str.to_int()
+						response.text = regex.sub(response.text, "", false)
+					else:
+						previewCostHp=0
+					item.set_meta("previewCostHp", previewCostHp) # 这里存入数值
+	# 如果你只想在数值是 10, 20, 30 时执行：
+
 					item.text = response.text
 					
 				item.set_meta("response", response)
@@ -116,6 +130,8 @@ var responses: Array = []:
 				add_child(item)
 
 			_configure_focus()
+
+
 
 func apply_highlight_effect(button):
 	# 添加金光效果（示例：使用 Shader 或 AnimationPlayer）
@@ -203,7 +219,12 @@ func _on_response_mouse_entered(item: Control) -> void:
 	if "Disallowed" in item.name: return
 
 	item.grab_focus()
-
+	
+	if GameManager.haveMirror():
+		var previewCostHp = item.get_meta("previewCostHp")
+		GameManager._engerge.previewValue=previewCostHp
+		GameManager._engerge.changerate(GameManager.sav.hp)
+	#GameManager.sav.hp=GameManager.sav.hp
 
 func _on_response_gui_input(event: InputEvent, item: Control, response) -> void:
 	if "Disallowed" in item.name: return

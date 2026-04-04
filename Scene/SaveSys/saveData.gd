@@ -124,6 +124,7 @@ var SIDEQUEST_MAP:Dictionary={
 		hp=value
 		
 		if GameManager._engerge!=null and self==GameManager.sav:
+			GameManager._engerge.previewValue=0
 			GameManager._engerge.changerate(hp)
 @export var alreadyHP=0		
 @export var lazydays=0

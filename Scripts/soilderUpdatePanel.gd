@@ -107,7 +107,7 @@ func _on_control_1_gui_input(event):
 		control_3.check_box.button_pressed=false
 		#label.text=control_2.context+":"+control_2.detail	
 		update_ui()
-
+		previewHpdone()
 
 func _on_control_2_gui_input(event):
 	if(event is InputEventMouseButton and event.button_index==1):	
@@ -118,6 +118,7 @@ func _on_control_2_gui_input(event):
 		control_3.check_box.button_pressed=false
 		#label.text=control_2.context+":"+control_2.detail	
 		update_ui()
+		previewHpdone()
 
 
 func _on_control_3_gui_input(event):
@@ -130,10 +131,15 @@ func _on_control_3_gui_input(event):
 		control_3.check_box.button_pressed=true
 		#label.text=control_2.context+":"+control_2.detail	
 		update_ui()
+		previewHpdone()
 
+func previewHpdone():
+	if GameManager.haveMirror():
+		GameManager._engerge.startPreviewHp(costhp)
 
 func _on_exit_button_button_down():
 	self.hide()
+	GameManager._engerge.stopPreviewHP()
 	GameManager.currenceScene.refreshData()
 	GameManager.currenceScene.res_panel.position.x=1403
 	GameManager.currenceScene.res_panel.position.y=622

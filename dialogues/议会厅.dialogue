@@ -257,7 +257,7 @@ do GameManager.getItemAction.call()
 ~ 来把仕诡牌
 陈登: 主公，徐州赋税已清点，民心渐稳，治政可期。[voice:chenden_zhizhengkeqi]
 
-- 来把仕诡牌吧
+- 来把仕诡牌吧[costHp=20]
 	do openBoardGame()
 
 - 修建基建【深挖护城河】 [if GameManager.sav.have_event["基建项目开启"]==true]

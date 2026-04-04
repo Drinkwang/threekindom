@@ -38,6 +38,7 @@ func _ready():
 	#判断剧情
 	Transitions.post_transition.connect(post_transition)
 	control.buttonClick.connect(_buttonListClick)
+	control.buttonHover.connect(_buttonListHover)
 	super._ready()
 	if GameManager.sav.day>=5 or GameManager.sav.have_event["initXuzhou"]==true:
 		bg.texture=newBuild
@@ -560,7 +561,14 @@ func drillKeComplete():
 	caobao.dialogue_start=""
 	GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.KESULU]=""
 	GameManager.sav.have_event["锦囊咨询丹阳派"]=true
-
+func _buttonListHover(item):
+	if item.context == "军事行动":
+		if GameManager.haveMirror():
+			GameManager._engerge.startPreviewHp(battle_pane.costhp)
+	elif item.context=="操练士兵":
+		if  GameManager.haveMirror():
+			GameManager._engerge.startPreviewHp(train_panel.costhp)
+	
 func _buttonListClick(item):
 	if item.context=="离开此地":
 		if(GameManager.sav.day==1):
@@ -1109,7 +1117,7 @@ func finalBossBefore():
 	caobao.hide()
 
 func enterContest(mode):
-	if(await GameManager.isTried(50)):
+	if(await GameManager.isTried(10)):
 		return 
 
 
@@ -1142,7 +1150,7 @@ func enterContest(mode):
 		GameManager.trainGeneral=""
 		return	
 
-	GameManager.sav.hp-=50
+	GameManager.sav.hp-=10
 	GameManager.sav.isLevelUp=true
 	GameManager.trainLevel=mode+1
 	if GameManager.trainGeneral=="关羽":

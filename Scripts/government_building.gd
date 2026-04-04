@@ -103,6 +103,7 @@ func _ready():
 	
 	Transitions.post_transition.connect(post_transition)
 	control.buttonClick.connect(_buttonListClick)
+	control.buttonHover.connect(_buttonListHover)
 	super._ready()
 	#initData()
 	changePanelPos()	
@@ -338,6 +339,16 @@ func ReconciliatoryFaction():
 		GameManager.sav.targetTxt="统御派系: {currence}/{target}"
 
 	#GameManager.initSecretBattleContext(3,SceneManager.etraTaskType.useItem,13,"袁术军大胜")
+
+func _buttonListHover(item):
+	if GameManager.haveMirror():
+		if item.context == "执行政策":
+		
+			GameManager._engerge.startPreviewHp(policy_panel.costhp)
+		elif item.context == "召见派系":
+			GameManager._engerge.startPreviewHp(costHp_SummonOne)
+
+
 
 func _buttonListClick(item):
 	#35点

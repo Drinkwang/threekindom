@@ -1,4 +1,4 @@
-@tool
+
 extends CanvasLayer
 #extends InventoryUI
 class_name rewardPanel

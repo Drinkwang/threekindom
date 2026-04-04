@@ -294,6 +294,7 @@ func _on_control_3_gui_input(event):
 		battle_circle.selectgeneral= GameManager.sav.generals[control_3.repImg]
 		battle_circle._juideCompeleteTask()
 		_refreshSlider()
+		previewHpdone()
 	#取消其它的选中状态
 	#给当前标记为选中
 	#将选中将领具体信息发送给disk	
@@ -313,7 +314,7 @@ func _on_control_2_gui_input(event):
 		battle_circle.selectgeneral= GameManager.sav.generals[control_2.repImg]
 		battle_circle._juideCompeleteTask() 
 		_refreshSlider()
-
+		previewHpdone()
 var istour=false
 func _on_control_1_gui_input(event):
 
@@ -328,8 +329,10 @@ func _on_control_1_gui_input(event):
 		battle_circle.selectgeneral= GameManager.sav.generals[control_1.repImg]
 		battle_circle._juideCompeleteTask()	 
 		_refreshSlider()
-
-
+		previewHpdone()
+func previewHpdone():
+	if GameManager.haveMirror():
+		GameManager._engerge.startPreviewHp(costhp)
 
 @onready var ani_1 = $ani_1
 @onready var ani_2 = $ani_2
@@ -364,6 +367,7 @@ func _on_button_button_down():
 @export var dialogue_resource:DialogueResource
 #推出按钮，同时调用结束
 func _on_exit_button_button_down():
+	GameManager._engerge.stopPreviewHP()
 	self.hide()
 	GameManager.currenceScene.res_panel.position.x=1403
 	GameManager.currenceScene.res_panel.position.y=622

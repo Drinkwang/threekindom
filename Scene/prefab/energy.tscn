@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dfolt063spdso"]
+[gd_scene load_steps=23 format=3 uid="uid://dfolt063spdso"]
 
 [ext_resource type="Script" path="res://Scripts/energy.gd" id="1_jga5a"]
 [ext_resource type="Texture2D" uid="uid://cokwnsbgr1bbx" path="res://Asset/ui/进度条1.png" id="2_minpr"]
@@ -11,6 +11,44 @@
 [ext_resource type="Texture2D" uid="uid://sswcvqf8xpgs" path="res://Asset/存档.png" id="8_k0wc5"]
 [ext_resource type="PackedScene" uid="uid://bhu5hq8kx8pov" path="res://addons/inventory_example/inventories/simple/InventoryUI.tscn" id="9_loc21"]
 [ext_resource type="Texture2D" uid="uid://dy3bhyc470by4" path="res://Asset/blue/meter_icon_holder_blue.png" id="9_qjdqi"]
+
+[sub_resource type="Animation" id="Animation_wq52o"]
+resource_name = "flash"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:tint_under")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.35, 0.766667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.637843, 0.637843, 0.637843, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_tltq3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:tint_under")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ww5ql"]
+_data = {
+"RESET": SubResource("Animation_tltq3"),
+"flash": SubResource("Animation_wq52o")
+}
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nj81s"]
 shader = ExtResource("7_aou84")
@@ -177,7 +215,7 @@ offset_top = 267.0
 offset_right = 995.0
 offset_bottom = 307.0
 scale = Vector2(11.5, 11.5)
-value = 100.0
+value = 80.0
 texture_under = ExtResource("3_te6ew")
 texture_progress = ExtResource("4_2kuei")
 
@@ -190,6 +228,11 @@ offset_bottom = 21.0
 text = "100%"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TextureProgressBar"]
+libraries = {
+"": SubResource("AnimationLibrary_ww5ql")
+}
 
 [node name="TextureRect" type="TextureRect" parent="."]
 visible = false

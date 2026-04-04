@@ -44,7 +44,7 @@ do streetTwo()
 		- 确定[highlight=true]
 			do visitDrill()
 		- 暂时先等一等
-- 拜访大儒
+- 拜访大儒[costHp=50]
 	do visitScholar()
 
 - 前往荒地(支线任务) [if GameManager.sav.have_event["支线发现羊尸"]==true and GameManager.sav.have_event["支线触发完毕调查过竹简"]==false]
@@ -75,7 +75,7 @@ do streetTwo()
 		- 确定
 			do visitDrill()
 		- 暂时先等一等
-- 拜访大儒
+- 拜访大儒[costHp=50]
 	do visitScholar()
 - 前往荒地(支线任务)[highlight=true]
 	do gotoWasteland()

@@ -5,6 +5,7 @@ const hoverbtn = preload("res://Asset/ui/panel_Example3.png")
 @onready var node_2d = $Node2D
 
 signal buttonClick
+signal buttonHover
 const focusbtn = preload("res://Asset/ui/panel_Example4.png")
 var guilds:Sprite2D
 # Called when the node enters the scene tree for the first time.
@@ -88,7 +89,8 @@ func _processList(data):
 		buttton.texture_pressed=pressbtn
 		buttton.texture_hover=hoverbtn
 		buttton.texture_focused=focusbtn
-		buttton.mouse_entered.connect(_buttonHover)
+		buttton.mouse_entered.connect(_buttonHover.bind(item))
+		buttton.mouse_exited.connect(_buttonExit)
 		buttton.pressed.connect(_button_ation.bind(item,index))
 		buttton.name="button"+var_to_str(index)
 		if item.has("tooltip"):
@@ -127,9 +129,13 @@ func changeLanguage():
 				richTxt.add_theme_font_size_override("normal_font_size",55)
 			richTxt.remove_theme_font_override("normal_font")	
 @onready var animation_player = $"Node2D/5Yellow/AnimationPlayer"
-func _buttonHover():
+func _buttonHover(item):
 	SoundManager.play_sound(sounds.hoversound)
+	buttonHover.emit(item)
 	
+func _buttonExit():
+	if GameManager._engerge.previewValue!=0:
+		GameManager._engerge.stopPreviewHP()
 func _show_button_5_yellow(index):
 	if index==-1:
 		node_2d.hide()

@@ -1,4 +1,3 @@
-@tool
 class_name policyItem
 extends Control
 @onready var contextUI = $Panel/context
