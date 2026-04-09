@@ -56,7 +56,20 @@ func _ready():
 		button.add_theme_font_size_override("font_size", 50)
 	pass # Replace with function body.
 #请点击图书并获得积分
-
+	var context=tr("右侧数值为你的才气上限，亦是大儒辩经可获得的最高分数，超出部分不予结算。才气值可通过使用道具、颁布法令进行提升。")
+	if InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.雌雄双股剑)>0:
+		context=context+"\n"+tr("雌雄双股剑")+"："+"2000"
+		#pass
+	#var aa:Array
+	#aa.count()
+	if GameManager.sav.laws[0].count(2)>=1:
+		context=context+"\n"+tr("兴办教育")+"："+"2000"
+	if GameManager.sav.laws[0].count(4)>=1:
+		context=context+"\n"+tr("重农抑商")+"："+"2000"		
+	if GameManager.sav.laws[0].count(5)>=1:
+		context=context+"\n"+tr("士族优先")+"："+"2000"	
+	
+	TooltipManager.register_tooltip(yourscore,"右侧数值为你的才气上限，亦是大儒辩经可获得的最高分数，超出部分不予结算。才气值可通过使用道具、颁布法令进行提升。\n雌雄双古剑：+2000\n兴办教育：+2000\n重农抑商：+2000\n士族优先：+2000")
 
 
 
@@ -70,7 +83,7 @@ var isboot=false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 
-	yourscore.text=tr("你的得分：")+"\n"+str(score)
+	yourscore.text=tr("你的得分：")+"\n"+str(score)+"/{daru}".format({"daru":GameManager.sav.daruValue})
 	if(isboot==true):
 		time=time+delta
 		var resideTime=10-time
@@ -83,18 +96,37 @@ func _process(delta):
 @onready var reside_txt = $resideTxt
 @onready var texture_button = $TextureButton
 @export var dialogue_resource:DialogueResource
+
+
+
 func over():
 	#item_use.hide()
 	isboot=false
 	#reward弹出
 	var _reward:rewardPanel=PanelManager.new_reward()
-	var maxScore=15000
+	var maxScore=GameManager.sav.daruValue
+	
 	var items
-	if score>=15000:
-		items=GameManager.ScoreToItem(1500)
+
+		#items=GameManager.ScoreToItem(maxScore/10)
 		#reward
-	else:
-		items=GameManager.ScoreToItem(score/10)
+	#else:
+	
+	if InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.雌雄双股剑)>0:
+		maxScore+=2000	
+	
+	#var aa:Array
+	#aa.count()
+	if GameManager.sav.laws[0].count(2)>=1:
+		maxScore+=2000	
+	if GameManager.sav.laws[0].count(4)>=1:
+		maxScore+=2000			
+	if GameManager.sav.laws[0].count(5)>=1:
+		maxScore+=2000			
+			
+	if score>=maxScore:
+		score=maxScore	
+	items=GameManager.ScoreToItem(score/10)
 	_reward.showTitileReward(tr("你从郑玄哪里受益良多"),items)
 	texture_button.show()
 	GameManager.sav.isVisitScholar=true
@@ -138,7 +170,7 @@ func _on_panel_container_gui_input(event):
 @onready var item_use = $itemUse
 
 func _on_button_button_down():
-	
+	yourscore.visible=true
 	button.hide()
 	isboot=true
 	refreshCount()
@@ -172,7 +204,7 @@ func _on_item_use_gui_input(event):
 			InventoryManager._remove_item(GameManager.inventoryPackege,InventoryManagerItem.诸子百家论集,1)
 			itemUseLabel.text=tr("_stockInExpound").format({"num":count-1})
 			score=9000
-			yourscore.text=tr("你的得分：")+"\n"+str(score)
+			yourscore.text=tr("你的得分：")+"\n"+str(score)+"/{daru}".format({"daru":GameManager.sav.daruValue})
 			over()
 		#判断道具数量
 		#消耗道具

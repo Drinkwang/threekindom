@@ -1,14 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://bxw67mtklk4w5"]
+[gd_scene load_steps=14 format=3 uid="uid://bxw67mtklk4w5"]
 
 [ext_resource type="Script" path="res://Scripts/ExpoundclassicsPanel.gd" id="1_5g43j"]
 [ext_resource type="Theme" uid="uid://bklmr3xmk4m5u" path="res://global_theme.tres" id="2_a1oci"]
 [ext_resource type="AudioStream" uid="uid://daxlyrk7pr0bu" path="res://Asset/sound/翻阅.mp3" id="2_cvcn1"]
 [ext_resource type="Resource" uid="uid://qopivlttvt12" path="res://dialogues/街道.dialogue" id="2_rgova"]
 [ext_resource type="Texture2D" uid="uid://dahuc8gb2blc" path="res://Asset/other/0_red.png" id="5_g5bwt"]
+[ext_resource type="FontFile" uid="uid://b8le0fd0ujbqx" path="res://Asset/Font/1_blod.ttf" id="6_gcsyw"]
 [ext_resource type="PackedScene" uid="uid://5qxpn6avk7bx" path="res://Scene/prefab/ShopItem.tscn" id="7_srrjc"]
+[ext_resource type="FontFile" uid="uid://to00njkwmxts" path="res://Asset/Font/1_sim.ttf" id="8_4k47d"]
 [ext_resource type="Texture2D" uid="uid://c8217n5l3n1vd" path="res://Asset/辩论.png" id="8_8qym1"]
 [ext_resource type="Texture2D" uid="uid://d1ey12yrtc7ec" path="res://Asset/items/兵法.png" id="8_iid6c"]
-[ext_resource type="FontFile" uid="uid://qv74ebpr4i31" path="res://Asset/Font/VonwaonBitmap-16px.ttf" id="9_mixup"]
 
 [sub_resource type="Animation" id="Animation_g5rj7"]
 length = 0.001
@@ -318,16 +319,19 @@ offset_left = 593.0
 offset_top = 189.0
 offset_right = 1580.0
 offset_bottom = 356.0
+theme_override_fonts/font = ExtResource("6_gcsyw")
 theme_override_font_sizes/font_size = 81
 text = "倒计时：10"
 horizontal_alignment = 2
 
 [node name="yourscore" type="Label" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 400.0
 offset_top = 731.0
 offset_right = 1543.0
 offset_bottom = 898.0
+theme_override_fonts/font = ExtResource("6_gcsyw")
 theme_override_font_sizes/font_size = 81
 text = "你的得分：
 0"
@@ -340,6 +344,7 @@ offset_left = 338.0
 offset_top = 449.0
 offset_right = 1590.0
 offset_bottom = 531.0
+theme_override_fonts/font = ExtResource("6_gcsyw")
 theme_override_font_sizes/font_size = 81
 text = "请点击图书并获得积分"
 horizontal_alignment = 1
@@ -350,6 +355,12 @@ offset_left = 366.0
 offset_top = 188.0
 offset_right = 1509.0
 offset_bottom = 270.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = 0
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("6_gcsyw")
 theme_override_font_sizes/font_size = 81
 text = "大儒辩论启动中..."
 
@@ -380,6 +391,7 @@ offset_right = 386.0
 offset_bottom = 371.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("8_4k47d")
 theme_override_font_sizes/font_size = 76
 text = "点击开始游戏"
 
@@ -414,7 +426,7 @@ offset_top = -61.62
 offset_right = 68.0
 offset_bottom = -3.956
 theme_override_constants/line_spacing = 0
-theme_override_fonts/font = ExtResource("9_mixup")
+theme_override_fonts/font = ExtResource("6_gcsyw")
 theme_override_font_sizes/font_size = 16
 text = "点击图标使用
 快速结束辩经

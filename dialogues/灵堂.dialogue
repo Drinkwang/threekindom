@@ -37,7 +37,7 @@ do setTuLabel("")
  : 有什么东西被打开了[voice:ts_yousmbeidakaile]
  : 这是...书？[voice:ts_zheshishu]
 do showBook()
- : 家族存续怪谈，这是啥?
+ : 士族存活规则怪谈，内容看不清，这到底是什么？
 => END
 
 ~ third

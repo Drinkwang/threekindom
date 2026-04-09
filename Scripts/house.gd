@@ -161,8 +161,8 @@ func _ready():
 	if GameManager.sav.have_event["chaoMizhuEnd"]==true and GameManager.sav.isGetCoin==false and GameManager.sav.currenceValue>1:
 
 		pass
-		demo_end_v.show()
-		demo_end_v.play()		
+		#demo_end_v.show()
+		#demo_end_v.play()		
 		
 
 @onready var bti_rect = $btiRect
@@ -220,14 +220,14 @@ func _initData():
 	
 	#记得demo注销
 	if GameManager.sav.have_event["chaoMizhuEnd"]==true and GameManager.sav.isGetCoin==false and GameManager.sav.currenceValue>1:
-		title.show()
-		demo_end.show()
-		hp_panel.hide()
-		res_panel.hide()
-		support_panel.hide()
-		SoundManager.stop_all_ambient_sounds()
-		SoundManager.stop_music()
-		return
+		#title.show()
+		#demo_end.show()
+		#hp_panel.hide()
+		#res_panel.hide()
+		##support_panel.hide()
+		#SoundManager.stop_all_ambient_sounds()
+		#SoundManager.stop_music()
+		#return
 		pass
 	if control.visible==true:	
 		items_in_scene.showItems()	
@@ -948,14 +948,16 @@ func resetDeterminValue():
 var alldata
 
 func allocationAllSettle():
-	if GameManager.sav.allocationDay<1:
+	if GameManager.sav.allocationDay<0:
 		return
 		
-	if GameManager.sav.allocationDay==1:
+	if GameManager.sav.allocationDay==0:
 		allcontext=""
-		allocationSettle(0)
-		
-	else:
+		allocationSettle()
+		GameManager.sav.allocationDay=1
+		GameManager.initDemand()
+		#把逻辑放在初始后 initdemand
+	elif GameManager.sav.allocationDay==2||GameManager.sav.allocationDay==3:
 		
 		var allCost=GameManager.cuclulateAllAllocation()
 		
@@ -973,33 +975,30 @@ func allocationAllSettle():
 				
 var cnames:Array=[]
 var allcontext=""
-func allocationSettle(index):
-	#allocationMuliao()
-	#处理民心时调用 剩下方法会屏蔽，四个阶段依次有不满，然后扣除民心
-	if index>3 or (index==3 and GameManager.sav.have_event["lvbuJoin"]==false) :
-		
-		
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"派系扣除好感")
+func allocationSettle():
+	for index in range(0,4):
+		if GameManager.sav.allocationDay==1:
+			alldata=GameManager.getcldateByindex(index)
+
+			if alldata.allocationStatue==0:
+			#alldata.ChangeSupport(-5)
+			#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"派系扣除好感")
+				cnames.append(alldata)
+				
+				var point=5
+				if alldata.index==3:
+					point=10
+				allcontext+=tr("{_name}月例拖欠，支持度下降{point}点\n").format({"_name":alldata._name,"point":point})
+
+			var allCost=GameManager.cuclulateAllAllocation()
+			if allCost!=null and !allCost.is_empty():
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"派系扣除好感")
 		#定义一个数组。。多个执行
 		#or GameManager.sav.allocationDay!=3
 		#处理自动发放
-		return 
-	if GameManager.sav.allocationDay==1:
-		alldata=GameManager.getcldateByindex(index)
+		#GameManager.predemand()
+		#return
 
-		if alldata.allocationStatue==0:
-			#alldata.ChangeSupport(-5)
-			#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"派系扣除好感")
-			cnames.append(alldata)
-				
-			var point=5
-			if alldata.index==3:
-				point=10
-			allcontext+=tr("{_name}月例拖欠，支持度下降{point}点\n").format({"_name":alldata._name,"point":point})
-			allocationSettle(index+1)
-			
-		else:
-			allocationSettle(index+1)
 func allocationMuliao():
 	
 	if zhubu.visible==false:
@@ -1202,8 +1201,9 @@ func danyangLawTest():
 		GameManager.sav.courtingLaws.erase(GameManager.sav.WAIDIPAI._name)
 		DialogueManager.show_example_dialogue_balloon(sys,"丹阳法律未通过")
 		GameManager.sav.WAIDIPAI.ChangeSupport(-10)
+	#GameManager.predemand()
 	allocationAllSettle()#test工资系统 加到另外的后面
-
+	
 
 func generate_consumed_string(consumed: Dictionary) -> String:
 	var result = []
