@@ -509,6 +509,7 @@ func eatTea1(issuccuss=false):
 	if issuccuss==true:
 		GameManager.sav.have_event["糜竺正确选择1"]=true
 	else:
+		GameManager.sav.have_event["错失娃娃"]=true
 		GameManager.sav.have_event["糜竺正确选择1"]=false
 		#GameManager.sav.hp
 func eatTea2(issuccuss=false):
@@ -521,6 +522,7 @@ func eatTea2(issuccuss=false):
 		if GameManager.sav.have_event["糜竺正确选择2"]==true and GameManager.sav.have_event["糜竺正确选择1"]==true:
 			GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.MIZHU]=tr("持铜钥入糜家秘宅，探寻糜贞疯癫缘由")
 	else:
+		GameManager.sav.have_event["错失娃娃"]=true
 		GameManager.sav.have_event["糜竺正确选择2"]=false
 
 
@@ -1342,11 +1344,12 @@ func burnSac():
 	#民心-5
 	GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.KESULU]=("")
 	GameManager.changePeopleSupport(-5)
-	
+	GameManager.sav.have_event["错失锦囊"] =true	
 
 func holdSac():
 	#GameManager.sav.have_event["支线触发完毕调查过竹简"]=true
 	#增加道具
+	GameManager.sav.have_event["获得锦囊"] =true
 	var _reward:rewardPanel=PanelManager.new_reward()
 	var items={
 		"items": {InventoryManagerItem.ItemEnum.黄麻药囊:1},

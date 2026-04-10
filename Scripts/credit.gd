@@ -8,11 +8,12 @@ const badaoxian = preload("res://Asset/other/霸道线曲子.mp3")
 func _ready() -> void:
 	GameManager.currenceScene=self
 	initData()
-	if GameManager.sav.endPath==GameManager.endPath.xiaopei:
-		SoundManager.play_music(__CREDIT__)
-	elif GameManager.sav.endPath==GameManager.endPath.xuzhou:
-		SoundManager.play_music(badaoxian)
+	#if GameManager.sav.endPath==GameManager.endPath.xiaopei:
 	
+	if GameManager.sav.endPath==GameManager.endPath.xuzhou:
+		SoundManager.play_music(badaoxian)
+	else:
+		SoundManager.play_music(__CREDIT__)
 
 	if GameManager.sav.endPath==GameManager.endPath.xuzhou:
 
@@ -59,10 +60,12 @@ const final = preload("res://Asset/bgm/会议室.wav")
 
 
 func eggFunc():
-	PanelManager.Fade_Blank(Color.BLACK,1,PanelManager.fadeType.fadeOut)
-	SoundManager.play_ambient_sound(final)
-	DialogueManager.show_example_dialogue_balloon(GameManager.sys,"彩蛋剧情")
-
+	if GameManager.sav.endPath==GameManager.endPath.xiaopei:
+		PanelManager.Fade_Blank(Color.BLACK,1,PanelManager.fadeType.fadeOut)
+		SoundManager.play_ambient_sound(final)
+		DialogueManager.show_example_dialogue_balloon(GameManager.sys,"彩蛋剧情")
+	else:
+		settleGame()
 
 @onready var finalBG: ColorRect = $CanvasLayer/final
 
@@ -85,17 +88,22 @@ func eggFunc():
 
 func settleGame():
 	var finaldec=""
-	if GameManager.sav.endPath==GameManager.endPath.xiaopei:
-		what_final.text=tr("【恭喜你，通关正史结局】")
-		finaldec=tr("完成所有怪谈支线，\n将解锁霸道结局线索。")
-	if GameManager.sav.endPath==GameManager.endPath.xuzhou:
-		what_final.text=tr("【恭喜你，通关霸道结局】")
-		finaldec=tr("打破历史桎梏，驯服所有怪谈支线，\n你以霸主之姿，叩响复兴汉室的大门。")
-	var line1=tr("游玩难度：{difficult}").format({"difficult":1})
-	var line2=tr("游戏旬数：{day}").format({"day":GameManager.sav.day})
-	var line3=tr("探索进度：{process}").format({"process":GameManager.get_exploration_percent()})
 	
-	detial.text=line1+"\n"+line2+"\n"+line3+"\n"+finaldec
+	if GameManager.sav.endPath!=GameManager.endPath.none:
+		if GameManager.sav.endPath==GameManager.endPath.xiaopei:
+			what_final.text=tr("【恭喜你，通关正史结局】")
+			finaldec=tr("完成所有怪谈支线，\n将解锁霸道结局线索。")
+		if GameManager.sav.endPath==GameManager.endPath.xuzhou:
+			what_final.text=tr("【恭喜你，通关霸道结局】")
+			finaldec=tr("打破历史桎梏，驯服所有怪谈支线，\n你以霸主之姿，叩响复兴汉室的大门。")
+		var line1=tr("游玩难度：{difficult}").format({"difficult":1})
+		var line2=tr("游戏旬数：{day}").format({"day":GameManager.sav.day})
+		var line3=tr("探索进度：{process}").format({"process":GameManager.get_exploration_percent()})
+		detial.text=line1+"\n"+line2+"\n"+line3+"\n"+finaldec
+	else:
+		what_final.hide()
+		detial.text="恭喜你通关试玩版，请期待正式游戏"
+	
 	finalBG.show()
 	#修改finalBG
 

@@ -331,7 +331,21 @@ var SIDEQUEST_MAP:Dictionary={
 	"最终比武结束":false,
 	"津贴系统开始":false,
 	"第一次津贴教程":false,
-	
+	"诡物手册":false,
+	"获得过木桶标记":false,
+	"错失木桶":false,	
+	"获得锦囊":false,
+	"错失锦囊":false,
+	"获得古棒":false,
+	"错失古棒":false,
+	"获得血袖":false,
+	"错失血袖":false,
+	"获得娃娃":false,
+	"错失娃娃":false,
+	"获得亮银":false,
+	"错失亮银":false,
+	"获得玄阴":false,
+	#"错失玄阴":false,
 }
 @export var taishanWait=0
 #0 小试牛刀开启 1小试牛刀通过 2 对局试炼开启 3对局试验通过 4 诡秘怪谈开启 5诡秘怪谈通过

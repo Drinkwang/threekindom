@@ -445,6 +445,7 @@ do battle_pane.hide()
 （刘备低下了头，发现了陶谦的尸体已经回到棺材里，他的尸体已经腐烂，并且没有任何生机的迹象，事情好像已经解决，但好像并没有完美的解决..）  
 刘备: (此地异动已解，需回去通知陈登。)[voice:liubei_yidongyijie]
 do sideQuestReturnT(false)
+
 => END!
 
 

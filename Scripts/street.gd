@@ -249,6 +249,7 @@ func getXuanYin():
 	}
 	GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.BADAO]=""
 	_reward.showTitileReward(tr("恭喜你，你从黑商手中获得-玄阴玉符"),items)	
+	GameManager.sav.have_event["获得玄阴"]=true
 	
 func HuntdownKe():
 	var _reward:rewardPanel=PanelManager.new_reward()
@@ -598,6 +599,7 @@ func holdWoolden():
 	playStageMusic()
 	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeOut)
 	GameManager.sav.have_event["支线触发完毕调查过竹简"]=true
+	GameManager.sav.have_event["获得过木桶标记"]=true
 	#增加道具
 	var _reward:rewardPanel=PanelManager.new_reward()
 	var items={
@@ -614,7 +616,9 @@ func BurySheep():
 	GameManager.changePeopleSupport(-10)
 	GameManager.sav.have_event["支线触发完毕调查过竹简"]=true
 	GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.KESULU]=""
-
+	
+	GameManager.sav.have_event["错失木桶"]=true
+	
 func playStageMusic():
 	SoundManager.stop_all_ambient_sounds()
 	SoundManager.play_ambient_sound(MINISTREET)	
@@ -637,6 +641,8 @@ func getXueJiItem():
 		"population": 0
 	}
 	#GameManager.ScoreToItem()
+	GameManager.sav.have_event["获得娃娃"]=true
+	
 	bossBattleAfter=true
 	GameManager.sav.maxHP=120
 	_reward.showTitileReward(tr("恭喜你，你获得-血姬傀儡"),items)	
@@ -661,6 +667,7 @@ func getDaoQianItem():
 	}
 	#GameManager.ScoreToItem()
 	bossBattleAfter=true
+	GameManager.sav.have_event["获得血袖"]=true
 	_reward.showTitileReward(tr("恭喜你，你获得-陶谦血袖"),items)		
 
 func _bossMode():
@@ -704,11 +711,17 @@ func settleAfter():
 
 
 func sideQuestReturnG(iswin):
+	if iswin==false:
+		GameManager.sav.have_event["错失娃娃"]=true	#
 	battle_pane.sideQuestReturnG(iswin)
 func sideQuestReturnT(iswin):
+	if iswin==false:
+		GameManager.sav.have_event["错失血袖"]=true
 	battle_pane.sideQuestReturnT(iswin)
 
 func sideQuestReturnD(iswin):
+	if iswin==false:
+		GameManager.sav.have_event["错失亮银"]=true		
 	battle_pane.sideQuestReturnD(iswin)
 
 @onready var items_in_scene: Node2D = $itemsInScene

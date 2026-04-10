@@ -367,7 +367,7 @@ tracks/6/keys = {
 鹏砚", "特别感谢以下创作者在 itch.io 提供的素材：
 Atelier Magicae (UI SFX)
 leohpaz (Button SFX)
-alkakrab (BGM)", "测试协力：人员一", "测试协力：人员丙", "测试协力：人员丙", "感谢所有玩家，你的体验，是我所有努力的最终意义。"]
+alkakrab (BGM)", "", "", "", "感谢所有玩家，你的体验，是我所有努力的最终意义。"]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -380,11 +380,7 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": ["美术协力：
-Blight", "测试协力：
-人员甲", "测试协力：
-人员丁", "测试协力：
-人员丁", "测试协力：
-人员丁"]
+Blight", "", "", "", ""]
 }
 
 [sub_resource type="Animation" id="Animation_f002t"]
@@ -536,7 +532,7 @@ texture = ExtResource("1_filqm")
 
 [node name="底色" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(968, 544)
+position = Vector2(956, 532)
 scale = Vector2(2.25, 2.25)
 texture = ExtResource("2_r61sl")
 flip_h = true
@@ -587,7 +583,6 @@ scale = Vector2(2.23, 2.23)
 texture = ExtResource("9_jo5l7")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-visible = false
 offset_left = -348.0
 offset_top = -195.0
 offset_right = 2217.0
@@ -595,7 +590,7 @@ offset_bottom = 1195.0
 color = Color(0, 0, 0, 1)
 
 [node name="中文logo" type="Sprite2D" parent="ColorRect"]
-modulate = Color(1, 1, 1, 0)
+modulate = Color(0, 0, 0, 1)
 material = SubResource("CanvasItemMaterial_rmcpn")
 position = Vector2(1267, 693)
 texture = ExtResource("10_15oj5")
@@ -696,9 +691,9 @@ libraries = {
 
 [node name="美术" type="Label" parent="creditAnimation"]
 modulate = Color(1, 1, 1, 0)
-offset_left = 931.0
+offset_left = 1035.0
 offset_top = 601.0
-offset_right = 1427.0
+offset_right = 1469.0
 offset_bottom = 706.0
 theme_override_colors/font_outline_color = Color(0.658824, 0.290196, 0.290196, 1)
 theme_override_constants/outline_size = 8

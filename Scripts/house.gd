@@ -164,6 +164,9 @@ func _ready():
 		#demo_end_v.show()
 		#demo_end_v.play()		
 		
+func playmusic():
+	demo_end_v.show()
+	demo_end_v.play()		
 
 @onready var bti_rect = $btiRect
 @onready var bit_player = $bitPlayer
@@ -220,6 +223,9 @@ func _initData():
 	
 	#记得demo注销
 	if GameManager.sav.have_event["chaoMizhuEnd"]==true and GameManager.sav.isGetCoin==false and GameManager.sav.currenceValue>1:
+		
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"playtest结束")
+		return
 		#title.show()
 		#demo_end.show()
 		#hp_panel.hide()
@@ -341,12 +347,24 @@ func _initData():
 	#判断以下，是首日获取 还是第二次获取	
 const siku1 = preload("res://Asset/sound/似哭似笑1.mp3")
 const siku2 = preload("res://Asset/sound/似哭似笑2.mp3")
+
+func playtestEnd():
+	
+	title.show()
+	demo_end.show()
+	hp_panel.hide()
+	res_panel.hide()
+	support_panel.hide()
+	SoundManager.stop_all_ambient_sounds()
+	SoundManager.stop_music()
+		#return
 func resumeBgm():
 	GameManager.play_BGM()
 	
 	SoundManager.stop_all_ambient_sounds()
 	SoundManager.play_ambient_sound(daybgm)
 @onready var zhubu = $"文官"
+@onready var zhenren: clickBlock = $"修仙者"
 	
 	#将政务面板更新 里面列举了一堆list
 	#如果没见过陈登把control隐藏，如果见过了陈登 control不隐藏
@@ -701,10 +719,12 @@ func fadeInAndOut():
 
 
 func _on_demo_end_button_down():
+	
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"demo结束")
 	pass # Replace with function body.
 
-
+func getguiwuItems():
+	GameManager.sav.have_event["诡物手册"]=true
 
 func _DayGet():
 	#
@@ -752,6 +772,7 @@ func extraTask():
 			GameManager.sav.have_event["支线发现羊尸"]=false
 		if GameManager.sav.have_event["支线发现羊尸"]==false and GameManager.sav.have_event["支线触发完毕调查过竹简"]==false and GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.KESULU]!="":
 			GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.KESULU]=""
+			GameManager.sav.have_event["错失木桶"]=true
 		#将任务设置成false
 		var num1=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.论语简注)	
 		var num2=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.礼记笺疏)	

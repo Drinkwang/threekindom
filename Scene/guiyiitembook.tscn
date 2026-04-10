@@ -1,0 +1,310 @@
+[gd_scene load_steps=19 format=3 uid="uid://es88fhnaxxmq"]
+
+[ext_resource type="Script" path="res://Scripts/guiyiitembook.gd" id="1_aiq37"]
+[ext_resource type="AudioStream" uid="uid://daxlyrk7pr0bu" path="res://Asset/sound/翻阅.mp3" id="1_lvv6o"]
+[ext_resource type="Theme" uid="uid://bklmr3xmk4m5u" path="res://global_theme.tres" id="2_ucbbd"]
+[ext_resource type="FontFile" uid="uid://b8le0fd0ujbqx" path="res://Asset/Font/1_blod.ttf" id="3_whft3"]
+[ext_resource type="Texture2D" uid="uid://dahuc8gb2blc" path="res://Asset/other/0_red.png" id="4_5tk80"]
+[ext_resource type="FontFile" uid="uid://to00njkwmxts" path="res://Asset/Font/1_sim.ttf" id="5_fxvgj"]
+[ext_resource type="Texture2D" uid="uid://d31ve0oihgf7g" path="res://Asset/ui/paper_panel_1286_x_819.png" id="5_rayie"]
+[ext_resource type="PackedScene" uid="uid://ds871wmeeqss2" path="res://Scene/prefab/guiwuItem.tscn" id="9_6hr8h"]
+[ext_resource type="Texture2D" uid="uid://beeluwb7n33ni" path="res://Asset/血袖.png" id="10_4th3i"]
+[ext_resource type="Texture2D" uid="uid://conhyvvbqb4h0" path="res://Asset/影月枪.png" id="11_eapqb"]
+[ext_resource type="Texture2D" uid="uid://bcsdsov7tfl35" path="res://Asset/傀儡娃娃.png" id="12_bd0yj"]
+[ext_resource type="Texture2D" uid="uid://by0w5iynxnpe3" path="res://Asset/items/新道具许玄阴玉符.png" id="13_iibwl"]
+[ext_resource type="Texture2D" uid="uid://bx4ixhcm7jtyn" path="res://Asset/木筒_128128_pixian_ai.png" id="14_c2vmc"]
+[ext_resource type="Texture2D" uid="uid://cs5g6j85jlgsg" path="res://Asset/绿色锦囊.png" id="15_cvao2"]
+[ext_resource type="Texture2D" uid="uid://cwarg625pfot3" path="res://Asset/饥蛊骨签_128128.png" id="16_71u05"]
+
+[sub_resource type="Animation" id="Animation_g5rj7"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_4k2fk"]
+resource_name = "click"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t5pam"]
+_data = {
+"RESET": SubResource("Animation_g5rj7"),
+"click": SubResource("Animation_4k2fk")
+}
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_aiq37")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Timer"]
+stream = ExtResource("1_lvv6o")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1408.0
+offset_top = -884.0
+offset_right = 1584.0
+offset_bottom = 728.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2, 0.2, 0.2, 0.827451)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../PanelContainer")
+libraries = {
+"": SubResource("AnimationLibrary_t5pam")
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -669.0
+offset_top = -411.0
+offset_right = 669.0
+offset_bottom = 411.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(630.615, 267.699)
+theme = ExtResource("2_ucbbd")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -643.0
+offset_top = -409.5
+offset_right = 643.0
+offset_bottom = 409.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_rayie")
+
+[node name="ZhuangBeiRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 335.0
+offset_top = 165.0
+offset_right = 1578.0
+offset_bottom = 482.0
+color = Color(0.226707, 0.226707, 0.226707, 0.498039)
+
+[node name="ColorRect4" type="ColorRect" parent="ZhuangBeiRect"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 317.0
+offset_right = 1243.0
+offset_bottom = 321.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="ZhuangBeiRect/ColorRect4"]
+layout_mode = 0
+offset_left = -8.0
+offset_top = 3.0
+offset_right = 1257.0
+offset_bottom = 461.0
+color = Color(0, 0, 0, 0.4)
+
+[node name="ColorRect3" type="ColorRect" parent="ZhuangBeiRect"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 585.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 334.0
+offset_top = 169.0
+offset_right = 1575.0
+offset_bottom = 291.0
+color = Color(0.277528, 0.277528, 0.277528, 0.498039)
+
+[node name="ColorRect3" type="ColorRect" parent="ColorRect2"]
+layout_mode = 0
+offset_right = 10.0
+offset_bottom = 122.0
+color = Color(1, 0, 0, 0.45098)
+
+[node name="starttitle" type="Label" parent="."]
+layout_mode = 2
+offset_left = 351.0
+offset_top = 200.0
+offset_right = 818.0
+offset_bottom = 263.0
+theme_override_fonts/font = ExtResource("3_whft3")
+theme_override_font_sizes/font_size = 62
+text = "诡物手册"
+autowrap_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="."]
+visible = false
+layout_mode = 1
+offset_left = 1597.0
+offset_top = 85.0
+offset_right = 1661.0
+offset_bottom = 149.0
+texture_normal = ExtResource("4_5tk80")
+texture_pressed = ExtResource("4_5tk80")
+texture_hover = ExtResource("4_5tk80")
+texture_disabled = ExtResource("4_5tk80")
+texture_focused = ExtResource("4_5tk80")
+stretch_mode = 0
+
+[node name="backTxt" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.187
+anchor_right = 0.5
+anchor_bottom = 0.187
+offset_left = -624.0
+offset_top = 284.04
+offset_right = 300.0
+offset_bottom = 361.04
+theme_override_fonts/font = ExtResource("3_whft3")
+theme_override_font_sizes/font_size = 31
+text = "今天商人想从你那边收购一些商品..."
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="buyBackButton" type="Button" parent="backTxt"]
+layout_mode = 0
+offset_left = 892.0
+offset_top = -16.0
+offset_right = 1254.0
+offset_bottom = 91.0
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("5_fxvgj")
+text = "卖出商品"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 338.0
+offset_top = 308.0
+offset_right = 954.0
+offset_bottom = 396.0
+scale = Vector2(2, 2)
+theme_override_constants/separation = 0
+
+[node name="Control1" parent="HBoxContainer" instance=ExtResource("9_6hr8h")]
+custom_minimum_size = Vector2(88, 88)
+layout_mode = 2
+img = ExtResource("14_c2vmc")
+itemContext = "？"
+itemstype = 5
+
+[node name="Control2" parent="HBoxContainer" instance=ExtResource("9_6hr8h")]
+custom_minimum_size = Vector2(88, 88)
+layout_mode = 2
+img = ExtResource("15_cvao2")
+itemContext = "？"
+itemstype = 6
+
+[node name="Control3" parent="HBoxContainer" instance=ExtResource("9_6hr8h")]
+custom_minimum_size = Vector2(88, 88)
+layout_mode = 2
+img = ExtResource("16_71u05")
+itemContext = "？"
+itemstype = 7
+
+[node name="Control4" parent="HBoxContainer" instance=ExtResource("9_6hr8h")]
+custom_minimum_size = Vector2(88, 88)
+layout_mode = 2
+img = ExtResource("10_4th3i")
+itemContext = "徐州城郊古坟，阴气森然，夜闻鬼哭，风水术士却称其为“龙脉宝地”。怪矣，城中权贵竞相葬此，墓碑林立，似隐秘谋。或传，坟中藏有不可告人之物，引得大族趋之若鹜。士人对此怪象深病其弊，欲求破解之道。若士族邀你共宴，婉拒探询公务，或能获其信任，托付此事。"
+itemstype = 12
+
+[node name="Control5" parent="HBoxContainer" instance=ExtResource("9_6hr8h")]
+custom_minimum_size = Vector2(88, 88)
+layout_mode = 2
+img = ExtResource("12_bd0yj")
+itemContext = "城中某富家小姐，夜半出没，貌美如花，却传言嗜血食人。民谣暗唱：“月下红发轻舞，邀约莫回首。”据闻，她曾邀赴宴者，皆未生还，尸骨无存。然怪谈背后，或藏权贵阴谋，抑或妖魅作祟。若欲探寻真相，恐唯有赴宴一途。"
+itemstype = 11
+
+[node name="Control6" parent="HBoxContainer" instance=ExtResource("9_6hr8h")]
+custom_minimum_size = Vector2(88, 88)
+layout_mode = 2
+img = ExtResource("11_eapqb")
+itemContext = "徐州城外黄帝遗迹，古龙石像巍然屹立，传为黄帝亲铸之神器，内藏无上秘宝。近日，盗墓贼频频觊觎，欲掘遗迹，窃取神器。更闻秘辛，城内军方暗中插手，假借“修缮古迹”之名，行杀良冒功之实，欲掩真相。若欲探黄帝遗迹，需以侠义处之，凭武力慑服士卒，揭开隐秘。"
+itemstype = 22
+
+[node name="Control7" parent="HBoxContainer" instance=ExtResource("9_6hr8h")]
+custom_minimum_size = Vector2(88, 88)
+layout_mode = 2
+img = ExtResource("13_iibwl")
+itemContext = "？"
+itemstype = 17
+
+[node name="Label2" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 332.0
+offset_top = 660.0
+offset_right = 1588.0
+offset_bottom = 698.0
+theme_override_font_sizes/font_size = 31
+text = "精力丸，能补充一定的精力"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="detail" type="Label" parent="."]
+layout_mode = 0
+offset_left = 432.0
+offset_top = 488.0
+offset_right = 1471.0
+offset_bottom = 821.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 0
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("5_fxvgj")
+theme_override_font_sizes/font_size = 40
+text = "点击诡物图标，即可查看对应怪谈故事。这些道具将在后续剧情中陆续解锁获取。"
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 3
+
+[node name="TextureButton2" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 643.0
+offset_top = -447.0
+offset_right = 707.0
+offset_bottom = -383.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("4_5tk80")
+texture_pressed = ExtResource("4_5tk80")
+texture_hover = ExtResource("4_5tk80")
+texture_disabled = ExtResource("4_5tk80")
+texture_focused = ExtResource("4_5tk80")
+stretch_mode = 0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="gui_input" from="PanelContainer" to="." method="_on_panel_container_gui_input"]
+[connection signal="button_down" from="TextureButton" to="." method="_on_exit_button_button_down"]
+[connection signal="button_down" from="backTxt/buyBackButton" to="." method="_on_Sold_button_down"]
+[connection signal="button_down" from="TextureButton2" to="." method="_on_texture_button_2_button_down"]

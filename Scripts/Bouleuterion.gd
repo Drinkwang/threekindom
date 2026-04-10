@@ -271,6 +271,7 @@ func eatFish1(issuccuss=false):
 	if issuccuss==true:
 		GameManager.sav.have_event["陈登正确选择1"]=true
 	else:
+		GameManager.sav.have_event["错失血袖"]=true
 		GameManager.sav.have_event["陈登正确选择1"]=false
 		#GameManager.sav.hp
 func eatFish2(issuccuss=false):
@@ -283,6 +284,7 @@ func eatFish2(issuccuss=false):
 		if GameManager.sav.have_event["陈登正确选择2"]==true and GameManager.sav.have_event["陈登正确选择1"]==true:
 			GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.CHENDENG]=tr("持陈登密信赴乱葬岗，追查陶谦失尸之谜")
 	else:
+		GameManager.sav.have_event["错失血袖"]=true
 		GameManager.sav.have_event["陈登正确选择2"]=false
 func hearSayEnd():
 	GameManager.hearsayID=-1

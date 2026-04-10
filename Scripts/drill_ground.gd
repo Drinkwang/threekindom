@@ -285,7 +285,7 @@ func enterOldSoilderEat():
 func getLongdan():
 	caobao.hide()
 	var _reward:rewardPanel=PanelManager.new_reward()
-	
+	GameManager.sav.have_event["获得亮银"]=true
 	var items={
 		"items": {InventoryManagerItem.ItemEnum.龙胆亮银枪:1},
 		"money": 0,
@@ -519,7 +519,7 @@ func select1(issuccuss):
 		GameManager.sav.have_event["曹豹正确选择1"]=true
 	else:
 		GameManager.sav.have_event["曹豹正确选择1"]=false
-
+		GameManager.sav.have_event["错失娃娃"]=true
 
 func boardVictory():
 
@@ -554,6 +554,7 @@ func select2(issuccuss):
 			
 			GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.CAOBAO]=tr("夜探黄帝遗迹，揭穿盗宝阴谋")
 	else:
+		GameManager.sav.have_event["错失娃娃"]=true
 		GameManager.sav.have_event["曹豹正确选择2"]=false
 
 func drillKeComplete():

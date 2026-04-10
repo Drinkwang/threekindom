@@ -608,3 +608,56 @@ do killCike(2)
 ~ 点击曹操
 刘备: （必须保护曹操，击退刺客！）
 => END!
+
+~ 诡物手册
+
+主簿: 大人，府外有位修道者，自称能解大人心中郁结、指点迷津。[voice:zhubu_fuwaixiudaozhe]
+do zhubu.hide()
+刘备: 哦？请进来。[voice:liubei_oqingjin]
+do zhenren.show()
+真人: 大人，想来你也早已察觉，这世间处处透着不正常。若你真想探明这些隐秘，这本《诡物手册》，便是为你而备。
+刘备: 道长此言何意？此册能解我心中所惑？[voice:liubei_daozhangciyanheyi]
+真人: 你想探寻的那些异常蹊跷，尽在此册之中。需二百金，心诚则灵。
+=> 购买诡异手册
+=> END!
+
+~ 购买诡异手册
+- 是
+	if GameManager.sav.coin>=200
+		GameManager.sav.coin=GameManager.sav.coin-200
+		刘备: …… 也罢，便购下此册。[voice:liubei_yebagoule]
+		真人: 善。有它引路，你方能顺利与诡物相遇，寻得真相。
+		系统提示: 已获得【诡物手册】，可点击头像或按 ESC 键打开查看。
+		do getguiwuItems()
+	else:
+		系统提示: 你的财力不足
+		=> 购买诡异手册
+- 否
+	刘备: 此事太过玄虚，容后再议。[voice:liubei_cishitaiguoxuanxu]
+	长者: 无妨。无册亦可，只是前路多艰。你的命数本就会与诡物相逢，此册不过是让你更早、更顺地遇见它们罢了。
+
+do zhenren.hide()
+=> END!
+
+
+~ playtest结束
+主簿: 大人，上次那位修道者又来了，求见您。[voice:zhubo_shangcixiudaozhe]
+do zhubu.hide()
+刘备: 何事？让他进来。[voice:liubei_heshirangtajinlai]
+do zhenren.show()
+真人: 玄德公，贫道候你多时了！汝乃真龙之躯，命定可承重启仙道之责。
+刘备: 老道长何出此言？吾不过布衣微末，安敢称真龙？
+do GameManager.enterCrazy()
+#    do GameManager.enterNormal()
+
+长者: …… 可惜了。此番时间线已然错乱，此世不可再续。
+do playmusic()
+刘备: …… 时间线？[voice:liubei_shijianxian]
+
+长者: 本次试炼，便到此为止。
+余下前路，待下次开启，再行推演。
+
+do GameManager.enterNormal()
+do zhenren.hide()
+do playtestEnd()
+=> END!

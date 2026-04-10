@@ -1,0 +1,71 @@
+[gd_scene load_steps=6 format=3 uid="uid://ds871wmeeqss2"]
+
+[ext_resource type="Script" path="res://Scripts/guiwu_item.gd" id="1_yc4p5"]
+[ext_resource type="Texture2D" uid="uid://sq2pvmh6p5db" path="res://Asset/ui/8.png" id="2_kmu67"]
+[ext_resource type="Texture2D" uid="uid://v18r3lgfvy17" path="res://Asset/ui/白框.png" id="2_lpgbc"]
+[ext_resource type="Texture2D" uid="uid://dahuc8gb2blc" path="res://Asset/other/0_red.png" id="4_myfb4"]
+[ext_resource type="Texture2D" uid="uid://cs5g6j85jlgsg" path="res://Asset/绿色锦囊.png" id="4_wtqhn"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchor_right = 0.046
+anchor_bottom = 0.078
+offset_right = -0.320007
+offset_bottom = -0.240005
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+script = ExtResource("1_yc4p5")
+
+[node name="8" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(44.5, 40.5)
+scale = Vector2(0.142578, 0.146484)
+texture = ExtResource("2_kmu67")
+
+[node name="frame" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 4.0
+offset_right = 81.0
+offset_bottom = 79.0
+texture = ExtResource("2_lpgbc")
+expand_mode = 1
+
+[node name="context" type="TextureRect" parent="frame"]
+modulate = Color(0.111197, 0.111197, 0.111197, 1)
+layout_mode = 0
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 68.0
+offset_bottom = 68.0
+texture = ExtResource("4_wtqhn")
+expand_mode = 1
+
+[node name="Quantity" type="Label" parent="frame"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.08
+anchor_top = -0.053
+anchor_right = -0.08
+anchor_bottom = -0.053
+offset_top = -0.0249999
+offset_right = 74.0
+offset_bottom = 71.975
+theme_override_font_sizes/font_size = 16
+text = "1"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="miss" type="TextureRect" parent="frame"]
+visible = false
+layout_mode = 0
+offset_left = 7.0
+offset_top = 6.0
+offset_right = 68.0
+offset_bottom = 67.0
+texture = ExtResource("4_myfb4")
+expand_mode = 1
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
