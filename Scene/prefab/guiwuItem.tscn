@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://ds871wmeeqss2"]
+[gd_scene load_steps=5 format=3 uid="uid://ds871wmeeqss2"]
 
 [ext_resource type="Script" path="res://Scripts/guiwu_item.gd" id="1_yc4p5"]
 [ext_resource type="Texture2D" uid="uid://sq2pvmh6p5db" path="res://Asset/ui/8.png" id="2_kmu67"]
 [ext_resource type="Texture2D" uid="uid://v18r3lgfvy17" path="res://Asset/ui/白框.png" id="2_lpgbc"]
 [ext_resource type="Texture2D" uid="uid://dahuc8gb2blc" path="res://Asset/other/0_red.png" id="4_myfb4"]
-[ext_resource type="Texture2D" uid="uid://cs5g6j85jlgsg" path="res://Asset/绿色锦囊.png" id="4_wtqhn"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -39,7 +38,6 @@ offset_left = 7.0
 offset_top = 7.0
 offset_right = 68.0
 offset_bottom = 68.0
-texture = ExtResource("4_wtqhn")
 expand_mode = 1
 
 [node name="Quantity" type="Label" parent="frame"]

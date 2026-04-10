@@ -617,14 +617,15 @@ do zhubu.hide()
 do zhenren.show()
 真人: 大人，想来你也早已察觉，这世间处处透着不正常。若你真想探明这些隐秘，这本《诡物手册》，便是为你而备。
 刘备: 道长此言何意？此册能解我心中所惑？[voice:liubei_daozhangciyanheyi]
-真人: 你想探寻的那些异常蹊跷，尽在此册之中。需二百金，心诚则灵。
+真人: 你想探寻的那些异常蹊跷，尽在此册之中。需一百金，心诚则灵。
 => 购买诡异手册
 => END!
 
 ~ 购买诡异手册
 - 是
-	if GameManager.sav.coin>=200
-		GameManager.sav.coin=GameManager.sav.coin-200
+	if GameManager.sav.coin>=100
+		GameManager.sav.coin=GameManager.sav.coin-100
+		do SoundManager.play_sound(sounds.buysellsound)
 		刘备: …… 也罢，便购下此册。[voice:liubei_yebagoule]
 		真人: 善。有它引路，你方能顺利与诡物相遇，寻得真相。
 		系统提示: 已获得【诡物手册】，可点击头像或按 ESC 键打开查看。
@@ -637,6 +638,7 @@ do zhenren.show()
 	长者: 无妨。无册亦可，只是前路多艰。你的命数本就会与诡物相逢，此册不过是让你更早、更顺地遇见它们罢了。
 
 do zhenren.hide()
+do GameManager.sav.have_event["触发诡物手册"]=true
 => END!
 
 

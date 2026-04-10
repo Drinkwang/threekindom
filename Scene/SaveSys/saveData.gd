@@ -11,7 +11,7 @@ class_name saveData
 @export var caobaofav=70
 #@export var intellectual_support=100 #士族支持度 一开始为100 当议会中 会出现支持和不支持以及摇摆 
 @export var people_surrport=100 #群众支持度 数值
-@export var coin=100: #金钱 数值
+@export var coin=200: #金钱 数值 如果进入这个 变成100
 
 	get:
 		return coin
@@ -331,6 +331,7 @@ var SIDEQUEST_MAP:Dictionary={
 	"最终比武结束":false,
 	"津贴系统开始":false,
 	"第一次津贴教程":false,
+	"触发诡物手册":false,
 	"诡物手册":false,
 	"获得过木桶标记":false,
 	"错失木桶":false,	

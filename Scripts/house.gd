@@ -1035,7 +1035,10 @@ func allocationMuliao():
 			zhubu.show()
 			zhubu.changeAllClick("月例预期日")
 			#allocationAllSettle
-	pass
+		if GameManager.sav.hp<100 and GameManager.sav.day>1 and GameManager.sav.day<=3 and GameManager.sav.have_event["触发诡物手册"]==false:
+			zhubu.showEX=true
+			zhubu.show()
+			zhubu.changeAllClick("诡物手册")
 
 func settleDeterminValue():
 	if(determineType==GameManager.ResType.coin):
