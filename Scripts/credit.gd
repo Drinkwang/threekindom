@@ -2,6 +2,7 @@ class_name credit
 extends Node2D
 
 const __CREDIT__ = preload("res://Asset/other/常规credit曲子.MP3")
+@onready var zhugeliang: clickBlock = $"诸葛亮"
 
 const badaoxian = preload("res://Asset/other/霸道线曲子.mp3")
 # Called when the node enters the scene tree for the first time.

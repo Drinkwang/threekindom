@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 
 
 # Called when the node enters the scene tree for the first time.
@@ -13,6 +13,7 @@ func _process(delta: float) -> void:
 
 
 func _on_texture_button_2_button_down() -> void:
+	PanelManager.isOpenSetting=false	
 	self.hide()
 func refreshPage(_name,isstatue,context):
 	var statuesTxt

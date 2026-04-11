@@ -1226,9 +1226,13 @@ func SkipPrologue():
 	for key in keys_to_change:
 		sav.have_event[key] = true
 	sav.day=5
+	sav.coin=100
 	initSecretFunc()
 
 var _setting:SettingsResource
+
+func OpenGuiyiBook():
+	PanelManager.new_guiyiBook()	
 
 func initSetting():
 	var path="user://save_data_setting.tres"

@@ -148,8 +148,19 @@ func new_SettingMenu( title: String = "") -> SettingMenu:
 	return show_reward_scene(balloon_path, title)
 
 
+func _get_guiyi_balloon_path() -> String:
+	var is_small_window: bool = ProjectSettings.get_setting("display/window/size/viewport_width") < 400
+	var balloon_path: String = "/guiyiitembook.tscn" #if is_small_window else "/example_balloon/example_balloon.tscn"
+	return get_script().resource_path.get_base_dir() + balloon_path
 
 
+func new_guiyiBook():
+	
+	var balloon_path: String# = DialogueSettings.get_setting(&"balloon_path", _get_example_balloon_path())
+	if not ResourceLoader.exists(balloon_path):
+		balloon_path = _get_guiyi_balloon_path()
+	isOpenSetting=true	
+	return show_reward_scene(balloon_path, "title")
 
 func _get_setting_balloon_path() -> String:
 	var is_small_window: bool = ProjectSettings.get_setting("display/window/size/viewport_width") < 400

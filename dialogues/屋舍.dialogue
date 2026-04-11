@@ -624,7 +624,7 @@ do zhenren.show()
 ~ 购买诡异手册
 - 是
 	if GameManager.sav.coin>=100
-		GameManager.sav.coin=GameManager.sav.coin-100
+		do GameManager.sav.coin-=100
 		do SoundManager.play_sound(sounds.buysellsound)
 		刘备: …… 也罢，便购下此册。[voice:liubei_yebagoule]
 		真人: 善。有它引路，你方能顺利与诡物相遇，寻得真相。

@@ -22,7 +22,7 @@ const InventoryManagerName = "InventoryManager"
 			context.modulate=Color.WHITE
 			alreaysold.visible=false
 		elif value==2:
-			context.modulate=Color.WHITE
+			context.modulate=Color("#1c1c1c")
 			alreaysold.visible=true
 #=1
 #=2
@@ -157,7 +157,7 @@ func getStuatus():
 func _process(delta):
 	pass
 
-@onready var control: Control = $"../.."
+@onready var control = $"../.."
 
 func _on_gui_input(event):
 	

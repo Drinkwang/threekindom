@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://dkau7bjygf8l7"]
+[gd_scene load_steps=51 format=3 uid="uid://dkau7bjygf8l7"]
 
 [ext_resource type="Texture2D" uid="uid://d2artvwe80df1" path="res://Asset/光明/正常背景.png" id="1_filqm"]
 [ext_resource type="Script" path="res://Scripts/credit.gd" id="1_lakog"]
@@ -34,6 +34,7 @@
 [ext_resource type="Texture2D" uid="uid://dds10cvaxf2sy" path="res://Asset/光明/邺城.png" id="29_a608s"]
 [ext_resource type="Resource" uid="uid://bmuiri1yjrdba" path="res://dialogues/屋舍.dialogue" id="29_vclfe"]
 [ext_resource type="Texture2D" uid="uid://dn1vn1tmhae6l" path="res://Asset/人物/郭嘉.png" id="30_ar2lf"]
+[ext_resource type="Texture2D" uid="uid://ciqhyx551bu5" path="res://Asset/人物/诸葛亮2.png" id="34_1sl7p"]
 
 [sub_resource type="Animation" id="Animation_n18vh"]
 length = 0.001
@@ -724,6 +725,16 @@ visible = false
 position = Vector2(705, 591)
 showName = "曹操"
 txt2d = ExtResource("28_nwxtq")
+boardType = 1
+dialogue_resource = ExtResource("29_vclfe")
+dialogue_start = ""
+
+[node name="诸葛亮" parent="." instance=ExtResource("27_714ud")]
+visible = false
+position = Vector2(958, 593)
+scale = Vector2(1.3, 1.3)
+showName = "诸葛亮"
+txt2d = ExtResource("34_1sl7p")
 boardType = 1
 dialogue_resource = ExtResource("29_vclfe")
 dialogue_start = ""

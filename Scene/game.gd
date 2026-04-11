@@ -81,6 +81,7 @@ func NormalStartGame():
 	
 	
 func JumpStartGame():
+	
 	DialogueManager.show_example_dialogue_balloon(sys,"小沛内容介绍")
 
 func MainContent():
