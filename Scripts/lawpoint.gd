@@ -33,7 +33,7 @@ var context_tr:String:
 func _ready():
 	$PanelContainer/MarginContainer/Label.text=context
 	#判断是否该解锁，通过存档数据
-	detail="{bg}({Txt})".format({"bg":IncomeBg,"Txt":IncomeTxt})
+	detail="{bg}({Txt})".format({"bg":tr(IncomeBg),"Txt":tr(IncomeTxt)})
 	var stringandNum=self.name.get_slice("-",0)
 	num1=-1
 	num2= int(self.name.get_slice("-",1))
@@ -68,7 +68,7 @@ func _changeLanguage():
 			
 	else:
 		$PanelContainer/MarginContainer/Label.remove_theme_font_override("font")
-
+	detail="{bg}({Txt})".format({"bg":tr(IncomeBg),"Txt":tr(IncomeTxt)})
 @onready var texture_rect = $TextureRect2/TextureRect
 @onready var animation_player = $AnimationPlayer
 

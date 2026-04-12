@@ -584,6 +584,7 @@ scale = Vector2(2.23, 2.23)
 texture = ExtResource("9_jo5l7")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 offset_left = -348.0
 offset_top = -195.0
 offset_right = 2217.0
@@ -728,6 +729,22 @@ txt2d = ExtResource("28_nwxtq")
 boardType = 1
 dialogue_resource = ExtResource("29_vclfe")
 dialogue_start = ""
+
+[node name="史料参考" type="Label" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.576471)
+offset_left = 582.0
+offset_top = 546.0
+offset_right = 1318.0
+offset_bottom = 615.0
+theme_override_colors/font_outline_color = Color(0.658824, 0.290196, 0.290196, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("13_tqclm")
+theme_override_font_sizes/font_size = 32
+text = "史料参考：曹操与刘备密言，备泄之於袁绍，
+绍知操有图己之意。操自咋其舌流血，以失言戒后世。"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="诸葛亮" parent="." instance=ExtResource("27_714ud")]
 visible = false

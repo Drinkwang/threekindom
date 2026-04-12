@@ -38,7 +38,6 @@ one_shot = true
 stream = ExtResource("2_rmxti")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-anchors_preset = -1
 offset_left = -448.0
 offset_top = -344.0
 offset_right = 2544.0
@@ -106,7 +105,7 @@ color = Color(1, 0, 0, 0.45098)
 [node name="starttitle" type="Label" parent="."]
 offset_left = 351.0
 offset_top = 200.0
-offset_right = 818.0
+offset_right = 1571.0
 offset_bottom = 263.0
 theme_override_fonts/font = ExtResource("5_ljj6w")
 theme_override_font_sizes/font_size = 62
@@ -233,7 +232,7 @@ theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 0
 theme_override_constants/shadow_outline_size = 12
 theme_override_fonts/font = ExtResource("7_sejbd")
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 36
 text = "点击诡物图标，即可查看对应怪谈故事。这些道具将在后续剧情中陆续解锁获取。"
 horizontal_alignment = 1
 vertical_alignment = 2

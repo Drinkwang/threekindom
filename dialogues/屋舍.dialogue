@@ -648,15 +648,15 @@ do zhubu.hide()
 刘备: 何事？让他进来。[voice:liubei_heshirangtajinlai]
 do zhenren.show()
 真人: 玄德公，贫道候你多时了！汝乃真龙之躯，命定可承重启仙道之责。
-刘备: 老道长何出此言？吾不过布衣微末，安敢称真龙？
+刘备: 老道长何出此言？吾不过布衣微末，安敢称真龙？[voice:liubei_anganzhenlong2]
 do GameManager.enterCrazy()
 #    do GameManager.enterNormal()
 
-长者: …… 可惜了。此番时间线已然错乱，此世不可再续。
+真人: …… 可惜了。此番时间线已然错乱，此世不可再续。
 do playmusic()
 刘备: …… 时间线？[voice:liubei_shijianxian]
 
-长者: 本次试炼，便到此为止。
+真人: 本次试炼，便到此为止。
 余下前路，待下次开启，再行推演。
 
 do GameManager.enterNormal()

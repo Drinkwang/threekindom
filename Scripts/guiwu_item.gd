@@ -87,7 +87,7 @@ func _ready():
 		statuesTxt="已获得"
 	elif isstatue==2:
 		statuesTxt="已错过"
-	var _context=tr(db.name)+":"+statuesTxt
+	var _context=tr(db.name)+":"+tr(statuesTxt)
 
 
 	
