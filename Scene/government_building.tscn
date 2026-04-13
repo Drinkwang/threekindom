@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://dbk6u8kc33kq2"]
+[gd_scene load_steps=51 format=3 uid="uid://dbk6u8kc33kq2"]
 
 [ext_resource type="Script" path="res://Scripts/government_building.gd" id="1_xncth"]
 [ext_resource type="Resource" uid="uid://cqlt2sgkuk3na" path="res://dialogues/府邸.dialogue" id="2_yngd1"]
@@ -43,6 +43,21 @@
 [ext_resource type="Texture2D" uid="uid://cqh5dhr518rsp" path="res://Asset/板子.png" id="34_dqdog"]
 [ext_resource type="Texture2D" uid="uid://bol8v0a4a87yg" path="res://Asset/人物/张飞close.png" id="41_gh0g6"]
 
+[sub_resource type="Animation" id="Animation_s45lu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -283.11)]
+}
+
 [sub_resource type="Animation" id="Animation_rms3s"]
 resource_name = "YELLOWGUILD"
 loop_mode = 1
@@ -61,7 +76,29 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4gull"]
 _data = {
+"RESET": SubResource("Animation_s45lu"),
 "YELLOWGUILD": SubResource("Animation_rms3s")
+}
+
+[sub_resource type="Animation" id="Animation_uk55j"]
+resource_name = "YELLOWGUILD"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -5), Vector2(0, 10), Vector2(0, 6.66666), Vector2(0, 3.33331), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hjfi7"]
+_data = {
+"YELLOWGUILD": SubResource("Animation_uk55j")
 }
 
 [sub_resource type="Animation" id="Animation_trdn5"]
@@ -207,13 +244,6 @@ dialogue_start = ""
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="hpPanel" parent="CanvasLayer" instance=ExtResource("7_iy2fq")]
-offset_left = 1395.0
-offset_top = 20.0
-offset_right = 1395.0
-offset_bottom = 20.0
-scale = Vector2(0.2, 0.2)
-
 [node name="resPanel" parent="CanvasLayer" instance=ExtResource("16_rw7iu")]
 offset_left = 1406.0
 offset_top = 619.0
@@ -238,6 +268,21 @@ mouse_filter = 1
 [node name="Control" parent="CanvasLayer" instance=ExtResource("5_gv3ja")]
 mouse_filter = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
+offset_left = -86.0
+offset_top = -1.0
+offset_right = 1929.0
+offset_bottom = 1109.0
+color = Color(0, 0, 0, 0.85098)
+
+[node name="hpPanel" parent="CanvasLayer" instance=ExtResource("7_iy2fq")]
+offset_left = 1395.0
+offset_top = 20.0
+offset_right = 1395.0
+offset_bottom = 20.0
+scale = Vector2(0.2, 0.2)
 
 [node name="policyPanel" parent="CanvasLayer" instance=ExtResource("9_fdrkw")]
 visible = false
@@ -290,6 +335,22 @@ context = "备弟足下：
 lookdoneDialog = " 曹操的信_2"
 dialogue_resource = ExtResource("2_yngd1")
 
+[node name="Node2D" type="Node2D" parent="CanvasLayer"]
+visible = false
+position = Vector2(1888, 100)
+scale = Vector2(0.5, 0.5)
+
+[node name="5Yellow" type="Sprite2D" parent="CanvasLayer/Node2D"]
+position = Vector2(0, -283.11)
+rotation = -1.5708
+scale = Vector2(4, 4)
+texture = ExtResource("28_ucvcr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Node2D/5Yellow"]
+libraries = {
+"": SubResource("AnimationLibrary_4gull")
+}
+
 [node name="sendGiftPanel" parent="." instance=ExtResource("9_2k5hb")]
 visible = false
 
@@ -326,7 +387,7 @@ texture = ExtResource("28_ucvcr")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="point/5Yellow"]
 libraries = {
-"": SubResource("AnimationLibrary_4gull")
+"": SubResource("AnimationLibrary_hjfi7")
 }
 autoplay = "YELLOWGUILD"
 

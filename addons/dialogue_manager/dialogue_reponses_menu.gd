@@ -45,6 +45,21 @@ var responses: Array = []:
 					item.response = response
 				# Otherwise assume we can just set the text
 				else:
+					
+					var regex = RegEx.new()
+
+					regex.compile("\\[costHp=(\\d+)\\]") 
+					var previewCostHp=0 
+					var result = regex.search(response.text)
+					if result:
+						var hp_str = result.get_string(1) 
+						previewCostHp= hp_str.to_int()
+						response.text = regex.sub(response.text, "", false)
+					else:
+						previewCostHp=0
+					item.set_meta("previewCostHp", previewCostHp) # 这里存入数值
+	# 如果你只想在数值是 10, 20, 30 时执行：					
+					
 					if "[highlight=true]" in response.text:
 						response.text = response.text.replace("[highlight=true]", "")
 						var sxnum=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.獬豸圣像) 
@@ -109,19 +124,7 @@ var responses: Array = []:
 							response.text+=tr("(专属武器解锁)")
 
 					
-					var regex = RegEx.new()
 
-					regex.compile("\\[costHp=(\\d+)\\]") 
-					var previewCostHp=0 
-					var result = regex.search(response.text)
-					if result:
-						var hp_str = result.get_string(1) 
-						previewCostHp= hp_str.to_int()
-						response.text = regex.sub(response.text, "", false)
-					else:
-						previewCostHp=0
-					item.set_meta("previewCostHp", previewCostHp) # 这里存入数值
-	# 如果你只想在数值是 10, 20, 30 时执行：
 
 					item.text = response.text
 					

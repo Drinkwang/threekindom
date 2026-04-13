@@ -462,6 +462,15 @@ func _buttonListClick(item):
 		#显示金钱 民心 xx 武将面板
 	print(item)
 	pass
+@onready var color_rect: ColorRect = $CanvasLayer/ColorRect
+	
+
+@onready var node_2d: Node2D = $CanvasLayer/Node2D
+
+func showFirstHpTutoral():
+	color_rect.show()
+	$"CanvasLayer/Node2D/5Yellow/AnimationPlayer".play("YELLOWGUILD")
+	
 func victoryPartyEnd():
 	
 	GameManager.sav.have_event["庆功宴结束"]=true

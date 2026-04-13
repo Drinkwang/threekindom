@@ -41,6 +41,17 @@ func stopPreviewHP():
 	previewValue=0
 	changerate(GameManager.sav.hp)
 
+
+@onready var fadeimage: TextureRect = $fadeimage
+@onready var animation_player_init: AnimationPlayer = $fadeimage/AnimationPlayer
+
+
+func setGlowStrength():
+	fadeimage.show()
+	animation_player_init.play("blink")
+	
+func returnStrength():
+	fadeimage.hide()
 func showTargetLabel():
 	var targetValue=GameManager.sav.targetValue
 	#获取当前值的枚举类型，根据枚举类型获取对应资源数值，并把资源数值填写进下面的函数

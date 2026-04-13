@@ -69,7 +69,7 @@ func _ready():
 	if GameManager.sav.laws[0].count(5)>=1:
 		context=context+"\n"+tr("士族优先")+"："+"2000"	
 	
-	TooltipManager.register_tooltip(yourscore,"右侧数值为你的才气上限，亦是大儒辩经可获得的最高分数，超出部分不予结算。才气值可通过使用道具、颁布法令进行提升。\n雌雄双古剑：+2000\n兴办教育：+2000\n重农抑商：+2000\n士族优先：+2000")
+	TooltipManager.register_tooltip(yourscore,context)
 
 
 

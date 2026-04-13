@@ -1,10 +1,11 @@
-@tool
+
 extends CanvasLayer
 class_name TiredPanel
 
 @onready var texture_button = $Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/TextureButton
 
 @onready var resideLabel = $Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/TextureButton/Label/Label
+@onready var initrestBtn: Button = $Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Button2
 
 func _ready():
 	var count=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.益气丸)
@@ -14,7 +15,14 @@ func _ready():
 		texture_button.show()
 	else:
 		texture_button.hide()
-	
+	if GameManager.sav.have_event["initTaskPolicy"]==false:
+		var context=tr("请先离开府邸完成流程，否则无法休息。")
+		if initrestBtn!=null:
+			TooltipManager.register_tooltip(initrestBtn,context)
+			initrestBtn.disabled=true
+	else:
+		if initrestBtn!=null:
+			initrestBtn.disabled=false
 	
 
 func _on_rest():

@@ -635,7 +635,7 @@ do zhenren.show()
 		=> 购买诡异手册
 - 否
 	刘备: 此事太过玄虚，容后再议。[voice:liubei_cishitaiguoxuanxu]
-	长者: 无妨。无册亦可，只是前路多艰。你的命数本就会与诡物相逢，此册不过是让你更早、更顺地遇见它们罢了。
+	真人: 无妨。无册亦可，只是前路多艰。你的命数本就会与诡物相逢，此册不过是让你更早、更顺地遇见它们罢了。
 
 do zhenren.hide()
 do GameManager.sav.have_event["触发诡物手册"]=true

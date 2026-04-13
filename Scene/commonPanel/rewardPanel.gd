@@ -50,8 +50,11 @@ func _ready():
 	if(txt!=null):
 		img.texture=txt
 	#hide()
-
-	pass # Replace with function body.
+	await get_tree().create_timer(0.25).timeout
+	canclick = true	
+	
+@export var canclick=false	
+	
 @onready var imgTarget = $"骷髅头"
 
 #@onready var grid = $Control/PanelContainer/MarginContainer/VBoxContainer/Margin/Grid
@@ -218,6 +221,8 @@ func _process(delta):
 
 
 func _on_button_button_down():
+	if canclick==false:
+		return
 	SignalManager.endReward.emit()
 	self.hide()
 	

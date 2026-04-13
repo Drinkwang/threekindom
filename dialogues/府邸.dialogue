@@ -427,8 +427,14 @@ do mizhuHide()
 ~ 完成第一次政务离开
 主簿: 将军，您可随意前往城中各处，无论是议事厅、演武场，还是拜访大儒……[voice:zhubo_kaifangshijie]
 主簿: 说不定在走访之间，您所需的资金便能凑齐了。[voice:zhubo_shuobudingcouqi]
-提示: 自由探索游戏，目标为筹齐所需资金。  
+提示: 自由探索游戏，目标为筹齐所需资金。
+do showFirstHpTutoral()
+do GameManager._engerge.setGlowStrength()
 提示: 每完成一项差事均会消耗体力值，请合理规划行程
+提示: 各项操作的体力消耗数值暂不公开，需自行记录；若需了解具体扣除量，可在商人处购买特殊道具获取提示。
+do node_2d.hide()
+do GameManager._engerge.returnStrength()
+
 do exit()	
 => END!
 
@@ -1609,7 +1615,7 @@ do chenden.hide()
 主簿: 糜竺先生所言极是。月例配给，乃治国治军之根本，制度一定，四方皆有依赖，主公基业方能更稳。[voice:zhubu_zhugongjiyegengwen]
 刘备: 好。便依你二人所言，设立月例配给，今后按期施行。[voice:liubei_yuelipeiji]
 do zhubu.hide()
-系统提示：可与糜竺对话开启月例配给管理面板，完成各派系交付任务，均可获得 1 点律法点数。
+系统提示: 可与糜竺对话开启月例配给管理面板，完成各派系交付任务，均可获得 1 点律法点数。
 do _initData()
 => END!
 ~ 津贴教程
