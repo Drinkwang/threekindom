@@ -469,8 +469,9 @@ func _buttonListClick(item):
 
 func showFirstHpTutoral():
 	color_rect.show()
+	node_2d.show()
 	$"CanvasLayer/Node2D/5Yellow/AnimationPlayer".play("YELLOWGUILD")
-	
+	create_tween().tween_property(color_rect, "color:a", 0.85, 0.4)
 func victoryPartyEnd():
 	
 	GameManager.sav.have_event["庆功宴结束"]=true

@@ -49,10 +49,20 @@ func ChangeAllPeople(num):
 	#发送信号
 
 func ChangeSupport(num):
+	
+	if index==factionIndex.haozupai and GameManager.sav.have_event["Factionalization"]==false:
+		GameManager.sav.BENTUPAI.ChangeSupport(num)
+		return
+	
 	if supressNum>=3:
 		_support_rate=100
 		return
+		
+	
 	_support_rate=_support_rate+num
+	
+	
+	
 	if _support_rate>100:
 		_support_rate=100
 	elif _support_rate<0:

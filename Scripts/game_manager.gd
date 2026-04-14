@@ -784,9 +784,10 @@ func loadLaw():
 			
 			sav.labor_DayGet=sav.labor_DayGet+10
 			#获得诸子百家
-			sav.daruValue+=1500
-			var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.诸子百家论集)
-			var remainder = InventoryManager.add_item(inventoryPackege, itemid, 1, false)
+			sav.daruValue+=2000
+			sav.WAIDIPAI.ChangeSupport(-20)
+			#var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.诸子百家论集)
+			#var remainder = InventoryManager.add_item(inventoryPackege, itemid, 1, false)
 
 			print("兴办教育done")		
 	elif sav.curLawName=="整治街容":#只有buff

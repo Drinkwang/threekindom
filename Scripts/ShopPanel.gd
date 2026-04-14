@@ -16,6 +16,7 @@ func _ready():
 		useItems=InventoryManager.costItemRandom(backNum)
 		GameManager.SoldItemStr=generate_consumed_string(useItems)
 		GameManager.SoldCoin=0
+		var shopEnhanceContext=""
 		for item_type in useItems:
 			if useItems[item_type] > 0:  # 只处理消耗数量大于 0 的道具
 		
@@ -23,9 +24,14 @@ func _ready():
 				var properties:Array=InventoryManager.get_item_properties(item_type)
 				var item=properties.filter(func(a):return a["name"]=="price")[0]
 				var price=int(item["value"])
-				price=floor(price*0.6)
+				var shopEnhance=GameManager.sav.shopEnhance
+				var shopEnum=shopEnhance*0.15
+				
+				if shopEnhance>0:
+					shopEnhanceContext="[法令提升收购价{profit}%]".format({"profit":shopEnhance*15})
+				price=floor(price*(0.6+shopEnum))
 				GameManager.SoldCoin=GameManager.SoldCoin+price
-		GameManager.SoldItemStr=tr("我将以%d金收购你手上的")%GameManager.SoldCoin+" ["+GameManager.SoldItemStr+"]"
+		GameManager.SoldItemStr=tr("我将以%d金收购你手上的")%GameManager.SoldCoin+" ["+GameManager.SoldItemStr+"]"+shopEnhanceContext
 		back_txt.show()
 		#
 		

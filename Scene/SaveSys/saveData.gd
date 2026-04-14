@@ -23,6 +23,8 @@ class_name saveData
 			GameManager.currenceScene.JudFundTask()
 
 @export var daruValue=8000
+@export var shopEnhance=0
+@export var battleEnhance=0
 @export var coin_DayGet=40
 @export var labor_force=100 #劳动力 可以当作军队进行使用 劳动力转换成军队需要消耗值 骑兵 步兵 弓兵
 @export var labor_DayGet=10

@@ -257,7 +257,23 @@ func preLaw(value:lawpoint):
 		return
 	ConfireButton.show()
 	selectLawPoint=value
-	law_label.text=value.detail
+	
+	var context:String=value.detail
+	if "[danyang]" in context:
+		context=context.replace("[danyang]",tr("丹阳派"))
+	if "[shizu]" in context:
+		if GameManager.sav.have_event["Factionalization"]==true:
+			context=context.replace("[shizu]",tr("士族派"))
+		else:
+			context=context.replace("[shizu]",tr("本土派"))
+	if "[haozu]" in context:
+		if GameManager.sav.have_event["Factionalization"]==true:
+			context=context.replace("[haozu]",tr("豪族派"))
+		else:
+			context=context.replace("[shizu]",tr("本土派"))			
+	#if value.detail
+	
+	law_label.text=context
 
 	ConfireButton.disabled=false
 	if value.lawpoins.size()>0:

@@ -275,7 +275,7 @@ offset_left = -86.0
 offset_top = -1.0
 offset_right = 1929.0
 offset_bottom = 1109.0
-color = Color(0, 0, 0, 0.85098)
+color = Color(0, 0, 0, 0)
 
 [node name="hpPanel" parent="CanvasLayer" instance=ExtResource("7_iy2fq")]
 offset_left = 1395.0
@@ -336,7 +336,6 @@ lookdoneDialog = " 曹操的信_2"
 dialogue_resource = ExtResource("2_yngd1")
 
 [node name="Node2D" type="Node2D" parent="CanvasLayer"]
-visible = false
 position = Vector2(1888, 100)
 scale = Vector2(0.5, 0.5)
 
