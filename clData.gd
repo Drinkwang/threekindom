@@ -37,6 +37,7 @@ enum factionIndex{
 #-1没开启 0未支付  1 已经支付
 @export var demand={}
 @export var isAutoAllocation=false
+var support_redirect: Callable
 func getTr():
 	return tr(_name)
 
@@ -49,9 +50,9 @@ func ChangeAllPeople(num):
 	#发送信号
 
 func ChangeSupport(num):
-	
-	if index==factionIndex.haozupai and GameManager.sav.have_event["Factionalization"]==false:
-		GameManager.sav.BENTUPAI.ChangeSupport(num)
+
+	if support_redirect.is_valid():
+		support_redirect.call(num)
 		return
 	
 	if supressNum>=3:

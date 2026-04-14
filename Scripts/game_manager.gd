@@ -338,6 +338,8 @@ func refreshPaixis():
 	#initPaixi(sav.HAOZUPAI)
 	if sav.have_event["Factionalization"]:
 		initPaixi(sav.HAOZUPAI)
+	else:
+		sav.HAOZUPAI.support_redirect = func(num): sav.BENTUPAI.ChangeSupport(num)
 	#传递信号，政策看法
 
 func _enterDay(value=true):
