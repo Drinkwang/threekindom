@@ -615,9 +615,9 @@ do killCike(2)
 do zhubu.hide()
 刘备: 哦？请进来。[voice:liubei_oqingjin]
 do zhenren.show()
-真人: 大人，想来你也早已察觉，这世间处处透着不正常。若你真想探明这些隐秘，这本《诡物手册》，便是为你而备。
+真人: 大人，想来你也早已察觉，这世间处处透着不正常。若你真想探明这些隐秘，这本《诡物手册》，便是为你而备。[voice:zhenren_tanxunyinmi]
 刘备: 道长此言何意？此册能解我心中所惑？[voice:liubei_daozhangciyanheyi]
-真人: 你想探寻的那些异常蹊跷，尽在此册之中。需一百金，心诚则灵。
+真人: 你想探寻的那些异常蹊跷，尽在此册之中。需一百金，心诚则灵。[voice:zhenren_xinchengzeling]
 => 购买诡异手册
 => END!
 
@@ -627,7 +627,7 @@ do zhenren.show()
 		do GameManager.sav.coin-=100
 		do SoundManager.play_sound(sounds.buysellsound)
 		刘备: …… 也罢，便购下此册。[voice:liubei_yebagoule]
-		真人: 善。有它引路，你方能顺利与诡物相遇，寻得真相。
+		真人: 有它引路，你方能顺利与诡物相遇，寻得真相。[voice:zhenren_youtayinlu]
 		系统提示: 已获得【诡物手册】，可点击头像或按 ESC 键打开查看。
 		do getguiwuItems()
 	else:
@@ -635,7 +635,7 @@ do zhenren.show()
 		=> 购买诡异手册
 - 否
 	刘备: 此事太过玄虚，容后再议。[voice:liubei_cishitaiguoxuanxu]
-	真人: 无妨。无册亦可，只是前路多艰。你的命数本就会与诡物相逢，此册不过是让你更早、更顺地遇见它们罢了。
+	真人: 无妨。无册亦可，只是前路多艰。你的命数本就会与诡物相逢，此册不过是让你更早、更顺地遇见它们罢了。[voice:zhenren_wufangwuce]
 
 do zhenren.hide()
 do GameManager.sav.have_event["触发诡物手册"]=true
@@ -647,17 +647,17 @@ do GameManager.sav.have_event["触发诡物手册"]=true
 do zhubu.hide()
 刘备: 何事？让他进来。[voice:liubei_heshirangtajinlai]
 do zhenren.show()
-真人: 玄德公，贫道候你多时了！汝乃真龙之躯，命定可承重启仙道之责。
+真人: 玄德公，贫道候你多时了！汝乃真龙之躯，命定可承重启仙道之责。[voice:zhenren_mingdingkechongqi]
 刘备: 老道长何出此言？吾不过布衣微末，安敢称真龙？[voice:liubei_anganzhenlong2]
 do GameManager.enterCrazy()
 #    do GameManager.enterNormal()
 
-真人: …… 可惜了。此番时间线已然错乱，此世不可再续。
+真人: …… 可惜了。此番时间线已然错乱，此世不可再续。[voice:zhenren_kexishijianxian]
 do playmusic()
 刘备: …… 时间线？[voice:liubei_shijianxian]
 
-真人: 本次试炼，便到此为止。
-余下前路，待下次开启，再行推演。
+真人: 本次试炼，便到此为止。[voice:zhenren_bencishiyan]
+余下前路，待下次开启，再行推演。[voice:zhenren_yuxiaqianlu]
 
 do GameManager.enterNormal()
 do zhenren.hide()
