@@ -28,7 +28,7 @@ func _ready():
 				var shopEnum=shopEnhance*0.15
 				
 				if shopEnhance>0:
-					shopEnhanceContext="[法令提升收购价{profit}%]".format({"profit":shopEnhance*15})
+					shopEnhanceContext="[法令提升了收购价{profit}%]".format({"profit":shopEnhance*15})
 				price=floor(price*(0.6+shopEnum))
 				GameManager.SoldCoin=GameManager.SoldCoin+price
 		GameManager.SoldItemStr=tr("我将以%d金收购你手上的")%GameManager.SoldCoin+" ["+GameManager.SoldItemStr+"]"+shopEnhanceContext

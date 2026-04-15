@@ -560,8 +560,10 @@ func settleGame(end,issuccess):
 			
 		#判断胜利积分
 		var enemyPower=GameManager.sav.battleTasks[taskIndex].index*50
-
+		
+		
 		finalScore=GameManager.calculate_points(enemyPower,taskComplete, percentage/100,selectgeneral.level,buffMultiple)
+		finalScore=finalScore*(0.6+(GameManager.sav.battleEnhance*0.15))
 		var items=GameManager.ScoreToItem(finalScore)
 		_rewardPanel.showReward(items)
 		#一旦完成target的数量，就令其获胜，来到府邸进行下一步操作

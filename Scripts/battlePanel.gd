@@ -48,6 +48,7 @@ func _ready():
 	battle_circle.isBoot=false
 
 	changeLanguage()
+
 	SignalManager.changeLanguage.connect(changeLanguage)			
 	
 	SignalManager.initBattle.connect(refreshData)
@@ -59,6 +60,9 @@ func refreshData():
 	_refreshGeneral()
 	initTask()	
 	battle_circle.refreshPage()
+	
+	
+
 func changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()
 	#if currencelanguage=="ru":
@@ -72,6 +76,10 @@ func changeLanguage():
 		#select_detail.remove_theme_font_override("font")
 		#title.remove_theme_font_override("font")
 #可能会删除
+	if GameManager.sav.battleEnhance!=0:
+		var battleEnhance=GameManager.sav.battleEnhance
+		var EnhanceContext="[法令提升了战利品收益{profit}%]".format({"profit":battleEnhance*15})
+		TooltipManager.register_tooltip(lauchBtn,EnhanceContext)
 func initData():
 	battle_circle.refreshPage()
 func endBattle():
