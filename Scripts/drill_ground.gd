@@ -752,7 +752,7 @@ func showtutorial_back(num):
 		#选择一个非完成克制的武将，或者被克制的武将
 		battle_pane.point_group.show()
 		control._show_button_5_yellow(-1)
-		point.show()
+		#point.show()
 		#请做移动资源的曲线
 		_tween=get_tree().create_tween()
 		_tween.tween_property(battle_pane.soild_slider, "value",30, 5)
@@ -849,8 +849,17 @@ func showtutorial_back(num):
 		point.hide()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
+@onready var color_rect_2: ColorRect = $CanvasInventory/ColorRect2
 
 
+func resTutorialShow():
+	point.show()
+	color_rect_2.show()
+
+	create_tween().tween_property(color_rect_2, "color:a", 0.85, 0.4)
+func resTutorialHide():
+	point.hide()
+	color_rect_2.hide()
 
 @onready var animation_player: AnimationPlayer = $CanvasInventory/battlePane/AnimationPlayer
 

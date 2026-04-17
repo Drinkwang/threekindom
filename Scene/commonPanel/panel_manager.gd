@@ -41,7 +41,7 @@ func show_tied_scene(tied_scene) -> TiredPanel:
 
 
 
-
+var rewardNode=null
 ## Show the configured dialogue balloon
 func new_reward( title: String = "") -> rewardPanel:
 	#GameManager.rewardPanel=true

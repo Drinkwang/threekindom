@@ -374,6 +374,14 @@ metadata/_edit_use_anchors_ = true
 [node name="trainPanel" parent="CanvasInventory" instance=ExtResource("9_02127")]
 visible = false
 
+[node name="ColorRect2" type="ColorRect" parent="CanvasInventory"]
+visible = false
+offset_left = -4.0
+offset_top = -7.0
+offset_right = 1984.0
+offset_bottom = 1096.0
+color = Color(0, 0, 0, 0)
+
 [node name="resPanel" parent="CanvasInventory" instance=ExtResource("13_4p7r8")]
 offset_left = 1403.0
 offset_top = 622.0
@@ -430,8 +438,9 @@ clickEvent = "饭局结束"
 
 [node name="point" type="Node2D" parent="CanvasInventory"]
 visible = false
-position = Vector2(1731, 790)
+position = Vector2(1731, 816)
 rotation = -1.5708
+scale = Vector2(0.5, 0.5)
 
 [node name="5Yellow" type="Sprite2D" parent="CanvasInventory/point"]
 rotation = -1.5708

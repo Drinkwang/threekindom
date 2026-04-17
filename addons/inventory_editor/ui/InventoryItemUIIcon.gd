@@ -75,7 +75,12 @@ func _update_item() -> void:
 						_context=tr(_item_db.name)+":"+tr(detail["value"])
 					else:
 						_context=tr(_item_db.name)+":"+"?"
-					TooltipManager.register_tooltip(self,_context)
+						
+					if(_item_db.type_uuid=="947b1cbf-7c4f-4eaa-8853-058ef1784615"):
+					
+						TooltipManager.register_tooltip(self,_context+tr("【已装备】"))
+					else:
+						TooltipManager.register_tooltip(self,_context)
 					#self.tooltip_text=_context
 			else:
 				TooltipManager.unregister_tooltip(self)
