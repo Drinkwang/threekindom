@@ -270,7 +270,7 @@ func preLaw(value:lawpoint):
 		if GameManager.sav.have_event["Factionalization"]==true:
 			context=context.replace("[haozu]",tr("豪族派"))
 		else:
-			context=context.replace("[shizu]",tr("本土派"))			
+			context=context.replace("[haozu]",tr("本土派"))			
 	#if value.detail
 	
 	law_label.text=context
