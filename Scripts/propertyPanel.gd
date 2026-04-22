@@ -42,21 +42,14 @@ func GetValue(coinGet,heartGet,peopleGet):
 
 
 	
-	if coinGet>0:
-		GameManager.sav.coin=GameManager.sav.coin+coinGet
-	elif coinGet<0:
-		GameManager.sav.coin=GameManager.sav.coin-coinGet
-
-	if heartGet>0:
-		GameManager.sav.people_surrport=GameManager.sav.people_surrport+heartGet
-	elif heartGet<0:
-		GameManager.sav.people_surrport=GameManager.sav.people_surrport-heartGet
+	
+	GameManager.sav.coin=GameManager.sav.coin+coinGet
+	
+	GameManager.sav.people_surrport=GameManager.sav.people_surrport+heartGet
 
 		
-	if peopleGet>0:
-		GameManager.sav.labor_force=GameManager.sav.labor_force+peopleGet
-	elif peopleGet<0:
-		GameManager.sav.labor_force=GameManager.sav.labor_force-peopleGet
+
+	GameManager.sav.labor_force=GameManager.sav.labor_force+peopleGet
 
 	coin_num.text = "%07d" % GameManager.sav.coin
 	heart_num.text = "%07d" % GameManager.sav.people_surrport

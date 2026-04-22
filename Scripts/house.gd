@@ -225,8 +225,8 @@ func _initData():
 	if GameManager.sav.have_event["chaoMizhuEnd"]==true and GameManager.sav.isGetCoin==false and GameManager.sav.currenceValue>1:
 		
 		
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"playtest结束")
-		return
+		#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"playtest结束")
+		#return
 
 		pass
 	if control.visible==true:	
@@ -896,6 +896,10 @@ func yuanshuChaos(value):
 		GameManager.sav.BENTUPAI.ChangeSupport(-10)
 		GameManager.changePeopleSupport(-10)
 		#全部下降10
+	
+	enterdetermineInternalUnrest()
+	allocationMuliao()
+	#
 @onready var caocao_letter = $CanvasLayer/caocaoLetter
 		
 	
@@ -1015,7 +1019,6 @@ func allocationSettle():
 		#return
 
 func allocationMuliao():
-	
 	if zhubu.visible==false:
 		if GameManager.sav.allocationDay==2 and GameManager.canDistributeAllowance():
 			zhubu.show()

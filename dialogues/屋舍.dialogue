@@ -215,7 +215,8 @@ do showCaoCaoLetter()
 => END!
 
 ~ 袁术之乱看曹操信件
-刘备: (不愧是曹操，这招借刀杀人玩的不赖啊...)[voice:liubei_jiedaosharen]
+刘备: ...
+#(不愧是曹操，这招借刀杀人玩的不赖啊...)[voice:liubei_jiedaosharen]
 刘备: 曹操的建议值得考虑。我拿着这封信去府邸找糜竺和陈登商量，你先退下吧。[voice:liubei_caocaodexinzhidekaolv]
 主簿: 是，将军[voice:zhubo_shijiangjun]
 do lookDoneCaoCaoLetter()
