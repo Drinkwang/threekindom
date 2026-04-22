@@ -1015,6 +1015,7 @@ do GameManager.getItemAction.call()
 
 
 ~ 曹豹支线1
+do caobao.showEX=false
 刘备: 曹将军，徐州地灵人杰，近日城外可有异事？听闻黄帝遗迹颇具神异，是否真有其事？[voice:liubei_huangdiyijijiangshen]
 
 曹豹: 不过是乡野传闻，遗迹无人问津，恐早已荒废。听说有盗墓贼出没..[voice:caobao_yijiwurenwenjing]
@@ -1033,7 +1034,7 @@ do GameManager.getItemAction.call()
 	刘备: 嗯...[voice:liubei_enqueding]
 	do select1(false)
 do GameManager.sav.caobaoSideWait=3	
-do caobao.hide()	
+do laibapai()
 => END!
 
 
@@ -1061,7 +1062,7 @@ do caobao.hide()
 	刘备: 嗯...[voice:liubei_enqueding]
 	do select2(false)
 
-do caobao.hide()			
+do laibapai()
 => END!
 
 
@@ -1106,7 +1107,7 @@ else
 #刘备（动容）：“人生无常，忠良之后沦落至此，吾之过也！速赐粮赈助，妥善安置。”
 #曹豹（拱手）：“主公英明，某即遵办。”
 
-do caobao.hide()
+do laibapai()
 do _initData()
 
 

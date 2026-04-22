@@ -1287,8 +1287,8 @@ func suppress():
 
 	var _c=getFactionByIndex()
 	
-	ForValueGet=(100-_c._support_rate)*5*(_c._num_defections+1)
-	ForValueCost=(100-_c._support_rate)*10*(_c._num_defections+1)
+	ForValueGet=(100-_c._support_rate)*10*(_c._num_defections+1)
+	ForValueCost=(100-_c._support_rate)*20*(_c._num_defections+1)
 
 	if _c._support_rate>=60:
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"贸然镇压")#显示对话

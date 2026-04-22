@@ -272,6 +272,10 @@ func post_transition():
 func caobaoshow():
 	if GameManager.sav.have_event["关押曹豹"]==false and GameManager.sav.have_event["战斗袁术血战模式"]==false:
 		caobao.show()
+		
+		
+
+
 const EAT_1 = preload("res://Asset/sound/eat1.mp3")
 func enterOldSoilderEat():
 	oldsoildereat.show()
@@ -1344,3 +1348,10 @@ func enterCredit():
 
 func awaittest():
 	await get_tree().create_timer(0.5).timeout
+
+
+
+func laibapai():
+	caobao.changeAllClick("来把仕诡牌")
+	caobaoshow()
+	caobao.showEX=false

@@ -10,8 +10,13 @@ var originScale
 		var reside:int=floori((kvalue)%13)
 		var devisor:int=floori((kvalue)/13)
 		setimg(reside,devisor)
-@onready var point_value: Label = $NinePatchRect/pointValue
-@onready var flowercolor: Label = $NinePatchRect/flowercolor
+		
+
+@onready var flowercolor: Label =$flowercolor
+
+
+@onready var point_value: Label = $pointValue
+
 @onready var img: TextureRect = $NinePatchRect/img
 @export var holdType:board_game.cardHoldType
 const binli = preload("res://Asset/ui/兵力.png")

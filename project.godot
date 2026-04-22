@@ -49,7 +49,11 @@ mouse_cursor/custom_image="res://Asset/pointer_scifi_b.png"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/GodotPrivacyPlugin/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg", "res://addons/inventory_editor/plugin.cfg", "res://addons/sound_manager/plugin.cfg", "res://addons/transitions/plugin.cfg")
+enabled=PackedStringArray("res://addons/GodotPrivacyPlugin/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg", "res://addons/sound_manager/plugin.cfg", "res://addons/transitions/plugin.cfg")
+
+[filesystem]
+
+import/blender/enabled=false
 
 [gui]
 
