@@ -264,9 +264,9 @@ color = Color(0.2, 0.2, 0.2, 0)
 [node name="RotateButton" type="TextureButton" parent="."]
 layout_mode = 0
 offset_left = 1343.0
-offset_top = 647.0
+offset_top = 645.0
 offset_right = 1505.0
-offset_bottom = 794.0
+offset_bottom = 792.0
 pivot_offset = Vector2(77.445, 73.435)
 texture_normal = ExtResource("16_3i658")
 ignore_texture_size = true
