@@ -82,7 +82,7 @@ func post_transition():
 	_initData()
 
 
-@onready var tsty = $"陶商陶应"
+@onready var tsty = $"peoples/陶商陶应"
 
 
 func _initGroup(group):
@@ -361,7 +361,7 @@ func _buttonListClick(item):
 		#DialogueManager.show_example_dialogue_balloon(GameManager.currenceScene.dialogue_resource,"xxx")
 		#判断自己的逻辑
 	#应该是第二天
-
+		peoples.hide()
 		if group==-1 and GameManager.sav.policyExcute==false and GameManager.sav.day>=5:
 			if GameManager.sav.have_event["第一次民心政策"]==false and GameManager.sav.randomIndex<=1:
 				GameManager.sav.have_event["第一次民心政策"]=true
@@ -458,8 +458,7 @@ func _buttonListClick(item):
 				#先提示对话 然后
 					exit()	
 				pass
-		#我必须接受陈登和糜竺的建议 在施政面板做出决策前不能离开这里
-		#显示金钱 民心 xx 武将面板
+
 	print(item)
 	pass
 @onready var color_rect: ColorRect = $CanvasLayer/ColorRect
@@ -545,7 +544,7 @@ func showMizhuTouchMain():
 	GameManager.changeTaskLabel("与手下谈谈")
 	GameManager.AutoSaveFile()
 
-@onready var zhubu: Node2D = $"主簿"
+@onready var zhubu: Node2D = $"peoples/主簿"
 
 
 func showFirstMission():
@@ -755,9 +754,9 @@ func meetingEnd():
 	GameManager.sav.hp=GameManager.sav.hp-costHp_SummonOne
 	GameManager.sav.isMeet=true
 	control._show_button_5_yellow(-1)	
-@onready var mizhu = $"糜竺"
-@onready var chenden = $"陈登"
-@onready var zhangfei= $zhangfei
+@onready var mizhu = $"peoples/糜竺"
+@onready var chenden = $"peoples/陈登"
+@onready var zhangfei= $peoples/zhangfei
 func _firstPhaseBegin():
 	mizhu.show()
 	chenden.show()
@@ -914,10 +913,12 @@ func deliverUncompleteTask():
 				pass
 		
 @onready var allocation_panel: Control = $CanvasLayer/AllocationPanel
+@onready var peoples: Node2D = $peoples
 
 func openMonthlySupplyPanel():
 	allocation_panel.initData()
 	allocation_panel.show()
+	peoples.hide()
 	if GameManager.sav.have_event["第一次津贴教程"]==false:
 		GameManager.sav.have_event["第一次津贴教程"]=true
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"津贴教程")
@@ -1393,7 +1394,7 @@ func JudFundTask():
 		_JudgeTask()
 
 
-@onready var mizhen: Node2D = $"糜贞"
+@onready var mizhen: Node2D = $"peoples/糜贞"
 const zhen = preload("res://Asset/人物/真糜贞.png")
 func jiaMizhenShow():
 	mizhen.show()

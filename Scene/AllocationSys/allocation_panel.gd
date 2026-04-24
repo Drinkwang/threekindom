@@ -81,3 +81,4 @@ func _process(delta: float) -> void:
 
 func _on_texture_button_button_down() -> void:
 	self.hide()
+	$"../../peoples".show()

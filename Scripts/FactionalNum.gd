@@ -38,6 +38,7 @@ const sys = preload("res://dialogues/系统.dialogue")
 func refreshData():
 	if itemData==null:
 		return
+	var statusTxt=""
 	var supportValue=itemData._support_rate
 	label .text=tr(itemData._name)+tr("-支持度：")
 	progress_bar.value=itemData._support_rate
@@ -87,16 +88,20 @@ func refreshData():
 		#DialogueManager.show_example_dialogue_balloon(sys,"吕布风险")	
 	if itemData.isSuppressed==true:
 		timer.start()
+		statusTxt=tr("【状态：已镇压,派系正受严密监控。因积怨难平，好感度持续衰减，须施以恩赏方可平息。】")
 	else:
 		timer.stop()
-		
+	if itemData.supressNum>=3:
+		statusTxt=tr("【状态：彻底收服,派系已被完全驯化。因畏服权威，好感度永久锁定，不再受任何影响。】")
 		
 	var font_size = label.get_theme_font_size("font_size")	
 	var text_width = label.get_theme_font("font").get_string_size(label.text,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size).x
 	if GameManager.maxResPanelX<=text_width:
 		GameManager.maxResPanelX=text_width
 
-	TooltipManager.register_tooltip(self,itemData.detail)	
+	TooltipManager.register_tooltip(self,itemData.detail+statusTxt)	
+	#【状态：镇压中，当前派系会不断消耗好感度，直到玩家采取讨好当前派系的手段】
+	#【状态：已臣服，当前派系受到玩家多次镇压，已再无反抗之心，好感度将不再发生变化】
 	
 @onready var timer = $Timer
 
