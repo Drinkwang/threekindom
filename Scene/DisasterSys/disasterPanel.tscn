@@ -225,15 +225,16 @@ autowrap_mode = 2
 
 [node name="str_reside" type="Label" parent="."]
 layout_mode = 0
-offset_left = 797.0
+offset_left = 426.0
 offset_top = 815.0
-offset_right = 1886.0
+offset_right = 1515.0
 offset_bottom = 854.0
 theme_override_colors/font_color = Color(1, 0.749586, 0.556891, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 0
 theme_override_font_sizes/font_size = 31
-text = "剩余粮食数：25（万吨）"
+text = "剩余粮食数：25批"
+horizontal_alignment = 1
 vertical_alignment = 2
 autowrap_mode = 2
 

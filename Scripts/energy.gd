@@ -102,7 +102,7 @@ func showTargetLabel():
 			cd=GameManager.sav.xuzhouCD
 		elif law=="豪族派":
 			cd=GameManager.sav.haozuCD
-		elif law=="外地派":
+		elif law=="丹阳派":
 			cd=GameManager.sav.danyangCD
 		
 		if(cd>0):	

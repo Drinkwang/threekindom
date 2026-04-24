@@ -70,3 +70,4 @@ func ChangeSupport(num):
 		_support_rate=0
 	#发送信号	
 	SignalManager.changeFraction.emit()
+	#GameManager.refreshPaixis() 调用会导致循环引用得修复

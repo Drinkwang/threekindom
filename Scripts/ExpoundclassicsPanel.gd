@@ -154,15 +154,22 @@ func over():
 
 @onready var audio_stream_player = $Timer/AudioStreamPlayer
 
-func _on_panel_container_gui_input(event):
-	if(event is InputEventMouseButton and event.button_index==1 and isboot==true):
-		_expoundClass()
-		score=score+100
-		audio_stream_player.play()
-		title.text=tr("请点击图书并获得积分")+"\n+100"
-		timer.start()
-		pass	
-	pass # Replace with function body.
+func _input(event):
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed  and isboot==true:
+		# 这里的 $PanelContainer 是你图片里选中的那个节点路径
+		var panel = $PanelContainer 
+		
+		# 将鼠标位置转换到面板的本地坐标空间
+		if panel.get_rect().has_point(panel.get_local_mouse_position()):
+			_expoundClass()
+			score=score+100
+			audio_stream_player.play()
+			title.text=tr("请点击图书并获得积分")+"\n+100"
+			timer.start()
+		
+
+
+
 
 @onready var starttitle = $starttitle
 @onready var title = $title

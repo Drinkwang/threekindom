@@ -433,7 +433,6 @@ text = "点击图标使用
 （库存：1）"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="gui_input" from="PanelContainer" to="." method="_on_panel_container_gui_input"]
 [connection signal="button_down" from="TextureButton" to="." method="_on_exit_button_button_down"]
 [connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
 [connection signal="gui_input" from="itemUse" to="." method="_on_item_use_gui_input"]

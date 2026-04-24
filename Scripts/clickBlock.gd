@@ -175,6 +175,7 @@ func showHeart(num):
 func changeAllClick(_value):
 	dialogue_start=_value
 	dialogue_doubleclick=_value
+	heart.hide()
 
 func _on_timer_timeout():
 

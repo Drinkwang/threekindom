@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cale1h2nqfdrh" path="res://Asset/ui/circle.png" id="7_qif1v"]
 [ext_resource type="Texture2D" uid="uid://d2artvwe80df1" path="res://Asset/光明/正常背景.png" id="8_sushl"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_w6dg1"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r612q"]
 shader = ExtResource("4_csp7l")
 shader_parameter/burn_progress = 0.0
 shader_parameter/burn_color = Color(1, 0.5, 0, 1)
@@ -21,7 +21,7 @@ shader_parameter/skill_glow_strength = 0.0
 shader_parameter/skill_glow_frequency = 6.0
 shader_parameter/noise_texture = ExtResource("3_v8y0j")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_krsfy"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vjt3u"]
 shader = ExtResource("4_csp7l")
 shader_parameter/burn_progress = 0.0
 shader_parameter/burn_color = Color(1, 0.5, 0, 1)
@@ -335,7 +335,7 @@ script = ExtResource("1_k4ugs")
 metadata/_edit_vertical_guides_ = [-329.0]
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
-material = SubResource("ShaderMaterial_w6dg1")
+material = SubResource("ShaderMaterial_r612q")
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -358,7 +358,7 @@ patch_margin_right = 12
 patch_margin_bottom = 15
 
 [node name="img" type="TextureRect" parent="NinePatchRect"]
-material = SubResource("ShaderMaterial_krsfy")
+material = SubResource("ShaderMaterial_vjt3u")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.498
@@ -433,24 +433,6 @@ libraries = {
 "": SubResource("AnimationLibrary_0fkbs")
 }
 
-[node name="TextureRect" type="TextureRect" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -82.0
-offset_top = -118.0
-offset_right = 82.0
-offset_bottom = 118.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-texture = ExtResource("8_sushl")
-expand_mode = 1
-
 [node name="pointValue" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -458,9 +440,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -51.0
+offset_left = -45.0
 offset_top = -103.0
-offset_right = 31.0
+offset_right = 37.0
 offset_bottom = -59.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -481,6 +463,24 @@ theme_override_constants/line_spacing = 5
 theme_override_constants/outline_size = 0
 theme_override_font_sizes/font_size = 31
 text = "♥"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = -118.0
+offset_right = 82.0
+offset_bottom = 118.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("8_sushl")
+expand_mode = 1
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]

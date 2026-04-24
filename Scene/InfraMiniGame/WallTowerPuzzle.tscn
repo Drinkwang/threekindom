@@ -427,3 +427,5 @@ offset_top = 577.0
 offset_right = 1158.0
 offset_bottom = 733.0
 text = "放弃基建"
+
+[connection signal="button_down" from="LoseRect/Button" to="." method="_on_lose_button_down"]

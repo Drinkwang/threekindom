@@ -76,6 +76,7 @@ var sys = preload("res://dialogues/系统.dialogue")
 
 func changePeopleSupport(num):
 	sav.people_surrport=sav.people_surrport+num
+	GameManager._propertyPanel.GetValue(0,0,0)
 	if(sav.people_surrport>100):
 		sav.people_surrport=100
 	elif sav.people_surrport<0:
@@ -796,8 +797,8 @@ func loadLaw():
 		#RewardLaw="一次性人口+100，徐州好感度+10，群众支持度+5 " #人口一次性增加 徐州派好感上升
 		
 		lawAction= func():
-			sav.labor_DayGet+=10
-			sav.BENTUPAI.ChangeSupport(10)
+			sav.labor_DayGet+=30
+			#sav.BENTUPAI.ChangeSupport(10)
 			changePeopleSupport(5)
 			sav.HAOZUPAI.ChangeSupport(-20)
 			print("整治街容done")			
@@ -978,8 +979,8 @@ func loadLaw():
 		#RewardLaw="一次性人口+100，丹阳派好感度+5，群众支持度+5，一次性收入+400  "
 		lawAction= func():
 			sav.labor_force=sav.labor_force+300
-			sav.WAIDIPAI.ChangeSupport(5)
-			changePeopleSupport(-20)
+			sav.BENTUPAI.ChangeSupport(-20)
+			changePeopleSupport(5)
 			#sav.coin=sav.coin+400
 			print("边防法")	
 	elif sav.curLawName=="军事训诂":
@@ -1042,118 +1043,115 @@ func loadLaw():
 	
 func preCostPaixi():
 	
-	if sav.curLawName=="农田开坑":#只有buff
-		#RewardLaw="每日收入+50，徐州好感度+10，#一次性收入+200" #收入每日增加 徐州派好感度上升
+	if sav.curLawName=="兴办教育":#只有buff
 		
-		
-	
-		sav.BENTUPAI.ChangeSupport(10)
 
-
-	elif sav.curLawName=="兴办教育":#只有buff
-		
-		
 		sav.WAIDIPAI.ChangeSupport(-20)
+			#var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.诸子百家论集)
+			#var remainder = InventoryManager.add_item(inventoryPackege, itemid, 1, false)
 
 	elif sav.curLawName=="整治街容":#只有buff
 		#RewardLaw="一次性人口+100，徐州好感度+10，群众支持度+5 " #人口一次性增加 徐州派好感上升
-		
-
 		sav.HAOZUPAI.ChangeSupport(-20)
-
 	elif sav.curLawName=="重农抑商":
-		#RewardLaw="收益：每日收入+80，徐州好感度+15 冲突：豪族好感度-20 " 
-
 		sav.HAOZUPAI.ChangeSupport(-30)
-
 	elif sav.curLawName=="士族优先":
 		#RewardLaw="收益：徐州好感度+20，获得道具“珍品礼盒”x1，一次性人口+150 冲突：丹阳派好感度-15  "+1000
-
 		sav.BENTUPAI.ChangeSupport(-15)
 		sav.WAIDIPAI.ChangeSupport(-15)
-	
 	elif sav.curLawName=="物价稳定":
-
-
 		sav.HAOZUPAI.ChangeSupport(-30)
+
 	elif sav.curLawName=="屯田制":
 		#RewardLaw="收益：每日人口+30，每日收入+120，一次性人口+200 
 		#冲突：丹阳派好感度-20，豪族好感度-10  "
-
 		sav.WAIDIPAI.ChangeSupport(-20)
 		sav.HAOZUPAI.ChangeSupport(-20)
-		
 	elif sav.curLawName=="府兵制":
-		#RewardLaw="收益：每日收入+150，获得道具“胜战锦囊”x2，一次性收入+1000  冲突：丹阳派好感度-30，群众支持度-10  "
-		pass
-	elif sav.curLawName=="品级制":#1000
-		#RewardLaw="收益：徐州好感度+50，每日人口+50，获得道具“珍品礼盒”x2，一次性人口+300 冲突：豪族好感度-40，丹阳派好感度-25  "
 
+		sav.WAIDIPAI.ChangeSupport(-20)
+		
+	elif sav.curLawName=="品级制":#1000
+	
 		sav.HAOZUPAI.ChangeSupport(-20)
 		sav.WAIDIPAI.ChangeSupport(-20)
-
-#豪族		
-	elif sav.curLawName=="促进商贸":#只有buff 收入每日增加 获得一笔钱财
-		#RewardLaw="每日收入+10，徐州好感度+5，一次性收入+100，随机道具x1 "
-		pass
+	
 	elif sav.curLawName=="诚信经营":#只有buff 所有派系好感度上升
-		#RewardLaw="所有派系好感度+20，群众支持度+5，一次性人口+80"
-		pass	
+
+		sav.WAIDIPAI.ChangeSupport(-20)
+	
 	elif sav.curLawName=="行业准则":#只有buff 所有派系好感度随机上升
-		#RewardLaw="所有派系好感度+5，每日收入+20，获得道具“珍品礼盒”x1，一次性收入+100"		
-		pass
+
+		sav.BENTUPAI.ChangeSupport(-20)
+	
 	elif sav.curLawName=="禁止军商":
-		#RewardLaw="收益：每日收入+50，豪族好感度+15，一次性收入+600 冲突：丹阳派好感度-25  "
-		pass	
+
+		sav.WAIDIPAI.ChangeSupport(-25)
+		#	print("禁止军商done")			
 	elif sav.curLawName=="商业税收法":
-		#RewardLaw="收益：每日收入+80，获得道具“益气丸”x2，一次性收入+800  冲突：徐州好感度-20"
-		pass
+
+		
+		sav.BENTUPAI.ChangeSupport(-20)
+		
 	elif sav.curLawName=="货币法":
-		#RewardLaw="收益：每日收入+100，群众支持度+10 冲突：丹阳派好感度-30 "
-		pass		
+
+		sav.WAIDIPAI.ChangeSupport(-30)	
+	
 	elif sav.curLawName=="商业竞争法":
 
 		sav.BENTUPAI.ChangeSupport(-20)
 		sav.WAIDIPAI.ChangeSupport(-20)
 	elif sav.curLawName=="商品流通法":
-		#RewardLaw="收益：每日收入+150，每日随机道具x1，一次性人口+200 冲突：徐州好感度-30，群众支持度-10  "
-		pass					
+
+		sav.BENTUPAI.ChangeSupport(-20)
+										
 	elif sav.curLawName=="商业诚信法":
-		#RewardLaw="收益：获得道具“珍品礼盒”x2，每日收入+200，一次性收入+1500  冲突：徐州好感度-40，丹阳派好感度-20  "
 
 		sav.BENTUPAI.ChangeSupport(-20)
 		sav.WAIDIPAI.ChangeSupport(-20)
 #丹阳派
-	elif sav.curLawName=="军纪法":#所有好感度上升
-
-		sav.BENTUPAI.ChangeSupport(15)
-		sav.WAIDIPAI.ChangeSupport(15)
-		sav.HAOZUPAI.ChangeSupport(15)
 
 	elif sav.curLawName=="战备法":#获得若干随机道具
-		pass
+		#益气丸, 胜战锦囊, 诸子百家论集
+		
+		#RewardLaw="随机获得3个道具，一次性人口+100"
+		
+		GameManager.sav.HAOZUPAI.ChangeSupport(-20)
+			#sav.labor_force=sav.labor_force+100
 	elif sav.curLawName=="边防法":#获得一些人口增加
-		#RewardLaw="一次性人口+100，丹阳派好感度+5，群众支持度+5，一次性收入+400  "
-		pass
+
+		sav.BENTUPAI.ChangeSupport(-20)
+
 	elif sav.curLawName=="军事训诂":
-		#RewardLaw="收益：丹阳派好感度+20，获得道具“胜战锦囊”x2，一次性人口+150 冲突：徐州好感度-15  "
-		pass
-	
+
+		sav.BENTUPAI.ChangeSupport(-25)
+
 	elif sav.curLawName=="军事装备法":
 		#RewardLaw="收益：每日收入+50，获得道具“益气丸”x2 冲突：豪族好感度-20 "
-		pass
+
+		sav.HAOZUPAI.ChangeSupport(-30)
+		
 	elif sav.curLawName=="军事训练法":
-		#RewardLaw="收益：丹阳派好感度+30，每日人口+20，一次性人口+200 冲突：徐州好感度-25  "
-		pass
-			
+
+		sav.BENTUPAI.ChangeSupport(-30)
+	
 	elif sav.curLawName=="军事优拔法":
-		#RewardLaw="收益：丹阳派好感度+40，获得道具“胜战锦囊”x3，一次性收入+800 冲突：豪族好感度-30，群众支持度-10  "									
-		pass
+
+		sav.HAOZUPAI.ChangeSupport(-30)
+		
+	
 	elif sav.curLawName=="律令兵制":
-		#RewardLaw="收益：每日人口+100，获得道具“珍品礼盒”x2，一次性人口+250 冲突：徐州好感度-35，豪族好感度-15  "#获得银月枪
-		pass
+
+		sav.BENTUPAI.ChangeSupport(-20)
+		sav.HAOZUPAI.ChangeSupport(-20)
+
 	elif sav.curLawName=="国防策略法":
-		pass
+
+		sav.HAOZUPAI.ChangeSupport(-20)
+		sav.BENTUPAI.ChangeSupport(-20)
+
+	
+	
 
 var maxResPanelX=0
 
