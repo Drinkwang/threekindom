@@ -81,6 +81,9 @@ func winGame(_str:String=""):
 	SoundManager.stop_music()
 	SoundManager.play_sound(sounds.GOOD_THING)
 
+func is_match_finished() -> bool:
+	return win_rect.visible or lose_rect.visible
+
 var killenemy=false
 func judgeAchive():
 	
@@ -272,6 +275,7 @@ func initGame():
 	cardsize=0
 	turn_num=0
 	enemyscore=0
+	reset_runtime_state()
 	score_txt.text=tr("玩家得分：{s}").format({"s":score})	
 	enemy_score_txt.text=tr("敌人得分：{s}").format({"s":enemyscore})	
 	GameManager.currenceScene=self
@@ -784,6 +788,8 @@ func turnGoto():
 @export var maxUseCard=4
 @export var isPlayerTurn:bool=true
 func enterNewPhase(stage:phaseName):
+	if is_match_finished():
+		return
 	
 	if stage!=phaseName.punish:
 		_phaseName=stage
@@ -851,6 +857,8 @@ func reshuffle():
 
 
 func drawOne(isplayer,index=-1):
+	if is_match_finished():
+		return
 
 		
 	var cardone=BOARD_CARD.instantiate()
@@ -910,6 +918,8 @@ func drawOneInTour(index=-1)->boardCard:
 		
 #支付一张
 func checkCardStart():
+	if is_match_finished():
+		return
 	SoundManager.play_sound(sounds.DRAWCARD)
 
 	
@@ -937,6 +947,8 @@ func checkCardStart():
 	#		drawOne(false)
 	if isPlayerTurn==true:
 		turnGoto()
+		if is_match_finished():
+			return
 	if (turn_num<6):
 		await enterNewPhase(phaseName.checkStart)
 @onready var end_button: Button = $CanvasLayer/Button
@@ -1190,6 +1202,8 @@ func suitNum(_groupType:groupType) -> int:
 
 	
 func AIUseCard():
+	if is_match_finished():
+		return
 
 	
 	#var bestScore=0	
@@ -1201,6 +1215,8 @@ func AIUseCard():
 	
 
 	while enemyStage > 0:
+		if is_match_finished():
+			return
 		var bestScore := 0
 		var bestIndex := -1
 		for _group in range(1, 5):
@@ -1214,10 +1230,14 @@ func AIUseCard():
 
 		# 一次完整出牌（含移动、入组、配对奖励、技能结算），严格等待完成
 		await AIUseCardInStuck(bestIndex, alreadyUse)
+		if is_match_finished():
+			return
 		enemyStage -= 1
 
 		# 可选：节奏停顿，避免连打过快
 		await get_tree().create_timer(0.3).timeout
+		if is_match_finished():
+			return
 	# 回合结束的统一出口
 	#await get_tree().create_timer(1).timeout
 	phaseEnd()	
@@ -1779,6 +1799,8 @@ func enterPunishStage(i=null,j=null):
 	
 	
 func insertCardRandom(group:groupType):
+	if is_match_finished():
+		return
 	#
 	var i=randi_range(0,cardsize)
 		#cardArr.
@@ -1797,6 +1819,8 @@ func insertCardRandom(group:groupType):
 var punishStage=false
 #判断是什么阶段，如果是	
 func phaseEnd():
+	if is_match_finished():
+		return
 	
 	if _phaseName==phaseName.punish or _phaseName==phaseName.checkStart:
 		#插入一个代替阶段,如果无法插入
@@ -1949,33 +1973,68 @@ func enterHtutorial():
 @onready var guild_8: Node2D = $"CanvasLayer/pointGroup/8"
 
 var istutorial=false
+var tutorial_state_id=0
+
+func tutorial_state_valid(state_id:int) -> bool:
+	return state_id == tutorial_state_id
+
+func cancel_tutorial_state():
+	tutorial_state_id += 1
+
+func reset_runtime_state():
+	killenemy=false
+	isPlayerTurn=true
+	_phaseName=phaseName.none
+	groupPunishTyp=groupType.none
+	groupPunishTyp2=groupType.none
+	punishStage=false
+	selectCard=null
+	bepunishI=null
+	bepusnishJ=null
+	playerStage=maxUseCard
+	enemyStage=maxUseCard
+	stopClick()
+	board_panel.hide()
+	end_button.hide()
+	reside_num.hide()
+	heart_color.hide()
+	damage_color.hide()
+	hold_enegy_panel.hide()
+	damage_color.material.set_shader_parameter("vignette_intensity", 0)
+	heart_color.material.set_shader_parameter("vignette_intensity", 0)
 
 func clearTCard():
+	cancel_tutorial_state()
+	istutorial=false
 	score=0
-	var arrs=myhand.get_children()
-	for arr in arrs:
-		arr.queue_free()
-		
-	arrs=shi_group.get_children()
-	for arr in arrs:
-		arr.queue_free()
-		
-	arrs=min_group.get_children()
-	for arr in arrs:
-		arr.queue_free()		
-		
-	arrs=bin_group.get_children()
-	for arr in arrs:
-		arr.queue_free()			
+	useCardNumMax=-1
+	holdCardNumMin=10
+	hp=3
+	enemy_hp=3
+	turn_num=0
+	enemyscore=0
+	cardsize=0
+	playerEngergyHold.clear()
+	enemyEngergyHold.clear()
+	reset_runtime_state()
+	score_txt.text=tr("玩家得分：{s}").format({"s":score})
+	enemy_score_txt.text=tr("敌人得分：{s}").format({"s":enemyscore})
+	clear_children(myhand)
+	clear_children(enemyhand)
+	clear_children(shi_group)
+	clear_children(min_group)
+	clear_children(bin_group)
+	clear_children(shang_group)
+	await get_tree().process_frame
+	reshuffle()
+	changeHoldEnegyPanel()
 
-	arrs=shang_group.get_children()
-	for arr in arrs:
-		arr.queue_free()			
-		
-		
+func finishTutorialAndEnterGame():
+	await clearTCard()
+	enterGame()
 
-				
 func showtutorial(num,isshow):
+	var tutorial_state=tutorial_state_id
 	istutorial=isshow
 	if(num<=10):
 		if isshow:
@@ -1985,8 +2044,12 @@ func showtutorial(num,isshow):
 			if	num==9:
 				insertCard(groupType.shi,6)
 				await get_tree().create_timer(0.1).timeout
+				if not tutorial_state_valid(tutorial_state):
+					return
 				insertCard(groupType.shi,14)
 				await get_tree().create_timer(0.1).timeout
+				if not tutorial_state_valid(tutorial_state):
+					return
 				insertCard(groupType.shi,28)
 			if num==10:
 				pass	
@@ -2011,6 +2074,8 @@ func showtutorial(num,isshow):
 								#调用结算函数	
 
 				await otween.finished	
+				if not tutorial_state_valid(tutorial_state):
+					return
 					
 				if obj!=null:
 					obj.reparent(shi_group)
@@ -2028,10 +2093,16 @@ func showtutorial(num,isshow):
 				
 				insertCard(groupType.min,6)
 				await get_tree().create_timer(0.1).timeout
+				if not tutorial_state_valid(tutorial_state):
+					return
 				insertCard(groupType.shi,14)
 				await get_tree().create_timer(0.1).timeout
+				if not tutorial_state_valid(tutorial_state):
+					return
 				insertCard(groupType.shang,22)
 				await get_tree().create_timer(0.1).timeout
+				if not tutorial_state_valid(tutorial_state):
+					return
 				insertCard(groupType.bin,33)
 
 				#插入4张手牌
@@ -2050,19 +2121,19 @@ func showtutorial(num,isshow):
 
 					
 
-				
+				await otween.finished	
 						#tween.tween_property(tempheart.material, "shader_parameter/progress", 1.0, 1.0).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
-				var movefinish=func(_hand_card,groupobj):
-					if _hand_card!=null:
-						_hand_card.reparent(groupobj)
-						await settleOneGroup(groupobj)
+				#var movefinish=func(_hand_card,groupobj):
+				#	if _hand_card!=null:
+				obj.reparent(shi_group)
+				await settleOneGroup(shi_group)
 								#调用结算函数	
 
 					
 					
 
 								#调用结算函数					
-				otween.tween_callback(movefinish.bind(obj,shi_group))  # 播放完成后调用函数
+				#otween.tween_callback(movefinish.bind(obj,shi_group))  # 播放完成后调用函数
 			if num==4 and isshow==true:
 				#var obj:Control=myhand.get_child(2)
 				#obj.queue_free()
@@ -2113,12 +2184,20 @@ func showtutorial(num,isshow):
 
 				insertCard(groupType.min,16)
 				await get_tree().create_timer(0.1).timeout
+				if not tutorial_state_valid(tutorial_state):
+					return
 				insertCard(groupType.shi,22)
 				await get_tree().create_timer(0.1).timeout
+				if not tutorial_state_valid(tutorial_state):
+					return
 				insertCard(groupType.shang,35)
 				await get_tree().create_timer(0.1).timeout
+				if not tutorial_state_valid(tutorial_state):
+					return
 				insertCard(groupType.bin,34)
 				await get_tree().create_timer(0.1).timeout
+				if not tutorial_state_valid(tutorial_state):
+					return
 				#请支付惩罚的窗口
 			if num==5:
 				#var hptween = create_tween()
