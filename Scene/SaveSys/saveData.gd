@@ -400,7 +400,7 @@ GameManager.RspEnum.PAPER:{"name": "无名", "level": 1, "max_level": 10, "rando
 {"enemy":"陈登","level":"小试牛刀","detail":"每回合最多只能使用2张卡牌","holdcard":-1,"MaxUsecard":2,"ScoreNum":-1,"Mustkill":false,"iscom":0,"index":1,"coinGet":25,"peopleGet":20},
 {"enemy":"糜竺","level":"小试牛刀","detail":"每回合最多只能用3张牌且不能自己手牌小于2张","holdcard":2,"MaxUsecard":3,"ScoreNum":-1,"Mustkill":false,"iscom":0,"index":2,"coinGet":50,"peopleGet":0},
 
-{"enemy":"曹豹","level":"对局试炼","detail":"游戏结束时取得260分","holdcard":-1,"MaxUsecard":-1,"ScoreNum":260,"Mustkill":false,"iscom":0,"index":3,"coinGet":0,"peopleGet":80},
+{"enemy":"曹豹","level":"对局试炼","detail":"游戏结束时取得350分","holdcard":-1,"MaxUsecard":-1,"ScoreNum":100,"Mustkill":false,"iscom":0,"index":3,"coinGet":0,"peopleGet":80},
 {"enemy":"陈登","level":"对局试炼","detail":"每回合你保证至少有一张手牌且最多只能用三张牌","holdcard":1,"MaxUsecard":3,"ScoreNum":-1,"Mustkill":false,"iscom":0,"index":4,"coinGet":50,"peopleGet":40},
 {"enemy":"糜竺","level":"对局试炼","detail":"以将对手生命值归0的方式取得胜利","holdcard":-1,"MaxUsecard":-1,"ScoreNum":-1,"Mustkill":true,"iscom":0,"index":5,"coinGet":100,"peopleGet":0},
 

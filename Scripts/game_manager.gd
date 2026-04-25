@@ -1771,3 +1771,14 @@ func get_bloodmode_day():
 		day=num
 	return day
 #var bloodmusicid=-1
+
+# 恢复 Windows 原生样式
+func restore_system_cursor():
+	Input.set_custom_mouse_cursor(null)
+	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+
+# 恢复游戏专属样式
+func apply_game_cursor():
+	var img = load("res://Asset/pointer_scifi_b.png") # 你的图片路径
+	# 热点通常设为 Vector2(0,0) 或图片中心
+	Input.set_custom_mouse_cursor(img, Input.CURSOR_ARROW, Vector2(0, 0))

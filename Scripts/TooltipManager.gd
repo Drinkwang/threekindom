@@ -87,8 +87,9 @@ func _on_node_added(node: Node):
 				area.mouse_exited.connect(_on_mouse_exited.bind(node))
 
 func show_tooltip(target: Node, text: String, position: Vector2):
-	#hide_tooltip()
-
+	GameManager.restore_system_cursor()
+	#apply_game_cursor()
+	
 	if(current_tooltip==null):
 		current_tooltip = tooltip_scene.instantiate()
 		#current_tooltip.area2d=target
@@ -107,6 +108,7 @@ func show_tooltip(target: Node, text: String, position: Vector2):
 	current_target = target
 
 func hide_tooltip():
+	GameManager.apply_game_cursor()
 	if current_tooltip:
 		current_tooltip.queue_free()
 		current_tooltip = null

@@ -160,6 +160,7 @@ mouse_filter = 1
 color = Color(0, 0, 0, 0.8)
 
 [node name="Link" type="Sprite2D" parent="lock"]
+visible = false
 modulate = Color(0.215686, 0.215686, 0.215686, 1)
 position = Vector2(220, 48)
 rotation = 1.79943
@@ -205,6 +206,7 @@ offset_top = 43.0
 offset_right = 378.0
 offset_bottom = 99.0
 scale = Vector2(0.5, 0.5)
+mouse_filter = 2
 texture = ExtResource("8_20sw6")
 expand_mode = 1
 

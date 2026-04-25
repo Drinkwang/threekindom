@@ -86,19 +86,26 @@ func judgeAchive():
 	
 	var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.玄阴玉符)
 	
-	if GameManager._boardMode!=boardType.boardMode.new and num<1:
+	if GameManager._boardMode==boardType.boardMode.high and num<1:
 		return 
 	
 	var achiData=GameManager.sav.card_achives[achiIndex]
 	#{"enemy":"糜竺","level":"诡秘乱局","detail":"每回合最多只能用2张牌且不能让手牌低于2张","holdcard":2,"MaxUsecard":2,"ScoreNum":-1,"Mustkill":false,"iscom":0,"index":8,"coinGet":150,"peopleGet":0},
 	#可解锁
+	
+	print("Check 1 (Card): ", (achiData.holdcard >= 0 and holdCardNumMin >= achiData.holdcard) or achiData.holdcard < 0)
+	print("Check 2 (Use): ", (achiData.MaxUsecard >= 0 and useCardNumMax <= achiData.MaxUsecard) or achiData.MaxUsecard < 0)
+	print("Check 3 (Score): ", (achiData.ScoreNum > 0 and score >= achiData.ScoreNum) or achiData.ScoreNum < 0)
+	print("Check 4 (Kill): ", achiData.Mustkill == killenemy or achiData.Mustkill == false)
+	print("Score value: ", score, " type: ", typeof(score))
 	if achiData.iscom==0:
 		detail_txt.hide()
 		var unlock=false
 		#"holdcard":2,"MaxUsecard":2,"ScoreNum":-1,"Mustkill":false
 		if ((achiData.holdcard>=0 and holdCardNumMin>=achiData.holdcard)||achiData.holdcard<0) and \
 		 ((achiData.MaxUsecard>=0 and useCardNumMax<=achiData.MaxUsecard) or achiData.MaxUsecard<0) and \
-		((achiData.ScoreNum>0 and score>=achiData.ScoreNum) or achiData.ScoreNum<0) and (achiData.Mustkill==killenemy or achiData.Mustkill==false):
+		((achiData.ScoreNum>0 and score>=achiData.ScoreNum) or achiData.ScoreNum<0) and \
+		(achiData.Mustkill==killenemy or achiData.Mustkill==false):
 			unlock=true
 		if unlock==true:
 			achiData.iscom=1
@@ -106,12 +113,12 @@ func judgeAchive():
 		else:
 			achiwin.text=tr("成就：")+tr(achiData.detail)+"\n"+tr("已失败")
 			#成就已完成
-
+		TooltipManager.register_tooltip(achiwin,tr("达成的成就奖励，请至「诡异杂项 - 诡异成就录」处具现领取"))
 func judgeAchiveInPer():
-	var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.玄阴玉符)
+	#var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.玄阴玉符)
 	
-	if GameManager._boardMode!=boardType.boardMode.new and num<1:
-		return 
+	#if GameManager._boardMode!=boardType.boardMode.new and num<1:
+	#	return 
 	
 	var achiData=GameManager.sav.card_achives[achiIndex]
 	#{"enemy":"糜竺","level":"诡秘乱局","detail":"每回合最多只能用2张牌且不能让手牌低于2张","holdcard":2,"MaxUsecard":2,"ScoreNum":-1,"Mustkill":false,"iscom":0,"index":8,"coinGet":150,"peopleGet":0},
@@ -121,8 +128,8 @@ func judgeAchiveInPer():
 		var unlock=true
 		#"holdcard":2,"MaxUsecard":2,"ScoreNum":-1,"Mustkill":false
 		if not (((achiData.holdcard>=0 and holdCardNumMin>=achiData.holdcard)||achiData.holdcard<0) and \
-		 ((achiData.MaxUsecard>=0 and useCardNumMax<=achiData.MaxUsecard) or achiData.MaxUsecard<0) and \
-		((achiData.ScoreNum>0 and score>=achiData.ScoreNum) or achiData.ScoreNum<0) and (achiData.Mustkill==killenemy or achiData.Mustkill==false)):
+		 ((achiData.MaxUsecard>=0 and useCardNumMax<=achiData.MaxUsecard) or achiData.MaxUsecard<0)):
+		#((achiData.ScoreNum>0 and score>=achiData.ScoreNum) or achiData.ScoreNum<0) and (achiData.Mustkill==killenemy or achiData.Mustkill==false)):
 			unlock=false
 		if unlock==false:
 
@@ -139,6 +146,7 @@ func initAchive():
 	var achiData=GameManager.sav.card_achives[achiIndex]
 	achi_label.self_modulate=Color.WHITE
 	achi_label.text=tr("成就：")+tr(achiData.detail)
+	TooltipManager.register_tooltip(achi_label,tr("达成的成就奖励，请至「诡异杂项 - 诡异成就录」处具现领取"))
 	var tween=create_tween()
 	tween.tween_property(achi_label,"modulate:a",1,1)
 	
@@ -367,11 +375,11 @@ func enterGame():
 			
 			
 			
-	var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.玄阴玉符)
+	#var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.玄阴玉符)
 	var achiData=GameManager.sav.card_achives[achiIndex]
-	if GameManager._boardMode==boardType.boardMode.new or num>=1:
-		if achiData.iscom==0:
-			initAchive() 
+	#if GameManager._boardMode==boardType.boardMode.new or num>=1:
+	if achiData.iscom==0:
+		initAchive() 
 	
 	startGame(cardNum,issole,extraCard)
 
@@ -1828,23 +1836,23 @@ func phaseEnd():
 			
 			
 			var hptween = create_tween()
-
-			heart_color.hide()
-			damage_color.material.set_shader_parameter("vignette_intensity", 0)
-			damage_color.show()
-			hptween.tween_method(
-				func(value): damage_color.material.set_shader_parameter("vignette_intensity", value),
-				0.0, # Start value
-				1.0, # End value
-				0.5 # Duration in seconds
-			)				
-			hptween.tween_method(
-				func(value): damage_color.material.set_shader_parameter("vignette_intensity", value),
-				1, # Start value
-				0, # End value
-				0.5 # Duration in seconds
-			)				
-			hptween.tween_callback(func(): damage_color.hide())	
+			if isPlayerTurn:
+				heart_color.hide()
+				damage_color.material.set_shader_parameter("vignette_intensity", 0)
+				damage_color.show()
+				hptween.tween_method(
+					func(value): damage_color.material.set_shader_parameter("vignette_intensity", value),
+					0.0, # Start value
+					1.0, # End value
+					0.5 # Duration in seconds
+				)				
+				hptween.tween_method(
+					func(value): damage_color.material.set_shader_parameter("vignette_intensity", value),
+					1, # Start value
+					0, # End value
+					0.5 # Duration in seconds
+				)				
+				hptween.tween_callback(func(): damage_color.hide())	
 			
 			hp-=1
 			groupPunishTyp2=groupType.none
@@ -2002,11 +2010,12 @@ func showtutorial(num,isshow):
 						#await settleOneGroup(groupobj)
 								#调用结算函数	
 
+				await otween.finished	
 					
-					
-
+				if obj!=null:
+					obj.reparent(shi_group)
 								#调用结算函数					
-				otween.tween_callback(movefinish.bind(obj,shi_group))  # 播放完成后调用函数
+			#	otween.tween_callback(movefinish.bind(obj,shi_group))  # 播放完成后调用函数
 				#await get_tree().create_timer(0.1).timeout
 				#insertCard(groupType.shi,33)
 			if num==1 and isshow==true:

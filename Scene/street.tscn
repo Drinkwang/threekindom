@@ -279,6 +279,7 @@ offset_bottom = 40.0
 stream = ExtResource("22_pmyge")
 
 [node name="resPanel" parent="CanvasLayer" instance=ExtResource("8_qssq7")]
+visible = true
 offset_left = 1404.0
 offset_top = 611.0
 offset_right = 1884.0

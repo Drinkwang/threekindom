@@ -76,7 +76,7 @@ func changeState(state):
 			context=tr("点击领取成就将获得{coins}钱").format({"coins":coin})
 		else:
 			context=tr("点击领取成就将获得{peoples}士兵").format({"peoples":people})
-		TooltipManager.register_tooltip(reward,context)
+		#TooltipManager.register_tooltip(reward,context)
 	elif lstate==lockState.after:
 		#TooltipManager.register_tooltip(self,tr("该成就已完成"))
 		lock.hide()

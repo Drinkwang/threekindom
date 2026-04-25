@@ -1015,10 +1015,10 @@ func quest2Complete():
 func taishanComplete():
 	#未来此处可能改成具体文本内容
 	GameManager.sav.TargetDestination="府邸"
-	GameManager.sav.coin=GameManager.sav.coin+200
+	#GameManager.sav.coin=GameManager.sav.coin+200
 	GameManager.changePeopleSupport(20)
 	#sav.people_surrport=GameManager.sav.people_surrport+20
-	GameManager.sav.labor_force=GameManager.sav.labor_force+1000
+	#GameManager.sav.labor_force=GameManager.sav.labor_force+1000
 	#获得士兵1000人，钱财200，民心上升10
 	#任务完成
 	#GameManager.clearTask()

@@ -175,6 +175,7 @@ offset_bottom = 20.0
 scale = Vector2(0.2, 0.2)
 
 [node name="resPanel" parent="ui" instance=ExtResource("11_1q5rr")]
+visible = true
 offset_left = 1401.0
 offset_top = 614.0
 offset_right = 1856.0
