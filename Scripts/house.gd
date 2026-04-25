@@ -490,9 +490,10 @@ func _buttonListClick(item):
 		if GameManager.sav.have_event["关羽求援结束"] ==true and GameManager.sav.have_event["主簿的追随"] ==false:
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"小沛最终不能休息")	
 		control._show_button_5_yellow(-1)
+		GameManager.resideValue=int(GameManager.sav.day/3)
 		if GameManager.musicId!=0:
 			GameManager.musicId=-GameManager.musicId
-		
+		GameManager.resideValue2=GameManager.LawNum()
 		if GameManager.sav.endPath!=GameManager.endPath.none:
 			var allcount = GameManager.sav.battleResults.count(not GameManager.BattleResult.none)
 			if allcount<3:
@@ -503,10 +504,11 @@ func _buttonListClick(item):
 					DialogueManager.show_example_dialogue_balloon(sys,"最终主簿告知")
 					return
 		#逻辑不能放在这里
-		elif(GameManager.sav.alreadyHP<10 and GameManager.sav.hasMainTask==false):
+		elif(GameManager.resideValue2<GameManager.resideValue):
 			GameManager.sav.lazydays+=1	
 			GameManager.sav.lazyValue=GameManager.sav.lazyValue+1
 			if GameManager.sav.lazydays>=3:
+				GameManager.sav.lazydays=0
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"连续多日怠惰")
 				return	
 				#连续多日怠惰

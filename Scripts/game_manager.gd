@@ -345,7 +345,7 @@ func refreshPaixis():
 
 func _enterDay(value=true):
 	if(value==true):
-		sav.hasMainTask=false
+
 		sav.day=sav.day+1
 		refreshPaixis()
 		initBattle()
@@ -1156,6 +1156,12 @@ func preCostPaixi():
 var maxResPanelX=0
 
 var RewardLaw
+
+func LawNum():
+	var count=0
+	for laws in GameManager.sav.laws:
+		count+=laws.count(func(v): return v > 0)
+	return count
 func excuteLaw():
 	sav.laws[sav.curLawNum1].append(sav.curLawNum2)
 	#var arr:Array

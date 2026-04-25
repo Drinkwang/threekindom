@@ -274,7 +274,6 @@ offset_bottom = 20.0
 scale = Vector2(0.2, 0.2)
 
 [node name="resPanel" parent="CanvasInventory" instance=ExtResource("23_ensiq")]
-visible = false
 offset_left = 1529.0
 offset_top = 673.0
 offset_right = 1825.0
