@@ -103,8 +103,12 @@ func refreshAlreadySoldTxt(index):
 		detail.text=tr("这个秘闻你已经知道了，请改日再来吧")
 #var befunc		
 func _on_buy_button_down():
+	
+	if(await GameManager.isTried(costhp)):
+		return 		
 	if(GameManager.sav.coin>=(price as int) and selectGoods!=null):
 		SoundManager.play_sound(sounds.buysellsound)
+		GameManager.costHp(costhp)
 		selectGoods.getItem()
 		GameManager.sav.coin=GameManager.sav.coin-price
 		if selectGoods.itemstype==InventoryManagerItem.ItemEnum.市井秘闻:
@@ -169,11 +173,16 @@ func settleAfter():
 	refreshAlreadySoldWeapon()
 
 func _on_Sold_button_down():
+	
+	#if(await GameManager.isTried(costhp)):
+		#return 		
+	#GameManager._engerge.startPreviewHp(costhp)	
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"是否售出商品")
 
 @onready var buy_back_button = $backTxt/buyBackButton
-
+var costhp=15
 func confireSold():
+	
 	GameManager.sav.coin=GameManager.sav.coin+int(GameManager.SoldCoin)
 	GameManager.sav.isSoldItem=true
 	for item_type in useItems:
@@ -184,3 +193,13 @@ func confireSold():
 	back_txt.text="当前商人没有需要从你手中收购商品的需要，请改日再来！"
 	buy_back_button.disabled=true
 	
+
+
+func _on_buy_button_focus_entered() -> void:
+	if buy_button.disabled==false:
+		GameManager._engerge.startPreviewHp(costhp)
+
+
+func _on_buy_button_focus_exited() -> void:
+	if buy_button.disabled==false:
+		GameManager._engerge.stopPreviewHP()

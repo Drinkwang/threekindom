@@ -104,6 +104,7 @@ func changeLanguage():
 		#$"VBoxContainer/成功率/Label".add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
 	else:
 		pass	
+	TooltipManager.register_tooltip(se_task_hbox,tr("奇策触发：满足特定条件，解锁隐藏行动"))	
 	
 var taskIndex:int=0
 

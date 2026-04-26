@@ -378,5 +378,7 @@ stretch_mode = 0
 [connection signal="gui_input" from="PanelContainer" to="." method="_on_panel_container_gui_input"]
 [connection signal="button_down" from="TextureButton" to="." method="_on_exit_button_button_down"]
 [connection signal="button_down" from="buyButton" to="." method="_on_buy_button_down"]
+[connection signal="mouse_entered" from="buyButton" to="." method="_on_buy_button_focus_entered"]
+[connection signal="mouse_exited" from="buyButton" to="." method="_on_buy_button_focus_exited"]
 [connection signal="button_down" from="backTxt/buyBackButton" to="." method="_on_Sold_button_down"]
 [connection signal="button_down" from="TextureButton2" to="." method="_on_texture_button_2_button_down"]

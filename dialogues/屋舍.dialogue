@@ -273,7 +273,7 @@ do sheepGnawed()
 ~ 连续多日怠惰
 
 if GameManager.sav.have_event["Factionalization"]==true:
-	主簿: 主公！如今徐州局势日趋复杂，现有法令已不足以约束三派，各方势力正因法度缺失而互生嫌隙，局势危矣！
+	主簿: 主公！如今徐州局势日趋复杂，现有法令已不足以约束三派，各方势力正因法度缺失而互生嫌隙，局势危矣！[voice:zhubo_sanpaixixbuan]
 	系统提示: 【怠政：连日怠荒】，当前法令数：{{GameManager.resideValue2}} ，目标法令数：{{GameManager.resideValue}} (注：每三旬需至少增设一令，当前缺额：{{GameManager.resideValue - GameManager.resideValue2}} 令)
 #	主簿: 主公，徐州丹阳派、士族派、豪族派因您多日未理政务，已颇有微词，恐生不安。[voice:zhubo_sanpaixixbuan]
 	系统提示: 士族派好感-10，豪族派好感-10，丹阳派好感-10，民心-5
