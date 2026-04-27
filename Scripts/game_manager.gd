@@ -1352,6 +1352,7 @@ func SkipPrologue():
 		sav.have_event[key] = true
 	sav.day=5
 	sav.coin=100
+	sav.laws[2].append(1)
 	initSecretFunc()
 
 var _setting:SettingsResource

@@ -358,7 +358,7 @@ func _buttonListClick(item):
 		#DialogueManager.show_example_dialogue_balloon(GameManager.currenceScene.dialogue_resource,"xxx")
 		#判断自己的逻辑
 	#应该是第二天
-		peoples.hide()
+	
 		if group==-1 and GameManager.sav.policyExcute==false and GameManager.sav.day>=5:
 			if GameManager.sav.have_event["第一次民心政策"]==false and GameManager.sav.randomIndex<=1:
 				GameManager.sav.have_event["第一次民心政策"]=true
@@ -371,7 +371,7 @@ func _buttonListClick(item):
 		if(GameManager.sav.day==1):
 			
 			policy_panel.show()
-		
+			peoples.hide()
 			if(GameManager.sav.have_event["firstgovermentTip"]==false):
 				GameManager.sav.have_event["firstgovermentTip"]=true
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"enterpolicy")
@@ -379,14 +379,14 @@ func _buttonListClick(item):
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第二天的提示")
 		elif GameManager.sav.day==5:
 			if(GameManager.sav.have_event["initTask1"]==false and GameManager.sav.have_event["糜竺推荐陈登"]==true):
-				#pass 跳转到下一个政策
-				#GameManager.sav.have_event["initTask1"]=true
+				peoples.hide()
 				policy_panel.show()
 				policy_panel.tab_bar.current_tab=0
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"主线第一次指定政策")
 			elif GameManager.sav.have_event["糜竺推荐陈登"]==false:
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"没有对话前不能执行政策")
 			else:
+				peoples.hide()
 				policy_panel.show()
 		else:
 			if GameManager.sav.have_event["chaosBegin"]==true and GameManager.sav.have_event["chaoDialogEnd"]==false:
@@ -396,7 +396,7 @@ func _buttonListClick(item):
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"亲征状况")	
 				return
 			policy_panel.show()
-
+			peoples.hide()
 	#50点	
 	elif item.context == "召见派系":
 		if await GameManager.isTried(costHp_SummonOne):
