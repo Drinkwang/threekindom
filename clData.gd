@@ -37,9 +37,9 @@ enum factionIndex{
 #-1没开启 0未支付  1 已经支付
 @export var demand={}
 @export var isAutoAllocation=false
-@export var support_redirect: Callable
+var support_redirect: Callable
 
-@export var changeFloor:Callable
+var changeFloor:Callable
 func getTr():
 	return tr(_name)
 

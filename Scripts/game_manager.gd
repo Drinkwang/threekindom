@@ -245,6 +245,7 @@ func _ready():
 	_enterDay()
 	SkipPrologue()
 	initSetting()
+	refreshCallable()
 	
 	#用这个会触发bug
 	#SignalManager.changeFraction.connect(refreshFloor)	
@@ -342,10 +343,17 @@ func refreshPaixis():
 	#initPaixi(sav.HAOZUPAI)
 	if sav.have_event["Factionalization"]:
 		initPaixi(sav.HAOZUPAI)
-	else:
-		sav.HAOZUPAI.support_redirect = func(num): sav.BENTUPAI.ChangeSupport(num)
-	#传递信号，政策看法
-	
+
+func refreshCallable():
+	if not sav.have_event["Factionalization"]:
+		if not sav.HAOZUPAI.support_redirect.is_valid():
+			sav.HAOZUPAI.support_redirect = func(num): sav.BENTUPAI.ChangeSupport(num)
+	if not sav.HAOZUPAI.changeFloor.is_valid():
+		sav.HAOZUPAI.changeFloor = func():initPaixiFloor(sav.HAOZUPAI)
+	if not sav.WAIDIPAI.changeFloor.is_valid():	
+		sav.WAIDIPAI.changeFloor = func():initPaixiFloor(sav.WAIDIPAI)
+	if not sav.BENTUPAI.changeFloor.is_valid():	
+		sav.BENTUPAI.changeFloor = func():initPaixiFloor(sav.BENTUPAI)
 func refreshFloor():
 	initPaixiFloor(sav.BENTUPAI)
 	initPaixiFloor(sav.WAIDIPAI)
@@ -633,7 +641,7 @@ func initPaixi(data:cldata):
 	data.isrebellion=false
 	data.isDoneOp=false
 	#sav.floor
-	data.changeFloor = func():initPaixiFloor(data)
+
 
 var extraValue=0
 
