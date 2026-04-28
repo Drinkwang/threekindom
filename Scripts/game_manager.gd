@@ -1826,3 +1826,46 @@ func apply_game_cursor():
 	var img = load("res://Asset/pointer_scifi_b.png") # 你的图片路径
 	# 热点通常设为 Vector2(0,0) 或图片中心
 	Input.set_custom_mouse_cursor(img, Input.CURSOR_ARROW, Vector2(0, 0))
+
+
+func getMinxinValue1():
+	var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.论语简注)
+	var heart=5
+
+	if num>0:
+		heart+=5		
+			
+	heart= int(heart * (1 + GameManager.sav.BENTUPAI._num_all *0.03)) 
+	return heart
+		
+func getMinxinValue2():
+	var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.论语简注)
+	var heart=5
+	if num>0:
+		heart+=5
+			
+	heart= int(heart * (1 + GameManager.sav.HAOZUPAI._num_all *0.03)) 			
+	return heart
+func getMinxinValue3():
+	var addcoin=300
+	
+	var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.论语简注)
+	if num>0:
+		addcoin=500
+
+			
+
+	addcoin= int(addcoin * (1 + GameManager.sav.WAIDIPAI._num_all *0.03)) 
+	return addcoin
+func getMinxinValue4():
+
+	var addLabor=100
+	var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.论语简注)
+	if num>0:
+
+		addLabor=200
+			
+
+	addLabor= int(addLabor * (1 + GameManager.sav.WAIDIPAI._num_all *0.03)) 
+			
+	return addLabor

@@ -60,10 +60,33 @@ func initDataByGroup(index,group):
 
 	data=PolicyManager.policy_Item.filter(func(ele): return ele.group == group-1 and ele.index==index)[0]
 	detail=data.detail
+	if data.group==3:
+		var paixi:cldata
+		if data.index==1:
+			paixi=GameManager.sav.BENTUPAI
+		elif data.index==2:
+			paixi=GameManager.sav.HAOZUPAI
+		elif data.index==3:
+			paixi=GameManager.sav.WAIDIPAI
+		detail=data.detail+tr("【这项政策会根据你的{paixi}议政人数决定最终效果】").format({"paixi":paixi._name})
+	else:
+		detail=data.detail
 	context=data.name
 	if GameManager.haveMirror():
-		
-		TooltipManager.register_tooltip(self,tr(data.tootip))
+		#var paixi:cldata
+		if data.group==3:
+			if data.index==1:
+				#paixi=GameManager.sav.BENTUPAI
+				TooltipManager.register_tooltip(self,tr(data.tootip).format({"point1":GameManager.getMinxinValue1()}))
+			elif data.index==2:
+				#paixi=GameManager.sav.HAOZUPAI
+				TooltipManager.register_tooltip(self,tr(data.tootip).format({"point2":GameManager.getMinxinValue2()}))
+			elif data.index==3:
+				#paixi=GameManager.sav.WAIDIPAI
+				TooltipManager.register_tooltip(self,tr(data.tootip).format({"point3":GameManager.getMinxinValue3(),"point4":GameManager.getMinxinValue4()}))
+				
+		else:
+			TooltipManager.register_tooltip(self,tr(data.tootip))
 	else:
 		TooltipManager.unregister_tooltip(self)
 		self.tooltip_text=""
