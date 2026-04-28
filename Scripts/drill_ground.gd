@@ -1016,7 +1016,9 @@ func taishanComplete():
 	#未来此处可能改成具体文本内容
 	GameManager.sav.TargetDestination="府邸"
 	#GameManager.sav.coin=GameManager.sav.coin+200
-	GameManager.changePeopleSupport(20)
+	GameManager.changePeopleSupport(10)
+	#泰山派
+	GameManager.sav.LVBU._name="泰山诸将派"
 	#sav.people_surrport=GameManager.sav.people_surrport+20
 	#GameManager.sav.labor_force=GameManager.sav.labor_force+1000
 	#获得士兵1000人，钱财200，民心上升10

@@ -37,9 +37,9 @@ enum factionIndex{
 #-1没开启 0未支付  1 已经支付
 @export var demand={}
 @export var isAutoAllocation=false
-var support_redirect: Callable
+@export var support_redirect: Callable
 
-var changeFloor:Callable
+@export var changeFloor:Callable
 func getTr():
 	return tr(_name)
 
@@ -71,7 +71,8 @@ func ChangeSupport(num):
 	elif _support_rate<0:
 		_support_rate=0
 	#发送信号	
-	changeFloor.call()
+	if changeFloor.is_valid():
+		changeFloor.call()
 	SignalManager.changeFraction.emit()
 
 	#GameManager.refreshPaixis() 调用会导致循环引用得修复

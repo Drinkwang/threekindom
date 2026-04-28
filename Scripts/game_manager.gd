@@ -1194,8 +1194,11 @@ var RewardLaw
 
 func LawNum():
 	var count=0
+
 	for laws in GameManager.sav.laws:
-		count+=laws.count(func(v): return v > 0)
+		for v in laws:                 # 遍历这条法律里的每个值
+			if v > 0:
+				count += 1
 	return count
 func excuteLaw():
 	sav.laws[sav.curLawNum1].append(sav.curLawNum2)
