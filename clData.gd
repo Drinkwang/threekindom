@@ -38,6 +38,8 @@ enum factionIndex{
 @export var demand={}
 @export var isAutoAllocation=false
 var support_redirect: Callable
+
+var changeFloor:Callable
 func getTr():
 	return tr(_name)
 
@@ -69,5 +71,7 @@ func ChangeSupport(num):
 	elif _support_rate<0:
 		_support_rate=0
 	#发送信号	
+	changeFloor.call()
 	SignalManager.changeFraction.emit()
+
 	#GameManager.refreshPaixis() 调用会导致循环引用得修复

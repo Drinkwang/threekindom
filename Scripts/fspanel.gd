@@ -15,9 +15,11 @@ extends Control
 func _ready():
 
 	datas.clear()
-	datas.append(GameManager.sav.WAIDIPAI)
 	datas.append(GameManager.sav.BENTUPAI)
+
+
 	datas.append(GameManager.sav.HAOZUPAI)
+	datas.append(GameManager.sav.WAIDIPAI)
 	datas.append(GameManager.sav.LVBU)
 	var d:cldata=cldata.new()
 	#d.

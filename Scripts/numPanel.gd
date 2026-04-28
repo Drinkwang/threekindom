@@ -8,10 +8,11 @@ func _ready():
 	
 	var d:cldata=cldata.new()
 	datas.clear()
-	datas.append(GameManager.sav.WAIDIPAI)
 	datas.append(GameManager.sav.BENTUPAI)
 	datas.append(GameManager.sav.HAOZUPAI)
+	datas.append(GameManager.sav.WAIDIPAI)
 	datas.append(GameManager.sav.LVBU)
+	
 	#d.
 	_processList()
 	SignalManager.changeFraction.connect(refreshData)

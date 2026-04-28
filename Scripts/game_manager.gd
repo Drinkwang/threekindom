@@ -245,6 +245,9 @@ func _ready():
 	_enterDay()
 	SkipPrologue()
 	initSetting()
+	
+	#用这个会触发bug
+	#SignalManager.changeFraction.connect(refreshFloor)	
 
 func OpenSettingMenu():
 	PanelManager.new_SettingMenu()	
@@ -342,6 +345,39 @@ func refreshPaixis():
 	else:
 		sav.HAOZUPAI.support_redirect = func(num): sav.BENTUPAI.ChangeSupport(num)
 	#传递信号，政策看法
+	
+func refreshFloor():
+	initPaixiFloor(sav.BENTUPAI)
+	initPaixiFloor(sav.WAIDIPAI)
+	#initPaixi(sav.HAOZUPAI)
+	if sav.have_event["Factionalization"]:
+		initPaixiFloor(sav.HAOZUPAI)
+	SignalManager.changeSupport.emit()
+
+func initPaixiFloor(data:cldata):
+	
+	#data._num_sp=(data._num_all*data._support_rate)/100+0.5
+	data._num_op=(data._num_all*(100-data._support_rate))/100+0.5
+	var paixiindex=getIndexByFractionIndex(data.index)
+	var lawOP=0
+	if paixiindex!=sav.curLawNum1 and sav.curLawNum1>0:
+		lawOP=((sav.curLawNum2-1)*10.0/100.0)*(data._num_all-data._num_op)
+		lawOP=floor(lawOP)
+
+	#如果是相同派系，则为0，不同派系，将（index-1）*9到10 的百分比赋值给它
+	data._num_op=data._num_op+lawOP
+	var minValue=min(data._num_op*2,data._num_all-data._num_op)
+	var initRt=randf_range(0,min(data._num_op*2,data._num_all-data._num_op))
+	if data._num_rt>initRt:
+		initRt=data._num_rt
+	if sav.curLawNum1<0:
+		initRt=0
+	
+	data._num_rt=initRt
+	data._num_sp=(data._num_all-data._num_op-data._num_rt)
+	SignalManager.changeSupport.emit()
+	#sav.floor
+
 
 func _enterDay(value=true):
 	if(value==true):
@@ -590,15 +626,14 @@ func initPaixi(data:cldata):
 	#如果是相同派系，则为0，不同派系，将（index-1）*9到10 的百分比赋值给它
 	data._num_op=data._num_op+lawOP
 	var initRt=randf_range(0,min(data._num_op*2,data._num_all-data._num_op))
-	if sav.curLawNum1<=0:
+	if sav.curLawNum1<0:
 		initRt=0
 	data._num_rt=initRt
 	data._num_sp=(data._num_all-data._num_op-data._num_rt)
 	data.isrebellion=false
 	data.isDoneOp=false
-	#data._num_op
-	pass
-
+	#sav.floor
+	data.changeFloor = func():initPaixiFloor(data)
 
 var extraValue=0
 
@@ -1353,6 +1388,8 @@ func SkipPrologue():
 	sav.day=5
 	sav.coin=100
 	sav.laws[2].append(1)
+	var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.胜战锦囊)
+	var remainder = InventoryManager.add_item(inventoryPackege, itemid, 1, false)	
 	initSecretFunc()
 
 var _setting:SettingsResource
