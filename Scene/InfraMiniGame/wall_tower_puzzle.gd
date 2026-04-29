@@ -59,6 +59,8 @@ func setHighRotateButton():
 
 func _process(delta: float) -> void:
 	
+	if not visible:
+		return
 	var moupos=get_viewport().get_mouse_position()
 	#if mouseline.visible==true:
 		#
@@ -409,6 +411,8 @@ func _on_rotate_button_button_down() -> void:
 
 
 func excuteRotate():
+	if not visible:
+		return	
 	if selectPiece != null and isrotate==false and isVictory==false and isHigh==true:
 		SoundManager.play_sound(sounds.SFX_FAST_UI_CLICK_MECHANICAL_03_WAV)
 		var tween = get_tree().create_tween()
@@ -428,6 +432,8 @@ func excuteRotate():
 	
 var canclick=true
 func _input(event: InputEvent) -> void:
+	if not visible:
+		return
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed and canclick==true and isVictory==false:
 		if selectPiece!=null and clopos!=null:
 			if visualClubPos!=null:
