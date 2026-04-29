@@ -316,7 +316,7 @@ func initRandomRotate():
 	for i in puzzle_pieces:
 		var randi=randi_range(0,3)
 		
-		puzzle_pieces[i].rotation=randi*90
+		i.rotation=randi*90
 	
 func initRandomBase():
 	

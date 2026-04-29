@@ -1037,6 +1037,7 @@ do mizhu.hide()
 do updateInfrastruture()
 任务更新: 请完成3项基建工程，并召集两千壮丁。
 do mizhu.hide()
+do _initData()
 do chenden.hide()
 => END!
 
