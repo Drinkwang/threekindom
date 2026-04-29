@@ -49,17 +49,18 @@ func refreshText():
 		detail.text=numGranary+"(已报废)"
 		texture_rect_6.modulate=Color.RED
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	#or GameManager.rewardPanel==true 
+	#or GameManager.rewardPanel==true
 	if !(event is InputEventMouseButton) or DialogueManager.dialogBegin==true or isOverFill==true:
 		return
-	#大概率是后面二项导致的	
+	#大概率是后面二项导致的
 	print("dialogBegin "+var_to_str(DialogueManager.dialogBegin))
 	#print("rewardPanel "+var_to_str(GameManager.rewardPanel))
 	if(event is InputEventMouseButton and event.button_index==1):
 		SoundManager.play_sound(sounds.SFX_FAST_UI_CLICK)
-		
+
 		GameManager.PuzzleScene.selectGrannary(self)
-func addValue(_value):
+func addValue(_value) -> bool:
 	currenceValue+=_value
 	refreshText()
 	GameManager.PuzzleScene._updateMainContext()
+	return isOverFill

@@ -40,6 +40,9 @@ const BLOODXX = preload("res://Asset/sound/bloodxx.mp3")
 const BLOODCC_1 = preload("res://Asset/sound/bloodcc1.mp3")
 
 const FOOTSTEPS_WALKING = preload("res://Asset/sound/Footsteps_walking.wav")
+const HORSE_NEIGH = preload("res://Asset/sound/马叫.mp3")
+const HORSE_CART = preload("res://Asset/sound/马车.mp3")
+const HORSE_ER = preload("res://Asset/sound/马儿.wav")
 const bloodmusic1 = preload("res://Asset/music/一将陨.mp3")
 const bloodmusic0 = preload("res://Asset/music/决死阵.mp3")
 

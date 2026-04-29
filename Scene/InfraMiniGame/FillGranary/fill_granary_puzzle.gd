@@ -66,6 +66,7 @@ func _on_piece_input_event(viewport: Node, event: InputEvent, shape_idx: int, ho
 			selecthourse.stop_flash()
 		hourse.start_flash()
 		selecthourse=hourse
+		SoundManager.play_sound(sounds.HORSE_NEIGH)
 @onready var color_rect_5: ColorRect = $tracks/ColorRect5
 @onready var color_rect_6: ColorRect = $tracks/ColorRect6
 
@@ -215,6 +216,7 @@ func winGame():
 
 func loseGame():
 	lose_rect.show()
+	SoundManager.play_sound(sounds.BAD_BATTLE)
 
 
 func loseGameBtn():

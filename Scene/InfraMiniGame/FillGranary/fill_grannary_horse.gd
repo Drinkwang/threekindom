@@ -1,4 +1,4 @@
-class_name fill_granary_hourse 
+class_name fill_granary_hourse
 extends Node2D
 
 
@@ -25,7 +25,7 @@ const FLASH_DURATION := 3   # 一次完整明暗循环时间
 func start_flash():
 	if tween and tween.is_valid():
 		tween.kill()
-	
+
 	tween = create_tween()
 	tween.set_loops()  # 无限循环
 	tween.tween_property(texture_rect_4, "modulate", FLASH_COLOR, FLASH_DURATION / 2)
@@ -65,11 +65,18 @@ func selectGrannary(grannary:granary_house):
 	stop_flash()
 	animation_player.play("carriage")
 	animation_player.speed_scale = 2
+	SoundManager.stop_sound(sounds.HORSE_CART)
+	SoundManager.play_sound(sounds.HORSE_CART)
 	var finishFunc=func(grannary):
 		if MoveTween and MoveTween.is_valid():
-			MoveTween.kill()	
-		animation_player.stop()	
-		grannary.addValue(holdValue)
+			MoveTween.kill()
+		animation_player.stop()
+		SoundManager.stop_sound(sounds.HORSE_CART)
+		var isOverfill = grannary.addValue(holdValue)
+		if isOverfill:
+			SoundManager.play_sound(sounds.deniedsound)
+		else:
+			SoundManager.play_sound(sounds.COLLECT_SMALL_JEWEL_1)
 		self.hide()
 		$"../..".refreshHorse()
 	MoveTween.finished.connect(finishFunc.bind(grannary))
