@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://dbk6u8kc33kq2"]
+[gd_scene load_steps=52 format=3 uid="uid://dbk6u8kc33kq2"]
 
 [ext_resource type="Script" path="res://Scripts/government_building.gd" id="1_xncth"]
 [ext_resource type="Resource" uid="uid://cqlt2sgkuk3na" path="res://dialogues/府邸.dialogue" id="2_yngd1"]
@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://ervc6220fre7" path="res://Scene/prefab/fspanel.tscn" id="15_wrxcl"]
 [ext_resource type="PackedScene" uid="uid://ghiim2lkqkbe" path="res://Scene/prefab/propertyPanel.tscn" id="16_rw7iu"]
 [ext_resource type="PackedScene" uid="uid://d1e8i71sm0pf1" path="res://Scene/InfraMiniGame/FillGranary/FillGranaryPuzzle.tscn" id="18_5cnus"]
+[ext_resource type="Texture2D" uid="uid://njt83qhv4wm8" path="res://Asset/人物/吕布.png" id="18_lbowa"]
 [ext_resource type="PackedScene" uid="uid://cw66yiofu8q6f" path="res://Scene/prefab/RuleBook.tscn" id="19_b7wfr"]
 [ext_resource type="PackedScene" uid="uid://bvlh16yfcevdj" path="res://Scene/DisasterSys/disasterPanel.tscn" id="20_6ab6m"]
 [ext_resource type="Resource" uid="uid://d2qoinuor12dq" path="res://dialogues/演武场.dialogue" id="20_i0wth"]
@@ -264,6 +265,16 @@ txt2d = ExtResource("20_u361t")
 boardType = 1
 dialogue_resource = ExtResource("2_yngd1")
 dialogue_start = "点击糜竺"
+
+[node name="吕布" parent="peoples" instance=ExtResource("6_ibudm")]
+visible = false
+position = Vector2(312, -15)
+showName = "吕布"
+dialogue_doubleclick = "丹阳将领投靠"
+txt2d = ExtResource("18_lbowa")
+boardType = 1
+dialogue_resource = ExtResource("20_i0wth")
+dialogue_start = ""
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

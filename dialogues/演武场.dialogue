@@ -466,7 +466,11 @@ do fireLetter()
 #12次 此时无法讨伐
 ~ 发现吕布
 
-刘备: （徐州精锐已在连年征战中折损殆尽，如今臧霸那干泰山寇众盘踞险要，我军已失合围良机，眼下这消耗战便如泥淖，正一寸寸没过徐州的脖颈……） [voice:liubei_taishanxiaohaozhan]
+
+刘备: （此番此番攻势虽暂取小胜，然斩首之计已然落空，未能一举肃清泰山诸将。徐州精锐经连年鏖战早已折损惨重，臧霸等人据险列阵、互为犄角，地方内乱绵延不绝，战事遥遥无期。我军彻底错失合围良机，深陷消耗泥潭难以自拔，这般僵持耗战毫无胜算，只会缓缓扼死徐州根基，空耗人力物力，再无裨益可言……）[voice:liubei_taishanxiaohaozhan]
+#刘备: （徐州精锐已在连年征战中折损殆尽，如今臧霸那干泰山寇众盘踞险要，我军已失合围良机，眼下这消耗战便如泥淖，正一寸寸没过徐州的脖颈……） [voice:liubei_taishanxiaohaozhan]
+do battle_pane.hide()
+do lvbu.show()
 探马: 报！主公，前方发现一支大军，旗帜书“吕”字！
 刘备: 温侯吕布？此地何故有他踪迹？[voice:liubei_wenhoulvbu]
 ...
@@ -474,6 +478,7 @@ do fireLetter()
 刘备: 温侯亲至，实出意料。不知温侯因何骤然至此？[voice:liubei_wenhouqinzhi]
 吕布: 刘使君，布与君同出边陲，志同道合。昔日布与司徒王允同心，共诛国贼董卓，虽功成，关东诸侯却视布为敌，欲加害于我。布迫无奈，辗转至此，愿与使君共守徐州，求一片安宁。[voice:liushijun_liushijun_tongxiang]
 刘备: 温侯远来，诚意可嘉。然此事干系重大，需与诸谋士共商方可定夺。温侯可暂驻附近，我当供应粮草，以表敬意，待商议后再定归附之事。[voice:liubei_wenhoushangyi]
+do lvbu.hide()
 do findLvbu()
 => END!
 

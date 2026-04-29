@@ -529,6 +529,7 @@ func eatTea2(issuccuss=false):
 		GameManager.sav.have_event["错失娃娃"]=true
 		GameManager.sav.have_event["糜竺正确选择2"]=false
 
+@onready var lvbuc: clickBlock = $"peoples/吕布"
 
 func showMizhuTouchMain():
 	mizhu.show()

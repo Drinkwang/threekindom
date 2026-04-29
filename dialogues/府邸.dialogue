@@ -223,8 +223,9 @@ do zhubu.hide()
 	do SummonFaction(_faction)
 => END!
 ~ 赠礼完成
-
+do SoundManager.play_sound(sounds.COLLECT_SMALL_JEWEL_3)
 成功赠送礼物，{{getFactionByIndex().getTr()}}好感度上升{{(15+GameManager.sav.randomIndex+GameManager.extraValue)}}
+
 do GameManager._imporveRelation(getFactionByIndex())
 do _JudgeTask()
 #赠送礼物，好感度上升
@@ -891,9 +892,11 @@ do lvbuJoin()
 
 
 ~ 可召见吕布
-侍从: 主公，经过一夜的准备，现在可以召见吕布了。
+侍从: 主公，经连日筹谋整备，如今已然妥当，可召见吕布了。
+#侍从: 主公，经过一夜的准备，现在可以召见吕布了。
 刘备: 好，宣他入内。[voice:liubei_xuantarunei]
 一段时间后，吕布被引进府邸
+do lvbuc.show()
 刘备: 温侯，远道而来，欢迎之至。[voice:liubei_wenhouhuanyin]
 吕布: 刘使君，我特来投靠，愿为你效力。[voice:lvbu_yuanweinixiaoli]
 刘备: 温侯跋涉而来，辛苦了。请上座。[voice:liubei_wenhoubashe]
@@ -907,6 +910,7 @@ do lvbuJoin()
 刘备: 温侯，今日之事已议定，你先回去准备吧。我们会尽快安排具体事宜。[voice:liubei_wenhoujinriyiding]
 吕布: 贤弟，布告辞了！我必不负重望！[voice:lvbu_bugaocile]
 刘备: 温侯慢走，一路保重。[voice:liubei_wenhoumanzou]
+do lvbuc.hide()
 刘备待吕布离开后，回到座位，对糜竺和陈登低声说道
 
 刘备: 务必严密监视，不可有丝毫松懈。让他尽快和我一起解决泰山诸将内乱问题[voice:liubei_wubiyanmijianshi]
