@@ -456,6 +456,7 @@ autoplay = "YELLOWGUILD"
 
 [node name="puzzleGame" parent="CanvasInventory" instance=ExtResource("25_x6378")]
 visible = false
+mouse_filter = 0
 
 [node name="title" type="RichTextLabel" parent="."]
 visible = false

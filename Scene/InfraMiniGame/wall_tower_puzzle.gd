@@ -43,7 +43,6 @@ func switchDiffucult():
 		pass
 	elif difficult==SceneManager.puzzlediffucult.high:
 		isHigh=true
-		initRandomRotate()
 	setHighRotateButton()
 @onready var rotate_button: TextureButton = $RotateButton
 @onready var rotate_label: Label = $Label2
@@ -209,7 +208,7 @@ func create_puzzle():
 			#area.monitorable = false          # 重要！不让别人检测到自己（减少事件）
 
 # 关键设置：让 Area2D 优先级更高（z_index 越大越先收到事件）
-			area.priority = 100               # 数值越大越靠前（默认是 0）
+			area.priority = 1000000               # 数值越大越靠前（默认是 0）
 
 			
 			shape.size = Vector2(actual_piece_width,actual_piece_height)
@@ -243,6 +242,7 @@ func _on_piece_input_event(viewport: Node, event: InputEvent, shape_idx: int, pi
 		if selectPiece==null:
 			selectPiece=piece
 			canclick=false
+			SoundManager.play_sound(sounds.SFX_FAST_UI_CLICK)
 			await  get_tree().create_timer(0.5).timeout
 			canclick=true
 			set_piece_z_index(piece, 999)
@@ -316,7 +316,7 @@ func initRandomRotate():
 	for i in puzzle_pieces:
 		var randi=randi_range(0,3)
 		
-		i.rotation=randi*90
+		i.rotation_degrees=randi*90
 	
 func initRandomBase():
 	
@@ -410,6 +410,7 @@ func _on_rotate_button_button_down() -> void:
 
 func excuteRotate():
 	if selectPiece != null and isrotate==false and isVictory==false and isHigh==true:
+		SoundManager.play_sound(sounds.SFX_FAST_UI_CLICK_MECHANICAL_03_WAV)
 		var tween = get_tree().create_tween()
 		tween.tween_property(
 			selectPiece,
@@ -419,43 +420,37 @@ func excuteRotate():
 		).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 		isrotate=true
 		var _on_rotation_finished=func():
-			selectPiece.rotation_degrees = fposmod(selectPiece.rotation_degrees, 360.0)
-			check_puzzle_complete()
-			isrotate=false
+			if selectPiece!=null:
+				selectPiece.rotation_degrees = fposmod(selectPiece.rotation_degrees, 360.0)
+				check_puzzle_complete()
+				isrotate=false
 		tween.finished.connect(_on_rotation_finished)	
 	
 var canclick=true
 func _input(event: InputEvent) -> void:
-	var isstop:bool=true
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed and canclick==true and isVictory==false:
-		if selectPiece!=null:
-	
-
-
+		if selectPiece!=null and clopos!=null:
 			if visualClubPos!=null:
 				visualClubPos.queue_free()
-		
 				tempclopos=null
-
-				set_piece_z_index(selectPiece, 100)
-				selectPiece.position = clopos#+Vector2(648,248)
-				selectPiece=null
-				canclick=false
-				await  get_tree().create_timer(0.5).timeout
-				canclick=true
-				check_puzzle_complete()
-		#判断离所有方格，且小于50 则强行变位
+			set_piece_z_index(selectPiece, 100)
+			selectPiece.position = clopos
+			SoundManager.play_sound(sounds.equipsound)
+			selectPiece=null
+			canclick=false
+			await get_tree().create_timer(0.5).timeout
+			canclick=true
+			check_puzzle_complete()
+		else:
+			_try_select_piece()
 
 	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed and selectPiece!=null and isVictory==false:
-
+		SoundManager.play_sound(sounds.uneqipsound)
 		set_piece_z_index(selectPiece, 100)
 		selectPiece=null
 		tempclopos=null
-		
 		if visualClubPos!=null:
 			visualClubPos.queue_free()
-			
-		# 检查事件是否为键盘按下事件，并且是“R”键
 	elif event is InputEventKey and event.pressed and event.keycode == KEY_R:
 		rotateDegress=90
 		excuteRotate()
@@ -463,24 +458,35 @@ func _input(event: InputEvent) -> void:
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP and event.pressed:
 			on_mouse_wheel_up()
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN and event.pressed:
-			on_mouse_wheel_down()	
-			
+			on_mouse_wheel_down()
+
+func _try_select_piece():
+	var mouse_local = get_viewport().get_mouse_position() - Vector2(648, 248)
+	var half = piece_size * 0.5
+	for piece in puzzle_pieces:
+		if not piece.visible:
+			continue
+		if abs(mouse_local.x - piece.position.x) <= half.x and abs(mouse_local.y - piece.position.y) <= half.y:
+			selectPiece = piece
+			canclick = false
+			SoundManager.play_sound(sounds.SFX_FAST_UI_CLICK)
+			set_piece_z_index(piece, 999)
+			await get_tree().create_timer(0.5).timeout
+			canclick = true
+			break
+
 func on_mouse_wheel_up():
 	rotateDegress=-90
-	excuteRotate()		
-	# 在这里写你想要执行的逻辑，例如：
-	# zoom_in()  # 放大相机
-	# change_weapon_next()  # 切换到下一个武器
-	# volume_up()  # 音量增加
+	excuteRotate()
 
-# 滚轮向下时触发
 func on_mouse_wheel_down():
 	rotateDegress=90
-	excuteRotate()		
-			
+	excuteRotate()
+
 func loseGame():
 	lose_rect.show()
 	timer.stop()
+	SoundManager.play_sound(sounds.BAD_BATTLE)
 
 
 @onready var lose_rect: ColorRect = $LoseRect
@@ -491,17 +497,22 @@ func initGame():
 	self.show()
 	win_rect.hide()
 	lose_rect.hide()
-	switchDiffucult()#可修改图片
+	isVictory=false
+	selectPiece=null
+	canclick=true
+	isrotate=false
+	switchDiffucult()
 	if source_texture:
 		create_puzzle()
+		if isHigh:
+			initRandomRotate()
 	else:
 		print("请设置源图片")
 	if GameManager.sav.have_event["基建修塔教程"]==false:
 		GameManager.sav.have_event["基建修塔教程"]=true
-		DialogueManager.show_example_dialogue_balloon(GameManager.sys,"基建筑墙教程")	
-	# 连接UI按钮信号 - Godot 4 语法
+		DialogueManager.show_example_dialogue_balloon(GameManager.sys,"基建筑墙教程")
 	timer.wait_time = 1.0
-	timer.one_shot = false  # 重复触发
+	timer.one_shot = false
 	time_left=60
 	timer.timeout.connect(_on_timeout)  # 连接信号（编辑器也可连）
 	timer.start()  # 启动（autostart=true也可）
