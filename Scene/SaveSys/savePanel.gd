@@ -91,6 +91,7 @@ func loadFile():
 		InventoryManager.reset_data()
 		#InventoryManager._db = InventoryData.new()
 		SoundManager.stop_music()
+		SoundManager.stop_all_ambient_sounds()
 		DialogueManager.gameover=false
 		GameManager.sav=savs[index-1].duplicate(true)
 		GameManager.sav.ensure_default_fields()

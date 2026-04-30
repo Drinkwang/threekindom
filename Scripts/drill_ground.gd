@@ -157,6 +157,7 @@ func _completeTask():#将完成任务移动到外层
 		
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"征讨袁术结束")
 	elif GameManager.sav.have_event["战斗袁术血战模式"]==true and GameManager.sav.have_event["血战袁术完成"]==false:
+		res_panel.show()
 		#GameManager.sav.have_event["血战袁术完成"]=true
 		if GameManager.dontHaveDominance()==false and GameManager.sav.HAOZUPAI.supressNum>=3 and GameManager.sav.WAIDIPAI.supressNum>=3 and \
 		GameManager.sav.LVBU.supressNum>=3 and GameManager.sav.BENTUPAI.supressNum>=3:
@@ -470,6 +471,7 @@ func _initData():
 
 	if GameManager.sav.have_event["战斗袁术血战模式"]==true and GameManager.sav.have_event["血战袁术完成"]==false:
 		initData[3].visible="true"
+		res_panel.show()
 		initData[0].visible="false"
 		if  GameManager.sav.isGetCoin==false:
 			if GameManager.sav.currenceValue<15:
@@ -1071,7 +1073,7 @@ func _DayGet():
 	res_panel.showValue=false
 	res_panel.GetValue(GameManager.sav.coin_DayGet,0,GameManager.sav.labor_DayGet)
 	SoundManager.play_sound(sounds.buysellsound)
-	await 1
+	#await 1
 	res_panel.showValue=true
 	
 	
