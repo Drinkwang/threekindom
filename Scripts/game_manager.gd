@@ -679,13 +679,13 @@ func getTaskCurrenceValue():
 
 func getgovernValue():
 	var cv=0
-	if sav.WAIDIPAI._support_rate>=80 or sav.WAIDIPAI._num_defections>=3:
+	if sav.WAIDIPAI._support_rate>=80 or sav.WAIDIPAI.supressNum>=3:
 		cv+=1
-	if sav.BENTUPAI._support_rate>=80 or sav.BENTUPAI._num_defections>=3:
+	if sav.BENTUPAI._support_rate>=80 or sav.BENTUPAI.supressNum>=3:
 		cv+=1
-	if sav.LVBU._support_rate>=80 or sav.LVBU._num_defections>=3:
+	if sav.LVBU._support_rate>=80 or sav.LVBU.supressNum>=3:
 		cv+=1	
-	if sav.HAOZUPAI._support_rate>=80 or sav.HAOZUPAI._num_defections>=3:
+	if sav.HAOZUPAI._support_rate>=80 or sav.HAOZUPAI.supressNum>=3:
 		cv+=1
 	return cv
 

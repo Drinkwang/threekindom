@@ -406,6 +406,7 @@ do caobao.show()
 刘备: 将军深明大义，备感激不尽。[voice:liubei_jiangjunshenmindayi]
 曹豹: 不敢当。只要主公心里明白末将…… 是无辜的，便好。[voice:caobao_bugandan]
 do caobao.hide()
+do _initData()
 => END!
 
 #大改

@@ -228,7 +228,7 @@ func post_transition():
 		#20-120
 		#32 12
 		return 
-	if GameManager.sav.have_event["袁术首次击败"]==true and GameManager.sav.have_event["关押曹豹"]==true:
+	if GameManager.sav.have_event["袁术首次击败"]==true and GameManager.sav.have_event["关押曹豹"]==true and GameManager.sav.have_event["亲征对话结束"]==false:
 		GameManager.sav.have_event["关押曹豹"]=false
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"放出曹豹")
 		return
