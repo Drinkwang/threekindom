@@ -205,6 +205,7 @@ func _on_cell_clicked(cell: Vector2i) -> void:
 		return
 	if selected == Vector2i(-1, -1):
 		selected = cell
+		SoundManager.play_sound(sounds.SFX_FAST_UI_CLICK)
 		_rebuild_visuals()
 	else:
 		if _is_adjacent(selected, cell):
@@ -214,6 +215,7 @@ func _on_cell_clicked(cell: Vector2i) -> void:
 				_rebuild_visuals()
 			else:
 				selected = selected
+				SoundManager.play_sound(sounds.deniedsound)
 		else:
 			selected = cell
 			_rebuild_visuals()
@@ -225,6 +227,7 @@ func _try_swap(a: Vector2i, b: Vector2i) -> bool:
 	if not _would_swap_create_match(a, b):
 		return false
 	is_animating = true
+	SoundManager.play_sound(sounds.confiresound)
 	await _animate_swap(a, b)
 	_swap_cells(a, b)
 	is_animating = false
@@ -415,9 +418,11 @@ func _process_board_from(a: Vector2i, b: Vector2i) -> void:
 			if filtered.size() == 0:
 				break
 			_clear_matches(filtered)
+			SoundManager.play_sound(sounds.equipsound)
 			first = false
 		else:
 			_clear_matches(matches)
+			SoundManager.play_sound(sounds.equipsound)
 		_apply_gravity()
 		_apply_right_compaction()
 	_update_water_and_emit()

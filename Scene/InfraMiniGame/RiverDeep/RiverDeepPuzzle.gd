@@ -207,6 +207,7 @@ func _update_connector(depth: int) -> void:
 
 func loseGame():
 	lose_rect.show()
+	SoundManager.play_sound(sounds.BAD_BATTLE)
 	timer.stop()
 
 func _on_afterWin_button_down() -> void:

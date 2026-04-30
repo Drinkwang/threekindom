@@ -17,6 +17,8 @@ func update_irrigation(current_depth: int) -> void:
 		return
 	if current_depth >= required_depth:
 		irrigated = true
+		#播放音效
+		SoundManager.play_sound(sounds.IRRIGATION_P)
 		_update_visual()
 	else:
 		irrigated = false
