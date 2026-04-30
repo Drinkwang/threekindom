@@ -45,7 +45,7 @@ func _ready():
 	else:
 		bg.texture=xiaopeiBuild
 	initFogAndRect()	
-
+const WASTELAND_0 = preload("res://Asset/bgm/wasteland0.wav")
 func initFogAndRect():
 	if GameManager.sav.have_event["亲征对话结束"]==true and GameManager.sav.have_event["血战袁术完成"]==false:
 		if color_rect!=null:
@@ -61,12 +61,14 @@ func initFogAndRect():
 		#0.13+0.0
 		if GameManager.sav.currenceValue>=21:
 			fog.show()
-		if not SoundManager.is_music_playing():
-			pass
+		if not SoundManager.is_music_playing(sounds.bloodmusic0) and not SoundManager.is_music_playing(sounds.bloodmusic1):
 			#要么音乐a
-			if GameManager.sav.currenceValue<26:
+			if GameManager.sav.currenceValue<21:
 				#SoundManager.stop_music()
 				SoundManager.play_music(sounds.bloodmusic0)
+			elif GameManager.sav.currenceValue<26:
+				SoundManager.play_ambient_sound(WASTELAND_0)
+				
 			else:
 				SoundManager.play_music(sounds.bloodmusic1)
 const bgm = preload("res://Asset/bgm/校场.wav")
@@ -476,9 +478,12 @@ func _initData():
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"每日物质送不来")
 			elif GameManager.sav.currenceValue==21:
 				#进入克苏鲁
+				SoundManager.play_ambient_sound(WASTELAND_0)
+				SoundManager.stop_music()
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁线自相啖食0")
 			elif GameManager.sav.currenceValue==26:
 				#克苏鲁第一天
+				#SoundManager.stop_all_ambient_sounds()
 				SoundManager.stop_music()
 				SoundManager.play_music(sounds.bloodmusic1)				
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁线自相啖食")

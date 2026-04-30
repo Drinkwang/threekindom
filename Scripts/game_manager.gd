@@ -79,7 +79,7 @@ func changePeopleSupport(num):
 	GameManager._propertyPanel.GetValue(0,0,0)
 	if(sav.people_surrport>100):
 		sav.people_surrport=100
-	elif sav.people_surrport<0:
+	elif sav.people_surrport<=0:
 		sav.people_surrport=0
 		_engerge.hide()
 		#DialogueManager.gameover=true
