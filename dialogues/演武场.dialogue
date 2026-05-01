@@ -766,7 +766,7 @@ do finger.show()
 do finger.hide()
 无名: 昨夜，我看见徐州兵的身影，他们饿，吃了甲叔后，还想吃掉主公，再屠尽涿县子弟。
 
-乙: 徐州兵……是他们……
+乙: 徐州兵……是他们……我错怪主公了
 do wuminandyi2()
 #丙变红，乙改丙
 do makePeoplehurt(yi)

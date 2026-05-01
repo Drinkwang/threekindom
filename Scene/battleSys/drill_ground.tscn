@@ -191,7 +191,7 @@ _data = {
 "YELLOWGUILD": SubResource("Animation_rms3s")
 }
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D2" type="Node2D"]
 script = ExtResource("1_bhlt2")
 dialogue_resource = ExtResource("2_j02vm")
 dialogue_start = "初入演武场"
@@ -243,6 +243,7 @@ visible = false
 material = SubResource("ShaderMaterial_wvr61")
 offset_right = 1915.0
 offset_bottom = 1075.0
+mouse_filter = 2
 texture = SubResource("NoiseTexture2D_um5ac")
 stretch_mode = 1
 

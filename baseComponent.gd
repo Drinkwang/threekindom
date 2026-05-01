@@ -7,11 +7,16 @@ class_name baseComponent
 var readyInitData:bool=true
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#DialogueManager.dialogBegin=false
 	if(readyInitData==true):
 		_initData()
 		if(GameManager._savePanel!=null):
 			GameManager._savePanel.hide()
 		
+	if GameManager.isLoadingSave==true:
+		GameManager.isLoadingSave=false
+		DialogueManager.dialogBegin=false
+		GameManager.showLoadSuccusss()
 	#pass # Replace with function body.
 
 func _initData():

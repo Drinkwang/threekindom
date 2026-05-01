@@ -116,6 +116,7 @@ var _propertyPanel:propertyPanel
 
 
 var CanClickUI:bool=true
+var isLoadingSave:bool=false
 #var _rewardPanel:rewardPanel 移动导savedate里
 
 
@@ -1880,3 +1881,9 @@ func getMinxinValue4():
 	addLabor= int(addLabor * (1 + GameManager.sav.WAIDIPAI._num_all *0.03)) 
 			
 	return addLabor
+
+const savesys = preload("res://dialogues/存档.dialogue")
+func showLoadSuccusss():
+	await get_tree().process_frame
+	DialogueManager.show_example_dialogue_balloon(savesys,"读取存档成功")
+	#refresh()

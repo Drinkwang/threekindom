@@ -207,6 +207,7 @@ func caocaoLetterHide():
 	caocao_letter_xie_tian_zi.hide()
 func post_transition():
 	GameManager.CanClickUI=true
+	#DialogueManager.dialogBegin=false
 	SoundManager.stop_all_ambient_sounds()
 	SoundManager.play_ambient_sound(bgm)
 	print("fadedone")
@@ -332,6 +333,7 @@ func refreshData():
 
 func _initData():
 	GameManager.currenceScene=self
+	#DialogueManager.dialogBegin=false
 	if(GameManager.sav.day==1):
 		if GameManager.sav.have_event["firstEnterBattle"]==false:
 			GameManager.sav.have_event["firstEnterBattle"]=true
@@ -1111,7 +1113,7 @@ func openBoardDialogue():
 func huangjinSurrender():
 	GameManager.sav.labor_force+=100
 	GameManager.sav.currenceValue+=1
-	DialogueManager.dialogBegin=false
+	#DialogueManager.dialogBegin=false
 	_judWin()	
 
 

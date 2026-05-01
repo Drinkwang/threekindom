@@ -549,7 +549,7 @@ func settleGame(end,issuccess):
 			GameManager.sav.currenceValue=GameManager.sav.currenceValue+1
 			
 			if GameManager.sav.currenceValue==24 and GameManager.sav.have_event["战斗袁术血战模式"]==true and GameManager.sav.have_event["血战袁术完成"]==false:
-				DialogueManager.show_example_dialogue_balloon(yanwuchang,"张飞杀曹豹")	
+				DialogueManager.show_example_dialogue_balloon(yanwuchang,"张飞杀曹豹")	#这个会被拦截，如果触发了这个就不能触发失去民心，或者把这个丢到battle里
 	if issuccess==true:
 		GameManager.sav.battleResults[taskIndex]=GameManager.BattleResult.win
 		print("你win了")

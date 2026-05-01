@@ -21,7 +21,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	pass
+	var is_dialog = DialogueManager.dialogBegin
+	for child in $VBoxContainer.get_children():
+		child.disabled = is_dialog
 
 
 func _processList(data):
@@ -89,6 +91,7 @@ func _processList(data):
 		buttton.texture_pressed=pressbtn
 		buttton.texture_hover=hoverbtn
 		buttton.texture_focused=focusbtn
+		buttton.texture_disabled=normalbtn
 		buttton.mouse_entered.connect(_buttonHover.bind(item))
 		buttton.mouse_exited.connect(_buttonExit)
 		buttton.pressed.connect(_button_ation.bind(item,index))
@@ -130,6 +133,8 @@ func changeLanguage():
 			richTxt.remove_theme_font_override("normal_font")	
 @onready var animation_player = $"Node2D/5Yellow/AnimationPlayer"
 func _buttonHover(item):
+	if DialogueManager.dialogBegin==true:
+		return
 	SoundManager.play_sound(sounds.hoversound)
 	buttonHover.emit(item)
 	
@@ -165,6 +170,8 @@ func _show_button_5_yellow(index):
 	#var groups=$VBoxContainer.get_node(findpattern)
 	#var texbtn:TextureButton=groups
 func _button_ation(item,index):
+	if DialogueManager.dialogBegin==true:
+		return
 	SoundManager.play_sound(sounds.confiresound)
 	#_show_button_5_yellow(index)
 	buttonClick.emit(item)
