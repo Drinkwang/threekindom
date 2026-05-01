@@ -30,6 +30,26 @@ func _endReward():
 
 @onready var enemy = $enemy
 
+func _normalize_angle(angle: float) -> float:
+	return fposmod(angle, 360.0)
+
+func _is_angle_in_sector(angle: float, lower: float, upper: float) -> bool:
+	if lower < upper:
+		return angle >= lower and angle < upper
+	return angle >= lower or angle < upper
+
+func _refreshBattleTypePreview():
+	if GameManager.sav.battleTasks==null or GameManager.sav.battleTasks.size()==0:
+		return
+	var size = GameManager.sav.battleTasks.size()
+	var current = taskIndex
+	if current < 0 or current >= size:
+		current = 0
+	for i in range(1, 4):
+		var idx = (current + i - 1) % size
+		var sd = GameManager.sav.battleTasks[idx].sdType
+		_initBattleTypePng(i, sd)
+
 func changeHeadInMainTask():
 	
 	const CANGXI_2 = preload("res://Asset/人物/cangxi2.png")
@@ -71,10 +91,8 @@ func _ready():
 	taskIndex=getTaskIndex()
 	if GameManager.sav.battleTasks==null or GameManager.sav.battleTasks.size()==0:
 		return 
-	_initBattleTypePng(0,GameManager.sav.battleTasks[taskIndex].sdType)
-	for i in range(1,4):
-		var sd=GameManager.sav.battleTasks[i-1].sdType
-		_initBattleTypePng(i,sd)
+	_initBattleTypePng(0, GameManager.sav.battleTasks[taskIndex].sdType)
+	_refreshBattleTypePreview()
 	#初始化其中一个，然后随机获取一个 初始化按照gamemanager数据来
 	var btdatas=GameManager.battleCircle
 	for i in range(0,4):
@@ -239,7 +257,8 @@ func _juideCompeleteTask():
 	#判断选中的武将1 有无装备
 	#判断选中的武将2 有无装备
 	#判断选中的武将3 有无装备
-	GameManager.battleCircle[4].radian=levelup;
+	var success_degrees = min(max(levelup * 3.6, 0), 360)
+	GameManager.battleCircle[4].radian = success_degrees
 	#targetGet=targetGet+levelup
 	#if(targetGet>rewardMax):
 	#	targetGet=rewardMax
@@ -269,9 +288,11 @@ func _changeCircle(rewardGet):
 	
 
 	battleCircleClone=GameManager.battleCircle.duplicate(true)
+	for data in battleCircleClone:
+		data.initPos = _normalize_angle(data.initPos)
 	
-	
-	#{"name":"无风险","initPos":0,"radian":90,"index":0},#
+	battleCircleClone[4].radian = clamp(battleCircleClone[4].radian, 0, 360)
+	# {"name":"无风险","initPos":0,"radian":90,"index":0},#
 	#{"name":"小风险","initPos":0,"radian":90,"index":1},#
 	#{"name":"中风险","initPos":0,"radian":90,"index":2},#
 	#{"name":"高风险","initPos":0,"radian":90,"index":3},#
@@ -324,7 +345,7 @@ func _changeCircle(rewardGet):
 		#有bug待修复
 
 		#此处不能用加法
-		e.initPos=fmod((battleCircleClone[0].initPos-calradian),360.0)
+		e.initPos = _normalize_angle(battleCircleClone[0].initPos - calradian)
 		if e.radian>0:
 			calradian=calradian+e.radian
 		
@@ -333,10 +354,10 @@ func _changeCircle(rewardGet):
 		else:
 			nextInitIndex=nextInitIndex+1
 		
-	var success_rate: float = battleCircleClone[4].radian / 360.0
+	var success_rate: float = clamp(battleCircleClone[4].radian, 0, 360) / 360.0
 
 # 2. 转换为百分比并保留0位小数（如0.8 → 80%）
-	var success_rate_percent: int = min(int(success_rate * 100),100)
+	var success_rate_percent: int = min(int(success_rate * 100 + 0.5), 100)
 
 # 3. 拼接成目标文本格式（假设文本节点名为 "SuccessRateText"）
 	
@@ -403,21 +424,10 @@ func _on_SpinButton_pressed():
 	#current_state=battleStete.all
 	#switchStete()
 	for data in battleCircleClone:
+		if data.radian > 0:
+			data.initPos = _normalize_angle(data.initPos)
 
-		if(data.radian>0):
-			data.initPos=fmod(data.initPos,360.0)
-			var lowerValue=data.initPos-data.radian
-			var upperValue=data.initPos
-			if(lowerValue<0):
-				lowerValue=lowerValue+360
-			if(upperValue<0):
-				upperValue=upperValue+360	
-			if(stop_angle-45== lowerValue and stop_angle-45<upperValue):
-				stop_angle+5
-				
-			
-	
-	tween.tween_property($PointerScifiB, "rotation_degrees", 360 * ROTATION_DURATION+stop_angle, 2)
+	tween.tween_property($PointerScifiB, "rotation_degrees", 360 * ROTATION_DURATION + stop_angle, 2)
 
 
 	tween.tween_callback(_on_Tween_tween_all_completed)
@@ -439,42 +449,23 @@ func _initBattleTypePng(index,type):
 
 
 func _on_Tween_tween_all_completed():
-	
 	await get_tree().create_timer(0.1).timeout   # 建议等一小会儿再取最终角度，更稳
-	$PointerScifiB.rotation_degrees=fmod(stop_angle,360)
-	var real_angle=stop_angle-45 #减去图片偏差的45度
-	var issuccess=false;
-	var selectPart
-	if(real_angle<0):
-		real_angle=real_angle+360
+	$PointerScifiB.rotation_degrees = _normalize_angle(stop_angle)
+	var real_angle = _normalize_angle(stop_angle - 45) #减去图片偏差的45度
+	var issuccess = false
+	var selectPart = null
 	for data in battleCircleClone:
-		if(data.radian>0):
-			
-		
-			var lowerValue=data.initPos-data.radian
-			var upperValue=data.initPos
-			
-			if(lowerValue<0):
-				#pass
-				#var temp=upperValue
-				lowerValue=lowerValue+360
-				#lowerValue=temp#+360
-			if(upperValue<0):
-				print("严重错误 请检查 但可能严重错误被下面if排除")
-				pass
-				#upperValue=upperValue+360	
-			if(real_angle> lowerValue and real_angle<upperValue and lowerValue<upperValue) or (lowerValue>upperValue and not(real_angle> upperValue and real_angle<lowerValue ) or data.radian>=360):
-			#if(is_in_sector(real_angle,lowerValue,upperValue)):
-				#print(data.name)
-				if data.name=="成功率":
-					issuccess=true
-				else:
-					selectPart=data.name
-				
-				pass
-	if GameManager.currenceScene.battle_pane._mode==SceneManager.bossMode.none:
-		GameManager.sav.hp=GameManager.sav.hp-_hp
-	settleGame(selectPart,issuccess)
+		if data.radian > 0:
+			var lowerValue = _normalize_angle(data.initPos - data.radian)
+			var upperValue = _normalize_angle(data.initPos)
+			if _is_angle_in_sector(real_angle, lowerValue, upperValue):
+				if data.name == "成功率":
+					issuccess = true
+				elif selectPart == null:
+					selectPart = data.name
+	if GameManager.currenceScene.battle_pane._mode == SceneManager.bossMode.none:
+		GameManager.sav.hp = GameManager.sav.hp - _hp
+	settleGame(selectPart, issuccess)
 	#将风险值和成功率一起输入
 	#print(real_angle)
 	isBoot=false
@@ -681,6 +672,7 @@ func refreshPage():
 
 	var sd=GameManager.sav.battleTasks[index].sdType
 	_initBattleTypePng(0,sd)
+	_refreshBattleTypePreview()
 
 	var txt
 	for i in range(0,GameManager.sav.battleResults.size()):
