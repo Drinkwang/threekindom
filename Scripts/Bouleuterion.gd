@@ -217,7 +217,7 @@ func _initData():
 	else:
 		if GameManager.sav.chendencardgame>=0:
 			#如果等于4 
-			if GameManager.sav.endPath!=GameManager.endPath.xiaopei:
+			if GameManager.sav.endPath!=GameManager.endPath.xiaopei or GameManager.sav.have_event["最终陈登"]==true:
 				chendeng.changeAllClick("来把仕诡牌")
 
 					

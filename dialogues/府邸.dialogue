@@ -1454,7 +1454,7 @@ do GameManager.getItemAction.call()
 糜竺: 主公，军资已备，粮草无忧，大业可成！[voice:mizhu_shiguipaiketao]
 - 来把仕诡牌吧[costHp=20] [if GameManager.sav.mizhucardgame>=0] 
 	do openBoardGame()
-- 修建基建【兴建粮仓】[costHp=20] [if GameManager.sav.have_event["基建项目开启"]==true]
+- 修建基建【兴建粮仓】[costHp=20] [if GameManager.sav.have_event["基建项目开启"]==true and GameManager.sav.endPath==GameManager.endPath.none]
 	糜竺: 主公既执意兴建粮仓……虽某以为当下军资尚可周转，但主公深谋远虑，我也不好再劝。便依主公之言，全力筹措物料，务求早日建成！[voice:mizhu_xiujianliangcang]
 	do GameManager.selectPuzzleLevel()
 	

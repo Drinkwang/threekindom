@@ -261,7 +261,7 @@ do GameManager.getItemAction.call()
 - 来把仕诡牌吧[costHp=20]
 	do openBoardGame()
 
-- 修建基建【深挖护城河】 [if GameManager.sav.have_event["基建项目开启"]==true]
+- 修建基建【深挖护城河】 [if GameManager.sav.have_event["基建项目开启"]==true and GameManager.sav.endPath==GameManager.endPath.none]
 	陈登: 主公，我虽对大兴土木多有顾虑，恐扰民心，但深挖护城河乃某亲献之策！护城固守之余，还可引水灌溉农田，一举两得，何乐而不为？ [voice:chenden_huchenghe]
 	do GameManager.selectPuzzleLevel()
 - 取消

@@ -885,17 +885,17 @@ func deliverUncompleteTask():
 		else:
 			
 			
-			if GameManager.sav.endPath!=GameManager.endPath.xiaopei:
+			if GameManager.sav.endPath!=GameManager.endPath.xiaopei or GameManager.sav.have_event["最终糜竺"]==true:
 			#0 小试牛刀开启 1小试牛刀通过 2 对局试炼开启 3对局试验通过 4 诡秘怪谈开启 5诡秘怪谈通过
 				if GameManager.sav.mizhucardgame>=0 or GameManager.sav.have_event["津贴系统开始"]==true:
 					mizhu.changeAllClick("来把仕诡牌")
 					mizhu.show()
 					mizhu.showEX=false
-			elif GameManager.sav.have_event["最终糜竺"]==false and GameManager.sav.BENTUPAI._support_rate>=80 and GameManager.sav.have_event["主簿的追随"]==true:
+			elif GameManager.sav.have_event["最终糜竺"]==false and GameManager.sav.BENTUPAI._support_rate>=80 and GameManager.sav.have_event["主簿的追随"]==true and zhubu.visible==false:
 				mizhu.changeAllClick("糜竺最终支线")
 				mizhu.show()
 				mizhu.showEX=true
-			pass #卡牌逻辑
+			
 			#
 	else :
 		if GameManager.sav.day>5:

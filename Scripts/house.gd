@@ -264,6 +264,21 @@ func _initData():
 				return canMuliao
 			elif GameManager.sav.have_event["关羽求援期间"]==true and GameManager.sav.have_event["关羽求援结束"]==false:
 				GameManager.sav.have_event["关羽求援结束"]=true
+				#if GameManager.sav.HAOZUPAI._support_rate>=70:
+					#GameManager.sav.HAOZUPAI._support_rate=70
+					#
+				#if GameManager.sav.BENTUPAI._support_rate>=70:
+					#GameManager.sav.HAOZUPAI._support_rate=70
+					#
+				#if GameManager.sav.WAIDIPAI._support_rate>=70:
+					#GameManager.sav.WAIDIPAI._support_rate=70
+					#
+										
+				if GameManager.sav.LVBU._support_rate>=70:
+					GameManager.sav.LVBU._support_rate=70	
+				if GameManager.sav.people_surrport <60:
+					GameManager.sav.people_surrport =60
+					
 				canMuliao=false
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"关羽回来")
 				return canMuliao
@@ -401,7 +416,9 @@ func post_transition():
 
 	else:
 		if canMuliao==true:
-			allocationMuliao()
+			
+			if GameManager.sav.endPath==GameManager.endPath.none or (GameManager.sav.endPath!=GameManager.endPath.none and GameManager.sav.have_event["主簿的追随"]==true):	
+				allocationMuliao()
 		#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"终局")	
 		#hidecanvas()
 @onready var taishanSoilder: Node2D = $"泰山军官"
