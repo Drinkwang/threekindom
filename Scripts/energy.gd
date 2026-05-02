@@ -144,9 +144,14 @@ func _on_save_button_button_down():
 	
 	if GameManager.CanClickUI==false:
 		return
+	
+	if GameManager.sav.have_event["战斗袁术血战模式"]==true and GameManager.sav.have_event["血战袁术完成"]==false:
+		DialogueManager.show_dialogue_balloon(GameManager.sys,"血战模式下无法存档")
+	else:
 	#DialogueManager.show_example_dialogue_balloon(sys,"当前功能demo不开放")
-	PanelManager.show_Save_panel()
+		PanelManager.show_Save_panel()
 	#demo注释
+@onready var close_save: TextureRect = $closeSave
 
 
 func _on_click_hero_button_down():

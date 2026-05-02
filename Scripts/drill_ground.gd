@@ -476,6 +476,7 @@ func _initData():
 	]
 
 	if GameManager.sav.have_event["战斗袁术血战模式"]==true and GameManager.sav.have_event["血战袁术完成"]==false:
+		GameManager._engerge.close_save.show()
 		initData[3].visible="true"
 		res_panel.show()
 		initData[0].visible="false"
@@ -1302,6 +1303,7 @@ func succussAfter():
 #func gotoYIHUI():
 	#SceneManager.changeScene(SceneManager.roomNode.BOULEUTERION,2)
 func xiaopei():
+	GameManager._engerge.close_save.hide()
 	GameManager.sav.have_event["血战袁术完成"]=true
 	
 	
@@ -1315,6 +1317,7 @@ func xiaopei():
 	#GameManager._rest()
 	
 func xiapi():
+	GameManager._engerge.close_save.hide()
 	GameManager.sav.have_event["血战袁术完成"]=true
 	GameManager.sav.endPath=GameManager.endPath.xuzhou
 	GameManager.restLabel=tr("刘备星夜兼程，整军励士，终抵下邳城外。见城防依旧森严，守卒整肃，悬心方安。城门开处，张飞披甲出迎，众将欣喜归府。此番归来，不仅是为安定徐州，更是为凝聚人心，再图霸业！")

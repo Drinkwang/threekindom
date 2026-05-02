@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dfolt063spdso"]
+[gd_scene load_steps=28 format=3 uid="uid://dfolt063spdso"]
 
 [ext_resource type="Script" path="res://Scripts/energy.gd" id="1_jga5a"]
 [ext_resource type="Texture2D" uid="uid://cokwnsbgr1bbx" path="res://Asset/ui/进度条1.png" id="2_minpr"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://sswcvqf8xpgs" path="res://Asset/存档.png" id="8_k0wc5"]
 [ext_resource type="PackedScene" uid="uid://bhu5hq8kx8pov" path="res://addons/inventory_example/inventories/simple/InventoryUI.tscn" id="9_loc21"]
 [ext_resource type="Texture2D" uid="uid://dy3bhyc470by4" path="res://Asset/blue/meter_icon_holder_blue.png" id="9_qjdqi"]
+[ext_resource type="Texture2D" uid="uid://dahuc8gb2blc" path="res://Asset/other/0_red.png" id="11_5ovkv"]
 
 [sub_resource type="Animation" id="Animation_ht8gy"]
 length = 0.001
@@ -364,6 +365,17 @@ offset_bottom = 1045.0
 scale = Vector2(7, 7)
 tooltip_text = "用于游戏存档/读档"
 texture_normal = ExtResource("8_k0wc5")
+
+[node name="closeSave" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 1934.0
+offset_top = 1043.0
+offset_right = 1998.0
+offset_bottom = 1107.0
+scale = Vector2(4.81, 4.81)
+mouse_filter = 2
+texture = ExtResource("11_5ovkv")
 
 [node name="TargetLabel" type="Label" parent="."]
 modulate = Color(0.980392, 0.980392, 0.980392, 1)
