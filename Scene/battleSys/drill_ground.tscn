@@ -42,7 +42,7 @@
 [ext_resource type="Texture2D" uid="uid://dc87m2ysuj3cf" path="res://Asset/甲的尸体.png" id="37_vug2l"]
 [ext_resource type="Texture2D" uid="uid://gm6qd1oxj8sy" path="res://Asset/肉汤无.png" id="38_155q7"]
 [ext_resource type="Texture2D" uid="uid://ckn04i6bx1np0" path="res://Asset/有边线饼.png" id="39_w14kw"]
-[ext_resource type="Texture2D" uid="uid://brm7d5qn2r6y2" path="res://Asset/断了手指1.png" id="40_filcj"]
+[ext_resource type="Texture2D" uid="uid://dqjid4jea7agb" path="res://Asset/断了手指2.png" id="43_e60jg"]
 [ext_resource type="Texture2D" uid="uid://cs8746bub3k5t" path="res://Asset/人物/陈到.png" id="43_uc4j2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ntk5c"]
@@ -584,7 +584,7 @@ dialogue_start = ""
 visible = false
 position = Vector2(-3, -8)
 scale = Vector2(0.5, 0.5)
-txt2d = ExtResource("40_filcj")
+txt2d = ExtResource("43_e60jg")
 boardType = 1
 dialogue_resource = ExtResource("2_j02vm")
 dialogue_start = ""

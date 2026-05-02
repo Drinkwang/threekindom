@@ -48,3 +48,6 @@ const bloodmusic0 = preload("res://Asset/music/决死阵.mp3")
 
 const dragonHeart = preload("res://Asset/music/龙的雄心.mp3")
 const IRRIGATION_P = preload("res://Asset/sound/irrigationP.wav")
+
+const MA = preload("res://Asset/bgm/ma.mp3")
+const WASTELAND_0 = preload("res://Asset/bgm/wasteland0.wav")

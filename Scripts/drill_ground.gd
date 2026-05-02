@@ -119,6 +119,10 @@ func _judWin():
 					GameManager.sav.have_event["曹操没法来援助"]=true
 					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"曹操挟天子开始")
 
+
+		if GameManager.sav.currenceValue==24 and GameManager.sav.have_event["战斗袁术血战模式"]==true and GameManager.sav.have_event["血战袁术完成"]==false:
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"张飞杀曹豹")	#这个会被拦截，如果触发了这个就不能触发失去民心，或者把这个丢到battle里
+
 		if GameManager.sav.currenceValue>=GameManager.sav.targetValue:
 			_completeTask()
 				# 如果你满足条件，则弹出对话
@@ -626,14 +630,14 @@ func _buttonListClick(item):
 			if GameManager.sav.have_event["臧霸首战之前"]==false:
 				GameManager.sav.have_event["臧霸首战之前"]=true
 				DialogueManager.show_dialogue_balloon(dialogue_resource,"臧霸首战之前")
-			elif GameManager.sav.have_event["战斗袁术开始"]==true:
-				if GameManager.sav.have_event["袁术也进军"]==false:
-					GameManager.sav.have_event["袁术也进军"]=true
-					DialogueManager.show_dialogue_balloon(dialogue_resource,"征讨袁术开始")
-		elif GameManager.sav.have_event["吕布之怒"]==true and GameManager.sav.have_event["吕布怒气_演武场"]==false:
-			GameManager.sav.have_event["吕布怒气_演武场"]=true
+			elif GameManager.sav.have_event["战斗袁术开始"]==true and GameManager.sav.have_event["袁术也进军"]==false:
+
+				GameManager.sav.have_event["袁术也进军"]=true
+				DialogueManager.show_dialogue_balloon(dialogue_resource,"征讨袁术开始")
+			elif GameManager.sav.have_event["吕布之怒"]==true and GameManager.sav.have_event["吕布怒气_演武场"]==false:
+				GameManager.sav.have_event["吕布怒气_演武场"]=true
 			#这个过后就变成吕布
-			DialogueManager.show_dialogue_balloon(dialogue_resource,"吕布的怒气")
+				DialogueManager.show_dialogue_balloon(dialogue_resource,"吕布的怒气")
 		#if(GameManager.sav.have_event["firstBattleTutorial"]==true)：
 		#暂时不能发动军事行动
 	elif item.context=="休息":

@@ -411,6 +411,6 @@ do huatuo.changeName("华佗")
 	华佗: (陈元龙不戒脍，恐难长寿，老夫尽力矣。)[voice:huatuo_laofujinlile]
 do chendeng.hide()
 do mizhu.hide()
-do huatuo.show()
+do huatuo.hide()
 do chendenFinal()
 => END!

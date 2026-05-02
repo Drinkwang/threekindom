@@ -264,18 +264,7 @@ func _initData():
 				return canMuliao
 			elif GameManager.sav.have_event["关羽求援期间"]==true and GameManager.sav.have_event["关羽求援结束"]==false:
 				GameManager.sav.have_event["关羽求援结束"]=true
-				#if GameManager.sav.HAOZUPAI._support_rate>=70:
-					#GameManager.sav.HAOZUPAI._support_rate=70
-					#
-				#if GameManager.sav.BENTUPAI._support_rate>=70:
-					#GameManager.sav.HAOZUPAI._support_rate=70
-					#
-				#if GameManager.sav.WAIDIPAI._support_rate>=70:
-					#GameManager.sav.WAIDIPAI._support_rate=70
-					#
-										
-				if GameManager.sav.LVBU._support_rate>=70:
-					GameManager.sav.LVBU._support_rate=70	
+
 				if GameManager.sav.people_surrport <60:
 					GameManager.sav.people_surrport =60
 					
@@ -392,7 +381,7 @@ func post_transition():
 			canMuliao=false
 		#特殊事件触发时
 			zhubu.dialogue_start="支线克苏鲁最终开始"
-		elif GameManager.sav.endPath==GameManager.endPath.xiaopei and GameManager.sav.have_event["泰山预备"]==false:
+		elif GameManager.sav.endPath==GameManager.endPath.xiaopei and GameManager.sav.have_event["泰山预备"]==false and GameManager.sav.have_event["夏侯偷马"]==false:
 			taishanSoilder.show()
 			canMuliao=false
 	else:
