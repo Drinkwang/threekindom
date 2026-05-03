@@ -403,6 +403,21 @@ func ymlShowEnd():
 
 
 func SettleLawRevenue():
+	
+	var context=GameManager.sav.RewardLaw
+	if "[danyang]" in context:
+		context=context.replace("[danyang]",tr("丹阳派"))
+	if "[shizu]" in context:
+		if GameManager.sav.have_event["Factionalization"]==true:
+			context=context.replace("[shizu]",tr("士族派"))
+		else:
+			context=context.replace("[shizu]",tr("本土派"))
+	if "[haozu]" in context:
+		if GameManager.sav.have_event["Factionalization"]==true:
+			context=context.replace("[haozu]",tr("豪族派"))
+		else:
+			context=context.replace("[haozu]",tr("本土派"))	
+	GameManager.sav.RewardLaw=context
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"通过法案")
 	faction.refreshData()
 @onready var claimLabel = $CanvasBook/ColorRect/Label
@@ -437,9 +452,8 @@ func GetLawClaimRevenue():
 				var animation_player=$CanvasBook/ColorRect/AnimationPlayer
 				animation_player.speed_scale = 1.0
 				animation_player.play("colorUp")
-				await get_tree().create_timer(0.25).timeout
-				animation_player.speed_scale = -1.0
-				$CanvasBook/ColorRect/AnimationPlayer.play("colorUp")
+				await get_tree().create_timer(4.25).timeout
+				animation_player.play_backwards("colorUp")
 
 				GameManager._imporveRelation(_date)
 			

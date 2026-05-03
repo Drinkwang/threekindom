@@ -284,7 +284,7 @@ func xuzhouStart():
 	GameManager.sav.targetValue=12
 	GameManager.sav.currenceValue=0
 	GameManager.sav.targetResType=GameManager.ResType.rest
-	GameManager.sav.targetTxt="撑过回合数：{currence}/{target}"
+	GameManager.sav.targetTxt="撑过旬数：{currence}/{target}"
 	GameManager.sav.TargetDestination="rest"
 	#lvbu
 	

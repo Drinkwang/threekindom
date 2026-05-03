@@ -960,6 +960,14 @@ libraries = {
 }
 autoplay = "slash"
 
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 373.0
+offset_top = 504.0
+offset_right = 969.0
+offset_bottom = 608.0
+mouse_filter = 2
+
 [connection signal="toggled" from="PanelContainer/orderPanel/VBoxContainer/HBoxContainer2/TextureButton/CheckBox" to="." method="_on_Usecheck_box_toggled"]
 [connection signal="button_down" from="PanelContainer/orderPanel/VBoxContainer/HBoxContainer/Button" to="." method="_on_button_button_down"]
 [connection signal="tab_button_pressed" from="TabBar" to="." method="_on_tab_bar_tab_button_pressed"]

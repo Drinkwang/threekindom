@@ -1522,18 +1522,18 @@ do mizhu.hide()
 
 do chenden.show()
 do mizhu.show()
-刘备: 糜竺、陈登，此前基建之事，如今已初步收尾，算是稳住了局面。只是有一事，我需问一句——我此前向孟德求取的委任状，算算时日，也该到了吧？[voice:liubei_weirenzhuang]
-
+#刘备: 糜竺、陈登，此前基建之事，如今已初步收尾，算是稳住了局面。只是有一事，我需问一句——我此前向孟德求取的委任状，算算时日，也该到了吧？[voice:liubei_weirenzhuang]
+刘备: 糜竺、陈登，此前徐州修葺基建、安抚民心诸事，如今已然初定，地方局面总算暂且稳住了。只是我心中一直挂念一桩私事，先前我致书曹操，求取朝廷徐州委任的诏命，算算时日，也该有消息传来了。[voice:liubei_weirenzhuang]
 
 陈登: 主公竟已提前向曹操求取委任状？此事为何未曾告知我等？[voice:chenden_tiqianquweirenzhuang]
 
-刘备: 此事我也是临时起意，想着有朝廷正式委任，方能名正言顺执掌徐州，便先修书与孟德提及。[voice:liubei_linshiqiyi]
+#刘备: 此事我也是临时起意，想着有朝廷正式委任，方能名正言顺执掌徐州，便先修书与孟德提及。[voice:liubei_linshiqiyi]
 
 话音刚落，主簿匆匆入内。
 
 主簿: 主公，兖州曹操大人派专人送来信函，正是回应您此前求取委任之事！[voice:zhubo_caocaoxinhan]
 
-刘备: 来得正好，诸位且一同听听孟德的回复。[voice:liubei_yitongtingtingmengde]
+刘备: 来得正好，诸位且一同听听曹操的回复。[voice:liubei_yitongtingtingmengde]
 do caocao_letter.show()
 => END!
 

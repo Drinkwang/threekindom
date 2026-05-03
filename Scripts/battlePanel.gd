@@ -250,8 +250,19 @@ func initTask():
 	else:
 		task_label.text=context
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+var _cursor_in_rect:bool=false
+
 func _process(_delta):
-	pass
+	var mouse_pos = get_global_mouse_position()
+	var rect = Rect2(373, 504, 596, 104)
+	if rect.has_point(mouse_pos):
+		if not _cursor_in_rect:
+			_cursor_in_rect=true
+			GameManager.restore_system_cursor()
+	else:
+		if _cursor_in_rect:
+			_cursor_in_rect=false
+			GameManager.apply_game_cursor()
 
 
 func _changeProgress():
