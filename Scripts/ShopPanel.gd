@@ -41,7 +41,7 @@ func _ready():
 	var haveone=((InventoryManager.get_hidden_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.市井秘闻) )>0)	
 	var havetwo=((InventoryManager.get_hidden_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.市井秘闻_续) )>0)
 	var havethree=((InventoryManager.get_hidden_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.市井秘闻_终) )>0)	
-	if not haveone and GameManager.sav.have_event["completeTask1"]==true:#没有1 然后特定事件
+	if not haveone and GameManager.sav.have_event["completeTask1"]==true:#没有1 然后特定事件 and haveenvent=false
 		hearsay.show()
 		hearsay.itemstype=InventoryManagerItem.ItemEnum.市井秘闻	
 		hearsay.img=load("res://Asset/items/密谈3.png")
@@ -49,12 +49,12 @@ func _ready():
 		#waitTime
 		#if hearsay.alreaysold.visible
 		hearsay.itemContext="1"
-	elif haveone and !havetwo and GameManager.sav.have_event["Factionalization"]==true:#拥有市井1 没有2 然后特定事件
+	elif !havetwo and GameManager.sav.have_event["Factionalization"]==true:#拥有市井1 没有2 然后特定事件
 		hearsay.show()	
 		hearsay.itemstype=InventoryManagerItem.ItemEnum.市井秘闻_续
 		hearsay.img=load("res://Asset/items/密谈2.png")
 		hearsay.itemContext="2"
-	elif havetwo and GameManager.sav.have_event["庆功宴是否举办"]==true:#拥有市井2 没有3 然后特定事件
+	elif !havethree and GameManager.sav.have_event["庆功宴是否举办"]==true:#拥有市井2 没有3 然后特定事件
 		hearsay.show()
 		hearsay.itemstype=InventoryManagerItem.ItemEnum.市井秘闻_终	
 		hearsay.img=load("res://Asset/items/密谈1.png")
