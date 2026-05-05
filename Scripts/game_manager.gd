@@ -4,7 +4,7 @@ extends Node
 const DESTINATION = preload("res://Destination.tscn")
 @export var shopPanel:ShopPanel
 const MANUAL_TEST = preload("res://ManualTest.tscn")
-#以下三个值均为三股不同力量士族可以篡改的值 其中士族可以把控群众支持度，商贾可以把控金钱，丹阳派系的军官可以把控劳动力
+#以下三个值均为三股不同力量士族可以篡改的值 其中士族可以把控群众支持度，商贾可以把控钱，丹阳派系的军官可以把控民力
 var _savePanel:savePanel
 var restLabel:String=""
 var wait_time=2
@@ -40,7 +40,7 @@ enum ResType{
 	heart,
 	battle,
 	rest,
-	construct,#基建和人口,
+	construct,#基建和民力,
 	govern,
 	complete,
 	stayFight
@@ -838,7 +838,7 @@ func loadLaw():
 
 			print("兴办教育done")		
 	elif sav.curLawName=="整治街容":#只有buff
-		#RewardLaw="一次性人口+100，徐州好感度+10，群众支持度+5 " #人口一次性增加 徐州派好感上升
+		#RewardLaw="一次性民力+100，徐州好感度+10，群众支持度+5 " #民力一次性增加 徐州派好感上升
 		
 		lawAction= func():
 			sav.labor_DayGet+=30
@@ -856,7 +856,7 @@ func loadLaw():
 			
 			print("重农抑商done")	
 	elif sav.curLawName=="士族优先":
-		#RewardLaw="收益：徐州好感度+20，获得道具“珍品礼盒”x1，一次性人口+150 冲突：丹阳派好感度-15  "+1000
+		#RewardLaw="收益：徐州好感度+20，获得道具“珍品礼盒”x1，一次性民力+150 冲突：丹阳派好感度-15  "+1000
 		lawAction= func():
 			sav.daruValue+=2000
 			sav.labor_force+=1500
@@ -874,7 +874,7 @@ func loadLaw():
 			sav.HAOZUPAI.ChangeSupport(-30)
 			print("物价稳定done")			
 	elif sav.curLawName=="屯田制":
-		#RewardLaw="收益：每日人口+30，每日收入+120，一次性人口+200 
+		#RewardLaw="收益：每日民力+30，每日收入+120，一次性民力+200 
 		#冲突：丹阳派好感度-20，豪族好感度-10  "
 		lawAction= func():
 			sav.labor_DayGet+=240
@@ -893,7 +893,7 @@ func loadLaw():
 			var remainder = InventoryManager.add_item(inventoryPackege, itemid, 8, false)					
 			print("府兵制done")			
 	elif sav.curLawName=="品级制":#1000
-		#RewardLaw="收益：徐州好感度+50，每日人口+50，获得道具“珍品礼盒”x2，一次性人口+300 冲突：豪族好感度-40，丹阳派好感度-25  "
+		#RewardLaw="收益：徐州好感度+50，每日民力+50，获得道具“珍品礼盒”x2，一次性民力+300 冲突：豪族好感度-40，丹阳派好感度-25  "
 		lawAction= func():
 			sav.BENTUPAI.ChangeSupport(50)
 			sav.labor_DayGet+=150
@@ -919,7 +919,7 @@ func loadLaw():
 			#bedone
 			print("促进商贸")			
 	elif sav.curLawName=="诚信经营":#只有buff 所有派系好感度上升
-		#RewardLaw="所有派系好感度+20，群众支持度+5，一次性人口+80"
+		#RewardLaw="所有派系好感度+20，群众支持度+5，一次性民力+80"
 		lawAction= func():
 			#sav.BENTUPAI.ChangeSupport(20)
 			sav.WAIDIPAI.ChangeSupport(-20)
@@ -974,7 +974,7 @@ func loadLaw():
 			sav.BENTUPAI.ChangeSupport(-20)
 			sav.WAIDIPAI.ChangeSupport(-20)
 	elif sav.curLawName=="商品流通法":
-		#RewardLaw="收益：每日收入+150，每日随机道具x1，一次性人口+200 冲突：徐州好感度-30，群众支持度-10  "
+		#RewardLaw="收益：每日收入+150，每日随机道具x1，一次性民力+200 冲突：徐州好感度-30，群众支持度-10  "
 		lawAction= func():
 			sav.coin_DayGet=sav.coin_DayGet+150
 			sav.shopEnhance+=1
@@ -1005,7 +1005,7 @@ func loadLaw():
 	elif sav.curLawName=="战备法":#获得若干随机道具
 		#益气丸, 胜战锦囊, 诸子百家论集
 		
-		#RewardLaw="随机获得3个道具，一次性人口+100"
+		#RewardLaw="随机获得3个道具，一次性民力+100"
 		lawAction= func():
 			var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.益气丸)
 			var remainder = InventoryManager.add_item(inventoryPackege, itemid, 1, false)
@@ -1019,8 +1019,8 @@ func loadLaw():
 			GameManager.sav.battleEnhance+=1
 			GameManager.sav.HAOZUPAI.ChangeSupport(-20)
 			#sav.labor_force=sav.labor_force+100
-	elif sav.curLawName=="边防法":#获得一些人口增加
-		#RewardLaw="一次性人口+100，丹阳派好感度+5，群众支持度+5，一次性收入+400  "
+	elif sav.curLawName=="边防法":#获得一些民力增加
+		#RewardLaw="一次性民力+100，丹阳派好感度+5，群众支持度+5，一次性收入+400  "
 		lawAction= func():
 			sav.labor_force=sav.labor_force+300
 			sav.BENTUPAI.ChangeSupport(-20)
@@ -1028,7 +1028,7 @@ func loadLaw():
 			#sav.coin=sav.coin+400
 			print("边防法")	
 	elif sav.curLawName=="军事训诂":
-		#RewardLaw="收益：丹阳派好感度+20，获得道具“胜战锦囊”x2，一次性人口+150 冲突：徐州好感度-15  "
+		#RewardLaw="收益：丹阳派好感度+20，获得道具“胜战锦囊”x2，一次性民力+150 冲突：徐州好感度-15  "
 		lawAction= func():
 			#print("军事训诂")	
 			sav.BENTUPAI.ChangeSupport(-25)
@@ -1046,7 +1046,7 @@ func loadLaw():
 			
 			#print("军事装备法")	
 	elif sav.curLawName=="军事训练法":
-		#RewardLaw="收益：丹阳派好感度+30，每日人口+20，一次性人口+200 冲突：徐州好感度-25  "
+		#RewardLaw="收益：丹阳派好感度+30，每日民力+20，一次性民力+200 冲突：徐州好感度-25  "
 		lawAction= func():
 			print("军事训练法")	
 			sav.BENTUPAI.ChangeSupport(-30)
@@ -1065,7 +1065,7 @@ func loadLaw():
 			var remainder = InventoryManager.add_item(inventoryPackege, itemid, 3, false)
 			print("军事优拔法")	
 	elif sav.curLawName=="律令兵制":
-		#RewardLaw="收益：每日人口+100，获得道具“珍品礼盒”x2，一次性人口+250 冲突：徐州好感度-35，豪族好感度-15  "#获得银月枪
+		#RewardLaw="收益：每日民力+100，获得道具“珍品礼盒”x2，一次性民力+250 冲突：徐州好感度-35，豪族好感度-15  "#获得银月枪
 		lawAction= func():
 
 			sav.labor_DayGet=sav.labor_DayGet+100
@@ -1076,7 +1076,7 @@ func loadLaw():
 			sav.HAOZUPAI.ChangeSupport(-20)
 			print("律令兵制")	
 	elif sav.curLawName=="国防策略法":
-		#RewardLaw="民心+50，每日人口+50，获得道具“胜战锦囊”x4，一次性收入+1200  ，徐州好感度-50，豪族好感度-40  "		
+		#RewardLaw="民心+50，每日民力+50，获得道具“胜战锦囊”x4，一次性收入+1200  ，徐州好感度-50，豪族好感度-40  "		
 		lawAction= func():
 			sav.labor_DayGet=sav.labor_DayGet+50
 			changePeopleSupport(20)
@@ -1095,19 +1095,19 @@ func preCostPaixi():
 			#var remainder = InventoryManager.add_item(inventoryPackege, itemid, 1, false)
 
 	elif sav.curLawName=="整治街容":#只有buff
-		#RewardLaw="一次性人口+100，徐州好感度+10，群众支持度+5 " #人口一次性增加 徐州派好感上升
+		#RewardLaw="一次性民力+100，徐州好感度+10，群众支持度+5 " #民力一次性增加 徐州派好感上升
 		sav.HAOZUPAI.ChangeSupport(-20)
 	elif sav.curLawName=="重农抑商":
 		sav.HAOZUPAI.ChangeSupport(-30)
 	elif sav.curLawName=="士族优先":
-		#RewardLaw="收益：徐州好感度+20，获得道具“珍品礼盒”x1，一次性人口+150 冲突：丹阳派好感度-15  "+1000
+		#RewardLaw="收益：徐州好感度+20，获得道具“珍品礼盒”x1，一次性民力+150 冲突：丹阳派好感度-15  "+1000
 		sav.BENTUPAI.ChangeSupport(-15)
 		sav.WAIDIPAI.ChangeSupport(-15)
 	elif sav.curLawName=="物价稳定":
 		sav.HAOZUPAI.ChangeSupport(-30)
 
 	elif sav.curLawName=="屯田制":
-		#RewardLaw="收益：每日人口+30，每日收入+120，一次性人口+200 
+		#RewardLaw="收益：每日民力+30，每日收入+120，一次性民力+200 
 		#冲突：丹阳派好感度-20，豪族好感度-10  "
 		sav.WAIDIPAI.ChangeSupport(-20)
 		sav.HAOZUPAI.ChangeSupport(-20)
@@ -1158,11 +1158,11 @@ func preCostPaixi():
 	elif sav.curLawName=="战备法":#获得若干随机道具
 		#益气丸, 胜战锦囊, 诸子百家论集
 		
-		#RewardLaw="随机获得3个道具，一次性人口+100"
+		#RewardLaw="随机获得3个道具，一次性民力+100"
 		
 		GameManager.sav.HAOZUPAI.ChangeSupport(-20)
 			#sav.labor_force=sav.labor_force+100
-	elif sav.curLawName=="边防法":#获得一些人口增加
+	elif sav.curLawName=="边防法":#获得一些民力增加
 
 		sav.BENTUPAI.ChangeSupport(-20)
 
@@ -1289,18 +1289,18 @@ func ScoreToItem(player_score,num=-1):
 				resideNum=resideNum-item_count
 				if(resideNum==0):
 					break
-	# 随机分配剩余积分到人口和金钱
+	# 随机分配剩余积分到民力和钱
 	var population = 0
 	var money = 0
 	rng = RandomNumberGenerator.new()	
 	if remaining_score > 0:
-		# 随机决定分配给人口的最大可能数量
+		# 随机决定分配给民力的最大可能数量
 		var max_population = remaining_score / POPULATION_PER_POINT
 		if max_population > 0:
 			population = rng.randi_range(0, max_population)
-		# 分配给人口的积分
+		# 分配给民力的积分
 		var population_cost = population * POPULATION_PER_POINT
-		# 剩余积分全转为金钱
+		# 剩余积分全转为钱
 		money = (remaining_score - population_cost)
 		rng = RandomNumberGenerator.new()	
 		money = rng.randi_range(0, money)
@@ -1310,8 +1310,8 @@ func ScoreToItem(player_score,num=-1):
 	print("获得的道具:")
 	for item in gained_items:
 		print("- ", item, ": ", gained_items[item], "个")
-	print("获得的金钱: ", money)
-	print("获得的人口: ", population)
+	print("获得的钱: ", money)
+	print("获得的民力: ", population)
 	
 	# 返回结果（可选，方便其他节点使用）
 	return {

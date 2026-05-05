@@ -86,14 +86,14 @@ func showTitileReward(context,item,addAfter=true):
 		_grid_ui.add_child(itemMoney_ui)
 		itemMoney_ui.set_Money(item.money)	
 		GameManager.sav.coin=GameManager.sav.coin+item.money
-		#获取金钱
+		#获取钱
 		
 	if item.population>0:
 		var itempop_ui:ShopItem = DaojuItem.instantiate()
 		itempop_ui.isShop=false
 		_grid_ui.add_child(itempop_ui)
 		itempop_ui.set_Labor(item.population)	
-		#获取人口
+		#获取民力
 		GameManager.sav.labor_force=GameManager.sav.labor_force+item.population
 	title.text=titleContext
 
@@ -143,14 +143,14 @@ func showReward(item):
 		_grid_ui.add_child(itemMoney_ui)
 		itemMoney_ui.set_Money(item.money)	
 		GameManager.sav.coin=GameManager.sav.coin+item.money
-		#获取金钱
+		#获取钱
 		
 	if item.population>0:
 		var itempop_ui:ShopItem = DaojuItem.instantiate()
 		itempop_ui.isShop=false
 		_grid_ui.add_child(itempop_ui)
 		itempop_ui.set_Labor(item.population)	
-		#获取人口
+		#获取民力
 		GameManager.sav.labor_force=GameManager.sav.labor_force+item.population
 	title.text=titleContext
 	#gird.add_child()

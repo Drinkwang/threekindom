@@ -638,7 +638,7 @@ func selectPolicy(data):
 		var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.益气丸)
 		var remainder = InventoryManager.add_item(GameManager.inventoryPackege, itemid, 1, false)
 		
-		GameManager.resideValue=tr("士族派好感上升5，豪族派好感上升5，每旬获取金额+10，每旬获得劳动力+5，获得益气丸x2")
+		GameManager.resideValue=tr("士族派好感上升5，豪族派好感上升5，每旬获取金额+10，每旬获得民力+5，获得益气丸x2")
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"平衡除奸")
 		GameManager.sav.have_event["chaoChenDenPolicyExcute"]=true
 	elif id==policymanager.policyID.P_SwiftPurge:
@@ -651,7 +651,7 @@ func selectPolicy(data):
 		GameManager.sav.labor_DayGet-=5
 		GameManager.sav.coin+=300
 		GameManager.sav.labor_force+=150
-		GameManager.resideValue=tr("士族派好感下降5，豪族派好感下降5，丹阳派好感下降5，每旬获取金额-5，每旬获取劳动力-5，金钱+300,劳动力+150")
+		GameManager.resideValue=tr("士族派好感下降5，豪族派好感下降5，丹阳派好感下降5，每旬获取金额-5，每旬获取民力-5，钱+300,民力+150")
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"加速除奸")
 		GameManager.sav.have_event["chaoChenDenPolicyExcute"]=true		
 	elif id==policymanager.policyID.P_LessCoin:

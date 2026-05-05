@@ -14,7 +14,7 @@ grow_vertical = 2
 script = ExtResource("1_5p17t")
 contextEX = "当前天数：
 每日钱财收入：
-每日劳动力获取：
+每日民力获取：
 ------------------------------
 武将等级（括弧为战斗力）
 赵云：lv1（3000）
@@ -94,7 +94,7 @@ theme_override_fonts/font = ExtResource("4_auij8")
 theme_override_font_sizes/font_size = 48
 text = "当前天数：
 每日钱财收入：
-每日劳动力获取：
+每日民力获取：
 ------------------------------
 武将等级（括弧为战斗力）
 赵云：lv1（3000）

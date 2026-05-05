@@ -19,8 +19,8 @@ var showValue:bool=true
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GameManager._propertyPanel=self
-	TooltipManager.register_tooltip(_coin,tr("金币：持有的金钱数量(可购买道具)"))
-	TooltipManager.register_tooltip(_labor,tr("人口：拥有空闲人口(可转换为士兵)"))
+	TooltipManager.register_tooltip(_coin,tr("钱：持有的钱数量(可购买道具)"))
+	TooltipManager.register_tooltip(_labor,tr("民力：拥有空闲民力(可转换为士兵)"))
 	TooltipManager.register_tooltip(_heart,tr("民心：当前百姓的支持度(<=0时游戏失败)"))
 	#dd222test
 	pass # Replace with function body.
@@ -56,5 +56,5 @@ func GetValue(coinGet,heartGet,peopleGet):
 	labor_num.text = "%07d" % GameManager.sav.labor_force
 	
 #var people_surrport #群众支持度 数值
-#var  coin #金钱 数值
-#var labor_force #劳动力 可以当作军队进行使用 劳动力转换成军队需要消耗值 骑兵 步兵 弓兵
+#var  coin #钱 数值
+#var labor_force #民力 可以当作军队进行使用 民力转换成军队需要消耗值 骑兵 步兵 弓兵

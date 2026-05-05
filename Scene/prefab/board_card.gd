@@ -87,7 +87,7 @@ func setimg(reside,devisor):
 		flowercolor.add_theme_color_override("font_color",Color.BLACK)
 		flowercolor.text="♣"
 		img.texture=coin
-	elif devisor==3:#方片 兵力
+	elif devisor==3:#方片 民力
 		point_value.add_theme_color_override("font_color",Color.RED)
 		flowercolor.add_theme_color_override("font_color",Color.RED)
 		flowercolor.text="♦"
@@ -141,7 +141,7 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 		elif devisor==2 and gouppunishType==board_game.groupType.shang and GameManager.currenceScene.punishStage==true:#梅花 -钱
 			queue_free()			
 			GameManager.currenceScene.SettlePunish()
-		elif devisor==3 and gouppunishType==board_game.groupType.bin and GameManager.currenceScene.punishStage==true:#方片 兵力
+		elif devisor==3 and gouppunishType==board_game.groupType.bin and GameManager.currenceScene.punishStage==true:#方片 民力
 			queue_free()			
 			GameManager.currenceScene.SettlePunish()
 		

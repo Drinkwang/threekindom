@@ -14,7 +14,7 @@ offset_left = 5.0
 offset_top = 5.0
 offset_right = 20.0
 offset_bottom = 21.0
-text = "玩家持有的金钱数量(可购买道具)"
+text = "玩家持有的钱数量(可购买道具)"
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 self_modulate = Color(0.211765, 0.211765, 0.211765, 0.819608)

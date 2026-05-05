@@ -60,7 +60,7 @@ func update_ui():
 		control_3.canSelect=false
 		lvbutton.disabled=true		
 	#level_label.text = "当前等级: " + str(selected_general["level"])
-	#gold_label.text = "当前金币: " + str(gold)
+	#gold_label.text = "当前钱: " + str(gold)
 	#upgrade_button.disabled = selected_general["level"] >= selected_general["max_level"] or gold < upgrade_cost
 
 
@@ -87,11 +87,11 @@ func _on_upgrade_button_pressed():
 		GameManager.sav.hp=GameManager.sav.hp-costhp
 		print("升级成功！", selected_general["name"], "当前等级: ", selected_general["level"])
 	elif GameManager.sav.coin<upgrade_cost:
-		label.text="你的金币不够"
+		label.text="你的钱不够"
 	else:
 		label.text="你已达到最大等级。"
 
-# 添加金币获取功能（可选）
+# 添加钱获取功能（可选）
 func add_gold(amount):
 	GameManager.sav.coin += amount
 	update_ui()

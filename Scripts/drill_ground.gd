@@ -24,7 +24,7 @@ const newBuild = preload("res://Asset/城镇建筑/演武场2.png")
 
 func danyangFinal():
 	GameManager.sav.have_event["最终丹阳"]=true
-	#获得人口奖励，待编辑
+	#获得民力奖励，待编辑
 
 func wumindissipate():
 	fade.play("RESET")
@@ -654,7 +654,7 @@ func _buttonListClick(item):
 				#10场 胜利消息
 				#歼灭   
 				#如何判断有无歼灭呢
-				#歼灭袁术，和没歼灭，没歼灭继续触发克苏鲁剧情 损失金钱 在转小沛，不然直接转小沛
+				#歼灭袁术，和没歼灭，没歼灭继续触发克苏鲁剧情 损失钱 在转小沛，不然直接转小沛
 				#转小沛判断 三种 陈登 糜竺 丹阳是否都高，如果都高 直接触发统治徐州，如果有一方低，则会导致迎接吕布剧情，需要平定吕布和袁术合盟
 				# 糜竺 陈登 
 				#可让张飞通过压榨丹阳派提供更多物质，保证一定进入丹阳线
@@ -840,7 +840,7 @@ func showtutorial_back(num):
 		#请做选择克制武将的曲线
 		#
 	if num ==4:
-		#还原所有曲线，取消选择武将，金钱设置为0
+		#还原所有曲线，取消选择武将，钱设置为0
 		battle_pane.istour=false
 
 		battle_pane.control_3.check_box.button_pressed=false

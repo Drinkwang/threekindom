@@ -558,7 +558,7 @@ func refreshPropertyPanel():
 
 	var contextEx=tr("当前旬数：%d")%GameManager.sav.day+"\n"
 	contextEx=contextEx+tr("每旬钱财收入：%d")%GameManager.sav.coin_DayGet+"\n"
-	contextEx=contextEx+tr("每旬劳动力获取：%d")%GameManager.sav.labor_DayGet+"\n"
+	contextEx=contextEx+tr("每旬民力获取：%d")%GameManager.sav.labor_DayGet+"\n"
 	contextEx=contextEx+"------------------------------"+"\n"
 	contextEx=contextEx+tr("武将等级（括弧为战斗力）")+"\n"
 	contextEx=contextEx+tr("关羽：lv%d（%d）")%[GameManager.sav.generals[GameManager.RspEnum.ROCK].level,500]+"\n"
@@ -574,8 +574,8 @@ func refreshPropertyPanel():
 	
 	
 	#1优化参与军事行动的策略，通过战胜对手获得足够的资金收益。  
-	#2积极参与大儒辩经活动，进行辩论小游戏，获取道具与金钱奖励。  
-	#3制定有利可图的律法以增加税收，同时向城内派系索取资金，利用好的策略确保稳定的金钱来源。
+	#2积极参与大儒辩经活动，进行辩论小游戏，获取道具与钱奖励。  
+	#3制定有利可图的律法以增加税收，同时向城内派系索取资金，利用好的策略确保稳定的钱来源。
 
 
 	
@@ -608,9 +608,9 @@ func getrecommendStr(index):
 		if rindex==0:
 			Rstr=tr("优化参与军事行动的策略，通过战胜对手获得足够的资金收益。")
 		elif rindex==1:
-			Rstr=tr("积极参与大儒辩经活动，进行辩论小游戏，获取道具与金钱奖励。")
+			Rstr=tr("积极参与大儒辩经活动，进行辩论小游戏，获取道具与钱奖励。")
 		elif rindex==2:
-			Rstr=tr("制定有利可图的律法以增加税收，同时向城内派系索取资金，利用好的策略确保稳定的金钱来源。")
+			Rstr=tr("制定有利可图的律法以增加税收，同时向城内派系索取资金，利用好的策略确保稳定的钱来源。")
 						  
 	elif index==1:
 		if rindex==0:
@@ -1124,9 +1124,9 @@ func determineInternalUnrestLvbu():
 		if InventoryManager.canUseItemNum() >= costItem:
 			valid_options.append([GameManager.ResType.item, costItem])
 		if GameManager.sav.coin >= costCoin:
-			valid_options.append([GameManager.ResType.coin, costCoin,tr("金币-%d") %costCoin])
+			valid_options.append([GameManager.ResType.coin, costCoin,tr("钱-%d") %costCoin])
 		if GameManager.sav.labor_force >= costPeople:
-			valid_options.append([GameManager.ResType.people, costPeople,tr("劳动力-%d") %costPeople])
+			valid_options.append([GameManager.ResType.people, costPeople,tr("民力-%d") %costPeople])
 		if GameManager.sav.people_surrport >= costHeart:
 			valid_options.append([GameManager.ResType.heart, costHeart,tr("民心-%d") %costHeart])
 
@@ -1172,9 +1172,9 @@ func determineInternalUnrestMinxin():
 	if InventoryManager.canUseItemNum() >= costItem:
 		valid_options.append([GameManager.ResType.item, costItem])
 	if GameManager.sav.coin >= costCoin:
-		valid_options.append([GameManager.ResType.coin, costCoin,tr("金币-%d") %costCoin])
+		valid_options.append([GameManager.ResType.coin, costCoin,tr("钱-%d") %costCoin])
 	if GameManager.sav.labor_force >= costPeople:
-		valid_options.append([GameManager.ResType.people, costPeople,tr("劳动力-%d") %costPeople])
+		valid_options.append([GameManager.ResType.people, costPeople,tr("民力-%d") %costPeople])
 	if GameManager.sav.people_surrport >= costHeart:
 		valid_options.append([GameManager.ResType.heart, costHeart,tr("民心-%d") %costHeart])
 
@@ -1250,14 +1250,14 @@ func generate_cost_allocate(items_data: Dictionary)-> String:
 	
 
 	if items_data.has("money") and items_data.money > 0:
-		# "ui.money" 是你翻译字典中对应“金钱”的key，可自定义
-		var money_name = tr("金钱")
+		# "ui.money" 是你翻译字典中对应“钱”的key，可自定义
+		var money_name = tr("钱")
 		parts.append("%s ×%s" % [money_name, str(items_data.money)])
 	
-	# 2. 劳动力（多语言翻译）
+	# 2. 民力（多语言翻译）
 	if items_data.has("population") and items_data.population > 0:
-		# "ui.population" 是你翻译字典中对应“劳动力”的key
-		var population_name = tr("劳动力")
+		# "ui.population" 是你翻译字典中对应“民力”的key
+		var population_name = tr("民力")
 		parts.append("%s ×%s" % [population_name, str(items_data.population)])
 	# 3. 添加各类道具（通过item_type获取名称）
 	if items_data.has("items") and items_data.items is Dictionary:

@@ -11,7 +11,7 @@ class_name saveData
 @export var caobaofav=70
 #@export var intellectual_support=100 #士族支持度 一开始为100 当议会中 会出现支持和不支持以及摇摆 
 @export var people_surrport=100 #群众支持度 数值
-@export var coin=200: #金钱 数值 如果进入这个 变成100
+@export var coin=200: #钱 数值 如果进入这个 变成100
 
 	get:
 		return coin
@@ -26,7 +26,7 @@ class_name saveData
 @export var shopEnhance=0
 @export var battleEnhance=0
 @export var coin_DayGet=40
-@export var labor_force=100 #劳动力 可以当作军队进行使用 劳动力转换成军队需要消耗值 骑兵 步兵 弓兵
+@export var labor_force=100 #民力 可以当作军队进行使用 民力转换成军队需要消耗值 骑兵 步兵 弓兵
 @export var labor_DayGet=10
 @export var destination:String #放在gameins里面
 #@export var datas:Array[cldata] #好像没用
@@ -58,7 +58,7 @@ class_name saveData
 @export var currenceValue:int=0
 #目前天数,非主线，支线进展推进变量
 @export var currenceDay:int=3
-#是否获取金钱
+#是否获取钱
 @export var isGetCoin=false
 #是否已经辩经
 @export var isVisitScholar=false
@@ -258,7 +258,7 @@ var SIDEQUEST_MAP:Dictionary={
 	"陈登正确选择1":false,
 	"陈登正确选择2":false,
 	
-	#盗墓现象，黄帝古龙，给金钱300 和给金钱500 前期可触发
+	#盗墓现象，黄帝古龙，给钱300 和给钱500 前期可触发
 	"曹豹支线1":false,
 	"曹豹支线2":false,
 	"曹豹支线3":false,

@@ -313,7 +313,7 @@ func _buttonListClick(item):
 					
 		else:
 				SceneManager.changeScene(SceneManager.roomNode.STREET,2)
-		#显示金钱 民心 xx 武将面板
+		#显示钱 民心 xx 武将面板
 	print(item)
 	pass
 
@@ -427,7 +427,7 @@ func GetLawClaimRevenue():
 	var action=GameManager.lawAction
 	if action.is_valid():  # 检查Callable是否有效
 		action.call()   
-		#播放获取金币的声音	
+		#播放获取钱的声音	
 	else:
 		print("错误：未定义行动")
 	
