@@ -236,7 +236,7 @@ var currenceScene
 var restFadeScene
 
 
-
+var moupos=null#get_viewport().get_mouse_position()
 #var dialogBegin=false
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -1919,6 +1919,9 @@ func _process(delta: float) -> void:
 		if istutorial==false:
 			border.position=moupos
 		mouseline.set_point_position(1,border.position)	
+		if selectCard!=null and is_instance_valid(selectCard):
+			var _card_rect = selectCard.get_global_rect()
+			mouseline.set_point_position(0, _card_rect.position + _card_rect.size / 2)
 
 enum cardHoldType{
 	player,
