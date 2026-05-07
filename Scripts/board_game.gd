@@ -423,6 +423,9 @@ func showdetail(str:String,grouptype):
 @onready var shi_group: GridContainer = $CanvasLayer/Node/shiGroup
 @onready var shang_group: GridContainer = $CanvasLayer/Node/shangGroup
 @onready var bin_group: GridContainer = $CanvasLayer/Node/binGroup
+var _heart_tweens: Array[Tween] = []
+var _enemy_heart_tweens: Array[Tween] = []
+
 @export var hp=1:
 	get:
 		return hp
@@ -444,6 +447,7 @@ func showdetail(str:String,grouptype):
 		
 			tween.tween_property(tempheart.material, "shader_parameter/progress", 1.0, 1.0).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
 			tween.tween_callback(on_tween_finished.bind(tempheart))  # 播放完成后调用函数
+			_heart_tweens.append(tween)
 		if hp<=0:
 			loseGame()
 			
@@ -468,6 +472,7 @@ func showdetail(str:String,grouptype):
 			var tween = create_tween()
 			tween.tween_property(tempheart.material, "shader_parameter/progress", 1.0, 1.0).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
 			tween.tween_callback(on_tween_finished.bind(tempheart))  # 播放完成后调用函数
+			_enemy_heart_tweens.append(tween)
 		if enemy_hp<=0:
 			killenemy=true
 			winGame()	
@@ -2216,8 +2221,23 @@ func showtutorial(num,isshow):
 
 
 func _on_button_restart() -> void:
-	initGame()
 	lose_rect.hide()
+	win_rect.hide()
+	blink_rect.hide()
+	for t in _heart_tweens:
+		if t != null and t.is_valid():
+			t.kill()
+	_heart_tweens.clear()
+	for t in _enemy_heart_tweens:
+		if t != null and t.is_valid():
+			t.kill()
+	_enemy_heart_tweens.clear()
+	for i in range(3):
+		heart_group.get_child(i).show()
+		heart_group.get_child(i).material.set_shader_parameter("progress", 0)
+		heart_group_enemy.get_child(i).show()
+		heart_group_enemy.get_child(i).material.set_shader_parameter("progress", 0)
+	initGame()
 
 #const youwinsound = preload("res://Asset/sound/boardGame/[普通青年男性的声音]你赢了.mp3")
 #const youlosesound = preload("res://Asset/sound/boardGame/[普通青年男性的声音]你输了.mp3")

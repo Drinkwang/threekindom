@@ -221,6 +221,7 @@ offset_top = 26.0
 offset_right = 262.0
 offset_bottom = 510.0
 scale = Vector2(11.5, 11.5)
+mouse_filter = 2
 texture = ExtResource("2_minpr")
 stretch_mode = 2
 

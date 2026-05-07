@@ -561,9 +561,9 @@ func refreshPropertyPanel():
 	contextEx=contextEx+tr("每旬民力获取：%d")%GameManager.sav.labor_DayGet+"\n"
 	contextEx=contextEx+"------------------------------"+"\n"
 	contextEx=contextEx+tr("武将等级（括弧为战斗力）")+"\n"
-	contextEx=contextEx+tr("关羽：lv%d（%d）")%[GameManager.sav.generals[GameManager.RspEnum.ROCK].level,500]+"\n"
-	contextEx=contextEx+tr("张飞：lv%d（%d）")%[GameManager.sav.generals[GameManager.RspEnum.SCISSORS].level,500]+"\n"
-	contextEx=contextEx+tr("无名：lv%d（%d）")%[GameManager.sav.generals[GameManager.RspEnum.PAPER].level,500]+"\n"	
+	contextEx=contextEx+tr("关羽：lv%d（%d）")%[GameManager.sav.generals[GameManager.RspEnum.ROCK].level,GameManager.sav.generals[GameManager.RspEnum.ROCK].level*500]+"\n"
+	contextEx=contextEx+tr("张飞：lv%d（%d）")%[GameManager.sav.generals[GameManager.RspEnum.SCISSORS].level,GameManager.sav.generals[GameManager.RspEnum.SCISSORS].level*500]+"\n"
+	contextEx=contextEx+tr("无名：lv%d（%d）")%[GameManager.sav.generals[GameManager.RspEnum.PAPER].level,GameManager.sav.generals[GameManager.RspEnum.PAPER].level*500]+"\n"	
 	contextEx=contextEx+"------------------------------"+"\n"
 	contextEx=contextEx+tr("当前派系对你的看法")+"\n"
 	

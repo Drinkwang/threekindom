@@ -278,13 +278,6 @@ dialogue_start = ""
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="resPanel" parent="CanvasLayer" instance=ExtResource("16_rw7iu")]
-visible = true
-offset_left = 1406.0
-offset_top = 619.0
-offset_right = 1894.0
-offset_bottom = 955.0
-
 [node name="supportPanel" parent="CanvasLayer" instance=ExtResource("12_5ydg1")]
 offset_left = 74.0
 offset_top = 656.0
@@ -304,12 +297,20 @@ mouse_filter = 1
 mouse_filter = 1
 metadata/_edit_use_anchors_ = true
 
+[node name="resPanel" parent="CanvasLayer" instance=ExtResource("16_rw7iu")]
+visible = true
+offset_left = 1406.0
+offset_top = 619.0
+offset_right = 1894.0
+offset_bottom = 955.0
+
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 visible = false
 offset_left = -86.0
 offset_top = -1.0
 offset_right = 1929.0
 offset_bottom = 1109.0
+mouse_filter = 2
 color = Color(0, 0, 0, 0)
 
 [node name="hpPanel" parent="CanvasLayer" instance=ExtResource("7_iy2fq")]
