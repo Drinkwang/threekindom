@@ -106,7 +106,7 @@ do showtutorial(2)
 do resTutorialShow()
 #黑屏point出现
 #遮掩一切但显示资源面板
-提示: 这里为你的资源面板，清晰显示当前掌握的钱、壮丁（即可调用士卒）数量，以及民心数值，供你规划行动时参考。
+提示: 这里为你的资源面板，清晰显示当前掌握的钱、民力（即可调用士卒）数量，以及民心数值，供你规划行动时参考。
 #黑屏point 消失
 do resTutorialHide()
 do showbattletutorial2()

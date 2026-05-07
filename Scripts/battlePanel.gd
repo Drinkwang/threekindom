@@ -226,19 +226,19 @@ func initTask():
 		if task.res=="human" and _mode!=bossMode.mi:
 			if task.symbol==GameManager.opcost.greater:
 				if _mode==bossMode.tao:
-					taskcontext="\n"+str(index)+tr(".尸皇怒吼:")+tr("(民力超过{targetValue})").format({"targetValue": targetValue})
+					taskcontext="\n"+str(index)+tr(".尸皇怒吼:")+tr("(兵力超过{targetValue})").format({"targetValue": targetValue})
 				else:
-					taskcontext="\n"+str(index)+tr(".遭遇战:")+tr("(民力超过{targetValue})").format({"targetValue": targetValue})
+					taskcontext="\n"+str(index)+tr(".遭遇战:")+tr("(兵力超过{targetValue})").format({"targetValue": targetValue})
 			elif task.symbol==GameManager.opcost.equal:
 				if _mode==bossMode.tao:
-					taskcontext="\n"+str(index)+tr(".怨魂诡阵:")+tr("(民力等于{targetValue})").format({"targetValue": targetValue})
+					taskcontext="\n"+str(index)+tr(".怨魂诡阵:")+tr("(兵力等于{targetValue})").format({"targetValue": targetValue})
 				else:				
-					taskcontext="\n"+str(index)+tr(".奇兵任务:")+tr("(民力等于{targetValue})").format({"targetValue": targetValue})
+					taskcontext="\n"+str(index)+tr(".奇兵任务:")+tr("(兵力等于{targetValue})").format({"targetValue": targetValue})
 			elif task.symbol==GameManager.opcost.less:
 				if _mode==bossMode.tao:
-					taskcontext="\n"+str(index)+tr(".冥界壁垒:")+tr("(民力小于{targetValue} 但大于{targetValue2})").format({"targetValue": targetValue,"targetValue2":int(floor(targetValue*3/5))})
+					taskcontext="\n"+str(index)+tr(".冥界壁垒:")+tr("(兵力小于{targetValue} 但大于{targetValue2})").format({"targetValue": targetValue,"targetValue2":int(floor(targetValue*3/5))})
 				else:				
-					taskcontext="\n"+str(index)+tr(".防守战:")+tr("(民力小于{targetValue} 但大于{targetValue2})").format({"targetValue": targetValue,"targetValue2":int(floor(targetValue*3/5))})
+					taskcontext="\n"+str(index)+tr(".防守战:")+tr("(兵力小于{targetValue} 但大于{targetValue2})").format({"targetValue": targetValue,"targetValue2":int(floor(targetValue*3/5))})
 		pass
 		context=context+taskcontext
 	pass

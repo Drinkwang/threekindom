@@ -85,7 +85,7 @@ func changeLanguage():
 		law_label.remove_theme_font_override("font")
 		#currence_no_policy.remove_theme_font_override("font")
 	point_label.text=tr("点数:%s")%GameManager.sav.Merit_points
-	TooltipManager.register_tooltip(ConfireButton,tr("基础初始立法条目不会扣除派系支持度。除此之外其余律法：发起点亮立法节点时、最终表决立法通过时，两个阶段均扣除利益受损派系支持度。"))
+	TooltipManager.register_tooltip(ConfireButton,tr("立法的好处仅表决通过后获得；点亮节点、立法通过均会扣除受损派系支持度。"))
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass

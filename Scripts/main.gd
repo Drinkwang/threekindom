@@ -214,9 +214,9 @@ func whyDao():
 	
 func end():
 	monster.play("default")
-
+	SoundManager.play_sound(sounds.BLOODCC_1)
 	var _on_animation_finished=func():
-		
+
 		SceneManager.changeScene(SceneManager.roomNode.HOUSE,7)
 	monster.animation_finished.connect(_on_animation_finished)	
 
