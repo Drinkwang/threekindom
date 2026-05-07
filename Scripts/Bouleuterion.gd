@@ -417,7 +417,8 @@ func SettleLawRevenue():
 			context=context.replace("[haozu]",tr("豪族派"))
 		else:
 			context=context.replace("[haozu]",tr("本土派"))	
-	GameManager.sav.RewardLaw=context
+	#GameManager.sav.RewardLaw=context
+	GameManager.RewardLaw=context
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"通过法案")
 	faction.refreshData()
 @onready var claimLabel = $CanvasBook/ColorRect/Label
