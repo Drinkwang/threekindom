@@ -353,6 +353,12 @@ do GameManager.getItemAction.call()
 #13天 吕布暴怒 需要连续到
 #15 刘备成功离开 进入
 # 
+~ 休息教程
+刘备: (手头上的事都忙完了，正好休息一下，恢复点精力。)[voice:liubei_shoutoushangmangwanle]
+do control._show_button_5_yellow(3)
+系统提示: 玩家可通过休息恢复精力值；每次休息将使游戏时间推进一旬(10天)。
+
+=> END!
 
 ~ 小沛信件
 主簿: 曹操麾下夏侯惇将军率精骑前来相助，他已将吕布自张扬处购得的那数百匹良马的消息一并带来。他还携一封曹操亲笔密信，言明此信非主公亲手拆阅不可[voice:zhubo_xinfeizhugong]

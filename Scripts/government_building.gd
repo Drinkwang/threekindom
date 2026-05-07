@@ -656,7 +656,7 @@ func selectPolicy(data):
 		GameManager.sav.have_event["chaoChenDenPolicyExcute"]=true		
 	elif id==policymanager.policyID.P_LessCoin:
 		if GameManager.sav.coin<1000:
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"金币无法支持")
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"钱无法支持")
 			GameManager.sav.hp=GameManager.sav.hp+35
 			return
 		hidePolicy()

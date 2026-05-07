@@ -68,9 +68,23 @@ func _refreshReside():
 	var resideNum=GameManager.resideGrain
 	str_reside.text=tr("剩余粮食数：{str}（万吨）").format({"str":resideNum})
 
-
+var _cursor_in_rect=false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
+	
+	
+
+	var mouse_pos = get_global_mouse_position()
+	var rect = Rect2(388, 219, 1146, 300)
+	if rect.has_point(mouse_pos):
+		if not _cursor_in_rect:
+			_cursor_in_rect=true
+			GameManager.restore_system_cursor()
+	else:
+		if _cursor_in_rect:
+			_cursor_in_rect=false
+			GameManager.apply_game_cursor()	
 	_refreshReside()	
 	pass
 @export var literatiValue=0

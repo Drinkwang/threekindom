@@ -225,8 +225,8 @@ func _initData():
 	if GameManager.sav.have_event["chaoMizhuEnd"]==true and GameManager.sav.isGetCoin==false and GameManager.sav.currenceValue>1:
 		
 		
-		#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"playtest结束")
-		#return
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"playtest结束")
+		return
 
 		pass
 	if control.visible==true:	
@@ -293,6 +293,10 @@ func _initData():
 		
 		
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
+		if GameManager.sav.hp==0 and GameManager.sav.have_event["休息教程"]==false:
+			GameManager.sav.have_event["休息教程"]=true
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"休息教程")
+			
 	if GameManager.sav.day==2:
 		if GameManager.sav.have_event["dayTwoInit"]==false:
 			GameManager.sav.have_event["dayTwoInit"]=true

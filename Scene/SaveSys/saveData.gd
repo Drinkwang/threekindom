@@ -348,6 +348,7 @@ var SIDEQUEST_MAP:Dictionary={
 	"获得亮银":false,
 	"错失亮银":false,
 	"获得玄阴":false,
+	"休息教程":false,
 	#"错失玄阴":false,
 }
 @export var taishanWait=0

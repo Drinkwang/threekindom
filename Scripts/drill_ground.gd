@@ -74,7 +74,7 @@ func initFogAndRect():
 const bgm = preload("res://Asset/bgm/校场.wav")
 
 func _judWin():
-	if(not (GameManager.sav.targetTxt!=null and GameManager.sav.targetTxt.length()>0) or DialogueManager.dialogBegin==true):
+	if(not (GameManager.sav.targetTxt!=null and GameManager.sav.targetTxt.length()>0)):
 		return
 	if GameManager.sav.targetResType==GameManager.ResType.battle or GameManager.sav.targetResType==GameManager.ResType.stayFight:
 		if(GameManager.sav.have_event["firstMeetCaoCao"]==false):
