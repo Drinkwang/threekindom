@@ -68,9 +68,9 @@ func initDataByGroup(index,group):
 			paixi=GameManager.sav.HAOZUPAI
 		elif data.index==3:
 			paixi=GameManager.sav.WAIDIPAI
-		detail=data.detail+tr("【这项政策会根据你的{paixi}议政人数决定最终效果】").format({"paixi":paixi._name})
+		detail=tr(data.detail)+tr("【这项政策会根据你的{paixi}议政人数决定最终效果】").format({"paixi":paixi._name})
 	else:
-		detail=data.detail
+		detail=tr(data.detail)
 	context=data.name
 	if GameManager.haveMirror():
 		#var paixi:cldata
