@@ -764,7 +764,7 @@ do wumin_inmeat.show()
 do finger.show()
 他松开手，从怀中取出那半截带鹰头戒的断指，递到丙面前，又指了指帐外
 do finger.hide()
-无名: 昨夜，我看见徐州兵的身影，他们饿，吃了甲叔后，还想吃掉主公，再屠尽涿县子弟。
+无名: 昨夜，我看见徐州兵的身影，他们饿，吃了甲叔后，还想吃掉主公，再屠尽涿县子弟。[voice:wumin_chilejiashu2]
 
 乙: 徐州兵……是他们……我错怪主公了
 do wuminandyi2()
@@ -961,7 +961,7 @@ do GameManager.changePeopleSupport(-5)
 
 ~ 血战大败
 
-亲兵: 主公！我军伤亡殆尽，将士们已经杀红了眼，却仍挡不住敌军攻势！弟兄们都在喊着 “不想死”，这仗…… 这仗没法打了！
+亲兵: 主公！我军伤亡殆尽，将士们已经杀红了眼，却仍挡不住敌军攻势！弟兄们都在喊着 “不想死”，这仗…… 这仗没法打了！[voice:qinbin_buxiangsi]
 系统提示: 军心大减 40，士气濒临崩溃！
 do GameManager.changePeopleSupport(-40)
 => END!
@@ -969,21 +969,21 @@ do GameManager.changePeopleSupport(-40)
 
 ~ 血战大败提示
 
-亲兵: 主公！前方阵线摇摇欲坠，新兵们已经开始怯战了！若再不撤军修整，恐怕大军会在敌军反扑下自行溃散！[voice:pianjiang_crisis]
+亲兵: 主公！前方阵线摇摇欲坠，新兵们已经开始怯战了！若再不撤军修整，恐怕大军会在敌军反扑下自行溃散！[voice:qinbin_kuisan]
 系统提示: 注意，军心已进入警戒线，若继续死战，恐将发生哗变！
 => END!
 
 
 ~ 血战连续多次败北
 
-亲兵: 主公…… 我们已经退无可退了。弟兄们连手都在发抖，大家都在问，到底还要在这里填多少条命才够啊……[voice:shangbing_exhaustion]
+亲兵: 主公…… 我们已经退无可退了。弟兄们连手都在发抖，大家都在问，到底还要在这里填多少条命才够啊……[voice:qinbin_tianmin]
 系统提示: 军心 - 10，将士对连续苦战感到绝望！
 do GameManager.changePeopleSupport(-10)
 => END!
 
 
 ~ 血战一次败北引发民愤
-亲兵: 主公，这一阵折损了不少兄弟，军中弥漫着一股丧气，大伙儿的气势不如前了。
+亲兵: 主公，这一阵折损了不少兄弟，军中弥漫着一股丧气，大伙儿的气势不如前了。[voice:qinbin_sangqi]
 系统提示: 军心 - 5，将士士气受挫！
 do GameManager.changePeopleSupport(-5)
 => END!
