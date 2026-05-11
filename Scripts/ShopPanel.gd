@@ -197,7 +197,8 @@ func confireSold():
 
 func _on_buy_button_focus_entered() -> void:
 	if buy_button.disabled==false:
-		GameManager._engerge.startPreviewHp(costhp)
+		if GameManager.haveMirror():
+			GameManager._engerge.startPreviewHp(costhp)
 
 
 func _on_buy_button_focus_exited() -> void:

@@ -1051,7 +1051,7 @@ do tsty.showEX=false
 刘备: _liubeiwish[voice:liubei_wozhizaianmin]
 do zhangyanCrazy()
 : 张阎突然猛然抬头，双目赤红，身体僵硬如木，声音低沉而诡异，似附体一般
-张阎: 主公…饕餮…饕餮索命…陶氏血债，天罚难逃！
+张阎: 主公…饕餮…饕餮索命…陶氏血债，天罚难逃！[voice:zhangyan_taotie]
 do zhangyanChop()  
 : _zhangyanfushen
 陶商: 将军！他疯了！救命！[voice:ts_jiangjuntafengle]

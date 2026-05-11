@@ -1,40 +1,40 @@
 #青梅煮酒内容移动到自宅，方便游戏使用
 
 ~ 击中曹操2
-曹操: 好剑法！
+曹操: 好剑法！[voice:caocao_haojianfa]
 do dialogEnd()
 => END!
 
 
 ~ 击中曹操
-曹操: 玄德剑法不减当年啊，这一剑，威风不小啊！  
+曹操: 玄德剑法不减当年啊，这一剑，威风不小啊！[voice:caocao_jianfanb]
 do dialogEnd()
 => END!
 
 ~ 被曹操击中
-曹操: 拿出你的真本事出来，当年你的剑术可不止如此！
+曹操: 拿出你的真本事出来，当年你的剑术可不止如此！[voice:caocao_nachuzhenbenshi]
 do dialogEnd()
 => END!
 
 
 ~ 被曹操击中2
-曹操: 再来再来！
+曹操: 再来再来！[voice:caocao_zailaizailai]
 do dialogEnd()
 => END!
 
 ~ 赢曹操
-曹操: 好剑法！
+曹操: 好剑法！[voice:caocao_haojianfa2]
 刘备: 丞相过奖了，我不过幽州武夫，而且身高量级本压你一头，与其说胜于剑术，不如说是胜于蛮力，论真剑术，丞相仍技高一筹！  
-曹操: 玄德莫要过谦，来，饮此杯，未来定有一场酣战相会！  
+曹操: 玄德莫要过谦，来，饮此杯，未来定有一场酣战相会！[voice:caocao_moyaoguoqian]
 #莫要过谦
 do finalEndReturn()
 
 => END!
 
 ~ 输曹操
-曹操: 玄德剑法大退，莫非今日因我为丞相，故意放水给我这老友添彩？  
+曹操: 玄德剑法大退，莫非今日因我为丞相，故意放水给我这老友添彩？[voice:caocao_guyifangshui]
 刘备: ...
-曹操: 罢了，来，饮此杯，胜败乃小事，你我未来定能酣战！
+曹操: 罢了，来，饮此杯，胜败乃小事，你我未来定能酣战！[voice:caocao_niwoyizhan]
 #return house
 do finalEndReturn()
 #C

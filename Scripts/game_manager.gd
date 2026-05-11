@@ -1808,8 +1808,53 @@ func playDemand(item):
 		#消耗指定数量的物品
 	SignalManager.playDemand.emit()
 
-func get_exploration_percent():
-	pass
+func get_exploration_percent() -> int:
+	if sav.endPath == endPath.xuzhou:
+		return 100
+	var pts = 0
+	var he = sav.have_event
+	# -- 派系支线 (max 16) --
+	var faction_quests = [
+		"陈登支线1", "陈登支线2", "陈登支线3", "最终陈登",
+		"糜竺支线1", "糜竺支线2", "糜竺支线3", "最终糜竺",
+		"曹豹支线1", "曹豹支线2", "曹豹支线3", "最终丹阳",
+		"大儒支线1", "大儒支线2", "大儒支线3", "大儒辩经完成",
+	]
+	for q in faction_quests:
+		if he.get(q, false): pts += 1
+	# -- 怪谈支线 (max 10) --
+	var mystery = ["支线发现羊尸", "竹简幻觉剧情", "支线触发完毕获得骨杖", "诡物手册", "支线终府邸线索获取完成"]
+	for q in mystery:
+		if he.get(q, false): pts += 2
+	# -- 基建 (max 10) --
+	var infra = ["运粮初级完成","运粮中级完成","运粮高级完成","筑塔初级完成","筑塔中级完成","筑塔高级完成","挖河初级完成","挖河中级完成","挖河高级完成","三基建完成"]
+	for q in infra:
+		if he.get(q, false): pts += 1
+	# -- 泰山 (max 10) --
+	var taishan = ["battleTaiShan","臧霸首战","昌豨求饶","completebattleTaiShan","最终泰山"]
+	for q in taishan:
+		if he.get(q, false): pts += 2
+	# -- 吕布 (max 10) --
+	var lvbu = ["findLvbu","lvbuJoin","曹豹和吕布勾连2","辕门射戟","吕布之怒"]
+	for q in lvbu:
+		if he.get(q, false): pts += 2
+	# -- 特殊道具 (max 6) --
+	var items = ["获得锦囊","获得古棒","获得血袖","获得娃娃","获得亮银","获得玄阴"]
+	for q in items:
+		if he.get(q, false): pts += 1
+	# -- 杂项 (max 8) --
+	var misc = ["firstDisaster","secondDisaster","thirdDisaster","庆功宴结束","开启比武训练","最终比武结束","卡牌新手教程","卡牌高级教程"]
+	for q in misc:
+		if he.get(q, false): pts += 1
+	# -- 霸道线接近 (max 30) --
+	if he.get("主簿的追随", false): pts += 6
+	if not dontHaveDominance(): pts += 14
+	if sav.endPath == endPath.xiaopei: pts += 5
+	if he.get("刘备成长0", false): pts += 2
+	if he.get("刘备成长2", false): pts += 3
+	return mini(pts, 100)
+
+
 
 func get_bloodmode_day():
 	var day

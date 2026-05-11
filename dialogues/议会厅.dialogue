@@ -130,7 +130,7 @@ do chendeng.showEX=false
 	do eatFish1(true)
 
 陈登: 咳咳..咳咳咳
-仆人: 老爷近日食鱼脍颇多，偶有腹胀，未曾在意。
+仆人: 老爷近日食鱼脍颇多，偶有腹胀，未曾在意。[voice:puren_laoye]
 do chendeng.hide()
 
 => END!
@@ -194,8 +194,8 @@ do chendeng.showEX=false
 
 （刘备结束与陈登的对话后，路过议事厅一角，听到士人私下议论。） 
 
-士人甲: 陈大人近来消瘦，恐非小事……
-士人乙: 更诡异的是，陶谦旧主之墓，尸体竟凭空消失，有人夜半路过墓地，似听到了鬼哭之声……
+士人甲: 陈大人近来消瘦，恐非小事……[voice:shiren_xiaosou]
+士人乙: 更诡异的是，陶谦旧主之墓，尸体竟凭空消失，有人夜半路过墓地，似听到了鬼哭之声……[voice:shiren_gengguiyishi]
 
 do chendeng.hide()
 
