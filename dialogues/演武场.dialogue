@@ -178,7 +178,7 @@ do refreshData()
 糜竺: 主公，此次我随商队运送前线急需物资，顺道慰劳将士。[voice:mizhu_weinaojiangshi]
 刘备: 很好，作为二把手，你亲自来，真的是有劳了，此次清剿黄巾军已取得一定进展，但仍有部分残余势力未被肃清，粮道安全仍需进一步保障。[voice:liubei_zuoweierbashou]
 
-士兵: 报告主公，缴获部队遇到了曹操的信使！
+士兵: 报告主公，缴获部队遇到了曹操的信使！[voice:bin_caocaoxinshi]
 
 刘备: 曹操的信使？快带进来。[voice:liubei_caocaoxinshikuai]
 片刻后，信使被带到刘备面前。
@@ -204,7 +204,7 @@ do caocaoLetterHide()
 
 ~ 曹豹干预
 #第七次
-士兵: 报告主公，曹将军求见！
+士兵: 报告主公，曹将军求见！[voice:bin_caojiangjun]
 
 刘备: 哪个曹将军？请他进来。[voice:liubei_nagecaojiangjun]
 
@@ -295,10 +295,10 @@ do yuanshuComplete()
 ~ 昌豨求饶
 士兵: 报！昌豨信使求见！
 #
-昌豨信使: 刘使君！臧霸苛扣我部粮草，三军将士早已饥肠辘辘，无力再战！若使君肯暂且息兵，我等愿即刻归降！
+昌豨信使: 刘使君！臧霸苛扣我部粮草，三军将士早已饥肠辘辘，无力再战！若使君肯暂且息兵，我等愿即刻归降！[voice:cangxiz_yuanyitouxiang]
 刘备: 之前，徐州遭乱，粮秣匮乏、民不聊生，传有内应劫掠资粮，此事当真与你家将军无关？徐州百姓饱受饥馑之苦时，昌将军身在何处?[voice:liubei_zhiqianxuzhouzaoluan]
 #上月徐州祸乱，劫掠民财者可是你等？三百妇孺饿殞街头之时，昌豨将军身在何处？[voice:liubei_eyunjietou]
-昌豨信使: 这……这全是臧霸的毒计！他城中私藏袁术使者，狼子野心，还望使君明察！我家将军，心中始终忠于使君啊！
+昌豨信使: 这……这全是臧霸的毒计！他城中私藏袁术使者，狼子野心，还望使君明察！我家将军，心中始终忠于使君啊！[voice:cangxi_zangbaduji]
 刘备: ……
 陈登: 主公，臧霸前锋虽已逼近，却只带了三日粮草。依属下看，他是想借主公之手，铲除昌豨这个异己。[voice:chenden_sanriliangcao]
 刘备: 回去告知昌豨，若亲至我营，表明诚意，我可赦其罪责，饶他一命！[voice:liubei_huiqugaozhicangxi]
@@ -472,7 +472,7 @@ do fireLetter()
 #刘备: （徐州精锐已在连年征战中折损殆尽，如今臧霸那干泰山寇众盘踞险要，我军已失合围良机，眼下这消耗战便如泥淖，正一寸寸没过徐州的脖颈……） [voice:liubei_taishanxiaohaozhan]
 do battle_pane.hide()
 do lvbu.show()
-探马: 报！主公，前方发现一支大军，旗帜书“吕”字！
+探马: 报！主公，前方发现一支大军，旗帜书“吕”字！[voice:bin_lvbulaile]
 刘备: 温侯吕布？此地何故有他踪迹？[voice:liubei_wenhoulvbu]
 ...
 吕布: 刘使君，久违！布乃吕布，率部来投，欲归顺徐州，求一安身之地。[voice:lvbu_bulailvbu]
@@ -1233,11 +1233,11 @@ do huangjinSurrender()
 
 ~ 昌豨求饶支线
 系统提示: 【隐藏击败敌人方式达成：泰山折服,条件揭示：玩家三次绝对胜率满100%】
-使者: 我家昌豨将军无意与将军交锋。三战连大败，恳请刘备大人开恩，愿献上贡品，率残部退兵百里，不再扰边。
+使者: 我家昌豨将军无意与将军交锋。三战连大败，恳请刘备大人开恩，愿献上贡品，率残部退兵百里，不再扰边。[voice:cangxiz_wojiawuyi]
 刘备: 昌豨将军乃泰山豪杰，也是徐州旧部。我镇守此地，为平定内乱而来。贡品既已送达……嗯，就收下吧。但徐州要真正太平，还需扫清这些内敌，方能稳固大局。[voice:liubei_zangbaweihaojie]
 
 
-使者: 这……大人，昌豨将军的贡品已然献上……
+使者: 这……大人，昌豨将军的贡品已然献上……[voice:cangxiz_zhe]
 
 
 刘备: 贡品是贡品，可这又何尝不是缓兵之计？使者还是先回去吧。若真有诚意，和你家将军商量后再来吧！[voice:liubei_gongpinhebushihuanbin]
@@ -1444,14 +1444,14 @@ do guanyu.hide()
 
 ~ 得知吕布和曹豹勾连
 刘备正亲临营中视察将士备战袁术的情况，查看着军备粮草与布防细节，忽有一密探快步闯入营中。
-密探: 主公，属下奉您之命监视下邳城内的动静，昨夜，吕布于议事厅设宴款待曹豹将军，似有要事相商，特此前来传回消息。
+密探: 主公，属下奉您之命监视下邳城内的动静，昨夜，吕布于议事厅设宴款待曹豹将军，似有要事相商，特此前来传回消息。[voice:mitan_zhugong]
 刘备: 温侯与豹将军深夜私宴，我倒要看看是何缘由。[voice:liubei_wenhousiyan]
 do SceneManager.changeScene(SceneManager.roomNode.BOULEUTERION,2)
 => END!
 
 
 ~ 得知吕布和曹豹勾连2
-密探: 主公，昨夜吕布与曹豹议事，实为商议联姻，无其他异动。
+密探: 主公，昨夜吕布与曹豹议事，实为商议联姻，无其他异动。[voice:mitan_wuyidong]
 
 刘备: ...
 do _initData()

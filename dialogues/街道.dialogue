@@ -768,10 +768,10 @@ do baseComplete()
 流民: 使君慢行！您瞧瞧这城墙，裂缝能塞下半个人，盗贼夜里翻进来跟走平地似的！我们这些苦命人，连个遮风挡雨的窝都没有啊！[voice:liumin_shijunmanxing]
 商贩: 何止城墙！护城河干得见底，开春洪水一冲，城外良田全得淹！如今粮价一日三涨，小的这摊子，眼看就要撑不下去了！[voice:shangren_liangjiasanzhang]
 农妇: 还有这路、这沟！孩子昨天摔进去，满身是泥，哭着喊着要吃饭，可家里粮仓早就空了！使君，您可得为我们做主啊！[voice:nv_haiyouzheluzhegou]
-孩童: 我想有安稳的家，不想再怕盗贼……
+孩童: 我想有安稳的家，不想再怕盗贼……[voice:haitong]
 刘备: (徐州内乱已除，却民生凋敝至此。百姓流离，食不果腹，这岂是我刘备想要的安定？城防、水利、粮仓，桩桩件件，皆是民生根本，绝不能再拖！）[voice:liubei_minshengbunengtuo]
 刘备: 诸位父老，刘备愧对徐州百姓！今日亲见诸位疾苦，我在此立誓，即刻启动城内的基建工程！[voice:liubei_jijianqidong]
-百姓们: 使君仁德！若真如此，我们愿披星戴月，出力相助！
+百姓们: 使君仁德！若真如此，我们愿披星戴月，出力相助！[voice:min_shijunrende]
 乞丐: 老朽一把老骨头，也能搬砖运土！[voice:liumin_laoxiulaogutou]
 商贩: 小的愿捐出一些钱，支援工程！[voice:shangren_zhiyuangongcheng]
 刘备: 好！民心所向，大事可成！来人，速回府邸传我命令：召糜竺、陈登议事，徐州基建，刻不容缓！[voice:liubei_xuzhoujijianburonghuan]
