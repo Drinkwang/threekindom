@@ -147,7 +147,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 120)]
+"values": [Vector2(0, 16)]
 }
 
 [sub_resource type="Animation" id="Animation_hoxs8"]
@@ -175,7 +175,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.6, 0.8),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 120), Vector2(37, 120), Vector2(37, 120), Vector2(0, 120)]
+"values": [Vector2(0, 16), Vector2(37, 16), Vector2(37, 16), Vector2(0, 16)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_got6o"]
@@ -261,7 +261,7 @@ dialogue_start = ""
 
 [node name="陶商陶应" parent="peoples" instance=ExtResource("6_ibudm")]
 visible = false
-position = Vector2(0, 120)
+position = Vector2(0, 16)
 showName = "陶商/陶应"
 dialogue_doubleclick = "城外克苏鲁事件触发"
 showEX = true
