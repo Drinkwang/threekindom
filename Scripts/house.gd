@@ -372,6 +372,8 @@ func resumeBgm():
 	#如果没见过陈登把control隐藏，如果见过了陈登 control不隐藏
 const daybgm = preload("res://Asset/bgm/白天在家or办公.wav")	
 const nightbgm = preload("res://Asset/bgm/夜晚在家.wav")
+@onready var point_xiuzhen: Node2D = $"文官/pointXiuzhen"
+
 func post_transition():
 	var canMuliao=true
 	GameManager.CanClickUI=true
@@ -1047,6 +1049,7 @@ func allocationMuliao():
 		if GameManager.sav.hp<100 and GameManager.sav.day>1 and GameManager.sav.day<=3 and GameManager.sav.have_event["触发诡物手册"]==false:
 			zhubu.showEX=true
 			zhubu.show()
+			point_xiuzhen.show()
 			zhubu.changeAllClick("诡物手册")
 
 func settleDeterminValue():

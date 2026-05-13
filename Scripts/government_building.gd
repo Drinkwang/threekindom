@@ -741,6 +741,7 @@ func meeting():
 	else:
 		rule_book.clickEvent=""
 	
+@onready var show_pos: Node2D = $"peoples/陶商陶应/showPos"
 
 func meetingEnd():
 	GameManager.sav.destination="议事厅"
