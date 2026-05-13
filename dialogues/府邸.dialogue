@@ -1164,7 +1164,7 @@ do chenden.show()
 刘备: 幸得二位相助。只是袁术贼心不死，此事怕是还未了结。[voice:liubei_xindeerweixiangzu]
 陈登: 主公所言极是，我等仍需严加戒备。[voice:chenden_zhugongsuoyanjishi]
 话音未落，一名斥候跌撞闯入前厅，神色急切
-斥候: 主公！紧急军情！袁术大军卷土重来，已兵临下邳城外三十里，先锋部队已开始劫掠周边村落！
+斥候: 主公！紧急军情！袁术大军卷土重来，已兵临下邳城外三十里，先锋部队已开始劫掠周边村落！[voice:bin_yuanshuxiaopi]
 刘备: 果然如此！袁术这贼子，竟如此迫不及待！[voice:liubei_guoranruci]
 陈登: 主公，袁术此番再犯，必然是做足了准备。我军刚稳住内部，兵力尚未完全休整，需谨慎应对。[voice:chenden_binliweicangxiuzheng]
 刘备: 袁术大军压境，不可退缩！若任由其兵临城下，此前安抚各派系的努力恐付诸东流，徐州人心必再生动荡。此番，我必须亲率主力出征，正面迎击袁术！[voice:liubei_wobixuqinshuaizhuli]
@@ -1377,7 +1377,7 @@ do jiaMizhenShow()
 （糜贞从内室走出，容貌如常，语气平静，但眼中似有复杂情绪。）  
 
 糜贞: 将军，兄长所言不虚，贞从未去过郊外豪宅。将军若不信，可查我行踪。将军，前日送去的药材，可还合用？  [voice:zhenmizhen]
-刘备:  !!!，是我多疑了……【voice:liubei_shiwoduoyile】
+刘备:  !!!，是我多疑了……[voice:liubei_shiwoduoyile]
 糜竺: 主公可能为政务操劳过度，精神疲惫，请好好休息吧。府中备下清茶，若需调养，随时唤我。[voice:mizhu_fushangqincha]
 if haveWaWa()
 	(: 她……或许无辜，但你永远是我一个人的……嘻嘻……)[voice:mizhen_wugu]
