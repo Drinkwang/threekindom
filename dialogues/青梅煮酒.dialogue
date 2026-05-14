@@ -24,7 +24,7 @@ do dialogEnd()
 
 ~ 赢曹操
 曹操: 好剑法！[voice:caocao_haojianfa2]
-刘备: 丞相过奖了，我不过幽州武夫，而且身高量级本压你一头，与其说胜于剑术，不如说是胜于蛮力，论真剑术，丞相仍技高一筹！  
+刘备: 丞相过奖了，我不过幽州武夫，而且身高量级本压你一头，与其说胜于剑术，不如说是胜于蛮力，论真剑术，丞相仍技高一筹！[voice:liubei_youzhouwufu]
 曹操: 玄德莫要过谦，来，饮此杯，未来定有一场酣战相会！[voice:caocao_moyaoguoqian]
 #莫要过谦
 do finalEndReturn()

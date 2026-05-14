@@ -396,19 +396,6 @@ func _initData():
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"赵云比武失败")
 			
 
-	
-		
-		elif GameManager.sav.have_event["查出药囊后休息前"]==true and GameManager.sav.have_event["锦囊咨询丹阳派"]==false and caobao.showEX==false:
-			caobao.changeAllClick("演武场克苏鲁剧情支线")
-			caobao.showEX=true
-			caobaoshow()
-	
-		elif GameManager.sav.have_event["曹豹支线1"]==false and GameManager.sav.have_event["battleTaiShan"]==true and caobao.showEX==false:
-			caobao.changeAllClick("曹豹支线1")
-			caobaoshow()
-			caobao.showEX=true
-	
-			
 		elif GameManager.sav.have_event["曹豹支线2"]==false and GameManager.sav.caobaoSideWait==1:
 			if GameManager.sav.have_event["曹豹资助"]==false:#暂时没想好写啥
 				caobaoshow()
@@ -416,38 +403,54 @@ func _initData():
 
 				GameManager.sav.have_event["曹豹资助"]=true
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"插入曹豹资助")
+
+		elif GameManager.sav.day>=7 and GameManager.sav.have_event["开启比武训练"]==false:
+			GameManager.sav.have_event["开启比武训练"]=true
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"比武训练解锁")
+		
+		
+	if GameManager.sav.have_event["查出药囊后休息前"]==true and GameManager.sav.have_event["锦囊咨询丹阳派"]==false and caobao.showEX==false:
+		caobao.changeAllClick("演武场克苏鲁剧情支线")
+		caobao.showEX=true
+		caobaoshow()
+	
+	elif GameManager.sav.have_event["曹豹支线1"]==false and GameManager.sav.have_event["battleTaiShan"]==true and caobao.showEX==false:
+		caobao.changeAllClick("曹豹支线1")
+		caobaoshow()
+		caobao.showEX=true
+	
+			
+	
 				
-		elif GameManager.sav.have_event["曹豹支线2"]==false and GameManager.sav.caobaoSideWait==0 and caobao.showEX==false:	
-			caobao.changeAllClick("曹豹支线2")
-			caobaoshow()
+	elif GameManager.sav.have_event["曹豹支线2"]==false and GameManager.sav.caobaoSideWait==0 and caobao.showEX==false:	
+		caobao.changeAllClick("曹豹支线2")
+		caobaoshow()
 		
-			caobao.showEX=true	
-		else:
-			if GameManager.sav.day>=7 and GameManager.sav.have_event["开启比武训练"]==false:
-				GameManager.sav.have_event["开启比武训练"]=true
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"比武训练解锁")
-		
-			elif GameManager.sav.caobaocardgame>=0  and caobao.showEX==false:
+		caobao.showEX=true	
+	else:
+
+		if GameManager.sav.caobaocardgame>=0  and caobao.showEX==false:
 			#如果小于4 则移出3 
 			
 			
 			#@export var mizhucardgame=-1
 			#@export var chendencardgame=-1
-				if GameManager.sav.endPath!=GameManager.endPath.xiaopei:
-					if GameManager.sav.have_event["boss战开始"]==false and GameManager.sav.caobaocardgame==4 and GameManager.sav.mizhucardgame==5 and GameManager.sav.chendencardgame==5:
+			if GameManager.sav.endPath!=GameManager.endPath.xiaopei:
+				if GameManager.sav.have_event["boss战开始"]==false and GameManager.sav.caobaocardgame==4 and GameManager.sav.mizhucardgame==5 and GameManager.sav.chendencardgame==5:
 					
-						caobao.changeAllClick("来把仕诡牌2")
-						caobaoshow()
-						caobao.showEX=true
-					elif GameManager.sav.have_event["boss战开始"]==false and GameManager.sav.caobaocardgame==4 and (GameManager.sav.mizhucardgame<5 or GameManager.sav.chendencardgame<=5):
-						caobao.hide()
-					else:
-						caobao.changeAllClick("来把仕诡牌")
-						caobaoshow()
-						caobao.showEX=false
-				elif GameManager.sav.have_event["最终丹阳"]==false and GameManager.sav.WAIDIPAI._support_rate>=80 and GameManager.sav.have_event["主簿的追随"]==true:
-					danyangSoilder.show()
-					danyangSoilder.changeAllClick("丹阳将领投靠")
+					caobao.changeAllClick("来把仕诡牌2")
+					caobaoshow()
+					caobao.showEX=true
+				elif GameManager.sav.have_event["boss战开始"]==false and GameManager.sav.caobaocardgame==4 and (GameManager.sav.mizhucardgame<5 or GameManager.sav.chendencardgame<=5):
+					caobao.changeAllClick("")
+					caobao.hide()
+				else:
+					caobao.changeAllClick("来把仕诡牌")
+					caobaoshow()
+					caobao.showEX=false
+			elif GameManager.sav.have_event["最终丹阳"]==false and GameManager.sav.WAIDIPAI._support_rate>=80 and GameManager.sav.have_event["主簿的追随"]==true:
+				danyangSoilder.show()
+				danyangSoilder.changeAllClick("丹阳将领投靠")
 
 					
 		

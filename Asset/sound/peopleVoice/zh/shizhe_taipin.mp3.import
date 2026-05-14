@@ -2,12 +2,13 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-uid="uid://c8scsv0qj0na3"
-valid=false
+uid="uid://bvv5lyoy4q3dd"
+path="res://.godot/imported/shizhe_taipin.mp3-a85503c5161ee249c204827baea3bbad.mp3str"
 
 [deps]
 
 source_file="res://Asset/sound/peopleVoice/zh/shizhe_taipin.mp3"
+dest_files=["res://.godot/imported/shizhe_taipin.mp3-a85503c5161ee249c204827baea3bbad.mp3str"]
 
 [params]
 

@@ -1272,6 +1272,7 @@ do jilinEscape()
 刘备: (这演武场风光不错啊,我何不借此地与兄弟们对练切磋一番？)[voice:liubei_yanwuchangbucuo]
 
 系统提示: 解锁比武训练功能，现在可以通过比武训练不消耗钱提升武将等级（每个模式仅能提升一次)
+do refreshData()
 => END!
 
 ~ 训练选项
