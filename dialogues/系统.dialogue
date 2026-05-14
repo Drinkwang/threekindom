@@ -1,5 +1,5 @@
 ~ 有内乱禀报
-主簿: 主公，还有城中叛乱禀报...
+主簿: 主公，还有城中叛乱禀报...[voice:zhubo_chengzhongpanluan]
 do determineInternalUnrestXuzhou()
 => END!
 
@@ -77,7 +77,8 @@ do shizuLawTest()
 
 
 ~ 民心叛乱2
-主簿: 主公，苛税重赋激怒民心，百姓暴动，上街焚毁肆巷，城中沟渠、仓肆皆损！修缮需耗六百金
+#主簿: 主公，苛税重赋激怒民心，百姓暴动，上街焚毁肆巷，城中沟渠、仓肆皆损！修缮需耗六百金
+主簿: 主公，苛税重赋激怒民心，百姓暴动，上街焚毁肆巷，城中沟渠、仓肆皆损！修缮需耗百金
 提示: 资金 -{{determineValue1}}
 do settleDeterminValue()
 游戏提示: 因为民心低于60触发的负面事件，请尽快将民心提升到60以上
@@ -86,7 +87,7 @@ do shizuLawTest()
 => END
 
 ~ 民心叛乱3
-主簿: 主公，徭役繁重，百姓不堪重负，抛家弃田，逃入山林，徐州农桑荒废殆尽！
+主簿: 主公，徭役繁重，百姓不堪重负，抛家弃田，逃入山林，徐州农桑荒废殆尽！[voice:zhubo_yaoyifanzhong]
 提示: 民力 -{{determineValue1}}
 do settleDeterminValue()
 游戏提示: 因为民心低于60触发的负面事件，请尽快将民心提升到60以上
@@ -103,27 +104,27 @@ do shizuLawTest()
 
 #商人
 ~ 士族叛乱1
-主簿: 主公,叛乱的士族诬陷你的私德，民众对你的信任度下降了！
+主簿: 主公,叛乱的士族诬陷你的私德，民众对你的信任度下降了！[voice:zhubo_feiyiside]
 提示: 民心-{{determineValue1}}，需本土派好感度至60或镇压
 do determineInternalUnrestHaozu()
 => END
 
 #豪族
 ~ 士族叛乱2
-主簿: 主公,叛乱的士族散播谣言，充当民力的民众纷纷逃亡！
+主簿: 主公,叛乱的士族散播谣言，充当民力的民众纷纷逃亡！[voice:zhubo_sanboyaoyan]
 提示: 民力 -{{determineValue1}}，需本土派好感度至60或镇压
 do determineInternalUnrestHaozu()
 => END
 
 
 ~ 豪族叛乱1
-主簿: 主公,叛乱的豪族组织商会和私人武装囤积居奇，物价暴涨，民心将失！
+主簿: 主公,叛乱的豪族组织商会和私人武装囤积居奇，物价暴涨，民心将失！[voice:zhubo_haozujuqi]
 提示: 民心-{{determineValue1}}，需豪族派好感度至60或镇压
 do determineInternalUnrestDanyang()
 => END
 
 ~ 豪族叛乱2
-主簿: 主公,不满的豪族导致府库的财政出现亏空，账面上已有得资金出现损失！
+主簿: 主公,不满的豪族导致府库的财政出现亏空，账面上已有得资金出现损失！[voice:zhubo_haozuzhangmian]
 提示: 资金-{{determineValue1}}，需豪族派好感度至60或镇压
 do determineInternalUnrestDanyang()
 => END
@@ -134,7 +135,7 @@ do determineInternalUnrestDanyang()
 #士族降低钱
 ~ 丹阳叛乱1
 
-主簿: 主公，叛乱的丹阳士兵劫掠府库，珍宝尽失！
+主簿: 主公，叛乱的丹阳士兵劫掠府库，珍宝尽失！[voice:zhubo_danyang1]
 
 提示: {{determineDetail}}，需丹阳派好感度至60或镇压
 do determineInternalUnrestLvbu()
@@ -142,13 +143,13 @@ do determineInternalUnrestLvbu()
 
 ~ 丹阳叛乱2
 
-主簿: 主公，叛乱的丹阳士兵劫掠百姓，徐州民心将失！
+主簿: 主公，叛乱的丹阳士兵劫掠百姓，徐州民心将失！[voice:zhubo_jienuebaixin]
 提示: 民心下降{{determineValue1}}。需将丹阳派好感度提升至60或镇压叛乱。
 do determineInternalUnrestLvbu()
 => END
 
 ~ 吕布叛乱
-主簿: 主公，不满的吕布劫掠你的城池，损失惨重!
+主簿: 主公，不满的吕布劫掠你的城池，损失惨重![voice:lvbu_buman]
 提示: {{determineDetail}}。需将吕布好感度提升至80或镇压叛乱。
 do determineInternalUnrestMinxin()
 => END

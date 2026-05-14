@@ -274,7 +274,7 @@ do GameManager._imporveRelation(getFactionByIndex())
 => END
 
 ~ 选项吕布
-主簿: 大人，你想对吕布做什么呢？
+主簿: 大人，你想对吕布做什么呢？[voice:zhubu_duilvbu]
 - 资金资助[costHp=50]
 	do financialConfortChoice()
 - 赠送礼物[costHp=50]
@@ -893,7 +893,7 @@ do lvbuJoin()
 
 
 ~ 可召见吕布
-侍从: 主公，经连日筹谋整备，如今已然妥当，可召见吕布了。
+侍从: 主公，经连日筹谋整备，如今已然妥当，可召见吕布了。[voice:zhubo_kezhaojianlvbu]
 #侍从: 主公，经过一夜的准备，现在可以召见吕布了。
 刘备: 好，宣他入内。[voice:liubei_xuantarunei]
 一段时间后，吕布被引进府邸

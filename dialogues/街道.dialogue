@@ -198,7 +198,7 @@ do people.show()
 do people.showEX=false
 （陶商、陶应被带出，瑟瑟发抖，亲兵持盾围护，列阵于前。百姓突然躁动，怒吼着涌上前，高喊：“献陶氏！平神怒！”人潮汹涌，推挤间亲兵阵形渐乱，防线被挤开缺口。）[voice:zhongren_xiantaoshi]
 
-张阎: 陶氏血债，今日必偿！  
+张阎: 陶氏血债，今日必偿！  [voice:zhangyan_bicang]
 
 
 do tstyDie()
