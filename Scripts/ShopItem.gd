@@ -72,7 +72,7 @@ const LABOR = preload("res://Asset/ui/战力.png")
 const COIN = preload("res://Asset/ui/钱财.png")
 func set_Money(_num):
 	context.texture=COIN
-	TooltipManager.register_tooltip(self,tr("钱：持有的钱数量(可购买道具)"))
+	TooltipManager.register_tooltip(self,tr("钱：持有的钱数量(可购买道具、军事行动的资金)"))
 
 	txt_quantity.show()
 	txt_quantity.text=var_to_str(_num)
