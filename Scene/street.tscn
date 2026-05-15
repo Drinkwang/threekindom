@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://bv5ycsl0a50uq" path="res://Scene/prefab/btnList.tscn" id="2_eoq3e"]
 [ext_resource type="Texture2D" uid="uid://d2artvwe80df1" path="res://Asset/光明/正常背景.png" id="3_c4vad"]
 [ext_resource type="Texture2D" uid="uid://5n7qchhi5h04" path="res://Asset/ui/底色.png" id="4_tt101"]
+[ext_resource type="Texture2D" uid="uid://dxlaob3d84yj4" path="res://Asset/城镇建筑/夜晚街头无打杀.png" id="5_6v4tb"]
 [ext_resource type="PackedScene" uid="uid://bxw67mtklk4w5" path="res://Scene/prefab/ExpoundclassicsPanel.tscn" id="5_jclo7"]
-[ext_resource type="Texture2D" uid="uid://cej3eajnovwwy" path="res://Asset/城镇建筑/集市2.png" id="5_w16qo"]
 [ext_resource type="PackedScene" uid="uid://dfolt063spdso" path="res://Scene/prefab/energy.tscn" id="6_00ynb"]
 [ext_resource type="Texture2D" uid="uid://bwcri60nk00mv" path="res://Asset/光明/街道亮.png" id="6_imlfi"]
 [ext_resource type="Texture2D" uid="uid://bgqbxd6ppt5s2" path="res://Asset/光明/装饰1-正常.png" id="7_2c0vb"]
@@ -119,7 +119,7 @@ flip_h = true
 [node name="内饰" type="Sprite2D" parent="."]
 position = Vector2(960, 537)
 scale = Vector2(2.23, 2.23)
-texture = ExtResource("5_w16qo")
+texture = ExtResource("5_6v4tb")
 region_filter_clip_enabled = true
 
 [node name="标题" type="Sprite2D" parent="."]
@@ -161,7 +161,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="tsty" parent="CanvasLayer" instance=ExtResource("17_w7ika")]
 visible = false
-position = Vector2(1112, 376)
+position = Vector2(1065, 558)
 showName = "陶商/陶应"
 dialogue_doubleclick = "遇到诡异牌1"
 txt2d = ExtResource("14_fsp8r")
@@ -171,7 +171,7 @@ dialogue_start = "遇到诡异牌1"
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
 visible = false
-position = Vector2(1113, 373)
+position = Vector2(1066, 555)
 texture = ExtResource("15_r310u")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Sprite2D"]

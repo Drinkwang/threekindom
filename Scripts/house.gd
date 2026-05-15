@@ -347,7 +347,7 @@ func _initData():
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新手关结束")	
 	return canMuliao
 	#判断以下，是首日获取 还是第二次获取	
-const siku1 = preload("res://Asset/sound/似哭似笑1.mp3")
+
 const siku2 = preload("res://Asset/sound/似哭似笑2.mp3")
 
 func playtestEnd():

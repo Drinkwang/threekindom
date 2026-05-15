@@ -13,19 +13,29 @@ const newBuild = preload("res://Asset/城镇建筑/集市2.png")
 @onready var node_2d_store: _cget_scene_item = $itemsInScene/Node2D_store
 @onready var node_2d_bamboo: _cget_scene_item = $itemsInScene/Node2D_bamboo
 
-
+const wudasha = preload("res://Asset/城镇建筑/夜晚街头无打杀.png")
+const dashabg = preload("res://Asset/城镇建筑/洛阳街头.png")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GameManager.currenceScene=self
-	if GameManager.sav.have_event["initXuzhou"]==true:
+	if GameManager.sav.finalKeChoice!=-1 and GameManager.sav.have_event["锦囊咨询丹阳派"]==true and GameManager.sav.have_event["支线触发完毕获得骨杖"]==false:
+		bg.texture=wudasha
+		#881 667
+		if GameManager.sav.finalKeChoice==0:
+			people.position=Vector2(881,667)
+	elif GameManager.sav.have_event["initXuzhou"]==true:
 		bg.texture=newBuild
 		node_2d_store.position=Vector2(584,100)
 		node_2d_bamboo.position=Vector2(305,280)
+
 	else:
 		bg.texture=xiaopeiBuild
 		node_2d_store.position=Vector2(914,91)
 		node_2d_bamboo.position=Vector2(1188,524)
 	#方便测试,可能会删？我第一次看到方便测试很迷惑
+	
+	
+	
 	GameManager.sav.have_event["firstmeetchenqun"]=true
 
 	SignalManager.endReward.connect(_bossMode)
@@ -111,8 +121,10 @@ func tstyDie():
 	var _func=func(stringname):
 		sword_sprite_2d.hide()
 		var tween=get_tree().create_tween()
+		SoundManager.stop_sound(HUI_3)
+		
 		SoundManager.play_sound(sounds.BLOODCC_1)
-		tween.tween_property(tsty, "modulate:a",0, 5)
+		tween.tween_property(tsty, "modulate:a",0, 2)
 		
 		#播放tsty透明度隐藏动画
 	chop_animation.animation_finished.connect(_func)
@@ -125,6 +137,7 @@ func zhangyanDie():
 	#await 0.5
 	PanelManager.Fade_Blank(Color.RED,0.5,PanelManager.fadeType.fadeOut)
 	#播放红光和抹脖子音效
+	bg.texture=dashabg
 	pass
 	
 	

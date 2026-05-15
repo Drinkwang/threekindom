@@ -78,7 +78,7 @@ func changeLanguage():
 #可能会删除
 	if GameManager.sav.battleEnhance!=0:
 		var battleEnhance=GameManager.sav.battleEnhance
-		var EnhanceContext="[法令提升了战利品收益{profit}%]".format({"profit":battleEnhance*15})
+		var EnhanceContext=tr("[法令提升了战利品收益{profit}%]").format({"profit":battleEnhance*15})
 		TooltipManager.register_tooltip(lauchBtn,EnhanceContext)
 func initData():
 	battle_circle.refreshPage()
