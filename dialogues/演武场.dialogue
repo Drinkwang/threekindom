@@ -1105,7 +1105,7 @@ else
 
 
 曹豹: 这个我略有耳闻，那个地方官，生前非常清廉，没有为后代留下多余财产，死后，后代就丧失了生计，今天徐州城内粮食暴涨，而他们家贫如洗，其母病重，子女已经沦落到欲卖身救母的地步了[voice:caobao_zhegelueyouerwen]
-刘备: 人生无常，这样好的官员的后人也论为这个地步，也是我的过错啊！你速赐粮赈助，妥善安置。[voice:liubei_tuoshananzhi]
+刘备: 人生无常，这样好的官员的后人也沦为这个地步，也是我的过错啊！你速赐粮赈助，妥善安置。[voice:liubei_tuoshananzhi]
 曹豹: 主公英明，我这就照办[voice:caobao_zhugongyinmin]
 
 
@@ -1441,7 +1441,7 @@ do guanyu.show()
 
 关羽: 不过，主公，我还是看不惯这些文官。嘴上说得天花乱坠，心里各打各的小算盘。今日他们拖是为了主公好，可若有一日他们拖是为了自己……哼，关某的刀绝不留情。[voice:guanyu_daobuliuqin]
 do guanyu.hide()
-
+do _initData()
 => END!
 
 ~ 得知吕布和曹豹勾连

@@ -473,6 +473,7 @@ func victoryPartyEnd():
 	GameManager.sav.currenceValue=0
 	GameManager.sav.targetResType=GameManager.ResType.rest
 	
+	#这里面板没有刷新
 	#后面把process改成发送信号
 	GameManager.sav.targetTxt=""
 	GameManager.sav.TargetDestination=""

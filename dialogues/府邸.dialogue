@@ -358,6 +358,7 @@ do showMizhuTouchMain()
 ~ 府邸主线
 do mizhu.showEX=false
 刘备: 嗯，说起来，我初来乍到，对徐州详情确实不甚了解。[voice:liubei_wochulai]
+wait 4
 刘备: 我在小沛时便听闻军队欺压百姓，军中却说因大多是丹阳兵，他们军粮无法按时支取，这是怎么回事？[voice:liubei_wozaixiaopei]
 糜竺: 刺史大人，这事说来复杂。城内粮食与财政短缺，我们迫不得已才限制了军队的军粮发放。[voice:mizhu_xianzhijun4]
 刘备: 徐州素来富庶，怎么会缺粮？如今乱世未平，外敌随时可能来犯，我怎能苛待军队？[voice:liubei_wozmnengkedai]
@@ -901,6 +902,8 @@ do lvbuc.show()
 刘备: 温侯，远道而来，欢迎之至。[voice:liubei_wenhouhuanyin]
 吕布: 刘使君，我特来投靠，愿为你效力。[voice:lvbu_yuanweinixiaoli]
 刘备: 温侯跋涉而来，辛苦了。请上座。[voice:liubei_wenhoubashe]
+do SoundManager.play_sound(sounds.FOOTSTEPS_WALKING)
+wait 4
 吕布: 刘使君，布年长几岁，不如今后以兄弟相称，称你一声贤弟如何？[voice:lvbu_nianzhangjisui]
 刘备: 温侯如此抬爱，备不胜荣幸。只是军中礼法森严，称呼之事，不如依规矩而行，私下再叙兄弟之情，如何？[voice:liubei_wenhourucitaiai]
 吕布: 好！刘使君果然谨慎。既如此，今后咱们便是一家人，有何差遣，贤弟但说无妨！[voice:lvbu_niguoranjinshen]
@@ -947,6 +950,8 @@ do SoundManager.play_sound(sounds.buysellsound)
 
 #这里开始都没有翻译
 ~ 徐州得安
+do mizhu.show()
+do chenden.show()
 刘备: 今日徐州得安，全靠诸位同心协力！奉先将军威震泰山，臧霸那些人望风而降，真是老天爷在帮咱们大汉啊！[voice:liubei_jinrixuzhoudean]
 糜竺: 主公说得好！不过丹阳兵肯死心塌地为我们卖命，泰山那帮人真心归顺，还是因为主公您以诚待人、用仁义收服了他们。[voice:mizhu_renyimaimin]
 
@@ -955,7 +960,8 @@ do SoundManager.play_sound(sounds.buysellsound)
 刘备: （徐州终于稳下来了，现在正是难得的太平日子。从今天开始，可以放开手脚干了，安抚百姓、练兵屯粮、修城建仓，好好经营一番，徐州一定能越来越强。)[voice:liubei_xuzhouyidingnengyuelaiyueqiang]
 
 系统提示: 新目标将自动解锁显现，主公请运筹帷幄，早日铸就不朽基业！
-
+do mizhu.hide()
+do chenden.hide()
 
 
 do victoryPartyEnd()

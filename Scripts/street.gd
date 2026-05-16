@@ -833,3 +833,12 @@ func zhenrenFinish():
 	GameManager.currenceScene.res_panel.position.y=622
 	GameManager.currenceScene.res_panel.scale=Vector2(1,1)	
 	GameManager.endtempRestoreGeneral()
+
+
+func headRed():
+	
+	var newColor=Color.RED
+	newColor.a=0.5
+	PanelManager.Fade_Blank(newColor,0.5,PanelManager.fadeType.fadeIn)
+	#await 0.5	
+	#battle_pane.battle_circle.enemy.modulate=Color.RED

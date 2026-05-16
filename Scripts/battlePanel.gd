@@ -518,3 +518,7 @@ func enterBattleZhenRen():
 	GameManager.secretBattleSav=GameManager.sav.currenceTask
 	GameManager.sav.currenceTask=200
 	initTask()
+
+
+func changeHead(cha):
+	battle_circle.changeHead(cha)	

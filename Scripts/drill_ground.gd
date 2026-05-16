@@ -353,6 +353,7 @@ func _initData():
 		elif GameManager.sav.have_event["刘备成长1"]==true and GameManager.sav.have_event["刘备成长2"]==false:
 			GameManager.sav.have_event["刘备成长2"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"刘备的成长2")
+			return
 		elif GameManager.selectBoardCharacter==boardType.boardCharacter.caobao and GameManager._boardMode!=boardType.boardMode.none and GameManager._boardGameWin==true:
 			caobao.show()
 			GameManager.selectBoardCharacter=boardType.boardCharacter.none 

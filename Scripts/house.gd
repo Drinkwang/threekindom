@@ -224,11 +224,11 @@ func _initData():
 	#记得demo注销
 	if GameManager.sav.have_event["chaoMizhuEnd"]==true and GameManager.sav.isGetCoin==false and GameManager.sav.currenceValue>1:
 		
-		
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"playtest结束")
-		return
-
+		#demo结束
+		#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"playtest结束")
+		#return
 		pass
+		
 	if control.visible==true:	
 		items_in_scene.showItems()	
 	else:
