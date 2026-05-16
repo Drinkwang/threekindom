@@ -34,10 +34,10 @@ var dontMoveIndex=[]
 func switchDiffucult():
 	var difficult=GameManager.selectPuzzleDiffcult
 	#var farmlands=farmland_panel.get_children()
-	#var colorrects=colorrect.get_children()	
+	#var colorrects=colorrect.get_children()
 	isHigh=false
+	dontMoveIndex.clear()
 	if difficult==SceneManager.puzzlediffucult.easy:
-
 		initRandomBase()
 	elif difficult==SceneManager.puzzlediffucult.middle:
 		pass
@@ -321,11 +321,10 @@ func initRandomRotate():
 		i.rotation_degrees=randi*90
 	
 func initRandomBase():
-	
-	var numbers: Array = [0, 1, 2, 3, 4, 5, 6, 7, 8]
-	numbers.shuffle()  # 随机打乱数组顺序
-	#return numbers.slice(0, 3)  # 取前 3 个元素
-	dontMoveIndex=numbers.slice(0, 3)  # 取前 3 个元素
+	var total = rows * cols
+	var numbers: Array = range(total)
+	numbers.shuffle()
+	dontMoveIndex = numbers.slice(0, min(3, total))
 
 
 var isrotate=false
