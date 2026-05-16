@@ -1501,6 +1501,9 @@ func succussAfter():
 	pass
 	
 	
+func lvbuhave_seat():
+	lvbuc.position=Vector2(312,-15)
+	pass
 	
 func hidePeople():
 	mizhu.hide()

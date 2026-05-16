@@ -302,7 +302,7 @@ dialogue_start = "点击糜竺"
 
 [node name="吕布" parent="peoples" instance=ExtResource("6_ibudm")]
 visible = false
-position = Vector2(312, -15)
+position = Vector2(2, 57)
 showName = "吕布"
 dialogue_doubleclick = "丹阳将领投靠"
 txt2d = ExtResource("18_lbowa")
