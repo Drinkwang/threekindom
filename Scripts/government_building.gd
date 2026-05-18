@@ -1079,7 +1079,7 @@ func StartTaishan():
 	GameManager.sav.currenceValue=0
 	GameManager.sav.targetResType=GameManager.ResType.battle
 	GameManager.sav.targetTxt="征讨次数：{currence}/{target}"
-	GameManager.initSecretBattleContext(3,SceneManager.etraTaskType.dontLoseGame,5,"昌豨求饶支线")
+	GameManager.initSecretBattleContext(3,SceneManager.etraTaskType.dontLoseGame,6,"昌豨求饶支线")
 	#觉得无用的注释GameManager.sav.TargetDestination="battle"
 	#显示军事行动还有30把
 	pass
@@ -1142,7 +1142,8 @@ func getFactionByIndex()->cldata:
 		_confortV=GameManager.sav.WAIDIPAI
 	elif _faction==cldata.factionIndex.haozupai:
 		_confortV=GameManager.sav.HAOZUPAI
-		
+	elif _faction==cldata.factionIndex.lvbu:
+		_confortV=GameManager.sav.LVBU
 		
 	return _confortV
 	
@@ -1332,7 +1333,7 @@ func CallingSoldier():
 	#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"混乱对话结束")#显示对话
 func lvbuJoin():
 	GameManager.sav.have_event["lvbuJoin"]=true
-	GameManager.sav.labor_force=GameManager.sav.labor_force+1000
+	GameManager.sav.labor_force=GameManager.sav.labor_force+300
 	GameManager.changeTaskLabel("歇整一日来到府邸召见吕布")
 	#1
 

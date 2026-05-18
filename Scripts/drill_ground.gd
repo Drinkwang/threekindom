@@ -147,7 +147,7 @@ func _completeTask():#将完成任务移动到外层
 		GameManager.sav.have_event["completeTask2"]=true
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"征讨结束")
 		#这个被黄巾那个打断
-	elif GameManager.sav.have_event["lvbuJoin"]==false&&GameManager.sav.have_event["battleTaiShan"]==true:	
+	elif GameManager.sav.have_event["findLvbu"]==false&&GameManager.sav.have_event["battleTaiShan"]==true:	
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"发现吕布")
 
 		
@@ -1137,7 +1137,7 @@ func cangxiSurrender():
 	}
 	#GameManager.ScoreToItem()
 	_reward.showTitileReward(tr("恭喜你，你获得昌豨献上的财宝"),items)		
-	GameManager.sav.currenceValue+=2
+	GameManager.sav.currenceValue+=1
 	pass
 	
 func jilinEscape():

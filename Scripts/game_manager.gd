@@ -1723,6 +1723,8 @@ func doContructtion(diff):
 
 
 func selectPuzzleLevel():
+	if await GameManager.isTried(20):
+		return	
 	DialogueManager.show_example_dialogue_balloon(sys,"基建选项")
 
 func resetConstructTutorial():

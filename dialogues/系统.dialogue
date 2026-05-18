@@ -234,11 +234,11 @@ do DialogueManager.gameover=true
 ~ 基建选项
 
 系统提示: 请选择你的基建投入程度
-- 1.初级基建
+- 1.初级基建[costHp=20]
 	do GameManager.doContructtion(0)
-- 2.中级基建
+- 2.中级基建[costHp=20]
 	do GameManager.doContructtion(1)
-- 3.高级基建
+- 3.高级基建[costHp=20]
 	do GameManager.doContructtion(2)
 - 重置教程
 	系统提示: 教程已重置
@@ -252,7 +252,8 @@ do DialogueManager.gameover=true
 
 
 系统提示: 基建将消耗以下资源：\n• 钱 ×{{GameManager.puzzleCostMoney}}\n• 民力 ×{{GameManager.puzzleCostPeople}}\n资源充足，确认执行吗？
-- 立即启动基建！
+- 立即启动基建！[costHp=20]
+	do GameManager.costHp(20)
 	do GameManager.currenceScene.confirmBuild()
 - 重新考虑，返回选项。
 	do GameManager.selectPuzzleDiffcult=0 

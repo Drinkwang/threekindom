@@ -384,6 +384,7 @@ func refresh():
 	
 
 var isBoot:bool=false
+var _extraTaskCountedThisRound:bool=false
 
 func changeHead(value):
 	enemy.headImg=value
@@ -391,6 +392,7 @@ func changeHead(value):
 
 func lauchProgress(hp):
 	if isBoot ==false:
+		_extraTaskCountedThisRound=false
 		isBoot=true
 		suss_label.text=""
 		_hp=hp
@@ -485,6 +487,7 @@ var finalScore
 const yanwuchang = preload("res://dialogues/演武场.dialogue")
 
 func settleGame(end,issuccess):
+	var _wasUsingItem = GameManager.sav.useItemInBattle
 	#扣除消耗 只会消耗士兵
 	#无风险 无扣除
 	#小风险 扣除10-20%
@@ -493,9 +496,6 @@ func settleGame(end,issuccess):
 	#如果道具用完，则改成不用道具
 	
 	#暂时迁移过来一个，另外二个保留在下面，防止有啥bug
-	if GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.useItem and GameManager.sav.useItemInBattle==true and GameManager.currenceScene.battle_pane._mode==SceneManager.bossMode.none:
-		GameManager.sav.extraCureenTaskCNum+=1
-		refreshHideBattleTask()
 	if GameManager.sav.useItemInBattle==true:
 		InventoryManager._remove_item(GameManager.inventoryPackege,InventoryManagerItem.胜战锦囊,1)
 		var resideCount=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.胜战锦囊)
@@ -529,13 +529,6 @@ func settleGame(end,issuccess):
 	var sussusss= battleCircleClone[4]
 	print(GameManager.sav.useItemInBattle)
 	_rewardPanel.soilderCost=cost
-	if GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.costMoney:
-		GameManager.sav.extraCureenTaskCNum+=_rewardPanel.coinCost
-		refreshHideBattleTask()
-		
-	elif GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.dontLoseGame and sussusss.radian>=360 and GameManager.currenceScene.battle_pane._mode==SceneManager.bossMode.none:
-		GameManager.sav.extraCureenTaskCNum+=1
-		refreshHideBattleTask()
 	if GameManager.sav.targetResType==GameManager.ResType.stayFight and GameManager.currenceScene.battle_pane._mode==SceneManager.bossMode.none:
 			GameManager.sav.currenceValue=GameManager.sav.currenceValue+1
 			
@@ -567,9 +560,6 @@ func settleGame(end,issuccess):
 		
 	else:
 		
-		if GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.loseGame  and GameManager.currenceScene.battle_pane._mode==SceneManager.bossMode.none: 
-			GameManager.sav.extraCureenTaskCNum+=1
-			refreshHideBattleTask()
 		
 		GameManager.sav.battleResults[taskIndex]=GameManager.BattleResult.fail
 		print("你输了")
@@ -586,6 +576,29 @@ func settleGame(end,issuccess):
 
 		_rewardPanel.fail()
 		judgeLoseSentiment()
+	# === 统一额外任务计数 ===
+	if not _extraTaskCountedThisRound and GameManager.currenceScene.battle_pane._mode == SceneManager.bossMode.none:
+		var _counted = false
+		match GameManager.sav.extraBattleTaskEnum:
+			SceneManager.etraTaskType.useItem:
+				if _wasUsingItem:
+					GameManager.sav.extraCureenTaskCNum += 1
+					_counted = true
+			SceneManager.etraTaskType.costMoney:
+				GameManager.sav.extraCureenTaskCNum += _rewardPanel.coinCost
+				_counted = true
+			SceneManager.etraTaskType.dontLoseGame:
+				if sussusss.radian >= 360:
+					GameManager.sav.extraCureenTaskCNum += 1
+					_counted = true
+			SceneManager.etraTaskType.loseGame:
+				if not issuccess:
+					GameManager.sav.extraCureenTaskCNum += 1
+					_counted = true
+		if _counted:
+			_extraTaskCountedThisRound = true
+			refreshHideBattleTask()
+
 	#bug 开始修改这里的问题
 	curCoin=0
 	curSoilder=0
@@ -723,7 +736,7 @@ func refreshHideBattleTask():
 		for i in range(0,3):
 			var ic:TextureRect=se_task_hbox.get_child(i)
 			var number_map = {1: 3, 2: 2, 3: 1}  # 定义替换规则
-			if(GameManager.sav.extraCureenTaskCNum>=GameManager.sav.extraBattleTaskTargetNum/number_map[i+1]):
+			if(GameManager.sav.extraCureenTaskCNum>=float(GameManager.sav.extraBattleTaskTargetNum)/float(number_map[i+1])):
 				if GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.costMoney or GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.loseGame or GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.useItem:
 					ic.modulate=Color.GREEN
 				elif GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.dontLoseGame:
@@ -741,7 +754,7 @@ func refreshTempHideBattleTask():
 		for i in range(0,3):
 			var ic:TextureRect=se_task_hbox.get_child(i)
 			var number_map = {1: 3, 2: 2, 3: 1}  # 定义替换规则
-			if(GameManager.sav.extraCureenTaskCNum>=GameManager.sav.extraBattleTaskTargetNum/number_map[i+1]):
+			if(GameManager.sav.extraCureenTaskCNum>=float(GameManager.sav.extraBattleTaskTargetNum)/float(number_map[i+1])):
 				if GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.costMoney or GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.loseGame or GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.useItem:
 					ic.modulate=Color.GREEN
 				elif GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.dontLoseGame:
@@ -749,7 +762,7 @@ func refreshTempHideBattleTask():
 			else:
 				
 				
-				if(GameManager.sav.extraCureenTaskCNum+GameManager.currenceScene.battle_pane.costcoin>=GameManager.sav.extraBattleTaskTargetNum/number_map[i+1]):
+				if(GameManager.sav.extraCureenTaskCNum+GameManager.currenceScene.battle_pane.costcoin>=float(GameManager.sav.extraBattleTaskTargetNum)/float(number_map[i+1])):
 					if GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.costMoney or GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.loseGame:
 						if(ic.modulate!=Color.YELLOW):
 							ic.modulate=Color.YELLOW
