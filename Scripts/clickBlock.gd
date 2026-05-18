@@ -142,10 +142,19 @@ func get_global_rect() -> Rect2:
 
 @export var isHide=true
 
+func _is_mouse_blocked(event_position: Vector2) -> bool:
+	for node in get_tree().get_nodes_in_group("mouse_blocker"):
+		if node is Control and node.visible:
+			if node.get_global_rect().has_point(event_position):
+				return true
+	return false
+
 func _on_area_2d_input_event(viewport, event, shape_idx):
 	#or GameManager.rewardPanel==true
-	
+
 	if !(event is InputEventMouseButton) or DialogueManager.dialogBegin==true or PanelManager.isOpenSetting==true and (PanelManager.rewardNode!=null and PanelManager.rewardNode.visible):
+		return
+	if _is_mouse_blocked(event.position):
 		return
 	#大概率是后面二项导致的	
 	print("dialogBegin "+var_to_str(DialogueManager.dialogBegin))

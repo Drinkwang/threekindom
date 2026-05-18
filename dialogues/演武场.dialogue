@@ -1158,7 +1158,8 @@ do getLongdan()
 	#选择角色 打开菜单
 	do openBoardGame()
 - 修建基建【加固城墙】[costHp=20] [if GameManager.sav.have_event["基建项目开启"]==true and GameManager.sav.endPath==GameManager.endPath.none]
-	曹豹: 主公，加固城墙，确实是巩固徐州的好办法，我愿祝你一臂之力[voice:caobao_zhuzhugongjijian]
+	if GameManager.sav.hp>=20
+		曹豹: 主公，加固城墙，确实是巩固徐州的好办法，我愿祝你一臂之力[voice:caobao_zhuzhugongjijian]
 	do GameManager.selectPuzzleLevel()
 - 取消
 
