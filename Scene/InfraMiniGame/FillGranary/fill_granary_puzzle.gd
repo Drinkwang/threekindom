@@ -12,7 +12,8 @@ func initGame():
 	self.show()
 	win_rect.hide()
 	lose_rect.hide()
-	initGranary() # Replace with function body.
+	sideTrackCar.clear()
+	initGranary()
 	_initTrack()
 	initTargetAndHourse()
 	updatehourse()
@@ -53,7 +54,10 @@ func initGranary():
 	for i in range(0,granarysArr.size()):
 		granarysArr[i].initData(i+1)
 		#houseArr[i].initData(i+1)
-		horseArr[i].area_2d.input_event.connect(_on_piece_input_event.bind(horseArr[i]))
+		var horse_callable = _on_piece_input_event.bind(horseArr[i])
+		if horseArr[i].area_2d.input_event.is_connected(horse_callable):
+			horseArr[i].area_2d.input_event.disconnect(horse_callable)
+		horseArr[i].area_2d.input_event.connect(horse_callable)
 	#for granary in granarys:
 		#pass
 		
@@ -73,8 +77,14 @@ func _on_piece_input_event(viewport: Node, event: InputEvent, shape_idx: int, ho
 
 
 func selectGrannary(select):
+	if selecthourse == null:
+		return
 	selecthourse.stop_flash()
 	selecthourse.selectGrannary(select)
+
+func clearSelectedHorse(horse):
+	if selecthourse == horse:
+		selecthourse = null
 		
 func _initTrack():
 	if GameManager.selectPuzzleDiffcult==SceneManager.puzzlediffucult.easy:

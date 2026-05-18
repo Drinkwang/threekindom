@@ -79,6 +79,7 @@ func selectGrannary(grannary:granary_house):
 			SoundManager.play_sound(sounds.COLLECT_SMALL_JEWEL_1)
 		self.hide()
 		$"../..".refreshHorse()
+		$"../..".clearSelectedHorse(self)
 	MoveTween.finished.connect(finishFunc.bind(grannary))
 	updateDetail()
 @onready var area_2d: Area2D = $Area2D
