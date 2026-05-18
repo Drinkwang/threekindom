@@ -1079,7 +1079,7 @@ func StartTaishan():
 	GameManager.sav.currenceValue=0
 	GameManager.sav.targetResType=GameManager.ResType.battle
 	GameManager.sav.targetTxt="征讨次数：{currence}/{target}"
-	GameManager.initSecretBattleContext(3,SceneManager.etraTaskType.dontLoseGame,6,"昌豨求饶支线")
+	GameManager.initSecretBattleContext(3,SceneManager.etraTaskType.dontLoseGame,5,"昌豨求饶支线")
 	#觉得无用的注释GameManager.sav.TargetDestination="battle"
 	#显示军事行动还有30把
 	pass

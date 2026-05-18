@@ -1681,6 +1681,7 @@ func resumeMusic():
 
 
 func initSecretBattleContext(targetValue,mode,BootValue,dialogueContext):
+	sav.extraCureenTaskCNum=0
 	sav.extraBattleTaskBootNum=BootValue
 	sav.extraBattleTaskTargetNum= targetValue
 	sav.extraBattleTaskEnum=mode

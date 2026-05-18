@@ -567,7 +567,7 @@ func settleGame(end,issuccess):
 		
 	else:
 		
-		if GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.loseGame or GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.dontLoseGame and GameManager.currenceScene.battle_pane._mode==SceneManager.bossMode.none: 
+		if GameManager.sav.extraBattleTaskEnum==SceneManager.etraTaskType.loseGame  and GameManager.currenceScene.battle_pane._mode==SceneManager.bossMode.none: 
 			GameManager.sav.extraCureenTaskCNum+=1
 			refreshHideBattleTask()
 		
