@@ -234,11 +234,11 @@ do DialogueManager.gameover=true
 ~ 基建选项
 
 系统提示: 请选择你的基建投入程度
-- 1.初级基建[costHp=20]
+- 1.初级基建[infra=true][costHp=20]
 	do GameManager.doContructtion(0)
-- 2.中级基建[costHp=20]
+- 2.中级基建[infra=true][costHp=20]
 	do GameManager.doContructtion(1)
-- 3.高级基建[costHp=20]
+- 3.高级基建[infra=true][costHp=20]
 	do GameManager.doContructtion(2)
 - 重置教程
 	系统提示: 教程已重置

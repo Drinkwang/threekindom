@@ -89,8 +89,27 @@ var responses: Array = []:
 						elif (characterScore<2 and mode==boardType.boardMode.middle) or (characterScore<4 and mode==boardType.boardMode.high):
 							response.text=tr(response.text)+tr("(未解锁)")
 						#根据角色获得分数，判断 score 如果score怎么样，那么会变成什么样	
-					if 	"[infra=true]" in response.text:#暂时无用
-						pass
+					if 	"[infra=true]" in response.text:
+						response.text = response.text.replace("[infra=true]", "")
+						var diff = 0
+						if "1" in response.text:
+							diff = 1
+						elif "2" in response.text:
+							diff = 2
+						elif "3" in response.text:
+							diff = 3
+						var constructValue = 0
+						var scene = GameManager.currenceScene
+						if scene is government_building:
+							constructValue = GameManager.sav.constructGrain
+						elif scene is bouleuterion:
+							constructValue = GameManager.sav.constructRiver
+						elif scene is drill_ground:
+							constructValue = GameManager.sav.constructTower
+						if constructValue >= diff:
+							response.text = tr(response.text) + tr("(已完成)")
+						else:
+							response.text = tr(response.text)
 					if 	"[istrain=true]" in response.text:
 						response.text = response.text.replace("[istrain=true]", "")
 						var mode=0
