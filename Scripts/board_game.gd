@@ -87,10 +87,10 @@ func is_match_finished() -> bool:
 var killenemy=false
 func judgeAchive():
 	
-	var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.玄阴玉符)
+	#var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.玄阴玉符)
 	
-	if GameManager._boardMode==boardType.boardMode.high and num<1:
-		return 
+	#if GameManager._boardMode==boardType.boardMode.high and num<1:
+	#	return 
 	
 	var achiData=GameManager.sav.card_achives[achiIndex]
 	#{"enemy":"糜竺","level":"诡秘乱局","detail":"每回合最多只能用2张牌且不能让手牌低于2张","holdcard":2,"MaxUsecard":2,"ScoreNum":-1,"Mustkill":false,"iscom":0,"index":8,"coinGet":150,"peopleGet":0},

@@ -40,11 +40,12 @@ func changeState(state):
 		
 	elif lstate==lockState.unlock:
 		lock_animated_sprite_2d.play("new_animation")
-		var _func=func(stringname):
+		GameManager.sav.have_event["成就解锁"]=true
+		var _func=func():
 			var tween=create_tween()
-			tween.tween_property(link, "self_modulate:a",0,1)	
-			tween.tween_property(link_2, "self_modulate:a",0,1)
-			var _func2=func(stringname):
+			tween.tween_property(link, "self_modulate:a",0,0.5)	
+			tween.tween_property(link_2, "self_modulate:a",0,0.5)
+			var _func2=func():
 				changeState(lockState.close)
 				#link.hide()
 				#link_2
@@ -89,11 +90,9 @@ var _data
 
 func initData(data):
 	_data=data
-	var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.玄阴玉符)
-	
 
 
-	if data.index>5 and num==0:
+	if data.index>5 and GameManager.sav.have_event["成就解锁"]==false:
 		changeState(lockState.lock)
 	else:
 		if data.iscom==0:

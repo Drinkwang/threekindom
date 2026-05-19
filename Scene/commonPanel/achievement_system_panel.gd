@@ -14,17 +14,18 @@ func initView():
 	for i in range(0,9):
 		achis[i].initData(card_achives[i])
 		#
-	var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.玄阴玉符)
+	#var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.玄阴玉符)
 	
 
-	if num>=1:
+	if GameManager.sav.mizhucardgame>=4:
 		unlockHighReward()
 
 
 func unlockHighReward():
 	var achis= grid_container.get_children()
-
+	
 	if GameManager.sav.have_event["解锁高级成就"]==false:
+		SoundManager.play_sound(sounds.UNLOCKCC_0)
 		GameManager.sav.have_event["解锁高级成就"]=true
 		for i in range(6,9):
 			achis[i].changeState(achiClass.lockState.unlock)

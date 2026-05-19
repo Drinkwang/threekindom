@@ -51,3 +51,4 @@ const IRRIGATION_P = preload("res://Asset/sound/irrigationP.wav")
 
 const MA = preload("res://Asset/bgm/ma.mp3")
 const WASTELAND_0 = preload("res://Asset/bgm/wasteland0.wav")
+const UNLOCKCC_0 = preload("res://Asset/sound/unlockcc0.mp3")
