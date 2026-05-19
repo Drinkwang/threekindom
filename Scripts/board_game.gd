@@ -266,7 +266,7 @@ func clear_children(node: Node) -> void:
 	
 func initGame():
 	hp=3
-	
+
 	score=0
 	useCardNumMax=-1
 #回合结束用牌比这个大，就改成这个
@@ -276,19 +276,22 @@ func initGame():
 	turn_num=0
 	enemyscore=0
 	reset_runtime_state()
-	score_txt.text=tr("玩家得分：{s}").format({"s":score})	
-	enemy_score_txt.text=tr("敌人得分：{s}").format({"s":enemyscore})	
+	score_txt.text=tr("玩家得分：{s}").format({"s":score})
+	enemy_score_txt.text=tr("敌人得分：{s}").format({"s":enemyscore})
 	GameManager.currenceScene=self
 	playerEngergyHold=[]
+	hasSecretCard=[true,true,true,true]
 	enemyEngergyHold=[]
 	clear_children(myhand)#.clier
 	clear_children(enemyhand)
-	
+
 	clear_children(min_group)
 	clear_children(shang_group)
 	clear_children(bin_group)
-	clear_children(shi_group)		
-	
+	clear_children(shi_group)
+
+	await get_tree().process_frame
+
 	reshuffle()
 	
 	readyInGameData()
@@ -1571,6 +1574,7 @@ func enterRewardStage(i:boardCard,j:boardCard):
 	tween2.tween_property(j, "global_position", desposition, 1)	
 
 	isWaiting=true
+	end_button.hide()
 	#var tempfunc=func(anim_name,i_node, j_node):
 				#
 		#var gettype:groupType
@@ -1666,8 +1670,12 @@ func enterRewardStage(i:boardCard,j:boardCard):
 		if 	!enemyEngergyHold.has(index+1):
 			enemyEngergyHold.append(index+1)
 			if enemyEngergyHold.size()>=4 and hasSecretCard.has(true) and issecretGame==true:
-				var indexRandom=randi_range(1,4)
-				getSecretCard(indexRandom,false)	
+				var available:Array[int]=[]
+				for idx in range(hasSecretCard.size()):
+					if hasSecretCard[idx]:
+						available.append(idx+1)
+				var indexRandom=available[randi_range(0,available.size()-1)]
+				getSecretCard(indexRandom,false)
 				hasSecretCard[indexRandom-1]=false
 					#播放一个动画，拿到某张诡异卡
 
@@ -1684,6 +1692,8 @@ func enterRewardStage(i:boardCard,j:boardCard):
 	isWaiting=false
 		#print("helloworld")
 	i.queue_free()
+	if isPlayerTurn:
+		end_button.show()
 	j.queue_free()
 	await get_tree().create_timer(0.5).timeout
 	if playerEngergyHold.size()>=4 and hasSecretCard.has(true) and _issole==false and issecretGame==true:
@@ -1825,6 +1835,8 @@ var punishStage=false
 #判断是什么阶段，如果是	
 func phaseEnd():
 	if is_match_finished():
+		return
+	if isWaiting:
 		return
 	
 	if _phaseName==phaseName.punish or _phaseName==phaseName.checkStart:
