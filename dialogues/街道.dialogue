@@ -572,11 +572,15 @@ do meetBoardGame(2)
 
 
 ~ 遇到诡异牌3
+
 do people.showEX=false
+do SoundManager.stop_all_ambient_sounds()
 卖菜小贩: 最近生意很难做啊...都是仕诡牌惹的祸！[voice:liumin_shiguipaidehuo]
+
 刘备: 城中近况如何？仕诡牌还流行吗？最近怎么没看到人玩[voice:liubei_shiguipaimeikandaorenwan]
 卖菜小贩: 大人，仕诡牌…让全城都着魔了！人人玩得眼红，我已经不玩了，但连我都梦见牌在说话！[voice:liumin_lianwodoumengdao]
 #红屏特效加xxx
+
 do meetBoardCrazy()
 卖菜小贩: 大人…您也逃不过…去，找陈大人、糜老爷，玩吧…[voice:liumin_quzhaochendaren]
 : 这个小贩眼睛发红，似乎着魔一般..
