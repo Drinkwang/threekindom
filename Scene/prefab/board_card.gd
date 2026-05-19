@@ -116,7 +116,7 @@ func _process(delta: float) -> void:
 
 
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	if !(event is InputEventMouseButton) or GameManager.currenceScene.isPlayerTurn==false and GameManager.currenceScene.isWaiting==true:
+	if !(event is InputEventMouseButton) or !GameManager.currenceScene.isPlayerTurn or GameManager.currenceScene.isWaiting:
 		return
 	#双击可以有效果，双击把卡牌直接销毁，销毁后获得效果
 	
@@ -169,7 +169,7 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 
 
 func _on_area_2d_mouse_entered() -> void:
-	if holdType==board_game.cardHoldType.enemy or GameManager.currenceScene._phaseName!=board_game.phaseName.useCard:
+	if holdType==board_game.cardHoldType.enemy or !GameManager.currenceScene.isPlayerTurn or GameManager.currenceScene._phaseName!=board_game.phaseName.useCard:
 		return
 	
 	if holdType==board_game.cardHoldType.stack:
@@ -181,7 +181,7 @@ func _on_area_2d_mouse_entered() -> void:
 
 
 func _on_area_2d_mouse_exited() -> void:
-	if holdType==board_game.cardHoldType.enemy or GameManager.currenceScene._phaseName!=board_game.phaseName.useCard:
+	if holdType==board_game.cardHoldType.enemy or !GameManager.currenceScene.isPlayerTurn or GameManager.currenceScene._phaseName!=board_game.phaseName.useCard:
 		return	
 	self.scale=Vector2(originScale.x*1,originScale.y*1)
 	self.z_index=0
