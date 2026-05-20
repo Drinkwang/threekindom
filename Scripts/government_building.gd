@@ -1284,6 +1284,9 @@ func suppress():
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"决定镇压")#显示对话
 
 func confireSuppress():
+	
+	#if金额不对，不能增压
+	
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"镇压成功")#显示对话
 	
 	GameManager._propertyPanel.GetValue(-ForValueCost,0,-ForValueGet)

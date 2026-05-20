@@ -219,10 +219,15 @@ do zhubu.hide()
 主簿: 主公，镇压固然能解决他们可能导致骚乱的因素，但恐埋后患无穷，我建议先施恩惠笼络人心，免生祸端。[voice:jianyishien]
 系统提示: 镇压{{getFactionByIndex().getTr()}}需要消耗民力{{ForValueGet}}和钱{{ForValueCost}}，你确定用武力镇压么?
 - 是[costHp=50]
-	do confireSuppress()
+	if GameManager.sav.coin>=ForValueCost and GameManager.sav.coin>=ForValueGet
+		do confireSuppress()
+	else
+		=> 物资不足
 - 否
 	do SummonFaction(_faction)
 => END!
+
+
 ~ 赠礼完成
 do SoundManager.play_sound(sounds.COLLECT_SMALL_JEWEL_3)
 成功赠送礼物，{{getFactionByIndex().getTr()}}好感度上升{{(15+GameManager.sav.randomIndex+GameManager.extraValue)}}
@@ -238,8 +243,9 @@ do _JudgeTask()
 
 do _JudgeTask()
 => END!
-~ 资金赠送完成
 
+
+~ 资金赠送完成
 if getFactionByIndex()._num_all+3+GameManager.sav.randomIndex<=100
 	赠送资金已顺利完成！{{getFactionByIndex().getTr()}}在你的慷慨支持下，人数激增{{3+GameManager.sav.randomIndex}}人，当前总人数为{{getFactionByIndex()._num_all}}。你的投入让{{getFactionByIndex().getTr()}}势力如虎添翼！
 
@@ -250,6 +256,19 @@ do GameManager._imporveRelation(getFactionByIndex())
 
 #该派系人数上升完成
 => END
+
+
+
+#需要加上
+~ 物资不足
+系统提示: 麾下物资储备匮乏，不足以完成此次镇压之举。
+=> END
+
+~ 支持度不足
+系统提示: 支持度尚且不足，无法向其索取资源。
+=> END
+
+
 
 ~ 当前还在cd中
 提示: 当前派系已有一项法律[{{GameManager.sav.courtingLaws[getFactionByIndex()._name]}}]用于争取支持，请在{{GameManager.getCDByFaction(_faction)}}旬内完成该法律的制定，否则将损失派系好感度。
@@ -714,7 +733,10 @@ do hearSayEnd()
 ~ 索取从派系
 你通过索取可以获得{{ForValueGet}}金，但会消耗【{{getFactionByIndex().getTr()}}】{{ForValueCost}}点忠诚度，请问是否执行
 - 是[costHp=50]
-	do CF_claim()
+	if getFactionByIndex()._support_rate>=ForValueCost
+		do CF_claim()
+	else:
+		=> 支持度不足
 - 否
 	do SummonFaction(_faction)
 
@@ -723,7 +745,10 @@ do hearSayEnd()
 ~ 征兵从吕布
 调用可征集{{ForValueCost}}名吕布士兵，但将消耗{{ForValueGet}}点吕布忠诚度。是否执行？
 - 是[costHp=50]
-	do CF_CallingSoldier()
+	if getFactionByIndex()._support_rate>=ForValueCost
+		do CF_CallingSoldier()
+	else:
+		=> 支持度不足		
 - 否
 	do SummonFaction(_faction)
 
