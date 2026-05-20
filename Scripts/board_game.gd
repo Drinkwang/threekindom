@@ -856,6 +856,10 @@ func enterNewPhase(stage:phaseName):
 	elif _phaseName==phaseName.checkEnd:
 		checkCardStage(groupType.min)	
 	elif _phaseName==phaseName.endturn:
+		heart_color.hide()
+		damage_color.hide()
+		heart_color.material.set_shader_parameter("vignette_intensity", 0)
+		damage_color.material.set_shader_parameter("vignette_intensity", 0)
 		detail_txt.text=tr("结束阶段，请等待新回合开始")
 		punishimg.texture=null
 		SoundManager.play_sound(sounds.COLLECT_SMALL_JEWEL_1)
@@ -1414,7 +1418,7 @@ func excuteSecret(groupobj:Array):
 
 					elif _secretsuit==3:
 
-							effectTxt=tr("抽一张卡")
+							effectTxt=tr("抽牌一张再获得一次出牌次数")
 
 					elif _secretsuit==4:
 		
@@ -1429,8 +1433,10 @@ func excuteSecret(groupobj:Array):
 						if isPlayerTurn:
 							hp+=1
 							
+							
 						else:
 							enemy_hp+=1
+						
 							
 					elif _secretsuit==2:
 						if isPlayerTurn:
@@ -1449,10 +1455,12 @@ func excuteSecret(groupobj:Array):
 					elif _secretsuit==3:
 						if isPlayerTurn:
 							drawOne(true)
+							playerStage+=1
+							reside_num.text=tr("剩余步数：{s}").format({"s":playerStage})
 							
 						else:
 							drawOne(false)
-							
+							enemyStage+=1
 					elif _secretsuit==4:
 						if isPlayerTurn:
 							
