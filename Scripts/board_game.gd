@@ -7,6 +7,7 @@ class_name board_game
 @export var destroyArr:Array
 
 var cardsize
+var _is_first_draw=true
 @export var rects:Array[Node2D]
 const BOARD_CARD = preload("res://Scene/prefab/boardCard.tscn")
 
@@ -748,6 +749,7 @@ func startGame(cardnum,issole,enemyExtraCard):
 	enemy_hp=3
 	turn_num=0
 	isPlayerTurn=true
+	_is_first_draw=true
 	_issole=issole
 	heart_group.show()
 	if _issole==false:
@@ -941,8 +943,9 @@ func checkCardStart():
 	SoundManager.play_sound(sounds.DRAWCARD)
 
 	
-	#首次发牌(turn_num==0)强制为玩家抽牌，防止旧局残留协程干扰isPlayerTurn
-	if turn_num == 0:
+	#每局首次发牌，用专门标志保证为玩家抽牌
+	if _is_first_draw:
+		_is_first_draw=false
 		if _issole==false and getCardLength(true)<5:
 			drawOne(true)
 	elif _issole==false and getCardLength(isPlayerTurn)<5:
@@ -2304,9 +2307,11 @@ func fadeScene():
 		SceneManager.changeScene(SceneManager.roomNode.GOVERNMENT_BUILDING,2)
 	elif GameManager.selectBoardCharacter==boardType.boardCharacter.caobao:
 		if GameManager._boardMode==boardType.boardMode.high:
-			if GameManager.sav.caobaocardgame==4:
-				SceneManager.changeScene(SceneManager.roomNode.STREET,2)
-				return
+			if GameManager.sav.caobaocardgame>=4:
+				if GameManager.sav.have_event["赢过黑商"]==false:
+					GameManager.sav.have_event["赢过黑商"]=true
+					SceneManager.changeScene(SceneManager.roomNode.STREET,2)
+					return
 		
 		SceneManager.changeScene(SceneManager.roomNode.DRILL_GROUND,2)
 					

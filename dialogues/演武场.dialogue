@@ -1141,6 +1141,7 @@ do caobaoLevelUpSoilder()
 
 
 ~ 获得龙胆枪
+do caobao.showEX=false
 军匠李铁: 主公，俺用陨铁最精华处铸了这把‘龙胆亮银枪’，枪身硬得像铁，寒光闪闪，绝对是把神兵！[voice:litie_shenbin]
 刘备: 好枪！锋芒如龙，月下生辉。曹将军，你怎么看？[voice:liubei_haoqiang]
 曹豹: 主公，这把枪亮眼如辉，主公如收下此物，赏赐自己的骁勇的部将，才能发挥此物最大价值，况且遗迹事情也是主公解决的，收下此物合情合理。[voice:caobao_songqiang]

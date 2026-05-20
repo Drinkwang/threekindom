@@ -350,6 +350,8 @@ var SIDEQUEST_MAP:Dictionary={
 	"获得玄阴":false,
 	"休息教程":false,
 	"成就解锁":false,
+	"遇见黑商":false,
+	"赢过黑商":false,
 	#"错失玄阴":false,
 }
 @export var taishanWait=0
@@ -406,7 +408,7 @@ GameManager.RspEnum.PAPER:{"name": "无名", "level": 1, "max_level": 10, "rando
 {"enemy":"陈登","level":"对局试炼","detail":"每回合你保证至少有一张手牌且最多只能用三张牌","holdcard":1,"MaxUsecard":3,"ScoreNum":-1,"Mustkill":false,"iscom":0,"index":4,"coinGet":50,"peopleGet":40},
 {"enemy":"糜竺","level":"对局试炼","detail":"以将对手生命值归0的方式取得胜利","holdcard":-1,"MaxUsecard":-1,"ScoreNum":-1,"Mustkill":true,"iscom":0,"index":5,"coinGet":100,"peopleGet":0},
 
-{"enemy":"曹豹","level":"诡秘乱局","detail":"游戏结束时取得300分","holdcard":-1,"MaxUsecard":-1,"ScoreNum":300,"Mustkill":false,"iscom":0,"index":6,"coinGet":0,"peopleGet":120},
+{"enemy":"黑商/曹豹","level":"诡秘乱局","detail":"游戏结束时取得360分","holdcard":-1,"MaxUsecard":-1,"ScoreNum":360,"Mustkill":false,"iscom":0,"index":6,"coinGet":0,"peopleGet":120},
 {"enemy":"陈登","level":"诡秘乱局","detail":"以将对手生命值归0的方式取得胜利","holdcard":-1,"MaxUsecard":-1,"ScoreNum":-1,"Mustkill":true,"iscom":0,"index":7,"coinGet":75,"peopleGet":60},
 {"enemy":"糜竺","level":"诡秘乱局","detail":"每回合最多只能用2张牌且不能让手牌低于2张","holdcard":2,"MaxUsecard":2,"ScoreNum":-1,"Mustkill":false,"iscom":0,"index":8,"coinGet":150,"peopleGet":0},
 

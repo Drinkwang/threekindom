@@ -549,6 +549,7 @@ mouse_filter = 2
 color = Color(0.8, 0, 0, 1)
 
 [node name="Button" type="Button" parent="CanvasLayer"]
+visible = false
 offset_left = 1358.0
 offset_top = 834.0
 offset_right = 1655.0
