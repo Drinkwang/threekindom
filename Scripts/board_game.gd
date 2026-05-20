@@ -591,6 +591,7 @@ func insertCard(group:groupType,value):
 		groudObj=shang_group
 	elif group==groupType.bin:
 		groudObj=bin_group
+	var is_secret = value % 13 == 11
 	var cardone=BOARD_CARD.instantiate()
 	cardone.holdType=cardHoldType.stack
 
@@ -598,7 +599,8 @@ func insertCard(group:groupType,value):
 	cardone._value=value
 	if selectCard!=null:
 		selectCard.queue_free()
-		playerStage-=1
+		if not is_secret:
+			playerStage-=1
 		if playerStage<=0:
 			pass
 		reside_num.text=tr("剩余步数：{s}").format({"s":playerStage})
@@ -608,13 +610,13 @@ func insertCard(group:groupType,value):
 		#每次出卡，如果成就不行，就变红
 			await get_tree().create_timer(0.2).timeout
 			settleOneGroup(groudObj)
-			var holdCardNum=myhand.get_child_count()
-			if holdCardNumMin>holdCardNum:
-				holdCardNumMin=holdCardNum
-			if useCardNumMax<(4-playerStage):
-				useCardNumMax=4-playerStage
-			
-			judgeAchiveInPer()	
+			if not is_secret:
+				var holdCardNum=myhand.get_child_count()
+				if holdCardNumMin>holdCardNum:
+					holdCardNumMin=holdCardNum
+				if useCardNumMax<(4-playerStage):
+					useCardNumMax=4-playerStage
+				judgeAchiveInPer()
 	stopClick()
 	
 var canClick:bool=false
