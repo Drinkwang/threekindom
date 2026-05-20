@@ -380,6 +380,7 @@ do sideQuestReturnG(true)
 
 
 ~ 战斗失败_血姬
+do headRed()
 血姬: 我赢了……可我还是输了……将军你永远不会知道……陪你的糜贞，到底是不是我……嘻嘻……  [voice:mizhen_wowinlebutfail]
 （她挥出致命一击，刘备眼前一黑，昏迷倒地。）  
 do battle_pane.hide()
@@ -447,6 +448,7 @@ do sideQuestReturnT(true)
 
 
 ~ 战斗失败_陶谦
+do headRed()
 陶谦: 刘备，你就这个本事？那你不配为徐州之主！[voice:taoqian_nanibupei]
 （他挥出致命一击，刘备眼前一黑，昏迷过去。刘备再次醒来时，已是清晨，坟墓雾气散去，周围一片寂静。他身上隐隐作痛，似被尸气侵蚀。）  
 do battle_pane.hide()
@@ -518,6 +520,7 @@ do gulong.hide()
 
 
 ~ 战斗胜利_镇魂龙
+do headRepair()
 烟雾散去，众人最后打向古龙身体突然肢解了幻觉，古龙如同石像停留在原地，好像什么都没发生一般..
 刘备: （这可能是地底烟雾造成的迷幻现象...但究竟是为何产生的）[voice:liubei_zheneng]
 刘备: （不管了，还是得早点回去告知曹豹情况）[voice:liubei_buguanlecaobao]
@@ -533,8 +536,9 @@ do sideQuestReturnD(true)
 
 
 ~ 战斗失败_镇魂龙
-
+do headRed()
 烟雾散去，古龙的最后一击打到刘备身上，众人晕倒了，醒来后，古龙如同石像停留在原地，好像什么都没发生一般..
+do headRepair()
 刘备: （这可能是地底烟雾造成的迷幻现象...但究竟是为何产生的）[voice:liubei_zheneng]
 刘备: （可恶，那位盗墓匠人逃跑了）[voice:liubei_kewutaopao]
 刘备: （没办法，还是得早点回去告知曹豹情况）[voice:liubei_gaoshucaobao]

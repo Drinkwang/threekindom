@@ -846,3 +846,8 @@ func headRed():
 	PanelManager.Fade_Blank(newColor,0.5,PanelManager.fadeType.fadeIn)
 	#await 0.5	
 	#battle_pane.battle_circle.enemy.modulate=Color.RED
+
+
+const long = preload("res://Asset/人物/镇魂龙最终.png")
+func headRepair():
+	battle_pane.battle_circle.changeHead(long)
