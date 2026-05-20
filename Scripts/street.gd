@@ -334,13 +334,17 @@ func _buttonListClick(item):
 				SoundManager.stop_music()
 				SoundManager.play_music(sounds._2__MENTAL_VORTEX)
 				
-				PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeOut)
-				blank.show()
 				
-
+				
+				if GameManager.sav.have_event["遇见黑商"]==false:
+					GameManager.sav.have_event["遇见黑商"]=true
+					PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeOut)
+					blank.show()
 				#播放诡秘的曲子
-				merchant.show()
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"决战黑商boss战")
+					merchant.show()
+					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"决战黑商boss战")
+				else:
+					enterBlackMerchant()	
 			else:
 				showPanelPage()
 		pass

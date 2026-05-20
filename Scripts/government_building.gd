@@ -123,6 +123,7 @@ func hearSayEnd():
 		GameManager.hearsayID=3
 		GameManager.restLabel=tr("陈登在议事厅，灯下独思")		
 		SceneManager.rest_scene(SceneManager.roomNode.BOULEUTERION)
+		return
 	GameManager.hearsayID=-1
 
 

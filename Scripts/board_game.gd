@@ -24,6 +24,8 @@ var enemyStage=4
 
 var achiIndex=-1
 func loseGame(_str:String=""):
+	if is_match_finished():
+		return
 	#SoundManager.play_sound(youlosesound)
 	if _str.length()>0:
 		lose_label.text=_str	
@@ -52,6 +54,8 @@ func loseGame(_str:String=""):
 
 
 func winGame(_str:String=""):
+	if is_match_finished():
+		return
 	judgeAchive()
 	GameManager._boardGameWin=true
 	if _str.length()>0:
@@ -294,7 +298,7 @@ func initGame():
 
 	reshuffle()
 	
-	readyInGameData()
+	await readyInGameData()
 	changeHoldEnegyPanel()
 
 func readyInGameData():
@@ -308,7 +312,7 @@ func readyInGameData():
 		GameManager.sav.have_event["卡牌高级教程"]=true
 		enterHtutorial()		
 	else:
-		enterGame()
+		await enterGame()
 
 
 
@@ -388,7 +392,7 @@ func enterGame():
 	if achiData.iscom==0:
 		initAchive() 
 	
-	startGame(cardNum,issole,extraCard)
+	await startGame(cardNum,issole,extraCard)
 
 func showdetail(str:String,grouptype):
 	if win_rect.visible==true:
@@ -661,6 +665,8 @@ func SettlePunish():
 
 	
 func punishFade(anim_name: StringName):
+	if is_match_finished():
+		return
 	
 	
 	
@@ -740,6 +746,8 @@ func startGame(cardnum,issole,enemyExtraCard):
 	score=0
 	hp=3
 	enemy_hp=3
+	turn_num=0
+	isPlayerTurn=true
 	_issole=issole
 	heart_group.show()
 	if _issole==false:
@@ -933,10 +941,12 @@ func checkCardStart():
 	SoundManager.play_sound(sounds.DRAWCARD)
 
 	
-	if _issole==false and getCardLength(isPlayerTurn)<5:
+	#首次发牌(turn_num==0)强制为玩家抽牌，防止旧局残留协程干扰isPlayerTurn
+	if turn_num == 0:
+		if _issole==false and getCardLength(true)<5:
+			drawOne(true)
+	elif _issole==false and getCardLength(isPlayerTurn)<5:
 		drawOne(isPlayerTurn)
-#		if isPlayerTurn==true:
-#			SoundManager.play_sound(drawCardSound)
 			
 	#if isPlayerTurn==true:
 		#if turn_num<5:
@@ -978,6 +988,8 @@ var groupPunishTyp2=groupType.none
 
 #判断之前阶段和尾部阶段
 func checkCardStage(_groupType):
+	if is_match_finished():
+		return
 	bepunishI=null
 	bepusnishJ=null
 
@@ -1558,6 +1570,8 @@ var issecretGame=true
 
 #进入结束检查阶段标注 并执行完结束检查阶段
 func enterRewardStage(i:boardCard,j:boardCard):
+	if is_match_finished():
+		return
 		
 		
 	i.animation_player_reward.play("reward")
