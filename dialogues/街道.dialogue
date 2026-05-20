@@ -720,7 +720,7 @@ do PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeOut)
 
 do zhenren.show()
 刘备推开玄阴秘境的冰封玉门，眼前豁然展开一座雾绕云锁的洞府，中央高台上一位青袍真人负手而立、目光如炬，仿佛早已洞悉天机，静候刘备多时...
-
+#do SoundManager.stop_all_ambient_sounds()
 
 长者: 玄德公，贫道候你多时了！汝乃真龙之躯，命定之人。[voice:xiuxianzhe_mindingzhiren]
 刘备: 老道士何出此言？吾乃汉室疏宗，景帝之后，然家道中落，已成布衣之身，微末而已，安敢称真龙？[voice:liubei_anganzhenlong]
