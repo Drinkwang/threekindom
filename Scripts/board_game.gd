@@ -1375,6 +1375,8 @@ func settleOneGroup(_groupobj:GridContainer):
 const fireexp = preload("res://Asset/sound/04_Fire_explosion_04_medium.wav")			
 
 func excuteSecret(groupobj:Array):
+	if is_match_finished():
+		return
 	groupobj= groupobj.filter(func(c): return c != null and is_instance_valid(c) and not c.is_queued_for_deletion())
 	var useCard=false
 	for secretCard:boardCard in groupobj:
