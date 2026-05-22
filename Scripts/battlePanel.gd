@@ -197,10 +197,25 @@ func initTask():
 		return
 		
 	var levels=1
-	
+
 	if battle_circle.selectgeneral!=null:
 		var generalLevel=battle_circle.selectgeneral.level
 		levels=1.0889-(0.0889*generalLevel)
+		#武器检测：武将持有武器则降低任务目标值
+		var generalName=battle_circle.selectgeneral.name
+		var isBloodBattle=GameManager.sav.have_event["战斗袁术血战模式"]==true and GameManager.sav.have_event["血战袁术完成"]==false
+		var hasWeapon=false
+		if generalName=="关羽":
+			hasWeapon=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.青龙偃月刀)>0
+		elif generalName=="张飞":
+			if isBloodBattle:
+				hasWeapon=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.雌雄双股剑)>0
+			else:
+				hasWeapon=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.丈八蛇矛)>0
+		elif generalName=="无名":
+			hasWeapon=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.龙胆亮银枪)>0
+		if hasWeapon:
+			levels=levels*0.7
 	var currence= GameManager.sav.battleTasks[battle_circle.taskIndex]
 	var context=tr("风险行动：")
 	var index=1;
