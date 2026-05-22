@@ -92,6 +92,8 @@ func _initFaction():
 func liubeiGrowup():
 	#GameManager.hearsayID=-1
 	SceneManager.changeScene(SceneManager.roomNode.DRILL_GROUND,2)
+@onready var caobao: clickBlock = $"CanvasBook/曹豹"
+@onready var lvbu: clickBlock = $"CanvasBook/吕布"
 
 func _initData():
 	#if	GameManager.sav.have_event["firstgovernment"]==false:
@@ -136,8 +138,8 @@ func _initData():
 		GameManager.sav.have_event["刘备成长1"]=true
 		return 	
 	if GameManager.sav.have_event["曹豹和吕布勾连0"]==true and GameManager.sav.have_event["曹豹和吕布勾连1"]==false:
-		chendeng.show()
-		mizhu.show()
+		lvbu.show()
+		caobao.show()
 		mizhu.showEX=false
 		chendeng.showEX=false
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"曹豹吕布联姻")

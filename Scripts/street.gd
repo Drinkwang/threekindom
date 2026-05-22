@@ -832,10 +832,10 @@ func enterBattleZhenren():
 
 func zhenrenFinish():
 	blank.hide()
-
+	bossBattleAfter=false
 	GameManager.currenceScene.res_panel.position.x=1403
 	GameManager.currenceScene.res_panel.position.y=622
-	GameManager.currenceScene.res_panel.scale=Vector2(1,1)	
+	GameManager.currenceScene.res_panel.scale=Vector2(1,1)
 	GameManager.endtempRestoreGeneral()
 
 

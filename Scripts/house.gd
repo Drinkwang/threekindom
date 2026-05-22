@@ -222,7 +222,7 @@ func _initData():
 	]
 	
 	#记得demo注销
-	if GameManager.sav.have_event["chaoMizhuEnd"]==true and GameManager.sav.isGetCoin==false and GameManager.sav.currenceValue>1:
+	if GameManager.sav.have_event["chaoMizhuEnd"]==true and GameManager.sav.isGetCoin==false and GameManager.sav.currenceValue>1 and GameManager.sav.have_event["battleTaiShan"]==false:
 		
 		#demo结束
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"playtest结束")

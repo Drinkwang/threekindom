@@ -498,7 +498,9 @@ func showGuimiAchi():
 
 func intBattleTask():
 	var nums={}
-
+	#gener
+	
+	#var levels=1.0889-(0.0889*levels)
 	for battleTarget in range(3):
 		sav.battleTasks[battleTarget]={}
 		sav.battleTasks[battleTarget].index=sav.currenceTask+battleTarget+1

@@ -107,6 +107,7 @@ func _ready():
 	refreshHideBattleTask()
 	changeLanguage()
 	refreshPage()
+	Txtcount.text=str(GameManager.sav.completeTask)+"/"+str(GameManager.sav.currenceTask-GameManager.sav.completeTask)+"/"+str(GameManager.sav.currenceTask)
 const NOT_JAM_UI_CONDENSED_16 = preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf")	
 func changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()
@@ -155,9 +156,12 @@ func _juideCompeleteTask():
 		tasks=[]
 	
 	var haveRes
-
+	var levels=1
+	#generalLevel=selectgeneral.level
+	if generalLevel!=null:
+		levels=1.0889-(0.0889*generalLevel)
 	for task in tasks:
-		var value=task.value
+		var value=floor(task.value*levels)
 		var minValue
 		if task.res=="coin":
 			haveRes=curCoin	

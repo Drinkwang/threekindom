@@ -196,7 +196,11 @@ func initTask():
 	if battle_circle.taskIndex<0 or GameManager.sav.battleTasks==null or GameManager.sav.battleTasks.size()<=0:
 		return
 		
-
+	var levels=1
+	
+	if battle_circle.selectgeneral!=null:
+		var generalLevel=battle_circle.selectgeneral.level
+		levels=1.0889-(0.0889*generalLevel)
 	var currence= GameManager.sav.battleTasks[battle_circle.taskIndex]
 	var context=tr("风险行动：")
 	var index=1;
@@ -204,7 +208,8 @@ func initTask():
 	var targetValue
 	var bossMode=scenemanager.bossMode
 	for task in currence.task:
-		targetValue=task.value
+		#targetValue=task.value
+		targetValue=floor(task.value*levels)
 		if task.res=="coin"and _mode!=bossMode.tao:
 			var after=str(targetValue)+"目标值)"
 			if task.symbol==GameManager.opcost.greater:
@@ -315,6 +320,7 @@ func _on_control_3_gui_input(event):
 		battle_circle._juideCompeleteTask()
 		_refreshSlider()
 		previewHpdone()
+		initTask()
 	#取消其它的选中状态
 	#给当前标记为选中
 	#将选中将领具体信息发送给disk	
@@ -335,6 +341,7 @@ func _on_control_2_gui_input(event):
 		battle_circle._juideCompeleteTask() 
 		_refreshSlider()
 		previewHpdone()
+		initTask()
 var istour=false
 func _on_control_1_gui_input(event):
 
@@ -350,6 +357,7 @@ func _on_control_1_gui_input(event):
 		battle_circle._juideCompeleteTask()	 
 		_refreshSlider()
 		previewHpdone()
+		initTask()
 func previewHpdone():
 	if GameManager.haveMirror():
 		GameManager._engerge.startPreviewHp(costhp)
