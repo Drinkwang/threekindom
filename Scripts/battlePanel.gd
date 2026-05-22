@@ -269,6 +269,8 @@ func initTask():
 		task_label.text=context+tr("无")
 	else:
 		task_label.text=context
+	if TooltipManager and TooltipManager.has_method("register_tooltip"):	
+		TooltipManager.register_tooltip(task_label,"武将等级与专属武器，可降低风险行动物资损耗")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 var _cursor_in_rect:bool=false
 

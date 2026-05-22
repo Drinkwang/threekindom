@@ -179,7 +179,7 @@ do zhubu.hide()
 	do SummonFaction(haozupai)
 - 召见丹阳派[costHp=50]
 	do SummonFaction(waidipai)
-- 召见吕布[costHp=50]
+- 召见{{GameManager.rTaishanName()}}[costHp=50]
 	do SummonFaction(lvbu)
 - 取消
 	do cancel()
@@ -283,12 +283,12 @@ do GameManager._imporveRelation(getFactionByIndex())
 => END
 
 ~ 扩充吕布实力
-你已成功为吕布扩充实力，当前吕布手下人数达到{{getFactionByIndex()._num_all}}人，吕布的势力正在你的支持下日益壮大！
+你已成功为{{GameManager.rTaishanName()}}扩充实力，当前{{GameManager.rTaishanName()}}手下人数达到{{getFactionByIndex()._num_all}}人，吕布的势力正在你的支持下日益壮大！
 do GameManager._imporveRelation(getFactionByIndex())
 => END!
 
 ~ 调用士兵完成
-你已成功从吕布手中征募士兵{{ForValueGet}}，消耗{{ForValueCost}}点好感度
+你已成功从{{GameManager.rTaishanName()}}手中征募士兵{{ForValueCos}}，消耗{{tForValueGet}}点好感度
 #该派系人数上升完成
 => END
 
@@ -326,17 +326,17 @@ else
 ~ 消耗资金_吕布
 if getFactionByIndex()._allNum<100
 
-	提示: 该选项可让吕布招募更多部将（最多100人），增强吕布的军事实力。调用士兵会更多但支持度消耗更大。
+	提示: 该选项可让{{GameManager.rTaishanName()}}招募更多部将（最多100人），增强{{GameManager.rTaishanName()}}的军事实力。调用士兵会更多但支持度消耗更大。
 	if getFactionByIndex()._num_all+3+GameManager.sav.randomIndex<=100
-		当前吕布手下人数:{{getFactionByIndex()._num_all}}，是否消耗200金让 吕布 手下的将领数量提升{{(3+GameManager.sav.randomIndex)}}人
+		当前{{GameManager.rTaishanName()}}手下人数:{{getFactionByIndex()._num_all}}，是否消耗200金让{{GameManager.rTaishanName()}}手下的将领数量提升{{(3+GameManager.sav.randomIndex)}}人
 	else
-		当前吕布手下人数:{{getFactionByIndex()._num_all}}，是否消耗200金让 吕布 手下的将领数量提升{{(100-getFactionByIndex()._num_all)}}人	
+		当前{{GameManager.rTaishanName()}}手下人数:{{getFactionByIndex()._num_all}}，是否消耗200金让{{GameManager.rTaishanName()}}手下的将领数量提升{{(100-getFactionByIndex()._num_all)}}人	
 	- 是[costHp=50]
 		do financialConfort()
 	- 否
 		do SummonFaction(_faction)
 else
-	吕布部将已满100人，无法继续资助。
+	{{GameManager.rTaishanName()}}部将已满100人，无法继续资助。
 	do SummonFaction(_faction)
 => END
 
@@ -743,7 +743,7 @@ do hearSayEnd()
 => END!
 
 ~ 征兵从吕布
-调用可征集{{ForValueCost}}名吕布士兵，但将消耗{{ForValueGet}}点吕布忠诚度。是否执行？
+调用可征集{{ForValueCost}}名{{GameManager.rTaishanName()}}士兵，但将消耗{{ForValueGet}}点吕布忠诚度。是否执行？
 - 是[costHp=50]
 	if getFactionByIndex()._support_rate>=ForValueCost
 		do CF_CallingSoldier()
@@ -1019,7 +1019,7 @@ do Loss_of_loyalty()
 系统提示: 因军情泄露，城内人心惶惶，各方势力因恐惧而对您产生动摇。\n豪族派好感度 下降 {{GameManager.resideValue}}\n士族派好感度 下降 {{GameManager.resideValue2}}\n丹阳派下降 {{GameManager.resideValue3}}\n吕布好感度 下降 {{GameManager.resideValue4}}
 if GameManager.dontHaveDominance()
 	刘备: 我知道了。[voice:liubei_wozhidaole]
-	系统提示: 安抚徐州各派系，将豪族派、士族派、丹阳派、吕布好感度均提升至80。
+	系统提示: 安抚徐州各派系，将豪族派、士族派、丹阳派、{{GameManager.rTaishanName()}}好感度均提升至80。
 else
 # 有霸道之息的想法
 	刘备: （民心浮动、派系作乱，与其安抚纵容，不如以雷霆手段镇之！）[voice:liubei_badaoxian]

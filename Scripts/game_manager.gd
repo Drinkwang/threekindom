@@ -344,6 +344,8 @@ func refreshPaixis():
 	#initPaixi(sav.HAOZUPAI)
 	if sav.have_event["Factionalization"]:
 		initPaixi(sav.HAOZUPAI)
+	if sav.have_event["lvbuJoin"]==true:
+		initPaixi(sav.LVBU)
 
 func refreshCallable():
 	if not sav.have_event["Factionalization"]:
@@ -1938,3 +1940,10 @@ func showLoadSuccusss():
 	await get_tree().process_frame
 	DialogueManager.show_example_dialogue_balloon(savesys,"读取存档成功")
 	#refresh()
+
+
+func rTaishanName():
+	if GameManager.sav.have_event["completebattleTaiShan"]==false:
+		return tr("吕布")
+	else:
+		return tr("泰山派")
