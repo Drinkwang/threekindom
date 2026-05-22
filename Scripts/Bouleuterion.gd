@@ -444,6 +444,11 @@ func GetLawClaimRevenue():
 				var factions=_date._name
 				 #GameManager.sav.courtingLaws[faction]=-1
 				GameManager.sav.courtingLaws.erase(factions)
+				# 政策通过后，将对应CD设为-1，防止超时误触发"法律未通过"扣除支持度
+				match GameManager.sav.curLawNum1:
+					0: GameManager.sav.xuzhouCD = -1
+					1: GameManager.sav.haozuCD = -1
+					2: GameManager.sav.danyangCD = -1
 				var rindex=GameManager.sav.randomIndex
 				point=10+rindex
 				#暂时放在这里
