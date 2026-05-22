@@ -627,7 +627,7 @@ func _buttonListClick(item):
 		battle_pane.show()
 		
 		battle_pane.initData()
-		#battle_pane._refreshGeneral()
+		battle_pane._refreshGeneral()
 		res_panel.position.x=1564
 		res_panel.position.y=803
 		res_panel.scale=Vector2(0.765,0.765)
