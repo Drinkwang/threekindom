@@ -130,7 +130,7 @@ var responses: Array = []:
 						elif GameManager.trainGeneral=="张飞":
 							characterScore=GameManager.sav.zhangfeiTrainNum	
 							haveWeapon=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.丈八蛇矛)>=1
-						elif GameManager.trainGeneral=="赵云":
+						elif GameManager.trainGeneral=="无名":
 							characterScore=GameManager.sav.zhaoyunTrainNum
 							haveWeapon=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.龙胆亮银枪)>=1
 						#0 小试牛刀开启 1小试牛刀通过 2 对局试炼开启 3对局试验通过 

@@ -1169,7 +1169,6 @@ func enterContest(mode):
 		characterScore=GameManager.sav.zhaoyunTrainNum
 		haveWeapon=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.龙胆亮银枪)>=1
 
-
 	if (characterScore<1 and mode==1) or (characterScore<2 and mode==2):
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"当前比武未解锁")
 		GameManager.trainLevel=0
@@ -1271,7 +1270,7 @@ func winReward(isFirst,generalName):
 			_reward.showTitileReward(tr("你与{name}在【{modename}】模式下，首次比武获胜了，提升武将等级").format({"name":tr(generalName),"modename":modename}),items)	
 	else:
 		_reward.showTitileReward(tr("你与{name}在【{modename}】模式下，比武获胜了").format({"name":generalName,"modename":modename}),items)		
-	GameManager.trainResult==SceneManager.trainResult.none
+	GameManager.trainResult=SceneManager.trainResult.none
 	GameManager.trainGeneral=""	
 
 @onready var puzzle_game: Control = $CanvasInventory/puzzleGame
