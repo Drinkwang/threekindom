@@ -288,7 +288,7 @@ do GameManager._imporveRelation(getFactionByIndex())
 => END!
 
 ~ 调用士兵完成
-你已成功从{{GameManager.rTaishanName()}}手中征募士兵{{ForValueCos}}，消耗{{tForValueGet}}点好感度
+你已成功从{{GameManager.rTaishanName()}}手中征募士兵{{ForValueCost}}，消耗{{ForValueGet}}点好感度
 #该派系人数上升完成
 => END
 

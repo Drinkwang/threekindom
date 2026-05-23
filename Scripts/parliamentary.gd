@@ -52,32 +52,34 @@ func enter():
 	SoundManager.play_sound(bgmxuanhua)
 	button.hide()
 	#执行这个时 将摇摆人数按照概率分成 摇摆和非摇摆
+	var bentuRt = GameManager.sav.BENTUPAI._num_rt
+	var haozuRt = GameManager.sav.HAOZUPAI._num_rt
+	var waidiRt = GameManager.sav.WAIDIPAI._num_rt
 	initRtSO(GameManager.sav.BENTUPAI)
 	initRtSO(GameManager.sav.HAOZUPAI)
-	initRtSO(GameManager.sav.WAIDIPAI)		
+	initRtSO(GameManager.sav.WAIDIPAI)
 	p_1.text="{NP}\n{RT}\n{SP}\n{OP}".format({"NP": GameManager.sav.BENTUPAI._num_all, "RT": "__","SP":"__","OP":"__"})
-	p_2.text="{NP}\n{RT}\n{SP}\n{OP}".format({"NP": GameManager.sav.WAIDIPAI._num_all, "RT": "__","SP":"__","OP":"__"}) 
-	p_3.text="{NP}\n{RT}\n{SP}\n{OP}".format({"NP": GameManager.sav.HAOZUPAI._num_all, "RT": "__","SP":"__","OP":"__"}) 
+	p_2.text="{NP}\n{RT}\n{SP}\n{OP}".format({"NP": GameManager.sav.WAIDIPAI._num_all, "RT": "__","SP":"__","OP":"__"})
+	p_3.text="{NP}\n{RT}\n{SP}\n{OP}".format({"NP": GameManager.sav.HAOZUPAI._num_all, "RT": "__","SP":"__","OP":"__"})
 	await get_tree().create_timer(0.5).timeout  #本土派
-	p_1.text="{NP}\n{RT}\n{SP}\n{OP}".format({"NP": GameManager.sav.BENTUPAI._num_all, "RT": GameManager.sav.BENTUPAI._num_rt,"SP":"__","OP":"__"})
-	p_2.text="{NP}\n{RT}\n{SP}\n{OP}".format({"NP": GameManager.sav.WAIDIPAI._num_all, "RT": GameManager.sav.WAIDIPAI._num_rt,"SP":"__","OP":"__"}) 
-	p_3.text="{NP}\n{RT}\n{SP}\n{OP}".format({"NP": GameManager.sav.HAOZUPAI._num_all, "RT": GameManager.sav.HAOZUPAI._num_rt,"SP":"__","OP":"__"}) 
+	p_1.text="{NP}\n{RT}\n{SP}\n{OP}".format({"NP": GameManager.sav.BENTUPAI._num_all, "RT": bentuRt,"SP":"__","OP":"__"})
+	p_2.text="{NP}\n{RT}\n{SP}\n{OP}".format({"NP": GameManager.sav.WAIDIPAI._num_all, "RT": waidiRt,"SP":"__","OP":"__"})
+	p_3.text="{NP}\n{RT}\n{SP}\n{OP}".format({"NP": GameManager.sav.HAOZUPAI._num_all, "RT": haozuRt,"SP":"__","OP":"__"})
 	await get_tree().create_timer(0.5).timeout  #本土派
-	p_1.text="{NP}\n{RT}\n{SP}\n{OP}".format({"NP": GameManager.sav.BENTUPAI._num_all, "RT": GameManager.sav.BENTUPAI._num_rt,"SP":GameManager.sav.BENTUPAI._num_sp,"OP":"__"})
-	p_2.text="{NP}\n{RT}\n{SP}\n{OP}".format({"NP": GameManager.sav.WAIDIPAI._num_all, "RT": GameManager.sav.WAIDIPAI._num_rt,"SP":GameManager.sav.WAIDIPAI._num_sp,"OP":"__"}) 
-	p_3.text="{NP}\n{RT}\n{SP}\n{OP}".format({"NP": GameManager.sav.HAOZUPAI._num_all, "RT": GameManager.sav.HAOZUPAI._num_rt,"SP":GameManager.sav.HAOZUPAI._num_sp,"OP":"__"}) 
-	
-	await get_tree().create_timer(0.5).timeout  #本土派
-	p_1.text="{NP}\n{RT}\n{SP}\n{OP}".format({"NP": GameManager.sav.BENTUPAI._num_all, "RT": GameManager.sav.BENTUPAI._num_rt,"SP":GameManager.sav.BENTUPAI._num_sp,"OP":GameManager.sav.BENTUPAI._num_op})
-	p_2.text="{NP}\n{RT}\n{SP}\n{OP}".format({"NP": GameManager.sav.WAIDIPAI._num_all, "RT": GameManager.sav.WAIDIPAI._num_rt,"SP":GameManager.sav.WAIDIPAI._num_sp,"OP":GameManager.sav.WAIDIPAI._num_op}) 
-	p_3.text="{NP}\n{RT}\n{SP}\n{OP}".format({"NP": GameManager.sav.HAOZUPAI._num_all, "RT": GameManager.sav.HAOZUPAI._num_rt,"SP":GameManager.sav.HAOZUPAI._num_sp,"OP":GameManager.sav.HAOZUPAI._num_op}) 
+	p_1.text="{NP}\n{RT}\n{SP}\n{OP}".format({"NP": GameManager.sav.BENTUPAI._num_all, "RT": bentuRt,"SP":GameManager.sav.BENTUPAI._num_sp,"OP":"__"})
+	p_2.text="{NP}\n{RT}\n{SP}\n{OP}".format({"NP": GameManager.sav.WAIDIPAI._num_all, "RT": waidiRt,"SP":GameManager.sav.WAIDIPAI._num_sp,"OP":"__"})
+	p_3.text="{NP}\n{RT}\n{SP}\n{OP}".format({"NP": GameManager.sav.HAOZUPAI._num_all, "RT": haozuRt,"SP":GameManager.sav.HAOZUPAI._num_sp,"OP":"__"})
 
-	await get_tree().create_timer(0.5).timeout
-	#合计同意
+	await get_tree().create_timer(0.5).timeout  #本土派
+	p_1.text="{NP}\n{RT}\n{SP}\n{OP}".format({"NP": GameManager.sav.BENTUPAI._num_all, "RT": bentuRt,"SP":GameManager.sav.BENTUPAI._num_sp,"OP":GameManager.sav.BENTUPAI._num_op})
+	p_2.text="{NP}\n{RT}\n{SP}\n{OP}".format({"NP": GameManager.sav.WAIDIPAI._num_all, "RT": waidiRt,"SP":GameManager.sav.WAIDIPAI._num_sp,"OP":GameManager.sav.WAIDIPAI._num_op})
+	p_3.text="{NP}\n{RT}\n{SP}\n{OP}".format({"NP": GameManager.sav.HAOZUPAI._num_all, "RT": haozuRt,"SP":GameManager.sav.HAOZUPAI._num_sp,"OP":GameManager.sav.HAOZUPAI._num_op})
+		#合计同意
 	#合计反对
 	#通过率
 	#结果
 	#摇摆增加放在这里进行结算
+
 	var totalSp:int=GameManager.sav.BENTUPAI._num_sp+GameManager.sav.WAIDIPAI._num_sp+GameManager.sav.HAOZUPAI._num_sp
 	var totalOp:int=GameManager.sav.BENTUPAI._num_op+GameManager.sav.WAIDIPAI._num_op+GameManager.sav.HAOZUPAI._num_op
 	var totalNum:int=GameManager.sav.BENTUPAI._num_all+GameManager.sav.WAIDIPAI._num_all+GameManager.sav.HAOZUPAI._num_all
@@ -102,10 +104,11 @@ func enter():
 	
 
 func initRtSO(data:cldata):
-	var tongyi:int= randf_range(0,data._num_rt)
+	var tongyi:int= randi_range(0,data._num_rt)
 	var fandui:int= data._num_rt-tongyi
 	data._num_sp=data._num_sp+tongyi
 	data._num_op=data._num_op+fandui
+	data._num_rt=0
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
