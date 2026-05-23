@@ -18,6 +18,10 @@ class_name propertyPanel
 var showValue:bool=true
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	coin_num.text = "%07d" % GameManager.sav.coin
+	heart_num.text = "%07d" % GameManager.sav.people_surrport
+	labor_num.text = "%07d" % GameManager.sav.labor_force
+	#visible=true
 	GameManager._propertyPanel=self
 	TooltipManager.register_tooltip(_coin,tr("钱：持有的钱数量(可购买道具、军事行动的资金)"))
 	TooltipManager.register_tooltip(_labor,tr("民力：拥有空闲民力(可转换为士兵)"))

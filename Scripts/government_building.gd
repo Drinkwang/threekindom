@@ -401,7 +401,7 @@ func _buttonListClick(item):
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"亲征状况")	
 				return
 			if group==-1 and GameManager.sav.policyExcute==false and GameManager.sav.day>=5:
-				if GameManager.sav.have_event["第一次民心政策"]==false and GameManager.sav.randomIndex<=1:
+				if GameManager.sav.have_event["第一次民心政策"]==false:
 					GameManager.sav.have_event["第一次民心政策"]=true
 					DialogueManager.show_example_dialogue_balloon(GameManager.currenceScene.dialogue_resource,"民生政策")	
 				

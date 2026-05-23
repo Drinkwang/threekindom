@@ -42,8 +42,7 @@ func initControls():
 		#判断自己的逻辑
 	#应该是第二天
 	if group==-1 and GameManager.sav.policyExcute==false and GameManager.sav.day>=5:
-		if GameManager.sav.randomIndex<=1:
-			group=4
+		group=4
 	if group==-1:
 		currence_no_policy.show()
 		$PanelContainer/orderPanel/VBoxContainer.hide()

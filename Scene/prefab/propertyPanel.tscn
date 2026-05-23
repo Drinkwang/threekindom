@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://dkdsrxwnvrdkc" path="res://Asset/ui/战力.png" id="6_abtct"]
 
 [node name="Control" type="Control"]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
