@@ -319,8 +319,21 @@ var costHp_policy=35
 @onready var caocao_letter: Control = $CanvasLayer/caocaoLetter
 
 func Loss_of_loyalty():
-	pass
-
+	# 倒数第二章：军情泄露，各派系数值大幅下降
+	# 任务目标：恢复全部派系至80以上
+	# 豪族派受影响最重（商人对动荡恐惧最大）
+	GameManager.resideValue=20
+	# 本土派相对最稳
+	GameManager.resideValue2=15
+	# 丹阳派受军情直接打击
+	GameManager.resideValue3=25
+	# 吕布本就动摇，情报泄露后更甚
+	GameManager.resideValue4=30
+	GameManager.sav.HAOZUPAI.ChangeSupport(-GameManager.resideValue)
+	GameManager.sav.BENTUPAI.ChangeSupport(-GameManager.resideValue2)
+	GameManager.sav.WAIDIPAI.ChangeSupport(-GameManager.resideValue3)
+	GameManager.sav.LVBU.ChangeSupport(-GameManager.resideValue4)
+	#changePeopleSupport(-20)
 
 func ReconciliatoryFaction():
 	#GameManager.sav.have_event["战斗袁术开始"]=true

@@ -158,7 +158,7 @@ func _juideCompeleteTask():
 	var haveRes
 	var levels=1
 	#generalLevel=selectgeneral.level
-	if generalLevel!=null:
+	if generalLevel!=null and selectgeneral!=null:
 		levels=1.0889-(0.0889*generalLevel)
 		#武器检测：武将持有武器则降低任务目标值
 		var generalName=selectgeneral.name

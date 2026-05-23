@@ -254,7 +254,7 @@ do quest2Complete()
 #民心跌落 进入演武场触发进入血战模式
 ~ 征讨袁术结束
 士兵: 报，袁术军败退了[voice:bin_yuanshubaituile]
-刘备​: 虽袁术军虽退，但我军同样死伤惨重、士气低迷。若是不能休整集结徐州的有生力量，袁术再来恐怕抵挡不住......[voice:liubei_yuanshusuitui]
+刘备​: 袁术军虽退，但我军同样死伤惨重、士气低迷。若是不能休整集结徐州的有生力量，袁术再来恐怕抵挡不住......[voice:liubei_yuanshusuitui]
 刘备: (我得跟手下商议下决策)[voice:liubei_wodeishouxiashangyi]
 提示: 返回府邸，跟糜竺和陈登商议一下
 do yuanshuComplete()
@@ -929,8 +929,9 @@ do xiapei()
 
 ~ 大败
 主簿: 主公，穷兵黩武之策已使我们深陷危亡时刻，败绩连连，远超胜绩。百姓怨愤冲天，徐州恐将倾覆！[voice:zhubo_qiongbinduwu]
-系统提示: 民心大减40，局势危殞！
-do GameManager.changePeopleSupport(-40)
+#系统提示: 民心大减40，局势危殞！
+系统提示: 民心大减30，局势危殞！
+do GameManager.changePeopleSupport(-30)
 => END!
 
 
