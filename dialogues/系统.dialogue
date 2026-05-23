@@ -59,7 +59,7 @@ Game Over: 血战数日，军心彻底溃散，游戏结束。
 
 
 ~ 吕布风险
-警告: 吕布忠诚度低于80，其不满情绪高涨，可能对你发起掠夺！
+警告: {{GameManager.rTaishanName()}}忠诚度低于80，其不满情绪高涨，可能对你发起掠夺！
 => END
 
 ~ 民变风险
@@ -149,8 +149,8 @@ do determineInternalUnrestLvbu()
 => END
 
 ~ 吕布叛乱
-主簿: 主公，不满的吕布劫掠你的城池，损失惨重![voice:lvbu_buman]
-提示: {{determineDetail}}。需将吕布好感度提升至80或镇压叛乱。
+主簿: 主公，不满的{{GameManager.rTaishanName()}}劫掠你的城池，损失惨重![voice:lvbu_buman]
+提示: {{determineDetail}}。需将{{GameManager.rTaishanName()}}好感度提升至80或镇压叛乱。
 do determineInternalUnrestMinxin()
 => END
 
