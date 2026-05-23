@@ -424,10 +424,6 @@ func _enterDay(value=true):
 			sav.allocationDay+=1
 			if sav.allocationDay>3:
 				initDemand()
-				#sav.WAIDIPAI.demand={}
-				#sav.BENTUPAI.demand={}
-				#sav.LVBU.demand={}
-				#sav.HAOZUPAI.demand={}
 				
 			#
 			if sav.allocationDay>3:

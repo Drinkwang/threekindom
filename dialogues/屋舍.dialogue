@@ -594,8 +594,7 @@ do switchGatepost()
 
 #依次调用四次 改这个
 ~ 派系扣除好感
-主簿: OfficialSalaryArrearsTip[voice:zhubo_fenglushibai]
-	#主公，本月俸禄未能按时足额发放，各部怨声渐起：\n{{allcontext}}府中钱粮紧张，若再不调度补给，恐生内乱。
+主簿: 主公，本月俸禄未能按时足额发放，各部怨声渐起：{{allcontext}}府中钱粮紧张，若再不调度补给，恐生内乱。[voice:zhubo_fenglushibai]
 系统提示: 可前往府邸场景找糜竺对话，调整月例配给。场景中遍布路人、各色人物与可拾取道具，不妨仔细探索留意，或许能收获意外助力。
 => END!
 

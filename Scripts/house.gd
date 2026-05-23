@@ -985,11 +985,14 @@ func allocationAllSettle():
 		return
 		
 	if GameManager.sav.allocationDay==0:
-		allcontext=""
+		allcontext="\n"
 		allocationSettle()
 		GameManager.sav.allocationDay=1
 		GameManager.initDemand()
 		#把逻辑放在初始后 initdemand
+	elif GameManager.sav.allocationDay==1:
+		allcontext="\n"
+		allocationSettle()
 	elif GameManager.sav.allocationDay==2||GameManager.sav.allocationDay==3:
 		
 		var allCost=GameManager.cuclulateAllAllocation()
@@ -1010,28 +1013,19 @@ var cnames:Array=[]
 var allcontext=""
 func allocationSettle():
 	for index in range(0,4):
-		if GameManager.sav.allocationDay==1:
-			alldata=GameManager.getcldateByindex(index)
-
-			if alldata.allocationStatue==0:
-			#alldata.ChangeSupport(-5)
-			#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"派系扣除好感")
-				cnames.append(alldata)
-				
-				var point=5
-				if alldata.index==3:
-					point=10
-				allcontext+=tr("{_name}月例拖欠，支持度下降{point}点\n").format({"_name":alldata._name,"point":point})
-
-			var allCost=GameManager.cuclulateAllAllocation()
-			if allCost!=null and !allCost.is_empty():
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"派系扣除好感")
-		#定义一个数组。。多个执行
-		#or GameManager.sav.allocationDay!=3
-		#处理自动发放
-		#GameManager.predemand()
-		#return
-
+		alldata=GameManager.getcldateByindex(index)
+	
+		if alldata.allocationStatue==0:
+			cnames.append(alldata)
+			
+			var point=5
+			if alldata.index==3:
+				point=10
+			alldata.ChangeSupport(-point)
+			allcontext+=tr("{_name}月例拖欠，支持度下降{point}点").format({"_name":tr(alldata._name),"point":point})+"\n"
+	
+	if allcontext!="" and allcontext!="\n":
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"派系扣除好感")
 func allocationMuliao():
 	if zhubu.visible==false:
 		if GameManager.sav.allocationDay==2 and GameManager.canDistributeAllowance():
