@@ -1731,14 +1731,11 @@ do mizhu.hide()
 do xuzhouStart()
 => END!
 
-~ 吕布通知1
-
-=> END!
-
-~ 吕布通知2
-
-=> END!
-
-~ 吕布通知3
-
+~ 不用发放津贴了
+刘备: 从今往后，废除所有派系月例钱粮俸禄，无需再以物资安抚众人。[voice:liubei_congjinwanghou]
+糜竺: 主公，月例俸禄乃是安抚各派根基，贸然停发，恐多有不妥。[voice:mizhu_tingfabutuo]
+刘备: 乱世掌土，不可长久姑息养私。此事，诸位谁有异议？[voice:liubei_guxiyangsi]
+陈登: 属下愚虑，主公高见！停发配给、肃整风气，实为上上之策。[voice:chenden_shangshangce]
+糜竺: 全境...派系皆..畏主公威势，无需...钱粮笼络，停发俸禄绝无隐患。[voice:mizhu_quanjinweipazhugong]
+系统提示: 糜竺、陈登起初不愿停发俸禄，见主公态度强硬后即刻怂服！全境派系畏威臣服，由于你对所有派系镇压完成，月例配给功能永久关闭！
 => END!

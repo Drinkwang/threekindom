@@ -689,3 +689,17 @@ do GameManager.enterNormal()
 do zhenren.hide()
 do playtestEnd()
 => END!
+
+~ 法律够了
+do zhubu.show()
+主簿: 主公，领地法度历经数次议定修订，如今典章规制已然周全齐备。[voice:zhubu_faluwanbei]
+刘备: 看来徐州律法体系，已然成型稳固。[voice:liubei_lvfashule]
+
+主簿: 现下属地律法周全完备，诸事皆有规制可依。此后纵使不再新增法令，各派亦不会心生不满，主公威望、属地信服皆无所损。[voice:zhubu_wusuosun]
+系统提示: 领地律法体系已十分健全，现有律法足以治世，无需继续新增律法，停止新增法令不会损失任何派系支持度。
+
+
+do zhubu.hide()
+
+do _initData()
+=> END!
