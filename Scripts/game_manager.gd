@@ -1205,13 +1205,16 @@ func LawNum():
 	var count=0
 
 	for laws in GameManager.sav.laws:
-		for v in laws:                 # 遍历这条法律里的每个值
-			if v > 0:
+		var seen = []  # 用于去重
+		for v in laws:
+			if v > 0 and not v in seen:
+				seen.append(v)
 				count += 1
 	return count
 func excuteLaw():
-	sav.laws[sav.curLawNum1].append(sav.curLawNum2)
-	#var arr:Array
+	# 只有 laws 里还没有才追加，避免重复
+	if not sav.curLawNum2 in sav.laws[sav.curLawNum1]:
+		sav.laws[sav.curLawNum1].append(sav.curLawNum2)
 	RewardLaw=tr(sav.RewardLaw)
 	
 	
@@ -1944,7 +1947,7 @@ func rTaishanName():
 	else:
 		return tr("泰山派")
 
-
+var perLawCycle=5
 func CheckAllFactionsSubdued():
 	return GameManager.sav.HAOZUPAI.supressNum>=3 and GameManager.sav.WAIDIPAI.supressNum>=3 and \
 		GameManager.sav.LVBU.supressNum>=3 and GameManager.sav.BENTUPAI.supressNum>=3

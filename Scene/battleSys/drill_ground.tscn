@@ -384,7 +384,6 @@ offset_bottom = 1096.0
 color = Color(0, 0, 0, 0)
 
 [node name="resPanel" parent="CanvasInventory" instance=ExtResource("13_4p7r8")]
-visible = true
 offset_left = 1403.0
 offset_top = 622.0
 offset_right = 1914.0

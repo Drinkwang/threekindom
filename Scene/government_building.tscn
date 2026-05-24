@@ -332,7 +332,6 @@ mouse_filter = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="resPanel" parent="CanvasLayer" instance=ExtResource("16_rw7iu")]
-visible = true
 offset_left = 1406.0
 offset_top = 619.0
 offset_right = 1894.0

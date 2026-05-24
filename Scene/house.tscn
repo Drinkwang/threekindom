@@ -457,7 +457,6 @@ offset_bottom = 20.0
 scale = Vector2(0.2, 0.2)
 
 [node name="resPanel" parent="CanvasLayer" instance=ExtResource("9_mf3v8")]
-visible = true
 offset_left = 1408.0
 offset_top = 628.0
 offset_right = 1866.0
