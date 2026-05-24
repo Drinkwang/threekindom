@@ -1943,3 +1943,9 @@ func rTaishanName():
 		return tr("吕布")
 	else:
 		return tr("泰山派")
+
+
+func CheckAllFactionsSubdued():
+	return GameManager.sav.HAOZUPAI.supressNum>=3 and GameManager.sav.WAIDIPAI.supressNum>=3 and \
+		GameManager.sav.LVBU.supressNum>=3 and GameManager.sav.BENTUPAI.supressNum>=3
+		

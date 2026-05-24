@@ -228,6 +228,10 @@ func _initData():
 		elif  GameManager.sav.have_event["关羽求援结束"]==true and GameManager.sav.have_event["主簿的追随"]==false and GameManager.sav.endPath==GameManager.endPath.xiaopei: 
 			GameManager.sav.have_event["主簿的追随"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"主簿的追随")
+		elif GameManager.CheckAllFactionsSubdued() and GameManager.sav.have_event["AllFactionsSubdued"]==false:
+			GameManager.sav.have_event["AllFactionsSubdued"]=true
+			GameManager.sav.LVBU.supressNum=3
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"不用发放津贴了")
 	else:
 		pass
 

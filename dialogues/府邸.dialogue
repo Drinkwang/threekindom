@@ -1494,7 +1494,7 @@ do GameManager.getItemAction.call()
 		糜竺: 主公既执意兴建粮仓……虽某以为当下军资尚可周转，但主公深谋远虑，我也不好再劝。便依主公之言，全力筹措物料，务求早日建成！[voice:mizhu_xiujianliangcang]
 	do GameManager.selectPuzzleLevel()
 	
-- 核定月例配给 [if GameManager.sav.have_event["津贴系统开始"]==true]
+- 核定月例配给 [if GameManager.sav.have_event["津贴系统开始"]==true and not GameManager.CheckAllFactionsSubdued()]
 	糜竺: 主公欲核定月例配给，实乃稳固军心之良策！府库账目、各部所需已尽数厘清，只待主公定夺，属下即刻督办发放事宜！[voice:mizhu_yueliliqing]
 	do openMonthlySupplyPanel()
 - 取消

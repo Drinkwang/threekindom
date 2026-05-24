@@ -408,9 +408,11 @@ func post_transition():
 	elif GameManager.sav.have_event["辕门射戟"]==true and GameManager.sav.have_event["辕门射戟结束"]==false:
 		GameManager.sav.have_event["辕门射戟结束"]=true
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"辕门射戟完成")
-
+	elif GameManager.LawNum()>=15 and GameManager.sav.have_event["法律健全"]==false:
+		GameManager.sav.have_event["法律健全"]=true
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"法律够了")
 	else:
-		if canMuliao==true:
+		if canMuliao==true and !GameManager.CheckAllFactionsSubdued():
 			
 			if GameManager.sav.endPath==GameManager.endPath.none or (GameManager.sav.endPath!=GameManager.endPath.none and GameManager.sav.have_event["主簿的追随"]==true):	
 				allocationMuliao()
@@ -516,7 +518,7 @@ func _buttonListClick(item):
 					DialogueManager.show_example_dialogue_balloon(sys,"最终主簿告知")
 					return
 		#逻辑不能放在这里
-		elif(GameManager.resideValue2<GameManager.resideValue):
+		elif(GameManager.resideValue2<GameManager.resideValue and GameManager.resideValue2<15):
 			GameManager.sav.lazydays+=1	
 			GameManager.sav.lazyValue=GameManager.sav.lazyValue+1
 			if GameManager.sav.lazydays>=3:
@@ -981,7 +983,7 @@ func resetDeterminValue():
 var alldata
 
 func allocationAllSettle():
-	if GameManager.sav.allocationDay<0:
+	if GameManager.sav.allocationDay<0 and GameManager.CheckAllFactionsSubdued():
 		return
 		
 	if GameManager.sav.allocationDay==0:

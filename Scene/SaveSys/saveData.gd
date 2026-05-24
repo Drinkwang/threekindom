@@ -352,6 +352,7 @@ var SIDEQUEST_MAP:Dictionary={
 	"成就解锁":false,
 	"遇见黑商":false,
 	"赢过黑商":false,
+	"AllFactionsSubdued":false,
 	#"错失玄阴":false,
 }
 @export var taishanWait=0
