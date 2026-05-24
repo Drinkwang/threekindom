@@ -1950,5 +1950,5 @@ func rTaishanName():
 var perLawCycle=5
 func CheckAllFactionsSubdued():
 	return GameManager.sav.HAOZUPAI.supressNum>=3 and GameManager.sav.WAIDIPAI.supressNum>=3 and \
-		GameManager.sav.LVBU.supressNum>=3 and GameManager.sav.BENTUPAI.supressNum>=3
+		GameManager.sav.BENTUPAI.supressNum>=3
 		

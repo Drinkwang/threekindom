@@ -585,8 +585,9 @@ do meat.show()
 do changePot(SceneManager.potType.Full)
 刘备 : 吾弟的粮草辎重该到了，且看军需如何[voice:liubei_wudideliangcaozizhong]
 部将 : 禀主公！今日张将军从徐州发来：\n- 军饷{{GameManager.sav.coin_DayGet}}贯\n- 新募士兵{{GameManager.sav.labor_DayGet}}人[voice:qinbin_junxiang]
-do _DayGet()
+
 do meat.hide()
+do _DayGet()
 => END!
  # print("▊▊禀主公！张将军镇守徐州：\n• 每日巡视城防 • 开仓赈济流民\n• 市集税赋公平 • 匠作营增产三成\n（[color=#8BC34A]徐州民心值↑{{xuzhou_morale}}[/color]）")
 #print("▊▊禀主公！徐州近日张将军治理还算平稳\n（[color=#FFC107]{{xuzhou_morale}}[/color]）")
@@ -751,7 +752,7 @@ do changePot(SceneManager.potType.Empty)
 （帐帘被猛地掀开，丙双目赤红，手持长刀闯入，刀尖直指刘备，声音因愤怒与绝望而颤抖）
 #动画 乙冲进帐篷内
 do yi.show()
-乙: 刘玄德！老甲没了！他的尸体也被人吃了！凭什么你能安然端坐于此，装你的仁义君子！我们和你有什么区别？不过是一将功成万骨枯的垫脚石！老子今日就剐了你的肉，喂活剩下的弟兄！[yi_]
+乙: 刘玄德！老甲没了！他的尸体也被人吃了！凭什么你能安然端坐于此，装你的仁义君子！我们和你有什么区别？不过是一将功成万骨枯的垫脚石！老子今日就剐了你的肉，喂活剩下的弟兄！[voice:yi_liuxuande]
 
 刘备: 拿去吧。我的肉，若能活十人，便胜我独活于世。[voice:liubei_woderoushengshiren]
 #无名扇过来挡 额外函数

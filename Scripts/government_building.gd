@@ -231,6 +231,7 @@ func _initData():
 		elif GameManager.CheckAllFactionsSubdued() and GameManager.sav.have_event["AllFactionsSubdued"]==false:
 			GameManager.sav.have_event["AllFactionsSubdued"]=true
 			GameManager.sav.LVBU.supressNum=3
+			GameManager.sav.LVBU._support_rate=100
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"不用发放津贴了")
 	else:
 		pass
@@ -1139,7 +1140,7 @@ func financialConfort():
 	var rindex=GameManager.sav.randomIndex
 	#减去资金
 	GameManager.sav.coin=GameManager.sav.coin-200
-	_c.ChangeAllPeople(3+rindex)
+	_c.ChangeAllPeople(20+rindex*3)
 	GameManager.sav.hp-=costHp_SummonOne
 	if _faction==cldata.factionIndex.lvbu:
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"扩充吕布实力")#显示对话
@@ -1283,8 +1284,8 @@ var ForValueGet=0
 func claim():
 	var _c=getFactionByIndex()
 	var rindex=GameManager.sav.randomIndex
-	ForValueCost=10+5*rindex
-	ForValueGet=_c._num_all*5
+	ForValueCost=10+3*rindex
+	ForValueGet=_c._num_all*12
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"索取从派系")#显示对话
 
 
@@ -1292,8 +1293,8 @@ func suppress():
 
 	var _c=getFactionByIndex()
 	
-	ForValueGet=(100-_c._support_rate)*6*(_c.supressNum+1)
-	ForValueCost=(100-_c._support_rate)*11*(_c.supressNum+1)
+	ForValueGet=int(sqrt(100-_c._support_rate)*60*(_c.supressNum+1))
+	ForValueCost=int(sqrt(100-_c._support_rate)*110*(_c.supressNum+1))
 	#这个可能还高，但是没办法了
 	if _c._support_rate>=60:
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"贸然镇压")#显示对话
@@ -1343,7 +1344,7 @@ func CallingSoldier():
 	var _c=getFactionByIndex()
 	var rindex=GameManager.sav.randomIndex
 	ForValueCost=10+5*rindex
-	ForValueGet=_c._num_all*100
+	ForValueGet=_c._num_all*10
 	
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"征兵从吕布")	
 

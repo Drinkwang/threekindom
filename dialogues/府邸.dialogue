@@ -246,8 +246,8 @@ do _JudgeTask()
 
 
 ~ 资金赠送完成
-if getFactionByIndex()._num_all+3+GameManager.sav.randomIndex<=100
-	赠送资金已顺利完成！{{getFactionByIndex().getTr()}}在你的慷慨支持下，人数激增{{3+GameManager.sav.randomIndex}}人，当前总人数为{{getFactionByIndex()._num_all}}。你的投入让{{getFactionByIndex().getTr()}}势力如虎添翼！
+if getFactionByIndex()._num_all+20+GameManager.sav.randomIndex*3<=100
+	赠送资金已顺利完成！{{getFactionByIndex().getTr()}}在你的慷慨支持下，人数激增{{20+GameManager.sav.randomIndex*3}}人，当前总人数为{{getFactionByIndex()._num_all}}。你的投入让{{getFactionByIndex().getTr()}}势力如虎添翼！
 
 else
 	赠送资金已顺利完成！{{getFactionByIndex().getTr()}}在你的支持下已达到上限100人。
@@ -288,7 +288,7 @@ do GameManager._imporveRelation(getFactionByIndex())
 => END!
 
 ~ 调用士兵完成
-你已成功从{{GameManager.rTaishanName()}}手中征募士兵{{ForValueCost}}，消耗{{ForValueGet}}点好感度
+你已成功从{{GameManager.rTaishanName()}}手中征募士兵{{ForValueGet}}，消耗{{ForValueCost}}点好感度
 #该派系人数上升完成
 => END
 
@@ -310,8 +310,8 @@ do GameManager._imporveRelation(getFactionByIndex())
 if getFactionByIndex()._allNum<100
 
 	提示: 该选项可提升派系人数（最多100人），增强议事厅辩论优势。索取资源会更多但支持度消耗更大。
-	if getFactionByIndex()._num_all+3+GameManager.sav.randomIndex<=100
-		当前派系人数:{{getFactionByIndex()._num_all}}，是否消耗200金给 {{getFactionByIndex().getTr()}} 让其在议事厅中的人数提升{{(3+GameManager.sav.randomIndex)}}人
+	if getFactionByIndex()._num_all+20+3*GameManager.sav.randomIndex<=100
+		当前派系人数:{{getFactionByIndex()._num_all}}，是否消耗200金给 {{getFactionByIndex().getTr()}} 让其在议事厅中的人数提升{{(getFactionByIndex()._num_all+20+3*GameManager.sav.randomIndex)}}人
 	else
 		当前派系人数:{{getFactionByIndex()._num_all}}，是否消耗200金给 {{getFactionByIndex().getTr()}} 让其在议事厅中的人数提升{{(100-getFactionByIndex()._num_all)}}人
 	- 是[costHp=50]
@@ -327,8 +327,8 @@ else
 if getFactionByIndex()._allNum<100
 
 	提示: 该选项可让{{GameManager.rTaishanName()}}招募更多部将（最多100人），增强{{GameManager.rTaishanName()}}的军事实力。调用士兵会更多但支持度消耗更大。
-	if getFactionByIndex()._num_all+3+GameManager.sav.randomIndex<=100
-		当前{{GameManager.rTaishanName()}}手下人数:{{getFactionByIndex()._num_all}}，是否消耗200金让{{GameManager.rTaishanName()}}手下的将领数量提升{{(3+GameManager.sav.randomIndex)}}人
+	if getFactionByIndex()._num_all+20+GameManager.sav.randomIndex*3<=100
+		当前{{GameManager.rTaishanName()}}手下人数:{{getFactionByIndex()._num_all}}，是否消耗200金让{{GameManager.rTaishanName()}}手下的将领数量提升{{(20+GameManager.sav.randomIndex*3)}}人
 	else
 		当前{{GameManager.rTaishanName()}}手下人数:{{getFactionByIndex()._num_all}}，是否消耗200金让{{GameManager.rTaishanName()}}手下的将领数量提升{{(100-getFactionByIndex()._num_all)}}人	
 	- 是[costHp=50]
@@ -743,7 +743,7 @@ do hearSayEnd()
 => END!
 
 ~ 征兵从吕布
-调用可征集{{ForValueCost}}名{{GameManager.rTaishanName()}}士兵，但将消耗{{ForValueGet}}点吕布忠诚度。是否执行？
+调用可征集{{ForValueGet}}名{{GameManager.rTaishanName()}}士兵，但将消耗{{ForValueCost}}点吕布忠诚度。是否执行？
 - 是[costHp=50]
 	if getFactionByIndex()._support_rate>=ForValueCost
 		do CF_CallingSoldier()
@@ -1732,11 +1732,15 @@ do xuzhouStart()
 => END!
 
 ~ 不用发放津贴了
+do chenden.show()
+do mizhu.show()
 刘备: 从今往后，废除所有派系月例钱粮俸禄，无需再以物资安抚众人。[voice:liubei_congjinwanghou]
 糜竺: 主公，月例俸禄乃是安抚各派根基，贸然停发，恐多有不妥。[voice:mizhu_tingfabutuo]
 刘备: 乱世掌土，不可长久姑息养私。此事，诸位谁有异议？[voice:liubei_guxiyangsi]
 陈登: 属下愚虑，主公高见！停发配给、肃整风气，实为上上之策。[voice:chenden_shangshangce]
 糜竺: 全境...派系皆..畏主公威势，无需...钱粮笼络，停发俸禄绝无隐患。[voice:mizhu_quanjinweipazhugong]
-陈登: 就连素来桀骜的泰山诸将...吕布见豪族、士族尽数俯首，亦深知大势已定，不敢再起半点异心。[voice:chenden_taishanyefule]
+陈登: 就连素来桀骜的泰山诸将也安分下来...吕布见豪族、士族尽数俯首，亦深知大势已定，不敢再起半点异心。[voice:chenden_taishanyefule]
 系统提示: 糜竺、陈登起初不愿停发俸禄，见主公态度强硬后即刻怂服！吕布见本土派系尽数俯首，一时慑服于主公威势，暂且隐忍归服、不敢妄动！全境派系畏威臣服，由于你对所有派系镇压完成，月例配给功能永久关闭！
+do chenden.hide()
+do mizhu.hide()
 => END!

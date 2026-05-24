@@ -159,8 +159,7 @@ func _juideCompeleteTask():
 	var levels=1
 	#generalLevel=selectgeneral.level
 	if generalLevel!=null and selectgeneral!=null:
-		levels=1.0889-(0.0889*generalLevel)
-		#武器检测：武将持有武器则降低任务目标值
+		
 		var generalName=selectgeneral.name
 		var isBloodBattle=GameManager.sav.have_event["战斗袁术血战模式"]==true and GameManager.sav.have_event["血战袁术完成"]==false
 		var hasWeapon=false
@@ -169,10 +168,14 @@ func _juideCompeleteTask():
 		elif generalName=="张飞":
 			if isBloodBattle:
 				hasWeapon=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.雌雄双股剑)>0
+				generalLevel=10
 			else:
 				hasWeapon=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.丈八蛇矛)>0
 		elif generalName=="无名":
 			hasWeapon=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.龙胆亮银枪)>0
+			
+		levels=1.0889-(0.0889*generalLevel)
+		#武器检测：武将持有武器则降低任务目标值
 		if hasWeapon:
 			levels=levels*0.7
 		
