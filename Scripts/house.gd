@@ -986,7 +986,7 @@ func resetDeterminValue():
 var alldata
 
 func allocationAllSettle():
-	if GameManager.sav.allocationDay<0 and GameManager.CheckAllFactionsSubdued():
+	if GameManager.sav.allocationDay<0 or GameManager.CheckAllFactionsSubdued():
 		return
 		
 	if GameManager.sav.allocationDay==0:

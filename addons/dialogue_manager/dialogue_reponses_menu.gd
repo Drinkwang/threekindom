@@ -243,9 +243,11 @@ func _on_response_mouse_entered(item: Control) -> void:
 	item.grab_focus()
 	
 	if GameManager.haveMirror():
-		var previewCostHp = item.get_meta("previewCostHp")
-		GameManager._engerge.previewValue=previewCostHp
-		GameManager._engerge.changerate(GameManager.sav.hp)
+		
+		if GameManager._engerge!=null:
+			var previewCostHp = item.get_meta("previewCostHp")
+			GameManager._engerge.previewValue=previewCostHp
+			GameManager._engerge.changerate(GameManager.sav.hp)
 	#GameManager.sav.hp=GameManager.sav.hp
 
 func _on_response_gui_input(event: InputEvent, item: Control, response) -> void:

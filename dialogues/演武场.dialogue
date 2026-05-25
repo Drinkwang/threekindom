@@ -1554,6 +1554,31 @@ do danyangFinal()
 => END!
 
 
+~ 丹阳仕诡牌
+do danyangSoilder.showEX=false
+丹阳兵: 主公，曹将军虽然不在了……但他生前最爱与您对弈仕诡牌。末将曾随他学过几手，虽不及他老辣，但也算得了些真传。主公若还念着那牌局，末将愿陪您来几局，算是替曹将军续上这副牌。
+刘备: 曹将军的牌路可不好学，你当真得了他的真传？
+丹阳兵: 曹将军常说，牌局如战场，虚虚实实。末将不敢说学到了精髓，但陪主公解闷、练练手，应该还够格。
+刘备: 好，那便来一局。也算是……祭曹将军的在天之灵了。
+- 来把仕诡牌吧[costHp=20]
+	do danyangOpenBoardGame()
+- 改日再来
+#do danyangSoilder.changeAllClick("丹阳仕诡牌_进入")
+#do danyangSoilder.hide()
+=> END!
+
+
+~ 丹阳仕诡牌_进入
+do danyangSoilder.showEX=false
+丹阳兵: 主公，再来一局？
+刘备: 好，手谈一局。
+- 来[costHp=20]
+	do danyangOpenBoardGame()
+- 下次吧
+do danyangSoilder.hide()
+=> END!
+
+
 ~ 吕布的怒气
 吕布大军压境，正在城楼下叫骂挑战
 吕布: 刘玄德！你好大的胆子！那数百匹良马是我重金从张扬处买来壮军的，你竟敢派人半路截杀，如今我军缺骑，你这是要断我后路，存心谋反不成？[voice:lvbu_nihaodadanzi]
