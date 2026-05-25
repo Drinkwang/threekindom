@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://dkau7bjygf8l7"]
+[gd_scene load_steps=52 format=3 uid="uid://dkau7bjygf8l7"]
 
 [ext_resource type="Texture2D" uid="uid://d2artvwe80df1" path="res://Asset/光明/正常背景.png" id="1_filqm"]
 [ext_resource type="Script" path="res://Scripts/credit.gd" id="1_lakog"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://Scripts/SubtitleSystem.gd" id="12_y5b0b"]
 [ext_resource type="FontFile" uid="uid://b8le0fd0ujbqx" path="res://Asset/Font/1_blod.ttf" id="13_tqclm"]
 [ext_resource type="Texture2D" uid="uid://c55poolb2pxld" path="res://Asset/城镇建筑/会议室新.png" id="14_2k107"]
+[ext_resource type="Texture2D" uid="uid://dkvodhtc6uu5b" path="res://Asset/end1.png" id="14_n452d"]
 [ext_resource type="Texture2D" uid="uid://co4gx5oho7htc" path="res://Asset/城镇建筑/演武场1.png" id="15_kedjq"]
 [ext_resource type="Texture2D" uid="uid://dbwfmmavqo3p3" path="res://Asset/城镇建筑/洛阳街头.png" id="17_hdldf"]
 [ext_resource type="Texture2D" uid="uid://wdgskqosf4fn" path="res://Asset/光明/议事厅-正常.png" id="17_wjtu3"]
@@ -584,7 +585,6 @@ scale = Vector2(2.23, 2.23)
 texture = ExtResource("9_jo5l7")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-visible = false
 offset_left = -348.0
 offset_top = -195.0
 offset_right = 2217.0
@@ -644,6 +644,12 @@ offset_right = 1967.0
 offset_bottom = 1104.0
 color = Color(0, 0, 0, 1)
 
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/final"]
+layout_mode = 0
+offset_right = 1926.0
+offset_bottom = 1089.0
+texture = ExtResource("14_n452d")
+
 [node name="whatFinal" type="Label" parent="CanvasLayer/final"]
 layout_mode = 0
 offset_top = 201.0
@@ -657,9 +663,9 @@ vertical_alignment = 1
 
 [node name="detial" type="Label" parent="CanvasLayer/final"]
 layout_mode = 0
-offset_left = -1.0
+offset_left = 1.0
 offset_top = 382.0
-offset_right = 1917.0
+offset_right = 1919.0
 offset_bottom = 771.0
 theme_override_fonts/font = ExtResource("13_tqclm")
 theme_override_font_sizes/font_size = 52
@@ -678,9 +684,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -110.5
+offset_left = -135.5
 offset_top = 225.5
-offset_right = 110.5
+offset_right = 85.5
 offset_bottom = 356.5
 grow_horizontal = 2
 grow_vertical = 2
