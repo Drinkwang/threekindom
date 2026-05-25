@@ -1242,7 +1242,7 @@ do zhangfei.show()
 #do chenden.show()
 糜竺: 嗯..[voice:mizhu_en]
 陈登: 我一定会协助好张将军[voice:chenden_woyidingxiezhuhaozhangjiangjun]
-提示: 张飞暂时代理玩家管理徐州城，每日军需物资由他负责交管与你。进入演武场则进一步触发剧情，将进入血战模式。玩家角色代替张飞，一旦进入演武场，将不能离开，直到完成9次军事行动。请准备好物资，在演武场中迎接挑战！
+提示: 张飞暂时代理玩家管理徐州城，每日军需物资由他负责交管与你。进入演武场则进一步触发剧情，将进入血战模式。玩家角色代替张飞，一旦进入演武场，将不能离开，直到完成所有军事行动。请准备好物资，在演武场中迎接挑战！
 do mizhu.hide()
 do zhangfei.hide()
 do chenden.hide()

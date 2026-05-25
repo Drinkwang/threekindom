@@ -9,13 +9,13 @@ class_name SettingsResource
 @export var isAutoSave: bool = true
 
 # 音乐音量（线性值，0 到 1）
-@export var music_volume: float = 0.5
+@export var music_volume: float = 0.25
 # 游戏音量（线性值，0 到 1）
 @export var sfx_volume: float = 1
 
 # 人物音量
 @export var people_volume:float=1
-@export var bgs_volume:float=1
+@export var bgs_volume:float=0.5
 @export var peopleVlan:String="none"
 # 选中的语言
 @export var language: String = ""
