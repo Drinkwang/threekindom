@@ -646,6 +646,7 @@ do yi.hide()
 呵斥声震得众人一怔，混乱稍歇。刘备环视四周，雾气渐浓，营中人心惶惶，粮尽援绝的困境再叠加未知的诡异，已然到了崩溃边缘。
 刘备: 眼下局势不明，吕布叛反、下邳烽火，营中又突生异状，盲目慌乱必死无疑！来人，速选几名精锐死士，乔装成流民，趁雾气掩护潜出营地。看看到底发生了什么？[voice:liubei_wuqiqianchukanjushi]
 do meat.hide()
+do SoundManager.play_sound(sounds.COLLECT_SMALL_JEWEL_1)
 系统提示: 坚持下去，完成血战模式！
 => END!
 
@@ -665,6 +666,7 @@ do changePot(SceneManager.potType.Herbal)
 系统提示: 刘备下令熬制解药汤剂，分发全军。妖术破解，负面影响（狂热Buff）去除。
 然而，烟雾虽散，饥饿之苦未解，士兵腹中空虚如故。解药清心神，却填不饱肚肠，军中低吼与争食之声仍未平息。乱世之下，妖术可破，饿殍难消，困境犹存。
 do meat.hide()
+do SoundManager.play_sound(sounds.COLLECT_SMALL_JEWEL_1)
 系统提示: 坚持下去，完成血战模式！
 => END!
 
@@ -746,6 +748,7 @@ do findFinger()
 do jia_body.hide()
 do wumin_inmeat.hide()
 do meat.hide()
+do SoundManager.play_sound(sounds.COLLECT_SMALL_JEWEL_2)
 系统提示: 坚守本心，请继续完成血战模式。
 => END!
 
@@ -770,9 +773,9 @@ do wumin_inmeat.show()
 无名: 不是主公……是徐州兵。[voice:wumin_bushizhugong]
 do finger.show()
 他松开手，从怀中取出那半截带鹰头戒的断指，递到丙面前，又指了指帐外
-do finger.hide()
-无名: 昨夜，我看见徐州兵的身影，他们饿，吃了甲叔后，还想吃掉主公，再屠尽涿县子弟。[voice:wumin_chilejiashu2]
 
+无名: 昨夜，我看见徐州兵的身影，他们饿，吃了甲叔后，还想吃掉主公，再屠尽涿县子弟。[voice:wumin_chilejiashu2]
+do finger.hide()
 乙: 徐州兵……是他们……我错怪主公了[voice:yi_wocuoguai]
 do wuminandyi2()
 #丙变红，乙改丙
@@ -792,6 +795,7 @@ do makePeopleDie(yi)
 无名握着那缕黑发，跪在丙的尸体旁，久久不语，只有肩膀不住地颤抖。帐内，肉汤依旧沸腾，热气氤氲了所有人的眼眶。
 do meat.hide()
 do wumin_inmeat.hide()
+do SoundManager.play_sound(sounds.COLLECT_SMALL_JEWEL_3)
 系统提示: 砥砺前行，请继续完成血战模式。
 => END!
 
@@ -831,6 +835,7 @@ do makePeopleDie(wumin_inmeat)
 刘备下意识抱住无名渐渐冰冷的身体，指尖触到他掌心残留的头巾、断指，还有那柄染满鲜血的短匕，指腹摩挲着冰冷的鹰头戒，原本虚弱不堪的身躯猛地一颤，眼中燃起滔天恨意与不灭的执念。他猛地撑着身子站起身，用尽全身力气，对着吕布军营的方向嘶吼出声，声音嘶哑却震彻天地，在空寂的残阳军营里久久回荡。
 
 刘备: 吕布！我与你不共戴天！[voice:liubei_woyunibugongdaitian2]
+do SoundManager.play_sound(sounds.guiyi)
 系统提示: 请继续完成血战模式，终结这段宿命！
 do battle_pane._refreshGeneral()
 => END!

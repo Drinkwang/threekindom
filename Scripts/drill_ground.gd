@@ -449,6 +449,8 @@ func _initData():
 					caobao.changeAllClick("来把仕诡牌")
 					caobaoshow()
 					caobao.showEX=false
+					
+					#走了这边
 			elif GameManager.sav.have_event["最终丹阳"]==false and GameManager.sav.WAIDIPAI._support_rate>=80 and GameManager.sav.have_event["主簿的追随"]==true:
 				danyangSoilder.show()
 				danyangSoilder.changeAllClick("丹阳将领投靠")

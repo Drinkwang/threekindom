@@ -538,6 +538,9 @@ func _buttonListClick(item):
 				GameManager.sav.lazyValue=GameManager.sav.lazyValue-1
 			GameManager.sav.lazydays=0
 			print("已经清除怠惰")	
+		if GameManager.sav.endPath==GameManager.endPath.xuzhou and GameManager.sav.have_event["主簿的追随"]==false:
+			GameManager.sav.have_event["主簿的追随"]=true
+			
 		SoundManager.stop_music()	
 		GameManager._rest()	 
 		#判断有无道具 有道具且等于false	
