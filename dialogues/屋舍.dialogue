@@ -705,3 +705,23 @@ do zhubu.hide()
 
 do _initData()
 => END!
+
+
+~ 夏侯淳霸道
+
+
+
+主簿: 主公！城外有一将，自称曹操帐下夏侯惇，率精骑、押粮草军械至城下，说奉曹公之命前来相助！[voice:zhubo_xianghoubadao]
+刘备: 行吧，让他过来，我亲自接待他！[voice:liubei_woqinzijiedai]
+夏侯惇: 玄德公，别来无恙。某奉家主之命，押送军需物资前来徐州。[voice:xiahouchun_jiazhu1]
+刘备: 备与孟德兄相距数百里，他却对徐州之事了如指掌……将军此行，恐怕不只是送粮吧？[voice:liubei_buzishi]
+夏侯惇: 玄德公是明白人。某也不绕弯子——徐州之围，曹公全程看在眼里。袁术、吕布联手，换做旁人，早垮了。但玄德公不仅没垮，反而把徐州稳住了。[voice:xiahouchun_xuandegongmingbairen]
+夏侯惇: 家主说：他原先以为，玄德公需他拉一把才能站稳。如今看来，是他多虑了。[voice:xiahouchun_xulayiba]
+刘备: 那孟德兄为何还要遣将军前来？[voice:liubei_weihepaini]
+夏侯惇: 家主说——正因如此，他才更该来。锦上添花易，雪中送炭难。但比雪中送炭更难得的，是明知对方不需要，仍愿递出这根橄榄枝。[voice:xiahouchun_buxuyao]
+夏侯惇: 家主原话：玄德公将来必成大事。今日我来不来，都拦不住他。但我要让他知道——这天下想与他为敌的人很多，想与他为友的，我曹操算一个。[voice:liubei_wocaocaosuanyige]
+刘备: ……请将军回禀孟德兄：备记下了。[voice:liubei_jixiale]
+夏侯惇: 话一定带到。另外……家主让我留在徐州助你一阵。这不是监视，是家主与您的交情。[voice:xiahouchun_yuninjiaoqing]
+do xiahoudun.hide()
+系统提示: 夏侯惇率部加入徐州防线，与曹操势力关系大幅提升。
+=> END!

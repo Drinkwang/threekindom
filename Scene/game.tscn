@@ -18,8 +18,8 @@ scale = Vector2(1.41087, 1.33659)
 texture = ExtResource("1_3lq2u")
 
 [node name="主宣传画2" type="Sprite2D" parent="."]
-position = Vector2(958, 546.5)
-scale = Vector2(4.20209, 3.90702)
+position = Vector2(960, 546)
+scale = Vector2(4.17826, 3.77778)
 texture = ExtResource("3_wm0re")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
