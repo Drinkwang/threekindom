@@ -354,6 +354,7 @@ var SIDEQUEST_MAP:Dictionary={
 	"赢过黑商":false,
 	"法律健全":false,
 	"AllFactionsSubdued":false,
+	"霸道夏侯":false,
 	#"错失玄阴":false,
 }
 @export var taishanWait=0

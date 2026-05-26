@@ -850,6 +850,11 @@ func _JudgeTask():
 				hasSide=false
 				GameManager.sav.have_event["夏侯偷马"]=true
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"小沛信件")	
+				
+			elif value>=8 and GameManager.sav.have_event["夏侯偷马"]==false and GameManager.sav.endPath==GameManager.endPath.xuzhou:
+				hasSide=false
+				GameManager.sav.have_event["夏侯偷马"]=true
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"夏侯淳霸道")		
 			elif value>=10 and GameManager.sav.have_event["吕布之怒"]==false and GameManager.sav.endPath==GameManager.endPath.xiaopei:
 				hasSide=false
 				GameManager.sav.have_event["吕布之怒"]=true
@@ -865,7 +870,7 @@ func _JudgeTask():
 				#canvas_layer.hide()
 				
 				
-				GameManager.sav.targetValue=3
+				GameManager.sav.targetValue=1
 				GameManager.sav.currenceValue=0
 				GameManager.sav.currenceDay=0
 				GameManager.sav.targetResType=GameManager.ResType.battle
