@@ -294,7 +294,7 @@ func xuzhouStart():
 	GameManager.sav.targetTxt="撑过旬数：{currence}/{target}"
 	GameManager.sav.TargetDestination="rest"
 	#lvbu
-	
+	GameManager.sav.isGetCoin=true
 	#如果所有派系都是忠诚，那么就不需要再发工资了，也加个这方面的剧情
 	GameManager.sav.LVBU.isshow=false
 	GameManager.initPaixi(GameManager.sav.LVBU)

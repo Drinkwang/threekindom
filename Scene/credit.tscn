@@ -16,7 +16,7 @@
 [ext_resource type="Script" path="res://Scripts/SubtitleSystem.gd" id="12_y5b0b"]
 [ext_resource type="FontFile" uid="uid://b8le0fd0ujbqx" path="res://Asset/Font/1_blod.ttf" id="13_tqclm"]
 [ext_resource type="Texture2D" uid="uid://c55poolb2pxld" path="res://Asset/城镇建筑/会议室新.png" id="14_2k107"]
-[ext_resource type="Texture2D" uid="uid://dkvodhtc6uu5b" path="res://Asset/end1.png" id="14_n452d"]
+[ext_resource type="Texture2D" uid="uid://dtj4doa54pp6y" path="res://Asset/end2.png" id="14_lnw4p"]
 [ext_resource type="Texture2D" uid="uid://co4gx5oho7htc" path="res://Asset/城镇建筑/演武场1.png" id="15_kedjq"]
 [ext_resource type="Texture2D" uid="uid://dbwfmmavqo3p3" path="res://Asset/城镇建筑/洛阳街头.png" id="17_hdldf"]
 [ext_resource type="Texture2D" uid="uid://wdgskqosf4fn" path="res://Asset/光明/议事厅-正常.png" id="17_wjtu3"]
@@ -387,7 +387,7 @@ Blight", "", "", "", ""]
 
 [sub_resource type="Animation" id="Animation_f002t"]
 resource_name = "credit_2"
-length = 115.0
+length = 146.0
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -395,8 +395,8 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(30, 43, 59.5, 76.1333, 85.2, 93.6, 101.133, 114),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(30, 43, 59.5, 76.1333, 85.2, 93.6, 101.133, 114, 145.333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "values": [{
 "args": [],
 "method": &"fade"
@@ -421,6 +421,9 @@ tracks/0/keys = {
 }, {
 "args": [],
 "method": &"fade"
+}, {
+"args": [],
+"method": &"eggFunc"
 }]
 }
 tracks/1/type = "value"
@@ -644,11 +647,11 @@ offset_right = 1967.0
 offset_bottom = 1104.0
 color = Color(0, 0, 0, 1)
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/final"]
+[node name="settleBg" type="TextureRect" parent="CanvasLayer/final"]
 layout_mode = 0
 offset_right = 1926.0
 offset_bottom = 1089.0
-texture = ExtResource("14_n452d")
+texture = ExtResource("14_lnw4p")
 
 [node name="whatFinal" type="Label" parent="CanvasLayer/final"]
 layout_mode = 0

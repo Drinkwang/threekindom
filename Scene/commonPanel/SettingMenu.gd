@@ -236,7 +236,7 @@ func _on_people_slider_value_changed(value: float):
 
 func _on_button_button_down():
 	#保存
-	ResourceSaver.save(GameManager._setting,"user://save_data_setting.tres")
+	ResourceSaver.save(GameManager._setting,"user://ysg_data_setting.tres")
 	PanelManager.isOpenSetting=false
 	self.hide()
 	pass # Replace with function body.

@@ -179,7 +179,7 @@ do zhubu.hide()
 	do SummonFaction(haozupai)
 - 召见丹阳派[costHp=50]
 	do SummonFaction(waidipai)
-- 召见{{GameManager.rTaishanName()}}[costHp=50]
+- 召见{{GameManager.rTaishanName()}}[costHp=50] [if GameManager.sav.endPath!=GameManager.endPath.xuzhou]
 	do SummonFaction(lvbu)
 - 取消
 	do cancel()

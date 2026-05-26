@@ -132,7 +132,7 @@ func _on_option_button_item_selected(index):
 	if GameManager._setting!=null:
 		GameManager._setting.language=lan
 		SignalManager.changeLanguage.emit()
-		ResourceSaver.save(GameManager._setting,"user://save_data_setting.tres")
+		ResourceSaver.save(GameManager._setting,"user://ysg_data_setting.tres")
 
 
 

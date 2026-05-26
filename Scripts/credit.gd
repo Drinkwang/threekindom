@@ -65,6 +65,11 @@ func eggFunc():
 		PanelManager.Fade_Blank(Color.BLACK,1,PanelManager.fadeType.fadeOut)
 		SoundManager.play_ambient_sound(final)
 		DialogueManager.show_example_dialogue_balloon(GameManager.sys,"彩蛋剧情")
+	elif GameManager.sav.endPath==GameManager.endPath.xuzhou:
+		PanelManager.Fade_Blank(Color.BLACK,1,PanelManager.fadeType.fadeOut)
+		SoundManager.play_ambient_sound(final)
+		DialogueManager.show_example_dialogue_balloon(GameManager.sys,"霸道线彩蛋剧情")
+
 	else:
 		settleGame()
 
@@ -85,16 +90,20 @@ func eggFunc():
 #你以霸主之姿，叩响复兴汉室的大门。
 
 
+@onready var settle_bg: TextureRect = $CanvasLayer/final/settleBg
 
-
+const Badao_end = preload("res://Asset/end1.png")
+const normal_end = preload("res://Asset/end2.png")
 func settleGame():
 	var finaldec=""
 	
 	if GameManager.sav.endPath!=GameManager.endPath.none:
 		if GameManager.sav.endPath==GameManager.endPath.xiaopei:
+			settle_bg.texture=normal_end
 			what_final.text=tr("【恭喜你，通关正史结局】")
 			finaldec=tr("完成所有怪谈支线，\n将解锁霸道结局线索。")
 		if GameManager.sav.endPath==GameManager.endPath.xuzhou:
+			settle_bg.texture=Badao_end
 			what_final.text=tr("【恭喜你，通关霸道结局】")
 			finaldec=tr("打破历史桎梏，驯服所有怪谈支线，\n你以霸主之姿，叩响复兴汉室的大门。")
 		var line1=tr("游玩难度：{difficult}").format({"difficult":1})

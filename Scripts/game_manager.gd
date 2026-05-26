@@ -1414,7 +1414,7 @@ func OpenGuiyiBook():
 	PanelManager.new_guiyiBook()	
 
 func initSetting():
-	var path="user://save_data_setting.tres"
+	var path="user://ysg_data_setting.tres"
 	if(FileAccess.file_exists(path)):
 		_setting=load(path)
 
@@ -1428,7 +1428,7 @@ func initSetting():
 		# _setting.sound_volume = 0.8
 		
 		# 保存默认配置到文件（避免下次启动重复创建）
-		ResourceSaver.save(GameManager._setting,"user://save_data_setting.tres")
+		ResourceSaver.save(GameManager._setting,"user://ysg_data_setting.tres")
 		
 func _load_settings():
 	
