@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://s5nlht40cbgw"]
+[gd_scene load_steps=39 format=3 uid="uid://s5nlht40cbgw"]
 
 [ext_resource type="PackedScene" uid="uid://dqpklssxni160" path="res://Scene/prefab/clickBlock.tscn" id="1_1yudk"]
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_di8p8"]
@@ -24,7 +24,6 @@
 [ext_resource type="PackedScene" uid="uid://cw66yiofu8q6f" path="res://Scene/prefab/RuleBook.tscn" id="12_phx3k"]
 [ext_resource type="FontFile" uid="uid://qv74ebpr4i31" path="res://Asset/Font/VonwaonBitmap-16px.ttf" id="14_vuyqr"]
 [ext_resource type="PackedScene" uid="uid://dfolt063spdso" path="res://Scene/prefab/energy.tscn" id="22_iqts8"]
-[ext_resource type="PackedScene" uid="uid://ghiim2lkqkbe" path="res://Scene/prefab/propertyPanel.tscn" id="23_ensiq"]
 [ext_resource type="Texture2D" uid="uid://bsvrbojfq2q2r" path="res://Asset/other/purenani/new_atlas_texture 1.tres" id="27_pvgc8"]
 [ext_resource type="Texture2D" uid="uid://baeem3spkf745" path="res://Asset/other/purenani/new_atlas_texture 2.tres" id="28_euu4q"]
 [ext_resource type="Texture2D" uid="uid://cdqbswa4kfdjo" path="res://Asset/other/purenani/new_atlas_texture 3.tres" id="29_vxqmf"]
@@ -272,12 +271,6 @@ offset_top = 20.0
 offset_right = 1395.0
 offset_bottom = 20.0
 scale = Vector2(0.2, 0.2)
-
-[node name="resPanel" parent="CanvasInventory" instance=ExtResource("23_ensiq")]
-offset_left = 1529.0
-offset_top = 673.0
-offset_right = 1825.0
-offset_bottom = 1009.0
 
 [node name="CanvasBook" type="CanvasLayer" parent="."]
 visible = false

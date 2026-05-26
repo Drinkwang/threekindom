@@ -390,8 +390,8 @@ func mizhuxiao():
 	mizhu.img=_mizhuxiao
 
 func ymlShow():
-	mizhu.show()
-	chendeng.show()
+	#mizhu.show()
+	#chendeng.show()
 	pass
 	
 	

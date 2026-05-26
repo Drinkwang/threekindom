@@ -29,7 +29,8 @@ do implementpolicy()
 ~ enterpolicy
 主簿: 大人，这是幕僚们从文书中提炼出的上、中、下三策。最近士族举报丹阳官兵欺压领地农民的利益，咱们得设法处理。[voice:darenmuliaotiliansance]
 刘备: 嗯，做得不错。[voice:liubei_zuodebucuo]
-刘备: （不过凭我以往的经验，一旦涉及派系争斗，士族给我的消息未必全真。不如问问主簿，看他怎么看。）[voice:liubei_buguoyiwoyiwangdejingyan]
+刘备: (不过按照我往日经验来看，众人各有立场，士族所言难保句句真切。还是寻主簿一问，探探他的想法。)[voice:liubei_buguoyiwoyiwangdejingyan]
+#刘备: （不过凭我以往的经验，一旦涉及派系争斗，士族给我的消息未必全真。不如问问主簿，看他怎么看。）[voice:liubei_buguoyiwoyiwangdejingyan]
 刘备: 对了，主簿，你觉得士族反馈的消息可信吗？[voice:liubei_shizukexinme]
 主簿: 大人，这话不好由我断言。双方确有矛盾冲突，不排除一方借机打压另一方的可能。[voice:yifangdayalingyifang]
 => END
@@ -102,6 +103,7 @@ do arrangeDone()
 ~ 宴会结束
 主簿: 大人，您的设宴管用了，您可以前去议事厅，看看法律是否能安稳的通过[voice:darennidesheyanguanyongle]
 do meetingEnd()
+系统提示: 小沛教程阶段，召见派系功能暂时关闭。成功入主徐州后，便可使用此功能，开展索取、拉拢、镇压等事务。
 => END
 
 

@@ -373,8 +373,8 @@ visible = false
 
 [node name="ruleBook" parent="CanvasLayer" instance=ExtResource("8_ca5ns")]
 visible = false
-contextEX = "
-在您举办的饭局中，各大派系忠诚度都提高了"
+contextEX = "{eatMore}
+"
 titleEX = "宴会完美举办成功！"
 dialogue_resource = ExtResource("2_yngd1")
 clickEvent = "宴会结束"
