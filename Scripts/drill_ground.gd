@@ -170,6 +170,7 @@ func _completeTask():#将完成任务移动到外层
 		else:
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"丹阳线")
 	elif GameManager.sav.endPath==GameManager.endPath.xuzhou:
+		items_in_scene.hide()
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"霸道线收尾")
 		control.hide()
 		hp_panel.hide()

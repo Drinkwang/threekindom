@@ -63,7 +63,9 @@ func changeHeadInMainTask():
 	
 	if GameManager.sav.have_event["battleTaiShan"]==true and GameManager.sav.have_event["昌豨求饶"]==false:
 		changeHead(CANGXI)
-		
+	if GameManager.sav.endPath==GameManager.endPath.xuzhou:
+		changeHead(CANGXI)
+		#吕布和袁术各一半
 	elif GameManager.sav.have_event["昌豨求饶"]==true and GameManager.sav.have_event["臧霸首战"]==false:
 		changeHead(CANGXI_2)		
 	elif  GameManager.sav.have_event["臧霸首战"]==true and GameManager.sav.have_event["completebattleTaiShan"]==false:
@@ -71,7 +73,7 @@ func changeHeadInMainTask():
 		#completebattleTaiShan
 	elif GameManager.sav.have_event["夏侯偷马"]==false and GameManager.sav.have_event["战斗袁术开始"]==true:
 		changeHead(jiling)
-	elif GameManager.sav.have_event["吕布之怒"]==false and GameManager.sav.have_event["夏侯偷马"]==true:
+	elif GameManager.sav.have_event["吕布之怒"]==false and GameManager.sav.have_event["夏侯偷马"]==true and GameManager.sav.endPath==GameManager.endPath.xiaopei:
 		changeHead(ma)
 	elif GameManager.sav.have_event["吕布之怒"]==true:
 		changeHead(lvbu)

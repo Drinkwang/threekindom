@@ -461,7 +461,8 @@ func _on_video_player_finished():
 	GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.KESULU]=tr("召见陶商、陶应，解梦境预示")
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁梦境结束")
 
-
+var needC
+var PunishC
 func _buttonListClick(item):
 
 	if item.context == "外出":
@@ -509,8 +510,24 @@ func _buttonListClick(item):
 			GameManager.musicId=-GameManager.musicId
 		GameManager.resideValue2=GameManager.LawNum()
 		if GameManager.sav.endPath!=GameManager.endPath.none:
-			var allcount = GameManager.sav.battleResults.count(not GameManager.BattleResult.none)
-			if allcount<3:
+			var allcount = GameManager.sav.battleResults.size() - GameManager.sav.battleResults.count(GameManager.BattleResult.none)
+			#var needC=1
+			#var PunishC=10
+			if(GameManager.sav.have_event["夏侯偷马"]==true):
+				if GameManager.sav.endPath==GameManager.endPath.xiaopei:
+					needC=2
+					PunishC=10
+				elif GameManager.sav.endPath==GameManager.endPath.xuzhou:
+					needC=3
+					PunishC=15
+			else:
+				if GameManager.sav.endPath==GameManager.endPath.xiaopei:
+					needC=1
+					PunishC=10
+				elif GameManager.sav.endPath==GameManager.endPath.xuzhou:
+					needC=2	
+					PunishC=15			
+			if allcount<needC:
 				if GameManager.sav.have_event["主簿的追随"]==false:
 					DialogueManager.show_example_dialogue_balloon(sys,"最终自言自语")
 					return

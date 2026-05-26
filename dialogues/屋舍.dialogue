@@ -726,5 +726,5 @@ do xiahouchun.show()
 刘备: ……请将军回禀孟德兄：备记下了。[voice:liubei_jixiale]
 夏侯惇: 话一定带到。另外……家主让我留在徐州助你一阵。这不是监视，是家主与您的交情。[voice:xiahouchun_yuninjiaoqing]
 do xiahouchun.hide()
-系统提示: 夏侯惇率部加入徐州防线，与曹操势力关系大幅提升。
+系统提示: 夏侯惇率军驰援徐州防线，我方与曹操势力好感大幅提升。战局进入终局阶段，此后每旬需完成3场军事行动！
 => END!
