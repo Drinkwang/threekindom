@@ -58,16 +58,16 @@ func changeHeadInMainTask():
 	const ZANGBA = preload("res://Asset/人物/zangba.png")
 	const ma = preload("res://Asset/人物/马儿.png")
 	const jiling = preload("res://Asset/人物/纪灵.png")
-	
+	const lvbujiling = preload("res://Asset/人物/吕布纪灵.png")
 	const lvbu = preload("res://Asset/人物/吕布.png")
 	
 	if GameManager.sav.have_event["battleTaiShan"]==true and GameManager.sav.have_event["昌豨求饶"]==false:
 		changeHead(CANGXI)
-	if GameManager.sav.endPath==GameManager.endPath.xuzhou:
-		changeHead(CANGXI)
+	elif GameManager.sav.endPath==GameManager.endPath.xuzhou:
+		changeHead(lvbujiling)
 		#吕布和袁术各一半
 	elif GameManager.sav.have_event["昌豨求饶"]==true and GameManager.sav.have_event["臧霸首战"]==false:
-		changeHead(CANGXI_2)		
+		changeHead(CANGXI)		
 	elif  GameManager.sav.have_event["臧霸首战"]==true and GameManager.sav.have_event["completebattleTaiShan"]==false:
 		changeHead(ZANGBA)
 		#completebattleTaiShan
