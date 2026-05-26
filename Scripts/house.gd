@@ -505,7 +505,7 @@ func _buttonListClick(item):
 		if GameManager.sav.have_event["关羽求援结束"] ==true and GameManager.sav.have_event["主簿的追随"] ==false:
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"小沛最终不能休息")	
 		control._show_button_5_yellow(-1)
-		GameManager.resideValue=ceil(GameManager.sav.day/GameManager.perLawCycle)
+		GameManager.resideValue=ceil(float(GameManager.sav.day)/GameManager.perLawCycle)
 		if GameManager.musicId!=0:
 			GameManager.musicId=-GameManager.musicId
 		GameManager.resideValue2=GameManager.LawNum()
