@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://d4gn0dc6c7sdk"]
+[gd_scene load_steps=9 format=3 uid="uid://d4gn0dc6c7sdk"]
 
 [ext_resource type="Texture2D" uid="uid://bwemo6ul0yagq" path="res://Scene/lake.jpg" id="1_3lq2u"]
 [ext_resource type="Script" path="res://Scene/game.gd" id="1_y5dta"]
 [ext_resource type="Texture2D" uid="uid://bym1hqj50vlm1" path="res://Asset/黑暗/参考图克苏鲁.png" id="3_wm0re"]
 [ext_resource type="PackedScene" uid="uid://cld4rbco4yjhr" path="res://Scene/prefab/initDetail.tscn" id="4_nv5v8"]
+[ext_resource type="VideoStream" path="res://Asset/vedio/main.ogv" id="4_p2r6p"]
 [ext_resource type="FontFile" uid="uid://cun6m123qy35r" path="res://Asset/Font/VonwaonBitmap-12px.ttf" id="4_v34v6"]
 [ext_resource type="Theme" uid="uid://bd3x65u7e06d8" path="res://new_theme.tres" id="5_gwxjm"]
 [ext_resource type="PackedScene" uid="uid://bvg8vtc1k62f1" path="res://Scene/commonPanel/newerGuildPanel.tscn" id="6_mi3hr"]
@@ -21,6 +22,16 @@ texture = ExtResource("1_3lq2u")
 position = Vector2(960, 546)
 scale = Vector2(4.17826, 3.77778)
 texture = ExtResource("3_wm0re")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+offset_left = 5.0
+offset_top = 4.0
+offset_right = 2565.0
+offset_bottom = 1444.0
+scale = Vector2(0.75, 0.75)
+stream = ExtResource("4_p2r6p")
+autoplay = true
+loop = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
