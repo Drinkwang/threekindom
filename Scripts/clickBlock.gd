@@ -142,12 +142,27 @@ func get_global_rect() -> Rect2:
 
 @export var isHide=true
 
-func _is_mouse_blocked(event_position: Vector2) -> bool:
-	for node in get_tree().get_nodes_in_group("mouse_blocker"):
-		if node is Control and node.visible:
-			if node.get_global_rect().has_point(event_position):
-				return true
+func _is_mouse_blocked(_event_position: Vector2) -> bool:
+	var tree = get_tree()
+	if not tree:
+		return false
+	var viewport_pos = get_viewport().get_mouse_position()
+	var canvas_layers: Array = []
+	_collect_canvas_layers(tree.root, canvas_layers)
+	for cl in canvas_layers:
+		if not cl.visible:
+			continue
+		for child in cl.get_children():
+			if child is Control and child.visible:
+				if child.get_global_rect().has_point(viewport_pos):
+					return true
 	return false
+
+func _collect_canvas_layers(node: Node, result: Array) -> void:
+	if node is CanvasLayer:
+		result.append(node)
+	for child in node.get_children():
+		_collect_canvas_layers(child, result)
 
 func _on_area_2d_input_event(viewport, event, shape_idx):
 	#or GameManager.rewardPanel==true
