@@ -428,6 +428,10 @@ func _enterDay(value=true):
 			#
 			if sav.allocationDay>3:
 				sav.allocationDay=1
+				
+		if sav.learnFormChenden==false:
+			if sav.acdemicLevel>1:
+				sav.acdemicLevel-=1
 #@export var mizhuSideWait=-1
 #@export var chendenSideWait=-1
 #@export var caobaoSideWait=-1
@@ -1956,3 +1960,4 @@ func CheckAllFactionsSubdued():
 	return GameManager.sav.HAOZUPAI.supressNum>=3 and GameManager.sav.WAIDIPAI.supressNum>=3 and \
 		GameManager.sav.BENTUPAI.supressNum>=3
 		
+@export var academicLevelDesc:Dictionary = {0:"见事",1:"见势",2:"见机",3:"见几"}

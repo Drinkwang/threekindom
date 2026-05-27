@@ -564,3 +564,16 @@ func succussAfter():
 	chendeng.show()
 	items_in_scene.show()
 	puzzle_game.clearData()
+
+
+func lunce():
+	if await GameManager.isTried(10):
+		return 
+	GameManager.sav.hp-=10
+	GameManager.sav.learnFormChenden=true
+	GameManager.sav.acdemicLevel+=1		
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"论策结束")		
+
+
+func LearnToStr(aclevel):
+	return tr(GameManager.academicLevelDesc[aclevel])
