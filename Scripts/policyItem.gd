@@ -76,7 +76,7 @@ func initDataByGroup(index,group):
 			detail=detail.format({"cost2":GameManager.getMinxinCost2()})
 		elif data.index==3:
 			detail=detail.format({"cost3":GameManager.getMinxinCost3()})
-		detail+=tr("【这项政策会根据你的{paixi}议政人数决定最终效果】").format({"paixi":tr(paixi._name)})
+		detail+=tr("【{paixi} 议政人数多寡，影响政策成效及各项耗费】").format({"paixi":tr(paixi._name)})
 	else:
 		detail=tr(data.detail)
 	context=data.name
