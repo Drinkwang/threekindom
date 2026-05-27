@@ -212,12 +212,12 @@ func _initData():
 		chendeng.showEX=true
 		chendeng.changeAllClick("陈登爱吃鱼1")	
 		
-	elif GameManager.sav.have_event["陈登支线2"]==false and GameManager.sav.have_event["陈登支线1"]==true and GameManager.sav.chendenSideWait==1:
-		if GameManager.sav.have_event["陈登送礼"]==false:
-			GameManager.sav.have_event["陈登送礼"]=true
-			chendeng.show()
-			chendeng.showEX=false
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"陈登赞助")
+	elif GameManager.sav.have_event["陈登支线2"]==false and GameManager.sav.have_event["陈登支线1"]==true and GameManager.sav.chendenSideWait==1 and GameManager.sav.have_event["陈登送礼"]==false:
+		
+		GameManager.sav.have_event["陈登送礼"]=true
+		chendeng.show()
+		chendeng.showEX=false
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"陈登赞助")
 		
 	elif GameManager.sav.have_event["陈登支线2"]==false and GameManager.sav.have_event["陈登支线1"]==true and GameManager.sav.chendenSideWait==0:
 		chendeng.show()

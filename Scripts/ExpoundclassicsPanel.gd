@@ -56,7 +56,7 @@ func _ready():
 		button.add_theme_font_size_override("font_size", 50)
 	pass # Replace with function body.
 #请点击图书并获得积分
-	var context=tr("右侧数值为你的才气上限，亦是大儒辩经可获得的最高分数，超出部分不予结算。才气值可通过使用道具、颁布法令进行提升。")
+	var context=tr("右侧数值为你的名望上限，亦是大儒辩经可获得的最高分数，超出部分不予结算。才气值可通过使用道具、颁布法令进行提升。")
 	if InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.雌雄双股剑)>0:
 		context=context+"\n"+tr("雌雄双股剑")+"："+"2000"
 		#pass
@@ -162,9 +162,10 @@ func _input(event):
 		# 将鼠标位置转换到面板的本地坐标空间
 		if panel.get_rect().has_point(panel.get_local_mouse_position()):
 			_expoundClass()
-			score=score+100
+			var maxLevel=min(GameManager.sav.acdemicLevel,3)
+			score=score+maxLevel*50+100
 			audio_stream_player.play()
-			title.text=tr("请点击图书并获得积分")+"\n+100"
+			title.text=tr("请点击图书并获得积分")+"\n+"+str(+maxLevel*50+100)
 			timer.start()
 		
 

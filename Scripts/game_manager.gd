@@ -432,6 +432,8 @@ func _enterDay(value=true):
 		if sav.learnFormChenden==false:
 			if sav.acdemicLevel>1:
 				sav.acdemicLevel-=1
+		else:
+			sav.learnFormChenden=false
 #@export var mizhuSideWait=-1
 #@export var chendenSideWait=-1
 #@export var caobaoSideWait=-1
