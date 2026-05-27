@@ -147,14 +147,22 @@ func _is_mouse_blocked(_event_position: Vector2) -> bool:
 	if not tree:
 		return false
 	var viewport_pos = get_viewport().get_mouse_position()
+	var viewport_size = get_viewport().get_visible_rect().size
+	# 只判断覆盖 >60% 视口的大尺寸 Control，避免 HUD 小控件误伤
+	var min_size = viewport_size * 0.6
+
 	var canvas_layers: Array = []
 	_collect_canvas_layers(tree.root, canvas_layers)
 	for cl in canvas_layers:
 		if not cl.visible:
 			continue
 		for child in cl.get_children():
-			if child is Control and child.visible:
-				if child.get_global_rect().has_point(viewport_pos):
+			# mouse_filter==STOP 的应由 Godot 原生拦截，不在这重复判断
+			if child is Control and child.visible and child.mouse_filter != Control.MOUSE_FILTER_IGNORE:
+				var rect = child.get_global_rect()
+				if rect.size.x < min_size.x or rect.size.y < min_size.y:
+					continue
+				if rect.has_point(viewport_pos):
 					return true
 	return false
 
