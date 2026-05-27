@@ -7,14 +7,15 @@ class_name baseComponent
 var readyInitData:bool=true
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#DialogueManager.dialogBegin=false
 	if(readyInitData==true):
 		_initData()
 		if(GameManager._savePanel!=null):
 			GameManager._savePanel.hide()
-		
+
+	# clear stale dialog state on scene entry, prevents ESC not working after story transition
+	DialogueManager.dialogBegin=false
+
 	if GameManager.isLoadingSave==true:
-		DialogueManager.dialogBegin=false
 		GameManager.showLoadSuccusss()
 	#pass # Replace with function body.
 
