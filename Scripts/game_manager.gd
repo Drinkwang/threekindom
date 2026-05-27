@@ -464,6 +464,10 @@ func _enterDay(value=true):
 
 func initDemand():
 	var point=GameManager.sav.day*10+50
+	sav.HAOZUPAI.allocationStatue=-1
+
+	sav.LVBU.allocationStatue=-1
+	
 	initSoleDemand(sav.WAIDIPAI,point)
 	initSoleDemand(sav.BENTUPAI,point)
 	

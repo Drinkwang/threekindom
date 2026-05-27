@@ -21,6 +21,6 @@ isshow = true
 index = 1
 isDoneOp = false
 detail = "徐州本土世族乡绅合集，为徐州本地根基势力，掌控地方民政、乡党与根基人脉，是刘备稳固徐州需重点笼络的核心力量。"
-allocationStatue = 0
+allocationStatue = -1
 demand = {}
 isAutoAllocation = false

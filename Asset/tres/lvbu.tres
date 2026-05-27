@@ -21,6 +21,6 @@ isshow = false
 index = 3
 isDoneOp = false
 detail = "泰山群寇归降的半独立边军，以臧霸等人为首，名义隶属徐州，刘备令吕布节制，不预州内政务，需徐州供给粮饷，可作北疆屏障却难完全统御。"
-allocationStatue = 0
+allocationStatue = -1
 demand = {}
 isAutoAllocation = false

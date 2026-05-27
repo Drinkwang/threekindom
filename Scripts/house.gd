@@ -788,9 +788,9 @@ func extraTask():
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"支线开始")	
 		#将任务可检索设置成true
 		#如果任务为false  设置成true 并触发对话
-		elif GameManager.sav.have_event["支线触发完毕查出锦囊"]==true and GameManager.sav.have_event["支线触发完毕查出锦囊休息"]==false:
-			GameManager.sav.have_event["支线触发完毕查出锦囊休息"]=true
-			GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.KESULU]=tr("回府邸彻查张阎刺陶一案")
+	if GameManager.sav.have_event["支线触发完毕查出锦囊"]==true and GameManager.sav.have_event["支线触发完毕查出锦囊休息"]==false:
+		GameManager.sav.have_event["支线触发完毕查出锦囊休息"]=true
+		GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.KESULU]=tr("回府邸彻查张阎刺陶一案")
 	if GameManager.sav.have_event["查出药囊后休息前"]==false:  #支线都不该在血战模式后触发
 		var to_inventory= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.黄麻药囊)
 		var quantity=InventoryManager.has_item_quantity(to_inventory)
