@@ -261,12 +261,10 @@ do GameManager.getItemAction.call()
 陈登: 主公，徐州赋税已清点，民心渐稳，治政可期。[voice:chenden_zhizhengkeqi]
 
 
-- 与陈登论策[if GameManager.sav.have_event["陈登论策解锁"]==true] [costHp=10]
+- 与陈登论策 [costHp=10][if GameManager.sav.have_event["陈登论策解锁"]==true]
 	陈登: 天下大势，分合无常。曹操雄踞兖州，兵锋极盛，实为近患；袁术坐拥淮南，野心昭然，久必生乱；主公当以徐州为根基，稳步蓄力，静待时局变幻，再图进取。[voice:chenden_lunce]
-	
-- 来把仕诡牌吧[costHp=20][if GameManager.sav.mizhucardgame>=0] 
+- 来把仕诡牌吧 [costHp=20][if GameManager.sav.mizhucardgame>=0] 
 	do openBoardGame()
-
 - 修建基建【深挖护城河】[costHp=20][if GameManager.sav.have_event["基建项目开启"]==true and GameManager.sav.endPath==GameManager.endPath.none]
 	if GameManager.sav.hp>=20
 		陈登: 主公，我虽对大兴土木多有顾虑，恐扰民心，但深挖护城河乃某亲献之策！护城固守之余，还可引水灌溉农田，一举两得，何乐而不为？ [voice:chenden_huchenghe]
@@ -443,10 +441,12 @@ do chendenFinal()
 
 
 ~ 论策系统开启
+do chendeng.showEX=false
 if GameManager.sav.have_event["陈登支线3"]==true
 	陈登: 主公彻查陶谦墓异事、化解诡异风波，安定全城人心。登敬佩万分，今以此相酬，愿与主公纵论天下局势，一同谋划长远大业。[voice:chenden_guiyijiesuocelue]
 else:
 	陈登: 前日与主公同享鱼脍、把酒闲谈，知主公心胸坦荡、性情相投。今日便如约相伴，与主公纵论天下局势，共商长远大业。[voice:chenden_chiyulunce]
 系统提示: 解锁【与陈登论策】！可与陈登纵论天下时局，精进学识。学识属性可强化大儒辩论能力；若当旬未参与论策，学识将自动回落一级。
 do GameManager.sav.have_event["陈登论策解锁"]=true
+do chendeng.changeAllClick("来把仕诡牌")
 => END!

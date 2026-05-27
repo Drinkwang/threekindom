@@ -161,12 +161,19 @@ func _initData():
 		items_in_scene.showItems()
 	control._processList(initData)
 	
-	
-	if GameManager.selectBoardCharacter==boardType.boardCharacter.chenden and GameManager._boardMode!=boardType.boardMode.none and GameManager._boardGameWin==true:
+	if GameManager.sav.have_event["陈登论策解锁"]==false and (GameManager.sav.have_event["陈登支线3"]==true or \
+	(GameManager.sav.have_event["陈登正确选择1"]==false and GameManager.sav.have_event["陈登支线1"]==true) or\
+	(GameManager.sav.have_event["陈登正确选择2"]==false and GameManager.sav.have_event["陈登支线2"]==true)):
+		#GameManager.sav.chend
+		chendeng.show()
+		chendeng.changeAllClick("论策系统开启")
+		chendeng.showEX=true
+	elif GameManager.selectBoardCharacter==boardType.boardCharacter.chenden and GameManager._boardMode!=boardType.boardMode.none and GameManager._boardGameWin==true:
 			
 	
 		GameManager.selectBoardCharacter=boardType.boardCharacter.none         
 		GameManager._boardMode=boardType.boardMode.none
+
 		if GameManager._boardReward!=boardType.boardRewardResult.BreakFree:
 			GameManager.resumeMusic()
 			
@@ -217,7 +224,7 @@ func _initData():
 		chendeng.showEX=true
 		chendeng.changeAllClick("陈登爱吃鱼2")	
 	else:
-		if GameManager.sav.chendencardgame>=0:
+		if GameManager.sav.chendencardgame>=0 or GameManager.sav.have_event["陈登论策解锁"]==true:
 			#如果等于4 
 			if GameManager.sav.endPath==GameManager.endPath.none or GameManager.sav.have_event["最终陈登"]==true:
 				chendeng.changeAllClick("来把仕诡牌")
