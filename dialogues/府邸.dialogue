@@ -1444,19 +1444,19 @@ do hearSayEnd()
 
 ~ 钱无法支持
 主簿: 大人，我们的财政情况无法支持您推进这个政策..[voice:zhubo_caizhengwufazhichi]
-提示: 你当前的钱不足1000
+提示: 你当前的钱不足{{GameManager.getMinxinCost2()}}
 
 => END!
 
 ~ 劳动力无法支持
 主簿: 大人，我们的可用人口无法支持您推进这个政策..[voice:zhubo_renkoubuzu]
-提示: 你当前的劳动力不足500
+提示: 你当前的劳动力不足{{GameManager.getMinxinCost1()}}
 
 => END!
 
 ~ 民心无法支持
 主簿: 大人，百姓已经对我们有所不满了，我们不能再进行这样的操作了[voice:zhubo_baixinbumanbuneng]
-提示: 你当前的民心低于40
+提示: 你当前的民心低于你当前的钱不足{{GameManager.getMinxinCost3()}}
 
 => END!
 
