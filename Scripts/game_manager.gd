@@ -1944,6 +1944,18 @@ func getMinxinValue4():
 			
 	return addLabor
 
+func getMinxinCost1():
+	var num = GameManager.sav.BENTUPAI._num_all
+	return int(500 * (1 + max(num - 10, 0) * 0.01))
+
+func getMinxinCost2():
+	var num = GameManager.sav.HAOZUPAI._num_all
+	return int(1000 * (1 + max(num - 10, 0) * 0.01))
+
+func getMinxinCost3():
+	var num = GameManager.sav.WAIDIPAI._num_all
+	return int(20 * (1 + max(num - 10, 0) * 0.01))
+
 const savesys = preload("res://dialogues/存档.dialogue")
 func showLoadSuccusss():
 	await get_tree().process_frame

@@ -68,7 +68,15 @@ func initDataByGroup(index,group):
 			paixi=GameManager.sav.HAOZUPAI
 		elif data.index==3:
 			paixi=GameManager.sav.WAIDIPAI
-		detail=tr(data.detail)+tr("【这项政策会根据你的{paixi}议政人数决定最终效果】").format({"paixi":tr(paixi._name)})
+		detail=tr(data.detail)
+		# 替换消耗占位符为实际数值
+		if data.index==1:
+			detail=detail.format({"cost1":GameManager.getMinxinCost1()})
+		elif data.index==2:
+			detail=detail.format({"cost2":GameManager.getMinxinCost2()})
+		elif data.index==3:
+			detail=detail.format({"cost3":GameManager.getMinxinCost3()})
+		detail+=tr("【这项政策会根据你的{paixi}议政人数决定最终效果】").format({"paixi":tr(paixi._name)})
 	else:
 		detail=tr(data.detail)
 	context=data.name
@@ -77,13 +85,13 @@ func initDataByGroup(index,group):
 		if data.group==3:
 			if data.index==1:
 				#paixi=GameManager.sav.BENTUPAI
-				TooltipManager.register_tooltip(self,tr(data.tootip).format({"point1":GameManager.getMinxinValue1()}))
+				TooltipManager.register_tooltip(self,tr(data.tootip).format({"point1":GameManager.getMinxinValue1(),"cost1":GameManager.getMinxinCost1()}))
 			elif data.index==2:
 				#paixi=GameManager.sav.HAOZUPAI
-				TooltipManager.register_tooltip(self,tr(data.tootip).format({"point2":GameManager.getMinxinValue2()}))
+				TooltipManager.register_tooltip(self,tr(data.tootip).format({"point2":GameManager.getMinxinValue2(),"cost2":GameManager.getMinxinCost2()}))
 			elif data.index==3:
 				#paixi=GameManager.sav.WAIDIPAI
-				TooltipManager.register_tooltip(self,tr(data.tootip).format({"point3":GameManager.getMinxinValue3(),"point4":GameManager.getMinxinValue4()}))
+				TooltipManager.register_tooltip(self,tr(data.tootip).format({"point3":GameManager.getMinxinValue3(),"point4":GameManager.getMinxinValue4(),"cost3":GameManager.getMinxinCost3()}))
 				
 		else:
 			TooltipManager.register_tooltip(self,tr(data.tootip))

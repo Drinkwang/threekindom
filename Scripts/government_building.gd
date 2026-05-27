@@ -672,7 +672,8 @@ func selectPolicy(data):
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"加速除奸")
 		GameManager.sav.have_event["chaoChenDenPolicyExcute"]=true		
 	elif id==policymanager.policyID.P_LessCoin:
-		if GameManager.sav.coin<1000:
+		var cost=GameManager.getMinxinCost2()
+		if GameManager.sav.coin<cost:
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"钱无法支持")
 			GameManager.sav.hp=GameManager.sav.hp+35
 			return
@@ -680,13 +681,14 @@ func selectPolicy(data):
 
 			
 		var heart= GameManager.getMinxinValue2()
-		GameManager.sav.coin-=1000
+		GameManager.sav.coin-=cost
 
-		GameManager.resideValue=tr("你消耗了1000钱，恢复了{heart}点民心").format({"heart":heart})
+		GameManager.resideValue=tr("你消耗了{cost}钱，恢复了{heart}点民心").format({"cost":cost,"heart":heart})
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"执行政策")
 		GameManager.changePeopleSupport(heart)
 	elif id==policymanager.policyID.P_LessLabor:
-		if GameManager.sav.labor_force<500:
+		var cost=GameManager.getMinxinCost1()
+		if GameManager.sav.labor_force<cost:
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"劳动力无法支持")
 			GameManager.sav.hp=GameManager.sav.hp+35
 			return
@@ -698,12 +700,13 @@ func selectPolicy(data):
 			
 
 		
-		GameManager.resideValue=tr("你消耗了500点民力，恢复了{heart}点民心").format({"heart":heart})
+		GameManager.resideValue=tr("你消耗了{cost}点民力，恢复了{heart}点民心").format({"cost":cost,"heart":heart})
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"执行政策")
-		GameManager.sav.labor_force-=500
+		GameManager.sav.labor_force-=cost
 		GameManager.changePeopleSupport(heart)
 	elif id==policymanager.policyID.P_MoreBlood:
-		if GameManager.sav.people_surrport<40:
+		var cost=GameManager.getMinxinCost3()
+		if GameManager.sav.people_surrport<cost:
 			GameManager.sav.hp=GameManager.sav.hp+35
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"民心无法支持了")
 			return
@@ -712,10 +715,10 @@ func selectPolicy(data):
 		var addcoin=GameManager.getMinxinValue3()
 		var addLabor=GameManager.getMinxinValue4()
 
-		GameManager.resideValue=tr("你消耗了20点民心,获得了{addcoin}钱和{addLabor}民力").format({"addcoin":addcoin,"addLabor":addLabor})
+		GameManager.resideValue=tr("你消耗了{cost}点民心,获得了{addcoin}钱和{addLabor}民力").format({"cost":cost,"addcoin":addcoin,"addLabor":addLabor})
 	
 		GameManager.policyAction= func():
-			GameManager.changePeopleSupport(-20)
+			GameManager.changePeopleSupport(-cost)
 			GameManager.sav.coin+=addcoin
 			GameManager.sav.labor_force+=addLabor
 				
