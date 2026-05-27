@@ -313,9 +313,9 @@ if getFactionByIndex()._allNum<100
 
 	提示: 该选项可提升派系人数（最多100人），增强议事厅辩论优势。索取资源会更多但支持度消耗更大。
 	if getFactionByIndex()._num_all+20+3*GameManager.sav.randomIndex<=100
-		当前派系人数:{{getFactionByIndex()._num_all}}，是否消耗200金给 {{getFactionByIndex().getTr()}} 让其在议事厅中的人数提升{{(getFactionByIndex()._num_all+20+3*GameManager.sav.randomIndex)}}人
+		当前派系人数:{{getFactionByIndex()._num_all}}，是否消耗200钱给 {{getFactionByIndex().getTr()}} 让其在议事厅中的人数提升{{(getFactionByIndex()._num_all+20+3*GameManager.sav.randomIndex)}}人
 	else
-		当前派系人数:{{getFactionByIndex()._num_all}}，是否消耗200金给 {{getFactionByIndex().getTr()}} 让其在议事厅中的人数提升{{(100-getFactionByIndex()._num_all)}}人
+		当前派系人数:{{getFactionByIndex()._num_all}}，是否消耗200钱给 {{getFactionByIndex().getTr()}} 让其在议事厅中的人数提升{{(100-getFactionByIndex()._num_all)}}人
 	- 是[costHp=50]
 		do financialConfort()
 	- 否
@@ -346,7 +346,7 @@ else
 # : （是关羽、张飞么？）
 
 ~ 资金不足安抚
-提示: 你必须有200金才能进行一次资金资助
+提示: 你必须有200钱才能进行一次资金资助
 do SummonFaction(_faction)
 => END
 #资金安抚最多一周一次
