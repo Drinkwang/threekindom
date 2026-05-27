@@ -14,7 +14,6 @@ func _ready():
 			GameManager._savePanel.hide()
 		
 	if GameManager.isLoadingSave==true:
-		GameManager.isLoadingSave=false
 		DialogueManager.dialogBegin=false
 		GameManager.showLoadSuccusss()
 	#pass # Replace with function body.

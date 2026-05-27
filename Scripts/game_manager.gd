@@ -1959,8 +1959,10 @@ func getMinxinCost3():
 
 const savesys = preload("res://dialogues/存档.dialogue")
 func showLoadSuccusss():
+
 	await get_tree().process_frame
 	DialogueManager.show_example_dialogue_balloon(savesys,"读取存档成功")
+	isLoadingSave = false
 	#refresh()
 
 
