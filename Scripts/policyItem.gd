@@ -65,7 +65,7 @@ func initDataByGroup(index,group):
 		if data.index==1:
 			paixi=GameManager.sav.BENTUPAI
 		elif data.index==2:
-			paixi=GameManager.sav.HAOZUPAI
+			paixi=GameManager.sav.HAOZUPAI if GameManager.sav.HAOZUPAI.isshow else GameManager.sav.BENTUPAI
 		elif data.index==3:
 			paixi=GameManager.sav.WAIDIPAI
 		detail=tr(data.detail)
@@ -87,7 +87,7 @@ func initDataByGroup(index,group):
 				#paixi=GameManager.sav.BENTUPAI
 				TooltipManager.register_tooltip(self,tr(data.tootip).format({"point1":GameManager.getMinxinValue1(),"cost1":GameManager.getMinxinCost1()}))
 			elif data.index==2:
-				#paixi=GameManager.sav.HAOZUPAI
+				#paixi=GameManager.sav.HAOZUPAI if GameManager.sav.HAOZUPAI.isshow else GameManager.sav.BENTUPAI
 				TooltipManager.register_tooltip(self,tr(data.tootip).format({"point2":GameManager.getMinxinValue2(),"cost2":GameManager.getMinxinCost2()}))
 			elif data.index==3:
 				#paixi=GameManager.sav.WAIDIPAI

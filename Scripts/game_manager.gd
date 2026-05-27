@@ -1918,7 +1918,8 @@ func getMinxinValue2():
 	if num>0:
 		heart+=5
 			
-	heart= int(heart * (1 + GameManager.sav.HAOZUPAI._num_all *0.03)) 			
+	var factionNum = GameManager.sav.HAOZUPAI._num_all if GameManager.sav.HAOZUPAI.isshow else GameManager.sav.BENTUPAI._num_all
+	heart= int(heart * (1 + factionNum *0.03)) 			
 	return heart
 func getMinxinValue3():
 	var addcoin=300
@@ -1949,7 +1950,7 @@ func getMinxinCost1():
 	return int(500 * (1 + max(num - 10, 0) * 0.01))
 
 func getMinxinCost2():
-	var num = GameManager.sav.HAOZUPAI._num_all
+	var num = GameManager.sav.HAOZUPAI._num_all if GameManager.sav.HAOZUPAI.isshow else GameManager.sav.BENTUPAI._num_all
 	return int(1000 * (1 + max(num - 10, 0) * 0.01))
 
 func getMinxinCost3():

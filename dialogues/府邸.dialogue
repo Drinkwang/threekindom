@@ -1450,7 +1450,7 @@ do hearSayEnd()
 
 ~ 劳动力无法支持
 主簿: 大人，我们的可用人口无法支持您推进这个政策..[voice:zhubo_renkoubuzu]
-提示: 你当前的劳动力不足{{GameManager.getMinxinCost1()}}
+提示: 你当前的民力不足{{GameManager.getMinxinCost1()}}
 
 => END!
 
