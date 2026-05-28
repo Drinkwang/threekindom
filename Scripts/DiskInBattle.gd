@@ -49,7 +49,7 @@ func _refreshBattleTypePreview():
 		var idx = (current + i - 1) % size
 		var sd = GameManager.sav.battleTasks[idx].sdType
 		_initBattleTypePng(i, sd)
-
+var enemyName=""
 func changeHeadInMainTask():
 	
 	const CANGXI_2 = preload("res://Asset/人物/cangxi2.png")
@@ -62,23 +62,33 @@ func changeHeadInMainTask():
 	const lvbu = preload("res://Asset/人物/吕布.png")
 	
 	if GameManager.sav.have_event["battleTaiShan"]==true and GameManager.sav.have_event["昌豨求饶"]==false:
+		enemyName="昌豨"
 		changeHead(CANGXI)
 	elif GameManager.sav.endPath==GameManager.endPath.xuzhou:
+		enemyName="纪灵/吕布"		
 		changeHead(lvbujiling)
+
 		#吕布和袁术各一半
 	elif GameManager.sav.have_event["昌豨求饶"]==true and GameManager.sav.have_event["臧霸首战"]==false:
-		changeHead(CANGXI)		
+		enemyName="昌豨"	
+		changeHead(CANGXI)
 	elif  GameManager.sav.have_event["臧霸首战"]==true and GameManager.sav.have_event["completebattleTaiShan"]==false:
+		enemyName="臧霸"			
 		changeHead(ZANGBA)
-		#completebattleTaiShan
 	elif GameManager.sav.have_event["夏侯偷马"]==false and GameManager.sav.have_event["战斗袁术开始"]==true:
+		enemyName="纪灵"	
 		changeHead(jiling)
 	elif GameManager.sav.have_event["吕布之怒"]==false and GameManager.sav.have_event["夏侯偷马"]==true and GameManager.sav.endPath==GameManager.endPath.xiaopei:
+		enemyName="吕布的马"	
 		changeHead(ma)
 	elif GameManager.sav.have_event["吕布之怒"]==true:
+		enemyName="吕布"	
 		changeHead(lvbu)
+		
 	else:
+		enemyName="黄巾流寇"	
 		changeHead(HUANGJIN_3)	
+		
 		
 #"臧霸首战之前":false,#泰山诸将1
 #	"昌豨求饶":false,#泰山诸将2
@@ -414,7 +424,7 @@ var _extraTaskCountedThisRound:bool=false
 
 func changeHead(value):
 	enemy.headImg=value
-
+	TooltipManager.register_tooltip(enemy.head,tr(enemyName)+"\n"+tr(GameManager.enemyDesc[enemyName]))
 
 func lauchProgress(hp):
 	if isBoot ==false:

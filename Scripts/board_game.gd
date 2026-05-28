@@ -1411,20 +1411,20 @@ func excuteSecret(groupobj:Array):
 					
 					if _secretsuit==1:
 	
-							effectTxt=tr("恢复一点体力")
+						effectTxt=tr("恢复一点体力")
 	
 	
 					elif _secretsuit==2:
 	
-							effectTxt=tr("弃掉对手一张卡")
+						effectTxt=tr("弃掉对手一张卡")
 
 					elif _secretsuit==3:
 
-							effectTxt=tr("抽牌一张再获得一次出牌次数")
+						effectTxt=tr("抽牌一张再获得一次出牌次数")
 
 					elif _secretsuit==4:
 		
-							effectTxt=tr("对手失去20分")
+						effectTxt=tr("对手失去20分")
 
 					detail_txt.text=whoRunCard+","+effectTxt
 				
