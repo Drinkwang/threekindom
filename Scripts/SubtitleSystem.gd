@@ -25,6 +25,7 @@ var pause_system_ts: float = 0.0 # 暂停时的系统时间戳
 
 # 节点就绪时初始化
 func _ready() -> void:
+	#GameManager.sav.endPath=GameManager.endPath.xuzhou
 	if GameManager.sav.endPath==GameManager.endPath.xiaopei:
 		srt_file_path= "res://credit_sub.srt"
 	elif GameManager.sav.endPath==GameManager.endPath.xuzhou:

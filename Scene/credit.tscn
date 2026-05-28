@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://dkau7bjygf8l7"]
+[gd_scene load_steps=57 format=3 uid="uid://dkau7bjygf8l7"]
 
 [ext_resource type="Texture2D" uid="uid://d2artvwe80df1" path="res://Asset/光明/正常背景.png" id="1_filqm"]
 [ext_resource type="Script" path="res://Scripts/credit.gd" id="1_lakog"]
@@ -35,7 +35,12 @@
 [ext_resource type="Texture2D" uid="uid://dds10cvaxf2sy" path="res://Asset/光明/邺城.png" id="29_a608s"]
 [ext_resource type="Resource" uid="uid://bmuiri1yjrdba" path="res://dialogues/屋舍.dialogue" id="29_vclfe"]
 [ext_resource type="Texture2D" uid="uid://dn1vn1tmhae6l" path="res://Asset/人物/郭嘉.png" id="30_ar2lf"]
+[ext_resource type="Texture2D" uid="uid://bipkdutwsum0s" path="res://Asset/城镇建筑/合途众.png" id="30_oruxj"]
+[ext_resource type="Texture2D" uid="uid://4nskmtewklsl" path="res://Asset/城镇建筑/失言流血.png" id="31_h56lh"]
+[ext_resource type="Texture2D" uid="uid://fti1e4spd2kk" path="res://Asset/城镇建筑/yuancao.png" id="32_mn6hb"]
+[ext_resource type="Texture2D" uid="uid://dn505pu4q3c3g" path="res://Asset/城镇建筑/小沛亮.png" id="33_5mbmw"]
 [ext_resource type="Texture2D" uid="uid://ciqhyx551bu5" path="res://Asset/人物/诸葛亮2.png" id="34_1sl7p"]
+[ext_resource type="Texture2D" uid="uid://dq8ggw5l528c7" path="res://Asset/光明/英雄记三国志.png" id="36_cqbib"]
 
 [sub_resource type="Animation" id="Animation_n18vh"]
 length = 0.001
@@ -395,9 +400,15 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(30, 43, 59.5, 76.1333, 85.2, 93.6, 101.133, 114, 145.333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(30, 43, 59.2667, 76.6667, 85.2, 93.6, 101.133, 113.267, 122.667, 134.533, 145.333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "values": [{
+"args": [],
+"method": &"fade"
+}, {
+"args": [],
+"method": &"fade"
+}, {
 "args": [],
 "method": &"fade"
 }, {
@@ -433,10 +444,10 @@ tracks/1/path = NodePath("内饰:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.166667, 31, 44, 60.5, 77.1333, 86.2, 94.6, 102.2, 114.833),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0.166667, 31, 44, 60.2667, 77.8, 86.2, 94.6, 102.2, 114.267, 123.667, 135.533, 145.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [ExtResource("3_5im4a"), ExtResource("18_3c0vc"), ExtResource("19_l10gq"), ExtResource("27_lsiml"), ExtResource("17_hdldf"), ExtResource("3_5im4a"), ExtResource("27_x3ovl"), ExtResource("14_2k107"), ExtResource("4_bs7a0")]
+"values": [ExtResource("3_5im4a"), ExtResource("18_3c0vc"), ExtResource("19_l10gq"), ExtResource("27_lsiml"), ExtResource("17_hdldf"), ExtResource("3_5im4a"), ExtResource("27_x3ovl"), ExtResource("14_2k107"), ExtResource("30_oruxj"), ExtResource("31_h56lh"), ExtResource("32_mn6hb"), ExtResource("33_5mbmw")]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -445,10 +456,10 @@ tracks/2/path = NodePath("标题:texture")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.2, 31, 44, 60.2, 77.1333, 86.2, 94.6, 102.2, 114.833),
+"times": PackedFloat32Array(0.2, 31, 44, 60.2667, 77.7667, 86.2, 94.6, 102.2, 114.267),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [ExtResource("19_1g3g8"), ExtResource("25_hmx0o"), ExtResource("4_3mhr6"), ExtResource("29_a608s"), ExtResource("24_rt8ow"), ExtResource("19_1g3g8"), ExtResource("28_y4t4v"), ExtResource("17_wjtu3"), ExtResource("5_b6lqx")]
+"values": [ExtResource("19_1g3g8"), ExtResource("25_hmx0o"), ExtResource("4_3mhr6"), ExtResource("29_a608s"), ExtResource("24_rt8ow"), ExtResource("19_1g3g8"), ExtResource("28_y4t4v"), ExtResource("17_wjtu3"), ExtResource("36_cqbib")]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -457,7 +468,7 @@ tracks/3/path = NodePath("内饰:self_modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(8, 12.7333, 114.133, 114.633, 114.867, 115),
+"times": PackedFloat32Array(8, 12.7333, 144.366, 145.1, 145.334, 145.467),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
@@ -469,10 +480,10 @@ tracks/4/path = NodePath("creditAnimation/制作人:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(15.3667, 16.0333, 21, 22, 31.2333, 31.9, 42.4, 43.4, 51.9958, 52.6624, 59.2753, 60.2753, 70.6667, 71.3333, 76.2851, 77.2841, 87.4, 88.0667, 93.0278, 94.0278, 103.767, 104.433, 113.367, 114.367),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(15.3667, 16.0333, 21, 22, 31.2333, 31.9, 42.4, 43.4, 51.9958, 52.6624, 59.2753, 60.2753, 70.6667, 71.3333, 76.2851, 77.2841, 87.4, 88.0667, 93.0278, 94.0278, 103.767, 104.433, 113.367, 114.367, 115.533, 116.2, 122.6, 123.533, 124.267, 124.667, 134.833, 135.9, 136.369, 137.333, 143.7, 144.767),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -493,14 +504,17 @@ tracks/6/path = NodePath("creditAnimation/制作人:text")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 31.2, 50.8054, 69.4774, 86.2096, 103.267),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 31.2, 50.8054, 69.4774, 86.2096, 103.267, 114.867, 123.867, 136.133),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": ["史料参考：曹操与刘备密言，备泄之於袁绍，
-绍知操有图己之意。操自咋其舌流血，以失言戒后世。", "特别感谢以下创作者在 itch.io 提供的素材：
+"values": ["制作人 / 策划 / 程序 ：
+鹏砚", "特别感谢以下创作者在 itch.io 提供的素材：
 Atelier Magicae (UI SFX)
 leohpaz (Button SFX)
-alkakrab (BGM)", "测试协力：人员一", "测试协力：人员丙", "测试协力：人员丙", "感谢所有玩家，你的体验，是我所有努力的最终意义。"]
+alkakrab (BGM)", "", "测试协力：人员丙", "测试协力：人员丙", "感谢所有玩家，你的体验，是我所有努力的最终意义。
+接下来为大家呈现正史篇章相关史料与配套插画。", "史料参考：灵帝末年，备尝在京师，
+复与曹公俱还沛国，募召合众。", "史料参考：曹操与刘备密言，备泄之於袁绍，
+绍知操有图己之意。操自咋其舌流血，以失言戒后世。", "史料参考：袁曹一家，而关东虽有诸侯，莫能相危。"]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -512,9 +526,8 @@ tracks/7/keys = {
 "times": PackedFloat32Array(0, 43.6667, 61.0417, 77.354, 94.9392),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": ["史料参考：灵帝末年，备尝在京师，
-复与曹公俱还沛国，募召合众。", "测试协力：
-人员甲", "测试协力：
+"values": ["美术协力：
+Blight", "", "测试协力：
 人员丁", "测试协力：
 人员丁", "测试协力：
 人员丁"]
@@ -757,7 +770,7 @@ vertical_alignment = 1
 
 [node name="诸葛亮" parent="." instance=ExtResource("27_714ud")]
 visible = false
-position = Vector2(958, 593)
+position = Vector2(1265, 612)
 scale = Vector2(1.3, 1.3)
 showName = "诸葛亮"
 txt2d = ExtResource("34_1sl7p")

@@ -10,11 +10,12 @@ func _ready() -> void:
 	GameManager.currenceScene=self
 	initData()
 	#if GameManager.sav.endPath==GameManager.endPath.xiaopei:
-	
+	#GameManager.sav.endPath=GameManager.endPath.xuzhou
 	if GameManager.sav.endPath==GameManager.endPath.xuzhou:
 		SoundManager.play_music(badaoxian)
 	else:
 		SoundManager.play_music(__CREDIT__)
+	SoundManager.set_music_volume(1)
 
 	if GameManager.sav.endPath==GameManager.endPath.xuzhou:
 
@@ -120,6 +121,7 @@ func settleGame():
 #ESC按钮，待开发
 func _on_button_button_down() -> void:
 	SoundManager.stop_all_ambient_sounds()
+	SoundManager.set_music_volume(GameManager._setting.music_volume)
 	GameManager.ReturnMenu()
 
 var paused_animation_time 
