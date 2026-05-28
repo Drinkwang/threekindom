@@ -175,7 +175,8 @@ func _juideCompeleteTask():
 				hasWeapon=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.丈八蛇矛)>0
 		elif generalName=="无名":
 			hasWeapon=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.龙胆亮银枪)>0
-			
+			if GameManager.sav.have_event["夏侯偷马"]==true:
+				generalLevel=10
 		levels=1.0889-(0.0889*generalLevel)
 		#武器检测：武将持有武器则降低任务目标值
 		if hasWeapon:
@@ -574,8 +575,13 @@ func settleGame(end,issuccess):
 		
 		finalScore=GameManager.calculate_points(enemyPower,taskComplete, percentage/100,selectgeneral.level,buffMultiple)
 		finalScore=finalScore*(0.6+(GameManager.sav.battleEnhance*0.15))
+		if GameManager.sav.have_event["吕布之怒"]==false and GameManager.sav.have_event["夏侯偷马"]==true and GameManager.sav.endPath==GameManager.endPath.xiaopei:
+			finalScore=finalScore*1.5
 		var items=GameManager.ScoreToItem(finalScore)
-		_rewardPanel.showReward(items)
+		if GameManager.sav.have_event["吕布之怒"]==false and GameManager.sav.have_event["夏侯偷马"]==true and GameManager.sav.endPath==GameManager.endPath.xiaopei:
+			_rewardPanel.showRewardMa(items)
+		else:
+			_rewardPanel.showReward(items)
 		#一旦完成target的数量，就令其获胜，来到府邸进行下一步操作
 		GameManager.sav.completeTask=GameManager.sav.completeTask+1
 		

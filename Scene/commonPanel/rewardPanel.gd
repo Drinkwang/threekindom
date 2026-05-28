@@ -4,6 +4,7 @@ extends CanvasLayer
 class_name rewardPanel
 const victoryPng = preload("res://Asset/other/胜利.png")
 const failPng = preload("res://Asset/other/骷髅头.png")
+const maPng = preload("res://Asset/人物/马儿.png")
 #@onready var title = $Control/PanelContainer/MarginContainer/VBoxContainer/title
 
 @onready var img =$Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/img
@@ -102,7 +103,10 @@ func showTitileReward(context,item,addAfter=true):
 
 func getItemSound():
 	var ranValue=randi_range(1,3)
-	SoundManager.play_sound(sounds.GOOD_THING)
+	if GameManager.sav.have_event["吕布之怒"]==false and GameManager.sav.have_event["夏侯偷马"]==true and GameManager.sav.endPath==GameManager.endPath.xiaopei:
+		SoundManager.play_sound(sounds.MA_CC_0)
+	else:
+		SoundManager.play_sound(sounds.GOOD_THING)
 
 func showReward(item):
 	imgTarget.texture=victoryPng
@@ -119,7 +123,10 @@ func showReward(item):
 		titleContext=tr(sucuussContext)+tr(TxtSoiderCost).format({"soilder":str(soilderCost)})
 	elif coinCost==0 and soilderCost==0:
 		titleContext=tr(sucuussContext)+tr(TxtNoCost)
-	titleContext=titleContext+tr(",获得以下道具:")
+	var goumaStr=""
+	if GameManager.sav.have_event["吕布之怒"]==false and GameManager.sav.have_event["夏侯偷马"]==true and GameManager.sav.endPath==GameManager.endPath.xiaopei:
+		goumaStr=tr("【截获吕布购马队，战利品升级】")
+	titleContext=titleContext+goumaStr+tr(",获得以下道具:")
 	#通过item增加并实际获得之
 	_clear_view()
 	
@@ -157,6 +164,13 @@ func showReward(item):
 	#播放音效，显示1-2个道具
 	#gird
 	pass
+
+
+
+
+func showRewardMa(item):
+	showReward(item)
+	imgTarget.texture=maPng
 	
 func _clear_view() -> void:
 	var children = _grid_ui.get_children()
