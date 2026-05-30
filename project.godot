@@ -13,8 +13,8 @@ config_version=5
 config/name="ysgml_xz"
 run/main_scene="res://Scene/game.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
-boot_splash/bg_color=Color(0.0692378, 0, 0.450078, 1)
-boot_splash/image="res://Asset/logo設計.png"
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/image="res://Asset/test.png"
 config/icon="res://Asset/icon.png"
 
 [audio]
@@ -41,11 +41,11 @@ file_logging/enable_file_logging=true
 
 [display]
 
-window/dpi/allow_hidpi=true
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/mode=3
 window/stretch/mode="canvas_items"
+window/stretch/scale_mode="integer"
 mouse_cursor/custom_image="res://Asset/pointer_scifi_b.png"
 
 [editor_plugins]
@@ -92,6 +92,7 @@ types_split_offset=255
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
