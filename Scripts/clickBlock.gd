@@ -157,8 +157,8 @@ func _is_mouse_blocked(_event_position: Vector2) -> bool:
 		if not cl.visible:
 			continue
 		for child in cl.get_children():
-			# 忽略掉MOUSE_FILTER_IGNORE 避免MOUSE_FILTER_IGNORE 还遮挡点击
-			if child is Control and child.visible and child.mouse_filter != Control.MOUSE_FILTER_IGNORE:
+			# 忽略掉MOUSE_FILTER_IGNORE和MOUSE_FILTER_PASS，避免遮挡点击
+			if child is Control and child.visible and child.mouse_filter == Control.MOUSE_FILTER_STOP:
 				var rect = child.get_global_rect()
 				if rect.size.x < min_size.x or rect.size.y < min_size.y:
 					continue

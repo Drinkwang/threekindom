@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://es88fhnaxxmq"]
+[gd_scene load_steps=18 format=3 uid="uid://dkk0qwocse3t1"]
 
 [ext_resource type="Script" path="res://Scripts/guiyiitembook.gd" id="1_i21p7"]
 [ext_resource type="AudioStream" uid="uid://daxlyrk7pr0bu" path="res://Asset/sound/翻阅.mp3" id="2_rmxti"]
