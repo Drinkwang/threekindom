@@ -373,9 +373,9 @@ func _initData():
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"牌局无人")
 	
 		elif GameManager.sav.endPath!=GameManager.endPath.none and GameManager.sav.have_event["回忆无名"]==false:
-			GameManager.sav.have_event["回忆无名"]=true
 			#还没开发完毕，滤镜，还有回忆的场景，明天测试和开发
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"前置剧情·赵云荐士")
+			#return
 		elif GameManager.trainResult==SceneManager.trainResult.win:
 			if GameManager.trainGeneral=="关羽":
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"关羽比武胜利")
@@ -452,7 +452,8 @@ func _initData():
 					caobao.showEX=false
 					
 					#走了这边
-			elif GameManager.sav.have_event["最终丹阳"]==false and GameManager.sav.WAIDIPAI._support_rate>=80 and GameManager.sav.have_event["主簿的追随"]==true:
+			elif GameManager.sav.have_event["最终丹阳"]==false and GameManager.sav.WAIDIPAI._support_rate>=80 and GameManager.sav.have_event["主簿的追随"]==true and GameManager.sav.have_event["回忆无名"]==true:
+				
 				danyangSoilder.show()
 				danyangSoilder.changeAllClick("丹阳将领投靠")
 

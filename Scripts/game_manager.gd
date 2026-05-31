@@ -538,7 +538,7 @@ func intBattleTask():
 			var sy2=opcost.values()[syTyoe2]
 			sav.battleTasks[battleTarget].task=[{"res":"coin","symbol":sy1,"value":15*sav.battleTasks[battleTarget].index,"reward":nums[0]},{"res":"human","symbol":sy2,"value":50*sav.battleTasks[battleTarget].index,"reward":nums[1]}]
 			sav.battleTasks[battleTarget].reward=nums[2]
-		var sdType:int=randf_range(0, 2)#从3修改
+		var sdType:int=randi_range(0, 2)#从3修改
 		sav.battleTasks[battleTarget].sdType=sdType
 		#RspEnum.values()[sdType-1]
 
@@ -867,10 +867,10 @@ func loadLaw():
 		#RewardLaw="收益：徐州好感度+20，获得道具“珍品礼盒”x1，一次性民力+150 冲突：丹阳派好感度-15  "+1000
 		lawAction= func():
 			sav.daruValue+=2000
-			sav.labor_force+=1500
+			
 			sav.BENTUPAI.ChangeSupport(-15)
 			sav.WAIDIPAI.ChangeSupport(-15)
-			sav.labor_force+=1000
+			sav.labor_force+=300
 			#var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.珍品礼盒)
 			#var remainder = InventoryManager.add_item(inventoryPackege, itemid, 1, false)			
 			print("士族优先done")			

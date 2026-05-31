@@ -42,11 +42,11 @@ func _refreshBattleTypePreview():
 	if GameManager.sav.battleTasks==null or GameManager.sav.battleTasks.size()==0:
 		return
 	var size = GameManager.sav.battleTasks.size()
-	var current = taskIndex
-	if current < 0 or current >= size:
-		current = 0
+	#var current = taskIndex
+	#if current < 0 or current >= size:
+	#	current = 0
 	for i in range(1, 4):
-		var idx = (current + i - 1) % size
+		var idx = (i - 1) % size
 		var sd = GameManager.sav.battleTasks[idx].sdType
 		_initBattleTypePng(i, sd)
 var enemyName=""

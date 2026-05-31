@@ -309,6 +309,7 @@ do yuanshuComplete()
 ~ 昌豨求饶2
 士兵: 报！昌豨自缚双手，亲自来降！[voice:bin_cangxitouxiang]
 刘备: 速带他入帐！[voice:liubei_sudairuzhang]
+do SoundManager.play_sound(sounds.IRONCHAIN)
 昌豨赤膊负荆，铁链缠身，步入大帐。
 昌豨: 刺史大人，臧霸已弃我于不顾！他坐山观虎斗，欲借大人之手除我。末将身处其圈子，始终不过边缘一支，早已为他所忌。
 刘备: ...
@@ -1526,6 +1527,7 @@ do chendao.changeName("陈到")
 刘备望着眼前这少年，又看了看地上那柄沉默的短匕，久久未语。他虽尚且年少，眼下尚不能独当一面统兵作战，可这份风骨与心志，来日必能大放光彩。风轻轻拂过演武场，旧影虽散，薪火已传。
 do chendao.hide()
 do fade.play("RESET")
+do GameManager.sav.have_event["回忆无名"]=true
 => END!
 
 ~ 吕布辕门射戟

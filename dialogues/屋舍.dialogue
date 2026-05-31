@@ -391,6 +391,7 @@ do xiahouchun.show()
 夏侯惇: 不过一切皆在我家家主预料之中，此番布局，正是要将吕布诱出徐州，使其陷入孤立无援之境。[voice:xiahouchunjiazhubuju]
 
 夏侯惇: 使君，只需你率部坚守小沛几日，拖住吕布大军。我家家主已亲提精锐，星夜南下，不日便至小沛。届时，与使君合兵一处，到时不仅可破吕布，更能顺势扫除袁术这一僭越逆贼，平定徐州！[voice:xiahoutunshaochulvbu]
+do SoundManager.play_sound(sounds.guiyi)
 系统提示: 最后坚持几回合，等待曹操的救援。敌军已换为吕布，每回合必须出战两次，否则民心将下降。
 do xiahouchun.hide()
 => END!

@@ -54,7 +54,7 @@ func _ready():
 		hearsay.itemstype=InventoryManagerItem.ItemEnum.市井秘闻_续
 		hearsay.img=load("res://Asset/items/密谈2.png")
 		hearsay.itemContext="2"
-	elif !havethree and GameManager.sav.have_event["庆功宴是否举办"]==true:#拥有市井2 没有3 然后特定事件
+	elif !havethree and GameManager.sav.have_event["袁术首次击败"]==true:#拥有市井2 没有3 然后特定事件
 		hearsay.show()
 		hearsay.itemstype=InventoryManagerItem.ItemEnum.市井秘闻_终	
 		hearsay.img=load("res://Asset/items/密谈1.png")

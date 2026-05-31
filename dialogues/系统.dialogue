@@ -318,7 +318,7 @@ do caobao.show()
 if GameManager.resideValue==0
 	系统提示: 恭喜完成基建，但因已拥有更高等级的同基建增益，无法同时获得本级（较低级）的奖励。
 else:
-	系统提示: 【获得增益加持：每日金 +{{GameManager.resideValue}}】挑战高级基建，可获更强增益(单项基建只留存最优属性增益)。
+	系统提示: 【获得增益加持：每日钱+{{GameManager.resideValue}}】挑战高级基建，可获更强增益(单项基建只留存最优属性增益)。
 
 do succussAfter()
 => END!
@@ -335,7 +335,7 @@ do succussAfter()
 if GameManager.resideValue==0
 	系统提示: 恭喜完成基建，但因已拥有更高等级的同基建增益，无法同时获得本级（较低级）的奖励。
 else:
-	系统提示: 【获得增益加持：每日金 +{{GameManager.resideValue}}】挑战高级基建，可获更强增益(单项基建只留存最优属性增益)。
+	系统提示: 【获得增益加持：每日民力+{{GameManager.resideValue}}】挑战高级基建，可获更强增益(单项基建只留存最优属性增益)。
 do succussAfter()	
 => END!    
 
