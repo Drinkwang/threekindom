@@ -875,7 +875,7 @@ func deliverUncompleteTask():
 		
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"徐州派揭露真相")
 			else:
-		
+				GameManager.sav.have_event["错失古棒"]=true
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"保护陶商揭露真相")
 			return
 		#今日重点完成任务

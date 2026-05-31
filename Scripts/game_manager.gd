@@ -1807,6 +1807,21 @@ func completeAutoAll():
 			GameManager.sav.Merit_points+=1
 			getLawPoint+=1
 	
+func iscompleteAll():
+	#getLawPoint=0
+	for i in range(0,4):
+		if i==1 and GameManager.sav.have_event["Factionalization"]==false:
+			continue
+			
+		elif i==3 and GameManager.sav.have_event["lvbuJoin"]==false:
+			continue
+		var data=getcldateByindex(i)
+		if data.allocationStatue==0:
+			return false 
+			#data.allocationStatue=1
+			#GameManager.sav.Merit_points+=1
+			#getLawPoint+=1
+	return true	
 func playDemand(item):
 	GameManager.sav.coin-=item.money 
 	GameManager.sav.labor_force-=item.population
