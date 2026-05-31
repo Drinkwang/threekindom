@@ -1015,11 +1015,11 @@ func allocationAllSettle():
 		allcontext="\n"
 		allocationSettle()
 		GameManager.sav.allocationDay=1
-		GameManager.initDemand()
+		allocationAllSettle()
+		return
 		#把逻辑放在初始后 initdemand
 	elif GameManager.sav.allocationDay==1:
-		allcontext="\n"
-		allocationSettle()
+		GameManager.initDemand()
 	elif GameManager.sav.allocationDay==2||GameManager.sav.allocationDay==3:
 		
 		var allCost=GameManager.cuclulateAllAllocation()

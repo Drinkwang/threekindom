@@ -422,12 +422,9 @@ func _enterDay(value=true):
 			GameManager.sav.taishanWait+=1
 		if sav.allocationDay>0:
 			sav.allocationDay+=1
-			if sav.allocationDay>3:
-				initDemand()
-				
 			#
 			if sav.allocationDay>3:
-				sav.allocationDay=1
+				sav.allocationDay=0
 				
 		if sav.learnFormChenden==false:
 			if sav.acdemicLevel>1:
@@ -1811,7 +1808,7 @@ func completeAutoAll():
 	
 func playDemand(item):
 	GameManager.sav.coin-=item.money 
-	GameManager.sav.labor_force-item.population
+	GameManager.sav.labor_force-=item.population
 	#if GameManager.sav.coin<item.money or GameManager.sav.labor_force<item.population:
 	#	return false
 	for key in item.items.keys():
