@@ -1697,6 +1697,12 @@ func initSecretBattleContext(targetValue,mode,BootValue,dialogueContext):
 	sav.extraBattleTaskTargetNum= targetValue
 	sav.extraBattleTaskEnum=mode
 	sav.extraBattleDialogContext=dialogueContext
+func removeSecretBattleContext():
+	sav.extraCureenTaskCNum=0
+	sav.extraBattleTaskBootNum=-1
+	sav.extraBattleTaskTargetNum= -1
+	sav.extraBattleTaskEnum=SceneManager.etraTaskType.none
+	sav.extraBattleDialogContext=""
 
 
 func enterCrazy():

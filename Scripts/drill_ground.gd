@@ -313,6 +313,7 @@ var battleNum=0
 
 func enterBattleMode():
 	GameManager.sav.have_event["战斗袁术血战模式"]=true
+	
 	GameManager.sav.hp=100
 	#任务开始，10天完成20次duel
 	
@@ -1066,7 +1067,7 @@ func wuminBan():
 	
 func yuanshuComplete():
 	GameManager.sav.TargetDestination="府邸"
-
+	GameManager.removeSecretBattleContext()
 	pass
 	
 func tempLockCaoBao():
