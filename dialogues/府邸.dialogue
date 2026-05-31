@@ -1287,7 +1287,8 @@ do mizhen.show()
 	糜贞: 兄长醉了，莫信！[voice:mizhen_xiongzhangzuile]
 	门外那位少女低声说道，说完便脸红缩了回去。  
 	do mizhen.hide() 
-	系统提示: 豪族派忠诚+10，民心+5（士人传“主公与糜氏亲近”）。  
+	系统提示: 豪族派忠诚+10，民心-5（士人传“主公与糜氏亲近”）。  
+	#改了翻译
 	do eatTea1(true)
 	do mizhu.hide()
 #后续：糜竺醉态：“明日请主公再来，贞儿露个面！”

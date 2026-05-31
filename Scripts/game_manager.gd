@@ -471,6 +471,7 @@ func initDemand():
 
 	sav.LVBU.allocationStatue=-1
 	
+	
 	initSoleDemand(sav.WAIDIPAI,point)
 	initSoleDemand(sav.BENTUPAI,point)
 	

@@ -225,8 +225,8 @@ func _initData():
 	if GameManager.sav.have_event["chaoMizhuEnd"]==true and GameManager.sav.isGetCoin==false and GameManager.sav.currenceValue>1 and GameManager.sav.have_event["battleTaiShan"]==false:
 		
 		#demo结束
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"playtest结束")
-		return
+		#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"playtest结束")
+		#return
 		pass
 		
 	if control.visible==true:	
@@ -544,6 +544,7 @@ func _buttonListClick(item):
 				return	
 				#连续多日怠惰
 			else:
+				#简单难度才有，高级必出
 				var lazyRan=0.2*GameManager.sav.lazyValue
 				var random_value = randf()  # 生成0.0到1.0的随机数
 				if random_value <= lazyRan:

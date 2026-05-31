@@ -529,10 +529,12 @@ func eatTea1(issuccuss=false):
 	GameManager.sav.have_event["糜竺支线1"]=true
 	if issuccuss==true:
 		GameManager.sav.have_event["糜竺正确选择1"]=true
+		GameManager.sav.HAOZUPAI.ChangeSupport(10)
+		GameManager.changePeopleSupport(-5)
 	else:
 		GameManager.sav.have_event["错失娃娃"]=true
 		GameManager.sav.have_event["糜竺正确选择1"]=false
-		#GameManager.sav.hp
+		GameManager.sav.HAOZUPAI.ChangeSupport(5)
 func eatTea2(issuccuss=false):
 
 	GameManager.sav.have_event["糜竺支线2"]=true
