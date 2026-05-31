@@ -513,13 +513,12 @@ func _buttonListClick(item):
 			var allcount = GameManager.sav.battleResults.size() - GameManager.sav.battleResults.count(GameManager.BattleResult.none)
 			#var needC=1
 			#var PunishC=10
-			if(GameManager.sav.have_event["夏侯偷马"]==true):
-				if GameManager.sav.endPath==GameManager.endPath.xiaopei:
-					needC=2
-					PunishC=10
-				elif GameManager.sav.endPath==GameManager.endPath.xuzhou:
-					needC=3
-					PunishC=15
+			if(GameManager.sav.have_event["夏侯偷马"]==true and GameManager.sav.endPath==GameManager.endPath.xuzhou):
+				needC=3
+				PunishC=15			
+			elif GameManager.sav.endPath==GameManager.endPath.xiaopei and GameManager.sav.have_event["吕布之怒"]==true:
+				needC=3#吕布
+				PunishC=10
 			else:
 				if GameManager.sav.endPath==GameManager.endPath.xiaopei:
 					needC=1

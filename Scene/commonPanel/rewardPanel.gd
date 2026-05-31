@@ -170,7 +170,7 @@ func showReward(item):
 
 func showRewardMa(item):
 	showReward(item)
-	imgTarget.texture=maPng
+	#imgTarget.texture=maPng
 	
 func _clear_view() -> void:
 	var children = _grid_ui.get_children()

@@ -119,7 +119,7 @@ func refreshContext():
 				if GameManager.sav.endPath==GameManager.endPath.xiaopei:
 					policycontext=policycontext+"\n"+tr("每天至少完成{n}次军事行动").format({"n":1})
 					if GameManager.sav.have_event["吕布之怒"]==true:
-						policycontext=policycontext+"\n"+tr("每天至少完成{n}次军事行动").format({"n":2})
+						policycontext=policycontext+"\n"+tr("每天至少完成{n}次军事行动").format({"n":3})
 				elif GameManager.sav.endPath==GameManager.endPath.xuzhou:
 					policycontext=policycontext+"\n"+tr("每天至少完成{n}次军事行动").format({"n":2})
 					if GameManager.sav.have_event["夏侯偷马"]==true:
