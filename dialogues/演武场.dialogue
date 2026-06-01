@@ -1230,7 +1230,7 @@ do refreshData()
 
 
 刘备: 曹将军何在？既集齐诡异卡，欲与他一试一局！[voice:liubei_caobaoyishiyiju]
-丹阳兵: 主公，曹将军…方才还在校场练兵，可突然匆匆走了！
+丹阳兵: 主公，曹将军…方才还在校场练兵，可突然匆匆走了！[voice:danyang_zoule]
 刘备: (罢了，我先寻糜竺与陈登，探这诡秘乱局的玄机！)[voice:liubei_mizhuyuchenden]
 
 => END!
@@ -1552,7 +1552,7 @@ do SceneManager.changeScene(SceneManager.roomNode.HOUSE,2)
 ~ 丹阳将领投靠
 do danyangSoilder.showEX=false
 刘备: 你是丹阳军官？[voice:liubei_nishidanyangjunguan]
-无名丹阳将领: 末将率丹阳残部，千里投奔使君！吕布夺徐州，我等少数人不愿从贼，唯使君仁义，故冒死前来，愿效死力！
+无名丹阳将领: 末将率丹阳残部，千里投奔使君！吕布夺徐州，我等少数人不愿从贼，唯使君仁义，故冒死前来，愿效死力！[voice:danyang_maosiqianlai]
 刘备: 诸位丹阳儿郎，今日来小沛，刘备与你们同喜同悲。徐州虽失，大义长存！[voice:liubei_xuzhousuishidayichangcun]
 do danyangSoilder.hide()
 do danyangFinal()
