@@ -82,7 +82,7 @@ func _ready():
 		current_resolution_index = find_closest_resolution(max_width, max_height)
 		
 		fullscreen_check.button_pressed=true	
-		music_slider.value=0.5
+		music_slider.value=0.25
 		sfx_slider.value=1
 		GameManager._setting=SettingsResource.new()
 		GameManager._setting.language=system_locale
@@ -96,6 +96,11 @@ func _ready():
 			find_res(GameManager._setting.resolution)
 		music_slider.value=GameManager._setting.music_volume
 		sfx_slider.value=GameManager._setting.sfx_volume
+		# 保底：确保音量被应用到 AudioServer（防止 _load_settings() 未被调用的情况）
+		SoundManager.set_music_volume(GameManager._setting.music_volume)
+		SoundManager.set_sound_volume(GameManager._setting.sfx_volume)
+		SoundManager.set_ambient_sound_volume(GameManager._setting.bgs_volume)
+		SoundManager.set_sound_ui_volume(GameManager._setting.people_volume)
 		fullscreen_check.button_pressed=GameManager._setting.fullscreen
 		AutoSavecheck.button_pressed=GameManager._setting.isAutoSave
 	resolution_option.select(current_resolution_index)

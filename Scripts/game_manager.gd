@@ -1437,7 +1437,9 @@ func initSetting():
 		
 		# 保存默认配置到文件（避免下次启动重复创建）
 		ResourceSaver.save(GameManager._setting,"user://ysg_data_setting.tres")
-		
+		# 首次启动：立即应用默认音量（0.25等），否则AudioServer总线保持 Godot 默认值
+		_load_settings()
+
 func _load_settings():
 	
 
