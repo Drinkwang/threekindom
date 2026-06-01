@@ -371,6 +371,6 @@ func _on_exit_button_button_down():
 	SoundManager.play_sound(sounds.declinesound)
 	GameManager._engerge.stopPreviewHP()
 	self.hide()
-	GameManager.currenceScene.peoples.show()
+	#GameManager.currenceScene.peoples.show()
 	
 	pass # Replace with function body.
