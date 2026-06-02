@@ -557,6 +557,9 @@ do GameManager.policyAction=null
 糜竺: 主公英明！我即刻安排使者与商会前往邺城，与袁绍商定详情。[voice:mizhu_qianwangyechen]
 刘备: 好，按你们之计施行。粮食问题刻不容缓，徐州稳定为先。[voice:liubei_xuzhouwendingweixian]
 #删了空格
+
+系统提示: 主线已推进，获得2点政策点数。
+do GameManager.sav.Merit_points+=2
 do collectMoneyComplete()
 #使者需要 但有 山贼 需要开辟道路
 => END!
@@ -596,6 +599,8 @@ do chenden.show()
 陈登: 他们宣扬徐州粮荒之困境，诬称我们背弃盟约，只购袁绍之粮，却不分予军民。[voice:chenden_beiwuxian]
 陈登: 若谣言不止，徐州恐将陷入严重的内乱危机。[voice:chenden_ruoyaoyan]
 do chaosBegin()
+系统提示: 主线已推进，获得3点政策点数。
+do GameManager.sav.Merit_points+=1
 #糜竺：我们需要平衡各个派系，争取舆论支持。士族们必须看到我们是为了徐州的长远利益而行动。同时，我会加强内部管理，杜绝内应的活动空间。
 => END!
 #粮食问题得不到解决，寻求外援，跳脱阵营
@@ -877,6 +882,9 @@ do ShowDisterPanel()
 
 糜竺: 既如此，我遵主公之意，唯盼主公在听曹豹之议时，多加审慎。[voice:mizhu_tingcaobaoshenshen]
 #改臣为我
+系统提示: 主线已推进，获得2点政策点数。
+do GameManager.sav.Merit_points+=2
+
 do GameManager.AutoSaveFile()
 do chenden.hide()
 do mizhu.hide()
@@ -1038,6 +1046,9 @@ else
 	刘备: （民心浮动、派系作乱，与其安抚纵容，不如以雷霆手段镇之！）[voice:liubei_badaoxian]
 	系统提示: 徐州权柄之路开启！你持有霸道之息解锁霸道线，可镇压所有派系至顺从；或者选用怀柔之策，将所有派系好感度均提至 80，稳固州治
 # 无的想法
+
+
+
 do ReconciliatoryFaction()
 do chenden.hide()
 do mizhu.hide()
@@ -1155,8 +1166,7 @@ do chenden.show()
 do mizhu.hide()
 do chenden.hide()
 刘备: 陈登、糜竺之言，备已知晓。此药囊不详，既查明张阎之谋，便无留用。来人，将此焚毁，此事到此为止。[voice:liubei_cishidaociweizhi]
-任务更新: 任务结束：药囊焚毁，张阎事件草草了结。丹阳派不满未深查，支线关闭。
-丹阳派好感-5
+任务更新: 任务结束：药囊焚毁，张阎事件草草了结。丹阳派不满未深查，支线关闭。丹阳派好感-5
 do burnSac()
 => END!
 
@@ -1219,7 +1229,8 @@ do chenden.show()
 刘备: 袁术大军压境，不可退缩！若任由其兵临城下，此前安抚各派系的努力恐付诸东流，徐州人心必再生动荡。此番，我必须亲率主力出征，正面迎击袁术！[voice:liubei_wobixuqinshuaizhuli]
 刘备: (不过，亲征之事关乎重大，我虽已有决断，但仍想听听二位幕僚的看法)[voice:liubei_buguoqinzheng]
 do PersonalCampaignBefore()
-
+系统提示: 主线已推进，获得2点政策点数。
+do GameManager.sav.Merit_points+=2
 => END!
 
 ~ 亲征前跟糜竺对话
