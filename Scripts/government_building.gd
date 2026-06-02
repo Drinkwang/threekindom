@@ -688,7 +688,7 @@ func selectPolicy(data,hp):
 			return
 
 		var heart= GameManager.getMinxinValue2()
-		GameManager.resideValue2=tr("施行政策需消耗钱x{cost}、政策点数x{point}；现有钱x{nowQ}、政策点数x{nowZd}，确定推行吗？").format({"cost":cost,"point":GameManager.minxinPoint,"nowQ":GameManager.sav.coin,"nowZd":GameManager.sav.Merit_points})
+		GameManager.resideValue2=tr("施行政策需消耗钱x{cost}、政策点数x{point}；现有钱：{nowQ}、政策点数：{nowZd}，确定推行吗？").format({"cost":cost,"point":GameManager.minxinPoint,"nowQ":GameManager.sav.coin,"nowZd":GameManager.sav.Merit_points})
 		
 		GameManager.policyAction= func():	
 			hidePolicy()
@@ -713,7 +713,7 @@ func selectPolicy(data,hp):
 		var heart=GameManager.getMinxinValue1()
 
 			
-		GameManager.resideValue2=tr("施行政策需消耗民力x{cost}、政策点数x{point}；现有民力x{nowMl}、政策点数x{nowZd}，确定推行吗？").format({"cost":cost,"point":GameManager.minxinPoint,"nowMl":GameManager.sav.labor_force,"nowZd":GameManager.sav.Merit_points})
+		GameManager.resideValue2=tr("施行政策需消耗民力x{cost}、政策点数x{point}；现有民力：{nowMl}、政策点数：{nowZd}，确定推行吗？").format({"cost":cost,"point":GameManager.minxinPoint,"nowMl":GameManager.sav.labor_force,"nowZd":GameManager.sav.Merit_points})
 		
 		GameManager.resideValue=tr("你消耗了{cost}点民力，恢复了{heart}点民心").format({"cost":cost,"heart":heart})
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"民心执行政策")
@@ -737,7 +737,7 @@ func selectPolicy(data,hp):
 		GameManager.sav.randomIndex=randi_range(2,3)
 		var addcoin=GameManager.getMinxinValue3()
 		var addLabor=GameManager.getMinxinValue4()
-		GameManager.resideValue2=tr("施行政策需消耗民心x{cost}、政策点数x{point}；现有民心x{nowH}、政策点数x{nowZd}，确定推行吗？\n【警示：民心数值降至 0 将直接游戏失败】").format({"cost":cost,"point":GameManager.minxinPoint,"nowH":GameManager.sav.people_surrport,"nowZd":GameManager.sav.Merit_points})
+		GameManager.resideValue2=tr("施行政策需消耗民心x{cost}、政策点数x{point}；现有民心：{nowH}、政策点数：{nowZd}，确定推行吗？\n【警示：民心数值降至 0 将直接游戏失败】").format({"cost":cost,"point":GameManager.minxinPoint,"nowH":GameManager.sav.people_surrport,"nowZd":GameManager.sav.Merit_points})
 	
 		GameManager.resideValue=tr("你消耗了{cost}点民心,获得了{addcoin}钱和{addLabor}民力").format({"cost":cost,"addcoin":addcoin,"addLabor":addLabor})
 	

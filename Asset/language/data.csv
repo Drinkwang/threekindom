@@ -2425,3 +2425,12 @@ Xu □□□□ ancient □, □ qi □□□, □□□ ghost □.
 泰山诸将派,Mount Tai Generals,泰山诸将派,泰山諸將派,泰山諸将派,Тайшаньская фракция генералов
 吕布势力,Lu Bu's Forces,吕布势力,呂布勢力,呂布勢力,Люй Бу
 暂无,None,暂无,暫無,現在なし,Пока нет
+施行政策需消耗民心x{cost}、政策点数x{point}；现有民心：{nowH}、政策点数：{nowZd}，确定推行吗？\n【警示：民心数值降至 0 将直接游戏失败】,,,,,
+施行政策需消耗民力x{cost}、政策点数x{point}；现有民力：{nowMl}、政策点数：{nowZd}，确定推行吗？,,,,,
+施行政策需消耗钱x{cost}、政策点数x{point}；现有钱：{nowQ}、政策点数：{nowZd}，确定推行吗？,,,,,
+大人，这次幕僚给您提供的是【民心政策】，想要落地推行，不仅需要消耗对应物资资源，还需花费{{GameManager.minxinPoint}}点政策点数才能实施。,,,,,
+大人，施行此项民心政策还需要消耗{{GameManager.minxinPoint}}点政策点数，眼下政策点数不够，暂时无法推行。,,,,,
+"实施民心政策需{{GameManager.minxinPoint}}点政策点数,当前政策点数为{{GameManager.sav.Merit_points}}，当前政策点数不足，无法开启政策",,,,,
+实施民心政策需{{GameManager.getMinxinCost2()}}钱，当前钱为{{GameManager.sav.coin}}，当前钱财不足，无法推行政策。,,,,,
+实施民心政策需{{GameManager.getMinxinCost1()}}民力，当前民力为{{GameManager.sav.labor_force}}，当前民力不足，无法推行政策。,,,,,
+实施民心政策要求民心不低于{{GameManager.getMinxinCost3()}}，当前民心为{{GameManager.sav.people_surrport}}，民心未达标准，无法推行政策。【警示：民心数值降至 0 将直接游戏失败】,,,,,
