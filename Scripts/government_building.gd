@@ -1109,10 +1109,8 @@ func StartTaishan():
 var _faction:cldata.factionIndex=cldata.factionIndex.bentupai	
 func SummonFaction(value:cldata.factionIndex):
 	_faction=value
-	#getFactionByIndex().isDoneOp
-	#if _faction.isd==false:
-	#xxxx
-	if getFactionByIndex().isDoneOp==true:
+
+	if getFactionByIndex().summonNum>=GameManager.sav.summonMaxNum:
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"已经约过该派系")#显示对话
 		return
 	if(value==cldata.factionIndex.weidipai):
@@ -1142,7 +1140,7 @@ func financialConfortChoice():
 #选项资金安抚
 func financialConfort():
 	var _c=getFactionByIndex()
-	_c.isDoneOp=true
+	_c.summonNum+=1
 	var rindex=GameManager.sav.randomIndex
 	#减去资金
 	GameManager.sav.coin=GameManager.sav.coin-200
@@ -1181,7 +1179,7 @@ func sendgift():
 	else:
 		GameManager.extraValue=0
 		_c.ChangeSupport(15)
-	_c.isDoneOp=true
+	_c.summonNum+=1
 	GameManager.sav.hp-=costHp_SummonOne
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"赠礼完成")
 	
@@ -1272,7 +1270,7 @@ func consent():
 		elif lawIndex==3:
 			GameManager.sav.lvbuCD=7
 		var data=getFactionByIndex()
-		data.isDoneOp=true
+		data.summonNum+=1
 		GameManager.sav.laws[lawIndex].append(lalongPolicy)
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"成功拉拢")#显示对话	
 		GameManager.sav.hp-=costHp_SummonOne
@@ -1318,7 +1316,7 @@ func confireSuppress():
 	ForValueGet=0
 	GameManager.sav.hp-=costHp_SummonOne
 	var _c=getFactionByIndex()
-	_c.isDoneOp=true
+	_c.summonNum+=1
 	_c._support_rate=100
 	_c.isSuppressed=true
 	_c.supressNum+=1
@@ -1327,7 +1325,7 @@ func confireSuppress():
 
 func CF_CallingSoldier():
 	var _c=getFactionByIndex()
-	_c.isDoneOp=true
+	_c.summonNum+=1
 	GameManager.sav.hp-=costHp_SummonOne
 	_c.ChangeSupport(-ForValueCost)
 	GameManager.sav.labor_force=GameManager.sav.labor_force+ForValueGet
@@ -1338,7 +1336,8 @@ func CF_claim():
 	GameManager.sav.hp-=costHp_SummonOne
 	var _c=getFactionByIndex()
 	_c.ChangeSupport(-ForValueCost)
-	_c.isDoneOp=true
+
+	_c.summonNum+=1
 	#减去资金
 	GameManager.sav.coin=GameManager.sav.coin+ForValueGet
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"索取完成")

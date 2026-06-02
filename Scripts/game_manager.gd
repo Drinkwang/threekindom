@@ -648,8 +648,8 @@ func initPaixi(data:cldata):
 	data._num_rt=initRt
 	data._num_sp=(data._num_all-data._num_op-data._num_rt)
 	data.isrebellion=false
-	data.isDoneOp=false
-	#sav.floor
+
+	data.summonNum=0
 
 
 var extraValue=0
