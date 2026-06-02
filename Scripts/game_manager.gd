@@ -1989,9 +1989,9 @@ func showLoadSuccusss():
 
 func rTaishanName():
 	if GameManager.sav.have_event["completebattleTaiShan"]==false:
-		return tr("吕布")
+		return tr("吕布势力")
 	else:
-		return tr("泰山派")
+		return tr("泰山诸将派")
 
 var perLawCycle=5
 func CheckAllFactionsSubdued():

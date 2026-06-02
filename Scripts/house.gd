@@ -516,17 +516,17 @@ func _buttonListClick(item):
 			#var PunishC=10
 			if(GameManager.sav.have_event["夏侯偷马"]==true and GameManager.sav.endPath==GameManager.endPath.xuzhou):
 				needC=3
-				PunishC=15			
+				PunishC=35	
 			elif GameManager.sav.endPath==GameManager.endPath.xiaopei and GameManager.sav.have_event["吕布之怒"]==true:
 				needC=3#吕布
-				PunishC=10
+				PunishC=30
 			else:
 				if GameManager.sav.endPath==GameManager.endPath.xiaopei:
 					needC=1
-					PunishC=10
+					PunishC=20
 				elif GameManager.sav.endPath==GameManager.endPath.xuzhou:
 					needC=2	
-					PunishC=15			
+					PunishC=25
 			if allcount<needC:
 				if GameManager.sav.have_event["主簿的追随"]==false:
 					DialogueManager.show_example_dialogue_balloon(sys,"最终自言自语")
