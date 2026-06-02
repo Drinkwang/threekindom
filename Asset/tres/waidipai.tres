@@ -19,6 +19,7 @@ supressNum = 0
 _support_rate = 100
 isshow = true
 index = 0
+summonNum = 0
 detail = "陶谦旧部核心军力，为随陶谦迁任徐州的丹阳籍武将集团，以曹豹为首，掌徐州重兵，同乡抱团，对刘备归附之意淡薄。"
 allocationStatue = -1
 demand = {}

@@ -867,7 +867,7 @@ do ShowDisterPanel()
 
 糜竺: 既如此，我遵主公之意，唯盼主公在听曹豹之议时，多加审慎。[voice:mizhu_tingcaobaoshenshen]
 #改臣为我
-
+do GameManager.AutoSaveFile()
 do chenden.hide()
 do mizhu.hide()
 => END!

@@ -299,6 +299,7 @@ func xuzhouStart():
 	GameManager.sav.LVBU.isshow=false
 	GameManager.initPaixi(GameManager.sav.LVBU)
 	SignalManager.changeSupport.emit()
+	GameManager.AutoSaveFile()
 func mizhenGift():
 	mizhu.hide()
 	var _reward:rewardPanel=PanelManager.new_reward()
@@ -354,7 +355,7 @@ func ReconciliatoryFaction():
 	else:
 		
 		GameManager.sav.targetTxt="统御派系: {currence}/{target}"
-
+	GameManager.AutoSaveFile()
 	#GameManager.initSecretBattleContext(3,SceneManager.etraTaskType.useItem,13,"袁术军大胜")
 
 func _buttonListHover(item):
@@ -493,6 +494,7 @@ func victoryPartyEnd():
 	#后面把process改成发送信号
 	GameManager.sav.targetTxt=""
 	GameManager.sav.TargetDestination=""
+	GameManager.AutoSaveFile()
 	#GameManager.initSecretBattleContext(3,SceneManager.etraTaskType.useItem,13,"袁术军大胜")	
 	
 func oldvictoryPartyEnd():
@@ -1103,7 +1105,7 @@ func StartTaishan():
 	GameManager.initSecretBattleContext(3,SceneManager.etraTaskType.dontLoseGame,6,"昌豨求饶支线")
 	#觉得无用的注释GameManager.sav.TargetDestination="battle"
 	#显示军事行动还有30把
-	pass
+	GameManager.AutoSaveFile()
 	
 
 var _faction:cldata.factionIndex=cldata.factionIndex.bentupai	

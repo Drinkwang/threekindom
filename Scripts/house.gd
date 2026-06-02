@@ -179,6 +179,7 @@ func xiaopeiStart():
 	GameManager.sav.targetResType=GameManager.ResType.rest
 	GameManager.sav.targetTxt="撑过旬数：{currence}/{target}"
 	GameManager.sav.TargetDestination="rest"
+	GameManager.AutoSaveFile()
 	#暂时先这样写
 	
 @onready var demo_end_v: VideoStreamPlayer = $demoEnd
