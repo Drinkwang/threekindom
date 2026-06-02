@@ -862,7 +862,17 @@ do ShowDisterPanel()
 刘备: 言之有理。糜竺，你意如何？[voice:liubei_mizhuniyixiangruhe]
 糜竺: 主公，曹豹将军虽为军事要员，经验丰富，然其乃陶谦旧部，传闻与袁术交好。在对抗袁术时，其立场或不够坚定，且性情急躁，意见恐失偏颇。若主公执意征询，我等自无异议，但望主公保持警惕。[voice:mizhu_caobaohuai]
 #改臣为我
+- 赞同糜竺，审慎防备吕布
+	系统提示: 豪族派支持度上升10，士族派支持度下降10
+	do GameManager.sav.HAOZUPAI.ChangeSupport(10)
+	do GameManager.sav.BENTUPAI.ChangeSupport(-10)
 
+- 赞同陈登，借力吕布平乱
+	系统提示: 士族派支持度上升10，豪族派支持度下降10
+	do GameManager.sav.HAOZUPAI.ChangeSupport(-10)
+	do GameManager.sav.BENTUPAI.ChangeSupport(10)
+- 保持中立，不偏向任意一方 [highlight=true]
+	刘备: ...
 刘备: 我明白诸位的顾虑，然我意已决。曹豹负责边防，其看法或有独到之处，我愿一听。[voice:liubei_caobaobianfang]
 
 糜竺: 既如此，我遵主公之意，唯盼主公在听曹豹之议时，多加审慎。[voice:mizhu_tingcaobaoshenshen]

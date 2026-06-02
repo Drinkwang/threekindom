@@ -2434,3 +2434,7 @@ Xu □□□□ ancient □, □ qi □□□, □□□ ghost □.
 实施民心政策需{{GameManager.getMinxinCost2()}}钱，当前钱为{{GameManager.sav.coin}}，当前钱财不足，无法推行政策。,,,,,
 实施民心政策需{{GameManager.getMinxinCost1()}}民力，当前民力为{{GameManager.sav.labor_force}}，当前民力不足，无法推行政策。,,,,,
 实施民心政策要求民心不低于{{GameManager.getMinxinCost3()}}，当前民心为{{GameManager.sav.people_surrport}}，民心未达标准，无法推行政策。【警示：民心数值降至 0 将直接游戏失败】,,,,,
+赞同糜竺，审慎防备吕布,,,,,
+豪族派支持度上升10，士族派支持度下降10,,,,,
+士族派支持度上升10，豪族派支持度下降10,,,,,
+赞同陈登，借力吕布平乱,,,,,
