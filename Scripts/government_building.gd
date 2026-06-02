@@ -578,9 +578,12 @@ func showFirstMission():
 func exit():
 	SceneManager.changeScene(SceneManager.roomNode.STREET,2)
 var getCoin
-func selectPolicy(data):
+func selectPolicy(data,hp):
 	var id=data.id
-	GameManager.sav.policyExcute=true
+	if id!=10 and id!=11 and id!=12:
+		GameManager.sav.hp-=hp
+		GameManager.sav.policyExcute=true
+	
 	if id==1:
 		#额外buff填写
 		selectCorrect()
@@ -677,57 +680,77 @@ func selectPolicy(data):
 		GameManager.sav.have_event["chaoChenDenPolicyExcute"]=true		
 	elif id==policymanager.policyID.P_LessCoin:
 		var cost=GameManager.getMinxinCost2()
+		if GameManager.sav.Merit_points<GameManager.minxinPoint:
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"政策点不足")
+			return				
 		if GameManager.sav.coin<cost:
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"钱无法支持")
-			GameManager.sav.hp=GameManager.sav.hp+35
 			return
-		hidePolicy()
 
-			
 		var heart= GameManager.getMinxinValue2()
-		GameManager.sav.coin-=cost
-
+		GameManager.resideValue2=tr("施行政策需消耗钱x{cost}、政策点数x{point}；现有钱x{nowQ}、政策点数x{nowZd}，确定推行吗？").format({"cost":cost,"point":GameManager.minxinPoint,"nowQ":GameManager.sav.coin,"nowZd":GameManager.sav.Merit_points})
+		
+		GameManager.policyAction= func():	
+			hidePolicy()
+			GameManager.sav.Merit_points-=GameManager.minxinPoint
+			GameManager.sav.coin-=cost
+			GameManager.changePeopleSupport(heart)
+			GameManager.sav.hp-=hp
+			GameManager.sav.policyExcute=true				
 		GameManager.resideValue=tr("你消耗了{cost}钱，恢复了{heart}点民心").format({"cost":cost,"heart":heart})
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"执行政策")
-		GameManager.changePeopleSupport(heart)
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"民心执行政策")
+		
 	elif id==policymanager.policyID.P_LessLabor:
 		var cost=GameManager.getMinxinCost1()
+		if GameManager.sav.Merit_points<GameManager.minxinPoint:
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"政策点不足")
+			return		
 		if GameManager.sav.labor_force<cost:
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"劳动力无法支持")
-			GameManager.sav.hp=GameManager.sav.hp+35
 			return
-		hidePolicy()
 		
-		
+
 		var heart=GameManager.getMinxinValue1()
 
 			
-
+		GameManager.resideValue2=tr("施行政策需消耗民力x{cost}、政策点数x{point}；现有民力x{nowMl}、政策点数x{nowZd}，确定推行吗？").format({"cost":cost,"point":GameManager.minxinPoint,"nowMl":GameManager.sav.labor_force,"nowZd":GameManager.sav.Merit_points})
 		
 		GameManager.resideValue=tr("你消耗了{cost}点民力，恢复了{heart}点民心").format({"cost":cost,"heart":heart})
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"执行政策")
-		GameManager.sav.labor_force-=cost
-		GameManager.changePeopleSupport(heart)
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"民心执行政策")
+		
+		GameManager.policyAction= func():
+			hidePolicy()
+			GameManager.sav.Merit_points-=GameManager.minxinPoint			
+			GameManager.sav.labor_force-=cost
+			GameManager.changePeopleSupport(heart)
+			GameManager.sav.hp-=hp
+			GameManager.sav.policyExcute=true			
 	elif id==policymanager.policyID.P_MoreBlood:
 		var cost=GameManager.getMinxinCost3()
+		if GameManager.sav.Merit_points<GameManager.minxinPoint:
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"政策点不足")
+			return
 		if GameManager.sav.people_surrport<cost:
-			GameManager.sav.hp=GameManager.sav.hp+35
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"民心无法支持了")
 			return
-		hidePolicy()
+
 		GameManager.sav.randomIndex=randi_range(2,3)
 		var addcoin=GameManager.getMinxinValue3()
 		var addLabor=GameManager.getMinxinValue4()
-
+		GameManager.resideValue2=tr("施行政策需消耗民心x{cost}、政策点数x{point}；现有民心x{nowH}、政策点数x{nowZd}，确定推行吗？\n【警示：民心数值降至 0 将直接游戏失败】").format({"cost":cost,"point":GameManager.minxinPoint,"nowH":GameManager.sav.people_surrport,"nowZd":GameManager.sav.Merit_points})
+	
 		GameManager.resideValue=tr("你消耗了{cost}点民心,获得了{addcoin}钱和{addLabor}民力").format({"cost":cost,"addcoin":addcoin,"addLabor":addLabor})
 	
 		GameManager.policyAction= func():
+			hidePolicy()
+			GameManager.sav.Merit_points-=GameManager.minxinPoint			
 			GameManager.changePeopleSupport(-cost)
 			GameManager.sav.coin+=addcoin
 			GameManager.sav.labor_force+=addLabor
-				
+			GameManager.sav.hp-=hp
+			GameManager.sav.policyExcute=true	
 		#储存方法
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"执行政策")
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"民心执行政策")
 		
 		
 func selectCorrect():

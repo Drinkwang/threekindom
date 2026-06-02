@@ -1440,26 +1440,46 @@ do hearSayEnd()
 => END!
 
 ~ 民生政策
-主簿: 大人，这次幕僚给您提供的是【民心政策】，这意味着大人需要消耗什么才能实施的政策[voice:zhubo_xiaohaosm]
+主簿: 大人，这次幕僚给您提供的是【民心政策】，想要落地推行，不仅需要消耗对应物资资源，还需花费{{GameManager.minxinPoint}}点政策点数才能实施。[voice:zhubo_xiaohaosm2]
+#主簿: 大人，这次幕僚给您提供的是【民心政策】，这意味着大人需要消耗什么才能实施的政策[voice:zhubo_xiaohaosm]
 主簿: 这些政策往往拥有很直观的效果，并且幕僚会多次不厌其烦的向你进献这种类型的政策。[voice:zhubo_muliaoduocijinxian]
 主簿: 不过也间接说明这类型的政策并不是必须需要实施，往往不执行选择无为而治也是一种很好的选择。[voice:zhubo_wuweierzhi]
 => END!
 
-~ 钱无法支持
-主簿: 大人，我们的财政情况无法支持您推进这个政策..[voice:zhubo_caizhengwufazhichi]
-提示: 你当前的钱不足{{GameManager.getMinxinCost2()}}
+~ 政策点不足
+主簿: 大人，施行此项民心政策还需要消耗{{GameManager.minxinPoint}}点政策点数，眼下政策点数不够，暂时无法推行。[voice:zhubu_nopoint]
+提示: 实施民心政策需{{GameManager.minxinPoint}}点政策点数,当前政策点数为{{GameManager.sav.Merit_points}}，当前政策点数不足，无法开启政策
 
 => END!
 
+~ 民心执行政策
+系统提示: {{GameManager.resideValue2}}
+- 是
+	=> 执行政策
+- 否
+	do GameManager.policyAction=null
+
+=> END!
+
+~ 钱无法支持
+主簿: 大人，我们的财政情况无法支持您推进这个政策..[voice:zhubo_caizhengwufazhichi]
+#提示: 你当前的钱不足{{GameManager.getMinxinCost2()}}
+提示: 实施民心政策需{{GameManager.getMinxinCost2()}}钱，当前钱为{{GameManager.sav.coin}}，当前钱财不足，无法推行政策。
+=> END!
+
+
 ~ 劳动力无法支持
 主簿: 大人，我们的可用人口无法支持您推进这个政策..[voice:zhubo_renkoubuzu]
-提示: 你当前的民力不足{{GameManager.getMinxinCost1()}}
+#提示: 你当前的民力不足{{GameManager.getMinxinCost1()}}
+提示: 实施民心政策需{{GameManager.getMinxinCost1()}}民力，当前民力为{{GameManager.sav.labor_force}}，当前民力不足，无法推行政策。
 
 => END!
 
 ~ 民心无法支持
 主簿: 大人，百姓已经对我们有所不满了，我们不能再进行这样的操作了[voice:zhubo_baixinbumanbuneng]
-提示: 你当前的民心低于你当前的钱不足{{GameManager.getMinxinCost3()}}
+#提示: 你当前的民心低于{{GameManager.getMinxinCost3()}}
+
+提示: 实施民心政策要求民心不低于{{GameManager.getMinxinCost3()}}，当前民心为{{GameManager.sav.people_surrport}}，民心未达标准，无法推行政策。【警示：民心数值降至 0 将直接游戏失败】
 
 => END!
 

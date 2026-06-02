@@ -241,13 +241,13 @@ func _on_button_button_down():
 
 	if await GameManager.isTried(costhp) or index==0:
 		return
-	GameManager.sav.hp=GameManager.sav.hp-costhp
+	
 	SoundManager.play_sound(sounds.SFX_FAST_UI_CLICK_MECHANICAL_03_WAV)
 	#var context="story"+index
 	#根据选项判断影响，并同时让施政选项不再显示
 	#get_tree().get_root().get_node("")
-	
-	GameManager.currenceScene.selectPolicy(self["control_"+var_to_str(index)].data)
+
+	GameManager.currenceScene.selectPolicy(self["control_"+var_to_str(index)].data,costhp)
 	#每个上中下上册都有一个结构体，这边事后根据结构体对应id判断不同id点击施政的确切影响
 	pass # Replace with function body.
 

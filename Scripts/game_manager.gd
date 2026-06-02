@@ -1994,6 +1994,7 @@ func rTaishanName():
 		return tr("泰山诸将派")
 
 var perLawCycle=5
+var minxinPoint=1
 func CheckAllFactionsSubdued():
 	return GameManager.sav.HAOZUPAI.supressNum>=3 and GameManager.sav.WAIDIPAI.supressNum>=3 and \
 		GameManager.sav.BENTUPAI.supressNum>=3
