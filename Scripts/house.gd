@@ -1121,7 +1121,7 @@ func determineInternalUnrestDanyang():
 	resetDeterminValue()
 	if GameManager.sav.WAIDIPAI.isrebellion==true:
 		GameManager.sav.WAIDIPAI._num_defections=GameManager.sav.WAIDIPAI._num_defections+1
-		determineValue1=randomIndex+GameManager.sav.WAIDIPAI._num_defections
+		determineValue1=int(randomIndex*0.5)+GameManager.sav.WAIDIPAI._num_defections
 		#判断道具总数之和
 		var _num=InventoryManager.canUseItemNum()
 
@@ -1268,7 +1268,7 @@ func generate_consumed_string(consumed: Dictionary) -> String:
 	for item_type in consumed:
 		if consumed[item_type] > 0:  # 只处理消耗数量大于 0 的道具
 			var item_name = InventoryManager.get_item_db(item_type).name
-			result.append(tr("%s损失x%d") % [item_name, consumed[item_type]])
+			result.append(tr("%s损失x%d") % [tr(item_name), consumed[item_type]])
 	#
 	## 用逗号连接所有描述
 	return "，".join(result)
