@@ -20,6 +20,13 @@ func _ready():
 		if initrestBtn!=null:
 			TooltipManager.register_tooltip(initrestBtn,context)
 			initrestBtn.disabled=true
+			
+
+	elif GameManager.sav.have_event["chaosBegin"]==true and GameManager.sav.have_event["chaoDialogEnd"]==false:
+		var context=tr("。")
+		if initrestBtn!=null:
+			TooltipManager.register_tooltip(initrestBtn,context)
+			initrestBtn.disabled=true
 	else:
 		if initrestBtn!=null:
 			initrestBtn.disabled=false

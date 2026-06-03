@@ -103,7 +103,8 @@ func refreshAlreadySoldTxt(index):
 		detail.text=tr("这个秘闻你已经知道了，请改日再来吧")
 #var befunc		
 func _on_buy_button_down():
-	
+	#简单难度 不扣体力，普通难度扣10 困难扣20
+	#立法 简单扣2点 普通扣3点，困难扣4点
 	#if(await GameManager.isTried(costhp)):
 		#return 		
 	if(GameManager.sav.coin>=(price as int) and selectGoods!=null):
