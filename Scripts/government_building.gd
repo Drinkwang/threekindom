@@ -1311,12 +1311,12 @@ var ForValueGet=0
 
 #你通过索取可以获得500金，但会消耗徐州派30点忠诚度，请问是否执行
 #索取可获500金，但将消耗徐州派30点忠诚度。是否执行？
-	func claim():
-		var _c=getFactionByIndex()
-		var rindex=GameManager.sav.randomIndex
-		ForValueCost = int(10 * (1 + max(_c._num_all - 10, 0) * 0.01))+rindex
-		ForValueGet=_c._num_all*12
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"索取从派系")
+func claim():
+	var _c=getFactionByIndex()
+	var rindex=GameManager.sav.randomIndex
+	ForValueCost = int(10 * (1 + max(_c._num_all - 10, 0) * 0.01))+rindex
+	ForValueGet=_c._num_all*12
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"索取从派系")
 
 
 func suppress():
@@ -1370,12 +1370,12 @@ func CF_claim():
 
 
 #调用可征集500名吕布士兵，但将消耗20点吕布忠诚度。是否执行？
-	func CallingSoldier():
-		var _c=getFactionByIndex()
-		ForValueCost = int(10 * (1 + max(_c._num_all - 10, 0) * 0.01))+3*rindex
-		var rindex=GameManager.sav.randomIndex
-		ForValueGet=_c._num_all*10
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"征兵从吕布")
+func CallingSoldier():
+	var _c=getFactionByIndex()
+	var rindex=GameManager.sav.randomIndex	
+	ForValueCost = int(10 * (1 + max(_c._num_all - 10, 0) * 0.01))+3*rindex
+	ForValueGet=_c._num_all*10
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"征兵从吕布")
 
 	#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"混乱对话结束")#显示对话
 func lvbuJoin():
@@ -1557,3 +1557,4 @@ func hidePeople():
 	mizhu.hide()
 
 func showPeople():
+	mizhu.show()
