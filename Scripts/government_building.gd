@@ -1153,7 +1153,8 @@ func SummonFaction(value:cldata.factionIndex):
 	
 #如果总人数达到100 则无法资助	
 func financialConfortChoice():
-
+#	if getFactionByIndex()._num_all>=100:
+#		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"已满")#显示对话
 	if GameManager.sav.coin>=200:
 		if _faction==cldata.factionIndex.lvbu:
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"消耗资金_吕布")#显示对话
@@ -1169,7 +1170,7 @@ func financialConfort():
 	var rindex=GameManager.sav.randomIndex
 	#减去资金
 	GameManager.sav.coin=GameManager.sav.coin-200
-	_c.ChangeAllPeople(20+rindex*3)
+	_c.ChangeAllPeople(20+rindex)
 	GameManager.sav.hp-=costHp_SummonOne
 	if _faction==cldata.factionIndex.lvbu:
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"扩充吕布实力")#显示对话

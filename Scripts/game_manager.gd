@@ -731,12 +731,12 @@ func _rest(value=true):
 
 # 怠惰检测 + 对话触发（统一入口，house.gd / TiredPanel 共用）
 func checkAndHandleLazy() -> bool:
-	const HOUSE_DIALOGUE = preload("res://dialogues/屋舍.dialogue")	
+
 	if GameManager.sav.endPath==GameManager.endPath.xuzhou and GameManager.sav.have_event["主簿的追随"]==false:
 		GameManager.sav.have_event["主簿的追随"]=true	
 		return true
 	if GameManager.sav.have_event["关羽求援结束"] ==true and GameManager.sav.have_event["主簿的追随"] ==false:
-		DialogueManager.show_example_dialogue_balloon(HOUSE_DIALOGUE,"小沛最终不能休息")
+		DialogueManager.show_example_dialogue_balloon(sys,"小沛最终不能休息")
 		return true
 	GameManager.resideValue2=GameManager.LawNum()
 	if GameManager.sav.endPath!=GameManager.endPath.none:
@@ -765,20 +765,20 @@ func checkAndHandleLazy() -> bool:
 	
 	
 
-	var resideVal = ceil(float(sav.day)/perLawCycle)
-	var resideVal2 = LawNum()
-	if sav.endPath==endPath.none and resideVal2<resideVal and resideVal2<15:
+	resideValue = ceil(float(sav.day)/perLawCycle)
+	var resideValue2 = LawNum()
+	if sav.endPath==endPath.none and resideValue2<resideValue and resideValue2<15:
 		sav.lazydays+=1
 		sav.lazyValue+=1
 		if sav.lazydays>=3:
 			sav.lazydays=0
 			sav.lazyValue=0
-			DialogueManager.show_example_dialogue_balloon(HOUSE_DIALOGUE,"连续多日怠惰")
+			DialogueManager.show_example_dialogue_balloon(sys,"连续多日怠惰")
 			return true
 		else:
 			#var lazyRan=0.5*sav.lazyValue
 			#if randf()<=lazyRan:
-			DialogueManager.show_example_dialogue_balloon(HOUSE_DIALOGUE,"单日概率怠惰")
+			DialogueManager.show_example_dialogue_balloon(sys,"单日概率怠惰")
 			return true
 	else:
 		if sav.lazyValue>0:
