@@ -151,6 +151,15 @@ func get_next_dialogue_line(resource: DialogueResource, key: String = "", extra_
 
 
 func get_resolved_line_data(data: Dictionary, extra_game_states: Array = []) -> ResolvedLineData:
+	# 在 translate 前剥离 [voice:xxx] 标签用于翻译，之后还原给配音引擎
+	var voice_tag = ""
+	if "[voice:" in data.text:
+		var voice_match = RegEx.create_from_string(r"\[voice:[^\]]+\]").search(data.text)
+		if voice_match:
+			voice_tag = voice_match.strings[0]
+		data = data.duplicate()
+		data.text = RegEx.create_from_string(r"\[voice:[^\]]+\]").sub(data.text, "")
+		data.translation_key = RegEx.create_from_string(r"\[voice:[^\]]+\]").sub(data.translation_key, "")
 	var text: String = translate(data)
 
 	# Resolve variables
@@ -220,6 +229,10 @@ func get_resolved_line_data(data: Dictionary, extra_game_states: Array = []) -> 
 			markers.mutations = next_mutations
 
 		markers.text = resolved_text
+
+	# 把 \[voice:xxx\] 标签还原到最终文本，供 dialogue_label.gd 配音解析
+	if voice_tag != "":
+		markers.text += " " + voice_tag
 
 	parser.free()
 
@@ -1293,4 +1306,3 @@ func resolve_thing_method(thing, method: String, args: Array):
 	# If we get here then it's probably a C# method with a Task return type
 	var dotnet_dialogue_manager = _get_dotnet_dialogue_manager()
 	dotnet_dialogue_manager.ResolveThingMethod(thing, method, args)
-	return await dotnet_dialogue_manager.Resolved
