@@ -23,7 +23,7 @@ func _ready():
 			
 
 	elif GameManager.sav.have_event["chaosBegin"]==true and GameManager.sav.have_event["chaoDialogEnd"]==false:
-		var context=tr("。")
+		var context=tr("请先与手下对话了解内乱情况，否则无法休息")
 		if initrestBtn!=null:
 			TooltipManager.register_tooltip(initrestBtn,context)
 			initrestBtn.disabled=true
