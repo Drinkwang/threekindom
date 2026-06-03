@@ -42,7 +42,7 @@ const caoliu2 = preload("res://Asset/music/曹刘过场2.mp3")
 @onready var cikegroup: Node2D = $cikegroup
 
 func changeToFinalScene(index):
-	
+
 	if index==-1:
 		fade.play("RESET")
 	if index==0:
@@ -60,7 +60,7 @@ func changeToFinalScene(index):
 		var tween=get_tree().create_tween()
 		#SoundManager.play_sound(sounds.BLOODXX)
 		tween.tween_property(lvbu, "modulate:a",0, 5)
-		
+
 		#显示吕布
 		#显示吕布三国志台词
 	elif index==2:
@@ -72,34 +72,34 @@ func changeToFinalScene(index):
 		bg.texture=qingmei
 		titlefinal.texture=caofu
 	elif index==3:
-		
+
 		GameManager.sav.have_event["进入青梅煮酒"]=true
 		GameManager.restLabel=tr("公元200年，曹操挟天子以令诸侯，为袁绍所忌。刘备表面亲附，暗奉衣带诏欲诛曹，几番迟疑。暮春，曹操青梅煮酒，邀刘备共饮。")
 
 		#GameManager.restFadeScene=SceneManager.HOUSE
-	
+
 
 		#GameManager.restFadeScene=SceneManager.HOUSE
 		#播放声音
 		SoundManager.play_sound(bgs194)
 		GameManager.wait_time=bgs194.get_length()
 		GameManager._rest(false)#正式游戏false
-		
+
 	elif index==4:
 		caocao_old.hide()
 		PanelManager.Fade_Blank(Color.RED,0.5,PanelManager.fadeType.fadeOut)
 		bg.texture=luoyang
-		titlefinal.texture=luoyangtitle	
+		titlefinal.texture=luoyangtitle
 	elif index==5:
-		
-		cikegroup.show()	
+
+		cikegroup.show()
 		var tween=get_tree().create_tween()
 		#SoundManager.play_sound(sounds.BLOODXX)
 		tween.tween_property(caocao_youth, "modulate", Color(0.8, 0, 0, 1), 5)
 	elif index==6:
 		pass
 	elif index==7:
-		
+
 		PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeIn)
 # Called when the node enters the scene tree for the first time.
 @onready var caocao_youth: Node2D = $"cikegroup/曹操年轻"
@@ -114,8 +114,8 @@ func enterFinalBiwu():
 	SceneManager.changeScene(SceneManager.roomNode.TrainBattle,2)
 func _ready():
 	preload("res://Asset/tres/bentupai.tres")#没用但必须有，让资源提前单例加载
-	
-	
+
+
 	Transitions.post_transition.connect(post_transition)
 	control.buttonClick.connect(_buttonListClick)
 	if GameManager.sav.day==1||GameManager.sav.day==0:
@@ -130,11 +130,11 @@ func _ready():
 	super._ready()
 	var currencelanguage=TranslationServer.get_locale()
 	if currencelanguage=="ja":
-		title.add_theme_font_size_override("normal_font_size",200)  
+		title.add_theme_font_size_override("normal_font_size",200)
 		demo_end.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
 		title.text="[center][rainbow]陰[/rainbow][wave amp=50 frep=100]三国[/wave][rainbow]謀論[/rainbow]: [tornado]徐州編[/tornado][/center]"
 	elif currencelanguage=="ru":
-		title.add_theme_font_size_override("normal_font_size",80)  
+		title.add_theme_font_size_override("normal_font_size",80)
 		demo_end.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
 		title.text="[center][tornado]Тёмные [/tornado][wave amp=50 frep=100]интриги [/wave][rainbow]Троецарствия[/rainbow][/center]"
 	elif currencelanguage=="lzh":
@@ -153,7 +153,7 @@ func _ready():
 	else:
 		if GameManager.sav.have_event["initXuzhou"]==true and GameManager.sav.endPath!=GameManager.endPath.xiaopei:
 			bg.texture=xuzhou
-			
+
 		else:
 			bg.texture=xiaopei
 		titlefinal.texture=zizhailiang
@@ -162,11 +162,11 @@ func _ready():
 
 		pass
 		#demo_end_v.show()
-		#demo_end_v.play()		
-		
+		#demo_end_v.play()
+
 func playmusic():
 	demo_end_v.show()
-	demo_end_v.play()		
+	demo_end_v.play()
 
 @onready var bti_rect = $btiRect
 @onready var bit_player = $bitPlayer
@@ -181,10 +181,10 @@ func xiaopeiStart():
 	GameManager.sav.TargetDestination="rest"
 	GameManager.AutoSaveFile()
 	#暂时先这样写
-	
+
 @onready var demo_end_v: VideoStreamPlayer = $demoEnd
-	
-	
+
+
 func _initData():
 	var canMuliao=true
 	GameManager.play_BGM()
@@ -221,19 +221,19 @@ func _initData():
 		"visible":"true"
 	}
 	]
-	
+
 	#记得demo注销
 	if GameManager.sav.have_event["chaoMizhuEnd"]==true and GameManager.sav.isGetCoin==false and GameManager.sav.currenceValue>1 and GameManager.sav.have_event["battleTaiShan"]==false:
-		
+
 		#demo结束
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"playtest结束")
 		return
 		pass
-		
-	if control.visible==true:	
-		items_in_scene.showItems()	
+
+	if control.visible==true:
+		items_in_scene.showItems()
 	else:
-		items_in_scene.hideItems()	
+		items_in_scene.hideItems()
 
 
 	GameManager.currenceScene=self
@@ -241,7 +241,7 @@ func _initData():
 	if GameManager.sav.day>=6:
 		if(GameManager.sav.isGetCoin==false):
 			#放幻觉 并return
-			
+
 			var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.迷魂木筒)
 
 			if num>=1 and GameManager.sav.have_event["竹简幻觉剧情"]==false:
@@ -253,13 +253,13 @@ func _initData():
 				hp_panel.hide()
 				res_panel.hide()
 				support_panel.hide()
-				
-				
+
+
 				GameManager.musicId=0
 				SoundManager.stop_all_ambient_sounds()
 				SoundManager.play_ambient_sound(nightbgm)
 				#SoundManager.play_sound()#暂时不播放音效，待测试
-	
+
 		#竹筒剧情完了，再次调用这边
 		#竹筒幻觉剧情 播放音效，改变背景，然后吓醒了 我觉得这个剧情可以放在早上，如果早上没有主线，则触发这个剧情，然后得知是一场噩梦
 				return canMuliao
@@ -268,7 +268,7 @@ func _initData():
 
 				if GameManager.sav.people_surrport <60:
 					GameManager.sav.people_surrport =60
-					
+
 				canMuliao=false
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"关羽回来")
 				return canMuliao
@@ -283,27 +283,26 @@ func _initData():
 				GameManager.resideValue=tr("大人本旬收入为{_coin}，招募的士兵为{_labor}").format({"_coin":GameManager.sav.coin_DayGet,"_labor":GameManager.sav.labor_DayGet})
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"今日收入为")
 			else:
-				canMuliao=false	
+				canMuliao=false
 	control._processList(initData)
-	
-	
+
+
 	if GameManager.sav.day==1:
 		if(GameManager.sav.have_event["firstmeetchenqun"]==false):
 			GameManager.sav.have_event["firstmeetchenqun"]=true
 			GameManager.sav.curGovAff=tr("1.前往府邸看看堆积的工作\n2.前往演武场会见自己的老下属")
-		
-		
+
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
 		if GameManager.sav.hp==0 and GameManager.sav.have_event["休息教程"]==false:
 			GameManager.sav.have_event["休息教程"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"休息教程")
-			
+
 	if GameManager.sav.day==2:
 		if GameManager.sav.have_event["dayTwoInit"]==false:
 			GameManager.sav.have_event["dayTwoInit"]=true
 			control._show_button_5_yellow(1)  #将这些逻辑放在
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新的一天")
-			
+
 			GameManager.sav.curGovAff=tr("1.前往府邸回见不同派系的领导人\n2.前往议会通过昨天立的法律")
 			GameManager.changeTaskLabel("完成所有待办事项")
 			GameManager.sav.destination="府邸"
@@ -322,10 +321,10 @@ func _initData():
 		if GameManager.sav.have_event["firstVisitScholars"]==false:
 			GameManager.sav.have_event["firstVisitScholars"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第四天")
-			control._show_button_5_yellow(1)			
+			control._show_button_5_yellow(1)
 			GameManager.sav.curGovAff=tr("1.前往城外及军事驻地，选择拜见大儒郑玄")
 			#GameManager.changeTaskLabel("前往城外及军事驻地，选择拜见大儒郑玄")
-		if GameManager.sav.have_event["firstVisitScholarsEnd"]==true and GameManager.sav.day<=5:	
+		if GameManager.sav.have_event["firstVisitScholarsEnd"]==true and GameManager.sav.day<=5:
 			if GameManager.sav.have_event["firstNewEnd"]==false:
 				GameManager.sav.have_event["firstNewEnd"]=true
 				GameManager.restFadeScene=SceneManager.BOULEUTERION
@@ -339,20 +338,20 @@ func _initData():
 		#大儒辩经文 今天结束时，展示最终对话
 	elif GameManager.sav.day==5:
 		#demo内容未来可删
-		
-		
+
+
 		if GameManager.sav.have_event["DemoFinish"]==false:
 			GameManager.changeTaskLabel("")
 			GameManager.sav.have_event["DemoFinish"]=true
 			control.hide()
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新手关结束")	
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新手关结束")
 	return canMuliao
-	#判断以下，是首日获取 还是第二次获取	
+	#判断以下，是首日获取 还是第二次获取
 
 const siku2 = preload("res://Asset/sound/似哭似笑2.mp3")
 
 func playtestEnd():
-	
+
 	title.show()
 	demo_end.show()
 	hp_panel.hide()
@@ -363,15 +362,15 @@ func playtestEnd():
 		#return
 func resumeBgm():
 	GameManager.play_BGM()
-	
+
 	SoundManager.stop_all_ambient_sounds()
 	SoundManager.play_ambient_sound(daybgm)
 @onready var zhubu = $"文官"
 @onready var zhenren: clickBlock = $"修仙者"
-	
+
 	#将政务面板更新 里面列举了一堆list
 	#如果没见过陈登把control隐藏，如果见过了陈登 control不隐藏
-const daybgm = preload("res://Asset/bgm/白天在家or办公.wav")	
+const daybgm = preload("res://Asset/bgm/白天在家or办公.wav")
 const nightbgm = preload("res://Asset/bgm/夜晚在家.wav")
 @onready var point_xiuzhen: Node2D = $"文官/pointXiuzhen"
 
@@ -397,14 +396,14 @@ func post_transition():
 		canMuliao=_initData()
 	else:
 		_initData()
-	
+
 	if GameManager.sav.have_event["进入曹府"]==true and GameManager.sav.have_event["最终比武结束"]==false:
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"最终章节")	
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"最终章节")
 		hidecanvas()
 	elif GameManager.sav.have_event["最终比武结束"]==true:
 		SoundManager.stop_music()
 		SoundManager.play_music(caoliu2)
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"最终章节2")	
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"最终章节2")
 		hidecanvas()
 	elif GameManager.sav.have_event["辕门射戟"]==true and GameManager.sav.have_event["辕门射戟结束"]==false:
 		GameManager.sav.have_event["辕门射戟结束"]=true
@@ -414,10 +413,10 @@ func post_transition():
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"法律够了")
 	else:
 		if canMuliao==true and !GameManager.CheckAllFactionsSubdued():
-			
-			if GameManager.sav.endPath==GameManager.endPath.none or (GameManager.sav.endPath!=GameManager.endPath.none and GameManager.sav.have_event["主簿的追随"]==true):	
+
+			if GameManager.sav.endPath==GameManager.endPath.none or (GameManager.sav.endPath!=GameManager.endPath.none and GameManager.sav.have_event["主簿的追随"]==true):
 				allocationMuliao()
-		#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"终局")	
+		#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"终局")
 		#hidecanvas()
 @onready var taishanSoilder: Node2D = $"泰山军官"
 
@@ -433,13 +432,13 @@ func lightning():
 	audio_stream_player_2d.play()
 	await get_tree().create_timer(1.5).timeout
 	$"Canvas闪电".hide()
-	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"最终章节3")	
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"最终章节3")
 
 	GameManager.sav.currenceValue=0
 	GameManager.sav.targetValue=3
 	GameManager.sav.targetResType=GameManager.ResType.battle
 	GameManager.sav.targetTxt="击退的刺客：{currence}/{target}"
-	
+
 func hidecanvas():
 	canvas_layer.hide()
 	items_in_scene.hide()
@@ -462,8 +461,7 @@ func _on_video_player_finished():
 	GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.KESULU]=tr("召见陶商、陶应，解梦境预示")
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁梦境结束")
 
-var needC
-var PunishC
+
 func _buttonListClick(item):
 
 	if item.context == "外出":
@@ -475,114 +473,46 @@ func _buttonListClick(item):
 		pass
 	elif item.context == "属性面板":
 		#当前功能demo不开放
-		#DialogueManager.show_example_dialogue_balloon(sys,"当前功能demo不开放")	
-		
+		#DialogueManager.show_example_dialogue_balloon(sys,"当前功能demo不开放")
+
 		#正式功能需要取消注释
 		refreshPropertyPanel()
 		propertyPanel.show()
-		
+
 	elif item.context == "休息":
-		
+
 	 	#如果休息时=4天，则触发阴谋论剧情
 		if(GameManager.sav.day==1):
 			if GameManager.sav.have_event["threeStree"]==false:
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"还不能休息_新手教程")	
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"还不能休息_新手教程")
 				return
 		elif GameManager.sav.day==2:
 			if GameManager.sav.have_event["firstParliamentary"]==false:
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"还不能休息_新手教程")	
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"还不能休息_新手教程")
 				return
 
 		elif GameManager.sav.day==3:
 			if GameManager.sav.have_event["firstBattleEnd"]==false:
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"还不能休息_新手教程")	
-				return		
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"还不能休息_新手教程")
+				return
 		elif GameManager.sav.day==5:
 			pass
-			#if GameManager.sav.have_event["xxxx"]==false:
-			#	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"xxxx")	
-			#	return	
-			
-		if GameManager.sav.have_event["关羽求援结束"] ==true and GameManager.sav.have_event["主簿的追随"] ==false:
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"小沛最终不能休息")	
+
 		control._show_button_5_yellow(-1)
-		GameManager.resideValue=ceil(float(GameManager.sav.day)/GameManager.perLawCycle)
-		if GameManager.musicId!=0:
-			GameManager.musicId=-GameManager.musicId
-		GameManager.resideValue2=GameManager.LawNum()
-		if GameManager.sav.endPath!=GameManager.endPath.none:
-			var allcount = GameManager.sav.battleResults.size() - GameManager.sav.battleResults.count(GameManager.BattleResult.none)
-			#var needC=1
-			#var PunishC=10
-			if(GameManager.sav.have_event["夏侯偷马"]==true and GameManager.sav.endPath==GameManager.endPath.xuzhou):
-				needC=3
-				PunishC=35	
-			elif GameManager.sav.endPath==GameManager.endPath.xiaopei and GameManager.sav.have_event["吕布之怒"]==true:
-				needC=3#吕布
-				PunishC=30
-			else:
-				if GameManager.sav.endPath==GameManager.endPath.xiaopei:
-					needC=1
-					PunishC=20
-				elif GameManager.sav.endPath==GameManager.endPath.xuzhou:
-					needC=2	
-					PunishC=25
-			if allcount<needC:
-				if GameManager.sav.have_event["主簿的追随"]==false:
-					DialogueManager.show_example_dialogue_balloon(sys,"最终自言自语")
-					return
-				else:
-					DialogueManager.show_example_dialogue_balloon(sys,"最终主簿告知")
-					return
-		#逻辑不能放在这里
-		elif(GameManager.resideValue2<GameManager.resideValue and GameManager.resideValue2<15):
-			GameManager.sav.lazydays+=1	
-			GameManager.sav.lazyValue=GameManager.sav.lazyValue+1
-			if GameManager.sav.lazydays>=3:
-				GameManager.sav.lazydays=0
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"连续多日怠惰")
-				return	
-				#连续多日怠惰
-			else:
-				#简单难度才有，高级必出
-				var lazyRan=0.2*GameManager.sav.lazyValue
-				var random_value = randf()  # 生成0.0到1.0的随机数
-				if random_value <= lazyRan:
-					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"单日概率怠惰")
-					return
-				#怠惰概率 1次 10% 
-		else:
-			if GameManager.sav.lazyValue>0:
-				GameManager.sav.lazyValue=GameManager.sav.lazyValue-1
-			GameManager.sav.lazydays=0
-			print("已经清除怠惰")	
-		if GameManager.sav.endPath==GameManager.endPath.xuzhou and GameManager.sav.have_event["主簿的追随"]==false:
-			GameManager.sav.have_event["主簿的追随"]=true
-			
-		SoundManager.stop_music()	
-		GameManager._rest()	 
-		#判断有无道具 有道具且等于false	
-				
-
-
-
-
-func oneDayidleness():
-	if GameManager.sav.have_event["Factionalization"]==true:
-		GameManager.sav.HAOZUPAI.ChangeSupport(-5)
-	GameManager.sav.BENTUPAI.ChangeSupport(-5)
-	GameManager.sav.WAIDIPAI.ChangeSupport(-5)
-	SoundManager.stop_music()	
-	GameManager._rest()	 	
-func moreDayidness():
-	if GameManager.sav.have_event["Factionalization"]==true:
 		
-		GameManager.sav.HAOZUPAI.ChangeSupport(-10)
-	GameManager.sav.BENTUPAI.ChangeSupport(-10)
-	GameManager.sav.WAIDIPAI.ChangeSupport(-10)
-	GameManager.changePeopleSupport(-5)
-	SoundManager.stop_music()	
-	GameManager._rest()	 
+
+		if GameManager.checkAndHandleLazy():
+			return
+	
+
+		GameManager._rest()
+		#判断有无道具 有道具且等于false
+
+
+
+
+
+
 func refreshPropertyPanel():
 
 	var contextEx=tr("当前旬数：%d")%GameManager.sav.day+"\n"
@@ -592,27 +522,27 @@ func refreshPropertyPanel():
 	contextEx=contextEx+tr("武将等级（括弧为战斗力）")+"\n"
 	contextEx=contextEx+tr("关羽：lv%d（%d）")%[GameManager.sav.generals[GameManager.RspEnum.ROCK].level,GameManager.sav.generals[GameManager.RspEnum.ROCK].level*500]+"\n"
 	contextEx=contextEx+tr("张飞：lv%d（%d）")%[GameManager.sav.generals[GameManager.RspEnum.SCISSORS].level,GameManager.sav.generals[GameManager.RspEnum.SCISSORS].level*500]+"\n"
-	contextEx=contextEx+tr("无名：lv%d（%d）")%[GameManager.sav.generals[GameManager.RspEnum.PAPER].level,GameManager.sav.generals[GameManager.RspEnum.PAPER].level*500]+"\n"	
+	contextEx=contextEx+tr("无名：lv%d（%d）")%[GameManager.sav.generals[GameManager.RspEnum.PAPER].level,GameManager.sav.generals[GameManager.RspEnum.PAPER].level*500]+"\n"
 	contextEx=contextEx+"------------------------------"+"\n"
 	contextEx=contextEx+tr("当前派系对你的看法")+"\n"
-	
+
 	contextEx=contextEx+tr("%s：%s")%[tr(GameManager.sav.BENTUPAI._name),getFractionView(GameManager.sav.BENTUPAI._support_rate)]+"\n"
 	if GameManager.sav.have_event["Factionalization"]==true:
 		contextEx=contextEx+tr("%s：%s")%[tr(GameManager.sav.HAOZUPAI._name),getFractionView(GameManager.sav.HAOZUPAI._support_rate)]+"\n"
 	contextEx=contextEx+tr("%s：%s")%[tr(GameManager.sav.WAIDIPAI._name),getFractionView(GameManager.sav.WAIDIPAI._support_rate)]+"\n"
-	
-	
-	#1优化参与军事行动的策略，通过战胜对手获得足够的资金收益。  
-	#2积极参与大儒辩经活动，进行辩论小游戏，获取道具与钱奖励。  
+
+
+	#1优化参与军事行动的策略，通过战胜对手获得足够的资金收益。
+	#2积极参与大儒辩经活动，进行辩论小游戏，获取道具与钱奖励。
 	#3制定有利可图的律法以增加税收，同时向城内派系索取资金，利用好的策略确保稳定的钱来源。
 
 
-	
-	#4通过任务、立法、军事行动等方式，系统性地收集资源，确保资源储备充足以支持武将升级与道具购买。  
-	#5可以选择武将进行升级，确保在军事行动中拥有更强的作战能力。  
+
+	#4通过任务、立法、军事行动等方式，系统性地收集资源，确保资源储备充足以支持武将升级与道具购买。
+	#5可以选择武将进行升级，确保在军事行动中拥有更强的作战能力。
 	#6可以购买增益类道具在军事行动中取得更大的优势。
 
-	
+
 	var comindex=0
 	if GameManager.sav.targetResType==GameManager.ResType.coin:
 		comindex=0
@@ -623,12 +553,12 @@ func refreshPropertyPanel():
 	elif GameManager.sav.targetResType==GameManager.ResType.construct:
 		comindex=3
 	else:
-		comindex=1	
+		comindex=1
 	#通过演武场、大儒辩经、立法、从其它派系索取钱财 尽可能实现收集资金的目标
 	#通过收集尽可能多的资源，升级武将购买道具并在军事行动取得进一步的优势
 	contextEx=contextEx+tr("今日建议：%s")%getrecommendStr(comindex)+"\n"
 	propertyPanel.contextEX=contextEx
-	
+
 
 func getrecommendStr(index):
 	var Rstr
@@ -640,7 +570,7 @@ func getrecommendStr(index):
 			Rstr=tr("积极参与大儒辩经活动，进行辩论小游戏，获取道具与钱奖励。")
 		elif rindex==2:
 			Rstr=tr("制定有利可图的律法以增加税收，同时向城内派系索取资金，利用好的策略确保稳定的钱来源。")
-						  
+
 	elif index==1:
 		if rindex==0:
 			Rstr=tr("通过任务、立法、军事行动等方式，系统性地收集资源，确保资源储备充足以支持武将升级与道具购买。")
@@ -655,7 +585,7 @@ func getrecommendStr(index):
 			Rstr=tr("先在初级基建玩法中熟悉策略，再挑战高阶关卡")
 		elif rindex==2:
 			Rstr=tr("任意难度下，完成3类不同基建即可达成基建计划")
-		
+
 	elif index==4:
 		if GameManager.dontHaveDominance():
 			Rstr=tr("赠送礼物、推动派系法案通过，可提升派系支持度")
@@ -665,10 +595,10 @@ func getrecommendStr(index):
 			elif rindex==1:
 				Rstr=tr("面对派系忠诚度不足的局面，除怀柔安抚外，亦可采取强硬手段。")
 			elif rindex==2:
-			
+
 				Rstr=tr("累计镇压3次后，派系将对你永远保持忠诚")
 	else:
-		Rstr=tr("暂无")	
+		Rstr=tr("暂无")
 	return Rstr
 
 func getFractionView(point):
@@ -687,7 +617,7 @@ func getFractionView(point):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
-	
+
 func showFirstGuild():
 	control.show()
 	point.hide()
@@ -701,7 +631,7 @@ func showFirstGuild():
 
 
 @onready var point: Node2D = $point
-	
+
 func showchenqun():
 	$"陈群".show()
 	point.show()
@@ -725,24 +655,24 @@ const bgs194 = preload("res://Asset/sound/公元194末.mp3")
 func demoFinish():
 	$"陈群".hide()
 	$"文官".hide()
-	
-	
+
+
 
 	GameManager.restLabel=tr("公元194年末，刘备入主徐州，同时他将州治迁往下邳，一场新的权力的游戏开始了！")
 
 	#GameManager.restFadeScene=SceneManager.HOUSE
-	
+
 	#正式版
 	GameManager.restFadeScene=SceneManager.GOVERNMENT_BUILDING
 	#播放声音
 	SoundManager.play_sound(bgs194)
 	GameManager.wait_time=bgs194.get_length()
 	GameManager._rest(false)#正式游戏false
-	
-	
+
+
 	#府邸改成 进去触发对话，对话完触发主线内容
 	#const DISSOLVE_IMAGE = preload('res://addons/transitions/images/blurry-noise.png')
-		
+
 
 
 func fadeInAndOut():
@@ -750,7 +680,7 @@ func fadeInAndOut():
 
 
 func _on_demo_end_button_down():
-	
+
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"demo结束")
 	pass # Replace with function body.
 
@@ -766,9 +696,9 @@ func _DayGet():
 	await 0.8
 	res_panel.showValue=false
 
-	
 
-	if(GameManager.sav.targetTxt!=null and GameManager.sav.targetTxt.length()>0):	
+
+	if(GameManager.sav.targetTxt!=null and GameManager.sav.targetTxt.length()>0):
 		_JudgeTask()	#主线
 	else:
 		extraTask()	#支线
@@ -781,12 +711,12 @@ func _DayGet():
 
 
 func extraTask():
-	
+
 	if GameManager.sav.day>6 and GameManager.sav.day<=9:
 		if GameManager.sav.have_event["支线发现羊尸"]==false:
 			GameManager.sav.have_event["支线发现羊尸"]=true
 			GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.KESULU]=tr("探查城外羊尸，判断妖邪与否")
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"支线开始")	
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"支线开始")
 		#将任务可检索设置成true
 		#如果任务为false  设置成true 并触发对话
 	if GameManager.sav.have_event["支线触发完毕查出锦囊"]==true and GameManager.sav.have_event["支线触发完毕查出锦囊休息"]==false:
@@ -805,17 +735,17 @@ func extraTask():
 			GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.KESULU]=""
 			GameManager.sav.have_event["错失木桶"]=true
 		#将任务设置成false
-		var num1=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.论语简注)	
-		var num2=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.礼记笺疏)	
+		var num1=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.论语简注)
+		var num2=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.礼记笺疏)
 		if(GameManager.sav.have_event["大儒支线1"]==false):
 			GameManager.sav.have_event["大儒支线1"]=true
 			GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.DARU]=tr("拜访郑玄，借名望安定徐州人心")
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大儒辩经1启动之前")	
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大儒辩经1启动之前")
 			return
 		elif GameManager.sav.have_event["大儒支线2"]==false and num1>=1 and GameManager.sav.have_event["泰山诸将曹操消息"]==true:
 			GameManager.sav.have_event["大儒支线2"]=true
 			GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.DARU]=tr("与郑玄论《礼记》，安抚徐州士人")
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大儒辩经2启动之前")			
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大儒辩经2启动之前")
 			return
 		elif GameManager.sav.have_event["大儒支线3"]==false and num2>=1 and GameManager.sav.have_event["基建项目开启"]==true:
 			GameManager.sav.have_event["大儒支线3"]=true
@@ -827,12 +757,12 @@ func extraTask():
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"泰山诸将任务完成")
 			GameManager.sav.have_event["最终泰山"]=true
 			return
-		
+
 		else:
 			pass
 			#allocationAllSettle()
 	#判断忠诚度
-	var chaonum=0	
+	var chaonum=0
 	enterdetermineInternalUnrest()
 
 
@@ -848,52 +778,52 @@ func _JudgeTask():
 		value=GameManager.sav.coin
 	elif GameManager.sav.targetResType==GameManager.ResType.people:
 		pass
-		#value	
+		#value
 	elif GameManager.sav.targetResType==GameManager.ResType.rest:
 		value=GameManager.sav.currenceValue
 		if GameManager.sav.have_event["chaosBegin"]==true and GameManager.sav.have_event["chaosEnd"]==false:
-			
+
 			if value>=GameManager.sav.targetValue:
 				GameManager.sav.have_event["chaosEnd"]=true
 					#完成城中之乱-泰山
 				hp_panel.playLabelChange()
 				GameManager.sav.TargetDestination="府邸"
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"袁术之乱结束")	
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"袁术之乱结束")
 				hasSide=false
 			else:
 				hasSide=false
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"每天袁术内应搞事")	
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"每天袁术内应搞事")
 		elif GameManager.sav.have_event["关羽求援结束"]==true:
 			if value>=8 and GameManager.sav.have_event["夏侯偷马"]==false and GameManager.sav.endPath==GameManager.endPath.xiaopei:
 				hasSide=false
 				GameManager.sav.have_event["夏侯偷马"]=true
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"小沛信件")	
-				
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"小沛信件")
+
 			elif value>=8 and GameManager.sav.have_event["夏侯偷马"]==false and GameManager.sav.endPath==GameManager.endPath.xuzhou:
 				hasSide=false
 				GameManager.sav.have_event["夏侯偷马"]=true
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"夏侯淳霸道")		
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"夏侯淳霸道")
 			elif value>=10 and GameManager.sav.have_event["吕布之怒"]==false and GameManager.sav.endPath==GameManager.endPath.xiaopei:
 				hasSide=false
 				GameManager.sav.have_event["吕布之怒"]=true
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"吕布最终进犯")	
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"吕布最终进犯")
 			elif value>=GameManager.sav.targetValue and GameManager.sav.endPath==GameManager.endPath.xiaopei:
 				#屏蔽三个地方
 				hasSide=false
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"终局")	
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"终局")
 				canvas_layer.hide()
 			elif value>=GameManager.sav.targetValue and GameManager.sav.endPath==GameManager.endPath.xuzhou:
 				hasSide=false
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"最终霸道任务")	
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"最终霸道任务")
 				#canvas_layer.hide()
-				
-				
+
+
 				GameManager.sav.targetValue=1
 				GameManager.sav.currenceValue=0
 				GameManager.sav.currenceDay=0
 				GameManager.sav.targetResType=GameManager.ResType.battle
-				GameManager.sav.targetTxt="征讨次数：{currence}/{target}"	
-						
+				GameManager.sav.targetTxt="征讨次数：{currence}/{target}"
+
 	if(GameManager.sav.have_event["completeTask1"]==true):
 		if(GameManager.sav.have_event["initTask2"]==false):
 			GameManager.sav.have_event["initTask2"]=true
@@ -901,14 +831,14 @@ func _JudgeTask():
 			hasSide=false
 			#显示对话
 			#任务完成
-	
+
 			#if GameManager.sav.have_event["battleYuanshu"]==true:
-			#if(GameManager.sav.have_event["completebattleYuanshu"]==false):	
+			#if(GameManager.sav.have_event["completebattleYuanshu"]==false):
 	if hasSide==true:
-		extraTask()	
+		extraTask()
 	else:
-		zhubu.hide()#后续改动逻辑，今日工作已经写完了	
-	
+		zhubu.hide()#后续改动逻辑，今日工作已经写完了
+
 func secondMissonStart():
 	GameManager.sav.targetValue=10
 	GameManager.sav.currenceValue=0
@@ -920,7 +850,7 @@ func secondMissonStart():
 	#win 10次90
 	#GameManager.sav.TargetDestination=="府邸"
 	pass
-	
+
 
 #准备改成5天，然后民心下降改成5点
 func yuanshuChaos(value):
@@ -938,18 +868,19 @@ func yuanshuChaos(value):
 		GameManager.sav.BENTUPAI.ChangeSupport(-10)
 		GameManager.changePeopleSupport(-10)
 		#全部下降10
-	
+
 	enterdetermineInternalUnrest()
 	allocationMuliao()
 	#
 @onready var caocao_letter = $CanvasLayer/caocaoLetter
-		
-	
+
+
+
 @onready var caocao_letter_2: Control = $CanvasLayer/caocaoLetter2
-		
+
 func showCaoCaoLetter():
 	caocao_letter.show()
-	
+
 var isdetermine=false
 #完成任务不应该显示 休息进入下一天
 func lookDoneCaoCaoLetter():
@@ -962,7 +893,7 @@ func lookDoneCaoCaoLetter():
 func enterdetermineInternalUnrest():
 	if isdetermine==false:
 		isdetermine=true
-		determineInternalUnrest()	
+		determineInternalUnrest()
 
 var randomIndex=0
 #以下是叛乱逻辑
@@ -980,8 +911,8 @@ func determineInternalUnrest():
 			# 随机数判断是否叛变
 			if randf() < rebellion_chance:
 				fraction.isrebellion = true
-				_UnrestNum=_UnrestNum+1	
-	
+				_UnrestNum=_UnrestNum+1
+
 	var _LVBUsupport_rate=GameManager.sav.LVBU._support_rate
 	if _LVBUsupport_rate < 80.0:
 			# 计算叛变概率：支持率越低，概率越高
@@ -990,10 +921,10 @@ func determineInternalUnrest():
 			# 随机数判断是否叛变
 		if randf() < rebellion_chance:
 			GameManager.sav.LVBU.isrebellion = true
-			_UnrestNum=_UnrestNum+1	
-	
-	
-	
+			_UnrestNum=_UnrestNum+1
+
+
+
 	if _UnrestNum>0:
 		DialogueManager.show_example_dialogue_balloon(sys,"有内乱禀报")
 	else:
@@ -1011,7 +942,7 @@ var alldata
 func allocationAllSettle():
 	if GameManager.sav.allocationDay<0 or GameManager.CheckAllFactionsSubdued():
 		return
-		
+
 	if GameManager.sav.allocationDay==0:
 		allcontext="\n"
 		allocationSettle()
@@ -1022,9 +953,9 @@ func allocationAllSettle():
 	elif GameManager.sav.allocationDay==1:
 		GameManager.initDemand()
 	elif GameManager.sav.allocationDay==2||GameManager.sav.allocationDay==3:
-		
+
 		var allCost=GameManager.cuclulateAllAllocation()
-		
+
 		#把allCost转换成文本
 		if allCost!=null and !allCost.is_empty():
 			determineDetail=generate_cost_allocate(allCost)
@@ -1033,25 +964,25 @@ func allocationAllSettle():
 				GameManager.completeAutoAll()
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"津贴发放")
 			else:
-				
+
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"未完成津贴发放")
-				
-				
+
+
 var cnames:Array=[]
 var allcontext=""
 func allocationSettle():
 	for index in range(0,4):
 		alldata=GameManager.getcldateByindex(index)
-	
+
 		if alldata.allocationStatue==0:
 			cnames.append(alldata)
-			
+
 			var point=5
 			if alldata.index==3:
 				point=10
 			alldata.ChangeSupport(-point)
 			allcontext+=tr("{_name}月例拖欠，支持度下降{point}点").format({"_name":tr(alldata._name),"point":point})+"\n"
-	
+
 	if allcontext!="" and allcontext!="\n":
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"派系扣除好感")
 func allocationMuliao():
@@ -1059,8 +990,8 @@ func allocationMuliao():
 		if GameManager.sav.allocationDay==2 and GameManager.canDistributeAllowance():
 			zhubu.show()
 			zhubu.changeAllClick("月例发放日")
-			
-			
+
+
 		elif GameManager.sav.allocationDay==3 and GameManager.canDistributeAllowance():
 			zhubu.show()
 			zhubu.changeAllClick("最后支给日")
@@ -1081,21 +1012,21 @@ func settleDeterminValue():
 		GameManager.sav.labor_force=GameManager.sav.labor_force-determineValue1
 	elif determineType==GameManager.ResType.heart:
 		GameManager.changePeopleSupport(-determineValue1)
-	
-	
+
+
 func determineInternalUnrestXuzhou():
 	resetDeterminValue()
 	if GameManager.sav.BENTUPAI.isrebellion==true:
 		GameManager.sav.BENTUPAI._num_defections=GameManager.sav.BENTUPAI._num_defections+1
 		determineValue1=30*randomIndex+(GameManager.sav.BENTUPAI._num_defections)*30
-		
+
 		if randf() < 0.5||GameManager.sav.labor_force<determineValue1:
 			determineType=GameManager.ResType.heart
 			determineValue1=5+randomIndex+(GameManager.sav.BENTUPAI._num_defections-1)*2
 			DialogueManager.show_example_dialogue_balloon(sys,"士族叛乱1")
 		else:
 			determineType=GameManager.ResType.people
-			
+
 			DialogueManager.show_example_dialogue_balloon(sys,"士族叛乱2")
 		return
 	determineInternalUnrestHaozu()
@@ -1111,11 +1042,11 @@ func determineInternalUnrestHaozu():
 			determineType=GameManager.ResType.heart
 			DialogueManager.show_example_dialogue_balloon(sys,"豪族叛乱1")
 		else:
-			
-			determineType=GameManager.ResType.coin			
+
+			determineType=GameManager.ResType.coin
 			DialogueManager.show_example_dialogue_balloon(sys,"豪族叛乱2")
 		return
-	determineInternalUnrestDanyang()	
+	determineInternalUnrestDanyang()
 func determineInternalUnrestDanyang():
 	settleDeterminValue()
 	resetDeterminValue()
@@ -1129,11 +1060,11 @@ func determineInternalUnrestDanyang():
 			#bug
 			determineValue1=InventoryManager.costItemRandom(determineValue1)
 			determineDetail=generate_consumed_string(determineValue1)
-			determineType=GameManager.ResType.item	
+			determineType=GameManager.ResType.item
 			DialogueManager.show_example_dialogue_balloon(sys,"丹阳叛乱1")
 		else:
 			determineValue1=5+randomIndex+(GameManager.sav.WAIDIPAI._num_defections-1)*2
-			determineType=GameManager.ResType.heart			
+			determineType=GameManager.ResType.heart
 			DialogueManager.show_example_dialogue_balloon(sys,"丹阳叛乱2")
 		return
 	determineInternalUnrestLvbu()
@@ -1163,7 +1094,7 @@ func determineInternalUnrestLvbu():
 		if valid_options.size() > 0:
 			var choice = valid_options[randi() % valid_options.size()]
 			if(choice[0]!=GameManager.ResType.item):
-				
+
 				determineType = choice[0]
 				determineValue1 = choice[1]
 				determineDetail=choice[2]
@@ -1188,7 +1119,7 @@ func determineInternalUnrestMinxin():
 	if randf() > rebellion_chance:
 		shizuLawTest()
 		return
-		
+
 	var rand = randi() % 4
 	var valid_choice = false
 	var costItem= randomIndex + GameManager.sav.LVBU._num_defections
@@ -1210,16 +1141,16 @@ func determineInternalUnrestMinxin():
 	# 如果有可满足的资源，随机选择一种
 	if valid_options.size() > 0:
 		var choice = valid_options[randi() % valid_options.size()]
-		if(choice[0]!=GameManager.ResType.item):	
+		if(choice[0]!=GameManager.ResType.item):
 			determineType = choice[0]
 			determineValue1 = choice[1]
 			determineDetail=choice[2]
 			if determineType==GameManager.ResType.coin:
-				DialogueManager.show_example_dialogue_balloon(sys,"民心叛乱2")		
+				DialogueManager.show_example_dialogue_balloon(sys,"民心叛乱2")
 			elif determineType==GameManager.ResType.people:
-				DialogueManager.show_example_dialogue_balloon(sys,"民心叛乱3")		
+				DialogueManager.show_example_dialogue_balloon(sys,"民心叛乱3")
 			elif determineType==GameManager.ResType.heart:
-				DialogueManager.show_example_dialogue_balloon(sys,"民心叛乱4")		
+				DialogueManager.show_example_dialogue_balloon(sys,"民心叛乱4")
 		else:
 			determineValue1=InventoryManager.costItemRandom(choice[1])
 			determineDetail=generate_consumed_string(determineValue1)
@@ -1231,7 +1162,7 @@ func determineInternalUnrestMinxin():
 		determineValue1 = costHeart
 		determineDetail=tr("民心-%d") %costHeart
 		DialogueManager.show_example_dialogue_balloon(sys,"民心叛乱4")
-		
+
 
 func shizuLawTest():
 	if GameManager.sav.xuzhouCD==0:
@@ -1261,7 +1192,7 @@ func danyangLawTest():
 		GameManager.sav.WAIDIPAI.ChangeSupport(-10)
 	#GameManager.predemand()
 	allocationAllSettle()#test工资系统 加到另外的后面
-	
+
 
 func generate_consumed_string(consumed: Dictionary) -> String:
 	var result = []
@@ -1272,20 +1203,20 @@ func generate_consumed_string(consumed: Dictionary) -> String:
 	#
 	## 用逗号连接所有描述
 	return "，".join(result)
-	
+
 func generate_cost_allocate(items_data: Dictionary)-> String:
 	# 存储拼接的各个部分
 	var parts = []
-	
+
 
 	if items_data.has("money") and items_data.money > 0:
-		# "ui.money" 是你翻译字典中对应“钱”的key，可自定义
+		# "ui.money" 是你翻译字典中对应"钱"的key，可自定义
 		var money_name = tr("钱")
 		parts.append("%s ×%s" % [money_name, str(items_data.money)])
-	
+
 	# 2. 民力（多语言翻译）
 	if items_data.has("population") and items_data.population > 0:
-		# "ui.population" 是你翻译字典中对应“民力”的key
+		# "ui.population" 是你翻译字典中对应"民力"的key
 		var population_name = tr("民力")
 		parts.append("%s ×%s" % [population_name, str(items_data.population)])
 	# 3. 添加各类道具（通过item_type获取名称）
@@ -1297,15 +1228,15 @@ func generate_cost_allocate(items_data: Dictionary)-> String:
 				var itemname= InventoryManagerItem.item_by_enum(item_type)
 				var item_name_key = InventoryManager.get_item_db(itemname).name
 				var item_name = tr(item_name_key) # 翻译道具名称
-				
+
 				# 方式2：如果InventoryManager返回的是已翻译的显示名，直接用
 				# var item_name = InventoryManager.get_item_db(item_type).name
-				
+
 				parts.append("%s ×%s" % [item_name, str(count)])
-	
+
 	# 4. 拼接所有部分，用顿号分隔；如果无数据返回空字符串
 	return "、".join(parts) if parts.size() > 0 else ""
-	
+
 @onready var items_in_scene: Node2D = $itemsInScene
 
 @onready var caobao: Node2D = $caobao
@@ -1344,7 +1275,7 @@ func killCike(index):
 		SoundManager.play_sound(sounds.BLOODCC_1)
 		animation=ani_3.get_child(0) as AnimationPlayer
 		tween.tween_property(cike3, "modulate:a",0, 0.8)
-	animation.play("slash")	
+	animation.play("slash")
 	GameManager.sav.currenceValue+=1
 	if GameManager.sav.currenceValue>=3:
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"最终章节_洛阳街头2")

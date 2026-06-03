@@ -712,16 +712,95 @@ func getConstructValue():
 	#sav.coin=sav.coin+sav.coin_DayGet
 	#sav.labor_force=sav.labor_force+sav.labor_DayGet
 
+var needC
+var PunishC
 func _rest(value=true):
+	
+	SoundManager.stop_music()
+	if GameManager.musicId!=0:
+		GameManager.musicId=-GameManager.musicId	
 	const DISSOLVE_IMAGE = preload("res://addons/transitions/images/circle-inverted.png")
 	if DialogueManager.gameover==true:
 		return
-	
+
 	if GameManager.sav.have_event["预获得龙胆枪"]==true:
 		GameManager.sav.have_event["预获得龙胆枪休息"]=true
 	_enterDay(value)
 	
 	Transitions.change_scene_to_instance( SceneManager.SLEEP_BLANK.instantiate(), Transitions.FadeType.Instant)
+
+# 怠惰检测 + 对话触发（统一入口，house.gd / TiredPanel 共用）
+func checkAndHandleLazy() -> bool:
+	const HOUSE_DIALOGUE = preload("res://dialogues/屋舍.dialogue")	
+	if GameManager.sav.endPath==GameManager.endPath.xuzhou and GameManager.sav.have_event["主簿的追随"]==false:
+		GameManager.sav.have_event["主簿的追随"]=true	
+		return true
+	if GameManager.sav.have_event["关羽求援结束"] ==true and GameManager.sav.have_event["主簿的追随"] ==false:
+		DialogueManager.show_example_dialogue_balloon(HOUSE_DIALOGUE,"小沛最终不能休息")
+		return true
+	GameManager.resideValue2=GameManager.LawNum()
+	if GameManager.sav.endPath!=GameManager.endPath.none:
+		var allcount = GameManager.sav.battleResults.size() - GameManager.sav.battleResults.count(GameManager.BattleResult.none)
+
+		if(GameManager.sav.have_event["夏侯偷马"]==true and GameManager.sav.endPath==GameManager.endPath.xuzhou):
+			needC=3
+			PunishC=35
+		elif GameManager.sav.endPath==GameManager.endPath.xiaopei and GameManager.sav.have_event["吕布之怒"]==true:
+			needC=3#吕布
+			PunishC=30
+		else:
+			if GameManager.sav.endPath==GameManager.endPath.xiaopei:
+				needC=1
+				PunishC=20
+			elif GameManager.sav.endPath==GameManager.endPath.xuzhou:
+				needC=2
+				PunishC=25
+		if allcount<needC:
+			if GameManager.sav.have_event["主簿的追随"]==false:
+				DialogueManager.show_example_dialogue_balloon(sys,"最终自言自语")
+				return true
+			else:
+				DialogueManager.show_example_dialogue_balloon(sys,"最终主簿告知")
+				return	true
+	
+	
+
+	var resideVal = ceil(float(sav.day)/perLawCycle)
+	var resideVal2 = LawNum()
+	if sav.endPath==endPath.none and resideVal2<resideVal and resideVal2<15:
+		sav.lazydays+=1
+		sav.lazyValue+=1
+		if sav.lazydays>=3:
+			sav.lazydays=0
+			sav.lazyValue=0
+			DialogueManager.show_example_dialogue_balloon(HOUSE_DIALOGUE,"连续多日怠惰")
+			return true
+		else:
+			#var lazyRan=0.5*sav.lazyValue
+			#if randf()<=lazyRan:
+			DialogueManager.show_example_dialogue_balloon(HOUSE_DIALOGUE,"单日概率怠惰")
+			return true
+	else:
+		if sav.lazyValue>0:
+			sav.lazyValue-=1
+		sav.lazydays=0
+	return false
+
+# 以下两个函数由 dialogue 的 do 命令调用
+func moreDayidness():
+	if sav.have_event["Factionalization"]==true:
+		sav.HAOZUPAI.ChangeSupport(-10)
+	sav.BENTUPAI.ChangeSupport(-10)
+	sav.WAIDIPAI.ChangeSupport(-10)
+	changePeopleSupport(-5)
+	_rest()
+
+func oneDayidness():
+	if sav.have_event["Factionalization"]==true:
+		sav.HAOZUPAI.ChangeSupport(-5)
+	sav.BENTUPAI.ChangeSupport(-5)
+	sav.WAIDIPAI.ChangeSupport(-5)
+	_rest()
 
 
 

@@ -27,7 +27,9 @@ func _ready():
 
 func _on_rest():
 	GameManager.triedPanelDone.emit()
-	self.hide()	
+	self.hide()
+	if GameManager.checkAndHandleLazy():
+		return  # 对话会通过 do GameManager.oneDayidness()/moreDayidness() 最终调用 _rest()
 	GameManager._rest()
 	pass # Replace with function body.
 
