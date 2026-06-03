@@ -104,11 +104,11 @@ func refreshAlreadySoldTxt(index):
 #var befunc		
 func _on_buy_button_down():
 	
-	if(await GameManager.isTried(costhp)):
-		return 		
+	#if(await GameManager.isTried(costhp)):
+		#return 		
 	if(GameManager.sav.coin>=(price as int) and selectGoods!=null):
 		SoundManager.play_sound(sounds.buysellsound)
-		GameManager.costHp(costhp)
+		#GameManager.costHp(costhp)
 		selectGoods.getItem()
 		GameManager.sav.coin=GameManager.sav.coin-price
 		if selectGoods.itemstype==InventoryManagerItem.ItemEnum.市井秘闻:
@@ -196,9 +196,10 @@ func confireSold():
 
 
 func _on_buy_button_focus_entered() -> void:
-	if buy_button.disabled==false:
-		if GameManager.haveMirror():
-			GameManager._engerge.startPreviewHp(costhp)
+	pass
+	#if buy_button.disabled==false:
+		#if GameManager.haveMirror():
+			#GameManager._engerge.startPreviewHp(costhp)
 
 
 func _on_buy_button_focus_exited() -> void:
