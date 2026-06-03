@@ -280,6 +280,7 @@ do GameManager._imporveRelation(getFactionByIndex())
 => END
 ~ 已经约过该派系
 提示: 本旬已与该派系面谈完毕，请下一旬再来！
+#系统提示: 倘贯通儒门大道、承续文脉道统，得天心文脉眷顾，此后每旬便能多一番会晤机缘。
 => END
 ~ 索取完成
 你已成功从{{getFactionByIndex().getTr()}}手中获取资金{{ForValueGet}}，消耗{{ForValueCost}}点好感度
