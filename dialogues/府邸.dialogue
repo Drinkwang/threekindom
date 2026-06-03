@@ -311,7 +311,7 @@ do GameManager._imporveRelation(getFactionByIndex())
 
 
 ~ 消耗资金
-if getFactionByIndex()._allNum<100
+if getFactionByIndex()._num_all<100
 
 	提示: 该选项可提升派系人数（最多100人），增强议事厅辩论优势。索取资源会更多但支持度消耗更大。
 	if getFactionByIndex()._num_all+20+GameManager.sav.randomIndex<=100
@@ -328,7 +328,7 @@ else
 => END
 
 ~ 消耗资金_吕布
-if getFactionByIndex()._allNum<100
+if getFactionByIndex()._num_all<100
 
 	提示: 该选项可让{{GameManager.rTaishanName()}}招募更多部将（最多100人），增强{{GameManager.rTaishanName()}}的军事实力。调用士兵会更多但支持度消耗更大。
 	if getFactionByIndex()._num_all+20+GameManager.sav.randomIndex<=100

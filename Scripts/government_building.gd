@@ -1315,6 +1315,9 @@ func claim():
 	var _c=getFactionByIndex()
 	var rindex=GameManager.sav.randomIndex
 	ForValueCost=10+3*rindex
+	#doing
+	
+	
 	ForValueGet=_c._num_all*12
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"索取从派系")#显示对话
 
@@ -1372,6 +1375,7 @@ func CF_claim():
 #调用可征集500名吕布士兵，但将消耗20点吕布忠诚度。是否执行？
 func CallingSoldier():
 	
+	#doing
 	var _c=getFactionByIndex()
 	var rindex=GameManager.sav.randomIndex
 	ForValueCost=10+5*rindex

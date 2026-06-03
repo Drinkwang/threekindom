@@ -285,7 +285,7 @@ autoplay = "YELLOWGUILD"
 
 [node name="主簿" parent="peoples" instance=ExtResource("6_ibudm")]
 visible = false
-position = Vector2(-5, 5)
+position = Vector2(6, 5)
 showName = "主簿"
 txt2d = ExtResource("13_6lqxm")
 boardType = 1
