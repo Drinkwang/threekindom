@@ -173,8 +173,10 @@ do merchantSendGift()
 => END!
 
 ~ 掩埋羊尸
-刘备下令掩埋羊尸与竹筒，试图平息村民恐慌。[voice:burnWoolden]
+do SoundManager.play_sound(sounds.BURN_WOOLDEN)
 
+刘备下令掩埋羊尸与竹筒，试图平息村民恐慌。
+do SoundManager.stop_sound(sounds.BURN_WOOLDEN)
 任务更新: 但百姓对刘备掩埋羊尸，粗暴平息谣言觉得不满，谣言传播更深 民心-10，支线任务结束
 do BurySheep()
 => END!
@@ -214,7 +216,10 @@ do people.hide()
 #红光陶商死 这里显示红光 和抹脖子音效
 do zhangyanDie()
 do tsty.hide()
-（张阎仰头苦笑，横刃抹颈，鲜血喷涌，踉跄跪地，眼中泪光闪烁，死状凄然，似有不甘与释然。）[voice:zhangyan_cry]
+do SoundManager.play_sound(sounds.ZHANGYAN_CRY)
+（张阎仰头苦笑，横刃抹颈，鲜血喷涌，踉跄跪地，眼中泪光闪烁，死状凄然，似有不甘与释然。）
+do SoundManager.stop_sound(sounds.ZHANGYAN_CRY)
+
 do GameManager.enterNormal()
 刘备: 此人恨意深埋，陶氏无辜，我虽取骨棒，未能护之，愧对陶公……[voice:liubei_kuiduitaogong]
 
@@ -494,7 +499,9 @@ do gulong.hide()
 => END!
 
 ~ 动画播完_镇魂龙
-镇魂石龙: 吼吼隆~[voice:longxiao]
+do SoundManager.play_sound(sounds.LONGXIAO)
+镇魂石龙: 吼吼隆~
+#do SoundManager.stop_sound(sounds.LONGXIAO)
 盗宝贼-匠人: 啊，噬魂古龙显灵了！真龙降世了，我无意冒犯，对不起，救命！[voice:litie_jiumin]
 说罢，这位盗宝匠人吓晕过去，刘备命人将其扶在一边，并与苏醒的古龙进行搏斗
 刘备: 竟真有石龙显灵...这不可能[voice:liubei_zhenyoushilongxianlin]
@@ -506,7 +513,9 @@ do gulong.hide()
 
 
 ~ 真相揭露_镇魂龙
-镇魂石龙: 嗷~[voice:longxiao2]
+do SoundManager.play_sound(sounds.LONGXIAO_2)
+镇魂石龙: 嗷~
+#do SoundManager.stop_sound(sounds.LONGXIAO_2)
 刘备: ...
 此刻，那位晕倒的盗宝匠人苏醒了...
 刘备: 醒来！你到底何人，深夜掘遗迹，意欲何为？[voice:liubei_xinglaiyiyuhewei]

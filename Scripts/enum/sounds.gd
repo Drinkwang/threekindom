@@ -55,3 +55,9 @@ const IRONCHAIN = preload("res://Asset/sound/ironchain.mp3")
 
 const WASTELAND_0 = preload("res://Asset/bgm/wasteland0.wav")
 const UNLOCKCC_0 = preload("res://Asset/sound/unlockcc0.mp3")
+
+const BURN_WOOLDEN = preload("res://Asset/sound/burnWoolden.mp3")
+const LONGXIAO_2 = preload("res://Asset/sound/longxiao2.mp3")
+const LONGXIAO = preload("res://Asset/sound/longxiao.mp3")
+
+const ZHANGYAN_CRY = preload("res://Asset/sound/zhangyan_cry.mp3")
