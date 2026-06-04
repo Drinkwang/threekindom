@@ -80,6 +80,30 @@ func changeLanguage():
 		var battleEnhance=GameManager.sav.battleEnhance
 		var EnhanceContext=tr("[法令提升了战利品收益{profit}%]").format({"profit":battleEnhance*15})
 		TooltipManager.register_tooltip(lauchBtn,EnhanceContext)
+		
+		
+		
+
+	var _item_db=InventoryManager.get_item_db(InventoryManagerItem.胜战锦囊)
+	var properties:Array=_item_db.properties
+
+		
+	var detail=properties.filter(func(a):return a["name"]=="detail")[0]
+	var _context
+	if tr(detail["value"]).length()>0:
+					
+		_context=tr(_item_db.name)+":"+tr(detail["value"])
+
+					
+
+					
+	if InventoryManager.has_item(InventoryManagerItem.迷魂木筒):
+		_context = _context.replace("10", "13") 
+		_context=_context+tr("【已强化】")
+		
+	TooltipManager.register_tooltip(useItemPanel,_context)	
+
+		
 func initData():
 	battle_circle.refreshPage()
 func endBattle():

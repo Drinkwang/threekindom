@@ -211,7 +211,11 @@ func _on_item_use_gui_input(event):
 		if count>0:
 			InventoryManager._remove_item(GameManager.inventoryPackege,InventoryManagerItem.诸子百家论集,1)
 			itemUseLabel.text=tr("_stockInExpound").format({"num":count-1})
-			score=9000
+			
+			if InventoryManager.has_item(InventoryManagerItem.礼记笺疏):
+				score=10000
+			else:
+				score=9000
 			yourscore.text=tr("你的得分：")+"\n"+str(score)+"/{daru}".format({"daru":GameManager.sav.daruValue})
 			over()
 		#判断道具数量

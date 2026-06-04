@@ -5,7 +5,21 @@ extends CanvasLayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	var _item_db=InventoryManager.get_item_db(InventoryManagerItem.珍品礼盒)
+	var properties:Array=_item_db.properties
+
+		
+	var detail=properties.filter(func(a):return a["name"]=="detail")[0]
+	var _context
+	if tr(detail["value"]).length()>0:
+					
+		_context=tr(_item_db.name)+":"+tr(detail["value"])
+		if InventoryManager.has_item(InventoryManagerItem.黄麻药囊):
+			_context = _context.replace("15", "20") 
+
+			TooltipManager.register_tooltip(self,_context+tr("【已强化】"))
+		
+	TooltipManager.register_tooltip(texture_button,_context)	
 
 func _initPanel(factionName,index,point):
 	var indexName

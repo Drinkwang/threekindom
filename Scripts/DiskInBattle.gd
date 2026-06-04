@@ -249,7 +249,10 @@ func _juideCompeleteTask():
 	
 	buff_txt.text=""
 	if GameManager.sav.useItemInBattle==true:
-		levelup=levelup*1.1
+		var itemup=1.1
+		if  InventoryManager.has_item(InventoryManagerItem.迷魂木筒):
+			levels=1.13
+		levelup=levelup*levels
 		buff_txt.text="道具加持+10%" #未来要注销
 		buff_txt.show()
 	else:

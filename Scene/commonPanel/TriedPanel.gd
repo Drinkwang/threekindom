@@ -17,7 +17,7 @@ func _ready():
 		texture_button.hide()
 		
 
-	var _item_db=InventoryManager.get_inventory_db(InventoryManagerItem.益气丸)
+	var _item_db=InventoryManager.get_item_db(InventoryManagerItem.益气丸)
 	var properties:Array=_item_db.properties
 
 		
@@ -25,16 +25,20 @@ func _ready():
 	var _context
 	if tr(detail["value"]).length()>0:
 					
-			_context=tr(_item_db.name)+":"+tr(detail["value"])
+		_context=tr(_item_db.name)+":"+tr(detail["value"])
 
 					
 
 					
-	if _item_db.uuid == InventoryManagerItem.益气丸 and InventoryManager.has_item(InventoryManagerItem.饥蛊骨签):
+	if InventoryManager.has_item(InventoryManagerItem.饥蛊骨签):
 		_context = _context.replace("40", "50") 
 		_context=_context+tr("【已强化】")
 		
 	TooltipManager.register_tooltip(texture_button,_context)	
+	
+	
+	
+	
 	if GameManager.sav.have_event["initTaskPolicy"]==false:
 		var context=tr("请先离开府邸完成流程，否则无法休息。")
 		if initrestBtn!=null:
@@ -74,7 +78,7 @@ func _on_jingliwan_button_down():
 		InventoryManager._remove_item(GameManager.inventoryPackege,InventoryManagerItem.益气丸,1)
 		GameManager.triedPanelDone.emit()
 		
-		if InventoryManager.has_item(InventoryManager.饥蛊骨签):
+		if InventoryManager.has_item(InventoryManagerItem.饥蛊骨签):
 			GameManager.recoverHp(50)
 		else:
 			GameManager.recoverHp(40)
