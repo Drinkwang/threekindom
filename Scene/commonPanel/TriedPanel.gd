@@ -15,6 +15,26 @@ func _ready():
 		texture_button.show()
 	else:
 		texture_button.hide()
+		
+
+	var _item_db=InventoryManager.get_inventory_db(InventoryManagerItem.益气丸)
+	var properties:Array=_item_db.properties
+
+		
+	var detail=properties.filter(func(a):return a["name"]=="detail")[0]
+	var _context
+	if tr(detail["value"]).length()>0:
+					
+			_context=tr(_item_db.name)+":"+tr(detail["value"])
+
+					
+
+					
+	if _item_db.uuid == InventoryManagerItem.益气丸 and InventoryManager.has_item(InventoryManagerItem.饥蛊骨签):
+		_context = _context.replace("40", "50") 
+		_context=_context+tr("【已强化】")
+		
+	TooltipManager.register_tooltip(texture_button,_context)	
 	if GameManager.sav.have_event["initTaskPolicy"]==false:
 		var context=tr("请先离开府邸完成流程，否则无法休息。")
 		if initrestBtn!=null:
@@ -53,7 +73,11 @@ func _on_jingliwan_button_down():
 	if count>0:
 		InventoryManager._remove_item(GameManager.inventoryPackege,InventoryManagerItem.益气丸,1)
 		GameManager.triedPanelDone.emit()
-		GameManager.recoverHp(40)
+		
+		if InventoryManager.has_item(InventoryManager.饥蛊骨签):
+			GameManager.recoverHp(50)
+		else:
+			GameManager.recoverHp(40)
 		SoundManager.play_sound(sounds.tunyan)
 		self.hide()		
 		#itemUseLabel.text="点击图标使用\n快速结束辩经\n（库存：{num}）".format({"num":count-1})

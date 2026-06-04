@@ -75,8 +75,24 @@ func _update_item() -> void:
 						_context=tr(_item_db.name)+":"+tr(detail["value"])
 					else:
 						_context=tr(_item_db.name)+":"+"?"
-						
-					if(_item_db.type_uuid=="947b1cbf-7c4f-4eaa-8853-058ef1784615"):
+					
+
+					
+					if _item_db.uuid == InventoryManagerItem.益气丸 and InventoryManager.has_item(InventoryManagerItem.饥蛊骨签):
+						_context = _context.replace("40", "50") 
+						TooltipManager.register_tooltip(self,_context+tr("【已强化】"))
+					if _item_db.uuid == InventoryManagerItem.胜战锦囊 and InventoryManager.has_item(InventoryManagerItem.迷魂木筒):
+						_context = _context.replace("10", "13") 
+						TooltipManager.register_tooltip(self,_context+tr("【已强化】"))
+					if _item_db.uuid == InventoryManagerItem.诸子百家论集 and InventoryManager.has_item(InventoryManagerItem.礼记笺疏):
+						#_context = _context.replace("8000", "10000") 
+						TooltipManager.register_tooltip(self,_context+tr("【已强化】"))						
+					if _item_db.uuid == InventoryManagerItem.珍品礼盒 and InventoryManager.has_item(InventoryManagerItem.黄麻药囊):
+						_context = _context.replace("15", "20") 
+						#定死值15
+						TooltipManager.register_tooltip(self,_context+tr("【已强化】"))						
+
+					elif(_item_db.type_uuid=="947b1cbf-7c4f-4eaa-8853-058ef1784615"):
 					
 						TooltipManager.register_tooltip(self,_context+tr("【已装备】"))
 					else:
@@ -136,6 +152,10 @@ func _gui_input(event: InputEvent) -> void:
 			#GameManager.triedPanelDone.emit()
 			if GameManager.sav.hp>60:
 				GameManager.recoverHp(100-GameManager.sav.hp)
-			else:	
-				GameManager.recoverHp(40)
+			else:
+				if InventoryManager.has_item(InventoryManager.饥蛊骨签):
+					GameManager.recoverHp(50)
+				else:
+					GameManager.recoverHp(40)				
+
 			SoundManager.play_sound(sounds.tunyan)

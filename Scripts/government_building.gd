@@ -1198,7 +1198,7 @@ func sendgift():
 	#var rindex=GameManager.sav.randomIndex
 	InventoryManager._remove_item(GameManager.inventoryPackege,InventoryManagerItem.珍品礼盒,1)
 	#+5
-	var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.礼记笺疏)
+	var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.黄麻药囊)
 	if num>=1:
 		GameManager.extraValue=5
 		_c.ChangeSupport(20)
@@ -1222,7 +1222,7 @@ func sendgiftChoice():
 	if quantity>=1:#拥有礼物
 		send_gift_panel.show()
 		
-		var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.礼记笺疏)
+		var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.黄麻药囊)
 		if num>=1:
 			send_gift_panel._initPanel(_c._name,quantity,int(20))	
 		else:
