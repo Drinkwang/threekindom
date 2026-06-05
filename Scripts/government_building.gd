@@ -1088,6 +1088,7 @@ func afterAllocation():
 
 func FractionalDiff():
 	GameManager.sav.HAOZUPAI.isshow=true
+	GameManager.sav.HAOZUPAI._support_rate=GameManager.sav.BENTUPAI._support_rate
 	GameManager.sav.HAOZUPAI._num_all=GameManager.sav.BENTUPAI._num_all/2
 	GameManager.sav.BENTUPAI._num_all=GameManager.sav.BENTUPAI._num_all-GameManager.sav.HAOZUPAI._num_all
 	GameManager.initPaixi(GameManager.sav.HAOZUPAI)
@@ -1096,6 +1097,7 @@ func FractionalDiff():
 	GameManager.sav.BENTUPAI.detail="徐州本土名门士族集团，以陈登为首，世代宦居徐州，深谙州郡治理与地缘谋略，心向安稳，辅佐刘备以保徐州全境。"
 	SignalManager.changeSupport.emit()
 	GameManager.sav.have_event["Factionalization"]=true
+	GameManager.sav.HAOZUPAI.support_redirect_active=false
 	changePanelPos()
 
 	

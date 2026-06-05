@@ -39,6 +39,7 @@ enum factionIndex{
 @export var demand={}
 @export var isAutoAllocation=false
 var support_redirect: Callable
+var support_redirect_active: bool = false
 
 var changeFloor:Callable
 func getTr():
@@ -54,15 +55,16 @@ func ChangeAllPeople(num):
 
 func ChangeSupport(num):
 
-	if support_redirect.is_valid():
+	# 分化前：豪族的支持度变化重定向到本土派（用标志位避免循环引用）
+	if support_redirect_active:
 		support_redirect.call(num)
 		return
-	
+
 	if supressNum>=3:
 		_support_rate=100
 		return
-		
-	
+
+
 	_support_rate=_support_rate+num
 	
 	

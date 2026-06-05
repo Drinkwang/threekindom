@@ -351,6 +351,7 @@ func refreshCallable():
 	if not sav.have_event["Factionalization"]:
 		if not sav.HAOZUPAI.support_redirect.is_valid():
 			sav.HAOZUPAI.support_redirect = func(num): sav.BENTUPAI.ChangeSupport(num)
+			sav.HAOZUPAI.support_redirect_active = true
 	if not sav.HAOZUPAI.changeFloor.is_valid():
 		sav.HAOZUPAI.changeFloor = func():initPaixiFloor(sav.HAOZUPAI)
 	if not sav.WAIDIPAI.changeFloor.is_valid():	
@@ -2087,4 +2088,23 @@ func CheckAllFactionsSubdued():
 "吕布":"吕布之勇，天下无双，这一点我不否认。但他取我徐州，害得那家伙死于非命——此仇不报，我刘玄德枉自为人！也是我识人不明，引狼入室，怨不得旁人。如今我屯兵小沛，名义上受他节制，忍气吞声。然大丈夫能屈能伸，眼下我不如他，低头便是。可天下事，尚未可知。",
 "吕布的马":"吕布的那批马我已经让人盯上了。我年轻时替马商跑过腿，略知行情——这批马确实不错，难怪奉先当宝贝。可惜了，马上就是我的了。",
 "纪灵/吕布":"袁术到底还是把吕布拉了过去。他如今与纪灵合兵一处，向我杀来。一个当世飞将，一个淮南悍将，两人联手兵临城下。纵使早知他有异心，事到临头，心中仍是不免一沉。"
+}
+
+
+var diffSrc={
+  "1": {
+	"name": "清平道",
+	"type": "简单难度",
+	"desc": "适合剧情党、策略小白，轻松推主线，轻松书写属于你的三国传奇。"
+  },
+  "2": {
+	"name": "坎坷道",
+	"type": "标准难度",
+	"desc": "适合有策略游戏基础玩家，在有限的资源中做出最优选择，一步步扭转乾坤。"
+  },
+  "3": {
+	"name": "黄泉道",
+	"type": "困难难度",
+	"desc": "适合资深挑战者，资源管理压力大，从绝境中撕开一线生机。"
+  }
 }
