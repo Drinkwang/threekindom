@@ -113,7 +113,7 @@ func getStuatus():
 	elif itemstype==InventoryManagerItem.ItemEnum.黄麻药囊:
 		if GameManager.sav.have_event["获得锦囊"]:
 			isstatue=1
-		elif GameManager.sav.have_event["错失木桶"]==true or GameManager.sav.have_event["错失锦囊"]:
+		elif GameManager.sav.have_event["错失木桶"]==true or GameManager.sav.have_event["错失锦囊"]==true:
 			isstatue=2
 		else:
 			isstatue=0

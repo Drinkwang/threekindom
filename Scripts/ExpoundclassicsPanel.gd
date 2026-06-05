@@ -73,6 +73,19 @@ func _ready():
 
 
 
+	var _item_db=InventoryManager.get_item_db(InventoryManagerItem.诸子百家论集)
+	var properties:Array=_item_db.properties
+	var detail=properties.filter(func(a):return a["name"]=="detail")[0]
+	var _context
+	if tr(detail["value"]).length()>0:
+					
+		_context=tr(_item_db.name)+":"+tr(detail["value"])	
+	if InventoryManager.has_item(InventoryManagerItem.礼记笺疏):
+
+		_context=_context+tr("【已强化】")
+		
+	TooltipManager.register_tooltip(item_use,_context)
+
 func _expoundClass():
 	animation_player.play("click")
 	pass

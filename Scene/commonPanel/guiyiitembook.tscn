@@ -164,21 +164,21 @@ theme_override_constants/separation = 0
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
 img = ExtResource("9_5hxaf")
-itemContext = "？"
+itemContext = "哑坡荒冢寸草不生，盗墓者掘开墓穴不见尸骨，只剩朱绳束起的古竹筒，筒身遍刻骸骨与人首纹路。携带者夜夜入梦身处沙场，洞穿敌军埋伏，却被无数亡魂纠缠，日渐形销骨立。老道直言此筒聚亡者戾气，妄窥兵机折损寿元，盗墓者想要归葬此物，哑坡早已尽数坍陷。"
 itemstype = 5
 
 [node name="Control2" parent="HBoxContainer" instance=ExtResource("8_micd5")]
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
 img = ExtResource("10_7b3iq")
-itemContext = "？"
+itemContext = "汉末流民困窘，一老者持黄麻药囊拜访大族。囊中药香引众人心生好感、慷慨开仓放粮，族人恍忆旧日他人恩情。流民赖以活命，老者飘然隐去。凡见过药囊之人，往后再收珍宝，皆觉寡淡无味。"
 itemstype = 6
 
 [node name="Control3" parent="HBoxContainer" instance=ExtResource("8_micd5")]
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
 img = ExtResource("11_3jnyx")
-itemContext = "？"
+itemContext = "采药人于荒山拾得骨签，自此食量陡增，邻人见其餐餐如饿鬼投胎，皆避而远之。采药人疑染怪疾，求医无果。偶将骨签入药同煎，药汤飘香，服后气血充盈、力足三日不饥，乡人闻之，纷纷持金欲购此签。"
 itemstype = 7
 
 [node name="Control4" parent="HBoxContainer" instance=ExtResource("8_micd5")]
