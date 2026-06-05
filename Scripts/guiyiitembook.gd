@@ -24,5 +24,6 @@ func refreshPage(_name,isstatue,context):
 	elif isstatue==2:
 		statuesTxt="已错过"
 	#var statecontext="状态：{s}".format({"s":statuesTxt})
+	
 	var guaitan=tr("怪谈故事：")+tr(context)
 	detail.text=guaitan

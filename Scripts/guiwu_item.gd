@@ -129,21 +129,21 @@ func getStuatus():
 	elif itemstype==InventoryManagerItem.ItemEnum.陶谦血袖:
 		if GameManager.sav.have_event["获得血袖"]:
 			isstatue=1
-		elif GameManager.sav.have_event["错失血袖"]:#选错对话或者打输了
+		elif GameManager.sav.have_event["错失血袖"] or GameManager.sav.endPath==GameManager.endPath.xiaopei:#选错对话或者打输了
 			isstatue=2
 		else:
 			isstatue=0
 	elif itemstype==InventoryManagerItem.ItemEnum.血姬傀儡:
 		if GameManager.sav.have_event["获得娃娃"]:
 			isstatue=1
-		elif GameManager.sav.have_event["错失娃娃"]:#选错对话或者打输了
+		elif GameManager.sav.have_event["错失娃娃"] or GameManager.sav.endPath==GameManager.endPath.xiaopei :#选错对话或者打输了
 			isstatue=2
 		else:
 			isstatue=0
 	elif itemstype==InventoryManagerItem.ItemEnum.龙胆亮银枪:
 		if GameManager.sav.have_event["获得亮银"]:
 			isstatue=1
-		elif GameManager.sav.have_event["错失亮银"]:#选错对话或者打输了
+		elif GameManager.sav.have_event["错失亮银"] or GameManager.sav.endPath==GameManager.endPath.xiaopei:#选错对话或者打输了
 			isstatue=2
 		else:
 			isstatue=0						
@@ -165,5 +165,8 @@ func _on_gui_input(event):
 	
 		var itemname= InventoryManagerItem.item_by_enum(itemstype)
 		var db:InventoryItem=InventoryManager.get_item_db(itemname)
+		
+		if db.uuid==InventoryManagerItem.玄阴玉符 and InventoryManager.has_item(InventoryManagerItem.玄阴玉符):
+			itemContext=tr("一枚幽黑玉符，入手冰凉刺骨，细看符中似有云雾流转。此物源自城外玄阴山，乃是在世真人随身信物，符内凝着一缕未了的仙道执念。这份执念留存其身，日久便会化作一身霸道风骨。")
 		control.refreshPage(db.name,isstatue,itemContext)#价格和介绍
 	#pass # Replace with function body.

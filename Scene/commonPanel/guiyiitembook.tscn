@@ -171,7 +171,7 @@ itemstype = 5
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
 img = ExtResource("10_7b3iq")
-itemContext = "汉末流民困窘，一老者持黄麻药囊拜访大族。囊中药香引众人心生好感、慷慨开仓放粮，族人恍忆旧日他人恩情。流民赖以活命，老者飘然隐去。凡见过药囊之人，往后再收珍宝，皆觉寡淡无味。"
+itemContext = "汉末流民困窘，一老者持黄麻药囊拜访大族。囊中药香引众人心生好感、族人看此物恍忆旧日他人恩情，于是慷慨开仓放粮。流民赖以活命，老者飘然隐去。凡见过药囊之人，往后再收珍宝，皆觉寡淡无味。"
 itemstype = 6
 
 [node name="Control3" parent="HBoxContainer" instance=ExtResource("8_micd5")]

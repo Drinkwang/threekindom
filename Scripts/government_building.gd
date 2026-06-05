@@ -1392,7 +1392,7 @@ func burnSac():
 	#民心-5
 	GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.KESULU]=("")
 	GameManager.changePeopleSupport(-5)
-	GameManager.sav.have_event["错失锦囊"] =true	
+	GameManager.sav.have_event["错失锦囊"]=true	
 
 func holdSac():
 	#GameManager.sav.have_event["支线触发完毕调查过竹简"]=true
