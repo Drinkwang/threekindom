@@ -379,6 +379,7 @@ var SIDEQUEST_MAP:Dictionary={
 @export var constructRiver=0
 @export var constructTower=0
 @export var constructGrain=0
+@export var gameDifficulty=2
 func ensure_default_fields():
 	var default_data = saveData.new().have_event
 	for key in default_data.keys():

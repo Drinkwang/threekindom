@@ -2108,3 +2108,26 @@ var diffSrc={
 	"desc": "适合资深挑战者，资源管理压力大，从绝境中撕开一线生机。"
   }
 }
+func get_difficulty_data(level: int):
+	# 把数字转成字符串 key（因为你数据里是 "1","2","3"）
+	var key = str(level)
+	
+	# 判断是否存在这个难度
+	if diffSrc.has(key):
+		# 直接取出三个变量
+		return diffSrc[key]
+		#var type = diffSrc[key].type
+		#var desc = diffSrc[key].desc
+		#
+		## 打印测试（你可以删掉，换成自己逻辑）
+		#print("难度名称：", name)
+		#print("难度类型：", type)
+		#print("难度描述：", desc)
+		
+		# 你可以在这里赋值给全局变量
+		# global.difficulty_name = name
+		# global.difficulty_type = type
+		# global.difficulty_desc = desc
+	else:
+		print("不存在该难度")
+		return
