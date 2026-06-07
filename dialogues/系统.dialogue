@@ -415,13 +415,19 @@ do succussAfter()
 
 
 ~ 彩蛋剧情
+...
 do caocao.show()
 曹操: 奉孝，连你，也是来劝我杀刘备的吗？[voice:caocao_fengxiao]
 do guojia.show()
 郭嘉: 明公心中已有决断，嘉何须再劝。身为谋臣，自当在明公选定大道之后，再替你算尽余下的险途。[voice:guojia_1]
 曹操: 刘备是人中龙，纵之必为后患。可昔年危难之际，是他伸手救过我一命。今日我若杀他，赢了天下，却输了本心。便纵他一次，恩义两清，来日战场相见，我再无半分顾忌。[voice:caocao_enyiliangqing]
 郭嘉: 明公心意已决，便无对错。今日放的是刘备，来日要面对的，是天下。明公既已选好了路，便也是嘉的大道。纵是万难，我与明公共担！[voice:guojia_2]
+
 do settleGame()
+
+	#do SoundManager.stop_all_ambient_sounds()
+	#do GameManager.sav.endPath=GameManager.endPath.none
+	#do GameManager.ReturnMenu()
 => END!    
 
 
@@ -433,7 +439,9 @@ do zhugeliang.show()
 #刘备: 如此对手，可敬，亦可畏。
 刘备: 世间英雄，从不以一时成败论高低。孟德这般人物，无论胜负，皆是值得敬重的对手。[voice:liubei_buyichengbailunyingxiong]
 刘备: 既然他不愿俯首，那便战场相见。九州逐鹿，究竟鹿死谁手，就让天下人拭目以待。[voice:liubei_lusishuishou]
+
 do settleGame()
+
 => END!  
 
 
@@ -527,5 +535,16 @@ do GameManager.oneDayidness()
 
 
 ~ credit选项
+系统提示: 鸣谢阅览可查看开发团队与致谢名单，同时解锁各结局专属后续彩蛋。霸道线还额外收录了本作参考历史典故绘制的插画。
+- 进入常规线鸣谢[credit=1]
+	do GameManager.enterCredit(1)
+- 进入霸道线鸣谢[credit=2]
+	do GameManager.enterCredit(2)
+- 取消
 
 => END!
+
+~ credit未解锁
+系统提示: 对应片尾鸣谢尚未解锁
+=> END!
+

@@ -2258,3 +2258,14 @@ func clearLevel(index):
 			ResourceSaver.save(GameManager._setting,"user://ysg_data_setting.tres")	
 	#SignalManager.changeLanguage.emit()
 	
+
+func enterCredit(index):
+	GameManager.sav.day=0
+	if (GameManager._setting.is_clear_normal_line==false and index==1) or (GameManager._setting.is_clear_overlord_line==false and index==2):
+		DialogueManager.show_example_dialogue_balloon(sys,"credit未解锁")
+	if index==1:
+		GameManager.sav.endPath=GameManager.endPath.xiaopei
+		SceneManager.changeScene(SceneManager.roomNode.Credit,2)
+	elif index==2:
+		GameManager.sav.endPath=GameManager.endPath.xuzhou
+		SceneManager.changeScene(SceneManager.roomNode.Credit,2)

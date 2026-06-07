@@ -96,6 +96,8 @@ func eggFunc():
 const Badao_end = preload("res://Asset/end1.png")
 const normal_end = preload("res://Asset/end2.png")
 func settleGame():
+	if GameManager.sav.day<10:
+		_on_button_button_down()
 	var finaldec=""
 	
 	if GameManager.sav.endPath!=GameManager.endPath.none:
@@ -125,6 +127,7 @@ func settleGame():
 #ESC按钮，待开发
 func _on_button_button_down() -> void:
 	SoundManager.stop_all_ambient_sounds()
+	GameManager.sav.endPath=GameManager.endPath.none
 	SoundManager.set_music_volume(GameManager._setting.music_volume)
 	GameManager.ReturnMenu()
 
