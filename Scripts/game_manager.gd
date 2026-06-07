@@ -2104,8 +2104,6 @@ func get_difficulty_data(level: int):
 
 var LAW_COST_POINT=3
 func LoadingDiffucultValue():
-	var between=GameManager.sav.gameDifficulty-GameManager.preSelectDiff
-	GameManager.sav.gameDifficulty=GameManager.preSelectDiff
 	
 	if GameManager.sav.gameDifficulty==1:
 		perLawCycle=6
@@ -2124,12 +2122,18 @@ func LoadingDiffucultValue():
 		#4点法令点立一个法
 		#战斗难度
 		#一些惩罚增加
+	if GameManager.preSelectDiff==-1:		
+		return
+	var between=GameManager.sav.gameDifficulty-GameManager.preSelectDiff
+	GameManager.sav.gameDifficulty=GameManager.preSelectDiff
+
+
+	
 	if sav.day>=10 and between>0:
-		
 		apply_difficulty_compensation(between)
 	else:
 		DialogueManager.show_example_dialogue_balloon(sys,"难度变更成功")
-
+	GameManager.preSelectDiff=-1
 
 const COMP_BASE_RATE = 300
 const COMP_MAX_TOTAL = 3000

@@ -65,8 +65,18 @@ var responses: Array = []:
 						var sxnum=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.獬豸圣像) 
 						if sxnum>0:
 							apply_highlight_effect(item)  # 应用高亮效果
-					if "[diff=true]" in response.text:
-						response.text = response.text.replace("[diff=true]", "")
+					var diff_regex = RegEx.new()
+					diff_regex.compile("\\[diff=(\\d+)\\]")
+					var diff_result = diff_regex.search(response.text)
+					if diff_result:
+						var option_diff = diff_result.get_string(1).to_int()
+						response.text = diff_regex.sub(response.text, "", false)
+						if option_diff == GameManager.sav.gameDifficulty:
+							response.text = tr(response.text) + tr("(当前选择)")
+						elif option_diff > GameManager.sav.gameDifficulty and GameManager.sav.have_event["initTaskPolicy"]==true:
+							response.text = tr(response.text) + tr("(不可选)")
+						else:
+							response.text = tr(response.text)
 						
 					if "[boardgame=true]" in response.text:
 						response.text = response.text.replace("[boardgame=true]", "")
