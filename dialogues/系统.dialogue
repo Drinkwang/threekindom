@@ -231,6 +231,11 @@ do allocationSettle(0)
 => 难度选项
 => END!
 
+~ 难度补偿
+系统提示: {{GameManager.resideValue}}
+
+=> END!
+
 ~ 选项暂不可开
 : 灵堂祭礼，未可轻离，选项暂不可开。
 

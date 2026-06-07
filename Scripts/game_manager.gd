@@ -1925,51 +1925,6 @@ func playDemand(item):
 		#消耗指定数量的物品
 	SignalManager.playDemand.emit()
 
-func get_exploration_percent() -> int:
-	if sav.endPath == endPath.xuzhou:
-		return 100
-	var pts = 0
-	var he = sav.have_event
-	# -- 派系支线 (max 16) --
-	var faction_quests = [
-		"陈登支线1", "陈登支线2", "陈登支线3", "最终陈登",
-		"糜竺支线1", "糜竺支线2", "糜竺支线3", "最终糜竺",
-		"曹豹支线1", "曹豹支线2", "曹豹支线3", "最终丹阳",
-		"大儒支线1", "大儒支线2", "大儒支线3", "大儒辩经完成",
-	]
-	for q in faction_quests:
-		if he.get(q, false): pts += 1
-	# -- 怪谈支线 (max 10) --
-	var mystery = ["支线发现羊尸", "竹简幻觉剧情", "支线触发完毕获得骨杖", "诡物手册", "支线终府邸线索获取完成"]
-	for q in mystery:
-		if he.get(q, false): pts += 2
-	# -- 基建 (max 10) --
-	var infra = ["运粮初级完成","运粮中级完成","运粮高级完成","筑塔初级完成","筑塔中级完成","筑塔高级完成","挖河初级完成","挖河中级完成","挖河高级完成","三基建完成"]
-	for q in infra:
-		if he.get(q, false): pts += 1
-	# -- 泰山 (max 10) --
-	var taishan = ["battleTaiShan","臧霸首战","昌豨求饶","completebattleTaiShan","最终泰山"]
-	for q in taishan:
-		if he.get(q, false): pts += 2
-	# -- 吕布 (max 10) --
-	var lvbu = ["findLvbu","lvbuJoin","曹豹和吕布勾连2","辕门射戟","吕布之怒"]
-	for q in lvbu:
-		if he.get(q, false): pts += 2
-	# -- 特殊道具 (max 6) --
-	var items = ["获得锦囊","获得古棒","获得血袖","获得娃娃","获得亮银","获得玄阴"]
-	for q in items:
-		if he.get(q, false): pts += 1
-	# -- 杂项 (max 8) --
-	var misc = ["firstDisaster","secondDisaster","thirdDisaster","庆功宴结束","开启比武训练","最终比武结束","卡牌新手教程","卡牌高级教程"]
-	for q in misc:
-		if he.get(q, false): pts += 1
-	# -- 霸道线接近 (max 30) --
-	if he.get("主簿的追随", false): pts += 6
-	if not dontHaveDominance(): pts += 14
-	if sav.endPath == endPath.xiaopei: pts += 5
-	if he.get("刘备成长0", false): pts += 2
-	if he.get("刘备成长2", false): pts += 3
-	return mini(pts, 100)
 
 
 
@@ -2169,7 +2124,113 @@ func LoadingDiffucultValue():
 		#4点法令点立一个法
 		#战斗难度
 		#一些惩罚增加
-	if GameManager.sav.have_event["xxx"]==true:
-		pass
-		GameManager.resideValue=tr("xxxx")
+	if sav.day>=10:
 		
+		apply_difficulty_compensation(between)
+
+
+
+const COMP_BASE_RATE = 300
+const COMP_MAX_TOTAL = 3000
+const COMP_COIN_RATIO = 0.5
+const COMP_LABOR_RATIO = 0.3	
+
+func apply_difficulty_compensation(diff_levels: int):
+	var progress_factor = 0.5
+	var day = sav.day
+	if sav.endPath != endPath.none:
+		progress_factor = 5.0
+	elif day > 55:
+		progress_factor = 5.0
+	elif day > 35:
+		progress_factor = 3.0
+	elif day > 25:
+		progress_factor = 2.0
+	elif day > 15:
+		progress_factor = 1.0
+
+	var total_comp = floori(progress_factor * diff_levels * COMP_BASE_RATE)
+	total_comp = mini(total_comp, COMP_MAX_TOTAL)
+
+	var coin_bonus = floori(total_comp * COMP_COIN_RATIO)
+	var labor_bonus = floori(total_comp * COMP_LABOR_RATIO)
+	var score_for_items = total_comp - coin_bonus - labor_bonus
+
+	sav.coin += coin_bonus
+	sav.labor_force += labor_bonus
+
+	if score_for_items > 0:
+		var item_result = ScoreToItem(score_for_items)
+		for item_enum in item_result["items"]:
+			var item_uuid = InventoryManagerItem.item_by_enum(item_enum)
+			if item_uuid:
+				InventoryManager.add_item(inventoryPackege, item_uuid, item_result["items"][item_enum])
+		sav.coin += item_result["money"]
+		sav.labor_force += item_result["population"]
+
+	# 6. 调节民心与派系支持度（按进度小幅提升，不翻倍）
+	var people_boost = 0
+	var faction_boost = 0
+	if progress_factor >= 5.0:
+		people_boost = 18
+		faction_boost = 14
+	elif progress_factor >= 3.0:
+		people_boost = 15
+		faction_boost = 12
+	elif progress_factor >= 2.0:
+		people_boost = 12
+		faction_boost = 10
+	else:
+		people_boost = 10
+		faction_boost = 8
+
+
+	changePeopleSupport(people_boost)
+	sav.BENTUPAI.ChangeSupport(faction_boost)
+	sav.WAIDIPAI.ChangeSupport(faction_boost)
+	sav.HAOZUPAI.ChangeSupport(faction_boost)
+	resideValue=tr("已下调游戏难度，现为你发放补偿：获得钱{x}、民力{y}、道具若干，民心+{m}、各派系支持度+{f}").format({"x": coin_bonus, "y": labor_bonus, "m": people_boost, "f": faction_boost})
+	# 7. 显示补偿提示
+	DialogueManager.show_example_dialogue_balloon(sys,)
+
+
+
+		
+func get_exploration_percent() -> int:
+
+	var pts = 40
+	var he = sav.have_event
+
+	var faction_quests = [
+		"陈登支线1", "陈登支线2", "陈登支线3", "最终陈登",
+		"糜竺支线1", "糜竺支线2", "糜竺支线3", "最终糜竺",
+		"曹豹支线1", "曹豹支线2", "曹豹支线3", 
+		"大儒支线2", "大儒支线3", "大儒辩经完成",
+	]
+
+	for q in faction_quests:
+		if he.get(q, false): pts += 2
+
+	
+	var mystery = ["竹简幻觉剧情", "支线触发完毕获得骨杖", "诡物手册", "支线终府邸线索获取完成"]
+	for q in mystery:
+		if he.get(q, false): pts += 2
+	
+	
+	
+
+	
+	
+	
+	var lvbu = ["辕门射戟","吕布之怒","最终丹阳"]
+	for q in lvbu:
+		if he.get(q, false): pts += 3
+	# -- 特殊道具 (max 9) --
+		
+	var items = ["获得锦囊","获得古棒","获得血袖","获得娃娃","获得亮银","获得玄阴"]
+	for q in items:
+		if he.get(q, false): pts += 2
+	# -- 杂项 (max 8) --
+	if not dontHaveDominance(): pts += 3
+
+	return mini(pts, 100)
