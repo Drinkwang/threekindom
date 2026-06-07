@@ -1371,6 +1371,7 @@ func changeToFinalScene(index):
 
 func enterCredit():
 	await get_tree().create_timer(1).timeout 
+	GameManager.clearLevel(2)
 	SceneManager.changeScene(SceneManager.roomNode.Credit,2)
 
 

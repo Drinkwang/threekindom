@@ -1326,4 +1326,5 @@ func sheepGnawed():
 	#GameManager.sav.have_event["支线发现羊尸"]=true
 
 func enterCredit():
+	GameManager.clearLevel(1)
 	SceneManager.changeScene(SceneManager.roomNode.Credit,2)

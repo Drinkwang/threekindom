@@ -73,6 +73,10 @@ func _on_begin_button_down():
 	#control._initData()
 #policyPanel.show()
 
+func _on_credit_button_down():
+	
+	DialogueManager.show_example_dialogue_balloon(sys,"credit选项")
+
 
 func NormalStartGame():
 	SoundManager.play_sound(sounds.confiresound)
