@@ -19,3 +19,6 @@ class_name SettingsResource
 @export var peopleVlan:String="none"
 # 选中的语言
 @export var language: String = ""
+
+@export var is_clear_overlord_line=false  # 通关霸道线
+@export var is_clear_normal_line=false    # 通关常规线

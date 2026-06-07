@@ -192,12 +192,12 @@ do allocationSettle(0)
 
 ~ 难度选项
 系统提示: 请选中你要调节的游戏难度，仅序章小沛、正篇首次离府前可上调难度，其余时段只能降难度。
-- 简单难度：清明道
+- 简单难度：清明道[diff=1]
 	#do GameManager.changeDiff()
 	do GameManager.selectDiff(1)
-- 标准难度：坎坷道（当前选择）
+- 标准难度：坎坷道[diff=2]
 	do GameManager.selectDiff(2)
-- 困难难度：黄昏道（不可选）
+- 困难难度：黄昏道[diff=3]
 	do GameManager.selectDiff(3)
 - 取消
 	=> ESC按钮
@@ -235,6 +235,11 @@ do allocationSettle(0)
 系统提示: {{GameManager.resideValue}}
 
 => END!
+
+~ 难度变更成功
+系统提示：难度已变更【{{GameManager.resideValue.type}}：{{GameManager.resideValue.name}}】,{{GameManager.resideValue.desc}}】
+=> END!
+
 
 ~ 选项暂不可开
 : 灵堂祭礼，未可轻离，选项暂不可开。
@@ -518,4 +523,9 @@ do GameManager.oneDayidness()
 ~ 小沛最终不能休息
 
 刘备: （今日乃是死守小沛的开端，局势危如累卵，一刻也不能松懈。我当先往府衙处理政务，安定军心民心，为御敌做好万全准备。）[voice:liubei_zuihouquxiaopei]
+=> END!
+
+
+~ credit选项
+
 => END!

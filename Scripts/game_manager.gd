@@ -2124,10 +2124,11 @@ func LoadingDiffucultValue():
 		#4点法令点立一个法
 		#战斗难度
 		#一些惩罚增加
-	if sav.day>=10:
+	if sav.day>=10 and between>0:
 		
 		apply_difficulty_compensation(between)
-
+	else:
+		DialogueManager.show_example_dialogue_balloon(sys,"难度变更成功")
 
 
 const COMP_BASE_RATE = 300
@@ -2172,17 +2173,17 @@ func apply_difficulty_compensation(diff_levels: int):
 	var people_boost = 0
 	var faction_boost = 0
 	if progress_factor >= 5.0:
-		people_boost = 18
-		faction_boost = 14
+		people_boost = 18* diff_levels
+		faction_boost = 14* diff_levels
 	elif progress_factor >= 3.0:
-		people_boost = 15
-		faction_boost = 12
+		people_boost = 15* diff_levels
+		faction_boost = 12* diff_levels
 	elif progress_factor >= 2.0:
-		people_boost = 12
-		faction_boost = 10
+		people_boost = 12* diff_levels
+		faction_boost = 10* diff_levels
 	else:
-		people_boost = 10
-		faction_boost = 8
+		people_boost = 10* diff_levels
+		faction_boost = 8* diff_levels
 
 
 	changePeopleSupport(people_boost)
@@ -2191,7 +2192,7 @@ func apply_difficulty_compensation(diff_levels: int):
 	sav.HAOZUPAI.ChangeSupport(faction_boost)
 	resideValue=tr("已下调游戏难度，现为你发放补偿：获得钱{x}、民力{y}、道具若干，民心+{m}、各派系支持度+{f}").format({"x": coin_bonus, "y": labor_bonus, "m": people_boost, "f": faction_boost})
 	# 7. 显示补偿提示
-	DialogueManager.show_example_dialogue_balloon(sys,)
+	DialogueManager.show_example_dialogue_balloon(sys,"难度补偿")
 
 
 
@@ -2220,17 +2221,36 @@ func get_exploration_percent() -> int:
 	
 
 	
+	if GameManager._setting.is_clear_normal_line==true:
 	
+		pts+=9
+	else:	
 	
-	var lvbu = ["辕门射戟","吕布之怒","最终丹阳"]
-	for q in lvbu:
-		if he.get(q, false): pts += 3
+		var lvbu = ["辕门射戟","吕布之怒","最终丹阳"]
+		for q in lvbu:
+			if he.get(q, false): pts += 3
 	# -- 特殊道具 (max 9) --
+	
+	if GameManager._setting.is_clear_overlord_line==true:
+		pts+=15
+	else:
 		
-	var items = ["获得锦囊","获得古棒","获得血袖","获得娃娃","获得亮银","获得玄阴"]
-	for q in items:
-		if he.get(q, false): pts += 2
-	# -- 杂项 (max 8) --
-	if not dontHaveDominance(): pts += 3
+		var items = ["获得锦囊","获得古棒","获得血袖","获得娃娃","获得亮银","获得玄阴"]
+		for q in items:
+			if he.get(q, false): pts += 2
+	# -- 杂项 (max 12+3) --
+		if not dontHaveDominance(): pts += 3
 
 	return mini(pts, 100)
+
+func clearLevel(index):
+	if index==1:
+		if GameManager._setting.is_clear_overlord_line == false:
+			GameManager._setting.is_clear_overlord_line=true
+			ResourceSaver.save(GameManager._setting,"user://ysg_data_setting.tres")	
+	elif index==2:
+		if GameManager._setting.is_clear_normal_line == false:		
+			GameManager._setting.is_clear_normal_line=true
+			ResourceSaver.save(GameManager._setting,"user://ysg_data_setting.tres")	
+	#SignalManager.changeLanguage.emit()
+	

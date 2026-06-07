@@ -65,7 +65,9 @@ var responses: Array = []:
 						var sxnum=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.獬豸圣像) 
 						if sxnum>0:
 							apply_highlight_effect(item)  # 应用高亮效果
-					
+					if "[diff=true]" in response.text:
+						response.text = response.text.replace("[diff=true]", "")
+						
 					if "[boardgame=true]" in response.text:
 						response.text = response.text.replace("[boardgame=true]", "")
 						pass #判断有无人物
