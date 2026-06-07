@@ -179,17 +179,7 @@ do allocationSettle(0)
 	#系统提示: 当前试玩版不开放，尽请期待
 	
 - 难度调节
-	系统提示: 请选中你要调节的游戏难度，仅序章小沛、正篇首次离府前可上调难度，其余时段只能降难度。
-	- 简单难度：清明道
-	
-	- 标准难度：坎坷道（当前选择）
-	
-	- 困难难度：黄昏道（不可选）
-	- 取消
-		=> ESC按钮
-
-
-		
+	=> 难度选项
 - 设置
 	do GameManager.OpenSettingMenu()
 - 返回到游戏主菜单
@@ -199,20 +189,46 @@ do allocationSettle(0)
 => END
 
 
-~ 修改难度提示
-系统提示: 确认将本局难度切换为【{}】？
-- 是
 
-- 否
+~ 难度选项
+系统提示: 请选中你要调节的游戏难度，仅序章小沛、正篇首次离府前可上调难度，其余时段只能降难度。
+- 简单难度：清明道
+	#do GameManager.changeDiff()
+	do GameManager.selectDiff(1)
+- 标准难度：坎坷道（当前选择）
+	do GameManager.selectDiff(2)
+- 困难难度：黄昏道（不可选）
+	do GameManager.selectDiff(3)
+- 取消
 	=> ESC按钮
+
+=> END
+
+
+
+~ 修改难度提示
+
+		#print("难度名称：", name)
+		#print("难度类型：", type)
+		#print("难度描述：", desc)
+系统提示: 确认将本局难度切换为【{{GameManager.resideValue.type}}：{{GameManager.resideValue.name}}】,{{GameManager.resideValue.desc}}\n注意：难度修改后会影响本局最终结算成绩。
+- 是
+	#do GameManager.preSelectDiff=-1
+
+	do GameManager.LoadingDiffucultValue()
+- 否
+	do GameManager.preSelectDiff=-1
+	=> 难度选项
 => END!
 
 ~ 不可序章外提升难度
 系统提示: 只有序章小沛、正篇首次离开府邸前能够上调难度，当前阶段无法提升难度。
+=> 难度选项
 => END!
 
 ~ 你当前已经是这个难度了，无需修改
 系统提示: 目前已是所选难度，无需重复更改
+=> 难度选项
 => END!
 
 ~ 选项暂不可开

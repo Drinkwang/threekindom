@@ -300,7 +300,7 @@ func excuteLaw(value:lawpoint):
 	if value==null:
 		return
 	#GameManager.hp=GameManager.hp-costhp
-	if(GameManager.sav.Merit_points<value.costPoint):
+	if(GameManager.sav.Merit_points<GameManager.LAW_COST_POINT):
 		DialogueManager.show_example_dialogue_balloon(GameManager.currenceScene.dialogue_resource,"你的政策点不够")	
 		return
 	if await GameManager.isTried(costhp):
@@ -324,7 +324,7 @@ func agreelaw():
 	# int index	
 	#当前【民田开垦】法案已被立项，请先在议会厅通过该法案，才能立项其他法律。	
 	GameManager.sav.hp=GameManager.sav.hp-costhp
-	GameManager.sav.Merit_points=GameManager.sav.Merit_points-selectLawPoint.costPoint
+	GameManager.sav.Merit_points=GameManager.sav.Merit_points-GameManager.LAW_COST_POINT
 	selectLawPoint.isUnlock=true
 	selectLawPoint._initData()
 

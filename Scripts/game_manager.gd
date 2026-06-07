@@ -2108,6 +2108,20 @@ var diffSrc={
 	"desc": "适合资深挑战者，资源管理压力大，从绝境中撕开一线生机。"
   }
 }
+@export var preSelectDiff=-1
+#@export var preSelectDiffSrc=null
+func selectDiff(diff):
+	if diff ==GameManager.sav.gameDifficulty:
+		DialogueManager.show_example_dialogue_balloon(sys,"你当前已经是这个难度了，无需修改")
+		return
+	if GameManager.sav.have_event["initTaskPolicy"]==true and diff>GameManager.sav.gameDifficulty:
+		DialogueManager.show_example_dialogue_balloon(sys,"不可序章外提升难度")
+		return
+			
+	preSelectDiff=diff
+	resideValue=get_difficulty_data(preSelectDiff)
+	DialogueManager.show_example_dialogue_balloon(sys,"修改难度提示")
+
 func get_difficulty_data(level: int):
 	# 把数字转成字符串 key（因为你数据里是 "1","2","3"）
 	var key = str(level)
@@ -2131,3 +2145,31 @@ func get_difficulty_data(level: int):
 	else:
 		print("不存在该难度")
 		return
+
+
+var LAW_COST_POINT=3
+func LoadingDiffucultValue():
+	var between=GameManager.sav.gameDifficulty-GameManager.preSelectDiff
+	GameManager.sav.gameDifficulty=GameManager.preSelectDiff
+	
+	if GameManager.sav.gameDifficulty==1:
+		perLawCycle=6
+		minxinPoint=1
+		LAW_COST_POINT=2
+		#2点法令点立一个法
+	elif GameManager.sav.gameDifficulty==2:
+		perLawCycle=5
+		minxinPoint=1
+		LAW_COST_POINT=3
+		#3点法令点立一个法
+	elif GameManager.sav.gameDifficulty==3:
+		perLawCycle=4
+		minxinPoint=2
+		LAW_COST_POINT=3
+		#4点法令点立一个法
+		#战斗难度
+		#一些惩罚增加
+	if GameManager.sav.have_event["xxx"]==true:
+		pass
+		GameManager.resideValue=tr("xxxx")
+		

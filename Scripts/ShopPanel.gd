@@ -103,13 +103,21 @@ func refreshAlreadySoldTxt(index):
 		detail.text=tr("这个秘闻你已经知道了，请改日再来吧")
 #var befunc		
 func _on_buy_button_down():
+	var costhp=0
+	if GameManager.sav.gameDifficulty!=1:
 	#简单难度 不扣体力，普通难度扣10 困难扣20
 	#立法 简单扣2点 普通扣3点，困难扣4点
-	#if(await GameManager.isTried(costhp)):
-		#return 		
+		
+		if GameManager.sav.gameDifficulty==2:
+			costhp=10
+		elif GameManager.sav.gameDifficulty==3:
+			costhp=20
+		if(await GameManager.isTried(costhp)):
+			return 		
 	if(GameManager.sav.coin>=(price as int) and selectGoods!=null):
 		SoundManager.play_sound(sounds.buysellsound)
-		#GameManager.costHp(costhp)
+		if GameManager.sav.gameDifficulty!=1:
+			GameManager.costHp(costhp)
 		selectGoods.getItem()
 		GameManager.sav.coin=GameManager.sav.coin-price
 		if selectGoods.itemstype==InventoryManagerItem.ItemEnum.市井秘闻:
@@ -181,7 +189,7 @@ func _on_Sold_button_down():
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"是否售出商品")
 
 @onready var buy_back_button = $backTxt/buyBackButton
-var costhp=15
+#var costhp=15
 func confireSold():
 	
 	GameManager.sav.coin=GameManager.sav.coin+int(GameManager.SoldCoin)

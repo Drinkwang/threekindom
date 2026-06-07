@@ -99,7 +99,7 @@ func loadFile():
 		get_tree().change_scene_to_packed(savs[index-1].saveScene)
 		GameManager.loadLaw()
 		GameManager.refreshCallable()
-		
+		GameManager.LoadingDiffucultValue()
 		#inventory_changed
 		InventoryManager.inventory_changed.emit(GameManager.inventoryPackege)
 		#emit_signal("inventory_changed", GameManager.inventoryPackege)	
