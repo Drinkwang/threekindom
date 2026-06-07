@@ -36,6 +36,8 @@ func _ready():
 		_on_option_button_item_selected(2)
 		
 	initLoadContinus()
+	if GameManager._setting.is_clear_normal_line or GameManager._setting.is_clear_overlord_line:
+		$credit.disabled = false
 func initLoadContinus():
 	var showContinus=false
 	for i in range(1,4):
