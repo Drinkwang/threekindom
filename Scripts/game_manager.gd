@@ -2249,12 +2249,12 @@ func get_exploration_percent() -> int:
 
 func clearLevel(index):
 	if index==1:
-		if GameManager._setting.is_clear_overlord_line == false:
-			GameManager._setting.is_clear_overlord_line=true
+		if GameManager._setting.is_clear_normal_line == false:
+			GameManager._setting.is_clear_normal_line=true
 			ResourceSaver.save(GameManager._setting,"user://ysg_data_setting.tres")	
 	elif index==2:
-		if GameManager._setting.is_clear_normal_line == false:		
-			GameManager._setting.is_clear_normal_line=true
+		if GameManager._setting.is_clear_overlord_line == false:		
+			GameManager._setting.is_clear_overlord_line=true
 			ResourceSaver.save(GameManager._setting,"user://ysg_data_setting.tres")	
 	#SignalManager.changeLanguage.emit()
 	

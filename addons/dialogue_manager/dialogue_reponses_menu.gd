@@ -77,6 +77,24 @@ var responses: Array = []:
 							response.text = tr(response.text) + tr("(不可选)")
 						else:
 							response.text = tr(response.text)
+
+					var credit_regex = RegEx.new()
+					credit_regex.compile("\\[credit=(\\d+)\\]")
+					var credit_result = credit_regex.search(response.text)
+					if credit_result:
+						var credit_index = credit_result.get_string(1).to_int()
+						response.text = credit_regex.sub(response.text, "", false)
+						if credit_index == 1:
+							if GameManager._setting.is_clear_normal_line == true:
+								response.text = tr(response.text) 
+							else:
+								response.text = tr(response.text) + tr("【未解锁】")
+						elif credit_index == 2:
+							if GameManager._setting.is_clear_overlord_line == true:
+								response.text = tr(response.text) 
+							else:
+								response.text = tr(response.text) + tr("【未解锁】")
+			
 						
 					if "[boardgame=true]" in response.text:
 						response.text = response.text.replace("[boardgame=true]", "")
