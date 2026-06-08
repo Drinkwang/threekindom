@@ -468,6 +468,12 @@ func _enterDay(value=true):
 
 func initDemand():
 	var point=GameManager.sav.day*10+50
+	var allowanceCoeff=1.0
+	match GameManager.sav.gameDifficulty:
+		1: allowanceCoeff=1.0
+		2: allowanceCoeff=1.5
+		3: allowanceCoeff=2.0
+	point=int(point*allowanceCoeff)
 	sav.HAOZUPAI.allocationStatue=-1
 
 	sav.LVBU.allocationStatue=-1
@@ -505,6 +511,11 @@ func showGuimiAchi():
 
 func intBattleTask():
 	var nums={}
+	var battleCoeff=1.0
+	match GameManager.sav.gameDifficulty:
+		1: battleCoeff=1.0
+		2: battleCoeff=1.2
+		3: battleCoeff=1.4
 	#gener
 	
 	#var levels=1.0889-(0.0889*levels)
@@ -518,12 +529,12 @@ func intBattleTask():
 			var costNum
 			if(resTyoe==1):
 				res="coin"
-				costNum=15*sav.battleTasks[battleTarget].index
+				costNum=int(15*sav.battleTasks[battleTarget].index*battleCoeff)
 				#最小值是10*xxx
 				#*10/15
 			else:
 				res="human"
-				costNum=50*sav.battleTasks[battleTarget].index
+				costNum=int(50*sav.battleTasks[battleTarget].index*battleCoeff)
 				#最小值是30*xxx
 				#*3/5
 			var syTyoe:int=randi_range(0, 2)
@@ -537,7 +548,7 @@ func intBattleTask():
 			var sy1 =opcost.values()[syTyoe1]
 			var syTyoe2=randi_range(0, 2)
 			var sy2=opcost.values()[syTyoe2]
-			sav.battleTasks[battleTarget].task=[{"res":"coin","symbol":sy1,"value":15*sav.battleTasks[battleTarget].index,"reward":nums[0]},{"res":"human","symbol":sy2,"value":50*sav.battleTasks[battleTarget].index,"reward":nums[1]}]
+			sav.battleTasks[battleTarget].task=[{"res":"coin","symbol":sy1,"value":int(15*sav.battleTasks[battleTarget].index*battleCoeff),"reward":nums[0]},{"res":"human","symbol":sy2,"value":int(50*sav.battleTasks[battleTarget].index*battleCoeff),"reward":nums[1]}]
 			sav.battleTasks[battleTarget].reward=nums[2]
 		var sdType:int=randi_range(0, 2)#从3修改
 		sav.battleTasks[battleTarget].sdType=sdType

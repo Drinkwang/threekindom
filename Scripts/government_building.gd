@@ -329,13 +329,18 @@ func Loss_of_loyalty():
 	# 倒数第二章：军情泄露，各派系数值大幅下降
 	# 任务目标：恢复全部派系至80以上
 	# 豪族派受影响最重（商人对动荡恐惧最大）
-	GameManager.resideValue=20
+	var loyaltyCoeff=1.0
+	match GameManager.sav.gameDifficulty:
+		1: loyaltyCoeff=0.6
+		2: loyaltyCoeff=0.8
+		3: loyaltyCoeff=1.0
+	GameManager.resideValue=int(20*loyaltyCoeff)
 	# 本土派相对最稳
-	GameManager.resideValue2=15
+	GameManager.resideValue2=int(15*loyaltyCoeff)
 	# 丹阳派受军情直接打击
-	GameManager.resideValue3=25
+	GameManager.resideValue3=int(25*loyaltyCoeff)
 	# 吕布本就动摇，情报泄露后更甚
-	GameManager.resideValue4=30
+	GameManager.resideValue4=int(30*loyaltyCoeff)
 	GameManager.sav.HAOZUPAI.ChangeSupport(-GameManager.resideValue)
 	GameManager.sav.BENTUPAI.ChangeSupport(-GameManager.resideValue2)
 	GameManager.sav.WAIDIPAI.ChangeSupport(-GameManager.resideValue3)
@@ -1325,9 +1330,14 @@ func claim():
 func suppress():
 
 	var _c=getFactionByIndex()
+	var suppressCoeff=1.0
+	match GameManager.sav.gameDifficulty:
+		1: suppressCoeff=0.85
+		2: suppressCoeff=1.0
+		3: suppressCoeff=1.15
 	
-	ForValueGet=int(sqrt(100-_c._support_rate)*60*(_c.supressNum+1))
-	ForValueCost=int(sqrt(100-_c._support_rate)*110*(_c.supressNum+1))
+	ForValueGet=int(sqrt(100-_c._support_rate)*60*(_c.supressNum+1)*suppressCoeff)
+	ForValueCost=int(sqrt(100-_c._support_rate)*110*(_c.supressNum+1)*suppressCoeff)
 	#这个可能还高，但是没办法了
 	if _c._support_rate>=60:
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"贸然镇压")#显示对话
