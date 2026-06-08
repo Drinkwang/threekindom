@@ -916,7 +916,7 @@ func determineInternalUnrest():
 		if _support_rate < 60.0:
 			# 计算叛变概率：支持率越低，概率越高
 			# 线性插值：支持率 60 -> 5% 概率，支持率 0 -> 80% 概率
-			var rebellion_chance = lerp(0.05, 0.80, (60.0 - _support_rate) / 60.0)
+			var rebellion_chance = lerp(0.05*GameManager.sav.gameDifficulty*difficultyCoeff, 0.80, (60.0 - _support_rate) / 60.0)
 			# 随机数判断是否叛变
 			if randf() < rebellion_chance:
 				fraction.isrebellion = true
@@ -926,7 +926,7 @@ func determineInternalUnrest():
 	if _LVBUsupport_rate < 80.0:
 			# 计算叛变概率：支持率越低，概率越高
 			# 线性插值：支持率 60 -> 5% 概率，支持率 0 -> 80% 概率
-		var rebellion_chance = lerp(0.25, 0.80, (80.0 - _LVBUsupport_rate) / 80.0)
+		var rebellion_chance = lerp(0.25*difficultyCoeff, 0.80, (80.0 - _LVBUsupport_rate) / 80.0)
 			# 随机数判断是否叛变
 		if randf() < rebellion_chance:
 			GameManager.sav.LVBU.isrebellion = true
