@@ -896,11 +896,20 @@ func enterdetermineInternalUnrest():
 		determineInternalUnrest()
 
 var randomIndex=0
+var difficultyCoeff=1.0
 #以下是叛乱逻辑
 const sys = preload("res://dialogues/系统.dialogue")
 func determineInternalUnrest():
 	var _UnrestNum=0
 	randomIndex=GameManager.sav.randomIndex
+	if GameManager.sav.gameDifficulty==1:
+		difficultyCoeff=1.0
+	elif GameManager.sav.gameDifficulty==2:
+		difficultyCoeff=1.2
+	elif GameManager.sav.gameDifficulty==3:
+		difficultyCoeff=1.5
+	else:
+		difficultyCoeff=1.0
 	var fractions:Array=[GameManager.sav.HAOZUPAI,GameManager.sav.WAIDIPAI,GameManager.sav.BENTUPAI]
 	for fraction in fractions:
 		var _support_rate=fraction._support_rate
@@ -1017,12 +1026,12 @@ func settleDeterminValue():
 func determineInternalUnrestXuzhou():
 	resetDeterminValue()
 	if GameManager.sav.BENTUPAI.isrebellion==true:
-		GameManager.sav.BENTUPAI._num_defections=GameManager.sav.BENTUPAI._num_defections+1
-		determineValue1=30*randomIndex+(GameManager.sav.BENTUPAI._num_defections)*30
+		GameManager.sav.BENTUPAI._num_defections=mini(GameManager.sav.BENTUPAI._num_defections+1,5)
+		determineValue1=int((30*randomIndex+(GameManager.sav.BENTUPAI._num_defections)*30)*difficultyCoeff)
 
 		if randf() < 0.5||GameManager.sav.labor_force<determineValue1:
 			determineType=GameManager.ResType.heart
-			determineValue1=5+randomIndex+(GameManager.sav.BENTUPAI._num_defections-1)*2
+			determineValue1=int((5+randomIndex+(GameManager.sav.BENTUPAI._num_defections-1)*2)*difficultyCoeff)
 			DialogueManager.show_example_dialogue_balloon(sys,"士族叛乱1")
 		else:
 			determineType=GameManager.ResType.people
@@ -1035,10 +1044,10 @@ func determineInternalUnrestHaozu():
 	settleDeterminValue()
 	resetDeterminValue()
 	if GameManager.sav.HAOZUPAI.isrebellion==true and GameManager.sav.have_event["Factionalization"]==true:
-		GameManager.sav.HAOZUPAI._num_defections=GameManager.sav.HAOZUPAI._num_defections+1
-		determineValue1=50*randomIndex+(GameManager.sav.HAOZUPAI._num_defections)*50
+		GameManager.sav.HAOZUPAI._num_defections=mini(GameManager.sav.HAOZUPAI._num_defections+1,5)
+		determineValue1=int((50*randomIndex+(GameManager.sav.HAOZUPAI._num_defections)*50)*difficultyCoeff)
 		if randf() < 0.5||GameManager.sav.coin<determineValue1:
-			determineValue1=5+randomIndex+(GameManager.sav.HAOZUPAI._num_defections-1)*2
+			determineValue1=int((5+randomIndex+(GameManager.sav.HAOZUPAI._num_defections-1)*2)*difficultyCoeff)
 			determineType=GameManager.ResType.heart
 			DialogueManager.show_example_dialogue_balloon(sys,"豪族叛乱1")
 		else:
@@ -1051,8 +1060,8 @@ func determineInternalUnrestDanyang():
 	settleDeterminValue()
 	resetDeterminValue()
 	if GameManager.sav.WAIDIPAI.isrebellion==true:
-		GameManager.sav.WAIDIPAI._num_defections=GameManager.sav.WAIDIPAI._num_defections+1
-		determineValue1=int(randomIndex*0.5)+GameManager.sav.WAIDIPAI._num_defections
+		GameManager.sav.WAIDIPAI._num_defections=mini(GameManager.sav.WAIDIPAI._num_defections+1,5)
+		determineValue1=ceil((int(randomIndex*0.5)+GameManager.sav.WAIDIPAI._num_defections)*difficultyCoeff/2.0)
 		#判断道具总数之和
 		var _num=InventoryManager.canUseItemNum()
 
@@ -1063,7 +1072,7 @@ func determineInternalUnrestDanyang():
 			determineType=GameManager.ResType.item
 			DialogueManager.show_example_dialogue_balloon(sys,"丹阳叛乱1")
 		else:
-			determineValue1=5+randomIndex+(GameManager.sav.WAIDIPAI._num_defections-1)*2
+			determineValue1=int((5+randomIndex+(GameManager.sav.WAIDIPAI._num_defections-1)*2)*difficultyCoeff)
 			determineType=GameManager.ResType.heart
 			DialogueManager.show_example_dialogue_balloon(sys,"丹阳叛乱2")
 		return
@@ -1072,12 +1081,13 @@ func determineInternalUnrestLvbu():
 	settleDeterminValue()
 	resetDeterminValue()
 	if GameManager.sav.LVBU.isrebellion==true:
+		GameManager.sav.LVBU._num_defections=mini(GameManager.sav.LVBU._num_defections+1,5)
 		var rand = randi() % 4
 		var valid_choice = false
-		var costItem= randomIndex + GameManager.sav.LVBU._num_defections
-		var costCoin=50 * randomIndex + (GameManager.sav.LVBU._num_defections) * 50
-		var costPeople=30 * randomIndex + (GameManager.sav.LVBU._num_defections) * 30
-		var costHeart=5 + randomIndex + (GameManager.sav.LVBU._num_defections - 1) * 2
+		var costItem= ceil((randomIndex + GameManager.sav.LVBU._num_defections)*difficultyCoeff / 2.0)
+		var costCoin=int((50 * randomIndex + (GameManager.sav.LVBU._num_defections) * 50)*difficultyCoeff)
+		var costPeople=int((30 * randomIndex + (GameManager.sav.LVBU._num_defections) * 30)*difficultyCoeff)
+		var costHeart=int((5 + randomIndex + (GameManager.sav.LVBU._num_defections - 1) * 2)*difficultyCoeff)
 		#var costItemDetail=InventoryManager.costItemRandom()
 	# 收集可满足的资源类型
 		var valid_options = []
@@ -1120,12 +1130,14 @@ func determineInternalUnrestMinxin():
 		shizuLawTest()
 		return
 
+	GameManager.sav._num_defections=mini(GameManager.sav._num_defections+1,3)
+
 	var rand = randi() % 4
 	var valid_choice = false
-	var costItem= randomIndex + GameManager.sav.LVBU._num_defections
-	var costCoin=50 * randomIndex + (GameManager.sav.LVBU._num_defections) * 50
-	var costPeople=30 * randomIndex + (GameManager.sav.LVBU._num_defections) * 30
-	var costHeart=5 + randomIndex + (GameManager.sav.LVBU._num_defections - 1) * 2
+	var costItem= ceil((randomIndex + GameManager.sav._num_defections)*difficultyCoeff)
+	var costCoin=int((50 * randomIndex + (GameManager.sav._num_defections) * 50)*difficultyCoeff)
+	var costPeople=int((30 * randomIndex + (GameManager.sav._num_defections) * 30)*difficultyCoeff)
+	var costHeart=int((5 + randomIndex + (GameManager.sav._num_defections - 1) * 2)*difficultyCoeff)
 		#var costItemDetail=InventoryManager.costItemRandom()
 	# 收集可满足的资源类型
 	var valid_options = []
