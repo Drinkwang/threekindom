@@ -177,7 +177,7 @@ do SoundManager.play_sound(sounds.BURN_WOOLDEN)
 
 刘备下令掩埋羊尸与竹筒，试图平息村民恐慌。
 do SoundManager.stop_sound(sounds.BURN_WOOLDEN)
-任务更新: 但百姓对刘备掩埋羊尸，粗暴平息谣言觉得不满，谣言传播更深 民心-10，支线任务结束
+任务更新: 但百姓对刘备掩埋羊尸，粗暴平息谣言觉得不满，谣言传播更深，支线任务结束，民心-10，获得3点政策点。
 do BurySheep()
 => END!
 

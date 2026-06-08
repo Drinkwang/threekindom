@@ -1169,7 +1169,11 @@ do chenden.show()
 do mizhu.hide()
 do chenden.hide()
 刘备: 陈登、糜竺之言，备已知晓。此药囊不详，既查明张阎之谋，便无留用。来人，将此焚毁，此事到此为止。[voice:liubei_cishidaociweizhi]
-任务更新: 任务结束：药囊焚毁，张阎事件草草了结。丹阳派不满未深查，支线关闭。丹阳派好感-5
+
+#任务更新: 药囊焚毁，张阎事件草草了结。丹阳派不满未深查，支线关闭。丹阳派好感-5。本次事件结算，获得2点政策点数。
+do SoundManager.play_sound(sounds.BURN_WOOLDEN)
+任务更新: 药囊焚毁，张阎一案草草了结。丹阳派因案情未彻查心生不满，支线任务结束，丹阳派支持度-5，获得2点政策点数。
+do SoundManager.stop_sound(sounds.BURN_WOOLDEN)
 do burnSac()
 => END!
 
@@ -1199,6 +1203,7 @@ do chenden.show()
 刘备: ...
 刘备: 备知晓了，此事到此为止，尔等退下吧。[voice:liubei_zhidaoletuixia]
 do chenden.hide()
+do SoundManager.play_sound(sounds.COLLECT_SMALL_JEWEL_3)
 任务更新: 张阎为贼乱旧部，因陶谦平乱致其家人丧命，潜伏报仇。真相已明，民乱已平，任务结束。
 
 => END!
@@ -1214,8 +1219,9 @@ do chenden.show()
 刘备: 罢了，陶氏兄弟虽存，然百姓已视其为鬼神罪恶之象征，若再现身，恐再生乱。我当令其化名，隐于民间，做常人活命。[voice:liubei_changrenhuomin]
 陈登: 主公此策甚妙，隐姓埋名确是上佳之计。[voice:chenden_yinxinmaimin]
 do chenden.hide()
-任务更新: 张阎被乱刀所杀，徐州派仅知其死，余下消息不得而知。陶氏兄弟化名隐居，永不得现于世间，支线任务结束，民心-20。
-
+do SoundManager.play_sound(sounds.COLLECT_SMALL_JEWEL_3)
+#任务更新: 张阎被乱刀所杀，徐州派仅知其死，余下消息不得而知。陶氏兄弟化名隐居，永不得现于世间，支线任务结束，民心-20。
+任务更新: 张阎被乱刀所杀，徐州派仅知其死，余下消息不得而知。陶氏兄弟化名隐居，永不得现于世间，支线任务结束，民心-20，获得1点政策点数。
 => END!
 
 

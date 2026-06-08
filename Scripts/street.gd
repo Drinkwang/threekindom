@@ -627,6 +627,7 @@ func holdWoolden():
 	_reward.showTitileReward(tr("恭喜你，你获得-道具竹简"),items)	
 	#reward获得
 func BurySheep():
+	GameManager.sav.Merit_points+=3
 	playStageMusic()
 	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeOut)
 	GameManager.changePeopleSupport(-10)

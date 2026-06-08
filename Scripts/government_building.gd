@@ -900,6 +900,7 @@ func deliverUncompleteTask():
 		
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"徐州派揭露真相")
 			else:
+				GameManager.sav.Merit_points+=1
 				GameManager.sav.have_event["错失古棒"]=true
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"保护陶商揭露真相")
 			return
@@ -1392,6 +1393,7 @@ func lvbuJoin():
 func burnSac():
 	#pass
 	#民心-5
+	GameManager.sav.Merit_points+=2
 	GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.KESULU]=("")
 	GameManager.changePeopleSupport(-5)
 	GameManager.sav.have_event["错失锦囊"]=true	
