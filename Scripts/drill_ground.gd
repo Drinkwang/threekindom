@@ -1310,13 +1310,20 @@ func succussAfter():
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"刘备的成长")	
 #func gotoYIHUI():
 	#SceneManager.changeScene(SceneManager.roomNode.BOULEUTERION,2)
+	
+	
+const PB_ZAITUBAYE = preload("res://Asset/sound/pb_zaitubaye.mp3")
+
+const PB_BAOQUANHUOZHONG = preload("res://Asset/sound/pb_baoquanhuozhong.mp3")
 func xiaopei():
 	GameManager._engerge.close_save.hide()
 	GameManager.sav.have_event["血战袁术完成"]=true
 	
-	
+	SoundManager.play_sound(PB_BAOQUANHUOZHONG)
+	GameManager.wait_time=PB_BAOQUANHUOZHONG.get_length()
+		
 	GameManager.sav.endPath=GameManager.endPath.xiaopei
-	GameManager.restLabel=tr("昔日徐州牧已成过眼云烟，今日刘备退守小沛。咽下屈辱，只为在绝境中苟全火种。这一步隐忍，不仅是为了活下去，更是为了在未来的某一天，将失去的一切都拿回来！")
+	GameManager.restLabel=tr("昔日徐州牧已成过眼云烟，今日刘备退守小沛。咽下屈辱，只为在绝境中保全火种。这一步隐忍，不仅是为了活下去，更是为了在未来的某一天，将失去的一切都拿回来！")
 
 	SceneManager.rest_scene(SceneManager.roomNode.HOUSE)
 	#播放声音
@@ -1328,6 +1335,8 @@ func xiapi():
 	GameManager._engerge.close_save.hide()
 	GameManager.sav.have_event["血战袁术完成"]=true
 	GameManager.sav.endPath=GameManager.endPath.xuzhou
+	SoundManager.play_sound(PB_ZAITUBAYE)
+	GameManager.wait_time=PB_ZAITUBAYE.get_length()	
 	GameManager.restLabel=tr("刘备星夜兼程，整军励士，终抵下邳城外。见城防依旧森严，守卒整肃，悬心方安。城门开处，张飞披甲出迎，众将欣喜归府。此番归来，不仅是为安定徐州，更是为凝聚人心，再图霸业！")
 
 	SceneManager.rest_scene(SceneManager.roomNode.GOVERNMENT_BUILDING)
