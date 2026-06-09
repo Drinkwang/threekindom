@@ -158,50 +158,72 @@ do _initData()
 
 ~ 每天袁术内应搞事
 刘备: 很好，继续努力。[voice:liubei_henhaojixu]
-%2 => 袁术搞事1
-%2 => 袁术搞事2
-%2 => 袁术搞事3
-% => 袁术搞事4
-###########################
-
-###########################
-
-###########################
+if GameManager.sav.GameManager.sav.yuanshu_chaos_count < 3
+	=> 随机事件_有4
+else
+	=> 随机事件_无4
+=> END!
 
 #大人袁术开始搞事勒 
 
+~ 随机事件_有4
+%2 => 袁术搞事1
+%2 => 袁术搞事2
+%2 => 袁术搞事3
+%  => 袁术搞事4
+=>  END!
 
+
+~ 随机事件_无4
+%2 => 袁术搞事1
+%2 => 袁术搞事2
+%2 => 袁术搞事3
+=>  END!
 
 #下级军官：“主公，袁术散布我们偏向袁绍、损害本地商贾和豪族利益的谣言，他们开始不安
 #刘备: 看来我得想办法处理此事
 #提示: xxxxxxxx
-=> END!
 
+
+
+#大改 需要 5-10-15
 ~ 袁术搞事1
-主簿: 另外，内应在城中散布粮食短缺谣言，百姓人心惶惶。[voice:zhubo_neiyingshanboliangshiduanque]
+
+主簿: 另外，内应散布即将加征赋税的谣言，商人群体与地方豪族纷纷怨声载道。[voice:zhubo_neiyinghaozu]
 刘备: 看来我得想办法处理此事[voice:liubei_kanlaideixiangbanfa]
-提示: 徐州城内 民心下降10点
+#提示: 豪族派 对你的忠诚度下降{{GameManager.resideValue}}点
+
+提示: {{tr(GameManager.sav.HAOZUPAI._name)}}对你的忠诚度下降{{GameManager.resideValue}}点。
 do yuanshuChaos(1)
 => END!
 
+#10 -15-20
 ~ 袁术搞事2
 主簿: 另外，主公，内应的谣言让丹阳派士兵军心动摇。[voice:zhubo_neiyingrangdanyangpaijunxin]
 刘备: 看来我得想办法处理此事[voice:liubei_kanlaideixiangbanfa]
-提示: 丹阳派 对你的忠诚度下降10点
+#提示: 丹阳派 对你的忠诚度下降{{GameManager.resideValue}}点
+提示: 提示: {{tr(GameManager.sav.WAIDIPAI._name)}}对你的忠诚度下降{{GameManager.resideValue}}点。
 do yuanshuChaos(2)
 => END!
-
+#1
 ~ 袁术搞事3
 主簿: 另外，内应散播背弃盟约的消息，士族们感到不满。[voice:zhubo_beiqimenyue]
 刘备: 看来我得想办法处理此事[voice:liubei_kanlaideixiangbanfa]
-提示: 徐州派 对你的忠诚度下降10点
+#提示: 徐州派 对你的忠诚度下降{{GameManager.resideValue}}点
+
+提示: {{tr(GameManager.sav.BENTUPAI._name)}}对你的忠诚度下降{{GameManager.resideValue}}点。
 do yuanshuChaos(3)
 => END!
-
+#2
 ~ 袁术搞事4
-主簿: 另外，内应的谣言同时影响了百姓、士族和士兵，局势紧张。[voice:zhubo_neiyingjushijinzhang]
+#主簿: 另外，内应的谣言同时影响了百姓、士族和士兵，局势紧张。[voice:zhubo_neiyingjushijinzhang]
+#刘备: 看来我得想办法处理此事[voice:liubei_kanlaideixiangbanfa]
+#提示: 徐州城内 民心下降10点，徐州派支持度下降10点，丹阳派支持度下降5点
+#do yuanshuChaos(4)
+do GameManager.sav.yuanshu_chaos_count += 1
+主簿: 另外，内应在城中散布粮食短缺谣言，百姓人心惶惶。[voice:zhubo_neiyingshanboliangshiduanque]
 刘备: 看来我得想办法处理此事[voice:liubei_kanlaideixiangbanfa]
-提示: 徐州城内 民心下降10点，徐州派支持度下降10点，丹阳派支持度下降5点
+提示: 徐州城内民心下降{{GameManager.resideValue - 5}}点
 do yuanshuChaos(4)
 => END!
 

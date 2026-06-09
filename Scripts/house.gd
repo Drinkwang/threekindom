@@ -792,6 +792,7 @@ func _JudgeTask():
 				hasSide=false
 			else:
 				hasSide=false
+				GameManager.resideValue=5+GameManager.sav.gameDifficulty*5
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"每天袁术内应搞事")
 		elif GameManager.sav.have_event["关羽求援结束"]==true:
 			if value>=8 and GameManager.sav.have_event["夏侯偷马"]==false and GameManager.sav.endPath==GameManager.endPath.xiaopei:
@@ -855,18 +856,19 @@ func secondMissonStart():
 #准备改成5天，然后民心下降改成5点
 func yuanshuChaos(value):
 	if value==1:
-		GameManager.changePeopleSupport(-10)
+		GameManager.sav.HAOZUPAI.ChangeSupport(-GameManager.resideValue)
 		#民心下降10,改成5
 	elif value==2:
-		GameManager.sav.WAIDIPAI.ChangeSupport(-10)
+		GameManager.sav.WAIDIPAI.ChangeSupport(-GameManager.resideValue)
 		#丹阳派下降10
 	elif value==3:
-		GameManager.sav.BENTUPAI.ChangeSupport(-10)
+		GameManager.sav.BENTUPAI.ChangeSupport(-GameManager.resideValue)
 		#徐州度下降10
 	elif value==4:
-		GameManager.sav.WAIDIPAI.ChangeSupport(-10)
-		GameManager.sav.BENTUPAI.ChangeSupport(-10)
-		GameManager.changePeopleSupport(-10)
+		GameManager.changePeopleSupport(-(GameManager.resideValue-5))
+		#GameManager.sav.WAIDIPAI.ChangeSupport(-10)
+		#GameManager.sav.BENTUPAI.ChangeSupport(-10)
+		#GameManager.changePeopleSupport(-10)
 		#全部下降10
 
 	enterdetermineInternalUnrest()
