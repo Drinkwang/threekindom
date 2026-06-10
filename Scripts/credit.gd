@@ -115,7 +115,7 @@ func settleGame():
 		
 		var line1=tr("游玩难度：{difficult}").format({"difficult":tr(diffSrc.type)+"（"+tr(diffSrc.name)+"）"})
 		var line2=tr("游戏旬数：{day}").format({"day":GameManager.sav.day})
-		var line3=tr("探索进度：{process}").format({"process":GameManager.get_exploration_percent()})
+		var line3=tr("探索进度：{process}%").format({"process":GameManager.get_exploration_percent()})
 		detial.text=line1+"\n"+line2+"\n"+line3+"\n"+finaldec
 	else:
 		what_final.hide()

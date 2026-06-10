@@ -2223,38 +2223,38 @@ func get_exploration_percent() -> int:
 		"曹豹支线1", "曹豹支线2", "曹豹支线3", 
 		"大儒支线2", "大儒支线3", "大儒辩经完成",
 	]
-
+#7
 	for q in faction_quests:
-		if he.get(q, false): pts += 2
+		if he.get(q, false): pts += 1
 
 	
 	var mystery = ["竹简幻觉剧情", "支线触发完毕获得骨杖", "诡物手册", "支线终府邸线索获取完成"]
 	for q in mystery:
-		if he.get(q, false): pts += 2
+		if he.get(q, false): pts += 3
 	
 	
 	
-
+#3
 	
 	if GameManager._setting.is_clear_normal_line==true:
 	
-		pts+=9
+		pts+=12
 	else:	
 	
 		var lvbu = ["辕门射戟","吕布之怒","最终丹阳"]
 		for q in lvbu:
-			if he.get(q, false): pts += 3
+			if he.get(q, false): pts += 4
 	# -- 特殊道具 (max 9) --
 	
 	if GameManager._setting.is_clear_overlord_line==true:
-		pts+=15
+		pts+=25
 	else:
 		
 		var items = ["获得锦囊","获得古棒","获得血袖","获得娃娃","获得亮银","获得玄阴"]
 		for q in items:
 			if he.get(q, false): pts += 2
 	# -- 杂项 (max 12+3) --
-		if not dontHaveDominance(): pts += 3
+		if not dontHaveDominance(): pts += 10
 
 	return mini(pts, 100)
 

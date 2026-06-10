@@ -40,7 +40,7 @@ const caoliu2 = preload("res://Asset/music/曹刘过场2.mp3")
 
 @onready var caocao_old: Node2D = $"曹操老"
 @onready var cikegroup: Node2D = $cikegroup
-
+const PB_QINGMEIZHUJIU = preload("res://Asset/sound/pb_qingmeizhujiu.mp3")
 func changeToFinalScene(index):
 
 	if index==-1:
@@ -81,8 +81,8 @@ func changeToFinalScene(index):
 
 		#GameManager.restFadeScene=SceneManager.HOUSE
 		#播放声音
-		SoundManager.play_sound(bgs194)
-		GameManager.wait_time=bgs194.get_length()
+		SoundManager.play_sound(PB_QINGMEIZHUJIU)
+		GameManager.wait_time=PB_QINGMEIZHUJIU.get_length()
 		GameManager._rest(false)#正式游戏false
 
 	elif index==4:

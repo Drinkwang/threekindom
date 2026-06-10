@@ -417,8 +417,9 @@ do succussAfter()
 ~ 彩蛋剧情
 ...
 do caocao.show()
-曹操: 奉孝，连你，也是来劝我杀刘备的吗？[voice:caocao_fengxiao]
 do guojia.show()
+曹操: 奉孝，连你，也是来劝我杀刘备的吗？[voice:caocao_fengxiao]
+
 郭嘉: 明公心中已有决断，嘉何须再劝。身为谋臣，自当在明公选定大道之后，再替你算尽余下的险途。[voice:guojia_1]
 曹操: 刘备是人中龙，纵之必为后患。可昔年危难之际，是他伸手救过我一命。今日我若杀他，赢了天下，却输了本心。便纵他一次，恩义两清，来日战场相见，我再无半分顾忌。[voice:caocao_enyiliangqing]
 郭嘉: 明公心意已决，便无对错。今日放的是刘备，来日要面对的，是天下。明公既已选好了路，便也是嘉的大道。纵是万难，我与明公共担！[voice:guojia_2]
@@ -457,7 +458,7 @@ do settleGame()
 #未翻译
 ~ 最终自言自语
 刘备: （防线竟未加固妥当，军中士气低迷，城中百姓亦渐生惶恐。如此下去，小沛危矣，我又该如何对得起追随我的将士与百姓……）[voice:liubei_jiagufangxian]
-do GameManager.changePeopleSupport(0-PunishC)
+do GameManager.changePeopleSupport(0-GameManager.PunishC)
 系统提示: 今日未完成{{GameManager.needC}}次军事行动，民心 -{{GameManager.PunishC}}。
 
 do SoundManager.stop_music()	
@@ -470,7 +471,7 @@ do GameManager._rest()
 
 ~ 最终主簿告知
 主簿: 主公！近日城防工事未及时整备，军士操练懈怠，城中民心已日渐浮动。若再如此，袁术大军一至，我军恐难抵挡，还望主公速速整军加固防线！[voice:zhubu_jiagufangxian]
-do GameManager.changePeopleSupport(0-PunishC)
+do GameManager.changePeopleSupport(0-GameManager.PunishC)
 系统提示: 今日未完成{{GameManager.needC}}次军事行动，民心-{{GameManager.PunishC}}。
 do SoundManager.stop_music()	
 do GameManager._rest()	
