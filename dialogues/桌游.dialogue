@@ -136,14 +136,14 @@ do finishTutorialAndEnterGame()
 - （1）小试牛刀[costHp=20][boardgame=true]
 	do GameManager.selectBoardMode(boardType.boardMode.new)
 - （2）对局试炼[costHp=20][boardgame=true]
-	系统提示: 当前试玩版不开放，尽请期待
+	#系统提示: 当前试玩版不开放，尽请期待
 
-	if GameManager.sav.middledemoPlay==false
-		系统提示: 在试玩版中你可以体验一次对局试验，与对手进行卡牌对弈
-		do GameManager.selectBoardMode(boardType.boardMode.middle)
-	else:
-		系统提示: 当前试玩版不开放，尽请期待
-		=> 选择仕诡牌
+	#if GameManager.sav.middledemoPlay==false
+	#	系统提示: 在试玩版中你可以体验一次对局试验，与对手进行卡牌对弈
+	do GameManager.selectBoardMode(boardType.boardMode.middle)
+	#else:
+	#	系统提示: 当前试玩版不开放，尽请期待
+	#	=> 选择仕诡牌
 
 - （3）诡秘乱局[costHp=20][boardgame=true] [if GameManager.sav.caobaocardgame>=5 or GameManager.selectBoardCharacter!=boardType.boardCharacter.caobao]
 	do GameManager.selectBoardMode(boardType.boardMode.high)

@@ -609,7 +609,7 @@ do GameManager.sav.Merit_points+=1
 #粮食问题得不到解决，寻求外援，跳脱阵营
 ~ 混乱与糜竺对话
 #主公，我即刻着手处理此事。只要给我十日，我定能控制局势，将内鬼揪出。[voice:mizhu_jiuchuneigui]
-糜竺: 主公，我即刻着手处理此事。定当尽快肃清内患，揪出奸邪！
+糜竺: 主公，我即刻着手处理此事。定当尽快肃清内患，揪出奸邪！[voice:mizhu_jiuchuneigui]
 刘备: 好，具体如何行事？[voice:liubei_jutiruhexingshi]
 糜竺: 可借助商会与地方势力，大力传播正面消息，以安民心。现下局势，主公需妥善调和各方矛盾，确保各派利益皆得顾及。[voice:mizhu_kejiezhushanghui]
 刘备: 接着说。[voice:liubei_jiezheshuo]

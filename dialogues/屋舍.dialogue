@@ -259,6 +259,7 @@ do sheepGnawed()
 
 
 ~ 支线克苏鲁最终开始
+do zhubu.showEX=false
 刘备: 深夜来报，必有要事，速说。[voice:liubei_shenyebiyouyaoshi]
 主簿: 主公，大事不妙！张阎今夜越狱，狱卒追之不及，徐州粮食告急，百姓缺粮，食不果腹。城外现骨头祭坛，插一根恶臭骨棒，坊间传言‘饕餮饥渴，陶氏血肉是祭品’，百姓受惑，聚众喊‘献陶氏平神怒’，皆言灾荒乃陶氏所致！[voice:zhubo_taoshizuzhou]
 
