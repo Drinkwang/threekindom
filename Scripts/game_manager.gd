@@ -727,10 +727,10 @@ func getConstructValue():
 var needC
 var PunishC
 func _rest(value=true):
-	
-	SoundManager.stop_music()
-	if GameManager.musicId!=0:
-		GameManager.musicId=-GameManager.musicId	
+	if GameManager.sav.have_event["进入青梅煮酒"]==false:
+		SoundManager.stop_music()
+		if GameManager.musicId!=0:
+			GameManager.musicId=-GameManager.musicId	
 	const DISSOLVE_IMAGE = preload("res://addons/transitions/images/circle-inverted.png")
 	if DialogueManager.gameover==true:
 		return
@@ -2214,7 +2214,7 @@ func apply_difficulty_compensation(diff_levels: int):
 		
 func get_exploration_percent() -> int:
 
-	var pts = 40
+	var pts = 30
 	var he = sav.have_event
 
 	var faction_quests = [
@@ -2246,15 +2246,17 @@ func get_exploration_percent() -> int:
 			if he.get(q, false): pts += 4
 	# -- 特殊道具 (max 9) --
 	
+	
+	#40+38+25=
 	if GameManager._setting.is_clear_overlord_line==true:
-		pts+=25
+		pts+=32
 	else:
 		
 		var items = ["获得锦囊","获得古棒","获得血袖","获得娃娃","获得亮银","获得玄阴"]
 		for q in items:
 			if he.get(q, false): pts += 2
 	# -- 杂项 (max 12+3) --
-		if not dontHaveDominance(): pts += 10
+		if not dontHaveDominance(): pts += 20
 
 	return mini(pts, 100)
 
@@ -2274,6 +2276,7 @@ func enterCredit(index):
 	GameManager.sav.day=0
 	if (GameManager._setting.is_clear_normal_line==false and index==1) or (GameManager._setting.is_clear_overlord_line==false and index==2):
 		DialogueManager.show_example_dialogue_balloon(sys,"credit未解锁")
+		return
 	if index==1:
 		GameManager.sav.endPath=GameManager.endPath.xiaopei
 		SceneManager.changeScene(SceneManager.roomNode.Credit,2)

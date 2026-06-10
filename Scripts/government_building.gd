@@ -891,7 +891,7 @@ func deliverUncompleteTask():
 			GameManager.initDemand()
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"津贴开始2")
 			return
-		elif GameManager.sav.have_event["支线触发完毕查出锦囊休息"]==true and GameManager.sav.have_event["支线触发完毕获得锦囊之前"]==false:
+		elif GameManager.sav.have_event["支线触发完毕查出锦囊休息"]==true and GameManager.sav.have_event["支线触发完毕获得锦囊之前"]==false and GameManager.sav.endPath==GameManager.endPath.none:
 			GameManager.sav.have_event["支线触发完毕获得锦囊之前"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"克苏鲁府邸调查支线")
 			return

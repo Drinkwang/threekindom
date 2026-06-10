@@ -354,7 +354,7 @@ var SIDEQUEST_MAP:Dictionary={
 	"赢过黑商":false,
 	"法律健全":false,
 	"AllFactionsSubdued":false,
-	
+	"进入青梅煮酒":false,
 	"陈登论策解锁":false,
 	#"错失玄阴":false,
 }
