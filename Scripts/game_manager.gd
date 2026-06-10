@@ -754,19 +754,24 @@ func checkAndHandleLazy() -> bool:
 	if GameManager.sav.endPath!=GameManager.endPath.none:
 		var allcount = GameManager.sav.battleResults.size() - GameManager.sav.battleResults.count(GameManager.BattleResult.none)
 
+		#var diffFactor=0
+		
+		#if GameManager.sav.gameDifficulty==1:
+		var diffFactor=GameManager.sav.gameDifficulty*5
+	
 		if(GameManager.sav.have_event["夏侯偷马"]==true and GameManager.sav.endPath==GameManager.endPath.xuzhou):
 			needC=3
-			PunishC=35
+			PunishC=25+diffFactor
 		elif GameManager.sav.endPath==GameManager.endPath.xiaopei and GameManager.sav.have_event["吕布之怒"]==true:
 			needC=3#吕布
-			PunishC=30
+			PunishC=20+diffFactor
 		else:
 			if GameManager.sav.endPath==GameManager.endPath.xiaopei:
 				needC=1
-				PunishC=20
+				PunishC=10+diffFactor
 			elif GameManager.sav.endPath==GameManager.endPath.xuzhou:
 				needC=2
-				PunishC=25
+				PunishC=15+diffFactor
 		if allcount<needC:
 			if GameManager.sav.have_event["主簿的追随"]==false:
 				DialogueManager.show_example_dialogue_balloon(sys,"最终自言自语")

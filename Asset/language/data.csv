@@ -1667,9 +1667,7 @@ _disaterPanelDetail,Pleased: {happy} (Greatly increases support when satisfied)\
 张阎,Zhang Yan,张阎,張閻,張閻,Чжан Янь
 好感度:{s},Favor:{s},好感度:{s},好感度:{s},好感度:{s},Связь:{s}
 主公，三战连败，百姓对连番失利颇有微词。,"My Lord, three consecutive defeats have stirred discontent among the people over these repeated failures.",主公，三战连败，百姓对连番失利颇有微词。,主公，三戰連敗，百姓對連番失利頗有微詞。,主君、三度の戦いに敗れ、民衆は連敗に不満を募らせております。,"Господин, три поражения подряд, народ недоволен чередой неудач."
-民心-10，民众对连续败北不满！,"Public Order -10, the people are discontent with continuous defeats!",民心-10，民众对连续败北不满！,民心-10，民眾對連續敗北不滿！,民心-10、連敗に民衆が不満を抱いている！,"Народное доверие -10, народ недоволен чередой поражений!"
 主公，此番败北，百姓已生不满之情。,"My Lord, the people have grown discontent after this defeat.",主公，此番败北，百姓已生不满之情。,主公，此番敗北，百姓已生不滿之情。,主君、この度の敗北により、民衆の不満が高まっております。,"Господин, после этого поражения народ уже выражает недовольство."
-民心-5，民众对败北有所不满！,"Public Sentiment -5, the people are discontent with the defeat!",民心-5，民众对败北有所不满！,民心-5，民眾對敗北有所不滿！,民心-5、敗北に民衆が不満を抱いている！,"Репутация -5, народ недоволен поражением!"
 士兵,Soldier,士兵,士兵,兵士,Солдат
 士人甲,Scholar A,士人甲,士人甲,士人甲,Учёный А
 士人乙,Scholar B,士人乙,士人乙,士人乙,Учёный Б
@@ -2453,3 +2451,10 @@ Xu □□□□ ancient □, □ qi □□□, □□□ ghost □.
 {{tr(GameManager.sav.WAIDIPAI._name)}}对你的忠诚度下降{{GameManager.resideValue}}点。,,,,,
 {{tr(GameManager.sav.BENTUPAI._name)}}对你的忠诚度下降{{GameManager.resideValue}}点。,,,,,
 徐州城内民心下降{{GameManager.resideValue – 5}}点,,,,,
+主公，穷兵黩武之策已使我们深陷危亡时刻，败绩连连，远超胜绩。百姓怨愤冲天，徐州恐将倾覆！,,,,,
+民心大减{{GameManager.resideValue}}，局势危殞！,,,,,
+注意，军事行动已进入警戒线，如果继续失利，恐将遭到严重反噬！,,,,,
+民心-{{GameManager.resideValue}}，民众对连续败北不满！,,,,,
+主公，近期我军屡战屡败，百姓怨愤渐生，民心动荡。若再失利，徐州恐将面临崩盘之祸！,,,,,
+民心-{{GameManager.resideValue}}，民众对败北有所不满！,,,,,
+民心-{{GameManager.resideValue}}，民众对连续败北不满！,,,,,

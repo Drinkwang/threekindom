@@ -675,6 +675,12 @@ func judgeLoseSentiment():
 		
 		
 		GameManager.sav.have_event["军事行动大败"]=true
+		if GameManager.sav.gameDifficulty==1:
+			GameManager.resideValue=20
+		elif GameManager.sav.gameDifficulty==2:
+			GameManager.resideValue=25
+		elif GameManager.sav.gameDifficulty==3:
+			GameManager.resideValue=30
 		
 		if GameManager.sav.have_event["战斗袁术血战模式"]==true and GameManager.sav.have_event["血战袁术完成"]==false:
 			DialogueManager.show_example_dialogue_balloon(yanwuchang,"血战大败")
@@ -695,12 +701,28 @@ func judgeLoseSentiment():
 
 	elif GameManager.sav.ctLoseBattle>=3 and GameManager.currenceScene.battle_pane._mode==SceneManager.bossMode.none:
 		
+
+		if GameManager.sav.gameDifficulty==1:
+			GameManager.resideValue=10
+		elif GameManager.sav.gameDifficulty==2:
+			GameManager.resideValue=15
+		elif GameManager.sav.gameDifficulty==3:
+			GameManager.resideValue=20
+		
 		if GameManager.sav.have_event["战斗袁术血战模式"]==true and GameManager.sav.have_event["血战袁术完成"]==false:
 			DialogueManager.show_example_dialogue_balloon(yanwuchang,"血战连续多次败北")
 		else:
 			DialogueManager.show_example_dialogue_balloon(yanwuchang,"连续多次败北")	
 		#连续多日怠惰
 	elif GameManager.currenceScene.battle_pane._mode==SceneManager.bossMode.none:
+		
+		if GameManager.sav.gameDifficulty==1:
+			GameManager.resideValue=5
+		elif GameManager.sav.gameDifficulty==2:
+			GameManager.resideValue=10
+		elif GameManager.sav.gameDifficulty==3:
+			GameManager.resideValue=15
+
 		var lazyRan=0.1*GameManager.sav.ctLoseBattleRate
 		var random_value = randf()  # 生成0.0到1.0的随机数
 		if random_value <= lazyRan:

@@ -947,8 +947,8 @@ do xiapi()
 ~ 大败
 主簿: 主公，穷兵黩武之策已使我们深陷危亡时刻，败绩连连，远超胜绩。百姓怨愤冲天，徐州恐将倾覆！[voice:zhubo_qiongbinduwu]
 #系统提示: 民心大减40，局势危殞！
-系统提示: 民心大减30，局势危殞！
-do GameManager.changePeopleSupport(-30)
+系统提示: 民心大减{{GameManager.resideValue}}，局势危殞！
+do GameManager.changePeopleSupport(0-GameManager.resideValue)
 => END!
 
 
@@ -962,16 +962,16 @@ do GameManager.changePeopleSupport(-30)
 
 ~ 连续多次败北
 主簿: 主公，三战连败，百姓对连番失利颇有微词。[voice:zhubo_baixingweici]
-系统提示: 民心-10，民众对连续败北不满！
-do GameManager.changePeopleSupport(-10)
+系统提示: 民心-{{GameManager.resideValue}}，民众对连续败北不满！
+do GameManager.changePeopleSupport(0-GameManager.resideValue)
 
 => END!
 
 
 ~ 一次败北引发民愤
 主簿: 主公，此番败北，百姓已生不满之情。[voice:zhubo_baixinbuman]
-系统提示: 民心-5，民众对败北有所不满！
-do GameManager.changePeopleSupport(-5)
+系统提示: 民心-{{GameManager.resideValue}}，民众对败北有所不满！
+do GameManager.changePeopleSupport(0-GameManager.resideValue)
 => END!
 
 
@@ -981,8 +981,8 @@ do GameManager.changePeopleSupport(-5)
 ~ 血战大败
 
 亲兵: 主公！我军伤亡殆尽，将士们已经杀红了眼，却仍挡不住敌军攻势！弟兄们都在喊着 “不想死”，这仗…… 这仗没法打了！[voice:qinbin_buxiangsi]
-系统提示: 军心大减 40，士气濒临崩溃！
-do GameManager.changePeopleSupport(-40)
+系统提示: 军心大减{{GameManager.resideValue}}，士气濒临崩溃！
+do GameManager.changePeopleSupport(0-GameManager.resideValue)
 => END!
 
 
@@ -996,15 +996,15 @@ do GameManager.changePeopleSupport(-40)
 ~ 血战连续多次败北
 
 亲兵: 主公…… 我们已经退无可退了。弟兄们连手都在发抖，大家都在问，到底还要在这里填多少条命才够啊……[voice:qinbin_tianmin]
-系统提示: 军心 - 10，将士对连续苦战感到绝望！
-do GameManager.changePeopleSupport(-10)
+系统提示: 军心-{{GameManager.resideValue}}，将士对连续苦战感到绝望！
+do GameManager.changePeopleSupport(0-GameManager.resideValue)
 => END!
 
 
 ~ 血战一次败北引发民愤
 亲兵: 主公，这一阵折损了不少兄弟，军中弥漫着一股丧气，大伙儿的气势不如前了。[voice:qinbin_sangqi]
-系统提示: 军心 - 5，将士士气受挫！
-do GameManager.changePeopleSupport(-5)
+系统提示: 军心-{{GameManager.resideValue}}，将士士气受挫！
+do GameManager.changePeopleSupport(0-GameManager.resideValue)
 => END!
 
 
