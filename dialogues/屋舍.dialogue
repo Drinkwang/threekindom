@@ -158,7 +158,7 @@ do _initData()
 
 ~ 每天袁术内应搞事
 刘备: 很好，继续努力。[voice:liubei_henhaojixu]
-if GameManager.sav.GameManager.sav.yuanshu_chaos_count < 3
+if GameManager.sav.yuanshu_chaos_count < 3
 	=> 随机事件_有4
 else
 	=> 随机事件_无4

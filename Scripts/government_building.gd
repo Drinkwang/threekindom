@@ -1091,7 +1091,7 @@ func cancelAllocation():
 
 func afterAllocation():
 	disater_panel.afterAllocation()
-
+	_initData()
 func FractionalDiff():
 	GameManager.sav.HAOZUPAI.isshow=true
 	GameManager.sav.HAOZUPAI._support_rate=GameManager.sav.BENTUPAI._support_rate
