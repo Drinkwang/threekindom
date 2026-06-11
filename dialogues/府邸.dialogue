@@ -289,7 +289,7 @@ do GameManager._imporveRelation(getFactionByIndex())
 => END
 ~ 索取完成
 你已成功从{{getFactionByIndex().getTr()}}手中获取资金{{ForValueGet}}，消耗{{ForValueCost}}点好感度
-#从xxx手中获取资金
+do _JudgeTask()
 => END
 
 ~ 扩充吕布实力
@@ -299,7 +299,7 @@ do GameManager._imporveRelation(getFactionByIndex())
 
 ~ 调用士兵完成
 你已成功从{{GameManager.rTaishanName()}}手中征募士兵{{ForValueGet}}，消耗{{ForValueCost}}点好感度
-#该派系人数上升完成
+do _JudgeTask()
 => END
 
 ~ 选项吕布

@@ -988,6 +988,8 @@ func deliverTask():
 			
 			if(GameManager.sav.have_event["派系安稳任务触发"]==true):
 				GameManager.sav.have_event["派系安稳完成"]=true
+				#GameManager.clearTask()
+				#设定任务已完成，前往演武场即可
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"刘备决定亲征")#显示对话
 
 		if GameManager.sav.have_event["派系安稳完成"]==true and GameManager.sav.have_event["亲征对话结束"]==false:

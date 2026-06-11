@@ -51,6 +51,13 @@ func _ready():
 		if initrestBtn!=null:
 			TooltipManager.register_tooltip(initrestBtn,context)
 			initrestBtn.disabled=true
+	
+	elif GameManager.sav.have_event["派系安稳完成"]==true and GameManager.sav.have_event["亲征对话结束"]==false:
+		var context=tr("请先与手下陈登和糜竺咨询情况，否则无法休息。")
+		if initrestBtn!=null:
+			TooltipManager.register_tooltip(initrestBtn,context)
+			initrestBtn.disabled=true		
+		
 	else:
 		if initrestBtn!=null:
 			initrestBtn.disabled=false
