@@ -424,11 +424,12 @@ do huatuo.changeName("华佗")
 
 - 进行劝说
 
-	do GameManager.sav.BENTUPAI.ChangeSupport(5)
-	do GameManager.sav.coin=GameManager.sav.coin+100
-	do GameManager.sav.labor_force=GameManager.sav.labor_force+200
+
 	刘备: 陈登，性命为重，鱼脍可缓，备不忍你受病苦。[voice:liubei_chendenburen]
 	陈登: 主公关怀，我非常感动，既有此疾，暂缓便是。[voice:chenden_zanhuanbianshi]
+	do GameManager.sav.BENTUPAI.ChangeSupport(5)
+	do GameManager.sav.coin=GameManager.sav.coin+100
+	do GameManager.sav.labor_force=GameManager.sav.labor_force+200	
 	提示: 士族派忠诚+5，获得金钱100、民力200。
 
 	华佗: （此人嗜好生鱼难改，此刻也并无诚心戒食，虫疾根未断，再食生，或命不久。)[voice:huatuo_cirenshengyunangai]

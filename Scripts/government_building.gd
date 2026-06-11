@@ -876,6 +876,10 @@ func deliverUncompleteTask():
 					GameManager.sav.have_event["thirdDisaster"]=true
 					return	#第三次赈灾开始	
 	if candoSub==true:
+		var jingtieWaitDay=7
+		if GameManager.sav.gameDifficulty==3:
+			jingtieWaitDay=5
+		
 		if GameManager.sav.have_event["竹简幻觉剧情"]==true and GameManager.sav.have_event["支线触发完毕查出锦囊"]==false:
 			
 			
@@ -885,9 +889,12 @@ func deliverUncompleteTask():
 				tsty.show()
 				return
 				#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"城外克苏鲁事件触发")
-		elif GameManager.sav.have_event["津贴系统开始"]==false and GameManager.sav.day>=7:#正式版条件 and GameManager.sav.have_event["battleTaiShan"]==true:
+		elif GameManager.sav.have_event["津贴系统开始"]==false and GameManager.sav.day>=jingtieWaitDay and GameManager.sav.have_event["initTaskPolicy"]==true:
 			GameManager.sav.have_event["津贴系统开始"]=true
-			GameManager.sav.allocationDay=1
+			if GameManager.sav.gameDifficulty==3:
+				GameManager.sav.allocationDay=2
+			else:
+				GameManager.sav.allocationDay=1
 			GameManager.initDemand()
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"津贴开始2")
 			return

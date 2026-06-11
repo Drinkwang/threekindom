@@ -2127,7 +2127,7 @@ func LoadingDiffucultValue():
 	elif GameManager.sav.gameDifficulty==3:
 		perLawCycle=4
 		minxinPoint=2
-		LAW_COST_POINT=3
+		LAW_COST_POINT=4
 		#4点法令点立一个法
 		#战斗难度
 		#一些惩罚增加
