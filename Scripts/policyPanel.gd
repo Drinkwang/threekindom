@@ -84,7 +84,12 @@ func changeLanguage():
 		law_label.remove_theme_font_override("font")
 		#currence_no_policy.remove_theme_font_override("font")
 	point_label.text=tr("点数:%s")%GameManager.sav.Merit_points
-	TooltipManager.register_tooltip(ConfireButton,tr("立法的好处仅表决通过后获得；点亮节点、立法通过均会扣除受损派系支持度。"))
+	
+	
+	if GameManager.sav.gameDifficulty==1:
+		TooltipManager.register_tooltip(ConfireButton,tr("立法收益仅在表决通过后生效。本难度下，仅点亮立法节点会扣除受损派系支持度，法案通过不再重复扣除。"))
+	else:
+		TooltipManager.register_tooltip(ConfireButton,tr("立法的好处仅表决通过后获得；点亮节点、立法通过均会扣除受损派系支持度。"))
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
@@ -332,7 +337,8 @@ func agreelaw():
 	GameManager.sav.laws[selectLawPoint.num1].append(selectLawPoint.num2)
 	
 	#判断法律是否为即将达成的，如果是，则让其完成，获得好感度和目标
-	GameManager.preCostPaixi()
+	if GameManager.sav.gameDifficulty!=1:
+		GameManager.preCostPaixi()
 	#GameManager.haveLaw=true
 	SoundManager.play_sound(sounds.confiresound)
 	if GameManager.sav.have_event["firstLawExecute"]==false:

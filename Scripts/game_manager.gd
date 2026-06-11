@@ -428,7 +428,7 @@ func _enterDay(value=true):
 				sav.allocationDay=0
 				
 		if sav.learnFormChenden==false:
-			if sav.acdemicLevel>1:
+			if sav.acdemicLevel>0:
 				sav.acdemicLevel-=1
 		else:
 			sav.learnFormChenden=false

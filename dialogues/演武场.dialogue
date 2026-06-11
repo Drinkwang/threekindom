@@ -1070,7 +1070,7 @@ do laibapai()
 
 
 ~ 曹豹支线2
-
+do caobao.showEX=false
 刘备: 曹将军，前日所言遗迹之事，似有隐情。某闻城外黄帝遗迹有古龙石像，是否真藏秘宝？将军可否直言？[voice:liubei_huangdikefouzhiyan]
 曹豹: 主公既有此问，某不敢隐瞒。遗迹确有古龙石像，名‘镇魂古龙’，传为黄帝神器。但近日城内大族有人假借修缮，实则掘墓，欲夺秘宝。[voice:caobao_duobao]
 - 追问城中何人主导此事[highlight=true]

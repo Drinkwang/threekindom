@@ -1305,12 +1305,10 @@ func returnMain():
 func succussAfter():
 	guanyu.show()
 	items_in_scene.show()
-	
-	GameManager.sav.have_event["刘备成长0"]=true
-	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"刘备的成长")	
-#func gotoYIHUI():
-	#SceneManager.changeScene(SceneManager.roomNode.BOULEUTERION,2)
-	
+	if GameManager.sav.have_event["刘备成长0"]==false:
+		GameManager.sav.have_event["刘备成长0"]=true
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"刘备的成长")	
+
 	
 const PB_ZAITUBAYE = preload("res://Asset/sound/pb_zaitubaye.mp3")
 

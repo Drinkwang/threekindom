@@ -74,7 +74,11 @@ do showTab()
 
 #安排完了，
 主簿: 大人，请选择你想要实施的法律[voice:darenqingxuanzhe]
-系统提示: 基础初始立法条目不会扣除派系支持度。除此之外其余律法：发起点亮立法时、最终表决立法通过时，两个阶段均扣除利益受损派系支持度。
+if GameManager.sav.gameDifficulty!=1
+	系统提示: 基础初始立法条目不会扣除派系支持度。除此之外其余律法：发起点亮立法时、最终表决立法通过时，两个阶段均扣除利益受损派系支持度。
+else
+	系统提示: 基础初始律法不会扣除派系支持度。其余律法，发起立法时将扣除利益受损派系的支持度。
+
 => END
 
 #优先级中，体力优先级最低
@@ -234,7 +238,7 @@ do zhubu.hide()
 
 ~ 赠礼完成
 do SoundManager.play_sound(sounds.COLLECT_SMALL_JEWEL_3)
-成功赠送礼物，{{getFactionByIndex().getTr()}}好感度上升{{(15+GameManager.sav.randomIndex+GameManager.extraValue)}}
+成功赠送礼物，{{getFactionByIndex().getTr()}}好感度上升{{(15+GameManager.extraValue)}}
 
 
 do GameManager._imporveRelation(getFactionByIndex())
@@ -954,7 +958,8 @@ do lvbuhave_seat()
 吕布: 好！刘使君果然谨慎。既如此，今后咱们便是一家人，有何差遣，贤弟但说无妨！[voice:lvbu_niguoranjinshen]
 刘备: 温侯忠勇无双，天下罕有。备与诸将商议，欲请温侯坐镇边境，掌琅琊至东海防务。另有一要务相托——泰山诸将内乱，亟需平定。若能安定泰山，徐州根基必固。[voice:liubei_yaowenhoupingtaishan]
 吕布: 贤弟若授布总督军事之权，不出旬月，泰山诸城必尽插刘氏旌旗！[voice:lvbu_buchuxunyue]
-刘备: 好！自今日起，琅琊至东海防务，全权托付与你。（此地割据难制，正好交由你坐镇，借你威势镇守一方）[voice:liubei_langyahedonghai] 
+刘备: 好！自今日起，琅琊至东海防务，全权托付与你。[voice:liubei_langyahedonghai] 
+#（此地割据难制，正好交由你坐镇，借你威势镇守一方）
 ##需要改了
 吕布: 多谢贤弟信任！布定不负所托！[voice:lvbu_bufusuotuo]
 刘备: 温侯，今日之事已议定，你先回去准备吧。我们会尽快安排具体事宜。[voice:liubei_wenhoujinriyiding]
@@ -969,7 +974,8 @@ do lvbuc.hide()
 提示: 自此，刘备可召见派系与吕布互动，既可向其征取资源，亦可通过赏赐增进好感。吕布为附庸势力，不参与派系议事，但我方每月需为其供给常规月例。
 #	从现在开始，刘备可以通过召见手下，召见吕布，从其获取资源，或者赏赐提升其好感度
 
-任务更新: 当前任务变更为讨伐泰山诸将。在吕布加入后，需在军事行动中取得三次胜利。#未翻译
+任务更新: 当前任务变更为讨伐泰山诸将。在吕布加入后，需在军事行动中取得三次胜利。
+#未翻译
 do canSummonLvBu()
 => END!
 
