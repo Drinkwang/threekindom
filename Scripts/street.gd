@@ -850,4 +850,5 @@ func headRed():
 
 const long = preload("res://Asset/人物/镇魂龙最终.png")
 func headRepair():
+	battle_pane.battle_circle.enemyName="骨龙"
 	battle_pane.battle_circle.changeHead(long)

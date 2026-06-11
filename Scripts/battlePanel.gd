@@ -479,6 +479,7 @@ func enterBattleMi():
 	
 	soild_slider.editable=false
 	#soild_slider.enan;
+	battle_circle.enemyName="糜贞"
 	var cha=load("res://Asset/人物/mizhen_battle.png")
 	battle_circle.changeHead(cha)
 	initTask()
@@ -493,7 +494,7 @@ func enterBattleTao():
 	ban_2_coin.show()
 	coin_slider.editable=false	
 	var cha=load("res://Asset/人物/尸皇.png")
-	
+	battle_circle.enemyName="陶谦"
 	battle_circle.changeHead(cha)
 
 	initTask()
@@ -503,7 +504,7 @@ func enterBattleHuang():
 	_refreshGeneral()
 	initTask()	
 	
-	
+	battle_circle.enemyName="骨龙"
 	close_btn.hide()
 	_mode=SceneManager.bossMode.huang
 	var cha=load("res://Asset/人物/骨龙最终.png")
@@ -558,7 +559,7 @@ func enterBattleZhenRen():
 		data.index=i+40	
 	refreshData()
 	
-
+	battle_circle.enemyName="修道真人"
 	const cha = preload("res://Asset/人物/真人.png")
 	battle_circle.changeHead(cha)	
 	#禁用任务
