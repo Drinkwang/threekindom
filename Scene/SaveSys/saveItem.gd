@@ -120,7 +120,9 @@ func refresh(sav:saveData):
 	if sav.autoSave == true:
 		formatStr=("({auto})").format({"auto":tr("自动存档")})+"\n"+formatStr
 
-	label.text=formatStr.format({"current_datetime":sav.current_datetime,"day":sav.day,"coin":sav.coin,"heart":sav.people_surrport,"people":sav.labor_force})
+	var diffData = GameManager.get_difficulty_data(sav.gameDifficulty)
+	var diffStr = "%s" % [tr(diffData.name)]
+	label.text=formatStr.format({"current_datetime":sav.current_datetime,"difficulty":diffStr,"day":sav.day,"coin":sav.coin,"heart":sav.people_surrport,"people":sav.labor_force})
 	
 @onready var save_panel: savePanel = $"../../.."
 

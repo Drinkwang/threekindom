@@ -83,8 +83,8 @@ else
 
 #优先级中，体力优先级最低
 ~ 你的政策点不够
- : 我必须有3点政策点数才能立法
-[resideLawPoint]
+ : 我必须有{{GameManager.LAW_COST_POINT}}点政策点数才能立法
+
 #(每旬回复一天，最大为3)
 => END!
 
