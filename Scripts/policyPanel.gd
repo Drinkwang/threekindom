@@ -337,8 +337,8 @@ func agreelaw():
 	GameManager.sav.laws[selectLawPoint.num1].append(selectLawPoint.num2)
 	
 	#判断法律是否为即将达成的，如果是，则让其完成，获得好感度和目标
-	if GameManager.sav.gameDifficulty!=1:
-		GameManager.preCostPaixi()
+	#if GameManager.sav.gameDifficulty!=1:
+	GameManager.preCostPaixi()
 	#GameManager.haveLaw=true
 	SoundManager.play_sound(sounds.confiresound)
 	if GameManager.sav.have_event["firstLawExecute"]==false:
