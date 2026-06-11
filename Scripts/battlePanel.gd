@@ -479,7 +479,7 @@ func enterBattleMi():
 	
 	soild_slider.editable=false
 	#soild_slider.enan;
-	var cha=load("res://Asset/人物/假糜贞.png")
+	var cha=load("res://Asset/人物/mizhen_battle.png")
 	battle_circle.changeHead(cha)
 	initTask()
 @onready var close_btn = $TextureButton
