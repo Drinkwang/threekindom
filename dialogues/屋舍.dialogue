@@ -549,6 +549,7 @@ do switchGatepost()
 
 ~ 辕门射戟完成
 刘备: 今日辕门射戟，暂解危局，幸得泰山将士暗中相援。眼下权且蛰伏，只待天时变化，再图后举。[voice:liubei_yuanmenshejiwancheng]
+do SoundManager.play_sound(sounds.COLLECT_SMALL_JEWEL_3)
 系统提示: 恭喜玩家完成「泰山内应密告」任务，促成辕门射戟，暂时化解小沛危机，徐州各派系支持度上升10
 => END!
 

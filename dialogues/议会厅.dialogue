@@ -423,9 +423,13 @@ do huatuo.changeName("华佗")
 刘备: (华先生之言有理，性命攸关，备当如何……)[voice:liubei_huaxianshengyouli]
 
 - 进行劝说
+
+	do GameManager.sav.BENTUPAI.ChangeSupport(5)
+	do GameManager.sav.coin=GameManager.sav.coin+100
+	do GameManager.sav.labor_force=GameManager.sav.labor_force+200
 	刘备: 陈登，性命为重，鱼脍可缓，备不忍你受病苦。[voice:liubei_chendenburen]
 	陈登: 主公关怀，我非常感动，既有此疾，暂缓便是。[voice:chenden_zanhuanbianshi]
-	提示: 士族派忠诚+5，陈登捐粮万石.  
+	提示: 士族派忠诚+5，获得金钱100、民力200。
 
 	华佗: （此人嗜好生鱼难改，此刻也并无诚心戒食，虫疾根未断，再食生，或命不久。)[voice:huatuo_cirenshengyunangai]
 - 尊重选择[highlight=true]
@@ -434,8 +438,10 @@ do huatuo.changeName("华佗")
 
 	陈登: 主公信我，元龙必效死！[voice:chenden_bixiaosi]
 
-
-	提示: 士族派忠诚+10，陈登捐粮万石。  
+	do GameManager.sav.BENTUPAI.ChangeSupport(10)
+	do GameManager.sav.coin=GameManager.sav.coin+100
+	do GameManager.sav.labor_force=GameManager.sav.labor_force+200	
+	提示: 士族派忠诚+10，获得金钱100、民力200。
 
 	华佗: (陈元龙不戒脍，恐难长寿，老夫尽力矣。)[voice:huatuo_laofujinlile]
 do chendeng.hide()

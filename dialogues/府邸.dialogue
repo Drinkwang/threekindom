@@ -1670,9 +1670,11 @@ do jiaMizhenShow()
 
 	糜贞: 将军若有意，贞随兄长安排。[voice:mizhen_suixiongzhang]
 	糜竺: 主公英明，我寻一个好时机，即可联姻[voice:mizhu_zhugongyinmin2]
-
-	奖励: 豪族派忠诚+15，民心+10（“主公与糜氏亲近”传开）  
-#	糜竺: 城外怪声闹人，我妹说‘饕餮也抢不了我的茶’，胆子不小！
+	do GameManager.sav.HAOZUPAI.ChangeSupport(15)
+	do GameManager.sav.coin=GameManager.sav.coin+200
+	do GameManager.sav.labor_force=GameManager.sav.labor_force+100
+	奖励: 豪族派忠诚+15，获得金钱200、民力100
+#	糜竺:豪族派忠诚+15，获得金钱200、民力100，民心+10
 - 温和拒绝，专注军务
 
 
@@ -1680,8 +1682,10 @@ do jiaMizhenShow()
 
 	糜竺: 主公志坚，竺敬之！[voice:mizhu_zhugongzhijian]
 	糜贞: 将军真忙，贞儿白端酒了。[voice:mizhenbaiduanjiu]
-
-	奖励: 豪族派忠诚+10（糜竺仍全力支持）。
+	do GameManager.sav.HAOZUPAI.ChangeSupport(10)
+	do GameManager.sav.coin=GameManager.sav.coin+200
+	do GameManager.sav.labor_force=GameManager.sav.labor_force+100	
+	奖励: 豪族派忠诚+10，获得金钱200、民力100（糜竺仍全力支持）。
 do mizhen.hide()
 do mizhu.hide()	
 do mizhufinal()
