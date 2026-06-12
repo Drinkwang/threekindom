@@ -372,21 +372,21 @@ func initPaixiFloor(data:cldata):
 	data._num_op=(data._num_all*(100-data._support_rate))/100+0.5
 	var paixiindex=getIndexByFractionIndex(data.index)
 	var lawOP=0
-	if paixiindex!=sav.curLawNum1 and sav.curLawNum1>0:
+	if paixiindex!=sav.curLawNum1 and sav.curLawNum1!=-1:
 		lawOP=((sav.curLawNum2-1)*10.0/100.0)*(data._num_all-data._num_op)
 		lawOP=floor(lawOP)
 
 	#如果是相同派系，则为0，不同派系，将（index-1）*9到10 的百分比赋值给它
 	data._num_op=data._num_op+lawOP
-	var minValue=min(data._num_op*2,data._num_all-data._num_op)
-	var initRt=randf_range(0,min(data._num_op*2,data._num_all-data._num_op))
+	var maxRt = max(0, data._num_all - data._num_op)
+	var initRt=randf_range(0,min(data._num_op*2, maxRt))
 	if data._num_rt>initRt:
-		initRt=data._num_rt
+		initRt=min(data._num_rt, maxRt)
 	if sav.curLawNum1<0:
 		initRt=0
-	
+
 	data._num_rt=initRt
-	data._num_sp=(data._num_all-data._num_op-data._num_rt)
+	data._num_sp=max(0, data._num_all-data._num_op-data._num_rt)
 	SignalManager.changeSupport.emit()
 	#sav.floor
 
@@ -648,7 +648,7 @@ func initPaixi(data:cldata):
 	data._num_op=(data._num_all*(100-data._support_rate))/100+0.5
 	var paixiindex=getIndexByFractionIndex(data.index)
 	var lawOP=0
-	if paixiindex!=sav.curLawNum1 and sav.curLawNum1>0:
+	if paixiindex!=sav.curLawNum1 and sav.curLawNum1!=-1:
 		lawOP=((sav.curLawNum2-1)*10.0/100.0)*(data._num_all-data._num_op)
 		lawOP=floor(lawOP)
 

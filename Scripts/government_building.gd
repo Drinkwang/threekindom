@@ -1348,7 +1348,7 @@ func suppress():
 	match GameManager.sav.gameDifficulty:
 		1: suppressCoeff=0.85
 		2: suppressCoeff=1.0
-		3: suppressCoeff=1.15
+		3: suppressCoeff=1.05
 	
 	ForValueGet=int(sqrt(100-_c._support_rate)*60*(_c.supressNum+1)*suppressCoeff)
 	ForValueCost=int(sqrt(100-_c._support_rate)*110*(_c.supressNum+1)*suppressCoeff)
