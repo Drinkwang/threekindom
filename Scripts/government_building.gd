@@ -848,6 +848,7 @@ func _JudgeTask():
 		elif(GameManager.sav.have_event["三基建完成"]==true and GameManager.sav.have_event["曹操协天子以令诸侯"]==false):
 			GameManager.sav.have_event["曹操协天子以令诸侯"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"曹操的信_击败袁术才有委任状")#显示对话
+			GameManager.clearTask()
 			pass
 		#任务完成交付任务
 		if GameManager.sav.TargetDestination.length()>0:
@@ -995,7 +996,12 @@ func deliverTask():
 			
 			if(GameManager.sav.have_event["派系安稳任务触发"]==true):
 				GameManager.sav.have_event["派系安稳完成"]=true
-				#GameManager.clearTask()
+				# 改用complete类型，让进度永远为完成任务状态
+				# 这样后面好感度变化也不会让任务回退
+				GameManager.sav.targetResType = GameManager.ResType.complete
+				GameManager.sav.targetValue = 1
+				GameManager.sav.TargetDestination = ""
+				GameManager.sav.currenceValue = 0
 				#设定任务已完成，前往演武场即可
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"刘备决定亲征")#显示对话
 
@@ -1037,10 +1043,9 @@ func liubeiBattleAfterEvent():
 		GameManager.sav.have_event["亲征对话结束"]=true
 
 func enterBattleModeBefore():
-	#任务改变去演武场
-	GameManager.sav.TargetDestination="演武场"
-	GameManager.sav.have_event["亲征对话结束"]=true
-	#
+		#任务改变去演武场
+		GameManager.sav.TargetDestination="演武场"
+		GameManager.sav.have_event["亲征对话结束"]=true
 	
 @onready var hp_panel = $CanvasLayer/hpPanel
 func collectMoneyComplete():

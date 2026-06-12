@@ -153,7 +153,7 @@ func _juideCompeleteTask():
 		generalLevel=selectgeneral.level
 	else:
 		generalLevel=0
-	var mustHave=rewardMax*(generalLevel+10)/30     #+generalLevel*rewardMax/20
+	var mustHave=rewardMax*(generalLevel+10)/25     #+generalLevel*rewardMax/20
 	#var mustHave=rewardMax/2
 	var targetGet=0
 	#print("befoer"+str(targetGet))
