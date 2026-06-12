@@ -153,7 +153,7 @@ func _juideCompeleteTask():
 		generalLevel=selectgeneral.level
 	else:
 		generalLevel=0
-	var mustHave=rewardMax*(generalLevel+10)/20     #+generalLevel*rewardMax/20
+	var mustHave=rewardMax*(generalLevel+10)/30     #+generalLevel*rewardMax/20
 	#var mustHave=rewardMax/2
 	var targetGet=0
 	#print("befoer"+str(targetGet))
@@ -187,10 +187,10 @@ func _juideCompeleteTask():
 			hasWeapon=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.龙胆亮银枪)>0
 			if GameManager.sav.have_event["夏侯偷马"]==true:
 				generalLevel=10
-		levels=1.04445-(0.04445*generalLevel)
+		levels=1.0889-(0.0889*generalLevel)
 		#武器检测：武将持有武器则降低任务目标值
 		if hasWeapon:
-			levels=levels*0.9
+			levels=levels*0.7
 		
 	for task in tasks:
 		var value=floor(task.value*levels)

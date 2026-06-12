@@ -1002,7 +1002,7 @@ func loadLaw():
 		#RewardLaw="每日收入+10，徐州好感度+5，一次性收入+100，随机道具x1 "
 		lawAction= func():
 			sav.labor_DayGet+=10
-			sav.BENTUPAI.ChangeSupport(5)
+			sav.HAOZUPAI.ChangeSupport(5)
 			sav.coin+=300
 			var items:Array=[InventoryManagerItem.ItemEnum.珍品礼盒,InventoryManagerItem.ItemEnum.益气丸, InventoryManagerItem.ItemEnum.胜战锦囊, InventoryManagerItem.ItemEnum.诸子百家论集]
 			var rindex= randi_range(0,items.size()-1)

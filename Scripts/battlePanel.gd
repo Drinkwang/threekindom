@@ -238,12 +238,12 @@ func initTask():
 		elif generalName=="无名":
 			hasWeapon=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.龙胆亮银枪)>0
 		
-		levels=1.04445-(0.04445*generalLevel)
+		levels=1.0889-(0.0889*generalLevel)
 		#武器检测：武将持有武器则降低任务目标值
 	
 	
 		if hasWeapon:
-			levels=levels*0.9
+			levels=levels*0.7
 	var currence= GameManager.sav.battleTasks[battle_circle.taskIndex]
 	var context=tr("风险行动：")
 	var index=1;
