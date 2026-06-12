@@ -1202,6 +1202,7 @@ do GameManager.enterBoardGame()
 
 #我想改成不显示第三个模式 点击触发对话 击败最终boss 
 ~ 来把仕诡牌2
+do caobao.showEX=false
 刘备: 曹将军，可愿玩一局 仕诡牌进阶版本-诡异怪谈？[voice:liubei_keyuanwanyiju]
 曹豹: 不！我不玩这个！这个模式邪门，很多人被牌影响了！[voice:caobao_wobuwan]
 刘备: 你竟然没被影响？可有线索？[voice:liubei_nimeibeiyinxiang]

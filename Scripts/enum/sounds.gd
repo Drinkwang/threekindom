@@ -61,3 +61,4 @@ const LONGXIAO_2 = preload("res://Asset/sound/longxiao2.mp3")
 const LONGXIAO = preload("res://Asset/sound/longxiao.mp3")
 
 const ZHANGYAN_CRY = preload("res://Asset/sound/zhangyan_cry.mp3")
+const breakcc0 = preload("res://Asset/sound/倒塌cc0.mp3")

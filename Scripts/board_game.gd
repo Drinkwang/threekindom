@@ -271,6 +271,7 @@ func clear_children(node: Node) -> void:
 	
 func initGame():
 	hp=3
+	_is_first_draw=true
 
 	score=0
 	useCardNumMax=-1
@@ -948,8 +949,9 @@ func checkCardStart():
 
 	
 	#每局首次发牌，用专门标志保证为玩家抽牌
-	if _is_first_draw:
-		_is_first_draw=false
+	if turn_num==0:
+		if _is_first_draw:
+			_is_first_draw=false
 		if _issole==false and getCardLength(true)<5:
 			drawOne(true)
 	elif _issole==false and getCardLength(isPlayerTurn)<5:
@@ -2055,6 +2057,7 @@ func reset_runtime_state():
 func clearTCard():
 	cancel_tutorial_state()
 	istutorial=false
+	_is_first_draw=true
 	score=0
 	useCardNumMax=-1
 	holdCardNumMin=10
