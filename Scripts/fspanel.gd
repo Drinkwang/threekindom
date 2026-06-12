@@ -1,7 +1,7 @@
 extends Control
 
 
-@export var datas:Array[cldata] 
+@export var datas:Array[cldata]
 
 
 
@@ -10,7 +10,7 @@ extends Control
 
 #var _name:String
 #var _num_all:int
-#var _num_rt:int 
+#var _num_rt:int
 # Called when the node enters the scene tree for the first time.
 func _ready():
 
@@ -27,6 +27,7 @@ func _ready():
 	SignalManager.changeLanguage.connect(changeLanguage)
 	changeLanguage()
 	SignalManager.changeSupport.connect(_processList)
+	SignalManager.changeFraction.connect(refreshData)
 
 func changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()
@@ -36,7 +37,7 @@ func changeLanguage():
 		#var newfont=preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf")
 		if _label!=null:
 		#	_label.add_theme_font_override("font",newfont)
-			_label.add_theme_constant_override("line_spacing",-2)			
+			_label.add_theme_constant_override("line_spacing",-2)
 		if _label_2!=null:
 		#	_label_2.add_theme_font_override("font",newfont)
 			_label_2.add_theme_constant_override("line_spacing",-2)
@@ -46,7 +47,7 @@ func changeLanguage():
 	else:
 		if _label!=null:
 			#_label.remove_theme_font_override("font")
-			_label.add_theme_constant_override("line_spacing",0)		
+			_label.add_theme_constant_override("line_spacing",0)
 		if _label_2!=null:
 			#_label_2.remove_theme_font_override("font")
 			_label_2.add_theme_constant_override("line_spacing",0)
@@ -65,20 +66,20 @@ func _processList():
 		var fs=load("res://Scene/prefab/Factionalsupport.tscn").instantiate()
 
 
-		
-		v_box_container.add_child(fs)		
+
+		v_box_container.add_child(fs)
 		fs.init(item)
-		
-	
+
+
 	showCurrenceLaw()
-	
+
 @onready var currence_laws = $PanelContainer/VBoxContainer/currenceLaws
 
 func refreshData():
-	var items=v_box_container.get_children()		
+	var items=v_box_container.get_children()
 	for item in items:
 		if item is factionalsupport:
-			item.refreshData()		
+			item.refreshData()
 	showCurrenceLaw()
 
 func showCurrenceLaw():
@@ -89,7 +90,7 @@ func showCurrenceLaw():
 			print(tr("_current_bill"))
 	else:
 		if currence_laws!=null:
-			currence_laws.hide()	
+			currence_laws.hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
