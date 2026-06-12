@@ -187,10 +187,10 @@ func _juideCompeleteTask():
 			hasWeapon=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.龙胆亮银枪)>0
 			if GameManager.sav.have_event["夏侯偷马"]==true:
 				generalLevel=10
-		levels=1.0889-(0.0889*generalLevel)
+		levels=1.04445-(0.04445*generalLevel)
 		#武器检测：武将持有武器则降低任务目标值
 		if hasWeapon:
-			levels=levels*0.7
+			levels=levels*0.9
 		
 	for task in tasks:
 		var value=floor(task.value*levels)
@@ -245,7 +245,7 @@ func _juideCompeleteTask():
 		
 	#可加入每次完成任务，成功率提升10%
 	#当玩家的值大于basevalue时，每提升10% 会有5%的提升 上部封顶 但是最多玩家将会获得100%的和平区域 也就是最多为rewardMax
-	var levelup= int(floor(curCoin /(btdatas.index)))*2+int(floor(curSoilder/(btdatas.index)))*10+(generalLevel*6)
+	var levelup= int(floor(curCoin /(btdatas.index)))*2+int(floor(curSoilder/(btdatas.index)))*10+(generalLevel*3)
 	
 	buff_txt.text=""
 	if GameManager.sav.useItemInBattle==true:

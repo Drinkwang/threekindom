@@ -1447,7 +1447,7 @@ func calculate_points(enemy_strength: int, tasks_completed: int, casualty_ratio:
 		casualty_score = 50
 	else:
 		casualty_score = 0
-	var level_factor = 1.0 + (general_level - 1) / 10
+	var level_factor = 1.0 + (general_level - 1) / 30
 	
    # var total_points = (base_points + strength_bonus + task_bonus - casualty_penalty) * level_factor
 	#return max(0, int(total_points))
