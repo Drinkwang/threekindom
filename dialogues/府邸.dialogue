@@ -227,7 +227,7 @@ do zhubu.hide()
 主簿: 主公，镇压固然能解决他们可能导致骚乱的因素，但恐埋后患无穷，我建议先施恩惠笼络人心，免生祸端。[voice:jianyishien]
 系统提示: 镇压{{getFactionByIndex().getTr()}}需要消耗民力{{ForValueGet}}和钱{{ForValueCost}}，你确定用武力镇压么?
 - 是[costHp=50]
-	if GameManager.sav.coin>=ForValueCost and GameManager.sav.coin>=ForValueGet
+	if GameManager.sav.coin>=ForValueCost and GameManager.sav.labor_force>=ForValueGet
 		do confireSuppress()
 	else
 		=> 物资不足
