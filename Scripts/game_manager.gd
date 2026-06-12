@@ -534,7 +534,7 @@ func intBattleTask():
 				#*10/15
 			else:
 				res="human"
-				costNum=int(50*sav.battleTasks[battleTarget].index*battleCoeff)
+				costNum=int(18*sav.battleTasks[battleTarget].index*battleCoeff)
 				#最小值是30*xxx
 				#*3/5
 			var syTyoe:int=randi_range(0, 2)
@@ -548,7 +548,7 @@ func intBattleTask():
 			var sy1 =opcost.values()[syTyoe1]
 			var syTyoe2=randi_range(0, 2)
 			var sy2=opcost.values()[syTyoe2]
-			sav.battleTasks[battleTarget].task=[{"res":"coin","symbol":sy1,"value":int(15*sav.battleTasks[battleTarget].index*battleCoeff),"reward":nums[0]},{"res":"human","symbol":sy2,"value":int(50*sav.battleTasks[battleTarget].index*battleCoeff),"reward":nums[1]}]
+			sav.battleTasks[battleTarget].task=[{"res":"coin","symbol":sy1,"value":int(15*sav.battleTasks[battleTarget].index*battleCoeff),"reward":nums[0]},{"res":"human","symbol":sy2,"value":int(18*sav.battleTasks[battleTarget].index*battleCoeff),"reward":nums[1]}]
 			sav.battleTasks[battleTarget].reward=nums[2]
 		var sdType:int=randi_range(0, 2)#从3修改
 		sav.battleTasks[battleTarget].sdType=sdType
