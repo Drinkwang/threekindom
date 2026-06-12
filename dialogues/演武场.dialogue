@@ -1080,6 +1080,7 @@ do caobao.showEX=false
 	do caobao.showHeart(GameManager.sav.caobaofav)
 	if GameManager.sav.have_event["曹豹正确选择1"]==true
 		曹豹: 但我不好对这些人发难，如果主公想要知道，可今晚亲往遗迹一探。[voice:caobao_danwobuhaofanan]
+		do SoundManager.play_sound(sounds.COLLECT_SMALL_JEWEL_3)
 		系统提示: 发现“黄帝遗迹”，通过城外入口可以前往	
 
 	else		

@@ -96,6 +96,17 @@ func loadFile():
 		GameManager.sav=savs[index-1].duplicate(true)
 		GameManager.sav.ensure_default_fields()
 		GameManager.isLoadingSave=true
+		# 清空瞬态传话变量，防止读档后残留旧值导致场景逻辑错乱
+		GameManager.bossmode=SceneManager.bossMode.none
+		GameManager.bossmoderesult=false
+		GameManager.hearsayID=-1
+		GameManager.hearsayBeforeNode=null
+		GameManager.restFadeScene=null
+		GameManager.restLabel=""
+		GameManager.wait_time=2
+		GameManager.secretBattleSav=-1
+		GameManager.israndom=false
+		GameManager.extraValue=0
 		get_tree().change_scene_to_packed(savs[index-1].saveScene)
 		GameManager.loadLaw()
 		GameManager.refreshCallable()

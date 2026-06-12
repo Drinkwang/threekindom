@@ -1423,6 +1423,7 @@ if GameManager.sav.have_event["糜竺正确选择1"]==true and GameManager.sav.h
 	#恢复正常
 	do mizhen.hide()
 	do GameManager.enterNormal()
+	do SoundManager.play_sound(sounds.COLLECT_SMALL_JEWEL_3)
 	系统提示: 发现“糜家郊外秘宅”，通过城外入口可以前往
 elif GameManager.sav.have_event["糜竺正确选择1"]==true
 	do mizhen.hide()
