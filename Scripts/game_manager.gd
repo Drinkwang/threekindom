@@ -373,7 +373,7 @@ func initPaixiFloor(data:cldata):
 	var paixiindex=getIndexByFractionIndex(data.index)
 	var lawOP=0
 	if paixiindex!=sav.curLawNum1 and sav.curLawNum1!=-1:
-		lawOP=((sav.curLawNum2-1)*10.0/100.0)*(data._num_all-data._num_op)
+		lawOP=((sav.curLawNum2-1)*10.0/100.0)*(data._num_all-data._num_op)*0.4
 		lawOP=floor(lawOP)
 
 	#如果是相同派系，则为0，不同派系，将（index-1）*9到10 的百分比赋值给它
@@ -649,7 +649,7 @@ func initPaixi(data:cldata):
 	var paixiindex=getIndexByFractionIndex(data.index)
 	var lawOP=0
 	if paixiindex!=sav.curLawNum1 and sav.curLawNum1!=-1:
-		lawOP=((sav.curLawNum2-1)*10.0/100.0)*(data._num_all-data._num_op)
+		lawOP=((sav.curLawNum2-1)*10.0/100.0)*(data._num_all-data._num_op)*0.4
 		lawOP=floor(lawOP)
 
 	#如果是相同派系，则为0，不同派系，将（index-1）*9到10 的百分比赋值给它
@@ -1920,18 +1920,17 @@ func iscompleteAll():
 			#getLawPoint+=1
 	return true	
 func playDemand(item):
-	GameManager.sav.coin-=item.money 
-	GameManager.sav.labor_force-=item.population
-	#if GameManager.sav.coin<item.money or GameManager.sav.labor_force<item.population:
-	#	return false
+	# 走 GetValue 刷新属性面板（钱、民心、民力）
+	GameManager._propertyPanel.GetValue(-item.money, 0, -item.population)
 	for key in item.items.keys():
 		var _count=item.items[key]
 		var itemname= InventoryManagerItem.item_by_enum(key)
 		InventoryManager._remove_item(inventoryPackege,itemname,_count)
-	#调用事件刷新面板	
+		#调用事件刷新面板
 		#查询指定id 自己的数量
-		#item_ui.set_Data(key,_count)	
+		#item_ui.set_Data(key,_count)
 		#消耗指定数量的物品
+	SignalManager.changeFraction.emit()
 	SignalManager.playDemand.emit()
 
 

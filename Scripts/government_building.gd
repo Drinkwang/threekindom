@@ -1346,8 +1346,8 @@ func suppress():
 	var _c=getFactionByIndex()
 	var suppressCoeff=1.0
 	match GameManager.sav.gameDifficulty:
-		1: suppressCoeff=0.35
-		2: suppressCoeff=0.4
+		1: suppressCoeff=0.4
+		2: suppressCoeff=0.45
 		3: suppressCoeff=0.5
 	
 	ForValueGet=int(sqrt(100-_c._support_rate)*60*(_c.supressNum+1)*suppressCoeff)
@@ -1362,7 +1362,7 @@ func confireSuppress():
 	
 	#if金额不对，不能增压
 	
-	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"镇压成功")#显示对话
+
 	
 	GameManager._propertyPanel.GetValue(-ForValueCost,0,-ForValueGet)
 	ForValueCost=0
@@ -1375,7 +1375,7 @@ func confireSuppress():
 	_c.supressNum+=1
 	SignalManager.changeFraction.emit()
 	#发一个信号，有派系确认为对你没有敌意的派系
-
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"镇压成功")#显示对话
 func CF_CallingSoldier():
 	var _c=getFactionByIndex()
 	_c.summonNum+=1

@@ -249,8 +249,10 @@ do GameManager._imporveRelation(getFactionByIndex())
 
 
 ~ 镇压成功
-系统提示: 成功{{getFactionByIndex().getTr()}}，其对主公您望而生畏，暂时臣服。然而，暴力镇压引发该派系持续不满，好感度每秒下降，恐埋后患。建议通过怀柔策略化解怨恨，满足特定条件后可解除不满，恢复派系关系。
-
+if getFactionByIndex().supressNum<3
+	系统提示: 成功{{getFactionByIndex().getTr()}}，其对主公您望而生畏，暂时臣服。然而，暴力镇压引发该派系持续不满，好感度每秒下降，恐埋后患。建议通过怀柔策略化解怨恨，满足特定条件后可解除不满，恢复派系关系。
+else
+	系统提示: 历经三次镇压，{{getFactionByIndex().getTr()}} 彻底归心，永世臣服。自此该派系好感度永久锁定为100，只要主公尚在人世，便绝无二心，忠诚度永不衰减。
 do _JudgeTask()
 => END!
 

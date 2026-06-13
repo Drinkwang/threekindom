@@ -139,7 +139,7 @@ func refreshContext():
 		if sideNum>0:
 			contextEX=contextEX+"\n\n"+tr("支线任务")+"：\n"
 			for i in range(0,sideNum):
-				contextEX=contextEX+var_to_str(i+1)+":"+questContexts[i-1]+"\n"
+				contextEX=contextEX+var_to_str(i+1)+":"+questContexts[i]+"\n"
 	if(context!=null):
 		context.text=contextEX
 	if(title!=null):

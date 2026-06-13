@@ -285,7 +285,7 @@ if GameManager.sav.learnFormChenden==true
 if GameManager.sav.acdemicLevel<3
 	系统提示: 你当前学识为【{{LearnToStr(GameManager.sav.acdemicLevel)}}】,是否与陈登论策？论策后，你的学识将提升至 【{{LearnToStr(GameManager.sav.acdemicLevel+1)}}】，大儒辩论时的点击效果将提升至 {{(GameManager.sav.acdemicLevel+1)*50+100}}%。
 else
-	系统提示: 你当前学识为【{{LearnToStr(GameManager.sav.acdemicLevel)}}】,是否与陈登论策？当前学识已满级！本次论策可使你当旬学识不回落。
+	系统提示: 你当前学识为【{{LearnToStr(3)}}】,是否与陈登论策？当前学识已满级！本次论策可使你当旬学识不回落。
 - 是[costHp=20]
 	do lunce()
 - 否

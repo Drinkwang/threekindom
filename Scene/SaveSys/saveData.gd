@@ -94,11 +94,11 @@ var number_bool_map: Dictionary = {
 	3: true
 }
 
-var SIDEQUEST_MAP:Dictionary={
+@export var SIDEQUEST_MAP:Dictionary={
 	SceneManager.sideQuest.CHENDENG:"",
 	SceneManager.sideQuest.CAOBAO:"",
 	SceneManager.sideQuest.MIZHU:"",
-	SceneManager.sideQuest.BADAO:"",#卡牌支线 和仙人 done 
+	SceneManager.sideQuest.BADAO:"",#卡牌支线 和仙人 done
 	SceneManager.sideQuest.DARU:"",# 大儒辩论相关 done
 	SceneManager.sideQuest.KESULU:""# 克苏鲁支线相关 done
 }
@@ -385,6 +385,22 @@ func ensure_default_fields():
 	for key in default_data.keys():
 		if not have_event.has(key):
 			have_event[key] = default_data[key]
+
+	# 兼容旧存档：从 have_event 重建 SIDEQUEST_MAP 文本
+	_restore_daru_sidequest()
+
+func _restore_daru_sidequest():
+	if SIDEQUEST_MAP[SceneManager.sideQuest.DARU] != "":
+		return  # 已有文本，无需恢复
+	if have_event.get("大儒辩经完成", false):
+		return  # 全部完成，留空
+	if have_event.get("大儒支线3", false):
+		SIDEQUEST_MAP[SceneManager.sideQuest.DARU] = "前往郑玄隐居处，听学《周礼》"
+	elif have_event.get("大儒支线2", false):
+		SIDEQUEST_MAP[SceneManager.sideQuest.DARU] = "与郑玄论《礼记》，安抚徐州士人"
+	elif have_event.get("大儒支线1", false):
+		SIDEQUEST_MAP[SceneManager.sideQuest.DARU] = "拜访郑玄，借名望安定徐州人心"
+	# 否则没有支线开启，留空
 
 func testFunc():
 	var questContexts=SIDEQUEST_MAP.values().filter(func(a):a.length()>0)
