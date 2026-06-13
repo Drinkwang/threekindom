@@ -432,6 +432,11 @@ func _enterDay(value=true):
 				sav.acdemicLevel-=1
 		else:
 			sav.learnFormChenden=false
+			
+			
+		if GameManager.sav.have_event["AllFactionsSubdued"]==true:
+			if GameManager.sav.Merit_points<3:
+				GameManager.sav.Merit_points+=1
 #@export var mizhuSideWait=-1
 #@export var chendenSideWait=-1
 #@export var caobaoSideWait=-1

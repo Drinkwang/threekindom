@@ -654,6 +654,7 @@ do SoundManager.play_sound(sounds.COLLECT_SMALL_JEWEL_1)
 #第二天 如果持有3个道具 触发破解
 ~ 破解克苏鲁
 do meat.show()
+do battle_pane.hide()
 do changePot(SceneManager.potType.Empty)
 刘备退回主帐，混乱暂平，手中紧握所得三道具（迷魂木筒、黄巾药囊、饥蛊骨签），凝视片刻，思绪翻涌。  
 #刘备: 此烟雾惑心，诱人自啖，非寻常饥狂…似黄巾妖术。吕布军中必藏余孽，欲乱我军心。张阎…昔日我的部下中潜藏的黄巾贼寇，目前已经死去多年，其遗物随身已久，莫非藏解法？

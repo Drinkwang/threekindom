@@ -1241,9 +1241,10 @@ do chenden.show()
 陈登: 主公，袁术此番再犯，必然是做足了准备。我军刚稳住内部，兵力尚未完全休整，需谨慎应对。[voice:chenden_binliweicangxiuzheng]
 刘备: 袁术大军压境，不可退缩！若任由其兵临城下，此前安抚各派系的努力恐付诸东流，徐州人心必再生动荡。此番，我必须亲率主力出征，正面迎击袁术！[voice:liubei_wobixuqinshuaizhuli]
 刘备: (不过，亲征之事关乎重大，我虽已有决断，但仍想听听二位幕僚的看法)[voice:liubei_buguoqinzheng]
-do PersonalCampaignBefore()
 系统提示: 主线已推进，获得2点政策点数。
 do GameManager.sav.Merit_points+=2
+do PersonalCampaignBefore()
+
 => END!
 
 ~ 亲征前跟糜竺对话
@@ -1804,7 +1805,7 @@ do mizhu.show()
 陈登: 属下愚虑，主公高见！停发配给、肃整风气，实为上上之策。[voice:chenden_shangshangce]
 糜竺: 全境...派系皆..畏主公威势，无需...钱粮笼络，停发俸禄绝无隐患。[voice:mizhu_quanjinweipazhugong]
 陈登: 就连素来桀骜的泰山诸将也安分下来...吕布见豪族、士族尽数俯首，亦深知大势已定，不敢再起半点异心。[voice:chenden_taishanyefule]
-系统提示: 糜竺、陈登起初不愿停发俸禄，见主公态度强硬后即刻怂服！吕布见本土派系尽数俯首，一时慑服于主公威势，暂且隐忍归服、不敢妄动！全境派系畏威臣服，由于你对所有派系镇压完成，月例配给功能永久关闭！
+系统提示: 糜竺、陈登起初不愿停发俸禄，见主公态度强硬后即刻怂服！丹阳派、吕布亦慑于威势暂且臣服。全境派系尽数镇压，月例配给永久关闭；律法值低于3时，每日自动+1。
 do chenden.hide()
 do mizhu.hide()
 => END!

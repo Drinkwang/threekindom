@@ -576,8 +576,8 @@ func settleGame(end,issuccess):
 	if GameManager.sav.targetResType==GameManager.ResType.stayFight and GameManager.currenceScene.battle_pane._mode==SceneManager.bossMode.none:
 			GameManager.sav.currenceValue=GameManager.sav.currenceValue+1
 			
-			#if GameManager.sav.currenceValue==24 and GameManager.sav.have_event["战斗袁术血战模式"]==true and GameManager.sav.have_event["血战袁术完成"]==false:
-			#	DialogueManager.show_example_dialogue_balloon(yanwuchang,"张飞杀曹豹")	#这个会被拦截，如果触发了这个就不能触发失去民心，或者把这个丢到battle里
+			#if GameManager.sav.currenceValue==22:
+			#	DialogueManager.show_example_dialogue_balloon(yanwuchang,"破解克苏鲁")	#这个会被拦截，如果触发了这个就不能触发失去民心，或者把这个丢到battle里
 	if issuccess==true:
 		GameManager.sav.battleResults[taskIndex]=GameManager.BattleResult.win
 		print("你win了")
@@ -681,11 +681,11 @@ func judgeLoseSentiment():
 		
 		GameManager.sav.have_event["军事行动大败"]=true
 		if GameManager.sav.gameDifficulty==1:
-			GameManager.resideValue=20
+			GameManager.resideValue=15
 		elif GameManager.sav.gameDifficulty==2:
-			GameManager.resideValue=25
+			GameManager.resideValue=20
 		elif GameManager.sav.gameDifficulty==3:
-			GameManager.resideValue=30
+			GameManager.resideValue=25
 		
 		if GameManager.sav.have_event["战斗袁术血战模式"]==true and GameManager.sav.have_event["血战袁术完成"]==false:
 			DialogueManager.show_example_dialogue_balloon(yanwuchang,"血战大败")
@@ -712,7 +712,7 @@ func judgeLoseSentiment():
 		elif GameManager.sav.gameDifficulty==2:
 			GameManager.resideValue=15
 		elif GameManager.sav.gameDifficulty==3:
-			GameManager.resideValue=20
+			GameManager.resideValue=15
 		
 		if GameManager.sav.have_event["战斗袁术血战模式"]==true and GameManager.sav.have_event["血战袁术完成"]==false:
 			DialogueManager.show_example_dialogue_balloon(yanwuchang,"血战连续多次败北")
@@ -726,7 +726,7 @@ func judgeLoseSentiment():
 		elif GameManager.sav.gameDifficulty==2:
 			GameManager.resideValue=10
 		elif GameManager.sav.gameDifficulty==3:
-			GameManager.resideValue=15
+			GameManager.resideValue=10
 
 		var lazyRan=0.1*GameManager.sav.ctLoseBattleRate
 		var random_value = randf()  # 生成0.0到1.0的随机数

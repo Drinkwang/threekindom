@@ -32,6 +32,7 @@ var dialogue_line: DialogueLine:
 
 		# The dialogue has finished so close the balloon
 		if not next_dialogue_line:
+			DialogueManager.dialogBegin = false
 			queue_free()
 			return
 
