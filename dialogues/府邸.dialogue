@@ -241,8 +241,9 @@ do SoundManager.play_sound(sounds.COLLECT_SMALL_JEWEL_3)
 成功赠送礼物，{{getFactionByIndex().getTr()}}好感度上升{{(15+GameManager.extraValue)}}
 
 
-do GameManager._imporveRelation(getFactionByIndex())
+
 do _JudgeTask()
+do GameManager._imporveRelation(getFactionByIndex())
 #赠送礼物，好感度上升
 => END
 
