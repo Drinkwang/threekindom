@@ -262,10 +262,10 @@ var musicId=0
 
 func _input(event):
 	# 检测 ESC 键
-	if event.is_action_pressed("ui_cancel") and not event.is_echo() and DialogueManager.dialogBegin==false and currenceScene!=null:
-		#pass
-		var balloon= DialogueManager.get_dialogue_balloon()
-		if balloon==null:
+	if event.is_action_pressed("ui_cancel") and not event.is_echo() and currenceScene!=null:
+		# 双重保障：对话框已释放时允许 ESC 打开设置
+		#（即使 dialogBegin 因 bug 卡在 true，也不影响 ESC 操作）
+		if DialogueManager.get_dialogue_balloon() == null:
 			openSetting()
 			
 func openSetting():

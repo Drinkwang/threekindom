@@ -175,7 +175,7 @@ func _collect_canvas_layers(node: Node, result: Array) -> void:
 func _on_area_2d_input_event(viewport, event, shape_idx):
 	#or GameManager.rewardPanel==true
 
-	if !(event is InputEventMouseButton) or DialogueManager.dialogBegin==true or GameManager.isLoadingSave==true or PanelManager.isOpenSetting==true and (PanelManager.rewardNode!=null and PanelManager.rewardNode.visible):
+	if !(event is InputEventMouseButton) or (DialogueManager.dialogBegin==true and DialogueManager.get_dialogue_balloon() != null) or GameManager.isLoadingSave==true or PanelManager.isOpenSetting==true and (PanelManager.rewardNode!=null and PanelManager.rewardNode.visible):
 		return
 	if _is_mouse_blocked(event.position):
 		return

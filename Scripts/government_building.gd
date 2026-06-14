@@ -1020,7 +1020,7 @@ func PersonalCampaignBefore():
 	GameManager.changeTaskLabel("与手下谈谈")
 	chenden.show()
 	chenden.changeAllClick("亲征前跟陈登对话")
-	GameManager.AutoSaveFile()	
+
 
 
 
