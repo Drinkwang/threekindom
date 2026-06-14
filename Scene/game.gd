@@ -36,6 +36,8 @@ func _ready():
 		_on_option_button_item_selected(2)
 		
 	initLoadContinus()
+	_add_version_label()#debug
+	_test_deadline_check()#debug
 	if GameManager._setting.is_clear_normal_line or GameManager._setting.is_clear_overlord_line:
 		$credit.disabled = false
 func initLoadContinus():
@@ -48,6 +50,58 @@ func initLoadContinus():
 	if	showContinus==true:
 		$continue.disabled=false
 
+
+func _add_version_label():
+	var ver_label = Label.new()
+	ver_label.text = "内部测试版本，禁止外传、分享"
+	ver_label.add_theme_color_override("font_color", Color(1, 1, 1, 0.5))
+	ver_label.add_theme_font_size_override("font_size", 14)
+	ver_label.position = Vector2(8, get_viewport().get_visible_rect().size.y - 30)
+	ver_label.z_index = 9999
+	add_child(ver_label)
+
+func _test_deadline_check():
+	var now = Time.get_datetime_dict_from_system()
+	var year = now.get("year", 2026)
+	var month = now.get("month", 1)
+	var day = now.get("day", 1)
+
+	var deadline_ts = Time.get_unix_time_from_datetime_dict({
+		"year": year,
+		"month": 6,
+		"day": 21,
+		"hour": 23,
+		"minute": 59,
+		"second": 59
+	})
+	var now_ts = Time.get_unix_time_from_datetime_dict({
+		"year": year,
+		"month": month,
+		"day": day,
+		"hour": 0,
+		"minute": 0,
+		"second": 0
+	})
+
+	if now_ts <= deadline_ts:
+		return
+
+	var overlay = ColorRect.new()
+	overlay.color = Color(0, 0, 0, 0.92)
+	overlay.size = get_viewport().get_visible_rect().size
+	overlay.mouse_filter = Control.MOUSE_FILTER_STOP
+	overlay.z_index = 99999
+	add_child(overlay)
+
+	var msg = Label.new()
+	msg.text = "测试已截止，无法使用，请退出。"
+	msg.add_theme_color_override("font_color", Color(1, 0.3, 0.3))
+	msg.add_theme_font_size_override("font_size", 32)
+	msg.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	msg.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	msg.size = overlay.size
+	msg.z_index = 99999
+	add_child(msg)
 
 func _on_exit_button_down():
 	get_tree().quit()

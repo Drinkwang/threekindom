@@ -408,6 +408,8 @@ func gotoWasteland():
 
 
 func gotoTomb():
+	if await GameManager.isTried(90):
+		return
 	GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.CHENDENG]=tr("")
 	GameManager.initBattle()
 	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeIn)
@@ -426,6 +428,8 @@ func gotoTomb():
 @onready var battle_pane = $CanvasLayer/blank/battlePane
 
 func gotoMiMasion():
+	if await GameManager.isTried(90):
+		return
 	GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.MIZHU]=tr("")
 	GameManager.initBattle()
 	#清空战斗面板，做记录，临时
@@ -437,6 +441,8 @@ func gotoMiMasion():
 	blank.show()
 	mizhen.show()
 func gotoHuangDiMiao():
+	if await GameManager.isTried(90):
+		return
 	GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.CAOBAO]=tr("")
 	GameManager.initBattle()
 	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeIn)
@@ -852,3 +858,8 @@ const long = preload("res://Asset/人物/镇魂龙最终.png")
 func headRepair():
 	battle_pane.battle_circle.enemyName="骨龙"
 	battle_pane.battle_circle.changeHead(long)
+
+func enterXuanYinSecret():
+	if await GameManager.isTried(90):
+		return
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"玄阴之战")

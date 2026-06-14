@@ -9,6 +9,10 @@ class_name SettingMenu
 
 @onready var sfx_slider: HSlider =  $VBoxContainer/sfxCon/HSlider
 
+@onready var people_slider: HSlider = $VBoxContainer/peopleCon/HSlider
+
+@onready var bgs_slider: HSlider = $VBoxContainer/bgsCon/HSlider
+
 @onready var option_button = $VBoxContainer/lanSysCon/OptionButton2
 @onready var open_save_button: Button = $"VBoxContainer/isAutoSave/是否自动存档/Button"
 @onready var open_save_txt: Label = $"VBoxContainer/isAutoSave/是否自动存档"
@@ -81,9 +85,12 @@ func _ready():
 		system_locale= OS.get_locale_language()
 		current_resolution_index = find_closest_resolution(max_width, max_height)
 		
-		fullscreen_check.button_pressed=true	
+		fullscreen_check.button_pressed=true
 		music_slider.value=0.25
 		sfx_slider.value=1
+		people_slider.value=1
+		bgs_slider.value=0.5
+		AutoSavecheck.button_pressed=true
 		GameManager._setting=SettingsResource.new()
 		GameManager._setting.language=system_locale
 		GameManager._setting.resolution=resolutions[current_resolution_index]
@@ -96,6 +103,8 @@ func _ready():
 			find_res(GameManager._setting.resolution)
 		music_slider.value=GameManager._setting.music_volume
 		sfx_slider.value=GameManager._setting.sfx_volume
+		people_slider.value=GameManager._setting.people_volume
+		bgs_slider.value=GameManager._setting.bgs_volume
 		# 保底：确保音量被应用到 AudioServer（防止 _load_settings() 未被调用的情况）
 		SoundManager.set_music_volume(GameManager._setting.music_volume)
 		SoundManager.set_sound_volume(GameManager._setting.sfx_volume)

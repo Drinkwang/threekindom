@@ -1490,7 +1490,7 @@ func changeCaobaoHeart(addValue):
 
 #这里用作跳过序章
 func SkipPrologue():
-	GameManager.sav.have_event["诡物手册"]=true
+	#GameManager.sav.have_event["诡物手册"]=true
 	var keys_to_change = [
 		"firstmeetchenqun", "firsthouse", "firststreet", "firstgovernment", "firstgovermentTip",
 		"firstPolicyOpShow", "firstPolicyCorrect", "firstTabLaw", "firstLawExecute", "firstParliamentary",

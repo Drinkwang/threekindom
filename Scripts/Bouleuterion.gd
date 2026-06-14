@@ -176,19 +176,13 @@ func _initData():
 
 		if GameManager._boardReward!=boardType.boardRewardResult.BreakFree:
 			GameManager.resumeMusic()
-			
-			
-			if GameManager._boardGameWin==true:
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"常规获胜")
-			else:
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"常规失败")	
-			chendeng.show()
-			chendeng.changeAllClick("来把仕诡牌")				
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"常规获胜")
+		
 		else:
 			GameManager.resumeMusic()
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"黑暗游戏获胜")	
-			chendeng.show()
-			chendeng.changeAllClick("来把仕诡牌")	
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"黑暗游戏失败")
+		chendeng.show()
+		chendeng.changeAllClick("来把仕诡牌")	
 	elif GameManager.selectBoardCharacter==boardType.boardCharacter.chenden and GameManager._boardMode!=boardType.boardMode.none and GameManager._boardGameWin==false:
 	
 		GameManager.selectBoardCharacter=boardType.boardCharacter.none
@@ -197,13 +191,12 @@ func _initData():
 		if GameManager._boardReward!=boardType.boardRewardResult.BreakFree:
 			GameManager.resumeMusic()
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"常规失败") 
-			chendeng.show()
-			chendeng.changeAllClick("来把仕诡牌")	
+
 		else:
 			GameManager.resumeMusic()
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"黑暗游戏失败") 
-			chendeng.show()
-			chendeng.changeAllClick("来把仕诡牌")				
+		chendeng.show()
+		chendeng.changeAllClick("来把仕诡牌")				
 				   
 		
 	
