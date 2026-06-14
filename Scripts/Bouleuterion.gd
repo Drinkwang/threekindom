@@ -125,6 +125,7 @@ func _initData():
 		chendeng.show()
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"陈登结尾")
 		GameManager.sav.have_event["陈登支线3"]=true
+		GameManager.bossmode=scenemanager.bossMode.none
 		return 	
 	
 	

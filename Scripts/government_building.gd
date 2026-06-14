@@ -106,7 +106,8 @@ func _ready():
 	control.buttonHover.connect(_buttonListHover)
 	super._ready()
 	#initData()
-	changePanelPos()	
+	changePanelPos()
+	_restoreSavedDialogue()
 	
 	pass # Replace with function body.
 var candoSub=true
@@ -162,6 +163,7 @@ func _initData():
 		mizhu.show()
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"糜贞结尾")
 		GameManager.sav.have_event["糜竺支线3"]=true
+		GameManager.bossmode=scenemanager.bossMode.none
 		return 
 	elif GameManager.sav.day==1:
 		if	GameManager.sav.have_event["firstgovernment"]==false:
@@ -1027,6 +1029,14 @@ func PersonalCampaignBefore():
 
 
 
+
+func _restoreSavedDialogue():
+	# 亲征已触发但未结束时，强制恢复糜竺/陈登的对话句柄
+	if GameManager.sav.have_event.get("亲征对话触发")==true and GameManager.sav.have_event.get("亲征对话结束")!=true:
+		mizhu.changeAllClick("亲征前跟糜竺对话")
+		chenden.changeAllClick("亲征前跟陈登对话")
+
+
 func liubeiBattleAfterMizhu():
 	mizhu.hide()
 	GameManager.sav.have_event["亲征跟糜竺对话"]=true
@@ -1056,7 +1066,7 @@ func collectMoneyComplete():
 	chenden.changeAllClick("与陈登对话2")
 
 	hp_panel.playLabelChange()
-	GameManager.AutoSaveFile()
+
 
 func chaosBegin():
 	GameManager.sav.have_event["chaosBegin"]=true
@@ -1065,7 +1075,7 @@ func chaosBegin():
 	GameManager.changeTaskLabel("与手下谈谈")
 	mizhu.changeAllClick("混乱与糜竺对话")
 	chenden.changeAllClick("混乱与陈登对话")
-	GameManager.AutoSaveFile()
+	
 	
 func chaosMizhuEnd():
 	#糜竺会显示曹操的信
@@ -1151,7 +1161,7 @@ func StartTaishan():
 	GameManager.initSecretBattleContext(3,SceneManager.etraTaskType.dontLoseGame,6,"昌豨求饶支线")
 	#觉得无用的注释GameManager.sav.TargetDestination="battle"
 	#显示军事行动还有30把
-	GameManager.AutoSaveFile()
+	
 	
 
 var _faction:cldata.factionIndex=cldata.factionIndex.bentupai	

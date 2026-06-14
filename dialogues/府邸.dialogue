@@ -242,9 +242,9 @@ do SoundManager.play_sound(sounds.COLLECT_SMALL_JEWEL_3)
 
 
 
-do _JudgeTask()
+
 do GameManager._imporveRelation(getFactionByIndex())
-#赠送礼物，好感度上升
+do _JudgeTask()
 => END
 
 
@@ -571,7 +571,7 @@ do GameManager.policyAction=null
 系统提示: 主线已推进，获得2点政策点数。
 do GameManager.sav.Merit_points+=2
 do collectMoneyComplete()
-#使者需要 但有 山贼 需要开辟道路
+do GameManager.AutoSaveFile()
 => END!
 
 #如果==true 休息时 触发
@@ -611,7 +611,8 @@ do chenden.show()
 do chaosBegin()
 系统提示: 主线已推进，获得3点政策点数。
 do GameManager.sav.Merit_points+=1
-#糜竺：我们需要平衡各个派系，争取舆论支持。士族们必须看到我们是为了徐州的长远利益而行动。同时，我会加强内部管理，杜绝内应的活动空间。
+do GameManager.AutoSaveFile()
+
 => END!
 #粮食问题得不到解决，寻求外援，跳脱阵营
 ~ 混乱与糜竺对话
@@ -665,6 +666,7 @@ do chenden.show()
 do StartTaishan()
 do mizhu.hide()
 do chenden.hide()
+do GameManager.AutoSaveFile()
 #粮食当天运输到了
 #1 3天 5 天 
 #9次 内部矛盾出现 第二次分配粮食
@@ -890,9 +892,10 @@ do chenden.hide()
 系统提示: 主线已推进，获得2点政策点数。
 do GameManager.sav.Merit_points+=2
 
-do GameManager.AutoSaveFile()
+
 do chenden.hide()
 do mizhu.hide()
+do GameManager.AutoSaveFile()
 => END!
 
 ~ 第二次商讨吕布是否留下

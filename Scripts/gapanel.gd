@@ -110,7 +110,19 @@ func refreshContext():
 				else:
 					policycontext=tr(GameManager.sav.TargetDestination)	
 			else:
-				policycontext=tr(GameManager.sav.targetTxt).format({"target":targetValue,"currence":currenceValue})
+				
+				#var currenceValue=GameManager.sav.currenceValue
+				if  currenceValue is Array:
+					#var targetValue=GameManager.sav.targetValue
+					if currenceValue[1]<3:
+						policycontext.text=tr(GameManager.sav.targetTxt).format({"target":targetValue,"currence1":currenceValue[0],"currence2":currenceValue[1]})
+					else:
+						var strContext=tr("基建已完成，请征集民夫完成后前往府邸触发下一阶段剧情")	
+						strContext=strContext+";"+tr("征集民夫数量：{currence1}/{target}").format({"target":targetValue,"currence1":currenceValue[0]})
+						policycontext=strContext
+				else:				
+				
+					policycontext=tr(GameManager.sav.targetTxt).format({"target":targetValue,"currence":currenceValue})
 				if GameManager.sav.targetResType==GameManager.ResType.govern:
 					if GameManager.dontHaveDominance():
 						policycontext=policycontext+"\n"+tr("安抚徐州各派系，将豪族派、士族派、丹阳派、吕布好感度均提升至80。")
@@ -125,7 +137,8 @@ func refreshContext():
 					if GameManager.sav.have_event["夏侯偷马"]==true:
 						policycontext=policycontext+"\n"+tr("每天至少完成{n}次军事行动").format({"n":3})
 		else:
-			policycontext=GameManager.sav.TargetDestination	
+
+				policycontext=GameManager.sav.TargetDestination	
 				
 		contextEX=tr("主线任务:")+policycontext
 		#每个支线有个名称（枚举）和键值对，如果键值队为数 那么则xxx

@@ -260,7 +260,7 @@ func post_transition():
 		
 	if GameManager.bossmode==scenemanager.bossMode.huang and GameManager.sav.have_event["曹豹支线3"]==false:
 		GameManager.sav.hp=0
-		
+		GameManager.bossmode=scenemanager.bossMode.none
 		caobaoshow()
 		
 		if GameManager.bossmoderesult==true:
