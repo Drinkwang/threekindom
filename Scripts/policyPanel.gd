@@ -279,12 +279,13 @@ func preLaw(value:lawpoint):
 	#if value.detail
 	
 	law_label.text=context
-
+	
 	ConfireButton.disabled=false
 	if value.lawpoins.size()>0:
 		if value.lawpoins.any(func(value):return value.isUnlock==true)==false:# and !GameManager.haveMirror():
 			ConfireButton.disabled=true		
-			
+	if value.isUnlock==true:
+		ConfireButton.disabled=true	
 	if ConfireButton.disabled==false:
 		previewCostView()
 	changeexp_len()
@@ -359,6 +360,8 @@ func arrangeDone():
 	#$"../.."._initData()
 	
 func _on_law_confire_button_down():
+	if selectLawPoint.isUnlock==true:
+		return
 	excuteLaw(selectLawPoint)
 	pass # Replace with function body.
 
