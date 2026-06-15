@@ -2251,17 +2251,18 @@ func get_exploration_percent() -> int:
 			if he.get(q, false): pts += 4
 	# -- 特殊道具 (max 9) --
 	
-	
+
 	#40+38+25=
 	if GameManager._setting.is_clear_overlord_line==true:
 		pts+=32
 	else:
-		
+		if GameManager.sav.endPath==endPath.xuzhou:
+			pts+=10
 		var items = ["获得锦囊","获得古棒","获得血袖","获得娃娃","获得亮银","获得玄阴"]
 		for q in items:
 			if he.get(q, false): pts += 2
 	# -- 杂项 (max 12+3) --
-		if not dontHaveDominance(): pts += 20
+		if not dontHaveDominance(): pts += 10
 
 	return mini(pts, 100)
 
