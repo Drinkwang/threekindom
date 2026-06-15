@@ -613,7 +613,7 @@ func _buttonListClick(item):
 		SceneManager.changeScene(SceneManager.roomNode.STREET,2)#判断条件
 		#pass
 	elif item.context=="操练士兵":
-		if GameManager.sav.have_event["开启比武训练"]==true:
+		if GameManager.sav.have_event["开启比武训练"]==true and not (GameManager.sav.have_event["战斗袁术血战模式"]==true and GameManager.sav.have_event["血战袁术完成"]==false):
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"训练选项")
 		else:
 			trainUseMoney()

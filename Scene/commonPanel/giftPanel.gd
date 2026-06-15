@@ -15,7 +15,7 @@ func _ready():
 					
 		_context=tr(_item_db.name)+":"+tr(detail["value"])
 		if InventoryManager.has_item(InventoryManagerItem.黄麻药囊):
-			_context = _context.replace("15", "20") 
+			_context = _context.replace("15", "30") 
 
 			TooltipManager.register_tooltip(self,_context+tr("【已强化】"))
 		

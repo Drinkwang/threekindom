@@ -1233,8 +1233,8 @@ func sendgift():
 	#+5
 	var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.黄麻药囊)
 	if num>=1:
-		GameManager.extraValue=5
-		_c.ChangeSupport(20)
+		GameManager.extraValue=15
+		_c.ChangeSupport(30)
 	else:
 		GameManager.extraValue=0
 		_c.ChangeSupport(15)

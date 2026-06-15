@@ -98,7 +98,7 @@ func changeLanguage():
 
 					
 	if InventoryManager.has_item(InventoryManagerItem.迷魂木筒):
-		_context = _context.replace("10", "13") 
+		_context = _context.replace("40", "50") 
 		_context=_context+tr("【已强化】")
 		
 	TooltipManager.register_tooltip(useItemPanel,_context)	
@@ -156,7 +156,11 @@ func refreshUseItemPanel():
 
 	if num>0:
 		useItemPanel.show()
-		label.text=tr("_battleUseItem").format({"_num":num})
+		var context=tr("_battleUseItem").format({"_num":num})
+		
+		if InventoryManager.has_item(InventoryManagerItem.益气丸):
+			context = context.replace("40", "50") 
+		label.text=context
 		if GameManager.sav.useItemInBattle:
 			check_box.button_pressed=true
 	else:
@@ -514,7 +518,7 @@ func enterBattleHuang():
 	for  data in GameManager.sav.battleTasks.values():
 		data.task=[]
 	#GameManager.sav.battleTasks.task=[]#clear()
-	#battle_circle.taskIndex=-1
+	battle_circle.taskIndex=0
 	initTask()
 
 

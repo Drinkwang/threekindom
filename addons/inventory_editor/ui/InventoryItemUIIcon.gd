@@ -79,12 +79,12 @@ func _update_item() -> void:
 
 					#done
 					if _item_db.uuid == InventoryManagerItem.益气丸 and InventoryManager.has_item(InventoryManagerItem.饥蛊骨签):
-						_context = _context.replace("40", "50") 
+						_context = _context.replace("40", "60") 
 						TooltipManager.register_tooltip(self,_context+tr("【已强化】"))
 					
 					
 					elif _item_db.uuid == InventoryManagerItem.胜战锦囊 and InventoryManager.has_item(InventoryManagerItem.迷魂木筒):
-						_context = _context.replace("10", "13") 
+						_context = _context.replace("40", "50") 
 						TooltipManager.register_tooltip(self,_context+tr("【已强化】"))
 					
 					#done
@@ -93,7 +93,7 @@ func _update_item() -> void:
 						TooltipManager.register_tooltip(self,_context+tr("【已强化】"))	
 					#done		
 					elif _item_db.uuid == InventoryManagerItem.珍品礼盒 and InventoryManager.has_item(InventoryManagerItem.黄麻药囊):
-						_context = _context.replace("15", "20") 
+						_context = _context.replace("15", "30") 
 						#定死值15
 						TooltipManager.register_tooltip(self,_context+tr("【已强化】"))						
 
