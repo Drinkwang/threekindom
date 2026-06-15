@@ -313,7 +313,7 @@ var battleNum=0
 
 func enterBattleMode():
 	GameManager.sav.have_event["战斗袁术血战模式"]=true
-	
+	battle_pane.battle_circle.taskIndex=0
 	GameManager.sav.hp=100
 	#任务开始，10天完成20次duel
 	
