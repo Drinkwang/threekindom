@@ -58,7 +58,20 @@ func update_ui():
 		control_1.canSelect=false
 		control_2.canSelect=false
 		control_3.canSelect=false
-		lvbutton.disabled=true		
+		lvbutton.disabled=true
+	# 关羽离开期间不能升级
+	if GameManager.sav.have_event["关羽求援期间"]==true and GameManager.sav.have_event["关羽求援结束"]==false and selected_general_index==1:
+		lvbutton.disabled=true
+	# 无名死后永远不能升级
+	if GameManager.sav.have_event["无名之死"]==true and selected_general_index==0:
+		lvbutton.disabled=true
+	# 无名死后且关羽求援期间：无可训练武将
+	if GameManager.sav.have_event["无名之死"]==true and GameManager.sav.have_event["关羽求援期间"]==true and GameManager.sav.have_event["关羽求援结束"]==false:
+		lvbutton.disabled=true
+		control_1.canSelect=false
+		control_2.canSelect=false
+		control_3.canSelect=false
+		label.text=tr("你没有可训练的武将")
 	#level_label.text = "当前等级: " + str(selected_general["level"])
 	#gold_label.text = "当前钱: " + str(gold)
 	#upgrade_button.disabled = selected_general["level"] >= selected_general["max_level"] or gold < upgrade_cost
@@ -68,8 +81,9 @@ func update_ui():
 
 # 升级按钮被按下时运行
 func _on_upgrade_button_pressed():
-	if GameManager.sav.isLevelUp==true or (GameManager.sav.have_event["无名之死"]==true and GameManager.sav.have_event["夏侯偷马"]==false and selected_general_index==3) or\
-(GameManager.sav.have_event["关羽求援期间"]==true and GameManager.sav.have_event["关羽求援结束"]==false and selected_general_index==1):
+	if GameManager.sav.isLevelUp==true or \
+	(GameManager.sav.have_event["无名之死"]==true and selected_general_index==0) or \
+	(GameManager.sav.have_event["关羽求援期间"]==true and GameManager.sav.have_event["关羽求援结束"]==false and selected_general_index==1):
 		return
 	
 	if(await GameManager.isTried(costhp)):
@@ -99,7 +113,10 @@ func add_gold(amount):
 
 
 func _on_control_1_gui_input(event):
-	if(event is InputEventMouseButton and event.button_index==1) and not (GameManager.sav.have_event["关羽求援期间"]==true and GameManager.sav.have_event["关羽求援结束"]==false and selected_general_index==1):	
+	if(event is InputEventMouseButton and event.button_index==1):
+		if GameManager.sav.have_event["关羽求援期间"]==true and GameManager.sav.have_event["关羽求援结束"]==false:
+			return
+		
 		SoundManager.play_sound(sounds.SELECT_HERO)
 		selected_general_index=1		
 		control_1.check_box.button_pressed=true
@@ -122,7 +139,10 @@ func _on_control_2_gui_input(event):
 
 
 func _on_control_3_gui_input(event):
-	if(event is InputEventMouseButton and event.button_index==1) and not (GameManager.sav.have_event["无名之死"]==true and GameManager.sav.have_event["夏侯偷马"]==false and selected_general_index==3):	
+	if(event is InputEventMouseButton and event.button_index==1):
+		if GameManager.sav.have_event["无名之死"]==true:
+			return
+		
 		selected_general_index=0
 				
 		SoundManager.play_sound(sounds.SELECT_HERO)		

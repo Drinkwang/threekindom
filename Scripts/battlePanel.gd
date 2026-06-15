@@ -480,7 +480,7 @@ func enterBattleMi():
 	_mode=SceneManager.bossMode.mi
 	close_btn.hide()
 	ban_1_soilder.show()
-	
+	battle_circle.taskIndex=0
 	soild_slider.editable=false
 	#soild_slider.enan;
 	battle_circle.enemyName="糜贞"
@@ -500,7 +500,7 @@ func enterBattleTao():
 	var cha=load("res://Asset/人物/尸皇.png")
 	battle_circle.enemyName="陶谦"
 	battle_circle.changeHead(cha)
-
+	battle_circle.taskIndex=0
 	initTask()
 func enterBattleHuang():
 	
@@ -554,15 +554,16 @@ func _on_soilderBlock_button_down():
 
 
 func enterBattleZhenRen():
+	useItemPanel.hide()
 	close_btn.hide()
 	_mode=SceneManager.bossMode.zhenren
 	for i in range(0,3):
 		var datas=GameManager.sav.battleTasks.values()
 		var data=datas[i]
 		data.task=[]
-		data.index=i+40	
+		data.index=i+299
 	refreshData()
-	
+	battle_circle.taskIndex=0
 	battle_circle.enemyName="修道真人"
 	const cha = preload("res://Asset/人物/真人.png")
 	battle_circle.changeHead(cha)	

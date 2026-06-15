@@ -152,13 +152,10 @@ func updateContext(value):
 	elif value==2:
 		if GameManager.sav.have_event["无名之死"]==true and GameManager.sav.have_event["夏侯偷马"]==false:
 			isdie.show()
-			#alreadyUse=false
-			#canSelect=false
 			check_box.hide()
 			already_use.hide()
 		elif GameManager.sav.have_event["夏侯偷马"]==true:
 			_name="夏侯淳"
 			_level=10
 			headImg=xiahoutxt
-		#赵云之死
 	namelv=tr(str(_name))+":"+"LV"+str(_level)

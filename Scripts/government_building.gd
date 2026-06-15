@@ -1257,7 +1257,7 @@ func sendgiftChoice():
 		
 		var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.黄麻药囊)
 		if num>=1:
-			send_gift_panel._initPanel(_c._name,quantity,int(20))	
+			send_gift_panel._initPanel(_c._name,quantity,int(30))	
 		else:
 			send_gift_panel._initPanel(_c._name,quantity,int(15))	
 		#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"消耗资金")#显示对话
