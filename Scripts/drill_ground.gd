@@ -604,7 +604,7 @@ func _buttonListClick(item):
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"训练还没有结束")
 				return
 		if(GameManager.sav.day==3):
-			if GameManager.sav.hp>10:
+			if GameManager.sav.have_event["firstBattleEnd"]==false:
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"三场战斗还没有结束")
 				return 
 		if GameManager.sav.have_event["战斗袁术血战模式"]==true and GameManager.sav.have_event["血战袁术完成"]==false:

@@ -176,9 +176,9 @@ func _input(event):
 		if panel.get_rect().has_point(panel.get_local_mouse_position()):
 			_expoundClass()
 			var maxLevel=min(GameManager.sav.acdemicLevel,3)
-			score=score+maxLevel*50+100
+			score=score+maxLevel*40+100
 			audio_stream_player.play()
-			title.text=tr("请点击图书并获得积分")+"\n+"+str(+maxLevel*50+100)
+			title.text=tr("请点击图书并获得积分")+"\n+"+str(+maxLevel*40+100)
 			timer.start()
 		
 

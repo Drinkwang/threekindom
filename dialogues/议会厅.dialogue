@@ -283,9 +283,12 @@ if GameManager.sav.learnFormChenden==true
 	=> 来把仕诡牌	
 	
 if GameManager.sav.acdemicLevel<3
-	系统提示: 你当前学识为【{{LearnToStr(GameManager.sav.acdemicLevel)}}】,是否与陈登论策？论策后，你的学识将提升至 【{{LearnToStr(GameManager.sav.acdemicLevel+1)}}】，大儒辩论时的点击效果将提升至 {{(GameManager.sav.acdemicLevel+1)*50+100}}%。
+	do GameManager.resideValue=GameManager.sav.acdemicLevel
+	系统提示: 你当前学识为【{{LearnToStr(GameManager.resideValue)}}】,是否与陈登论策？论策后，你的学识将提升至 【{{LearnToStr(GameManager.resideValue+1)}}】，大儒辩论时的点击效果将提升至 {{(GameManager.resideValue+1)*40+100}}%。
 else
-	系统提示: 你当前学识为【{{LearnToStr(3)}}】,是否与陈登论策？当前学识已满级！本次论策可使你当旬学识不回落。
+	do GameManager.resideValue=3
+	系统提示: 你当前学识为【{{LearnToStr(3)}}】,是否与陈登论策？当前学识已满级！本次论策可使你当旬学识不回落。	
+
 - 是[costHp=20]
 	do lunce()
 - 否
@@ -295,7 +298,14 @@ else
 ~ 论策结束
 陈登: 天下大势，分合无常。曹操雄踞兖州，兵锋极盛，实为近患；袁术坐拥淮南，野心昭然，久必生乱；主公当以徐州为根基，稳步蓄力，静待时局变幻，再图进取。[voice:chenden_lunce]
 do SoundManager.play_sound(sounds.COLLECT_SMALL_JEWEL_1)
-系统提示: 论策已毕，主公学识精进，当前学识提升至 【{{LearnToStr(GameManager.sav.acdemicLevel)}}】。大儒辩论中，主公辩才增益已更新为 {{(GameManager.sav.acdemicLevel)*50+100}}%。
+if GameManager.sav.acdemicLevel<3
+	do GameManager.resideValue=GameManager.sav.acdemicLevel
+	
+else
+	do GameManager.resideValue=3
+	
+系统提示: 论策已毕，主公学识精进，当前学识提升至 【{{LearnToStr(GameManager.resideValue)}}】。大儒辩论中，主公辩才增益已更新为{{(GameManager.resideValue)*40}}%。
+	
 => END!
 
 ~ 进入仕诡牌游戏
