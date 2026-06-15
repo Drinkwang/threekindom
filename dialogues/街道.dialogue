@@ -776,6 +776,7 @@ do getZhenrenItem()
 do SoundManager.play_sound(sounds.breakcc0)
 : 随着刘备离开这里，身后洞府轰然震颤，雾影如泣血般崩散，层层秘境层层坍塌成无尽幽冥，秘境彻底烟消云散！
 #倒塌音效
+do SoundManager.play_sound(sounds.guiyi)
 系统提示: 玄阴秘境任务已完成，玄阴秘境关闭
 do zhenrenFinish()
 => END!

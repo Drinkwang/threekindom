@@ -576,7 +576,7 @@ func enterBattleZhenRen():
 		#GameManager.sav.battleTasks[taskIndex]
 		
 	GameManager.secretBattleSav=GameManager.sav.currenceTask
-	GameManager.sav.currenceTask=200
+	#GameManager.sav.currenceTask=200
 	initTask()
 
 
