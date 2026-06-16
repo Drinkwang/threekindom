@@ -733,9 +733,12 @@ var needC
 var PunishC
 func _rest(value=true):
 	if GameManager.sav.have_event["进入青梅煮酒"]==false:
-		SoundManager.stop_music()
-		if GameManager.musicId!=0:
-			GameManager.musicId=-GameManager.musicId	
+		# 血战模式下保留血战BGM的连续性，避免休息后音乐重新从头播放
+		var isBloodBattle = GameManager.sav.have_event["战斗袁术血战模式"]==true and GameManager.sav.have_event["血战袁术完成"]==false
+		if not isBloodBattle:
+			SoundManager.stop_music()
+			if GameManager.musicId!=0:
+				GameManager.musicId=-GameManager.musicId
 	const DISSOLVE_IMAGE = preload("res://addons/transitions/images/circle-inverted.png")
 	if DialogueManager.gameover==true:
 		return
