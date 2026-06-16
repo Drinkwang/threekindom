@@ -81,6 +81,7 @@ else
 
 => END
 
+
 #优先级中，体力优先级最低
 ~ 你的政策点不够
  : 我必须有{{GameManager.LAW_COST_POINT}}点政策点数才能立法
@@ -121,7 +122,7 @@ do meetingEnd()
 => END
 
 ~ 确认法律
-: 是否同意将法律条款{{policy_panel.selectLawPoint.context_tr}}放在下一次议程
+: 是否同意将法律条款{{policy_panel.selectLawPoint.context_tr}}放在下一次议程，【非简单难度下，法案影响派系时，提案与通过都会扣对应派系支持度。】
 - 同意
 	do agreelaw()
 - 取消

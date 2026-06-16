@@ -163,8 +163,7 @@ func _completeTask():#将完成任务移动到外层
 	elif GameManager.sav.have_event["战斗袁术血战模式"]==true and GameManager.sav.have_event["血战袁术完成"]==false:
 		res_panel.show()
 		#GameManager.sav.have_event["血战袁术完成"]=true
-		if GameManager.dontHaveDominance()==false and GameManager.sav.HAOZUPAI.supressNum>=3 and GameManager.sav.WAIDIPAI.supressNum>=3 and \
-		GameManager.sav.LVBU.supressNum>=3 and GameManager.sav.BENTUPAI.supressNum>=3:
+		if GameManager.dontHaveDominance()==false and GameManager.CheckAllFactionsSubdued():
 			
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"不丢徐州线")
 		else:
