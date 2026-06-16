@@ -325,6 +325,16 @@ func refreshTask(checkSlider:bool=true):
 		task_label.text=context
 	if TooltipManager and TooltipManager.has_method("register_tooltip"):
 		TooltipManager.register_tooltip(task_label,tr("武将等级与专属武器，可降低风险行动物资损耗"))
+		# 下一帧让 PanelContainer 自适应 TaskLabel 高度
+		call_deferred("_fit_task_label_height")
+
+func _fit_task_label_height():
+		# TaskLabel 实际渲染高度减去基准144，只增加超出部分
+		var extra = max(0, task_label.size.y - 144)
+		var spacer = $PanelContainer/orderPanel/VBoxContainer/TaskSpacer
+		if spacer:
+			spacer.custom_minimum_size.y = extra
+		$PanelContainer.offset_bottom = 411 + extra
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 var _cursor_in_rect:bool=false
 

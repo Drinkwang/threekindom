@@ -461,6 +461,10 @@ text = "出征"
 layout_mode = 2
 size_flags_horizontal = 10
 
+[node name="TaskSpacer" type="Control" parent="PanelContainer/orderPanel/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
 [node name="TabBar" type="TabBar" parent="."]
 visible = false
 layout_mode = 1
@@ -493,9 +497,7 @@ theme_override_constants/outline_size = 0
 theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/font = ExtResource("4_cxtvu")
 theme_override_font_sizes/font_size = 31
-text = "任务条件：
-1.
-2."
+text = "战术目标："
 autowrap_mode = 3
 
 [node name="soildNum" type="Label" parent="."]
