@@ -221,15 +221,18 @@ func _refreshSlider():
 @onready var task_label = $TaskLabel
 
 func initTask():
+	refreshTask(false)
+
+func refreshTask(checkSlider:bool=true):
 	if battle_circle.taskIndex<0 or GameManager.sav.battleTasks==null or GameManager.sav.battleTasks.size()<=0:
 		return
-		
+
 	var levels=1
 
 	if battle_circle.selectgeneral!=null:
 		var generalLevel=battle_circle.selectgeneral.level
 		var generalName=battle_circle.selectgeneral.name
-		var isBloodBattle=GameManager.sav.have_event["战斗袁术血战模式"]==true and GameManager.sav.have_event["血战袁术完成"]==false			
+		var isBloodBattle=GameManager.sav.have_event["战斗袁术血战模式"]==true and GameManager.sav.have_event["血战袁术完成"]==false
 		var hasWeapon=false
 		if generalName=="关羽":
 			hasWeapon=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.青龙偃月刀)>0
@@ -241,67 +244,86 @@ func initTask():
 				hasWeapon=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.丈八蛇矛)>0
 		elif generalName=="无名":
 			hasWeapon=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.龙胆亮银枪)>0
-		
+
 		levels=1.0889-(0.0889*generalLevel)
-		#武器检测：武将持有武器则降低任务目标值
-	
-	
 		if hasWeapon:
 			levels=levels*0.7
+
 	var currence= GameManager.sav.battleTasks[battle_circle.taskIndex]
-	var context=tr("风险行动：")
+	var context=tr("战术目标：")
 	var index=1;
 	var taskcontext=""
 	var targetValue
+	var haveRes:int
+	var minValue:int
+	var isCompleted:bool
 	var bossMode=scenemanager.bossMode
+
 	for task in currence.task:
-		#targetValue=task.value
 		targetValue=floor(task.value*levels)
-		if task.res=="coin"and _mode!=bossMode.tao:
-			var after=str(targetValue)+"目标值)"
+		taskcontext="\n"+str(index)
+		isCompleted=false
+
+		# ——— 资金类任务 ———
+		if task.res=="coin" and _mode!=bossMode.tao:
+			haveRes=costcoin
+			minValue=int(floor(targetValue*2/3))
+
 			if task.symbol==GameManager.opcost.greater:
+				isCompleted=haveRes>targetValue
 				if _mode==bossMode.mi:
-					taskcontext="\n"+str(index)+tr(".血金祭坛:")+tr("(资金超过{targetValue})").format({"targetValue": targetValue})
+					taskcontext+=tr(".血金祭坛:")+tr("(资金超过{targetValue})").format({"targetValue": targetValue})
 				else:
-					taskcontext="\n"+str(index)+tr(".工程战:")+tr("(资金超过{targetValue})").format({"targetValue": targetValue})
+					taskcontext+=tr(".工程战:")+tr("(资金超过{targetValue})").format({"targetValue": targetValue})
 			elif task.symbol==GameManager.opcost.equal:
+				isCompleted=haveRes==targetValue
 				if _mode==bossMode.mi:
-					taskcontext="\n"+str(index)+tr(".血金秘术:")+tr("(资金等于{targetValue})").format({"targetValue": targetValue})
-				else:				
-					taskcontext="\n"+str(index)+tr(".特种战:")+tr("(资金等于{targetValue})").format({"targetValue": targetValue})
+					taskcontext+=tr(".血金秘术:")+tr("(资金等于{targetValue})").format({"targetValue": targetValue})
+				else:
+					taskcontext+=tr(".特种战:")+tr("(资金等于{targetValue})").format({"targetValue": targetValue})
 			elif task.symbol==GameManager.opcost.less:
+				isCompleted=haveRes<targetValue and haveRes>minValue
 				if _mode==bossMode.mi:
-					taskcontext="\n"+str(index)+tr(".商贾幻影:")+tr("(资金小于{targetValue} 但大于{targetValue2})").format({"targetValue": targetValue,"targetValue2":int(floor(targetValue*2/3))})
-				else:				
-					taskcontext="\n"+str(index)+tr(".游击战:")+tr("(资金小于{targetValue} 但大于{targetValue2})").format({"targetValue": targetValue,"targetValue2":int(floor(targetValue*2/3))})
-		pass
+					taskcontext+=tr(".商贾幻影:")+tr("(资金小于{targetValue} 但大于{targetValue2})").format({"targetValue": targetValue,"targetValue2":minValue})
+				else:
+					taskcontext+=tr(".游击战:")+tr("(资金小于{targetValue} 但大于{targetValue2})").format({"targetValue": targetValue,"targetValue2":minValue})
+
+		# ——— 兵力类任务 ———
 		if task.res=="human" and _mode!=bossMode.mi:
+			haveRes=costsoild
+			minValue=int(floor(targetValue*3/5))
+
 			if task.symbol==GameManager.opcost.greater:
+				isCompleted=haveRes>targetValue
 				if _mode==bossMode.tao:
-					taskcontext="\n"+str(index)+tr(".尸皇怒吼:")+tr("(兵力超过{targetValue})").format({"targetValue": targetValue})
+					taskcontext+=tr(".尸皇怒吼:")+tr("(兵力超过{targetValue})").format({"targetValue": targetValue})
 				else:
-					taskcontext="\n"+str(index)+tr(".遭遇战:")+tr("(兵力超过{targetValue})").format({"targetValue": targetValue})
+					taskcontext+=tr(".遭遇战:")+tr("(兵力超过{targetValue})").format({"targetValue": targetValue})
 			elif task.symbol==GameManager.opcost.equal:
+				isCompleted=haveRes==targetValue
 				if _mode==bossMode.tao:
-					taskcontext="\n"+str(index)+tr(".怨魂诡阵:")+tr("(兵力等于{targetValue})").format({"targetValue": targetValue})
-				else:				
-					taskcontext="\n"+str(index)+tr(".奇兵任务:")+tr("(兵力等于{targetValue})").format({"targetValue": targetValue})
+					taskcontext+=tr(".怨魂诡阵:")+tr("(兵力等于{targetValue})").format({"targetValue": targetValue})
+				else:
+					taskcontext+=tr(".奇兵任务:")+tr("(兵力等于{targetValue})").format({"targetValue": targetValue})
 			elif task.symbol==GameManager.opcost.less:
+				isCompleted=haveRes<targetValue and haveRes>minValue
 				if _mode==bossMode.tao:
-					taskcontext="\n"+str(index)+tr(".冥界壁垒:")+tr("(兵力小于{targetValue} 但大于{targetValue2})").format({"targetValue": targetValue,"targetValue2":int(floor(targetValue*3/5))})
-				else:				
-					taskcontext="\n"+str(index)+tr(".防守战:")+tr("(兵力小于{targetValue} 但大于{targetValue2})").format({"targetValue": targetValue,"targetValue2":int(floor(targetValue*3/5))})
-		pass
-		context=context+taskcontext
-	pass
-	var ta=[]
-	ta.size()
+					taskcontext+=tr(".冥界壁垒:")+tr("(兵力小于{targetValue} 但大于{targetValue2})").format({"targetValue": targetValue,"targetValue2":minValue})
+				else:
+					taskcontext+=tr(".防守战:")+tr("(兵力小于{targetValue} 但大于{targetValue2})").format({"targetValue": targetValue,"targetValue2":minValue})
+
+		# 标记已达成
+		if checkSlider and isCompleted:
+			taskcontext+=tr("  【已达成，伤亡降低】")
+
+		context+=taskcontext
+		index+=1
+
 	if currence.task.size()==0:
-		
 		task_label.text=context+tr("无")
 	else:
 		task_label.text=context
-	if TooltipManager and TooltipManager.has_method("register_tooltip"):	
+	if TooltipManager and TooltipManager.has_method("register_tooltip"):
 		TooltipManager.register_tooltip(task_label,tr("武将等级与专属武器，可降低风险行动物资损耗"))
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 var _cursor_in_rect:bool=false
@@ -334,10 +356,11 @@ func _soilderNum_changed(value):
 
 	#costsoild=(GameManager.sav.labor_force*value/100)
 	costsoild=value
-	
+
 	soild_num.set_text(str(costsoild))  #报错没有找到 先屏蔽，后续开启
 	if(battle_circle.selectgeneral):
 		_changeProgress()
+		refreshTask(true)
 
 
 func _on_coin_slider_value_changed(value):
@@ -350,6 +373,7 @@ func _on_coin_slider_value_changed(value):
 		battle_circle.refreshTempHideBattleTask()
 	if(battle_circle.selectgeneral):
 		_changeProgress()
+		refreshTask(true)
 
 var selectIndex
 #BOOT结算完后将对应的general转换成use 然后同时也结算
