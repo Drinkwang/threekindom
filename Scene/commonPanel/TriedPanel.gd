@@ -31,7 +31,7 @@ func _ready():
 
 					
 	if InventoryManager.has_item(InventoryManagerItem.饥蛊骨签):
-		_context = _context.replace("40", "50") 
+		_context = _context.replace("40", "60") 
 		_context=_context+tr("【已强化】")
 		
 	TooltipManager.register_tooltip(texture_button,_context)	
@@ -86,7 +86,7 @@ func _on_jingliwan_button_down():
 		GameManager.triedPanelDone.emit()
 		
 		if InventoryManager.has_item(InventoryManagerItem.饥蛊骨签):
-			GameManager.recoverHp(50)
+			GameManager.recoverHp(60)
 		else:
 			GameManager.recoverHp(40)
 		SoundManager.play_sound(sounds.tunyan)

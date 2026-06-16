@@ -122,7 +122,7 @@ do meetingEnd()
 => END
 
 ~ 确认法律
-: 是否同意将法律条款{{policy_panel.selectLawPoint.context_tr}}放在下一次议程，【非简单难度下，法案影响派系时，提案与通过都会扣对应派系支持度。】
+: 是否同意将法律条款{{policy_panel.selectLawPoint.context_tr}}放在下一次议程{{GameManager.resideValue4}}
 - 同意
 	do agreelaw()
 - 取消
