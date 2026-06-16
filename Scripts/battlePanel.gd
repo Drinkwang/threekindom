@@ -403,7 +403,7 @@ func _on_control_3_gui_input(event):
 		battle_circle._juideCompeleteTask()
 		_refreshSlider()
 		previewHpdone()
-		initTask()
+		refreshTask(true)
 	#取消其它的选中状态
 	#给当前标记为选中
 	#将选中将领具体信息发送给disk	
@@ -424,7 +424,7 @@ func _on_control_2_gui_input(event):
 		battle_circle._juideCompeleteTask() 
 		_refreshSlider()
 		previewHpdone()
-		initTask()
+		refreshTask(true)
 var istour=false
 func _on_control_1_gui_input(event):
 
@@ -440,7 +440,7 @@ func _on_control_1_gui_input(event):
 		battle_circle._juideCompeleteTask()	 
 		_refreshSlider()
 		previewHpdone()
-		initTask()
+		refreshTask(true)
 func previewHpdone():
 	if GameManager.haveMirror():
 		GameManager._engerge.startPreviewHp(costhp)
