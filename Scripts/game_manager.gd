@@ -2292,3 +2292,8 @@ func enterCredit(index):
 	elif index==2:
 		GameManager.sav.endPath=GameManager.endPath.xuzhou
 		SceneManager.changeScene(SceneManager.roomNode.Credit,2)
+
+
+func set_enable_rest_remind(_p):
+	GameManager._setting.enable_rest_remind=_p
+	ResourceSaver.save(GameManager._setting,"user://ysg_data_setting.tres")

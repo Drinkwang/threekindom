@@ -565,20 +565,45 @@ do SoundManager.play_sound(sounds.COLLECT_SMALL_JEWEL_3)
 ~ 月例预期日
 主簿: 大人，今日乃月例预告之期，您可前往府邸与糜竺先生核定各部所需。[voice:zhubo_hedingsuoxu]
 系统提示: 糜竺将出现在府邸场景之中，请点击人物肖像与他进行交互。场地内除了各路人物，还散落着各类道具，可为你提供助力。
+=> 休息提示设置
 => END!
 
 
 ~ 月例发放日
 主簿: 大人，今日正是月例发放之期，可安排糜竺依制支给，安抚各方势力。[voice:zhubo_yuelifafang]
 系统提示: 糜竺将出现在府邸场景之中，请点击人物肖像与他进行交互。场地内除了各路人物，还散落着各类道具，可为你提供助力。
+=> 休息提示设置
 => END!
 
 
 ~ 最后支给日
 主簿: 大人，今日为本月月例最后支给之日，若未发放，恐会影响各方派系心意[voice:zhubo_zuihouzhigei]
 系统提示: 糜竺将出现在府邸场景之中，请点击人物肖像与他进行交互。场地内除了各路人物，还散落着各类道具，可为你提供助力。
+=> 休息提示设置
 => END!
 
+~ 休息提示设置
+
+- 【休憩提醒设置】
+
+	系统提示: 体力剩余 30 以上时，休息弹出确认提示!
+	- 开启休憩提醒
+		主簿: 记下了，若主公尚有气力便休憩，属下即刻进言提醒。[voice:zhubu_jinyantixing]
+		do GameManager.set_enable_rest_remind(true)
+	- 关闭休憩提醒
+		主簿: 知晓了，往后主公休憩，属下便不再多言打扰。[voice:zhubu_xiuxidarao]
+		do GameManager.set_enable_rest_remind(false)
+- 取消
+=> END!
+
+~ 休息提示
+主簿: 主公尚有余力处理政务，确认要提前休息么？[voice:zhubu_querentiqian]
+- 是
+	if not GameManager.checkAndHandleLazy()
+		
+		do GameManager._rest()
+- 否
+=> END!
 
 #依次调用四次 改这个
 ~ 派系扣除好感

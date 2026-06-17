@@ -500,7 +500,10 @@ func _buttonListClick(item):
 
 		control._show_button_5_yellow(-1)
 		
-
+		if GameManager._setting.enable_rest_remind==true:
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"休息提示")
+			return
+		#这里放return
 		if GameManager.checkAndHandleLazy():
 			return
 	
