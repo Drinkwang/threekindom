@@ -113,10 +113,12 @@ func _ready():
 		fullscreen_check.button_pressed=GameManager._setting.fullscreen
 		AutoSavecheck.button_pressed=GameManager._setting.isAutoSave
 	resolution_option.select(current_resolution_index)
-	apply_resolution(current_resolution_index)
+	# 延迟应用分辨率，避免在 _ready() 中立即改窗口大小导致 UI 异常
+	call_deferred("apply_resolution", current_resolution_index)
 	TranslationServer.set_locale(system_locale)
-	# 连接信号
+	# 连接信号（弹出菜单 index_pressed 比 item_selected 更可靠）
 	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_RESIZE_DISABLED, true)
+	resolution_option.get_popup().index_pressed.connect(_on_resolution_selected)
 	#如果设置存了别的
 	var lan
 	if system_locale=="zh_HK" or system_locale=="zh_TW" or system_locale=="lzh":
@@ -200,8 +202,9 @@ func apply_resolution(index: int):
 # 分辨率选择变化
 func _on_resolution_selected(index: int):
 	current_resolution_index = index
-	var saveResolution=apply_resolution(index)
-	GameManager._setting.resolution=saveResolution
+	GameManager._setting.resolution = resolutions[index]
+	# 延迟应用分辨率，避免在 OptionButton 下拉菜单交互时立即改窗口大小导致冲突
+	call_deferred("apply_resolution", index)
 
 	#if not GameManager._setting.fullscreen:
 		#DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)  # Ensure windowed mode
@@ -213,7 +216,7 @@ func _on_fullscreen_toggled(toggled: bool):
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-		apply_resolution(current_resolution_index)
+		call_deferred("apply_resolution", current_resolution_index)
 		
 		#DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	GameManager._setting.fullscreen=toggled
@@ -225,7 +228,7 @@ func _on_reset_pressed():
 	var screen_size = DisplayServer.screen_get_size()
 	current_resolution_index = find_closest_resolution(screen_size.x, screen_size.y)
 	resolution_option.select(current_resolution_index)
-	apply_resolution(current_resolution_index)
+	call_deferred("apply_resolution", current_resolution_index)
 	fullscreen_check.button_pressed = false
 	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 
