@@ -777,6 +777,7 @@ func startGame(cardnum,issole,enemyExtraCard):
 		if issole==false:
 			drawOne(false)				
 	#进入新阶段来判断
+	await get_tree().create_timer(0.2).timeout
 	await enterNewPhase(phaseName.drawCard)
 	
 @onready var reside_num: Label = $CanvasLayer/resideNum
@@ -1870,7 +1871,11 @@ func phaseEnd():
 		return
 	if isWaiting:
 		return
-	
+
+	# 防止双击"拒付惩罚"按钮导致二次扣血
+	if (_phaseName==phaseName.punish or _phaseName==phaseName.checkStart) and not punishStage:
+		return
+
 	if _phaseName==phaseName.punish or _phaseName==phaseName.checkStart:
 		#插入一个代替阶段,如果无法插入
 		#先支付一张红桃
@@ -1928,6 +1933,7 @@ func phaseEnd():
 				hptween.tween_callback(func(): damage_color.hide())	
 			
 			hp-=1
+			punishStage=false # 标记惩罚已处理，防止双击重复扣血
 			groupPunishTyp2=groupType.none
 			if hp<=0:
 				pass
