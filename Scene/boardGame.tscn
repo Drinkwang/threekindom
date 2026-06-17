@@ -787,11 +787,13 @@ theme_override_font_sizes/font_size = 47
 visible = false
 offset_left = 1553.0
 offset_top = 13.0
-offset_right = 2043.0
+offset_right = 1902.0
 offset_bottom = 317.0
 theme_override_fonts/font = ExtResource("20_f0olx")
 theme_override_font_sizes/font_size = 47
 text = "敌人得分：0"
+horizontal_alignment = 2
+autowrap_mode = 2
 
 [node name="blinkRect" type="TextureRect" parent="CanvasLayer"]
 visible = false

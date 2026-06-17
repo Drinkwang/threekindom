@@ -1698,6 +1698,7 @@ do jiaMizhenShow()
 do mizhen.hide()
 do mizhu.hide()	
 do mizhufinal()
+#do _initData()
 => END!
 
 ~ 是否完成津贴
