@@ -104,11 +104,15 @@ func settleGame():
 		if GameManager.sav.endPath==GameManager.endPath.xiaopei:
 			settle_bg.texture=normal_end
 			what_final.text=tr("【恭喜你，通关正史结局】")
-			finaldec=tr("完成所有怪谈支线，\n将解锁霸道结局线索。")
+			finaldec=tr("集齐全部怪谈支线，\n即可解锁霸道结局前置线索。")
+			
+			#finaldec=tr("完成所有怪谈支线，\n将解锁霸道结局线索。")
 		if GameManager.sav.endPath==GameManager.endPath.xuzhou:
 			settle_bg.texture=Badao_end
 			what_final.text=tr("【恭喜你，通关霸道结局】")
 			finaldec=tr("打破历史桎梏，驯服所有怪谈支线，\n你以霸主之姿，叩响复兴汉室的大门。")
+		
+		finaldec=finaldec+"\n"+"【通关解锁快捷键功能：长按Ctrl可跳过全部对话。】"
 		var diffucultLevel=GameManager.sav.gameDifficulty	
 		var diffSrc=GameManager.get_difficulty_data(diffucultLevel)
 		

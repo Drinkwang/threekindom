@@ -23,10 +23,14 @@ var is_waiting_for_input: bool = false
 ## See if we are running a long mutation and should hide the balloon
 var will_hide_balloon: bool = false
 
+## 通关后Ctrl快进时标记当前行是否已推进，防止一帧内多次推进
+var _fast_forward_current_line: bool = false
+
 ## The current line
 var dialogue_line: DialogueLine:
 	set(next_dialogue_line):
 		is_waiting_for_input = false
+		_fast_forward_current_line = false
 		balloon.focus_mode = Control.FOCUS_ALL
 		balloon.grab_focus()
 
@@ -84,6 +88,25 @@ func _ready() -> void:
 	if responses_menu.next_action.is_empty():
 		responses_menu.next_action = next_action
 
+
+
+func _process(_delta: float) -> void:
+	# Ctrl快进：通关霸道线或常规线后，按住Ctrl可快速跳过对话
+	var can_fast_forward = Input.is_key_pressed(KEY_CTRL) and \
+		(GameManager._setting.is_clear_normal_line or GameManager._setting.is_clear_overlord_line)
+
+	if not can_fast_forward:
+		return
+
+	# 正在打字时直接跳过打字动画
+	if dialogue_label.is_typing:
+		dialogue_label.skip_typing()
+		return
+
+	# 等待输入且无选项时自动推进到下一行
+	if is_waiting_for_input and dialogue_line.responses.size() == 0 and not _fast_forward_current_line:
+		_fast_forward_current_line = true
+		next(dialogue_line.next_id)
 
 func _unhandled_input(_event: InputEvent) -> void:
 	# Only the balloon is allowed to handle input while it's showing

@@ -655,7 +655,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="final" type="ColorRect" parent="CanvasLayer"]
-visible = false
 offset_right = 1967.0
 offset_bottom = 1104.0
 color = Color(0, 0, 0, 1)
@@ -689,8 +688,9 @@ text = "游玩难度：xxx
 游戏天数：xxx
 探索进度：xxx
 
-完成所有怪谈支线，
-将解锁霸道结局线索。"
+打破历史桎梏，驯服所有怪谈支线，
+你以霸主之姿，叩响复兴汉室的大门。
+(通关解锁快捷键功能：长按Ctrl可跳过全部对话。)"
 horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="CanvasLayer/final"]
