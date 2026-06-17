@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://cjsb43uugkud4"]
+[gd_scene load_steps=59 format=3 uid="uid://cjsb43uugkud4"]
 
 [ext_resource type="Script" path="res://Scripts/battlePanel.gd" id="1_uyier"]
 [ext_resource type="Resource" uid="uid://d2qoinuor12dq" path="res://dialogues/演武场.dialogue" id="2_1p72a"]
@@ -43,6 +43,7 @@
 [ext_resource type="Texture2D" uid="uid://cyoosguk88jyf" path="res://Asset/fx/zhangfei_Frames_1/Slash_color4_frame7.png" id="30_1le41"]
 [ext_resource type="Texture2D" uid="uid://xe42wyg2wpsh" path="res://Asset/fx/zhangfei_Frames_1/Slash_color4_frame8.png" id="31_8b8yb"]
 [ext_resource type="Texture2D" uid="uid://cio88hkk4d20o" path="res://Asset/fx/zhangfei_Frames_1/Slash_color4_frame9.png" id="32_ptive"]
+[ext_resource type="FontFile" uid="uid://b8le0fd0ujbqx" path="res://Asset/Font/1_blod.ttf" id="44_buhkf"]
 
 [sub_resource type="Animation" id="Animation_ap145"]
 length = 0.001
@@ -961,6 +962,23 @@ libraries = {
 "": SubResource("AnimationLibrary_kmfee")
 }
 autoplay = "slash"
+
+[node name="choulabel" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 348.0
+offset_top = 200.0
+offset_right = 970.0
+offset_bottom = 245.0
+theme_override_constants/line_spacing = 0
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("44_buhkf")
+theme_override_font_sizes/font_size = 18
+text = "战术目标：已完成5个"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0

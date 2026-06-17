@@ -324,7 +324,7 @@ func refreshTask(checkSlider:bool=true):
 	else:
 		task_label.text=context
 	if TooltipManager and TooltipManager.has_method("register_tooltip"):
-		TooltipManager.register_tooltip(task_label,tr("武将等级与专属武器，可降低风险行动物资损耗"))
+		TooltipManager.register_tooltip(task_label,tr("武将等级与专属武器，可降低战术目标物资损耗"))
 		# 下一帧让 PanelContainer 自适应 TaskLabel 高度
 		call_deferred("_fit_task_label_height")
 

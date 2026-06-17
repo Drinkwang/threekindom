@@ -1862,6 +1862,7 @@ func insertCardRandom(group:groupType):
 
 	if cardsize<1:
 		reshuffle()	
+	var _is_restarting := false
 var punishStage=false
 #判断是什么阶段，如果是	
 func phaseEnd():
@@ -2268,8 +2269,9 @@ func showtutorial(num,isshow):
 
 
 func _on_button_restart() -> void:
-	lose_rect.hide()
-	win_rect.hide()
+	if _is_restarting:
+		return
+	_is_restarting = True
 	blink_rect.hide()
 	for t in _heart_tweens:
 		if t != null and t.is_valid():
@@ -2285,6 +2287,12 @@ func _on_button_restart() -> void:
 		heart_group_enemy.get_child(i).show()
 		heart_group_enemy.get_child(i).material.set_shader_parameter("progress", 0)
 	initGame()
+	# initGame 内部有 await 链，用 call_deferred 确保所有帧处理结束后再隐藏结算界面
+	call_deferred(func():
+		lose_rect.hide()
+		win_rect.hide()
+		_is_restarting = False
+	)
 
 #const youwinsound = preload("res://Asset/sound/boardGame/[普通青年男性的声音]你赢了.mp3")
 #const youlosesound = preload("res://Asset/sound/boardGame/[普通青年男性的声音]你输了.mp3")
