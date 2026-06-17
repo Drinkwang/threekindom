@@ -2297,3 +2297,10 @@ func enterCredit(index):
 func set_enable_rest_remind(_p):
 	GameManager._setting.enable_rest_remind=_p
 	ResourceSaver.save(GameManager._setting,"user://ysg_data_setting.tres")
+
+
+func compeleteTaskAndChangeDestination(des):
+	GameManager.sav.targetResType = GameManager.ResType.complete
+	GameManager.sav.targetValue = 1
+	GameManager.sav.TargetDestination = des
+	GameManager.sav.currenceValue = 0

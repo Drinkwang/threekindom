@@ -1060,7 +1060,8 @@ func enterBattleModeBefore():
 	
 @onready var hp_panel = $CanvasLayer/hpPanel
 func collectMoneyComplete():
-	GameManager.sav.TargetDestination="rest"	
+	GameManager.compeleteTaskAndChangeDestination("rest")
+	#GameManager.sav.TargetDestination="rest"	
 
 	mizhu.changeAllClick("与糜竺对话2")
 	chenden.changeAllClick("与陈登对话2")
