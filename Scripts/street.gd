@@ -236,7 +236,9 @@ func _initData():
 	if(GameManager.hearsayID>0):
 		GameManager.hearsayID=-1
 		shop_panel.show()
-	
+		res_panel.position.x=1564
+		res_panel.position.y=803
+		res_panel.scale=Vector2(0.765,0.765)	
 
 	control._processList(initData)
 	items_in_scene.showItems()
