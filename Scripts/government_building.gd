@@ -1424,7 +1424,8 @@ func CallingSoldier():
 func lvbuJoin():
 	GameManager.sav.have_event["lvbuJoin"]=true
 	GameManager.sav.labor_force=GameManager.sav.labor_force+300
-	GameManager.changeTaskLabel("歇整一日来到府邸召见吕布")
+	GameManager.sav.currenceDay=0
+	GameManager.changeTaskLabel("歇整一旬来到府邸召见吕布")
 	#1
 
 	#觉得无用的注释GameManager.sav.TargetDestination="battle"
