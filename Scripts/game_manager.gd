@@ -387,6 +387,17 @@ func initPaixiFloor(data:cldata):
 
 	data._num_rt=initRt
 	data._num_sp=max(0, data._num_all-data._num_op-data._num_rt)
+	
+	var is_courting_law = GameManager.sav.courtingLaws.has(data._name) and \
+	GameManager.sav.courtingLaws[data._name] == GameManager.sav.curLawName
+
+	if is_courting_law:	
+		data._num_rt += data._num_op
+		data._num_op = 0
+		if data._num_sp < 1:
+			if data._num_op > 0:
+				data._num_op -= 1
+				data._num_sp = 1
 	SignalManager.changeSupport.emit()
 	#sav.floor
 
