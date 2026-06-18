@@ -366,6 +366,32 @@ func refreshFloor():
 		initPaixiFloor(sav.HAOZUPAI)
 	SignalManager.changeSupport.emit()
 
+
+#开始时调用
+func initPaixi(data:cldata):
+	
+	
+	#data._num_op=(data._num_all*(100-data._support_rate))/100+0.5
+	#var paixiindex=getIndexByFractionIndex(data.index)
+	#var lawOP=0
+	#if paixiindex!=sav.curLawNum1 and sav.curLawNum1!=-1:
+	#	lawOP=((sav.curLawNum2-1)*10.0/100.0)*(data._num_all-data._num_op)*0.4
+	#	lawOP=floor(lawOP)
+
+	#如果是相同派系，则为0，不同派系，将（index-1）*9到10 的百分比赋值给它
+	#data._num_op=data._num_op+lawOP
+	#var initRt=randf_range(0,min(data._num_op*2,data._num_all-data._num_op))
+	#if sav.curLawNum1<0:
+	#	initRt=0
+	#data._num_rt=initRt
+	#data._num_sp=(data._num_all-data._num_op-data._num_rt)
+
+	initPaixiFloor(data)
+	data.isrebellion=false
+
+	data.summonNum=0
+
+
 func initPaixiFloor(data:cldata):
 	
 	#data._num_sp=(data._num_all*data._support_rate)/100+0.5
@@ -658,26 +684,7 @@ func LessDamage():
 
 @export var bossmode:SceneManager.bossMode#SceneManager.bossMode.none
 @export var bossmoderesult:bool
-func initPaixi(data:cldata):
-	
-	#data._num_sp=(data._num_all*data._support_rate)/100+0.5
-	data._num_op=(data._num_all*(100-data._support_rate))/100+0.5
-	var paixiindex=getIndexByFractionIndex(data.index)
-	var lawOP=0
-	if paixiindex!=sav.curLawNum1 and sav.curLawNum1!=-1:
-		lawOP=((sav.curLawNum2-1)*10.0/100.0)*(data._num_all-data._num_op)*0.4
-		lawOP=floor(lawOP)
 
-	#如果是相同派系，则为0，不同派系，将（index-1）*9到10 的百分比赋值给它
-	data._num_op=data._num_op+lawOP
-	var initRt=randf_range(0,min(data._num_op*2,data._num_all-data._num_op))
-	if sav.curLawNum1<0:
-		initRt=0
-	data._num_rt=initRt
-	data._num_sp=(data._num_all-data._num_op-data._num_rt)
-	data.isrebellion=false
-
-	data.summonNum=0
 
 
 var extraValue=0

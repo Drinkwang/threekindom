@@ -1332,6 +1332,8 @@ func consent():
 		var data=getFactionByIndex()
 		data.summonNum+=1
 		GameManager.sav.laws[lawIndex].append(lalongPolicy)
+		GameManager.initPaixiFloor(data)
+		#initPaixi
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"成功拉拢")#显示对话	
 		GameManager.sav.hp-=costHp_SummonOne
 	else:
