@@ -394,6 +394,10 @@ func initPaixi(data:cldata):
 
 func initPaixiFloor(data:cldata):
 	
+	# 保存并立即清除送礼标志，防止泄漏到异常路径
+	var _giftTriggered = isGiftTrigger
+	isGiftTrigger = false
+
 	#data._num_sp=(data._num_all*data._support_rate)/100+0.5
 	data._num_op=(data._num_all*(100-data._support_rate))/100+0.5
 	var paixiindex=getIndexByFractionIndex(data.index)
@@ -412,10 +416,9 @@ func initPaixiFloor(data:cldata):
 		initRt=0
 
 	# 送礼特殊处理：新摇摆数必须比原来少至少1
-	if isGiftTrigger:
-		isGiftTrigger = false
+	if _giftTriggered:
 		var old_rt = data._num_rt
-		initRt = mini(initRt, max(0, old_rt - 1))
+		initRt = min(initRt, max(0, old_rt - 1))
 
 	data._num_rt=initRt
 	data._num_sp=max(0, data._num_all-data._num_op-data._num_rt)
@@ -2199,7 +2202,7 @@ func apply_difficulty_compensation(diff_levels: int):
 		progress_factor = 1.0
 
 	var total_comp = floori(progress_factor * diff_levels * COMP_BASE_RATE)
-	total_comp = mini(total_comp, COMP_MAX_TOTAL)
+	total_comp = min(total_comp, COMP_MAX_TOTAL)
 
 	var coin_bonus = floori(total_comp * COMP_COIN_RATIO)
 	var labor_bonus = floori(total_comp * COMP_LABOR_RATIO)
@@ -2292,7 +2295,7 @@ func get_exploration_percent() -> int:
 	# -- 杂项 (max 12+3) --
 		if not dontHaveDominance(): pts += 10
 
-	return mini(pts, 100)
+	return min(pts, 100)
 
 func clearLevel(index):
 	if index==1:

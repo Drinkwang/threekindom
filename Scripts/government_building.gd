@@ -1245,6 +1245,7 @@ func sendgift():
 		GameManager.extraValue=0
 		GameManager.isGiftTrigger=true
 		_c.ChangeSupport(15)
+	GameManager.isGiftTrigger=false  # 二次安全清理
 	_c.summonNum+=1
 	GameManager.sav.hp-=costHp_SummonOne
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"赠礼完成")
