@@ -655,6 +655,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="final" type="ColorRect" parent="CanvasLayer"]
+visible = false
 offset_right = 1967.0
 offset_bottom = 1104.0
 color = Color(0, 0, 0, 1)
