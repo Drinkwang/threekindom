@@ -863,8 +863,8 @@ func _JudgeTask():
 			deliverTask()
 			return
 	#判断task 完成 所到地点
-	else:
-		deliverUncompleteTask()
+	
+	deliverUncompleteTask()
 
 func deliverUncompleteTask():
 	if GameManager.sav.have_event["chaoDialogEnd"]==true:
