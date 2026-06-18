@@ -63,7 +63,7 @@ var responses: Array = []:
 					if "[highlight=true]" in response.text:
 						response.text = response.text.replace("[highlight=true]", "")
 						var sxnum=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.獬豸圣像) 
-						if sxnum>0:
+						if sxnum>0 and (GameManager._setting.is_clear_overlord_line==true or GameManager._setting.is_clear_normal_line==true):
 							apply_highlight_effect(item)  # 应用高亮效果
 					var diff_regex = RegEx.new()
 					diff_regex.compile("\\[diff=(\\d+)\\]")
