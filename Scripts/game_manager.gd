@@ -411,6 +411,12 @@ func initPaixiFloor(data:cldata):
 	if sav.curLawNum1<0:
 		initRt=0
 
+	# 送礼特殊处理：新摇摆数必须比原来少至少1
+	if isGiftTrigger:
+		isGiftTrigger = false
+		var old_rt = data._num_rt
+		initRt = mini(initRt, max(0, old_rt - 1))
+
 	data._num_rt=initRt
 	data._num_sp=max(0, data._num_all-data._num_op-data._num_rt)
 	
@@ -688,6 +694,7 @@ func LessDamage():
 
 
 var extraValue=0
+var isGiftTrigger:bool = false  # 送礼标志，initPaixiFloor 中用于限制摇摆不回升
 
 	
 #需要在saveData定义一个对子的数据结构判断1是否执行 2是否执行	

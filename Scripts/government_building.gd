@@ -1235,9 +1235,11 @@ func sendgift():
 	var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.黄麻药囊)
 	if num>=1:
 		GameManager.extraValue=15
+		GameManager.isGiftTrigger=true
 		_c.ChangeSupport(30)
 	else:
 		GameManager.extraValue=0
+		GameManager.isGiftTrigger=true
 		_c.ChangeSupport(15)
 	_c.summonNum+=1
 	GameManager.sav.hp-=costHp_SummonOne
