@@ -184,7 +184,19 @@ do chendeng.showEX=false
 	do eatFish2(true)
 
 #
-- 再次尝试生鱼片
+- 再次尝试生鱼片 [if GameManager.sav.have_event["陈登正确选择1"]==false]
+	do GameManager.changeChendenHeart(10)
+	do chendeng.showHeart(GameManager.sav.chendenfav)
+	刘备: 元龙好兴致，备再尝此味。[voice:liubei_yuanlonghaoxinzhi]
+	do eatFishSound()
+	陈登: 还是主公懂我，元龙幸甚！[voice:chenden_haishizhugongdongwo]
+	刘备: (鱼脍虽好，但享用后总觉得有一些不舒服）[voice:liubei_yukuaisuihao]
+	do eatFish2(false)
+	do GameManager.costHp(10)
+	提示: 因为食用了生鱼，你的体力值下降了。
+
+
+- 尝试生鱼片 [if GameManager.sav.have_event["陈登正确选择1"]==true]
 	do GameManager.changeChendenHeart(10)
 	do chendeng.showHeart(GameManager.sav.chendenfav)
 	刘备: 元龙好兴致，备再尝此味。[voice:liubei_yuanlonghaoxinzhi]
@@ -204,6 +216,7 @@ do chendeng.hide()
 
 
 => END!
+
 
 
 ~ 陈登结尾
