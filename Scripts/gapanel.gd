@@ -66,8 +66,32 @@ func _changeLanguage():
 	
 func refreshContext():
 	if GameManager.sav.curGovAff.length()>0:
-		
-		contextEX=GameManager.sav.curGovAff
+		var display_text = GameManager.sav.curGovAff
+		# 序章 day1-day3：标记已完成事项
+		var day = GameManager.sav.day
+		if day >= 1 and day <= 3:
+			var lines = display_text.split("\n")
+			var flags = GameManager.sav.have_event
+			for i in range(lines.size()):
+				var done = false
+				if day == 1:
+					if i == 0:
+						done = flags.get("firstgovernment", false)
+					elif i == 1:
+						done = flags.get("firstEnterBattle", false)
+				elif day == 2:
+					if i == 0:
+						done = flags.get("firstMeetingEnd", false)
+					elif i == 1:
+						done = flags.get("firstParliamentary", false)
+				elif day == 3:
+					if i == 0:
+						done = flags.get("firstBattleEnd", false)
+				if done and not lines[i].contains("已完成"):
+					lines[i] += "（已完成）"
+			contextEX = "\n".join(lines)
+		else:
+			contextEX = display_text
 	else:
 
 		var policycontext

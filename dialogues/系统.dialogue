@@ -498,12 +498,12 @@ if GameManager.sav.have_event["Factionalization"]==true:
 	主簿: 主公！如今徐州局势日趋复杂，现有法令已不足以约束三派，各方势力正因法度缺失而互生嫌隙，局势危矣！[voice:zhubo_sanpaixixbuan]
 	系统提示: 【怠政：连日怠荒】，当前法令数：{{GameManager.resideValue2}} ，目标法令数：{{GameManager.resideValue}} (注：每{{GameManager.perLawCycle}}旬需至少增设一令，当前缺额：{{GameManager.resideValue - GameManager.resideValue2}} 令)
 #	主簿: 主公，徐州丹阳派、士族派、豪族派因您多日未理政务，已颇有微词，恐生不安。[voice:zhubo_sanpaixixbuan]
-	系统提示: 士族派好感-10，豪族派好感-10，丹阳派好感-10，民心-5。（前往府邸→政策面板→法令法规，可进行立法）。
+	系统提示: 士族派好感-10，豪族派好感-10，丹阳派好感-10，民心-5。（前往府邸→政策面板→法令法规，可进行立法）
 else
 	主簿: 主公，治下基业日广，而法度却停滞不前。本土派与丹阳派见政纲废弛，已是人心浮动，颇有微词！[voice:zhubo_sanpaixixbuan2]
 	系统提示: 【怠政：连日怠荒】，当前法令数：{{GameManager.resideValue2}} ，目标法令数：{{GameManager.resideValue}} (注：每{{GameManager.perLawCycle}}旬需至少增设一令，当前缺额：{{GameManager.resideValue - GameManager.resideValue2}} 令)
 	#主簿: 主公，本土派、丹阳派因您多日未理政务，已颇有微词，恐生不安。[voice:zhubo_sanpaixixbuan2]
-	系统提示: 本土派好感-10，丹阳派好感-10，民心-5。（前往府邸→政策面板→法令法规，可进行立法）。
+	系统提示: 本土派好感-10，丹阳派好感-10，民心-5。（前往府邸→政策面板→法令法规，可进行立法）
 
 do GameManager.moreDayidness()
 => END!
@@ -513,14 +513,14 @@ do GameManager.moreDayidness()
 if GameManager.sav.have_event["Factionalization"]==true:
 	主簿: 主公，今日堂上仍未见颁布新法。丹阳、士族、豪族见主公疏于立法、纲纪不严，已私下传出不满之声。[voice:zhubo_bumanzhisheng]
 	系统提示: 【怠政：短时怠政】,当前法令数：{{GameManager.resideValue2}} ，目标法令数：{{GameManager.resideValue}} (注：每{{GameManager.perLawCycle}}旬需至少增设一令，当前缺额：{{GameManager.resideValue - GameManager.resideValue2}} 令)
-	系统提示: 士族派好感-5，豪族派好感-5，丹阳派好感-5。（前往府邸→政策面板→法令法规，可进行立法）。
+	系统提示: 士族派好感-5，豪族派好感-5，丹阳派好感-5。（前往府邸→政策面板→法令法规，可进行立法）
 
 
 else
 	主簿: 主公，目前领内法令不全，今日却未见新政补齐。本土派与丹阳派见法制不彰，已有不满之声。[voice:zhubo_bumanzhisheng2]
     
 	系统提示: 【怠政：短时怠政】,当前法令数：{{GameManager.resideValue2}} ，目标法令数：{{GameManager.resideValue}} (注：每{{GameManager.perLawCycle}}旬需至少增设一令，当前缺额：{{GameManager.resideValue - GameManager.resideValue2}} 令)
-	系统提示: 本土派好感-5，丹阳派好感-5。（前往府邸→政策面板→法令法规，可进行立法）。
+	系统提示: 本土派好感-5，丹阳派好感-5。（前往府邸→政策面板→法令法规，可进行立法）
 
 
 #	主簿: 主公，今日您未处理政务，本土派、丹阳派已有不满之声。[voice:zhubo_bumanzhisheng2]

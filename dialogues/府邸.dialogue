@@ -121,6 +121,12 @@ do meetingEnd()
 刘备: 我今天不该做这个，我应该约见各个派系领袖一起吃个饭[voice:liubei_wojintianbugaizuozhege]
 => END
 
+
+~ 派系斡旋
+刘备: 往后依靠这套法子，便能处置各类派系往来之事，不过当下尚无需求，待到日后局势复杂，自会有斡旋之法。[voice:liubei_woxuan]
+=> END
+
+
 ~ 确认法律
 : 是否同意将法律条款{{policy_panel.selectLawPoint.context_tr}}放在下一次议程{{GameManager.resideValue4}}
 - 同意

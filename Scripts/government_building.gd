@@ -522,7 +522,11 @@ func mizhufinal():
 func optionSummonOnemen():
 	if(GameManager.sav.day<5):
 		#判断显示召见手下1 还是召见手下2 还是召见手下3
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"召见手下1")
+		if GameManager.sav.have_event["firstMeetingEnd"]==false:
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"召见手下1")
+		else:
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"派系斡旋")
+			#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"未启用功能")
 	elif GameManager.sav.day>=5:	
 		if GameManager.sav.have_event["lvbuJoin"]==true:
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"召见手下4")
