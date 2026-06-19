@@ -1712,10 +1712,10 @@ do mizhufinal()
 系统提示: IsAutoPayMonthlySalary
 #确认发放本月月例？\n勾选「自动支付」，将在每月当日自动扣除资源支给，无需手动操作。
 - 是
-	
+	do GameManager.sav.Merit_points=GameManager.sav.Merit_points+1
 	系统提示: 月例发放完毕，军心安定！获得 1 点政策点数，当前政策点数：{{GameManager.sav.Merit_points}}
 	do GameManager.resideValue.allocationStatue=1
-	do GameManager.sav.Merit_points=GameManager.sav.Merit_points+1
+	
 	do SoundManager.play_sound(sounds.buysellsound)
 	do GameManager.playDemand(GameManager.resideValue.demand)
 - 否
