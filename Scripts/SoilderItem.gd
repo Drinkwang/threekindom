@@ -155,7 +155,7 @@ func updateContext(value):
 			check_box.hide()
 			already_use.hide()
 		elif GameManager.sav.have_event["夏侯偷马"]==true:
-			_name="夏侯淳"
+			_name="夏侯惇"
 			_level=10
 			headImg=xiahoutxt
 	namelv=tr(str(_name))+":"+"LV"+str(_level)

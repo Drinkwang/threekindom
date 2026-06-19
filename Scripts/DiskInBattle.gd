@@ -279,13 +279,16 @@ func _juideCompeleteTask():
 		#道具加持xxx
 		#显示文本xxx
 		pass
-	elif selectgeneral.name=="张飞":
+	elif selectgeneral.name=="张飞" and GameManager.sav.have_event["战斗袁术血战模式"]==true and GameManager.sav.have_event["关羽求援结束"]==false:
 		#有无丈八蛇矛
+		#如果是血战模式 判断有无丈八蛇矛，有的话提升7%
 		haveWeaponNum=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.丈八蛇矛)
+		
+		
 		haveWeaponTxt="丈八蛇矛+6%"
 		weaponRate=0.06
 		pass
-	elif selectgeneral.name=="无名":
+	elif selectgeneral.name=="无名" and GameManager.sav.have_event["无名之死"]==false:
 		#有无龙胆银月枪
 		#道具加持xxx
 		haveWeaponNum=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.龙胆亮银枪)

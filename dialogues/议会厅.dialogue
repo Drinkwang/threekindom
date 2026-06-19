@@ -302,7 +302,7 @@ else
 	do GameManager.resideValue=3
 	系统提示: 你当前学识为【{{LearnToStr(3)}}】,是否与陈登论策？当前学识已满级！本次论策可使你当旬学识不回落。	
 
-- 是[costHp=20]
+- 是[costHp=10]
 	do lunce()
 - 否
 	=> 来把仕诡牌	
