@@ -860,8 +860,9 @@ func _JudgeTask():
 		#任务完成交付任务
 		if GameManager.sav.TargetDestination.length()>0:
 
-			deliverTask()
-			return
+			var isr=deliverTask()
+			if isr==true:
+				return
 	#判断task 完成 所到地点
 	
 	deliverUncompleteTask()
@@ -987,7 +988,7 @@ func openMonthlySupplyPanel():
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"中旬通知")
 	elif GameManager.sav.allocationDay==3:
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"下旬通知")
-func deliverTask():
+func deliverTask()->bool:
 	if GameManager.sav.TargetDestination=="府邸":
 		#任务2完成 来这边兑现奖励
 		#把交付任务完成
@@ -997,7 +998,7 @@ func deliverTask():
 				GameManager.sav.have_event["deliverTask2"]=true
 				GameManager.clearTask()
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"打跑黄巾军")#显示对话
-		
+				return true
 		#暂时屏蔽		
 		elif  GameManager.sav.have_event["派系安稳完成"]==false and GameManager.sav.targetResType==GameManager.ResType.govern:
 			
@@ -1011,12 +1012,13 @@ func deliverTask():
 				GameManager.sav.currenceValue = 0
 				#设定任务已完成，前往演武场即可
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"刘备决定亲征")#显示对话
-
+				return true
 		if GameManager.sav.have_event["派系安稳完成"]==true and GameManager.sav.have_event["亲征对话结束"]==false:
 			GameManager.sav.TargetDestination=""
-			
+			return true
 		#elif:
 		#	pass
+	return false
 
 func PersonalCampaignBefore():
 	
