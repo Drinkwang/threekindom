@@ -1183,11 +1183,17 @@ func enterContest(mode):
 		GameManager.trainLevel=0
 		GameManager.trainGeneral=""
 		return
+	# if already cleared this difficulty, show confirm dialog
+	if characterScore >= mode+1:
+		GameManager.trainLevel = mode+1
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource, "你已经通关比武了")
+		return
+
 	if GameManager.sav.isLevelUp==true:
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"已经练兵过了")
 		GameManager.trainLevel=0
 		GameManager.trainGeneral=""
-		return	
+		return
 
 	GameManager.sav.hp-=10
 	GameManager.sav.isLevelUp=true
@@ -1204,6 +1210,11 @@ func enterContest(mode):
 func enterRealContest():
 	SoundManager.stop_music()
 	SceneManager.changeScene(SceneManager.roomNode.TrainBattle,2)
+
+func startContest():
+	GameManager.sav.hp -= 10
+	GameManager.sav.isLevelUp = true
+	enterRealContest()
 
 #发放奖励，无事发生,首次2倍 3倍 5倍  1 1.3 1.5
 func winTrain():
