@@ -397,6 +397,7 @@ do CoerceKing()
 
 
 
+
 ~ 放出曹豹
 do caobao.show()
 袁术退军后，曹豹通敌之事查无实证，刘备亲手为其解缚。
@@ -1179,10 +1180,21 @@ do getLongdan()
 	#进入游戏前
 	#选择角色 打开菜单
 	do openBoardGame()
+	
 - 修建基建【加固城墙】[costHp=20] [if GameManager.sav.have_event["基建项目开启"]==true and GameManager.sav.endPath==GameManager.endPath.none]
 	if GameManager.sav.hp>=20
 		曹豹: 主公，加固城墙，确实是巩固徐州的好办法，我愿祝你一臂之力[voice:caobao_zhuzhugongjijian]
 	do GameManager.selectPuzzleLevel()
+	
+	
+- 【常置调度栏】
+	系统提示: 设置军事行动资源分配输入框显示规则，隐藏状态下点击资源文字才会弹出，开启常驻后打开武将直接显示调配输入框。
+	- 常驻显示
+		曹豹: 谨领号令，诸将防务页常设调兵文簿，主公调度粮草兵马无需另行翻找。[voice:caobao_show_input]
+		do GameManager.set_always_show_military_input(true)
+	- 保持隐藏
+		曹豹: 谨遵旧规，调兵文簿平日收存，需点取物资名目方可展阅。[voice:caobao_hide_input]
+		do GameManager.set_always_show_military_input(false)	
 - 取消
 
 

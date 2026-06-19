@@ -2326,6 +2326,10 @@ func set_enable_rest_remind(_p):
 	GameManager._setting.enable_rest_remind=_p
 	ResourceSaver.save(GameManager._setting,"user://ysg_data_setting.tres")
 
+func set_always_show_military_input(_input):
+	GameManager._setting.showMilitartInput=_input
+	ResourceSaver.save(GameManager._setting,"user://ysg_data_setting.tres")
+
 
 func compeleteTaskAndChangeDestination(des):
 	GameManager.sav.targetResType = GameManager.ResType.complete

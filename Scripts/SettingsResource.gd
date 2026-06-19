@@ -23,3 +23,4 @@ class_name SettingsResource
 @export var is_clear_overlord_line=false  # 通关霸道线
 @export var is_clear_normal_line=false    # 通关常规线
 @export var enable_rest_remind=false
+@export var showMilitartInput=false

@@ -52,6 +52,8 @@ func _ready():
 	SignalManager.changeLanguage.connect(changeLanguage)			
 	
 	SignalManager.initBattle.connect(refreshData)
+	
+
 const NOT_JAM_UI_CONDENSED_16 = preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf")
 
 func refreshData():
@@ -106,6 +108,12 @@ func changeLanguage():
 		
 func initData():
 	battle_circle.refreshPage()
+	if GameManager._setting.showMilitartInput==true:
+		line_edit_coin.show()
+		line_edit_soilder.show()
+	else:
+		line_edit_coin.hide()
+		line_edit_soilder.hide()				
 func endBattle():
 	if self.visible==false:
 		return
@@ -320,7 +328,7 @@ func refreshTask(checkSlider:bool=true):
 			continue
 		# 标记已达成
 		if checkSlider and isCompleted:
-			taskcontext+=tr("  【已达成，伤亡降低】")
+			taskcontext+=tr("【已达成，伤亡降低】")
 
 		context+=taskcontext
 		index+=1
