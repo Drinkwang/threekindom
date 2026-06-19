@@ -535,6 +535,9 @@ func enterBattleMi():
 	#soild_slider.enan;
 	battle_circle.enemyName="糜贞"
 	var cha=load("res://Asset/人物/mizhen_battle.png")
+	
+	for  data in GameManager.sav.battleTasks.values():
+		data.task=[]	
 	battle_circle.changeHead(cha)
 	initTask()
 @onready var close_btn = $TextureButton
