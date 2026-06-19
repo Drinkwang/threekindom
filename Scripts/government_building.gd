@@ -926,7 +926,7 @@ func deliverUncompleteTask():
 			return
 		#今日重点完成任务
 		#判断该不该显示糜竺邀请，同时时间节点到中期，显示任务糜竺-中央，点击触发额外剧情,进入平定泰山诸将时，这里弹出
-		if GameManager.sav.have_event["糜竺支线1"]==false and GameManager.sav.have_event["chaoMizhuEnd"]==true and GameManager.sav.currenceValue>1:
+		if GameManager.sav.have_event["糜竺支线1"]==false and GameManager.sav.have_event["chaoMizhuEnd"]==true and GameManager.sav.currenceValue>1 and GameManager.sav.endPath==GameManager.endPath.none:
 			
 			
 
@@ -938,7 +938,7 @@ func deliverUncompleteTask():
 			#糜竺嫁妹支线2
 			#tsty.show()		
 			
-		elif GameManager.sav.have_event["糜竺支线2"]==false and GameManager.sav.mizhuSideWait==1:
+		elif GameManager.sav.have_event["糜竺支线2"]==false and GameManager.sav.mizhuSideWait==1 and GameManager.sav.endPath==GameManager.endPath.none:
 			if GameManager.sav.have_event["糜贞送药"]==false:
 				mizhu.hide()
 				tsty.hide()
@@ -946,7 +946,7 @@ func deliverUncompleteTask():
 				GameManager.sav.have_event["糜贞送药"]=true
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"插入糜贞送药")
 				
-		elif GameManager.sav.have_event["糜竺支线2"]==false and GameManager.sav.mizhuSideWait==0:	
+		elif GameManager.sav.have_event["糜竺支线2"]==false and GameManager.sav.mizhuSideWait==0 and GameManager.sav.endPath==GameManager.endPath.none:	
 			mizhu.changeAllClick("糜竺嫁妹支线2")
 			mizhu.show()
 			tsty.hide()

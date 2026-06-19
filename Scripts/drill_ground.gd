@@ -411,12 +411,12 @@ func _initData():
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"比武训练解锁")
 		
 		
-	if GameManager.sav.have_event["查出药囊后休息前"]==true and GameManager.sav.have_event["锦囊咨询丹阳派"]==false and caobao.showEX==false:
+	if GameManager.sav.have_event["查出药囊后休息前"]==true and GameManager.sav.have_event["锦囊咨询丹阳派"]==false and caobao.showEX==false and GameManager.sav.endPath==GameManager.endPath.none:
 		caobao.changeAllClick("演武场克苏鲁剧情支线")
 		caobao.showEX=true
 		caobaoshow()
 	
-	elif GameManager.sav.have_event["曹豹支线1"]==false and GameManager.sav.have_event["battleTaiShan"]==true and caobao.showEX==false:
+	elif GameManager.sav.have_event["曹豹支线1"]==false and GameManager.sav.have_event["battleTaiShan"]==true and caobao.showEX==false and GameManager.sav.endPath==GameManager.endPath.none:
 		caobao.changeAllClick("曹豹支线1")
 		caobaoshow()
 		caobao.showEX=true
@@ -424,7 +424,7 @@ func _initData():
 			
 	
 				
-	elif GameManager.sav.have_event["曹豹支线2"]==false and GameManager.sav.caobaoSideWait==0 and caobao.showEX==false:	
+	elif GameManager.sav.have_event["曹豹支线2"]==false and GameManager.sav.caobaoSideWait==0 and caobao.showEX==false and GameManager.sav.endPath==GameManager.endPath.none:	
 		caobao.changeAllClick("曹豹支线2")
 		caobaoshow()
 		
@@ -438,7 +438,7 @@ func _initData():
 			#@export var mizhucardgame=-1
 			#@export var chendencardgame=-1
 			if GameManager.sav.endPath!=GameManager.endPath.xiaopei:
-				if GameManager.sav.have_event["boss战开始"]==false and GameManager.sav.caobaocardgame==4 and GameManager.sav.mizhucardgame==5 and GameManager.sav.chendencardgame==5:
+				if GameManager.sav.have_event["boss战开始"]==false and GameManager.sav.caobaocardgame==4 and GameManager.sav.mizhucardgame==5 and GameManager.sav.chendencardgame==5 and GameManager.sav.endPath==GameManager.endPath.none:
 					
 					caobao.changeAllClick("来把仕诡牌2")
 					caobaoshow()
@@ -577,8 +577,8 @@ func select2(issuccuss):
 		GameManager.sav.have_event["曹豹正确选择2"]=true
 		
 		if GameManager.sav.have_event["曹豹支线2"]==true and GameManager.sav.have_event["曹豹正确选择1"]==true:
-			
-			GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.CAOBAO]=tr("夜探黄帝遗迹，揭穿盗宝阴谋")
+			GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.CAOBAO]=tr("城外黄帝祀庙之行，勘破盗宝诡计")
+			#GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.CAOBAO]=tr("夜探黄帝遗迹，揭穿盗宝阴谋")
 	else:
 		GameManager.sav.have_event["错失娃娃"]=true
 		GameManager.sav.have_event["曹豹正确选择2"]=false
