@@ -261,13 +261,15 @@ func refreshTask(checkSlider:bool=true):
 
 	for task in currence.task:
 		targetValue=floor(task.value*levels)
-		taskcontext="\n"+str(index)
 		isCompleted=false
+		var taskAdded=false
 
 		# ——— 资金类任务 ———
 		if task.res=="coin" and _mode!=bossMode.tao:
+			taskcontext="\n"+str(index)
 			haveRes=costcoin
 			minValue=int(floor(targetValue*2/3))
+			taskAdded=true
 
 			if task.symbol==GameManager.opcost.greater:
 				isCompleted=haveRes>targetValue
@@ -290,8 +292,10 @@ func refreshTask(checkSlider:bool=true):
 
 		# ——— 兵力类任务 ———
 		if task.res=="human" and _mode!=bossMode.mi:
+			taskcontext="\n"+str(index)
 			haveRes=costsoild
 			minValue=int(floor(targetValue*3/5))
+			taskAdded=true
 
 			if task.symbol==GameManager.opcost.greater:
 				isCompleted=haveRes>targetValue
@@ -312,6 +316,8 @@ func refreshTask(checkSlider:bool=true):
 				else:
 					taskcontext+=tr(".防守战:")+tr("(兵力小于{targetValue} 但大于{targetValue2})").format({"targetValue": targetValue,"targetValue2":minValue})
 
+		if not taskAdded:
+			continue
 		# 标记已达成
 		if checkSlider and isCompleted:
 			taskcontext+=tr("  【已达成，伤亡降低】")
@@ -320,6 +326,8 @@ func refreshTask(checkSlider:bool=true):
 		index+=1
 
 	if currence.task.size()==0:
+		task_label.text=context+tr("无")
+	elif index==1:
 		task_label.text=context+tr("无")
 	else:
 		task_label.text=context
