@@ -338,7 +338,9 @@ func refreshData():
 
 func _initData():
 	GameManager.currenceScene=self
-	#DialogueManager.dialogBegin=false
+
+
+
 	if(GameManager.sav.day==1):
 		if GameManager.sav.have_event["firstEnterBattle"]==false:
 			GameManager.sav.have_event["firstEnterBattle"]=true
@@ -348,6 +350,12 @@ func _initData():
 			GameManager.sav.have_event["dayThreeEnterBattle"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"初次派遣")
 	elif GameManager.sav.day>=5:
+		if GameManager.trainResult == SceneManager.trainResult.win:
+			_processTrainResult(true)
+			GameManager.trainResult = SceneManager.trainResult.none
+		elif GameManager.trainResult == SceneManager.trainResult.fail:
+			_processTrainResult(false)
+			GameManager.trainResult = SceneManager.trainResult.none		
 		if GameManager.sav.have_event["LiuBeiSucceed"]==false:
 			GameManager.sav.have_event["LiuBeiSucceed"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"刘备接任徐州之主")
@@ -376,27 +384,6 @@ func _initData():
 			#还没开发完毕，滤镜，还有回忆的场景，明天测试和开发
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"前置剧情·赵云荐士")
 			#return
-		elif GameManager.trainResult==SceneManager.trainResult.win:
-			if GameManager.trainGeneral=="关羽":
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"关羽比武胜利")
-
-			elif GameManager.trainGeneral=="张飞":
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"张飞比武胜利")
-	
-			elif GameManager.trainGeneral=="无名":
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"赵云比武胜利")
-			
-
-		elif GameManager.trainResult==SceneManager.trainResult.fail:
-			if GameManager.trainGeneral=="关羽":
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"关羽比武失败")
-
-			elif GameManager.trainGeneral=="张飞":
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"张飞比武失败")
-	
-			elif GameManager.trainGeneral=="无名":
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"赵云比武失败")
-			
 
 		elif GameManager.sav.have_event["曹豹支线2"]==false and GameManager.sav.caobaoSideWait==1:
 			if GameManager.sav.have_event["曹豹资助"]==false:#暂时没想好写啥
@@ -1255,28 +1242,28 @@ func winReward(isFirst,generalName):
 	if GameManager.trainLevel==1:
 		modename=tr("小试牛刀")
 		if isFirst==true:
-			score=1800
+			score=3000
 		else:
-			score=900
+			score=1500
 
 
 	elif GameManager.trainLevel==2:
 		if isFirst==true:
-			score=2700
+			score=6000
 
 		else:
-			score=1000
+			score=2000
 		modename=tr("锋芒初露")
 	elif GameManager.trainLevel==3:
 		if isFirst==true:
 			isFinal=true
-			score=4000
+			score=10000
 
 		else:
-			score=1200
+			score=3000
 		modename=tr("炉火纯青")
 			
-	var items=GameManager.ScoreToItem(score)
+	var items=GameManager.ScoreToItem(score/10)
 	if isFirst==true:
 		if isFinal==true:
 			GameManager.sav.maxHP+=10
@@ -1287,6 +1274,22 @@ func winReward(isFirst,generalName):
 		_reward.showTitileReward(tr("你与{name}在【{modename}】模式下，比武获胜了").format({"name":generalName,"modename":modename}),items)		
 	GameManager.trainResult=SceneManager.trainResult.none
 	GameManager.trainGeneral=""	
+
+func _processTrainResult(isWin: bool):
+	if isWin:
+		if GameManager.trainGeneral=="关羽":
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"关羽比武胜利")
+		elif GameManager.trainGeneral=="张飞":
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"张飞比武胜利")
+		elif GameManager.trainGeneral=="无名":
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"赵云比武胜利")
+	else:
+		if GameManager.trainGeneral=="关羽":
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"关羽比武失败")
+		elif GameManager.trainGeneral=="张飞":
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"张飞比武失败")
+		elif GameManager.trainGeneral=="无名":
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"赵云比武失败")
 
 @onready var puzzle_game: Control = $CanvasInventory/puzzleGame
 
