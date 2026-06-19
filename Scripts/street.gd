@@ -274,7 +274,8 @@ func HuntdownKe():
 		"population": 0
 	}
 	#GameManager.ScoreToItem()
-	_reward.showTitileReward(tr("恭喜你，你获得-饥蛊骨签"),items)	
+	_reward.showTitileReward(tr("恭喜你，你获得-饥蛊骨签"),items)
+	GameManager.sav.have_event["获得古棒"]=true
 	_initData()
 	#执行完返回府邸有新动画
 
