@@ -216,7 +216,7 @@ offset_top = 660.0
 offset_right = 1588.0
 offset_bottom = 698.0
 theme_override_font_sizes/font_size = 31
-text = "精力丸，能补充一定的精力"
+text = "精力丸，能补充一定的体力"
 horizontal_alignment = 1
 vertical_alignment = 2
 

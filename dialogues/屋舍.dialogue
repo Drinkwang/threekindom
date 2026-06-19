@@ -344,7 +344,7 @@ do GameManager.getItemAction.call()
 ~ 休息教程
 刘备: (手头上的事都忙完了，正好休息一下，恢复点精力。)[voice:liubei_shoutoushangmangwanle]
 do control._show_button_5_yellow(3)
-系统提示: 玩家可通过休息恢复精力值；每次休息将使游戏时间推进一旬(10天)。
+系统提示: 玩家可通过休息恢复体力值；每次休息将使游戏时间推进一旬(10天)。
 
 => END!
 
