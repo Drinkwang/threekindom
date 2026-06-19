@@ -146,7 +146,7 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 			GameManager.currenceScene.SettlePunish()
 		
 		pass#选中卡牌如果满足条件，则销毁 同时完成对应销毁，
-	elif(event is InputEventMouseButton and event.button_index==1 and holdType==board_game.cardHoldType.player and GameManager.currenceScene.playerStage>0):
+	elif(event is InputEventMouseButton and event.button_index==1 and holdType==board_game.cardHoldType.player and (GameManager.currenceScene.playerStage>0 or _value%13==11)):
 		SoundManager.play_sound(sounds.SFX_FAST_UI_CLICK)
 		var moupos=get_viewport().get_mouse_position()
 		GameManager.currenceScene.selectCard=self
@@ -154,7 +154,7 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 		GameManager.currenceScene.clickPoint(moupos)
 	
 	
-	elif(event is InputEventMouseButton and event.double_click==true  and holdType==board_game.cardHoldType.player and GameManager.currenceScene.playerStage>0):
+	elif(event is InputEventMouseButton and event.double_click==true  and holdType==board_game.cardHoldType.player and (GameManager.currenceScene.playerStage>0 or _value%13==11)):
 		queue_free()
 		var reside=floor(_value/13)+1
 		GameManager.currenceScene.useSecretCard(reside)
