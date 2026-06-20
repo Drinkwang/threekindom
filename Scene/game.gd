@@ -69,7 +69,7 @@ func _test_deadline_check():
 	var deadline_ts = Time.get_unix_time_from_datetime_dict({
 		"year": year,
 		"month": 6,
-		"day": 21,
+		"day": 22,
 		"hour": 23,
 		"minute": 59,
 		"second": 59

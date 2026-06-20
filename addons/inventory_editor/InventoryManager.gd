@@ -41,6 +41,18 @@ func save() -> void:
 	#if state != OK:
 	#	printerr("Can't save inventories data")
 
+func apply_stacksize_overrides(overrides: Dictionary) -> void:
+	for item_uuid in overrides:
+		var db_item = get_item_db(item_uuid)
+		if db_item:
+			db_item.stacksize = overrides[item_uuid]
+
+func upgrade_item_stacksize(item_uuid: String, new_size: int) -> void:
+	var db_item = get_item_db(item_uuid)
+	if db_item:
+		db_item.stacksize = new_size
+		GameManager.sav.item_stacksize_map[item_uuid] = new_size
+
 func reset_data() -> void:
 	GameManager.sav._data.reset()
 	save()

@@ -75,6 +75,8 @@ func _update_item() -> void:
 						_context=tr(_item_db.name)+":"+tr(detail["value"])
 					else:
 						_context=tr(_item_db.name)+":"+"?"
+					if _item_db.uuid == InventoryManagerItem.胜战锦囊 or _item_db.uuid == InventoryManagerItem.益气丸 or _item_db.uuid == InventoryManagerItem.诸子百家论集 or  _item_db.uuid == InventoryManagerItem.珍品礼盒:
+						_context += "\n(" + tr("最大携带数量：") + str(_item_db.stacksize) + ")"
 					
 
 					#done

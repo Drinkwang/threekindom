@@ -116,6 +116,7 @@ var number_bool_map: Dictionary = {
 #辩经目标
 @export var curLawNum1=-1
 @export var curLawNum2=-1
+@export var item_stacksize_map: Dictionary = {}
 @export var useItemInBattle=false
 @export var hp=100:
 	get:

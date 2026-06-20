@@ -95,6 +95,7 @@ func loadFile():
 		DialogueManager.gameover=false
 		GameManager.sav=savs[index-1].duplicate(true)
 		GameManager.sav.ensure_default_fields()
+		InventoryManager.apply_stacksize_overrides(GameManager.sav.item_stacksize_map)
 		GameManager.isLoadingSave=true
 		# 清空瞬态传话变量，防止读档后残留旧值导致场景逻辑错乱
 		GameManager.bossmode=SceneManager.bossMode.none
