@@ -599,7 +599,7 @@ func settleGame(end,issuccess):
 		
 		
 		finalScore=GameManager.calculate_points(enemyPower,taskComplete, percentage/100,selectgeneral.level,buffMultiple)
-		finalScore=finalScore*(0.6+(GameManager.sav.battleEnhance*0.15))
+		finalScore=finalScore*(0.6+(GameManager.sav.battleEnhance*0.25))
 		if GameManager.sav.have_event["吕布之怒"]==false and GameManager.sav.have_event["夏侯偷马"]==true and GameManager.sav.endPath==GameManager.endPath.xiaopei:
 			finalScore=finalScore*1.5
 		var items=GameManager.ScoreToItem(finalScore)

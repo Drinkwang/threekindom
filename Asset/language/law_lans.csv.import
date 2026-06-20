@@ -3,13 +3,11 @@
 importer="csv_translation"
 type="Translation"
 uid="uid://diwgjfa5ylxsu"
+valid=false
 
 [deps]
 
-files=["res://Asset/language/law_lans.en.translation", "res://Asset/language/law_lans.zh.translation", "res://Asset/language/law_lans.lzh.translation", "res://Asset/language/law_lans.ja.translation", "res://Asset/language/law_lans.ru.translation"]
-
 source_file="res://Asset/language/law_lans.csv"
-dest_files=["res://Asset/language/law_lans.en.translation", "res://Asset/language/law_lans.zh.translation", "res://Asset/language/law_lans.lzh.translation", "res://Asset/language/law_lans.ja.translation", "res://Asset/language/law_lans.ru.translation"]
 
 [params]
 

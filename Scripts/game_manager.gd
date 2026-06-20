@@ -963,6 +963,7 @@ func loadLaw():
 			#sav.coin=sav.coin+200
 			#徐州好感度+10
 			sav.BENTUPAI.ChangeSupport(10)
+			increase_item_max_stack(InventoryManagerItem.诸子百家论集,2)
 			print("农田开坑done")
 
 	elif sav.curLawName=="兴办教育":#只有buff
@@ -977,7 +978,7 @@ func loadLaw():
 		#RewardLaw="一次性民力+100，徐州好感度+10，群众支持度+5 " #民力一次性增加 徐州派好感上升
 		lawAction= func():
 			sav.labor_DayGet+=30
-			changePeopleSupport(5)				
+			increase_item_max_stack(InventoryManagerItem.诸子百家论集,2)
 			#sav.HAOZUPAI.ChangeSupport(-20)
 			print("整治街容done")			
 	elif sav.curLawName=="重农抑商":
@@ -1027,8 +1028,7 @@ func loadLaw():
 			sav.BENTUPAI.ChangeSupport(50)
 			sav.labor_DayGet+=150
 			#sav.daruValue+=1000
-			var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.珍品礼盒)
-			var remainder = InventoryManager.add_item(inventoryPackege, itemid, 8, false)
+			increase_item_max_stack(InventoryManagerItem.诸子百家论集,2)
 			sav.labor_force+=300 
 			#sav.HAOZUPAI.ChangeSupport(-20)
 			#sav.WAIDIPAI.ChangeSupport(-20)									
@@ -1061,9 +1061,9 @@ func loadLaw():
 			#sav.BENTUPAI.ChangeSupport(-20)
 			sav.coin_DayGet+=20
 			sav.coin+=400
-			var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.珍品礼盒)
-			var remainder = InventoryManager.add_item(inventoryPackege, itemid, 1, false)			
-			
+
+
+			increase_item_max_stack(InventoryManagerItem.珍品礼盒,2)
 			print("行业准则done")			
 	elif sav.curLawName=="禁止军商":
 		#RewardLaw="收益：每日收入+50，豪族好感度+15，一次性收入+600 冲突：丹阳派好感度-25  "
@@ -1076,8 +1076,7 @@ func loadLaw():
 		#RewardLaw="收益：每日收入+80，获得道具“益气丸”x2，一次性收入+800  冲突：徐州好感度-20"
 		lawAction= func():
 			sav.labor_DayGet+=180
-			var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.益气丸)
-			var remainder = InventoryManager.add_item(inventoryPackege, itemid, 6, false)
+			increase_item_max_stack(InventoryManagerItem.珍品礼盒,2)
 			#sav.BENTUPAI.ChangeSupport(-20)
 			print("商业税收法done")			
 	elif sav.curLawName=="货币法":
@@ -1096,8 +1095,7 @@ func loadLaw():
 			sav.labor_DayGet+=120
 		
 			sav.coin+=1000
-			#sav.BENTUPAI.ChangeSupport(-20)
-			#sav.WAIDIPAI.ChangeSupport(-20)
+
 	elif sav.curLawName=="商品流通法":
 		#RewardLaw="收益：每日收入+150，每日随机道具x1，一次性民力+200 冲突：徐州好感度-30，群众支持度-10  "
 		lawAction= func():
@@ -1111,8 +1109,7 @@ func loadLaw():
 	elif sav.curLawName=="商业诚信法":
 		#RewardLaw="收益：获得道具“珍品礼盒”x2，每日收入+200，一次性收入+1500  冲突：徐州好感度-40，丹阳派好感度-20  "
 		lawAction= func():
-			var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.珍品礼盒)
-			var remainder = InventoryManager.add_item(inventoryPackege, itemid, 8, false)
+			increase_item_max_stack(InventoryManagerItem.珍品礼盒,2)
 			sav.coin_DayGet=sav.coin_DayGet+200
 			#sav.coin=sav.coin+1500
 			#sav.BENTUPAI.ChangeSupport(-20)
@@ -1147,7 +1144,8 @@ func loadLaw():
 	elif sav.curLawName=="边防法":#获得一些民力增加
 		#RewardLaw="一次性民力+100，丹阳派好感度+5，群众支持度+5，一次性收入+400  "
 		lawAction= func():
-			sav.labor_force=sav.labor_force+300
+			increase_item_max_stack(InventoryManagerItem.胜战锦囊,2)
+			
 			#sav.BENTUPAI.ChangeSupport(-20)
 			changePeopleSupport(5)
 			#sav.coin=sav.coin+400
@@ -1165,9 +1163,7 @@ func loadLaw():
 		#RewardLaw="收益：每日收入+50，获得道具“益气丸”x2 冲突：豪族好感度-20 "
 		lawAction= func():
 			sav.coin_DayGet=sav.coin_DayGet+280
-			#sav.HAOZUPAI.ChangeSupport(-30)
-			var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.益气丸)
-			var remainder = InventoryManager.add_item(inventoryPackege, itemid, 2, false)
+			increase_item_max_stack(InventoryManagerItem.胜战锦囊,2)
 			
 			#print("军事装备法")	
 	elif sav.curLawName=="军事训练法":
@@ -1194,8 +1190,9 @@ func loadLaw():
 		lawAction= func():
 
 			sav.labor_DayGet=sav.labor_DayGet+100
-			var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.珍品礼盒)
-			var remainder = InventoryManager.add_item(inventoryPackege, itemid, 2, false)
+
+			increase_item_max_stack(InventoryManagerItem.胜战锦囊,2)
+
 			sav.labor_force=sav.labor_force+250
 			#sav.BENTUPAI.ChangeSupport(-20)
 			#sav.HAOZUPAI.ChangeSupport(-20)
@@ -2336,3 +2333,7 @@ func compeleteTaskAndChangeDestination(des):
 	GameManager.sav.targetValue = 1
 	GameManager.sav.TargetDestination = des
 	GameManager.sav.currenceValue = 0
+	
+func increase_item_max_stack(uuid,num):
+	var new_stacksize =GameManager.sav.item_stacksize_map[GameManager.sav.item_stacksize_map[uuid]]+num
+	InventoryManager.upgrade_item_stacksize(uuid,new_stacksize)
