@@ -2335,5 +2335,9 @@ func compeleteTaskAndChangeDestination(des):
 	GameManager.sav.currenceValue = 0
 	
 func increase_item_max_stack(uuid,num):
-	var new_stacksize =GameManager.sav.item_stacksize_map[GameManager.sav.item_stacksize_map[uuid]]+num
+	var new_stacksize
+	if GameManager.sav.item_stacksize_map.has(uuid):
+		new_stacksize =GameManager.sav.item_stacksize_map[uuid] + num
+	else:
+		new_stacksize=3+num
 	InventoryManager.upgrade_item_stacksize(uuid,new_stacksize)
