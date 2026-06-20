@@ -157,7 +157,7 @@ func _juideCompeleteTask():
 	if  GameManager.sav.gameDifficulty==3:
 		mustHave=rewardMax*(generalLevel+10)/28
 	else:
-		mustHave=rewardMax*(generalLevel+10)/21     #+generalLevel*rewardMax/20
+		mustHave=rewardMax*(generalLevel+10)/22     #+generalLevel*rewardMax/20
 	#var mustHave=rewardMax/2
 	var targetGet=0
 	#print("befoer"+str(targetGet))

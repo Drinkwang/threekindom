@@ -73,33 +73,33 @@ func _update_item() -> void:
 					else:
 						_context=tr(_item_db.name)+":"+"?"
 
-					var stock_info = ""
-					if _item_db.uuid == InventoryManagerItem.胜战锦囊 or _item_db.uuid == InventoryManagerItem.益气丸 or _item_db.uuid == InventoryManagerItem.诸子百家论集 or _item_db.uuid == InventoryManagerItem.珍品礼盒:
-						stock_info = "\n(" + tr("最大携带数量：") + str(_item_db.stacksize) + ")"
+					#var stock_info = ""
+					#if _item_db.uuid == InventoryManagerItem.胜战锦囊 or _item_db.uuid == InventoryManagerItem.益气丸 or _item_db.uuid == InventoryManagerItem.诸子百家论集 or _item_db.uuid == InventoryManagerItem.珍品礼盒:
+					#	stock_info = "\n(" + tr("最大携带数量：") + str(_item_db.stacksize) + ")"
 
 					#done
 					if _item_db.uuid == InventoryManagerItem.益气丸 and InventoryManager.has_item(InventoryManagerItem.饥蛊骨签):
 						_context = _context.replace("40", "60")
-						TooltipManager.register_tooltip(self,_context+tr("【已强化】")+stock_info)
+						TooltipManager.register_tooltip(self,_context+tr("【已强化】"))
 
 
 					elif _item_db.uuid == InventoryManagerItem.胜战锦囊 and InventoryManager.has_item(InventoryManagerItem.迷魂木筒):
 						_context = _context.replace("40", "50")
-						TooltipManager.register_tooltip(self,_context+tr("【已强化】")+stock_info)
+						TooltipManager.register_tooltip(self,_context+tr("【已强化】"))
 
 					#done
 					elif _item_db.uuid == InventoryManagerItem.诸子百家论集 and InventoryManager.has_item(InventoryManagerItem.礼记笺疏):
-						TooltipManager.register_tooltip(self,_context+tr("【已强化】")+stock_info)
+						TooltipManager.register_tooltip(self,_context+tr("【已强化】"))
 					#done
 					elif _item_db.uuid == InventoryManagerItem.珍品礼盒 and InventoryManager.has_item(InventoryManagerItem.黄麻药囊):
 						_context = _context.replace("15", "30")
-						TooltipManager.register_tooltip(self,_context+tr("【已强化】")+stock_info)
+						TooltipManager.register_tooltip(self,_context+tr("【已强化】"))
 
 					elif(_item_db.type_uuid=="947b1cbf-7c4f-4eaa-8853-058ef1784615"):
 
 						TooltipManager.register_tooltip(self,_context+tr("【已装备】"))
 					else:
-						TooltipManager.register_tooltip(self,_context+stock_info)
+						TooltipManager.register_tooltip(self,_context)
 				else:
 					TooltipManager.unregister_tooltip(self)
 					_item = null
