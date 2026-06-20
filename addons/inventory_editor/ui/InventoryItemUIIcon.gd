@@ -42,75 +42,70 @@ func _update_item() -> void:
 		_quantity_ui.show()
 	else:
 		_quantity_ui.hide()
-	
+
 	if _inventoryManager and index >= 0:
 		var items = _inventoryManager.get_inventory_items(inventory)
 		if items and index < items.size():
 			_item = items[index]
 			if items[index].has("item_uuid"):
 				_item_db = _inventoryManager.get_item_db(items[index].item_uuid)
-	
-					
-				if _item.item_uuid==InventoryManagerItem.市井秘闻 or _item.item_uuid==InventoryManagerItem.市井秘闻_终 or _item.item_uuid==InventoryManagerItem.市井秘闻_续:	
+
+
+				if _item.item_uuid==InventoryManagerItem.市井秘闻 or _item.item_uuid==InventoryManagerItem.市井秘闻_终 or _item.item_uuid==InventoryManagerItem.市井秘闻_续:
 					_item = null
 					_item_db = null
 					texture = null
 					_quantity_ui.text = "0"
 					return
-				
+
 				if _item_db != null and _item_db.icon != null:
 					texture = load(_item_db.icon)
 				if _item.quantity:
 					_quantity_ui.text = str(_item.quantity)
-					#var properties=_item_db.properties
-					#var item=properties.filter(func(a):return a["name"]=="detail")[0]
-					#var detail=item["value"]
 					var properties:Array=_item_db.properties
 
-		
+
 					var detail=properties.filter(func(a):return a["name"]=="detail")[0]
 					var _context
 					if tr(detail["value"]).length()>0:
-					
+
 						_context=tr(_item_db.name)+":"+tr(detail["value"])
 					else:
 						_context=tr(_item_db.name)+":"+"?"
-					if _item_db.uuid == InventoryManagerItem.胜战锦囊 or _item_db.uuid == InventoryManagerItem.益气丸 or _item_db.uuid == InventoryManagerItem.诸子百家论集 or  _item_db.uuid == InventoryManagerItem.珍品礼盒:
-						_context += "\n(" + tr("最大携带数量：") + str(_item_db.stacksize) + ")"
-					
+
+					var stock_info = ""
+					if _item_db.uuid == InventoryManagerItem.胜战锦囊 or _item_db.uuid == InventoryManagerItem.益气丸 or _item_db.uuid == InventoryManagerItem.诸子百家论集 or _item_db.uuid == InventoryManagerItem.珍品礼盒:
+						stock_info = "\n(" + tr("最大携带数量：") + str(_item_db.stacksize) + ")"
 
 					#done
 					if _item_db.uuid == InventoryManagerItem.益气丸 and InventoryManager.has_item(InventoryManagerItem.饥蛊骨签):
-						_context = _context.replace("40", "60") 
-						TooltipManager.register_tooltip(self,_context+tr("【已强化】"))
-					
-					
+						_context = _context.replace("40", "60")
+						TooltipManager.register_tooltip(self,_context+tr("【已强化】")+stock_info)
+
+
 					elif _item_db.uuid == InventoryManagerItem.胜战锦囊 and InventoryManager.has_item(InventoryManagerItem.迷魂木筒):
-						_context = _context.replace("40", "50") 
-						TooltipManager.register_tooltip(self,_context+tr("【已强化】"))
-					
+						_context = _context.replace("40", "50")
+						TooltipManager.register_tooltip(self,_context+tr("【已强化】")+stock_info)
+
 					#done
 					elif _item_db.uuid == InventoryManagerItem.诸子百家论集 and InventoryManager.has_item(InventoryManagerItem.礼记笺疏):
-						#_context = _context.replace("8000", "10000") 
-						TooltipManager.register_tooltip(self,_context+tr("【已强化】"))	
-					#done		
+						TooltipManager.register_tooltip(self,_context+tr("【已强化】")+stock_info)
+					#done
 					elif _item_db.uuid == InventoryManagerItem.珍品礼盒 and InventoryManager.has_item(InventoryManagerItem.黄麻药囊):
-						_context = _context.replace("15", "30") 
-						#定死值15
-						TooltipManager.register_tooltip(self,_context+tr("【已强化】"))						
+						_context = _context.replace("15", "30")
+						TooltipManager.register_tooltip(self,_context+tr("【已强化】")+stock_info)
 
 					elif(_item_db.type_uuid=="947b1cbf-7c4f-4eaa-8853-058ef1784615"):
-					
+
 						TooltipManager.register_tooltip(self,_context+tr("【已装备】"))
 					else:
-						TooltipManager.register_tooltip(self,_context)
-					#self.tooltip_text=_context
-			else:
-				TooltipManager.unregister_tooltip(self)
-				_item = null
-				_item_db = null
-				texture = null
-				_quantity_ui.text = "0"
+						TooltipManager.register_tooltip(self,_context+stock_info)
+				else:
+					TooltipManager.unregister_tooltip(self)
+					_item = null
+					_item_db = null
+					texture = null
+					_quantity_ui.text = "0"
 
 func _get_drag_data(position: Vector2):
 	var drag_texture = TextureRect.new()
@@ -123,7 +118,7 @@ func _get_drag_data(position: Vector2):
 	drag_texture.position = -0.5 * drag_texture.size
 	# https://godotengine.org/qa/30298/drag_preview-get-hide-under-canvaslayer
 	set_drag_preview(preview)
-	
+
 	var data = {
 		"type": "InventoryItem",
 		"inventory": inventory,
@@ -150,9 +145,8 @@ func _gui_input(event: InputEvent) -> void:
 		if _item_db is InventoryRecipe:
 			if _inventoryManager.is_craft_possible(inventory, _item_db.uuid):
 				_inventoryManager.craft_item(inventory, _item_db.uuid)
-		#加个字段判断使用 如果是精力丹 使用恢复精力 如果是神器龙胆银月枪，下一场战斗百分百获胜 cd 3，如果是傀儡娃娃，恢复精力50 cd5 ，如果是陶谦xx 消耗体力 恢复民心10 cd7
 		#print("aaaa i be doubleclick  使用道具"+_item_db.name)
-		
+
 		if 	InventoryManagerItem.益气丸==_item_db.uuid:
 
 			InventoryManager._remove_item(GameManager.inventoryPackege,InventoryManagerItem.益气丸,1)
@@ -163,6 +157,6 @@ func _gui_input(event: InputEvent) -> void:
 				if InventoryManager.has_item(InventoryManagerItem.饥蛊骨签):
 					GameManager.recoverHp(50)
 				else:
-					GameManager.recoverHp(40)				
+					GameManager.recoverHp(40)
 
 			SoundManager.play_sound(sounds.tunyan)
