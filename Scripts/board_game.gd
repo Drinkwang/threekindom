@@ -2019,6 +2019,7 @@ func haveHeart():
 
 func _execute_diamond_crit() -> void:
 	reshuffle()
+	cardsize = 0
 	var _cols = [min_group, shi_group, shang_group, bin_group]
 	var _put = 0
 	for _c_idx in 4:
@@ -2069,7 +2070,7 @@ func _execute_crit_effect(suit: int) -> void:
 		#♠ 黑桃	sounds.HUI_1	你换
 		#♣ 梅花	sounds.COLLECT_SMALL_JEWEL_1	你换
 		#♦ 方片	sounds.MATCH_STRIKING	你换
-		var _crit_sounds = [sounds.IRONCHAIN, sounds.COLLECT_SMALL_JEWEL_3, sounds.buysellsound, sounds.SOILDER]
+		var _crit_sounds = [sounds.IRONCHAIN, sounds.fire, sounds.buysellsound, sounds.SOILDER]
 		SoundManager.play_sound(_crit_sounds[suit])
 		match suit:
 			0:
