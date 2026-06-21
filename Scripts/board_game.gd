@@ -1500,6 +1500,17 @@ func excuteSecret(groupobj:Array):
 					await get_tree().create_timer(2.1)
 					
 					secretCard.queue_free()				
+						# ===== 诡异卡触发暴击追踪 =====
+						var _q_suit = _secretsuit - 1
+						if last_match_occurred and last_match_suit == _q_suit:
+							_execute_crit_effect(_q_suit)
+							_update_crit_indicator(-1)
+						elif last_match_occurred and last_match_suit != _q_suit:
+							_update_crit_indicator(_q_suit)
+						else:
+							_update_crit_indicator(_q_suit)
+						last_match_suit = _q_suit
+						last_match_occurred = true
 				
 				
 				
