@@ -865,6 +865,8 @@ func enterNewPhase(stage:phaseName):
 			board_panel.hide()
 			end_button.text=tr("回合结束")
 			reside_num.show()
+			if _crit_indicator != null and _crit_indicator.text != "":
+				_crit_indicator.show()
 			end_button.show()
 		else:
 			detail_txt.text=tr("敌人出牌阶段，正在使用卡牌")
@@ -1896,7 +1898,7 @@ func _update_crit_indicator(suit: int) -> void:
 	if _crit_indicator == null:
 		return
 	if suit < 0 or not isPlayerTurn:
-		_crit_indicator.text =  "[color=#e8d9c0]暴击待发：无[/color]"
+		_crit_indicator.text =  "[color=white]暴击待发：无[/color]"
 		return
 	var icons = ["♥", "♠", "♣", "♦"]
 	var colors = ["red", "black", "black", "red"]
@@ -1907,7 +1909,7 @@ func _on_crit_indicator_mouse_entered() -> void:
 	var tip = "连续消除两张相同花色即可触发暴击\n"
 	tip += "♥ 红桃：回合数 + 1，自身生命值 - 1\n"
 	tip += "♠ 黑桃：出牌次数 + 1，随机弃置 1 张手牌\n"
-	tip += "♣ 梅花：抽取 2 张牌，出牌次数 - 2\n"
+	tip += "♣ 梅花：抽取 1 张牌，出牌次数 - 1\n"
 	tip += "♦ 方片：场上最多新增 2 张牌"
 	TooltipManager.register_tooltip(_crit_indicator, tip)
 
@@ -2016,6 +2018,7 @@ func haveHeart():
 # ===== 暴击系统 =====
 
 func _execute_diamond_crit() -> void:
+	reshuffle()
 	var _cols = [min_group, shi_group, shang_group, bin_group]
 	var _put = 0
 	for _c_idx in 4:
@@ -2062,6 +2065,12 @@ func check_and_trigger_crit(suit_index: int) -> void:
 func _execute_crit_effect(suit: int) -> void:
 	var desc = ""
 	if isPlayerTurn:
+		# TODO:♥ 红桃	sounds.GOOD_THING	你换
+		#♠ 黑桃	sounds.HUI_1	你换
+		#♣ 梅花	sounds.COLLECT_SMALL_JEWEL_1	你换
+		#♦ 方片	sounds.MATCH_STRIKING	你换
+		var _crit_sounds = [sounds.IRONCHAIN, sounds.COLLECT_SMALL_JEWEL_3, sounds.buysellsound, sounds.SOILDER]
+		SoundManager.play_sound(_crit_sounds[suit])
 		match suit:
 			0:
 				turn_num += 1
@@ -2093,10 +2102,10 @@ func _execute_crit_effect(suit: int) -> void:
 				detail_txt.text = tr("暴击·黑桃！") + desc
 			2:
 				drawOne(true)
-				drawOne(true)
-				playerStage = max(0, playerStage - 2)
+				#drawOne(true)
+				playerStage = max(0, playerStage - 1)
 				reside_num.text = tr("剩余步数：{s}").format({"s": playerStage})
-				desc = tr("抽2牌，步数-2")
+				desc = tr("抽1牌，步数-1")
 				detail_txt.text = tr("暴击·梅花！") + desc
 			3:
 				_execute_diamond_crit()
@@ -2178,7 +2187,7 @@ func reset_crit_chain_state() -> void:
 	last_match_occurred = false
 	_crit_pending_suit = -1
 	if _crit_indicator != null:
-		_crit_indicator.text =  "[color=#e8d9c0]暴击待发：无[/color]"
+		_crit_indicator.text =  "[color=white]暴击待发：无[/color]"
 	isWaiting = false
 
 func _process(delta: float) -> void:
@@ -2274,6 +2283,8 @@ func reset_runtime_state():
 	board_panel.hide()
 	end_button.hide()
 	reside_num.hide()
+	if _crit_indicator != null:
+		_crit_indicator.hide()
 	heart_color.hide()
 	damage_color.hide()
 	hold_enegy_panel.hide()
@@ -2334,6 +2345,8 @@ func showtutorial(num,isshow):
 				pass	
 			if num==8:
 				reside_num.show()
+			if _crit_indicator != null and _crit_indicator.text != "":
+				_crit_indicator.show()
 				reside_num.text=tr("剩余步数：{s}").format({"s":maxUseCard})
 				drawOneInTour(5)
 				var usecard=drawOneInTour(32)
@@ -2364,6 +2377,8 @@ func showtutorial(num,isshow):
 				#insertCard(groupType.shi,33)
 			if num==1 and isshow==true:
 				reside_num.show()
+			if _crit_indicator != null and _crit_indicator.text != "":
+				_crit_indicator.show()
 				reside_num.text=tr("剩余步数：{s}").format({"s":maxUseCard})
 				drawOneInTour(5)
 				var usecard=drawOneInTour(13)
