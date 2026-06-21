@@ -845,6 +845,7 @@ func enterNewPhase(stage:phaseName):
 		if isPlayerTurn==true:
 			#if turn_num<5:
 			#	SoundManager.play_sound(useCardSound)
+			reset_crit_chain_state()
 			playerStage=maxUseCard
 			reside_num.text=tr("剩余步数：{s}").format({"s":playerStage})
 	
@@ -857,6 +858,7 @@ func enterNewPhase(stage:phaseName):
 		else:
 			detail_txt.text=tr("敌人出牌阶段，正在使用卡牌")
 			punishimg.texture=null
+			reset_crit_chain_state()
 			enemyStage=maxUseCard
 			AIUseCard()
 	elif _phaseName==phaseName.checkEnd:
@@ -1530,6 +1532,7 @@ func calculateStuckScore(stuck:groupType):
 
 	var cards=groupobj.get_children()
 	var handCard=enemyhand.get_children()
+	var _match_suit = -1
 		
 	for hand_card in handCard:
 		if hand_card is boardCard:
@@ -1537,6 +1540,7 @@ func calculateStuckScore(stuck:groupType):
 				if stack_card is boardCard:
 					if floor(hand_card._value/13) == floor(stack_card._value/13) or (floor(hand_card._value%13)==11 and floor(hand_card._value/13) != floor(stack_card._value/13)):
 						canscore= true
+						_match_suit = floor(hand_card._value/13)
 						break
 			if canscore==true:
 				break
@@ -1556,6 +1560,9 @@ func calculateStuckScore(stuck:groupType):
 		#
 	#能凑齐并且得到的东西能在其它堆凑齐 加加分
 	#是红桃 加分
+		# ===== AI暴击策略：追同花色 =====
+		if last_match_occurred and _match_suit == last_match_suit:
+			_score += _get_crit_strategy_value(_match_suit)
 	return _score
 	
 
@@ -1735,8 +1742,7 @@ func enterRewardStage(i:boardCard,j:boardCard):
 	j.queue_free()
 
 	# ===== 暴击检查 =====
-	if isPlayerTurn:
-		check_and_trigger_crit(_matched_suit)
+	check_and_trigger_crit(_matched_suit)
 	await get_tree().create_timer(0.5).timeout
 	if playerEngergyHold.size()>=4 and hasSecretCard.has(true) and _issole==false and issecretGame==true:
 		showSecretCard()#非单人模式才能触发
@@ -1974,6 +1980,39 @@ func haveHeart():
 
 # ===== 暴击系统 =====
 
+func _execute_diamond_crit() -> void:
+	var _cols = [min_group, shi_group, shang_group, bin_group]
+	var _put = 0
+	for _c_idx in 4:
+		if _put >= 2: break
+		var _exist = []
+		for _ch in _cols[_c_idx].get_children():
+			if _ch is boardCard:
+				var _s = floori(_ch._value / 13)
+				if not _exist.has(_s): _exist.append(_s)
+		var _pool = []
+		for _i in cardsize + 1:
+			if _i < cardArr.size():
+				var _s2 = floori(cardArr[_i] / 13)
+				if not _exist.has(_s2):
+					_pool.append(_i)
+		if _pool.size() > 0:
+			var _pick = _pool[randi() % _pool.size()]
+			var _cd = cardArr[_pick]
+			var _co = BOARD_CARD.instantiate()
+			_co.holdType = cardHoldType.stack
+			_cols[_c_idx].add_child(_co)
+			_co._value = _cd
+			_co.scale = Vector2(0.1, 0.1)
+			var _tw = create_tween().set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+			_tw.tween_property(_co, "scale", Vector2(1.0, 1.0), 0.35)
+			cardArr[_pick] = cardArr[cardsize]
+			cardArr[cardsize] = _cd
+			cardsize -= 1
+			if cardsize < 1: reshuffle()
+			_put += 1
+			await get_tree().create_timer(0.2).timeout
+
 func check_and_trigger_crit(suit_index: int) -> void:
 	if last_match_occurred and last_match_suit == suit_index:
 		_execute_crit_effect(suit_index)
@@ -1982,91 +2021,118 @@ func check_and_trigger_crit(suit_index: int) -> void:
 
 func _execute_crit_effect(suit: int) -> void:
 	var desc = ""
-	match suit:
-		0:  # 红桃：跳1回合 + HP-1，满5回合结算
-			turn_num += 1
-			hp -= 1
-			turn_num_Txt.text = tr("回合数：{s}/5").format({"s": turn_num})
-			if turn_num > 5:
-				if _issole:
-					winGame()
+	if isPlayerTurn:
+		match suit:
+			0:
+				turn_num += 1
+				hp -= 1
+				turn_num_Txt.text = tr("回合数：{s}/5").format({"s": turn_num})
+				if turn_num >= 5:
+					if _issole:
+						winGame()
+					else:
+						if score > enemyscore:
+							winGame(tr("你的积分大于对手\n你赢了"))
+						elif score == enemyscore:
+							winGame()
+						else:
+							loseGame(tr("你的积分小于对手\n你输了"))
+					desc = tr("跳回合+1，HP-1，游戏结束")
 				else:
+					desc = tr("跳回合+1，HP-1")
+				detail_txt.text = tr("暴击·红桃！") + desc
+			1:
+				playerStage = mini(playerStage + 1, maxUseCard + 1)
+				reside_num.text = tr("剩余步数：{s}").format({"s": playerStage})
+				var _h2 = myhand.get_children()
+				if _h2.size() > 0:
+					var _r2 = randi() % _h2.size()
+					if is_instance_valid(_h2[_r2]):
+						_h2[_r2].queue_free()
+				desc = tr("+1步，弃1牌")
+				detail_txt.text = tr("暴击·黑桃！") + desc
+			2:
+				drawOne(true)
+				drawOne(true)
+				playerStage = max(0, playerStage - 2)
+				reside_num.text = tr("剩余步数：{s}").format({"s": playerStage})
+				desc = tr("抽2牌，步数-2")
+				detail_txt.text = tr("暴击·梅花！") + desc
+			3:
+				_execute_diamond_crit()
+				desc = tr("补位发牌")
+				detail_txt.text = tr("暴击·方片！") + desc
+	else:
+		match suit:
+			0:
+				turn_num += 1
+				enemy_hp -= 1
+				turn_num_Txt.text = tr("回合数：{s}/5").format({"s": turn_num})
+				if turn_num >= 5:
 					if score > enemyscore:
-						winGame(tr("你的积分大于对手
-你赢了"))
+						winGame()
 					elif score == enemyscore:
 						winGame()
 					else:
-						loseGame(tr("你的积分小于对手
-你输了"))
-				desc = tr("跳回合+1，HP-1，游戏结束")
-			else:
+						loseGame()
 				desc = tr("跳回合+1，HP-1")
-			detail_txt.text = tr("暴击·红桃！") + desc
-		1:  # 黑桃：+1步，随机弃1牌
-			playerStage = mini(playerStage + 1, maxUseCard + 1)
-			reside_num.text = tr("剩余步数：{s}").format({"s": playerStage})
-			var _h2 = myhand.get_children()
-			if _h2.size() > 0:
-				var _r2 = randi() % _h2.size()
-				if is_instance_valid(_h2[_r2]):
-					_h2[_r2].queue_free()
-			desc = tr("+1步，弃1牌")
-			detail_txt.text = tr("暴击·黑桃！") + desc
-		2:  # 梅花：抽2，回合步数-2
-			drawOne(true)
-			drawOne(true)
-			playerStage = max(0, playerStage - 2)
-			reside_num.text = tr("剩余步数：{s}").format({"s": playerStage})
-			desc = tr("抽2牌，步数-2")
-			detail_txt.text = tr("暴击·梅花！") + desc
-		3:  # 方片：补位发牌（不凑对）
-			var _cols = [min_group, shi_group, shang_group, bin_group]
-			var _used = []
-			var _put = 0
-			for _ci in 2:
-				var _ok = false
-				for _try in 15:
-					if cardsize < 0: break
-					var _rv = randi_range(0, cardsize)
-					if _rv >= cardArr.size(): continue
-					var _cd = cardArr[_rv]
-					var _suit = floori(_cd / 13)
-					# 找没用过的列且该列没有此花色
-					var _safe = []
-					for _c in 4:
-						if _used.has(_c): continue
-						var _has = false
-						for _ch in _cols[_c].get_children():
-							if _ch is boardCard and floori(_ch._value / 13) == _suit:
-								_has = true; break
-						if not _has:
-							_safe.append(_c)
-					if _safe.size() > 0:
-						var _sel = _safe[randi() % _safe.size()]
-						_used.append(_sel)
-						var _co = BOARD_CARD.instantiate()
-						_co.holdType = cardHoldType.stack
-						_cols[_sel].add_child(_co)
-						_co._value = _cd
-						# 弹入动画
-						_co.scale = Vector2(0.1, 0.1)
-						var _tw = create_tween().set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
-						_tw.tween_property(_co, "scale", Vector2(1.0, 1.0), 0.35)
-						# 移出牌堆
-						cardArr[_rv] = cardArr[cardsize]
-						cardArr[cardsize] = _cd
-						cardsize -= 1
-						if cardsize < 1: reshuffle()
-						_put += 1; _ok = true; break
-				if not _ok: break
-			if _put > 0:
-				await get_tree().create_timer(0.2).timeout
-			desc = tr("补位发{s}牌").format({"s": _put})
-			detail_txt.text = tr("暴击·方片！") + desc
+				detail_txt.text = tr("暴击·红桃！") + desc
+			1:
+				enemyStage = mini(enemyStage + 1, maxUseCard + 1)
+				var _eh = enemyhand.get_children()
+				if _eh.size() > 0:
+					var _er = randi() % _eh.size()
+					if is_instance_valid(_eh[_er]):
+						_eh[_er].queue_free()
+				desc = tr("+1步，弃1牌")
+				detail_txt.text = tr("暴击·黑桃！") + desc
+			2:
+				drawOne(false)
+				drawOne(false)
+				enemyStage = max(0, enemyStage - 2)
+				desc = tr("抽2牌，步数-2")
+				detail_txt.text = tr("暴击·梅花！") + desc
+			3:
+				_execute_diamond_crit()
+				desc = tr("补位发牌")
+				detail_txt.text = tr("暴击·方片！") + desc
 	var popup = load("res://Scene/prefab/crit_popup.gd").new()
 	add_child(popup)
-	popup.play(suit, desc)
+	popup.play(suit, desc, isPlayerTurn)
+func _get_crit_strategy_value(suit: int) -> int:
+	"""AI暴击策略评估：正值=追，负值=避"""
+	match suit:
+		0:  # 红桃：跳回合+扣血
+			if score > enemyscore + 30:
+				return 20  # 大幅领先，提前结束锁定胜局
+			elif enemy_hp <= 1:
+				return 15  # 敌人残血，补刀
+			elif hp <= 1:
+				return -30  # 自己残血，送死
+			elif score < enemyscore:
+				return -10  # 落后，跳回合=减少追赶时间
+			else:
+				return -3
+		1:  # 黑桃：+1步，弃1牌
+			var _hs = enemyhand.get_child_count()
+			if _hs >= 4:
+				return 12  # 手牌充裕
+			elif _hs <= 1:
+				return -8  # 手牌太少
+			else:
+				return 3
+		2:  # 梅花：抽2，步数-2
+			var _hs2 = enemyhand.get_child_count()
+			if _hs2 <= 2 and enemyStage >= 3:
+				return 18  # 缺牌但步数充足
+			elif enemyStage <= 1:
+				return -15  # 没步数了
+			else:
+				return 2
+		3:  # 方片：补位发牌
+			return 8  # 总体有益
+	return 0
+
 func reset_crit_chain_state() -> void:
 	last_match_suit = -1
 	last_match_occurred = false

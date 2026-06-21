@@ -8,6 +8,14 @@ const SUIT_COLORS := {
 	3: { "bg": Color("#1A5588"), "border": Color("#88CCFF"), "icon_color": Color("#88CCFF"), "icon": "♦" },
 }
 
+# 敌人暴击用暗色版（便于区分）
+const ENEMY_SUIT_COLORS := {
+	0: { "bg": Color("#661111"), "border": Color("#884444"), "icon_color": Color("#CC6666"), "icon": "♥" },
+	1: { "bg": Color("#1D1530"), "border": Color("#554466"), "icon_color": Color("#8866AA"), "icon": "♠" },
+	2: { "bg": Color("#553A00"), "border": Color("#886633"), "icon_color": Color("#CCAA44"), "icon": "♣" },
+	3: { "bg": Color("#0D2A44"), "border": Color("#335577"), "icon_color": Color("#5588BB"), "icon": "♦" },
+}
+
 const SUIT_NAMES := ["红桃", "黑桃", "梅花", "方片"]
 
 var _panel: Panel
@@ -92,8 +100,9 @@ func _build_ui() -> void:
 
 # ==================== 暴击 ====================
 
-func play(suit_index: int, desc: String = "") -> void:
-	var c = SUIT_COLORS[suit_index]
+func play(suit_index: int, desc: String = "", is_player: bool = true) -> void:
+	var colors = SUIT_COLORS if is_player else ENEMY_SUIT_COLORS
+	var c = colors[suit_index]
 
 	var style := StyleBoxFlat.new()
 	style.bg_color = c["bg"]
@@ -104,7 +113,10 @@ func play(suit_index: int, desc: String = "") -> void:
 	style.shadow_color = Color(0, 0, 0, 0.6)
 	_panel.add_theme_stylebox_override("panel", style)
 
-	_title_label.text = tr("暴击！")
+	if is_player:
+		_title_label.text = tr("暴击！")
+	else:
+		_title_label.text = tr("敌暴击！")
 	_title_label.add_theme_color_override("font_color", Color.WHITE)
 
 	_icon_label.text = c["icon"]
@@ -114,7 +126,7 @@ func play(suit_index: int, desc: String = "") -> void:
 	_suit_label.add_theme_color_override("font_color", Color.WHITE)
 
 	_desc_label.text = desc
-	_desc_label.add_theme_color_override("font_color", Color(1, 1, 1, 0.95))
+	_desc_label.add_theme_color_override("font_color", Color(1, 1, 1, 0.95) if is_player else Color(0.8, 0.7, 0.7, 0.95))
 
 	_play_tween()
 
