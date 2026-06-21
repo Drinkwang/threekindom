@@ -9,6 +9,8 @@ class_name board_game
 # === 暴击系统 ===
 var last_match_suit: int = -1         # 上次配对的花色(0=♥,1=♠,2=♣,3=♦), -1=无记录
 var last_match_occurred: bool = false # 上一步是否配对
+var _crit_pending_suit: int = -1      # 暴击待发花色(-1=无)，显示在指示器上
+@onready var _crit_indicator: RichTextLabel = $baojiTxt
 
 var cardsize
 var _is_first_draw=true
@@ -286,6 +288,15 @@ func initGame():
 	turn_num=0
 	enemyscore=0
 	reset_runtime_state()
+	# 配置暴击指示器（RichTextLabel 已替换 Label，场景自带 baogiTxt）
+	_crit_indicator = $baojiTxt
+	if _crit_indicator:
+		_crit_indicator.bbcode_enabled = true
+		_crit_indicator.mouse_filter = Control.MOUSE_FILTER_STOP
+		# 信号只连接一次
+		if not _crit_indicator.mouse_entered.is_connected(_on_crit_indicator_mouse_entered):
+			_crit_indicator.mouse_entered.connect(_on_crit_indicator_mouse_entered)
+			_crit_indicator.mouse_exited.connect(_on_crit_indicator_mouse_exited)
 	score_txt.text=tr("玩家得分：{s}").format({"s":score})
 	enemy_score_txt.text=tr("敌人得分：{s}").format({"s":enemyscore})
 	GameManager.currenceScene=self
@@ -1879,6 +1890,30 @@ func insertCardRandom(group:groupType):
 
 	if cardsize<1:
 		reshuffle()	
+
+func _update_crit_indicator(suit: int) -> void:
+	_crit_pending_suit = suit
+	if _crit_indicator == null:
+		return
+	if suit < 0 or not isPlayerTurn:
+		_crit_indicator.text =  "[color=#e8d9c0]暴击待发：无[/color]"
+		return
+	var icons = ["♥", "♠", "♣", "♦"]
+	var colors = ["red", "black", "black", "red"]
+	_crit_indicator.text = "[color=white]暴击待发：[/color][color=" + colors[suit] + "]" + icons[suit] + "[/color]"
+
+
+func _on_crit_indicator_mouse_entered() -> void:
+	var tip = "连续消除两张相同花色即可触发暴击\n"
+	tip += "♥ 红桃：回合数 + 1，自身生命值 - 1\n"
+	tip += "♠ 黑桃：出牌次数 + 1，随机弃置 1 张手牌\n"
+	tip += "♣ 梅花：抽取 2 张牌，出牌次数 - 2\n"
+	tip += "♦ 方片：场上最多新增 2 张牌"
+	TooltipManager.register_tooltip(_crit_indicator, tip)
+
+
+func _on_crit_indicator_mouse_exited() -> void:
+	TooltipManager.hide_tooltip()
 var _is_restarting := false
 var punishStage=false
 #判断是什么阶段，如果是	
@@ -2016,6 +2051,11 @@ func _execute_diamond_crit() -> void:
 func check_and_trigger_crit(suit_index: int) -> void:
 	if last_match_occurred and last_match_suit == suit_index:
 		_execute_crit_effect(suit_index)
+		_update_crit_indicator(-1)
+	elif last_match_occurred and last_match_suit != suit_index:
+		_update_crit_indicator(suit_index)
+	else:
+		_update_crit_indicator(suit_index)
 	last_match_suit = suit_index
 	last_match_occurred = true
 
@@ -2136,6 +2176,9 @@ func _get_crit_strategy_value(suit: int) -> int:
 func reset_crit_chain_state() -> void:
 	last_match_suit = -1
 	last_match_occurred = false
+	_crit_pending_suit = -1
+	if _crit_indicator != null:
+		_crit_indicator.text =  "[color=#e8d9c0]暴击待发：无[/color]"
 	isWaiting = false
 
 func _process(delta: float) -> void:

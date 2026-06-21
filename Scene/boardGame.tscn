@@ -1047,25 +1047,22 @@ text = "玩家:
 敌人:
 [color=#ffffff88]♥♠♣♦[/color]"
 
-[node name="Label" type="Label" parent="."]
-offset_left = 1384.0
-offset_top = 1010.0
-offset_right = 1768.0
-offset_bottom = 1196.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0.262932, 0.262932, 0.262932, 1)
-theme_override_constants/shadow_offset_x = 2
+[node name="baojiTxt" type="RichTextLabel" parent="."]
+offset_left = 1390.0
+offset_top = 1022.0
+offset_right = 1774.0
+offset_bottom = 1208.0
+mouse_filter = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
 theme_override_constants/shadow_offset_y = 2
-theme_override_constants/outline_size = 14
-theme_override_fonts/font = ExtResource("20_f0olx")
-theme_override_font_sizes/font_size = 22
-text = "当前生效暴击花色（红桃）
-连续消除两张相同花色即可触发暴击
-红桃：回合数 + 1，自身生命值 - 1
-黑桃：出牌次数 + 1，随机弃置 1 张手牌
-梅花：抽取 2 张牌，出牌次数 - 2
-方片：场上最多新增 2 张牌"
-vertical_alignment = 1
+theme_override_fonts/normal_font = ExtResource("20_f0olx")
+theme_override_font_sizes/bold_italics_font_size = 0
+theme_override_font_sizes/italics_font_size = 0
+theme_override_font_sizes/mono_font_size = 0
+theme_override_font_sizes/normal_font_size = 38
+theme_override_font_sizes/bold_font_size = 0
+bbcode_enabled = true
 
 [connection signal="input_event" from="CanvasLayer/minArea" to="." method="_on_min_area_input_event"]
 [connection signal="mouse_entered" from="CanvasLayer/minArea" to="." method="_on_min_area_mouse_entered"]
