@@ -1047,6 +1047,26 @@ text = "玩家:
 敌人:
 [color=#ffffff88]♥♠♣♦[/color]"
 
+[node name="Label" type="Label" parent="."]
+offset_left = 1516.0
+offset_top = 583.0
+offset_right = 1857.0
+offset_bottom = 769.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.262932, 0.262932, 0.262932, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 14
+theme_override_fonts/font = ExtResource("20_f0olx")
+theme_override_font_sizes/font_size = 22
+text = "当前暴击卡（红桃）
+连续消除两张相同花色即可触发暴击
+红桃：回合数 + 1，自身生命值 - 1
+黑桃：出牌次数 + 1，随机弃置 1 张手牌
+梅花：抽取 2 张牌，出牌次数 - 2
+方片：场上最多新增 2 张牌"
+vertical_alignment = 1
+
 [connection signal="input_event" from="CanvasLayer/minArea" to="." method="_on_min_area_input_event"]
 [connection signal="mouse_entered" from="CanvasLayer/minArea" to="." method="_on_min_area_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/minArea" to="." method="_on_min_area_mouse_exited"]

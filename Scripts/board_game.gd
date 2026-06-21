@@ -6,6 +6,10 @@ class_name board_game
 @export var enemyGraArr:Array
 @export var destroyArr:Array
 
+# === 暴击系统 ===
+var last_match_suit: int = -1         # 上次配对的花色(0=♥,1=♠,2=♣,3=♦), -1=无记录
+var last_match_occurred: bool = false # 上一步是否配对
+
 var cardsize
 var _is_first_draw=true
 @export var rects:Array[Node2D]
@@ -1723,10 +1727,16 @@ func enterRewardStage(i:boardCard,j:boardCard):
 		#奖励消除卡牌
 	isWaiting=false
 		#print("helloworld")
+
+	var _matched_suit:int = floori(i._value / 13)
 	i.queue_free()
 	if isPlayerTurn:
 		end_button.show()
 	j.queue_free()
+
+	# ===== 暴击检查 =====
+	if isPlayerTurn:
+		check_and_trigger_crit(_matched_suit)
 	await get_tree().create_timer(0.5).timeout
 	if playerEngergyHold.size()>=4 and hasSecretCard.has(true) and _issole==false and issecretGame==true:
 		showSecretCard()#非单人模式才能触发
@@ -1946,6 +1956,7 @@ func phaseEnd():
 	elif _phaseName==phaseName.useCard:
 		if isPlayerTurn==true:
 			end_button.hide()
+			reset_crit_chain_state()
 
 		await enterNewPhase(phaseName.checkEnd)
 	#每个下面发一张牌
@@ -1961,7 +1972,106 @@ func haveHeart():
 			return true
 	return false
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+# ===== 暴击系统 =====
+
+func check_and_trigger_crit(suit_index: int) -> void:
+	if last_match_occurred and last_match_suit == suit_index:
+		_execute_crit_effect(suit_index)
+	last_match_suit = suit_index
+	last_match_occurred = true
+
+func _execute_crit_effect(suit: int) -> void:
+	var desc = ""
+	match suit:
+		0:  # 红桃：跳1回合 + HP-1，满5回合结算
+			turn_num += 1
+			hp -= 1
+			turn_num_Txt.text = tr("回合数：{s}/5").format({"s": turn_num})
+			if turn_num > 5:
+				if _issole:
+					winGame()
+				else:
+					if score > enemyscore:
+						winGame(tr("你的积分大于对手
+你赢了"))
+					elif score == enemyscore:
+						winGame()
+					else:
+						loseGame(tr("你的积分小于对手
+你输了"))
+				desc = tr("跳回合+1，HP-1，游戏结束")
+			else:
+				desc = tr("跳回合+1，HP-1")
+			detail_txt.text = tr("暴击·红桃！") + desc
+		1:  # 黑桃：+1步，随机弃1牌
+			playerStage = mini(playerStage + 1, maxUseCard + 1)
+			reside_num.text = tr("剩余步数：{s}").format({"s": playerStage})
+			var _h2 = myhand.get_children()
+			if _h2.size() > 0:
+				var _r2 = randi() % _h2.size()
+				if is_instance_valid(_h2[_r2]):
+					_h2[_r2].queue_free()
+			desc = tr("+1步，弃1牌")
+			detail_txt.text = tr("暴击·黑桃！") + desc
+		2:  # 梅花：抽2，回合步数-2
+			drawOne(true)
+			drawOne(true)
+			playerStage = max(0, playerStage - 2)
+			reside_num.text = tr("剩余步数：{s}").format({"s": playerStage})
+			desc = tr("抽2牌，步数-2")
+			detail_txt.text = tr("暴击·梅花！") + desc
+		3:  # 方片：补位发牌（不凑对）
+			var _cols = [min_group, shi_group, shang_group, bin_group]
+			var _used = []
+			var _put = 0
+			for _ci in 2:
+				var _ok = false
+				for _try in 15:
+					if cardsize < 0: break
+					var _rv = randi_range(0, cardsize)
+					if _rv >= cardArr.size(): continue
+					var _cd = cardArr[_rv]
+					var _suit = floori(_cd / 13)
+					# 找没用过的列且该列没有此花色
+					var _safe = []
+					for _c in 4:
+						if _used.has(_c): continue
+						var _has = false
+						for _ch in _cols[_c].get_children():
+							if _ch is boardCard and floori(_ch._value / 13) == _suit:
+								_has = true; break
+						if not _has:
+							_safe.append(_c)
+					if _safe.size() > 0:
+						var _sel = _safe[randi() % _safe.size()]
+						_used.append(_sel)
+						var _co = BOARD_CARD.instantiate()
+						_co.holdType = cardHoldType.stack
+						_cols[_sel].add_child(_co)
+						_co._value = _cd
+						# 弹入动画
+						_co.scale = Vector2(0.1, 0.1)
+						var _tw = create_tween().set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+						_tw.tween_property(_co, "scale", Vector2(1.0, 1.0), 0.35)
+						# 移出牌堆
+						cardArr[_rv] = cardArr[cardsize]
+						cardArr[cardsize] = _cd
+						cardsize -= 1
+						if cardsize < 1: reshuffle()
+						_put += 1; _ok = true; break
+				if not _ok: break
+			if _put > 0:
+				await get_tree().create_timer(0.2).timeout
+			desc = tr("补位发{s}牌").format({"s": _put})
+			detail_txt.text = tr("暴击·方片！") + desc
+	var popup = load("res://Scene/prefab/crit_popup.gd").new()
+	add_child(popup)
+	popup.play(suit, desc)
+func reset_crit_chain_state() -> void:
+	last_match_suit = -1
+	last_match_occurred = false
+	isWaiting = false
+
 func _process(delta: float) -> void:
 	var moupos=get_viewport().get_mouse_position()
 	if mouseline.visible==true:
@@ -2060,6 +2170,7 @@ func reset_runtime_state():
 	hold_enegy_panel.hide()
 	damage_color.material.set_shader_parameter("vignette_intensity", 0)
 	heart_color.material.set_shader_parameter("vignette_intensity", 0)
+	reset_crit_chain_state()
 
 func clearTCard():
 	cancel_tutorial_state()
