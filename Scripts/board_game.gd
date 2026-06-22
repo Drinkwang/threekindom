@@ -1156,6 +1156,24 @@ func AIDiscardCard(i,j):
 
 
 func payRandomPunish(_grouptype:groupType):
+	# 满血时保留红桃诡异卡
+	if _grouptype == groupType.min:
+		for child in enemyhand.get_children():
+			if child is boardCard and floor(child._value%13)==11:
+				# 有红桃Q时优先用普通红桃，保留Q
+				var normals = []
+				for c in enemyhand.get_children():
+					if c is boardCard and floor(c._value/13)==0 and floor(c._value%13)!=11:
+						normals.append(c)
+				if normals.size()>0:
+					var pick = normals[randi()%normals.size()]
+					pick.queue_free()
+					if bepusnishJ!=null and bepusnishJ!=null:
+						SettlePunish()
+					else:
+						punishFade("")
+					return
+
 	var isPay=false
 	var index=_grouptype-1
 	var arrs: Array[boardCard] = []
@@ -1357,6 +1375,9 @@ func AIUseCardInStuck(bestIndex,alreadyUse:Array):
 		
 	for hand_card in handCard:
 		if hand_card is boardCard:
+			# AI满血时跳过红桃诡异卡
+			if floor(hand_card._value/13)==0 and floor(hand_card._value%13)==11 and enemy_hp>=3:
+				continue
 			for stack_card in cards:
 				if stack_card is boardCard:
 					if (floor(hand_card._value%13)==11 and not (floor(hand_card._value/13)==0 and enemy_hp>=3)) or floor(hand_card._value/13) == floor(stack_card._value/13) and not alreadyUse.has(stack_card) and not alreadyUse.has(hand_card):
