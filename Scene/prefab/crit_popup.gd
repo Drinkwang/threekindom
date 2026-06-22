@@ -1,145 +1,95 @@
 extends CanvasLayer
 class_name CritPopup
 
-const SUIT_COLORS := {
-	0: { "bg": Color("#CC2233"), "border": Color("#FFD700"), "icon_color": Color("#FFD700"), "icon": "♥" },
-	1: { "bg": Color("#3A2A5A"), "border": Color("#AAAAAA"), "icon_color": Color("#CCAAFF"), "icon": "♠" },
-	2: { "bg": Color("#C17A00"), "border": Color("#FFDD44"), "icon_color": Color("#FFDD44"), "icon": "♣" },
-	3: { "bg": Color("#1A5588"), "border": Color("#88CCFF"), "icon_color": Color("#88CCFF"), "icon": "♦" },
+const SUIT_STYLES := {
+	0: { "accent": Color("#B23A32"), "accent_soft": Color("#6D2220"), "seal": Color("#2E1614"), "icon": "♥" },
+	1: { "accent": Color("#4D455E"), "accent_soft": Color("#24202F"), "seal": Color("#17151F"), "icon": "♠" },
+	2: { "accent": Color("#B37A22"), "accent_soft": Color("#5B3A14"), "seal": Color("#2A1E10"), "icon": "♣" },
+	3: { "accent": Color("#2D6E7E"), "accent_soft": Color("#183D49"), "seal": Color("#10242D"), "icon": "♦" },
 }
 
-# 敌人暴击用暗色版（便于区分）
-const ENEMY_SUIT_COLORS := {
-	0: { "bg": Color("#661111"), "border": Color("#884444"), "icon_color": Color("#CC6666"), "icon": "♥" },
-	1: { "bg": Color("#1D1530"), "border": Color("#554466"), "icon_color": Color("#8866AA"), "icon": "♠" },
-	2: { "bg": Color("#553A00"), "border": Color("#886633"), "icon_color": Color("#CCAA44"), "icon": "♣" },
-	3: { "bg": Color("#0D2A44"), "border": Color("#335577"), "icon_color": Color("#5588BB"), "icon": "♦" },
+const ENEMY_SUIT_STYLES := {
+	0: { "accent": Color("#7D2422"), "accent_soft": Color("#341312"), "seal": Color("#1D0C0B"), "icon": "♥" },
+	1: { "accent": Color("#302A3E"), "accent_soft": Color("#15131D"), "seal": Color("#0E0C14"), "icon": "♠" },
+	2: { "accent": Color("#755019"), "accent_soft": Color("#2C1E0C"), "seal": Color("#181108"), "icon": "♣" },
+	3: { "accent": Color("#1D4B57"), "accent_soft": Color("#0D2229"), "seal": Color("#09171C"), "icon": "♦" },
 }
 
 const SUIT_NAMES := ["红桃", "黑桃", "梅花", "方片"]
 
-var _panel: Panel
-var _title_label: Label
-var _icon_label: Label
-var _suit_label: Label
-var _desc_label: Label
+@onready var _popup: Control = %Popup
+@onready var _card_bg: NinePatchRect = %CardBg
+@onready var _top_accent: ColorRect = %TopAccent
+@onready var _bottom_accent: ColorRect = %BottomAccent
+@onready var _seal: PanelContainer = %SuitSeal
+@onready var _seal_frame: ColorRect = %SealFrame
+@onready var _title_label: Label = %TitleLabel
+@onready var _icon_label: Label = %IconLabel
+@onready var _suit_label: Label = %SuitLabel
+@onready var _desc_label: Label = %DescLabel
 
 
-func _enter_tree() -> void:
+func _ready() -> void:
 	layer = 10
-	_build_ui()
-
-
-func _build_ui() -> void:
-	var cc := CenterContainer.new()
-	cc.set_anchors_preset(Control.PRESET_FULL_RECT)
-	cc.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	add_child(cc)
-
-	_panel = Panel.new()
-	_panel.custom_minimum_size = Vector2(620, 200)
-	_panel.size_flags_horizontal = Control.SIZE_EXPAND
-	_panel.size_flags_vertical = Control.SIZE_EXPAND
-	_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	cc.add_child(_panel)
-
-	var vbox := VBoxContainer.new()
-	vbox.set_anchors_preset(Control.PRESET_FULL_RECT)
-	vbox.add_theme_constant_override("separation", 2)
-	_panel.add_child(vbox)
-
-	# 顶行：标题 + 图标 + 名称
-	var hbox := HBoxContainer.new()
-	hbox.alignment = BoxContainer.ALIGNMENT_CENTER
-	hbox.add_theme_constant_override("separation", 12)
-	hbox.custom_minimum_size = Vector2(0, 80)
-	vbox.add_child(hbox)
-
-	_title_label = Label.new()
-	_title_label.add_theme_font_size_override("font_size", 44)
-	_title_label.add_theme_constant_override("outline_size", 3)
-	_title_label.add_theme_color_override("font_outline_color", Color(0, 0, 0, 0.6))
-	_title_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	hbox.add_child(_title_label)
-
-	_icon_label = Label.new()
-	_icon_label.add_theme_font_size_override("font_size", 52)
-	_icon_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	hbox.add_child(_icon_label)
-
-	_suit_label = Label.new()
-	_suit_label.add_theme_font_size_override("font_size", 36)
-	_suit_label.add_theme_constant_override("outline_size", 2)
-	_suit_label.add_theme_color_override("font_outline_color", Color(0, 0, 0, 0.4))
-	_suit_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	hbox.add_child(_suit_label)
-
-	# 分隔线
-	var sep := HSeparator.new()
-	sep.modulate = Color(1, 1, 1, 0.3)
-	vbox.add_child(sep)
-
-	# 效果描述（加大字号，放在一个带内边距的容器里）
-	var desc_container := MarginContainer.new()
-	desc_container.add_theme_constant_override("margin_top", 6)
-	desc_container.add_theme_constant_override("margin_bottom", 6)
-	desc_container.add_theme_constant_override("margin_left", 20)
-	desc_container.add_theme_constant_override("margin_right", 20)
-	desc_container.custom_minimum_size = Vector2(0, 60)
-	vbox.add_child(desc_container)
-
-	_desc_label = Label.new()
-	_desc_label.add_theme_font_size_override("font_size", 30)
-	_desc_label.add_theme_constant_override("outline_size", 1)
-	_desc_label.add_theme_color_override("font_outline_color", Color(0, 0, 0, 0.3))
-	_desc_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_desc_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	_desc_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	desc_container.add_child(_desc_label)
+	_popup.pivot_offset = _popup.size * 0.5
+	_seal.pivot_offset = _seal.size * 0.5
 
 
 # ==================== 暴击 ====================
 
 func play(suit_index: int, desc: String = "", is_player: bool = true) -> void:
-	var colors = SUIT_COLORS if is_player else ENEMY_SUIT_COLORS
-	var c = colors[suit_index]
+	if not is_node_ready():
+		await ready
 
-	var style := StyleBoxFlat.new()
-	style.bg_color = c["bg"]
-	style.set_corner_radius_all(12)
-	style.set_border_width_all(3)
-	style.border_color = c["border"]
-	style.shadow_size = 10
-	style.shadow_color = Color(0, 0, 0, 0.6)
-	_panel.add_theme_stylebox_override("panel", style)
+	var styles = SUIT_STYLES if is_player else ENEMY_SUIT_STYLES
+	var c = styles.get(suit_index, styles[0])
+	var accent: Color = c["accent"]
+	var accent_soft: Color = c["accent_soft"]
+	var seal_inner := Color("#E6C98D") if is_player else Color("#211A18")
 
-	if is_player:
-		_title_label.text = tr("暴击！")
-	else:
-		_title_label.text = tr("敌暴击！")
-	_title_label.add_theme_color_override("font_color", Color.WHITE)
+	_card_bg.self_modulate = Color(0.92, 0.84, 0.70, 1.0) if is_player else Color(0.58, 0.50, 0.45, 1.0)
+	_top_accent.color = accent
+	_bottom_accent.color = accent_soft
+	_seal_frame.color = seal_inner
+
+	var seal_style := _seal.get_theme_stylebox("panel").duplicate() as StyleBoxFlat
+	seal_style.bg_color = c["seal"]
+	seal_style.border_color = accent
+	_seal.add_theme_stylebox_override("panel", seal_style)
+
+	_title_label.text = tr("暴击！") if is_player else tr("敌暴击！")
+	_title_label.add_theme_color_override("font_color", Color("#2B1711") if is_player else Color("#F0D8C2"))
 
 	_icon_label.text = c["icon"]
-	_icon_label.add_theme_color_override("font_color", c["icon_color"])
+	_icon_label.add_theme_color_override("font_color", accent)
 
-	_suit_label.text = SUIT_NAMES[suit_index]
-	_suit_label.add_theme_color_override("font_color", Color.WHITE)
+	_suit_label.text = SUIT_NAMES[suit_index] if suit_index >= 0 and suit_index < SUIT_NAMES.size() else ""
+	_suit_label.add_theme_color_override("font_color", accent)
 
 	_desc_label.text = desc
-	_desc_label.add_theme_color_override("font_color", Color(1, 1, 1, 0.95) if is_player else Color(0.8, 0.7, 0.7, 0.95))
+	_desc_label.add_theme_color_override("font_color", Color("#2F221B") if is_player else Color("#E4CDC0"))
 
+	_popup.pivot_offset = _popup.size * 0.5
+	_seal.pivot_offset = _seal.size * 0.5
 	_play_tween()
 
 
 # ==================== 动画 ====================
 
 func _play_tween() -> void:
-	_panel.scale = Vector2(2.2, 2.2)
-	_panel.modulate = Color(1, 1, 1, 0)
+	_popup.scale = Vector2(1.26, 0.86)
+	_popup.modulate = Color(1, 1, 1, 0)
+	_seal.scale = Vector2(0.72, 0.72)
+	_seal.rotation_degrees = -8.0
 
-	var tw := create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
-	tw.tween_property(_panel, "scale", Vector2(1.0, 1.0), 0.28)
-	tw.parallel().tween_property(_panel, "modulate", Color(1, 1, 1, 1), 0.18)
-	tw.tween_interval(1.7)
-	tw.tween_property(_panel, "modulate", Color(1, 1, 1, 0), 0.25).set_trans(Tween.TRANS_SINE)
+	var tw := create_tween()
+	tw.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tw.tween_property(_popup, "scale", Vector2.ONE, 0.22)
+	tw.parallel().tween_property(_popup, "modulate", Color.WHITE, 0.14)
+	tw.parallel().tween_property(_seal, "scale", Vector2.ONE, 0.28)
+	tw.parallel().tween_property(_seal, "rotation_degrees", 0.0, 0.28)
+	tw.tween_interval(1.55)
+	tw.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+	tw.tween_property(_popup, "modulate", Color(1, 1, 1, 0), 0.22)
+	tw.parallel().tween_property(_popup, "position:y", _popup.position.y - 18.0, 0.22)
 	tw.tween_callback(queue_free)

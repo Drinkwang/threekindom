@@ -2211,7 +2211,7 @@ func _execute_crit_effect(suit: int) -> void:
 			3:
 				desc = tr("补位发牌")
 				detail_txt.text = tr("暴击·方片！") + desc
-	var popup = load("res://Scene/prefab/crit_popup.gd").new()
+	var popup = load("res://Scene/prefab/crit_popup.tscn").instantiate()
 	add_child(popup)
 	popup.play(suit, desc, isPlayerTurn)
 	if suit == 3:

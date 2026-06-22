@@ -747,9 +747,12 @@ vertical_alignment = 1
 [node name="曹操老" parent="." instance=ExtResource("27_714ud")]
 visible = false
 position = Vector2(705, 591)
+showName = "曹操"
+dialogue_doubleclick = ""
+showborder = true
+showEX = false
 txt2d = ExtResource("28_nwxtq")
 boardType = 1
-showName = "曹操"
 dialogue_resource = ExtResource("29_vclfe")
 dialogue_start = ""
 
@@ -773,9 +776,12 @@ vertical_alignment = 1
 visible = false
 position = Vector2(1265, 612)
 scale = Vector2(1.3, 1.3)
+showName = "诸葛亮"
+dialogue_doubleclick = ""
+showborder = true
+showEX = false
 txt2d = ExtResource("34_1sl7p")
 boardType = 1
-showName = "诸葛亮"
 dialogue_resource = ExtResource("29_vclfe")
 dialogue_start = ""
 
@@ -783,9 +789,12 @@ dialogue_start = ""
 visible = false
 position = Vector2(1294, 613)
 scale = Vector2(0.98, 0.98)
+showName = "郭嘉"
+dialogue_doubleclick = ""
+showborder = true
+showEX = false
 txt2d = ExtResource("30_ar2lf")
 boardType = 1
-showName = "郭嘉"
 dialogue_resource = ExtResource("29_vclfe")
 dialogue_start = ""
 
