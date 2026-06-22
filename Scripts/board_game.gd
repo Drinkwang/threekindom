@@ -1323,7 +1323,7 @@ func AIUseCard():
 			if bestScore < getscore:
 				bestScore = getscore
 				bestIndex = _group
-		if bestIndex == -1:
+		if bestIndex == -1 or bestScore < 1:
 			enemyStage = 0
 			break
 
@@ -1636,7 +1636,7 @@ func calculateStuckScore(stuck:groupType):
 	#能凑齐并且得到的东西能在其它堆凑齐 加加分
 	#是红桃 加分
 		# ===== AI暴击策略：追同花色 =====
-		if last_match_occurred and _match_suit == last_match_suit:
+		if _crit_pending_suit >= 0 and _match_suit == _crit_pending_suit:
 			_score += _get_crit_strategy_value(_match_suit)
 	return _score
 	
@@ -2222,16 +2222,21 @@ func _get_crit_strategy_value(suit: int) -> int:
 	"""AI暴击策略评估：正值=追，负值=避"""
 	match suit:
 		0:  # 红桃：跳回合+扣血
-			if score > enemyscore + 30:
-				return 20  # 大幅领先，提前结束锁定胜局
+			var _near_end = turn_num >= 4  # 再跳一回合就结束
+			if _near_end and score <= enemyscore + 5:
+				return -80  # 快结束了且没大幅领先→绝对不能跳
+			elif score > enemyscore + 30:
+				return 25  # 大幅领先，提前结束锁定胜局
 			elif enemy_hp <= 1:
-				return 15  # 敌人残血，补刀
+				return 20  # 敌人残血，补刀
+			elif _near_end and not (score > enemyscore):
+				return -60  # 末期落后→绝对不能跳
 			elif hp <= 1:
-				return -30  # 自己残血，送死
-			elif score < enemyscore:
-				return -10  # 落后，跳回合=减少追赶时间
+				return -2000  # 自己残血→绝对禁止触发红桃
+			elif score <= enemyscore:
+				return -50  # 平局或落后，跳回合风险大
 			else:
-				return -3
+				return -8
 		1:  # 黑桃：+1步，弃1牌
 			var _hs = enemyhand.get_child_count()
 			if _hs >= 4:
@@ -2249,7 +2254,7 @@ func _get_crit_strategy_value(suit: int) -> int:
 			else:
 				return 2
 		3:  # 方片：补位发牌
-			return 8  # 总体有益
+			return 12  # 总体有益
 	return 0
 
 func reset_crit_chain_state() -> void:
