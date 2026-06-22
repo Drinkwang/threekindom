@@ -792,11 +792,14 @@ func startGame(cardnum,issole,enemyExtraCard):
 			#showSecretCard()#非单人模式才能触发
 				#反派获得一章诡异卡
 		if  GameManager.selectBoardCharacter==boardType.boardCharacter.mizhu:
-			getSecretCard(1,false)
+			if not InventoryManager.has_item(InventoryManagerItem.仕诡卡血姬):
+				getSecretCard(1,false)
 		elif GameManager.selectBoardCharacter==boardType.boardCharacter.chenden:
-			getSecretCard(3,false)
+			if not InventoryManager.has_item(InventoryManagerItem.仕诡卡尸皇):
+				getSecretCard(3,false)
 		elif GameManager.selectBoardCharacter==boardType.boardCharacter.caobao:
-			getSecretCard(2,false)		
+			if not InventoryManager.has_item(InventoryManagerItem.仕诡卡骨龙):
+				getSecretCard(2,false)		
 			#	SoundManager.play_sound(useCar
 		
 	for i in range(0,cardnum):
