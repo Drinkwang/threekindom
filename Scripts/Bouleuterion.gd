@@ -527,7 +527,7 @@ func boardVictory():
 		var _reward:rewardPanel=PanelManager.new_reward()
 	
 		var items={
-			"items": {InventoryManagerItem.ItemEnum.仕诡卡骨龙:1},
+			"items": {InventoryManagerItem.ItemEnum.仕诡卡尸皇:1},
 			"money": 0,
 			"population": 0
 		}

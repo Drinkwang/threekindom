@@ -19,13 +19,13 @@ func initSecretCard(_arrs):
 	
 	if GameManager._boardMode==boardType.boardMode.middle:
 		if not InventoryManager.has_item(InventoryManagerItem.仕诡卡血姬):
-			arrs[4]=false
+			arrs[0]=false
 
 		if not InventoryManager.has_item(InventoryManagerItem.仕诡卡骨龙):
-			arrs[4]=false		
+			arrs[2]=false		
 		if not InventoryManager.has_item(InventoryManagerItem.仕诡卡尸皇):
-			arrs[4]=false
-		arrs[4]=false
+			arrs[1]=false
+		arrs[3]=false
 	
 	for i in range(1,5):
 		if arrs[i-1]==false:

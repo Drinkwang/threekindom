@@ -286,8 +286,9 @@ _data = {
 "YELLOWGUILD": SubResource("Animation_rms3s")
 }
 
-[node name="Node2D2" type="Node2D"]
+[node name="Node2D2" type="Node2D" node_paths=PackedStringArray("rects")]
 script = ExtResource("1_34wyh")
+rects = [NodePath("CanvasLayer/bin"), NodePath("CanvasLayer/shang"), NodePath("CanvasLayer/min"), NodePath("CanvasLayer/shi")]
 
 [node name="正常背景" type="Sprite2D" parent="."]
 position = Vector2(959, 540)
@@ -393,6 +394,8 @@ offset_left = 844.0
 offset_top = 396.0
 offset_right = 843.92
 offset_bottom = 394.8
+_value = 0
+holdType = 0
 
 [node name="minArea" type="Area2D" parent="CanvasLayer"]
 position = Vector2(624, 559)

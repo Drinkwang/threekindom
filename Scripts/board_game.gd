@@ -783,6 +783,22 @@ func startGame(cardnum,issole,enemyExtraCard):
 		hold_enegy_panel.show()
 	else:
 		hold_enegy_panel.hide()	
+		
+
+	#if isPlayerTurn==true:
+	if GameManager._boardMode==boardType.boardMode.middle:
+		if InventoryManager.has_item(InventoryManagerItem.仕诡卡尸皇) or InventoryManager.has_item(InventoryManagerItem.仕诡卡血姬) or InventoryManager.has_item(InventoryManagerItem.仕诡卡骨龙):
+					
+			showSecretCard()#非单人模式才能触发
+				#反派获得一章诡异卡
+		if  GameManager.selectBoardCharacter==boardType.boardCharacter.mizhu:
+			getSecretCard(1,false)
+		elif GameManager.selectBoardCharacter==boardType.boardCharacter.chenden:
+			getSecretCard(3,false)
+		elif GameManager.selectBoardCharacter==boardType.boardCharacter.caobao:
+			getSecretCard(2,false)		
+			#	SoundManager.play_sound(useCar
+		
 	for i in range(0,cardnum):
 		drawOne(true)
 		if issole==false:
@@ -857,8 +873,15 @@ func enterNewPhase(stage:phaseName):
 		if isPlayerTurn==true:
 			if turn_num==1 and GameManager._boardMode==boardType.boardMode.middle:
 				if InventoryManager.has_item(InventoryManagerItem.仕诡卡尸皇) or InventoryManager.has_item(InventoryManagerItem.仕诡卡血姬) or InventoryManager.has_item(InventoryManagerItem.仕诡卡骨龙):
-					
-					showSecretCard()#非单人模式才能触发
+					pass
+					#showSecretCard()#非单人模式才能触发
+				#反派获得一章诡异卡
+				#if  GameManager.selectBoardCharacter==boardType.boardCharacter.mizhu:
+					#getSecretCard(1,false)
+				#elif GameManager.selectBoardCharacter==boardType.boardCharacter.chenden:
+					#getSecretCard(3,false)
+				#elif GameManager.selectBoardCharacter==boardType.boardCharacter.caobao:
+					#getSecretCard(2,false)		
 			#	SoundManager.play_sound(useCardSound)
 			reset_crit_chain_state()
 			playerStage=maxUseCard
@@ -1336,7 +1359,7 @@ func AIUseCardInStuck(bestIndex,alreadyUse:Array):
 		if hand_card is boardCard:
 			for stack_card in cards:
 				if stack_card is boardCard:
-					if floor(hand_card._value%13)==11 or floor(hand_card._value/13) == floor(stack_card._value/13) and not alreadyUse.has(stack_card) and not alreadyUse.has(hand_card):
+					if (floor(hand_card._value%13)==11 and not (floor(hand_card._value/13)==0 and enemy_hp>=3)) or floor(hand_card._value/13) == floor(stack_card._value/13) and not alreadyUse.has(stack_card) and not alreadyUse.has(hand_card):
 						useCard=true
 						alreadyUse.append(stack_card)
 						alreadyUse.append(hand_card)
@@ -1566,7 +1589,7 @@ func calculateStuckScore(stuck:groupType):
 		if hand_card is boardCard:
 			for stack_card in cards:
 				if stack_card is boardCard:
-					if floor(hand_card._value/13) == floor(stack_card._value/13) or (floor(hand_card._value%13)==11 and floor(hand_card._value/13) != floor(stack_card._value/13)):
+					if floor(hand_card._value/13) == floor(stack_card._value/13) or (floor(hand_card._value%13)==11 and floor(hand_card._value/13) != floor(stack_card._value/13) and not (floor(hand_card._value/13)==0 and enemy_hp>=3)):
 						canscore= true
 						_match_suit = floor(hand_card._value/13)
 						break
