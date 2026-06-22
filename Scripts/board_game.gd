@@ -2170,7 +2170,6 @@ func _execute_crit_effect(suit: int) -> void:
 				desc = tr("抽1牌，步数-1")
 				detail_txt.text = tr("暴击·梅花！") + desc
 			3:
-				_execute_diamond_crit()
 				desc = tr("补位发牌")
 				detail_txt.text = tr("暴击·方片！") + desc
 	else:
@@ -2204,12 +2203,15 @@ func _execute_crit_effect(suit: int) -> void:
 				desc = tr("抽2牌，步数-2")
 				detail_txt.text = tr("暴击·梅花！") + desc
 			3:
-				_execute_diamond_crit()
 				desc = tr("补位发牌")
 				detail_txt.text = tr("暴击·方片！") + desc
 	var popup = load("res://Scene/prefab/crit_popup.gd").new()
 	add_child(popup)
 	popup.play(suit, desc, isPlayerTurn)
+	if suit == 3:
+		await popup.tree_exited
+		_execute_diamond_crit()
+
 func _get_crit_strategy_value(suit: int) -> int:
 	"""AI暴击策略评估：正值=追，负值=避"""
 	match suit:

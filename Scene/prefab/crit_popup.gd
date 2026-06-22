@@ -140,6 +140,6 @@ func _play_tween() -> void:
 	var tw := create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
 	tw.tween_property(_panel, "scale", Vector2(1.0, 1.0), 0.28)
 	tw.parallel().tween_property(_panel, "modulate", Color(1, 1, 1, 1), 0.18)
-	tw.tween_interval(0.7)
+	tw.tween_interval(1.7)
 	tw.tween_property(_panel, "modulate", Color(1, 1, 1, 0), 0.25).set_trans(Tween.TRANS_SINE)
 	tw.tween_callback(queue_free)
