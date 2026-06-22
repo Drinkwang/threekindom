@@ -1960,11 +1960,14 @@ func _update_crit_indicator(suit: int) -> void:
 	if _crit_indicator == null:
 		return
 	if suit < 0 or not isPlayerTurn:
-		_crit_indicator.text =  "[color=white]暴击待发：无[/color]"
+		_crit_indicator.text = ""
+		_crit_indicator.hide()
 		return
-	var icons = ["♥", "♠", "♣", "♦"]
-	var colors = ["red", "black", "black", "red"]
-	_crit_indicator.text = "[color=white]暴击待发：[/color][color=" + colors[suit] + "]" + icons[suit] + "[/color]"
+	var tex_paths = ["res://Asset/ui/人心.png", "res://Asset/ui/战力.png", "res://Asset/ui/钱财.png", "res://Asset/ui/兵力.png"]
+	_crit_indicator.text = "[color=white]暴击待发：[/color] [img=36]" + tex_paths[suit] + "[/img]"
+	
+	if not _crit_indicator.visible:
+		_crit_indicator.show()
 
 
 func _on_crit_indicator_mouse_entered() -> void:
