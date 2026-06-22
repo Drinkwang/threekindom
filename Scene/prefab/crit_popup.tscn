@@ -1,0 +1,224 @@
+[gd_scene load_steps=8 format=3 uid="uid://des8y7q6yokax"]
+
+[ext_resource type="Script" path="res://Scene/prefab/crit_popup.gd" id="1_crit"]
+[ext_resource type="Texture2D" uid="uid://d31ve0oihgf7g" path="res://Asset/ui/paper_panel_1286_x_819.png" id="2_paper"]
+[ext_resource type="FontFile" uid="uid://b8le0fd0ujbqx" path="res://Asset/Font/1_blod.ttf" id="3_bold"]
+[ext_resource type="FontFile" uid="uid://to00njkwmxts" path="res://Asset/Font/1_sim.ttf" id="4_sim"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_shadow"]
+bg_color = Color(0, 0, 0, 0.42)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_seal"]
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
+bg_color = Color(0.18, 0.09, 0.08, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.7, 0.23, 0.2, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0, 0, 0, 0.36)
+shadow_size = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_desc"]
+content_margin_left = 12.0
+content_margin_top = 8.0
+content_margin_right = 12.0
+content_margin_bottom = 8.0
+bg_color = Color(0.12, 0.08, 0.04, 0.12)
+border_width_top = 1
+border_width_bottom = 1
+border_color = Color(0.25, 0.13, 0.07, 0.28)
+
+[node name="CritPopup" type="CanvasLayer"]
+script = ExtResource("1_crit")
+
+[node name="Root" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Popup" type="Control" parent="Root"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(760, 232)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Shadow" type="Panel" parent="Root/Popup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 14.0
+offset_right = 12.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_shadow")
+
+[node name="CardBg" type="NinePatchRect" parent="Root/Popup"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_paper")
+patch_margin_left = 80
+patch_margin_top = 80
+patch_margin_right = 80
+patch_margin_bottom = 80
+
+[node name="TopAccent" type="ColorRect" parent="Root/Popup"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 34.0
+offset_top = 22.0
+offset_right = -34.0
+offset_bottom = 28.0
+grow_horizontal = 2
+mouse_filter = 2
+color = Color(0.7, 0.23, 0.2, 1)
+
+[node name="BottomAccent" type="ColorRect" parent="Root/Popup"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 48.0
+offset_top = -32.0
+offset_right = -48.0
+offset_bottom = -28.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+color = Color(0.36, 0.14, 0.12, 1)
+
+[node name="ContentMargin" type="MarginContainer" parent="Root/Popup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 54.0
+offset_top = 38.0
+offset_right = -54.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Rows" type="VBoxContainer" parent="Root/Popup/ContentMargin"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 10
+
+[node name="MainRow" type="HBoxContainer" parent="Root/Popup/ContentMargin/Rows"]
+custom_minimum_size = Vector2(0, 104)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="SuitSeal" type="PanelContainer" parent="Root/Popup/ContentMargin/Rows/MainRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(104, 104)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_seal")
+
+[node name="SealFrame" type="ColorRect" parent="Root/Popup/ContentMargin/Rows/MainRow/SuitSeal"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.7, 0.23, 0.2, 1)
+
+[node name="IconLabel" type="Label" parent="Root/Popup/ContentMargin/Rows/MainRow/SuitSeal/SealFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.7, 0.23, 0.2, 1)
+theme_override_colors/font_outline_color = Color(0.03, 0.02, 0.015, 0.9)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("3_bold")
+theme_override_font_sizes/font_size = 58
+text = "♥"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TitleColumn" type="VBoxContainer" parent="Root/Popup/ContentMargin/Rows/MainRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="TitleLine" type="HBoxContainer" parent="Root/Popup/ContentMargin/Rows/MainRow/TitleColumn"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="Root/Popup/ContentMargin/Rows/MainRow/TitleColumn/TitleLine"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.17, 0.09, 0.07, 1)
+theme_override_colors/font_outline_color = Color(0.96, 0.82, 0.58, 0.55)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("3_bold")
+theme_override_font_sizes/font_size = 54
+text = "暴击！"
+vertical_alignment = 1
+
+[node name="SuitLabel" type="Label" parent="Root/Popup/ContentMargin/Rows/MainRow/TitleColumn/TitleLine"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.23, 0.2, 1)
+theme_override_colors/font_outline_color = Color(0.96, 0.82, 0.58, 0.46)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("4_sim")
+theme_override_font_sizes/font_size = 36
+text = "红桃"
+vertical_alignment = 1
+
+[node name="DescPanel" type="PanelContainer" parent="Root/Popup/ContentMargin/Rows"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_desc")
+
+[node name="DescLabel" type="Label" parent="Root/Popup/ContentMargin/Rows/DescPanel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.19, 0.13, 0.1, 1)
+theme_override_colors/font_outline_color = Color(0.96, 0.82, 0.58, 0.35)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("4_sim")
+theme_override_font_sizes/font_size = 28
+text = "获得额外出牌机会"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
