@@ -66,3 +66,4 @@ const book = preload("res://Asset/sound/翻阅.mp3")
 const SOILDER = preload("res://Asset/sound/soilder.mp3")
 
 const fire = preload("res://Asset/sound/04_Fire_explosion_04_medium.wav")
+const fog = preload("res://Asset/sound/黑雾音效.wav")

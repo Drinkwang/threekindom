@@ -16,6 +16,17 @@ func _ready() -> void:
 func initSecretCard(_arrs):
 
 	arrs=_arrs
+	
+	if GameManager._boardMode==boardType.boardMode.middle:
+		if not InventoryManager.has_item(InventoryManagerItem.仕诡卡血姬):
+			arrs[4]=false
+
+		if not InventoryManager.has_item(InventoryManagerItem.仕诡卡骨龙):
+			arrs[4]=false		
+		if not InventoryManager.has_item(InventoryManagerItem.仕诡卡尸皇):
+			arrs[4]=false
+		arrs[4]=false
+	
 	for i in range(1,5):
 		if arrs[i-1]==false:
 			self["control_"+str(i)].alreaysold.show()

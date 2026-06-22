@@ -286,9 +286,8 @@ _data = {
 "YELLOWGUILD": SubResource("Animation_rms3s")
 }
 
-[node name="Node2D2" type="Node2D" node_paths=PackedStringArray("rects")]
+[node name="Node2D2" type="Node2D"]
 script = ExtResource("1_34wyh")
-rects = [NodePath("CanvasLayer/shi"), NodePath("CanvasLayer/min"), NodePath("CanvasLayer/shang"), NodePath("CanvasLayer/bin"), NodePath("CanvasLayer/minArea"), NodePath("CanvasLayer/shiArea"), NodePath("CanvasLayer/shangArea"), NodePath("CanvasLayer/binArea")]
 
 [node name="正常背景" type="Sprite2D" parent="."]
 position = Vector2(959, 540)
@@ -433,37 +432,37 @@ shape = SubResource("RectangleShape2D_7w720")
 
 [node name="bin" parent="CanvasLayer" instance=ExtResource("12_ucf88")]
 position = Vector2(1314, 419)
-showName = "兵"
-dialogue_doubleclick = "选择牌堆_兵"
 txt2d = ExtResource("13_xjudg")
 boardType = 1
+showName = "兵"
+dialogue_doubleclick = "选择牌堆_兵"
 dialogue_resource = ExtResource("14_c6n4h")
 dialogue_start = "选择牌堆_兵"
 
 [node name="shang" parent="CanvasLayer" instance=ExtResource("12_ucf88")]
 position = Vector2(1084, 420)
-showName = "商"
-dialogue_doubleclick = "选择牌堆_商"
 txt2d = ExtResource("15_ejsfc")
 boardType = 1
+showName = "商"
+dialogue_doubleclick = "选择牌堆_商"
 dialogue_resource = ExtResource("14_c6n4h")
 dialogue_start = "选择牌堆_商"
 
 [node name="min" parent="CanvasLayer" instance=ExtResource("12_ucf88")]
 position = Vector2(624, 420)
-showName = "民"
-dialogue_doubleclick = "选择牌堆_民"
 txt2d = ExtResource("16_u2c7t")
 boardType = 1
+showName = "民"
+dialogue_doubleclick = "选择牌堆_民"
 dialogue_resource = ExtResource("14_c6n4h")
 dialogue_start = "选择牌堆_民"
 
 [node name="shi" parent="CanvasLayer" instance=ExtResource("12_ucf88")]
 position = Vector2(855, 422)
-showName = "士"
-dialogue_doubleclick = "选择牌堆_士"
 txt2d = ExtResource("17_agoab")
 boardType = 1
+showName = "士"
+dialogue_doubleclick = "选择牌堆_士"
 dialogue_resource = ExtResource("14_c6n4h")
 dialogue_start = "选择牌堆_士"
 

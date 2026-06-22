@@ -236,19 +236,19 @@ metadata/_edit_use_anchors_ = true
 visible = false
 position = Vector2(679, 583)
 scale = Vector2(1.2, 1.2)
-showName = "糜竺"
-dialogue_doubleclick = "second"
 txt2d = ExtResource("7_ggy3f")
 boardType = 1
+showName = "糜竺"
+dialogue_doubleclick = "second"
 dialogue_resource = ExtResource("2_who4l")
 dialogue_start = "点击陈群"
 
 [node name="华佗" parent="CanvasBook" instance=ExtResource("15_2mi3t")]
 visible = false
 position = Vector2(1382, 546)
-dialogue_doubleclick = "second"
 txt2d = ExtResource("18_8m44b")
 boardType = 1
+dialogue_doubleclick = "second"
 dialogue_resource = ExtResource("2_who4l")
 dialogue_start = ""
 
@@ -256,20 +256,20 @@ dialogue_start = ""
 visible = false
 position = Vector2(1217, 585)
 scale = Vector2(1.2, 1.2)
-showName = "陈登"
-dialogue_doubleclick = "second"
 txt2d = ExtResource("7_0cx3q")
 boardType = 1
+showName = "陈登"
+dialogue_doubleclick = "second"
 dialogue_resource = ExtResource("2_who4l")
 dialogue_start = "点击陈群"
 
 [node name="zhubu" parent="CanvasBook" instance=ExtResource("15_2mi3t")]
 visible = false
 position = Vector2(696, 614)
-showName = "主簿"
-dialogue_doubleclick = "second"
 txt2d = ExtResource("19_dsni3")
 boardType = 1
+showName = "主簿"
+dialogue_doubleclick = "second"
 dialogue_resource = ExtResource("2_who4l")
 dialogue_start = "点击陈群"
 
@@ -375,10 +375,10 @@ autoplay = "YELLOWGUILD"
 [node name="曹豹" parent="CanvasBook" instance=ExtResource("15_2mi3t")]
 visible = false
 position = Vector2(1206, 590)
-showName = "曹豹"
-dialogue_doubleclick = "second"
 txt2d = ExtResource("31_5lg25")
 boardType = 1
+showName = "曹豹"
+dialogue_doubleclick = "second"
 dialogue_resource = ExtResource("2_who4l")
 dialogue_start = ""
 
@@ -386,10 +386,10 @@ dialogue_start = ""
 visible = false
 position = Vector2(751, 577)
 scale = Vector2(1.05, 1.05)
-showName = "吕布"
-dialogue_doubleclick = "second"
 txt2d = ExtResource("32_nvl47")
 boardType = 1
+showName = "吕布"
+dialogue_doubleclick = "second"
 dialogue_resource = ExtResource("2_who4l")
 dialogue_start = ""
 

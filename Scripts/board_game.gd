@@ -210,7 +210,7 @@ func _ready() -> void:
 		if GameManager.selectBoardCharacter==boardType.boardCharacter.caobao:
 			maxUseCard=4
 			achiIndex=3
-
+		
 		elif GameManager.selectBoardCharacter==boardType.boardCharacter.mizhu:
 			maxUseCard=4
 			achiIndex=5
@@ -219,7 +219,6 @@ func _ready() -> void:
 			maxUseCard=4
 			achiIndex=4
 
-			
 	elif GameManager._boardMode==boardType.boardMode.high:
 		if GameManager.selectBoardCharacter==boardType.boardCharacter.caobao:
 			maxUseCard=4
@@ -292,7 +291,7 @@ func initGame():
 	_crit_indicator = $baojiTxt
 	if _crit_indicator:
 		_crit_indicator.bbcode_enabled = true
-		_crit_indicator.mouse_filter = Control.MOUSE_FILTER_STOP
+
 		# 信号只连接一次
 		if not _crit_indicator.mouse_entered.is_connected(_on_crit_indicator_mouse_entered):
 			_crit_indicator.mouse_entered.connect(_on_crit_indicator_mouse_entered)
@@ -383,6 +382,8 @@ func enterGame():
 			extraCard=2
 			cardNum=4
 			achiIndex=4
+			
+			
 	elif GameManager._boardMode==boardType.boardMode.high:
 		if GameManager.selectBoardCharacter==boardType.boardCharacter.caobao:
 			maxUseCard=4
@@ -854,7 +855,10 @@ func enterNewPhase(stage:phaseName):
 				await enterNewPhase(phaseName.endturn)
 	elif _phaseName==phaseName.useCard:
 		if isPlayerTurn==true:
-			#if turn_num<5:
+			if turn_num==1 and GameManager._boardMode==boardType.boardMode.middle:
+				if InventoryManager.has_item(InventoryManagerItem.仕诡卡尸皇) or InventoryManager.has_item(InventoryManagerItem.仕诡卡血姬) or InventoryManager.has_item(InventoryManagerItem.仕诡卡骨龙):
+					
+					showSecretCard()#非单人模式才能触发
 			#	SoundManager.play_sound(useCardSound)
 			reset_crit_chain_state()
 			playerStage=maxUseCard
@@ -1501,16 +1505,16 @@ func excuteSecret(groupobj:Array):
 					
 					secretCard.queue_free()				
 						# ===== 诡异卡触发暴击追踪 =====
-						var _q_suit = _secretsuit - 1
-						if last_match_occurred and last_match_suit == _q_suit:
-							_execute_crit_effect(_q_suit)
-							_update_crit_indicator(-1)
-						elif last_match_occurred and last_match_suit != _q_suit:
-							_update_crit_indicator(_q_suit)
-						else:
-							_update_crit_indicator(_q_suit)
-						last_match_suit = _q_suit
-						last_match_occurred = true
+					var _q_suit = _secretsuit - 1
+					if last_match_occurred and last_match_suit == _q_suit:
+						_execute_crit_effect(_q_suit)
+						_update_crit_indicator(-1)
+					elif last_match_occurred and last_match_suit != _q_suit:
+						_update_crit_indicator(_q_suit)
+					else:
+						_update_crit_indicator(_q_suit)
+					last_match_suit = _q_suit
+					last_match_occurred = true
 				
 				
 				

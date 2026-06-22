@@ -43,7 +43,7 @@ func _ready():
 	Transitions.post_transition.connect(post_transition)
 	control.buttonClick.connect(_buttonListClick)
 
-
+	#blackMistDissolve()
 	
 	pass # Replace with function body.
 
@@ -869,4 +869,61 @@ func enterXuanYinSecret():
 
 
 func blackMistDissolve():
-	pass
+	SoundManager.play_sound(sounds.fog)
+	var viewport_size = get_viewport().get_visible_rect().size
+	var center = viewport_size / 2
+	var particles = GPUParticles2D.new()
+	particles.name = "BlackMistEffect"
+	particles.position = center
+	particles.emitting = false
+	particles.one_shot = true
+	particles.explosiveness = 0.8
+	particles.amount = 60
+	particles.lifetime = 1.8
+	particles.preprocess = 0.0
+	particles.speed_scale = 1.0
+	particles.z_index = 100
+	$CanvasLayer.add_child(particles)
+	var material = ParticleProcessMaterial.new()
+	material.particle_flag_align_y = false
+	material.direction = Vector3(0, -1, 0)
+	material.spread = 180.0
+	material.gravity = Vector3.ZERO
+	material.initial_velocity_min = 60.0
+	material.initial_velocity_max = 180.0
+	material.angular_velocity_min = -30.0
+	material.angular_velocity_max = 30.0
+	var scale_curve = Curve.new()
+	scale_curve.add_point(Vector2(0.0, 0.1))
+	scale_curve.add_point(Vector2(0.2, 1.0))
+	scale_curve.add_point(Vector2(0.7, 0.8))
+	scale_curve.add_point(Vector2(1.0, 0.0))
+	material.scale_curve = scale_curve
+	var alpha_curve = Curve.new()
+	alpha_curve.add_point(Vector2(0.0, 0.0))
+	alpha_curve.add_point(Vector2(0.15, 0.8))
+	alpha_curve.add_point(Vector2(0.6, 0.6))
+	alpha_curve.add_point(Vector2(1.0, 0.0))
+	material.alpha_curve = alpha_curve
+	var _grad = Gradient.new()
+	_grad.set_color(0, Color(0.02, 0.02, 0.04, 1.0))
+	_grad.set_color(1, Color(0.1, 0.1, 0.15, 1.0))
+	_grad.set_color(2, Color(0.2, 0.2, 0.25, 0.6))
+	_grad.set_color(3, Color(0.3, 0.3, 0.35, 0.0))
+	_grad.set_offset(0, 0.0)
+	_grad.set_offset(1, 0.3)
+	_grad.set_offset(2, 0.7)
+	_grad.set_offset(3, 1.0)
+	material.color_ramp = _grad
+	material.color = Color(0.05, 0.05, 0.08, 1.0)
+	material.scale_min = 0.3
+	material.scale_max = 1.2
+	material.emission_shape = ParticleProcessMaterial.EMISSION_SHAPE_SPHERE
+	material.emission_sphere_radius = 30.0
+	particles.process_material = material
+	var texture = preload("res://Asset/particle/2/vnbvx_5.png")
+	particles.texture = texture
+	particles.emitting = true
+	await get_tree().create_timer(particles.lifetime + 0.5).timeout
+	if is_instance_valid(particles):
+		particles.queue_free()
