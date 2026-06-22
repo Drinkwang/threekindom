@@ -16,6 +16,7 @@ var cardsize
 var _is_first_draw=true
 @export var rects:Array[Node2D]
 const BOARD_CARD = preload("res://Scene/prefab/boardCard.tscn")
+const AI_NO_MOVE_SCORE := -1000000
 
 @onready var board_panel: Panel = $CanvasLayer/boardPanel
 var turnAllnum=5
@@ -1316,19 +1317,13 @@ func AIUseCard():
 	while enemyStage > 0:
 		if is_match_finished():
 			return
-		var bestScore := 0
-		var bestIndex := -1
-		for _group in range(1, 5):
-			var getscore = calculateStuckScore(_group)
-			if bestScore < getscore:
-				bestScore = getscore
-				bestIndex = _group
-		if bestIndex == -1 or bestScore < 1:
+		var best_move := _get_best_ai_move(alreadyUse)
+		if best_move.is_empty() or best_move["score"] < 1:
 			enemyStage = 0
 			break
 
 		# 一次完整出牌（含移动、入组、配对奖励、技能结算），严格等待完成
-		await AIUseCardInStuck(bestIndex, alreadyUse)
+		await _play_ai_move(best_move, alreadyUse)
 		if is_match_finished():
 			return
 		enemyStage -= 1
@@ -1366,47 +1361,190 @@ func AIUseCard():
 		#phaseEnd()
 		
 func AIUseCardInStuck(bestIndex,alreadyUse:Array):
-	var _groupobj=getGroupObj(bestIndex)
-	#能凑齐，加分
-	var useCard=false
-	var cards=_groupobj.get_children()
-	var handCard=enemyhand.get_children()
-		
-		
-		
-	
-		
-	for hand_card in handCard:
-		if hand_card is boardCard:
-			# AI满血时跳过红桃诡异卡
-			if floor(hand_card._value/13)==0 and floor(hand_card._value%13)==11 and enemy_hp>=3:
-				continue
-			for stack_card in cards:
-				if stack_card is boardCard:
-					if (floor(hand_card._value%13)==11 and not (floor(hand_card._value/13)==0 and enemy_hp>=3)) or floor(hand_card._value/13) == floor(stack_card._value/13) and not alreadyUse.has(stack_card) and not alreadyUse.has(hand_card):
-						useCard=true
-						alreadyUse.append(stack_card)
-						alreadyUse.append(hand_card)
-						var tween=create_tween()
-						hand_card.reparent(canvas_layer)	
-						hand_card.holdType=cardHoldType.stack
-						hand_card.back_rect.hide()
-						tween.tween_property(hand_card, "global_position", _groupobj.global_position, 1)
-						#tween.tween_property(tempheart.material, "shader_parameter/progress", 1.0, 1.0).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
+	var best_move := _get_best_ai_move_for_group(bestIndex, alreadyUse)
+	if best_move.is_empty():
+		return
+	await _play_ai_move(best_move, alreadyUse)
 
-						await tween.finished
-						
-						if hand_card!=null:
-							hand_card.reparent(_groupobj)
-					
-						await settleOneGroup(_groupobj)
-								#调用结算函数	
-						
-						#tween.tween_callback(movefinish.bind(hand_card,groupobj))  # 播放完成后调用函数
-						#实际用牌逻辑 将handcard打入到groupobj
-						break
-			if useCard==true:
+
+func _get_best_ai_move(alreadyUse:Array) -> Dictionary:
+	var best_move := {}
+	var best_score := AI_NO_MOVE_SCORE
+	for target_group in range(1, 5):
+		var move := _get_best_ai_move_for_group(target_group, alreadyUse)
+		if not move.is_empty() and move["score"] > best_score:
+			best_score = move["score"]
+			best_move = move
+	return best_move
+
+
+func _get_best_ai_move_for_group(target_group:int, alreadyUse:Array) -> Dictionary:
+	var groupobj := getGroupObj(target_group)
+	if groupobj == null:
+		return {}
+
+	var group_cards := get_valid_children(groupobj)
+	if group_cards.is_empty():
+		return {}
+
+	var best_move := {}
+	var best_score := AI_NO_MOVE_SCORE
+	for hand_card in get_valid_children(enemyhand):
+		if not hand_card is boardCard or alreadyUse.has(hand_card):
+			continue
+		var move := _score_ai_move(hand_card, target_group, group_cards, alreadyUse)
+		if not move.is_empty() and move["score"] > best_score:
+			best_score = move["score"]
+			best_move = move
+	return best_move
+
+
+func _score_ai_move(hand_card:boardCard, target_group:int, group_cards:Array, alreadyUse:Array) -> Dictionary:
+	var hand_suit := floori(hand_card._value / 13)
+	var hand_reside := floori(hand_card._value % 13)
+	var is_secret := hand_reside == 11
+	var matched_stack:boardCard = null
+
+	if is_secret:
+		if hand_suit == 0 and enemy_hp >= 3:
+			return {}
+	else:
+		for stack_card in group_cards:
+			if stack_card is boardCard and not alreadyUse.has(stack_card) and floori(stack_card._value / 13) == hand_suit:
+				matched_stack = stack_card
 				break
+		if matched_stack == null:
+			return {}
+
+	var score := _score_ai_secret_move(hand_suit, target_group) if is_secret else _score_ai_match_move(hand_suit, target_group)
+	if score <= AI_NO_MOVE_SCORE:
+		return {}
+
+	return {
+		"score": score,
+		"group": target_group,
+		"card": hand_card,
+		"stack": matched_stack,
+		"is_secret": is_secret,
+	}
+
+
+func _score_ai_match_move(match_suit:int, target_group:int) -> int:
+	var move_score := 20
+	var score_gap:int = enemyscore - score
+
+	if not enemyEngergyHold.has(match_suit + 1):
+		move_score += 6
+		if issecretGame and enemyEngergyHold.size() >= 3 and hasSecretCard.has(true):
+			move_score += 18
+
+	var chain_count := _count_ai_followup_matches(target_group - 1, target_group)
+	move_score += chain_count * 8
+
+	if target_group == groupType.min:
+		move_score += 5
+	elif target_group == groupType.bin:
+		move_score += 3
+
+	if _crit_pending_suit >= 0:
+		if match_suit == _crit_pending_suit:
+			move_score += _get_crit_strategy_value(match_suit)
+		elif _get_crit_strategy_value(_crit_pending_suit) < -30:
+			move_score += 8
+
+	if turn_num >= 4 and score_gap < 0:
+		move_score += 8
+	elif turn_num >= 4 and score_gap > 25:
+		move_score += 3
+
+	move_score += _count_enemy_hand_suit(match_suit) - 1
+	return move_score
+
+
+func _score_ai_secret_move(secret_suit:int, target_group:int) -> int:
+	var move_score := 0
+	var score_gap:int = enemyscore - score
+
+	match secret_suit:
+		0:
+			if enemy_hp >= 3:
+				return AI_NO_MOVE_SCORE
+			move_score = 16 + (3 - enemy_hp) * 18
+		1:
+			move_score = 12 + min(myhand.get_child_count(), 5) * 4
+			if score_gap < 0:
+				move_score += 6
+		2:
+			move_score = 18
+			if enemyhand.get_child_count() <= 2:
+				move_score += 12
+			if enemyStage <= 1:
+				move_score += 8
+		3:
+			move_score = 18
+			if score_gap < 0:
+				move_score += 14
+			elif score_gap <= 20:
+				move_score += 8
+		_:
+			return AI_NO_MOVE_SCORE
+
+	if _crit_pending_suit >= 0:
+		if secret_suit == _crit_pending_suit:
+			move_score += _get_crit_strategy_value(secret_suit)
+		elif _get_crit_strategy_value(_crit_pending_suit) < -30:
+			move_score += 6
+
+	if target_group == groupType.min and enemy_hp <= 1:
+		move_score += 4
+	return move_score
+
+
+func _count_ai_followup_matches(draw_suit:int, current_group:int) -> int:
+	var count := 0
+	for g in range(1, 5):
+		if g == current_group:
+			continue
+		var groupobj := getGroupObj(g)
+		if groupobj == null:
+			continue
+		for card in get_valid_children(groupobj):
+			if card is boardCard and floori(card._value / 13) == draw_suit:
+				count += 1
+				break
+	return count
+
+
+func _count_enemy_hand_suit(suit:int) -> int:
+	var count := 0
+	for card in get_valid_children(enemyhand):
+		if card is boardCard and floori(card._value / 13) == suit:
+			count += 1
+	return count
+
+
+func _play_ai_move(move:Dictionary, alreadyUse:Array) -> void:
+	var groupobj := getGroupObj(move["group"])
+	var hand_card:boardCard = move["card"]
+	if groupobj == null or hand_card == null or not is_instance_valid(hand_card) or hand_card.is_queued_for_deletion():
+		return
+
+	if not alreadyUse.has(hand_card):
+		alreadyUse.append(hand_card)
+	var stack_card = move["stack"]
+	if stack_card != null and is_instance_valid(stack_card) and not alreadyUse.has(stack_card):
+		alreadyUse.append(stack_card)
+
+	var tween=create_tween()
+	hand_card.reparent(canvas_layer)
+	hand_card.holdType=cardHoldType.stack
+	hand_card.back_rect.hide()
+	tween.tween_property(hand_card, "global_position", groupobj.global_position, 1)
+
+	await tween.finished
+	if hand_card != null and is_instance_valid(hand_card) and not hand_card.is_queued_for_deletion():
+		hand_card.reparent(groupobj)
+		await settleOneGroup(groupobj)
 func get_valid_children(node: Node) -> Array:
 	var valid:Array = []
 	for child in node.get_children():
@@ -2223,20 +2361,20 @@ func _get_crit_strategy_value(suit: int) -> int:
 	match suit:
 		0:  # 红桃：跳回合+扣血
 			var _near_end = turn_num >= 4  # 再跳一回合就结束
-			if _near_end and enemyscore <= score + 5:
-				return -80  # 快结束了且没大幅领先→绝对不能跳
-			elif enemyscore > score + 30:
-				return 25  # 大幅领先，提前结束锁定胜局
-			elif enemy_hp <= 1:
-				return 20  # 敌人残血，补刀
+			if enemy_hp <= 1:
+				return -2000  # 红桃会扣自己血，残血绝对不能触发
+			if _near_end and enemyscore > score + 10:
+				return 35  # 末回合领先时，跳回合可以锁定胜局
+			elif _near_end:
+				return -80  # 快结束但没领先，不能帮对局提前结算
+			elif enemyscore > score + 35 and enemy_hp >= 3:
+				return 12  # 大幅领先且血量安全时可以接受
 			elif _near_end and not (enemyscore > score):
 				return -60  # 末期落后→绝对不能跳
-			elif hp <= 1:
-				return -2000  # 自己残血→绝对禁止触发红桃
 			elif enemyscore <= score:
 				return -50  # 平局或落后，跳回合风险大
 			else:
-				return -8
+				return -20
 		1:  # 黑桃：+1步，弃1牌
 			var _hs = enemyhand.get_child_count()
 			if _hs >= 4:
