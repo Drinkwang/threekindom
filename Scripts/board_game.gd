@@ -2115,6 +2115,8 @@ func check_and_trigger_crit(suit_index: int) -> void:
 	if last_match_occurred and last_match_suit == suit_index:
 		_execute_crit_effect(suit_index)
 		_update_crit_indicator(-1)
+		last_match_occurred = false
+		return
 	elif last_match_occurred and last_match_suit != suit_index:
 		_update_crit_indicator(suit_index)
 	else:
