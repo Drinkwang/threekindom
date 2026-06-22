@@ -2223,17 +2223,17 @@ func _get_crit_strategy_value(suit: int) -> int:
 	match suit:
 		0:  # 红桃：跳回合+扣血
 			var _near_end = turn_num >= 4  # 再跳一回合就结束
-			if _near_end and score <= enemyscore + 5:
+			if _near_end and enemyscore <= score + 5:
 				return -80  # 快结束了且没大幅领先→绝对不能跳
-			elif score > enemyscore + 30:
+			elif enemyscore > score + 30:
 				return 25  # 大幅领先，提前结束锁定胜局
 			elif enemy_hp <= 1:
 				return 20  # 敌人残血，补刀
-			elif _near_end and not (score > enemyscore):
+			elif _near_end and not (enemyscore > score):
 				return -60  # 末期落后→绝对不能跳
 			elif hp <= 1:
 				return -2000  # 自己残血→绝对禁止触发红桃
-			elif score <= enemyscore:
+			elif enemyscore <= score:
 				return -50  # 平局或落后，跳回合风险大
 			else:
 				return -8
