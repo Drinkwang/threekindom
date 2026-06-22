@@ -14,25 +14,22 @@ func _ready() -> void:
 @export var arrs=[true,true,true,true]
 
 func initSecretCard(_arrs):
+	arrs = _arrs.duplicate()
 
-	arrs=_arrs
-	
 	if GameManager._boardMode==boardType.boardMode.middle:
-		if not InventoryManager.has_item(InventoryManagerItem.仕诡卡血姬):
-			arrs[0]=false
+		# 有道具→可获取，无道具→不可获取
+		arrs[0] = InventoryManager.has_item(InventoryManagerItem.仕诡卡血姬)
+		arrs[1] = InventoryManager.has_item(InventoryManagerItem.仕诡卡骨龙)
+		arrs[2] = InventoryManager.has_item(InventoryManagerItem.仕诡卡尸皇)
+		arrs[3] = false  # 黑商中级不可用
 
-		if not InventoryManager.has_item(InventoryManagerItem.仕诡卡骨龙):
-			arrs[2]=false		
-		if not InventoryManager.has_item(InventoryManagerItem.仕诡卡尸皇):
-			arrs[1]=false
-		arrs[3]=false
-	
 	for i in range(1,5):
 		if arrs[i-1]==false:
 			self["control_"+str(i)].alreaysold.show()
 		else:
 			self["control_"+str(i)].alreaysold.hide()
 		self["control_"+str(i)].set_Data(null,1)
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass

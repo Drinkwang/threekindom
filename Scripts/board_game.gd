@@ -788,8 +788,8 @@ func startGame(cardnum,issole,enemyExtraCard):
 	#if isPlayerTurn==true:
 	if GameManager._boardMode==boardType.boardMode.middle:
 		if InventoryManager.has_item(InventoryManagerItem.仕诡卡尸皇) or InventoryManager.has_item(InventoryManagerItem.仕诡卡血姬) or InventoryManager.has_item(InventoryManagerItem.仕诡卡骨龙):
-					
-			showSecretCard()#非单人模式才能触发
+			pass
+			#showSecretCard()#非单人模式才能触发
 				#反派获得一章诡异卡
 		if  GameManager.selectBoardCharacter==boardType.boardCharacter.mizhu:
 			getSecretCard(1,false)
@@ -873,8 +873,8 @@ func enterNewPhase(stage:phaseName):
 		if isPlayerTurn==true:
 			if turn_num==1 and GameManager._boardMode==boardType.boardMode.middle:
 				if InventoryManager.has_item(InventoryManagerItem.仕诡卡尸皇) or InventoryManager.has_item(InventoryManagerItem.仕诡卡血姬) or InventoryManager.has_item(InventoryManagerItem.仕诡卡骨龙):
-					pass
-					#showSecretCard()#非单人模式才能触发
+					#pass
+					showSecretCard()#非单人模式才能触发
 				#反派获得一章诡异卡
 				#if  GameManager.selectBoardCharacter==boardType.boardCharacter.mizhu:
 					#getSecretCard(1,false)
@@ -1738,7 +1738,7 @@ func enterRewardStage(i:boardCard,j:boardCard):
 		#j_node.queue_free()
 		#await get_tree().create_timer(0.5).timeout
 		#if playerEngergyHold.size()>=4 and hasSecretCard.has(true) and _issole==false and issecretGame==true:
-			#showSecretCard()#非单人模式才能触发
+		#	showSecretCard()#非单人模式才能触发
 			#SoundManager.play_sound(sounds.HUI_1)
 		#if _phaseName==phaseName.checkEnd:
 			#if groupPunishTyp==groupType.min:
