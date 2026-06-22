@@ -162,10 +162,10 @@ metadata/_edit_use_anchors_ = true
 [node name="tsty" parent="CanvasLayer" instance=ExtResource("17_w7ika")]
 visible = false
 position = Vector2(1065, 558)
-showName = "陶商/陶应"
-dialogue_doubleclick = "遇到诡异牌1"
 txt2d = ExtResource("14_fsp8r")
 boardType = 1
+showName = "陶商/陶应"
+dialogue_doubleclick = "遇到诡异牌1"
 dialogue_resource = ExtResource("2_a3tl4")
 dialogue_start = "遇到诡异牌1"
 
@@ -182,11 +182,11 @@ libraries = {
 [node name="people" parent="CanvasLayer" instance=ExtResource("17_w7ika")]
 visible = false
 position = Vector2(971, 573)
+txt2d = ExtResource("11_egoaw")
+boardType = 1
 showName = "民众"
 dialogue_doubleclick = "遇到诡异牌1"
 showEX = true
-txt2d = ExtResource("11_egoaw")
-boardType = 1
 dialogue_resource = ExtResource("2_a3tl4")
 dialogue_start = "遇到诡异牌1"
 
@@ -217,49 +217,49 @@ color = Color(0, 0, 0, 1)
 [node name="mizhen" parent="CanvasLayer/blank" instance=ExtResource("17_w7ika")]
 visible = false
 position = Vector2(965, 454)
-showName = "“糜贞”"
-showEX = true
 txt2d = ExtResource("18_ks6ru")
 boardType = 1
+showName = "“糜贞”"
+showEX = true
 dialogue_resource = ExtResource("2_a3tl4")
 dialogue_start = "boss战开始_血姬"
 
 [node name="taoqian" parent="CanvasLayer/blank" instance=ExtResource("17_w7ika")]
 visible = false
 position = Vector2(914, 537)
-showName = "\"陶谦\""
-showEX = true
 txt2d = ExtResource("18_fbh2q")
 boardType = 1
+showName = "\"陶谦\""
+showEX = true
 dialogue_resource = ExtResource("2_a3tl4")
 dialogue_start = "boss战开始_陶谦"
 
 [node name="gulong" parent="CanvasLayer/blank" instance=ExtResource("17_w7ika")]
 visible = false
 position = Vector2(914, 537)
-showName = "石像龙"
-showEX = true
 txt2d = ExtResource("18_2o7ym")
 boardType = 1
+showName = "石像龙"
+showEX = true
 dialogue_resource = ExtResource("2_a3tl4")
 dialogue_start = "boss战开始_镇魂龙"
 
 [node name="merchant" parent="CanvasLayer/blank" instance=ExtResource("17_w7ika")]
 visible = false
 position = Vector2(914, 537)
-showName = "黑商"
-showEX = true
 txt2d = ExtResource("20_3lpcl")
 boardType = 1
+showName = "黑商"
+showEX = true
 dialogue_resource = ExtResource("2_a3tl4")
 dialogue_start = "boss战开始_镇魂龙"
 
 [node name="zhenren" parent="CanvasLayer/blank" instance=ExtResource("17_w7ika")]
 visible = false
 position = Vector2(914, 537)
-showName = "修仙真人"
 txt2d = ExtResource("30_r010d")
 boardType = 1
+showName = "修仙真人"
 dialogue_start = ""
 
 [node name="battlePane" parent="CanvasLayer/blank" instance=ExtResource("21_h0siw")]

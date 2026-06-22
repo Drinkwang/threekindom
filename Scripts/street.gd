@@ -866,3 +866,7 @@ func enterXuanYinSecret():
 	if await GameManager.isTried(90):
 		return
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"玄阴之战")
+
+
+func blackMistDissolve():
+	pass
