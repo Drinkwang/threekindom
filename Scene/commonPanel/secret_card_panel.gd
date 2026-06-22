@@ -54,7 +54,10 @@ func control_gui_press(index):
 		detail_txt.text=db.name+" "+detail
 	else:
 		button.disabled=true
-		detail_txt.text=tr("当前卡牌已经被使用了")				
+		if GameManager._boardMode==boardType.boardMode.middle:
+			detail_txt.text=tr("你没有该仕诡牌")	
+		else:
+			detail_txt.text=tr("当前卡牌已经被使用了")				
 			
 			
 func _on_control_2_gui_input(event: InputEvent) -> void:

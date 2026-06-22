@@ -1075,6 +1075,12 @@ theme_override_font_sizes/normal_font_size = 38
 theme_override_font_sizes/bold_font_size = 0
 bbcode_enabled = true
 
+[node name="baojiTooltip" type="TextureRect" parent="."]
+offset_left = 1374.0
+offset_top = 964.0
+offset_right = 1644.0
+offset_bottom = 1081.0
+
 [connection signal="input_event" from="CanvasLayer/minArea" to="." method="_on_min_area_input_event"]
 [connection signal="mouse_entered" from="CanvasLayer/minArea" to="." method="_on_min_area_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/minArea" to="." method="_on_min_area_mouse_exited"]

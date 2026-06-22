@@ -251,6 +251,9 @@ func changeLanguage():
 		we_label.add_theme_font_size_override("font_size",72)
 		detail_txt.add_theme_font_size_override("font_size",47)
 
+
+	_on_crit_indicator_Txt()
+
 func post_transition():
 	if GameManager._boardMode==boardType.boardMode.high and GameManager.sav.caobaocardgame==4 and GameManager.selectBoardCharacter==boardType.boardCharacter.caobao:
 		GameManager.play_FinalBoardBGM()
@@ -293,10 +296,7 @@ func initGame():
 	if _crit_indicator:
 		_crit_indicator.bbcode_enabled = true
 
-		# 信号只连接一次
-		if not _crit_indicator.mouse_entered.is_connected(_on_crit_indicator_mouse_entered):
-			_crit_indicator.mouse_entered.connect(_on_crit_indicator_mouse_entered)
-			_crit_indicator.mouse_exited.connect(_on_crit_indicator_mouse_exited)
+
 	score_txt.text=tr("玩家得分：{s}").format({"s":score})
 	enemy_score_txt.text=tr("敌人得分：{s}").format({"s":enemyscore})
 	GameManager.currenceScene=self
@@ -792,15 +792,16 @@ func startGame(cardnum,issole,enemyExtraCard):
 			pass
 			#showSecretCard()#非单人模式才能触发
 				#反派获得一章诡异卡
-		if  GameManager.selectBoardCharacter==boardType.boardCharacter.mizhu:
-			if not InventoryManager.has_item(InventoryManagerItem.仕诡卡血姬):
-				getSecretCard(1,false)
-		elif GameManager.selectBoardCharacter==boardType.boardCharacter.chenden:
-			if not InventoryManager.has_item(InventoryManagerItem.仕诡卡尸皇):
-				getSecretCard(3,false)
-		elif GameManager.selectBoardCharacter==boardType.boardCharacter.caobao:
-			if not InventoryManager.has_item(InventoryManagerItem.仕诡卡骨龙):
-				getSecretCard(2,false)		
+		if GameManager.sav.caobaocardgame<4 or 	GameManager.sav.have_event["获得玄阴"]==true:	
+			if  GameManager.selectBoardCharacter==boardType.boardCharacter.mizhu:
+				if not InventoryManager.has_item(InventoryManagerItem.仕诡卡血姬):
+					getSecretCard(1,false)
+			elif GameManager.selectBoardCharacter==boardType.boardCharacter.chenden:
+				if not InventoryManager.has_item(InventoryManagerItem.仕诡卡尸皇):
+					getSecretCard(3,false)
+			elif GameManager.selectBoardCharacter==boardType.boardCharacter.caobao:
+				if not InventoryManager.has_item(InventoryManagerItem.仕诡卡骨龙):
+					getSecretCard(2,false)		
 			#	SoundManager.play_sound(useCar
 		
 	for i in range(0,cardnum):
@@ -2107,18 +2108,18 @@ func _update_crit_indicator(suit: int) -> void:
 	if not _crit_indicator.visible:
 		_crit_indicator.show()
 
+@onready var baoji_tooltip: TextureRect = $baojiTooltip
 
-func _on_crit_indicator_mouse_entered() -> void:
+func _on_crit_indicator_Txt() -> void:
 	var tip = "连续消除两张相同花色即可触发暴击\n"
 	tip += "♥ 红桃：回合数 + 1，自身生命值 - 1\n"
 	tip += "♠ 黑桃：出牌次数 + 1，随机弃置 1 张手牌\n"
 	tip += "♣ 梅花：抽取 1 张牌，出牌次数 - 1\n"
 	tip += "♦ 方片：场上最多新增 2 张牌"
-	TooltipManager.register_tooltip(_crit_indicator, tip)
+	TooltipManager.register_tooltip(baoji_tooltip, tip)
 
 
-func _on_crit_indicator_mouse_exited() -> void:
-	TooltipManager.hide_tooltip()
+
 var _is_restarting := false
 var punishStage=false
 #判断是什么阶段，如果是	
@@ -2295,7 +2296,7 @@ func _execute_crit_effect(suit: int) -> void:
 					desc = tr("跳回合+1，HP-1，游戏结束")
 				else:
 					desc = tr("跳回合+1，HP-1")
-				detail_txt.text = tr("暴击·红桃！") + desc
+				detail_txt.text = tr("暴击·民能载势！") + desc
 			1:
 				playerStage = mini(playerStage + 1, maxUseCard + 1)
 				reside_num.text = tr("剩余步数：{s}").format({"s": playerStage})
@@ -2305,17 +2306,17 @@ func _execute_crit_effect(suit: int) -> void:
 					if is_instance_valid(_h2[_r2]):
 						_h2[_r2].queue_free()
 				desc = tr("+1步，弃1牌")
-				detail_txt.text = tr("暴击·黑桃！") + desc
+				detail_txt.text = tr("暴击·谋士筹策！") + desc
 			2:
 				drawOne(true)
 				#drawOne(true)
 				playerStage = max(0, playerStage - 1)
 				reside_num.text = tr("剩余步数：{s}").format({"s": playerStage})
 				desc = tr("抽1牌，步数-1")
-				detail_txt.text = tr("暴击·梅花！") + desc
+				detail_txt.text = tr("暴击·商贾囤货！") + desc
 			3:
 				desc = tr("补位发牌")
-				detail_txt.text = tr("暴击·方片！") + desc
+				detail_txt.text = tr("暴击·士卒召列！") + desc
 	else:
 		match suit:
 			0:
@@ -2330,7 +2331,7 @@ func _execute_crit_effect(suit: int) -> void:
 					else:
 						loseGame()
 				desc = tr("跳回合+1，HP-1")
-				detail_txt.text = tr("暴击·红桃！") + desc
+				detail_txt.text = tr("暴击·民能载势！") + desc
 			1:
 				enemyStage = mini(enemyStage + 1, maxUseCard + 1)
 				var _eh = enemyhand.get_children()
@@ -2339,16 +2340,16 @@ func _execute_crit_effect(suit: int) -> void:
 					if is_instance_valid(_eh[_er]):
 						_eh[_er].queue_free()
 				desc = tr("+1步，弃1牌")
-				detail_txt.text = tr("暴击·黑桃！") + desc
+				detail_txt.text = tr("暴击·谋士筹策！") + desc
 			2:
 				drawOne(false)
 				drawOne(false)
 				enemyStage = max(0, enemyStage - 2)
 				desc = tr("抽2牌，步数-2")
-				detail_txt.text = tr("暴击·梅花！") + desc
+				detail_txt.text = tr("暴击·商贾囤货！") + desc
 			3:
 				desc = tr("补位发牌")
-				detail_txt.text = tr("暴击·方片！") + desc
+				detail_txt.text = tr("暴击·士卒召列！") + desc
 	var popup = load("res://Scene/prefab/crit_popup.tscn").instantiate()
 	add_child(popup)
 	popup.play(suit, desc, isPlayerTurn)

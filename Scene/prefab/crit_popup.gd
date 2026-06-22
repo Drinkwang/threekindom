@@ -15,7 +15,7 @@ const ENEMY_SUIT_STYLES := {
 	3: { "accent": Color("#1D4B57"), "accent_soft": Color("#0D2229"), "seal": Color("#09171C"), "icon": "♦" },
 }
 
-const SUIT_NAMES := ["红桃", "黑桃", "梅花", "方片"]
+const SUIT_NAMES := ["民能载势", "谋士筹策", "商贾囤货", "士卒召列"]
 
 @onready var _popup: Control = %Popup
 @onready var _card_bg: NinePatchRect = %CardBg
