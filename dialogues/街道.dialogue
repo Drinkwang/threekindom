@@ -412,8 +412,11 @@ do sideQuestReturnG(false)
 
 
 ~ 初次见面_陶谦
+do changeBlankBackground("陶谦墓地", 2)
 刘备根据陈登提供的线索，独自前往徐州城外乱葬岗。夜色深沉，墓地雾气弥漫，空气中弥漫着腐臭与血腥的气息，远处传来低沉的呜咽声，似鬼哭狼嚎。地上散落着破碎的墓碑，陶谦的墓碑赫然在列，但墓穴已被挖开，棺椁空空如也。突然，一股阴风袭来，刘备感到一阵晕眩，眼前一黑，昏迷过去。
 #陶谦显现
+do openEyesToBlankBackground("陶谦幻境")
+do taoqian.show()
 刘备昏迷后，似乎进入一片诡异的幻境。周围是无尽的黑暗，远处浮现一道身影——陶谦，昔日徐州之主。
 
 
@@ -448,7 +451,7 @@ do PlayTaoQian()
 ~ 战斗胜利_陶谦
 do battle_pane.hide()
 （陶谦的尸身逐渐崩解，化作一团黑雾消散，刘备清醒过来，发现自己躺在陶谦棺材旁，陶谦的尸体已经重新回到棺材，并且没有任何生机的迹象，不过刘备的手中多了一块血信。）  
-
+do changeBlankBackground("陶谦墓地", 2)
 血帕上的字迹: 吾知儿不肖，难守徐州，士族必取其性命。玄德若觉吾儿不可辅，便取而代之，唯求善待吾儿……[voice:taoqian_nanshouxuzhou]
 
 刘备: 陶谦，你放心，备定护你儿周全，徐州亦将安稳。[voice:liubei_taoqianfangxin]
@@ -468,6 +471,7 @@ do sideQuestReturnT(true)
 ~ 战斗失败_陶谦
 do headRed()
 陶谦: 刘备，你就这个本事？那你不配为徐州之主！[voice:taoqian_nanibupei]
+do changeBlankBackground("陶谦墓地", 2)
 （他挥出致命一击，刘备眼前一黑，昏迷过去。刘备再次醒来时，已是清晨，坟墓雾气散去，周围一片寂静。他身上隐隐作痛，似被尸气侵蚀。）  
 do battle_pane.hide()
 刘备: 方才之事，似梦似真……陶谦之怨，果真深重。[voice:liubei_taoqianzhiyuan]

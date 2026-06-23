@@ -36,7 +36,7 @@
 [ext_resource type="VideoStream" path="res://Asset/vedio/Tentacle.ogv" id="22_pmyge"]
 [ext_resource type="PackedScene" uid="uid://4ap7nnl7o6br" path="res://Scene/prefab/_CgetSceneItem.tscn" id="23_ugwgx"]
 [ext_resource type="Resource" uid="uid://cjbqxteqnpnrd" path="res://dialogues/议会厅.dialogue" id="24_8pksx"]
-[ext_resource type="Texture2D" uid="uid://b5vm8e51ix3w8" path="res://Asset/城镇建筑/out/玄阴内.png" id="26_oueh8"]
+[ext_resource type="Texture2D" uid="uid://bemtjfke6jaft" path="res://Asset/城镇建筑/out/陶谦幻境.png" id="26_8wsc5"]
 [ext_resource type="Texture2D" uid="uid://c7kwawbgfjcv0" path="res://Asset/人物/真人.png" id="30_r010d"]
 
 [sub_resource type="Animation" id="Animation_trdn5"]
@@ -221,7 +221,7 @@ layout_mode = 0
 offset_right = 1939.0
 offset_bottom = 1078.0
 mouse_filter = 2
-texture = ExtResource("26_oueh8")
+texture = ExtResource("26_8wsc5")
 expand_mode = 1
 stretch_mode = 6
 
@@ -237,7 +237,7 @@ dialogue_start = "boss战开始_血姬"
 
 [node name="taoqian" parent="CanvasLayer/blank" instance=ExtResource("17_w7ika")]
 visible = false
-position = Vector2(914, 537)
+position = Vector2(1045, 320)
 showName = "\"陶谦\""
 showEX = true
 txt2d = ExtResource("18_fbh2q")

@@ -427,10 +427,10 @@ func gotoTomb():
 	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeIn)
 	SoundManager.play_ambient_sound(WASTELAND_0)
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"初次见面_陶谦")
-	await 0.5
-	PanelManager.Fade_Blank(Color.BLACK,0,PanelManager.fadeType.fadeOut)
-	blank.show()
-	taoqian.show()
+	#await 0.5
+	#PanelManager.Fade_Blank(Color.BLACK,0,PanelManager.fadeType.fadeOut)
+	#blank.show()
+	#taoqian.show()
 @onready var blank = $CanvasLayer/blank
 @onready var blank_background: TextureRect = $CanvasLayer/blank/blankBackground
 @onready var taoqian = $CanvasLayer/blank/taoqian
