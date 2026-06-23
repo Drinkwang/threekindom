@@ -830,7 +830,7 @@ func startGame(cardnum,issole,enemyExtraCard):
 
 
 func turnGoto():
-	if turn_num<5:
+	if turn_num<turnAllnum:
 		turn_num+=1
 		turn_num_Txt.text=tr("回合数：{s}/5").format({"s":turn_num})
 	else:
@@ -997,6 +997,9 @@ func drawOneInTour(index=-1)->boardCard:
 func checkCardStart():
 	if is_match_finished():
 		return
+	if isPlayerTurn==true and turn_num>=turnAllnum:
+		turnGoto()
+		return
 	SoundManager.play_sound(sounds.DRAWCARD)
 
 	
@@ -1014,12 +1017,20 @@ func checkCardStart():
 		#	SoundManager.play_sound(fillcardSound)		
 			
 	await get_tree().create_timer(0.1).timeout
+	if is_match_finished():
+		return
 	insertCardRandom(groupType.min)
 	await get_tree().create_timer(0.1).timeout
+	if is_match_finished():
+		return
 	insertCardRandom(groupType.shi)
 	await get_tree().create_timer(0.1).timeout
+	if is_match_finished():
+		return
 	insertCardRandom(groupType.shang)
 	await get_tree().create_timer(0.1).timeout
+	if is_match_finished():
+		return
 	insertCardRandom(groupType.bin)
 
 	#for i in range(0,1):
@@ -1030,7 +1041,7 @@ func checkCardStart():
 		turnGoto()
 		if is_match_finished():
 			return
-	if (turn_num<6):
+	if not is_match_finished():
 		await enterNewPhase(phaseName.checkStart)
 @onready var end_button: Button = $CanvasLayer/Button
 
