@@ -183,6 +183,7 @@ do openEyesToBlankBackground("荒地")
 => END!
 
 ~ 掩埋羊尸
+do changeBlankBackground("燃烧的荒地", 0)
 do SoundManager.play_sound(sounds.BURN_WOOLDEN)
 
 刘备下令掩埋羊尸与竹筒，试图平息村民恐慌。
@@ -744,7 +745,8 @@ else #有护符但无三件道具
 ~ 玄阴之战
 #do blank.show()
 #do PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeOut)	
-do openEyesToBlankBackground("玄阴内")
+#do openEyesToBlankBackground("玄阴内")
+do changeBlankBackground("玄阴内", 1.0)
 do zhenren.show()
 刘备推开玄阴秘境的冰封玉门，眼前豁然展开一座雾绕云锁的洞府，中央高台上一位青袍真人负手而立、目光如炬，仿佛早已洞悉天机，静候刘备多时...
 #do SoundManager.stop_all_ambient_sounds()
@@ -792,9 +794,11 @@ do getZhenrenItem()
 => END!
 
 ~ 战斗胜利_真人结算
-刘备: (此真人陨落，体内一股霸道气息竟悄然融入吾身，似烈焰焚心，又如江河决堤……备虽不明其意，却觉胸中热血翻涌，徐州之地虽暂安，然天下苍生之事，当以铁腕护之。异境已平，速离此地，回转徐州，续谋兴汉大业。)[voice:liubei_xinghandaye]
 
+刘备: (此真人陨落，体内一股霸道气息竟悄然融入吾身，似烈焰焚心，又如江河决堤……备虽不明其意，却觉胸中热血翻涌，徐州之地虽暂安，然天下苍生之事，当以铁腕护之。异境已平，速离此地，回转徐州，续谋兴汉大业。)[voice:liubei_xinghandaye]
+do changeBlankBackground("崩塌的秘境", 0)
 do SoundManager.play_sound(sounds.breakcc0)
+do startBlankBackgroundShake(5, 0.035)
 : 随着刘备离开这里，身后洞府轰然震颤，雾影如泣血般崩散，层层秘境层层坍塌成无尽幽冥，秘境彻底烟消云散！
 #倒塌音效
 do SoundManager.stop_sound(sounds.breakcc0)

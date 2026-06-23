@@ -22,6 +22,8 @@ const BLANK_FADE_OUT_TIME = 0.18
 const BLANK_HOLD_BLACK_TIME = 0.08
 var blank_eye_top: ColorRect
 var blank_eye_bottom: ColorRect
+var blank_background_shake_tween: Tween
+var blank_background_origin_position := Vector2.ZERO
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GameManager.currenceScene=self
@@ -708,6 +710,7 @@ func _set_blank_background(background_name: String) -> bool:
 		blank_background.size = _blank_rect_size()
 		blank.add_child(blank_background)
 		blank.move_child(blank_background, 0)
+	blank_background_origin_position = blank_background.position
 	var path = _blank_background_path(background_name)
 	if not ResourceLoader.exists(path):
 		push_warning("blank background not found: " + path)
@@ -746,7 +749,63 @@ func showBlankBackground(background_name: String):
 	blank.color = Color(0, 0, 0, 0)
 	_layout_blank_reveal_nodes()
 
+func startBlankBackgroundShake(strength: float = 18.0, step_time: float = 0.045):
+	if blank_background == null:
+		blank_background = blank.get_node_or_null("blankBackground") as TextureRect
+	if blank_background == null:
+		push_warning("blankBackground node not found under street blank")
+		return
+	stopBlankBackgroundShake(false)
+	blank_background_origin_position = blank_background.position
+	blank_background_shake_tween = get_tree().create_tween()
+	blank_background_shake_tween.set_loops()
+	blank_background_shake_tween.tween_property(blank_background, "position", blank_background_origin_position + Vector2(-strength, -strength * 0.35), step_time)
+	blank_background_shake_tween.tween_property(blank_background, "position", blank_background_origin_position + Vector2(strength, strength * 0.25), step_time)
+	blank_background_shake_tween.tween_property(blank_background, "position", blank_background_origin_position + Vector2(-strength * 0.45, strength * 0.35), step_time)
+	blank_background_shake_tween.tween_property(blank_background, "position", blank_background_origin_position + Vector2(strength * 0.35, -strength * 0.25), step_time)
+
+func stopBlankBackgroundShake(reset_position: bool = true):
+	if blank_background_shake_tween != null:
+		blank_background_shake_tween.kill()
+		blank_background_shake_tween = null
+	if reset_position and blank_background != null:
+		blank_background.position = blank_background_origin_position
+
+func changeBlankBackground(background_name: String, duration: float = 0.6):
+	if blank_background == null:
+		blank_background = blank.get_node_or_null("blankBackground") as TextureRect
+	if blank_background == null:
+		push_warning("blankBackground node not found under street blank")
+		return
+	var path = _blank_background_path(background_name)
+	if not ResourceLoader.exists(path):
+		push_warning("blank background not found: " + path)
+		return
+	if duration>0:
+		blank.show()
+		blank.color = Color(0, 0, 0, 0)
+		blank_background.visible = true
+		var cover = ColorRect.new()
+		cover.name = "blankBackgroundTransition"
+		cover.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		cover.color = Color(0, 0, 0, 0)
+		cover.position = Vector2.ZERO
+		cover.size = _blank_rect_size()
+		cover.z_index = 900
+		blank.add_child(cover)
+		var half_time = max(duration * 0.5, 0.01)
+		var tween = get_tree().create_tween()
+		tween.tween_property(cover, "color:a", 1.0, half_time)
+		tween.tween_callback(func():
+			blank_background.texture = load(path)
+		)
+		tween.tween_property(cover, "color:a", 0.0, half_time)
+		tween.tween_callback(cover.queue_free)
+		await tween.finished
+	else:
+		blank_background.texture = load(path)
 func clearBlankBackground(hide_blank: bool = true):
+	stopBlankBackgroundShake()
 	if blank_background != null:
 		blank_background.visible = false
 	if blank_eye_top != null:
