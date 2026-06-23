@@ -46,7 +46,7 @@ func changeState(state):
 			tween.tween_property(link, "self_modulate:a",0,0.5)	
 			tween.tween_property(link_2, "self_modulate:a",0,0.5)
 			var _func2=func():
-				changeState(lockState.close)
+				refreshRewardState()
 				#link.hide()
 				#link_2
 			tween.tween_callback(_func2)
@@ -88,19 +88,22 @@ func changeState(state):
 #{"enemy":"曹豹","level":"诡秘乱局","detail":"游戏结束时取得300分","holdcard":-1,"MaxUsecard":-1,"ScoreNum":300,"Mustkill":false,"iscom":0,"index":6,"coinGet":0,"peopleGet":120},
 var _data
 
+func refreshRewardState():
+	if _data.iscom==0:
+		changeState(lockState.close)
+	elif _data.iscom==1:
+		changeState(lockState.canReward)
+	elif _data.iscom==2:
+		changeState(lockState.after)
+
 func initData(data):
 	_data=data
 
 
-	if data.index>5 and GameManager.sav.have_event["成就解锁"]==false:
+	if data.index>5 and GameManager.sav.have_event["解锁高级成就"]==false:
 		changeState(lockState.lock)
 	else:
-		if data.iscom==0:
-			changeState(lockState.close)
-		elif data.iscom==1:
-			changeState(lockState.canReward)
-		elif data.iscom==2:
-			changeState(lockState.after)
+		refreshRewardState()
 	context.text=tr(data.enemy)+"："+tr(data.level)+"\n"+tr(data.detail)
 	
 enum lockState{
@@ -126,6 +129,7 @@ func _on_nine_patch_rect_gui_input(event: InputEvent) -> void:
 			"population": _data.peopleGet
 			}
 			
+			_data.iscom=2
 			_reward.showTitileReward(tr("恭喜你完成了成就"),items)
 			
 			

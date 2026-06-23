@@ -17,7 +17,7 @@ func initView():
 	#var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.玄阴玉符)
 	
 
-	if GameManager.sav.mizhucardgame>=4:
+	if GameManager.sav.caobaocardgame>=4 or GameManager.sav.mizhucardgame>=4 or GameManager.sav.chendencardgame>=4:
 		unlockHighReward()
 
 
