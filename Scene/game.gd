@@ -1,6 +1,7 @@
 extends Node2D
 @onready var option_button = $OptionButton
 @onready var title = $CanvasLayer/title
+var _language_syncing := false
 
 const ARVOSTUS = preload("res://Asset/bgm/4- Arvostus.mp3")
 func _ready():
@@ -40,6 +41,8 @@ func _ready():
 	#_test_deadline_check()#debug
 	if GameManager._setting.is_clear_normal_line or GameManager._setting.is_clear_overlord_line:
 		$credit.disabled = false
+	if not SignalManager.changeLanguage.is_connected(_on_global_language_changed):
+		SignalManager.changeLanguage.connect(_on_global_language_changed)
 func initLoadContinus():
 	var showContinus=false
 	for i in range(1,4):
@@ -191,8 +194,36 @@ func _on_option_button_item_selected(index):
 	TranslationServer.set_locale(lan)
 	if GameManager._setting!=null:
 		GameManager._setting.language=lan
-		SignalManager.changeLanguage.emit()
-		ResourceSaver.save(GameManager._setting,"user://ysg_data_setting.tres")
+		if not _language_syncing:
+			SignalManager.changeLanguage.emit()
+			ResourceSaver.save(GameManager._setting,"user://ysg_data_setting.tres")
+
+
+func _language_to_option_index(lan:String)->int:
+	if lan=="zh_HK" or lan=="zh_TW" or lan=="lzh":
+		return 1
+	elif lan=="en":
+		return 2
+	elif lan=="ja":
+		return 3
+	elif lan=="ru":
+		return 4
+	return 0
+
+
+func _sync_language_option_button():
+	var lan=TranslationServer.get_locale()
+	if GameManager._setting!=null and GameManager._setting.language.length()>0:
+		lan=GameManager._setting.language
+	var index=_language_to_option_index(lan)
+	_language_syncing=true
+	option_button.select(index)
+	_on_option_button_item_selected(index)
+	_language_syncing=false
+
+
+func _on_global_language_changed():
+	_sync_language_option_button()
 
 
 
@@ -207,3 +238,13 @@ func _on_begin_mouse_entered():
 func _on_exit_mouse_entered():
 	SoundManager.play_sound(sounds.hoversound)
 	pass # Replace with function body.
+
+
+func _on_setting_btn_button_down():
+	if PanelManager.isOpenSetting:
+		return
+	PanelManager.new_SettingMenu()
+
+
+func _on_setting_btn_mouse_entered():
+	SoundManager.play_sound(sounds.hoversound)
