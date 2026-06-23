@@ -342,6 +342,8 @@ func _sync_people_voice_option():
 	if lan=="zh":
 		lansound_option_button.select(1)
 	else:
+		if GameManager._setting!=null:
+			GameManager._setting.peopleVlan="none"
 		lansound_option_button.select(0)
 
 

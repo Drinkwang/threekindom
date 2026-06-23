@@ -274,7 +274,6 @@ scale = Vector2(0.2, 0.2)
 [node name="CanvasBook" type="CanvasLayer" parent="."]
 
 [node name="ruleBook" parent="CanvasBook" instance=ExtResource("12_phx3k")]
-visible = false
 offset_left = 956.0
 offset_top = 471.0
 offset_right = 996.0

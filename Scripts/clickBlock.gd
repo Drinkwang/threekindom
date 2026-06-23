@@ -177,6 +177,8 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 
 	if !(event is InputEventMouseButton) or (DialogueManager.dialogBegin==true and DialogueManager.get_dialogue_balloon() != null) or GameManager.isLoadingSave==true or PanelManager.isOpenSetting==true and (PanelManager.rewardNode!=null and PanelManager.rewardNode.visible):
 		return
+	if not event.pressed:
+		return
 	if _is_mouse_blocked(event.position):
 		return
 	#大概率是后面二项导致的	

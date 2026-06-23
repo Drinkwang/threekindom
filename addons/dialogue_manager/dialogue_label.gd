@@ -79,7 +79,8 @@ var dialogue_line:
 				# 无匹配文件时的容错处理
 					print("警告：未找到音频文件 - WAV/MP3格式均不存在 | 路径：", music_base_path)
 
-				var music=GameManager.play_PeopleVolume(music_file)
+				if music_file.length() > 0:
+					var music=GameManager.play_PeopleVolume(music_file)
 				#regex.replace()
 				#targetText = targetText.replace(match_result, "")
 			dialogue_line.text = targetText.replace(match_result.strings[0], "")
