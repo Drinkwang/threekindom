@@ -256,9 +256,9 @@ func _juideCompeleteTask():
 		var itemup=1.4
 		if  InventoryManager.has_item(InventoryManagerItem.迷魂木筒):
 			itemup=1.5
-			buff_txt.text="道具加持+40%" #未来要注销
-		else:
 			buff_txt.text="道具加持+50%" #未来要注销
+		else:
+			buff_txt.text="道具加持+40%" #未来要注销
 		levelup=levelup*itemup
 		
 		#if InventoryManager.has_item()
