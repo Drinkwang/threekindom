@@ -973,6 +973,7 @@ func headRepair():
 
 func enterXuanYinSecret():
 	if await GameManager.isTried(90):
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"进入玄阴之战")
 		return
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"玄阴之战")
 

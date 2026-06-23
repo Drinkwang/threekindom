@@ -64,6 +64,7 @@ func _ready():
 	
 
 func _on_rest():
+	GameManager.triedResult = true
 	GameManager.triedPanelDone.emit()
 	self.hide()
 	if GameManager.checkAndHandleLazy():
@@ -73,6 +74,7 @@ func _on_rest():
 
 
 func _on_cancel():
+	GameManager.triedResult = true
 	GameManager.triedPanelDone.emit()
 	self.hide()
 	pass # Replace with function body.
@@ -83,6 +85,7 @@ func _on_jingliwan_button_down():
 
 	if count>0:
 		InventoryManager._remove_item(GameManager.inventoryPackege,InventoryManagerItem.益气丸,1)
+		GameManager.triedResult = false
 		GameManager.triedPanelDone.emit()
 		
 		if InventoryManager.has_item(InventoryManagerItem.饥蛊骨签):

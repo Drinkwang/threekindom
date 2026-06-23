@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://cehg7t1h5f2ei"]
+[gd_scene load_steps=42 format=3 uid="uid://cehg7t1h5f2ei"]
 
 [ext_resource type="Script" path="res://Scripts/street.gd" id="1_jskmv"]
 [ext_resource type="Resource" uid="uid://qopivlttvt12" path="res://dialogues/街道.dialogue" id="2_a3tl4"]
@@ -36,6 +36,7 @@
 [ext_resource type="VideoStream" path="res://Asset/vedio/Tentacle.ogv" id="22_pmyge"]
 [ext_resource type="PackedScene" uid="uid://4ap7nnl7o6br" path="res://Scene/prefab/_CgetSceneItem.tscn" id="23_ugwgx"]
 [ext_resource type="Resource" uid="uid://cjbqxteqnpnrd" path="res://dialogues/议会厅.dialogue" id="24_8pksx"]
+[ext_resource type="Texture2D" uid="uid://b5vm8e51ix3w8" path="res://Asset/城镇建筑/out/玄阴内.png" id="26_oueh8"]
 [ext_resource type="Texture2D" uid="uid://c7kwawbgfjcv0" path="res://Asset/人物/真人.png" id="30_r010d"]
 
 [sub_resource type="Animation" id="Animation_trdn5"]
@@ -220,6 +221,7 @@ layout_mode = 0
 offset_right = 1939.0
 offset_bottom = 1078.0
 mouse_filter = 2
+texture = ExtResource("26_oueh8")
 expand_mode = 1
 stretch_mode = 6
 
@@ -265,7 +267,7 @@ dialogue_start = "boss战开始_镇魂龙"
 
 [node name="zhenren" parent="CanvasLayer/blank" instance=ExtResource("17_w7ika")]
 visible = false
-position = Vector2(1045, 704)
+position = Vector2(1030, 604)
 showName = "修仙真人"
 txt2d = ExtResource("30_r010d")
 boardType = 1
