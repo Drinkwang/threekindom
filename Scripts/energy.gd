@@ -25,6 +25,7 @@ func _process(delta):
 		
 var previewValue=0
 func changerate(rate):
+	progress_bar.max_value=GameManager.sav.maxHP
 	progress_bar.value=rate-previewValue
 	if previewValue==0:
 		rateLabel.text=var_to_str(rate)+"%"

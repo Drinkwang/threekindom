@@ -70,6 +70,7 @@ func set_Data(key,value):
 const LABOR = preload("res://Asset/ui/战力.png")	
 
 const COIN = preload("res://Asset/ui/钱财.png")
+const HP_LIMIT = preload("res://Asset/hplimit.png")
 func set_Money(_num):
 	context.texture=COIN
 	TooltipManager.register_tooltip(self,tr("钱：持有的钱数量(可购买道具、军事行动的资金)"))
@@ -81,6 +82,13 @@ func set_Money(_num):
 func set_Labor(_num):
 	context.texture=LABOR
 	TooltipManager.register_tooltip(self,tr("民力：拥有空闲民力(可转换为士兵)"))
+
+	txt_quantity.show()
+	txt_quantity.text=var_to_str(_num)
+
+func set_HpLimit(_num):
+	context.texture=HP_LIMIT
+	TooltipManager.register_tooltip(self,tr("体力上限，永久提升角色最大体力值10点"))
 
 	txt_quantity.show()
 	txt_quantity.text=var_to_str(_num)

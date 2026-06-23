@@ -1266,7 +1266,7 @@ func winReward(isFirst,generalName):
 	var items=GameManager.ScoreToItem(score/10)
 	if isFirst==true:
 		if isFinal==true:
-			GameManager.sav.maxHP+=10
+			items.hplimit=10
 			_reward.showTitileReward(tr("首次通过{name}的至高难度！你的最大体力值永久提升10点，并立即晋升该武将等级！").format({"name":tr(generalName),"modename":modename}),items)	
 		else:
 			_reward.showTitileReward(tr("你与{name}在【{modename}】模式下，首次比武获胜了，提升武将等级").format({"name":tr(generalName),"modename":modename}),items)	

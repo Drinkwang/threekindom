@@ -96,6 +96,14 @@ func showTitileReward(context,item,addAfter=true):
 		itempop_ui.set_Labor(item.population)	
 		#获取民力
 		GameManager.sav.labor_force=GameManager.sav.labor_force+item.population
+	if item.get("hplimit", 0)>0:
+		var itemHpLimit_ui:ShopItem = DaojuItem.instantiate()
+		itemHpLimit_ui.isShop=false
+		_grid_ui.add_child(itemHpLimit_ui)
+		itemHpLimit_ui.set_HpLimit(item.hplimit)
+		GameManager.sav.maxHP=GameManager.sav.maxHP+item.hplimit
+		if GameManager._engerge!=null:
+			GameManager._engerge.changerate(GameManager.sav.hp)
 	title.text=titleContext
 
 @export var DaojuItem: PackedScene	
@@ -157,6 +165,14 @@ func showReward(item):
 		itempop_ui.set_Labor(item.population)	
 		#获取民力
 		GameManager.sav.labor_force=GameManager.sav.labor_force+item.population
+	if item.get("hplimit", 0)>0:
+		var itemHpLimit_ui:ShopItem = DaojuItem.instantiate()
+		itemHpLimit_ui.isShop=false
+		_grid_ui.add_child(itemHpLimit_ui)
+		itemHpLimit_ui.set_HpLimit(item.hplimit)
+		GameManager.sav.maxHP=GameManager.sav.maxHP+item.hplimit
+		if GameManager._engerge!=null:
+			GameManager._engerge.changerate(GameManager.sav.hp)
 	title.text=titleContext
 	#gird.add_child()
 	#播放音效，显示1-2个道具
@@ -218,6 +234,14 @@ func showRewardMa(item):
 		itempop_ui.set_Labor(item.population)	
 		#获取民力
 		GameManager.sav.labor_force=GameManager.sav.labor_force+item.population
+	if item.get("hplimit", 0)>0:
+		var itemHpLimit_ui:ShopItem = DaojuItem.instantiate()
+		itemHpLimit_ui.isShop=false
+		_grid_ui.add_child(itemHpLimit_ui)
+		itemHpLimit_ui.set_HpLimit(item.hplimit)
+		GameManager.sav.maxHP=GameManager.sav.maxHP+item.hplimit
+		if GameManager._engerge!=null:
+			GameManager._engerge.changerate(GameManager.sav.hp)
 	title.text=titleContext
 
 	
