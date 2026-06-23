@@ -184,7 +184,7 @@ _data = {
 "chop": SubResource("Animation_hoxs8")
 }
 
-[node name="Node2D2" type="Node2D"]
+[node name="Node2D4" type="Node2D"]
 script = ExtResource("1_xncth")
 dialogue_resource = ExtResource("2_yngd1")
 dialogue_start = "init"
@@ -233,40 +233,40 @@ position = Vector2(953, 631)
 [node name="陈登" parent="peoples" instance=ExtResource("6_ibudm")]
 visible = false
 position = Vector2(311, -7)
-txt2d = ExtResource("12_quqka")
-boardType = 1
 showName = "陈登"
 dialogue_doubleclick = "点击陈登0"
+txt2d = ExtResource("12_quqka")
+boardType = 1
 dialogue_resource = ExtResource("2_yngd1")
 dialogue_start = "点击陈登0"
 
 [node name="糜竺" parent="peoples" instance=ExtResource("6_ibudm")]
 visible = false
 position = Vector2(-279, -3)
-txt2d = ExtResource("10_73x55")
-boardType = 1
 showName = "糜竺"
 dialogue_doubleclick = "来把仕诡牌"
+txt2d = ExtResource("10_73x55")
+boardType = 1
 dialogue_resource = ExtResource("2_yngd1")
 dialogue_start = "点击糜竺"
 
 [node name="zhangfei" parent="peoples" instance=ExtResource("6_ibudm")]
 visible = false
 position = Vector2(-9, 51)
+showName = "张飞"
 txt2d = ExtResource("41_gh0g6")
 boardType = 1
-showName = "张飞"
 dialogue_resource = ExtResource("20_i0wth")
 dialogue_start = ""
 
 [node name="陶商陶应" parent="peoples" instance=ExtResource("6_ibudm")]
 visible = false
 position = Vector2(0, 16)
-txt2d = ExtResource("13_f851a")
-boardType = 1
 showName = "陶商/陶应"
 dialogue_doubleclick = "城外克苏鲁事件触发"
 showEX = true
+txt2d = ExtResource("13_f851a")
+boardType = 1
 dialogue_resource = ExtResource("2_yngd1")
 dialogue_start = "城外克苏鲁事件触发"
 
@@ -286,27 +286,27 @@ autoplay = "YELLOWGUILD"
 [node name="主簿" parent="peoples" instance=ExtResource("6_ibudm")]
 visible = false
 position = Vector2(6, 5)
+showName = "主簿"
 txt2d = ExtResource("13_6lqxm")
 boardType = 1
-showName = "主簿"
 dialogue_start = ""
 
 [node name="糜贞" parent="peoples" instance=ExtResource("6_ibudm")]
 visible = false
-txt2d = ExtResource("20_u361t")
-boardType = 1
 showName = "糜贞"
 dialogue_doubleclick = "点击糜竺"
+txt2d = ExtResource("20_u361t")
+boardType = 1
 dialogue_resource = ExtResource("2_yngd1")
 dialogue_start = "点击糜竺"
 
 [node name="吕布" parent="peoples" instance=ExtResource("6_ibudm")]
 visible = false
 position = Vector2(2, 57)
-txt2d = ExtResource("18_lbowa")
-boardType = 1
 showName = "吕布"
 dialogue_doubleclick = "丹阳将领投靠"
+txt2d = ExtResource("18_lbowa")
+boardType = 1
 dialogue_resource = ExtResource("20_i0wth")
 dialogue_start = ""
 
@@ -424,10 +424,10 @@ visible = false
 [node name="政府文书" parent="." instance=ExtResource("6_ibudm")]
 visible = false
 position = Vector2(984, 625)
-txt2d = ExtResource("9_qwmo3")
-boardType = 1
 showName = "政府文书"
 dialogue_doubleclick = "look"
+txt2d = ExtResource("9_qwmo3")
+boardType = 1
 dialogue_resource = ExtResource("2_yngd1")
 dialogue_start = "look"
 

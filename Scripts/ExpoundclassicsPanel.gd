@@ -209,6 +209,7 @@ const STREET = preload("res://Asset/bgm/street.wav")
 const MINISTREET = preload("res://Asset/bgm/ministreet.wav")
 func _on_exit_button_button_down():
 	self.hide()
+	$"../..".clearBlankBackground()
 	SoundManager.stop_all_ambient_sounds()
 	if GameManager.sav.day<=4:
 		SoundManager.play_ambient_sound(MINISTREET)

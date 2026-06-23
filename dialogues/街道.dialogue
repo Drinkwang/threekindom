@@ -90,6 +90,7 @@ do streetTwo()
 => END
 ~ 大儒辩经的剧情
  : 刘备一行人来到了昌邑村，找到了郑玄的住处。这是一间朴素但整洁的草屋，周围种满了各种草药和竹子。
+do openEyesToBlankBackground("学者之处")
 刘备: 学生刘备，特来拜见先生。[voice:liubei_baijianxiansheng]
  : 刘备将一些肉干和礼物递给了郑玄的童子
 郑玄: 久闻将军大名，今日一见，果然不同凡响。[voice:zhengxuan_jinriyijian]
@@ -103,13 +104,16 @@ do showbianji()
 => END
 
 ~ 大儒辩经的剧情2
+do openEyesToBlankBackground("学者之处")
 郑玄: 将军再来，可愿一辩治国之道？[voice:zhengxuan_yibian]
+
 do showbianji()
 教程: 此处为辩经小游戏，按照规则点击获得分数，游戏结束可能获得额外奖励
 => END
 
 
 ~ 大儒辩经的剧情3
+do openEyesToBlankBackground("学者之处")
 弟子: 将军，老师不在，学生愿与您切磋经义！[voice:xuesheng_laoshibuzai]
 do showbianji()
 教程: 此处为辩经小游戏，按照规则点击获得分数，游戏结束可能获得额外奖励
@@ -493,7 +497,7 @@ do GameManager.getItemAction.call()
 => END!
 
 ~ 初次见面_镇魂龙
-do openEyesToBlankBackground("古龙祭坛2")
+do openEyesToBlankBackground("古龙祭坛")
 刘备: (我看到盗墓贼在石龙旁鬼鬼祟祟..我倒要看看他到底想要干什么）[voice:liubei_daomuzei]
 do gulong.show()
 => END!
@@ -689,6 +693,7 @@ do people.hide()
 
 刘备沿村民所指小径，深入玄阴秘境。山势陡峭，雾气渐浓，四周寂静，唯风声低啸。山巅现一古石台，苔痕斑驳，台中央有凹槽，似为某物而设，旁刻铭文：血衣蕴旧恨，傀儡藏生魂，银枪封龙魄，三宝聚，秘门开。
 do openEyesToBlankBackground("玄阴外部")
+=> 进入玄阴之战
 if GameManager.sav.have_event["玄阴首次"]==false
 	刘备细察石台，凹槽形制奇特，似需特定之物嵌入。
 
@@ -737,13 +742,13 @@ else #有护符但无三件道具
 => END!
 
 ~ 玄阴之战
-do blank.show()
-do PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeOut)	
-
+#do blank.show()
+#do PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeOut)	
+do openEyesToBlankBackground("玄阴内")
 do zhenren.show()
 刘备推开玄阴秘境的冰封玉门，眼前豁然展开一座雾绕云锁的洞府，中央高台上一位青袍真人负手而立、目光如炬，仿佛早已洞悉天机，静候刘备多时...
 #do SoundManager.stop_all_ambient_sounds()
-do openEyesToBlankBackground("玄阴内")
+
 长者: 玄德公，贫道候你多时了！汝乃真龙之躯，命定之人。[voice:xiuxianzhe_mindingzhiren]
 刘备: 老道士何出此言？吾乃汉室疏宗，景帝之后，然家道中落，已成布衣之身，微末而已，安敢称真龙？[voice:liubei_anganzhenlong]
 长者: 玄德公莫要自谦！真龙之气，非血脉天授，而由德行气魄后天修成，昔年汉高祖刘邦，亦自布衣而起，渐成真龙气象。而当今天下，只有你与曹孟德有此气象。[voice:xiuxianzhe_caomengdeyuni]

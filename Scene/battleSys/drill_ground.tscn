@@ -191,7 +191,7 @@ _data = {
 "YELLOWGUILD": SubResource("Animation_rms3s")
 }
 
-[node name="Node2D2" type="Node2D"]
+[node name="Node2D3" type="Node2D"]
 script = ExtResource("1_bhlt2")
 dialogue_resource = ExtResource("2_j02vm")
 dialogue_start = "初入演武场"
@@ -311,30 +311,30 @@ scale = Vector2(1.6384, 1.6384)
 [node name="吕布" parent="." instance=ExtResource("14_s83fw")]
 visible = false
 position = Vector2(997, 562)
-txt2d = ExtResource("16_wc60d")
-boardType = 1
 showName = "吕布"
 dialogue_doubleclick = "丹阳将领投靠"
+txt2d = ExtResource("16_wc60d")
+boardType = 1
 dialogue_resource = ExtResource("2_j02vm")
 dialogue_start = ""
 
 [node name="丹阳军官" parent="." instance=ExtResource("14_s83fw")]
 visible = false
 position = Vector2(982, 553)
-txt2d = ExtResource("15_2o7m6")
-boardType = 1
 showName = "丹阳军官"
 dialogue_doubleclick = "丹阳将领投靠"
 showEX = true
+txt2d = ExtResource("15_2o7m6")
+boardType = 1
 dialogue_resource = ExtResource("2_j02vm")
 dialogue_start = ""
 
 [node name="曹豹" parent="." instance=ExtResource("14_s83fw")]
 visible = false
 position = Vector2(982, 546)
+showName = "曹豹"
 txt2d = ExtResource("15_1y7hu")
 boardType = 1
-showName = "曹豹"
 dialogue_resource = ExtResource("2_j02vm")
 dialogue_start = ""
 
@@ -500,27 +500,27 @@ dialogue_start = "发现诡秘怪谈"
 [node name="zhangfei" parent="." instance=ExtResource("14_s83fw")]
 visible = false
 position = Vector2(973, 468)
+showName = "张飞"
 txt2d = ExtResource("30_qlwmh")
 boardType = 1
-showName = "张飞"
 dialogue_resource = ExtResource("2_j02vm")
 dialogue_start = ""
 
 [node name="guanyu" parent="." instance=ExtResource("14_s83fw")]
 visible = false
 position = Vector2(970, 683)
+showName = "关羽"
 txt2d = ExtResource("30_s1tb2")
 boardType = 1
-showName = "关羽"
 dialogue_resource = ExtResource("2_j02vm")
 dialogue_start = ""
 
 [node name="zhaoyun" parent="." instance=ExtResource("14_s83fw")]
 visible = false
 position = Vector2(977, 660)
+showName = "赵云"
 txt2d = ExtResource("33_senbu")
 boardType = 1
-showName = "赵云"
 dialogue_resource = ExtResource("2_j02vm")
 dialogue_start = ""
 
@@ -530,25 +530,25 @@ position = Vector2(1015, 659)
 [node name="bing" parent="eatpeople" instance=ExtResource("14_s83fw")]
 visible = false
 position = Vector2(2, -1)
+showName = "半块饼"
 txt2d = ExtResource("39_w14kw")
 boardType = 1
-showName = "半块饼"
 dialogue_resource = ExtResource("2_j02vm")
 dialogue_start = ""
 
 [node name="jia" parent="eatpeople" instance=ExtResource("14_s83fw")]
 visible = false
+showName = "无名小卒-甲"
 txt2d = ExtResource("36_fb2d8")
 boardType = 1
-showName = "无名小卒-甲"
 dialogue_resource = ExtResource("2_j02vm")
 dialogue_start = ""
 
 [node name="jiaBody" parent="eatpeople" instance=ExtResource("14_s83fw")]
 visible = false
+showName = "无名小卒-甲"
 txt2d = ExtResource("37_vug2l")
 boardType = 1
-showName = "无名小卒-甲"
 dialogue_resource = ExtResource("2_j02vm")
 dialogue_start = ""
 
@@ -564,18 +564,18 @@ dialogue_start = ""
 [node name="yi" parent="eatpeople" instance=ExtResource("14_s83fw")]
 visible = false
 position = Vector2(-270, -186)
+showName = "无名小卒-乙"
 txt2d = ExtResource("37_kgreu")
 boardType = 1
-showName = "无名小卒-乙"
 dialogue_resource = ExtResource("2_j02vm")
 dialogue_start = ""
 
 [node name="wumin" parent="eatpeople" instance=ExtResource("14_s83fw")]
 visible = false
 position = Vector2(145, -269)
+showName = "无名"
 txt2d = ExtResource("34_tw1rc")
 boardType = 1
-showName = "无名"
 dialogue_resource = ExtResource("2_j02vm")
 dialogue_start = ""
 
@@ -599,9 +599,9 @@ dialogue_start = ""
 [node name="wumin" parent="." instance=ExtResource("14_s83fw")]
 visible = false
 position = Vector2(976, 439)
+showName = "无名"
 txt2d = ExtResource("34_tw1rc")
 boardType = 1
-showName = "无名"
 dialogue_resource = ExtResource("2_j02vm")
 dialogue_start = ""
 

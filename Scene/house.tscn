@@ -544,10 +544,10 @@ dialogue_resource = ExtResource("2_6rtve")
 [node name="文官" parent="." instance=ExtResource("7_7mriv")]
 visible = false
 position = Vector2(701, 631)
-txt2d = ExtResource("6_ys6bi")
-boardType = 1
 showName = "主簿"
 dialogue_doubleclick = "second"
+txt2d = ExtResource("6_ys6bi")
+boardType = 1
 dialogue_resource = ExtResource("2_6rtve")
 dialogue_start = ""
 
@@ -568,29 +568,29 @@ autoplay = "YELLOWGUILD"
 [node name="修仙者" parent="." instance=ExtResource("7_7mriv")]
 visible = false
 position = Vector2(700, 631)
-txt2d = ExtResource("23_jre1y")
-boardType = 1
 showName = "修道真人"
 dialogue_doubleclick = "second"
+txt2d = ExtResource("23_jre1y")
+boardType = 1
 dialogue_resource = ExtResource("2_6rtve")
 dialogue_start = "支线克苏鲁最终开始"
 
 [node name="caobao" parent="." instance=ExtResource("7_7mriv")]
 visible = false
 position = Vector2(850, 673)
+showName = "曹豹"
 txt2d = ExtResource("23_84sra")
 boardType = 1
-showName = "曹豹"
 dialogue_start = ""
 
 [node name="泰山军官" parent="." instance=ExtResource("7_7mriv")]
 visible = false
 position = Vector2(723, 681)
-txt2d = ExtResource("25_xyni8")
-boardType = 1
 showName = "泰山军官"
 dialogue_doubleclick = "second"
 showEX = true
+txt2d = ExtResource("25_xyni8")
+boardType = 1
 dialogue_resource = ExtResource("2_6rtve")
 dialogue_start = "泰山诸将任务开始"
 
@@ -621,9 +621,9 @@ text = "注释：灵帝末年，备尝在京师，
 [node name="曹操老" parent="." instance=ExtResource("7_7mriv")]
 visible = false
 position = Vector2(705, 591)
+showName = "曹操"
 txt2d = ExtResource("26_qfd44")
 boardType = 1
-showName = "曹操"
 dialogue_resource = ExtResource("2_6rtve")
 dialogue_start = ""
 
@@ -633,9 +633,9 @@ position = Vector2(1289, 637)
 
 [node name="刺客甲" parent="cikegroup" instance=ExtResource("7_7mriv")]
 position = Vector2(-406, 53)
+showName = "刺客-甲"
 txt2d = ExtResource("28_htj8s")
 boardType = 1
-showName = "刺客-甲"
 dialogue_resource = ExtResource("2_6rtve")
 dialogue_start = "刺客甲"
 
@@ -651,9 +651,9 @@ libraries = {
 
 [node name="刺客乙" parent="cikegroup" instance=ExtResource("7_7mriv")]
 position = Vector2(-202, 66)
+showName = "刺客-乙"
 txt2d = ExtResource("28_htj8s")
 boardType = 1
-showName = "刺客-乙"
 dialogue_resource = ExtResource("2_6rtve")
 dialogue_start = "刺客乙"
 
@@ -668,9 +668,9 @@ libraries = {
 }
 
 [node name="刺客丙" parent="cikegroup" instance=ExtResource("7_7mriv")]
+showName = "刺客-丙"
 txt2d = ExtResource("28_htj8s")
 boardType = 1
-showName = "刺客-丙"
 dialogue_resource = ExtResource("2_6rtve")
 dialogue_start = "刺客丙"
 
@@ -687,19 +687,19 @@ autoplay = "slash"
 
 [node name="曹操年轻" parent="cikegroup" instance=ExtResource("7_7mriv")]
 position = Vector2(-194, -124)
+showName = "曹操"
 txt2d = ExtResource("27_amxpt")
 boardType = 1
-showName = "曹操"
 dialogue_resource = ExtResource("2_6rtve")
 dialogue_start = "点击曹操"
 
 [node name="吕布" parent="." instance=ExtResource("7_7mriv")]
 visible = false
 position = Vector2(994, 532)
-txt2d = ExtResource("26_uyq5p")
-boardType = 1
 showName = "吕布"
 showEX = true
+txt2d = ExtResource("26_uyq5p")
+boardType = 1
 
 [node name="Label" type="Label" parent="吕布"]
 offset_left = -72.0
@@ -724,20 +724,20 @@ libraries = {
 [node name="xiahouchun" parent="." instance=ExtResource("7_7mriv")]
 visible = false
 position = Vector2(712, 628)
-txt2d = ExtResource("26_3sjlr")
-boardType = 1
 showName = "夏侯惇"
 dialogue_doubleclick = "second"
+txt2d = ExtResource("26_3sjlr")
+boardType = 1
 dialogue_resource = ExtResource("2_6rtve")
 dialogue_start = "泰山诸将任务开始"
 
 [node name="陈群" parent="." instance=ExtResource("7_7mriv")]
 visible = false
 position = Vector2(728, 655)
-txt2d = ExtResource("6_8cvew")
-boardType = 1
 showName = "陈群"
 dialogue_doubleclick = "second"
+txt2d = ExtResource("6_8cvew")
+boardType = 1
 dialogue_resource = ExtResource("2_6rtve")
 dialogue_start = "点击陈群"
 
@@ -799,9 +799,9 @@ stream = ExtResource("23_2xaha")
 [node name="guanyu" parent="." instance=ExtResource("7_7mriv")]
 visible = false
 position = Vector2(814, 617)
+showName = "关羽"
 txt2d = ExtResource("30_l2y66")
 boardType = 1
-showName = "关羽"
 dialogue_resource = ExtResource("21_eyp0q")
 dialogue_start = ""
 

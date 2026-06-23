@@ -699,8 +699,15 @@ func _set_blank_background(background_name: String) -> bool:
 	if blank_background == null:
 		blank_background = blank.get_node_or_null("blankBackground") as TextureRect
 	if blank_background == null:
-		push_warning("blankBackground node not found under street blank")
-		return false
+		blank_background = TextureRect.new()
+		blank_background.name = "blankBackground"
+		blank_background.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		blank_background.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		blank_background.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+		blank_background.visible = false
+		blank_background.size = _blank_rect_size()
+		blank.add_child(blank_background)
+		blank.move_child(blank_background, 0)
 	var path = _blank_background_path(background_name)
 	if not ResourceLoader.exists(path):
 		push_warning("blank background not found: " + path)
@@ -715,6 +722,7 @@ func openEyesToBlankBackground(background_name: String, duration: float = BLANK_
 		return
 	blank.show()
 	blank.color = Color(0, 0, 0, 0)
+	blank_background.show()
 	_ensure_blank_eye_nodes()
 	_layout_blank_reveal_nodes()
 	blank_eye_top.visible = true
@@ -892,6 +900,7 @@ func have_ThreeItems():
 
 #返回大街 玄阴秘境
 func returnStreet():
+	clearBlankBackground()
 	SoundManager.stop_ambient_sound(WASTELAND_0)
 	GameManager.resumeMusic()
 	playStageMusic()
