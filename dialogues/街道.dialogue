@@ -139,7 +139,9 @@ do bianjiEnd()
 => END
 
 ~ 徐州多次光顾
+do miniResScale()
 商人: 刺史大人，随便挑随便选，我这儿的货都是徐州顶好的！[voice:shangren_suibiantiaoxuan]
+
 => END
 
 ~ 商人回归小沛
@@ -412,7 +414,7 @@ do sideQuestReturnG(false)
 
 
 ~ 初次见面_陶谦
-do changeBlankBackground("陶谦墓地", 2)
+#do changeBlankBackground("陶谦墓地", 2)
 刘备根据陈登提供的线索，独自前往徐州城外乱葬岗。夜色深沉，墓地雾气弥漫，空气中弥漫着腐臭与血腥的气息，远处传来低沉的呜咽声，似鬼哭狼嚎。地上散落着破碎的墓碑，陶谦的墓碑赫然在列，但墓穴已被挖开，棺椁空空如也。突然，一股阴风袭来，刘备感到一阵晕眩，眼前一黑，昏迷过去。
 #陶谦显现
 do openEyesToBlankBackground("陶谦幻境")
@@ -450,8 +452,9 @@ do PlayTaoQian()
 
 ~ 战斗胜利_陶谦
 do battle_pane.hide()
-（陶谦的尸身逐渐崩解，化作一团黑雾消散，刘备清醒过来，发现自己躺在陶谦棺材旁，陶谦的尸体已经重新回到棺材，并且没有任何生机的迹象，不过刘备的手中多了一块血信。）  
 do changeBlankBackground("陶谦墓地", 2)
+（陶谦的尸身逐渐崩解，化作一团黑雾消散，刘备清醒过来，发现自己躺在陶谦棺材旁，陶谦的尸体已经重新回到棺材，并且没有任何生机的迹象，不过刘备的手中多了一块血信。）  
+
 血帕上的字迹: 吾知儿不肖，难守徐州，士族必取其性命。玄德若觉吾儿不可辅，便取而代之，唯求善待吾儿……[voice:taoqian_nanshouxuzhou]
 
 刘备: 陶谦，你放心，备定护你儿周全，徐州亦将安稳。[voice:liubei_taoqianfangxin]
@@ -630,7 +633,8 @@ do meetBoardGame(3)
 
 
 ~ 决战黑商boss战
-
+do openEyesToBlankBackground("商人诅咒")
+do merchant.show()
 刘备: 曹将军言，仕诡牌出自你手，徐州乱象可是你所为？[voice:liubei_luanxiangkenisuowei]
 黑商: 刺史大人…我卖的诡异牌只择强者，乱象非我意，只因人心贪婪。买些道具助你？或…来盘仕诡牌?[voice:shangren_laipanshiguipai]
 
@@ -642,9 +646,12 @@ do meetBoardGame(3)
 	do showPanelPage()
 - 取消
 	do cancelBlankMerchant()
+	do clearBlankBackground()
 => END!
 
 ~ 决战黑商boss战2
+do openEyesToBlankBackground("商人诅咒")
+do merchant.show()
 黑商: 刺史大人…我卖的诡异牌只择强者，乱象非我意，只因人心贪婪。买些道具助你？或…来盘仕诡牌?[voice:shangren_laipanshiguipai]
 - 好，摆牌吧，让我来破你的诡秘乱局！  
 	do finalBoardGame() 
@@ -653,6 +660,7 @@ do meetBoardGame(3)
 	do showPanelPage()
 - 取消
 	do cancelBlankMerchant()
+	
 => END!
 
 ~ 玩家终局输掉
@@ -661,10 +669,12 @@ do GameManager.enterCrazy()
 系统提示: 诡秘乱局中输了牌局，体力值降低为0。
 do GameManager.sav.hp=0
 do GameManager.enterNormal()
+do clearBlankBackground()
 => END!
 
 ~ 黑商输掉
 do GameManager.enterNormal()
+do clearBlankBackground()
 暗巷，牌局结束，仕诡牌幽光骤散，空气清明，远处百姓喧哗渐归正常。商人身体颤抖，似从梦魇挣脱，情绪激动。
 
 

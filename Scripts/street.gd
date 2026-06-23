@@ -265,6 +265,7 @@ func constructBefore():
 	#people.hide()
 
 func getXuanYin():
+	resetResPanel()
 	var _reward:rewardPanel=PanelManager.new_reward()
 	var items={
 		"items": {InventoryManagerItem.ItemEnum.玄阴玉符:1},
@@ -297,6 +298,11 @@ func SurrenderKe():
 
 
 @onready var res_panel: propertyPanel = $CanvasLayer/resPanel
+
+func miniResScale():
+	res_panel.position.x=1564
+	res_panel.position.y=803
+	res_panel.scale=Vector2(0.765,0.765)	
 
 #const BOULEUTERION = preload("res://Scene/Bouleuterion.tscn")
 func _buttonListClick(item):
@@ -340,7 +346,8 @@ func _buttonListClick(item):
 			res_panel.position.x=1564
 			res_panel.position.y=803
 			res_panel.scale=Vector2(0.765,0.765)
-			if GameManager.sav.have_event["boss战开始"]==true and GameManager.sav.caobaocardgame==4:
+			if 1:
+			#GameManager.sav.have_event["boss战开始"]==true and GameManager.sav.caobaocardgame==4:
 				if await GameManager.isTried(20):
 					return 		
 				SoundManager.stop_music()
@@ -350,10 +357,10 @@ func _buttonListClick(item):
 				
 				if GameManager.sav.have_event["遇见黑商"]==false:
 					GameManager.sav.have_event["遇见黑商"]=true
-					PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeOut)
-					blank.show()
+					#PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeOut)
+					#blank.show()
 				#播放诡秘的曲子
-					merchant.show()
+					#merchant.show()
 					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"决战黑商boss战")
 				else:
 					enterBlackMerchant()	
@@ -378,8 +385,7 @@ func enterBlackMerchant():
 	blank.show()
 				
 
-				#播放诡秘的曲子
-	merchant.show()
+
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"决战黑商boss战2")
 		
 func showPanelPage():
@@ -405,9 +411,11 @@ func finalBoardGame():
 	SceneManager.changeScene(SceneManager.roomNode.BoardGame,2)
 	
 func cancelBlankMerchant():
+	clearBlankBackground()
 	GameManager.resumeMusic()
 	blank.hide()
 	merchant.hide()
+	#resetResPanel()
 
 const DUNGEON_3 = preload("res://Asset/bgm/dungeon3.wav")
 const WASTELAND_0 = preload("res://Asset/bgm/wasteland0.wav")
@@ -805,6 +813,7 @@ func changeBlankBackground(background_name: String, duration: float = 0.6):
 	else:
 		blank_background.texture = load(path)
 func clearBlankBackground(hide_blank: bool = true):
+	resetResPanel()
 	stopBlankBackgroundShake()
 	if blank_background != null:
 		blank_background.visible = false
@@ -1010,11 +1019,15 @@ func enterBattleZhenren():
 func zhenrenFinish():
 	blank.hide()
 	bossBattleAfter=false
+	resetResPanel()
+	GameManager.endtempRestoreGeneral()
+
+
+
+func resetResPanel():
 	GameManager.currenceScene.res_panel.position.x=1403
 	GameManager.currenceScene.res_panel.position.y=622
 	GameManager.currenceScene.res_panel.scale=Vector2(1,1)
-	GameManager.endtempRestoreGeneral()
-
 
 func headRed():
 	
