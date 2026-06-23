@@ -98,9 +98,8 @@ animations = [{
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_di8p8")
-dontTrutShizu = "不要相信士族!
-不要相信士族!!
-不要相信士族!!!"
+dontTrutShizu = "若你是陶商，活下去。
+若你是刘备，别醒得太晚。"
 dialogue_resource = ExtResource("2_cebyh")
 dialogue_start = "this_is_a_node_title"
 
@@ -118,17 +117,17 @@ texture = ExtResource("4_k34jm")
 visible = false
 position = Vector2(669, 401)
 scale = Vector2(2.68435, 2.68435)
-txt2d = null
 showborder = false
+txt2d = null
 dialogue_resource = ExtResource("2_cebyh")
 dialogue_start = "开灯"
 
 [node name="蜡烛" parent="." instance=ExtResource("1_1yudk")]
 visible = false
 position = Vector2(1029, 672)
-txt2d = ExtResource("5_qjidl")
 dialogue_doubleclick = "蜡烛"
 showborder = false
+txt2d = ExtResource("5_qjidl")
 dialogue_resource = ExtResource("2_cebyh")
 dialogue_start = "蜡烛"
 
@@ -139,10 +138,10 @@ scale = Vector2(1.006, 1.202)
 [node name="陶谦" parent="." instance=ExtResource("1_1yudk")]
 visible = false
 position = Vector2(975, 563)
-txt2d = ExtResource("7_av8xv")
-boardType = 1
 showName = "陶谦的牌位"
 dialogue_doubleclick = "second"
+txt2d = ExtResource("7_av8xv")
+boardType = 1
 dialogue_resource = ExtResource("2_cebyh")
 dialogue_start = "second"
 
@@ -273,9 +272,9 @@ offset_bottom = 20.0
 scale = Vector2(0.2, 0.2)
 
 [node name="CanvasBook" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="ruleBook" parent="CanvasBook" instance=ExtResource("12_phx3k")]
+visible = false
 offset_left = 956.0
 offset_top = 471.0
 offset_right = 996.0
@@ -296,7 +295,8 @@ context = "士族存活规则怪谈
 □□□葬，□□□□，□怀□□。
 □传□□藏□，□□□□□□。
 □人□□其□，欲□□□之□。
-□□□□相□，□□□□，□□□□，□□此□。"
+□□□□相□，□□□□，□□□□，□□此□。
+"
 dialogue_resource = ExtResource("2_cebyh")
 
 [node name="title" type="RichTextLabel" parent="."]

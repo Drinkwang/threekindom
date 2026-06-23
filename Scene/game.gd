@@ -36,8 +36,8 @@ func _ready():
 		_on_option_button_item_selected(2)
 		
 	initLoadContinus()
-	_add_version_label()#debug
-	_test_deadline_check()#debug
+	#_add_version_label()#debug
+	#_test_deadline_check()#debug
 	if GameManager._setting.is_clear_normal_line or GameManager._setting.is_clear_overlord_line:
 		$credit.disabled = false
 func initLoadContinus():

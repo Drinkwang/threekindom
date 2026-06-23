@@ -15,6 +15,13 @@ const newBuild = preload("res://Asset/城镇建筑/集市2.png")
 
 const wudasha = preload("res://Asset/城镇建筑/夜晚街头无打杀.png")
 const dashabg = preload("res://Asset/城镇建筑/洛阳街头.png")
+const BLANK_BACKGROUND_DIR = "res://Asset/城镇建筑/out/"
+const BLANK_BACKGROUND_EXT = ".png"
+const BLANK_EYE_OPEN_TIME = 1.0
+const BLANK_FADE_OUT_TIME = 0.18
+const BLANK_HOLD_BLACK_TIME = 0.08
+var blank_eye_top: ColorRect
+var blank_eye_bottom: ColorRect
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GameManager.currenceScene=self
@@ -423,6 +430,7 @@ func gotoTomb():
 	blank.show()
 	taoqian.show()
 @onready var blank = $CanvasLayer/blank
+@onready var blank_background: TextureRect = $CanvasLayer/blank/blankBackground
 @onready var taoqian = $CanvasLayer/blank/taoqian
 @onready var mizhen = $CanvasLayer/blank/mizhen
 @onready var gulong: Node2D = $CanvasLayer/blank/gulong
@@ -439,10 +447,6 @@ func gotoMiMasion():
 	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeIn)
 	SoundManager.play_ambient_sound(WASTELAND_0)
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"初次见面_血姬")
-	await 0.5
-	PanelManager.Fade_Blank(Color.BLACK,0,PanelManager.fadeType.fadeOut)
-	blank.show()
-	mizhen.show()
 func gotoHuangDiMiao():
 	if await GameManager.isTried(90):
 		return
@@ -453,11 +457,11 @@ func gotoHuangDiMiao():
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"初次见面_镇魂龙")
 	
 	
-	await 0.5
-	PanelManager.Fade_Blank(Color.BLACK,0,PanelManager.fadeType.fadeOut)
+	#await 0.5
+	#PanelManager.Fade_Blank(Color.BLACK,0,PanelManager.fadeType.fadeOut)
 	
-	blank.show()
-	gulong.show()
+	#blank.show()
+	#gulong.show()
 
 
 	
@@ -623,6 +627,7 @@ func getScholarReward3():
 func holdWoolden():
 	playStageMusic()
 	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeOut)
+	clearBlankBackground()
 	GameManager.sav.have_event["支线触发完毕调查过竹简"]=true
 	GameManager.sav.have_event["获得过木桶标记"]=true
 	#增加道具
@@ -639,6 +644,7 @@ func BurySheep():
 	GameManager.sav.Merit_points+=3
 	playStageMusic()
 	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeOut)
+	clearBlankBackground()
 	GameManager.changePeopleSupport(-10)
 	GameManager.sav.have_event["支线触发完毕调查过竹简"]=true
 	GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.KESULU]=""
@@ -648,6 +654,100 @@ func BurySheep():
 func playStageMusic():
 	SoundManager.stop_all_ambient_sounds()
 	SoundManager.play_ambient_sound(MINISTREET)	
+
+func _ensure_blank_eye_nodes():
+	if blank_eye_top == null or not is_instance_valid(blank_eye_top):
+		blank_eye_top = ColorRect.new()
+		blank_eye_top.name = "blankEyeTop"
+		blank_eye_top.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		blank_eye_top.color = Color.BLACK
+		blank_eye_top.visible = false
+		blank_eye_top.z_index = 1000
+		blank.add_child(blank_eye_top)
+	if blank_eye_bottom == null or not is_instance_valid(blank_eye_bottom):
+		blank_eye_bottom = ColorRect.new()
+		blank_eye_bottom.name = "blankEyeBottom"
+		blank_eye_bottom.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		blank_eye_bottom.color = Color.BLACK
+		blank_eye_bottom.visible = false
+		blank_eye_bottom.z_index = 1000
+		blank.add_child(blank_eye_bottom)
+
+func _blank_rect_size() -> Vector2:
+	var rect_size = blank.size
+	if rect_size.x <= 0 or rect_size.y <= 0:
+		rect_size = get_viewport().get_visible_rect().size
+	return rect_size
+
+func _layout_blank_reveal_nodes():
+	var rect_size = _blank_rect_size()
+	if blank_eye_top != null:
+		blank_eye_top.position = Vector2.ZERO
+		blank_eye_top.size = Vector2(rect_size.x, rect_size.y * 0.5)
+	if blank_eye_bottom != null:
+		blank_eye_bottom.position = Vector2(0, rect_size.y * 0.5)
+		blank_eye_bottom.size = Vector2(rect_size.x, rect_size.y * 0.5)
+
+func _blank_background_path(background_name: String) -> String:
+	if background_name.begins_with("res://"):
+		return background_name
+	if background_name.get_extension().length() > 0:
+		return BLANK_BACKGROUND_DIR + background_name
+	return BLANK_BACKGROUND_DIR + background_name + BLANK_BACKGROUND_EXT
+
+func _set_blank_background(background_name: String) -> bool:
+	if blank_background == null:
+		blank_background = blank.get_node_or_null("blankBackground") as TextureRect
+	if blank_background == null:
+		push_warning("blankBackground node not found under street blank")
+		return false
+	var path = _blank_background_path(background_name)
+	if not ResourceLoader.exists(path):
+		push_warning("blank background not found: " + path)
+		return false
+	blank_background.texture = load(path)
+	blank_background.visible = true
+	return true
+
+func openEyesToBlankBackground(background_name: String, duration: float = BLANK_EYE_OPEN_TIME):
+	await get_tree().create_timer(0.5).timeout
+	if not _set_blank_background(background_name):
+		return
+	blank.show()
+	blank.color = Color(0, 0, 0, 0)
+	_ensure_blank_eye_nodes()
+	_layout_blank_reveal_nodes()
+	blank_eye_top.visible = true
+	blank_eye_bottom.visible = true
+	PanelManager.Fade_Blank(Color.BLACK, BLANK_FADE_OUT_TIME, PanelManager.fadeType.fadeOut)
+	await get_tree().create_timer(BLANK_FADE_OUT_TIME + BLANK_HOLD_BLACK_TIME).timeout
+	var rect_size = _blank_rect_size()
+	var tween = get_tree().create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(blank_eye_top, "size:y", 0.0, duration)
+	tween.tween_property(blank_eye_bottom, "position:y", rect_size.y, duration)
+	tween.tween_property(blank_eye_bottom, "size:y", 0.0, duration)
+	await tween.finished
+	blank_eye_top.visible = false
+	blank_eye_bottom.visible = false
+
+func showBlankBackground(background_name: String):
+	if not _set_blank_background(background_name):
+		return
+	blank.show()
+	blank.color = Color(0, 0, 0, 0)
+	_layout_blank_reveal_nodes()
+
+func clearBlankBackground(hide_blank: bool = true):
+	if blank_background != null:
+		blank_background.visible = false
+	if blank_eye_top != null:
+		blank_eye_top.visible = false
+	if blank_eye_bottom != null:
+		blank_eye_bottom.visible = false
+	blank.color = Color.BLACK
+	if hide_blank:
+		blank.hide()
 	
 func showbianji():
 	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeOut)
