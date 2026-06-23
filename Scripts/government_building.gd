@@ -1211,6 +1211,7 @@ func financialConfort():
 	#减去资金
 	GameManager.sav.coin=GameManager.sav.coin-200
 	_c.ChangeAllPeople(20+rindex)
+	SignalManager.changeFraction.emit()
 	GameManager.sav.hp-=costHp_SummonOne
 	if _faction==cldata.factionIndex.lvbu:
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"扩充吕布实力")#显示对话
