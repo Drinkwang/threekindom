@@ -707,7 +707,7 @@ func getPolicyGroup() -> int:
 			return 1
 		if sav.day==5:
 			return 2
-		if sav.have_event["chaoChendengEnd"]==true and sav.have_event["chaoChenDenPolicyExcute"]==false and sav.currenceDay<=3:
+		if sav.have_event["chaoChendengEnd"]==true and sav.have_event["chaoChenDenPolicyExcute"]==false and sav.currenceDay<=3 and GameManager.sav.have_event["泰山诸将曹操消息"]==false:
 			return 3
 
 
