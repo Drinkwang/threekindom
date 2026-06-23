@@ -32,7 +32,7 @@ func _ready():
 		#881 667
 		if GameManager.sav.finalKeChoice==0:
 			people.position=Vector2(881,667)
-	elif GameManager.sav.have_event["initXuzhou"]==true:
+	elif GameManager.sav.have_event["initXuzhou"]==true and GameManager.sav.endPath!=GameManager.endPath.xiaopei:
 		bg.texture=newBuild
 		node_2d_store.position=Vector2(584,100)
 		node_2d_bamboo.position=Vector2(305,280)

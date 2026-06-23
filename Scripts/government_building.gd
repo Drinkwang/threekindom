@@ -95,7 +95,7 @@ const newBuild = preload("res://Asset/城镇建筑/宅邸亮.png")
 const xiaopeiBuild = preload("res://Asset/城镇建筑/小沛亮.png")
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if GameManager.sav.day>=5 or GameManager.sav.have_event["initXuzhou"]==true:
+	if (GameManager.sav.day>=5 or GameManager.sav.have_event["initXuzhou"]==true) and GameManager.sav.endPath!=GameManager.endPath.xiaopei:
 		bg.texture=newBuild
 	else:
 		bg.texture=xiaopeiBuild

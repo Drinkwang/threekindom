@@ -59,7 +59,7 @@ func _ready():
 	
 	changeLanguage()
 	SignalManager.changeLanguage.connect(changeLanguage)		
-	if GameManager.sav.have_event["initXuzhou"]==true:
+	if GameManager.sav.have_event["initXuzhou"]==true and GameManager.sav.endPath!=GameManager.endPath.xiaopei:
 		bg.texture=newBuild
 	else:
 		bg.texture=xiaopeiBuild		
