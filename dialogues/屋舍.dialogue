@@ -50,10 +50,11 @@ do chenqun.hide()
 do fadeInAndOut()
 do wait(1)
 do demoFinishWenGuanShow()
-刘备: 什么，陶刺史，让我来当徐州之主？[voice:liubei_smtaocishirangwo]
+刘备: 什么，陶使君，让我来当徐州之主？[voice:liubei_smtaocishirangwo]
 主簿: 信件上是这么说，糜竺大人和陈登大人再等着你呢？[voice:zhubo_xinjianshi]
 刘备: (这是真的么？虽然他隐约透露这种意思..但我本能告诉我，不太对)[voice:liubei_zheshizhendeme]
-刘备: 我怎么感觉你在忽悠我，骨肉至亲，陶刺史怎么可能放弃自己儿子呢？况且陶谦对我有恩..[voice:liubei_wozmganjuenihuyouwo]
+我怎么感觉你在忽悠我，骨肉至亲，陶使君怎么可能放弃自己儿子呢？况且他对我有恩..
+刘备: 我怎么感觉你在忽悠我，骨肉至亲，陶使君怎么可能放弃自己儿子呢？况且他对我有恩..[voice:liubei_wozmganjuenihuyouwo]
 主簿: 将军可是大才，治理徐州，百姓有福，陶大人可是“放心”才把徐州交给你[voice:zhubo_jiangjunkeshi]
 刘备: 容我考虑考虑..[voice:liubei_rongwokaolv]
 
@@ -77,8 +78,8 @@ do demoFinishWenGuanShow()
 刘备: 我觉得...[voice:liubei_wojuede]
 主簿: 将军，容下官说一句话，将军究竟是陶谦的下属 还是大汉的臣子？[voice:zhubo_jiangjunjiujjingshi]
 刘备: !??
-主簿: 如今天下大乱，诸侯并起之时，如若将军有自己理想和抱负，绝不会放弃此等大任，作为子民，将军和陶刺史都是皇帝的官员，并无高低贵贱之分，首要还是考虑百姓的福祉[voice:zhubo_rujintianxiadaluan]
-主簿: 况且，这个位置如果你不做，那么不该做这个位置的就做了..所谓丹阳的眼线还在盯着你呢？将军觉得不接受，就能在这里旧居么？[voice:zhubo_kuangqie]
+主簿: 如今天下大乱，诸侯并起之时，如若将军有自己理想和抱负，绝不会放弃此等大任，作为子民，将军和陶州牧都是皇帝的官员，并无高低贵贱之分，首要还是考虑百姓的福祉[voice:zhubo_rujintianxiadaluan]
+主簿: 况且，这个位置如果你不做，那么不该做这个位置的就做了..所谓丹阳的眼线还在盯着你呢？将军觉得不接受，就能在这里久居么？[voice:zhubo_kuangqie]
 刘备: （这话就是谬谈了..我在这边深得民心，哪怕曹豹也不能拿我怎么样，但是如若 想成就一番事业，他恰恰是说出我心中所言）[voice:liubei_zhehuamiutanle]
 刘备: （其实我本来就打算接受的）[voice:liubei_qishiwobenlaijiudasuan]
 刘备: 看来，我没法拒绝你..不过我有条件，徐州可以接，但需约法三章：不增民赋、不扰农耕，州治移至下邳。[voice:liubei_yuefasanzhang]
