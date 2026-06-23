@@ -313,7 +313,7 @@ var battleNum=0
 func enterBattleMode():
 	GameManager.sav.have_event["战斗袁术血战模式"]=true
 	battle_pane.battle_circle.taskIndex=0
-	GameManager.sav.hp=100
+	GameManager.sav.hp=GameManager.sav.maxHP
 	#任务开始，10天完成20次duel
 	
 	GameManager.sav.targetValue=32
@@ -1329,6 +1329,7 @@ const PB_BAOQUANHUOZHONG = preload("res://Asset/sound/pb_baoquanhuozhong.mp3")
 func xiaopei():
 	GameManager._engerge.close_save.hide()
 	GameManager.sav.have_event["血战袁术完成"]=true
+	GameManager.resetAfterBloodBattle()
 	
 	SoundManager.play_sound(PB_BAOQUANHUOZHONG)
 	GameManager.wait_time=PB_BAOQUANHUOZHONG.get_length()
@@ -1345,6 +1346,7 @@ func xiaopei():
 func xiapi():
 	GameManager._engerge.close_save.hide()
 	GameManager.sav.have_event["血战袁术完成"]=true
+	GameManager.resetAfterBloodBattle()
 	GameManager.sav.endPath=GameManager.endPath.xuzhou
 	SoundManager.play_sound(PB_ZAITUBAYE)
 	GameManager.wait_time=PB_ZAITUBAYE.get_length()	

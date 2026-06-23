@@ -299,6 +299,14 @@ func initBattle():
 	SignalManager.initBattle.emit()
 	#同时初始化3个将军攻克面板	
 
+func resetAfterBloodBattle():
+	initBattle()
+	sav.hp=sav.maxHP
+	sav.alreadyHP=0
+	if _engerge!=null:
+		_engerge.previewValue=0
+		_engerge.changerate(sav.hp)
+
 func array_sum(arr: Array) -> int:
 	var sum = 0
 	for i in arr:
