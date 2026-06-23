@@ -343,11 +343,9 @@ func _buttonListClick(item):
 			else:
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"商人已经走了")
 		else:
-			res_panel.position.x=1564
-			res_panel.position.y=803
-			res_panel.scale=Vector2(0.765,0.765)
-			if 1:
-			#GameManager.sav.have_event["boss战开始"]==true and GameManager.sav.caobaocardgame==4:
+
+			#miniResScale()
+			if GameManager.sav.have_event["boss战开始"]==true and GameManager.sav.caobaocardgame==4:
 				if await GameManager.isTried(20):
 					return 		
 				SoundManager.stop_music()
