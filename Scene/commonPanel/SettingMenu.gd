@@ -14,6 +14,7 @@ class_name SettingMenu
 @onready var bgs_slider: HSlider = $VBoxContainer/bgsCon/HSlider
 
 @onready var option_button = $VBoxContainer/lanSysCon/OptionButton2
+@onready var lansound_option_button: OptionButton = $VBoxContainer/lanSysCon2/lansoundOptionButton
 @onready var open_save_button: Button = $"VBoxContainer/isAutoSave/是否自动存档/Button"
 @onready var open_save_txt: Label = $"VBoxContainer/isAutoSave/是否自动存档"
 
@@ -29,34 +30,16 @@ func _ready():
 	var max_height = screen_size.y
 	
 	# 定义常见宽高比
-	var aspect_ratios = {
-		"16:9": 16.0 / 9.0,  # 1.777
-		"16:10": 16.0 / 10.0, # 1.6
-		"14:9": 14.0 / 9.0    # 1.555
-	}
-	
-	# 最小宽度和步长
-	var min_width = 640
-	var width_step = 128  # 每次增加 128
-	
-	# 动态生成分辨率
 	var generated_resolutions: Array[Vector2i] = []
-	for aspect_name in aspect_ratios:
-		var ratio = aspect_ratios[aspect_name]
-		var width = min_width
-		while width <= max_width:
-			var height = int(width / ratio)
-			if height <= max_height:
-				generated_resolutions.append(Vector2i(width, height))
-			width += width_step
-	
-	# 添加常见分辨率（手动补充）
 	var common_resolutions = [
+		Vector2i(1280, 720),
 		Vector2i(1366, 768),
-		Vector2i(1400, 900),
+		Vector2i(1600, 900),
+		Vector2i(1920, 1080),
 		Vector2i(1440, 900),
 		Vector2i(1680, 1050),
-		Vector2i(2560, 1440)  # 2K
+		Vector2i(2560, 1440),
+		Vector2i(3840, 2160)
 	]
 	for res in common_resolutions:
 		if res.x <= max_width and res.y <= max_height:
@@ -94,6 +77,7 @@ func _ready():
 		GameManager._setting=SettingsResource.new()
 		GameManager._setting.language=system_locale
 		GameManager._setting.resolution=resolutions[current_resolution_index]
+		_sync_people_voice_option()
 	else:
 	
 		system_locale=GameManager._setting.language #= OS.get_locale_language()
@@ -101,6 +85,8 @@ func _ready():
 			current_resolution_index=find_closest_resolution(max_width, max_height)
 		else:
 			find_res(GameManager._setting.resolution)
+			if current_resolution_index < 0:
+				current_resolution_index = find_closest_resolution(max_width, max_height)
 		music_slider.value=GameManager._setting.music_volume
 		sfx_slider.value=GameManager._setting.sfx_volume
 		people_slider.value=GameManager._setting.people_volume
@@ -112,6 +98,7 @@ func _ready():
 		SoundManager.set_sound_ui_volume(GameManager._setting.people_volume)
 		fullscreen_check.button_pressed=GameManager._setting.fullscreen
 		AutoSavecheck.button_pressed=GameManager._setting.isAutoSave
+	_sync_people_voice_option()
 	resolution_option.select(current_resolution_index)
 	# 延迟应用分辨率，避免在 _ready() 中立即改窗口大小导致 UI 异常
 	call_deferred("apply_resolution", current_resolution_index)
@@ -171,6 +158,10 @@ func find_res(resolution):
 
 # 应用分辨率
 func apply_resolution(index: int):
+	if index < 0 or index >= resolutions.size():
+		return ""
+	if fullscreen_check.button_pressed:
+		return resolutions[index]
 	var res = resolutions[index].split("x")
 	var width = int(res[0])
 	var height = int(res[1])
@@ -180,18 +171,19 @@ func apply_resolution(index: int):
 	
 	# 2. 获取该屏幕的实际尺寸
 	var screen_size = DisplayServer.screen_get_size(current_screen_idx)
+	var screen_pos = DisplayServer.screen_get_position(current_screen_idx)
 	
 	DisplayServer.window_set_size(Vector2i(width, height))
 	# 居中窗口
 	#var screen_size = DisplayServer.screen_get_size()
-	var window_pos = (screen_size - Vector2i(width, height)) / 2
+	var window_pos = screen_pos + (screen_size - Vector2i(width, height)) / 2
 	
 	#防止超出屏幕边界
-	window_pos.x = max(window_pos.x, 0)
-	window_pos.y = max(window_pos.y, 0)
+	window_pos.x = max(window_pos.x, screen_pos.x)
+	window_pos.y = max(window_pos.y, screen_pos.y)
 	# 确保位置不超过屏幕边界（防止右下侧出屏）
-	window_pos.x = min(window_pos.x, screen_size.x - width)
-	window_pos.y = min(window_pos.y, screen_size.y - height)
+	window_pos.x = min(window_pos.x, screen_pos.x + screen_size.x - width)
+	window_pos.y = min(window_pos.y, screen_pos.y + screen_size.y - height)
 		
 	
 	
@@ -335,15 +327,22 @@ func _on_lansound_option_button_item_selected(index: int) -> void:
 
 	elif index==1:
 		lan="zh"
-	
-	elif index==2:
-		lan="en"
 
 		
 	#TranslationServer.set_locale(lan)
 	GameManager._setting.peopleVlan=lan
 	#SignalManager.changeLanguage.emit()
 	#refreshLanguage(lan)
+
+
+func _sync_people_voice_option():
+	var lan="none"
+	if GameManager._setting!=null:
+		lan=GameManager._setting.peopleVlan
+	if lan=="zh":
+		lansound_option_button.select(1)
+	else:
+		lansound_option_button.select(0)
 
 
 func _on_openSaveDir_down() -> void:

@@ -1592,11 +1592,15 @@ func _load_settings():
 	var width = int(res[0])
 	var height = int(res[1])
 	
-	DisplayServer.window_set_size(Vector2i(width, height))
-	# 居中窗口
-	var screen_size = DisplayServer.screen_get_size()
-	var window_pos = (screen_size - Vector2i(width, height)) / 2
-	DisplayServer.window_set_position(window_pos)	
+	if not _setting.fullscreen:
+		DisplayServer.window_set_size(Vector2i(width, height))
+		var current_screen_idx = DisplayServer.window_get_current_screen()
+		var screen_size = DisplayServer.screen_get_size(current_screen_idx)
+		var screen_pos = DisplayServer.screen_get_position(current_screen_idx)
+		var window_pos = screen_pos + (screen_size - Vector2i(width, height)) / 2
+		window_pos.x = clamp(window_pos.x, screen_pos.x, screen_pos.x + screen_size.x - width)
+		window_pos.y = clamp(window_pos.y, screen_pos.y, screen_pos.y + screen_size.y - height)
+		DisplayServer.window_set_position(window_pos, current_screen_idx)
 	
 	SoundManager.set_sound_volume(GameManager._setting.sfx_volume)
 	#await get_tree().create_timer(0.1).timeout
