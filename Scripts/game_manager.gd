@@ -9,6 +9,7 @@ var _savePanel:savePanel
 var restLabel:String=""
 var wait_time=2
 var hearsayID=-1 #秘闻id，购买秘闻修改 如果是商店=0
+var backhearsayID=0
 var hearsayBeforeNode=null
 #用于临时储存的值
 var resideValue

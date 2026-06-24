@@ -128,7 +128,8 @@ func _start_hearsay_story(hearsay_id:int):
 	GameManager.restFadeScene=SceneManager.GOVERNMENT_BUILDING
 	SoundManager.stop_music()
 	GameManager.hearsayID=hearsay_id
-	GameManager.increase_item_max_stack(InventoryManagerItem.益气丸,2)
+	GameManager.backhearsayID=hearsay_id
+
 	if hearsay_id==1:
 		GameManager.restLabel=tr("你在徐州商人花钱买到一则秘闻。陶谦已逝，刘备新掌徐州，城中却暗潮汹涌。近日，陈登与糜竺密会厅堂，窃窃私语，似在筹谋未来。市井耳目偷听二人低语，揭开权臣心机一角，细闻之下，耐人寻味……")
 	elif hearsay_id==2:

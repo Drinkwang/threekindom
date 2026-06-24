@@ -242,12 +242,11 @@ func _initData():
 	}]
 
 	
-	
+	if GameManager.backhearsayID>0:
+		_show_pending_hearsay_reward()
 	
 	if(GameManager.hearsayID>0):
-		_show_pending_hearsay_reward()
-
-		GameManager.hearsayID=-1
+	
 		shop_panel.show()
 		miniResScale()
 		#res_panel.position.x=1564
@@ -261,9 +260,10 @@ func _initData():
 		GameManager.hearsayBeforeNode=null
 
 func _show_pending_hearsay_reward():
-	var hearsay_reward_id = GameManager.hearsayID
+	var hearsay_reward_id = GameManager.backhearsayID
 	if hearsay_reward_id<=0:
 		return
+	GameManager.backhearsayID=0
 	var hp_limit_rewards = {
 		1: 5,
 		2: 10,

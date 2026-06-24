@@ -88,7 +88,7 @@ func set_Labor(_num):
 
 func set_HpLimit(_num):
 	context.texture=HP_LIMIT
-	TooltipManager.register_tooltip(self,tr("体力上限，永久提升角色最大体力值10点"))
+	TooltipManager.register_tooltip(self,tr("体力上限，永久提升角色最大体力值"))
 
 	txt_quantity.show()
 	txt_quantity.text=var_to_str(_num)
