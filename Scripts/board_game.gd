@@ -2485,12 +2485,75 @@ func enterHtutorial():
 
 var istutorial=false
 var tutorial_state_id=0
+var _tutorial_entering_game=false
 
 func tutorial_state_valid(state_id:int) -> bool:
 	return state_id == tutorial_state_id
 
 func cancel_tutorial_state():
 	tutorial_state_id += 1
+
+func _reset_tutorial_preview() -> void:
+	stopClick()
+	_clear_children_now(myhand)
+	_clear_children_now(enemyhand)
+	_clear_children_now(shi_group)
+	_clear_children_now(min_group)
+	_clear_children_now(bin_group)
+	_clear_children_now(shang_group)
+
+func _clear_children_now(node:Node) -> void:
+	for child in node.get_children():
+		node.remove_child(child)
+		child.queue_free()
+
+func _card_center(card:Control) -> Vector2:
+	return card.get_global_rect().get_center()
+
+func _start_tutorial_card_line(card:Control) -> void:
+	selectCard = card
+	clickPoint(_card_center(card))
+	border.global_position = _card_center(card)
+
+func _tutorial_seed_basic_preview() -> void:
+	_reset_tutorial_preview()
+	reside_num.show()
+	reside_num.text=tr("剩余步数：{s}").format({"s":maxUseCard})
+	drawOneInTour(5)
+	drawOneInTour(13)
+	drawOneInTour(21)
+	drawOneInTour(32)
+	insertCard(groupType.min,6)
+	await get_tree().create_timer(0.1).timeout
+	insertCard(groupType.shi,14)
+	await get_tree().create_timer(0.1).timeout
+	insertCard(groupType.shang,22)
+	await get_tree().create_timer(0.1).timeout
+	insertCard(groupType.bin,33)
+
+func _tutorial_get_play_preview_card() -> boardCard:
+	reside_num.show()
+	reside_num.text=tr("剩余步数：{s}").format({"s":maxUseCard})
+	if shi_group.get_child_count() == 0:
+		insertCard(groupType.shi,14)
+	await get_tree().process_frame
+	for child in myhand.get_children():
+		if child is boardCard and floori(child._value / 13) == 1:
+			return child as boardCard
+	return drawOneInTour(13)
+
+func _tutorial_remove_heart_card() -> void:
+	for child in myhand.get_children():
+		if child is boardCard and floori(child._value / 13) == 0:
+			child.queue_free()
+			return
+
+func _tutorial_target_center(node:Node) -> Vector2:
+	if node is Control:
+		return (node as Control).get_global_rect().get_center()
+	if node is Node2D:
+		return (node as Node2D).global_position
+	return Vector2.ZERO
 
 func reset_runtime_state():
 	killenemy=false
@@ -2545,18 +2608,26 @@ func clearTCard():
 	changeHoldEnegyPanel()
 
 func finishTutorialAndEnterGame():
+	if _tutorial_entering_game:
+		return
+	_tutorial_entering_game=true
 	await clearTCard()
-	enterGame()
+	await enterGame()
+	_tutorial_entering_game=false
 
 func showtutorial(num,isshow):
+	cancel_tutorial_state()
 	var tutorial_state=tutorial_state_id
 	istutorial=isshow
 	if(num<=10):
 		if isshow:
+			if num<=8:	
+				self["guild_"+str(num)].show()
 			if num==7:
 				if issecretGame==true:
 					hold_enegy_panel.show()
 			if	num==9:
+				_reset_tutorial_preview()
 				insertCard(groupType.shi,6)
 				await get_tree().create_timer(0.1).timeout
 				if not tutorial_state_valid(tutorial_state):
@@ -2566,81 +2637,35 @@ func showtutorial(num,isshow):
 				if not tutorial_state_valid(tutorial_state):
 					return
 				insertCard(groupType.shi,28)
+				await get_tree().create_timer(0.1).timeout
+				if not tutorial_state_valid(tutorial_state):
+					return
+				insertCard(groupType.shi,42)
 			if num==10:
 				pass	
 			if num==8:
 				reside_num.show()
-			if _crit_indicator != null and _crit_indicator.text != "":
-				_crit_indicator.show()
-				reside_num.text=tr("剩余步数：{s}").format({"s":maxUseCard})
-				drawOneInTour(5)
-				var usecard=drawOneInTour(32)
-				drawOneInTour(42)
-				drawOneInTour(14)
-				var obj:Control=myhand.get_child(2)
-				clickPoint(obj.global_position+Vector2(50,50))
-				border.position=obj.global_position
-				var otween = create_tween()
-				otween.tween_property(border, "position", shi.position, 1)
-				obj.reparent(canvas_layer)	
-				otween.tween_property(obj, "global_position", shi_group.global_position, 1)
-				var movefinish=func(_hand_card,groupobj):
-					if _hand_card!=null:
-						_hand_card.reparent(groupobj)
-						#await settleOneGroup(groupobj)
-								#调用结算函数	
-
-				await otween.finished	
-				if not tutorial_state_valid(tutorial_state):
-					return
-					
-				if obj!=null:
-					obj.reparent(shi_group)
-								#调用结算函数					
-			#	otween.tween_callback(movefinish.bind(obj,shi_group))  # 播放完成后调用函数
-				#await get_tree().create_timer(0.1).timeout
-				#insertCard(groupType.shi,33)
 			if num==1 and isshow==true:
-				reside_num.show()
-			if _crit_indicator != null and _crit_indicator.text != "":
-				_crit_indicator.show()
-				reside_num.text=tr("剩余步数：{s}").format({"s":maxUseCard})
-				drawOneInTour(5)
-				var usecard=drawOneInTour(13)
-				drawOneInTour(21)
-				drawOneInTour(32)
-				
-				insertCard(groupType.min,6)
-				await get_tree().create_timer(0.1).timeout
+				await _tutorial_seed_basic_preview()
 				if not tutorial_state_valid(tutorial_state):
 					return
-				insertCard(groupType.shi,14)
-				await get_tree().create_timer(0.1).timeout
-				if not tutorial_state_valid(tutorial_state):
-					return
-				insertCard(groupType.shang,22)
-				await get_tree().create_timer(0.1).timeout
-				if not tutorial_state_valid(tutorial_state):
-					return
-				insertCard(groupType.bin,33)
-
-				#插入4张手牌
-				pass
-			if num<=8:	
-				self["guild_"+str(num)].show()
 			if num==3 and isshow==true:
 				#出牌并得分
-				var obj:Control=myhand.get_child(2)
-				clickPoint(obj.global_position+Vector2(50,50))
-				border.position=obj.global_position
+				var obj:Control=await _tutorial_get_play_preview_card()
+				if not tutorial_state_valid(tutorial_state):
+					return
+				_start_tutorial_card_line(obj)
 				var otween = create_tween()
-				otween.tween_property(border, "position", shi.position, 1)
+				otween.tween_property(border, "global_position", _tutorial_target_center(shi), 1)
 				obj.reparent(canvas_layer)	
-				otween.tween_property(obj, "global_position", shi_group.global_position, 1)
+				otween.tween_property(obj, "global_position", _tutorial_target_center(shi_group), 1)
 
 					
 
 				await otween.finished	
+				stopClick()
+				if not tutorial_state_valid(tutorial_state):
+					return
 						#tween.tween_property(tempheart.material, "shader_parameter/progress", 1.0, 1.0).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
 				#var movefinish=func(_hand_card,groupobj):
 				#	if _hand_card!=null:
@@ -2697,10 +2722,10 @@ func showtutorial(num,isshow):
 
 		else:
 
-			self["guild_"+str(num)].hide()			
+			if num<=8:
+				self["guild_"+str(num)].hide()			
 			
 			if num==4:
-
 				insertCard(groupType.min,16)
 				await get_tree().create_timer(0.1).timeout
 				if not tutorial_state_valid(tutorial_state):
@@ -2709,7 +2734,7 @@ func showtutorial(num,isshow):
 				await get_tree().create_timer(0.1).timeout
 				if not tutorial_state_valid(tutorial_state):
 					return
-				insertCard(groupType.shang,35)
+				insertCard(groupType.shang,28)
 				await get_tree().create_timer(0.1).timeout
 				if not tutorial_state_valid(tutorial_state):
 					return
@@ -2726,6 +2751,8 @@ func showtutorial(num,isshow):
 				for j in bin_group.get_children():
 					if j!=null:
 						j.queue_free()
+			if num==2:
+				_tutorial_remove_heart_card()
 
 				
 				
