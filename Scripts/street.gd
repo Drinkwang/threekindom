@@ -270,9 +270,9 @@ func _show_pending_hearsay_reward():
 		3: 15
 	}
 	if not hp_limit_rewards.has(hearsay_reward_id):
-		GameManager.sav.pendingHearsayRewardID=0
+		
 		return
-	GameManager.sav.pendingHearsayRewardID=0
+	#GameManager.sav.pendingHearsayRewardID=0
 	var items={
 		"items": null,
 		"money": 0,
