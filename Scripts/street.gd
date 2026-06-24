@@ -753,7 +753,7 @@ func _set_blank_background(background_name: String) -> bool:
 	return true
 
 func openEyesToBlankBackground(background_name: String, duration: float = BLANK_EYE_OPEN_TIME):
-	await get_tree().create_timer(0.5).timeout
+	#await get_tree().create_timer(0.5).timeout
 	if not _set_blank_background(background_name):
 		return
 	blank.show()

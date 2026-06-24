@@ -259,6 +259,7 @@ do SurrenderKe()
 
 
 ~ 大儒辩经支线1
+do openEyesToBlankBackground("学者之处")
 郑玄: 刘玄德乎？老夫隐居注经，不问俗务，今日何意？[voice:zhenxuan_liuxuandehu]
 刘备: 徐州新定，民心未稳，特请教先生。[voice:liubei_qinjiaoxiansheng]
 郑玄: 教民以德，需明经义。《论语》云‘为政以德’，你如何解？[voice:zhengxuan_ruhejie]
@@ -280,6 +281,7 @@ do showbianji()
 do getScholarReward1()
 => END!
 ~ 大儒辩经支线2
+do openEyesToBlankBackground("学者之处")
 郑玄: 《礼记》言‘礼者，民之纪’，玄德以为如何？[voice:zhenxuan_lizheminzhiji]
 任务更新: 在大儒辩经中获得10000得分即可获得郑玄的点拨
 do showbianji()
@@ -293,6 +295,7 @@ do getScholarReward2()
 => END!
 
 ~ 大儒辩经支线3
+do openEyesToBlankBackground("学者之处")
 郑玄: 玄德，《周礼》言官制治国，你有何见？[voice:zhenxuan_zhouli]
 任务更新: 在大儒辩经中获得12000得分即可获得郑玄的点拨
 do showbianji()
