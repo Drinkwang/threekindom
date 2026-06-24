@@ -240,20 +240,47 @@ func _initData():
 		"context":"城门-军事驻地", #天数加1 进入过度
 		"visible":"true"
 	}]
+
+	
 	
 	
 	if(GameManager.hearsayID>0):
+		_show_pending_hearsay_reward()
+
 		GameManager.hearsayID=-1
 		shop_panel.show()
-		res_panel.position.x=1564
-		res_panel.position.y=803
-		res_panel.scale=Vector2(0.765,0.765)	
+		miniResScale()
+		#res_panel.position.x=1564
+		#res_panel.position.y=803
+		#res_panel.scale=Vector2(0.765,0.765)	
 
 	control._processList(initData)
 	items_in_scene.showItems()
 	if GameManager.hearsayBeforeNode==SceneManager.roomNode.Shop:
 		shop_panel.show()
 		GameManager.hearsayBeforeNode=null
+
+func _show_pending_hearsay_reward():
+	var hearsay_reward_id = GameManager.hearsayID
+	if hearsay_reward_id<=0:
+		return
+	var hp_limit_rewards = {
+		1: 5,
+		2: 10,
+		3: 15
+	}
+	if not hp_limit_rewards.has(hearsay_reward_id):
+		GameManager.sav.pendingHearsayRewardID=0
+		return
+	GameManager.sav.pendingHearsayRewardID=0
+	var items={
+		"items": null,
+		"money": 0,
+		"population": 0,
+		"hplimit": hp_limit_rewards[hearsay_reward_id]
+	}
+	var _reward:rewardPanel=PanelManager.new_reward()
+	_reward.showTitileReward(tr("洞悉各方内幕，坚定了你处置政务的决心，永久提升自身体力上限。"),items)
 		
 @onready var merchant: Node2D = $CanvasLayer/blank/merchant
 
