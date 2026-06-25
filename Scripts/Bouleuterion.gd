@@ -313,7 +313,6 @@ func _buttonListClick(item):
 				SceneManager.changeScene(SceneManager.roomNode.STREET,2)
 			else:
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"不能离开")
-					
 		else:
 				SceneManager.changeScene(SceneManager.roomNode.STREET,2)
 		#显示钱 民心 xx 武将面板

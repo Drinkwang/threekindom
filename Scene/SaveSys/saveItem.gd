@@ -82,8 +82,7 @@ func _on_button_unhover(button: TextureButton) -> void:
 	
 @onready var nodate = $nodate
 	
-const NOT_JAM_UI_CONDENSED_16 = preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf")
-	
+const _1_BLOD = preload("res://Asset/Font/1_blod.ttf")
 const BAKUDAI_BOLD = preload("res://Asset/Font/Bakudai-Bold.ttf")
 func initLanguage():
 	var currencelanguage=TranslationServer.get_locale()
@@ -94,9 +93,17 @@ func initLanguage():
 		label.add_theme_constant_override("line_spacing",0)
 	elif currencelanguage=="ru":
 		label.add_theme_constant_override("line_spacing",-5)
-		nodate.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
-		label.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
+		nodate.add_theme_font_override("font",_1_BLOD)
+		label.add_theme_font_override("font",_1_BLOD)
+		label.add_theme_font_size_override("font_size",32)
 		nodate.add_theme_font_size_override("font_size",50)
+	elif currencelanguage=="en":
+		label.add_theme_constant_override("line_spacing",-5)
+		nodate.add_theme_font_override("font",BAKUDAI_BOLD)
+		label.add_theme_font_override("font",BAKUDAI_BOLD)
+		label.add_theme_font_size_override("font_size",40)
+		nodate.add_theme_font_size_override("font_size",50)		
+		
 	else:
 		label.add_theme_constant_override("line_spacing",0)
 		nodate.add_theme_font_size_override("font_size",72)
