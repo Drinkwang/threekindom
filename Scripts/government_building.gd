@@ -396,7 +396,10 @@ func _buttonListClick(item):
 				GameManager.sav.have_event["firstgovermentTip"]=true
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"enterpolicy")
 		elif(GameManager.sav.day==2):
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第二天的提示")
+			if GameManager.sav.isMeet==false:
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第二天的提示")
+			else:
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第二天的提示2")
 		elif GameManager.sav.day==5:
 			if(GameManager.sav.have_event["initTask1"]==false and GameManager.sav.have_event["糜竺推荐陈登"]==true):
 
@@ -453,7 +456,11 @@ func _buttonListClick(item):
 			#		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"召见手下2")
 		#显示接下来要点击啥
 		else:
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"已经召见手下")
+			#第二天的提示2
+			if GameManager.sav.day==2:
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第二天的提示2")
+			else:
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"已经召见手下")
 		pass
 	elif item.context == "离开":
 		if GameManager.sav.day<4:

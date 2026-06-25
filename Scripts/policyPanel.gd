@@ -312,7 +312,7 @@ func excuteLaw(value:lawpoint):
 	if await GameManager.isTried(costhp):
 		return	
 	if GameManager.sav.gameDifficulty!=1:
-		GameManager.resideValue4=tr("【非简单难度下，法案影响派系时，提案与通过都会扣对应派系支持度。】")
+		GameManager.resideValue4=tr("【当前难度下，法案影响派系时，提案与通过都会扣对应派系支持度。】")
 	else:
 		GameManager.resideValue4=""
 	if selectLawPoint!=null:

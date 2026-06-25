@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="ysgml_xz_playtest"
+config/name="ysgml_xz"
 run/main_scene="res://Scene/game.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 boot_splash/bg_color=Color(0, 0, 0, 1)

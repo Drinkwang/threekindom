@@ -295,8 +295,7 @@ context = "士族存活规则怪谈
 □□□葬，□□□□，□怀□□。
 □传□□藏□，□□□□□□。
 □人□□其□，欲□□□之□。
-□□□□相□，□□□□，□□□□，□□此□。
-"
+□□□□相□，□□□□，□□□□，□□此□。"
 dialogue_resource = ExtResource("2_cebyh")
 
 [node name="title" type="RichTextLabel" parent="."]
