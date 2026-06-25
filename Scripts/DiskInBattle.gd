@@ -120,23 +120,38 @@ func _ready():
 	changeLanguage()
 	refreshPage()
 	Txtcount.text=str(GameManager.sav.completeTask)+"/"+str(GameManager.sav.currenceTask-GameManager.sav.completeTask)+"/"+str(GameManager.sav.currenceTask)
-const NOT_JAM_UI_CONDENSED_16 = preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf")	
+const NOT_JAM_UI_CONDENSED_16 = preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf")
+const LEGEND_FONT_DEFAULT = preload("res://Asset/Font/1_sim.ttf")
+const LEGEND_FONT_RU = preload("res://Asset/Font/1_blod.ttf")
+const LEGEND_NORMAL_RECT := Rect2(-100.0, 1.0, 20.0, 76.0)
+const LEGEND_VICTORY_KIT_RECT := Rect2(-110.0, -84.0, 20.0, 96.0)
 func changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()
-	if currencelanguage=="ja":
-		pass
-	elif currencelanguage=="ru":
-		pass
-		#$"VBoxContainer/无风险/Label".add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
-		#$"VBoxContainer/低风险/Label".add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
-		##task_label.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
-		#$"VBoxContainer/低风险2/Label".add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
-		#$"VBoxContainer/低风险3/Label".add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
-		#$"VBoxContainer/成功率/Label".add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
+	if currencelanguage=="ru":
+		_set_legend_style(LEGEND_FONT_RU, 14)
 	else:
-		pass	
+		_set_legend_style(LEGEND_FONT_RU, -1)
 	TooltipManager.register_tooltip(se_task_hbox,tr("奇策触发：满足特定条件，解锁隐藏行动"))	
-	
+
+func _set_legend_style(font:Font, font_size:int):
+	for legend_item in $VBoxContainer.get_children():
+		var legend_label = legend_item.get_node_or_null("Label")
+		if legend_label == null:
+			continue
+		legend_label.add_theme_font_override("font", font)
+		if font_size > 0:
+			legend_label.add_theme_font_size_override("font_size", font_size)
+		else:
+			legend_label.remove_theme_font_size_override("font_size")
+
+func set_victory_kit_legend_layout(has_victory_kit:bool):
+	var target_rect = LEGEND_VICTORY_KIT_RECT if has_victory_kit else LEGEND_NORMAL_RECT
+	var legend_box = $VBoxContainer
+	legend_box.offset_left = target_rect.position.x
+	legend_box.offset_top = target_rect.position.y
+	legend_box.offset_right = target_rect.position.x + target_rect.size.x
+	legend_box.offset_bottom = target_rect.position.y + target_rect.size.y
+
 var taskIndex:int=0
 
 var taskComplete=0

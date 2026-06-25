@@ -37,6 +37,14 @@ class_name battlePanel
 @onready var title = $PanelContainer/orderPanel/VBoxContainer/Label2
 
 @onready var select_detail = $PanelContainer/orderPanel/VBoxContainer/selectDetail
+const SELECT_DETAIL_SIZE := Vector2(0, 150)
+const SELECT_DETAIL_FONT_SIZE := 28
+const USE_ITEM_BUTTON_SIZE := Vector2(500, 82)
+const USE_ITEM_CHECK_BOX_RECT := Rect2(454, 23, 36, 36)
+const USE_ITEM_LABEL_RECT := Rect2(-370, -14, 356, 64)
+const USE_ITEM_LABEL_FONT_SIZE := 17
+const TASK_LABEL_RECT := Rect2(1041, 768, 469, 168)
+const TASK_LABEL_FONT_SIZE := 28
 
 var costhp=30
 # Called when the node enters the scene tree for the first time.
@@ -67,6 +75,7 @@ func refreshData():
 
 func changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()
+	_apply_battle_layout()
 	#if currencelanguage=="ru":
 		#sliderlabel_1.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
 		#sliderlabel_2.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
@@ -104,6 +113,27 @@ func changeLanguage():
 		_context=_context+tr("【已强化】")
 		
 	TooltipManager.register_tooltip(useItemPanel,_context)	
+
+func _apply_battle_layout():
+	select_detail.custom_minimum_size = SELECT_DETAIL_SIZE
+	select_detail.add_theme_font_size_override("font_size", SELECT_DETAIL_FONT_SIZE)
+	select_detail.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	select_detail.clip_text = true
+
+	useItemPanel.custom_minimum_size = USE_ITEM_BUTTON_SIZE
+	check_box.position = USE_ITEM_CHECK_BOX_RECT.position
+	check_box.size = USE_ITEM_CHECK_BOX_RECT.size
+	label.position = USE_ITEM_LABEL_RECT.position
+	label.size = USE_ITEM_LABEL_RECT.size
+	label.add_theme_font_size_override("font_size", USE_ITEM_LABEL_FONT_SIZE)
+	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	label.clip_text = true
+
+	task_label.position = TASK_LABEL_RECT.position
+	task_label.size = TASK_LABEL_RECT.size
+	task_label.add_theme_font_size_override("font_size", TASK_LABEL_FONT_SIZE)
+	task_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	task_label.clip_text = true
 
 		
 func initData():
@@ -164,6 +194,7 @@ func refreshUseItemPanel():
 
 	if num>0:
 		useItemPanel.show()
+		battle_circle.set_victory_kit_legend_layout(true)
 		var context=tr("_battleUseItem").format({"_num":num})
 		
 		if InventoryManager.has_item(InventoryManagerItem.益气丸):
@@ -172,7 +203,10 @@ func refreshUseItemPanel():
 		if GameManager.sav.useItemInBattle:
 			check_box.button_pressed=true
 	else:
+		battle_circle.set_victory_kit_legend_layout(false)
 		useItemPanel.hide()
+		GameManager.sav.useItemInBattle=false
+	#battle_circle.set_victory_kit_legend_layout(GameManager.sav.useItemInBattle)
 	
 
 func _refreshGeneral():
@@ -341,16 +375,10 @@ func refreshTask(checkSlider:bool=true):
 		task_label.text=context
 	if TooltipManager and TooltipManager.has_method("register_tooltip"):
 		TooltipManager.register_tooltip(task_label,tr("武将等级与专属武器，可降低战术目标物资损耗"))
-		# 下一帧让 PanelContainer 自适应 TaskLabel 高度
-		call_deferred("_fit_task_label_height")
+		_apply_battle_layout()
 
 func _fit_task_label_height():
-		# TaskLabel 实际渲染高度减去基准144，只增加超出部分
-		var extra = max(0, task_label.size.y - 144)
-		var spacer = $PanelContainer/orderPanel/VBoxContainer/TaskSpacer
-		if spacer:
-			spacer.custom_minimum_size.y = extra
-		$PanelContainer.offset_bottom = 411 + extra
+		pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 var _cursor_in_rect:bool=false
 
@@ -515,6 +543,7 @@ var buffSize=0
 func _on_Usecheck_box_toggled(toggled_on):
 
 	GameManager.sav.useItemInBattle=toggled_on
+	
 	buffSize=5;
 	_changeProgress()
 	#接下来的代码，改变胜率，让胜率的东西往前一丢丢
