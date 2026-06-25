@@ -416,6 +416,7 @@ func enterBlackMerchant():
 func showPanelPage():
 	if GameManager.sav.have_event["徐州第一次见商人"]==false:
 		GameManager.sav.have_event["徐州第一次见商人"]=true
+		miniResScale()
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"徐州第一次关顾")
 		shop_panel.show()
 		shop_panel.initData()

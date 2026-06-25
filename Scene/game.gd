@@ -7,6 +7,7 @@ const ARVOSTUS = preload("res://Asset/bgm/4- Arvostus.mp3")
 func _ready():
 	GameManager.sav=saveData.new()
 	GameManager.sav.day=0
+	GameManager.refreshCallable()
 	GameManager.musicId=0
 	SoundManager.play_music(ARVOSTUS)
 	var system_locale	
