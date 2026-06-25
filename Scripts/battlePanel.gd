@@ -100,34 +100,34 @@ func changeLanguage():
 
 		
 	var detail=properties.filter(func(a):return a["name"]=="detail")[0]
-	var _context
-	if tr(detail["value"]).length()>0:
+	#var _context
+	#if tr(detail["value"]).length()>0:
 					
-		_context=tr(_item_db.name)+":"+tr(detail["value"])
+	#	_context=tr(_item_db.name)+":"+tr(detail["value"])
 
 					
 
 					
-	if InventoryManager.has_item(InventoryManagerItem.迷魂木筒):
-		_context = _context.replace("40", "50") 
-		_context=_context+tr("【已强化】")
-		
-	TooltipManager.register_tooltip(useItemPanel,_context)	
+	#if InventoryManager.has_item(InventoryManagerItem.迷魂木筒):
+	#	label.text = label.text.replace("40", "50") 
+		#_context=_context+tr("【已强化】")
+		#这里改文本
+	#TooltipManager.register_tooltip(useItemPanel,_context)	
 
 func _apply_battle_layout():
 	select_detail.custom_minimum_size = SELECT_DETAIL_SIZE
 	select_detail.add_theme_font_size_override("font_size", SELECT_DETAIL_FONT_SIZE)
 	select_detail.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	select_detail.clip_text = true
+	#select_detail.clip_text = true
 
-	#useItemPanel.custom_minimum_size = USE_ITEM_BUTTON_SIZE
-	#check_box.position = USE_ITEM_CHECK_BOX_RECT.position
-	#check_box.size = USE_ITEM_CHECK_BOX_RECT.size
-	#label.position = USE_ITEM_LABEL_RECT.position
-	#label.size = USE_ITEM_LABEL_RECT.size
-	#label.add_theme_font_size_override("font_size", USE_ITEM_LABEL_FONT_SIZE)
-	#label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	#label.clip_text = true
+	useItemPanel.custom_minimum_size = USE_ITEM_BUTTON_SIZE
+	check_box.position = USE_ITEM_CHECK_BOX_RECT.position
+	check_box.size = USE_ITEM_CHECK_BOX_RECT.size
+	label.position = USE_ITEM_LABEL_RECT.position
+	label.size = USE_ITEM_LABEL_RECT.size
+	label.add_theme_font_size_override("font_size", USE_ITEM_LABEL_FONT_SIZE)
+	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	label.clip_text = true
 
 	task_label.position = TASK_LABEL_RECT.position
 	task_label.size = TASK_LABEL_RECT.size
@@ -194,19 +194,20 @@ func refreshUseItemPanel():
 
 	if num>0:
 		useItemPanel.show()
-		battle_circle.set_victory_kit_legend_layout(true)
+		
+
 		var context=tr("_battleUseItem").format({"_num":num})
 		
-		if InventoryManager.has_item(InventoryManagerItem.益气丸):
+		if InventoryManager.has_item(InventoryManagerItem.饥蛊骨签):
 			context = context.replace("40", "50") 
 		label.text=context
 		if GameManager.sav.useItemInBattle:
 			check_box.button_pressed=true
 	else:
-		battle_circle.set_victory_kit_legend_layout(false)
+	
 		useItemPanel.hide()
 		GameManager.sav.useItemInBattle=false
-	#battle_circle.set_victory_kit_legend_layout(GameManager.sav.useItemInBattle)
+
 	
 
 func _refreshGeneral():
@@ -376,15 +377,9 @@ func refreshTask(checkSlider:bool=true):
 	if TooltipManager and TooltipManager.has_method("register_tooltip"):
 		TooltipManager.register_tooltip(task_label,tr("武将等级与专属武器，可降低战术目标物资损耗"))
 		_apply_battle_layout()
-		call_deferred("_fit_task_label_height")
 
 func _fit_task_label_height():
-		# TaskLabel 实际渲染高度减去基准144，只增加超出部分
-		var extra = max(0, task_label.size.y - 144)
-		var spacer = $PanelContainer/orderPanel/VBoxContainer/TaskSpacer
-		if spacer:
-			spacer.custom_minimum_size.y = extra
-		$PanelContainer.offset_bottom = 411 + extra
+		pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 var _cursor_in_rect:bool=false
 
@@ -670,3 +665,11 @@ func enterBattleZhenRen():
 
 func changeHead(cha):
 	battle_circle.changeHead(cha)	
+
+
+
+
+
+func _on_texture_button_pressed() -> void:
+	check_box.button_pressed = not check_box.button_pressed
+#	_on_Usecheck_box_toggled(!check_box.toggle_mode)
