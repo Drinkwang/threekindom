@@ -124,7 +124,7 @@ const NOT_JAM_UI_CONDENSED_16 = preload("res://addons/inventory_editor/default/f
 const LEGEND_FONT_DEFAULT = preload("res://Asset/Font/1_sim.ttf")
 const LEGEND_FONT_RU = preload("res://Asset/Font/1_blod.ttf")
 const LEGEND_NORMAL_RECT := Rect2(-100.0, 1.0, 20.0, 76.0)
-const LEGEND_VICTORY_KIT_RECT := Rect2(-110.0, -84.0, 20.0, 96.0)
+const LEGEND_VICTORY_KIT_RECT := Rect2(-110.0, -32.0, 20.0, 96.0)
 func changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()
 	if currencelanguage=="ru":

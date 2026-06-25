@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://cjsb43uugkud4"]
+[gd_scene load_steps=59 format=3 uid="uid://cjsb43uugkud4"]
 
 [ext_resource type="Script" path="res://Scripts/battlePanel.gd" id="1_uyier"]
 [ext_resource type="Resource" uid="uid://d2qoinuor12dq" path="res://dialogues/演武场.dialogue" id="2_1p72a"]
@@ -44,30 +44,6 @@
 [ext_resource type="Texture2D" uid="uid://xe42wyg2wpsh" path="res://Asset/fx/zhangfei_Frames_1/Slash_color4_frame8.png" id="31_8b8yb"]
 [ext_resource type="Texture2D" uid="uid://cio88hkk4d20o" path="res://Asset/fx/zhangfei_Frames_1/Slash_color4_frame9.png" id="32_ptive"]
 [ext_resource type="FontFile" uid="uid://b8le0fd0ujbqx" path="res://Asset/Font/1_blod.ttf" id="44_buhkf"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_victory_kit"]
-bg_color = Color(0.94, 0.84, 0.63, 0.78)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.42, 0.25, 0.1, 0.62)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_victory_icon"]
-bg_color = Color(0.38, 0.18, 0.08, 0.32)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.22, 0.1, 0.04, 0.7)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
 
 [sub_resource type="Animation" id="Animation_ap145"]
 length = 0.001
@@ -378,11 +354,10 @@ text = "请选择你的出征将领："
 autowrap_mode = 2
 
 [node name="orderVbox" type="HBoxContainer" parent="PanelContainer/orderPanel/VBoxContainer"]
-custom_minimum_size = Vector2(2.05, 461)
+custom_minimum_size = Vector2(2.05, 411.895)
 layout_mode = 2
 
 [node name="selectDetail" type="Label" parent="PanelContainer/orderPanel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 0
@@ -390,12 +365,12 @@ theme_override_constants/shadow_offset_y = 0
 theme_override_constants/outline_size = 0
 theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/font = ExtResource("4_cxtvu")
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 31
 text = "选择将领出征（每名将领限出战一次），拖动滑块调配资源。投入越多，胜率越高；完成战术目标或触发克制关系，有概率降低部队伤亡。"
 autowrap_mode = 3
 
 [node name="Control2" type="Control" parent="PanelContainer/orderPanel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 24)
+custom_minimum_size = Vector2(0, 6.165)
 layout_mode = 2
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/orderPanel/VBoxContainer"]
@@ -405,8 +380,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="TextureButton" type="TextureButton" parent="PanelContainer/orderPanel/VBoxContainer/HBoxContainer2"]
-self_modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(500, 82)
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
@@ -414,60 +388,41 @@ texture_normal = ExtResource("4_jdktt")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Bg" type="Panel" parent="PanelContainer/orderPanel/VBoxContainer/HBoxContainer2/TextureButton"]
-layout_mode = 0
-offset_top = 2.0
-offset_right = 500.0
-offset_bottom = 78.0
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_victory_kit")
-
-[node name="IconFrame" type="Panel" parent="PanelContainer/orderPanel/VBoxContainer/HBoxContainer2/TextureButton"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 70.0
-offset_bottom = 70.0
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_victory_icon")
-
 [node name="img" type="TextureRect" parent="PanelContainer/orderPanel/VBoxContainer/HBoxContainer2/TextureButton"]
 layout_mode = 2
-offset_left = 14.0
-offset_top = 12.0
-offset_right = 66.0
-offset_bottom = 64.0
+offset_left = 5.0
+offset_top = 6.0
+offset_right = 69.0
+offset_bottom = 70.0
+scale = Vector2(0.845, 0.845)
 texture = ExtResource("5_aelta")
-expand_mode = 1
-stretch_mode = 5
 
 [node name="Label" type="Label" parent="PanelContainer/orderPanel/VBoxContainer/HBoxContainer2/TextureButton"]
 layout_mode = 0
-offset_left = 34.0
-offset_top = 37.0
-offset_right = 67.0
-offset_bottom = 70.0
-theme_override_colors/font_color = Color(1, 0.94, 0.76, 1)
-theme_override_colors/font_outline_color = Color(0.18, 0.08, 0.03, 1)
-theme_override_constants/outline_size = 2
-theme_override_font_sizes/font_size = 24
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 60.0
+offset_bottom = 64.0
+theme_override_font_sizes/font_size = 32
 text = "1"
 horizontal_alignment = 2
 vertical_alignment = 2
 
 [node name="CheckBox" type="CheckBox" parent="PanelContainer/orderPanel/VBoxContainer/HBoxContainer2/TextureButton"]
 layout_mode = 0
-offset_left = 454.0
-offset_top = 23.0
-offset_right = 490.0
-offset_bottom = 59.0
+offset_left = 58.0
+offset_top = 5.0
+offset_right = 154.0
+offset_bottom = 101.0
+scale = Vector2(0.5, 0.5)
 
 [node name="Label" type="Label" parent="PanelContainer/orderPanel/VBoxContainer/HBoxContainer2/TextureButton/CheckBox"]
 layout_mode = 0
-offset_left = -370.0
-offset_top = -14.0
-offset_right = -14.0
-offset_bottom = 50.0
+offset_left = 82.0
+offset_top = -16.0
+offset_right = 282.0
+offset_bottom = 56.0
+scale = Vector2(2, 2)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = 0
 theme_override_constants/shadow_offset_x = 0
@@ -475,14 +430,14 @@ theme_override_constants/shadow_offset_y = 0
 theme_override_constants/outline_size = 0
 theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/font = ExtResource("4_cxtvu")
-theme_override_font_sizes/font_size = 17
+theme_override_font_sizes/font_size = 21
 text = "勾选使用胜战锦囊
 用于提高胜率5%
 【剩余库存：1】"
-autowrap_mode = 3
-clip_text = true
+vertical_alignment = 1
 
 [node name="Control2" type="Control" parent="PanelContainer/orderPanel/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 
 [node name="Control" type="Control" parent="PanelContainer/orderPanel/VBoxContainer"]
@@ -533,8 +488,8 @@ tab_1/title = "法律法规"
 layout_mode = 0
 offset_left = 1041.0
 offset_top = 768.0
-offset_right = 1510.0
-offset_bottom = 936.0
+offset_right = 1559.0
+offset_bottom = 912.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = -1
 theme_override_constants/shadow_offset_x = 0
@@ -542,10 +497,9 @@ theme_override_constants/shadow_offset_y = 0
 theme_override_constants/outline_size = 0
 theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/font = ExtResource("4_cxtvu")
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 31
 text = "战术目标："
 autowrap_mode = 3
-clip_text = true
 
 [node name="soildNum" type="Label" parent="."]
 layout_mode = 1
@@ -662,9 +616,9 @@ anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_left = 348.0
-offset_top = 208.0
+offset_top = 236.0
 offset_right = 728.0
-offset_bottom = 658.0
+offset_bottom = 686.0
 scale = Vector2(0.6, 0.6)
 headImg = ExtResource("5_tboc2")
 namelv = "关羽：lv1"
@@ -677,9 +631,9 @@ anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_left = 577.0
-offset_top = 208.0
+offset_top = 236.0
 offset_right = 957.0
-offset_bottom = 658.0
+offset_bottom = 686.0
 scale = Vector2(0.6, 0.6)
 headImg = ExtResource("6_ffj5y")
 namelv = "张飞:lv1"
@@ -692,9 +646,9 @@ anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_left = 806.0
-offset_top = 208.0
+offset_top = 236.0
 offset_right = 1186.0
-offset_bottom = 656.0
+offset_bottom = 684.0
 scale = Vector2(0.6, 0.6)
 headImg = ExtResource("7_xltxl")
 namelv = "赵云:lv1"
@@ -960,7 +914,7 @@ autoplay = "YELLOWGUILD"
 
 [node name="ani_1" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(442, 303)
+position = Vector2(442, 331)
 texture = ExtResource("15_b1f1v")
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="ani_1"]
@@ -970,7 +924,7 @@ libraries = {
 
 [node name="ani_2" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(670, 305)
+position = Vector2(670, 333)
 texture = ExtResource("24_s3r1q")
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="ani_2"]
@@ -1000,7 +954,7 @@ color = Color(1, 0, 0.078, 0)
 
 [node name="ani_3" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(897, 300)
+position = Vector2(897, 328)
 texture = ExtResource("15_7bqq5")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ani_3"]
@@ -1029,9 +983,9 @@ vertical_alignment = 1
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
 offset_left = 373.0
-offset_top = 502.0
+offset_top = 504.0
 offset_right = 969.0
-offset_bottom = 606.0
+offset_bottom = 608.0
 mouse_filter = 2
 
 [connection signal="toggled" from="PanelContainer/orderPanel/VBoxContainer/HBoxContainer2/TextureButton/CheckBox" to="." method="_on_Usecheck_box_toggled"]
