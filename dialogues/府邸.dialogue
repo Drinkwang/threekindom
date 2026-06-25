@@ -546,6 +546,7 @@ do GameManager.changePeopleSupport(-20)
 if GameManager.policyAction!=null
 	do GameManager.policyAction.call()
 do GameManager.policyAction=null
+do _JudgeTask()
 => END!
 
 

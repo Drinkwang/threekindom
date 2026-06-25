@@ -18,9 +18,9 @@ class_name saveData
 	set(value):
 
 		coin=value
-		#bug
-		if is_instance_valid(GameManager.currenceScene) and GameManager.currenceScene is government_building:
-			GameManager.currenceScene.JudFundTask()
+		#bug 会打断对话，请考虑用别的方式实现
+		#if is_instance_valid(GameManager.currenceScene) and GameManager.currenceScene is government_building:
+		#	GameManager.currenceScene.JudFundTask()
 
 @export var daruValue=8000
 @export var shopEnhance=0
