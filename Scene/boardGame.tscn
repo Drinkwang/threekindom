@@ -758,6 +758,7 @@ theme_override_colors/font_color = Color(1, 0.858198, 0.883128, 1)
 theme_override_fonts/font = ExtResource("20_f0olx")
 theme_override_font_sizes/font_size = 40
 horizontal_alignment = 1
+autowrap_mode = 1
 
 [node name="Button" type="Button" parent="CanvasLayer/winRect"]
 layout_mode = 0

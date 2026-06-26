@@ -774,10 +774,10 @@ stretch_mode = 0
 [node name="ban2" type="NinePatchRect" parent="."]
 visible = false
 layout_mode = 0
-offset_left = 378.0
-offset_top = 554.0
-offset_right = 533.0
-offset_bottom = 602.0
+offset_left = 384.0
+offset_top = 433.0
+offset_right = 539.0
+offset_bottom = 481.0
 texture = ExtResource("12_h80nc")
 patch_margin_left = 10
 patch_margin_top = 10
@@ -821,10 +821,10 @@ texture = ExtResource("13_ugjcw")
 [node name="ban1" type="NinePatchRect" parent="."]
 visible = false
 layout_mode = 0
-offset_left = 378.0
-offset_top = 508.0
-offset_right = 533.0
-offset_bottom = 556.0
+offset_left = 384.0
+offset_top = 387.0
+offset_right = 539.0
+offset_bottom = 435.0
 texture = ExtResource("12_h80nc")
 patch_margin_left = 10
 patch_margin_top = 10
@@ -866,6 +866,7 @@ offset_bottom = 47.0
 texture = ExtResource("13_ugjcw")
 
 [node name="pointGroup" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -896,11 +897,12 @@ autoplay = "YELLOWGUILD"
 
 [node name="2" type="Node2D" parent="pointGroup"]
 visible = false
-position = Vector2(1121.75, 711.652)
+position = Vector2(1123.9, 838.091)
 rotation = 0.968658
 scale = Vector2(0.5, 0.5)
 
 [node name="5Yellow" type="Sprite2D" parent="pointGroup/2"]
+position = Vector2(0, 4.76837e-07)
 rotation = -1.5708
 scale = Vector2(4, 4)
 texture = ExtResource("7_5kst7")

@@ -986,6 +986,7 @@ func wuminmove():
 func showtutorial(num):
 
 	if num==1:
+		battle_pane.point_group.show()
 		battle_pane.guild_1.show()
 		battle_pane.istour=true
 		battle_pane.rect_1.show()

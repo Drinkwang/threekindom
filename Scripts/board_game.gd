@@ -2122,11 +2122,11 @@ func _update_crit_indicator(suit: int) -> void:
 @onready var baoji_tooltip: TextureRect = $baojiTooltip
 
 func _on_crit_indicator_Txt() -> void:
-	var tip = "连续消除两张相同花色即可触发暴击\n"
-	tip += "♥ 红桃：回合数 + 1，自身生命值 - 1\n"
-	tip += "♠ 黑桃：出牌次数 + 1，随机弃置 1 张手牌\n"
-	tip += "♣ 梅花：抽取 1 张牌，出牌次数 - 1\n"
-	tip += "♦ 方片：场上最多新增 2 张牌"
+	var tip = tr("连续消除两张相同花色即可触发暴击\n")
+	tip += tr("♥ 红桃：回合数 + 1，自身生命值 - 1\n")
+	tip += tr("♠ 黑桃：出牌次数 + 1，随机弃置 1 张手牌\n")
+	tip += tr("♣ 梅花：抽取 1 张牌，出牌次数 - 1\n")
+	tip += tr("♦ 方片：场上最多新增 2 张牌")
 	TooltipManager.register_tooltip(baoji_tooltip, tip)
 
 
@@ -2412,7 +2412,7 @@ func reset_crit_chain_state() -> void:
 	last_match_occurred = false
 	_crit_pending_suit = -1
 	if _crit_indicator != null:
-		_crit_indicator.text =  "[color=white]暴击待发：无[/color]"
+		_crit_indicator.text = tr("[color=white]暴击待发：无[/color]")
 	isWaiting = false
 
 func _process(delta: float) -> void:

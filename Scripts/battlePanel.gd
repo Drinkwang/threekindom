@@ -564,6 +564,7 @@ func enterBattleMi():
 	soild_slider.editable=false
 	#soild_slider.enan;
 	battle_circle.enemyName="糜贞"
+	point_group.hide()
 	var cha=load("res://Asset/人物/mizhen_battle.png")
 	
 	for  data in GameManager.sav.battleTasks.values():
@@ -575,7 +576,7 @@ func enterBattleMi():
 func enterBattleTao():
 	
 	
-	
+	point_group.hide()
 	close_btn.hide()
 	_mode=SceneManager.bossMode.tao
 	ban_2_coin.show()
@@ -590,7 +591,7 @@ func enterBattleHuang():
 	_refreshSlider()
 	_refreshGeneral()
 	initTask()	
-	
+	point_group.hide()
 	battle_circle.enemyName="骨龙"
 	close_btn.hide()
 	_mode=SceneManager.bossMode.huang
@@ -640,6 +641,7 @@ func enterBattleZhenRen():
 	useItemPanel.hide()
 	close_btn.hide()
 	_mode=SceneManager.bossMode.zhenren
+	point_group.hide()
 	for i in range(0,3):
 		var datas=GameManager.sav.battleTasks.values()
 		var data=datas[i]
