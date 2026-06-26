@@ -34,6 +34,7 @@ PolicyManager="*res://Scripts/enum/policy_manager.gd"
 TooltipManager="*res://Scripts/TooltipManager.gd"
 SignalManager="*res://Scripts/signal_manager.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+AchievementManager="*res://Scripts/achievement_manager.gd"
 
 [debug]
 
