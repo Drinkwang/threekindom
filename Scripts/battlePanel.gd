@@ -198,7 +198,7 @@ func refreshUseItemPanel():
 
 		var context=tr("_battleUseItem").format({"_num":num})
 		
-		if InventoryManager.has_item(InventoryManagerItem.饥蛊骨签):
+		if InventoryManager.has_item(InventoryManagerItem.迷魂木筒):
 			context = context.replace("40", "50") 
 		label.text=context
 		if GameManager.sav.useItemInBattle:

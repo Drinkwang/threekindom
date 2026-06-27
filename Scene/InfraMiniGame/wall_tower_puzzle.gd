@@ -541,6 +541,7 @@ func _on_winAfter_button_down() -> void:
 			GameManager.resideValue=8
 		elif GameManager.selectPuzzleDiffcult==SceneManager.puzzlediffucult.high:
 			GameManager.resideValue=10
+			AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_11")
 	else:
 		#无奖励
 		GameManager.resideValue=0

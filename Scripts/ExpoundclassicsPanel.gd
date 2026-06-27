@@ -228,6 +228,7 @@ func _on_item_use_gui_input(event):
 			
 			if InventoryManager.has_item(InventoryManagerItem.礼记笺疏):
 				score=12000
+				AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_0")
 			else:
 				score=9000
 			yourscore.text=tr("你的得分：")+"\n"+str(score)+"/{daru}".format({"daru":GameManager.sav.daruValue})

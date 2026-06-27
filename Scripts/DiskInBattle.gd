@@ -559,7 +559,8 @@ func settleGame(end,issuccess):
 	if GameManager.sav.useItemInBattle==true:
 		InventoryManager._remove_item(GameManager.inventoryPackege,InventoryManagerItem.胜战锦囊,1)
 		var resideCount=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.胜战锦囊)
-
+		if InventoryManager.has_item(InventoryManagerItem.迷魂木筒):
+			AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_2")
 		if resideCount<=0:
 			GameManager.sav.useItemInBattle=false
 			GameManager.currenceScene.battle_pane.check_box.toggle_mode=false

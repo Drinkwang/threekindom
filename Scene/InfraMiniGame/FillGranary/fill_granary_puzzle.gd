@@ -300,6 +300,7 @@ func _on_winAfter_button_down() -> void:
 			GameManager.resideValue=20
 		elif GameManager.selectPuzzleDiffcult==SceneManager.puzzlediffucult.high:
 			GameManager.resideValue=30
+			AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_9")
 		var allDayget=GameManager.resideValue-tc
 		GameManager.sav.coin_DayGet+=allDayget
 		GameManager.sav.constructGrain=GameManager.selectPuzzleDiffcult

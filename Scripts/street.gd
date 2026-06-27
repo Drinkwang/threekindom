@@ -366,6 +366,7 @@ func _buttonListClick(item):
 		if GameManager.sav.day<5:
 			if GameManager.sav.have_event["小沛第一次见商人"]==false:
 				GameManager.sav.have_event["小沛第一次见商人"]=true
+				AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_6")
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大人还没有开张呢")
 			else:
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"商人已经走了")

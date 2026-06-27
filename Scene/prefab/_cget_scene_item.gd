@@ -64,30 +64,6 @@ func getSceneInItemSecret():
 
 func getSceneInItem():
 	var sceneNode:SceneManager.roomNode=items_in_scene.OccurInScene
-	
-	
-	
-	#积分随机抽奖物品逻辑，但存在问题是给的道具太多了，
-	#我目前想法是 捡到钱可能就几十，然后或者商城道具随机一个
-	
-	
-	#var _reward:rewardPanel=PanelManager.new_reward()
-	#var items={
-	#	"items": {InventoryManagerItem.ItemEnum.益气丸:2},
-	#	"money": 0,
-	#	"population": 0
-	#}
-	#GameManager.ScoreToItem()
-	#GameManager.sav.hp=GameManager.sav.hp+10
-	#_reward.showTitileReward(tr("恭喜你，你获得-益气丸x2"),items)	
-
-
-	#是用积分逻辑 还是用物品逻辑
-	#这里加上逻辑，可能获得道具，钱，或者别的
-	
-	#这里将这个塞入回调，放在对话框可以执行
-	
-	
 	DialogueManager.show_example_dialogue_balloon(items_in_scene.dialogue_resource,"发现场景道具"+var_to_str(SceneID))
 	GameManager.getItemAction=func():
 		var items:Array=[InventoryManagerItem.ItemEnum.珍品礼盒,InventoryManagerItem.ItemEnum.益气丸, InventoryManagerItem.ItemEnum.胜战锦囊, InventoryManagerItem.ItemEnum.诸子百家论集]
@@ -115,7 +91,7 @@ func getSceneInItem():
 		var _reward:rewardPanel=PanelManager.new_reward()
 	
 	
-	
+		AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_5")
 
 		_reward.showTitileReward(tr("你发现了以下道具"),item)
 	

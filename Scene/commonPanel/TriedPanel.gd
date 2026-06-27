@@ -90,6 +90,7 @@ func _on_jingliwan_button_down():
 		
 		if InventoryManager.has_item(InventoryManagerItem.饥蛊骨签):
 			GameManager.recoverHp(60)
+			AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_3")
 		else:
 			GameManager.recoverHp(40)
 		SoundManager.play_sound(sounds.tunyan)

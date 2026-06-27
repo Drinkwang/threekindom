@@ -220,6 +220,7 @@ func confireSold():
 		
 				InventoryManager._remove_item(GameManager.inventoryPackege,item_type,useItems[item_type])
 	useItems=[]
+	AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_7")
 	back_txt.text="当前商人没有需要从你手中收购商品的需要，请改日再来！"
 	buy_back_button.disabled=true
 	

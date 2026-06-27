@@ -4,7 +4,7 @@ extends Node
 #var steam
 
 const APP_ID=480
-var is_ready=false
+var is_ready=true
 var is_online=false
 var is_owned=false
 var steam_id:int
@@ -17,7 +17,7 @@ func _ready() -> void:
 	#	push_warning("Steam singleton not found.")
 	#	return
 	init_steam()
- 
+	set_achievement("ACH_WIN_ONE_GAME")
 func init_steam():
 	if Engine.has_singleton(("Steam")) and APP_ID>0:
 		var init_response:Dictionary=Steam.steamInitEx(APP_ID)

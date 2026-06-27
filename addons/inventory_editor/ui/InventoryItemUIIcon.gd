@@ -148,13 +148,14 @@ func _gui_input(event: InputEvent) -> void:
 		#print("aaaa i be doubleclick  使用道具"+_item_db.name)
 
 		if 	InventoryManagerItem.益气丸==_item_db.uuid:
-
+			AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_4")
 			InventoryManager._remove_item(GameManager.inventoryPackege,InventoryManagerItem.益气丸,1)
 			#GameManager.triedPanelDone.emit()
 			if GameManager.sav.hp>60:
 				GameManager.recoverHp(100-GameManager.sav.hp)
 			else:
 				if InventoryManager.has_item(InventoryManagerItem.饥蛊骨签):
+					AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_3")
 					GameManager.recoverHp(50)
 				else:
 					GameManager.recoverHp(40)

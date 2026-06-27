@@ -1250,6 +1250,7 @@ func sendgift():
 	if num>=1:
 		GameManager.extraValue=15
 		GameManager.isGiftTrigger=true
+		AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_1")
 		_c.ChangeSupport(30)
 	else:
 		GameManager.extraValue=0
@@ -1424,6 +1425,7 @@ func CF_claim():
 	_c.summonNum+=1
 	#减去资金
 	GameManager.sav.coin=GameManager.sav.coin+ForValueGet
+	AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_8")
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"索取完成")
 
 
