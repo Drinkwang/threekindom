@@ -1,7 +1,14 @@
 extends Node2D
 @onready var option_button = $OptionButton
 @onready var title = $CanvasLayer/title
+@onready var game_logo = $CanvasLayer/gameLogo
+@onready var game_logo_glow = $CanvasLayer/gameLogoGlow
+@onready var game_logo_shadow = $CanvasLayer/gameLogoShadow
 var _language_syncing := false
+var _title_time := 0.0
+
+const GAME_LOGO_BASE_Y := 204.0
+const GAME_LOGO_SHADOW_BASE_Y := 214.0
 
 const ARVOSTUS = preload("res://Asset/bgm/4- Arvostus.mp3")
 func _ready():
@@ -44,6 +51,22 @@ func _ready():
 		$credit.disabled = false
 	if not SignalManager.changeLanguage.is_connected(_on_global_language_changed):
 		SignalManager.changeLanguage.connect(_on_global_language_changed)
+
+func _process(delta):
+	_title_time += delta
+	if game_logo.visible:
+		var pulse := (sin(_title_time * 1.65) + 1.0) * 0.5
+		var float_y := sin(_title_time * 0.72) * 6.0
+		game_logo.position.y = GAME_LOGO_BASE_Y + float_y
+		game_logo_shadow.position.y = GAME_LOGO_SHADOW_BASE_Y + float_y + 2.0
+		game_logo_glow.position.y = GAME_LOGO_BASE_Y + float_y - pulse * 2.0
+		game_logo_glow.modulate = Color(1.0, 0.46 + pulse * 0.14, 0.22, 0.14 + pulse * 0.16)
+
+func _set_game_logo_mode(enabled:bool):
+	game_logo.visible = enabled
+	game_logo_glow.visible = enabled
+	game_logo_shadow.visible = enabled
+	title.visible = not enabled
 func initLoadContinus():
 	var showContinus=false
 	for i in range(1,4):
@@ -171,24 +194,29 @@ func _on_option_button_item_selected(index):
 	if index==0:
 		title.add_theme_font_size_override("normal_font_size",200)  
 		lan="zh"
+		_set_game_logo_mode(true)
 		title.text="[center][rainbow]阴[/rainbow][wave amp=50 frep=100]三国[/wave][rainbow]谋论[/rainbow]-[tornado][color=#ff0000]徐州篇[/color][/tornado][/center]"				
 
 	elif index==1:
 		title.add_theme_font_size_override("normal_font_size",200)  
 		lan="lzh"
+		_set_game_logo_mode(true)
 		title.text="[center][rainbow]陰[/rainbow][wave amp=50 frep=100]三國[/wave][rainbow]謀論[/rainbow]-[tornado]徐州篇[/tornado][/center]"				
 	
 	elif index==2:
 		lan="en"
+		_set_game_logo_mode(false)
 		title.add_theme_font_size_override("normal_font_size",130)
 		title.text="[center]The [rainbow]Three Kingdoms[/rainbow] of [wave amp=50 frep=100]Shadows[/wave]:[tornado]Xuzhou[/tornado][/center]"
 				
 	elif index==3:
 		lan="ja"
+		_set_game_logo_mode(false)
 		title.text="[center][rainbow]陰[/rainbow][wave amp=50 frep=100]三国[/wave][rainbow]謀論[/rainbow]: [tornado]徐州編[/tornado][/center]"
 		title.add_theme_font_size_override("normal_font_size",200)  		
 	elif index==4:
 		lan="ru"
+		_set_game_logo_mode(false)
 		title.text="[center][tornado]Тёмные [/tornado][wave amp=50 frep=100]интриги [/wave][rainbow]Троецарствия[/rainbow][/center]"			
 		title.add_theme_font_size_override("normal_font_size",130)  		
 	
