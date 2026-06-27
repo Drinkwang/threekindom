@@ -39,9 +39,9 @@ loop = true
 
 [node name="gameLogoShadow" type="Sprite2D" parent="CanvasLayer"]
 visible = false
-modulate = Color(0.06, 0.006, 0.002, 0.78)
-position = Vector2(966, 214)
-scale = Vector2(0.53, 0.53)
+modulate = Color(0.06, 0.006, 0.002, 0)
+position = Vector2(960, 204)
+scale = Vector2(0.52, 0.52)
 texture = ExtResource("10_game_logo")
 
 [node name="gameLogo" type="Sprite2D" parent="CanvasLayer"]
@@ -52,9 +52,9 @@ texture = ExtResource("10_game_logo")
 
 [node name="gameLogoGlow" type="Sprite2D" parent="CanvasLayer"]
 visible = false
-modulate = Color(1, 0.46, 0.22, 0.18)
+modulate = Color(1, 0.46, 0.22, 0)
 position = Vector2(960, 204)
-scale = Vector2(0.54, 0.54)
+scale = Vector2(0.52, 0.52)
 texture = ExtResource("10_game_logo")
 
 [node name="title" type="RichTextLabel" parent="CanvasLayer"]

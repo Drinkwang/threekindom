@@ -2,13 +2,10 @@ extends Node2D
 @onready var option_button = $OptionButton
 @onready var title = $CanvasLayer/title
 @onready var game_logo = $CanvasLayer/gameLogo
-@onready var game_logo_glow = $CanvasLayer/gameLogoGlow
-@onready var game_logo_shadow = $CanvasLayer/gameLogoShadow
 var _language_syncing := false
 var _title_time := 0.0
 
 const GAME_LOGO_BASE_Y := 204.0
-const GAME_LOGO_SHADOW_BASE_Y := 214.0
 
 const ARVOSTUS = preload("res://Asset/bgm/4- Arvostus.mp3")
 func _ready():
@@ -55,17 +52,11 @@ func _ready():
 func _process(delta):
 	_title_time += delta
 	if game_logo.visible:
-		var pulse := (sin(_title_time * 1.65) + 1.0) * 0.5
 		var float_y := sin(_title_time * 0.72) * 6.0
 		game_logo.position.y = GAME_LOGO_BASE_Y + float_y
-		game_logo_shadow.position.y = GAME_LOGO_SHADOW_BASE_Y + float_y + 2.0
-		game_logo_glow.position.y = GAME_LOGO_BASE_Y + float_y - pulse * 2.0
-		game_logo_glow.modulate = Color(1.0, 0.46 + pulse * 0.14, 0.22, 0.14 + pulse * 0.16)
 
 func _set_game_logo_mode(enabled:bool):
 	game_logo.visible = enabled
-	game_logo_glow.visible = enabled
-	game_logo_shadow.visible = enabled
 	title.visible = not enabled
 func initLoadContinus():
 	var showContinus=false
