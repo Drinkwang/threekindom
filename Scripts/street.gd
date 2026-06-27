@@ -510,6 +510,7 @@ func PlayMizhen():
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"动画播完_血姬")
 		battle_pane.show()
 		battle_pane.enterBattleMi()
+		AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_16")
 	playBossAni(lady,_func)
 
 
@@ -526,6 +527,7 @@ func PlayTaoQian():
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"动画播完_陶谦")
 		battle_pane.show()
 		battle_pane.enterBattleTao()
+		AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_18")
 	playBossAni(tao,_func)
 
 
@@ -533,7 +535,7 @@ func PlayTaoQian():
 func PlayGulong():
 	var tao = load("res://Asset/vedio/GULONGTEST.ogv")
 	var _func=func():
-
+		AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_17")
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"动画播完_镇魂龙")
 		battle_pane.show()
 		battle_pane.enterBattleHuang()

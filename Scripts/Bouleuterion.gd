@@ -123,6 +123,7 @@ func _initData():
 	if GameManager.bossmode==scenemanager.bossMode.tao and GameManager.sav.have_event["陈登支线3"]==false:
 		GameManager.sav.hp=0
 		chendeng.show()
+		AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_14")
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"陈登结尾")
 		GameManager.sav.have_event["陈登支线3"]=true
 		GameManager.bossmode=scenemanager.bossMode.none
@@ -287,6 +288,7 @@ func eatFish2(issuccuss=false):
 		if GameManager.sav.have_event["陈登正确选择2"]==true and GameManager.sav.have_event["陈登正确选择1"]==true:
 			GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.CHENDENG]=tr("持陈登密信赴乱葬岗，追查陶谦失尸之谜")
 	else:
+		AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_14")
 		GameManager.sav.have_event["错失血袖"]=true
 		GameManager.sav.have_event["陈登正确选择2"]=false
 func hearSayEnd():

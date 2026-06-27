@@ -161,6 +161,7 @@ func _initData():
 	elif GameManager.bossmode==scenemanager.bossMode.mi and GameManager.sav.have_event["糜竺支线3"]==false:
 		GameManager.sav.hp=0
 		mizhu.show()
+		AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_15")
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"糜贞结尾")
 		GameManager.sav.have_event["糜竺支线3"]=true
 		GameManager.bossmode=scenemanager.bossMode.none
@@ -566,6 +567,7 @@ func eatTea2(issuccuss=false):
 		if GameManager.sav.have_event["糜竺正确选择2"]==true and GameManager.sav.have_event["糜竺正确选择1"]==true:
 			GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.MIZHU]=tr("持铜钥入糜家秘宅，探寻糜贞疯癫缘由")
 	else:
+		AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_15")
 		GameManager.sav.have_event["错失娃娃"]=true
 		GameManager.sav.have_event["糜竺正确选择2"]=false
 
@@ -930,6 +932,7 @@ func deliverUncompleteTask():
 			else:
 				GameManager.sav.Merit_points+=1
 				GameManager.sav.have_event["错失古棒"]=true
+				AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_19")
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"保护陶商揭露真相")
 			return
 		#今日重点完成任务
@@ -1219,6 +1222,8 @@ func financialConfort():
 	GameManager.sav.coin=GameManager.sav.coin-200
 	_c.ChangeAllPeople(20+rindex)
 	SignalManager.changeFraction.emit()
+	if _c._num_all>=100:
+		AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_12")
 	GameManager.sav.hp-=costHp_SummonOne
 	if _faction==cldata.factionIndex.lvbu:
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"扩充吕布实力")#显示对话

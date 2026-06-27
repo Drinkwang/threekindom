@@ -268,6 +268,7 @@ func post_transition():
 			#赢了，第二天获得龙胆影月枪
 		GameManager.sav.have_event["曹豹支线3"]=true #第二天可以获得新道具
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"曹豹结尾")
+		AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_13")
 		
 		return 
 		
@@ -567,6 +568,7 @@ func select2(issuccuss):
 			GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.CAOBAO]=tr("城外黄帝祀庙之行，勘破盗宝诡计")
 			#GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.CAOBAO]=tr("夜探黄帝遗迹，揭穿盗宝阴谋")
 	else:
+		AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_13")
 		GameManager.sav.have_event["错失娃娃"]=true
 		GameManager.sav.have_event["曹豹正确选择2"]=false
 
