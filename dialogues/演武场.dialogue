@@ -1627,7 +1627,7 @@ do battle_pane.hide()
 do changeToFinalScene(2)
 此后恰逢袁、曹官渡相持，刘备趁势袭扰曹操后方，使其大败而归；袁绍虽胜，却因诸子争权、裂土而治，冀州内乱迭起，袁绍亦含恨而终。
 do changeToFinalScene(3)
-
+do AchievementManager.set_achievement("NEW_ACHIEVEMENT_2_2")
 就在袁绍诸子争权之际，刘备暗施谋略，挑拨其内部矛盾，待冀州内乱，亲率大军北上，以雷霆之势平定河北四州，覆灭袁绍势力。
 do awaittest()
 曹操元气未复，只得遣使求和，刘备自此奠定统一天下的根基，眼底锋芒尽显，向着复兴汉室的大业奋勇前行。

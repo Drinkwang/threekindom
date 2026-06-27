@@ -88,6 +88,14 @@ func changeState(state):
 #{"enemy":"曹豹","level":"诡秘乱局","detail":"游戏结束时取得300分","holdcard":-1,"MaxUsecard":-1,"ScoreNum":300,"Mustkill":false,"iscom":0,"index":6,"coinGet":0,"peopleGet":120},
 var _data
 
+func _set_card_collection_achievement_if_complete():
+	var claimed_count=0
+	for achievement in GameManager.sav.card_achives:
+		if achievement.iscom==2:
+			claimed_count+=1
+	if claimed_count>=9:
+		AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_20")
+
 func refreshRewardState():
 	if _data.iscom==0:
 		changeState(lockState.close)
@@ -131,6 +139,7 @@ func _on_nine_patch_rect_gui_input(event: InputEvent) -> void:
 			
 			_data.iscom=2
 			_reward.showTitileReward(tr("恭喜你完成了成就"),items)
+			_set_card_collection_achievement_if_complete()
 			
 			
 			changeState(lockState.after)
@@ -148,6 +157,7 @@ func _on_gui_input(event: InputEvent) -> void:
 			}
 			_data.iscom=2
 			_reward.showTitileReward(tr("恭喜你完成了成就"),items)
+			_set_card_collection_achievement_if_complete()
 			
 			
 			changeState(lockState.after)

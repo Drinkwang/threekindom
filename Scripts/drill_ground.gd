@@ -274,6 +274,7 @@ func post_transition():
 		
 	if GameManager.sav.have_event["最终泰山"]==true and GameManager.sav.have_event["辕门射戟"]==false:# 吕布辕门射戟
 		GameManager.sav.have_event["辕门射戟"]=true
+		AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_30")
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"吕布辕门射戟")
 		return
 	_initData()
@@ -383,6 +384,7 @@ func _initData():
 	
 		elif GameManager.sav.endPath!=GameManager.endPath.none and GameManager.sav.have_event["回忆无名"]==false:
 			#还没开发完毕，滤镜，还有回忆的场景，明天测试和开发
+			AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_29")
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"前置剧情·赵云荐士")
 			#return
 
@@ -1222,19 +1224,32 @@ func winTrain():
 		if GameManager.sav.guanyuTrainNum<GameManager.trainLevel:			
 			GameManager.sav.guanyuTrainNum+=1
 			found_general["level"] += 1	
+			if found_general["level"]>=10:
+				AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_26")
 			isFirst=true
+		if GameManager.sav.guanyuTrainNum>=3:
+			AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_23")
 		winReward(isFirst,GameManager.trainGeneral)
 	elif GameManager.trainGeneral=="张飞":
-		if GameManager.sav.zhangfeiTrainNum<GameManager.trainLevel:			
+		if GameManager.sav.zhangfeiTrainNum<GameManager.trainLevel:
 			GameManager.sav.zhangfeiTrainNum+=1
 			found_general["level"] += 1	
-			isFirst=true		
+			isFirst=true
+			if found_general["level"]>=10:
+				AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_27")			
+		if GameManager.sav.zhangfeiTrainNum>=3:
+			AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_24")
 		winReward(isFirst,GameManager.trainGeneral)
 	elif GameManager.trainGeneral=="无名":
-		if GameManager.sav.zhaoyunTrainNum<GameManager.trainLevel:			
+		if GameManager.sav.zhaoyunTrainNum<GameManager.trainLevel:
 			GameManager.sav.zhaoyunTrainNum+=1
 			found_general["level"] += 1	
-			isFirst=true		
+			isFirst=true
+			if found_general["level"]>=10:
+				AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_28")
+			
+		if GameManager.sav.zhangfeiTrainNum>=3:
+			AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_25")
 		winReward(isFirst,GameManager.trainGeneral)
 	
 func winReward(isFirst,generalName):

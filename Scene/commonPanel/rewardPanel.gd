@@ -183,6 +183,7 @@ func showReward(item):
 
 
 func showRewardMa(item):
+	AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_31")
 	imgTarget.texture=victoryPng
 	self.show()
 	#if GameManager.sav.have_event["吕布之怒"]==false and GameManager.sav.have_event["夏侯偷马"]==true and GameManager.sav.endPath==GameManager.endPath.xiaopei:

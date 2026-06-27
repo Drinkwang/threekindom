@@ -19,6 +19,12 @@ func initView():
 
 	if GameManager.sav.caobaocardgame>=4 or GameManager.sav.mizhucardgame>=4 or GameManager.sav.chendencardgame>=4:
 		unlockHighReward()
+	var claimed_count=0
+	for achievement in card_achives:
+		if achievement.iscom==2:
+			claimed_count+=1
+	if claimed_count>=9:
+		AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_20")
 
 
 func unlockHighReward():

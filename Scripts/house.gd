@@ -398,6 +398,7 @@ func post_transition():
 		_initData()
 
 	if GameManager.sav.have_event["进入曹府"]==true and GameManager.sav.have_event["最终比武结束"]==false:
+		AchievementManager.set_achievement("NEW_ACHIEVEMENT_2_0")
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"最终章节")
 		hidecanvas()
 	elif GameManager.sav.have_event["最终比武结束"]==true:

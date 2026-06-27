@@ -143,6 +143,7 @@ func _on_player_hit(_who: swordMan):
 
 		elif _who.hp==0:
 			if GameManager.trainGeneral.length()==0:
+				AchievementManager.set_achievement("NEW_ACHIEVEMENT_2_1")
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"赢曹操")
 			else:
 				blink_rect.show()
