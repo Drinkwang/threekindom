@@ -1018,7 +1018,7 @@ func returnStreet():
 func getZhenrenItem():
 	var _reward:rewardPanel=PanelManager.new_reward()
 	var items={
-		"items": {InventoryManagerItem.ItemEnum.霸道之息:1},
+		"items": {InventoryManagerItem.ItemEnum.沉眠的霸道之息:1},
 		"money": 0,
 		"population": 0
 	}

@@ -1410,6 +1410,7 @@ func confireSuppress():
 	_c._support_rate=100
 	_c.isSuppressed=true
 	_c.supressNum+=1
+	GameManager.awakenDominanceAfterSuppression()
 	SignalManager.changeFraction.emit()
 	#发一个信号，有派系确认为对你没有敌意的派系
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"镇压成功")#显示对话

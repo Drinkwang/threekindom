@@ -2089,6 +2089,21 @@ var minxinPoint=1
 func CheckAllFactionsSubdued():
 	return GameManager.sav.HAOZUPAI.supressNum>=3 and GameManager.sav.WAIDIPAI.supressNum>=3 and \
 		GameManager.sav.BENTUPAI.supressNum>=3
+
+func awakenDominanceAfterSuppression() -> bool:
+	if not CheckAllFactionsSubdued():
+		return false
+
+	var sleeping_dominance_num = InventoryManager.inventory_item_quantity(
+		GameManager.inventoryPackege,
+		InventoryManagerItem.沉眠的霸道之息
+	)
+	if sleeping_dominance_num <= 0:
+		return false
+	AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_22")
+	InventoryManager.remove_item(GameManager.inventoryPackege, InventoryManagerItem.沉眠的霸道之息, 1, false)
+	InventoryManager.add_item(GameManager.inventoryPackege, InventoryManagerItem.霸道之息, 1)
+	return true
 		
 @export var academicLevelDesc:Dictionary = {0:"见事",1:"见势",2:"见机",3:"见几"}
 
