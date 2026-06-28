@@ -1280,18 +1280,24 @@ func winReward(isFirst,generalName):
 		else:
 			score=3000
 		modename=tr("炉火纯青")
-			
+	if GameManager.sav.isTrainLevelUP==true:
+		score=score*3
 	var items=GameManager.ScoreToItem(score/10)
 	if isFirst==true:
 		if isFinal==true:
 			items.hplimit=10
-			_reward.showTitileReward(tr("首次通过{name}的至高难度！你的最大体力值永久提升10点，并立即晋升该武将等级！").format({"name":tr(generalName),"modename":modename}),items)	
+			_reward.showTitileReward(_get_train_reward_title(tr("首次通过{name}的至高难度！你的最大体力值永久提升10点，并立即晋升该武将等级！").format({"name":tr(generalName),"modename":modename})),items)	
 		else:
-			_reward.showTitileReward(tr("你与{name}在【{modename}】模式下，首次比武获胜了，提升武将等级").format({"name":tr(generalName),"modename":modename}),items)	
+			_reward.showTitileReward(_get_train_reward_title(tr("你与{name}在【{modename}】模式下，首次比武获胜了，提升武将等级").format({"name":tr(generalName),"modename":modename})),items)	
 	else:
-		_reward.showTitileReward(tr("你与{name}在【{modename}】模式下，比武获胜了").format({"name":generalName,"modename":modename}),items)		
+		_reward.showTitileReward(_get_train_reward_title(tr("你与{name}在【{modename}】模式下，比武获胜了").format({"name":generalName,"modename":modename})),items)		
 	GameManager.trainResult=SceneManager.trainResult.none
 	GameManager.trainGeneral=""	
+
+func _get_train_reward_title(title:String) -> String:
+	if GameManager.sav.isTrainLevelUP:
+		title += tr("【法令强化】")
+	return title
 
 func _processTrainResult(isWin: bool):
 	if isWin:
