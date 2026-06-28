@@ -11,8 +11,10 @@ var useItems
 func _ready():
 	GameManager.shopPanel=self
 	var haveNum=InventoryManager.canUseItemNum()
-	if GameManager.sav.isSoldItem==false and haveNum>=3:
-		var backNum=randi_range(3,haveNum)
+	var canBuy = GameManager.sav.merMustBuy or GameManager.sav.randomIndex % 2 == 0
+	if GameManager.sav.isSoldItem==false and haveNum>=1 and canBuy:
+		var backNum=randi_range(1,haveNum)
+		backNum=min(backNum,5)
 		useItems=InventoryManager.costItemRandom(backNum)
 		GameManager.SoldItemStr=generate_consumed_string(useItems)
 		GameManager.SoldCoin=0

@@ -1035,7 +1035,7 @@ func loadLaw():
 	elif sav.curLawName=="品级制":#1000
 		#RewardLaw="收益：徐州好感度+50，每日民力+50，获得道具“珍品礼盒”x2，一次性民力+300 冲突：豪族好感度-40，丹阳派好感度-25  "
 		lawAction= func():
-			sav.BENTUPAI.ChangeSupport(50)
+
 			sav.labor_DayGet+=150
 			sav.summonMaxNum=sav.summonMaxNum+1							
 			print("品级制done")			
@@ -1067,10 +1067,11 @@ func loadLaw():
 			#sav.BENTUPAI.ChangeSupport(-20)
 			sav.coin_DayGet+=20
 			sav.coin+=400
+			
 			#sav. todo
 			var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.珍品礼盒)
 			var remainder = InventoryManager.add_item(inventoryPackege, itemid, 1, false)			
-			
+			sav.shopSelfSell=true
 			print("行业准则done")			
 	elif sav.curLawName=="禁止军商":
 		#RewardLaw="收益：每日收入+50，豪族好感度+15，一次性收入+600 冲突：丹阳派好感度-25  "
@@ -1079,14 +1080,13 @@ func loadLaw():
 			sav.coin+=600
 			#sav.WAIDIPAI.ChangeSupport(-25)
 			print("禁止军商done")			
-	elif sav.curLawName=="商业税收法":
+	elif sav.curLawName=="宽商减赋法":
 		#RewardLaw="收益：每日收入+80，获得道具“益气丸”x2，一次性收入+800  冲突：徐州好感度-20"
 		lawAction= func():
 			sav.labor_DayGet+=180
-			var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.益气丸)
-			var remainder = InventoryManager.add_item(inventoryPackege, itemid, 6, false)
+			sav.isGoodsDiscount=true
 			#sav.BENTUPAI.ChangeSupport(-20)
-			print("商业税收法done")			
+		
 	elif sav.curLawName=="货币法":
 		#RewardLaw="收益：每日收入+100，群众支持度+10 冲突：丹阳派好感度-30 "
 		lawAction= func():
@@ -1101,8 +1101,7 @@ func loadLaw():
 		lawAction= func():
 			print("商业竞争法done")			
 			sav.labor_DayGet+=120
-		
-			sav.coin+=1000
+			sav.shopSelfSell=true
 
 	elif sav.curLawName=="商品流通法":
 		#RewardLaw="收益：每日收入+150，每日随机道具x1，一次性民力+200 冲突：徐州好感度-30，群众支持度-10  "
@@ -1155,7 +1154,8 @@ func loadLaw():
 		lawAction= func():
 			sav.labor_force=sav.labor_force+300
 			#sav.BENTUPAI.ChangeSupport(-20)
-			changePeopleSupport(5)
+			sav.isInformation=true
+
 			#sav.coin=sav.coin+400
 			print("厉兵练卒")	
 	elif sav.curLawName=="军事训诂":
@@ -1170,10 +1170,8 @@ func loadLaw():
 	elif sav.curLawName=="军事装备法":
 		#RewardLaw="收益：每日收入+50，获得道具“益气丸”x2 冲突：豪族好感度-20 "
 		lawAction= func():
-			sav.coin_DayGet=sav.coin_DayGet+280
-			#sav.HAOZUPAI.ChangeSupport(-30)
-			var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.益气丸)
-			var remainder = InventoryManager.add_item(inventoryPackege, itemid, 2, false)
+			sav.coin_DayGet=sav.coin_DayGet+140
+			sav.isWeaponLevelUP=true
 			
 			#print("军事装备法")	
 	elif sav.curLawName=="军事训练法":
@@ -1200,9 +1198,7 @@ func loadLaw():
 		lawAction= func():
 
 			sav.labor_DayGet=sav.labor_DayGet+100
-			var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.珍品礼盒)
-			var remainder = InventoryManager.add_item(inventoryPackege, itemid, 2, false)
-			sav.labor_force=sav.labor_force+250
+			sav.isTrainLevelUP=true
 			#sav.BENTUPAI.ChangeSupport(-20)
 			#sav.HAOZUPAI.ChangeSupport(-20)
 			print("律令兵制")	

@@ -738,7 +738,7 @@ lawpoins = [NodePath("../Control2-4")]
 detail = "重税商贾，府库充盈，农夫略感重负(每旬钱产出+180，获得道具\"益气丸\"x6，[shizu]支持度-30)"
 IncomeBg = "宽减商税，物价下跌，农利微薄，农夫负重"
 IncomeTxt = "每旬钱产出+180，商品价格-15%，[shizu]支持度-30"
-context = "宽商减赋"
+context = "宽商减赋法"
 num1 = 1
 num2 = 5
 
@@ -1049,7 +1049,7 @@ grow_vertical = 2
 lawpoins = [NodePath("../Control3-4")]
 detail = "重装军队，财力渐强，商贾略感负担。(每旬钱产出+280，获得道具\"益气丸\"x2 ，[haozu]支持度-30)"
 IncomeBg = "重装军队，财力渐强，商贾略感负担。"
-IncomeTxt = "每旬钱产出+280，武器装备效果提升 10% ，[haozu]支持度-30"
+IncomeTxt = "每旬钱产出+140，武器装备效果提升 10% ，[haozu]支持度-30"
 context = "军事装备法"
 num1 = 2
 num2 = 5
