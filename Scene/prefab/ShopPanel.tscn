@@ -235,22 +235,24 @@ size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("17_w8f0i")
 text = "卖出商品"
 
-[node name="buyBackButton2" type="Button" parent="backTxt"]
+[node name="buyBackButton2" type="Node2D" parent="backTxt"]
 visible = false
-offset_left = 892.0
-offset_top = -16.0
-offset_right = 1099.0
-offset_bottom = 91.0
+position = Vector2(1078, 40)
+
+[node name="merchantBuyBtn" type="Button" parent="backTxt/buyBackButton2"]
+offset_left = -186.0
+offset_top = -56.0
+offset_right = 21.0
+offset_bottom = 51.0
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("17_w8f0i")
 text = "卖出商品"
 
-[node name="buyBackButton3" type="Button" parent="backTxt"]
-visible = false
-offset_left = 1055.0
-offset_top = -16.0
-offset_right = 1262.0
-offset_bottom = 91.0
+[node name="selfBuyButton" type="Button" parent="backTxt/buyBackButton2"]
+offset_left = -23.0
+offset_top = -56.0
+offset_right = 184.0
+offset_bottom = 51.0
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("17_w8f0i")
 text = "择货变卖"
@@ -400,6 +402,6 @@ stretch_mode = 0
 [connection signal="mouse_entered" from="buyButton" to="." method="_on_buy_button_focus_entered"]
 [connection signal="mouse_exited" from="buyButton" to="." method="_on_buy_button_focus_exited"]
 [connection signal="button_down" from="backTxt/buyBackButton" to="." method="_on_Sold_button_down"]
-[connection signal="button_down" from="backTxt/buyBackButton2" to="." method="_on_Sold_button_down"]
-[connection signal="button_down" from="backTxt/buyBackButton3" to="." method="_on_Sold_button_down"]
+[connection signal="button_down" from="backTxt/buyBackButton2/merchantBuyBtn" to="." method="_on_Sold_button_down"]
+[connection signal="button_down" from="backTxt/buyBackButton2/selfBuyButton" to="." method="_on_Sold_button_down"]
 [connection signal="button_down" from="TextureButton2" to="." method="_on_texture_button_2_button_down"]
