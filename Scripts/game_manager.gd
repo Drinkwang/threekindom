@@ -1824,7 +1824,7 @@ func resumeMusic():
 		music.pitch_scale=1
 
 
-func initSecretBattleContext(targetValue,mode,BootValue,dialogueContext):
+func initSecretBattleContext(targetValue,mode,BootValue,dialogueContext,newdetail=""):
 	sav.extraCureenTaskCNum=0
 	sav.extraBattleTaskBootNum=BootValue
 	sav.extraBattleTaskTargetNum= targetValue

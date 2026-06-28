@@ -851,7 +851,7 @@ func secondMissonStart():
 	GameManager.sav.targetTxt="征讨次数：{currence}/{target}"
 	#觉得无用的注释GameManager.sav.TargetDestination="battle"
 	#从9改变成8 可能有bug 如果触发需要改回9
-	GameManager.initSecretBattleContext(1000,SceneManager.etraTaskType.costMoney,9,"黄巾军降伏")
+	GameManager.initSecretBattleContext(1000,SceneManager.etraTaskType.costMoney,9,"黄巾军降伏",("在对黄巾军的军事行动中，累计花费1000钱用于招抚敌军。"))
 	#win 10次90
 	#GameManager.sav.TargetDestination=="府邸"
 	pass

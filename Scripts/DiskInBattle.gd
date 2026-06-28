@@ -131,8 +131,11 @@ func changeLanguage():
 		_set_legend_style(LEGEND_FONT_RU, 14)
 	else:
 		_set_legend_style(LEGEND_FONT_RU, -1)
-	TooltipManager.register_tooltip(se_task_hbox,tr("奇策触发：满足特定条件，解锁隐藏行动"))	
-
+	if GameManager.sav.isInformation==false:
+		TooltipManager.register_tooltip(se_task_hbox,tr("奇策触发：满足特定条件，解锁隐藏行动"))	
+	else:
+		var context="条件揭示：\n"+ tr(GameManager.sav.extranewDetail)
+		TooltipManager.register_tooltip(se_task_hbox,context)	
 func _set_legend_style(font:Font, font_size:int):
 	for legend_item in $VBoxContainer.get_children():
 		var legend_label = legend_item.get_node_or_null("Label")

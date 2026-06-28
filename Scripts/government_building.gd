@@ -365,7 +365,7 @@ func ReconciliatoryFaction():
 		
 		GameManager.sav.targetTxt="统御派系: {currence}/{target}"
 	GameManager.AutoSaveFile()
-	#GameManager.initSecretBattleContext(3,SceneManager.etraTaskType.useItem,13,"袁术军大胜")
+
 
 func _buttonListHover(item):
 	if GameManager.haveMirror():
@@ -511,7 +511,7 @@ func victoryPartyEnd():
 	GameManager.sav.targetTxt=""
 	GameManager.sav.TargetDestination=""
 	GameManager.AutoSaveFile()
-	#GameManager.initSecretBattleContext(3,SceneManager.etraTaskType.useItem,13,"袁术军大胜")	
+
 	
 func oldvictoryPartyEnd():
 	GameManager.sav.have_event["战斗袁术开始"]=true
@@ -521,7 +521,7 @@ func oldvictoryPartyEnd():
 	GameManager.sav.targetTxt="征讨次数：{currence}/{target}"
 	chenden.hide()
 	mizhu.hide()
-	GameManager.initSecretBattleContext(3,SceneManager.etraTaskType.useItem,10,"袁术军大胜")
+	GameManager.initSecretBattleContext(3,SceneManager.etraTaskType.useItem,10,"袁术军大胜",("在对纪灵军的军事行动中，累计三次使用胜战锦囊。"))
 
 func mizhufinal():
 	GameManager.sav.have_event["最终糜竺"]=true
@@ -1175,7 +1175,7 @@ func StartTaishan():
 	GameManager.sav.currenceValue=0
 	GameManager.sav.targetResType=GameManager.ResType.battle
 	GameManager.sav.targetTxt="征讨次数：{currence}/{target}"
-	GameManager.initSecretBattleContext(3,SceneManager.etraTaskType.dontLoseGame,6,"昌豨求饶支线")
+	GameManager.initSecretBattleContext(3,SceneManager.etraTaskType.dontLoseGame,6,"昌豨求饶支线",("在对泰山军的军事行动中，累计三次达成100%胜率。"))
 	#觉得无用的注释GameManager.sav.TargetDestination="battle"
 	#显示军事行动还有30把
 	

@@ -447,6 +447,7 @@ GameManager.RspEnum.PAPER:{"name": "无名", "level": 1, "max_level": 10, "rando
 @export var extraBattleTaskEnum:SceneManager.etraTaskType=SceneManager.etraTaskType.none
 @export var extraCureenTaskCNum=0
 @export var extraBattleDialogContext=""
+@export var extranewDetail=""
 @export var remaining_seconds :int= GameManager.TOTAL_Play_Test_SECONDS :
 	set(value):
 		if DialogueManager.gameover==false:
