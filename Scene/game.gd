@@ -1,11 +1,16 @@
 extends Node2D
 @onready var option_button = $OptionButton
 @onready var title = $CanvasLayer/title
+@onready var game_logo_shadow = $CanvasLayer/gameLogoShadow
 @onready var game_logo = $CanvasLayer/gameLogo
+@onready var game_logo_glow = $CanvasLayer/gameLogoGlow
 var _language_syncing := false
 var _title_time := 0.0
 
 const GAME_LOGO_BASE_Y := 204.0
+const GAME_LOGO_SHADOW_OFFSET := Vector2(18.0, 24.0)
+const GAME_LOGO_GLOW_SCALE := Vector2(0.52, 0.52)
+const GAME_LOGO_BASE_SCALE := Vector2(0.52, 0.52)
 
 const ARVOSTUS = preload("res://Asset/bgm/4- Arvostus.mp3")
 func _ready():
@@ -53,10 +58,19 @@ func _process(delta):
 	_title_time += delta
 	if game_logo.visible:
 		var float_y := sin(_title_time * 0.72) * 6.0
-		game_logo.position.y = GAME_LOGO_BASE_Y + float_y
+		var logo_position := Vector2(960.0, GAME_LOGO_BASE_Y + float_y)
+		var glow_pulse := 0.5 + 0.5 * sin(_title_time * 1.45)
+		game_logo.position = logo_position
+		game_logo_shadow.position = logo_position + GAME_LOGO_SHADOW_OFFSET
+		game_logo_glow.position = logo_position
+		game_logo_glow.scale = GAME_LOGO_GLOW_SCALE + Vector2.ONE * (glow_pulse * 0.018)
+		game_logo_glow.modulate.a = 0.22 + glow_pulse * 0.08
 
 func _set_game_logo_mode(enabled:bool):
+	game_logo_shadow.visible = enabled
 	game_logo.visible = enabled
+	game_logo_glow.visible = enabled
+	game_logo.scale = GAME_LOGO_BASE_SCALE
 	title.visible = not enabled
 func initLoadContinus():
 	var showContinus=false
