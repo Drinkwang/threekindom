@@ -278,8 +278,8 @@ func confireSold():
 	AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_7")
 	back_txt.text="当前商人没有需要从你手中收购商品的需要，请改日再来！"
 	buy_back_button.disabled=true
-	merchant_buy_button.disabled=true
-	self_buy_button.disabled=true
+	merchant_buy_button.hide()
+	self_buy_button.hide()
 	self_sell_bg.hide()
 	self_sell_panel.hide()
 
@@ -382,21 +382,14 @@ func _on_self_sell_confirm_button_down():
 	var total_count=_get_self_sell_total_count()
 	if total_count<=0:
 		return
-	var total_coin=_get_self_sell_total_coin()
-	GameManager.sav.coin += total_coin
-	GameManager.sav.isSoldItem = true
-	for item_type in self_sell_counts.keys():
-		var count=int(self_sell_counts[item_type])
-		if count>0:
-			InventoryManager._remove_item(GameManager.inventoryPackege, item_type, count)
-	AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_7")
+	GameManager.SoldCoin = _get_self_sell_total_coin()
+	GameManager.SoldItemStr = tr("我将以%d金收购你手上的")%GameManager.SoldCoin+" ["+generate_consumed_string(self_sell_counts)+"]"
+	useItems = self_sell_counts.duplicate()
+	
+	shopEnhanceContext=tr("[法令提升了收购价{profit}%]").format({"profit":shopEnhance*15})
 	self_sell_bg.hide()
 	self_sell_panel.hide()
-	back_txt.text=tr("当前商人没有需要从你手中收购商品的需要，请改日再来！")
-	buy_back_button.disabled=true
-	merchant_buy_button.disabled=true
-	self_buy_button.disabled=true
-	detail.text=tr("已售出商品，获得%d金") % total_coin
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"售出成功")
 
 func _filter_self_sell_input_text(text:String) -> int:
 	var valid_text=""
