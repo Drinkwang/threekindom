@@ -100,8 +100,6 @@ func _ready():
 #	if get_tree().get_root().has_node(InventoryManagerName):
 #		_inventoryManager = get_tree().get_root().get_node(InventoryManagerName)
 	context.texture=img
-	if isShop==false:
-		return
 	if GameManager==null or GameManager.sav==null:
 		return
 	
@@ -114,14 +112,15 @@ func _ready():
 	
 	var _context=tr(db.name)+":"+tr(detail["value"])
 
+	if TooltipManager and TooltipManager.has_method("register_tooltip"):
+		TooltipManager.register_tooltip(self,_context)
+
+	if isShop==false:
+		return
+
 
 	if isShop==true:
 		refreshSold()
-	
-	
-
-	if TooltipManager and TooltipManager.has_method("register_tooltip"):
-		TooltipManager.register_tooltip(self,_context)		
 	#if get_tree().get_root().has_node(questManagerName):
 	#	questManager = get_tree().get_root().get_node(questManagerName)
 

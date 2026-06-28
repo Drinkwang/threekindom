@@ -375,6 +375,304 @@ horizontal_alignment = 1
 vertical_alignment = 2
 autowrap_mode = 3
 
+[node name="selfSellBg" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.62)
+
+[node name="selfSellPanel" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -420.0
+offset_top = -250.0
+offset_right = 420.0
+offset_bottom = 270.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_0of21")
+
+[node name="Content" type="VBoxContainer" parent="selfSellPanel"]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="Title" type="Label" parent="selfSellPanel/Content"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_tkcsx")
+theme_override_font_sizes/font_size = 34
+text = "自主选择商品销售，销售合计数量不能超过5"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Rows" type="VBoxContainer" parent="selfSellPanel/Content"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="YiqiRow" type="HBoxContainer" parent="selfSellPanel/Content/Rows"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="shopitem" parent="selfSellPanel/Content/Rows/YiqiRow" instance=ExtResource("4_iwehk")]
+custom_minimum_size = Vector2(88, 88)
+layout_mode = 2
+to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
+img = ExtResource("7_ubh4f")
+isShop = false
+itemstype = 1
+
+[node name="OwnedLabel" type="Label" parent="selfSellPanel/Content/Rows/YiqiRow"]
+custom_minimum_size = Vector2(120, 46)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_tkcsx")
+theme_override_font_sizes/font_size = 25
+text = "持有:0"
+vertical_alignment = 1
+
+[node name="PriceLabel" type="Label" parent="selfSellPanel/Content/Rows/YiqiRow"]
+custom_minimum_size = Vector2(120, 46)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_tkcsx")
+theme_override_font_sizes/font_size = 25
+text = "单价:0"
+vertical_alignment = 1
+
+[node name="MinusButton" type="Button" parent="selfSellPanel/Content/Rows/YiqiRow"]
+custom_minimum_size = Vector2(52, 46)
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("17_w8f0i")
+theme_override_font_sizes/font_size = 25
+text = "-"
+
+[node name="yiqiInput" type="LineEdit" parent="selfSellPanel/Content/Rows/YiqiRow"]
+custom_minimum_size = Vector2(74, 46)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("17_w8f0i")
+theme_override_font_sizes/font_size = 25
+text = "0"
+alignment = 1
+max_length = 1
+
+[node name="PlusButton" type="Button" parent="selfSellPanel/Content/Rows/YiqiRow"]
+custom_minimum_size = Vector2(52, 46)
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("17_w8f0i")
+theme_override_font_sizes/font_size = 25
+text = "+"
+
+[node name="ShengzhanRow" type="HBoxContainer" parent="selfSellPanel/Content/Rows"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="shopitem" parent="selfSellPanel/Content/Rows/ShengzhanRow" instance=ExtResource("4_iwehk")]
+custom_minimum_size = Vector2(88, 88)
+layout_mode = 2
+to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
+img = ExtResource("8_080tv")
+isShop = false
+itemstype = 2
+
+[node name="OwnedLabel" type="Label" parent="selfSellPanel/Content/Rows/ShengzhanRow"]
+custom_minimum_size = Vector2(120, 46)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_tkcsx")
+theme_override_font_sizes/font_size = 25
+text = "持有:0"
+vertical_alignment = 1
+
+[node name="PriceLabel" type="Label" parent="selfSellPanel/Content/Rows/ShengzhanRow"]
+custom_minimum_size = Vector2(120, 46)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_tkcsx")
+theme_override_font_sizes/font_size = 25
+text = "单价:0"
+vertical_alignment = 1
+
+[node name="MinusButton" type="Button" parent="selfSellPanel/Content/Rows/ShengzhanRow"]
+custom_minimum_size = Vector2(52, 46)
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("17_w8f0i")
+theme_override_font_sizes/font_size = 25
+text = "-"
+
+[node name="shengzhanInput" type="LineEdit" parent="selfSellPanel/Content/Rows/ShengzhanRow"]
+custom_minimum_size = Vector2(74, 46)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("17_w8f0i")
+theme_override_font_sizes/font_size = 25
+text = "0"
+alignment = 1
+max_length = 1
+
+[node name="PlusButton" type="Button" parent="selfSellPanel/Content/Rows/ShengzhanRow"]
+custom_minimum_size = Vector2(52, 46)
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("17_w8f0i")
+theme_override_font_sizes/font_size = 25
+text = "+"
+
+[node name="ZhuziRow" type="HBoxContainer" parent="selfSellPanel/Content/Rows"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="shopitem" parent="selfSellPanel/Content/Rows/ZhuziRow" instance=ExtResource("4_iwehk")]
+custom_minimum_size = Vector2(88, 88)
+layout_mode = 2
+to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
+img = ExtResource("9_rtmou")
+isShop = false
+itemstype = 3
+
+[node name="OwnedLabel" type="Label" parent="selfSellPanel/Content/Rows/ZhuziRow"]
+custom_minimum_size = Vector2(120, 46)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_tkcsx")
+theme_override_font_sizes/font_size = 25
+text = "持有:0"
+vertical_alignment = 1
+
+[node name="PriceLabel" type="Label" parent="selfSellPanel/Content/Rows/ZhuziRow"]
+custom_minimum_size = Vector2(120, 46)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_tkcsx")
+theme_override_font_sizes/font_size = 25
+text = "单价:0"
+vertical_alignment = 1
+
+[node name="MinusButton" type="Button" parent="selfSellPanel/Content/Rows/ZhuziRow"]
+custom_minimum_size = Vector2(52, 46)
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("17_w8f0i")
+theme_override_font_sizes/font_size = 25
+text = "-"
+
+[node name="zhuziInput" type="LineEdit" parent="selfSellPanel/Content/Rows/ZhuziRow"]
+custom_minimum_size = Vector2(74, 46)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("17_w8f0i")
+theme_override_font_sizes/font_size = 25
+text = "0"
+alignment = 1
+max_length = 1
+
+[node name="PlusButton" type="Button" parent="selfSellPanel/Content/Rows/ZhuziRow"]
+custom_minimum_size = Vector2(52, 46)
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("17_w8f0i")
+theme_override_font_sizes/font_size = 25
+text = "+"
+
+[node name="ZhenpinRow" type="HBoxContainer" parent="selfSellPanel/Content/Rows"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="shopitem" parent="selfSellPanel/Content/Rows/ZhenpinRow" instance=ExtResource("4_iwehk")]
+custom_minimum_size = Vector2(88, 88)
+layout_mode = 2
+to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
+img = ExtResource("10_bt0g7")
+isShop = false
+itemstype = 4
+
+[node name="OwnedLabel" type="Label" parent="selfSellPanel/Content/Rows/ZhenpinRow"]
+custom_minimum_size = Vector2(120, 46)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_tkcsx")
+theme_override_font_sizes/font_size = 25
+text = "持有:0"
+vertical_alignment = 1
+
+[node name="PriceLabel" type="Label" parent="selfSellPanel/Content/Rows/ZhenpinRow"]
+custom_minimum_size = Vector2(120, 46)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_tkcsx")
+theme_override_font_sizes/font_size = 25
+text = "单价:0"
+vertical_alignment = 1
+
+[node name="MinusButton" type="Button" parent="selfSellPanel/Content/Rows/ZhenpinRow"]
+custom_minimum_size = Vector2(52, 46)
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("17_w8f0i")
+theme_override_font_sizes/font_size = 25
+text = "-"
+
+[node name="zhenpinInput" type="LineEdit" parent="selfSellPanel/Content/Rows/ZhenpinRow"]
+custom_minimum_size = Vector2(74, 46)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("17_w8f0i")
+theme_override_font_sizes/font_size = 25
+text = "0"
+alignment = 1
+max_length = 1
+
+[node name="PlusButton" type="Button" parent="selfSellPanel/Content/Rows/ZhenpinRow"]
+custom_minimum_size = Vector2(52, 46)
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("17_w8f0i")
+theme_override_font_sizes/font_size = 25
+text = "+"
+
+[node name="Summary" type="HBoxContainer" parent="selfSellPanel/Content"]
+layout_mode = 2
+theme_override_constants/separation = 28
+alignment = 1
+
+[node name="TotalLabel" type="Label" parent="selfSellPanel/Content/Summary"]
+custom_minimum_size = Vector2(180, 44)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_tkcsx")
+theme_override_font_sizes/font_size = 27
+text = "合计:0/5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CoinLabel" type="Label" parent="selfSellPanel/Content/Summary"]
+custom_minimum_size = Vector2(180, 44)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_tkcsx")
+theme_override_font_sizes/font_size = 27
+text = "可得:0金"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Buttons" type="HBoxContainer" parent="selfSellPanel/Content"]
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="CancelButton" type="Button" parent="selfSellPanel/Content/Buttons"]
+custom_minimum_size = Vector2(150, 58)
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("17_w8f0i")
+theme_override_font_sizes/font_size = 27
+text = "取消"
+
+[node name="ConfirmButton" type="Button" parent="selfSellPanel/Content/Buttons"]
+custom_minimum_size = Vector2(150, 58)
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("17_w8f0i")
+theme_override_font_sizes/font_size = 27
+text = "售出"
+
 [node name="TextureButton2" type="TextureButton" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -403,5 +701,19 @@ stretch_mode = 0
 [connection signal="mouse_exited" from="buyButton" to="." method="_on_buy_button_focus_exited"]
 [connection signal="button_down" from="backTxt/buyBackButton" to="." method="_on_Sold_button_down"]
 [connection signal="button_down" from="backTxt/buyBackButton2/merchantBuyBtn" to="." method="_on_Sold_button_down"]
-[connection signal="button_down" from="backTxt/buyBackButton2/selfBuyButton" to="." method="_on_Sold_button_down"]
+[connection signal="button_down" from="backTxt/buyBackButton2/selfBuyButton" to="." method="_on_self_buy_button_down"]
+[connection signal="button_down" from="selfSellPanel/Content/Rows/YiqiRow/MinusButton" to="." method="_on_yiqi_minus_button_down"]
+[connection signal="text_changed" from="selfSellPanel/Content/Rows/YiqiRow/yiqiInput" to="." method="_on_yiqi_input_text_changed"]
+[connection signal="button_down" from="selfSellPanel/Content/Rows/YiqiRow/PlusButton" to="." method="_on_yiqi_plus_button_down"]
+[connection signal="button_down" from="selfSellPanel/Content/Rows/ShengzhanRow/MinusButton" to="." method="_on_shengzhan_minus_button_down"]
+[connection signal="text_changed" from="selfSellPanel/Content/Rows/ShengzhanRow/shengzhanInput" to="." method="_on_shengzhan_input_text_changed"]
+[connection signal="button_down" from="selfSellPanel/Content/Rows/ShengzhanRow/PlusButton" to="." method="_on_shengzhan_plus_button_down"]
+[connection signal="button_down" from="selfSellPanel/Content/Rows/ZhuziRow/MinusButton" to="." method="_on_zhuzi_minus_button_down"]
+[connection signal="text_changed" from="selfSellPanel/Content/Rows/ZhuziRow/zhuziInput" to="." method="_on_zhuzi_input_text_changed"]
+[connection signal="button_down" from="selfSellPanel/Content/Rows/ZhuziRow/PlusButton" to="." method="_on_zhuzi_plus_button_down"]
+[connection signal="button_down" from="selfSellPanel/Content/Rows/ZhenpinRow/MinusButton" to="." method="_on_zhenpin_minus_button_down"]
+[connection signal="text_changed" from="selfSellPanel/Content/Rows/ZhenpinRow/zhenpinInput" to="." method="_on_zhenpin_input_text_changed"]
+[connection signal="button_down" from="selfSellPanel/Content/Rows/ZhenpinRow/PlusButton" to="." method="_on_zhenpin_plus_button_down"]
+[connection signal="button_down" from="selfSellPanel/Content/Buttons/CancelButton" to="." method="_on_self_sell_cancel_button_down"]
+[connection signal="button_down" from="selfSellPanel/Content/Buttons/ConfirmButton" to="." method="_on_self_sell_confirm_button_down"]
 [connection signal="button_down" from="TextureButton2" to="." method="_on_texture_button_2_button_down"]

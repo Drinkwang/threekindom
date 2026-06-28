@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://ba2q2j3lkloto" path="res://addons/inventory_example/textures/inventories/InventoryBackground.png" id="3_c24ht"]
 [ext_resource type="Texture2D" uid="uid://c5t4heqv3a8ff" path="res://Asset/items/礼品箱.png" id="4_nfcuj"]
 
-[node name="Control" type="CanvasLayer"]
+[node name="Control2" type="CanvasLayer"]
 script = ExtResource("1_closj")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -148,7 +148,7 @@ text = "取消"
 layout_mode = 2
 size_flags_horizontal = 10
 
-[connection signal="button_down" from="Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/sendGift" to="." method="_on_send_gift_button_down"]
 [connection signal="button_down" from="Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/sendGift" to="." method="_on_rest"]
-[connection signal="button_down" from="Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/cancel" to="." method="_on_cancel_button_down"]
+[connection signal="button_down" from="Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/sendGift" to="." method="_on_send_gift_button_down"]
 [connection signal="button_down" from="Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/cancel" to="." method="_on_cancel"]
+[connection signal="button_down" from="Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/cancel" to="." method="_on_cancel_button_down"]

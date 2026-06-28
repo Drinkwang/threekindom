@@ -5,14 +5,63 @@ var selectGoods:ShopItem
 
 @onready var back_txt = $backTxt
 @onready var hearsay = $HBoxContainer2/xiaodao
+@onready var buy_back_button = $backTxt/buyBackButton
+@onready var buy_back_button_2 = $backTxt/buyBackButton2
+@onready var merchant_buy_button = $backTxt/buyBackButton2/merchantBuyBtn
+@onready var self_buy_button = $backTxt/buyBackButton2/selfBuyButton
+@onready var self_sell_bg = $selfSellBg
+@onready var self_sell_panel = $selfSellPanel
+@onready var self_sell_total_label = $selfSellPanel/Content/Summary/TotalLabel
+@onready var self_sell_coin_label = $selfSellPanel/Content/Summary/CoinLabel
+@onready var self_sell_confirm_button = $selfSellPanel/Content/Buttons/ConfirmButton
+@onready var self_sell_rows = {
+	InventoryManagerItem.益气丸: {
+		"owned": $selfSellPanel/Content/Rows/YiqiRow/OwnedLabel,
+		"price": $selfSellPanel/Content/Rows/YiqiRow/PriceLabel,
+		"input": $selfSellPanel/Content/Rows/YiqiRow/yiqiInput,
+		"minus": $selfSellPanel/Content/Rows/YiqiRow/MinusButton,
+		"plus": $selfSellPanel/Content/Rows/YiqiRow/PlusButton,
+	},
+	InventoryManagerItem.胜战锦囊: {
+		"owned": $selfSellPanel/Content/Rows/ShengzhanRow/OwnedLabel,
+		"price": $selfSellPanel/Content/Rows/ShengzhanRow/PriceLabel,
+		"input": $selfSellPanel/Content/Rows/ShengzhanRow/shengzhanInput,
+		"minus": $selfSellPanel/Content/Rows/ShengzhanRow/MinusButton,
+		"plus": $selfSellPanel/Content/Rows/ShengzhanRow/PlusButton,
+	},
+	InventoryManagerItem.诸子百家论集: {
+		"owned": $selfSellPanel/Content/Rows/ZhuziRow/OwnedLabel,
+		"price": $selfSellPanel/Content/Rows/ZhuziRow/PriceLabel,
+		"input": $selfSellPanel/Content/Rows/ZhuziRow/zhuziInput,
+		"minus": $selfSellPanel/Content/Rows/ZhuziRow/MinusButton,
+		"plus": $selfSellPanel/Content/Rows/ZhuziRow/PlusButton,
+	},
+	InventoryManagerItem.珍品礼盒: {
+		"owned": $selfSellPanel/Content/Rows/ZhenpinRow/OwnedLabel,
+		"price": $selfSellPanel/Content/Rows/ZhenpinRow/PriceLabel,
+		"input": $selfSellPanel/Content/Rows/ZhenpinRow/zhenpinInput,
+		"minus": $selfSellPanel/Content/Rows/ZhenpinRow/MinusButton,
+		"plus": $selfSellPanel/Content/Rows/ZhenpinRow/PlusButton,
+	},
+}
 
 var useItems
+const SELF_SELL_LIMIT := 5
+const SELF_SELL_BUTTON_ACTIVE := Color(1, 1, 1, 1)
+const SELF_SELL_BUTTON_INACTIVE := Color(0.72, 0.72, 0.72, 1)
+var self_sell_counts := {}
+var self_sell_updating_input := false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GameManager.shopPanel=self
 	var haveNum=InventoryManager.canUseItemNum()
 	var canBuy = GameManager.sav.merMustBuy or GameManager.sav.randomIndex % 2 == 0
-	if GameManager.sav.isSoldItem==false and haveNum>=1 and canBuy:
+	var can_merchant_buy = GameManager.sav.isSoldItem==false and haveNum>=1 and canBuy
+	var can_self_sell = GameManager.sav.shopSelfSell and GameManager.sav.isSoldItem==false
+	self_sell_bg.hide()
+	self_sell_panel.hide()
+	_reset_self_sell_counts()
+	if can_merchant_buy:
 		var backNum=randi_range(1,haveNum)
 		backNum=min(backNum,5)
 		useItems=InventoryManager.costItemRandom(backNum)
@@ -37,6 +86,11 @@ func _ready():
 		back_txt.show()
 		#
 		
+	else:
+		back_txt.hide()
+	if can_merchant_buy or can_self_sell:
+		back_txt.show()
+		_refresh_sell_buttons(can_merchant_buy, can_self_sell)
 	else:
 		back_txt.hide()
 	
@@ -211,12 +265,11 @@ func _on_Sold_button_down():
 	#GameManager._engerge.startPreviewHp(costhp)	
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"是否售出商品")
 
-@onready var buy_back_button = $backTxt/buyBackButton
 #var costhp=15
 func confireSold():
 	
 	GameManager.sav.coin=GameManager.sav.coin+int(GameManager.SoldCoin)
-	GameManager.sav.isSoldItem=true
+	GameManager.sav.isSoldItem = true
 	for item_type in useItems:
 			if useItems[item_type] > 0:  # 只处理消耗数量大于 0 的道具
 		
@@ -225,6 +278,175 @@ func confireSold():
 	AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_7")
 	back_txt.text="当前商人没有需要从你手中收购商品的需要，请改日再来！"
 	buy_back_button.disabled=true
+	merchant_buy_button.disabled=true
+	self_buy_button.disabled=true
+	self_sell_bg.hide()
+	self_sell_panel.hide()
+
+func _refresh_sell_buttons(can_merchant_buy:bool, can_self_sell:bool):
+	if GameManager.sav.shopSelfSell:
+		buy_back_button.hide()
+		buy_back_button_2.show()
+		merchant_buy_button.disabled = !can_merchant_buy
+		self_buy_button.disabled = !can_self_sell
+	else:
+		buy_back_button.show()
+		buy_back_button_2.hide()
+		buy_back_button.disabled = !can_merchant_buy
+
+func _reset_self_sell_counts():
+	self_sell_counts = {
+		InventoryManagerItem.益气丸: 0,
+		InventoryManagerItem.胜战锦囊: 0,
+		InventoryManagerItem.诸子百家论集: 0,
+		InventoryManagerItem.珍品礼盒: 0,
+	}
+
+func _get_self_sell_owned(item_type:String) -> int:
+	return InventoryManager.inventory_item_quantity(GameManager.inventoryPackege, item_type)
+
+func _has_self_sell_items() -> bool:
+	for item_type in self_sell_counts.keys():
+		if _get_self_sell_owned(item_type) > 0:
+			return true
+	return false
+
+func _get_self_sell_price(item_type:String) -> int:
+	var properties:Array=InventoryManager.get_item_properties(item_type)
+	var price_items=properties.filter(func(a):return a["name"]=="price")
+	if price_items.is_empty():
+		return 0
+	var price=int(price_items[0]["value"])
+	var shop_enhance=GameManager.sav.shopEnhance
+	return floor(price * (0.6 + shop_enhance * 0.15))
+
+func _get_self_sell_total_count() -> int:
+	var total=0
+	for item_type in self_sell_counts.keys():
+		total += int(self_sell_counts[item_type])
+	return total
+
+func _get_self_sell_total_coin() -> int:
+	var total=0
+	for item_type in self_sell_counts.keys():
+		total += _get_self_sell_price(item_type) * int(self_sell_counts[item_type])
+	return total
+
+func _change_self_sell_quantity(item_type:String, delta:int):
+	if delta > 0 and _get_self_sell_total_count() >= SELF_SELL_LIMIT:
+		return
+	_set_self_sell_count(item_type, int(self_sell_counts[item_type]) + delta)
+
+func _set_self_sell_count(item_type:String, new_count:int):
+	var current_count=int(self_sell_counts[item_type])
+	var total_without_item=_get_self_sell_total_count() - current_count
+	var max_count=maxi(0, min(_get_self_sell_owned(item_type), SELF_SELL_LIMIT - total_without_item))
+	self_sell_counts[item_type]=clampi(new_count, 0, max_count)
+	_refresh_self_sell_panel()
+
+func _refresh_self_sell_panel():
+	self_sell_updating_input = true
+	for item_type in self_sell_rows.keys():
+		var row=self_sell_rows[item_type]
+		var owned=_get_self_sell_owned(item_type)
+		var count=int(self_sell_counts[item_type])
+		var can_minus=count>0
+		var can_plus=owned>0 and _get_self_sell_total_count()<SELF_SELL_LIMIT and count<owned
+		row["owned"].text=tr("持有:%d") % owned
+		row["price"].text=tr("单价:%d") % _get_self_sell_price(item_type)
+		row["input"].text=str(count)
+		row["minus"].modulate=SELF_SELL_BUTTON_ACTIVE if can_minus else SELF_SELL_BUTTON_INACTIVE
+		row["plus"].modulate=SELF_SELL_BUTTON_ACTIVE if can_plus else SELF_SELL_BUTTON_INACTIVE
+	self_sell_updating_input = false
+	self_sell_total_label.text=tr("合计:%d/%d") % [_get_self_sell_total_count(), SELF_SELL_LIMIT]
+	self_sell_coin_label.text=tr("可得:%d金") % _get_self_sell_total_coin()
+	self_sell_confirm_button.modulate=SELF_SELL_BUTTON_ACTIVE if _get_self_sell_total_count() > 0 else SELF_SELL_BUTTON_INACTIVE
+
+func _on_self_buy_button_down():
+	if GameManager.sav.isSoldItem:
+		detail.text=tr("今日已经售卖过商品，请改日再来")
+		return
+	_reset_self_sell_counts()
+	if !_has_self_sell_items():
+		detail.text=tr("没有可售卖商品")
+		return
+	_refresh_self_sell_panel()
+	self_sell_bg.show()
+	self_sell_panel.show()
+
+func _on_self_sell_cancel_button_down():
+	self_sell_bg.hide()
+	self_sell_panel.hide()
+
+func _on_self_sell_confirm_button_down():
+	var total_count=_get_self_sell_total_count()
+	if total_count<=0:
+		return
+	var total_coin=_get_self_sell_total_coin()
+	GameManager.sav.coin += total_coin
+	GameManager.sav.isSoldItem = true
+	for item_type in self_sell_counts.keys():
+		var count=int(self_sell_counts[item_type])
+		if count>0:
+			InventoryManager._remove_item(GameManager.inventoryPackege, item_type, count)
+	AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_7")
+	self_sell_bg.hide()
+	self_sell_panel.hide()
+	back_txt.text=tr("当前商人没有需要从你手中收购商品的需要，请改日再来！")
+	buy_back_button.disabled=true
+	merchant_buy_button.disabled=true
+	self_buy_button.disabled=true
+	detail.text=tr("已售出商品，获得%d金") % total_coin
+
+func _filter_self_sell_input_text(text:String) -> int:
+	var valid_text=""
+	for char in text:
+		if char.is_valid_int():
+			valid_text += char
+	if valid_text.length()==0:
+		return 0
+	return int(valid_text)
+
+func _on_self_sell_input_text_changed(item_type:String, text:String):
+	if self_sell_updating_input:
+		return
+	_set_self_sell_count(item_type, _filter_self_sell_input_text(text))
+
+func _on_yiqi_minus_button_down():
+	_change_self_sell_quantity(InventoryManagerItem.益气丸, -1)
+
+func _on_yiqi_plus_button_down():
+	_change_self_sell_quantity(InventoryManagerItem.益气丸, 1)
+
+func _on_yiqi_input_text_changed(new_text:String):
+	_on_self_sell_input_text_changed(InventoryManagerItem.益气丸, new_text)
+
+func _on_shengzhan_minus_button_down():
+	_change_self_sell_quantity(InventoryManagerItem.胜战锦囊, -1)
+
+func _on_shengzhan_plus_button_down():
+	_change_self_sell_quantity(InventoryManagerItem.胜战锦囊, 1)
+
+func _on_shengzhan_input_text_changed(new_text:String):
+	_on_self_sell_input_text_changed(InventoryManagerItem.胜战锦囊, new_text)
+
+func _on_zhuzi_minus_button_down():
+	_change_self_sell_quantity(InventoryManagerItem.诸子百家论集, -1)
+
+func _on_zhuzi_plus_button_down():
+	_change_self_sell_quantity(InventoryManagerItem.诸子百家论集, 1)
+
+func _on_zhuzi_input_text_changed(new_text:String):
+	_on_self_sell_input_text_changed(InventoryManagerItem.诸子百家论集, new_text)
+
+func _on_zhenpin_minus_button_down():
+	_change_self_sell_quantity(InventoryManagerItem.珍品礼盒, -1)
+
+func _on_zhenpin_plus_button_down():
+	_change_self_sell_quantity(InventoryManagerItem.珍品礼盒, 1)
+
+func _on_zhenpin_input_text_changed(new_text:String):
+	_on_self_sell_input_text_changed(InventoryManagerItem.珍品礼盒, new_text)
 	
 
 
