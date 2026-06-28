@@ -442,7 +442,7 @@ custom_minimum_size = Vector2(120, 46)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5_tkcsx")
 theme_override_font_sizes/font_size = 25
-text = "单价:0"
+text = "收购价:0"
 vertical_alignment = 1
 
 [node name="MinusButton" type="Button" parent="selfSellPanel/Content/Rows/YiqiRow"]

@@ -277,7 +277,7 @@ func confireSold():
 	useItems=[]
 	AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_7")
 	back_txt.text="当前商人没有需要从你手中收购商品的需要，请改日再来！"
-	buy_back_button.disabled=true
+	buy_back_button.hide()
 	merchant_buy_button.hide()
 	self_buy_button.hide()
 	self_sell_bg.hide()
@@ -332,6 +332,11 @@ func _get_self_sell_total_coin() -> int:
 		total += _get_self_sell_price(item_type) * int(self_sell_counts[item_type])
 	return total
 
+func _get_self_sell_enhance_context() -> String:
+	if GameManager.sav.shopEnhance <= 0:
+		return ""
+	return "（"+tr("法令收购价")+"+%d%%）" % (GameManager.sav.shopEnhance * 15)
+
 func _change_self_sell_quantity(item_type:String, delta:int):
 	if delta > 0 and _get_self_sell_total_count() >= SELF_SELL_LIMIT:
 		return
@@ -353,13 +358,13 @@ func _refresh_self_sell_panel():
 		var can_minus=count>0
 		var can_plus=owned>0 and _get_self_sell_total_count()<SELF_SELL_LIMIT and count<owned
 		row["owned"].text=tr("持有:%d") % owned
-		row["price"].text=tr("单价:%d") % _get_self_sell_price(item_type)
+		row["price"].text=tr("收购价:%d") % _get_self_sell_price(item_type)
 		row["input"].text=str(count)
 		row["minus"].modulate=SELF_SELL_BUTTON_ACTIVE if can_minus else SELF_SELL_BUTTON_INACTIVE
 		row["plus"].modulate=SELF_SELL_BUTTON_ACTIVE if can_plus else SELF_SELL_BUTTON_INACTIVE
 	self_sell_updating_input = false
 	self_sell_total_label.text=tr("合计:%d/%d") % [_get_self_sell_total_count(), SELF_SELL_LIMIT]
-	self_sell_coin_label.text=tr("可得:%d金") % _get_self_sell_total_coin()
+	self_sell_coin_label.text=tr("可得:%d金") % _get_self_sell_total_coin() + _get_self_sell_enhance_context()
 	self_sell_confirm_button.modulate=SELF_SELL_BUTTON_ACTIVE if _get_self_sell_total_count() > 0 else SELF_SELL_BUTTON_INACTIVE
 
 func _on_self_buy_button_down():
@@ -383,10 +388,7 @@ func _on_self_sell_confirm_button_down():
 	if total_count<=0:
 		return
 	GameManager.SoldCoin = _get_self_sell_total_coin()
-	GameManager.SoldItemStr = tr("我将以%d金收购你手上的")%GameManager.SoldCoin+" ["+generate_consumed_string(self_sell_counts)+"]"
 	useItems = self_sell_counts.duplicate()
-	
-	shopEnhanceContext=tr("[法令提升了收购价{profit}%]").format({"profit":shopEnhance*15})
 	self_sell_bg.hide()
 	self_sell_panel.hide()
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"售出成功")
