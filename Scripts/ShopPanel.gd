@@ -145,7 +145,11 @@ func initData():
 func refreshPage(_price,_detail):
 	buy_button.disabled=false
 	price=_price.to_int()
-	detail.text=tr(_detail)+"\n\n"+tr("当前商品价格:{price}").format({"price":price})
+	var discount_context=""
+	if GameManager.sav.isGoodsDiscount:
+		price=floor(price * 0.85)
+		discount_context=tr("【法令打折】")
+	detail.text=tr(_detail)+"\n\n"+tr("当前商品价格:{price}").format({"price":price})+discount_context
 	# selectGoods.itemstype#通过这个获取价格
 	pass
 	
@@ -246,6 +250,7 @@ func _on_texture_button_2_button_down():
 	GameManager.currenceScene.res_panel.position.x=1404
 	GameManager.currenceScene.res_panel.position.y=611
 	GameManager.currenceScene.res_panel.scale=Vector2(1,1)
+	self_sell_panel.hide()
 	self.hide()
 	if GameManager.sav.have_event["boss战开始"]==true and GameManager.sav.caobaocardgame==4:
 		GameManager.currenceScene.enterBlackMerchant()

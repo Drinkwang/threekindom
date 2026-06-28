@@ -104,7 +104,11 @@ func _ready():
 		return
 	
 	var itemname= InventoryManagerItem.item_by_enum(itemstype)
+	if itemname.length()==0:
+		return
 	var db:InventoryItem=InventoryManager.get_item_db(itemname)
+	if db==null:
+		return
 	var properties:Array=db.properties
 
 		
