@@ -52,7 +52,7 @@ _data = {
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4sj3t"]
 
-[node name="Control" type="Control"]
+[node name="Control2" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -242,7 +242,6 @@ libraries = {
 }
 
 [node name="lawPanel" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -345,9 +344,9 @@ grow_vertical = 2
 _color = 2
 lawpoins = [NodePath("../Control1-1")]
 detail = "整顿市井，流民归附，民生安定财增。(每旬钱产出+30，群众支持度+5，[haozu]支持度-20)"
-IncomeBg = "整顿市井，流民归附，民生安定财增。"
-IncomeTxt = "每旬钱产出+30，群众支持度+5，[haozu]支持度-20"
-context = "整治街容"
+IncomeBg = "借派系拉拢民意，宣扬主公治政功绩，却耗损商贾资财"
+IncomeTxt = "每旬钱产出+30，政策拉拢额外+5民心，[haozu]支持度-20"
+context = "显绩法"
 num1 = 0
 num2 = 3
 
@@ -472,9 +471,9 @@ grow_vertical = 2
 _color = 2
 lawpoins = [NodePath("../Control1-4")]
 detail = "主公，平抑粮价，民心安定，商利稍逊。(每旬钱产出+120，群众支持度+10，[haozu]支持度-30)"
-IncomeBg = "主公，平抑粮价，民心安定，商利稍逊。"
-IncomeTxt = "每旬钱产出+120，群众支持度+10，[haozu]支持度-30"
-context = "物价稳定"
+IncomeBg = "肃民定规，政令易行，商贾心生不悦"
+IncomeTxt = "每旬钱产出+120，民心政策消耗-1，[haozu]支持度-30"
+context = "肃民明制"
 num1 = 0
 num2 = 6
 
@@ -569,7 +568,7 @@ _color = 2
 lawpoins = [NodePath("../Control1-5"), NodePath("../Control1-6")]
 detail = "严定品级，士民归附，军商稍感掣肘。(每旬民力产出+150，获得道具\"珍品礼盒\"x8，[haozu]支持度-20，[danyang]支持度-20)"
 IncomeBg = "严定品级，士民归附，军商稍感掣肘。"
-IncomeTxt = "每旬民力产出+150，获得道具\"珍品礼盒\"x8，[haozu]支持度-20，[danyang]支持度-20"
+IncomeTxt = "每旬民力产出+150，召见派系次数+1，[haozu]支持度-20，[danyang]支持度-20"
 context = "品级制"
 num1 = 0
 num2 = 9
@@ -663,9 +662,9 @@ grow_vertical = 2
 _color = 1
 lawpoins = [NodePath("../Control2-1")]
 detail = "定商规可稳财源，赠礼结好诸方。(每旬钱产出+20，钱+400，[shizu]支持度-20)"
-IncomeBg = "定商规可稳财源，赠礼结好诸方。"
-IncomeTxt = "每旬钱产出+20，钱+400，[shizu]支持度-20"
-context = "行业准则"
+IncomeBg = "放宽商贸往来，商贾尽数登门求购"
+IncomeTxt = "每旬钱产出+20，商贾必会主动前来收购，[shizu]支持度-20"
+context = "通商惠利"
 num1 = 1
 num2 = 3
 
@@ -737,9 +736,9 @@ grow_vertical = 2
 _color = 1
 lawpoins = [NodePath("../Control2-4")]
 detail = "重税商贾，府库充盈，农夫略感重负(每旬钱产出+180，获得道具\"益气丸\"x6，[shizu]支持度-30)"
-IncomeBg = "重税商贾，府库充盈，农夫略感重负"
-IncomeTxt = "每旬钱产出+180，获得道具\"益气丸\"x6，[shizu]支持度-30"
-context = "商业税收法"
+IncomeBg = "宽减商税，物价下跌，农利微薄，农夫负重"
+IncomeTxt = "每旬钱产出+180，商品价格-15%，[shizu]支持度-30"
+context = "宽商减赋"
 num1 = 1
 num2 = 5
 
@@ -841,9 +840,9 @@ grow_vertical = 2
 _color = 1
 lawpoins = [NodePath("../Control2-5"), NodePath("../Control2-6")]
 detail = "商战兴盛，商业兴旺，农兵稍感掣肘。(每旬钱产出+120，钱+1000 ，[shizu]支持度-20，[danyang]支持度-20)"
-IncomeBg = "商战兴盛，商业兴旺，农兵稍感掣肘。"
-IncomeTxt = "每旬钱产出+120，钱+1000 ，[shizu]支持度-20，[danyang]支持度-20"
-context = "商业竞争法"
+IncomeBg = "市肆重商过盛，万物皆可售商牟利，农兵生计备受掣肘。"
+IncomeTxt = "每旬钱产出+120，开启自选物品出售面板 ，[shizu]支持度-20，[danyang]支持度-20"
+context = "市肆兴隆法"
 num1 = 1
 num2 = 7
 
@@ -885,9 +884,9 @@ grow_vertical = 2
 _color = 1
 lawpoins = [NodePath("../Control2-5"), NodePath("../Control2-6")]
 detail = "设征信法可查商贾信用，财源滚滚，诸方皆服，唯恐农夫与兵士颇有微词。(获得道具\"珍品礼盒\"x8，每旬钱产出+200，[shizu]支持度-20，[haozu]支持度-20)"
-IncomeBg = "设征信法可查商贾信用，财源滚滚，诸方皆服，唯恐农夫与兵士颇有微词。"
+IncomeBg = "放宽商贾征信，容其献礼通商，农兵多有怨言"
 IncomeTxt = "获得道具\"珍品礼盒\"x8，每旬钱产出+200，[shizu]支持度-20，[haozu]支持度-20"
-context = "商业诚信法"
+context = "宽商信规法"
 num1 = 1
 num2 = 9
 
@@ -977,9 +976,9 @@ grow_horizontal = 2
 grow_vertical = 2
 lawpoins = [NodePath("../Control3-1")]
 detail = "固守边疆，流民归附，财税渐增。(民力+300，群众支持度+5，[shizu]支持度-20)"
-IncomeBg = "固守边疆，流民归附，财税渐增。"
-IncomeTxt = "民力+300，群众支持度+5，[shizu]支持度-20"
-context = "边防法"
+IncomeBg = "广布探哨可探敌军秘情，耗费甚多，士族心生不满"
+IncomeTxt = "民力+300，获得隐藏的战术目标，[shizu]支持度-20"
+context = "侦隐法"
 num1 = 2
 num2 = 3
 
@@ -1050,7 +1049,7 @@ grow_vertical = 2
 lawpoins = [NodePath("../Control3-4")]
 detail = "重装军队，财力渐强，商贾略感负担。(每旬钱产出+280，获得道具\"益气丸\"x2 ，[haozu]支持度-30)"
 IncomeBg = "重装军队，财力渐强，商贾略感负担。"
-IncomeTxt = "每旬钱产出+280，获得道具\"益气丸\"x2 ，[haozu]支持度-30"
+IncomeTxt = "每旬钱产出+280，武器装备效果提升 10% ，[haozu]支持度-30"
 context = "军事装备法"
 num1 = 2
 num2 = 5
@@ -1173,8 +1172,8 @@ grow_vertical = 2
 lawpoins = [NodePath("../Control3-5"), NodePath("../Control3-6")]
 detail = "律令治军，兵财双盛，士商稍感重负。(每旬民力产出+100，获得道具\"珍品礼盒\"x2，民力+250  ，[shizu]支持度-20，[haozu]支持度-20)"
 IncomeBg = "律令治军，兵财双盛，士商稍感重负。"
-IncomeTxt = "每旬民力产出+100，获得道具\"珍品礼盒\"x2，民力+250  ，[shizu]支持度-20，[haozu]支持度-20"
-context = "律令兵制"
+IncomeTxt = "每旬民力产出+100，比武训练产出300%，民力+250  ，[shizu]支持度-20，[haozu]支持度-20"
+context = "厉兵练卒法"
 num1 = 2
 num2 = 8
 
