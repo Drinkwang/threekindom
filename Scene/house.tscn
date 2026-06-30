@@ -508,13 +508,11 @@ dialogue_resource = ExtResource("2_6rtve")
 
 [node name="属性面板" parent="CanvasLayer" instance=ExtResource("8_2ady6")]
 visible = false
-filtered_vertical_margin = null
 titleEX = ""
 clickEvent = ""
 
 [node name="政务面板" parent="CanvasLayer" instance=ExtResource("8_2ady6")]
 visible = false
-filtered_vertical_margin = null
 clickEvent = ""
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer"]

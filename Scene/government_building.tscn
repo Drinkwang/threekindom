@@ -373,7 +373,6 @@ visible = false
 
 [node name="ruleBook" parent="CanvasLayer" instance=ExtResource("8_ca5ns")]
 visible = false
-filtered_vertical_margin = null
 contextEX = "_eatMore"
 titleEX = "宴会完美举办成功！"
 dialogue_resource = ExtResource("2_yngd1")

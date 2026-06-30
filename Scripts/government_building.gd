@@ -1327,7 +1327,7 @@ func policyCo_opt():
 	
 	#var index= int(_faction)  #可能需要一个转换函数进行转换
 	var lawIndex= GameManager.getIndexByFractionIndex(_faction)
-	var maxLaw=·1
+	var maxLaw=1
 	for v in GameManager.sav.laws[lawIndex]:
 		if v > 0 and v > maxLaw:
 			maxLaw = v
