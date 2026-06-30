@@ -1298,6 +1298,23 @@ func sendgiftChoice():
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"你没有礼物")#显示对话
 var lawName	
 var lalongPolicy=0
+
+func _get_needed_law_num_for_courting(lawIndex:int, policyIndex:int)->int:
+	var lawPoint:lawpoint=policy_panel.law_panel.get_node("Control"+var_to_str(lawIndex+1)+"-"+var_to_str(policyIndex))
+	return _count_needed_law_points(lawPoint, [])
+
+func _count_needed_law_points(point:lawpoint, counted:Array)->int:
+	var key=var_to_str(point.num1)+"-"+var_to_str(point.num2)
+	if counted.has(key):
+		return 0
+	counted.append(key)
+	var count=0
+	if not GameManager.sav.laws[point.num1].has(point.num2):
+		count+=1
+	for child in point.lawpoins:
+		count+=_count_needed_law_points(child, counted)
+	return count
+
 #选项政策拉拢 #政策拉拢后 摇摆派系全部变成支持派系 25 50 75 100
 func policyCo_opt():
 	#按照徐州派要求，你得在 法律法规中通过【民田开垦】这条法律，如果通过 你将提升好感度，并且使该派系摇摆人数下降
@@ -1324,14 +1341,17 @@ func policyCo_opt():
 	var maxSize=0
 	if(maxLaw>=8):
 		#你的政策槽已满，无法添加新的拉拢政策。
-		maxSize=9
+		maxSize=10
 		#你当前所有法律已经设置满格了，无法提供额外的法律去拉拢派系
 	else:
 		maxSize=maxLaw+2
 	#+1 or +2
+	var currentLawNum=GameManager.LawNum()
 	for i in range(1,maxSize):
+		var neededLawNum=_get_needed_law_num_for_courting(lawIndex,i)
 		if GameManager.sav.laws[lawIndex].has(i)==false:
-			unUseArr.append(i)
+			if currentLawNum+neededLawNum<=GameManager.maxLawNum:
+				unUseArr.append(i)
 		pass
 	if unUseArr.size()>0:
 		
@@ -1346,7 +1366,7 @@ func policyCo_opt():
 	else:
 			
 		#你的政策槽已满，无法添加新的拉拢政策。
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"法律已经满格了")#显示对话			
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"律法齐备无新增空间")#显示对话			
 		return
 		#你当前所有法律已经设置满格了，无法提供额外的法律去拉拢派系
 
