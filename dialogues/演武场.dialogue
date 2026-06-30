@@ -1,3 +1,4 @@
+#删了
 ~ 初入演武场
 do caobao.show()
 曹豹: 刘将军，你来了，有给我们丹阳兄弟带什么好处没有 我们可是陶使君亲自派过来的[voice:caobao_liujiangjunnilaile]
@@ -28,7 +29,7 @@ do guanyu.hide()
 do enterOldSoilderEat()
 => END
 
-
+#删了
 ~ 饭局结束
 do zhangfei.show()
 : 酒足饭饱后，刘备开始与他的手下相谈
@@ -44,6 +45,7 @@ do zhangfei.hide()
 do trainBegin()
 => END
 
+#删了
 ~ 初次练兵
 do endtrain0()
 do zhangfei.show()
@@ -65,6 +67,7 @@ do endtrain()
 #曹豹: 当然，我们也会积极配合，毕竟我们受陶谦大人命令和您一起练兵，绝不会敷衍，你们这些幽州人是练兵专业户，我们一定会认真学习..
 => END
 
+#删了
 ~ 初次派遣
 do caobao.show()
 曹豹: 刘将军，等候您多时了[voice:caobao_liujiangjundenghou]

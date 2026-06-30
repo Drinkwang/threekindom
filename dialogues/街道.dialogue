@@ -849,3 +849,15 @@ do constructBefore()
 系统提示: 前往府邸推进后续剧情
 
 => END!
+
+
+~ 诡闻收集
+do people.showEX=false
+拾荒老农: 使君，城中近日怪事频发，处处透着凶险，老朽拾荒都不敢多走动。[voice:qitaozhes_hihuang]
+刘备: 休要妄信鬼神，此事我即刻彻查，必保全城百姓平安。[voice:liubei_wangxinguishen]
+拾荒老农: 那就谢过使君了，之后我也能安心捡垃圾了[voice:qitaozhe_xieguoshijun]
+do SoundManager.play_sound(sounds.COLLECT_SMALL_JEWEL_1)
+do GameManager.sav.have_event["拾荒老人剧情"]=true
+系统提示: 场景内散落各类可用道具，点击即可拾取；泛绿光物件为诡闻线索，可按需收集。
+do people.hide()
+=> END!

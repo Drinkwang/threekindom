@@ -181,8 +181,12 @@ func _initData():
 	else:
 		
 		#加个xxx 需要执行完3天后才能遇到诡异牌
-		
-		if GameManager.sav.day>=5 and GameManager.sav.have_event["玄阴开放"]==false:
+		if GameManager.sav.day<5 and GameManager.sav.have_event["拾荒老人剧情"]==false:
+			people.changeAllClick("诡闻收集")
+			people.showEX=true
+			people.show()			
+			
+		elif GameManager.sav.day>=5 and GameManager.sav.have_event["玄阴开放"]==false:
 			people.changeAllClick("玄阴秘境")
 			people.showEX=true
 			people.show()

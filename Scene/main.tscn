@@ -98,8 +98,9 @@ animations = [{
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_di8p8")
-dontTrutShizu = "身为陶商，便好好活下去；
-身为刘备，切莫醒得过迟。"
+dontTrutShizu = "不要相信士族!
+不要相信士族!!
+不要相信士族!!!"
 dialogue_resource = ExtResource("2_cebyh")
 dialogue_start = "this_is_a_node_title"
 

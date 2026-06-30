@@ -357,6 +357,7 @@ var number_bool_map: Dictionary = {
 	"AllFactionsSubdued":false,
 	"进入青梅煮酒":false,
 	"陈登论策解锁":false,
+	"拾荒老人剧情":false
 	#"错失玄阴":false,
 }
 @export var taishanWait=0

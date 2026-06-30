@@ -281,12 +281,17 @@ func _juideCompeleteTask():
 	var haveWeaponNum=0
 	var haveWeaponTxt=""
 	var weaponRate=0
+	var weaponLevelUpStr = ""
+	if GameManager.sav.isWeaponLevelUP:
+		weaponLevelUpStr = "【法令已强化】"
 	if selectgeneral==null:
 		return 
 	if selectgeneral.name=="关羽":
 		haveWeaponNum=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.青龙偃月刀)
-		haveWeaponTxt="青龙偃月刀+8%"
 		weaponRate=0.08
+		if GameManager.sav.isWeaponLevelUP:
+			weaponRate=0.18
+		haveWeaponTxt="青龙偃月刀+%d%%%s" % [weaponRate*100, weaponLevelUpStr]
 		#有无青龙偃月刀
 		#道具加持xxx
 		#显示文本xxx
@@ -297,15 +302,19 @@ func _juideCompeleteTask():
 		haveWeaponNum=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.丈八蛇矛)
 		
 		
-		haveWeaponTxt="丈八蛇矛+6%"
 		weaponRate=0.06
+		if GameManager.sav.isWeaponLevelUP:
+			weaponRate=0.16
+		haveWeaponTxt="丈八蛇矛+%d%%%s" % [weaponRate*100, weaponLevelUpStr]
 		pass
 	elif selectgeneral.name=="无名" and GameManager.sav.have_event["无名之死"]==false:
 		#有无龙胆银月枪
 		#道具加持xxx
 		haveWeaponNum=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.龙胆亮银枪)
-		haveWeaponTxt="龙胆亮银枪+10%"
 		weaponRate=0.1
+		if GameManager.sav.isWeaponLevelUP:
+			weaponRate=0.2
+		haveWeaponTxt="龙胆亮银枪+%d%%%s" % [weaponRate*100, weaponLevelUpStr]
 
 	if haveWeaponNum>0:
 		levelup=levelup*(1+weaponRate)
