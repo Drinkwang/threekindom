@@ -2080,6 +2080,7 @@ func rTaishanName():
 
 var perLawCycle=5
 var minxinPoint=1
+var maxLawNum=9
 func CheckAllFactionsSubdued():
 	return GameManager.sav.HAOZUPAI.supressNum>=3 and GameManager.sav.WAIDIPAI.supressNum>=3 and \
 		GameManager.sav.BENTUPAI.supressNum>=3
@@ -2177,16 +2178,19 @@ func LoadingDiffucultValue():
 		perLawCycle=6
 		minxinPoint=1
 		LAW_COST_POINT=2
+		maxLawNum=10
 		#2点法令点立一个法
 	elif GameManager.sav.gameDifficulty==2:
 		perLawCycle=5
 		minxinPoint=1
 		LAW_COST_POINT=3
+		maxLawNum=9
 		#3点法令点立一个法
 	elif GameManager.sav.gameDifficulty==3:
 		perLawCycle=4
 		minxinPoint=2
 		LAW_COST_POINT=4
+		maxLawNum=9
 		#4点法令点立一个法
 		#战斗难度
 		#一些惩罚增加

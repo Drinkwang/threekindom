@@ -231,7 +231,7 @@ func _initData():
 		elif  GameManager.sav.have_event["关羽求援结束"]==true and GameManager.sav.have_event["主簿的追随"]==false and GameManager.sav.endPath==GameManager.endPath.xiaopei: 
 			GameManager.sav.have_event["主簿的追随"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"主簿的追随")
-		elif GameManager.CheckAllFactionsSubdued() and GameManager.sav.have_event["AllFactionsSubdued"]==false and GameManager.LawNum()>=15:
+		elif GameManager.CheckAllFactionsSubdued() and GameManager.sav.have_event["AllFactionsSubdued"]==false and GameManager.LawNum()>=GameManager.maxLawNum:
 			GameManager.sav.have_event["AllFactionsSubdued"]=true
 			GameManager.sav.LVBU.supressNum=3
 			GameManager.sav.LVBU._support_rate=100
@@ -781,6 +781,15 @@ func selectCorrect():
 func selectCorrectBefore():
 	if GameManager.sav.have_event["firstPolicyCorrect"]==false:
 		GameManager.sav.have_event["firstPolicyCorrect"]=true
+		
+		if GameManager.sav.gameDifficulty==1:
+			GameManager.sav.Merit_points=2
+		elif GameManager.sav.gameDifficulty==2:
+			GameManager.sav.Merit_points=3
+		elif GameManager.sav.gameDifficulty==3:
+			GameManager.sav.Merit_points=4
+		
+		
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"正确决策0之后引导")
 	pass
 
