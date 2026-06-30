@@ -152,6 +152,10 @@ var number_bool_map: Dictionary = {
 	"firstLawExecute":false,#为false 不显示close选项 只触发一次对话
 	"firstParliamentary":false,
 	"Factionalization":false,#出现分化
+	"首次叛乱预警_豪族":false,
+	"首次叛乱预警_丹阳":false,
+	"首次叛乱预警_士族":false,
+	"首次吕布风险预警":false,
 	#second事件 
 	"firstEnterBattle":false,#初次进入演武场 第一天
 	"dayThreeEnterBattle":false,#第三天进入演武场

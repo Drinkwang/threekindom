@@ -921,8 +921,8 @@ func determineInternalUnrest():
 		var _support_rate=fraction._support_rate
 		if _support_rate < 60.0:
 			# 计算叛变概率：支持率越低，概率越高
-			# 线性插值：支持率 60 -> 5% 概率，支持率 0 -> 80% 概率
-			var rebellion_chance = lerp(0.05*GameManager.sav.gameDifficulty*difficultyCoeff, 0.80, (60.0 - _support_rate) / 60.0)
+			# 线性插值：支持率 60 -> 6% 概率，支持率 0 -> 82% 概率
+			var rebellion_chance = lerp(0.06*GameManager.sav.gameDifficulty*difficultyCoeff, 0.82, (60.0 - _support_rate) / 60.0)
 			# 随机数判断是否叛变
 			if randf() < rebellion_chance:
 				fraction.isrebellion = true
@@ -931,8 +931,8 @@ func determineInternalUnrest():
 	var _LVBUsupport_rate=GameManager.sav.LVBU._support_rate
 	if _LVBUsupport_rate < 80.0:
 			# 计算叛变概率：支持率越低，概率越高
-			# 线性插值：支持率 60 -> 5% 概率，支持率 0 -> 80% 概率
-		var rebellion_chance = lerp(0.25*difficultyCoeff, 0.80, (80.0 - _LVBUsupport_rate) / 80.0)
+			# 线性插值：忠诚度 80 -> 28% 概率，忠诚度 0 -> 82% 概率
+		var rebellion_chance = lerp(0.28*difficultyCoeff, 0.82, (80.0 - _LVBUsupport_rate) / 80.0)
 			# 随机数判断是否叛变
 		if randf() < rebellion_chance:
 			GameManager.sav.LVBU.isrebellion = true
@@ -953,6 +953,15 @@ func resetDeterminValue():
 	determineDetail=""
 
 var alldata
+
+func show_first_rebellion_warning(data, event_key:String, dialogue_key:String)->bool:
+	if GameManager.sav.have_event[event_key]==true:
+		return false
+	GameManager.sav.have_event[event_key]=true
+	data.isrebellion=false
+	GameManager.resideValue=data._name
+	DialogueManager.show_example_dialogue_balloon(sys,dialogue_key)
+	return true
 
 func allocationAllSettle():
 	if GameManager.sav.allocationDay<0 or GameManager.CheckAllFactionsSubdued():
@@ -1032,6 +1041,8 @@ func settleDeterminValue():
 func determineInternalUnrestXuzhou():
 	resetDeterminValue()
 	if GameManager.sav.BENTUPAI.isrebellion==true:
+		if show_first_rebellion_warning(GameManager.sav.BENTUPAI, "首次叛乱预警_士族", "士族叛乱预警"):
+			return
 		GameManager.sav.BENTUPAI._num_defections=mini(GameManager.sav.BENTUPAI._num_defections+1,5)
 		determineValue1=int((30*randomIndex+(GameManager.sav.BENTUPAI._num_defections)*30)*difficultyCoeff)
 
@@ -1050,6 +1061,8 @@ func determineInternalUnrestHaozu():
 	settleDeterminValue()
 	resetDeterminValue()
 	if GameManager.sav.HAOZUPAI.isrebellion==true and GameManager.sav.have_event["Factionalization"]==true:
+		if show_first_rebellion_warning(GameManager.sav.HAOZUPAI, "首次叛乱预警_豪族", "豪族叛乱预警"):
+			return
 		GameManager.sav.HAOZUPAI._num_defections=mini(GameManager.sav.HAOZUPAI._num_defections+1,5)
 		determineValue1=int((50*randomIndex+(GameManager.sav.HAOZUPAI._num_defections)*50)*difficultyCoeff)
 		if randf() < 0.5||GameManager.sav.coin<determineValue1:
@@ -1066,6 +1079,8 @@ func determineInternalUnrestDanyang():
 	settleDeterminValue()
 	resetDeterminValue()
 	if GameManager.sav.WAIDIPAI.isrebellion==true:
+		if show_first_rebellion_warning(GameManager.sav.WAIDIPAI, "首次叛乱预警_丹阳", "丹阳叛乱预警"):
+			return
 		GameManager.sav.WAIDIPAI._num_defections=mini(GameManager.sav.WAIDIPAI._num_defections+1,5)
 		determineValue1=ceil((int(randomIndex*0.5)+GameManager.sav.WAIDIPAI._num_defections)*difficultyCoeff/2.0)
 		#判断道具总数之和
@@ -1087,6 +1102,8 @@ func determineInternalUnrestLvbu():
 	settleDeterminValue()
 	resetDeterminValue()
 	if GameManager.sav.LVBU.isrebellion==true:
+		if show_first_rebellion_warning(GameManager.sav.LVBU, "首次吕布风险预警", "吕布叛乱预警"):
+			return
 		GameManager.sav.LVBU._num_defections=mini(GameManager.sav.LVBU._num_defections+1,5)
 		var rand = randi() % 4
 		var valid_choice = false
@@ -1134,6 +1151,11 @@ func determineInternalUnrestMinxin():
 			# 随机数判断是否叛变
 	if randf() > rebellion_chance:
 		shizuLawTest()
+		return
+
+	if GameManager.sav.isAlertRisk==false:
+		GameManager.sav.isAlertRisk=true
+		DialogueManager.show_example_dialogue_balloon(sys,"民变风险")
 		return
 
 	GameManager.sav._num_defections=mini(GameManager.sav._num_defections+1,3)

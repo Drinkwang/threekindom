@@ -40,10 +40,6 @@ Game Over: 血战数日，军心彻底溃散，游戏结束。
 => END
 
 
-~ 警告叛乱风险
-警告: 注意，因为你的{{GameManager.resideValue}}的支持度低于60，内部不稳，叛乱风险加剧！
-=> END
-
 
 
 
@@ -58,12 +54,31 @@ Game Over: 血战数日，军心彻底溃散，游戏结束。
 => END!
 
 
-~ 吕布风险
+
+
+~ 士族叛乱预警
+警告: 注意，因为你的{{GameManager.resideValue}}的支持度低于60，内部不稳，叛乱风险加剧！
+do determineInternalUnrestHaozu()
+=> END
+
+~ 豪族叛乱预警
+警告: 注意，因为你的{{GameManager.resideValue}}的支持度低于60，内部不稳，叛乱风险加剧！
+do determineInternalUnrestDanyang()
+=> END
+
+~ 丹阳叛乱预警
+警告: 注意，因为你的{{GameManager.resideValue}}的支持度低于60，内部不稳，叛乱风险加剧！
+do determineInternalUnrestLvbu()
+=> END
+
+~ 吕布叛乱预警
 警告: {{GameManager.rTaishanName()}}忠诚度低于80，其不满情绪高涨，可能对你发起掠夺！
+do determineInternalUnrestMinxin()
 => END
 
 ~ 民变风险
 警告: 民心低于60，民怨沸腾，民变风险加剧！
+do shizuLawTest()
 => END
 
 #士族
@@ -550,4 +565,3 @@ do GameManager.oneDayidness()
 系统提示: 对应片尾鸣谢尚未解锁
 => credit选项
 => END!
-

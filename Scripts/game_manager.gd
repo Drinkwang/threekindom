@@ -96,9 +96,6 @@ func changePeopleSupport(num):
 		#显示GameOver
 		
 		#if失败逻辑
-	if(sav.people_surrport<60 and sav.isAlertRisk==false):
-		sav.isAlertRisk=true
-		DialogueManager.show_example_dialogue_balloon(sys,"民变风险")
 func getCurLawExist()->bool:
 
 	return sav.curLawName!=null and sav.curLawName.length()>0 and sav.curLawNum1!=-1 and sav.curLawNum2!=-1
