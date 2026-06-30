@@ -1326,13 +1326,11 @@ func policyCo_opt():
 	#显示对话
 	
 	#var index= int(_faction)  #可能需要一个转换函数进行转换
-	var lawIndex= GameManager.getIndexByFractionIndex(_faction)		
-	var maxLaw=0
-
-	if GameManager.sav.laws[lawIndex].size()>0:
-		maxLaw=GameManager.sav.laws[lawIndex].max()
-	else:
-		maxLaw=1
+	var lawIndex= GameManager.getIndexByFractionIndex(_faction)
+	var maxLaw=·1
+	for v in GameManager.sav.laws[lawIndex]:
+		if v > 0 and v > maxLaw:
+			maxLaw = v
 	
 	#需要将法律法规+1或者+2
 	# 有一堆bug 需要修改，到时候需要判断最大值，最大值后面2个有无元素，如果没有 从余下政策，如果余下政策没有再提示已经满格了
@@ -1349,7 +1347,7 @@ func policyCo_opt():
 	var currentLawNum=GameManager.LawNum()
 	for i in range(1,maxSize):
 		var neededLawNum=_get_needed_law_num_for_courting(lawIndex,i)
-		if GameManager.sav.laws[lawIndex].has(i)==false:
+		if GameManager.sav.laws[lawIndex].has(i)==false and GameManager.sav.laws[lawIndex].has(-i)==false:
 			if currentLawNum+neededLawNum<=GameManager.maxLawNum:
 				unUseArr.append(i)
 		pass
@@ -1392,7 +1390,10 @@ func consent():
 		print("意外拉拢错误，请监察源码")	
 
 func cancelConsent():
-	lalongPolicy=0
+	if lalongPolicy != 0:
+		var lawIndex= GameManager.getIndexByFractionIndex(_faction)
+		GameManager.sav.laws[lawIndex].erase(lalongPolicy)
+		lalongPolicy=0
 	SummonFaction(_faction)
 var ForValueCost=0
 var ForValueGet=0
