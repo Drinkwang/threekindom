@@ -45,12 +45,14 @@ Game Over: 血战数日，军心彻底溃散，游戏结束。
 
 ~ 讨好叛乱1
 系统提示: 因为你的措施改善了{{GameManager.resideValue}}的关系。{{GameManager.resideValue}}结束敌对状态
+do _JudgeTask()
 => END!
 
 
 ~ 讨好叛乱2
-{{GameManager.resideValue}}: 别以为笼络就能让我们原谅你!
-你的措施还不足以结束{{GameManager.resideValue}}派敌对关系，再执行{{GameManager.resideValue2}}次能或许就有成效
+{{GameManager.resideValue}}: 单凭笼络手段，不足以抵消过往嫌隙！
+你的措施还不足以结束{{GameManager.resideValue}}派敌对关系，再执行{{GameManager.resideValue2}}次，或许就有成效
+do _JudgeTask()
 => END!
 
 

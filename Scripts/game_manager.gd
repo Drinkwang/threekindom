@@ -1683,18 +1683,22 @@ func AutoSaveFile():
 	_engerge.endAutoSave()
 
 func _imporveRelation(data:cldata):
-	if DialogueManager.dialogBegin==false:
-		if data.isSuppressed==true:
-			data.rebellionUpdateNum+=2
-			resideValue=data._name
-			resideValue2=data._num_defections-data.rebellionUpdateNum
-			if data.rebellionUpdateNum>data._num_defections:
-				DialogueManager.show_example_dialogue_balloon(sys,"讨好叛乱1")
-				data.rebellionUpdateNum=0
-				data.isSuppressed=false
-			else:
-				DialogueManager.show_example_dialogue_balloon(sys,"讨好叛乱2")
-			
+	if data.isSuppressed==true:
+		data.rebellionUpdateNum+=2
+		resideValue=data._name
+		var _num_defections=max(data._num_defections,6)
+		var remaining_rebellion_points = max(0, _num_defections - data.rebellionUpdateNum)
+		resideValue2=ceili(remaining_rebellion_points / 2.0)
+		
+		if data.rebellionUpdateNum>=_num_defections:
+			DialogueManager.show_example_dialogue_balloon(sys,"讨好叛乱1")
+			data.rebellionUpdateNum=0
+			data.isSuppressed=false
+		else:
+			DialogueManager.show_example_dialogue_balloon(sys,"讨好叛乱2")
+	else:
+		currenceScene._JudgeTask()
+
 func play_music(file_path: String) -> AudioStreamPlayer:
 	var stream = load(file_path)
 	var music=null
