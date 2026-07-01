@@ -1038,6 +1038,21 @@ func settleDeterminValue():
 		GameManager.changePeopleSupport(-determineValue1)
 
 
+func get_unrest_heart_cost_cap() -> int:
+	match GameManager.sav.gameDifficulty:
+		1:
+			return 12
+		2:
+			return 15
+		3:
+			return 18
+	return 15
+
+
+func clamp_unrest_heart_cost(value:int) -> int:
+	return mini(value, get_unrest_heart_cost_cap())
+
+
 func determineInternalUnrestXuzhou():
 	resetDeterminValue()
 	if GameManager.sav.BENTUPAI.isrebellion==true:
@@ -1048,7 +1063,7 @@ func determineInternalUnrestXuzhou():
 
 		if randf() < 0.5||GameManager.sav.labor_force<determineValue1:
 			determineType=GameManager.ResType.heart
-			determineValue1=int((5+randomIndex+(GameManager.sav.BENTUPAI._num_defections-1)*2)*difficultyCoeff)
+			determineValue1=clamp_unrest_heart_cost(int((5+randomIndex+(GameManager.sav.BENTUPAI._num_defections-1)*2)*difficultyCoeff))
 			DialogueManager.show_example_dialogue_balloon(sys,"士族叛乱1")
 		else:
 			determineType=GameManager.ResType.people
@@ -1066,7 +1081,7 @@ func determineInternalUnrestHaozu():
 		GameManager.sav.HAOZUPAI._num_defections=mini(GameManager.sav.HAOZUPAI._num_defections+1,5)
 		determineValue1=int((50*randomIndex+(GameManager.sav.HAOZUPAI._num_defections)*50)*difficultyCoeff)
 		if randf() < 0.5||GameManager.sav.coin<determineValue1:
-			determineValue1=int((5+randomIndex+(GameManager.sav.HAOZUPAI._num_defections-1)*2)*difficultyCoeff)
+			determineValue1=clamp_unrest_heart_cost(int((5+randomIndex+(GameManager.sav.HAOZUPAI._num_defections-1)*2)*difficultyCoeff))
 			determineType=GameManager.ResType.heart
 			DialogueManager.show_example_dialogue_balloon(sys,"豪族叛乱1")
 		else:
@@ -1093,7 +1108,7 @@ func determineInternalUnrestDanyang():
 			determineType=GameManager.ResType.item
 			DialogueManager.show_example_dialogue_balloon(sys,"丹阳叛乱1")
 		else:
-			determineValue1=int((5+randomIndex+(GameManager.sav.WAIDIPAI._num_defections-1)*2)*difficultyCoeff)
+			determineValue1=clamp_unrest_heart_cost(int((5+randomIndex+(GameManager.sav.WAIDIPAI._num_defections-1)*2)*difficultyCoeff))
 			determineType=GameManager.ResType.heart
 			DialogueManager.show_example_dialogue_balloon(sys,"丹阳叛乱2")
 		return
@@ -1110,7 +1125,7 @@ func determineInternalUnrestLvbu():
 		var costItem= ceil((randomIndex + GameManager.sav.LVBU._num_defections)*difficultyCoeff / 2.0)
 		var costCoin=int((50 * randomIndex + (GameManager.sav.LVBU._num_defections) * 50)*difficultyCoeff)
 		var costPeople=int((30 * randomIndex + (GameManager.sav.LVBU._num_defections) * 30)*difficultyCoeff)
-		var costHeart=int((5 + randomIndex + (GameManager.sav.LVBU._num_defections - 1) * 2)*difficultyCoeff)
+		var costHeart=clamp_unrest_heart_cost(int((5 + randomIndex + (GameManager.sav.LVBU._num_defections - 1) * 2)*difficultyCoeff))
 		#var costItemDetail=InventoryManager.costItemRandom()
 	# 收集可满足的资源类型
 		var valid_options = []
@@ -1165,7 +1180,7 @@ func determineInternalUnrestMinxin():
 	var costItem= ceil((randomIndex + GameManager.sav._num_defections)*difficultyCoeff)
 	var costCoin=int((50 * randomIndex + (GameManager.sav._num_defections) * 50)*difficultyCoeff)
 	var costPeople=int((30 * randomIndex + (GameManager.sav._num_defections) * 30)*difficultyCoeff)
-	var costHeart=int((5 + randomIndex + (GameManager.sav._num_defections - 1) * 2)*difficultyCoeff)
+	var costHeart=clamp_unrest_heart_cost(int((5 + randomIndex + (GameManager.sav._num_defections - 1) * 2)*difficultyCoeff))
 		#var costItemDetail=InventoryManager.costItemRandom()
 	# 收集可满足的资源类型
 	var valid_options = []
