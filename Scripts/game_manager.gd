@@ -2271,6 +2271,83 @@ func apply_difficulty_compensation(diff_levels: int):
 	DialogueManager.show_example_dialogue_balloon(sys,"难度补偿")
 
 
+func get_base_score() -> int:
+	return 1500
+
+
+func get_coin_score() -> int:
+	return int(sav.coin / 10)
+
+
+func get_labor_score() -> int:
+	return int(sav.labor_force * 3 / 10)
+
+
+func get_people_score() -> int:
+	return int(sav.people_surrport * 10)
+
+
+func get_item_score() -> int:
+	var score = 0
+	score += InventoryManager.inventory_item_quantity(inventoryPackege, InventoryManagerItem.益气丸) * 22
+	score += InventoryManager.inventory_item_quantity(inventoryPackege, InventoryManagerItem.胜战锦囊) * 16
+	score += InventoryManager.inventory_item_quantity(inventoryPackege, InventoryManagerItem.诸子百家论集) * 10
+	score += InventoryManager.inventory_item_quantity(inventoryPackege, InventoryManagerItem.珍品礼盒) * 18
+	return score
+
+
+func get_exploration_score() -> int:
+	return get_exploration_percent() * 20
+
+
+func get_law_point_score() -> int:
+	return int(sav.Merit_points * 80)
+
+
+func get_day_penalty() -> int:
+	var day = sav.day
+	var penalty = 0
+	if day <= 65:
+		return 0
+	penalty += min(day - 65, 5) * 200
+	if day <= 70:
+		return penalty
+	penalty += min(day - 70, 5) * 420
+	if day <= 75:
+		return penalty
+	penalty += min(day - 75, 15) * 800
+	if day <= 90:
+		return penalty
+	penalty += (day - 90) * 1000
+	return penalty
+
+
+func get_raw_total_score() -> int:
+	return get_base_score() + get_coin_score() + get_labor_score() + get_people_score() + get_item_score() + get_exploration_score() + get_law_point_score() - get_day_penalty()
+
+
+func get_total_score() -> int:
+	var raw_total = get_raw_total_score()
+	if get_day_penalty() > 0 and raw_total < 3500:
+		return clamp(raw_total, 2000, 3499)
+	return raw_total
+
+
+func get_score_rank() -> String:
+	var total_score = get_total_score()
+	if total_score >= 7800:
+		return "S+"
+	elif total_score >= 6700:
+		return "S"
+	elif total_score >= 5600:
+		return "A"
+	elif total_score >= 4600:
+		return "A-"
+	elif total_score >= 3500:
+		return "B"
+	return "B-"
+
+
 
 		
 func get_exploration_percent() -> int:

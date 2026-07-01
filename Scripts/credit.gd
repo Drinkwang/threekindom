@@ -78,6 +78,8 @@ func eggFunc():
 
 @onready var what_final: Label = $CanvasLayer/final/whatFinal
 @onready var detial: Label = $CanvasLayer/final/detial
+@onready var score_tooltip_area: ColorRect = $CanvasLayer/final/scoreTooltipArea
+@onready var rank_tooltip_area: ColorRect = $CanvasLayer/final/rankTooltipArea
 
 
 
@@ -120,13 +122,41 @@ func settleGame():
 		var line1=tr("游玩难度：{difficult}").format({"difficult":tr(diffSrc.type)+"（"+tr(diffSrc.name)+"）"})
 		var line2=tr("游戏旬数：{day}").format({"day":GameManager.sav.day})
 		var line3=tr("探索进度：{process}%").format({"process":GameManager.get_exploration_percent()})
-		detial.text=line1+"\n"+line2+"\n"+line3+"\n"+finaldec
+		var line4=tr("累计得分：{score}").format({"score":GameManager.get_total_score()})
+		var line5=tr("综合评级：{rank}").format({"rank":GameManager.get_score_rank()})
+		detial.text=line1+"\n"+line2+"\n"+line3+"\n"+line4+"\n"+line5+"\n"+finaldec
+		TooltipManager.register_tooltip(score_tooltip_area, _get_score_tooltip_text())
+		TooltipManager.register_tooltip(rank_tooltip_area, _get_rank_tooltip_text())
 	else:
 		what_final.hide()
 		detial.text="恭喜你通关试玩版，请期待正式游戏"
 	
 	finalBG.show()
 	#修改finalBG
+
+
+func _get_score_tooltip_text() -> String:
+	var delay_text = "-" + str(GameManager.get_day_penalty())
+	return tr("本局总评由治政、积蓄与功绩合计：") + "\n\n" \
+		+ tr("基业底分：{score}").format({"score":GameManager.get_base_score()}) + "\n" \
+		+ tr("钱粮积蓄：{score}").format({"score":GameManager.get_coin_score()}) + "\n" \
+		+ tr("民力储备：{score}").format({"score":GameManager.get_labor_score()}) + "\n" \
+		+ tr("民心安定：{score}").format({"score":GameManager.get_people_score()}) + "\n" \
+		+ tr("府库道具：{score}").format({"score":GameManager.get_item_score()}) + "\n" \
+		+ tr("探索功绩：{score}").format({"score":GameManager.get_exploration_score()}) + "\n" \
+		+ tr("法令余裕：{score}").format({"score":GameManager.get_law_point_score()}) + "\n" \
+		+ tr("迟滞惩罚：{score}").format({"score":delay_text}) + "\n\n" \
+		+ tr("65旬后拖延将逐步扣分，旬数越久，惩罚越重。")
+
+
+func _get_rank_tooltip_text() -> String:
+	return tr("综合评级按最终得分判定：") + "\n\n" \
+		+ tr("S+：7800+") + "\n" \
+		+ tr("S ：6700-7799") + "\n" \
+		+ tr("A ：5600-6699") + "\n" \
+		+ tr("A-：4600-5599") + "\n" \
+		+ tr("B ：3500-4599") + "\n" \
+		+ tr("B-：3500 以下")
 
 #ESC按钮，待开发
 func _on_button_button_down() -> void:
