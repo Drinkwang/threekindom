@@ -151,12 +151,12 @@ func _get_score_tooltip_text() -> String:
 
 func _get_rank_tooltip_text() -> String:
 	return tr("综合评级按最终得分判定：") + "\n\n" \
-		+ tr("S+：7800+") + "\n" \
-		+ tr("S ：6700-7799") + "\n" \
-		+ tr("A ：5600-6699") + "\n" \
-		+ tr("A-：4600-5599") + "\n" \
-		+ tr("B ：3500-4599") + "\n" \
-		+ tr("B-：3500 以下")
+		+ tr("S+：9800+") + "\n" \
+		+ tr("S ：8700-9799") + "\n" \
+		+ tr("A ：7600-8699") + "\n" \
+		+ tr("A-：6600-7599") + "\n" \
+		+ tr("B ：5500-6599") + "\n" \
+		+ tr("B-：5500 以下")
 
 #ESC按钮，待开发
 func _on_button_button_down() -> void:
