@@ -1355,6 +1355,8 @@ func xiaopei():
 	GameManager.sav.have_event["血战袁术完成"]=true
 	GameManager.resetAfterBloodBattle()
 	
+	GameManager.returnBloodRes()
+	
 	SoundManager.play_sound(PB_BAOQUANHUOZHONG)
 	GameManager.wait_time=PB_BAOQUANHUOZHONG.get_length()
 		

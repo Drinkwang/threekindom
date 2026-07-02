@@ -43,7 +43,7 @@ do streetTwo()
 		if GameManager.sav.gameDifficulty==1
 			系统提示: 你已选择进入演武场，将触发血战模式。在演武场内，你将不能离开，直到完成所有军事行动。请确保携带足够的物资，以应对各种挑战。
 		else	
-			系统提示: 进入演武场开启血战模式，战事未毕不可离场。当前难度最多携带{{GameManager.resideValue2}}钱币、{{GameManager.resideValue}}民力，多余物资留城守备（游戏结束折算得分），挑战失利可下调难度，请备好所需物资。
+			系统提示: 进入演武场开启血战模式，战事未毕不可离场。当前难度最多携带{{GameManager.resideValue2}}钱币、{{GameManager.resideValue}}民力，多余物资留城守备（血战结束返还），挑战失利可下调难度，请备好所需物资。
 		- 确定[highlight=true]
 			do visitDrill()
 		- 暂时先等一等

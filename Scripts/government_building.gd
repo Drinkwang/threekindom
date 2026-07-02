@@ -291,7 +291,7 @@ func _initData():
 	
 
 func xuzhouStart():
-	
+	GameManager.returnBloodRes()
 	GameManager.sav.targetValue=12
 	GameManager.sav.currenceValue=0
 	GameManager.sav.targetResType=GameManager.ResType.rest

@@ -595,7 +595,7 @@ func visitDrill():
 		if (GameManager.sav.have_event["亲征对话结束"]==true and  GameManager.sav.have_event["关羽求援结束"]==false):
 			
 			if GameManager.sav.coin>GameManager.resideValue2:
-				GameManager.sav.bloodCoin=GameManager.sav.labor_force-GameManager.resideValue2
+				GameManager.sav.bloodCoin=GameManager.sav.coin-GameManager.resideValue2
 				GameManager.sav.coin=GameManager.resideValue2	
 				
 			if GameManager.sav.labor_force>GameManager.resideValue:

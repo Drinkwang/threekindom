@@ -2442,3 +2442,10 @@ func compeleteTaskAndChangeDestination(des):
 	GameManager.sav.targetValue = 1
 	GameManager.sav.TargetDestination = des
 	GameManager.sav.currenceValue = 0
+
+
+func returnBloodRes():
+	GameManager.sav.coin+=GameManager.sav.bloodCoin
+	GameManager.sav.labor_force+=GameManager.sav.bloodLabor
+	GameManager.sav.bloodCoin=0
+	GameManager.sav.bloodLabor=0
