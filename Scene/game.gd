@@ -196,27 +196,31 @@ func _on_continue_button_down():
 
 func _on_option_button_item_selected(index):
 	var lan=""
+	
 	if index==0:
+		
 		title.add_theme_font_size_override("normal_font_size",200)  
 		lan="zh"
+		
 		_set_game_logo_mode(true)
 		title.text="[center][rainbow]阴[/rainbow][wave amp=50 frep=100]三国[/wave][rainbow]谋论[/rainbow]-[tornado][color=#ff0000]徐州篇[/color][/tornado][/center]"				
 
 	elif index==1:
 		title.add_theme_font_size_override("normal_font_size",200)  
 		lan="lzh"
+
 		_set_game_logo_mode(true)
 		title.text="[center][rainbow]陰[/rainbow][wave amp=50 frep=100]三國[/wave][rainbow]謀論[/rainbow]-[tornado]徐州篇[/tornado][/center]"				
 	
 	elif index==2:
 		lan="en"
-		_set_game_logo_mode(false)
+		_set_game_logo_mode(true)
 		title.add_theme_font_size_override("normal_font_size",130)
 		title.text="[center]The [rainbow]Three Kingdoms[/rainbow] of [wave amp=50 frep=100]Shadows[/wave]:[tornado]Xuzhou[/tornado][/center]"
 				
 	elif index==3:
 		lan="ja"
-		_set_game_logo_mode(false)
+		_set_game_logo_mode(true)
 		title.text="[center][rainbow]陰[/rainbow][wave amp=50 frep=100]三国[/wave][rainbow]謀論[/rainbow]: [tornado]徐州編[/tornado][/center]"
 		title.add_theme_font_size_override("normal_font_size",200)  		
 	elif index==4:
@@ -224,7 +228,7 @@ func _on_option_button_item_selected(index):
 		_set_game_logo_mode(false)
 		title.text="[center][tornado]Тёмные [/tornado][wave amp=50 frep=100]интриги [/wave][rainbow]Троецарствия[/rainbow][/center]"			
 		title.add_theme_font_size_override("normal_font_size",130)  		
-	
+	changelogoSprite(lan)
 	TranslationServer.set_locale(lan)
 	if GameManager._setting!=null:
 		GameManager._setting.language=lan
@@ -232,7 +236,17 @@ func _on_option_button_item_selected(index):
 			SignalManager.changeLanguage.emit()
 			ResourceSaver.save(GameManager._setting,"user://ysg_data_setting.tres")
 
-
+const NEWTITLE = preload("res://Asset/newtitle.png")
+const ENTITLE = preload("res://Asset/entitle.png")
+func changelogoSprite(lan):
+	if lan=="zh_HK" or lan=="zh_TW" or lan=="lzh" or lan=="zh" or lan=="ja":
+		game_logo.texture=NEWTITLE
+		game_logo_shadow.texture=NEWTITLE
+		game_logo_glow.texture=NEWTITLE
+	else:
+		game_logo.texture=ENTITLE
+		game_logo_shadow.texture=ENTITLE
+		game_logo_glow.texture=ENTITLE			
 func _language_to_option_index(lan:String)->int:
 	if lan=="zh_HK" or lan=="zh_TW" or lan=="lzh":
 		return 1

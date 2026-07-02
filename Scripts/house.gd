@@ -569,30 +569,30 @@ func refreshPropertyPanel():
 func getrecommendStr(index):
 	var Rstr
 	var rindex=randi_range(0,2)
-	if index==0:
+	if index==0:#收集资金
 		if rindex==0:
-			Rstr=tr("优化参与军事行动的策略，通过战胜对手获得足够的资金收益。")
+			Rstr=tr("法令点数可通过给派系派发月例获取。")
 		elif rindex==1:
-			Rstr=tr("积极参与大儒辩经活动，进行辩论小游戏，获取道具与钱奖励。")
+			Rstr=tr("仕诡牌诡杂栏有成就录，可领取额外资金。")
 		elif rindex==2:
 			Rstr=tr("制定有利可图的律法以增加税收，同时向城内派系索取资金，利用好的策略确保稳定的钱来源。")
 
-	elif index==1:
+	elif index==1:#军事行动
 		if rindex==0:
-			Rstr=tr("通过任务、立法、军事行动等方式，系统性地收集资源，确保资源储备充足以支持武将升级与道具购买。")
+			Rstr=tr("拉拢派系后，其不会直接反对笼络的法令。")
 		elif rindex==1:
-			Rstr=tr("可以选择武将进行升级，确保在军事行动中拥有更强的作战能力。")
+			Rstr=tr("武将比武可不消耗资金进行升级，但每个难度仅一次机会。")
 		elif rindex==2:
 			Rstr=tr("可以购买增益类道具在军事行动中取得更大的优势。")
-	elif index==3:
+	elif index==3:#基建
 		if rindex==0:
-			Rstr=tr("完成演武场、府邸、议事厅高阶基建，可获取更强属性增益")
+			Rstr=tr("完成演武场、府邸、议事厅的高阶基建，可获取更强属性增益")
 		elif rindex==1:
 			Rstr=tr("先在初级基建玩法中熟悉策略，再挑战高阶关卡")
 		elif rindex==2:
 			Rstr=tr("任意难度下，完成3类不同基建即可达成基建计划")
 
-	elif index==4:
+	elif index==4:#派系相关
 		if GameManager.dontHaveDominance():
 			Rstr=tr("赠送礼物、推动派系法案通过，可提升派系支持度")
 		else:
