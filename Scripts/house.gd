@@ -180,6 +180,8 @@ func xiaopeiStart():
 	GameManager.sav.targetTxt="撑过旬数：{currence}/{target}"
 	GameManager.sav.TargetDestination="rest"
 	GameManager.AutoSaveFile()
+	GameManager.sav.coin+=1000
+	GameManager.sav.labor_force+=500
 	#暂时先这样写
 
 @onready var demo_end_v: VideoStreamPlayer = $demoEnd

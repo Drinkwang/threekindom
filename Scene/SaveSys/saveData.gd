@@ -386,6 +386,9 @@ var number_bool_map: Dictionary = {
 @export var constructTower=0
 @export var constructGrain=0
 @export var gameDifficulty=2
+
+@export var bloodCoin=0
+@export var bloodLabor=0
 func ensure_default_fields():
 	var default_data = saveData.new().have_event
 	for key in default_data.keys():

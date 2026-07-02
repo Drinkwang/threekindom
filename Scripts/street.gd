@@ -404,7 +404,14 @@ func _buttonListClick(item):
 		##打开商店ui换皮或者换页
 	elif item.context=="城门-军事驻地":
 		if(GameManager.sav.day>=4):
-
+			if (GameManager.sav.have_event["亲征对话结束"]==true and  GameManager.sav.have_event["关羽求援结束"]==false):
+				if GameManager.sav.gameDifficulty==2:
+					GameManager.resideValue=2000
+					GameManager.resideValue2=3000
+				elif GameManager.sav.gameDifficulty==3:
+					GameManager.resideValue=1000
+					GameManager.resideValue2=2000
+					
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"selectOutSide")
 			
 		else:
@@ -585,6 +592,17 @@ func visitDrill():
 	if GameManager.sav.day==4:
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"tip_scholar")
 	else:
+		if (GameManager.sav.have_event["亲征对话结束"]==true and  GameManager.sav.have_event["关羽求援结束"]==false):
+			
+			if GameManager.sav.coin>GameManager.resideValue2:
+				GameManager.sav.bloodCoin=GameManager.sav.labor_force-GameManager.resideValue2
+				GameManager.sav.coin=GameManager.resideValue2	
+				
+			if GameManager.sav.labor_force>GameManager.resideValue:
+				GameManager.sav.bloodLabor=GameManager.sav.labor_force-GameManager.resideValue
+				GameManager.sav.labor_force=GameManager.resideValue
+
+			
 		SceneManager.changeScene(SceneManager.roomNode.DRILL_GROUND,2)
 	
 const visitbgm = preload("res://Asset/bgm/拜访大儒.wav")
