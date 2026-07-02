@@ -1079,6 +1079,10 @@ func fireLetter():
 func _DayGet():
 	res_panel.showValue=false
 	res_panel.GetValue(GameManager.sav.coin_DayGet,0,GameManager.sav.labor_DayGet)
+	if GameManager.sav.bloodCoin>GameManager.sav.coin_DayGet:
+		GameManager.sav.bloodCoin-=GameManager.sav.coin_DayGet
+	if GameManager.sav.bloodLabor>GameManager.sav.labor_DayGet:
+		GameManager.sav.bloodLabor-=GameManager.sav.labor_DayGet
 	SoundManager.play_sound(sounds.buysellsound)
 	#await 1
 	res_panel.showValue=true
