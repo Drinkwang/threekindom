@@ -620,7 +620,7 @@ func _buttonListClick(item):
 			battle_pane.point_group.hide()
 		caobao.hide()	
 		battle_pane.show()
-		
+		refreshBattlePanePos()
 		battle_pane.initData()
 		battle_pane._refreshGeneral()
 		res_panel.position.x=1564
@@ -685,6 +685,9 @@ func _buttonListClick(item):
 	pass
 
 #练兵结束调用这个 初次练兵
+
+func refreshBattlePanePos():
+	battle_pane.position.y=-7+(1014-battle_pane.panel_container.size.y)
 
 func showbattletutorial():
 	DialogueManager.show_exaple_top_dialogue_balloon(dialogue_resource,"第一次军事行动教程_上")

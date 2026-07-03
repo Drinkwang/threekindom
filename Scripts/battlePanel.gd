@@ -31,6 +31,7 @@ class_name battlePanel
 #@onready var guild_7 = $"pointGroup/7"
 #@onready var guild_8 = $"pointGroup/8"
 
+@onready var panel_container: PanelContainer = $PanelContainer
 
 @onready var sliderlabel_1 = $sliderlabel1
 @onready var sliderlabel_2 = $sliderlabel2
@@ -76,6 +77,7 @@ func refreshData():
 func changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()
 	_apply_battle_layout()
+
 	#if currencelanguage=="ru":
 		#sliderlabel_1.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
 		#sliderlabel_2.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
@@ -108,11 +110,9 @@ func changeLanguage():
 					
 
 					
-	#if InventoryManager.has_item(InventoryManagerItem.迷魂木筒):
-	#	label.text = label.text.replace("40", "50") 
-		#_context=_context+tr("【已强化】")
-		#这里改文本
-	#TooltipManager.register_tooltip(useItemPanel,_context)	
+	await get_tree().process_frame
+	if GameManager.currenceScene!=null:
+		GameManager.currenceScene.refreshBattlePanePos()
 
 func _apply_battle_layout():
 	select_detail.custom_minimum_size = SELECT_DETAIL_SIZE

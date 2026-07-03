@@ -41,4 +41,5 @@ func _input(event):
 		var mouse_pos = get_global_mouse_position()
 		if not rect.has_point(mouse_pos):
 			# 点击在 LineEdit 外，隐藏 LineEdit
-			hide()
+			if GameManager._setting.showMilitartInput==false:
+				hide()

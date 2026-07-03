@@ -452,6 +452,14 @@ text = "1"
 horizontal_alignment = 2
 vertical_alignment = 2
 
+[node name="TextureButton2" type="TextureButton" parent="PanelContainer/orderPanel/VBoxContainer/HBoxContainer2/TextureButton"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 5.0
+offset_right = 525.0
+offset_bottom = 93.0
+pivot_offset = Vector2(0.035, 0)
+
 [node name="CheckBox" type="CheckBox" parent="PanelContainer/orderPanel/VBoxContainer/HBoxContainer2/TextureButton"]
 layout_mode = 0
 offset_left = 454.0
@@ -1006,7 +1014,7 @@ offset_right = 969.0
 offset_bottom = 606.0
 mouse_filter = 2
 
-[connection signal="pressed" from="PanelContainer/orderPanel/VBoxContainer/HBoxContainer2/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="button_down" from="PanelContainer/orderPanel/VBoxContainer/HBoxContainer2/TextureButton/TextureButton2" to="." method="_on_texture_button_pressed"]
 [connection signal="toggled" from="PanelContainer/orderPanel/VBoxContainer/HBoxContainer2/TextureButton/CheckBox" to="." method="_on_Usecheck_box_toggled"]
 [connection signal="button_down" from="PanelContainer/orderPanel/VBoxContainer/HBoxContainer/Button" to="." method="_on_button_button_down"]
 [connection signal="button_down" from="SoilderBlockClick" to="." method="_on_soilderBlock_button_down"]

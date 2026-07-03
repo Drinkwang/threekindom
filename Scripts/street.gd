@@ -519,6 +519,7 @@ func PlayMizhen():
 	var _func=func():
 
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"动画播完_血姬")
+		refreshBattlePanePos()
 		battle_pane.show()
 		battle_pane.enterBattleMi()
 		AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_16")
@@ -536,6 +537,7 @@ func PlayTaoQian():
 	var _func=func():
 
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"动画播完_陶谦")
+		refreshBattlePanePos()
 		battle_pane.show()
 		battle_pane.enterBattleTao()
 		AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_18")
@@ -548,6 +550,7 @@ func PlayGulong():
 	var _func=func():
 		AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_17")
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"动画播完_镇魂龙")
+		refreshBattlePanePos()
 		battle_pane.show()
 		battle_pane.enterBattleHuang()
 	playBossAni(tao,_func)
@@ -587,7 +590,8 @@ func merchantSendGift():
 	items.population=0
 	_reward.showTitileReward(tr("你从商人那边获得如下道具"),items)
 
-
+func refreshBattlePanePos():
+	battle_pane.position.y=-7+(1014-battle_pane.panel_container.size.y)/3
 func visitDrill():
 	if GameManager.sav.day==4:
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"tip_scholar")
@@ -1053,6 +1057,7 @@ func playzhenren():
 	var _func=func():
 		
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"真相揭露_真人")
+		refreshBattlePanePos()
 		battle_pane.show()
 		#battle_pane.enterBattleHuang()
 	playBossAni(ZHENREN,_func)
@@ -1063,6 +1068,7 @@ func enterBattleZhenren():
 	res_panel.position.x=1564
 	res_panel.position.y=803
 	res_panel.scale=Vector2(0.765,0.765)
+	refreshBattlePanePos()
 	battle_pane.show()
 	battle_pane.enterBattleZhenRen()
 
