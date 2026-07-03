@@ -347,6 +347,8 @@ func _initData():
 			GameManager.sav.have_event["DemoFinish"]=true
 			control.hide()
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新手关结束")
+	elif GameManager.sav.have_event["属性面板教程"]==false and GameManager.sav.have_event["initTaskPolicy"]==true:
+		control._show_button_5_yellow(2)
 	return canMuliao
 	#判断以下，是首日获取 还是第二次获取
 
@@ -470,6 +472,9 @@ func _buttonListClick(item):
 	if item.context == "外出":
 		SceneManager.changeScene(SceneManager.roomNode.STREET,2)
 	elif item.context == "待办事项":
+		if GameManager.sav.have_event["待办事项教程"]==false and GameManager.sav.day>=2:
+			GameManager.sav.have_event["待办事项教程"]=true
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"待办事项教程")
 		control._show_button_5_yellow(-1)
 		policyPanel.refreshContext()
 		policyPanel.show()
@@ -477,7 +482,10 @@ func _buttonListClick(item):
 	elif item.context == "属性面板":
 		#当前功能demo不开放
 		#DialogueManager.show_example_dialogue_balloon(sys,"当前功能demo不开放")
-
+		if GameManager.sav.have_event["initTaskPolicy"]==true and GameManager.sav.have_event["属性面板教程"]==false:
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"属性面板教程")
+			GameManager.sav.have_event["属性面板教程"]=true
+			control._show_button_5_yellow(-1)
 		#正式功能需要取消注释
 		refreshPropertyPanel()
 		propertyPanel.show()

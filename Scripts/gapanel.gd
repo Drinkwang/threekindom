@@ -198,7 +198,7 @@ func append_prologue_hearsay_progress(base_text:String)->String:
 			collected+=1
 	var progress_text=tr("当前诡闻秘录搜集进度：%d/3")%collected
 	if base_text.length()>0:
-		return base_text+"\n"+progress_text
+		return base_text+"\n\n"+tr("支线任务")+":\n"+progress_text
 	return progress_text
 	
 

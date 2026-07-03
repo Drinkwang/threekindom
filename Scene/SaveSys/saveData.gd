@@ -361,8 +361,11 @@ var number_bool_map: Dictionary = {
 	"AllFactionsSubdued":false,
 	"进入青梅煮酒":false,
 	"陈登论策解锁":false,
-	"拾荒老人剧情":false
+	"拾荒老人剧情":false,
+	"待办事项教程":false,
+	"属性面板教程":false,
 	#"错失玄阴":false,
+	
 }
 @export var taishanWait=0
 #0 小试牛刀开启 1小试牛刀通过 2 对局试炼开启 3对局试验通过 4 诡秘怪谈开启 5诡秘怪谈通过
