@@ -177,6 +177,7 @@ func refreshContext():
 			contextEX=contextEX+"\n\n"+tr("支线任务")+"：\n"
 			for i in range(0,sideNum):
 				contextEX=contextEX+var_to_str(i+1)+":"+questContexts[i]+"\n"
+	contextEX=append_prologue_hearsay_progress(contextEX)
 	if(context!=null):
 		context.text=contextEX
 	if(title!=null):
@@ -187,6 +188,18 @@ func refreshContext():
 
 func showContext():
 	title.text=context
+
+func append_prologue_hearsay_progress(base_text:String)->String:
+	if not (GameManager.sav.day<5 and GameManager.sav.have_event["拾荒老人剧情"]==true):
+		return base_text
+	var collected=0
+	for item in GameManager.CanFindSecretItems:
+		if item.alreadyGet==true:
+			collected+=1
+	var progress_text=tr("当前诡闻秘录搜集进度：%d/3")%collected
+	if base_text.length()>0:
+		return base_text+"\n"+progress_text
+	return progress_text
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

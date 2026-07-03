@@ -200,10 +200,6 @@ func initSecretFunc():
 	var available_secret_items
 	sav.todayCanFindItems=[]
 	randomize()
-	var maxvalue=1
-	if InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.雌雄双股剑)>0:
-		maxvalue=3
-	var maxLen=randi_range(0,maxvalue)
 	if sav.day<4:
 		if sav.day==1:
 			
@@ -217,16 +213,34 @@ func initSecretFunc():
 
 		sav.todayCanFindItems.append(available_secret_items)
 		
-	for i in range(0,maxLen):
-		available_items = CanFindItems.filter(func(item): return not sav.todayCanFindItems.has(item.name))
-		var available_item = available_items[randi_range(0,available_items.size()-1)]
+	for i in range(0,get_daily_find_item_count()):
+		available_items = CanFindItems.filter(func(item): return not _today_find_items_has_name(item.name))
 		if available_secret_items!=null:
-			if available_secret_items.scene==available_item.scene and available_secret_items.id==available_item.id:
-				continue
+			available_items=available_items.filter(func(item): return not _is_same_find_item_position(item, available_secret_items))
+		if available_items.is_empty():
+			break
+		var available_item = available_items[randi_range(0,available_items.size()-1)]
 		available_item.alreadyGet=false
 		sav.todayCanFindItems.append(available_item)
 	
 	#如果在游戏后期则不会获取怪谈道具
+
+func get_daily_find_item_count()->int:
+	if sav.day<5:
+		return 3
+	var maxvalue=1
+	if InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.雌雄双股剑)>0:
+		maxvalue=3
+	return randi_range(0,maxvalue)
+
+func _today_find_items_has_name(item_name:String)->bool:
+	for item in sav.todayCanFindItems:
+		if item.name==item_name:
+			return true
+	return false
+
+func _is_same_find_item_position(item, other_item)->bool:
+	return item.scene==other_item.scene and item.id==other_item.id
 
 
 
