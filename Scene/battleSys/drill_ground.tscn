@@ -358,6 +358,8 @@ scale = Vector2(0.2, 0.2)
 
 [node name="battlePane" parent="CanvasInventory" instance=ExtResource("10_gfhv4")]
 visible = false
+offset_top = 45.0
+offset_bottom = 45.0
 
 [node name="InventoryAny" parent="CanvasInventory" instance=ExtResource("6_cu7sp")]
 visible = false

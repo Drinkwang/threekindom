@@ -573,7 +573,11 @@ func getrecommendStr(index):
 		if rindex==0:
 			Rstr=tr("法令点数可通过给派系派发月例获取。")
 		elif rindex==1:
-			Rstr=tr("仕诡牌诡杂栏有成就录，可领取额外资金。")
+			#卡牌解锁后
+			if GameManager.sav.caobaocardgame>=1:
+				Rstr=tr("仕诡牌诡杂栏有成就录，可领取额外资金。")
+			else:
+				Rstr=tr("请定期查看月例配给面板，避免新增派系遗漏月例发放。")
 		elif rindex==2:
 			Rstr=tr("制定有利可图的律法以增加税收，同时向城内派系索取资金，利用好的策略确保稳定的钱来源。")
 
@@ -581,7 +585,12 @@ func getrecommendStr(index):
 		if rindex==0:
 			Rstr=tr("拉拢派系后，其不会直接反对笼络的法令。")
 		elif rindex==1:
-			Rstr=tr("武将比武可不消耗资金进行升级，但每个难度仅一次机会。")
+			#比武解锁后
+			
+			if GameManager.sav.have_event["开启比武训练"]==true:
+				Rstr=tr("武将比武可不消耗资金进行升级，但每个难度仅一次机会。")
+			else:			
+				Rstr=tr("使用常置调度栏可以显示军事行动输入资源的面板，也可以点击资源名字开启资源输入的面板")
 		elif rindex==2:
 			Rstr=tr("可以购买增益类道具在军事行动中取得更大的优势。")
 	elif index==3:#基建
@@ -604,7 +613,8 @@ func getrecommendStr(index):
 
 				Rstr=tr("累计镇压3次后，派系将对你永远保持忠诚")
 	else:
-		Rstr=tr("暂无")
+		#Rstr=tr("暂无")
+		Rstr=tr("待你入主徐州后，将解锁当前游戏建议")
 	return Rstr
 
 func getFractionView(point):

@@ -9,6 +9,8 @@ class_name  drill_ground
 
 const xiaopeiBuild = preload("res://Asset/城镇建筑/演武场1.png")
 const newBuild = preload("res://Asset/城镇建筑/演武场2.png")
+const BATTLE_PANE_VISIBLE_BOTTOM_Y := 1007.0
+const BATTLE_PANE_FALLBACK_Y := 45.0
 
 @onready var fade: AnimationPlayer = $CanvasLayer/ColorRect/fade
 
@@ -609,20 +611,26 @@ func _buttonListClick(item):
 			trainUseMoney()
 
 	elif item.context=="军事行动":
+		caobao.hide()	
+		battle_pane.show()
+		battle_pane.move_to_front()
+		battle_pane.initData()
+		battle_pane._refreshGeneral()
+		refreshBattlePanePos()
+		await get_tree().process_frame
+		battle_pane.show()
+		battle_pane.move_to_front()
+		refreshBattlePanePos()
 		#第一次军事行动应该告诉你教程
 		if GameManager.sav.day==3:
 			if GameManager.sav.have_event["firstBattleTutorial"]==false:
-				GameManager.sav.have_event["firstBattleTutorial"]=true
-				DialogueManager.show_dialogue_balloon(dialogue_resource,"第一次军事行动教程")
+				var balloon=DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第一次军事行动教程")
+				if balloon!=null:
+					GameManager.sav.have_event["firstBattleTutorial"]=true
 			else:
 				battle_pane.point_group.hide()
 		else:
 			battle_pane.point_group.hide()
-		caobao.hide()	
-		battle_pane.show()
-		refreshBattlePanePos()
-		battle_pane.initData()
-		battle_pane._refreshGeneral()
 		res_panel.position.x=1564
 		res_panel.position.y=803
 		res_panel.scale=Vector2(0.765,0.765)
@@ -687,13 +695,27 @@ func _buttonListClick(item):
 #练兵结束调用这个 初次练兵
 
 func refreshBattlePanePos():
-	battle_pane.position.y=-7+(1014-battle_pane.panel_container.size.y)
+	if battle_pane==null or battle_pane.panel_container==null:
+		return
+	var panel_height := battle_pane.panel_container.size.y
+	if panel_height<=0.0:
+		battle_pane.position.y=BATTLE_PANE_FALLBACK_Y
+		_refreshBattlePanePosNextFrame()
+		return
+	battle_pane.position.y=BATTLE_PANE_VISIBLE_BOTTOM_Y-panel_height
+
+func _refreshBattlePanePosNextFrame():
+	await get_tree().process_frame
+	if is_instance_valid(battle_pane) and battle_pane.visible:
+		var panel_height := battle_pane.panel_container.size.y
+		if panel_height>0.0:
+			battle_pane.position.y=BATTLE_PANE_VISIBLE_BOTTOM_Y-panel_height
 
 func showbattletutorial():
 	DialogueManager.show_exaple_top_dialogue_balloon(dialogue_resource,"第一次军事行动教程_上")
 	
 func showbattletutorial2():
-	DialogueManager.show_dialogue_balloon(dialogue_resource,"第一次军事行动教程_下")
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第一次军事行动教程_下")
 	
 	
 @onready var chendao: clickBlock = $"陈到"
