@@ -228,8 +228,8 @@ func _initData():
 	if GameManager.sav.have_event["chaoMizhuEnd"]==true and GameManager.sav.isGetCoin==false and GameManager.sav.currenceValue>1 and GameManager.sav.have_event["battleTaiShan"]==false:
 
 		#demo结束
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"playtest结束")
-		return
+		#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"playtest结束")
+		#return
 		pass
 
 	if control.visible==true:
