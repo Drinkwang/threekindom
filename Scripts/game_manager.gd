@@ -1547,6 +1547,8 @@ func SkipPrologue():
 	# Set each key's value to true
 	for key in keys_to_change:
 		sav.have_event[key] = true
+	sav.BENTUPAI._support_rate=100
+	sav.WAIDIPAI._support_rate=100
 	sav.day=5
 	sav.coin=100
 	sav.laws[2].append(1)

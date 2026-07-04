@@ -821,6 +821,8 @@ func meeting():
 @onready var show_pos: Node2D = $"peoples/陶商陶应/showPos"
 
 func meetingEnd():
+	GameManager.sav.WAIDIPAI.ChangeSupport(30)
+	GameManager.sav.BENTUPAI.ChangeSupport(30)
 	GameManager.sav.destination="议事厅"
 	GameManager.sav.hp=GameManager.sav.hp-costHp_SummonOne
 	GameManager.sav.isMeet=true
