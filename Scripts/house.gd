@@ -575,55 +575,52 @@ func refreshPropertyPanel():
 
 
 func getrecommendStr(index):
-	var Rstr
-	var rindex=randi_range(0,2)
-	if index==0:#收集资金
-		if rindex==0:
-			Rstr=tr("法令点数可通过给派系派发月例获取。")
-		elif rindex==1:
-			#卡牌解锁后
-			if GameManager.sav.caobaocardgame>=1:
-				Rstr=tr("仕诡牌诡杂栏有成就录，可领取额外资金。")
-			else:
-				Rstr=tr("请定期查看月例配给面板，避免新增派系遗漏月例发放。")
-		elif rindex==2:
-			Rstr=tr("制定有利可图的律法以增加税收，同时向城内派系索取资金，利用好的策略确保稳定的钱来源。")
+	var recommend_list=[]
+	
+	var extra_recommend_list=[
+		tr("拉拢派系后，其不会直接反对笼络的法令。"),
+		tr("已解锁月例配给面板后，可向各派系发放月俸，以此换取法令点数。"),
 
+	]
+	
+	if GameManager.sav.have_event["开启比武训练"]==true:
+		extra_recommend_list.append(tr("武将比武可不消耗资金进行升级，但每个难度仅一次机会。"))
+	
+	if GameManager.sav.caobaocardgame>=1:
+		extra_recommend_list.append(tr("仕诡牌诡杂栏有成就录，可领取额外资金。"))
+	if GameManager.sav.have_event["津贴系统开始"]==true:
+		extra_recommend_list.append(tr("请定期查看月例配给面板，避免新增派系遗漏月例发放。"))	
+	
+	if index==0:#收集资金
+
+		#卡牌解锁后
+
+		recommend_list.append(tr("制定有利可图的律法以增加税收，同时向城内派系索取资金，利用好的策略确保稳定的钱来源。"))
+		recommend_list.append(tr("发起军事行动、参与大儒论辩、经商售卖、城内探索，皆可获取各类资金收益。"))
 	elif index==1:#军事行动
-		if rindex==0:
-			Rstr=tr("拉拢派系后，其不会直接反对笼络的法令。")
-		elif rindex==1:
-			#比武解锁后
-			
-			if GameManager.sav.have_event["开启比武训练"]==true:
-				Rstr=tr("武将比武可不消耗资金进行升级，但每个难度仅一次机会。")
-			else:			
-				Rstr=tr("使用常置调度栏可以显示军事行动输入资源的面板，也可以点击资源名字开启资源输入的面板")
-		elif rindex==2:
-			Rstr=tr("可以购买增益类道具在军事行动中取得更大的优势。")
+
+		recommend_list.append(tr("使用常置调度栏可以显示军事行动输入资源的面板，也可以点击资源名字开启资源输入的面板"))
+		recommend_list.append(tr("可以购买增益类道具在军事行动中取得更大的优势。"))
 	elif index==3:#基建
-		if rindex==0:
-			Rstr=tr("完成演武场、府邸、议事厅的高阶基建，可获取更强属性增益")
-		elif rindex==1:
-			Rstr=tr("先在初级基建玩法中熟悉策略，再挑战高阶关卡")
-		elif rindex==2:
-			Rstr=tr("任意难度下，完成3类不同基建即可达成基建计划")
+		recommend_list.append(tr("完成演武场、府邸、议事厅的高阶基建，可获取更强属性增益"))
+
+		recommend_list.append(tr("任意难度下，完成3类不同基建即可达成基建计划"))
 
 	elif index==4:#派系相关
 		if GameManager.dontHaveDominance():
-			Rstr=tr("赠送礼物、推动派系法案通过，可提升派系支持度")
+			recommend_list.append(tr("赠送礼物、推动派系法案通过，可提升派系支持度"))
+			recommend_list.append(tr("赠送礼物、推动派系法案通过，可提升派系支持度"))			
 		else:
-			if rindex==0:
-				Rstr=tr("赠送礼物、推动派系法案通过，可提升派系支持度")
-			elif rindex==1:
-				Rstr=tr("面对派系忠诚度不足的局面，除怀柔安抚外，亦可采取强硬手段。")
-			elif rindex==2:
 
-				Rstr=tr("累计镇压3次后，派系将对你永远保持忠诚")
+			recommend_list.append(tr("面对派系忠诚度不足的局面，除怀柔安抚外，亦可采取强硬手段。"))
+			recommend_list.append(tr("累计镇压3次后，派系将对你永远保持忠诚"))
 	else:
 		#Rstr=tr("暂无")
-		Rstr=tr("待你入主徐州后，将解锁当前游戏建议")
-	return Rstr
+		if GameManager.sav.have_event["initXuzhou"]==false:
+			return (tr("待你入主徐州后，将解锁当前游戏建议"))
+		#recommend_list.append(tr("待你入主徐州后，将解锁当前游戏建议"))
+	recommend_list.append_array(extra_recommend_list)
+	return recommend_list[randi_range(0,recommend_list.size()-1)]
 
 func getFractionView(point):
 	var viewStr=""

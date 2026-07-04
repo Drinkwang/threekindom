@@ -9,8 +9,8 @@ class_name  drill_ground
 
 const xiaopeiBuild = preload("res://Asset/城镇建筑/演武场1.png")
 const newBuild = preload("res://Asset/城镇建筑/演武场2.png")
-const BATTLE_PANE_VISIBLE_BOTTOM_Y := 1007.0
-const BATTLE_PANE_FALLBACK_Y := 45.0
+const BATTLE_PANE_TOP_MARGIN := 45.0
+const BATTLE_PANE_BOTTOM_MARGIN := 45.0
 
 @onready var fade: AnimationPlayer = $CanvasLayer/ColorRect/fade
 
@@ -699,17 +699,28 @@ func refreshBattlePanePos():
 		return
 	var panel_height := battle_pane.panel_container.size.y
 	if panel_height<=0.0:
-		battle_pane.position.y=BATTLE_PANE_FALLBACK_Y
 		_refreshBattlePanePosNextFrame()
 		return
-	battle_pane.position.y=BATTLE_PANE_VISIBLE_BOTTOM_Y-panel_height
+	_applyBattlePanePos(panel_height)
 
 func _refreshBattlePanePosNextFrame():
 	await get_tree().process_frame
 	if is_instance_valid(battle_pane) and battle_pane.visible:
 		var panel_height := battle_pane.panel_container.size.y
 		if panel_height>0.0:
-			battle_pane.position.y=BATTLE_PANE_VISIBLE_BOTTOM_Y-panel_height
+			_applyBattlePanePos(panel_height)
+
+func _applyBattlePanePos(panel_height:float):
+	var viewport_height := get_viewport_rect().size.y
+	var panel_local_top := battle_pane.panel_container.position.y
+	var available_height := viewport_height-BATTLE_PANE_TOP_MARGIN-BATTLE_PANE_BOTTOM_MARGIN
+	if panel_height>=available_height:
+		battle_pane.position.y=BATTLE_PANE_TOP_MARGIN-panel_local_top
+		return
+	var centered_y := viewport_height*0.5-panel_local_top-panel_height*0.5
+	var min_y := BATTLE_PANE_TOP_MARGIN-panel_local_top
+	var max_y := viewport_height-BATTLE_PANE_BOTTOM_MARGIN-panel_local_top-panel_height
+	battle_pane.position.y=clamp(centered_y,min_y,max_y)
 
 func showbattletutorial():
 	DialogueManager.show_exaple_top_dialogue_balloon(dialogue_resource,"第一次军事行动教程_上")
