@@ -75,6 +75,7 @@ func initBattleRect():
 
 func startGame():
 	if GameManager.sav.have_event["比武训练教程"]==false:
+		_show_mouse_after_battle()
 		GameManager.sav.have_event["比武训练教程"]=true
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"是否第一次")
 	else:
@@ -114,6 +115,7 @@ func dialogEnd():
 	caocao.sword.show()
 	liubei.sword.show()
 	GameManager.swordManGameState=GameManager.gameState.start
+	_hide_mouse_for_battle()
 	
 	# 将鼠标位置设置为刘备当前位置
 	Input.warp_mouse(liubeiPos)
@@ -143,9 +145,11 @@ func _on_player_hit(_who: swordMan):
 
 		elif _who.hp==0:
 			if GameManager.trainGeneral.length()==0:
+				_show_mouse_after_battle()
 				AchievementManager.set_achievement("NEW_ACHIEVEMENT_2_1")
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"赢曹操")
 			else:
+				_show_mouse_after_battle()
 				blink_rect.show()
 				blink_animation_player.play("win")
 				win_rect.show()
@@ -168,8 +172,10 @@ func _on_player_hit(_who: swordMan):
 				dialogEnd()
 		elif _who.hp==0:
 			if GameManager.trainGeneral.length()==0:
+				_show_mouse_after_battle()
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"输曹操")
 			else:
+				_show_mouse_after_battle()
 				SoundManager.stop_music()	
 				lose_rect.show()
 				SoundManager.play_sound(sounds.BAD_BATTLE)
@@ -255,13 +261,16 @@ func _input(event):
 
 func finalEndReturn():
 	GameManager.sav.have_event["最终比武结束"]=true
+	_show_mouse_after_battle()
 	SceneManager.changeScene(SceneManager.roomNode.HOUSE,2)
 
 func winGame():
+	_show_mouse_after_battle()
 	restore_mouse_movement() # 恢复鼠标移动
 	GameManager.trainResult=SceneManager.trainResult.win
 	SceneManager.changeScene(SceneManager.roomNode.DRILL_GROUND,2)
 func loseGame():
+	_show_mouse_after_battle()
 	restore_mouse_movement() # 恢复鼠标移动
 	GameManager.trainResult=SceneManager.trainResult.fail
 	SceneManager.changeScene(SceneManager.roomNode.DRILL_GROUND,2)
@@ -299,6 +308,15 @@ func remove_mouse_speed_limit():
 func restore_mouse_movement():
 	remove_mouse_speed_limit()
 	print("游戏结束，鼠标移动已恢复正常")
+
+func _hide_mouse_for_battle():
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+
+func _show_mouse_after_battle():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+func _exit_tree():
+	_show_mouse_after_battle()
 @onready var bit_player: VideoStreamPlayer = $bitPlayer
 const c_1 = preload("res://Asset/vedio/小球教程1.ogv")
 const c_2 = preload("res://Asset/vedio/小球教程2.ogv")
