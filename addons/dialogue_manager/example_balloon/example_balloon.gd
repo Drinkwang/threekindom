@@ -60,6 +60,7 @@ var dialogue_line: DialogueLine:
 		will_hide_balloon = false
 
 		dialogue_label.show()
+		await dialogue_label.fit_text_to_box()
 		if not dialogue_line.text.is_empty():
 			dialogue_label.type_out()
 			await dialogue_label.finished_typing

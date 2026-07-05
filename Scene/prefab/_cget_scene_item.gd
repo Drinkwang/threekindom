@@ -2,6 +2,7 @@ extends baseComponent
 class_name _cget_scene_item
 
 @onready var items_in_scene: Node2D = $".."
+@onready var area_2d: Area2D = $Area2D
 @export var isKeyPoint:bool=false
 
 var currenceKey:bool=false
@@ -17,6 +18,7 @@ func _process(delta: float) -> void:
 
 
 var isHide=true
+var _pickup_consumed := false
 
 
 #@export var OccurInScene:SceneManager.roomNode
@@ -38,18 +40,25 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 
 	if !(event is InputEventMouseButton):
 		return
+	if not event.pressed:
+		return
+	if _pickup_consumed:
+		return
 	print(dialogue_start+var_to_str(event.button_index))
 	if(event is InputEventMouseButton and event.button_index==1 and dialogue_start.length()>0):
+		var item_records = GameManager.sav.todayCanFindItems.filter(func(item):return item.scene==items_in_scene.OccurInScene and item.id==SceneID)
+		if item_records.is_empty():
+			return
+		_pickup_consumed = true
+		area_2d.input_pickable = false
 		SoundManager.play_sound(sounds.SFX_FAST_UI_CLICK)
 		#如果是隐藏道具
-		GameManager.sav.todayCanFindItems.filter(func(item):return item.scene==items_in_scene.OccurInScene and item.id==SceneID)[0].alreadyGet=true
+		item_records[0].alreadyGet=true
 		#将存档的道具改成alreadyGet改成==true
 		if currenceKey==true:
 			getSceneInItemSecret()
 		else:
 			getSceneInItem()
-			
-		
 		if isHide==true:
 			self.hide()
 
@@ -64,8 +73,9 @@ func getSceneInItemSecret():
 
 func getSceneInItem():
 	var sceneNode:SceneManager.roomNode=items_in_scene.OccurInScene
-	DialogueManager.show_example_dialogue_balloon(items_in_scene.dialogue_resource,"发现场景道具"+var_to_str(SceneID))
 	GameManager.getItemAction=func():
+		GameManager.getItemAction = func():
+			pass
 		var items:Array=[InventoryManagerItem.ItemEnum.珍品礼盒,InventoryManagerItem.ItemEnum.益气丸, InventoryManagerItem.ItemEnum.胜战锦囊, InventoryManagerItem.ItemEnum.诸子百家论集]
 		var rindex= randi_range(0,items.size()-1)
 		var itemname= InventoryManagerItem.item_by_enum(items[rindex])
@@ -85,13 +95,7 @@ func getSceneInItem():
 				"population": 0
 			}
 	
-
-
-	
 		var _reward:rewardPanel=PanelManager.new_reward()
-	
-	
 		AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_5")
-
 		_reward.showTitileReward(tr("你发现了以下道具"),item)
-	
+	DialogueManager.show_example_dialogue_balloon(items_in_scene.dialogue_resource,"发现场景道具"+var_to_str(SceneID))

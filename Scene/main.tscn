@@ -326,13 +326,13 @@ visible = false
 
 [node name="atman" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(950, 649)
+position = Vector2(950, 696)
 texture = ExtResource("27_pvgc8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 visible = false
 material = SubResource("ShaderMaterial_m3aj1")
-position = Vector2(950, 649)
+position = Vector2(950, 688)
 sprite_frames = SubResource("SpriteFrames_0bccw")
 frame = 8
 frame_progress = 1.0

@@ -39,6 +39,21 @@ signal finished_typing()
 ## The amount of time to pause when exposing a character present in pause_at_characters.
 @export var seconds_per_pause_step: float = 0.3
 
+## Shrink text when translated lines would overflow the dialogue box.
+@export var auto_fit_text: bool = true
+@export_range(0.4, 1.0, 0.05) var auto_fit_min_font_scale: float = 0.75
+@export_range(1, 8, 1) var auto_fit_step: int = 1
+
+const RICH_TEXT_FONT_SIZE_KEYS: PackedStringArray = [
+	"normal_font_size",
+	"bold_font_size",
+	"italics_font_size",
+	"bold_italics_font_size",
+	"mono_font_size"
+]
+
+var _base_font_size: int = 0
+
 
 ## The current line of dialogue.
 var dialogue_line:
@@ -106,6 +121,51 @@ var _last_wait_index: int = -1
 var _last_mutation_index: int = -1
 var _waiting_seconds: float = 0
 var _is_awaiting_mutation: bool = false
+
+
+func _ready() -> void:
+	_base_font_size = get_theme_font_size("normal_font_size")
+
+
+func fit_text_to_box() -> void:
+	if not auto_fit_text:
+		return
+
+	autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	scroll_active = false
+	fit_content = false
+
+	if _base_font_size <= 0:
+		_base_font_size = get_theme_font_size("normal_font_size")
+
+	_apply_rich_text_font_size(_base_font_size)
+
+	await get_tree().process_frame
+
+	var available_size := size
+	if available_size.x <= 0 or available_size.y <= 0:
+		await get_tree().process_frame
+		available_size = size
+
+	if available_size.x <= 0 or available_size.y <= 0:
+		return
+
+	var min_font_size: int = max(8, int(round(_base_font_size * auto_fit_min_font_scale)))
+	var step: int = max(1, auto_fit_step)
+	var chosen_size: int = min_font_size
+
+	for font_size in range(_base_font_size, min_font_size - 1, -step):
+		_apply_rich_text_font_size(font_size)
+		if get_content_height() <= available_size.y and get_content_width() <= available_size.x:
+			chosen_size = font_size
+			break
+
+	_apply_rich_text_font_size(chosen_size)
+
+
+func _apply_rich_text_font_size(font_size: int) -> void:
+	for key in RICH_TEXT_FONT_SIZE_KEYS:
+		add_theme_font_size_override(key, font_size)
 
 
 func _process(delta: float) -> void:

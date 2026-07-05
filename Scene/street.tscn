@@ -276,9 +276,7 @@ dialogue_start = ""
 [node name="battlePane" parent="CanvasLayer/blank" instance=ExtResource("21_h0siw")]
 visible = false
 layout_mode = 1
-offset_left = -74.0
 offset_top = 60.0
-offset_right = -74.0
 offset_bottom = 60.0
 dialogue_resource = ExtResource("2_a3tl4")
 

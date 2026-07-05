@@ -20,6 +20,8 @@ const BLANK_BACKGROUND_EXT = ".png"
 const BLANK_EYE_OPEN_TIME = 1.0
 const BLANK_FADE_OUT_TIME = 0.18
 const BLANK_HOLD_BLACK_TIME = 0.08
+const BATTLE_PANE_TOP_MARGIN := 45.0
+const BATTLE_PANE_BOTTOM_MARGIN := 45.0
 var blank_eye_top: ColorRect
 var blank_eye_bottom: ColorRect
 var blank_background_shake_tween: Tween
@@ -590,8 +592,9 @@ func merchantSendGift():
 	items.population=0
 	_reward.showTitileReward(tr("你从商人那边获得如下道具"),items)
 
-func refreshBattlePanePos():
-	battle_pane.position.y=-7+(1014-battle_pane.panel_container.size.y)/3
+
+
+
 func visitDrill():
 	if GameManager.sav.day==4:
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"tip_scholar")
@@ -1166,3 +1169,33 @@ func blackMistDissolve():
 	await get_tree().create_timer(particles.lifetime + 0.5).timeout
 	if is_instance_valid(particles):
 		particles.queue_free()
+
+
+
+func refreshBattlePanePos():
+	if battle_pane==null or battle_pane.panel_container==null:
+		return
+	var panel_height = battle_pane.panel_container.size.y
+	if panel_height<=0.0:
+		_refreshBattlePanePosNextFrame()
+		return
+	_applyBattlePanePos(panel_height)
+
+func _refreshBattlePanePosNextFrame():
+	await get_tree().process_frame
+	if is_instance_valid(battle_pane) and battle_pane.visible:
+		var panel_height = battle_pane.panel_container.size.y
+		if panel_height>0.0:
+			_applyBattlePanePos(panel_height)
+
+func _applyBattlePanePos(panel_height:float):
+	var viewport_height := get_viewport_rect().size.y
+	var panel_local_top = battle_pane.panel_container.position.y
+	var available_height := viewport_height-BATTLE_PANE_TOP_MARGIN-BATTLE_PANE_BOTTOM_MARGIN
+	if panel_height>=available_height:
+		battle_pane.position.y=BATTLE_PANE_TOP_MARGIN-panel_local_top
+		return
+	var centered_y = viewport_height*0.5-panel_local_top-panel_height*0.5
+	var min_y = BATTLE_PANE_TOP_MARGIN-panel_local_top
+	var max_y = viewport_height-BATTLE_PANE_BOTTOM_MARGIN-panel_local_top-panel_height
+	battle_pane.position.y=clamp(centered_y,min_y,max_y)
