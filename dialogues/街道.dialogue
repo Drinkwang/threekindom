@@ -335,6 +335,7 @@ do getScholarReward3()
 
 
 ~ 初次见面_血姬
+do SoundManager.stop_all_ambient_sounds()
 刘备根据血姬指引，前往郊外糜氏豪宅。豪宅荒凉阴森，空气中弥漫着浓重的血腥味。刘备推门而入，屋内昏暗
 do openEyesToBlankBackground("豪宅")
 
@@ -415,6 +416,7 @@ do sideQuestReturnG(false)
 
 
 ~ 初次见面_陶谦
+do SoundManager.stop_all_ambient_sounds()
 #do changeBlankBackground("陶谦墓地", 2)
 刘备根据陈登提供的线索，独自前往徐州城外乱葬岗。夜色深沉，墓地雾气弥漫，空气中弥漫着腐臭与血腥的气息，远处传来低沉的呜咽声，似鬼哭狼嚎。地上散落着破碎的墓碑，陶谦的墓碑赫然在列，但墓穴已被挖开，棺椁空空如也。突然，一股阴风袭来，刘备感到一阵晕眩，眼前一黑，昏迷过去。
 #陶谦显现
@@ -453,7 +455,10 @@ do PlayTaoQian()
 
 ~ 战斗胜利_陶谦
 do battle_pane.hide()
-do changeBlankBackground("陶谦墓地", 2)
+do SoundManager.play_sound(sounds.fog)
+
+do changeBlankBackground("陶谦墓地_新", 0.5)
+do changeBlankBackground("陶谦墓地", 0.2)
 （陶谦的尸身逐渐崩解，化作一团黑雾消散，刘备清醒过来，发现自己躺在陶谦棺材旁，陶谦的尸体已经重新回到棺材，并且没有任何生机的迹象，不过刘备的手中多了一块血信。）  
 
 血帕上的字迹: 吾知儿不肖，难守徐州，士族必取其性命。玄德若觉吾儿不可辅，便取而代之，唯求善待吾儿……[voice:taoqian_nanshouxuzhou]
@@ -475,7 +480,7 @@ do sideQuestReturnT(true)
 ~ 战斗失败_陶谦
 do headRed()
 陶谦: 刘备，你就这个本事？那你不配为徐州之主！[voice:taoqian_nanibupei]
-do changeBlankBackground("陶谦墓地", 2)
+do changeBlankBackground("陶谦墓地", 0.5)
 （他挥出致命一击，刘备眼前一黑，昏迷过去。刘备再次醒来时，已是清晨，坟墓雾气散去，周围一片寂静。他身上隐隐作痛，似被尸气侵蚀。）  
 do battle_pane.hide()
 刘备: 方才之事，似梦似真……陶谦之怨，果真深重。[voice:liubei_taoqianzhiyuan]
@@ -506,6 +511,7 @@ do GameManager.getItemAction.call()
 => END!
 
 ~ 初次见面_镇魂龙
+do SoundManager.stop_all_ambient_sounds()
 do openEyesToBlankBackground("古龙祭坛")
 刘备: (我看到盗墓贼在石龙旁鬼鬼祟祟..我倒要看看他到底想要干什么）[voice:liubei_daomuzei]
 do gulong.show()
