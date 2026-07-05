@@ -124,6 +124,7 @@ var swordManGameState:gameState=gameState.pause
 enum gameState{pause,start}
 #判断是否累了的框，不用保存
 var triedResult=false
+var triedCostNum=0
 var triedPanel
 signal triedPanelDone
 func isTried(costNum)->bool:
@@ -131,6 +132,7 @@ func isTried(costNum)->bool:
 
 	if triedPanel!=null:
 		return true
+	triedCostNum=costNum
 	if(sav.hp-costNum<0):
 		#显示累了框
 
@@ -141,7 +143,9 @@ func isTried(costNum)->bool:
 		triedPanel=null
 	else:
 		triedResult=false
-	return	triedResult
+	var result=triedResult
+	triedCostNum=0
+	return	result
 
 
 var battleCircle=[

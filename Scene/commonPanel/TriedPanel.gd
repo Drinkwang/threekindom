@@ -85,14 +85,14 @@ func _on_jingliwan_button_down():
 
 	if count>0:
 		InventoryManager._remove_item(GameManager.inventoryPackege,InventoryManagerItem.益气丸,1)
-		GameManager.triedResult = false
-		GameManager.triedPanelDone.emit()
+		var recover_value=40
 		
 		if InventoryManager.has_item(InventoryManagerItem.饥蛊骨签):
-			GameManager.recoverHp(60)
+			recover_value=60
 			AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_3")
-		else:
-			GameManager.recoverHp(40)
+		GameManager.recoverHp(recover_value)
+		GameManager.triedResult = GameManager.sav.hp <= GameManager.triedCostNum
+		GameManager.triedPanelDone.emit()
 		SoundManager.play_sound(sounds.tunyan)
 		self.hide()		
 		#itemUseLabel.text="点击图标使用\n快速结束辩经\n（库存：{num}）".format({"num":count-1})
