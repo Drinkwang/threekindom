@@ -380,6 +380,7 @@ do mizhen.hide()
 ~ 战斗胜利_血姬
 do headRed()
 #变红
+do SoundManager.play_sound(sounds.XUEJIDEAD)
 血姬·糜贞: 谢……将军……让我能够解脱[voice:mizhen_xiejiangjunjietuo]
 （她化作一团血雾，最终凝成一个巴掌大的傀儡娃娃，娃娃面容酷似血姬，带着病娇的诡笑。娃娃随既被刘备拾起）  
 
@@ -404,6 +405,7 @@ do sideQuestReturnG(true)
 ~ 战斗失败_血姬
 do headRed()
 血姬: 我赢了……可我还是输了……将军你永远不会知道……陪你的糜贞，到底是不是我……嘻嘻……  [voice:mizhen_wowinlebutfail]
+do SoundManager.play_sound(sounds.xueji)
 （她挥出致命一击，刘备眼前一黑，昏迷倒地。）  
 do battle_pane.hide()
 （刘备醒来时，已在郊外林间，豪宅踪迹全无，血姬消失无踪。）  
@@ -561,10 +563,13 @@ do SoundManager.play_sound(sounds.LONGXIAO_2)
 
 ~ 战斗胜利_镇魂龙
 do headRepair()
+do SoundManager.play_sound(sounds.gulong)
 烟雾散去，众人最后打向古龙身体突然肢解了幻觉，古龙如同石像停留在原地，好像什么都没发生一般..
+do SoundManager.stop_sound(sounds.gulong)
 刘备: （这可能是地底烟雾造成的迷幻现象...但究竟是为何产生的）[voice:liubei_zheneng]
 刘备: （不管了，还是得早点回去告知曹豹情况）[voice:liubei_buguanlecaobao]
 刘备押着盗宝匠人返回了曹豹所在演武场..
+
 do sideQuestReturnD(true)
 => END!
 
@@ -577,7 +582,9 @@ do sideQuestReturnD(true)
 
 ~ 战斗失败_镇魂龙
 do headRed()
+do SoundManager.play_sound(sounds.gulong)
 烟雾散去，古龙的最后一击打到刘备身上，众人晕倒了，醒来后，古龙如同石像停留在原地，好像什么都没发生一般..
+do SoundManager.stop_sound(sounds.gulong)
 do headRepair()
 刘备: （这可能是地底烟雾造成的迷幻现象...但究竟是为何产生的）[voice:liubei_zheneng]
 刘备: （可恶，那位盗墓匠人逃跑了）[voice:liubei_kewutaopao]

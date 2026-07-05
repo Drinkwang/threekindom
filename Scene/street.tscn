@@ -247,7 +247,7 @@ dialogue_start = "boss战开始_陶谦"
 
 [node name="gulong" parent="CanvasLayer/blank" instance=ExtResource("17_w7ika")]
 visible = false
-position = Vector2(952, 537)
+position = Vector2(984.26, 591.855)
 showName = "石像龙"
 showEX = true
 txt2d = ExtResource("18_2o7ym")

@@ -69,3 +69,7 @@ const fire = preload("res://Asset/sound/04_Fire_explosion_04_medium.wav")
 const fog = preload("res://Asset/sound/黑雾音效.wav")
 
 const taoqian = preload("res://Asset/sound/陶谦攻击.wav")
+const xueji = preload("res://Asset/sound/糜贞攻击.wav")
+const XUEJIDEAD = preload("res://Asset/sound/xuejidead.wav")
+
+const gulong = preload("res://Asset/sound/骨龙.wav")
