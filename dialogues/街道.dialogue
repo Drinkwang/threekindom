@@ -54,13 +54,13 @@ do streetTwo()
 	do gotoWasteland()
 	
 #待开发
-- 前往埋葬陶谦的墓地[costHp=90] [if GameManager.sav.have_event["陈登正确选择1"]==true and GameManager.sav.have_event["陈登正确选择2"]==true and GameManager.sav.have_event["陈登支线3"]==false and GameManager.sav.endPath!=GameManager.endPath.xiaopei]
+- 前往埋葬陶谦的墓地 [if GameManager.sav.have_event["陈登正确选择1"]==true and GameManager.sav.have_event["陈登正确选择2"]==true and GameManager.sav.have_event["陈登支线3"]==false and GameManager.sav.endPath!=GameManager.endPath.xiaopei]
 	do gotoTomb()
 	
-- 糜家的郊外秘宅[costHp=90] [if GameManager.sav.have_event["糜竺正确选择1"]==true and GameManager.sav.have_event["糜竺正确选择2"]==true and GameManager.sav.have_event["糜竺支线3"]==false and GameManager.sav.endPath!=GameManager.endPath.xiaopei]
+- 糜家的郊外秘宅 [if GameManager.sav.have_event["糜竺正确选择1"]==true and GameManager.sav.have_event["糜竺正确选择2"]==true and GameManager.sav.have_event["糜竺支线3"]==false and GameManager.sav.endPath!=GameManager.endPath.xiaopei]
 	do gotoMiMasion()
 
-- 黄帝的祀庙[costHp=90] [if GameManager.sav.have_event["曹豹正确选择1"]==true and GameManager.sav.have_event["曹豹正确选择2"]==true and GameManager.sav.have_event["曹豹支线3"]==false and GameManager.sav.endPath!=GameManager.endPath.xiaopei] 
+- 黄帝的祀庙 [if GameManager.sav.have_event["曹豹正确选择1"]==true and GameManager.sav.have_event["曹豹正确选择2"]==true and GameManager.sav.have_event["曹豹支线3"]==false and GameManager.sav.endPath!=GameManager.endPath.xiaopei] 
 	do gotoHuangDiMiao()	
 - 玄阴秘境 [if GameManager.sav.have_event["玄阴开放"]==true and GameManager.dontHaveDominance() and GameManager.sav.endPath!=GameManager.endPath.xiaopei]
 	do gotoXuanyin()				
@@ -748,7 +748,7 @@ else #有护符但无三件道具
 
 ~ 进入玄阴之战
 系统提示: 你是否准备好进入玄阴秘境？战斗失败后游戏会直接结束，建议进行存档
-- 是，我准备好了[costHp=90]
+- 是，我准备好了
 	do enterXuanYinSecret()
 - 不，我需要准备一下
 	if GameManager.sav.have_event["玄阴首次遇宝"]==false

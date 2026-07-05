@@ -47,7 +47,10 @@ const USE_ITEM_LABEL_FONT_SIZE := 17
 const TASK_LABEL_RECT := Rect2(1041, 768, 469, 168)
 const TASK_LABEL_FONT_SIZE := 28
 
-var costhp=30
+const DEFAULT_COST_HP := 30
+const BOSS_COST_HP := 0
+
+var costhp=DEFAULT_COST_HP
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_refreshSlider()
@@ -66,6 +69,8 @@ func _ready():
 const NOT_JAM_UI_CONDENSED_16 = preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf")
 
 func refreshData():
+	if _mode==SceneManager.bossMode.none:
+		costhp=DEFAULT_COST_HP
 	
 	_refreshSlider()
 	_refreshGeneral()
@@ -558,6 +563,7 @@ func refreshHead():
 
 func enterBattleMi():
 	_mode=SceneManager.bossMode.mi
+	costhp=BOSS_COST_HP
 	close_btn.hide()
 	ban_1_soilder.show()
 	battle_circle.taskIndex=0
@@ -579,6 +585,7 @@ func enterBattleTao():
 	point_group.hide()
 	close_btn.hide()
 	_mode=SceneManager.bossMode.tao
+	costhp=BOSS_COST_HP
 	ban_2_coin.show()
 	coin_slider.editable=false	
 	var cha=load("res://Asset/人物/尸皇.png")
@@ -595,6 +602,7 @@ func enterBattleHuang():
 	battle_circle.enemyName="骨龙"
 	close_btn.hide()
 	_mode=SceneManager.bossMode.huang
+	costhp=BOSS_COST_HP
 	var cha=load("res://Asset/人物/骨龙最终.png")
 	
 	battle_circle.changeHead(cha)	
@@ -641,6 +649,7 @@ func enterBattleZhenRen():
 	useItemPanel.hide()
 	close_btn.hide()
 	_mode=SceneManager.bossMode.zhenren
+	costhp=BOSS_COST_HP
 	point_group.hide()
 	for i in range(0,3):
 		var datas=GameManager.sav.battleTasks.values()

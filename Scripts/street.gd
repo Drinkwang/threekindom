@@ -468,8 +468,6 @@ func gotoWasteland():
 
 
 func gotoTomb():
-	if await GameManager.isTried(90):
-		return
 	GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.CHENDENG]=tr("")
 	GameManager.initBattle()
 	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeIn)
@@ -489,8 +487,6 @@ func gotoTomb():
 @onready var battle_pane = $CanvasLayer/blank/battlePane
 
 func gotoMiMasion():
-	if await GameManager.isTried(90):
-		return
 	GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.MIZHU]=tr("")
 	GameManager.initBattle()
 	#清空战斗面板，做记录，临时
@@ -498,8 +494,6 @@ func gotoMiMasion():
 	SoundManager.play_ambient_sound(WASTELAND_0)
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"初次见面_血姬")
 func gotoHuangDiMiao():
-	if await GameManager.isTried(90):
-		return
 	GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.CAOBAO]=tr("")
 	GameManager.initBattle()
 	PanelManager.Fade_Blank(Color.BLACK,0.5,PanelManager.fadeType.fadeIn)
@@ -522,8 +516,8 @@ func PlayMizhen():
 
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"动画播完_血姬")
 		refreshBattlePanePos()
-		battle_pane.show()
 		battle_pane.enterBattleMi()
+		battle_pane.show()
 		AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_16")
 	playBossAni(lady,_func)
 
@@ -540,8 +534,8 @@ func PlayTaoQian():
 
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"动画播完_陶谦")
 		refreshBattlePanePos()
-		battle_pane.show()
 		battle_pane.enterBattleTao()
+		battle_pane.show()
 		AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_18")
 	playBossAni(tao,_func)
 
@@ -553,8 +547,8 @@ func PlayGulong():
 		AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_17")
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"动画播完_镇魂龙")
 		refreshBattlePanePos()
-		battle_pane.show()
 		battle_pane.enterBattleHuang()
+		battle_pane.show()
 	playBossAni(tao,_func)
 
 
@@ -1061,7 +1055,6 @@ func playzhenren():
 		
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"真相揭露_真人")
 		refreshBattlePanePos()
-		battle_pane.show()
 		#battle_pane.enterBattleHuang()
 	playBossAni(ZHENREN,_func)
 	
@@ -1072,8 +1065,8 @@ func enterBattleZhenren():
 	res_panel.position.y=803
 	res_panel.scale=Vector2(0.765,0.765)
 	refreshBattlePanePos()
-	battle_pane.show()
 	battle_pane.enterBattleZhenRen()
+	battle_pane.show()
 
 
 func zhenrenFinish():
@@ -1104,9 +1097,6 @@ func headRepair():
 	battle_pane.battle_circle.changeHead(long)
 
 func enterXuanYinSecret():
-	if await GameManager.isTried(90):
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"进入玄阴之战")
-		return
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"玄阴之战")
 
 
