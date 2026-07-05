@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://lugi3jy88c1t"
+
+[deps]
+
+files=["res://Asset/language/data1/data 测试英文.en.translation", "res://Asset/language/data1/data 测试英文.zh.translation", "res://Asset/language/data1/data 测试英文.repair.translation", "res://Asset/language/data1/data 测试英文.reason.translation"]
+
+source_file="res://Asset/language/data1/data 测试英文.csv"
+dest_files=["res://Asset/language/data1/data 测试英文.en.translation", "res://Asset/language/data1/data 测试英文.zh.translation", "res://Asset/language/data1/data 测试英文.repair.translation", "res://Asset/language/data1/data 测试英文.reason.translation"]
+
+[params]
+
+compress=true
+delimiter=0
