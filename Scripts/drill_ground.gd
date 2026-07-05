@@ -537,7 +537,7 @@ func select1(issuccuss):
 		GameManager.sav.have_event["曹豹正确选择1"]=true
 	else:
 		GameManager.sav.have_event["曹豹正确选择1"]=false
-		GameManager.sav.have_event["错失娃娃"]=true
+		GameManager.sav.have_event["错失亮银"]=true
 
 func boardVictory():
 
@@ -573,7 +573,7 @@ func select2(issuccuss):
 			#GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.CAOBAO]=tr("夜探黄帝遗迹，揭穿盗宝阴谋")
 	else:
 		AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_13")
-		GameManager.sav.have_event["错失娃娃"]=true
+		GameManager.sav.have_event["错失亮银"]=true
 		GameManager.sav.have_event["曹豹正确选择2"]=false
 
 func drillKeComplete():
