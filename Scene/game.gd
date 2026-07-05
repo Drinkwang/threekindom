@@ -48,7 +48,7 @@ func _ready():
 		
 	initLoadContinus()
 	#_add_version_label()#debug
-	#_test_deadline_check()#debug
+	_test_deadline_check()#debug
 	if GameManager._setting.is_clear_normal_line or GameManager._setting.is_clear_overlord_line:
 		$credit.disabled = false
 	if not SignalManager.changeLanguage.is_connected(_on_global_language_changed):
@@ -100,8 +100,8 @@ func _test_deadline_check():
 
 	var deadline_ts = Time.get_unix_time_from_datetime_dict({
 		"year": year,
-		"month": 6,
-		"day": 22,
+		"month": 7,
+		"day": 12,
 		"hour": 23,
 		"minute": 59,
 		"second": 59
