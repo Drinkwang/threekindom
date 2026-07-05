@@ -478,8 +478,10 @@ do sideQuestReturnT(true)
 
 
 ~ 战斗失败_陶谦
+
 do headRed()
 陶谦: 刘备，你就这个本事？那你不配为徐州之主！[voice:taoqian_nanibupei]
+do SoundManager.play_sound(sounds.taoqian)
 do changeBlankBackground("陶谦墓地", 0.5)
 （他挥出致命一击，刘备眼前一黑，昏迷过去。刘备再次醒来时，已是清晨，坟墓雾气散去，周围一片寂静。他身上隐隐作痛，似被尸气侵蚀。）  
 do battle_pane.hide()
