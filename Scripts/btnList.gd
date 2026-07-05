@@ -139,17 +139,23 @@ func _buttonHover(item):
 	buttonHover.emit(item)
 	
 func _buttonExit():
-	if GameManager._engerge.previewValue!=0:
+	if GameManager._engerge != null and GameManager._engerge.previewValue!=0:
 		GameManager._engerge.stopPreviewHP()
 func _show_button_5_yellow(index):
 	if index==-1:
 		node_2d.hide()
 		return
-	else:
-		node_2d.show()
 	#await $VBoxContainer.get_node("button1").position.y>0
 	var findpattern="button"+var_to_str(index)
-	var groups=$VBoxContainer.get_node(findpattern)
+	var groups=$VBoxContainer.get_node_or_null(findpattern)
+	if groups == null:
+		await get_tree().process_frame
+		groups=$VBoxContainer.get_node_or_null(findpattern)
+	if groups == null:
+		push_warning("Tutorial highlight target not found: " + findpattern)
+		node_2d.hide()
+		return
+	node_2d.show()
 	var texbtn:TextureButton=groups
 	#print(texbtn.position)
 	if(index>0 and texbtn.position.y==0):

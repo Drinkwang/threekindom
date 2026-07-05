@@ -159,7 +159,8 @@ func previewHpdone():
 
 func _on_exit_button_button_down():
 	self.hide()
-	GameManager._engerge.stopPreviewHP()
+	if GameManager._engerge != null:
+		GameManager._engerge.stopPreviewHP()
 	GameManager.currenceScene.refreshData()
 	GameManager.currenceScene.res_panel.position.x=1403
 	GameManager.currenceScene.res_panel.position.y=622
