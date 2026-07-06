@@ -122,7 +122,8 @@ func _judWin():
 					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"曹操挟天子开始")
 
 
-		if GameManager.sav.currenceValue==24 and GameManager.sav.have_event["战斗袁术血战模式"]==true and GameManager.sav.have_event["血战袁术完成"]==false:
+		if GameManager.sav.currenceValue==24 and GameManager.sav.have_event["战斗袁术血战模式"]==true and GameManager.sav.have_event["血战袁术完成"]==false and GameManager.sav.have_event["关羽求援期间"]==false:
+			GameManager.sav.have_event["关羽求援期间"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"张飞杀曹豹")	#这个会被拦截，如果触发了这个就不能触发失去民心，或者把这个丢到battle里
 
 		if GameManager.sav.currenceValue>=GameManager.sav.targetValue:
@@ -1132,8 +1133,8 @@ func _DayGet():
 	#	_JudgeTask()
 func _dontGet():
 	
-	if GameManager.sav.currenceValue==24:
-		
+	if GameManager.sav.currenceValue==24 and GameManager.sav.have_event["关羽求援期间"]==false:
+		GameManager.sav.have_event["关羽求援期间"]=true
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"张飞杀曹豹")
 
 func openBoardGame():

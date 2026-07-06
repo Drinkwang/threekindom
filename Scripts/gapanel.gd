@@ -95,7 +95,8 @@ func refreshContext():
 	else:
 
 		var policycontext
-		if GameManager.sav.TargetDestination=="rest" or \
+		if (GameManager.sav.targetTxt != null and GameManager.sav.targetTxt.length() > 0) or \
+		GameManager.sav.TargetDestination=="rest" or \
 		GameManager.sav.TargetDestination=="自宅" or \
 		GameManager.sav.TargetDestination=="府邸" or \
 		GameManager.sav.TargetDestination=="议事厅" or \
@@ -132,14 +133,22 @@ func refreshContext():
 				elif GameManager.sav.TargetDestination=="大儒辩经":
 					policycontext=tr("任务已完成，请前往城外和大儒辩经触发下一阶段剧情")
 				else:
-					policycontext=tr(GameManager.sav.TargetDestination)	
+					if GameManager.sav.TargetDestination != null and GameManager.sav.TargetDestination.length() > 0:
+						policycontext=tr(GameManager.sav.TargetDestination)
+					elif GameManager.sav.targetTxt != null and GameManager.sav.targetTxt.length() > 0:
+						if currenceValue is Array:
+							policycontext=tr(GameManager.sav.targetTxt).format({"target":targetValue,"currence1":currenceValue[0],"currence2":currenceValue[1]})
+						else:
+							policycontext=tr(GameManager.sav.targetTxt).format({"target":targetValue,"currence":currenceValue})
+					else:
+						policycontext=tr("当前任务：无")
 			else:
 				
 				#var currenceValue=GameManager.sav.currenceValue
 				if  currenceValue is Array:
 					#var targetValue=GameManager.sav.targetValue
 					if currenceValue[1]<3:
-						policycontext.text=tr(GameManager.sav.targetTxt).format({"target":targetValue,"currence1":currenceValue[0],"currence2":currenceValue[1]})
+						policycontext=tr(GameManager.sav.targetTxt).format({"target":targetValue,"currence1":currenceValue[0],"currence2":currenceValue[1]})
 					else:
 						var strContext=tr("基建已完成，请征集民夫完成后前往府邸触发下一阶段剧情")	
 						strContext=strContext+";"+tr("征集民夫数量：{currence1}/{target}").format({"target":targetValue,"currence1":currenceValue[0]})
