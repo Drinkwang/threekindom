@@ -1502,7 +1502,9 @@ do hearSayEnd()
 主簿: 大人，这次幕僚给您提供的是【民心政策】，想要落地推行，不仅需要消耗对应物资资源，还需花费{{GameManager.minxinPoint}}点政策点数才能实施。[voice:zhubo_xiaohaosm2]
 #主簿: 大人，这次幕僚给您提供的是【民心政策】，这意味着大人需要消耗什么才能实施的政策[voice:zhubo_xiaohaosm]
 主簿: 这些政策往往拥有很直观的效果，并且幕僚会多次不厌其烦的向你进献这种类型的政策。[voice:zhubo_muliaoduocijinxian]
-主簿: 不过也间接说明这类型的政策并不是必须需要实施，往往不执行选择无为而治也是一种很好的选择。[voice:zhubo_wuweierzhi]
+#主簿: 不过也间接说明这类型的政策并不是必须需要实施，往往不执行选择无为而治也是一种很好的选择。[voice:zhubo_wuweierzhi]
+
+主簿: 由此可见这类政策并非必须推行，无为而治固然可行，但须知无为而无不为，不必强推民心政令，地方法令仍需修缮，大人可前往法令面板打理。[voice:zhubu_wuweierwubuwei]
 => END!
 
 ~ 政策点不足

@@ -200,7 +200,7 @@ custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
 img = ExtResource("14_6dsf6")
 itemContext = "徐州城外黄帝遗迹，古龙石像巍然屹立，传为黄帝亲铸之神器，内藏无上秘宝。近日，盗墓贼频频觊觎，欲掘遗迹，窃取神器。更闻秘辛，城内军方暗中插手，假借“修缮古迹”之名，行杀良冒功之实，欲掩真相。若欲探黄帝遗迹，需以侠义处之，凭武力慑服士卒，揭开隐秘。"
-itemstype = 22
+itemstype = 23
 
 [node name="Control7" parent="HBoxContainer" instance=ExtResource("8_micd5")]
 custom_minimum_size = Vector2(88, 88)

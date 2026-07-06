@@ -416,7 +416,12 @@ func post_transition():
 	elif GameManager.LawNum()>=9 and GameManager.sav.have_event["法律健全"]==false:
 		GameManager.sav.have_event["法律健全"]=true
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"法律够了")
+
 	else:
+		
+		if GameManager.sav.have_event["休憩第一次提示"]==false and GameManager.sav.allocationDay>=0:
+			GameManager.sav.have_event["休憩第一次提示"]=true
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"休憩提醒前置")		
 		if canMuliao==true and !GameManager.CheckAllFactionsSubdued():
 
 			if GameManager.sav.endPath==GameManager.endPath.none or (GameManager.sav.endPath!=GameManager.endPath.none and GameManager.sav.have_event["主簿的追随"]==true):
