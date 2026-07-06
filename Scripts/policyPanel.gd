@@ -10,10 +10,83 @@ class_name policyPanel
 @onready var exp_len = $PanelContainer/orderPanel2/VBoxContainer/expLen
 @onready var tourPoint: Node2D = $Node2D
 
+const LAW_TAB_INDEX := 1
+
+var tab_bar_emphasis_panel: Panel
+var tab_bar_emphasis_tween: Tween
+var tab_bar_emphasis_tab_index := LAW_TAB_INDEX
+var tab_bar_emphasis_showing := false
+
 
 func showTourPoint():
 	tourPoint.show()
 	$"Node2D/5Yellow/AnimationPlayer".play("YELLOWGUILD")
+	showLawTabEmphasis()
+
+func showLawTabEmphasis():
+	showTabBarEmphasis(LAW_TAB_INDEX)
+
+func showTabBarEmphasis(tab_index := LAW_TAB_INDEX):
+	tab_bar_emphasis_tab_index = tab_index
+	tab_bar_emphasis_showing = true
+	_ensureTabBarEmphasisPanel()
+	_refreshTabBarEmphasis()
+	call_deferred("_refreshTabBarEmphasis")
+	tab_bar_emphasis_panel.show()
+	tab_bar_emphasis_panel.modulate.a = 1.0
+	if tab_bar_emphasis_tween != null:
+		tab_bar_emphasis_tween.kill()
+	tab_bar_emphasis_tween = create_tween()
+	tab_bar_emphasis_tween.set_loops()
+	tab_bar_emphasis_tween.tween_property(tab_bar_emphasis_panel, "modulate:a", 0.25, 0.45).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	tab_bar_emphasis_tween.tween_property(tab_bar_emphasis_panel, "modulate:a", 1.0, 0.45).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
+func hideLawTabEmphasis():
+	hideTabBarEmphasis()
+
+func hideTabBarEmphasis():
+	tab_bar_emphasis_showing = false
+	if tab_bar_emphasis_tween != null:
+		tab_bar_emphasis_tween.kill()
+		tab_bar_emphasis_tween = null
+	if tab_bar_emphasis_panel != null and is_instance_valid(tab_bar_emphasis_panel):
+		tab_bar_emphasis_panel.hide()
+		tab_bar_emphasis_panel.modulate.a = 1.0
+
+func _ensureTabBarEmphasisPanel():
+	if tab_bar_emphasis_panel != null and is_instance_valid(tab_bar_emphasis_panel):
+		return
+	tab_bar_emphasis_panel = Panel.new()
+	tab_bar_emphasis_panel.name = "TabBarEmphasis"
+	tab_bar_emphasis_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	tab_bar_emphasis_panel.visible = false
+	tab_bar_emphasis_panel.z_index = 10
+	var stylebox := StyleBoxFlat.new()
+	stylebox.bg_color = Color(1.0, 0.78, 0.22, 0.08)
+	stylebox.border_color = Color(1.0, 0.78, 0.22, 1.0)
+	stylebox.set_border_width_all(4)
+	stylebox.set_corner_radius_all(8)
+	tab_bar_emphasis_panel.add_theme_stylebox_override("panel", stylebox)
+	add_child(tab_bar_emphasis_panel)
+
+func _refreshTabBarEmphasis():
+	if tab_bar_emphasis_panel == null or not is_instance_valid(tab_bar_emphasis_panel):
+		return
+	if tab_bar_emphasis_showing == false:
+		return
+	var highlight_rect := _getTabBarEmphasisRect(tab_bar_emphasis_tab_index)
+	tab_bar_emphasis_panel.position = highlight_rect.position
+	tab_bar_emphasis_panel.size = highlight_rect.size
+
+func _getTabBarEmphasisRect(tab_index:int) -> Rect2:
+	var padding := Vector2(6, 6)
+	var tab_rect := Rect2()
+	if tab_bar.has_method("get_tab_rect"):
+		tab_rect = tab_bar.get_tab_rect(tab_index)
+	else:
+		var tab_count = max(tab_bar.get_tab_count(), 1)
+		tab_rect = Rect2(Vector2(tab_bar.size.x / tab_count * tab_index, 0), Vector2(tab_bar.size.x / tab_count, tab_bar.size.y))
+	return Rect2(tab_bar.position + tab_rect.position - padding, tab_rect.size + padding * 2.0)
 
 var costhp=35
 #@onready var button = $PanelContainer/orderPanel/VBoxContainer/HBoxContainer/Button
@@ -136,6 +209,7 @@ func refreshLawPoint():
 
 func _on_tab_bar_tab_changed(tab):
 	tourPoint.hide()
+	hideLawTabEmphasis()
 	if tab==0:
 		$lawPanel.hide()
 		LawPanelBoard.hide()
