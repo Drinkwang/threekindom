@@ -246,10 +246,10 @@ func changeLanguage():
 
 	if currencelanguage=="ru" or currencelanguage=="en":
 		we_label.add_theme_font_size_override("font_size",50)
-		detail_txt.add_theme_font_size_override("font_size",40)
+		detail_txt.add_theme_font_size_override("font_size",_get_detail_default_font_size())
 	else:
 		we_label.add_theme_font_size_override("font_size",72)
-		detail_txt.add_theme_font_size_override("font_size",47)
+		detail_txt.add_theme_font_size_override("font_size",_get_detail_default_font_size())
 
 
 	_on_crit_indicator_Txt()
@@ -780,6 +780,7 @@ func startGame(cardnum,issole,enemyExtraCard):
 		enemy_score_txt.hide()
 		heart_group_enemy.hide()
 		enemyhand.hide()
+	_prepare_detail_text_bounds()
 	if issecretGame==true:
 		hold_enegy_panel.show()
 	else:
@@ -1999,6 +2000,52 @@ func enterRewardStage(i:boardCard,j:boardCard):
 @onready var detail_txt: Label = $CanvasLayer/HBoxContainer/detailTxt
 var bepunishI:boardCard
 var bepusnishJ:boardCard
+const DETAIL_TEXT_RIGHT_LIMIT := 1918.0
+const DETAIL_TEXT_SIDE_PADDING := 24.0
+
+func _get_detail_default_font_size() -> int:
+	var currencelanguage=TranslationServer.get_locale()
+	if currencelanguage.begins_with("ru") or currencelanguage.begins_with("en"):
+		return 40
+	return 47
+
+func _get_detail_text_max_width() -> float:
+	if detail_h_box_container == null:
+		return 0.0
+	var viewport_right := get_viewport_rect().size.x
+	var right_limit = min(DETAIL_TEXT_RIGHT_LIMIT, viewport_right)
+	return max(180.0, right_limit - detail_h_box_container.global_position.x - DETAIL_TEXT_SIDE_PADDING)
+
+func _prepare_detail_text_bounds() -> float:
+	if detail_txt == null:
+		return 0.0
+	var max_width := _get_detail_text_max_width()
+	if max_width <= 0.0:
+		return 0.0
+	detail_txt.custom_minimum_size.x = max_width
+	detail_txt.size.x = max_width
+	detail_txt.clip_text = false
+	return max_width
+
+func _fit_detail_text_to_width(min_font_size:int = 8) -> void:
+	if detail_txt == null or detail_h_box_container == null:
+		return
+	var font := detail_txt.get_theme_font("font")
+	if font == null:
+		return
+	var max_width := _prepare_detail_text_bounds()
+	if max_width <= 0.0:
+		return
+	var font_size := _get_detail_default_font_size()
+	while font_size > min_font_size:
+		var text_width := font.get_string_size(detail_txt.text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x + 16.0
+		if text_width <= max_width:
+			break
+		font_size -= 1
+	var final_width := font.get_string_size(detail_txt.text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x + 16.0
+	if final_width > max_width and final_width > 0.0:
+		font_size = max(1, floori(float(font_size) * max_width / final_width))
+	detail_txt.add_theme_font_size_override("font_size", font_size)
 
 func getCardLength(isplayer):
 	var _num
@@ -2114,18 +2161,61 @@ func _update_crit_indicator(suit: int) -> void:
 		_crit_indicator.hide()
 		return
 	var tex_paths = ["res://Asset/ui/人心.png", "res://Asset/ui/战力.png", "res://Asset/ui/钱财.png", "res://Asset/ui/兵力.png"]
-	_crit_indicator.text = "[color=white]暴击待发：[/color] [img=36]" + tex_paths[suit] + "[/img]"
+	_crit_indicator.text = "[color=white]" + tr("暴击待发：") + "[/color] [img=36]" + tex_paths[suit] + "[/img]"
+	_fit_crit_indicator_to_width(tr("暴击待发："), 48.0)
+	_show_crit_pending_detail(suit)
 	
 	if not _crit_indicator.visible:
 		_crit_indicator.show()
 
+func _fit_crit_indicator_to_width(measure_text:String = "", reserved_width:float = 0.0, min_font_size:int = 12) -> void:
+	if _crit_indicator == null:
+		return
+	var font := _crit_indicator.get_theme_font("normal_font")
+	if font == null:
+		return
+	var max_width := _crit_indicator.size.x - reserved_width
+	if max_width <= 0.0:
+		return
+	var font_size := 38
+	var label_text := measure_text if measure_text != "" else _crit_indicator.get_parsed_text()
+	while font_size > min_font_size:
+		var text_width := font.get_string_size(label_text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x
+		if text_width <= max_width:
+			break
+		font_size -= 1
+	var final_width := font.get_string_size(label_text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x
+	if final_width > max_width and final_width > 0.0:
+		font_size = max(1, floori(float(font_size) * max_width / final_width))
+	_crit_indicator.add_theme_font_size_override("normal_font_size", font_size)
+
+func _show_crit_pending_detail(suit: int) -> void:
+	if detail_txt == null:
+		return
+	var suit_names = [tr("红桃"), tr("黑桃"), tr("梅花"), tr("方片")]
+	var crit_effects = [
+		tr("回合数+1，HP-1"),
+		tr("+1步，随机弃1牌"),
+		tr("抽1牌，步数-1"),
+		tr("场上最多新增2张牌")
+	]
+	if suit < 0 or suit >= suit_names.size():
+		return
+	detail_txt.show()
+	_prepare_detail_text_bounds()
+	detail_txt.text = tr("再消除1张【{suit}】牌：{effect}").format({
+		"suit": suit_names[suit],
+		"effect": crit_effects[suit]
+	})
+	_fit_detail_text_to_width()
+
 @onready var baoji_tooltip: TextureRect = $baojiTooltip
 
 func _on_crit_indicator_Txt() -> void:
-	var tip = tr("连续消除两张相同花色即可触发暴击\n")
-	tip += tr("♥ 红桃：回合数 + 1，自身生命值 - 1\n")
-	tip += tr("♠ 黑桃：出牌次数 + 1，随机弃置 1 张手牌\n")
-	tip += tr("♣ 梅花：抽取 1 张牌，出牌次数 - 1\n")
+	var tip = tr("连续消除两张相同花色即可触发暴击") + "\n"
+	tip += tr("♥ 红桃：回合数 + 1，自身生命值 - 1") + "\n"
+	tip += tr("♠ 黑桃：出牌次数 + 1，随机弃置 1 张手牌") + "\n"
+	tip += tr("♣ 梅花：抽取 1 张牌，出牌次数 - 1") + "\n"
 	tip += tr("♦ 方片：场上最多新增 2 张牌")
 	TooltipManager.register_tooltip(baoji_tooltip, tip)
 
@@ -2354,9 +2444,8 @@ func _execute_crit_effect(suit: int) -> void:
 				detail_txt.text = tr("暴击·谋士筹策！") + desc
 			2:
 				drawOne(false)
-				drawOne(false)
-				enemyStage = max(0, enemyStage - 2)
-				desc = tr("抽2牌，步数-2")
+				enemyStage = max(0, enemyStage - 1)
+				desc = tr("抽1牌，步数-1")
 				detail_txt.text = tr("暴击·商贾囤货！") + desc
 			3:
 				desc = tr("补位发牌")
@@ -2395,7 +2484,7 @@ func _get_crit_strategy_value(suit: int) -> int:
 				return -8  # 手牌太少
 			else:
 				return 3
-		2:  # 梅花：抽2，步数-2
+		2:  # 梅花：抽1，步数-1
 			var _hs2 = enemyhand.get_child_count()
 			if _hs2 <= 2 and enemyStage >= 3:
 				return 18  # 缺牌但步数充足
@@ -2413,6 +2502,7 @@ func reset_crit_chain_state() -> void:
 	_crit_pending_suit = -1
 	if _crit_indicator != null:
 		_crit_indicator.text = tr("[color=white]暴击待发：无[/color]")
+		_fit_crit_indicator_to_width(tr("暴击待发：无"), 0.0)
 	isWaiting = false
 
 func _process(delta: float) -> void:
