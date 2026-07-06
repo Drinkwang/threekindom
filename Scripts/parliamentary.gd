@@ -47,7 +47,7 @@ func enter():
 		p_3.show()
 	else:
 		p_3.hide()
-		p_label.text=tr("本地派:外来派")
+		p_label.text=tr("本土派:外来派")
 	o_1.text="{AS}\n{AP}\n{RATE}\n{FINAL}".format({"AS": "__", "AP":"__" ,"RATE":"__","FINAL":"__"})
 	SoundManager.play_sound(bgmxuanhua)
 	button.hide()

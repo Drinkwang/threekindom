@@ -60,9 +60,9 @@ func _process(delta):
 		var float_y := sin(_title_time * 0.72) * 6.0
 		var logo_position := Vector2(960.0, GAME_LOGO_BASE_Y + float_y)
 		var glow_pulse := 0.5 + 0.5 * sin(_title_time * 1.45)
-		game_logo.position = logo_position
-		game_logo_shadow.position = logo_position + GAME_LOGO_SHADOW_OFFSET
-		game_logo_glow.position = logo_position
+	#	game_logo.position = logo_position
+	#	game_logo_shadow.position = logo_position + GAME_LOGO_SHADOW_OFFSET
+	#	game_logo_glow.position = logo_position
 		game_logo_glow.scale = GAME_LOGO_GLOW_SCALE + Vector2.ONE * (glow_pulse * 0.018)
 		game_logo_glow.modulate.a = 0.22 + glow_pulse * 0.08
 
