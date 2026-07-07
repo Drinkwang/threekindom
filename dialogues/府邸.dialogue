@@ -632,7 +632,7 @@ do chenden.show()
 do chaosBegin()
 系统提示: 主线已推进，获得3点政策点数。
 do GameManager.sav.Merit_points+=1
-do GameManager.showChapterTitle("第三章【主线进度25%】", "内应流言",4)
+do GameManager.showChapterTitle("第三章【主线进度25%】", "暗流涌动",4)
 do GameManager.AutoSaveFile()
 
 => END!
@@ -689,7 +689,7 @@ do chenden.show()
 do StartTaishan()
 do mizhu.hide()
 do chenden.hide()
-do GameManager.showChapterTitle("第四章【主线进度35%】", "琅琊斩首",4)
+do GameManager.showChapterTitle("第四章【主线进度35%】", "泰山之乱",4)
 do GameManager.AutoSaveFile()
 #粮食当天运输到了
 #1 3天 5 天 
@@ -919,7 +919,7 @@ do GameManager.sav.Merit_points+=2
 
 do chenden.hide()
 do mizhu.hide()
-do GameManager.showChapterTitle("第五章【主线进度45%】", "温侯赴徐",4)
+do GameManager.showChapterTitle("第五章【主线进度45%】", "温侯入局",4)
 do GameManager.AutoSaveFile()
 => END!
 
@@ -1273,7 +1273,7 @@ do chenden.show()
 系统提示: 主线已推进，获得2点政策点数。
 do GameManager.sav.Merit_points+=2
 do PersonalCampaignBefore()
-do GameManager.showChapterTitle("第十章【主线进度80%】", "袁术再犯",4)
+do GameManager.showChapterTitle("第九章【主线进度85%】", "亲征袁术",4)
 do GameManager.AutoSaveFile()	
 => END!
 

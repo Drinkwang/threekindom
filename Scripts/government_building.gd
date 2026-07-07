@@ -362,10 +362,12 @@ func ReconciliatoryFaction():
 	
 	if GameManager.dontHaveDominance():
 		GameManager.sav.targetTxt="安抚派系: {currence}/{target}"
+		GameManager.showChapterTitle("第八章【主线进度75%】", "安抚众心", 4)
 	else:
 		
 		GameManager.sav.targetTxt="统御派系: {currence}/{target}"
-	GameManager.showChapterTitle("第六章【主线进度60%】", "人心浮动", 4)
+		GameManager.showChapterTitle("第八章【主线进度75%】", "安抚众心", 4)
+	#GameManager.showChapterTitle("第八章【主线进度75%】", "安抚众心", 4)
 	GameManager.AutoSaveFile()
 
 
@@ -512,7 +514,7 @@ func victoryPartyEnd():
 	#后面把process改成发送信号
 	GameManager.sav.targetTxt=""
 	GameManager.sav.TargetDestination=""
-	GameManager.showChapterTitle("第七章【主线进度50%】", "百废待兴", 4)
+	GameManager.showChapterTitle("第六章【主线进度55%】", "百废待兴", 4)
 	GameManager.AutoSaveFile()
 
 	
@@ -525,7 +527,7 @@ func oldvictoryPartyEnd():
 	chenden.hide()
 	mizhu.hide()
 	GameManager.initSecretBattleContext(3,SceneManager.etraTaskType.useItem,10,"袁术军大胜",("在对纪灵军的军事行动中，累计三次使用胜战锦囊。"))
-	GameManager.showChapterTitle("第八章【主线进度60%】", "奉令讨逆", 4)
+	GameManager.showChapterTitle("第七章【主线进度65%】", "奉令讨逆", 4)
 	GameManager.AutoSaveFile()
 func mizhufinal():
 	GameManager.sav.have_event["最终糜竺"]=true
