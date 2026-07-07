@@ -20,19 +20,44 @@ layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_top = 59.0
-offset_bottom = 179.0
+offset_bottom = 169.0
 grow_horizontal = 2
 mouse_filter = 2
-color = Color(0, 0, 0, 0.789)
+color = Color(0.015, 0.01, 0.008, 0.76)
+
+[node name="CenterPlate" type="ColorRect" parent="Root/Bar"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -286.0
+offset_top = 6.0
+offset_right = 286.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.16, 0.045, 0.025, 0.24)
 
 [node name="TopLine" type="ColorRect" parent="Root/Bar"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 2.0
+offset_bottom = 1.0
 grow_horizontal = 2
 mouse_filter = 2
-color = Color(0.95, 0.63, 0.25, 0.78)
+color = Color(0.95, 0.65, 0.32, 0.72)
+
+[node name="TopGlow" type="ColorRect" parent="Root/Bar"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 1.0
+offset_bottom = 4.0
+grow_horizontal = 2
+mouse_filter = 2
+color = Color(0.95, 0.52, 0.18, 0.12)
 
 [node name="BottomLine" type="ColorRect" parent="Root/Bar"]
 layout_mode = 1
@@ -40,11 +65,24 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -2.0
+offset_top = -1.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
-color = Color(0.95, 0.63, 0.25, 0.58)
+color = Color(0.95, 0.65, 0.32, 0.52)
+
+[node name="BottomGlow" type="ColorRect" parent="Root/Bar"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+color = Color(0.95, 0.52, 0.18, 0.1)
 
 [node name="Content" type="MarginContainer" parent="Root/Bar"]
 layout_mode = 1
@@ -57,36 +95,43 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 40
-theme_override_constants/margin_top = 10
+theme_override_constants/margin_top = 9
 theme_override_constants/margin_right = 40
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_bottom = 11
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Root/Bar/Content"]
 layout_mode = 2
 mouse_filter = 2
-theme_override_constants/separation = 0
+theme_override_constants/separation = 2
 alignment = 1
 
 [node name="ChapterLabel" type="Label" parent="Root/Bar/Content/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.98, 0.53, 0.32, 1)
+theme_override_colors/font_color = Color(1, 0.62, 0.34, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.82)
 theme_override_constants/shadow_offset_x = 1
-theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_offset_y = 2
 theme_override_fonts/font = ExtResource("2_wt7ac")
-theme_override_font_sizes/font_size = 26
+theme_override_font_sizes/font_size = 22
 text = "终章【主线进度：27%】"
 horizontal_alignment = 1
 autowrap_mode = 3
 
+[node name="Divider" type="ColorRect" parent="Root/Bar/Content/VBoxContainer"]
+custom_minimum_size = Vector2(230, 1)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+color = Color(0.92, 0.58, 0.24, 0.68)
+
 [node name="TitleLabel" type="Label" parent="Root/Bar/Content/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.91, 0.68, 1)
+theme_override_colors/font_color = Color(1, 0.9, 0.66, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.86)
 theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 4
+theme_override_constants/shadow_offset_y = 3
 theme_override_fonts/font = ExtResource("2_wt7ac")
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 46
 text = "荆襄暗流"
 horizontal_alignment = 1
 autowrap_mode = 3
