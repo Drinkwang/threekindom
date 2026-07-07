@@ -624,6 +624,8 @@ func settleGame(end,issuccess):
 		finalScore=finalScore*(0.6+(GameManager.sav.battleEnhance*0.25))
 		if GameManager.sav.have_event["吕布之怒"]==false and GameManager.sav.have_event["夏侯偷马"]==true and GameManager.sav.endPath==GameManager.endPath.xiaopei:
 			finalScore=finalScore*1.5
+		if GameManager.sav.have_event["战斗袁术血战模式"]==true and GameManager.sav.have_event["血战袁术完成"]==false:
+			finalScore=finalScore*0.5
 		var items=GameManager.ScoreToItem(finalScore)
 		if GameManager.sav.have_event["吕布之怒"]==false and GameManager.sav.have_event["夏侯偷马"]==true and GameManager.sav.endPath==GameManager.endPath.xiaopei:
 			_rewardPanel.showRewardMa(items)

@@ -411,8 +411,8 @@ func _buttonListClick(item):
 					GameManager.resideValue=2000
 					GameManager.resideValue2=3000
 				elif GameManager.sav.gameDifficulty==3:
-					GameManager.resideValue=1000
-					GameManager.resideValue2=2000
+					GameManager.resideValue=1500
+					GameManager.resideValue2=2500
 					
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"selectOutSide")
 			
