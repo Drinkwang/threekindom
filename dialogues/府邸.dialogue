@@ -322,7 +322,10 @@ do _JudgeTask()
 => END
 
 ~ 选项吕布
-主簿: 大人，你想对吕布做什么呢？[voice:zhubu_duilvbu]
+if GameManager.sav.endpath==endPath.none
+	主簿: 大人，你想对吕布做什么呢？[voice:zhubu_duilvbu]
+else
+	主簿: 大人，你想对泰山派做什么呢？[voice:zhubu_duilvbu2]
 - 资金资助[costHp=50]
 	do financialConfortChoice()
 - 赠送礼物[costHp=50]

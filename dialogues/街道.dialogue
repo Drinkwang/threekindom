@@ -95,7 +95,7 @@ do openEyesToBlankBackground("学者之处")
 屋内布置简单，但书架上摆满了各种经书和典籍。郑玄与刘备坐在一张竹制的几案旁，开始交谈。
 郑玄: 刘将军，你有何所求？[voice:zhengxuan_niyouheqiu]
 刘备: 学生听闻先生学问渊博，特来请教治国之道。[voice:liubei_xueshengyuanbo]
-郑玄: 治国之道，首在修身为本。君能修身，则可[voice:zhengxuan_xiushenweiben]
+郑玄: 治国之道，首在修身为本。君能修身，则可。[voice:zhengxuan_xiushenweiben]
 do showbianji()
 教程: 此处为辩经小游戏，按照规则点击获得分数，游戏结束可能获得额外奖励
 

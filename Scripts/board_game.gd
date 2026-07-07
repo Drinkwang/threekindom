@@ -53,6 +53,7 @@ func loseGame(_str:String=""):
 @onready var animation_player_BLINK: AnimationPlayer = $CanvasLayer/blinkRect/AnimationPlayer
 
 @export var useCardNumMax=-1
+var currentTurnUseCardNum=0
 #回合结束用牌比这个大，就改成这个
 
 @export var holdCardNumMin=10
@@ -284,6 +285,7 @@ func initGame():
 	_is_restarting = false
 	score=0
 	useCardNumMax=-1
+	currentTurnUseCardNum=0
 #回合结束用牌比这个大，就改成这个
 	holdCardNumMin=10
 	enemy_hp=3
@@ -637,8 +639,9 @@ func insertCard(group:groupType,value):
 				var holdCardNum=myhand.get_child_count()
 				if holdCardNumMin>holdCardNum:
 					holdCardNumMin=holdCardNum
-				if useCardNumMax<(4-playerStage):
-					useCardNumMax=4-playerStage
+				currentTurnUseCardNum+=1
+				if useCardNumMax<currentTurnUseCardNum:
+					useCardNumMax=currentTurnUseCardNum
 				judgeAchiveInPer()
 	stopClick()
 	
@@ -891,6 +894,7 @@ func enterNewPhase(stage:phaseName):
 			#	SoundManager.play_sound(useCardSound)
 			reset_crit_chain_state()
 			playerStage=maxUseCard
+			currentTurnUseCardNum=0
 			reside_num.text=tr("剩余步数：{s}").format({"s":playerStage})
 	
 			detail_txt.text=tr("出牌阶段，请使用你的卡牌")
@@ -2676,6 +2680,7 @@ func clearTCard():
 	_is_first_draw=true
 	score=0
 	useCardNumMax=-1
+	currentTurnUseCardNum=0
 	holdCardNumMin=10
 	hp=3
 	enemy_hp=3
