@@ -303,6 +303,7 @@ func xuzhouStart():
 	GameManager.sav.LVBU.isshow=false
 	GameManager.initPaixi(GameManager.sav.LVBU)
 	SignalManager.changeSupport.emit()
+	GameManager.showChapterTitle("终章【主线进度90%】", "霸道之始", 4)
 	GameManager.AutoSaveFile()
 func mizhenGift():
 	mizhu.hide()
@@ -364,6 +365,7 @@ func ReconciliatoryFaction():
 	else:
 		
 		GameManager.sav.targetTxt="统御派系: {currence}/{target}"
+	GameManager.showChapterTitle("第六章【主线进度60%】", "人心浮动", 4)
 	GameManager.AutoSaveFile()
 
 
@@ -510,6 +512,7 @@ func victoryPartyEnd():
 	#后面把process改成发送信号
 	GameManager.sav.targetTxt=""
 	GameManager.sav.TargetDestination=""
+	GameManager.showChapterTitle("第七章【主线进度50%】", "百废待兴", 4)
 	GameManager.AutoSaveFile()
 
 	
@@ -522,7 +525,8 @@ func oldvictoryPartyEnd():
 	chenden.hide()
 	mizhu.hide()
 	GameManager.initSecretBattleContext(3,SceneManager.etraTaskType.useItem,10,"袁术军大胜",("在对纪灵军的军事行动中，累计三次使用胜战锦囊。"))
-
+	GameManager.showChapterTitle("第八章【主线进度60%】", "奉令讨逆", 4)
+	GameManager.AutoSaveFile()
 func mizhufinal():
 	GameManager.sav.have_event["最终糜竺"]=true
 	#pass
@@ -580,6 +584,7 @@ func showMizhuTouchMain():
 	mizhu.changeAllClick("府邸主线")
 
 	GameManager.changeTaskLabel("与手下谈谈")
+	GameManager.showChapterTitle("第一章【主线进度5%】", "入主徐州", 4)
 	GameManager.AutoSaveFile()
 
 @onready var zhubu: Node2D = $"peoples/主簿"

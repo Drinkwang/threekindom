@@ -18,10 +18,10 @@ do showchenqun()
 陈群: 让我们重新熟悉下政务操作..[voice:chenqun_rangwomenchongxinshuxi]
 陈群: 您需要前往府邸，在哪里你可以处理基础的政府公文[voice:chenqun_chulligongwen]
 
-do GameManager.showChapterTitle("序章【主线进度0%】", "入主徐州",4)
 #do GameManager.showChapterTitle("第一章", "入主徐州")
 
 do showFirstGuild()
+do GameManager.showChapterTitle("序章【主线进度0%】", "小沛之始",4)
 do GameManager.AutoSaveFile()
 => END
 

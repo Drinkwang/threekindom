@@ -179,6 +179,7 @@ func xiaopeiStart():
 	GameManager.sav.targetResType=GameManager.ResType.rest
 	GameManager.sav.targetTxt="撑过旬数：{currence}/{target}"
 	GameManager.sav.TargetDestination="rest"
+	GameManager.showChapterTitle("终章【主线进度90%】", "困守小沛", 4)
 	GameManager.AutoSaveFile()
 	GameManager.sav.coin+=1000
 	GameManager.sav.labor_force+=500
