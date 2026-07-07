@@ -1273,7 +1273,7 @@ do chenden.show()
 系统提示: 主线已推进，获得2点政策点数。
 do GameManager.sav.Merit_points+=2
 do PersonalCampaignBefore()
-do GameManager.showChapterTitle("第九章【主线进度85%】", "亲征袁术",4)
+do GameManager.showChapterTitle("第九章【主线进度80%】", "亲征袁术",4)
 do GameManager.AutoSaveFile()	
 => END!
 
