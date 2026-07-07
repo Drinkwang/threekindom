@@ -1,12 +1,26 @@
 extends Node
 
+const CHAPTER_TITLE_PANEL = preload("res://Scene/commonPanel/chapter_title_panel.tscn")
 
 
+var chapter_title_node: ChapterTitlePanel
+
+func show_chapter_title(data: Dictionary) -> ChapterTitlePanel:
+	if is_instance_valid(chapter_title_node):
+		chapter_title_node.queue_free()
+	var panel: ChapterTitlePanel = CHAPTER_TITLE_PANEL.instantiate()
+	panel.setup(data)
+	get_current_scene.call().add_child(panel)
+	chapter_title_node = panel
+	panel.closed.connect(func():
+		if chapter_title_node == panel:
+			chapter_title_node = null
+	)
+	return panel
 
 func _ready() -> void:
 	pass
 	# Cache the known Node2D properties
-
 ## Show the example balloon
 func show_example_dialogue_balloon(title: String = "", extra_game_states: Array = [])->CanvasLayer:
 	var balloon: Node = load(_get_example_balloon_path()).instantiate()
@@ -217,4 +231,4 @@ func _get_GuimiAchi_path()-> String:
 	
 	var is_small_window: bool = ProjectSettings.get_setting("display/window/size/viewport_width") < 400
 	var balloon_path: String = "/AchievementSystemPanel.tscn" #if is_small_window else "/example_balloon/example_balloon.tscn"
-	return get_script().resource_path.get_base_dir() + balloon_path	
+	return get_script().resource_path.get_base_dir() + balloon_path
