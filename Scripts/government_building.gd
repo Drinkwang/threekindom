@@ -314,6 +314,7 @@ func mizhenGift():
 		"population": 0
 	}
 	#GameManager.ScoreToItem()
+	
 	GameManager.sav.hp=GameManager.sav.hp+10
 	_reward.showTitileReward(tr("恭喜你，你获得-益气丸x2"),items)		
 

@@ -124,8 +124,10 @@ var number_bool_map: Dictionary = {
 	set(value):
 		if value<hp:
 			alreadyHP+=(hp-value)
-		hp=value
-		
+		if value<maxHP:
+			hp=value
+		else:
+			hp=maxHP
 		if GameManager._engerge!=null and self==GameManager.sav:
 			GameManager._engerge.previewValue=0
 			GameManager._engerge.changerate(hp)

@@ -887,19 +887,19 @@ func bianjiEnd():
 	
 	
 func getXueJiItem():
+	if GameManager.sav.have_event["获得娃娃"]==false:
+		var _reward:rewardPanel=PanelManager.new_reward()
+		var items={
+			"items": {InventoryManagerItem.ItemEnum.血姬傀儡:1},
+			"money": 0,
+			"population": 0
+		}
 
-	var _reward:rewardPanel=PanelManager.new_reward()
-	var items={
-		"items": {InventoryManagerItem.ItemEnum.血姬傀儡:1},
-		"money": 0,
-		"population": 0
-	}
-	#GameManager.ScoreToItem()
-	GameManager.sav.have_event["获得娃娃"]=true
+		GameManager.sav.have_event["获得娃娃"]=true
 	
-	bossBattleAfter=true
-	GameManager.sav.maxHP=120
-	_reward.showTitileReward(tr("恭喜你，你获得-血姬傀儡"),items)	
+		bossBattleAfter=true
+		GameManager.sav.maxHP=GameManager.sav.maxHP+20
+		_reward.showTitileReward(tr("恭喜你，你获得-血姬傀儡"),items)	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
 var bossBattleAfter=false
