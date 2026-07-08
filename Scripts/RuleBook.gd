@@ -80,7 +80,7 @@ enum buttonState{
 
 func _on_texture_rect_gui_input(event):
 
-	if(event is InputEventMouseButton and event.button_index==1):
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		#$"TextureRect/翻页按钮".show()
 		#$TextureRect/realBox.show()
 		#$"TextureRect/读完了按钮".show()

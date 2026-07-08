@@ -908,7 +908,12 @@ func yuanshuChaos(value):
 @onready var caocao_letter_2: Control = $CanvasLayer/caocaoLetter2
 
 func showCaoCaoLetter():
-	caocao_letter.show()
+	call_deferred("_showCaoCaoLetterDeferred")
+
+func _showCaoCaoLetterDeferred():
+	await get_tree().process_frame
+	if is_instance_valid(caocao_letter):
+		caocao_letter.show()
 
 var isdetermine=false
 #完成任务不应该显示 休息进入下一天
