@@ -968,13 +968,12 @@ func deliverUncompleteTask():
 			#糜竺嫁妹支线2
 			#tsty.show()		
 			
-		elif GameManager.sav.have_event["糜竺支线2"]==false and GameManager.sav.mizhuSideWait==1 and GameManager.sav.endPath==GameManager.endPath.none:
-			if GameManager.sav.have_event["糜贞送药"]==false:
-				mizhu.hide()
-				tsty.hide()
-				#mizhu.showEX=false
-				GameManager.sav.have_event["糜贞送药"]=true
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"插入糜贞送药")
+		elif GameManager.sav.have_event["糜竺支线2"]==false and GameManager.sav.mizhuSideWait==1 and GameManager.sav.endPath==GameManager.endPath.none and GameManager.sav.have_event["糜贞送药"]==false:
+			mizhu.hide()
+			tsty.hide()
+			#mizhu.showEX=false
+			GameManager.sav.have_event["糜贞送药"]=true
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"插入糜贞送药")
 				
 		elif GameManager.sav.have_event["糜竺支线2"]==false and GameManager.sav.mizhuSideWait==0 and GameManager.sav.endPath==GameManager.endPath.none:	
 			mizhu.changeAllClick("糜竺嫁妹支线2")
