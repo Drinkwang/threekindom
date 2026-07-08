@@ -614,13 +614,13 @@ func _buttonListClick(item):
 	elif item.context=="军事行动":
 		caobao.hide()	
 		battle_pane.show()
-		battle_pane.move_to_front()
+	
 		battle_pane.initData()
 		battle_pane._refreshGeneral()
 		refreshBattlePanePos()
 		await get_tree().process_frame
 		battle_pane.show()
-		battle_pane.move_to_front()
+
 		refreshBattlePanePos()
 		#第一次军事行动应该告诉你教程
 		if GameManager.sav.day==3:

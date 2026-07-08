@@ -157,14 +157,66 @@ func _is_mouse_blocked(_event_position: Vector2) -> bool:
 		if not cl.visible:
 			continue
 		for child in cl.get_children():
-			# 忽略掉MOUSE_FILTER_IGNORE和MOUSE_FILTER_PASS，避免遮挡点击
-			if child is Control and child.visible and child.mouse_filter == Control.MOUSE_FILTER_STOP:
+			# PASS/STOP overlays may block lower clickBlocks, but visible descendants stay clickable.
+			if child is Control and child.visible and child.mouse_filter != Control.MOUSE_FILTER_IGNORE:
+				if not _is_blocker_above_self(child):
+					continue
 				var rect = child.get_global_rect()
 				if rect.size.x < min_size.x or rect.size.y < min_size.y:
 					continue
 				if rect.has_point(viewport_pos):
 					return true
 	return false
+
+func _is_blocker_above_self(blocker: Control) -> bool:
+	if blocker.is_ancestor_of(self):
+		return false
+
+	var blocker_layer = _get_canvas_layer_for_node(blocker)
+	var self_layer = _get_canvas_layer_for_node(self)
+	if blocker_layer != self_layer:
+		if blocker_layer == null:
+			return false
+		if self_layer == null:
+			return true
+		if blocker_layer.layer != self_layer.layer:
+			return blocker_layer.layer > self_layer.layer
+		return blocker_layer.get_index() > self_layer.get_index()
+
+	var compare_parent: Node = blocker_layer
+	if compare_parent == null:
+		compare_parent = blocker.get_parent()
+	var blocker_branch = _get_direct_child_under(compare_parent, blocker)
+	var self_branch = _get_direct_child_under(compare_parent, self)
+	if blocker_branch == null or self_branch == null or blocker_branch == self_branch:
+		return false
+
+	if blocker_branch is CanvasItem and self_branch is CanvasItem:
+		var blocker_canvas_item := blocker_branch as CanvasItem
+		var self_canvas_item := self_branch as CanvasItem
+		var blocker_z = blocker_canvas_item.z_index
+		var self_z = self_canvas_item.z_index
+		if blocker_z != self_z:
+			return blocker_z > self_z
+	return blocker_branch.get_index() > self_branch.get_index()
+
+func _get_canvas_layer_for_node(node: Node) -> CanvasLayer:
+	var current = node
+	while current != null:
+		if current is CanvasLayer:
+			return current
+		current = current.get_parent()
+	return null
+
+func _get_direct_child_under(parent_node: Node, node: Node) -> Node:
+	if parent_node == null:
+		return null
+	var current = node
+	while current != null and current.get_parent() != parent_node:
+		current = current.get_parent()
+	if current != null and current.get_parent() == parent_node:
+		return current
+	return null
 
 func _collect_canvas_layers(node: Node, result: Array) -> void:
 	if node is CanvasLayer:
