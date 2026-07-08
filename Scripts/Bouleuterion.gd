@@ -549,7 +549,7 @@ func openBoardGame():
 func confirmBuild():
 	GameManager.sav.coin-=GameManager.puzzleCostMoney
 	GameManager.sav.labor_force-=GameManager.puzzleCostPeople
-	var should_show_river_tutorial := GameManager.sav.have_event["基建运河教程"]==false
+	var should_show_river_tutorial = GameManager.sav.have_event["基建运河教程"]==false
 	puzzle_game.initGame(not should_show_river_tutorial)
 	chendeng.hide()
 	items_in_scene.hide()

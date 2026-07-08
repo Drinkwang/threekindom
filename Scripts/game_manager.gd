@@ -1086,7 +1086,7 @@ func loadLaw():
 			#sav. todo
 			var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.珍品礼盒)
 			var remainder = InventoryManager.add_item(inventoryPackege, itemid, 1, false)			
-			sav.shopSelfSell=true
+			sav.merMustBuy=true
 			print("行业准则done")			
 	elif sav.curLawName=="禁止军商":
 		#RewardLaw="收益：每日收入+50，豪族好感度+15，一次性收入+600 冲突：丹阳派好感度-25  "
