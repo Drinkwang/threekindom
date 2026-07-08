@@ -75,7 +75,7 @@ func _on_timeout():
 	if isvictory==true:
 		return
 	time_left -= 1
-	resideTimeLabel.text = tr("剩余时间:{s}秒").format({"s":time_left})  # 每秒更新UI（极省性能）
+	_update_time_label()
 	if time_left <= 0:
 		timer.stop()
 		board.set_process_input(false)
@@ -96,20 +96,36 @@ func clearData():
 		if child is Control and child.has_method("update_irrigation"):
 			child.irrigated=false#(depth)	
 			child._update_visual()
-func initGame():
+func initGame(start_timer_immediately: bool = true):
 	self.show()
 	isvictory=false
 	win_rect.hide()
 	lose_rect.hide()
 	switch_Difficult()
+	_reset_timer()
+	board.initData()
+	if start_timer_immediately:
+		startTimer()
+	else:
+		board.set_process_input(false)
+
+func _reset_timer() -> void:
+	timer.stop()
 	timer.wait_time = 1.0
 	timer.one_shot = false  # 重复触发
 	time_left=60
+	_update_time_label()
 	if not timer.timeout.is_connected(_on_timeout):	
 		timer.timeout.connect(_on_timeout)  # 连接信号（编辑器也可连）
+
+func startTimer() -> void:
+	if isvictory==true:
+		return
+	board.set_process_input(true)
 	timer.start()  # 启动（autostart=true也可）
-	board.initData()
-	
+
+func _update_time_label() -> void:
+	resideTimeLabel.text = tr("剩余时间:{s}秒").format({"s":time_left})
 	
 	
 func _on_water_depth_changed(depth: int) -> void:
@@ -122,7 +138,7 @@ func _on_water_depth_changed(depth: int) -> void:
 	if board.isset==false:
 		all_done = false
 	for i in range(0,depth+1):
-		_update_connector(depth)
+		_update_connector(i)
 	if all_done:
 		_show_victory()
 

@@ -382,13 +382,9 @@ func _update_water_and_emit() -> void:
 	var right_depth := -1
 	if grid_width > 0:
 		var rc := grid_width - 1
-		for r in range(grid_height - 1, -1, -1):
-			if water[r][rc]:
-				right_depth = r
-				
-				#right_depth = max(right_depth, r)  
-				
-				#break
+		for r in range(grid_height):
+			if int(grid[r][rc]) == -1:
+				right_depth = max(right_depth, r)
 	
 
 		current_water_depth = depth
