@@ -113,7 +113,7 @@ theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 2
 theme_override_fonts/font = ExtResource("2_wt7ac")
 theme_override_font_sizes/font_size = 22
-text = "终章【主线进度：27%】"
+text = "史料参考"
 horizontal_alignment = 1
 autowrap_mode = 3
 
@@ -132,6 +132,6 @@ theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 3
 theme_override_fonts/font = ExtResource("2_wt7ac")
 theme_override_font_sizes/font_size = 46
-text = "荆襄暗流"
+text = "灵帝末年，备尝在京师，后与曹公俱还沛国，募召合众。"
 horizontal_alignment = 1
 autowrap_mode = 3
