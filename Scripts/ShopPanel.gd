@@ -282,22 +282,31 @@ func confireSold():
 	useItems=[]
 	AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_7")
 	back_txt.text="当前商人没有需要从你手中收购商品的需要，请改日再来！"
-	buy_back_button.hide()
-	merchant_buy_button.hide()
-	self_buy_button.hide()
+	_hide_sell_buttons()
 	self_sell_bg.hide()
 	self_sell_panel.hide()
 
+func _hide_sell_buttons():
+	buy_back_button.hide()
+	buy_back_button_2.hide()
+	merchant_buy_button.hide()
+	self_buy_button.hide()
+	buy_back_button.disabled = false
+	merchant_buy_button.disabled = false
+	self_buy_button.disabled = false
+
 func _refresh_sell_buttons(can_merchant_buy:bool, can_self_sell:bool):
+	_hide_sell_buttons()
 	if GameManager.sav.shopSelfSell:
-		buy_back_button.hide()
-		buy_back_button_2.show()
-		merchant_buy_button.disabled = !can_merchant_buy
-		self_buy_button.disabled = !can_self_sell
+		if can_merchant_buy or can_self_sell:
+			buy_back_button_2.show()
+		if can_merchant_buy:
+			merchant_buy_button.show()
+		if can_self_sell:
+			self_buy_button.show()
 	else:
-		buy_back_button.show()
-		buy_back_button_2.hide()
-		buy_back_button.disabled = !can_merchant_buy
+		if can_merchant_buy:
+			buy_back_button.show()
 
 func _reset_self_sell_counts():
 	self_sell_counts = {

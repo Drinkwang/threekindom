@@ -306,7 +306,7 @@ func _initData():
 			control._show_button_5_yellow(1)  #将这些逻辑放在
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新的一天")
 
-			GameManager.sav.curGovAff=tr("1.前往府邸回见不同派系的领导人\n2.前往议会通过昨天立的法律")
+			GameManager.sav.curGovAff=tr("1.前往府邸会见各派系领袖\n2.前往议事厅通过昨日拟定的法令")
 			GameManager.changeTaskLabel("完成所有待办事项")
 			GameManager.sav.destination="府邸"
 		#设置des
