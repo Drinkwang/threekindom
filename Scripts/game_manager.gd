@@ -1653,6 +1653,8 @@ func AutoSaveFile():
 	_engerge.showAutoSaveANI()
 	var tempSavs:Array=[null,null,null]
 	sav.autoSave=true
+	var DateTime = Time.get_datetime_dict_from_system()
+	sav.current_datetime="{year}/{month}/{day}/{hour}/{minute}".format({"year":DateTime.year,"month":DateTime.month,"day":DateTime.day,"hour":DateTime.hour,"minute":DateTime.minute})
 	
 	if(currenceScene!=null):
 		sav.saveScene.pack(currenceScene)
@@ -1673,7 +1675,7 @@ func AutoSaveFile():
 			return
 	#获取tempSavs时间最小的 进行存档
  # If all slots are occupied, find the slot with the earliest current_datetime
-	var earliest_index: int = -1
+	var earliest_slot: int = -1
 	var earliest_time: int = 9223372036854775807 # Max int for comparison (future timestamp)
 
 	for i in range(3):
@@ -1681,7 +1683,10 @@ func AutoSaveFile():
 			# Parse current_datetime string (format: "year/month/day/hour/minute")
 			var time_str: String = tempSavs[i].current_datetime
 			var time_parts = time_str.split("/")
-			if time_parts.size() == 5:
+			if time_parts.size() != 5:
+				earliest_slot = i + 1
+				break
+			else:
 				var time_dict = {
 					"year": int(time_parts[0]),
 					"month": int(time_parts[1]),
@@ -1694,11 +1699,11 @@ func AutoSaveFile():
 				var timestamp = Time.get_unix_time_from_datetime_dict(time_dict)
 				if timestamp < earliest_time:
 					earliest_time = timestamp
-					earliest_index = i
+					earliest_slot = i + 1
 
 	# Save to the slot with the earliest time
-	if earliest_index != -1:
-		ResourceSaver.save(sav, "user://save_data{index}.tres".format({"index": str(earliest_index)}))
+	if earliest_slot != -1:
+		ResourceSaver.save(sav, "user://save_data{index}.tres".format({"index": str(earliest_slot)}))
 	#await 2
 	_engerge.endAutoSave()
 
