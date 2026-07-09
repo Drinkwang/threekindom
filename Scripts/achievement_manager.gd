@@ -3,7 +3,7 @@ extends Node
 
 #var steam
 
-const APP_ID=480
+const APP_ID=3155310
 var is_ready=true
 var is_online=false
 var is_owned=false
