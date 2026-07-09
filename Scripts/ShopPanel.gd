@@ -268,7 +268,11 @@ func _on_Sold_button_down():
 	#if(await GameManager.isTried(costhp)):
 		#return 		
 	#GameManager._engerge.startPreviewHp(costhp)	
-	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"是否售出商品")
+	if GameManager.sav.have_event["第一次售卖教程"]==false:
+		GameManager.sav.have_event["第一次售卖教程"]=true
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"卖出物品教程")
+	else:
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"是否售出商品")
 
 #var costhp=15
 func confireSold():

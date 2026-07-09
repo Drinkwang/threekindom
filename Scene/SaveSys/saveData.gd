@@ -367,6 +367,7 @@ var number_bool_map: Dictionary = {
 	"待办事项教程":false,
 	"属性面板教程":false,
 	"休憩第一次提示":false,
+	"第一次售卖教程":false,
 	#"错失玄阴":false,
 	
 }
