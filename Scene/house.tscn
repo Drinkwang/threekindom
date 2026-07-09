@@ -576,7 +576,7 @@ dialogue_start = "支线克苏鲁最终开始"
 
 [node name="caobao" parent="." instance=ExtResource("7_7mriv")]
 visible = false
-position = Vector2(850, 673)
+position = Vector2(732, 726)
 showName = "曹豹"
 txt2d = ExtResource("23_84sra")
 boardType = 1
