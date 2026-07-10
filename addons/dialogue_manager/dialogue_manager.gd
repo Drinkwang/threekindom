@@ -25,6 +25,9 @@ signal mutated(mutation: Dictionary)
 ## Emitted when some dialogue has reached the end.
 signal dialogue_ended(resource: DialogueResource)
 
+## Emitted immediately before a dialogue balloon is added to the scene.
+signal dialogue_started(resource: DialogueResource)
+
 ## Used internally.
 signal bridge_get_next_dialogue_line_completed(line: DialogueLine)
 
@@ -295,6 +298,7 @@ func show_exaple_top_dialogue_balloon(resource: DialogueResource, title: String 
 	var balloon: Node = load(_get_example_top_balloon_path()).instantiate()
 	
 	dialogBegin=true
+	_begin_dialogue(resource)
 	get_current_scene.call().add_child(balloon)
 	balloon.start(resource, title, extra_game_states)
 
@@ -307,6 +311,7 @@ func show_example_dialogue_balloon(resource: DialogueResource, title: String = "
 	var balloon: Node = load(_get_example_balloon_path()).instantiate()
 	
 	dialogBegin=true
+	_begin_dialogue(resource)
 	get_current_scene.call().add_child(balloon)
 	balloon.start(resource, title, extra_game_states)
 
@@ -335,6 +340,7 @@ func show_dialogue_balloon_scene(balloon_scene, resource: DialogueResource, titl
 		balloon_scene = balloon_scene.instantiate()
 
 	var balloon: Node = balloon_scene
+	_begin_dialogue(resource)
 	get_current_scene.call().add_child(balloon)
 	if balloon.has_method(&"start"):
 		balloon.start(resource, title, extra_game_states)
@@ -343,6 +349,10 @@ func show_dialogue_balloon_scene(balloon_scene, resource: DialogueResource, titl
 	else:
 		assert(false, DialogueConstants.translate(&"runtime.dialogue_balloon_missing_start_method"))
 	return balloon
+
+
+func _begin_dialogue(resource: DialogueResource) -> void:
+	dialogue_started.emit(resource)
 
 
 # Get the path to the example balloon
