@@ -22,7 +22,7 @@ do settleAfter()#应该已经销毁
 => END
 
 ~ 卖出物品教程
-商人: 州牧大人，小民今日前来，想收些大人随身物件。[voice:shangren_shougouwujian]
+商人: 刺史大人，小民今日前来，想收些大人随身物件。[voice:shangren_shougouwujian]
 商人: 如今商路萧条，我囤货额度也有限，只能收购便于转手的货品，无法尽数收下您所有物件，也无法每旬都前来收购。[voice:shangren_shangxian]
 商人: 待徐州推行重商政令、市面兴盛，咱们便可自由互通各类货物，我也必会每旬前来等候收物。[voice:shangren_wanzheng]
 #商人: 眼下商路冷清，我不常收大人手中物件；但大人若要采买货品，随时都能寻我。待到市面繁盛，每一旬我都会在此等候大人变卖物件。[voice:shangren_lenqing]

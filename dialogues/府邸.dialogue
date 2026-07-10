@@ -391,14 +391,14 @@ do SummonFaction(_faction)
 ~ 府邸第一天
 do _firstPhaseBegin()
 #do GameManager.sav.chendenfav=GameManager.sav.chendenfav+10
-: 刘备第一天上任徐州刺史，糜竺和陈登前来迎接。他的主簿向他介绍陈登等人
+: 刘备第一天上任徐州州牧，糜竺和陈登前来迎接。他的主簿向他介绍陈登等人
 
 主簿: 将军，这位是陈登，字元龙，在徐州声名远扬，也是我们的幕僚。[voice:jiangjun]
 刘备: 久仰大名！元龙之才，果然名不虚传。[voice:liubei_jiuyangyuanlong]
-陈登: 刺史大人过奖了。这位是糜竺，字子仲，担任徐州别驾，负责辅佐大人处理政务。[voice:cishidaren]
+陈登: 州牧大人过奖了。这位是糜竺，字子仲，担任徐州别驾，负责辅佐大人处理政务。[voice:cishidaren]
 刘备: 子仲，你的贤名我也早有耳闻。徐州有你们两位辅佐，真是百姓之福。[voice:liubei_mizhushibaixinzhifu]
 糜竺: 大人谬赞了。我们只是尽微薄之力，为徐州百姓谋福祉罢了。[voice:daren]
-陈登: 刺史大人，您刚上任，对徐州情况或许不熟。这是整理好的资料，详载了财政、军务与民生状况，请您过目。[voice:chenden_qingniguomu]
+陈登: 州牧大人，您刚上任，对徐州情况或许不熟。这是整理好的资料，详载了财政、军务与民生状况，请您过目。[voice:chenden_qingniguomu]
 刘备: 多谢。我会仔细研读这些并为徐州制定合适的政策。(这些文牍怕不是都是琐碎杂务...)[voice:liubei_zhidingheshizhengce]
 糜竺: 若有疑问，大人随时可与我们商议。[voice:ruoyouyiwen]
 系统提示: 已开启自动存档功能，游戏会在重要剧情节点自动保存进度。若存档位已满，将自动覆盖最早的存档。如需关闭此功能，可按Esc或点击右上角头像进入设置调整。
@@ -412,7 +412,7 @@ do mizhu.showEX=false
 刘备: 嗯，说起来，我初来乍到，对徐州详情确实不甚了解。[voice:liubei_wochulai]
 
 刘备: 我在小沛时便听闻军队欺压百姓，军中却说因大多是丹阳兵，他们军粮无法按时支取，这是怎么回事？[voice:liubei_wozaixiaopei]
-糜竺: 刺史大人，这事说来复杂。城内粮食与财政短缺，我们迫不得已才限制了军队的军粮发放。[voice:mizhu_xianzhijun4]
+糜竺: 州牧大人，这事说来复杂。城内粮食与财政短缺，我们迫不得已才限制了军队的军粮发放。[voice:mizhu_xianzhijun4]
 刘备: 徐州素来富庶，怎么会缺粮？如今乱世未平，外敌随时可能来犯，我怎能苛待军队？[voice:liubei_wozmnengkedai]
 糜竺: 大族藏匿人口，税赋收不上来。再加上之前与曹操交战，府库已捉襟见肘。虽经济尚可支撑，但储粮已近枯竭。[voice:mizhu_dazucangni3]
 糜竺: 这是无奈之举。我们告知军队，因民众不配合，税赋收不上来才发不出粮，如此他们不满不会指向官府，自会另寻出路。[voice:mizhu_zihui5]
