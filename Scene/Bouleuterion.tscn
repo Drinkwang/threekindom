@@ -22,7 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://bw52ymer7ngwu" path="res://Scene/prefab/gapanel.tscn" id="11_gm57k"]
 [ext_resource type="Script" path="res://Scripts/items_in_scene_manager.gd" id="12_n8pdl"]
 [ext_resource type="PackedScene" uid="uid://bhu5hq8kx8pov" path="res://addons/inventory_example/inventories/simple/InventoryUI.tscn" id="13_2g6k4"]
-[ext_resource type="PackedScene" uid="uid://4ap7nnl7o6br" path="res://Scene/prefab/_CgetSceneItem.tscn" id="13_aambj"]
+[ext_resource type="PackedScene" uid="uid://50fjtyt1ygye" path="res://Scene/prefab/_CgetSceneItem.tscn" id="13_aambj"]
 [ext_resource type="PackedScene" uid="uid://cw66yiofu8q6f" path="res://Scene/prefab/RuleBook.tscn" id="14_7v3lb"]
 [ext_resource type="PackedScene" uid="uid://dqpklssxni160" path="res://Scene/prefab/clickBlock.tscn" id="15_2mi3t"]
 [ext_resource type="PackedScene" uid="uid://bv5ycsl0a50uq" path="res://Scene/prefab/btnList.tscn" id="16_ba2uq"]

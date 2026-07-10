@@ -26,7 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://d3cyayah04ryr" path="res://Asset/绳子图.png" id="22_u1xrf"]
 [ext_resource type="VideoStream" path="res://Asset/vedio/Tentacle.ogv" id="23_2xaha"]
 [ext_resource type="Texture2D" uid="uid://w6wxp4aqc643" path="res://Asset/板子2.png" id="23_6dkku"]
-[ext_resource type="PackedScene" uid="uid://4ap7nnl7o6br" path="res://Scene/prefab/_CgetSceneItem.tscn" id="23_6q0tn"]
+[ext_resource type="PackedScene" uid="uid://50fjtyt1ygye" path="res://Scene/prefab/_CgetSceneItem.tscn" id="23_6q0tn"]
 [ext_resource type="Texture2D" uid="uid://bn4xfypysa6ry" path="res://Asset/人物/曹豹close.png" id="23_84sra"]
 [ext_resource type="Texture2D" uid="uid://c7kwawbgfjcv0" path="res://Asset/人物/真人.png" id="23_jre1y"]
 [ext_resource type="Script" path="res://Scripts/items_in_scene_manager.gd" id="24_8pl0e"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://4ap7nnl7o6br"]
+[gd_scene load_steps=5 format=3 uid="uid://50fjtyt1ygye"]
 
 [ext_resource type="Script" path="res://Scene/prefab/_cget_scene_item.gd" id="1_mvc3l"]
 [ext_resource type="PackedScene" uid="uid://bx77tf2wbqmk0" path="res://Scene/prefab/blink.tscn" id="4_ta5q3"]

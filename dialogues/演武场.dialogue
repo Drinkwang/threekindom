@@ -57,7 +57,7 @@ do guanyu.show()
 张飞: 大哥也该回去休息了..还有政务等着你处理呢[voice:zhangfei_gaixiuxi5]
 	#大哥也该回去休息了..明天还该处理政务呢[voice:zhangfei_gaixiuxi5]
 
-刘备: 好[voice:liubei_hao2]
+#刘备: 好[voice:liubei_hao2]
 do zhangfei.hide()
 do guanyu.hide()
 教程: 返回自宅，休息结束这一旬

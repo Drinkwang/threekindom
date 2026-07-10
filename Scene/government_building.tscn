@@ -39,7 +39,7 @@
 [ext_resource type="Texture2D" uid="uid://c4o3chacp3emp" path="res://Asset/fx/zhangyan_Frames/Slash2_color2_frame7.png" id="28_nttis"]
 [ext_resource type="Texture2D" uid="uid://rmaibsw1yjqd" path="res://Asset/城镇建筑/5_yellow.png" id="28_ucvcr"]
 [ext_resource type="Script" path="res://Scripts/items_in_scene_manager.gd" id="31_4rbvs"]
-[ext_resource type="PackedScene" uid="uid://4ap7nnl7o6br" path="res://Scene/prefab/_CgetSceneItem.tscn" id="32_1meer"]
+[ext_resource type="PackedScene" uid="uid://50fjtyt1ygye" path="res://Scene/prefab/_CgetSceneItem.tscn" id="32_1meer"]
 [ext_resource type="Resource" uid="uid://cjbqxteqnpnrd" path="res://dialogues/议会厅.dialogue" id="33_r2h6v"]
 [ext_resource type="Texture2D" uid="uid://cqh5dhr518rsp" path="res://Asset/板子.png" id="34_dqdog"]
 [ext_resource type="Texture2D" uid="uid://bol8v0a4a87yg" path="res://Asset/人物/张飞close.png" id="41_gh0g6"]
