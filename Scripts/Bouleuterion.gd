@@ -65,21 +65,28 @@ func _ready():
 		bg.texture=xiaopeiBuild		
 		
 	changePanelPos()	
-@onready var node_2d = $CanvasBook/Node2D
+
+
+var _tutorial_glows: Array[Panel] = []
+var _tutorial_glow_tweens: Array[Tween] = []
 
 func changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()	
 	if currencelanguage=="en":
-		node_2d.position=Vector2(615,811)
+		pass
+		#node_2d.position=Vector2(615,811)
 	elif currencelanguage=="zh":
-		node_2d.position=Vector2(400,811)
+		pass
+		#node_2d.position=Vector2(400,811)
 	elif currencelanguage=="lzh":
-		node_2d.position=Vector2(410,811)
+		pass
+		#node_2d.position=Vector2(410,811)
 	elif currencelanguage=="ja":
-		node_2d.position=Vector2(468,811)
+		pass
+		#node_2d.position=Vector2(468,811)
 		#node_2d.position=Vector2(615,811)
 	elif currencelanguage=="ru":
-		node_2d.position=Vector2(605,811)
+		#node_2d.position=Vector2(605,811)
 		faction.position=Vector2(5,728.545)
 		pass
 
@@ -331,15 +338,84 @@ func _buttonListHover(item):
 
 
 func showGuild():
-	$CanvasBook/Node2D.show()
-	$"CanvasBook/Node2D/5Yellow/AnimationPlayer".play("YELLOWGUILD")
+	#$CanvasBook/Node2D.show()
+	#$"CanvasBook/Node2D/5Yellow/AnimationPlayer".play("YELLOWGUILD")
+	call_deferred("_show_guild_tutorial_glow")
+	DialogueManager.show_exaple_top_dialogue_balloon(dialogue_resource,"第一次开始议事_上")
 	
 func meetingEnd():
+	_clear_guild_tutorial_glow()
 	control._show_button_5_yellow(2)
 	GameManager.sav.destination="自宅"
 
 func hideGuild():
-	$CanvasBook/Node2D.hide()
+	_clear_guild_tutorial_glow()
+	#$CanvasBook/Node2D.hide()
+
+
+func _show_guild_tutorial_glow() -> void:
+	_clear_guild_tutorial_glow()
+	await get_tree().process_frame
+
+	var targets: Array[Control] = [
+		$CanvasBook/faction/PanelContainer,
+		$CanvasBook/Control2/PanelContainer,
+	]
+
+	for target in targets:
+		if not is_instance_valid(target) or not target.visible:
+			continue
+
+		var target_rect := _get_tutorial_target_rect(target)
+		if target_rect.size.x <= 0 or target_rect.size.y <= 0:
+			continue
+
+		var glow := Panel.new()
+		glow.name = "GuildTutorialGlow"
+		glow.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		glow.z_index = 1000
+		glow.position = target_rect.position - Vector2(6, 6)
+		glow.size = target_rect.size + Vector2(12, 12)
+
+		var style := StyleBoxFlat.new()
+		style.bg_color = Color(1.0, 1.0, 1.0, 0.0)
+		style.border_width_left = 4
+		style.border_width_top = 4
+		style.border_width_right = 4
+		style.border_width_bottom = 4
+		style.border_color = Color(1.0, 0.86, 0.22, 0.95)
+		style.corner_radius_top_left = 8
+		style.corner_radius_top_right = 8
+		style.corner_radius_bottom_right = 8
+		style.corner_radius_bottom_left = 8
+		style.shadow_color = Color(1.0, 0.65, 0.05, 0.0)
+		style.shadow_size = 0
+		style.shadow_offset = Vector2.ZERO
+		glow.add_theme_stylebox_override("panel", style)
+
+		$CanvasBook.add_child(glow)
+		_tutorial_glows.append(glow)
+
+		var pulse := glow.create_tween().set_loops()
+		pulse.tween_property(glow, "modulate:a", 0.45, 0.65).set_trans(Tween.TRANS_SINE)
+		pulse.tween_property(glow, "modulate:a", 1.0, 0.65).set_trans(Tween.TRANS_SINE)
+		_tutorial_glow_tweens.append(pulse)
+
+
+func _get_tutorial_target_rect(target: Control) -> Rect2:
+	return target.get_global_rect()
+
+
+func _clear_guild_tutorial_glow() -> void:
+	for tween in _tutorial_glow_tweens:
+		if tween:
+			tween.kill()
+	_tutorial_glow_tweens.clear()
+
+	for glow in _tutorial_glows:
+		if is_instance_valid(glow):
+			glow.queue_free()
+	_tutorial_glows.clear()
 
 
 func showResult():
