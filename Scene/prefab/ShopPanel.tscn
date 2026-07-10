@@ -183,20 +183,6 @@ theme_override_font_sizes/font_size = 62
 text = "装备"
 autowrap_mode = 2
 
-[node name="TextureButton" type="TextureButton" parent="."]
-visible = false
-layout_mode = 1
-offset_left = 1597.0
-offset_top = 85.0
-offset_right = 1661.0
-offset_bottom = 149.0
-texture_normal = ExtResource("9_kapto")
-texture_pressed = ExtResource("9_kapto")
-texture_hover = ExtResource("9_kapto")
-texture_disabled = ExtResource("9_kapto")
-texture_focused = ExtResource("9_kapto")
-stretch_mode = 0
-
 [node name="buyButton" type="Button" parent="."]
 layout_mode = 0
 offset_left = 779.0
@@ -695,7 +681,6 @@ stretch_mode = 0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="gui_input" from="PanelContainer" to="." method="_on_panel_container_gui_input"]
-[connection signal="button_down" from="TextureButton" to="." method="_on_exit_button_button_down"]
 [connection signal="button_down" from="buyButton" to="." method="_on_buy_button_down"]
 [connection signal="mouse_entered" from="buyButton" to="." method="_on_buy_button_focus_entered"]
 [connection signal="mouse_exited" from="buyButton" to="." method="_on_buy_button_focus_exited"]

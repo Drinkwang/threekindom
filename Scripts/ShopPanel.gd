@@ -138,6 +138,8 @@ var price:int
 @onready var buy_button = $buyButton
 
 func initData():
+	self_sell_bg.hide()
+	self_sell_panel.hide()
 	detail.text=tr("点击商品获取详细信息")
 	buy_button.disabled=true
 	selectGoods=null
@@ -247,6 +249,7 @@ func refreshAlreadySoldWeapon():
 	$HBoxContainer/Control4.refreshSold()
 	$HBoxContainer/Control5.refreshSold()
 func _on_texture_button_2_button_down():
+	self_sell_bg.hide()
 	GameManager.currenceScene.res_panel.position.x=1404
 	GameManager.currenceScene.res_panel.position.y=611
 	GameManager.currenceScene.res_panel.scale=Vector2(1,1)
@@ -254,6 +257,8 @@ func _on_texture_button_2_button_down():
 	self.hide()
 	if GameManager.sav.have_event["boss战开始"]==true and GameManager.sav.caobaocardgame==4:
 		GameManager.currenceScene.enterBlackMerchant()
+
+
 
 func settleAfter():
 	

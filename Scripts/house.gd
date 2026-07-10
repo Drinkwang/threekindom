@@ -957,7 +957,7 @@ func determineInternalUnrest():
 				_UnrestNum=_UnrestNum+1
 
 	var _LVBUsupport_rate=GameManager.sav.LVBU._support_rate
-	if _LVBUsupport_rate < 80.0:
+	if _LVBUsupport_rate < 80.0 and GameManager.sav.endPath!=GameManager.endPath.xuzhou:
 			# 计算叛变概率：支持率越低，概率越高
 			# 线性插值：忠诚度 80 -> 28% 概率，忠诚度 0 -> 82% 概率
 		var rebellion_chance = lerp(0.28*difficultyCoeff, 0.82, (80.0 - _LVBUsupport_rate) / 80.0)
