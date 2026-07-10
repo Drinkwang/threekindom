@@ -171,7 +171,7 @@ func _initData():
 		return #选选项，另外点击百姓
 		
 	if (GameManager._boardReward==boardType.boardRewardResult.BreakFree or GameManager._boardGameWin==false) and GameManager._boardMode==boardType.boardMode.high and GameManager.selectBoardCharacter==boardType.boardCharacter.caobao:
-		GameManager._boardReward==boardType.boardRewardResult.none
+		GameManager._boardReward=boardType.boardRewardResult.none
 		GameManager.selectBoardCharacter=boardType.boardCharacter.none
 		GameManager._boardMode=boardType.boardMode.none
 		GameManager.resumeMusic()

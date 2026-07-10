@@ -35,8 +35,8 @@ func _ready():
 		reallabel.add_theme_font_size_override("font_size", 38)
 		label.add_theme_constant_override("line_spacing", -3)
 		reallabel.add_theme_constant_override("line_spacing", -5)
-		label.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
-		reallabel.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
+		#label.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
+		#reallabel.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
 
 	print(TranslationServer.get_locale()) 
 	# Replace with function body.

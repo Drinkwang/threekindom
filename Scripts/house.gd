@@ -730,6 +730,7 @@ func _DayGet():
 		var to_inventory= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.黄麻药囊)
 		var quantity=InventoryManager.has_item_quantity(to_inventory)
 		if quantity>0:
+			GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.KESULU]=tr("携药囊见曹豹，调查张阎毒杀之谜")
 			GameManager.sav.have_event["查出药囊后休息前"]=true
 				#下一步去演武场，判断这个==true，将曹豹显示并修改任务
 

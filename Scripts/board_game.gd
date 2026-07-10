@@ -34,6 +34,7 @@ var achiIndex=-1
 func loseGame(_str:String=""):
 	if is_match_finished():
 		return
+	GameManager._boardGameWin=false
 	#SoundManager.play_sound(youlosesound)
 	if _str.length()>0:
 		lose_label.text=_str	
@@ -765,6 +766,10 @@ func _input(event: InputEvent) -> void:
 
 @export var _issole:bool=false
 func startGame(cardnum,issole,enemyExtraCard):
+	# Match results are global because the destination scene resolves the outcome.
+	# Reset them here so a previous victory/reward cannot leak into this match.
+	GameManager._boardGameWin=false
+	GameManager._boardReward=boardType.boardRewardResult.none
 	score=0
 	hp=3
 	enemy_hp=3
@@ -2899,6 +2904,11 @@ func _on_exitGameBtn_down() -> void:
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"认输")
 
 
+func surrenderGame() -> void:
+	GameManager._boardGameWin=false
+	GameManager._boardReward=boardType.boardRewardResult.none
+
+
 func _on_win_button_down() -> void:
 
 #进行跳转 none 获得物品 获得诡秘卡 获得清醒
@@ -2914,7 +2924,8 @@ func fadeScene():
 		if GameManager._boardMode==boardType.boardMode.high:
 			if GameManager.sav.caobaocardgame>=4:
 				if GameManager.sav.have_event["赢过黑商"]==false:
-					GameManager.sav.have_event["赢过黑商"]=true
+					if GameManager._boardGameWin:
+						GameManager.sav.have_event["赢过黑商"]=true
 					SceneManager.changeScene(SceneManager.roomNode.STREET,2)
 					return
 		
