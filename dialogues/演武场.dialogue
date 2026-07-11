@@ -563,11 +563,18 @@ do enterBattleMode()
 ~ 张飞惩戒
 刘备: 我允许张飞对丹阳士兵进行惩戒，以维护城内的秩序。我们要保证军纪严明，不能让劫掠行为继续下去。[voice:liubei_woyunxuchenjie]
 系统提示: 你选择了允许张飞惩戒丹阳派。此决定获得了徐州本地人的支持，但也引起了丹阳派的不满。局势暂时得到控制，但需密切关注丹阳派的反应。
+do GameManager.sav.HAOZUPAI.ChangeSupport(5)
+do GameManager.sav.BENTUPAI.ChangeSupport(5)
+do GameManager.sav.WAIDIPAI.ChangeSupport(-50)
+
 => END!
 
 ~ 不允许张飞惩戒
 刘备: 我不允许张飞对丹阳士兵实行刑法，这会激化矛盾。我们需要找到其他方法来解决粮草问题，而不是付诸于武力。[voice:liubei_wobuyunxushifa]
 系统提示: 你选择了不允许张飞实行刑法。此决定暂时安抚了丹阳派，但徐州本地人对此表示不满。
+do GameManager.sav.HAOZUPAI.ChangeSupport(-5)
+do GameManager.sav.BENTUPAI.ChangeSupport(-5)
+do GameManager.sav.WAIDIPAI.ChangeSupport(-40)
 => END!
 
 ~ 每日物质送不来
