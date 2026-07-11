@@ -37,7 +37,7 @@ do zhangfei.show()
 刘备: 此话怎讲？[voice:liubei_cihuazmjiang]
 张飞: 无论是体能还是战术意识 都比我们这些幽州有底子的老兵差远了[voice:zhangfei_wulun2]
 刘备: 确实，为难你们了,为兄后续会和你们一起亲自操刀训练，我们能留在这里，恰恰就是陶使君想让我们给他训练一支能打的部队[voice:liubei_queshiweinan]
-张飞: 哈哈哈，不用担心，经过我、关大哥，那位兄弟三人协助训练下，现在，这些家伙大为改善！[voice:zhangfei_hahaha3]
+张飞: 哈哈哈，不用担心，经过我、关二哥，那位兄弟三人协助训练下，现在，这些家伙大为改善！[voice:zhangfei_hahaha3]
 刘备: 好！就让我们再接再厉，接着在训练场上将自己实力进一步提升！[voice:liubei_xunlianchangjinyibu]
 do zhangfei.hide()
  : 练兵场是用来让将领训练，获得成长的地方，只要有足够的资金，就能让自己的手下快速将等级提升上去(满级10级)
