@@ -156,8 +156,8 @@ func changeLanguage():
 		#label.remove_theme_font_override("font")
 		law_label.remove_theme_font_override("font")
 		#currence_no_policy.remove_theme_font_override("font")
-	point_label.text=tr("点数:%s")%GameManager.sav.Merit_points
-	
+	#point_label.text=tr("点数:%s")%GameManager.sav.Merit_points
+	refreshLawPoint()
 	
 	if GameManager.sav.gameDifficulty==1:
 		TooltipManager.register_tooltip(ConfireButton,tr("立法收益仅在表决通过后生效。本难度下，仅点亮立法节点会扣除受损派系支持度，法案通过不再重复扣除。"))
@@ -197,13 +197,17 @@ func changeexp_len():
 		# 应用到 Panel
 	detail_panel.custom_minimum_size = new_size
 func refreshLawPoint():
+	#if tab==0:
+	#	return 
 	get_tree().call_group("lawpoints","_initData")
 	if GameManager.sav.curLawName.length()>0 or GameManager.sav.curLawNum1!=-1 or GameManager.sav.curLawNum2!=-1:
 		ConfireButton.disabled=true
 	else:
 		ConfireButton.disabled=false
 	point_label.text=tr("点数:%s")%GameManager.sav.Merit_points
-
+	#+"\n"+"上限:{x}/{max}".format({"x":GameManager.LawNum(),"max":GameManager.maxLawNum})
+	var tabcontext=" {x}/{max}".format({"x":GameManager.LawNum(),"max":GameManager.maxLawNum})
+	tab_bar.set_tab_title(1,tr("法律法规")+tabcontext)
 @onready var LawPanelBoard = $PanelContainer/orderPanel2
 
 

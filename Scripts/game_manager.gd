@@ -2204,19 +2204,19 @@ func LoadingDiffucultValue():
 		perLawCycle=6
 		minxinPoint=1
 		LAW_COST_POINT=2
-		maxLawNum=18
+		maxLawNum=15
 		#2点法令点立一个法
 	elif GameManager.sav.gameDifficulty==2:
 		perLawCycle=5
 		minxinPoint=1
 		LAW_COST_POINT=3
-		maxLawNum=15
+		maxLawNum=12
 		#3点法令点立一个法
 	elif GameManager.sav.gameDifficulty==3:
 		perLawCycle=4
 		minxinPoint=2
 		LAW_COST_POINT=4
-		maxLawNum=12
+		maxLawNum=9
 		#4点法令点立一个法
 		#战斗难度
 		#一些惩罚增加
