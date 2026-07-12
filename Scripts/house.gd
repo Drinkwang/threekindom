@@ -399,10 +399,11 @@ func post_transition():
 			canMuliao=false
 	else:
 		SoundManager.play_ambient_sound(daybgm)
-	if canMuliao==true:
-		canMuliao=_initData()
-	else:
-		_initData()
+	var initCanContinue=_initData()
+	# _initData 已触发关羽归来等主线时，本次进场不再叠加法律、辕门射戟等自动对话。
+	if canMuliao==false or initCanContinue==false:
+		return
+	canMuliao=initCanContinue
 
 	if GameManager.sav.have_event["进入曹府"]==true and GameManager.sav.have_event["最终比武结束"]==false:
 		AchievementManager.set_achievement("NEW_ACHIEVEMENT_2_0")
@@ -416,7 +417,7 @@ func post_transition():
 	elif GameManager.sav.have_event["辕门射戟"]==true and GameManager.sav.have_event["辕门射戟结束"]==false:
 		GameManager.sav.have_event["辕门射戟结束"]=true
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"辕门射戟完成")
-	elif GameManager.LawNum()>=9 and GameManager.sav.have_event["法律健全"]==false:
+	elif GameManager.LawNum()>=GameManager.maxLawNum and GameManager.sav.have_event["法律健全"]==false:
 		GameManager.sav.have_event["法律健全"]=true
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"法律够了")
 
