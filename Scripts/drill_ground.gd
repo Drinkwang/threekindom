@@ -1265,7 +1265,7 @@ func winTrain():
 		
 		if GameManager.sav.guanyuTrainNum<GameManager.trainLevel:			
 			GameManager.sav.guanyuTrainNum+=1
-			found_general["level"] += 1	
+			found_general["level"]=min(found_general["level"]+1,found_general["max_level"])
 			if found_general["level"]>=10:
 				AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_26")
 			isFirst=true
@@ -1275,7 +1275,7 @@ func winTrain():
 	elif GameManager.trainGeneral=="张飞":
 		if GameManager.sav.zhangfeiTrainNum<GameManager.trainLevel:
 			GameManager.sav.zhangfeiTrainNum+=1
-			found_general["level"] += 1	
+			found_general["level"]=min(found_general["level"]+1,found_general["max_level"])
 			isFirst=true
 			if found_general["level"]>=10:
 				AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_27")			
@@ -1285,7 +1285,7 @@ func winTrain():
 	elif GameManager.trainGeneral=="无名":
 		if GameManager.sav.zhaoyunTrainNum<GameManager.trainLevel:
 			GameManager.sav.zhaoyunTrainNum+=1
-			found_general["level"] += 1	
+			found_general["level"]=min(found_general["level"]+1,found_general["max_level"])
 			isFirst=true
 			if found_general["level"]>=10:
 				AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_28")
