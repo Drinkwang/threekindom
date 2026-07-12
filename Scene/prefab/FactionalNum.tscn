@@ -41,6 +41,8 @@ text = "外地派系(丹阳)-支持度："
 
 [node name="ProgressBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
 theme_override_styles/fill = SubResource("StyleBoxFlat_2mory")
 value = 100.0
 

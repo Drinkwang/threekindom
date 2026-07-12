@@ -219,6 +219,11 @@ do chendeng.showEX=false
 
 do chendeng.hide()
 
+if not (GameManager.sav.have_event["陈登正确选择1"]==true and GameManager.sav.have_event["陈登正确选择2"]==true)
+	do SoundManager.play_sound(sounds.COLLECT_SMALL_JEWEL_3)
+	系统提示: 察觉些许暗藏端倪，法令点数+3
+	do GameManager.sav.Merit_points+=3
+
 
 => END!
 

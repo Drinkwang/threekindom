@@ -1099,6 +1099,7 @@ do caobao.showEX=false
 	else		
 		曹豹: 不过无需主公操心了，如果主公只是对这件事好奇的话，那么也没别的事了[voice:caobao_ruguonizhishihaoqi]
 		刘备: 嗯...[voice:liubei_enqueding]
+		
 	do select2(true)	
 - 询问古龙石像详情，是否真有神力。
 	do GameManager.changeCaobaoHeart(-10)
@@ -1106,7 +1107,10 @@ do caobao.showEX=false
 	曹豹: 古龙石像不过石雕，传闻多为夸大。主公若无他事，某尚有军务。[voice:caobao_shidiao]
 	刘备: 嗯...[voice:liubei_enqueding]
 	do select2(false)
-
+if not (GameManager.sav.have_event["曹豹正确选择1"]==true and GameManager.sav.have_event["曹豹正确选择2"]==true)
+	do SoundManager.play_sound(sounds.COLLECT_SMALL_JEWEL_3)
+	系统提示: 察觉些许暗藏端倪，法令点数+3
+	do GameManager.sav.Merit_points+=3
 do laibapai()
 => END!
 

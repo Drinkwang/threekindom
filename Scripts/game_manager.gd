@@ -1282,7 +1282,7 @@ func preCostPaixi():
 
 		sav.WAIDIPAI.ChangeSupport(-25)
 		#	print("禁止军商done")			
-	elif sav.curLawName=="商业税收法":
+	elif sav.curLawName=="宽商减赋法":
 
 		
 		sav.BENTUPAI.ChangeSupport(-20)
@@ -1334,7 +1334,7 @@ func preCostPaixi():
 		sav.HAOZUPAI.ChangeSupport(-30)
 		
 	
-	elif sav.curLawName=="律令兵制":
+	elif sav.curLawName=="厉兵练卒法":
 
 		sav.BENTUPAI.ChangeSupport(-20)
 		sav.HAOZUPAI.ChangeSupport(-20)
@@ -2106,7 +2106,7 @@ func rTaishanName():
 
 var perLawCycle=5
 var minxinPoint=1
-var maxLawNum=9
+var maxLawNum=12
 func CheckAllFactionsSubdued():
 	return GameManager.sav.HAOZUPAI.supressNum>=3 and GameManager.sav.WAIDIPAI.supressNum>=3 and \
 		GameManager.sav.BENTUPAI.supressNum>=3
@@ -2216,7 +2216,7 @@ func LoadingDiffucultValue():
 		perLawCycle=4
 		minxinPoint=2
 		LAW_COST_POINT=4
-		maxLawNum=9
+		maxLawNum=12
 		#4点法令点立一个法
 		#战斗难度
 		#一些惩罚增加

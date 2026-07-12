@@ -1476,8 +1476,11 @@ elif GameManager.sav.have_event["糜竺正确选择1"]==true
 	刘备: 方才似有人影闪过，是谁？[voice:liubei_fangcairenyin]
 	刘备仔细搜寻，但并没有发现任何迹象
 	刘备: 罢了，或许是我眼花了...[voice:liubei_huoxuwoyanhua]
-
-
+	
+if not (GameManager.sav.have_event["糜竺正确选择1"]==true and GameManager.sav.have_event["糜竺正确选择2"]==true)
+	do SoundManager.play_sound(sounds.COLLECT_SMALL_JEWEL_3)
+	系统提示: 察觉些许暗藏端倪，法令点数+3
+	do GameManager.sav.Merit_points+=3
 => END!
 
 ~ 糜贞结尾
