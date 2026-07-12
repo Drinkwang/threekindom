@@ -536,9 +536,6 @@ func _on_Tween_tween_all_completed():
 					selectPart = data.name
 	if GameManager.currenceScene.battle_pane._mode == SceneManager.bossMode.none:
 		GameManager.sav.hp = GameManager.sav.hp - _hp
-	# 先完整播放命中/反击反馈，再进入资源与奖励结算，避免奖励面板遮住战斗演出。
-	if control != null and control.has_method("play_battle_result_feedback"):
-		await control.play_battle_result_feedback(selectPart, issuccess)
 	settleGame(selectPart, issuccess)
 	#将风险值和成功率一起输入
 	#print(real_angle)

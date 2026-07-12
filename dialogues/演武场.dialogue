@@ -588,7 +588,7 @@ do changePot(SceneManager.potType.Empty)
 if GameManager.sav.currenceValue!=21
 	刘备: 估计出现什么状况...罢了，且待下一旬[voice:liubei_gujichulezhuangkuang]
 #下一旬
-
+do GameManager.sav.LVBU.ChangeSupport(-5)
 do meat.hide()
 => END!
 
@@ -597,7 +597,7 @@ do meat.show()
 do changePot(SceneManager.potType.Full)
 刘备 : 吾弟的粮草辎重该到了，且看军需如何[voice:liubei_wudideliangcaozizhong]
 部将 : 禀主公！今日张将军从徐州发来：\n- 军饷{{GameManager.sav.coin_DayGet}}贯\n- 新募士兵{{GameManager.sav.labor_DayGet}}人[voice:qinbin_junxiang]
-
+do GameManager.sav.LVBU.ChangeSupport(-5)
 do meat.hide()
 do _DayGet()
 => END!

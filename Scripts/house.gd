@@ -118,6 +118,8 @@ func _ready():
 
 	Transitions.post_transition.connect(post_transition)
 	control.buttonClick.connect(_buttonListClick)
+	# 屋舍剧情必须等场景过渡完成后再初始化，避免对话气泡被挂到旧场景并随之销毁。
+	readyInitData=false
 	if GameManager.sav.day==1||GameManager.sav.day==0:
 		if GameManager.sav.have_event["firstmeetchenqun"]==false:
 			GameManager.changeTaskLabel(tr(""))
@@ -174,6 +176,8 @@ func playmusic():
 @onready var guanyu: Node2D = $guanyu
 
 func xiaopeiStart():
+	# 只有“关羽回来”对话完整执行到这里，才算真正完成求援剧情。
+	GameManager.sav.have_event["关羽求援结束"]=true
 	GameManager.sav.targetValue=12
 	GameManager.sav.currenceValue=0
 	GameManager.sav.targetResType=GameManager.ResType.rest
@@ -267,8 +271,6 @@ func _initData():
 		#竹筒幻觉剧情 播放音效，改变背景，然后吓醒了 我觉得这个剧情可以放在早上，如果早上没有主线，则触发这个剧情，然后得知是一场噩梦
 				return canMuliao
 			elif GameManager.sav.have_event["关羽求援期间"]==true and GameManager.sav.have_event["关羽求援结束"]==false:
-				GameManager.sav.have_event["关羽求援结束"]=true
-
 				if GameManager.sav.people_surrport <60:
 					GameManager.sav.people_surrport =60
 

@@ -326,7 +326,8 @@ func enterBattleMode():
 	GameManager.sav.targetResType=GameManager.ResType.stayFight
 	GameManager.initBattle()
 	GameManager.sav.targetTxt="血战模式：{currence}/{target}"
-	#觉得无用的注释GameManager.sav.TargetDestination="battle"
+	# 血战没有场景交付目标，清除亲征阶段遗留的“演武场”，避免完成后显示错误指引。
+	GameManager.sav.TargetDestination=""
 	_initData()
 	
 	battle_pane.refreshData()
