@@ -145,7 +145,7 @@ func _on_item_button_button_down():
 const sys = preload("res://dialogues/系统.dialogue")
 func _on_save_button_button_down():
 	
-	if GameManager.CanClickUI==false:
+	if GameManager.CanClickUI==false or DialogueManager.dialogBegin==true:
 		return
 	
 	if GameManager.sav.have_event["战斗袁术血战模式"]==true and GameManager.sav.have_event["血战袁术完成"]==false:

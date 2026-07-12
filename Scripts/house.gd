@@ -115,7 +115,7 @@ func enterFinalBiwu():
 func _ready():
 	preload("res://Asset/tres/bentupai.tres")#没用但必须有，让资源提前单例加载
 
-
+	var loaded_from_save=GameManager.isLoadingSave
 	Transitions.post_transition.connect(post_transition)
 	control.buttonClick.connect(_buttonListClick)
 	# 屋舍剧情必须等场景过渡完成后再初始化，避免对话气泡被挂到旧场景并随之销毁。
@@ -130,6 +130,8 @@ func _ready():
 	else:
 		control.show()
 	super._ready()
+	if loaded_from_save:
+		call_deferred("_restore_loaded_control")
 	var currencelanguage=TranslationServer.get_locale()
 	if currencelanguage=="ja":
 		title.add_theme_font_size_override("normal_font_size",200)
@@ -192,11 +194,8 @@ func xiaopeiStart():
 @onready var demo_end_v: VideoStreamPlayer = $demoEnd
 
 
-func _initData():
-	var canMuliao=true
-	GameManager.play_BGM()
-
-	var initData=[
+func _get_control_init_data():
+	return [
 	{
 		"id":"1",
 		"context":"(议事厅)", #前往小道通向议事z
@@ -228,6 +227,24 @@ func _initData():
 		"visible":"true"
 	}
 	]
+
+
+func _restore_loaded_control():
+	# Runtime-created buttons are not included in PackedScene saves.
+	# Restore only scene-local UI here so loading cannot replay turn events.
+	GameManager.currenceScene=self
+	control._processList(_get_control_init_data())
+	if control.visible:
+		items_in_scene.showItems()
+	else:
+		items_in_scene.hideItems()
+
+
+func _initData():
+	var canMuliao=true
+	GameManager.play_BGM()
+
+	var initData=_get_control_init_data()
 
 	#记得demo注销
 	if GameManager.sav.have_event["chaoMizhuEnd"]==true and GameManager.sav.isGetCoin==false and GameManager.sav.currenceValue>1 and GameManager.sav.have_event["battleTaiShan"]==false:
