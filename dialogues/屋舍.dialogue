@@ -132,6 +132,7 @@ do secondMissonStart()
 提示: 在军事行动中取得10场胜利
 #主簿：“主公英明，糜竺先生也建议尽快行动，以免延误。”
 #刘备（点头）：“传令下去，准备出发。我们必须确保商队的安全，稳定徐州的粮食供应。”
+do settle_allocation_after_current_dialogue()
 => END!
 
 
@@ -376,6 +377,7 @@ do caocao_letter_2.show()
 
 系统提示: 武将夏侯惇已临时加入麾下，可在出征列表中调遣使用。
 do caocao_letter_2.hide()
+do settle_allocation_after_current_dialogue()
 => END!
 
 ~ 吕布最终进犯
@@ -391,6 +393,7 @@ do xiahouchun.show()
 do SoundManager.play_sound(sounds.guiyi)
 系统提示: 最后坚持几回合，等待曹操的救援。敌军已换为吕布，每回合必须出战3次，否则民心将下降。
 do xiahouchun.hide()
+do settle_allocation_after_current_dialogue()
 => END!
 #如果参与偷马 给与一些奖励
 
@@ -565,7 +568,7 @@ do GameManager.sav.BENTUPAI.ChangeSupport(10)
 do GameManager.sav.WAIDIPAI.ChangeSupport(10)
 do GameManager.sav.LVBU.ChangeSupport(10)
 系统提示: 恭喜玩家完成「泰山内应密告」任务，促成辕门射戟，暂时化解小沛危机，徐州各派系支持度上升10
-
+do settle_allocation_after_current_dialogue()
 => END!
 
 ~ demo结束
@@ -624,6 +627,7 @@ do GameManager.sav.LVBU.ChangeSupport(10)
 ~ 派系扣除好感
 主簿: 主公，本月俸禄未能按时足额发放，各部怨声渐起：{{allcontext}}府中钱粮紧张，若再不调度补给，恐生内乱。[voice:zhubo_fenglushibai]
 系统提示: 可前往府邸场景找糜竺对话，调整月例配给。场景中遍布路人、各色人物与可拾取道具，不妨仔细探索留意，或许能收获意外助力。
+do finish_pending_allocation_cycle()
 => END!
 
 
@@ -633,6 +637,7 @@ if GameManager.iscompleteAll()
 else:
 	主簿: 主公，本月各派俸禄，糜竺先生已按旧例办妥，共耗费 {{determineDetail}}，另有部分派系未交由糜竺统筹打理，俸禄尚未下发，还请主公核查定夺。您获得 {{GameManager.getLawPoint}} 点政策点数。[voice:zhubo_shouhuodianshu2]
 do zhubu.hide()
+do finish_pending_allocation_cycle()
 
 => END!
 
@@ -759,6 +764,7 @@ do xiahouchun.show()
 夏侯惇: 话一定带到。另外……家主让我留在徐州助你一阵。这不是监视，是家主与您的交情。[voice:xiahouchun_yuninjiaoqing]
 do xiahouchun.hide()
 系统提示: 夏侯惇率军驰援徐州防线，我方与曹操势力好感大幅提升。战局进入终局阶段，此后每旬需完成3场军事行动！
+do settle_allocation_after_current_dialogue()
 => END!
 
 ~ 待办事项教程

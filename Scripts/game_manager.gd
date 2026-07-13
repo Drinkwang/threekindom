@@ -587,6 +587,12 @@ func initSoleDemand(sav,value):
 	)
 	sav.demand=items
 	sav.allocationStatue=0
+
+func clearAllocationDemands():
+	for i in range(0,4):
+		var data=getcldateByindex(i)
+		data.demand={}
+		data.allocationStatue=-1
 	
 	
 func canDistributeAllowance():

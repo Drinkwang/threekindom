@@ -1018,9 +1018,22 @@ func allocationAllSettle():
 
 	if GameManager.sav.allocationDay==0:
 		allcontext="\n"
+		var auto_allocation_paid=false
+		var allCost=GameManager.cuclulateAllAllocation()
+		if allCost!=null and !allCost.is_empty():
+			determineDetail=generate_cost_allocate(allCost)
+			if GameManager.justHaveDemand(allCost):
+				GameManager.playDemand(allCost)
+				GameManager.completeAutoAll()
+				auto_allocation_paid=true
 		allocationSettle()
-		GameManager.sav.allocationDay=1
-		allocationAllSettle()
+		if allcontext!="\n":
+			pending_allocation_cycle_restart=true
+		elif auto_allocation_paid:
+			pending_allocation_cycle_restart=true
+			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"津贴发放")
+		else:
+			_finish_allocation_cycle()
 		return
 		#把逻辑放在初始后 initdemand
 	elif GameManager.sav.allocationDay==1:
@@ -1043,6 +1056,19 @@ func allocationAllSettle():
 
 var cnames:Array=[]
 var allcontext=""
+var pending_allocation_cycle_restart=false
+
+func finish_pending_allocation_cycle():
+	if not pending_allocation_cycle_restart:
+		return
+	pending_allocation_cycle_restart=false
+	_finish_allocation_cycle()
+
+func _finish_allocation_cycle():
+	GameManager.clearAllocationDemands()
+	GameManager.sav.allocationDay=1
+	GameManager.initDemand()
+
 func allocationSettle():
 	for index in range(0,4):
 		alldata=GameManager.getcldateByindex(index)
