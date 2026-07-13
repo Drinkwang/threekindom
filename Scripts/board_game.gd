@@ -745,7 +745,8 @@ func _input(event: InputEvent) -> void:
 		if isstop==true:
 			stopClick()
 			if _phaseName==phaseName.useCard and isPlayerTurn==true:
-				detail_txt.text=tr("必须靠近出现感叹号才能使用卡牌")
+				pass
+				#detail_txt.text=tr("必须靠近出现感叹号才能使用卡牌")
 	#参考我炒的代码
 	
 	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:

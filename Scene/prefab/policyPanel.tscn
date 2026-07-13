@@ -242,6 +242,7 @@ libraries = {
 }
 
 [node name="lawPanel" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -839,7 +840,7 @@ grow_horizontal = 2
 grow_vertical = 2
 _color = 1
 lawpoins = [NodePath("../Control2-5"), NodePath("../Control2-6")]
-detail = "市肆重商过盛，万物皆可售商牟利，农兵生计备受掣肘。(每旬钱产出+120，开启自选物品出售面板 ，[shizu]支持度-20，[danyang]支持度-20)"
+detail = "市肆重商过盛，万物皆可售商牟利，士卒、兵员生计备受掣肘。(每旬钱产出+120，开启自选物品出售面板 ，[shizu]支持度-20，[danyang]支持度-20)"
 IncomeBg = "市肆重商过盛，万物皆可售商牟利，士卒、兵员生计备受掣肘。"
 IncomeTxt = "每旬钱产出+120，开启自选物品出售面板 ，[shizu]支持度-20，[danyang]支持度-20"
 context = "市肆兴隆法"
@@ -883,7 +884,7 @@ grow_horizontal = 2
 grow_vertical = 2
 _color = 1
 lawpoins = [NodePath("../Control2-5"), NodePath("../Control2-6")]
-detail = "放宽商贾征信，容其献礼通商，农兵多有怨言(获得道具\"珍品礼盒\"x8，每旬钱产出+200，[shizu]支持度-20，[danyang]支持度-20)"
+detail = "放宽商贾征信，容其献礼通商，士、兵多有怨言(获得道具\"珍品礼盒\"x8，每旬钱产出+200，[shizu]支持度-20，[danyang]支持度-20)"
 IncomeBg = "放宽商贾征信，容其献礼通商，士、兵多有怨言"
 IncomeTxt = "获得道具\"珍品礼盒\"x8，每旬钱产出+200，[shizu]支持度-20，[danyang]支持度-20"
 context = "宽商信规法"

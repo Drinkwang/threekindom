@@ -48,7 +48,7 @@ func _ready():
 		
 	initLoadContinus()
 	#_add_version_label()#debug
-	_test_deadline_check()#debug
+	#_test_deadline_check()#debug
 	if GameManager._setting.is_clear_normal_line or GameManager._setting.is_clear_overlord_line:
 		$credit.disabled = false
 	if not SignalManager.changeLanguage.is_connected(_on_global_language_changed):

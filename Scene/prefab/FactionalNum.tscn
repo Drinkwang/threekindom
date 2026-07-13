@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://ddo166anpds0n"]
+[gd_scene load_steps=6 format=3 uid="uid://ddo166anpds0n"]
 
 [ext_resource type="Script" path="res://Scripts/FactionalNum.gd" id="1_wdq5u"]
 [ext_resource type="Texture2D" uid="uid://bo7klj0xrn8gc" path="res://Asset/星.png" id="2_5i7rk"]
+[ext_resource type="FontFile" uid="uid://b8le0fd0ujbqx" path="res://Asset/Font/1_blod.ttf" id="3_wtagd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yq7q3"]
 
@@ -43,6 +44,7 @@ text = "外地派系(丹阳)-支持度："
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("3_wtagd")
 theme_override_styles/fill = SubResource("StyleBoxFlat_2mory")
 value = 100.0
 

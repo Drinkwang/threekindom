@@ -293,9 +293,9 @@ func refreshTask(checkSlider:bool=true):
 		elif generalName=="无名":
 			hasWeapon=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.龙胆亮银枪)>0
 
-		levels=1.0889-(0.0889*generalLevel)
+		levels=1.05-(0.05*generalLevel)
 		if hasWeapon:
-			levels=levels*0.7
+			levels=levels*0.8
 
 	var currence= GameManager.sav.battleTasks[battle_circle.taskIndex]
 	var context=tr("战术目标：")
