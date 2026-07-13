@@ -541,6 +541,17 @@ func _enterDay(value=true):
 #		{"name":"高风险","initPos":0,"radian":90},
 
 
+const ALLOWANCE_PRESSURE_START_DAY := 10
+const ALLOWANCE_PRESSURE_PER_DAY := 0.003
+const ALLOWANCE_MAX_PRESSURE := 0.15
+const MONTHLY_ALLOWANCE_MAX_ITEM_COUNT := 9
+const MONTHLY_ALLOWANCE_ITEM_COST_MULTIPLIER := 0.5
+
+func get_allowance_pressure_multiplier(day: int) -> float:
+	var pressure_days := maxi(day - ALLOWANCE_PRESSURE_START_DAY, 0)
+	var pressure := minf(pressure_days * ALLOWANCE_PRESSURE_PER_DAY, ALLOWANCE_MAX_PRESSURE)
+	return 1.0 + pressure
+
 func initDemand():
 	var point=GameManager.sav.day*10+50
 	var allowanceCoeff=1.0
@@ -548,7 +559,7 @@ func initDemand():
 		1: allowanceCoeff=1.0
 		2: allowanceCoeff=1.5
 		3: allowanceCoeff=2.0
-	point=int(point*allowanceCoeff)
+	point=int(point*allowanceCoeff*get_allowance_pressure_multiplier(GameManager.sav.day))
 	sav.HAOZUPAI.allocationStatue=-1
 
 	sav.LVBU.allocationStatue=-1
@@ -568,7 +579,12 @@ func initDemand():
 		#sav.LVBU.demand={}
 
 func initSoleDemand(sav,value):
-	var items=GameManager.ScoreToItem(value)				
+	var items=GameManager.ScoreToItem(
+		value,
+		-1,
+		MONTHLY_ALLOWANCE_MAX_ITEM_COUNT,
+		MONTHLY_ALLOWANCE_ITEM_COST_MULTIPLIER
+	)
 	sav.demand=items
 	sav.allocationStatue=0
 	
@@ -1391,7 +1407,7 @@ const POPULATION_PER_POINT=2
 
 func confirmDeleteFile():
 	_savePanel.confirmDeleteFile()	
-func ScoreToItem(player_score,num=-1):
+func ScoreToItem(player_score,num=-1,max_item_count=3,item_cost_multiplier=1.0):
 	var gained_items: Dictionary = {}  # 使用字典记录道具和数量
 	var rng = RandomNumberGenerator.new()
 	# 随机决定获得几种道具 (1-3种)
@@ -1412,19 +1428,19 @@ func ScoreToItem(player_score,num=-1):
 		
 		var item = available_items[rng.randi_range(0, available_items.size() - 1)]
 		# 随机决定该道具数量 (1-3)
-		var max_count=remaining_score/item.cost
+		var effective_item_cost=maxi(int(round(item.cost*item_cost_multiplier)),1)
+		var max_count=remaining_score/effective_item_cost
 		if resideNum!=-1:
 			max_count.min(max_count,resideNum)
 		#print(max_count)
 		var item_count
 		if max_count>=1 and has_at_least_one_item==false:
-			item_count =min(rng.randi_range(1, max_count),3)
+			item_count =min(rng.randi_range(1, max_count),max_item_count)
 			has_at_least_one_item=true
 		else:	
-			item_count = min(rng.randi_range(0, max_count),3)
+			item_count = min(rng.randi_range(0, max_count),max_item_count)
 		
-		# 计算道具消耗的积分 (这里假设每件道具消耗10积分，可调整)
-		var item_cost = item_count * item.cost
+		var item_cost = item_count * effective_item_cost
 		if item_cost < remaining_score and item_count!=0:
 			#item_count = remaining_score / 10
 			#item_cost = item_count * 10
