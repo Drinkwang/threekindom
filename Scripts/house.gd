@@ -1428,7 +1428,13 @@ func sheepGnawed():
 	pass
 	#street 显示xxx
 	#GameManager.sav.have_event["支线发现羊尸"]=true
+func settle_allocation_after_current_dialogue():
+	_settle_allocation_after_current_dialogue.call_deferred()
 
+func _settle_allocation_after_current_dialogue():
+	if DialogueManager.get_dialogue_balloon() != null:
+		await DialogueManager.dialogue_ended
+	allocationAllSettle()
 func enterCredit():
 	GameManager.clearLevel(1)
 	SceneManager.changeScene(SceneManager.roomNode.Credit,2)

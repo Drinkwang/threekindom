@@ -590,7 +590,7 @@ func initSoleDemand(sav,value):
 	
 	
 func canDistributeAllowance():
-	return sav.BENTUPAI.allocationStatue==0 or sav.WAIDIPAI.allocationStatue==0 or sav.HAOZUPAI.allocationStatue or (sav.LVBU.allocationStatue==0 and GameManager.sav.have_event["lvbuJoin"]==true)	
+	return sav.BENTUPAI.allocationStatue==0 or sav.WAIDIPAI.allocationStatue==0 or sav.HAOZUPAI.allocationStatue==0 or (sav.LVBU.allocationStatue==0 and GameManager.sav.have_event["lvbuJoin"]==true)	
 func dontHaveDominance():
 	var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.霸道之息)	
 
