@@ -1983,7 +1983,7 @@ func completeAutoAll():
 	for i in range(0,4):
 			
 		var data=getcldateByindex(i)
-		if data.isAutoAllocation==true:
+		if data.isAutoAllocation==true and data.allocationStatue==0:
 			data.allocationStatue=1
 			GameManager.sav.Merit_points+=1
 			getLawPoint+=1
