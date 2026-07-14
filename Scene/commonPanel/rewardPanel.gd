@@ -5,7 +5,9 @@ class_name rewardPanel
 const victoryPng = preload("res://Asset/other/胜利.png")
 const failPng = preload("res://Asset/other/骷髅头.png")
 const maPng = preload("res://Asset/人物/马儿.png")
-const REWARD_FLIGHT_DURATION := 0.46
+const REWARD_FLIGHT_DURATION := 0.32
+const REWARD_FLIGHT_STAGGER := 0.025
+const REWARD_FLIGHT_SETTLE_DELAY := 0.48
 const REWARD_FLIGHT_ICON_SIZE := Vector2(64, 64)
 #@onready var title = $Control/PanelContainer/MarginContainer/VBoxContainer/title
 
@@ -344,7 +346,7 @@ func _on_button_button_down():
 	
 	for ui in _grid_ui.get_children():
 		TooltipManager.unregister_tooltip(ui)
-	await get_tree().create_timer(REWARD_FLIGHT_DURATION + 0.18).timeout
+	await get_tree().create_timer(REWARD_FLIGHT_SETTLE_DELAY).timeout
 	_apply_pending_rewards()
 	_is_collecting = false
 	SignalManager.endReward.emit()
@@ -433,8 +435,9 @@ func _spawn_reward_flight(layer: Control, source: ShopItem, resource_type: Strin
 
 	var target_position := target_center - REWARD_FLIGHT_ICON_SIZE * 0.5 + Vector2(randf_range(-10.0, 10.0), randf_range(-8.0, 8.0))
 	var tween := icon.create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
-	tween.tween_property(icon, "global_position", target_position, REWARD_FLIGHT_DURATION + index * 0.035)
-	tween.parallel().tween_property(icon, "scale", Vector2(0.28, 0.28), REWARD_FLIGHT_DURATION + index * 0.035)
+	var duration := REWARD_FLIGHT_DURATION + index * REWARD_FLIGHT_STAGGER
+	tween.tween_property(icon, "global_position", target_position, duration)
+	tween.parallel().tween_property(icon, "scale", Vector2(0.28, 0.28), duration)
 	tween.parallel().tween_property(icon, "rotation", 0.0, REWARD_FLIGHT_DURATION)
 	tween.tween_callback(icon.queue_free)
 
