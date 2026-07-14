@@ -209,7 +209,7 @@ do caocaoLetterHide()
 #第七次
 士兵: 报告主公，曹将军求见！[voice:bin_caojiangjun]
 
-刘备: 哪个曹将军？请他进来。[voice:liubei_nagecaojiangjun]
+#刘备: 哪个曹将军？请他进来。[voice:liubei_nagecaojiangjun]
 
 片刻后，曹豹被带到刘备面前。
 
