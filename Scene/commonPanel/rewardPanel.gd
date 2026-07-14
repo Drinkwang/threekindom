@@ -5,6 +5,8 @@ class_name rewardPanel
 const victoryPng = preload("res://Asset/other/胜利.png")
 const failPng = preload("res://Asset/other/骷髅头.png")
 const maPng = preload("res://Asset/人物/马儿.png")
+const REWARD_FLIGHT_DURATION := 0.46
+const REWARD_FLIGHT_ICON_SIZE := Vector2(64, 64)
 #@onready var title = $Control/PanelContainer/MarginContainer/VBoxContainer/title
 
 @onready var img =$Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/img
@@ -37,6 +39,15 @@ const maPng = preload("res://Asset/人物/马儿.png")
 @onready var context = $Control/PanelContainer/MarginContainer/VBoxContainer/context2
 
 @onready var title = $Control/PanelContainer/MarginContainer/VBoxContainer/title
+
+var _reward_flight_entries: Array[Dictionary] = []
+var _reward_flight_canvas: CanvasLayer
+var _pending_item_rewards: Dictionary = {}
+var _pending_coin := 0
+var _pending_labor := 0
+var _pending_hp_limit := 0
+var _is_collecting := false
+var _rewards_applied := false
 
 
 
@@ -77,7 +88,8 @@ func showTitileReward(context,item,addAfter=true):
 			item_ui.isShop=false
 			_grid_ui.add_child(item_ui)
 			item_ui.set_Data(key,_count)
-			item_ui.getItem()	
+			_queue_item_reward(key, _count)
+			_register_reward_flight(item_ui, "item", _count)
 		#获取道具
 
 	#var getMoney=
@@ -86,7 +98,8 @@ func showTitileReward(context,item,addAfter=true):
 		itemMoney_ui.isShop=false
 		_grid_ui.add_child(itemMoney_ui)
 		itemMoney_ui.set_Money(item.money)	
-		GameManager.sav.coin=GameManager.sav.coin+item.money
+		_register_reward_flight(itemMoney_ui, "coin", item.money)
+		_pending_coin += item.money
 		#获取钱
 		
 	if item.population>0:
@@ -94,16 +107,16 @@ func showTitileReward(context,item,addAfter=true):
 		itempop_ui.isShop=false
 		_grid_ui.add_child(itempop_ui)
 		itempop_ui.set_Labor(item.population)	
+		_register_reward_flight(itempop_ui, "labor", item.population)
 		#获取民力
-		GameManager.sav.labor_force=GameManager.sav.labor_force+item.population
+		_pending_labor += item.population
 	if item.get("hplimit", 0)>0:
 		var itemHpLimit_ui:ShopItem = DaojuItem.instantiate()
 		itemHpLimit_ui.isShop=false
 		_grid_ui.add_child(itemHpLimit_ui)
 		itemHpLimit_ui.set_HpLimit(item.hplimit)
-		GameManager.sav.maxHP=GameManager.sav.maxHP+item.hplimit
-		if GameManager._engerge!=null:
-			GameManager._engerge.changerate(GameManager.sav.hp)
+		_register_reward_flight(itemHpLimit_ui, "energy", item.hplimit)
+		_pending_hp_limit += item.hplimit
 	title.text=titleContext
 
 @export var DaojuItem: PackedScene	
@@ -147,7 +160,8 @@ func showReward(item):
 		item_ui.isShop=false
 		_grid_ui.add_child(item_ui)
 		item_ui.set_Data(key,_count)
-		item_ui.getItem()	
+		_queue_item_reward(key, _count)
+		_register_reward_flight(item_ui, "item", _count)
 		#获取道具
 
 	if item.money>0:
@@ -155,7 +169,8 @@ func showReward(item):
 		itemMoney_ui.isShop=false
 		_grid_ui.add_child(itemMoney_ui)
 		itemMoney_ui.set_Money(item.money)	
-		GameManager.sav.coin=GameManager.sav.coin+item.money
+		_register_reward_flight(itemMoney_ui, "coin", item.money)
+		_pending_coin += item.money
 		#获取钱
 		
 	if item.population>0:
@@ -163,16 +178,16 @@ func showReward(item):
 		itempop_ui.isShop=false
 		_grid_ui.add_child(itempop_ui)
 		itempop_ui.set_Labor(item.population)	
+		_register_reward_flight(itempop_ui, "labor", item.population)
 		#获取民力
-		GameManager.sav.labor_force=GameManager.sav.labor_force+item.population
+		_pending_labor += item.population
 	if item.get("hplimit", 0)>0:
 		var itemHpLimit_ui:ShopItem = DaojuItem.instantiate()
 		itemHpLimit_ui.isShop=false
 		_grid_ui.add_child(itemHpLimit_ui)
 		itemHpLimit_ui.set_HpLimit(item.hplimit)
-		GameManager.sav.maxHP=GameManager.sav.maxHP+item.hplimit
-		if GameManager._engerge!=null:
-			GameManager._engerge.changerate(GameManager.sav.hp)
+		_register_reward_flight(itemHpLimit_ui, "energy", item.hplimit)
+		_pending_hp_limit += item.hplimit
 	title.text=titleContext
 	#gird.add_child()
 	#播放音效，显示1-2个道具
@@ -217,7 +232,8 @@ func showRewardMa(item):
 		item_ui.isShop=false
 		_grid_ui.add_child(item_ui)
 		item_ui.set_Data(key,_count)
-		item_ui.getItem()	
+		_queue_item_reward(key, _count)
+		_register_reward_flight(item_ui, "item", _count)
 		#获取道具
 
 	if item.money>0:
@@ -225,7 +241,8 @@ func showRewardMa(item):
 		itemMoney_ui.isShop=false
 		_grid_ui.add_child(itemMoney_ui)
 		itemMoney_ui.set_Money(item.money)	
-		GameManager.sav.coin=GameManager.sav.coin+item.money
+		_register_reward_flight(itemMoney_ui, "coin", item.money)
+		_pending_coin += item.money
 		#获取钱
 		
 	if item.population>0:
@@ -233,16 +250,16 @@ func showRewardMa(item):
 		itempop_ui.isShop=false
 		_grid_ui.add_child(itempop_ui)
 		itempop_ui.set_Labor(item.population)	
+		_register_reward_flight(itempop_ui, "labor", item.population)
 		#获取民力
-		GameManager.sav.labor_force=GameManager.sav.labor_force+item.population
+		_pending_labor += item.population
 	if item.get("hplimit", 0)>0:
 		var itemHpLimit_ui:ShopItem = DaojuItem.instantiate()
 		itemHpLimit_ui.isShop=false
 		_grid_ui.add_child(itemHpLimit_ui)
 		itemHpLimit_ui.set_HpLimit(item.hplimit)
-		GameManager.sav.maxHP=GameManager.sav.maxHP+item.hplimit
-		if GameManager._engerge!=null:
-			GameManager._engerge.changerate(GameManager.sav.hp)
+		_register_reward_flight(itemHpLimit_ui, "energy", item.hplimit)
+		_pending_hp_limit += item.hplimit
 	title.text=titleContext
 
 	
@@ -251,6 +268,11 @@ func showRewardMa(item):
 	#imgTarget.texture=maPng
 	
 func _clear_view() -> void:
+	_reward_flight_entries.clear()
+	_pending_item_rewards.clear()
+	_pending_coin = 0
+	_pending_labor = 0
+	_pending_hp_limit = 0
 	var children = _grid_ui.get_children()
 	for child in children:
 		_grid_ui.remove_child(child)
@@ -315,13 +337,120 @@ func _process(delta):
 func _on_button_button_down():
 	if canclick==false:
 		return
-	SignalManager.endReward.emit()
+	canclick=false
+	_play_reward_flights()
+	_is_collecting = true
 	self.hide()
 	
 	for ui in _grid_ui.get_children():
 		TooltipManager.unregister_tooltip(ui)
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(REWARD_FLIGHT_DURATION + 0.18).timeout
+	_apply_pending_rewards()
+	_is_collecting = false
+	SignalManager.endReward.emit()
+	if is_instance_valid(_reward_flight_canvas):
+		_reward_flight_canvas.queue_free()
 	PanelManager.rewardNode=null
 	queue_free()
+
+
+func _queue_item_reward(item_type: InventoryManagerItem.ItemEnum, amount: int) -> void:
+	_pending_item_rewards[item_type] = _pending_item_rewards.get(item_type, 0) + amount
+
+
+func _apply_pending_rewards() -> void:
+	if _rewards_applied:
+		return
+	_rewards_applied = true
+	for item_type in _pending_item_rewards:
+		var item_name := InventoryManagerItem.item_by_enum(item_type)
+		InventoryManager.add_item(GameManager.inventoryPackege, item_name, _pending_item_rewards[item_type], false)
+	if _pending_coin > 0:
+		GameManager.sav.coin += _pending_coin
+	if _pending_labor > 0:
+		GameManager.sav.labor_force += _pending_labor
+	if _pending_hp_limit > 0:
+		GameManager.sav.maxHP += _pending_hp_limit
+		if is_instance_valid(GameManager._engerge):
+			GameManager._engerge.changerate(GameManager.sav.hp)
+
+
+func _exit_tree() -> void:
+	# A forced scene change stops this coroutine. Settle the queued reward before this panel is destroyed.
+	if _is_collecting and _rewards_applied == false:
+		_apply_pending_rewards()
+	if is_instance_valid(_reward_flight_canvas):
+		_reward_flight_canvas.queue_free()
+
+
+func _register_reward_flight(source: ShopItem, resource_type: String, amount: int) -> void:
+	_reward_flight_entries.append({
+		"source": source,
+		"type": resource_type,
+		"amount": amount,
+	})
+
+
+func _play_reward_flights() -> void:
+	if _reward_flight_entries.is_empty():
+		return
+	_reward_flight_canvas = CanvasLayer.new()
+	_reward_flight_canvas.name = "RewardFlightCanvas"
+	_reward_flight_canvas.layer = 101
+	get_tree().current_scene.add_child(_reward_flight_canvas)
+	var flight_layer := Control.new()
+	flight_layer.name = "RewardFlightLayer"
+	flight_layer.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	# The flight itself is modal so the player cannot click a scene exit before collection completes.
+	flight_layer.mouse_filter = Control.MOUSE_FILTER_STOP
+	flight_layer.z_index = 100
+	_reward_flight_canvas.add_child(flight_layer)
+	for entry in _reward_flight_entries:
+		var source := entry.source as ShopItem
+		if not is_instance_valid(source) or source.context.texture == null:
+			continue
+		var count := clampi(int(entry.amount), 1, 4)
+		if entry.type == "coin" or entry.type == "labor" or entry.type == "energy":
+			count = max(count, 3)
+		for index in count:
+			_spawn_reward_flight(flight_layer, source, entry.type, index, count)
+
+
+func _spawn_reward_flight(layer: Control, source: ShopItem, resource_type: String, index: int, count: int) -> void:
+	var icon := TextureRect.new()
+	icon.texture = source.context.texture
+	icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	icon.size = REWARD_FLIGHT_ICON_SIZE
+	icon.pivot_offset = REWARD_FLIGHT_ICON_SIZE * 0.5
+	var source_rect := source.get_global_rect()
+	var target_center := _get_reward_flight_target(resource_type)
+	var spread := Vector2((index - (count - 1) * 0.5) * 20.0, -18.0 - (index % 2) * 14.0)
+	icon.global_position = source_rect.get_center() - REWARD_FLIGHT_ICON_SIZE * 0.5 + spread
+	icon.rotation = randf_range(-0.16, 0.16)
+	layer.add_child(icon)
+
+	var target_position := target_center - REWARD_FLIGHT_ICON_SIZE * 0.5 + Vector2(randf_range(-10.0, 10.0), randf_range(-8.0, 8.0))
+	var tween := icon.create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	tween.tween_property(icon, "global_position", target_position, REWARD_FLIGHT_DURATION + index * 0.035)
+	tween.parallel().tween_property(icon, "scale", Vector2(0.28, 0.28), REWARD_FLIGHT_DURATION + index * 0.035)
+	tween.parallel().tween_property(icon, "rotation", 0.0, REWARD_FLIGHT_DURATION)
+	tween.tween_callback(icon.queue_free)
+
+
+func _get_reward_flight_target(resource_type: String) -> Vector2:
+	var target: Control = null
+	if resource_type == "coin" and is_instance_valid(GameManager._propertyPanel):
+		target = GameManager._propertyPanel._coin
+	elif resource_type == "labor" and is_instance_valid(GameManager._propertyPanel):
+		target = GameManager._propertyPanel._labor
+	elif resource_type == "energy" and is_instance_valid(GameManager._engerge):
+		target = GameManager._engerge.progress_bar
+	elif resource_type == "item" and is_instance_valid(GameManager._engerge):
+		target = GameManager._engerge.get_node_or_null("itemButton") as Control
+	if is_instance_valid(target):
+		return target.get_global_rect().get_center()
+	return get_viewport().get_visible_rect().get_center()
 	
 	
