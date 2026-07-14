@@ -81,6 +81,7 @@ func _on_timeout():
 		board.set_process_input(false)
 		loseGame()  # 超时逻辑：失败、显示星星
 var time_left=0
+var giveup_confirmation_paused := false
 
 @onready var colorrect: Control = $colorrect
 
@@ -99,6 +100,7 @@ func clearData():
 func initGame(start_timer_immediately: bool = true):
 	self.show()
 	isvictory=false
+	giveup_confirmation_paused = false
 	win_rect.hide()
 	lose_rect.hide()
 	switch_Difficult()
@@ -123,6 +125,22 @@ func startTimer() -> void:
 		return
 	board.set_process_input(true)
 	timer.start()  # 启动（autostart=true也可）
+
+
+func pause_for_giveup_confirmation() -> void:
+	if visible == false or isvictory or lose_rect.visible:
+		return
+	giveup_confirmation_paused = true
+	timer.stop()
+	board.set_process_input(false)
+
+
+func resume_after_giveup_cancel() -> void:
+	if giveup_confirmation_paused == false:
+		return
+	giveup_confirmation_paused = false
+	if visible and isvictory == false and lose_rect.visible == false:
+		startTimer()
 
 func _update_time_label() -> void:
 	resideTimeLabel.text = tr("剩余时间:{s}秒").format({"s":time_left})
@@ -260,4 +278,5 @@ func _on_lose_button_down() -> void:
 
 
 func _on_giveup_button_down() -> void:
+	GameManager.pause_construction_minigame()
 	DialogueManager.show_dialogue_balloon(GameManager.sys,"放弃基建")

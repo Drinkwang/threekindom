@@ -239,7 +239,7 @@ var selectPiece=null
 # 处理拼图块输入事件 - Godot 4 参数顺序变化
 func _on_piece_input_event(viewport: Node, event: InputEvent, shape_idx: int, piece: Sprite2D):
 	#print("haveClickEvent")
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT and selectPiece==null and canclick==true and isVictory==false:
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT and selectPiece==null and canclick==true and giveup_confirmation_paused==false and isVictory==false:
 		#try_move_piece(piece)#选中图块，跟手，tick阶段判断拼图和场上块接近么接近，发挥效果，并拼上
 		if selectPiece==null:
 			selectPiece=piece
@@ -387,7 +387,8 @@ func _on_giveup_button_down() -> void:
 	tween.tween_property(texture_button,"scale",Vector2(1.2,1.2),0.05)
 	tween.tween_property(texture_button,"scale",Vector2(1,1),0.05)
 	
-	DialogueManager.show_dialogue_balloon(GameManager.sys,"放弃基建")	
+	GameManager.pause_construction_minigame()
+	DialogueManager.show_dialogue_balloon(GameManager.sys,"放弃基建")
 		
 	#tween.tween_property(texture_button,"scale",1.0,1)
 var tween: Tween  # 用于平滑颜色过渡
@@ -430,10 +431,11 @@ func excuteRotate():
 		tween.finished.connect(_on_rotation_finished)	
 	
 var canclick=true
+var giveup_confirmation_paused := false
 func _input(event: InputEvent) -> void:
 	if not visible:
 		return
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed and canclick==true and isVictory==false:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed and canclick==true and giveup_confirmation_paused==false and isVictory==false:
 		if selectPiece!=null and clopos!=null:
 			if visualClubPos!=null:
 				visualClubPos.queue_free()
@@ -497,12 +499,27 @@ func loseGame():
 @onready var lose_rect: ColorRect = $LoseRect
 
 var time_left=0
+func pause_for_giveup_confirmation() -> void:
+	if visible == false or isVictory or lose_rect.visible:
+		return
+	giveup_confirmation_paused = true
+	timer.stop()
+
+
+func resume_after_giveup_cancel() -> void:
+	if giveup_confirmation_paused == false:
+		return
+	giveup_confirmation_paused = false
+	if visible and isVictory == false and lose_rect.visible == false:
+		timer.start()
+
 func initGame():
 	# 确保有源图片
 	self.show()
 	win_rect.hide()
 	lose_rect.hide()
 	isVictory=false
+	giveup_confirmation_paused = false
 	selectPiece=null
 	canclick=true
 	isrotate=false

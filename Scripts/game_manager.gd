@@ -1948,6 +1948,22 @@ func resetConstructTutorial():
 func cancelContructtion():
 	currenceScene.returnMain()
 
+
+func pause_construction_minigame() -> void:
+	if currenceScene == null:
+		return
+	var puzzle = currenceScene.get("puzzle_game")
+	if puzzle != null and puzzle.has_method("pause_for_giveup_confirmation"):
+		puzzle.pause_for_giveup_confirmation()
+
+
+func resume_construction_minigame() -> void:
+	if currenceScene == null:
+		return
+	var puzzle = currenceScene.get("puzzle_game")
+	if puzzle != null and puzzle.has_method("resume_after_giveup_cancel"):
+		puzzle.resume_after_giveup_cancel()
+
 #判断有无需求
 func justHaveDemand(item):
 	if item.is_empty() or GameManager.sav.coin<item.money or GameManager.sav.labor_force<item.population:

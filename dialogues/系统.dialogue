@@ -86,9 +86,9 @@ do shizuLawTest()
 #士族
 ~ 民心叛乱1
 #主簿: 主公，徐州连年饥荒，百姓冲击官仓，珍贵器物被洗劫！
-主簿: 主公，徐州连年饥荒，百姓心中积怨已久，已有躁动不安之象。
+主簿: 主公，徐州连年饥荒，百姓心中积怨已久，已有躁动不安之象。[voice:zhubu_zaodongbuan]
 #提示: {{determineDetail}}
-do settleDeterminValue()
+#do settleDeterminValue()
 游戏提示: 民心过低，若跌至0将直接本局失败，请尽快提升民心至60以上。
 
 do shizuLawTest()
@@ -98,9 +98,9 @@ do shizuLawTest()
 ~ 民心叛乱2
 #主簿: 主公，苛税重赋激怒民心，百姓暴动，上街焚毁肆巷，城中沟渠、仓肆皆损！修缮需耗六百金
 #主簿: 主公，苛税重赋激怒民心，百姓暴动，上街焚毁肆巷，城中沟渠、仓肆皆损！修缮需耗百金[voice:zhubu_kesunzhongfu]
-主簿: 主公，赋税繁重令百姓心生不满，坊间流言四起，城中人心浮动。
+主簿: 主公，赋税繁重令百姓心生不满，坊间流言四起，城中人心浮动。[voice:zhubu_kesunzhongfu]
 #提示: 资金 -{{determineValue1}}
-do settleDeterminValue()
+#do settleDeterminValue()
 游戏提示: 民心过低，若跌至0将直接本局失败，请尽快提升民心至60以上。
 #因为民心低于60触发的负面事件，请尽快将民心提升到60以上
 do shizuLawTest()
@@ -108,19 +108,19 @@ do shizuLawTest()
 => END
 
 ~ 民心叛乱3
-主簿: 主簿：主公，连年徭役不休，百姓不堪劳累，不少人心生逃离之意，农事日渐懈怠。
+主簿: 主公，连年徭役不休，百姓不堪劳累，不少人心生逃离之意，农事日渐懈怠。[voice:zhubo_yaoyifanzhong]
 #主簿: 主公，徭役繁重，百姓不堪重负，抛家弃田，逃入山林，徐州农桑荒废殆尽！[voice:zhubo_yaoyifanzhong]
 #提示: 民力 -{{determineValue1}}
-do settleDeterminValue()
+#do settleDeterminValue()
 游戏提示: 民心过低，若跌至0将直接本局失败，请尽快提升民心至60以上。
 do shizuLawTest()
 => END
 
 ~ 民心叛乱4
-主簿: 主簿：主公，百姓生计艰难，私下纷纷感慨主公仁德不复，徐州民心岌岌可危！
+主簿: 主公，百姓生计艰难，私下纷纷感慨主公仁德不复，徐州民心岌岌可危！[voice:zhubo_xuzhouminxin]
 #主簿: 主公，百姓因生计无着，聚众喧哗，叹主公仁德不复，徐州民心恐将尽失！[voice:zhubo_xuzhouminxin]
 #提示: 民心-{{determineValue1}}
-do settleDeterminValue()
+#do settleDeterminValue()
 游戏提示: 民心过低，若跌至0将直接本局失败，请尽快提升民心至60以上。
 do shizuLawTest()
 => END

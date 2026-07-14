@@ -1106,14 +1106,11 @@ func allocationMuliao():
 
 func settleDeterminValue():
 	if(determineType==GameManager.ResType.coin):
-		pass
-		#GameManager.sav.coin=GameManager.sav.coin-determineValue1
+		GameManager.sav.coin=GameManager.sav.coin-determineValue1
 	elif determineType==GameManager.ResType.people:
-		pass
-		#GameManager.sav.labor_force=GameManager.sav.labor_force-determineValue1
+		GameManager.sav.labor_force=GameManager.sav.labor_force-determineValue1
 	elif determineType==GameManager.ResType.heart:
-		pass
-		#GameManager.changePeopleSupport(-determineValue1)
+		GameManager.changePeopleSupport(-determineValue1)
 
 
 func get_unrest_heart_cost_cap() -> int:
@@ -1275,9 +1272,9 @@ func determineInternalUnrestMinxin():
 	if valid_options.size() > 0:
 		var choice = valid_options[randi() % valid_options.size()]
 		if(choice[0]!=GameManager.ResType.item):
-			determineType = choice[0]
-			determineValue1 = choice[1]
-			determineDetail=choice[2]
+			#determineType = choice[0]
+			#determineValue1 = choice[1]
+			#determineDetail=choice[2]
 			if determineType==GameManager.ResType.coin:
 				DialogueManager.show_example_dialogue_balloon(sys,"民心叛乱2")
 			elif determineType==GameManager.ResType.people:
@@ -1285,15 +1282,15 @@ func determineInternalUnrestMinxin():
 			elif determineType==GameManager.ResType.heart:
 				DialogueManager.show_example_dialogue_balloon(sys,"民心叛乱4")
 		else:
-			determineValue1=InventoryManager.costItemRandom(choice[1])
-			determineDetail=generate_consumed_string(determineValue1)
-			determineType=GameManager.ResType.item
+			#determineValue1=InventoryManager.costItemRandom(choice[1])
+			#determineDetail=generate_consumed_string(determineValue1)
+			#determineType=GameManager.ResType.item
 			DialogueManager.show_example_dialogue_balloon(sys,"民心叛乱1")
 	else:
 	# 否则默认选择 heart
-		determineType = GameManager.ResType.heart
-		determineValue1 = costHeart
-		determineDetail=tr("民心-%d") %costHeart
+		#determineType = GameManager.ResType.heart
+		#determineValue1 = costHeart
+		#determineDetail=tr("民心-%d") %costHeart
 		DialogueManager.show_example_dialogue_balloon(sys,"民心叛乱4")
 
 
