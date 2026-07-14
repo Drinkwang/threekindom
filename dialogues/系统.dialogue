@@ -410,6 +410,7 @@ do succussAfter()
 
 
 ~ 基建挖河成功
+do chendeng.show()
 陈登: 主公，护城河深挖竣工！沟壑天堑护徐州，更引河水溉田亩，丰收在望，一箭双雕！[voice:chenden_huchenghejungong]
 if GameManager.resideValue==0
 	系统提示: 恭喜完成基建，但因已拥有更高等级的同基建增益，无法同时获得本级（较低级）的奖励。
@@ -421,7 +422,7 @@ do succussAfter()
 
 
 ~ 基建挖河失败
-    
+do chendeng.show()
 陈登: 主公，护城河工程崩塌，民力尽废……虽失良机，徐州根基犹在。[voice:chenden_huchenghebenta]
 
 => END!    

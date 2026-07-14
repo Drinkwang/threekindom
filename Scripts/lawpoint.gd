@@ -103,23 +103,23 @@ func _process(delta):
 const _001_HOVER_01 = preload("res://Asset/sound/ui/001_Hover_01.wav")
 const _013_CONFIRM_03 = preload("res://Asset/sound/ui/013_Confirm_03.wav")
 func _on_gui_input(event):
-	if GameManager.sav.curLawName.length()>0 or GameManager.sav.curLawNum1!=-1 or GameManager.sav.curLawNum2!=-1:
-		return 
+	if not (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed):
+		return
 
-	
-	if isUnlock==true and !GameManager.haveUnicornIcon():
+	# Enacted laws are always viewable, but cannot be proposed again.
+	if isUnlock:
+		control.preLaw(self)
+		return
+
+	# While a bill is awaiting approval, other nodes cannot be selected. Clicking one restores the default notice.
+	if GameManager.sav.curLawName.length() > 0 or GameManager.sav.curLawNum1 != -1 or GameManager.sav.curLawNum2 != -1:
+		control.show_current_law_pending_message()
 		return
 	if lawpoins.size()>0:
 		if lawpoins.any(func(value):return value.isUnlock==true)==false and !GameManager.haveUnicornIcon():
 			return
-	if event is InputEventMouseButton and event.button_index==1:
-		control.preLaw(self)
-		#SoundManager.play_sound(_001_HOVER_01)
-	elif(event is InputEventMouseButton and event.double_click==true):
-		control.excuteLaw(self)
-		SoundManager.play_sound(_013_CONFIRM_03)
-		#GameManager.sav.
-	pass # Replace with function body.
+	control.preLaw(self)
+	#SoundManager.play_sound(_001_HOVER_01)
 
 enum lawcolor{
 	red,blue,green

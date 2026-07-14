@@ -174,9 +174,7 @@ func _initData():
 	else:
 		$TextureButton.show()
 	if GameManager.sav.curLawName.length()>0:
-		law_label.text=tr("当前【%s】法案已被立项，请先在议事厅通过该法案，才能立项其他法律。")%tr(GameManager.sav.curLawName)
-		
-		changeexp_len()
+		show_current_law_pending_message()
 		#var label_height = 81
 		#var label_line_count = law_label.get_line_count()  # 获取行数（可选）
 		#var padding = 20  # 可根据需要调整
@@ -186,6 +184,16 @@ func _initData():
 		#detail_panel.custom_minimum_size = new_size
 	
 	refreshLawPoint()
+
+
+# This is the default text while a bill awaits approval. Read-only law nodes may temporarily replace it.
+func show_current_law_pending_message() -> void:
+	selectLawPoint = null
+	ConfireButton.disabled = true
+	law_label.text = tr("当前【%s】法案已被立项，请先在议事厅通过该法案，才能立项其他法律。") % tr(GameManager.sav.curLawName)
+	if is_instance_valid(GameManager._engerge):
+		GameManager._engerge.stopPreviewHP()
+	changeexp_len()
 
 func changeexp_len():
 
@@ -336,7 +344,8 @@ func _on_button_button_down():
 
 var selectLawPoint:lawpoint
 func preLaw(value:lawpoint):
-	if await GameManager.isTried(costhp):
+	# Enacted laws are read-only: their effect is always viewable, even while another bill is pending.
+	if value.isUnlock == false and await GameManager.isTried(costhp):
 		return
 	ConfireButton.show()
 	selectLawPoint=value
