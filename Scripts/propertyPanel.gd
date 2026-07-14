@@ -17,10 +17,10 @@ class_name propertyPanel
 
 var showValue:bool=true
 
-const RESOURCE_POPUP_DURATION := 0.78
+const RESOURCE_POPUP_DURATION := 0.92
 const RESOURCE_POPUP_RISE_DISTANCE := 42.0
 const RESOURCE_POPUP_FONT_SIZE := 58
-const RESOURCE_COUNTER_DURATION := 0.48
+const RESOURCE_COUNTER_DURATION := 0.62
 var _resource_value_tweens: Dictionary = {}
 # Called when the node enters the scene tree for the first time.
 func _ready():
