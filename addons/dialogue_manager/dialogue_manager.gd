@@ -78,7 +78,13 @@ var _node_properties: Array = []
 var dialogBegin=false
 
 func haveDialoge()->bool:
-	return get_dialogue_balloon() != null
+	var balloon = get_dialogue_balloon()
+	if not is_instance_valid(balloon):
+		return false
+	# The returned node is the ExampleBalloon CanvasLayer, which remains visible after its content closes.
+	# The actual dialogue surface is its Balloon child.
+	var dialogue_surface := balloon.get_node_or_null("Balloon") as CanvasItem
+	return is_instance_valid(dialogue_surface) and dialogue_surface.is_visible_in_tree()
 
 func _on_dialogue_ended(ens):
 	dialogBegin=false
