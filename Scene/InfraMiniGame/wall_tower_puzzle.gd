@@ -536,12 +536,16 @@ func initGame():
 	timer.wait_time = 1.0
 	timer.one_shot = false
 	time_left=60
-	timer.timeout.connect(_on_timeout)  # 连接信号（编辑器也可连）
+	if not timer.timeout.is_connected(_on_timeout):
+		timer.timeout.connect(_on_timeout)
 	timer.start()  # 启动（autostart=true也可）
 @onready var resideTimeLabel: Label = $PanelContainer/Label2
 
 func _on_timeout():
-	if isVictory==true:
+	if visible == false:
+		timer.stop()
+		return
+	if isVictory or giveup_confirmation_paused:
 		return
 	time_left -= 1
 	resideTimeLabel.text = tr("剩余时间:{s}秒").format({"s":time_left})  # 每秒更新UI（极省性能）
@@ -567,5 +571,9 @@ func _on_winAfter_button_down() -> void:
 
 
 func _on_lose_button_down() -> void:
+	# The abandon confirmation reaches this handler directly, so stop all timed gameplay first.
+	timer.stop()
+	canclick = false
+	giveup_confirmation_paused = false
 	DialogueManager.show_dialogue_balloon(GameManager.sys,"基建铸塔失败")
 	self.hide()

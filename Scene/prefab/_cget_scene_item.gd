@@ -42,6 +42,8 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 		return
 	if not event.pressed:
 		return
+	if DialogueManager.haveDialoge() or _is_mouse_blocked():
+		return
 	if _pickup_consumed:
 		return
 	print(dialogue_start+var_to_str(event.button_index))
@@ -61,6 +63,79 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 			getSceneInItem()
 		if isHide==true:
 			self.hide()
+
+
+# Scene pickups are Area2D nodes, so they need the same modal-UI guard as clickBlock.
+func _is_mouse_blocked() -> bool:
+	var tree := get_tree()
+	if tree == null:
+		return false
+	var mouse_position := get_viewport().get_mouse_position()
+	var viewport_size := get_viewport().get_visible_rect().size
+	var min_size := viewport_size * 0.6
+	var canvas_layers: Array = []
+	_collect_canvas_layers(tree.root, canvas_layers)
+	for canvas_layer in canvas_layers:
+		if canvas_layer.visible == false:
+			continue
+		for child in canvas_layer.get_children():
+			if not (child is Control) or child.visible == false:
+				continue
+			var blocker := child as Control
+			if blocker.mouse_filter == Control.MOUSE_FILTER_IGNORE:
+				continue
+			if not _is_blocker_above_self(blocker):
+				continue
+			var rect := blocker.get_global_rect()
+			if rect.size.x >= min_size.x and rect.size.y >= min_size.y and rect.has_point(mouse_position):
+				return true
+	return false
+
+
+func _is_blocker_above_self(blocker: Control) -> bool:
+	var blocker_layer := _get_canvas_layer_for_node(blocker)
+	var self_layer := _get_canvas_layer_for_node(self)
+	if blocker_layer != self_layer:
+		if blocker_layer == null:
+			return false
+		if self_layer == null:
+			return true
+		if blocker_layer.layer != self_layer.layer:
+			return blocker_layer.layer > self_layer.layer
+		return blocker_layer.get_index() > self_layer.get_index()
+
+	var compare_parent: Node = blocker_layer if blocker_layer != null else blocker.get_parent()
+	var blocker_branch := _get_direct_child_under(compare_parent, blocker)
+	var self_branch := _get_direct_child_under(compare_parent, self)
+	if blocker_branch == null or self_branch == null or blocker_branch == self_branch:
+		return false
+	if blocker_branch is CanvasItem and self_branch is CanvasItem:
+		if (blocker_branch as CanvasItem).z_index != (self_branch as CanvasItem).z_index:
+			return (blocker_branch as CanvasItem).z_index > (self_branch as CanvasItem).z_index
+	return blocker_branch.get_index() > self_branch.get_index()
+
+
+func _get_canvas_layer_for_node(node: Node) -> CanvasLayer:
+	var current := node
+	while current != null:
+		if current is CanvasLayer:
+			return current
+		current = current.get_parent()
+	return null
+
+
+func _get_direct_child_under(parent_node: Node, node: Node) -> Node:
+	var current := node
+	while current != null and current.get_parent() != parent_node:
+		current = current.get_parent()
+	return current if current != null and current.get_parent() == parent_node else null
+
+
+func _collect_canvas_layers(node: Node, result: Array) -> void:
+	if node is CanvasLayer:
+		result.append(node)
+	for child in node.get_children():
+		_collect_canvas_layers(child, result)
 
 func getSceneInItemSecret():
 	var sceneNode:SceneManager.roomNode=items_in_scene.OccurInScene

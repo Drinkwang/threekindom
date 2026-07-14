@@ -72,7 +72,10 @@ void fragment(){
 @onready var resideTimeLabel: Label = $PanelContainer/Label2
 
 func _on_timeout():
-	if isvictory==true:
+	if visible == false:
+		timer.stop()
+		return
+	if isvictory or giveup_confirmation_paused:
 		return
 	time_left -= 1
 	_update_time_label()
@@ -273,6 +276,10 @@ func _on_afterWin_button_down() -> void:
 
 
 func _on_lose_button_down() -> void:
+	# This path is also used by the abandon confirmation, so it must stop the timer before closing.
+	timer.stop()
+	board.set_process_input(false)
+	giveup_confirmation_paused = false
 	DialogueManager.show_dialogue_balloon(GameManager.sys,"基建挖河失败")
 	self.hide()
 
