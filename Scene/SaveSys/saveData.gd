@@ -16,8 +16,9 @@ class_name saveData
 	get:
 		return coin
 	set(value):
-
+		var change = value - coin
 		coin=value
+		_notify_resource_change("coin", change)
 		#bug 会打断对话，请考虑用别的方式实现
 		#if is_instance_valid(GameManager.currenceScene) and GameManager.currenceScene is government_building:
 		#	GameManager.currenceScene.JudFundTask()
@@ -26,8 +27,22 @@ class_name saveData
 @export var shopEnhance=0
 @export var battleEnhance=0
 @export var coin_DayGet=40
-@export var labor_force=100 #民力 可以当作军队进行使用 民力转换成军队需要消耗值 骑兵 步兵 弓兵
+@export var labor_force=100:
+	get:
+		return labor_force
+	set(value):
+		var change = value - labor_force
+		labor_force = value
+		_notify_resource_change("labor", change)
 @export var labor_DayGet=10
+
+# Resource changes are reported here so direct rewards and costs share one UI effect.
+func _notify_resource_change(resource_type: String, change: int) -> void:
+	# Loading save-slot previews also initializes saveData fields. Only the active game save may show UI feedback.
+	if self != GameManager.sav or change == 0 or Engine.is_editor_hint() or GameManager.isLoadingSave:
+		return
+	if is_instance_valid(GameManager._propertyPanel):
+		GameManager._propertyPanel.show_resource_change(resource_type, change)
 @export var destination:String #放在gameins里面
 #@export var datas:Array[cldata] #好像没用
 @export var isLevelUp=false
