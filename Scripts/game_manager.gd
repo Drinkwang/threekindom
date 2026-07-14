@@ -556,9 +556,9 @@ func initDemand():
 	var point=GameManager.sav.day*10+50
 	var allowanceCoeff=1.0
 	match GameManager.sav.gameDifficulty:
-		1: allowanceCoeff=1.0
-		2: allowanceCoeff=1.5
-		3: allowanceCoeff=2.0
+		1: allowanceCoeff=1
+		2: allowanceCoeff=1
+		3: allowanceCoeff=1.2
 	point=int(point*allowanceCoeff*get_allowance_pressure_multiplier(GameManager.sav.day))
 	sav.HAOZUPAI.allocationStatue=-1
 

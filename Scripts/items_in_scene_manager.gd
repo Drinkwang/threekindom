@@ -13,7 +13,7 @@ func _ready() -> void:
 	itmes=self.get_children()
 	DialogueManager.dialogue_started.connect(_on_dialogue_started)
 	DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
-	if DialogueManager.dialogBegin:
+	if DialogueManager.haveDialoge():
 		_active_dialogue_count=1
 		_hide_for_dialogue()
 

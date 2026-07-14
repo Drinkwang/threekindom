@@ -77,6 +77,9 @@ var _node_properties: Array = []
 #有严重bug 有时会导致无法点击人物
 var dialogBegin=false
 
+func haveDialoge()->bool:
+	return get_dialogue_balloon() != null
+
 func _on_dialogue_ended(ens):
 	dialogBegin=false
 

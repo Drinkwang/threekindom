@@ -898,7 +898,7 @@ func _JudgeTask():
 func deliverUncompleteTask():
 	if GameManager.sav.have_event["chaoDialogEnd"]==true:
 		if(GameManager.sav.have_event["chaosEnd"]==false):	
-			if GameManager.sav.currenceDay>=3 and DialogueManager.dialogBegin==false:
+			if GameManager.sav.currenceDay>=3 and DialogueManager.haveDialoge()==false:
 				GameManager.sav.currenceDay=0
 				if GameManager.sav.have_event["firstDisaster"]==false:
 					GameManager.sav.have_event["firstDisaster"]=true

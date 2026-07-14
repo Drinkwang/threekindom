@@ -133,7 +133,7 @@ func changeLanguage():
 			richTxt.remove_theme_font_override("normal_font")	
 @onready var animation_player = $"Node2D/5Yellow/AnimationPlayer"
 func _buttonHover(item):
-	if DialogueManager.dialogBegin==true:
+	if DialogueManager.haveDialoge()==true:
 		return
 	SoundManager.play_sound(sounds.hoversound)
 	buttonHover.emit(item)
@@ -176,7 +176,7 @@ func _show_button_5_yellow(index):
 	#var groups=$VBoxContainer.get_node(findpattern)
 	#var texbtn:TextureButton=groups
 func _button_ation(item,index):
-	if DialogueManager.dialogBegin==true:
+	if DialogueManager.haveDialoge()==true:
 		return
 	SoundManager.play_sound(sounds.confiresound)
 	#_show_button_5_yellow(index)
