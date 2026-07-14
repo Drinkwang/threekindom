@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://5qxpn6avk7bx"]
+[gd_scene load_steps=7 format=3 uid="uid://5qxpn6avk7bx"]
 
 [ext_resource type="Script" path="res://Scripts/ShopItem.gd" id="1_h644w"]
 [ext_resource type="Texture2D" uid="uid://bye5cypeps08s" path="res://Asset/ui/4.png" id="1_wpj7r"]
 [ext_resource type="Texture2D" uid="uid://sq2pvmh6p5db" path="res://Asset/ui/8.png" id="2_smbln"]
 [ext_resource type="Texture2D" uid="uid://dahuc8gb2blc" path="res://Asset/other/0_red.png" id="4_tce4q"]
 [ext_resource type="FontFile" uid="uid://dk0uyb3ayyxtk" path="res://addons/inventory_editor/default/fonts/Pangolin-Regular.ttf" id="5_7lbv2"]
+[ext_resource type="FontFile" uid="uid://b8le0fd0ujbqx" path="res://Asset/Font/1_blod.ttf" id="6_wg8fh"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -80,6 +81,21 @@ offset_bottom = 88.975
 theme_override_fonts/font = ExtResource("5_7lbv2")
 theme_override_font_sizes/font_size = 39
 text = "秘"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DIF" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 86.0
+offset_bottom = 81.0
+theme_override_colors/font_color = Color(100, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 3
+theme_override_fonts/font = ExtResource("6_wg8fh")
+theme_override_font_sizes/font_size = 20
+text = "-1"
 horizontal_alignment = 1
 vertical_alignment = 1
 

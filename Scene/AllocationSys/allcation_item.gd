@@ -170,21 +170,26 @@ func showReward(item):
 		var item_ui:ShopItem = DaojuItem.instantiate()
 		item_ui.isShop=false
 		grid.add_child(item_ui)
-		item_ui.set_Data(key,_count)	
+		item_ui.set_Data(key,_count)
+		var item_name=InventoryManagerItem.item_by_enum(key)
+		var owned_count=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,item_name)
+		item_ui.set_dif(owned_count-_count)
 		#需要修改方法道具 不获得道具,已修改，不知道 有无bug
 
 	if item.money>0:
 		var itemMoney_ui:ShopItem = DaojuItem.instantiate()
 		itemMoney_ui.isShop=false
 		grid.add_child(itemMoney_ui)
-		itemMoney_ui.set_Money(item.money)	
+		itemMoney_ui.set_Money(item.money)
+		itemMoney_ui.set_dif(GameManager.sav.coin-item.money)
 
 		
 	if item.population>0:
 		var itempop_ui:ShopItem = DaojuItem.instantiate()
 		itempop_ui.isShop=false
 		grid.add_child(itempop_ui)
-		itempop_ui.set_Labor(item.population)	
+		itempop_ui.set_Labor(item.population)
+		itempop_ui.set_dif(GameManager.sav.labor_force-item.population)
 
 	pass
 var _num=0

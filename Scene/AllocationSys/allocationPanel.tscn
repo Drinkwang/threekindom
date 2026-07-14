@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bsex8ep42piyc"]
+[gd_scene load_steps=11 format=3 uid="uid://bsex8ep42piyc"]
 
 [ext_resource type="Script" path="res://Scene/AllocationSys/allocation_panel.gd" id="1_7ik2b"]
 [ext_resource type="FontFile" uid="uid://b8le0fd0ujbqx" path="res://Asset/Font/1_blod.ttf" id="2_d11ry"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dahuc8gb2blc" path="res://Asset/other/0_red.png" id="5_stw0y"]
 [ext_resource type="Texture2D" uid="uid://xjrwxtqyevg3" path="res://Asset/人物/糜竺黑影.png" id="6_r65lo"]
 [ext_resource type="Texture2D" uid="uid://bmg7cdctm1v4k" path="res://Asset/人物/吕布隐藏.png" id="7_l0c0x"]
+[ext_resource type="PackedScene" uid="uid://bhu5hq8kx8pov" path="res://addons/inventory_example/inventories/simple/InventoryUI.tscn" id="10_8kyym"]
 
 [node name="AllocationPanel" type="Control" node_paths=PackedStringArray("arrs")]
 layout_mode = 3
@@ -192,5 +193,21 @@ texture_hover = ExtResource("5_stw0y")
 texture_disabled = ExtResource("5_stw0y")
 texture_focused = ExtResource("5_stw0y")
 stretch_mode = 0
+
+[node name="InventoryAny" parent="." instance=ExtResource("10_8kyym")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.00826
+anchor_top = 0.168104
+anchor_right = 1.08114
+anchor_bottom = 0.168104
+offset_left = -330.866
+offset_top = 118.448
+offset_right = -30.8656
+offset_bottom = 418.448
+grow_horizontal = 0
+scale = Vector2(0.695, 0.695)
+inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
+metadata/_edit_use_anchors_ = true
 
 [connection signal="button_down" from="TextureButton" to="." method="_on_texture_button_button_down"]

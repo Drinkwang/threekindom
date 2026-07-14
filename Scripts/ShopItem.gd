@@ -9,6 +9,22 @@ const InventoryManagerName = "InventoryManager"
 
 @onready var context = $frame/context
 @onready var alreaysold = $frame/Alreaysold
+@onready var dif: Label = $DIF
+
+
+
+func set_dif(value: int):
+	if dif==null:
+		return
+	if value>=0:
+		dif.text=""
+		dif.hide()
+		return
+
+	dif.text=str(value)
+	dif.show()
+
+
 
 @export var img:Texture2D:
 	
