@@ -1642,9 +1642,9 @@ func cardLose():
 func loseGame():
 	puzzle_game.loseGameBtn()
 func confirmBuild():
-	GameManager.sav.coin-=GameManager.puzzleCostMoney
-	GameManager.sav.labor_force-=GameManager.puzzleCostPeople
-	puzzle_game.initGame()	
+	if GameManager.try_spend_construction_resources() == false:
+		return
+	puzzle_game.initGame()
 	if GameManager.sav.have_event["基建运粮教程"]==false:
 		DialogueManager.show_example_dialogue_balloon(GameManager.sys,"基建运粮车教程")
 		GameManager.sav.have_event["基建运粮教程"]=true	

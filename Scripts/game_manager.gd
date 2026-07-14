@@ -1920,6 +1920,16 @@ func doContructtion(diff):
 	DialogueManager.show_example_dialogue_balloon(sys,"基建选项2")
 
 
+# All three infrastructure minigames use this before starting, so an attempted build can never create negative resources.
+func try_spend_construction_resources() -> bool:
+	if sav.coin < puzzleCostMoney or sav.labor_force < puzzleCostPeople:
+		DialogueManager.show_example_dialogue_balloon(sys, "基建选项资源不足")
+		return false
+	sav.coin -= puzzleCostMoney
+	sav.labor_force -= puzzleCostPeople
+	return true
+
+
 func selectPuzzleLevel():
 	if await GameManager.isTried(20):
 		return	

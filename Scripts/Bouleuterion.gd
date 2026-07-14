@@ -623,8 +623,8 @@ func openBoardGame():
 @onready var puzzle_game: Control = $CanvasBook/puzzleGame
 	
 func confirmBuild():
-	GameManager.sav.coin-=GameManager.puzzleCostMoney
-	GameManager.sav.labor_force-=GameManager.puzzleCostPeople
+	if GameManager.try_spend_construction_resources() == false:
+		return
 	var should_show_river_tutorial = GameManager.sav.have_event["基建运河教程"]==false
 	puzzle_game.initGame(not should_show_river_tutorial)
 	chendeng.hide()

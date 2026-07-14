@@ -1362,8 +1362,8 @@ func _processTrainResult(isWin: bool):
 
 
 func confirmBuild():
-	GameManager.sav.coin-=GameManager.puzzleCostMoney
-	GameManager.sav.labor_force-=GameManager.puzzleCostPeople
+	if GameManager.try_spend_construction_resources() == false:
+		return
 	caobao.hide()
 	items_in_scene.hide()
 	puzzle_game.initGame()	
