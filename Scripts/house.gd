@@ -1106,11 +1106,14 @@ func allocationMuliao():
 
 func settleDeterminValue():
 	if(determineType==GameManager.ResType.coin):
-		GameManager.sav.coin=GameManager.sav.coin-determineValue1
+		pass
+		#GameManager.sav.coin=GameManager.sav.coin-determineValue1
 	elif determineType==GameManager.ResType.people:
-		GameManager.sav.labor_force=GameManager.sav.labor_force-determineValue1
+		pass
+		#GameManager.sav.labor_force=GameManager.sav.labor_force-determineValue1
 	elif determineType==GameManager.ResType.heart:
-		GameManager.changePeopleSupport(-determineValue1)
+		pass
+		#GameManager.changePeopleSupport(-determineValue1)
 
 
 func get_unrest_heart_cost_cap() -> int:
