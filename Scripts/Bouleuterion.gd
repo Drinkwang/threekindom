@@ -565,11 +565,16 @@ func eatFishSound():
 	
 
 func cancelLaw():
+	# 法案未通过时，返还立项阶段已扣除的一次派系支持度。
+	GameManager.refundPreCostPaixi()
 	GameManager.sav.laws[GameManager.sav.curLawNum1].erase(GameManager.sav.curLawNum2)	
 	GameManager.sav.curLawName=""
 	GameManager.sav.curLawNum1=-1
 	GameManager.sav.curLawNum2=-1
 	faction.refreshData()
+	var items=GameManager.ScoreToItem(500)
+	var _reward:rewardPanel=PanelManager.new_reward()
+	_reward.showTitileReward(tr("本次议事未耗尽的补给物资已收入库房"),items)
 
 @onready var control_2: supportPanel = $CanvasBook/Control2
 

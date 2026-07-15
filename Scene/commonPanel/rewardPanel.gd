@@ -343,10 +343,11 @@ func _on_button_button_down():
 	var has_reward_flights := not _reward_flight_entries.is_empty()
 	_play_reward_flights()
 	if has_reward_flights:
-		var reward_sound = sounds.GETITEM
+		var reward_sound = sounds.GETITEM_2
+		
 		for entry in _reward_flight_entries:
-			if entry.type != "coin" and entry.type != "labor":
-				reward_sound = sounds.GETITEM_2
+			if entry.type == "coin" or entry.type == "labor":
+				reward_sound = sounds.GETITEM
 				break
 		SoundManager.play_sound(reward_sound)
 	_is_collecting = true

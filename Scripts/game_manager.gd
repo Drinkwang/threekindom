@@ -1258,73 +1258,79 @@ func loadLaw():
 				GameManager.preCostPaixi()
 
 func preCostPaixi():
+	_changeLawFactionSupport(-1)
+
+func refundPreCostPaixi():
+	_changeLawFactionSupport(1)
+
+func _changeLawFactionSupport(direction:int):
 	
 	if sav.curLawName=="兴办教育":#只有buff
 		
 
-		sav.WAIDIPAI.ChangeSupport(-20)
+		sav.WAIDIPAI.ChangeSupport(20 * direction)
 			#var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.诸子百家论集)
 			#var remainder = InventoryManager.add_item(inventoryPackege, itemid, 1, false)
 
 	elif sav.curLawName=="显绩法":#只有buff
 		#RewardLaw="一次性民力+100，徐州好感度+10，群众支持度+5 " #民力一次性增加 徐州派好感上升
-		sav.HAOZUPAI.ChangeSupport(-20)
+		sav.HAOZUPAI.ChangeSupport(20 * direction)
 	elif sav.curLawName=="重农抑商":
-		sav.HAOZUPAI.ChangeSupport(-30)
+		sav.HAOZUPAI.ChangeSupport(30 * direction)
 	elif sav.curLawName=="士族优先":
 		#RewardLaw="收益：徐州好感度+20，获得道具“珍品礼盒”x1，一次性民力+150 冲突：丹阳派好感度-15  "+1000
-		sav.BENTUPAI.ChangeSupport(-15)
-		sav.WAIDIPAI.ChangeSupport(-15)
+		sav.BENTUPAI.ChangeSupport(15 * direction)
+		sav.WAIDIPAI.ChangeSupport(15 * direction)
 	elif sav.curLawName=="肃民明制":
-		sav.HAOZUPAI.ChangeSupport(-30)
+		sav.HAOZUPAI.ChangeSupport(30 * direction)
 
 	elif sav.curLawName=="屯田制":
 		#RewardLaw="收益：每日民力+30，每日收入+120，一次性民力+200 
 		#冲突：丹阳派好感度-20，豪族好感度-10  "
-		sav.WAIDIPAI.ChangeSupport(-20)
-		sav.HAOZUPAI.ChangeSupport(-20)
+		sav.WAIDIPAI.ChangeSupport(20 * direction)
+		sav.HAOZUPAI.ChangeSupport(20 * direction)
 	elif sav.curLawName=="府兵制":
 
-		sav.WAIDIPAI.ChangeSupport(-20)
+		sav.WAIDIPAI.ChangeSupport(20 * direction)
 		
 	elif sav.curLawName=="品级制":#1000
 	
-		sav.HAOZUPAI.ChangeSupport(-20)
-		sav.WAIDIPAI.ChangeSupport(-20)
+		sav.HAOZUPAI.ChangeSupport(20 * direction)
+		sav.WAIDIPAI.ChangeSupport(20 * direction)
 	
 	elif sav.curLawName=="诚信经营":#只有buff 所有派系好感度上升
 
-		sav.WAIDIPAI.ChangeSupport(-20)
+		sav.WAIDIPAI.ChangeSupport(20 * direction)
 	
 	elif sav.curLawName=="通商惠利":#只有buff 所有派系好感度随机上升
 
-		sav.BENTUPAI.ChangeSupport(-20)
+		sav.BENTUPAI.ChangeSupport(20 * direction)
 	
 	elif sav.curLawName=="禁止军商":
 
-		sav.WAIDIPAI.ChangeSupport(-25)
+		sav.WAIDIPAI.ChangeSupport(25 * direction)
 		#	print("禁止军商done")			
 	elif sav.curLawName=="宽商减赋法":
 
 		
-		sav.BENTUPAI.ChangeSupport(-20)
+		sav.BENTUPAI.ChangeSupport(20 * direction)
 		
 	elif sav.curLawName=="货币法":
 
-		sav.WAIDIPAI.ChangeSupport(-30)	
+		sav.WAIDIPAI.ChangeSupport(30 * direction)
 	
 	elif sav.curLawName=="市肆兴隆法":
 
-		sav.BENTUPAI.ChangeSupport(-20)
-		sav.WAIDIPAI.ChangeSupport(-20)
+		sav.BENTUPAI.ChangeSupport(20 * direction)
+		sav.WAIDIPAI.ChangeSupport(20 * direction)
 	elif sav.curLawName=="商品流通法":
 
-		sav.BENTUPAI.ChangeSupport(-20)
+		sav.BENTUPAI.ChangeSupport(20 * direction)
 										
 	elif sav.curLawName=="宽商信规法":
 
-		sav.BENTUPAI.ChangeSupport(-20)
-		sav.WAIDIPAI.ChangeSupport(-20)
+		sav.BENTUPAI.ChangeSupport(20 * direction)
+		sav.WAIDIPAI.ChangeSupport(20 * direction)
 #丹阳派
 
 	elif sav.curLawName=="战备法":#获得若干随机道具
@@ -1332,39 +1338,39 @@ func preCostPaixi():
 		
 		#RewardLaw="随机获得3个道具，一次性民力+100"
 		
-		GameManager.sav.HAOZUPAI.ChangeSupport(-20)
+		GameManager.sav.HAOZUPAI.ChangeSupport(20 * direction)
 			#sav.labor_force=sav.labor_force+100
 	elif sav.curLawName=="侦隐法":#获得一些民力增加
 
-		sav.BENTUPAI.ChangeSupport(-20)
+		sav.BENTUPAI.ChangeSupport(20 * direction)
 
 	elif sav.curLawName=="军事训诂":
 
-		sav.BENTUPAI.ChangeSupport(-25)
+		sav.BENTUPAI.ChangeSupport(25 * direction)
 
 	elif sav.curLawName=="军事装备法":
 		#RewardLaw="收益：每日收入+50，获得道具“益气丸”x2 冲突：豪族好感度-20 "
 
-		sav.HAOZUPAI.ChangeSupport(-30)
+		sav.HAOZUPAI.ChangeSupport(30 * direction)
 		
 	elif sav.curLawName=="军事训练法":
 
-		sav.BENTUPAI.ChangeSupport(-30)
+		sav.BENTUPAI.ChangeSupport(30 * direction)
 	
 	elif sav.curLawName=="军事优拔法":
 
-		sav.HAOZUPAI.ChangeSupport(-30)
+		sav.HAOZUPAI.ChangeSupport(30 * direction)
 		
 	
 	elif sav.curLawName=="厉兵练卒法":
 
-		sav.BENTUPAI.ChangeSupport(-20)
-		sav.HAOZUPAI.ChangeSupport(-20)
+		sav.BENTUPAI.ChangeSupport(20 * direction)
+		sav.HAOZUPAI.ChangeSupport(20 * direction)
 
 	elif sav.curLawName=="国防策略法":
 
-		sav.HAOZUPAI.ChangeSupport(-20)
-		sav.BENTUPAI.ChangeSupport(-20)
+		sav.HAOZUPAI.ChangeSupport(20 * direction)
+		sav.BENTUPAI.ChangeSupport(20 * direction)
 
 	
 	
