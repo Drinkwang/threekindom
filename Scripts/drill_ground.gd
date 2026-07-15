@@ -1160,6 +1160,7 @@ func openBoardDialogue():
 func huangjinSurrender():
 	GameManager.sav.labor_force+=100
 	GameManager.sav.currenceValue+=1
+	GameManager.sav.Merit_points+=2
 	#DialogueManager.dialogBegin=false
 	_judWin()	
 
@@ -1176,10 +1177,12 @@ func cangxiSurrender():
 	#GameManager.ScoreToItem()
 	_reward.showTitileReward(tr("恭喜你，你获得昌豨献上的财宝"),items)		
 	GameManager.sav.currenceValue+=1
+	GameManager.sav.Merit_points+=2
 	pass
 	
 func jilinEscape():
 	GameManager.changePeopleSupport(10)
+	GameManager.sav.Merit_points+=2
 	#GameManager.sav.people_surrport+=10
 	GameManager.sav.currenceValue+=1
 	pass

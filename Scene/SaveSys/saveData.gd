@@ -496,6 +496,7 @@ GameManager.RspEnum.PAPER:{"name": "无名", "level": 1, "max_level": 10, "rando
 @export var minxinReduceCost=false
 
 @export var merMustBuy=false
+@export var merMaxLaw=0
 
 @export var isGoodsDiscount=false
 @export var shopSelfSell=false

@@ -35,7 +35,11 @@ do settleAfter()#应该已经销毁
 
 ~ 售出成功
 do confireSold()
-系统提示: 你已成功出售商品，获得{{GameManager.SoldCoin}}钱
+if GameManager.sav.merMustBuy==true and GameManager.resideValue4==true:
+	系统提示: 你已成功出售商品，获得{{GameManager.SoldCoin}}钱，1个法令点数（剩余可获取{{GameManager.resideValue3}}点）
+else
+	系统提示: 你已成功出售商品，获得{{GameManager.SoldCoin}}钱
+
 do SoundManager.play_sound(sounds.buysellsound)
 
 => END

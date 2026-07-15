@@ -303,7 +303,7 @@ func _initData():
 					return false
 			if not (GameManager.sav.have_event["关羽求援结束"] ==true and GameManager.sav.have_event["主簿的追随"] ==false):
 				GameManager.resideValue=tr("大人本旬收入为{_coin}，招募的士兵为{_labor}").format({"_coin":GameManager.sav.coin_DayGet,"_labor":GameManager.sav.labor_DayGet})
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"今日收入为")
+				DialogueManager.show_exaple_top_dialogue_balloon(dialogue_resource,"今日收入为")
 			else:
 				canMuliao=false
 	control._processList(initData)
@@ -958,11 +958,11 @@ func determineInternalUnrest():
 	var _UnrestNum=0
 	randomIndex=GameManager.sav.randomIndex
 	if GameManager.sav.gameDifficulty==1:
-		difficultyCoeff=1.0
+		difficultyCoeff=0.8
 	elif GameManager.sav.gameDifficulty==2:
-		difficultyCoeff=1.2
+		difficultyCoeff=1
 	elif GameManager.sav.gameDifficulty==3:
-		difficultyCoeff=1.5
+		difficultyCoeff=1.2
 	else:
 		difficultyCoeff=1.0
 	var fractions:Array=[GameManager.sav.HAOZUPAI,GameManager.sav.WAIDIPAI,GameManager.sav.BENTUPAI]
@@ -990,7 +990,7 @@ func determineInternalUnrest():
 
 
 	if _UnrestNum>0:
-		DialogueManager.show_example_dialogue_balloon(sys,"有内乱禀报")
+		DialogueManager.show_exaple_top_dialogue_balloon(sys,"有内乱禀报")
 	else:
 		shizuLawTest()
 var determineValue1=0
@@ -1031,7 +1031,7 @@ func allocationAllSettle():
 			pending_allocation_cycle_restart=true
 		elif auto_allocation_paid:
 			pending_allocation_cycle_restart=true
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"津贴发放")
+			DialogueManager.show_exaple_top_dialogue_balloon(dialogue_resource,"津贴发放")
 		else:
 			_finish_allocation_cycle()
 		return
@@ -1048,10 +1048,10 @@ func allocationAllSettle():
 			if GameManager.justHaveDemand(allCost):
 				GameManager.playDemand(allCost)
 				GameManager.completeAutoAll()
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"津贴发放")
+				DialogueManager.show_exaple_top_dialogue_balloon(dialogue_resource,"津贴发放")
 			else:
 
-				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"未完成津贴发放")
+				DialogueManager.show_exaple_top_dialogue_balloon(dialogue_resource,"未完成津贴发放")
 
 
 var cnames:Array=[]
@@ -1083,7 +1083,7 @@ func allocationSettle():
 			allcontext+=tr("{_name}月例拖欠，支持度下降{point}点").format({"_name":tr(alldata._name),"point":point})+"\n"
 
 	if allcontext!="" and allcontext!="\n":
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"派系扣除好感")
+		DialogueManager.show_exaple_top_dialogue_balloon(dialogue_resource,"派系扣除好感")
 func allocationMuliao():
 	if zhubu.visible==false:
 		if GameManager.sav.allocationDay==2 and GameManager.canDistributeAllowance():
@@ -1139,11 +1139,11 @@ func determineInternalUnrestXuzhou():
 		if randf() < 0.5||GameManager.sav.labor_force<determineValue1:
 			determineType=GameManager.ResType.heart
 			determineValue1=clamp_unrest_heart_cost(int((5+randomIndex+(GameManager.sav.BENTUPAI._num_defections-1)*2)*difficultyCoeff))
-			DialogueManager.show_example_dialogue_balloon(sys,"士族叛乱1")
+			DialogueManager.show_exaple_top_dialogue_balloon(sys,"士族叛乱1")
 		else:
 			determineType=GameManager.ResType.people
 
-			DialogueManager.show_example_dialogue_balloon(sys,"士族叛乱2")
+			DialogueManager.show_exaple_top_dialogue_balloon(sys,"士族叛乱2")
 		return
 	determineInternalUnrestHaozu()
 
@@ -1158,11 +1158,11 @@ func determineInternalUnrestHaozu():
 		if randf() < 0.5||GameManager.sav.coin<determineValue1:
 			determineValue1=clamp_unrest_heart_cost(int((5+randomIndex+(GameManager.sav.HAOZUPAI._num_defections-1)*2)*difficultyCoeff))
 			determineType=GameManager.ResType.heart
-			DialogueManager.show_example_dialogue_balloon(sys,"豪族叛乱1")
+			DialogueManager.show_exaple_top_dialogue_balloon(sys,"豪族叛乱1")
 		else:
 
 			determineType=GameManager.ResType.coin
-			DialogueManager.show_example_dialogue_balloon(sys,"豪族叛乱2")
+			DialogueManager.show_exaple_top_dialogue_balloon(sys,"豪族叛乱2")
 		return
 	determineInternalUnrestDanyang()
 func determineInternalUnrestDanyang():
@@ -1181,11 +1181,11 @@ func determineInternalUnrestDanyang():
 			determineValue1=InventoryManager.costItemRandom(determineValue1)
 			determineDetail=generate_consumed_string(determineValue1)
 			determineType=GameManager.ResType.item
-			DialogueManager.show_example_dialogue_balloon(sys,"丹阳叛乱1")
+			DialogueManager.show_exaple_top_dialogue_balloon(sys,"丹阳叛乱1")
 		else:
 			determineValue1=clamp_unrest_heart_cost(int((5+randomIndex+(GameManager.sav.WAIDIPAI._num_defections-1)*2)*difficultyCoeff))
 			determineType=GameManager.ResType.heart
-			DialogueManager.show_example_dialogue_balloon(sys,"丹阳叛乱2")
+			DialogueManager.show_exaple_top_dialogue_balloon(sys,"丹阳叛乱2")
 		return
 	determineInternalUnrestLvbu()
 func determineInternalUnrestLvbu():
@@ -1230,7 +1230,7 @@ func determineInternalUnrestLvbu():
 			determineType = GameManager.ResType.heart
 			determineValue1 = costHeart
 			determineDetail=tr("民心-%d") %costHeart
-		DialogueManager.show_example_dialogue_balloon(sys,"吕布叛乱")
+		DialogueManager.show_exaple_top_dialogue_balloon(sys,"吕布叛乱")
 		return
 
 	determineInternalUnrestMinxin()

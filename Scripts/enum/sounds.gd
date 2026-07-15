@@ -73,3 +73,5 @@ const xueji = preload("res://Asset/sound/糜贞攻击.wav")
 const XUEJIDEAD = preload("res://Asset/sound/xuejidead.wav")
 
 const gulong = preload("res://Asset/sound/骨龙.wav")
+const GETITEM = preload("res://Asset/sound/getitem.mp3")
+const GETITEM_2 = preload("res://Asset/sound/getitem2.mp3")

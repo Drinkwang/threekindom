@@ -275,13 +275,21 @@ func _on_Sold_button_down():
 	#GameManager._engerge.startPreviewHp(costhp)	
 	if GameManager.sav.have_event["第一次售卖教程"]==false:
 		GameManager.sav.have_event["第一次售卖教程"]=true
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"卖出物品教程")
+		DialogueManager.show_exaple_top_dialogue_balloon(dialogue_resource,"卖出物品教程")
 	else:
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"是否售出商品")
+		DialogueManager.show_exaple_top_dialogue_balloon(dialogue_resource,"是否售出商品")
+
 
 #var costhp=15
 func confireSold():
-	
+	if GameManager.sav.merMustBuy==true and GameManager.sav.merMaxLaw<6:
+		GameManager.resideValue4=true
+		
+		GameManager.sav.merMaxLaw+=1
+		GameManager.sav.Merit_points+=1
+		GameManager.resideValue3=6-GameManager.sav.merMaxLaw
+	else:
+		GameManager.resideValue4=true
 	GameManager.sav.coin=GameManager.sav.coin+int(GameManager.SoldCoin)
 	GameManager.sav.isSoldItem = true
 	for item_type in useItems:

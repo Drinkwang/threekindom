@@ -536,9 +536,10 @@ func GetLawClaimRevenue():
 				#下面不一定执行
 				
 				if GameManager.sav.enhancPolicy_coax==true:
-					GameManager.changePeopleSupport(5)
+					#GameManager.changePeopleSupport(5)
+					GameManager.sav.Merit_points+=3
 					#未翻译
-					claimLabel.text=tr("提示：成功通过拉拢{factions}需求的法律！\n({factions}好感度提升{point}点，额外获得5民心)\n(该派系摇摆人数减少)").format({"factions":factions,"point":point})
+					claimLabel.text=tr("提示：成功通过拉拢{factions}需求的法律！\n({factions}好感度提升{point}点，额外获得3政策点)\n(该派系摇摆人数减少)").format({"factions":factions,"point":point})
 				else:
 					claimLabel.text=tr("提示：成功通过拉拢{factions}需求的法律！\n({factions}好感度提升{point}点)\n(该派系摇摆人数减少)").format({"factions":factions,"point":point})	
 				var animation_player=$CanvasBook/ColorRect/AnimationPlayer
