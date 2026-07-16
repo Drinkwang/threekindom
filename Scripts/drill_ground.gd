@@ -38,6 +38,10 @@ func wumindissipate():
 	#无名消散
 
 func playLvbuRageAnimation() -> void:
+	
+	
+
+	#battle_pane.refreshData()
 	if _lvbu_rage_sequence != null and _lvbu_rage_sequence.is_valid():
 		return
 
@@ -106,7 +110,7 @@ func playLvbuRageAnimation() -> void:
 	overlay.add_child(power_caption)
 
 	var power := Label.new()
-	power.text = "25000"
+	power.text = "10000"
 	power.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	power.set_anchors_preset(Control.PRESET_CENTER)
 	power.position = Vector2(-360, 118)

@@ -856,6 +856,12 @@ func _JudgeTask():
 			elif value>=10 and GameManager.sav.have_event["吕布之怒"]==false and GameManager.sav.endPath==GameManager.endPath.xiaopei:
 				hasSide=false
 				GameManager.sav.have_event["吕布之怒"]=true
+				for i in range(0,3):
+					var datas=GameManager.sav.battleTasks.values()
+					var data=datas[i]
+					data.task=[]
+					data.index=200
+				#吕布最终进犯
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"吕布最终进犯")
 			elif value>=GameManager.sav.targetValue and GameManager.sav.endPath==GameManager.endPath.xiaopei:
 				#屏蔽三个地方
