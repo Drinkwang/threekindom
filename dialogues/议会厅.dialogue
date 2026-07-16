@@ -486,6 +486,7 @@ do chendeng.hide()
 do mizhu.hide()
 do huatuo.hide()
 do chendenFinal()
+do GameManager.improveFinalPhase()
 => END!
 
 

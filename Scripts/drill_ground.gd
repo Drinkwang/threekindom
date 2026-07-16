@@ -29,6 +29,7 @@ var _lvbu_rage_sequence: Tween
 
 func danyangFinal():
 	GameManager.sav.have_event["最终丹阳"]=true
+	GameManager.sav.labor_force+=100
 	#获得民力奖励，待编辑
 
 func wumindissipate():

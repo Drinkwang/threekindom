@@ -554,7 +554,7 @@ do taishanSoilder.showEX=false
 do taishanSoilder.hide()
 系统提示: 若提升泰山诸将好感度至80，将后续解锁内应的专属助力，为后续收复徐州、扩充势力提供关键支撑。
 do GameManager.sav.have_event["泰山预备"]=true
-
+do GameManager.improveFinalPhase()
 => END!
 
 ~ 泰山诸将任务完成
@@ -578,7 +578,7 @@ do GameManager.sav.BENTUPAI.ChangeSupport(10)
 do GameManager.sav.WAIDIPAI.ChangeSupport(10)
 do GameManager.sav.LVBU.ChangeSupport(10)
 系统提示: 恭喜玩家完成「泰山内应密告」任务，促成辕门射戟，暂时化解小沛危机，徐州各派系支持度上升10
-do settle_allocation_after_current_dialogue()
+do GameManager.improveFinalPhase()
 => END!
 
 ~ demo结束

@@ -1598,6 +1598,7 @@ do danyangSoilder.showEX=false
 刘备: 诸位丹阳儿郎，今日来小沛，刘备与你们同喜同悲。徐州虽失，大义长存！[voice:liubei_xuzhousuishidayichangcun]
 do danyangSoilder.hide()
 do danyangFinal()
+do GameManager.improveFinalPhase()
 => END!
 
 
