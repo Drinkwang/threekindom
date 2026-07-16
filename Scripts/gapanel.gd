@@ -140,6 +140,14 @@ func refreshContext():
 							policycontext=tr(GameManager.sav.targetTxt).format({"target":targetValue,"currence1":currenceValue[0],"currence2":currenceValue[1]})
 						else:
 							policycontext=tr(GameManager.sav.targetTxt).format({"target":targetValue,"currence":currenceValue})
+							if GameManager.sav.endPath!=GameManager.endPath.none:
+								var groupName
+								if GameManager.sav.endPath==GameManager.endPath.xiaopei:
+									groupName=1
+								elif GameManager.sav.endPath==GameManager.endPath.xuzhou:
+									groupName=2
+								var currenv=GameManager.sav.finalPhaseValue
+								policycontext=policycontext+"\n"+tr("城内形势:")+StageStateMgr.get_state_name(groupName,currenv)
 					else:
 						policycontext=tr("当前任务：无")
 			else:

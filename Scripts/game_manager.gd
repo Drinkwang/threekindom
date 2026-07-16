@@ -476,8 +476,10 @@ func _enterDay(value=true):
 		sav.isVisitScholar=false
 		sav.randomIndex=randi_range(0,3)
 		sav.alreadyHP=0	
-		
-		
+		if GameManager.sav.endPath==GameManager.endPath.xiaopei:
+			sav.finalPhaseValue=4
+		elif GameManager.sav.endPath==GameManager.endPath.xuzhou:
+			sav.finalPhaseValue=5
 		sav.policyExcute=false
 		if sav.xuzhouCD>0:
 			sav.xuzhouCD-=1
