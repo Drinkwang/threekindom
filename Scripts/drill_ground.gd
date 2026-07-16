@@ -9,8 +9,11 @@ class_name  drill_ground
 
 const xiaopeiBuild = preload("res://Asset/城镇建筑/演武场1.png")
 const newBuild = preload("res://Asset/城镇建筑/演武场2.png")
+const LVBU_RAGE_ART = preload("res://Asset/人物/吕布来了.png")
 const BATTLE_PANE_TOP_MARGIN := 45.0
 const BATTLE_PANE_BOTTOM_MARGIN := 45.0
+
+var _lvbu_rage_sequence: Tween
 
 @onready var fade: AnimationPlayer = $CanvasLayer/ColorRect/fade
 
@@ -33,6 +36,127 @@ func wumindissipate():
 	var tween=create_tween()
 	tween.tween_property(zhaoyun, "modulate:a",0, 5)
 	#无名消散
+
+func playLvbuRageAnimation() -> void:
+	if _lvbu_rage_sequence != null and _lvbu_rage_sequence.is_valid():
+		return
+
+	var layer := CanvasLayer.new()
+	layer.name = "LvbuRageCinematic"
+	layer.layer = 100
+	add_child(layer)
+	SoundManager.play_sound(sounds.LVBU_3)
+	var overlay := Control.new()
+	overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	overlay.mouse_filter = Control.MOUSE_FILTER_STOP
+	layer.add_child(overlay)
+
+	var backdrop := ColorRect.new()
+	backdrop.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	backdrop.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	backdrop.color = Color(0.015, 0.005, 0.004, 0.0)
+	overlay.add_child(backdrop)
+
+	var art := TextureRect.new()
+	art.texture = LVBU_RAGE_ART
+	art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	art.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+	art.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	art.modulate = Color(0.96, 0.32, 0.25, 0.0)
+	art.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	overlay.add_child(art)
+
+	var shade := ColorRect.new()
+	shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	shade.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	shade.color = Color(0.09, 0.005, 0.005, 0.0)
+	overlay.add_child(shade)
+
+	var flash := ColorRect.new()
+	flash.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	flash.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	flash.color = Color(1.0, 0.76, 0.56, 0.0)
+	overlay.add_child(flash)
+
+	var title := Label.new()
+	title.text = tr("吕布之怒")
+	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	title.set_anchors_preset(Control.PRESET_CENTER_BOTTOM)
+	title.position = Vector2(-360, -170)
+	title.size = Vector2(720, 70)
+	title.add_theme_font_size_override("font_size", 42)
+	title.add_theme_color_override("font_color", Color(1.0, 0.82, 0.64, 1.0))
+	title.add_theme_color_override("font_shadow_color", Color(0.05, 0.0, 0.0, 0.95))
+	title.add_theme_constant_override("shadow_offset_x", 3)
+	title.add_theme_constant_override("shadow_offset_y", 4)
+	title.modulate.a = 0.0
+	title.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	overlay.add_child(title)
+
+	var power_caption := Label.new()
+	power_caption.text = tr("敌军战力")
+	power_caption.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	power_caption.set_anchors_preset(Control.PRESET_CENTER)
+	power_caption.position = Vector2(-230, 90)
+	power_caption.size = Vector2(460, 42)
+	power_caption.add_theme_font_size_override("font_size", 28)
+	power_caption.add_theme_color_override("font_color", Color(1.0, 0.80, 0.66, 1.0))
+	power_caption.modulate.a = 0.0
+	power_caption.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	overlay.add_child(power_caption)
+
+	var power := Label.new()
+	power.text = "25000"
+	power.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	power.set_anchors_preset(Control.PRESET_CENTER)
+	power.position = Vector2(-360, 118)
+	power.size = Vector2(720, 145)
+	power.add_theme_font_size_override("font_size", 108)
+	power.add_theme_color_override("font_color", Color(1.0, 0.25, 0.12, 1.0))
+	power.add_theme_color_override("font_outline_color", Color(0.15, 0.0, 0.0, 1.0))
+	power.add_theme_constant_override("outline_size", 10)
+	power.add_theme_color_override("font_shadow_color", Color(0.0, 0.0, 0.0, 1.0))
+	power.add_theme_constant_override("shadow_offset_x", 5)
+	power.add_theme_constant_override("shadow_offset_y", 8)
+	power.scale = Vector2(1.45, 1.45)
+	power.pivot_offset = power.size * 0.5
+	power.modulate.a = 0.0
+	power.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	overlay.add_child(power)
+
+	await get_tree().process_frame
+	art.pivot_offset = art.size * 0.5
+	var entrance := create_tween().set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
+	_lvbu_rage_sequence = entrance
+	entrance.tween_property(backdrop, "color:a", 0.96, 0.28)
+	entrance.parallel().tween_property(art, "modulate:a", 1.0, 0.24)
+	entrance.parallel().tween_property(shade, "color:a", 0.48, 0.28)
+	entrance.parallel().tween_property(art, "scale", Vector2(1.06, 1.06), 1.5)
+	entrance.tween_property(flash, "color:a", 0.82, 0.055)
+	entrance.tween_property(flash, "color:a", 0.0, 0.28)
+	entrance.parallel().tween_property(art, "scale", Vector2(1.14, 1.14), 0.32)
+	entrance.parallel().tween_property(title, "modulate:a", 1.0, 0.18)
+	entrance.tween_property(power_caption, "modulate:a", 1.0, 0.12)
+	entrance.parallel().tween_property(power, "modulate:a", 1.0, 0.12)
+	entrance.parallel().tween_property(power, "scale", Vector2(1.0, 1.0), 0.24)
+	entrance.tween_property(power, "scale", Vector2(1.04, 1.04), 0.32)
+
+	var shake := create_tween()
+	shake.tween_interval(0.31)
+	for offset in [Vector2(-18, 4), Vector2(15, -7), Vector2(-9, 3), Vector2.ZERO]:
+		shake.tween_property(art, "position", offset, 0.038)
+
+	await get_tree().create_timer(2.35).timeout
+	var exit := create_tween().set_parallel(true).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	exit.tween_property(backdrop, "color:a", 0.0, 0.32)
+	exit.tween_property(art, "modulate:a", 0.0, 0.28)
+	exit.tween_property(shade, "color:a", 0.0, 0.28)
+	exit.tween_property(title, "modulate:a", 0.0, 0.18)
+	exit.tween_property(power_caption, "modulate:a", 0.0, 0.15)
+	exit.tween_property(power, "modulate:a", 0.0, 0.18)
+	await exit.finished
+	_lvbu_rage_sequence = null
+	layer.queue_free()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 

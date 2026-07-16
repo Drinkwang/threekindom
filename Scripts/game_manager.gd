@@ -863,7 +863,7 @@ func checkAndHandleLazy() -> bool:
 		if returnExtraState() == true:
 			PunishC += 10
 
-		if GameManager.sav.finalPhaseValue > 2:
+		if GameManager.sav.finalPhaseValue >= 2:
 			#if GameManager.sav.have_event["主簿的追随"]==false:
 			DialogueManager.show_exaple_top_dialogue_balloon(sys,"最终休憩提示")
 			return true

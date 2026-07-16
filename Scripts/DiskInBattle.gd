@@ -50,6 +50,12 @@ func _refreshBattleTypePreview():
 		var sd = GameManager.sav.battleTasks[idx].sdType
 		_initBattleTypePng(i, sd)
 var enemyName=""
+
+func getEnemyPower(index: int) -> int:
+	if GameManager.sav.have_event["吕布之怒"] == true:
+		return 250000
+	return GameManager.sav.battleTasks[index].index * 50
+
 func changeHeadInMainTask():
 	
 	const CANGXI_2 = preload("res://Asset/人物/cangxi2.png")
@@ -615,7 +621,7 @@ func settleGame(end,issuccess):
 
 			
 		#判断胜利积分
-		var enemyPower=GameManager.sav.battleTasks[taskIndex].index*50
+		var enemyPower=getEnemyPower(taskIndex)
 		
 		
 		finalScore=GameManager.calculate_points(enemyPower,taskComplete, percentage/100,selectgeneral.level,buffMultiple)
@@ -780,7 +786,7 @@ func refreshPage():
 	else:
 		index=taskIndex
 	
-	enemy.namelv=tr("(当前战力:{targetValue})").format({"targetValue": GameManager.sav.battleTasks[index].index*50}) 
+	enemy.namelv=tr("(当前战力:{targetValue})").format({"targetValue": getEnemyPower(index)}) 
 	#可以刷新头像和技能 包括点击项
 	
 	var btresult= GameManager.BattleResult

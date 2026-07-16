@@ -75,3 +75,7 @@ const XUEJIDEAD = preload("res://Asset/sound/xuejidead.wav")
 const gulong = preload("res://Asset/sound/骨龙.wav")
 const GETITEM = preload("res://Asset/sound/getitem.mp3")
 const GETITEM_2 = preload("res://Asset/sound/getitem2.mp3")
+
+const LVBU_1 = preload("res://Asset/sound/lvbu1.wav")
+const LVBU_3 = preload("res://Asset/sound/lvbu3.wav")
+const LVBU_2 = preload("res://Asset/sound/lvbu2.wav")
