@@ -611,6 +611,9 @@ func showGuimiAchi():
 func intBattleTask():
 	var nums={}
 	var battleCoeff=1.0
+	var isLvbuFinalBattle:bool=sav.have_event.get("吕布之怒",false)
+	if isLvbuFinalBattle and sav.lvbuFinalBattleStartTask<0:
+		sav.lvbuFinalBattleStartTask=sav.currenceTask
 	match GameManager.sav.gameDifficulty:
 		1: battleCoeff=1.0
 		2: battleCoeff=1.2
@@ -620,7 +623,14 @@ func intBattleTask():
 	#var levels=1.0889-(0.0889*levels)
 	for battleTarget in range(3):
 		sav.battleTasks[battleTarget]={}
-		sav.battleTasks[battleTarget].index=sav.currenceTask+battleTarget+1
+		if isLvbuFinalBattle:
+			sav.battleTasks[battleTarget].index=200+(sav.currenceTask-sav.lvbuFinalBattleStartTask)+battleTarget
+		#	sav.battleTasks[battleTarget].task=[]
+		#	sav.battleTasks[battleTarget].reward=0
+		#	sav.battleTasks[battleTarget].sdType=randi_range(0,2)
+		#	continue
+		else:
+			sav.battleTasks[battleTarget].index=sav.currenceTask+battleTarget+1
 		var taskNum:int=randi_range(1, 2)
 		if taskNum==1:
 			var resTyoe=randi_range(1, 2)

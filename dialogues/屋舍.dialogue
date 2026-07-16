@@ -401,6 +401,7 @@ do settle_allocation_after_current_dialogue()
 
 ~ 终局
 do changeToFinalScene(0)
+
 刘备: 曹操并未食言，在我军即将溃败之际，他的援军终于抵达，我也得以全身而退，撤出小沛。[voice:liubei_chequxiaopei]
 #黑白
 do changeToFinalScene(1)
@@ -434,6 +435,7 @@ do enterFinalBiwu()
 
 ~ 最终章节2
 do caocao_old.show()
+do items_in_scene.hide()
 比剑结束后，酒过三巡。
 
 曹操: 玄德老弟，今日酣饮，正好论英雄。[voice:caocao_hanyin]
@@ -477,8 +479,10 @@ do changeToFinalScene(4)
 => END!
 
 ~ 最终章节_洛阳街头
+
 do changeToFinalScene(5)
 #do label2.show()
+
 洛阳，夜色微雨。年轻曹操被数名刺客围困，背靠墙角，寡不敌众，嘴角已渗血。
 #演出1
 系统提示: 点击敌人，将其击退！

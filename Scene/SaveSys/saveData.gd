@@ -63,6 +63,9 @@ func _notify_resource_change(resource_type: String, change: int) -> void:
 @export var battleTasks={}
 @export var completeTask:int=0
 
+# The task counter at which the Lv Bu final battle sequence begins.
+@export var lvbuFinalBattleStartTask:int=-1
+
 #若通关 则completeTask	
 @export var currenceTask:int=0	
 @export var curGovAff:String
