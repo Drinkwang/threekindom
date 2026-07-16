@@ -391,7 +391,9 @@ do xiahouchun.show()
 
 夏侯惇: 使君，只需你率部坚守小沛几日，拖住吕布大军。我家家主已亲提精锐，星夜南下，不日便至小沛。届时，与使君合兵一处，到时不仅可破吕布，更能顺势扫除袁术这一僭越逆贼，平定徐州！[voice:xiahoutunshaochulvbu]
 do SoundManager.play_sound(sounds.guiyi)
-系统提示: 最后坚持几回合，等待曹操的救援。敌军已换为吕布，每回合必须出战3次，否则民心将下降。
+#系统提示: 最后坚持几回合，等待曹操的救援。敌军已换为吕布，每回合必须出战3次，否则民心将下降。
+系统提示: 吕布大军压境，双方积怨已久！敌军已换为吕布，需坚守等待曹操援军。城内民心动荡、城防危急，眼下无他法可循，现在只能通过军事行动改善城内局势。
+
 do xiahouchun.hide()
 do settle_allocation_after_current_dialogue()
 => END!
@@ -767,7 +769,8 @@ do xiahouchun.show()
 刘备: ……请将军回禀孟德兄：备记下了。[voice:liubei_jixiale]
 夏侯惇: 话一定带到。另外……家主让我留在徐州助你一阵。这不是监视，是家主与您的交情。[voice:xiahouchun_yuninjiaoqing]
 do xiahouchun.hide()
-系统提示: 夏侯惇率军驰援徐州防线，我方与曹操势力好感大幅提升。战局进入终局阶段，此后每旬需完成3场军事行动！
+#系统提示: 夏侯惇率军驰援徐州防线，我方与曹操势力好感大幅提升。战局进入终局阶段，此后每旬需完成3场军事行动！
+系统提示: 夏侯惇率军驰援徐州防线，我方与曹操势力好感大幅提升。战局进入终局阶段，现在仅能依靠军事行动改善城内局势。
 do settle_allocation_after_current_dialogue()
 => END!
 

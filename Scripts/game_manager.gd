@@ -857,32 +857,21 @@ func checkAndHandleLazy() -> bool:
 	if GameManager.sav.endPath!=GameManager.endPath.none:
 		var allcount = GameManager.sav.battleResults.size() - GameManager.sav.battleResults.count(GameManager.BattleResult.none)
 
-		#var diffFactor=0
-		
-		#if GameManager.sav.gameDifficulty==1:
-		var diffFactor=GameManager.sav.gameDifficulty*5
-	
-		if(GameManager.sav.have_event["夏侯偷马"]==true and GameManager.sav.endPath==GameManager.endPath.xuzhou):
-		#	needC=3
-			PunishC=25+diffFactor
-		elif GameManager.sav.endPath==GameManager.endPath.xiaopei and GameManager.sav.have_event["吕布之怒"]==true:
-		#	needC=3#吕布
-			PunishC=20+diffFactor
-		else:
-			if GameManager.sav.endPath==GameManager.endPath.xiaopei:
-			#	needC=1
-				PunishC=10+diffFactor
-			elif GameManager.sav.endPath==GameManager.endPath.xuzhou:
-			#	needC=2
-				PunishC=15+diffFactor
-		if GameManager.sav.finalPhaseValue>1:
+		var diffFactor = GameManager.sav.gameDifficulty * 5
+		# 局势每高于 2 级一级，休息时民心惩罚增加 5；特殊阶段额外增加 10。
+		PunishC = (GameManager.sav.finalPhaseValue - 1) * 5 + diffFactor
+		if returnExtraState() == true:
+			PunishC += 10
+
+		if GameManager.sav.finalPhaseValue > 2:
 			#if GameManager.sav.have_event["主簿的追随"]==false:
-			DialogueManager.show_example_dialogue_balloon(sys,"最终休憩提示")
-			#	return true
+			DialogueManager.show_exaple_top_dialogue_balloon(sys,"最终休憩提示")
+			return true
 			#else:
 			#	DialogueManager.show_example_dialogue_balloon(sys,"最终休息民心损失")
 			#	return	true
-	
+		else:
+			PunishC=0
 	
 
 	resideValue = ceil(float(sav.day)/perLawCycle)
