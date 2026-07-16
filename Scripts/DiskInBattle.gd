@@ -655,7 +655,7 @@ func settleGame(end,issuccess):
 		_rewardPanel.fail()
 		judgeLoseSentiment()
 
-	GameManager.improveFinalPhase(2 if issuccess else 1)
+	GameManager.improveFinalPhase(2 if issuccess else 1, true)
 	# === 统一额外任务计数 ===
 	if not _extraTaskCountedThisRound and GameManager.currenceScene.battle_pane._mode == SceneManager.bossMode.none:
 		var _counted = false

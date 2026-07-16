@@ -808,8 +808,12 @@ func getConstructValue():
 var needC
 var PunishC
 
-func improveFinalPhase(value: int = 1) -> bool:
+func improveFinalPhase(value: int = 1, is_military_action: bool = false) -> bool:
 	if sav.endPath == endPath.none or value <= 0 or sav.finalPhaseValue <= 1:
+		return false
+	# returnExtraState 默认是 false：所有正确操作均可改善局势。
+	# 后期变为 true 后，仅军事行动可以改善局势。
+	if returnExtraState() == true and is_military_action == false:
 		return false
 
 	sav.finalPhaseValue = maxi(1, sav.finalPhaseValue - value)
@@ -2552,3 +2556,11 @@ func showChapterTitle(chapter: String, title_text: String, duration: float = 2.6
 		"title": title_text,
 		"duration": duration
 	})
+
+
+func returnExtraState():
+	if(GameManager.sav.have_event["夏侯偷马"]==true and GameManager.sav.endPath==GameManager.endPath.xuzhou) or (GameManager.sav.endPath==GameManager.endPath.xiaopei and GameManager.sav.have_event["吕布之怒"]==true):
+		return true
+	else:
+		return false
+		
