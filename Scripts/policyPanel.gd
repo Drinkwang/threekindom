@@ -392,9 +392,9 @@ func excuteLaw(value:lawpoint):
 
 	if value==null:
 		return
-	if GameManager.sav.have_event["法律健全"]==true:
-		DialogueManager.show_example_dialogue_balloon(GameManager.currenceScene.dialogue_resource,"法律已满")
-		return 
+	#if GameManager.sav.have_event["法律健全"]==true:
+	#	DialogueManager.show_example_dialogue_balloon(GameManager.currenceScene.dialogue_resource,"法律已满")
+	#	return 
 	#GameManager.hp=GameManager.hp-costhp
 	if(GameManager.sav.Merit_points<GameManager.LAW_COST_POINT):
 		DialogueManager.show_example_dialogue_balloon(GameManager.currenceScene.dialogue_resource,"你的政策点不够")	

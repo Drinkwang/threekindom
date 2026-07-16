@@ -807,6 +807,21 @@ func getConstructValue():
 
 var needC
 var PunishC
+
+func improveFinalPhase(value: int = 1) -> bool:
+	if sav.endPath == endPath.none or value <= 0 or sav.finalPhaseValue <= 1:
+		return false
+
+	sav.finalPhaseValue = maxi(1, sav.finalPhaseValue - value)
+	# 由对话末尾调用时，等原对话结束后再弹出系统提示，避免打断原对话。
+	_showFinalPhaseImproveNotice.call_deferred()
+	return true
+
+func _showFinalPhaseImproveNotice() -> void:
+	if DialogueManager.haveDialoge():
+		await DialogueManager.dialogue_ended
+	DialogueManager.show_example_dialogue_balloon(sys, "最终章局势改善")
+
 func _rest(value=true):
 	if GameManager.sav.have_event["进入青梅煮酒"]==false:
 		# 血战模式下保留血战BGM的连续性，避免休息后音乐重新从头播放
@@ -844,25 +859,25 @@ func checkAndHandleLazy() -> bool:
 		var diffFactor=GameManager.sav.gameDifficulty*5
 	
 		if(GameManager.sav.have_event["夏侯偷马"]==true and GameManager.sav.endPath==GameManager.endPath.xuzhou):
-			needC=3
+		#	needC=3
 			PunishC=25+diffFactor
 		elif GameManager.sav.endPath==GameManager.endPath.xiaopei and GameManager.sav.have_event["吕布之怒"]==true:
-			needC=3#吕布
+		#	needC=3#吕布
 			PunishC=20+diffFactor
 		else:
 			if GameManager.sav.endPath==GameManager.endPath.xiaopei:
-				needC=1
+			#	needC=1
 				PunishC=10+diffFactor
 			elif GameManager.sav.endPath==GameManager.endPath.xuzhou:
-				needC=2
+			#	needC=2
 				PunishC=15+diffFactor
-		if allcount<needC:
-			if GameManager.sav.have_event["主簿的追随"]==false:
-				DialogueManager.show_example_dialogue_balloon(sys,"最终自言自语")
-				return true
-			else:
-				DialogueManager.show_example_dialogue_balloon(sys,"最终主簿告知")
-				return	true
+		if GameManager.sav.finalPhaseValue>1:
+			#if GameManager.sav.have_event["主簿的追随"]==false:
+			DialogueManager.show_example_dialogue_balloon(sys,"最终休憩提示")
+			#	return true
+			#else:
+			#	DialogueManager.show_example_dialogue_balloon(sys,"最终休息民心损失")
+			#	return	true
 	
 	
 
@@ -2266,13 +2281,13 @@ func LoadingDiffucultValue():
 		perLawCycle=5
 		minxinPoint=1
 		LAW_COST_POINT=3
-		maxLawNum=12
+		maxLawNum=15
 		#3点法令点立一个法
 	elif GameManager.sav.gameDifficulty==3:
 		perLawCycle=4
 		minxinPoint=2
 		LAW_COST_POINT=4
-		maxLawNum=12
+		maxLawNum=15
 		#4点法令点立一个法
 		#战斗难度
 		#一些惩罚增加

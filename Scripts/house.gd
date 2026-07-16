@@ -180,6 +180,7 @@ func playmusic():
 func xiaopeiStart():
 	# 只有“关羽回来”对话完整执行到这里，才算真正完成求援剧情。
 	GameManager.sav.have_event["关羽求援结束"]=true
+	GameManager.sav.finalPhaseValue=4
 	GameManager.sav.targetValue=12
 	GameManager.sav.currenceValue=0
 	GameManager.sav.targetResType=GameManager.ResType.rest

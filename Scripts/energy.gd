@@ -97,7 +97,16 @@ func showTargetLabel():
 				strContext+=tr("征集民夫数量：{currence1}/{target}").format({"target":targetValue,"currence1":currenceValue[0]})
 				target_label.text=strContext
 		else:
+			
 			target_label.text=tr(GameManager.sav.targetTxt).format({"target":targetValue,"currence":currenceValue})
+			if GameManager.sav.endPath!=GameManager.endPath.none:
+				var groupName
+				if GameManager.sav.endPath==GameManager.endPath.xiaopei:
+					groupName=1
+				elif GameManager.sav.endPath==GameManager.endPath.xuzhou:
+					groupName=2
+				var currenv=GameManager.sav.finalPhaseValue			
+				target_label.text=target_label.text+"\n"+tr("城内形势:")+StageStateMgr.get_state_name(groupName,currenv)
 	for law in GameManager.sav.courtingLaws:
 
 		var cd

@@ -118,7 +118,7 @@ func over():
 	#reward弹出
 	var _reward:rewardPanel=PanelManager.new_reward()
 	var maxScore=GameManager.sav.daruValue
-	
+	GameManager.improveFinalPhase()
 	var items
 
 		#items=GameManager.ScoreToItem(maxScore/10)

@@ -292,6 +292,7 @@ func _initData():
 
 func xuzhouStart():
 	GameManager.returnBloodRes()
+	GameManager.sav.finalPhaseValue=5
 	GameManager.sav.targetValue=12
 	GameManager.sav.currenceValue=0
 	GameManager.sav.targetResType=GameManager.ResType.rest
@@ -725,7 +726,7 @@ func selectPolicy(data,hp):
 			GameManager.sav.coin-=cost
 			GameManager.changePeopleSupport(heart)
 			GameManager.sav.hp-=hp
-			GameManager.sav.policyExcute=true				
+			GameManager.sav.policyExcute=true
 		GameManager.resideValue=tr("你消耗了{cost}钱，恢复了{heart}点民心").format({"cost":cost,"heart":heart})
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"民心执行政策")
 		
@@ -753,7 +754,7 @@ func selectPolicy(data,hp):
 			GameManager.sav.labor_force-=cost
 			GameManager.changePeopleSupport(heart)
 			GameManager.sav.hp-=hp
-			GameManager.sav.policyExcute=true			
+			GameManager.sav.policyExcute=true
 	elif id==policymanager.policyID.P_MoreBlood:
 		var cost=GameManager.getMinxinCost3()
 		if GameManager.sav.Merit_points<GameManager.minxinPoint:
@@ -777,10 +778,9 @@ func selectPolicy(data,hp):
 			GameManager.sav.coin+=addcoin
 			GameManager.sav.labor_force+=addLabor
 			GameManager.sav.hp-=hp
-			GameManager.sav.policyExcute=true	
+			GameManager.sav.policyExcute=true
 		#储存方法
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"民心执行政策")
-		
 		
 func selectCorrect():
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"正确决策0")

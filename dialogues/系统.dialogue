@@ -574,3 +574,19 @@ do GameManager.oneDayidness()
 系统提示: 对应片尾鸣谢尚未解锁
 => credit选项
 => END!
+
+
+~ 最终休憩提示
+主簿: 今日仍有军政事务尚未处理。此刻休息，城中民心可能受损。主公是否仍要休息？
+
+- 是
+	=> 最终休息民心损失
+- 否
+
+=> END!
+
+~ 最终休息民心损失
+系统提示: 本旬局势未得到妥善处理，民心下降{{GameManager.PunishC}}点。
+do GameManager.changePeopleSupport(0-GameManager.PunishC)
+do GameManager._rest()	 
+=> END!

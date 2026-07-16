@@ -142,6 +142,7 @@ do meetingEnd()
 : 是否同意将法律条款{{policy_panel.selectLawPoint.context_tr}}放在下一次议程{{GameManager.resideValue4}}
 - 同意
 	do agreelaw()
+	do GameManager.improveFinalPhase()
 - 取消
 	
 => END
@@ -263,6 +264,7 @@ do SoundManager.play_sound(sounds.COLLECT_SMALL_JEWEL_3)
 
 
 do GameManager._imporveRelation(getFactionByIndex())
+do GameManager.improveFinalPhase()
 #do _JudgeTask()
 => END
 
@@ -273,6 +275,7 @@ if getFactionByIndex().supressNum<3
 else
 	系统提示: 历经三次镇压，{{getFactionByIndex().getTr()}} 彻底归心，永世臣服。自此该派系好感度永久锁定为100，只要主公尚在人世，便绝无二心，忠诚度永不衰减。
 do _JudgeTask()
+do GameManager.improveFinalPhase()
 => END!
 
 
@@ -284,6 +287,7 @@ else
 	赠送资金已顺利完成！{{getFactionByIndex().getTr()}}在你的支持下已达到上限100人。
 do SignalManager.changeSupport.emit()
 do GameManager._imporveRelation(getFactionByIndex())	
+do GameManager.improveFinalPhase()
 
 #该派系人数上升完成
 => END
@@ -312,16 +316,19 @@ do GameManager._imporveRelation(getFactionByIndex())
 ~ 索取完成
 你已成功从{{getFactionByIndex().getTr()}}手中获取资金{{ForValueGet}}，消耗{{ForValueCost}}点好感度
 do _JudgeTask()
+do GameManager.improveFinalPhase()
 => END
 
 ~ 扩充吕布实力
 你已成功为{{GameManager.rTaishanName()}}扩充实力，当前{{GameManager.rTaishanName()}}手下人数达到{{getFactionByIndex()._num_all}}人，吕布的势力正在你的支持下日益壮大！
 do GameManager._imporveRelation(getFactionByIndex())
+do GameManager.improveFinalPhase()
 => END!
 
 ~ 调用士兵完成
 你已成功从{{GameManager.rTaishanName()}}手中征募士兵{{ForValueGet}}，消耗{{ForValueCost}}点好感度
 do _JudgeTask()
+do GameManager.improveFinalPhase()
 => END
 
 ~ 选项吕布
@@ -509,6 +516,7 @@ do exit()
 系统提示 : 当前选择下你可以获得一笔商人的资金支持，但会损失丹阳派的支持，和徐州百姓的民心
 系统提示 : 丹阳派好感度提升10，徐州士族好感度下降10，徐州百姓的民心下跌10，获取金额{{getCoin}}
 do GameManager.changePeopleSupport(-10)
+do GameManager.improveFinalPhase()
 => END!
 
 
@@ -519,6 +527,7 @@ do GameManager.changePeopleSupport(-10)
 系统提示 : 当前选择下 徐州士族支持度上升，徐州民心上升，丹阳派好感下降。因为没有改变政策，你获得一笔收益
 系统提示 : 丹阳派好感度下降5，徐州百姓的民心上升5,获得钱200
 do GameManager.changePeopleSupport(5)
+do GameManager.improveFinalPhase()
 => END!
 
 
@@ -559,6 +568,7 @@ if GameManager.policyAction!=null
 	do GameManager.policyAction.call()
 do GameManager.policyAction=null
 do _JudgeTask()
+do GameManager.improveFinalPhase()
 => END!
 
 
@@ -1033,6 +1043,7 @@ do canSummonLvBu()
 ~ 成功拉拢
 提示: 您已成功将政策‘{{lawName}}’纳入任务清单，以争取支持。请在七旬内完成法律的立项，并在议事厅获得通过。
 do SoundManager.play_sound(sounds.buysellsound)
+do GameManager.improveFinalPhase()
 
 #提示和播放音效
 => END!

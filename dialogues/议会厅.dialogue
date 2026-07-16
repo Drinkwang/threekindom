@@ -85,6 +85,7 @@ do ymlShowEnd()
 #该法案可以改成实际名字，视实际情况而定
 提示: 成功通过[{{tr(GameManager.sav.curLawName)}}]！{{GameManager.RewardLaw}}
 do GetLawClaimRevenue()
+do GameManager.improveFinalPhase()
 #徐州派好感度提升
 #每日钱收益增加
 #丹阳派好感度下降
@@ -94,6 +95,7 @@ do GetLawClaimRevenue()
 ~ 未通过法案
 提示: 该法案未能通过！法律已取消，请重新回府邸指引法律，各方派系此前扣除支持度已返还、为参议律法拨付的议事补给，全数发放至你的府库
 #法案审议未通过，草案作废，请返回府邸重拟律法；各派扣除的支持度已返还，参议所用议事补给尽数存入府库。
+do GameManager.improveFinalPhase()
 do cancelLaw()
 => END
 
@@ -329,7 +331,7 @@ else
 	do GameManager.resideValue=3
 	
 系统提示: 论策已毕，主公学识精进，当前学识提升至 【{{LearnToStr(GameManager.resideValue)}}】。大儒辩论中，主公辩才增益已更新为{{(GameManager.resideValue)*40}}%。
-	
+do GameManager.improveFinalPhase()
 => END!
 
 ~ 进入仕诡牌游戏
