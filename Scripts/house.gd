@@ -593,6 +593,8 @@ func refreshPropertyPanel():
 		comindex=4
 	elif GameManager.sav.targetResType==GameManager.ResType.construct:
 		comindex=3
+	elif GameManager.sav.endPath!=GameManager.endPath.none:
+		comindex=5
 	else:
 		comindex=1
 	#通过演武场、大儒辩经、立法、从其它派系索取钱财 尽可能实现收集资金的目标
@@ -641,6 +643,9 @@ func getrecommendStr(index):
 
 			recommend_list.append(tr("面对派系忠诚度不足的局面，除怀柔安抚外，亦可采取强硬手段。"))
 			recommend_list.append(tr("累计镇压3次后，派系将对你永远保持忠诚"))
+	elif index==5:
+		recommend_list.append(tr("打理城内各类政务、召见各方派系，均可稳固城内局势。"))
+		recommend_list.append(tr("完成城内各类支线事务，可有效平息乱象、安定局势。"))
 	else:
 		#Rstr=tr("暂无")
 		if GameManager.sav.have_event["initXuzhou"]==false:

@@ -138,16 +138,7 @@ func refreshContext():
 					elif GameManager.sav.targetTxt != null and GameManager.sav.targetTxt.length() > 0:
 						if currenceValue is Array:
 							policycontext=tr(GameManager.sav.targetTxt).format({"target":targetValue,"currence1":currenceValue[0],"currence2":currenceValue[1]})
-						else:
-							policycontext=tr(GameManager.sav.targetTxt).format({"target":targetValue,"currence":currenceValue})
-							if GameManager.sav.endPath!=GameManager.endPath.none:
-								var groupName
-								if GameManager.sav.endPath==GameManager.endPath.xiaopei:
-									groupName=1
-								elif GameManager.sav.endPath==GameManager.endPath.xuzhou:
-									groupName=2
-								var currenv=GameManager.sav.finalPhaseValue
-								policycontext=policycontext+"\n"+tr("城内形势:")+StageStateMgr.get_state_name(groupName,currenv)
+						
 					else:
 						policycontext=tr("当前任务：无")
 			else:
@@ -164,18 +155,28 @@ func refreshContext():
 				else:				
 				
 					policycontext=tr(GameManager.sav.targetTxt).format({"target":targetValue,"currence":currenceValue})
+
+					policycontext=tr(GameManager.sav.targetTxt).format({"target":targetValue,"currence":currenceValue})
+					if GameManager.sav.endPath!=GameManager.endPath.none:
+						var groupName
+						if GameManager.sav.endPath==GameManager.endPath.xiaopei:
+							groupName=1
+						elif GameManager.sav.endPath==GameManager.endPath.xuzhou:
+							groupName=2
+						var currenv=GameManager.sav.finalPhaseValue
+						policycontext=policycontext+"\n"+tr("城内形势:")+StageStateMgr.get_state_name(groupName,currenv)+""+tr("【处理军政、筹措军需及安抚民众，均可稳定城中局势】")
 				if GameManager.sav.targetResType==GameManager.ResType.govern:
 					if GameManager.dontHaveDominance():
 						policycontext=policycontext+"\n"+tr("安抚徐州各派系，将豪族派、士族派、丹阳派、吕布好感度均提升至80。")
 					else:
 						policycontext=policycontext+"\n"+tr("徐州权柄之路开启！你持有霸道之息解锁霸道线，可镇压所有派系至顺从；或者选用怀柔之策，将所有派系好感度均提至 80，稳固州治")
-				var dailyBattleCount=0
-				if GameManager.sav.endPath==GameManager.endPath.xiaopei:
-					dailyBattleCount=3 if GameManager.sav.have_event["吕布之怒"]==true else 1
-				elif GameManager.sav.endPath==GameManager.endPath.xuzhou:
-					dailyBattleCount=3 if GameManager.sav.have_event["夏侯偷马"]==true else 2
-				if dailyBattleCount>0:
-					policycontext=policycontext+"\n"+tr("每旬至少完成{n}次军事行动").format({"n":dailyBattleCount})
+				#var dailyBattleCount=0
+				#if GameManager.sav.endPath==GameManager.endPath.xiaopei:#do
+					#dailyBattleCount=3 if GameManager.sav.have_event["吕布之怒"]==true else 1
+				#elif GameManager.sav.endPath==GameManager.endPath.xuzhou:
+					#dailyBattleCount=3 if GameManager.sav.have_event["夏侯偷马"]==true else 2
+				#if dailyBattleCount>0:
+					#policycontext=policycontext+"\n"+tr("每旬至少完成{n}次军事行动").format({"n":dailyBattleCount})
 		else:
 
 				policycontext=GameManager.sav.TargetDestination	

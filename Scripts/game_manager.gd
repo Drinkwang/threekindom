@@ -2272,25 +2272,32 @@ func get_difficulty_data(level: int):
 
 
 var LAW_COST_POINT=3
+
+func GET_COST_LAW_POINT():
+	if GameManager.sav.have_event["法律健全"]==true:
+		return LAW_COST_POINT+2
+	else:
+		return LAW_COST_POINT
+
 func LoadingDiffucultValue():
 	
 	if GameManager.sav.gameDifficulty==1:
 		perLawCycle=6
 		minxinPoint=1
 		LAW_COST_POINT=2
-		maxLawNum=15
+		maxLawNum=12
 		#2点法令点立一个法
 	elif GameManager.sav.gameDifficulty==2:
 		perLawCycle=5
 		minxinPoint=1
 		LAW_COST_POINT=3
-		maxLawNum=15
+		maxLawNum=12
 		#3点法令点立一个法
 	elif GameManager.sav.gameDifficulty==3:
 		perLawCycle=4
 		minxinPoint=2
 		LAW_COST_POINT=4
-		maxLawNum=15
+		maxLawNum=10
 		#4点法令点立一个法
 		#战斗难度
 		#一些惩罚增加
