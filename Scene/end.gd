@@ -24,6 +24,8 @@ var original_mouse_mode: bool = false
 
 @onready var h_box_container_hp: HBoxContainer = $CanvasInventory/CAOCAOBox/HBoxContainer
 const finalmusic = preload("res://Asset/music/曹刘针锋相对.mp3")
+# Debug knob for the final Cao Cao encounter. Keep this at 3 for the shipped default.
+@export_range(1, 3, 1) var final_caocao_ai_difficulty: int = 3
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	caocaoPos=caocao.position
@@ -52,11 +54,10 @@ func initBattleRect():
 		changeColor(Color.WHITE,tr(GameManager.trainGeneral))
 		caocao.changeWaitTime(0.0055)
 	else:
-		ai_controller.ai_id=2
-		ai_controller.ai_type=ai_controller.AIType.MIRROR
+		_configure_final_caocao_ai()
 		SoundManager.stop_music()
 		SoundManager.play_music(finalmusic)
-		#更改ai类型以及ai的时长
+		# Final Cao Cao uses the fastest sword rotation allowed by the scene.
 		caocao.changeWaitTime(0.0001)
 	var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.雌雄双股剑)	
 	#判断有无武器
@@ -70,6 +71,11 @@ func initBattleRect():
 		caocao.hp=3
 	elif GameManager.trainLevel==1:
 		caocao.hp=2
+
+func _configure_final_caocao_ai() -> void:
+	ai_controller.ai_id = 3
+	ai_controller.ai_type = ai_controller.AIType.MASTER
+	ai_controller.configure_master(final_caocao_ai_difficulty)
 
 
 

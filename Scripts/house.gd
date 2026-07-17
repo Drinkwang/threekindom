@@ -538,7 +538,7 @@ func _buttonListClick(item):
 
 		control._show_button_5_yellow(-1)
 		
-		if GameManager.sav.hp>30 and GameManager._setting.enable_rest_remind==true:
+		if GameManager.sav.hp>30 and GameManager._setting.enable_rest_remind==true and GameManager.sav.endPath==GameManager.endPath.none:
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"休息提示")
 			return
 		#这里放return

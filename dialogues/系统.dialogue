@@ -582,7 +582,7 @@ do GameManager.oneDayidness()
 
 
 ~ 最终休憩提示
-主簿: 今日仍有军政事务尚未处理。此刻休息，城中民心可能受损。主公是否仍要休息？
+主簿: 今日仍有军政事务尚未处理。此刻休息，城中民心可能受损。主公是否仍要休息？[voice:zhubo_xiuximinsinshousun]
 
 - 是
 	=> 最终休息民心损失

@@ -6,12 +6,31 @@ extends Node
 @export var move_speed: float = 200.0
 @export var safe_distance: float = 300.0 # 与玩家的安全距离
 @export var attack_distance: float = 160 # 攻击距离
-@export var ai_id: int = 0 # AI类型ID: 0=基础AI, 1=高难度AI, 2=镜像AI
+@export var ai_id: int = 0 # AI类型ID: 0=基础AI, 1=高难度AI, 2=镜像AI, 3=主宰AI
+@export_range(1, 3, 1) var master_difficulty: int = 3
 
 enum AIState { IDLE, CHASE, ATTACK, RETREAT }
-enum AIType { BASIC, ADVANCED, MIRROR }
+enum AIType { BASIC, ADVANCED, MIRROR, MASTER }
+enum MasterState { PROBE, FEINT, FLANK, AMBUSH, EVADE, RESET }
 var current_state: AIState = AIState.IDLE
 var ai_type: AIType
+
+# Master AI uses movement tactics because sword attacks are collision-driven.
+var master_state: MasterState = MasterState.PROBE
+var master_state_time: float = 0.0
+var master_reaction_time: float = 0.12
+var master_reaction_timer: float = 0.0
+var master_speed_scale: float = 1.2
+var master_precision: float = 0.9
+var master_dodge_chance: float = 0.9
+var master_feint_chance: float = 0.7
+var master_aggression: float = 1.0
+var master_target: Vector2 = Vector2.ZERO
+var master_evade_direction: Vector2 = Vector2.ZERO
+var master_orbit_direction: float = 1.0
+var master_feint_cooldown: float = 0.0
+var last_player_sword_position: Vector2 = Vector2.ZERO
+var player_sword_velocity: Vector2 = Vector2.ZERO
 
 # 镜像AI相关变量
 var player_position_history: Array[Vector2] = []
@@ -46,13 +65,18 @@ func _ready():
 			ai_type = AIType.ADVANCED
 		2:
 			ai_type = AIType.MIRROR
+		3:
+			ai_type = AIType.MASTER
 		_:
 			ai_type = AIType.BASIC
 			
 	if ai_swordman and player_swordman:
 		# 连接玩家被击中信号
 		player_swordman.hit_body.connect(_on_player_hit)
+		ai_swordman.hit_body.connect(_on_ai_hit)
 		last_player_position = player_swordman.global_position
+		last_player_sword_position = _get_sword_tip(player_swordman)
+		configure_master(master_difficulty)
 		
 func _physics_process(delta):
 	if not ai_swordman or not player_swordman or ai_swordman.isdead or player_swordman.isdead or GameManager.swordManGameState==GameManager.gameState.pause:
@@ -66,6 +90,226 @@ func _physics_process(delta):
 			_advanced_ai_behavior(delta)
 		AIType.MIRROR:
 			_mirror_ai_behavior(delta)
+		AIType.MASTER:
+			_master_ai_behavior(delta)
+
+func configure_master(level: int) -> void:
+	master_difficulty = clampi(level, 1, 3)
+	match master_difficulty:
+		1:
+			master_reaction_time = 0.32
+			master_speed_scale = 0.92
+			master_precision = 0.52
+			master_dodge_chance = 0.48
+			master_feint_chance = 0.32
+			master_aggression = 0.72
+		2:
+			master_reaction_time = 0.19
+			master_speed_scale = 1.06
+			master_precision = 0.72
+			master_dodge_chance = 0.72
+			master_feint_chance = 0.52
+			master_aggression = 0.9
+		3:
+			master_reaction_time = 0.07
+			master_speed_scale = 1.24
+			master_precision = 0.92
+			master_dodge_chance = 0.98
+			master_feint_chance = 0.74
+			master_aggression = 1.08
+	master_state = MasterState.PROBE
+	master_state_time = 0.0
+	master_reaction_timer = 0.0
+	master_feint_cooldown = 0.0
+
+func _master_ai_behavior(delta: float) -> void:
+	var player_pos = player_swordman.areabody.global_position
+	var ai_pos = ai_swordman.areabody.global_position
+	var sword_pos = _get_sword_tip(player_swordman)
+	var new_player_velocity = (player_pos - last_player_position) / maxf(delta, 0.001)
+	var new_sword_velocity = (sword_pos - last_player_sword_position) / maxf(delta, 0.001)
+	player_velocity = player_velocity.lerp(new_player_velocity, 0.35)
+	player_sword_velocity = player_sword_velocity.lerp(new_sword_velocity, 0.45)
+	last_player_position = player_pos
+	last_player_sword_position = sword_pos
+
+	master_state_time += delta
+	master_reaction_timer -= delta
+	master_feint_cooldown = maxf(0.0, master_feint_cooldown - delta)
+
+	var immediate_threat = _is_master_sword_threatening(ai_pos, sword_pos)
+
+	var can_react = master_difficulty >= 3 or master_reaction_timer <= 0.0
+	if immediate_threat and can_react and master_state != MasterState.EVADE and randf() <= master_dodge_chance:
+		_begin_master_evade(player_pos, sword_pos, ai_pos)
+		master_reaction_timer = master_reaction_time
+	elif master_reaction_timer <= 0.0 and not _master_state_locked():
+		_choose_master_tactic(player_pos, sword_pos, ai_pos)
+		master_reaction_timer = master_reaction_time
+
+	_execute_master_tactic(delta, player_pos, sword_pos)
+
+func _choose_master_tactic(player_pos: Vector2, sword_pos: Vector2, ai_pos: Vector2) -> void:
+	var player_to_ai = ai_pos - player_pos
+	var player_to_sword = sword_pos - player_pos
+	var distance = player_to_ai.length()
+	var sword_is_far_side = false
+	if player_to_ai.length_squared() > 1.0 and player_to_sword.length_squared() > 1.0:
+		sword_is_far_side = player_to_ai.normalized().dot(player_to_sword.normalized()) < -0.28
+
+	# Never walk into the blade to start an attack. First circle until the blade passes.
+	if distance < attack_distance * 1.8 and not sword_is_far_side:
+		_set_master_state(MasterState.FLANK)
+		return
+
+	# Attack during the real opening: the sword is on the opposite side.
+	if sword_is_far_side and distance < attack_distance * 1.75:
+		_set_master_state(MasterState.AMBUSH)
+		master_target = player_pos + player_to_ai.normalized() * 145.0
+		return
+
+	# Fast player movement exposes an intercept point behind the cursor path.
+	if player_velocity.length() > 155.0 and distance < safe_distance * 1.2:
+		_set_master_state(MasterState.AMBUSH)
+		master_target = player_pos + player_to_ai.normalized() * 160.0 + player_velocity.normalized() * lerpf(18.0, 42.0, master_precision)
+		return
+
+	if master_feint_cooldown <= 0.0 and distance < safe_distance and randf() < master_feint_chance:
+		_set_master_state(MasterState.FEINT)
+		master_feint_cooldown = lerpf(2.4, 1.25, master_aggression / 1.08)
+		return
+
+	if randf() < 0.58:
+		_set_master_state(MasterState.FLANK)
+		if randf() < 0.35:
+			master_orbit_direction *= -1.0
+	else:
+		_set_master_state(MasterState.PROBE)
+
+func _execute_master_tactic(delta: float, player_pos: Vector2, sword_pos: Vector2) -> void:
+	var ai_pos = ai_swordman.global_position
+	var to_player = player_pos - ai_pos
+	var distance = to_player.length()
+	var radial = (ai_pos - player_pos).normalized()
+	if radial == Vector2.ZERO:
+		radial = Vector2.RIGHT
+	var tangent = Vector2(-radial.y, radial.x) * master_orbit_direction
+	var sword_side = (sword_pos - player_pos).normalized()
+	if sword_side == Vector2.ZERO:
+		sword_side = -radial
+
+	# Safety has absolute priority over every attack state.
+	if master_state != MasterState.EVADE and _is_master_sword_threatening(ai_pos, sword_pos):
+		_begin_master_evade(player_pos, sword_pos, ai_pos)
+		return
+
+	match master_state:
+		MasterState.PROBE:
+			var probe_radius = lerpf(188.0, 154.0, master_aggression / 1.08)
+			master_target = player_pos + radial * probe_radius + tangent * 52.0
+			_move_master_toward(master_target, move_speed * 0.92, delta)
+		MasterState.FEINT:
+			if master_state_time < 0.24:
+				# Sell the attack while remaining outside the blade's collision window.
+				master_target = player_pos + radial * lerpf(190.0, 170.0, master_precision) + tangent * 32.0
+				_move_master_toward(master_target, move_speed * 1.12, delta)
+			else:
+				master_target = player_pos + radial * 184.0 + tangent * 92.0
+				_move_master_toward(master_target, move_speed * 1.45, delta)
+				if master_state_time > 0.52:
+					_set_master_state(MasterState.FLANK)
+		MasterState.FLANK:
+			# Stay on the side opposite the blade, then wait for its arc to pass.
+			var flank_radius = lerpf(172.0, 132.0, master_precision)
+			master_target = player_pos - sword_side * flank_radius + tangent * 28.0
+			_move_master_toward(master_target, move_speed * 1.22, delta)
+		MasterState.AMBUSH:
+			var attack_direction = (ai_pos - player_pos).normalized()
+			if attack_direction == Vector2.ZERO:
+				attack_direction = -sword_side
+			var lead = player_velocity * master_reaction_time * master_precision
+			var attack_stop_distance = lerpf(155.0, 135.0, master_precision)
+			master_target = player_pos + attack_direction * attack_stop_distance + lead
+			_move_master_toward(master_target, move_speed * lerpf(1.3, 1.65, master_precision), delta)
+			if distance < attack_stop_distance * 0.82 or distance > safe_distance * 1.35 or master_state_time > 0.7:
+				_set_master_state(MasterState.RESET)
+		MasterState.EVADE:
+			master_target = ai_pos + master_evade_direction * 120.0
+			_move_master_toward(master_target, move_speed * 2.25, delta)
+			if master_state_time > lerpf(0.34, 0.2, master_precision):
+				_set_master_state(MasterState.AMBUSH)
+		MasterState.RESET:
+			master_target = player_pos + radial * 210.0 + tangent * 38.0
+			_move_master_toward(master_target, move_speed * 1.35, delta)
+			if master_state_time > 0.4:
+				_set_master_state(MasterState.PROBE)
+
+func _begin_master_evade(player_pos: Vector2, sword_pos: Vector2, ai_pos: Vector2) -> void:
+	var danger = ai_pos - sword_pos
+	var side = Vector2(-danger.y, danger.x).normalized()
+	if side == Vector2.ZERO:
+		side = Vector2.UP
+	var away = (ai_pos - player_pos).normalized()
+	if side.dot(away) < 0.0:
+		side = -side
+	master_evade_direction = (side * 0.78 + away * 0.22).normalized()
+	_set_master_state(MasterState.EVADE)
+
+func _set_master_state(next_state: MasterState) -> void:
+	if master_state == next_state:
+		return
+	master_state = next_state
+	master_state_time = 0.0
+
+func _master_state_locked() -> bool:
+	match master_state:
+		MasterState.FEINT:
+			return master_state_time < 0.52
+		MasterState.AMBUSH:
+			return master_state_time < 0.7
+		MasterState.EVADE:
+			return master_state_time < lerpf(0.34, 0.2, master_precision)
+		MasterState.RESET:
+			return master_state_time < 0.4
+		_:
+			return false
+
+func _distance_to_segment(point: Vector2, segment_start: Vector2, segment_end: Vector2) -> float:
+	var segment = segment_end - segment_start
+	var length_squared = segment.length_squared()
+	if length_squared <= 0.001:
+		return point.distance_to(segment_start)
+	var t = clampf((point - segment_start).dot(segment) / length_squared, 0.0, 1.0)
+	return point.distance_to(segment_start + segment * t)
+
+func _is_master_sword_threatening(ai_pos: Vector2, sword_pos: Vector2) -> bool:
+	var sword_to_ai = ai_pos - sword_pos
+	var sword_distance = sword_to_ai.length()
+	var sword_heading = 0.0
+	if player_sword_velocity.length_squared() > 1.0 and sword_distance > 1.0:
+		sword_heading = player_sword_velocity.normalized().dot(sword_to_ai.normalized())
+	var danger_distance = lerpf(100.0, 145.0, master_precision)
+	var lookahead = lerpf(0.12, 0.24, master_precision)
+	var predicted_sword_pos = sword_pos + player_sword_velocity * lookahead
+	var swept_distance = _distance_to_segment(ai_pos, sword_pos, predicted_sword_pos)
+	var moving_blade = player_sword_velocity.length() > 8.0
+	return (moving_blade and swept_distance <= danger_distance) or (sword_distance <= danger_distance * 0.72 and sword_heading > -0.45)
+
+func _move_master_toward(target: Vector2, tactical_speed: float, delta: float) -> void:
+	var speed = tactical_speed * master_speed_scale
+	if master_difficulty < 3:
+		var error_amount = (1.0 - master_precision) * 26.0
+		target += Vector2(sin(master_state_time * 5.0), cos(master_state_time * 4.0)) * error_amount
+	var new_position = ai_swordman.global_position.move_toward(target, speed * delta)
+	var arena = get_viewport().get_visible_rect()
+	new_position.x = clampf(new_position.x, arena.position.x + 55.0, arena.end.x - 55.0)
+	new_position.y = clampf(new_position.y, arena.position.y + 55.0, arena.end.y - 55.0)
+	ai_swordman.global_position = new_position
+
+func _get_sword_tip(who: swordMan) -> Vector2:
+	if who.collision_shape_2d:
+		return who.collision_shape_2d.global_position
+	return who.sword.global_position
 
 # 基础AI行为（原有逻辑）
 func _basic_ai_behavior(delta):
@@ -387,3 +631,10 @@ func _mirror_ai_behavior(delta):
 func _on_player_hit(_who: swordMan):
 	# 玩家被击中时，AI进入撤退状态
 	current_state = AIState.RETREAT
+	if ai_type == AIType.MASTER:
+		_set_master_state(MasterState.RESET)
+
+func _on_ai_hit(_who: swordMan):
+	if ai_type == AIType.MASTER:
+		_set_master_state(MasterState.RESET)
+		master_reaction_timer = maxf(master_reaction_timer, master_reaction_time)
