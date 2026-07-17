@@ -612,6 +612,8 @@ func intBattleTask():
 	var nums={}
 	var battleCoeff=1.0
 	var isLvbuFinalBattle:bool=sav.have_event.get("吕布之怒",false)
+	if GameManager.sav.endPath==GameManager.endPath.xuzhou:
+		isLvbuFinalBattle=true
 	if isLvbuFinalBattle and sav.lvbuFinalBattleStartTask<0:
 		sav.lvbuFinalBattleStartTask=sav.currenceTask
 	match GameManager.sav.gameDifficulty:
@@ -624,7 +626,13 @@ func intBattleTask():
 	for battleTarget in range(3):
 		sav.battleTasks[battleTarget]={}
 		if isLvbuFinalBattle:
-			sav.battleTasks[battleTarget].index=200+(sav.currenceTask-sav.lvbuFinalBattleStartTask)+battleTarget
+			if GameManager.sav.endPath==GameManager.endPath.xiaopei:
+				sav.battleTasks[battleTarget].index=200+(sav.currenceTask-sav.lvbuFinalBattleStartTask)+battleTarget
+			else:
+				#if sav.currenceTask+battleTarget+1<100+(sav.currenceTask-sav.lvbuFinalBattleStartTask)+battleTarget:
+				sav.battleTasks[battleTarget].index=100+(sav.currenceTask-sav.lvbuFinalBattleStartTask)+battleTarget
+				#else:
+				#	sav.battleTasks[battleTarget].index=sav.currenceTask+battleTarget+1	
 		#	sav.battleTasks[battleTarget].task=[]
 		#	sav.battleTasks[battleTarget].reward=0
 		#	sav.battleTasks[battleTarget].sdType=randi_range(0,2)

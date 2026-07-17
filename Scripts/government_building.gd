@@ -305,7 +305,12 @@ func xuzhouStart():
 	GameManager.initPaixi(GameManager.sav.LVBU)
 	SignalManager.changeSupport.emit()
 	GameManager.showChapterTitle("终章【主线进度90%】", "霸道之始", 4)
+
+	GameManager.sav.lvbuFinalBattleStartTask=GameManager.sav.currenceTask
+	GameManager.intBattleTask()	
 	GameManager.AutoSaveFile()
+	
+	
 func mizhenGift():
 	mizhu.hide()
 	var _reward:rewardPanel=PanelManager.new_reward()
