@@ -1,4 +1,7 @@
 extends baseComponent
+
+var _last_recommendation: String = ""
+
 @onready var res_panel = $CanvasLayer/resPanel
 
 @onready var control = $CanvasLayer/Control
@@ -603,6 +606,28 @@ func refreshPropertyPanel():
 	propertyPanel.contextEX=contextEx
 
 
+func _select_recommendation(options: Array) -> String:
+	# Remove duplicate text before excluding the previous result.
+	var unique_options: Array = []
+	for option in options:
+		if not unique_options.has(option):
+			unique_options.append(option)
+
+	if unique_options.is_empty():
+		return ""
+
+	var selectable_options: Array = unique_options
+	if unique_options.size() > 1 and _last_recommendation != "":
+		selectable_options = []
+		for option in unique_options:
+			if option != _last_recommendation:
+				selectable_options.append(option)
+
+	var recommendation: String = selectable_options[randi_range(0, selectable_options.size() - 1)]
+	_last_recommendation = recommendation
+	return recommendation
+
+
 func getrecommendStr(index):
 	var recommend_list=[]
 	
@@ -649,10 +674,14 @@ func getrecommendStr(index):
 	else:
 		#Rstr=tr("暂无")
 		if GameManager.sav.have_event["initXuzhou"]==false:
-			return (tr("待你入主徐州后，将解锁当前游戏建议"))
+			var locked_recommendation = tr("待你入主徐州后，将解锁当前游戏建议")
+			if _last_recommendation == "":
+				_last_recommendation = locked_recommendation
+				return locked_recommendation
+			recommend_list.append(locked_recommendation)
 		#recommend_list.append(tr("待你入主徐州后，将解锁当前游戏建议"))
 	recommend_list.append_array(extra_recommend_list)
-	return recommend_list[randi_range(0,recommend_list.size()-1)]
+	return _select_recommendation(recommend_list)
 
 func getFractionView(point):
 	var viewStr=""
