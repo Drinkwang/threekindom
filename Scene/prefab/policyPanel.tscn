@@ -242,7 +242,6 @@ libraries = {
 }
 
 [node name="lawPanel" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -947,7 +946,7 @@ grow_vertical = 2
 lawpoins = [NodePath("../Control3-1")]
 detail = "备战屯兵，士气振奋，招募即刻可成。(随机获得3个道具，战利品收益+15%，[haozu]支持度-20)"
 IncomeBg = "备战屯兵，士气振奋，招募即刻可成。"
-IncomeTxt = "随机获得3个道具，战利品收益+15%，[haozu]支持度-20"
+IncomeTxt = "随机获得3个道具，战利品收益+25%，[haozu]支持度-20"
 context = "战备法"
 num1 = 2
 num2 = 2
@@ -1101,7 +1100,7 @@ grow_vertical = 2
 lawpoins = [NodePath("../Control3-4")]
 detail = "常训新兵，兵源不绝，田亩稍显荒疏。(每旬民力产出+60，战利品收益+15%，[shizu]支持度-30)"
 IncomeBg = "常训新兵，兵源不绝，田亩稍显荒疏。"
-IncomeTxt = "每旬民力产出+60，战利品收益+15%，[shizu]支持度-30"
+IncomeTxt = "每旬民力产出+60，战利品收益+25%，[shizu]支持度-30"
 context = "军事训练法"
 num1 = 2
 num2 = 6
@@ -1152,7 +1151,7 @@ grow_vertical = 2
 lawpoins = [NodePath("../Control3-5"), NodePath("../Control3-6")]
 detail = "拔擢精兵，战力无双，商民略有微词。(获得道具“胜战锦囊”x3，战利品收益+15% ，[haozu]支持度-30，民心-10)"
 IncomeBg = "拔擢精兵，战力无双，商民略有微词。"
-IncomeTxt = "获得道具“胜战锦囊”x3，战利品收益+15% ，[haozu]支持度-30，民心-10"
+IncomeTxt = "获得道具“胜战锦囊”x3，战利品收益+25% ，[haozu]支持度-30，民心-10"
 context = "军事优拔法"
 num1 = 2
 num2 = 7
