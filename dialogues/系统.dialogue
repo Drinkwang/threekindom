@@ -74,7 +74,7 @@ do determineInternalUnrestLvbu()
 => END
 
 ~ 吕布叛乱预警
-警告: {{GameManager.rTaishanName()}}忠诚度低于80，其不满情绪高涨，可能对你发起掠夺！
+警告: {{GameManager.rTaishanName()}}忠诚度低于70，其不满情绪高涨，可能对你发起掠夺！
 do determineInternalUnrestMinxin()
 => END
 
@@ -173,7 +173,7 @@ do determineInternalUnrestLvbu()
 
 ~ 吕布叛乱
 主簿: 主公，不满的{{GameManager.rTaishanName()}}劫掠你的城池，损失惨重![voice:lvbu_buman]
-提示: {{determineDetail}}。需将{{GameManager.rTaishanName()}}好感度提升至80或镇压叛乱。
+提示: {{determineDetail}}。需将{{GameManager.rTaishanName()}}好感度提升至70或镇压叛乱。
 do determineInternalUnrestMinxin()
 => END
 
