@@ -260,7 +260,7 @@ do allocationSettle(0)
 => END!
 
 ~ 难度变更成功
-do SoundManager.play_sound(sounds.COLLECT_SMALL_JEWEL_3)
+
 系统提示: 难度已变更【{{GameManager.resideValue.type}}：{{GameManager.resideValue.name}}】,{{GameManager.resideValue.desc}}】
 => END!
 
@@ -510,6 +510,7 @@ do GameManager._rest()
 
 
 ~ 最终章局势改善
+do SoundManager.play_sound(sounds.fix)
 系统提示: 你所为之事颇有成效，城中局势得以改善。
 => END!
 
@@ -591,6 +592,7 @@ do GameManager.oneDayidness()
 => END!
 
 ~ 最终休息民心损失
+do SoundManager.play_sound(sounds.down)
 系统提示: 本旬局势未得到妥善处理，民心下降{{GameManager.PunishC}}点。
 do GameManager.changePeopleSupport(0-GameManager.PunishC)
 do GameManager._rest()	 
