@@ -74,7 +74,9 @@ const XUEJIDEAD = preload("res://Asset/sound/xuejidead.wav")
 
 const gulong = preload("res://Asset/sound/骨龙.wav")
 const GETITEM = preload("res://Asset/sound/getitem.mp3")
-const GETITEM_2 = preload("res://Asset/sound/getitem2.mp3")
+const GETITEM_2 = preload("res://Asset/sound/物品音效/瓷碟撞击声音.wav")
+const GET_ENERGY = preload("res://Asset/sound/物品音效/体力1.wav")
+const GET_LABOR = preload("res://Asset/sound/物品音效/民力声音2.wav")
 
 
 #号角声 直接

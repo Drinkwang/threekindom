@@ -9,6 +9,8 @@ const REWARD_FLIGHT_DURATION := 0.32
 const REWARD_FLIGHT_STAGGER := 0.025
 const REWARD_FLIGHT_SETTLE_DELAY := 0.48
 const REWARD_FLIGHT_ICON_SIZE := Vector2(64, 64)
+const REWARD_SOUND_SECONDARY_DELAY := 0.10
+const REWARD_SOUND_SECONDARY_VOLUME_DB := -4.0
 #@onready var title = $Control/PanelContainer/MarginContainer/VBoxContainer/title
 
 @onready var img =$Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/img
@@ -342,15 +344,9 @@ func _on_button_button_down():
 	canclick=false
 	var has_reward_flights := not _reward_flight_entries.is_empty()
 	_play_reward_flights()
-	if has_reward_flights:
-		var reward_sound = sounds.GETITEM_2
-		
-		for entry in _reward_flight_entries:
-			if entry.type == "coin" or entry.type == "labor":
-				reward_sound = sounds.GETITEM
-				break
-		SoundManager.play_sound(reward_sound)
 	_is_collecting = true
+	if has_reward_flights:
+		_play_reward_sounds()
 	self.hide()
 	
 	for ui in _grid_ui.get_children():
@@ -363,6 +359,61 @@ func _on_button_button_down():
 		_reward_flight_canvas.queue_free()
 	PanelManager.rewardNode=null
 	queue_free()
+
+
+func _play_reward_sounds() -> void:
+	var sound_plan := _build_reward_sound_plan()
+	if sound_plan.is_empty():
+		return
+	SoundManager.play_sound(sound_plan[0])
+	if sound_plan.size() < 2:
+		return
+	await get_tree().create_timer(REWARD_SOUND_SECONDARY_DELAY).timeout
+	if not is_inside_tree():
+		return
+	var secondary_player := SoundManager.play_sound(sound_plan[1])
+	if is_instance_valid(secondary_player):
+		secondary_player.volume_db = REWARD_SOUND_SECONDARY_VOLUME_DB
+
+
+func _build_reward_sound_plan() -> Array[AudioStream]:
+	var has_coin := false
+	var has_labor := false
+	var has_energy := false
+	var has_item := false
+	for entry in _reward_flight_entries:
+		match str(entry.get("type", "")):
+			"coin":
+				has_coin = true
+			"labor":
+				has_labor = true
+			"energy":
+				has_energy = true
+			"item":
+				has_item = true
+
+	var sound_plan: Array[AudioStream] = []
+	if has_energy:
+		sound_plan.append(sounds.GET_ENERGY)
+		if has_coin:
+			sound_plan.append(sounds.GETITEM)
+		elif has_labor:
+			sound_plan.append(sounds.GET_LABOR)
+		elif has_item:
+			sound_plan.append(sounds.GETITEM_2)
+	elif has_coin:
+		sound_plan.append(sounds.GETITEM)
+		if has_item:
+			sound_plan.append(sounds.GETITEM_2)
+		elif has_labor:
+			sound_plan.append(sounds.GET_LABOR)
+	elif has_labor:
+		sound_plan.append(sounds.GET_LABOR)
+		if has_item:
+			sound_plan.append(sounds.GETITEM_2)
+	elif has_item:
+		sound_plan.append(sounds.GETITEM_2)
+	return sound_plan
 
 
 func _queue_item_reward(item_type: InventoryManagerItem.ItemEnum, amount: int) -> void:
