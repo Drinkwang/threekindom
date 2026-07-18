@@ -1263,6 +1263,7 @@ func loadLaw():
 		lawAction= func():
 
 			sav.labor_DayGet=sav.labor_DayGet+100
+			sav.labor_force=sav.labor_force+250
 			sav.isTrainLevelUP=true
 			#sav.BENTUPAI.ChangeSupport(-20)
 			#sav.HAOZUPAI.ChangeSupport(-20)
@@ -1341,7 +1342,7 @@ func _changeLawFactionSupport(direction:int):
 	elif sav.curLawName=="宽商减赋法":
 
 		
-		sav.BENTUPAI.ChangeSupport(20 * direction)
+		sav.BENTUPAI.ChangeSupport(30 * direction)
 		
 	elif sav.curLawName=="货币法":
 
