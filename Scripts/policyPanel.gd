@@ -446,6 +446,8 @@ func agreelaw():
 	#	pass
 	#elif selectLawPoint.context=="":
 	#	pass
+	if GameManager.sav.endPath!=GameManager.endPath.none:
+		GameManager.improveFinalPhase()
 	_initData()
 enum itemStatus{ban,select,normal}
 

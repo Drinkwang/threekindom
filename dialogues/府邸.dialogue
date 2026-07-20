@@ -142,7 +142,7 @@ do meetingEnd()
 : 是否同意将法律条款{{policy_panel.selectLawPoint.context_tr}}放在下一次议程{{GameManager.resideValue4}}
 - 同意
 	do agreelaw()
-	do GameManager.improveFinalPhase()
+	
 - 取消
 	
 => END
