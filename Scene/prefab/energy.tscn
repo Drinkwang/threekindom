@@ -402,19 +402,13 @@ libraries = {
 "": SubResource("AnimationLibrary_vsxmj")
 }
 
-[node name="InventoryAny" parent="TargetLabel" instance=ExtResource("9_loc21")]
+[node name="InventoryAny" parent="." instance=ExtResource("9_loc21")]
 visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.431267
-anchor_top = -1.33146
-anchor_right = 0.504148
-anchor_bottom = -1.33146
-offset_left = -330.866
-offset_top = 118.448
-offset_right = -30.8656
-offset_bottom = 418.448
-grow_horizontal = 0
+layout_mode = 0
+offset_left = 677.0
+offset_top = 1489.0
+offset_right = 1124.0
+offset_bottom = 1789.0
 scale = Vector2(4, 4)
 inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
 metadata/_edit_use_anchors_ = true

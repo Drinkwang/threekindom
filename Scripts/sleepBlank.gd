@@ -40,6 +40,10 @@ func _ready():
 		fadeScene=SceneManager.HOUSE
 	# Replace with function body.
 	$Timer.wait_time=GameManager.wait_time
+	
+	
+	SignalManager.changeLanguage.connect(changeLanguage)
+	changeLanguage()
 @onready var label = $CanvasLayer/Label
 
 
@@ -72,3 +76,17 @@ func _on_timer_timeout():
 	
 	#SceneManager.changeScene(SceneManager.roomNode.STREET,2)
 	#pass # Replace with function body.
+	
+	
+#@onready var label: Label = $CanvasLayer/Label
+#const _1_SIM = preload("res://Asset/Font/1_sim.ttf")	
+func changeLanguage():
+	var currencelanguage=TranslationServer.get_locale()
+	
+	#if currencelanguage=="ru":
+	#	pass
+	#	
+	#	label.add_theme_font_override("font",_1_SIM)
+		
+	#e#lse:
+#	pass

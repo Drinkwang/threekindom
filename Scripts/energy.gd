@@ -141,7 +141,7 @@ func hideAutoSaveANI():
 func playLabelChange():
 	animation_player.play("targetlabel")
 
-@onready var inventory_any = $TargetLabel/InventoryAny
+@onready var inventory_any = $InventoryAny
 
 func _on_item_button_button_down():
 	if GameManager.CanClickUI==false:
