@@ -247,7 +247,6 @@ Lu Bu Favor -{{GameManager.resideValue4}}","因军情泄露，城内人心惶惶
 修建基建【兴建粮仓】,Build Infrastructure: Granary,修建基建【兴建粮仓】,修建基建【興建糧倉】,基盤整備【糧倉建設】,Строительство инфраструктуры: зернохранилище
 主公既执意兴建粮仓……虽某以为当下军资尚可周转，但主公深谋远虑，我也不好再劝。便依主公之言，全力筹措物料，务求早日建成！,"Since my lord insists on building granaries... Although I believe our military supplies can still turn over for now, my lord plans far ahead, and I will not argue further. I will follow your order and gather materials with all effort, so the project may be completed soon!",主公既执意兴建粮仓……虽某以为当下军资尚可周转，但主公深谋远虑，我也不好再劝。便依主公之言，全力筹措物料，务求早日建成！,主公既執意興建糧倉……雖某以為當下軍資尚可週轉，但主公深謀遠慮，我也不好再勸。便依主公之言，全力籌措物料，務求早日建成！,主君がどうしても糧倉を建てると仰るなら……某は今の軍資でもまだ回せると考えておりますが、主君には深いお考えがあるのでしょう。これ以上は止めますまい。主君の仰せ通り、全力で物資を集め、一日も早い完成を目指します！,"Раз господин настаивает на строительстве зернохранилища…… хотя я считаю, что текущие военные запасы ещё можно распределять, но раз у господина дальний расчёт, я больше не стану отговаривать. Сделаем по вашему слову, соберём материалы и постараемся завершить как можно быстрее!"
 津贴系统开始,Stipend System Start,津贴系统开始,津貼系統開始,手当システム開始,Система жалования начата
-核定月例配给,Set Monthly Stipends,核定月例配给,核定月例配給,月例配給を確定,Утвердить месячное снабжение
 糜竺已恢复正常,Mi Zhu has returned to normal.,糜竺已恢复正常,糜竺已恢復正常,糜竺は正常に戻った,Ми Чжу пришёл в норму
 诡秘乱局中输了牌局，体力值为0,Lost a Shigui Cards match in the Strange Game; Stamina is 0.,诡秘乱局中输了牌局，体力值为0,詭秘亂局中輸了牌局，體力值為0,詭秘乱局で牌局に敗北し、体力値が0,"Проигрыш в партии во время тайной смуты, выносливость стала 0"
 糜竺、陈登，此前徐州修葺基建、安抚民心诸事，如今已然初定，地方局面总算暂且稳住了。只是我心中一直挂念一桩私事，先前我致书曹操，求取朝廷徐州委任的诏命，算算时日，也该有消息传来了。,"Mi Zhu, Chen Deng, Xuzhou's infrastructure repairs and public appeasement have now largely settled, and the local situation is stable for the moment. Yet one private matter has stayed on my mind. I previously wrote to Cao Cao to request a court appointment for Xuzhou. By now, word should have arrived.",糜竺、陈登，此前徐州修葺基建、安抚民心诸事，如今已然初定，地方局面总算暂且稳住了。只是我心中一直挂念一桩私事，先前我致书曹操，求取朝廷徐州委任的诏命，算算时日，也该有消息传来了。,糜竺、陳登，此前徐州修葺基建、安撫民心諸事，如今已然初定，地方局面總算暫且穩住了。只是我心中一直掛念一樁私事，先前我致書曹操，求取朝廷徐州委任的詔命，算算時日，也該有消息傳來了。,糜竺、陳登。これまで徐州の基盤整備、民心慰撫などの諸事は、今や一応の目処が立ち、地方の局面もひとまず安定した。だが私にはずっと気にかかる私事がある。先に曹操へ書を送り、朝廷からの徐州任命の詔命を求めた。日数を考えれば、そろそろ知らせが届くはずだ。,"Ми Чжу, Чэнь Дэн. Прежние дела Сюйчжоу — ремонт инфраструктуры и успокоение народа — теперь в основном определены, местная ситуация временно стабилизировалась. Но меня всё ещё тревожит личное дело. Ранее я написал Цао Цао и попросил у двора указ о назначении в Сюйчжоу. По времени уже должны прийти вести."
@@ -546,12 +545,9 @@ Player starts with 3 cards; enemy starts with 5 cards. At the start of each turn
 纪灵此前连番中计，决定暂时撤退，民心+10，战斗进度+1，法令点+2。,"After falling for one stratagem after another, Ji Ling decides to withdraw for the time being. Popular Support +10, Battle Progress +1, Decree Points +2.",纪灵此前连番中计，决定暂时撤退，民心+10，战斗进度+1，法令点+2。,紀靈此前連番中計，決定暫時撤退，民心+10，戰鬥進度+1，法令點+2。,紀霊はこれまで立て続けに計略にはまり、ひとまず撤退を決断しました。民心+10、戦闘進行度+1、法令ポイント+2。,"Не раз поддавшись на уловки, Цзи Лин решает временно отступить. Народная поддержка +10, прогресс боя +1, очки указов +2."
 关羽求援期间,During Guan Yu's Aid Mission,关羽求援期间,關羽求援期間,関羽救援中,Гуань Юй ищет помощь
 关羽求援结束,Guan Yu's Aid Mission Ended,关羽求援结束,關羽求援結束,関羽救援終了,Поиск помощи Гуань Юем завершён
-关羽,Guan Yu,关羽,關羽,関羽 ,Гуань Юй
 战斗袁术血战模式,Battle Yuan Shu Bloodbath Mode,战斗袁术血战模式,戰鬥袁術血戰模式,袁術血戦モード戦闘,Битва с Юань Шу: режим кровавой битвы
 血战袁术完成,Yuan Shu Bloodbath Completed,血战袁术完成,血戰袁術完成,袁術血戦完了,Кровавая битва с Юань Шу завершена
-张飞 ,Zhang Fei,张飞,張飛,張飛,Чжан Фэй
 无名之死,Wuming's Death,无名之死,無名之死,無名の死,Смерть Умина
-无名,Wuming,无名,無名,無名,Умин
 比武训练教程,Duel Training Tutorial,比武训练教程,比武訓練教程,比武訓練チュートリアル,Обучение боевой тренировке
 此难度比武你已通关，武将等级无法再借此提升，仅能收获微薄物资，是否继续切磋？,"You have already cleared duel training at this difficulty. General levels can no longer be raised this way, and you will only gain minor supplies. Continue sparring?",此难度比武你已通关，武将等级无法再借此提升，仅能收获微薄物资，是否继续切磋？,此難度比武你已通關，武將等級無法再借此提升，僅能收穫微薄物資，是否繼續切磋？,この難度の比武はすでにクリア済みです。武将レベルはこれ以上上げられず、わずかな物資のみ獲得できます。続けて手合わせしますか？,Вы уже прошли тренировку этого уровня сложности. Уровень военачальника больше нельзя поднять через неё; можно получить лишь немного припасов. Продолжить спарринг?
 此项基建工程结束后，关羽向刘备反映一些情况,"After this infrastructure project ends, Guan Yu reports some issues to Liu Bei.",此项基建工程结束后，关羽向刘备反映一些情况,此項基建工程結束後，關羽向劉備反映一些情況,この基盤整備工程の終了後、関羽が劉備へいくつかの状況を報告した。,После завершения этого проекта инфраструктуры Гуань Юй сообщил Лю Бэю некоторые обстоятельства.
@@ -639,10 +635,6 @@ Player starts with 3 cards; enemy starts with 5 cards. At the start of each turn
 你许诺{{GameManager.sav.BENTUPAI._name}}的法律没有通过，丧失10点支持度。,The law you promised {{GameManager.sav.BENTUPAI._name}} did not pass. Support -10.,你许诺{{GameManager.sav.BENTUPAI._name}}的法律没有通过，丧失10点支持度。,你許諾{{GameManager.sav.BENTUPAI._name}}的法律沒有透過，喪失10點支持度。,{{GameManager.sav.BENTUPAI._name}}に約束した法律が通過せず、支持度を10失いました。,"Закон, обещанный {{GameManager.sav.BENTUPAI._name}}, не прошёл. Поддержка -10."
 你许诺{{GameManager.sav.HAOZUPAI._name}}的法律没有通过，丧失10点支持度。,The law you promised {{GameManager.sav.HAOZUPAI._name}} did not pass. Support -10.,你许诺{{GameManager.sav.HAOZUPAI._name}}的法律没有通过，丧失10点支持度。,你許諾{{GameManager.sav.HAOZUPAI._name}}的法律沒有透過，喪失10點支持度。,{{GameManager.sav.HAOZUPAI._name}}に約束した法律が通過せず、支持度を10失いました。,"Закон, обещанный {{GameManager.sav.HAOZUPAI._name}}, не прошёл. Поддержка -10."
 你许诺{{GameManager.sav.WAIDIPAI._name}}的法律没有通过，丧失10点支持度。,The law you promised {{GameManager.sav.WAIDIPAI._name}} did not pass. Support -10.,你许诺{{GameManager.sav.WAIDIPAI._name}}的法律没有通过，丧失10点支持度。,你許諾{{GameManager.sav.WAIDIPAI._name}}的法律沒有透過，喪失10點支持度。,{{GameManager.sav.WAIDIPAI._name}}に約束した法律が通過せず、支持度を10失いました。,"Закон, обещанный {{GameManager.sav.WAIDIPAI._name}}, не прошёл. Поддержка -10."
-诡物手册,Oddity Manual,诡物手册,詭物手冊,詭物手冊,Справочник реликвий
-简单难度：清明道,Easy: Clear Bright Path,简单难度：清明道,簡單難度：清明道,簡単難度：清明道,Лёгкая сложность: Путь ясности
-标准难度：坎坷道,Normal: Thorned Path,标准难度：坎坷道,標準難度：坎坷道,標準難度：坎坷道,Обычная сложность: Тернистый путь
-困难难度：黄昏道,Hard: Dusk Path,困难难度：黄昏道,困難難度：黃昏道,困難難度：黄昏道,Сложная сложность: Путь сумерек
 难度名称：,Difficulty Name:,难度名称：,難度名稱：,難度名：,Название сложности:
 难度类型：,Difficulty Type:,难度类型：,難度型別：,難度タイプ：,Тип сложности:
 难度描述：,Difficulty Description:,难度描述：,難度描述：,難度説明：,Описание сложности:
@@ -746,18 +738,13 @@ Insufficient resources. This project cannot begin.","基建将消耗以下资源
 确定,Confirm,确定,確定,確定,Подтвердить
 支线发现羊尸,Side Quest: Found Goat Corpse,支线发现羊尸,支線發現羊屍,サブイベント 羊の死骸発見,Побочное: обнаружен труп овцы
 支线触发完毕调查过竹简,Side Quest: Bamboo Slip Investigation Finished,支线触发完毕调查过竹简,支線觸發完畢調查過竹簡,サブイベント 竹簡調査完了,Побочное: исследование бамбуковых дощечек завершено
-前往荒地(支线任务),Go to the Wasteland (Side Quest),前往荒地(支线任务),前往荒地(支線任務),荒地へ向かう(サブ任務),Отправиться в пустошь (побочное задание)
 陈登正确选择1,Chen Deng Correct Choice 1,陈登正确选择1,陳登正確選擇1,陳登正解選択1,Правильный выбор Чэнь Дэна 1
 陈登正确选择2,Chen Deng Correct Choice 2,陈登正确选择2,陳登正確選擇2,陳登正解選択2,Правильный выбор Чэнь Дэна 2
 陈登支线3,Chen Deng Side Quest 3,陈登支线3,陳登支線3,陳登サブイベント3,Побочная линия Чэнь Дэна 3
-前往埋葬陶谦的墓地,Go to Tao Qian's Burial Site,前往埋葬陶谦的墓地,前往埋葬陶謙的墓地,陶謙を葬った墓地へ向かう,Отправиться к могиле Тао Цяня
 糜竺支线3,Mi Zhu Side Quest 3,糜竺支线3,糜竺支線3,糜竺サブイベント3,Побочная линия Ми Чжу 3
-糜家的郊外秘宅,The Mi Family's Secret Country Estate,糜家的郊外秘宅,糜家的郊外秘宅,糜家の郊外秘宅,Загородная тайная усадьба семьи Ми
 曹豹正确选择2,Cao Bao Correct Choice 2,曹豹正确选择2,曹豹正確選擇2,曹豹正解選択2,Правильный выбор Цао Бао 2
 曹豹支线3,Cao Bao Side Quest 3,曹豹支线3,曹豹支線3,曹豹サブイベント3,Побочная линия Цао Бао 3
-黄帝的祀庙,The Yellow Emperor's Shrine,黄帝的祀庙,黃帝的祀廟,黄帝の祀廟,Храм Жёлтого императора
 玄阴开放,Xuanyin Opened,玄阴开放,玄陰開放,玄陰解放,Сюаньинь открыт
-玄阴秘境,Xuanyin Secret Realm,玄阴秘境,玄陰秘境,玄陰秘境,Тайная область Сюаньинь
 学者之处,Scholar's Place,学者之处,學者之處,学者の所,Место учёного
 咦？这不是那位…… 你怎么会在这里？,Huh? Aren't you that... Why are you here?,咦？这不是那位…… 你怎么会在这里？,咦？這不是那位…… 你怎麼會在這裡？,おや？これはあの方……なぜここに？,А? Это ведь тот…… Почему вы здесь?
 哎呀，是刘使君！您没事就好，没事就好！我听说徐州那边乱起来了，正担心您呢。,"Ah, Lord Liu! You're safe, thank goodness! I heard Xuzhou was in chaos and was worried about you.",哎呀，是刘使君！您没事就好，没事就好！我听说徐州那边乱起来了，正担心您呢。,哎呀，是劉使君！您沒事就好，沒事就好！我聽說徐州那邊亂起來了，正擔心您呢。,ああ、劉使君ではありませんか！ご無事で何より、何よりです！徐州の方が乱れたと聞き、心配しておりました。,"О, это правитель Лю! Вы целы — и хорошо, и хорошо! Я слышал, что в Сюйчжоу началась смута, и очень за вас переживал."
@@ -839,10 +826,7 @@ Insufficient resources. This project cannot begin.","基建将消耗以下资源
 该法案未能通过！法律已取消，请重新回府邸指引法律,This bill failed to pass! The law has been canceled. Return to the manor to guide legislation again.,该法案未能通过！法律已取消，请重新回府邸指引法律,該法案未能透過！法律已取消，請重新回府邸指引法律,この法案は通過しませんでした！法律は取り消されました。府邸へ戻り、法律を再度指導してください。,Законопроект не прошёл! Закон отменён. Вернитесь в резиденцию и заново направьте закон.
 避免生食并询问公务,Avoid raw food and ask about official business.,避免生食并询问公务,避免生食並詢問公務,生食を避け、公務を尋ねる,Избегать сырой пищи и спросить о делах
 拒绝并提醒陈登，继续询问公务,"Refuse and remind Chen Deng, then continue asking about official business.",拒绝并提醒陈登，继续询问公务,拒絕並提醒陳登，繼續詢問公務,拒否して陳登に注意し、公務をさらに尋ねる,"Отказаться, предупредить Чэнь Дэна и продолжить спрашивать о делах"
-再次尝试生鱼片,Try Sashimi Again,再次尝试生鱼片,再次嘗試生魚片,再び刺身を試す,Снова попробовать сашими
-尝试生鱼片,Try Sashimi,尝试生鱼片,嘗試生魚片,刺身を試す,Попробовать сашими
 陈登论策解锁,Chen Deng Strategy Debate Unlocked,陈登论策解锁,陳登論策解鎖,陳登論策解放,Советы Чэнь Дэна открыты
-与陈登论策,Discuss Strategy with Chen Deng,与陈登论策,與陳登論策,陳登と論策,Обсудить стратегию с Чэнь Дэном
 修建基建【深挖护城河】,Build Infrastructure: Deepen the Moat,修建基建【深挖护城河】,修建基建【深挖護城河】,基盤整備【護城河深掘り】,Строительство инфраструктуры: углубить ров
 主公，我虽对大兴土木多有顾虑，恐扰民心，但深挖护城河乃某亲献之策！护城固守之余，还可引水灌溉农田，一举两得，何乐而不为？,"My lord, though I have many concerns about major construction and fear disturbing the people, deepening the moat was my own proposal! It will strengthen defense and draw water to irrigate farmland, gaining two benefits at once. Why not do it?",主公，我虽对大兴土木多有顾虑，恐扰民心，但深挖护城河乃某亲献之策！护城固守之余，还可引水灌溉农田，一举两得，何乐而不为？,主公，我雖對大興土木多有顧慮，恐擾民心，但深挖護城河乃某親獻之策！護城固守之餘，還可引水灌溉農田，一舉兩得，何樂而不為？,主君、私は大規模な土木には懸念があり、民心を乱すことを恐れております。ですが護城河の深掘りは、まさに某が献じた策です！城を守るだけでなく、水を引いて農地を灌漑でき、一挙両得。何をためらうことがありましょう？,"Господин, я хоть и опасаюсь больших работ, чтобы не тревожить народ, но углубление рва — мой собственный план! Он укрепит оборону и позволит орошать поля. Двойная выгода, почему бы не сделать?"
 本旬已与陈登论策，待下一旬再来吧。,You have already debated strategy with Chen Deng this turn. Come back next turn.,本旬已与陈登论策，待下一旬再来吧。,本旬已與陳登論策，待下一旬再來吧。,本旬はすでに陳登と論策しました。次の旬にまた来ましょう。,В этой декаде вы уже обсуждали стратегию с Чэнь Дэном. Приходите в следующую декаду.
