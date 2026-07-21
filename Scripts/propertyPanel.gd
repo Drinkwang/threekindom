@@ -76,6 +76,8 @@ func show_resource_change(resource_type: String, change: int) -> void:
 	# Only gains use the celebratory counter roll; costs update immediately.
 	if change > 0:
 		_start_resource_counter(resource_type)
+	else:
+		_stop_resource_counter(resource_type)
 	var popup := Label.new()
 	popup.text = "%+d" % change
 	popup.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -105,10 +107,7 @@ func _start_resource_counter(resource_type: String) -> void:
 	var label: Label = coin_num if resource_type == "coin" else labor_num
 	var target: int = GameManager.sav.coin if resource_type == "coin" else GameManager.sav.labor_force
 	var current := label.text.to_int()
-	if _resource_value_tweens.has(resource_type):
-		var previous_tween: Tween = _resource_value_tweens[resource_type]
-		if is_instance_valid(previous_tween):
-			previous_tween.kill()
+	_stop_resource_counter(resource_type)
 	var counter_tween := create_tween().set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
 	_resource_value_tweens[resource_type] = counter_tween
 	counter_tween.tween_method(_set_resource_counter.bind(label), current, target, RESOURCE_COUNTER_DURATION)
@@ -119,6 +118,15 @@ func _start_resource_counter(resource_type: String) -> void:
 	var label_punch := create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	label_punch.tween_property(label, "scale", Vector2(1.14, 1.14), 0.14)
 	label_punch.set_trans(Tween.TRANS_QUAD).tween_property(label, "scale", Vector2.ONE, 0.18)
+
+
+func _stop_resource_counter(resource_type: String) -> void:
+	if not _resource_value_tweens.has(resource_type):
+		return
+	var previous_tween: Tween = _resource_value_tweens[resource_type]
+	if is_instance_valid(previous_tween):
+		previous_tween.kill()
+	_resource_value_tweens.erase(resource_type)
 
 
 func _set_resource_counter(value: float, label: Label) -> void:

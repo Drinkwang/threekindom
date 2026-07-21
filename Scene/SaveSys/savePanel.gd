@@ -108,6 +108,8 @@ func loadFile():
 		GameManager.secretBattleSav=-1
 		GameManager.israndom=false
 		GameManager.extraValue=0
+		# Loading replaces the scene directly, so no transition callback will release this transient input lock.
+		GameManager.CanClickUI=true
 		get_tree().change_scene_to_packed(savs[index-1].saveScene)
 		GameManager.loadLaw()
 		GameManager.refreshCallable()

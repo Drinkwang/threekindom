@@ -547,7 +547,7 @@ func _buttonListClick(item):
 		#这里放return
 		if GameManager.checkAndHandleLazy():
 			return
-	
+
 
 		GameManager._rest()
 		#判断有无道具 有道具且等于false
@@ -775,8 +775,9 @@ func _DayGet():
 	res_panel.showValue=false
 	res_panel.GetValue(GameManager.sav.coin_DayGet,0,GameManager.sav.labor_DayGet)
 	SoundManager.play_sound(sounds.buysellsound)
-	await 0.8
-	res_panel.showValue=false
+
+	await get_tree().create_timer(0.4).timeout
+	res_panel.showValue=true
 
 	if GameManager.sav.have_event["支线触发完毕查出锦囊"]==true and GameManager.sav.have_event["支线触发完毕查出锦囊休息"]==false:
 		GameManager.sav.have_event["支线触发完毕查出锦囊休息"]=true
@@ -854,7 +855,7 @@ func extraTask():
 func switchGatepost():
 	SceneManager.changeScene(SceneManager.roomNode.DRILL_GROUND,2)
 
-func _JudgeTask():
+func _JudgeTask(should_improve_final_phase: bool = false):
 	var hasSide=true
 	var value=0
 	if GameManager.sav.targetResType==GameManager.ResType.coin:
@@ -925,6 +926,8 @@ func _JudgeTask():
 		extraTask()
 	else:
 		zhubu.hide()#后续改动逻辑，今日工作已经写完了
+	if should_improve_final_phase:
+		GameManager.improveFinalPhase()
 
 func secondMissonStart():
 	GameManager.sav.targetValue=10

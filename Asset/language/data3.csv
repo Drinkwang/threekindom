@@ -1,0 +1,98 @@
+id,en,zh,lzh,ja,ru
+终章【主线进度90%】,Final Chapter [Main Story 90%],终章【主线进度90%】,終章【主線進度90%】,終章【メイン進行度90%】,Финальная глава [Основной сюжет: 90%]
+第八章【主线进度75%】,Chapter VIII [Main Story 75%],第八章【主线进度75%】,第八章【主線進度75%】,第八章【メイン進行度75%】,Глава VIII [Основной сюжет: 75%]
+第七章【主线进度65%】,Chapter VII [Main Story 65%],第七章【主线进度65%】,第七章【主線進度65%】,第七章【メイン進行度65%】,Глава VII [Основной сюжет: 65%]
+第六章【主线进度55%】,Chapter VI [Main Story 55%],第六章【主线进度55%】,第六章【主線進度55%】,第六章【メイン進行度55%】,Глава VI [Основной сюжет: 55%]
+第一章【主线进度5%】,Chapter I [Main Story 5%],第一章【主线进度5%】,第一章【主線進度5%】,第一章【メイン進行度5%】,Глава I [Основной сюжет: 5%]
+霸道之始,Dawn of Dominion,霸道之始,霸道之始,覇道の始まり,Начало Пути Владычества
+安抚众心,Winning Hearts,安抚众心,安撫眾心,人心を安んず,Умиротворение сердец
+百废待兴,Rebuilding from Ruin,百废待兴,百廢待興,復興への道,Возрождение из руин
+奉令讨逆,"By Command, Punish the Usurper",奉令讨逆,奉令討逆,命を奉じて逆賊を討つ,По приказу — против мятежника
+入主徐州,Taking Command of Xuzhou,入主徐州,入主徐州,徐州を治める,Власть над Сюйчжоу
+困守小沛,Besieged in Xiaopei,困守小沛,困守小沛,小沛籠城,В осаде в Сяопэе
+主公,My Lord,主公,主公,主君,Господин
+势力,Faction,势力,勢力,勢力,Фракция
+兵力,Troop Strength,兵力,兵力,兵力,Численность войск
+外来派,Outsider Faction,外来派,外來派,外来派,Фракция пришлых
+警告,Warning,警告,警告,警告,Предупреждение
+任务提示,Quest Hint,任务提示,任務提示,任務ヒント,Подсказка задания
+奖励,Reward,奖励,獎勵,報酬,Награда
+信件内容,Letter,信件内容,信件內容,書状,Текст письма
+曹操信中内容,Cao Cao's Letter,曹操信中内容,曹操信中內容,曹操の書状,Письмо Цао Цао
+大儒辩经,Great Scholar Debate,大儒辩经,大儒辯經,大儒弁論,Дебаты великих учёных
+"征集民夫数量：{currence1}/{target}
+基建工程数量：{currence2}/3","Laborers Recruited: {currence1}/{target}
+Infrastructure Projects: {currence2}/3","征集民夫数量：{currence1}/{target}
+基建工程数量：{currence2}/3","徵集民夫數量：{currence1}/{target}
+基建工程數量：{currence2}/3","徴集した人夫：{currence1}/{target}
+基盤整備事業：{currence2}/3","Нанято работников: {currence1}/{target}
+Инфраструктурные проекты: {currence2}/3"
+百姓,Commoner,百姓,百姓,民,Простолюдин
+百姓们,Commoners,百姓们,百姓們,民衆,Простолюдины
+部将,Subordinate General,部将,部將,部将,Подчинённый военачальник
+曹操,Cao Cao,曹操,曹操,曹操,Цао Цао
+昌豨信使,Chang Xi's Messenger,昌豨信使,昌豨信使,昌豨の使者,Посланник Чан Си
+陈登＆糜竺,Chen Deng & Mi Zhu,陈登＆糜竺,陳登＆糜竺,陳登＆糜竺,Чэнь Дэн и Ми Чжу
+斥候,Scout,斥候,斥候,斥候,Разведчик
+丹阳兵,Danyang Soldier,丹阳兵,丹陽兵,丹陽兵,Солдат Даньян
+盗宝匠人-李铁,Treasure-Seeking Craftsman Li Tie,盗宝匠人-李铁,盜寶匠人・李鐵,宝探しの職人・李鉄,Искатель сокровищ Ли Те
+盗宝贼-匠人,Treasure Thief - Craftsman,盗宝贼-匠人,盜寶賊・匠人,宝泥棒・職人,Вор-ремесленник
+弟子,Disciple,弟子,弟子,弟子,Ученик
+副将,Deputy General,副将,副將,副将,Заместитель военачальника
+关羽/张飞,Guan Yu / Zhang Fei,关羽/张飞,關羽／張飛,関羽／張飛,Гуань Юй / Чжан Фэй
+官吏-丙,Clerk C,官吏-丙,官吏・丙,官吏・丙,Чиновник Бин
+官吏-丁,Clerk D,官吏-丁,官吏・丁,官吏・丁,Чиновник Дин
+郭嘉,Guo Jia,郭嘉,郭嘉,郭嘉,Го Цзя
+孩童,Child,孩童,孩童,子供,Ребёнок
+黑商,Black-Market Dealer,黑商,黑商,闇商人,Торговец чёрного рынка
+甲,Jia,甲,甲,甲,Цзя
+酒馆老板,Tavern Keeper,酒馆老板,酒館老闆,酒場の主人,Хозяин таверны
+军匠李铁,Military Craftsman Li Tie,军匠李铁,軍匠李鐵,軍匠・李鉄,Военный мастер Ли Те
+傀儡娃娃,Puppet Doll,傀儡娃娃,傀儡娃娃,傀儡人形,Кукла-марионетка
+李铁,Li Tie,李铁,李鐵,李鉄,Ли Те
+刘备​,Liu Bei,刘备​,劉備,劉備,Лю Бэй
+流民,Refugee,流民,流民,流民,Беженец
+卖菜小贩,Vegetable Vendor,卖菜小贩,賣菜小販,野菜売り,Торговец овощами
+门外少女,Girl Outside,门外少女,門外少女,戸口の少女,Девушка за дверью
+密探,Secret Agent,密探,密探,密偵,Тайный агент
+农妇,Peasant Woman,农妇,農婦,農婦,Крестьянка
+乞丐,Beggar,乞丐,乞丐,物乞い,Нищий
+亲兵,Personal Guard,亲兵,親兵,親衛兵,Личный стражник
+商贩,Vendor,商贩,商販,商人,Торговец
+拾荒老农,Old Scavenging Farmer,拾荒老农,拾荒老農,物拾いの老農,Старый крестьянин-собиратель
+士兵-甲,Soldier A,士兵-甲,士兵・甲,兵士・甲,Солдат А
+士兵-乙,Soldier B,士兵-乙,士兵・乙,兵士・乙,Солдат Б
+侍从,Attendant,侍从,侍從,従者,Слуга
+探马,Scout Rider,探马,探馬,騎馬斥候,Конный разведчик
+特使,Envoy,特使,特使,特使,Посланник
+无名丹阳将领,Nameless Danyang Officer,无名丹阳将领,無名丹陽將領,名もなき丹陽将校,Безымянный офицер Даньян
+无名氏-甲,Nameless Man A,无名氏-甲,無名氏・甲,無名氏・甲,Безымянный А
+下级军官,Junior Officer,下级军官,下級軍官,下級将校,Младший офицер
+下人甲,Servant A,下人甲,下人甲,下男・甲,Слуга А
+下人乙,Servant B,下人乙,下人乙,下男・乙,Слуга Б
+夏侯惇,Xiahou Dun,夏侯惇,夏侯惇,夏侯惇,Сяхоу Дунь
+信使,Messenger,信使,信使,使者,Вестник
+血姬,Blood Princess,血姬,血姬,血姫,Кровавая княжна
+血姬-“糜贞”,Blood Princess - Mi Zhen,血姬-“糜贞”,血姬・「糜貞」,血姫・『糜貞』,Кровавая княжна — Ми Чжэнь
+血姬·糜贞,Blood Princess: Mi Zhen,血姬·糜贞,血姬・糜貞,血姫・糜貞,Кровавая княжна: Ми Чжэнь
+乙,Yi,乙,乙,乙,И
+袁术使者,Yuan Shu's Envoy,袁术使者,袁術使者,袁術の使者,Посланник Юань Шу
+张飞​,Zhang Fei,张飞​,張飛,張飛,Чжан Фэй
+长者,Elder,长者,長者,長老,Старейшина
+镇魂石龙,Soul-Sealing Stone Dragon,镇魂石龙,鎮魂石龍,鎮魂石竜,Каменный дракон — хранитель душ
+诸葛亮,Zhuge Liang,诸葛亮,諸葛亮,諸葛亮,Чжугэ Лян
+本旬局势未得到妥善处理，民心下降{{GameManager.PunishC}}点。,The situation was not properly handled this xun. Public Support -{{GameManager.PunishC}}.,本旬局势未得到妥善处理，民心下降{{GameManager.PunishC}}点。,本旬局勢未獲妥善處理，民心下降{{GameManager.PunishC}}點。,今旬の情勢に十分対処できませんでした。民心-{{GameManager.PunishC}}。,Ситуация в этом сюне не была урегулирована. Поддержка народа -{{GameManager.PunishC}}.
+察觉些许暗藏端倪，法令点数+3,You uncovered a hidden clue. Decree Points +3.,察觉些许暗藏端倪，法令点数+3,察覺些許暗藏端倪，法令點數+3。,隠された手掛かりを見抜きました。法令ポイント+3。,Вы обнаружили скрытую зацепку. Очки указов +3.
+该法案未能通过！法律已取消，请重新回府邸指引法律，各方派系此前扣除支持度已返还、为参议律法拨付的议事补给，全数发放至你的府库,"The bill failed. It has been withdrawn; return to the Manor to draft a new law. All deducted faction Support has been restored, and unused council supplies have been returned to your stores.",该法案未能通过！法律已取消，请重新回府邸指引法律，各方派系此前扣除支持度已返还、为参议律法拨付的议事补给，全数发放至你的府库,該法案未能通過！法案已撤回，請返回府邸重新擬定。此前扣除的各派支持度已返還，議事補給亦已全數收入府庫。,法案は否決され、撤回されました。府邸へ戻り、新たな法案を起案してください。各派の減少した支持度は回復し、未使用の議事物資はすべて府庫へ返還されました。,"Законопроект отклонён и отозван. Вернитесь в резиденцию, чтобы подготовить новый. Снятая поддержка фракций восстановлена, а неиспользованные припасы совета возвращены в хранилище."
+坚持十旬直到内应出现，政策面板已更新对应三策，可查看可选方略。,Hold out for 10 xun until the insider makes contact. Three relevant strategies are now available in the Policy Panel.,坚持十旬直到内应出现，政策面板已更新对应三策，可查看可选方略。,堅守十旬，直至內應現身。政策面板已更新對應三策，可查看可選方略。,内応者が現れるまで十旬持ちこたえてください。政策パネルに対応する三策が追加されました。,"Продержитесь 10 сюней, пока внедрённый агент не выйдет на связь. На панели политики появились три соответствующих плана."
+今日仍有军政事务尚未处理。此刻休息，城中民心可能受损。主公是否仍要休息？,"Military and civil affairs remain unfinished today. Resting now may reduce Public Support. Do you still wish to rest, my lord?",今日仍有军政事务尚未处理。此刻休息，城中民心可能受损。主公是否仍要休息？,今日尚有軍政事務未處理。此刻休息，城中民心可能受損。主公仍要休息嗎？,本日は軍務と政務がまだ残っています。今休むと民心が低下する恐れがあります。それでも休みますか、主君？,Сегодня ещё остались военные и гражданские дела. Отдых сейчас может снизить поддержку народа. Господин всё равно желает отдохнуть?
+吕布大军压境，双方积怨已久！敌军已换为吕布，需坚守等待曹操援军。城内民心动荡、城防危急，眼下无他法可循，现在只能通过军事行动改善城内局势。,"Lu Bu's army is at the gates, and old grudges run deep. Lu Bu is now the enemy; hold out until Cao Cao's reinforcements arrive. With Public Support wavering and the defenses in peril, only military operations can stabilize the city.",吕布大军压境，双方积怨已久！敌军已换为吕布，需坚守等待曹操援军。城内民心动荡、城防危急，眼下无他法可循，现在只能通过军事行动改善城内局势。,呂布大軍壓境，雙方積怨已久！敵軍已換為呂布，需堅守以待曹操援軍。城內民心動盪、城防危急，眼下唯有透過軍事行動穩定局勢。,呂布の大軍が迫り、積年の遺恨が噴き出しました。敵は呂布軍に替わっています。曹操の援軍が来るまで持ちこたえてください。民心も城防も危機にあり、軍事行動だけが城内を安定させられます。,"Армия Люй Бу у ворот, и давняя вражда вспыхнула вновь. Теперь противник — Люй Бу; держитесь до прибытия подкреплений Цао Цао. Народ встревожен, оборона под угрозой — стабилизировать город можно только военными действиями."
+你所为之事颇有成效，城中局势得以改善。,Your actions proved effective. The situation in the city has improved.,你所为之事颇有成效，城中局势得以改善。,你的舉措頗有成效，城中局勢得以改善。,行動が功を奏し、城内の情勢が改善しました。,Ваши действия принесли результат. Обстановка в городе улучшилась.
+你已成功出售商品，获得{{GameManager.SoldCoin}}钱，1个法令点数（剩余可获取{{GameManager.resideValue3}}点）,Goods sold: {{GameManager.SoldCoin}} Coins and 1 Decree Point gained ({{GameManager.resideValue3}} still available).,你已成功出售商品，获得{{GameManager.SoldCoin}}钱，1个法令点数（剩余可获取{{GameManager.resideValue3}}点）,商品出售成功：獲得{{GameManager.SoldCoin}}錢與1點法令點數（尚可獲得{{GameManager.resideValue3}}點）。,商品を売却し、{{GameManager.SoldCoin}}銭と法令ポイント1を獲得しました（残り{{GameManager.resideValue3}}ポイント）。,Товар продан: получено {{GameManager.SoldCoin}} монет и 1 очко указов (можно получить ещё {{GameManager.resideValue3}}).
+你已稳据徐州，霸业根基初成，寄存城内资源全数返还。需死守徐州十二旬，袁术与吕布虎视眈眈，吕布仍掌控泰山诸将，该派系暂脱离面板。需时常出征御敌、处理军政、筹措军需、安抚民众以安定城内局势，若长久疏于打理、放任民心躁动，州城危在旦夕！,"You now hold Xuzhou, and the foundation of your rule is set. All stored resources have been returned. Defend Xuzhou for 12 xun against Yuan Shu and Lu Bu. The Taishan Generals, still controlled by Lu Bu, are temporarily removed from the Faction Panel. Campaign, govern, secure supplies, and reassure the people; prolonged neglect will leave the provincial capital in grave danger.",你已稳据徐州，霸业根基初成，寄存城内资源全数返还。需死守徐州十二旬，袁术与吕布虎视眈眈，吕布仍掌控泰山诸将，该派系暂脱离面板。需时常出征御敌、处理军政、筹措军需、安抚民众以安定城内局势，若长久疏于打理、放任民心躁动，州城危在旦夕！,你已穩據徐州，霸業根基初成，寄存資源全數返還。接下來須死守徐州十二旬，防備袁術與呂布。泰山諸將仍受呂布掌控，暫時移出派系面板。請持續出征、理政、籌措軍需並安撫百姓；若長久疏忽，州城將危在旦夕。,徐州を確保し、覇業の礎を築きました。預けていた資源はすべて返還されます。袁術と呂布に備え、十二旬にわたり徐州を守り抜いてください。呂布配下の泰山諸将は、一時的に派閥パネルから外れます。出征、政務、軍需調達、民心の安定を怠れば、州都は危機に陥ります。,"Вы закрепились в Сюйчжоу и заложили основу своей власти. Все отложенные ресурсы возвращены. Удерживайте Сюйчжоу 12 сюней против Юань Шу и Люй Бу. Тайшаньские военачальники всё ещё подчинены Люй Бу и временно убраны с панели фракций. Воюйте, управляйте, снабжайте армию и успокаивайте народ; длительное бездействие поставит столицу области под угрозу."
+我必须有{{GameManager.GET_COST_LAW_POINT()}}点政策点数才能立法,I need {{GameManager.GET_COST_LAW_POINT()}} Decree Points to enact a law.,我必须有{{GameManager.GET_COST_LAW_POINT()}}点政策点数才能立法,我需要{{GameManager.GET_COST_LAW_POINT()}}點法令點數才能立法。,立法には法令ポイントが{{GameManager.GET_COST_LAW_POINT()}}必要だ。,Для принятия закона мне нужно {{GameManager.GET_COST_LAW_POINT()}} очков указов.
+昔年徐州大饥，我父母双亡，沦为流民，幸得无名将军收留，才得以活下来。后来入他帐下为兵，因些许微功，被提拔为校尉。,"During the great famine in Xuzhou, I lost both parents and became a refugee. General Wuming took me in and saved my life. I later joined his ranks and, after earning some modest merit, was promoted to commandant.",昔年徐州大饥，我父母双亡，沦为流民，幸得无名将军收留，才得以活下来。后来入他帐下为兵，因些许微功，被提拔为校尉。,昔年徐州大飢，我父母雙亡，淪為流民，幸得無名將軍收留，才得以活命。後來投身其帳下，因略有微功，被擢升為校尉。,かつて徐州を大飢饉が襲い、両親を失って流民となりました。無名将軍に拾われ、命をつなぐことができたのです。その後は将軍の配下で兵となり、わずかな功によって校尉に取り立てられました。,Во время великого голода в Сюйчжоу я потерял родителей и стал беженцем. Генерал Умин приютил меня и спас мою жизнь. Позже я вступил в его войско и за скромные заслуги был произведён в коменданты.
+夏侯惇率军驰援徐州防线，我方与曹操势力好感大幅提升。战局进入终局阶段，现在仅能依靠军事行动改善城内局势。,"Xiahou Dun has reinforced Xuzhou's defenses, greatly improving relations with Cao Cao's faction. The war has entered its final stage; only military operations can now stabilize the city.",夏侯惇率军驰援徐州防线，我方与曹操势力好感大幅提升。战局进入终局阶段，现在仅能依靠军事行动改善城内局势。,夏侯惇率軍馳援徐州防線，我方與曹操勢力的關係大幅提升。戰局已進入終局，現在只能透過軍事行動改善城內局勢。,夏侯惇が徐州の防衛線へ援軍を率い、曹操勢力との関係が大幅に改善しました。戦局は最終段階に入り、城内を安定させる手段は軍事行動のみです。,"Сяхоу Дунь усилил оборону Сюйчжоу, значительно улучшив отношения с фракцией Цао Цао. Война вступила в финальную стадию; теперь город можно стабилизировать только военными действиями."
+现下属地律法周全完备，诸事皆有规制可依，往后即便不再新增法令，各方派系也不会心生不满。古人云治大国若烹小鲜，法度既定不宜轻动，如今典章已成定规，若执意增设新法，劳民耗事，需额外耗用2点政策点方可推行。,"The territory's laws are now complete, and every affair has rules to follow. Factions will no longer resent a pause in legislation. As the saying goes, governing a great state is like cooking a delicate fish: once order is established, disturb it sparingly. Any further law will burden the people and cost 2 additional Decree Points.",现下属地律法周全完备，诸事皆有规制可依，往后即便不再新增法令，各方派系也不会心生不满。古人云治大国若烹小鲜，法度既定不宜轻动，如今典章已成定规，若执意增设新法，劳民耗事，需额外耗用2点政策点方可推行。,現下屬地律法周全完備，諸事皆有規制可依，往後即便不再新增法令，各方派系也不會心生不滿。古人云「治大國若烹小鮮」，法度既定不宜輕動。若仍執意增設新法，勞民耗事，須額外耗用2點法令點數。,領内の法は整い、万事に従うべき規定ができました。今後新法を増やさなくても、各派閥は不満を抱きません。『大国を治むるは小鮮を烹るが若し』と申します。制度をむやみに動かすべきではありません。さらに立法する場合は、追加で法令ポイント2を消費します。,"Законы владений теперь полны, и для каждого дела есть правило. Фракции больше не будут недовольны отсутствием новых указов. Как сказано, великой страной управляют бережно, словно готовят нежную рыбу. Новые законы отныне обременяют народ и требуют ещё 2 очка указов."
+主簿在此，可是有事务禀报？,"Chief Clerk, what matter brings you here?",主簿在此，可是有事务禀报？,主簿在此，可是有事稟報？,主簿、何か報告があるのか？,"Главный писарь, с каким докладом ты пришёл?"
+自此以后，你需死守小沛，坚持十二旬。袁术对徐州垂涎已久，已命大军逼近，小沛军民也因战事渐生不安。战事期间，出征御敌、处理军政、筹措军需及安抚民众，均可稳定城中局势。每旬休息前请留意当前局势；若长期放任不安蔓延，民心将逐渐流失，城池也将陷入危局。,"From now on, defend Xiaopei for 12 xun. Yuan Shu's army is closing in, and the people and garrison are growing uneasy. Campaigning, governing, securing supplies, and reassuring the people will stabilize the city. Check the situation before resting each xun; prolonged neglect will drain Public Support and place Xiaopei in danger.",自此以后，你需死守小沛，坚持十二旬。袁术对徐州垂涎已久，已命大军逼近，小沛军民也因战事渐生不安。战事期间，出征御敌、处理军政、筹措军需及安抚民众，均可稳定城中局势。每旬休息前请留意当前局势；若长期放任不安蔓延，民心将逐渐流失，城池也将陷入危局。,自此以後，你須死守小沛十二旬。袁術大軍已逼近，城中軍民也因戰事漸感不安。出征御敵、處理軍政、籌措軍需與安撫百姓，皆可穩定局勢。每旬休息前請留意城況；若長久放任不安蔓延，民心將逐漸流失，小沛亦會陷入危局。,これより小沛を十二旬守り抜いてください。袁術軍が迫り、城内の軍民にも不安が広がっています。出征、軍政、軍需調達、民の慰撫によって情勢を安定させられます。各旬の休息前に状況を確認してください。放置すれば民心が失われ、小沛は危機に陥ります。,"Отныне удерживайте Сяопэй 12 сюней. Армия Юань Шу приближается, а жители и гарнизон охвачены тревогой. Походы, управление, снабжение и забота о народе стабилизируют город. Проверяйте обстановку перед отдыхом в каждом сюне; длительное бездействие снизит поддержку народа и поставит Сяопэй под угрозу."
