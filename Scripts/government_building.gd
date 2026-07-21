@@ -861,7 +861,12 @@ func chendenHide():
 func _process(_delta):
 	pass
 
-func _JudgeTask():
+func _JudgeTask(should_improve_final_phase: bool = false):
+	_judge_task()
+	if should_improve_final_phase:
+		GameManager.improveFinalPhase()
+
+func _judge_task():
 	var value=GameManager.getTaskCurrenceValue()
 	#if GameManager.sav.targetResType==GameManager.ResType.coin:
 	#	value=GameManager.sav.coin

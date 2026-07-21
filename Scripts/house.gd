@@ -855,7 +855,7 @@ func extraTask():
 func switchGatepost():
 	SceneManager.changeScene(SceneManager.roomNode.DRILL_GROUND,2)
 
-func _JudgeTask(should_improve_final_phase: bool = false):
+func _JudgeTask():
 	var hasSide=true
 	var value=0
 	if GameManager.sav.targetResType==GameManager.ResType.coin:
@@ -926,8 +926,6 @@ func _JudgeTask(should_improve_final_phase: bool = false):
 		extraTask()
 	else:
 		zhubu.hide()#后续改动逻辑，今日工作已经写完了
-	if should_improve_final_phase:
-		GameManager.improveFinalPhase()
 
 func secondMissonStart():
 	GameManager.sav.targetValue=10
