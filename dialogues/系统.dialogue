@@ -234,7 +234,7 @@ do allocationSettle(0)
 		#print("难度名称：", name)
 		#print("难度类型：", type)
 		#print("难度描述：", desc)
-系统提示: 确认将本局难度切换为【{{GameManager.resideValue.type}}：{{GameManager.resideValue.name}}】,{{GameManager.resideValue.desc}}\n注意：难度修改后会影响本局最终结算成绩。
+系统提示: 确认将本局难度切换为【{{tr(GameManager.resideValue.type)}}：{{tr(GameManager.resideValue.name)}}】,{{tr(GameManager.resideValue.desc)}}\n注意：难度修改后会影响本局最终结算成绩。
 - 是
 	#do GameManager.preSelectDiff=-1
 

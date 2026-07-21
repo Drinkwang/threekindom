@@ -646,13 +646,13 @@ Player starts with 3 cards; enemy starts with 5 cards. At the start of each turn
 难度名称：,Difficulty Name:,难度名称：,難度名稱：,難度名：,Название сложности:
 难度类型：,Difficulty Type:,难度类型：,難度型別：,難度タイプ：,Тип сложности:
 难度描述：,Difficulty Description:,难度描述：,難度描述：,難度説明：,Описание сложности:
-"确认将本局难度切换为【{{GameManager.resideValue.type}}：{{GameManager.resideValue.name}}】,{{GameManager.resideValue.desc}}
-注意：难度修改后会影响本局最终结算成绩。","Confirm switching this run's difficulty to [{{GameManager.resideValue.type}}: {{GameManager.resideValue.name}}], {{GameManager.resideValue.desc}}
-Note: Changing difficulty will affect this run's final score.","确认将本局难度切换为【{{GameManager.resideValue.type}}：{{GameManager.resideValue.name}}】,{{GameManager.resideValue.desc}}
-注意：难度修改后会影响本局最终结算成绩。","確認將本局難度切換為【{{GameManager.resideValue.type}}：{{GameManager.resideValue.name}}】,{{GameManager.resideValue.desc}}
-注意：難度修改後會影響本局最終結算成績。","本局の難度を【{{GameManager.resideValue.type}}：{{GameManager.resideValue.name}}】へ切り替えますか？{{GameManager.resideValue.desc}}
-注意：難度変更後、本局の最終精算成績に影響します。","Сменить сложность текущей партии на [{{GameManager.resideValue.type}}: {{GameManager.resideValue.name}}], {{GameManager.resideValue.desc}}
-Внимание: смена сложности повлияет на итоговый счёт партии."
+"确认将本局难度切换为【{{tr(GameManager.resideValue.type)}}：{{tr(GameManager.resideValue.name)}}】,{{tr(GameManager.resideValue.desc)}}
+注意：难度修改后会影响本局最终结算成绩。","Switch this run to [{{tr(GameManager.resideValue.type)}}: {{tr(GameManager.resideValue.name)}}]? {{tr(GameManager.resideValue.desc)}}
+Note: Changing difficulty will affect the final score.","确认将本局难度切换为【{{tr(GameManager.resideValue.type)}}：{{tr(GameManager.resideValue.name)}}】,{{tr(GameManager.resideValue.desc)}}
+注意：难度修改后会影响本局最终结算成绩。","確認將本局難度切換為【{{tr(GameManager.resideValue.type)}}：{{tr(GameManager.resideValue.name)}}】。{{tr(GameManager.resideValue.desc)}}
+注意：修改難度將影響本局最終成績。","難易度を【{{tr(GameManager.resideValue.type)}}：{{tr(GameManager.resideValue.name)}}】に変更しますか？ {{tr(GameManager.resideValue.desc)}}
+注意：難易度の変更は本局の最終成績に影響します。","Сменить сложность текущей партии на [{{tr(GameManager.resideValue.type)}}: {{tr(GameManager.resideValue.name)}}]? {{tr(GameManager.resideValue.desc)}}
+Внимание: изменение сложности повлияет на итоговый счёт партии."
 尊敬的玩家，本次15分钟试玩时限已到。,"Dear player, the 15-minute demo time limit has ended.",尊敬的玩家，本次15分钟试玩时限已到。,尊敬的玩家，本次15分鐘試玩時限已到。,プレイヤーの皆様、今回の15分体験版の制限時間が終了しました。,"Уважаемый игрок, 15 минут пробной версии истекли."
 感谢您体验《阴三国谋论》试玩版！正式版将在2026年上线，届时将开放自由度更高的徐州经营、基建、仕诡牌、武将养成系统，以及多周目专属隐藏剧情。感兴趣可在steam加入愿望单,"Thank you for trying the demo of Yin: Three Kingdoms Conspiracy! The full version will launch in 2026, featuring more open Xuzhou management, infrastructure, Shigui Cards, general development, and multi-run exclusive hidden stories. Add it to your Steam wishlist if interested.",感谢您体验《阴三国谋论》试玩版！正式版将在2026年上线，届时将开放自由度更高的徐州经营、基建、仕诡牌、武将养成系统，以及多周目专属隐藏剧情。感兴趣可在steam加入愿望单,感謝您體驗《陰三國謀論》試玩版！正式版將在2026年上線，屆時將開放自由度更高的徐州經營、基建、仕詭牌、武將養成系統，以及多周目專屬隱藏劇情。感興趣可在steam加入願望單,『陰三国謀論』体験版をプレイしていただき、ありがとうございます！正式版は2026年にリリース予定です。自由度の高い徐州経営、基盤整備、仕詭牌、武将育成システム、そして周回専用の隠しシナリオを解放予定です。興味があればSteamでウィッシュリストに追加してください。,"Спасибо за игру в демоверсию «Заговоры Тёмных Троецарствий»! Полная версия выйдет в 2026 году. В ней откроются более свободное управление Сюйчжоу, инфраструктура, карты Шигуй, развитие военачальников и скрытые сюжеты для повторных прохождений. Если интересно, добавьте игру в список желаемого в Steam."
 回到主菜单,Return to Main Menu,回到主菜单,回到主選單,メインメニューへ戻る,Вернуться в главное меню
