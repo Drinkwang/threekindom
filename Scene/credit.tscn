@@ -375,7 +375,8 @@ tracks/6/keys = {
 Atelier Magicae (UI SFX)
 leohpaz (Button SFX)
 alkakrab (BGM)", "内测协力：
-安仔", "内测协力：
+安仔
+Honest-KnightCat", "内测协力：
 捣蛋猫mao", "特别鸣谢:
 星彩她爹讲三国", "感谢所有玩家，你的体验，是我所有努力的最终意义。"]
 }
@@ -391,8 +392,10 @@ tracks/7/keys = {
 "update": 1,
 "values": ["美术协力：
 Blight", "内测协力：
-大da姨父", "内测协力：
-书虫师", "内测协力：
+大da姨父
+德行行清没想到吧名字有四种念法你猜到了吗？", "内测协力：
+书虫师
+上钓鱼", "内测协力：
 小消", ""]
 }
 
@@ -510,7 +513,7 @@ tracks/6/path = NodePath("creditAnimation/制作人:text")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 31.2, 50.8054, 69.4774, 86.2096, 103.267, 114.867, 123.867, 136.133),
+"times": PackedFloat32Array(0, 31.2, 50.8054, 69.4774, 86.2096, 103.467, 114.867, 123.867, 136.133),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": ["制作人 / 策划 / 程序 ：
@@ -518,7 +521,8 @@ tracks/6/keys = {
 Atelier Magicae (UI SFX)
 leohpaz (Button SFX)
 alkakrab (BGM)", "测试协力：
-大da姨父", "测试协力：
+大da姨父
+德行行清没想到吧名字有四种念法你猜到了吗？", "测试协力：
 书虫师", "特别鸣谢：
 星彩她爹讲三国", "感谢所有玩家，你的体验，是我所有努力的最终意义。
 接下来为大家呈现正史篇章相关史料与配套插画。", "史料参考：灵帝末年，备尝在京师，
@@ -537,8 +541,10 @@ tracks/7/keys = {
 "update": 1,
 "values": ["美术协力：
 Blight", "测试协力：
-小消", "测试协力：
-安仔", "测试协力：
+小消
+上钓鱼", "测试协力：
+安仔
+", "测试协力：
 捣蛋猫mao", ""]
 }
 
@@ -617,7 +623,7 @@ offset_bottom = 1195.0
 color = Color(0, 0, 0, 1)
 
 [node name="中文logo" type="Sprite2D" parent="ColorRect"]
-modulate = Color(1, 1, 1, 0)
+modulate = Color(0, 0, 0, 1)
 material = SubResource("CanvasItemMaterial_rmcpn")
 position = Vector2(1267, 693)
 texture = ExtResource("10_15oj5")

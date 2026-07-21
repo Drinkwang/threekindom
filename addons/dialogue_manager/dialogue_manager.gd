@@ -78,13 +78,17 @@ var _node_properties: Array = []
 var dialogBegin=false
 
 func haveDialoge()->bool:
-	var balloon = get_dialogue_balloon()
-	if not is_instance_valid(balloon):
+	var current_scene = get_tree().current_scene
+	if not is_instance_valid(current_scene):
 		return false
-	# The returned node is the ExampleBalloon CanvasLayer, which remains visible after its content closes.
-	# The actual dialogue surface is its Balloon child.
-	var dialogue_surface := balloon.get_node_or_null("Balloon") as CanvasItem
-	return is_instance_valid(dialogue_surface) and dialogue_surface.is_visible_in_tree()
+	for balloon in current_scene.get_children():
+		if not balloon.get_script() or not balloon.get_script().resource_path.ends_with("example_balloon.gd"):
+			continue
+		# Multiple balloons can briefly coexist when a dialogue mutation opens another dialogue.
+		var dialogue_surface := balloon.get_node_or_null("Balloon") as CanvasItem
+		if is_instance_valid(dialogue_surface) and dialogue_surface.is_visible_in_tree():
+			return true
+	return false
 
 func _on_dialogue_ended(ens):
 	dialogBegin=false

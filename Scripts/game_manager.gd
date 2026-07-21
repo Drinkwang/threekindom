@@ -840,8 +840,11 @@ func improveFinalPhase(value: int = 1, is_military_action: bool = false) -> bool
 	return true
 
 func _showFinalPhaseImproveNotice() -> void:
-	if DialogueManager.haveDialoge():
+	# A mutation can open a new dialogue before its parent dialogue emits dialogue_ended.
+	# Wait until every overlapping balloon has closed so this notice cannot interrupt either one.
+	while DialogueManager.haveDialoge():
 		await DialogueManager.dialogue_ended
+		await get_tree().process_frame
 	DialogueManager.show_example_dialogue_balloon(sys, "最终章局势改善")
 
 func _rest(value=true):
