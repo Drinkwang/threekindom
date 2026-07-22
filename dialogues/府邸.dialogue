@@ -1430,13 +1430,13 @@ do mizhu.show()
 糜贞: 刘将军，前些日子兄长失言，小女子也替他赔礼。[voice:mizhen_xiaonvzi]
 茶香扑鼻，她眼波微转，似羞似笑。  
 糜贞: 兄长老提将军，贞耳朵都热了。[voice:mizhen_erduorele]
-- 称赞糜贞，迎合气氛  [highlight=true]
+- 称赞糜贞，迎合气氛[highlight=true]
 	do GameManager.changeMizhuHeart(10)
 	do mizhu.showHeart(GameManager.sav.mizhufav)
 	do mizhen.showHeart(GameManager.sav.mizhufav+10)
 	刘备: 贞妹子端庄贤淑，茶艺不凡，若备有此佳人每日奉茶，怕是军务都要忘了！[voice:liubei_jiarenfenchajunwuwangle]
 
-	糜贞: 将军过奖，贞手拙而已，怎敢扰将军大事！ [voice:mizhen_jiangjunguojiang]
+	糜贞: 将军过奖，贞手拙而已，怎敢扰将军大事！[voice:mizhen_jiangjunguojiang]
 
 
 	糜竺: 哈哈哈，主公，我妹这双手泡茶细腻，捏肩更妙![voice:mizhu_womeizhenhao]
@@ -1452,7 +1452,7 @@ do mizhu.show()
 	do mizhen.showHeart(GameManager.sav.mizhufav+10)
 	刘备: 子仲佳妹，茶香可人，备谢款待。[voice:liubei_zizhongjiamei]
 	糜贞: 将军客气，贞不敢当。[voice:mizhen_bugandang]
-	糜竺: 主公正派，竺佩服！  [voice:mizhu_zhugongzhengpai]
+	糜竺: 主公正派，竺佩服！[voice:mizhu_zhugongzhengpai]
 	do mizhu.hide()
 	do mizhen.hide()
 	系统提示: 豪族派忠诚+5（糜竺仍信任刘备）。
@@ -1464,7 +1464,7 @@ if GameManager.sav.have_event["糜竺正确选择1"]==true and GameManager.sav.h
 	刘备离开糜府时，路过回廊转角，空气中弥漫着一丝血腥味，一抹熟悉的身影出现在转角——“糜贞”站在阴影中，容貌与献茶少女无二，但气质诡异。嘴角挂着癫狂的笑意，身体却在轻微颤抖，似在恐惧什么。
 	do mizhen.show()
 	“糜贞”: 刘将军，茶好喝吗？嘻嘻……你可知，这茶里差一点……差一点就多了些“特别的味道”！[voice:mizhen_chahaohecrazy]
-	刘备: 你是谁？为何在此地？此地血腥味，又是何故？  [voice:liubei_nishishuicidixuexin]
+	刘备: 你是谁？为何在此地？此地血腥味，又是何故？[voice:liubei_nishishuicidixuexin]
 	“糜贞”: 别问！别问！他们……他们会杀了我的！嘿嘿嘿..若想知道真相，不如到郊外豪宅陪我吧![voice:mizhen_biewencrazy]
 	（她随即扔下一把古朴的铜钥匙，转身跌跌撞撞地跑入黑暗中）
 	刘备: 此女疯癫，与贞妹子平日模样截然不同……莫非糜家有隐情？[voice:liubei_mofeiyinqing]

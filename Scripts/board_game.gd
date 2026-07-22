@@ -253,6 +253,7 @@ func changeLanguage():
 		we_label.add_theme_font_size_override("font_size",72)
 		detail_txt.add_theme_font_size_override("font_size",_get_detail_default_font_size())
 
+	_fit_detail_text_to_width()
 
 	_on_crit_indicator_Txt()
 
@@ -422,7 +423,6 @@ func showdetail(str:String,grouptype):
 
 	detail_txt.show()
 	punishimg.show()
-	detail_txt.text=tr(str)
 	if grouptype==groupType.min:
 		punishimg.texture=_heart
 	elif grouptype==groupType.shi:
@@ -433,6 +433,7 @@ func showdetail(str:String,grouptype):
 		punishimg.texture=_soilder
 	else:
 		punishimg.texture=null
+	_set_detail_text(tr(str))
 
 	
 	
@@ -789,7 +790,6 @@ func startGame(cardnum,issole,enemyExtraCard):
 		enemy_score_txt.hide()
 		heart_group_enemy.hide()
 		enemyhand.hide()
-	_prepare_detail_text_bounds()
 	if issecretGame==true:
 		hold_enegy_panel.show()
 	else:
@@ -903,8 +903,8 @@ func enterNewPhase(stage:phaseName):
 			currentTurnUseCardNum=0
 			reside_num.text=tr("剩余步数：{s}").format({"s":playerStage})
 	
-			detail_txt.text=tr("出牌阶段，请使用你的卡牌")
 			punishimg.texture=null
+			_set_detail_text(tr("出牌阶段，请使用你的卡牌"))
 			board_panel.hide()
 			end_button.text=tr("回合结束")
 			reside_num.show()
@@ -912,8 +912,8 @@ func enterNewPhase(stage:phaseName):
 				_crit_indicator.show()
 			end_button.show()
 		else:
-			detail_txt.text=tr("敌人出牌阶段，正在使用卡牌")
 			punishimg.texture=null
+			_set_detail_text(tr("敌人出牌阶段，正在使用卡牌"))
 			reset_crit_chain_state()
 			enemyStage=maxUseCard
 			AIUseCard()
@@ -924,8 +924,8 @@ func enterNewPhase(stage:phaseName):
 		damage_color.hide()
 		heart_color.material.set_shader_parameter("vignette_intensity", 0)
 		damage_color.material.set_shader_parameter("vignette_intensity", 0)
-		detail_txt.text=tr("结束阶段，请等待新回合开始")
 		punishimg.texture=null
+		_set_detail_text(tr("结束阶段，请等待新回合开始"))
 		SoundManager.play_sound(sounds.COLLECT_SMALL_JEWEL_1)
 		await get_tree().create_timer(1.5).timeout
 		if _issole==false:
@@ -1118,7 +1118,7 @@ func checkCardStage(_groupType):
 								#SoundManager.play_sound(payCostSound)
 								SoundManager.play_sound(sounds.deniedsound)
 							end_button.text=tr("拒付惩罚")
-							detail_txt.text=tr("请支付你所需的惩罚：")
+							_set_detail_text(tr("请支付你所需的惩罚："))
 							punishStage=true
 							end_button.show()
 							cangoto=false
@@ -1126,7 +1126,7 @@ func checkCardStage(_groupType):
 						else:
 							groupPunishTyp=_groupType
 							punishStage=false
-							detail_txt.text=tr("敌人支付惩罚中：")
+							_set_detail_text(tr("敌人支付惩罚中："))
 							await get_tree().create_timer(2)
 							#支付完了后 应该把状态清空
 							await AIDiscardCard(i,j)
@@ -1660,7 +1660,7 @@ func excuteSecret(groupobj:Array):
 		
 						effectTxt=tr("对手失去20分")
 
-					detail_txt.text=whoRunCard+","+effectTxt
+					_set_detail_text(whoRunCard+","+effectTxt)
 				
 				await tween.finished
 				SoundManager.play_sound(fireexp)
@@ -2024,18 +2024,11 @@ func _get_detail_text_max_width() -> float:
 		return 0.0
 	var viewport_right := get_viewport_rect().size.x
 	var right_limit = min(DETAIL_TEXT_RIGHT_LIMIT, viewport_right)
-	return max(180.0, right_limit - detail_h_box_container.global_position.x - DETAIL_TEXT_SIDE_PADDING)
-
-func _prepare_detail_text_bounds() -> float:
-	if detail_txt == null:
-		return 0.0
-	var max_width := _get_detail_text_max_width()
-	if max_width <= 0.0:
-		return 0.0
-	detail_txt.custom_minimum_size.x = max_width
-	detail_txt.size.x = max_width
-	detail_txt.clip_text = false
-	return max_width
+	var max_width = right_limit - detail_h_box_container.global_position.x - DETAIL_TEXT_SIDE_PADDING
+	if punishimg != null:
+		max_width -= punishimg.get_combined_minimum_size().x
+		max_width -= detail_h_box_container.get_theme_constant("separation")
+	return max(180.0, max_width)
 
 func _fit_detail_text_to_width(min_font_size:int = 8) -> void:
 	if detail_txt == null or detail_h_box_container == null:
@@ -2043,7 +2036,7 @@ func _fit_detail_text_to_width(min_font_size:int = 8) -> void:
 	var font := detail_txt.get_theme_font("font")
 	if font == null:
 		return
-	var max_width := _prepare_detail_text_bounds()
+	var max_width := _get_detail_text_max_width()
 	if max_width <= 0.0:
 		return
 	var font_size := _get_detail_default_font_size()
@@ -2056,6 +2049,12 @@ func _fit_detail_text_to_width(min_font_size:int = 8) -> void:
 	if final_width > max_width and final_width > 0.0:
 		font_size = max(1, floori(float(font_size) * max_width / final_width))
 	detail_txt.add_theme_font_size_override("font_size", font_size)
+
+func _set_detail_text(value:String) -> void:
+	if detail_txt == null:
+		return
+	detail_txt.text = value
+	_fit_detail_text_to_width()
 
 func getCardLength(isplayer):
 	var _num
@@ -2212,12 +2211,10 @@ func _show_crit_pending_detail(suit: int) -> void:
 	if suit < 0 or suit >= suit_names.size():
 		return
 	detail_txt.show()
-	_prepare_detail_text_bounds()
-	detail_txt.text = tr("再消除1张【{suit}】牌：{effect}").format({
+	_set_detail_text(tr("再消除1张【{suit}】牌：{effect}").format({
 		"suit": suit_names[suit],
 		"effect": crit_effects[suit]
-	})
-	_fit_detail_text_to_width()
+	}))
 
 @onready var baoji_tooltip: TextureRect = $baojiTooltip
 
@@ -2250,7 +2247,7 @@ func phaseEnd():
 		#如果没有红桃则扣hp-1
 		if haveHeart() and groupPunishTyp!=groupType.min and groupPunishTyp2!=groupType.min:
 			end_button.text=tr("拒付失去体力")
-			detail_txt.text=tr("是否支付民心替代惩罚：")
+			_set_detail_text(tr("是否支付民心替代惩罚："))
 			if isPlayerTurn==true:
 				#然后还要过度强度
 				var hearttween = get_tree().create_tween()
@@ -2407,7 +2404,7 @@ func _execute_crit_effect(suit: int) -> void:
 					desc = tr("跳回合+1，HP-1，游戏结束")
 				else:
 					desc = tr("跳回合+1，HP-1")
-				detail_txt.text = tr("暴击·民能载势！") + desc
+				_set_detail_text(tr("暴击·民能载势！") + desc)
 			1:
 				playerStage = mini(playerStage + 1, maxUseCard + 1)
 				reside_num.text = tr("剩余步数：{s}").format({"s": playerStage})
@@ -2417,17 +2414,17 @@ func _execute_crit_effect(suit: int) -> void:
 					if is_instance_valid(_h2[_r2]):
 						_h2[_r2].queue_free()
 				desc = tr("+1步，弃1牌")
-				detail_txt.text = tr("暴击·谋士筹策！") + desc
+				_set_detail_text(tr("暴击·谋士筹策！") + desc)
 			2:
 				drawOne(true)
 				#drawOne(true)
 				playerStage = max(0, playerStage - 1)
 				reside_num.text = tr("剩余步数：{s}").format({"s": playerStage})
 				desc = tr("抽1牌，步数-1")
-				detail_txt.text = tr("暴击·商贾囤货！") + desc
+				_set_detail_text(tr("暴击·商贾囤货！") + desc)
 			3:
 				desc = tr("补位发牌")
-				detail_txt.text = tr("暴击·士卒召列！") + desc
+				_set_detail_text(tr("暴击·士卒召列！") + desc)
 	else:
 		match suit:
 			0:
@@ -2442,7 +2439,7 @@ func _execute_crit_effect(suit: int) -> void:
 					else:
 						loseGame()
 				desc = tr("跳回合+1，HP-1")
-				detail_txt.text = tr("暴击·民能载势！") + desc
+				#_set_detail_text(tr("暴击·民能载势！") + desc)
 			1:
 				enemyStage = mini(enemyStage + 1, maxUseCard + 1)
 				var _eh = enemyhand.get_children()
@@ -2451,15 +2448,15 @@ func _execute_crit_effect(suit: int) -> void:
 					if is_instance_valid(_eh[_er]):
 						_eh[_er].queue_free()
 				desc = tr("+1步，弃1牌")
-				detail_txt.text = tr("暴击·谋士筹策！") + desc
+				#_set_detail_text(tr("暴击·谋士筹策！") + desc)
 			2:
 				drawOne(false)
 				enemyStage = max(0, enemyStage - 1)
 				desc = tr("抽1牌，步数-1")
-				detail_txt.text = tr("暴击·商贾囤货！") + desc
+				#_set_detail_text(tr("暴击·商贾囤货！") + desc)
 			3:
 				desc = tr("补位发牌")
-				detail_txt.text = tr("暴击·士卒召列！") + desc
+				#_set_detail_text(tr("暴击·士卒召列！") + desc)
 	var popup = load("res://Scene/prefab/crit_popup.tscn").instantiate()
 	add_child(popup)
 	popup.play(suit, desc, isPlayerTurn)
