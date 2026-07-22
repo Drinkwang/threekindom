@@ -1047,7 +1047,7 @@ func show_first_rebellion_warning(data, event_key:String, dialogue_key:String)->
 		return false
 	GameManager.sav.have_event[event_key]=true
 	data.isrebellion=false
-	GameManager.resideValue=data._name
+	GameManager.resideValue=tr(data._name)
 	DialogueManager.show_example_dialogue_balloon(sys,dialogue_key)
 	return true
 
