@@ -1403,11 +1403,11 @@ do mizhen.showHeart(GameManager.sav.mizhufav+15)
 刘备: 糜贞妹子，你神色慌乱，所为何事？政务繁忙，若有要事，不妨直言。[voice:liubei_bufangzhiyan]
 #去掉空格
 
-糜贞: 刘大人，近日您操劳过度，恐伤贵体。我备下药材若干，望将军调养身体，以安徐州民心。 [voice:mizhen_anminxin]
+糜贞: 刘大人，近日您操劳过度，恐伤贵体。我备下药材若干，望将军调养身体，以安徐州民心。[voice:mizhen_anminxin]
 do mizhen.hide()
 说罢，她急忙跑开了...
 
-	
+
 系统提示: 糜贞送来调养药材，刘备体力+10，豪族派忠诚+5，获得补气丸x2
 
 do mizhenGift()
