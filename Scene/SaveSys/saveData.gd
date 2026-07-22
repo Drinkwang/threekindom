@@ -421,8 +421,8 @@ func ensure_default_fields():
 			have_event[key] = default_data[key]
 
 	# 兼容旧存档：从 have_event 重建 SIDEQUEST_MAP 文本
-	_restore_daru_sidequest()
-
+	#_restore_daru_sidequest()
+# 废弃 不需要兼容旧存赌
 func _restore_daru_sidequest():
 	if SIDEQUEST_MAP[SceneManager.sideQuest.DARU] != "":
 		return  # 已有文本，无需恢复
