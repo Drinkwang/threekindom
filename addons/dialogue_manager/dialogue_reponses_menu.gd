@@ -170,7 +170,7 @@ var responses: Array = []:
 							response.text=tr(response.text)+tr("(未解锁)")	
 							
 						elif (characterScore>=2 and characterScore<3  and mode==3 and not haveWeapon):
-							response.text+=tr("(专属武器解锁)")
+							response.text=tr(response.text)+tr("(专属武器解锁)")
 
 					
 
