@@ -281,7 +281,7 @@ func _input(event):
 	if event.is_action_pressed("ui_cancel") and not event.is_echo() and currenceScene!=null:
 		# 双重保障：对话框已释放时允许 ESC 打开设置
 		#（即使 dialogBegin 因 bug 卡在 true，也不影响 ESC 操作）
-		if DialogueManager.get_dialogue_balloon() == null:
+		if DialogueManager.haveDialoge()==false:
 			openSetting()
 			
 func openSetting():

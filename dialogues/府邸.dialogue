@@ -1357,7 +1357,7 @@ do mizhu.showEX=false
 do mizhen.show() 
 刘备: 原来是贞妹子……前几日在粮仓清点时，我见过她，她还细心提醒注意粮草防潮，果然聪慧。[voice:liubei_yuanlaishizhenmei]
 糜竺: 主公，我妹不仅聪慧，而且身段窈窕，错过可不行！[voice:mizhu_cuoguobuxing]
-糜贞: 兄长胡言，我不理你了！  [voice:mizhen_xiongzhanghuyan]
+糜贞: 兄长胡言，我不理你了！[voice:mizhen_xiongzhanghuyan]
 - 顺着玩笑回应，探情况[highlight=true]
 	do GameManager.changeMizhuHeart(10)
 	do mizhu.showHeart(GameManager.sav.mizhufav)
@@ -1378,18 +1378,18 @@ do mizhen.show()
 	do GameManager.changeMizhuHeart(-10)
 	do mizhu.showHeart(GameManager.sav.mizhufav)
 	do mizhen.showHeart(GameManager.sav.mizhufav+10)
-	刘备: 子仲好意，备谢之，军务为先，家事稍后。 [voice:liubei_junwuweixian]
+	刘备: 子仲好意，备谢之，军务为先，家事稍后。[voice:liubei_junwuweixian]
 
 	糜竺: 主公稳重，我不急，慢慢来！[voice:mizhu_manmanlai]
-	门外少女: 哼，还好没乱来。 [voice:mizhen_haihaomeiluanlai]
+	门外少女: 哼，还好没乱来。[voice:mizhen_haihaomeiluanlai]
 	系统提示: 豪族派忠诚+5（糜竺仍感刘备可靠）。
 	do eatTea1(false)
 	do mizhu.hide()
 do mizhen.hide() 	
 （宴会结束后，刘备准备离开时，路过府邸时，听到两个下人窃窃私语。）  
-下人甲: 最近府里不太平，又一个下人失踪了……说是去小姐院子送饭后就不见了。  [voice:xiarenjia]
+下人甲: 最近府里不太平，又一个下人失踪了……说是去小姐院子送饭后就不见了。[voice:xiarenjia]
 
-下人乙: 嘘！别乱说！我听老仆说，大小姐有时候很恐怖……半夜见过她站在院子里，嘴里像是……在嚼什么，眼睛红得吓人！  [voice:xiaren_daxiaojiebudui]
+下人乙: 嘘！别乱说！我听老仆说，大小姐有时候很恐怖……半夜见过她站在院子里，嘴里像是……在嚼什么，眼睛红得吓人！[voice:xiaren_daxiaojiebudui]
 
 刘备: (下人失踪？大小姐半夜异状？糜家或许有隐情)[voice:liubei_mijiayinqing]
 
