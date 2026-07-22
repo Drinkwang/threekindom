@@ -113,6 +113,18 @@ func _get_selected_general_card() -> SoilderItem:
 			return control_3
 	return null
 
+func _has_valid_general_selection() -> bool:
+	var general := _get_selected_general_card()
+	if general == null or not general.canSelect or general.alreadyUse:
+		return false
+	if not GameManager.sav.generals.has(general.repImg):
+		return false
+	if general == control_1 and GameManager.sav.have_event["关羽求援期间"] and not GameManager.sav.have_event["关羽求援结束"]:
+		return false
+	if general == control_3 and GameManager.sav.have_event["无名之死"] and not GameManager.sav.have_event["夏侯偷马"]:
+		return false
+	return battle_circle.selectgeneral != null and battle_circle.selectgeneral == GameManager.sav.generals[general.repImg]
+
 func _kill_general_feedback_tweens(general:Control):
 	if _general_move_tweens.has(general):
 		var move_tween = _general_move_tweens[general]
@@ -400,6 +412,8 @@ const NOT_JAM_UI_CONDENSED_16 = preload("res://addons/inventory_editor/default/f
 
 func refreshData():
 	_clear_general_selection()
+	if not battle_circle.isBoot:
+		close_btn.disabled=false
 	if _mode==SceneManager.bossMode.none:
 		costhp=DEFAULT_COST_HP
 	
@@ -483,6 +497,7 @@ func initData():
 func endBattle():
 	if self.visible==false:
 		return
+	close_btn.disabled=false
 	_clear_general_selection()
 	soild_slider.value=0
 	coin_slider.value=0
@@ -590,7 +605,7 @@ func _refreshSlider():
 		coin_slider.editable=false
 	else:
 		coin_slider.editable=true
-	if battle_circle.selectgeneral==null:
+	if not _has_valid_general_selection() or battle_circle.isBoot:
 		lauchBtn.disabled=true
 		soild_slider.editable=false
 		coin_slider.editable=false	
@@ -773,7 +788,7 @@ func _on_control_3_gui_input(event):
 	if battle_circle.isBoot==true||control_3.canSelect==false||control_3.alreadyUse==true or(GameManager.sav.have_event["无名之死"]==true and GameManager.sav.have_event["夏侯偷马"]==false):
 		return	
 	
-	if(event is InputEventMouseButton and event.button_index==1 or istour==true):	
+	if(event is InputEventMouseButton and event.button_index==MOUSE_BUTTON_LEFT and event.pressed or istour==true):
 		SoundManager.play_sound(sounds.CLICKHERO)		
 		control_3.check_box.button_pressed=true
 		control_2.check_box.button_pressed=false
@@ -794,7 +809,7 @@ func _on_control_2_gui_input(event):
 
 	if battle_circle.isBoot==true||control_2.canSelect==false||control_2.alreadyUse==true:
 		return	
-	if(event is InputEventMouseButton and event.button_index==1 or istour==true):	
+	if(event is InputEventMouseButton and event.button_index==MOUSE_BUTTON_LEFT and event.pressed or istour==true):
 		SoundManager.play_sound(sounds.CLICKHERO)
 		control_1.check_box.button_pressed=false
 		control_2.check_box.button_pressed=true
@@ -810,7 +825,7 @@ func _on_control_1_gui_input(event):
 
 	if battle_circle.isBoot==true||control_1.canSelect==false||control_1.alreadyUse==true or (GameManager.sav.have_event["关羽求援期间"]==true and GameManager.sav.have_event["关羽求援结束"]==false):
 		return
-	if(event is InputEventMouseButton and event.button_index==1 or istour==true):		
+	if(event is InputEventMouseButton and event.button_index==MOUSE_BUTTON_LEFT and event.pressed or istour==true):
 		SoundManager.play_sound(sounds.CLICKHERO)		
 		control_3.check_box.button_pressed=false
 		control_2.check_box.button_pressed=false
@@ -831,22 +846,40 @@ func previewHpdone():
 
 #出征按钮
 func _on_button_button_down():
+	if battle_circle.isBoot or not _has_valid_general_selection():
+		_refreshSlider()
+		return
+
+	# isTried() can await user input, so the selection must survive that wait unchanged.
+	var launch_index = selectIndex
+	var launch_general = battle_circle.selectgeneral
+	lauchBtn.disabled=true
+	close_btn.disabled=true
 	if GameManager.currenceScene.battle_pane._mode==SceneManager.bossMode.none:
 		if await GameManager.isTried(costhp) or \
 		(GameManager.sav.have_event["无名之死"]==true and GameManager.sav.have_event["夏侯偷马"]==false and selectIndex==3) or\
 		(GameManager.sav.have_event["关羽求援期间"]==true and GameManager.sav.have_event["关羽求援结束"]==false and selectIndex==1):
+			close_btn.disabled=false
+			_refreshSlider()
 			return 
+	if not _has_valid_general_selection() or selectIndex != launch_index or battle_circle.selectgeneral != launch_general:
+		close_btn.disabled=false
+		_refreshSlider()
+		return
 	if battle_circle.isBoot==false:
 		
 		SoundManager.play_sound(sounds.ZHUANPAN)
 		play_launch_feedback()
-		battle_circle.lauchProgress(costhp)
-		lauchBtn.disabled=true
+		if not battle_circle.lauchProgress(costhp):
+			close_btn.disabled=false
+			_refreshSlider()
 		
 	pass # Replace with function body.
 @export var dialogue_resource:DialogueResource
 #推出按钮，同时调用结束
 func _on_exit_button_button_down():
+	if battle_circle.isBoot:
+		return
 	GameManager._engerge.stopPreviewHP()
 	_clear_general_selection()
 	self.hide()

@@ -1287,11 +1287,20 @@ func openBoardDialogue():
 
 
 func huangjinSurrender():
-	GameManager.sav.labor_force+=100
+	
+	var _reward:rewardPanel=PanelManager.new_reward()
+	var items={
+		"items": null,
+		"money": 0,
+		"population": 100
+	}	
+	_reward.showTitileReward(tr("恭喜你，黄巾流民率众归降，已被你收纳"),items)		
+	#GameManager.sav.labor_force+=100
 	GameManager.sav.currenceValue+=1
 	GameManager.sav.Merit_points+=2
 	#DialogueManager.dialogBegin=false
-	_judWin()	
+	
+	#_judWin()	
 
 
 func cangxiSurrender():

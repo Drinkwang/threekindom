@@ -454,18 +454,22 @@ func refresh():
 
 var isBoot:bool=false
 var _extraTaskCountedThisRound:bool=false
+var _active_general = null
 
 func changeHead(value):
 	enemy.headImg=value
 	TooltipManager.register_tooltip(enemy.head,tr(enemyName)+"\n"+tr(GameManager.enemyDesc[enemyName]))
 
-func lauchProgress(hp):
-	if isBoot ==false:
-		_extraTaskCountedThisRound=false
-		isBoot=true
-		suss_label.text=""
-		_hp=hp
-		_on_SpinButton_pressed()
+func lauchProgress(hp) -> bool:
+	if isBoot or selectgeneral == null:
+		return false
+	_active_general=selectgeneral
+	_extraTaskCountedThisRound=false
+	isBoot=true
+	suss_label.text=""
+	_hp=hp
+	_on_SpinButton_pressed()
+	return true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
@@ -537,7 +541,8 @@ func _on_Tween_tween_all_completed():
 	if GameManager.currenceScene.battle_pane._mode == SceneManager.bossMode.none:
 		GameManager.sav.hp = GameManager.sav.hp - _hp
 	await control.play_battle_result_feedback(selectPart, issuccess)
-	settleGame(selectPart, issuccess)
+	settleGame(selectPart, issuccess, _active_general)
+	_active_general=null
 	#将风险值和成功率一起输入
 	#print(real_angle)
 	isBoot=false
@@ -556,7 +561,10 @@ var buffMultiple=1
 var finalScore
 const yanwuchang = preload("res://dialogues/演武场.dialogue")
 
-func settleGame(end,issuccess):
+func settleGame(end,issuccess,general):
+	if general == null:
+		push_error("Battle settlement blocked because no general was captured at launch")
+		return
 	var _wasUsingItem = GameManager.sav.useItemInBattle
 	#扣除消耗 只会消耗士兵
 	#无风险 无扣除
@@ -618,7 +626,7 @@ func settleGame(end,issuccess):
 		var enemyPower=GameManager.sav.battleTasks[taskIndex].index*50
 		
 		
-		finalScore=GameManager.calculate_points(enemyPower,taskComplete, percentage/100,selectgeneral.level,buffMultiple)
+		finalScore=GameManager.calculate_points(enemyPower,taskComplete, percentage/100,general.level,buffMultiple)
 		finalScore=finalScore*(0.6+(GameManager.sav.battleEnhance*0.25))
 		if GameManager.sav.have_event["吕布之怒"]==false and GameManager.sav.have_event["夏侯偷马"]==true and GameManager.sav.endPath==GameManager.endPath.xiaopei:
 			finalScore=finalScore*1.5
@@ -685,8 +693,7 @@ func settleGame(end,issuccess):
 
 	GameManager.sav.currenceTask=GameManager.sav.currenceTask+1
 	
-	if(selectgeneral!=null):
-		GameManager.sav.UseGeneral.push_front(selectgeneral)
+	GameManager.sav.UseGeneral.push_front(general)
 	taskIndex=taskIndex+1
 	
 	if(taskIndex>=3):
