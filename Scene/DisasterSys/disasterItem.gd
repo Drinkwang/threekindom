@@ -66,7 +66,11 @@ func changeLanguage():
 		context.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
 		have_grain.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
 		detail_cotext.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
-
+	elif currencelanguage=="en":
+		context.add_theme_font_size_override("font_size",16)
+		context.remove_theme_font_override("font")
+		have_grain.remove_theme_font_override("font")
+		detail_cotext.remove_theme_font_override("font")		
 	else:
 		context.add_theme_font_size_override("font_size",23)
 		context.remove_theme_font_override("font")

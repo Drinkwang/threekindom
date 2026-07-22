@@ -59,26 +59,31 @@ do _JudgeTask()
 
 
 ~ 士族叛乱预警
+do SoundManager.play_sound(sounds.down)
 警告: 注意，因为你的{{GameManager.resideValue}}的支持度低于60，内部不稳，叛乱风险加剧！
 do determineInternalUnrestHaozu()
 => END
 
 ~ 豪族叛乱预警
+do SoundManager.play_sound(sounds.down)
 警告: 注意，因为你的{{GameManager.resideValue}}的支持度低于60，内部不稳，叛乱风险加剧！
 do determineInternalUnrestDanyang()
 => END
 
 ~ 丹阳叛乱预警
+do SoundManager.play_sound(sounds.down)
 警告: 注意，因为你的{{GameManager.resideValue}}的支持度低于60，内部不稳，叛乱风险加剧！
 do determineInternalUnrestLvbu()
 => END
 
 ~ 吕布叛乱预警
+do SoundManager.play_sound(sounds.down)
 警告: {{GameManager.rTaishanName()}}忠诚度低于70，其不满情绪高涨，可能对你发起掠夺！
 do determineInternalUnrestMinxin()
 => END
 
 ~ 民变风险
+do SoundManager.play_sound(sounds.down)
 警告: 民心低于60，民怨沸腾，民变风险加剧！
 do shizuLawTest()
 => END

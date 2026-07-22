@@ -88,6 +88,5 @@ const LVBU_2 = preload("res://Asset/sound/lvbu2.wav")
 
 
 
-
 const down = preload("res://Asset/sound/改善2低.wav")
 const fix = preload("res://Asset/sound/改善.wav")
