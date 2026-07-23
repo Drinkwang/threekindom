@@ -123,10 +123,16 @@ func _ready():
 const NOT_JAM_UI_CONDENSED_16 = preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf")
 const LEGEND_FONT_DEFAULT = preload("res://Asset/Font/1_sim.ttf")
 const LEGEND_FONT_RU = preload("res://Asset/Font/1_blod.ttf")
+const LEGEND_POSITION_DEFAULT := Vector2(-100.0, 1.0)
+const LEGEND_POSITION_ENGLISH := Vector2(-180.0, 1.0)
 #const LEGEND_NORMAL_RECT := Rect2(-100.0, 1.0, 20.0, 76.0)
 #const LEGEND_VICTORY_KIT_RECT := Rect2(-110.0, -14.0, 20.0, 96.0)
 func changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()
+	if currencelanguage=="en" or currencelanguage=="ru":
+		$VBoxContainer.position=LEGEND_POSITION_ENGLISH
+	else:
+		$VBoxContainer.position=LEGEND_POSITION_DEFAULT
 	if currencelanguage=="ru":
 		_set_legend_style(LEGEND_FONT_RU, 14)
 	else:

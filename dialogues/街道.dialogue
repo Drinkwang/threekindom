@@ -384,7 +384,7 @@ do SoundManager.play_sound(sounds.XUEJIDEAD)
 血姬·糜贞: 谢……将军……让我能够解脱[voice:mizhen_xiejiangjunjietuo]
 （她化作一团血雾，最终凝成一个巴掌大的傀儡娃娃，娃娃面容酷似血姬，带着病娇的诡笑。娃娃随既被刘备拾起）  
 
-傀儡娃娃: 将军，陪你的糜贞……到底是不是我？嘻嘻……你猜呀……我会化作傀儡永远陪着你……永远…… [voice:mizhen_yongyuanpeizheni]
+傀儡娃娃: 将军，陪你的糜贞……到底是不是我？嘻嘻……你猜呀……我会化作傀儡永远陪着你……永远……[voice:mizhen_yongyuanpeizheni]
 #刘备: 她已经没有气息了，这些声音不过是她死去后传来的一丝念想罢了
 do battle_pane.hide()
 #刘备: 可怜之人，备定查明真相！  
@@ -404,7 +404,7 @@ do sideQuestReturnG(true)
 
 ~ 战斗失败_血姬
 do headRed()
-血姬: 我赢了……可我还是输了……将军你永远不会知道……陪你的糜贞，到底是不是我……嘻嘻……[voice:mizhen_wowinlebutfail]
+血姬: 我赢了……可我还是输了……嘻嘻……[voice:mizhen_wowinlebutfail]
 do SoundManager.play_sound(sounds.xueji)
 （她挥出致命一击，刘备眼前一黑，昏迷倒地。）
 do battle_pane.hide()
