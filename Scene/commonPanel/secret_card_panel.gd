@@ -51,7 +51,7 @@ func control_gui_press(index):
 		var item=properties.filter(func(a):return a["name"]=="detail")[0]
 		var detail=item["value"]
 		var db:InventoryItem=InventoryManager.get_item_db(itemname)					
-		detail_txt.text=db.name+" "+detail
+		detail_txt.text=tr(db.name)+" "+tr(detail)
 	else:
 		button.disabled=true
 		if GameManager._boardMode==boardType.boardMode.middle:
