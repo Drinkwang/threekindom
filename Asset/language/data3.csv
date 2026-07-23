@@ -136,3 +136,8 @@ You lose.","你的积分小于对手
 商贾囤货,Merchant Stockpile,商贾囤货,商賈囤貨,商人の備蓄,Запасы торговцев
 士卒召列,Soldiers Muster,士卒召列,士卒召列,兵士集結,Сбор войск
 “糜贞”,“Mi Zhen”?,“糜贞”,「糜貞」,「糜貞」？,«Ми Чжэнь»?
+【达成后胜率+{bonus}%】,【Win Rate +{bonus}% on completion】,【达成后胜率+{bonus}%】,【達成後勝率+{bonus}%】,【達成すると勝率+{bonus}%】,【После выполнения шанс победы +{bonus}%】
+【已达成，胜率+{bonus}%】,【Completed Win Rate +{bonus}%】,【已达成，胜率+{bonus}%】,【已達成，勝率+{bonus}%】,【達成済み 勝率+{bonus}%】,【Выполнено Шанс победы +{bonus}%】
+道具加持+{bonus}%,Item Boost +{bonus}%,道具加持+{bonus}%,道具加持+{bonus}%,アイテム効果 +{bonus}%,Бонус предмета: +{bonus}%
+{weapon}+{bonus}%,{weapon} +{bonus}%,{weapon}+{bonus}%,{weapon}+{bonus}%,{weapon} +{bonus}%,{weapon}: +{bonus}%
+{weapon}+{bonus}%【法令已强化】,{weapon} +{bonus}% [Decree Enhanced],{weapon}+{bonus}%【法令已强化】,{weapon}+{bonus}%【法令已強化】,{weapon} +{bonus}%【法令強化済み】,{weapon}: +{bonus}% [усилено указом]

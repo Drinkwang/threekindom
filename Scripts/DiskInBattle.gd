@@ -246,7 +246,7 @@ func _juideCompeleteTask():
 	(btdatas.sdType==GameManager.RspEnum.PAPER&&type==GameManager.RspEnum.ROCK) or\
 	(btdatas.sdType==GameManager.RspEnum.ROCK&&type==GameManager.RspEnum.SCISSORS):
 		#print("失败"+str(btdatas.reward))
-		targetGet=targetGet-  ((btdatas.reward/100.0)*mustHave)
+		targetGet=targetGet-((btdatas.reward/100.0)*mustHave)
 		 #玩家失败 暂时不扣 免得有bug
 	elif btdatas.sdType==type:
 		#print("平局")
@@ -270,26 +270,23 @@ func _juideCompeleteTask():
 		var itemup=1.4
 		if  InventoryManager.has_item(InventoryManagerItem.迷魂木筒):
 			itemup=1.5
-			buff_lines.append("道具加持+50%") #未来要注销
+			buff_lines.append(tr("道具加持+{bonus}%").format({"bonus":50})) #未来要注销
 		else:
-			buff_lines.append("道具加持+40%") #未来要注销
+			buff_lines.append(tr("道具加持+{bonus}%").format({"bonus":40})) #未来要注销
 		levelup=levelup*itemup
 
 		#if InventoryManager.has_item()
 	var haveWeaponNum=0
-	var haveWeaponTxt=""
+	var haveWeaponName=""
 	var weaponRate=0
-	var weaponLevelUpStr = ""
-	if GameManager.sav.isWeaponLevelUP:
-		weaponLevelUpStr = "【法令已强化】"
 	if selectgeneral==null:
 		return 
 	if selectgeneral.name=="关羽":
 		haveWeaponNum=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.青龙偃月刀)
+		haveWeaponName="青龙偃月刀"
 		weaponRate=0.08
 		if GameManager.sav.isWeaponLevelUP:
 			weaponRate=0.18
-		haveWeaponTxt="青龙偃月刀+%d%%%s" % [weaponRate*100, weaponLevelUpStr]
 		#有无青龙偃月刀
 		#道具加持xxx
 		#显示文本xxx
@@ -298,25 +295,29 @@ func _juideCompeleteTask():
 		var isBloodBattle=GameManager.sav.have_event["战斗袁术血战模式"]==true and GameManager.sav.have_event["血战袁术完成"]==false
 		if not isBloodBattle:
 			haveWeaponNum=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.丈八蛇矛)
+			haveWeaponName="丈八蛇矛"
 			weaponRate=0.06
 			if GameManager.sav.isWeaponLevelUP:
 				weaponRate=0.16
-			haveWeaponTxt="丈八蛇矛+%d%%%s" % [weaponRate*100, weaponLevelUpStr]
 	elif selectgeneral.name=="无名" and GameManager.sav.have_event["无名之死"]==false:
 		#有无龙胆银月枪
 		#道具加持xxx
 		haveWeaponNum=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.龙胆亮银枪)
+		haveWeaponName="龙胆亮银枪"
 		weaponRate=0.1
 		if GameManager.sav.isWeaponLevelUP:
 			weaponRate=0.2
-		haveWeaponTxt="龙胆亮银枪+%d%%%s" % [weaponRate*100, weaponLevelUpStr]
 
 	if haveWeaponNum>0:
 		levelup=levelup*(1+weaponRate)
-		buff_lines.append(haveWeaponTxt)
+		var weapon_buff_key="{weapon}+{bonus}%【法令已强化】" if GameManager.sav.isWeaponLevelUP else "{weapon}+{bonus}%"
+		buff_lines.append(tr(weapon_buff_key).format({
+			"weapon":tr(haveWeaponName),
+			"bonus":int(round(weaponRate*100))
+		}))
 		
 	if InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.雌雄双股剑)>0:
-		buff_lines.append("雌雄双股剑+1%")
+		buff_lines.append(tr("{weapon}+{bonus}%").format({"weapon":tr("雌雄双股剑"),"bonus":1}))
 		levelup=levelup*(1.01)
 	#商城系统如果购买了武器，则取消这件装备继续卖出
 	#判断选中的武将1 有无装备
