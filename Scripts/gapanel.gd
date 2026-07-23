@@ -140,7 +140,7 @@ func refreshContext():
 							policycontext=tr(GameManager.sav.targetTxt).format({"target":targetValue,"currence1":currenceValue[0],"currence2":currenceValue[1]})
 						
 					else:
-						policycontext=tr("当前任务：无")
+						policycontext=tr("当前任务：待发现")
 			else:
 				
 				#var currenceValue=GameManager.sav.currenceValue
@@ -178,9 +178,13 @@ func refreshContext():
 				#if dailyBattleCount>0:
 					#policycontext=policycontext+"\n"+tr("每旬至少完成{n}次军事行动").format({"n":dailyBattleCount})
 		else:
-
+			if GameManager.sav.TargetDestination.length()>0:
 				policycontext=GameManager.sav.TargetDestination	
-				
+			else:
+				if GameManager.sav.have_event["庆功宴结束"]==true:
+					policycontext=tr("新目标将与关键角色对话解锁")
+				#else:
+					
 		contextEX=tr("主线任务:")+policycontext
 		#每个支线有个名称（枚举）和键值对，如果键值队为数 那么则xxx
 		#把若干支线任务需要添加的写进，每个支线销毁，或者不销毁需要[xxx:xxxxx]

@@ -20,7 +20,7 @@ func _process(delta):
 	if(GameManager.sav.targetTxt!=null and GameManager.sav.targetTxt.length()>0):
 		showTargetLabel()
 	elif GameManager.sav.TargetDestination==null or GameManager.sav.TargetDestination.length()==0:
-		target_label.text=tr("当前任务：无")
+		target_label.text=tr("当前任务：待发现")
 @onready var flash_animation_player: AnimationPlayer = $TextureProgressBar/AnimationPlayer
 		
 var previewValue=0
