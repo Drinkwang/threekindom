@@ -348,7 +348,7 @@ do mizhen.show()
 
 
 ~ boss战开始_血姬
-"糜贞": 刘将军，你来了……你真的来了！你知道吗？我一直在等你……等你来杀我！或者……我杀了你！嘻嘻！  [voice:mizhen_shanihuozheshawo]
+“糜贞”: 刘将军，你来了……你真的来了！你知道吗？我一直在等你……等你来杀我！或者……我杀了你！嘻嘻！[voice:mizhen_shanihuozheshawo]
 do PlayMizhen()
 do mizhen.hide()
 => END!
@@ -366,10 +366,10 @@ do mizhen.hide()
 ~ 真相揭露_血姬
 刘备: 糜小姐，你身为糜家千金，为何做出此等事来..何苦[voice:liubei_mixiaojieheku]
 血姬·糜贞: 我……我不是她！我只是个陪衬……一个被利用的可怜虫！[voice:mizhen_wozhishikelianchong]
-血姬·糜贞: 我本是山野孤女，十年前被人掳走，他们用邪术改造我，逼我饮人血维生，只为让我幻化别人的模样……后来，糜竺从黑市买下并收留我，用我扮演他的“妹妹”糜贞！  [voice:mizhen_banyanmeimei]
+血姬·糜贞: 我本是山野孤女，十年前被人掳走，他们用邪术改造我，逼我饮人血维生，只为让我幻化别人的模样……后来，糜竺从黑市买下并收留我，用我扮演他的“妹妹”糜贞！[voice:mizhen_banyanmeimei]
 血姬·糜贞: 很多下人，都是我害的！我不愿杀人，可若不饮血，我便会枯萎而死，痛苦不堪……况且……他们的血，滋味真不错！嘻嘻嘻[voice:mizhen_yinxue]
 刘备: 糜竺为何如此对你？既已收留你，也把你也认作了妹妹，相伴多年，他为何不寻法医治你，反而让你受此折磨？[voice:liubei_weiheshouzhemo]
-血姬·糜贞: 医治我？糜竺只是需要一个“妹妹”来联姻，讨好徐州的主人……他买下我时，我已被改造，他不过是各取所需——我需要人血苟活，他需要一个傀儡！若联姻对象不佳，我便替“糜贞”去承受一切，反正我已经是个活不长的人……  [voice:mizhen_yizhiwo]
+血姬·糜贞: 医治我？糜竺只是需要一个“妹妹”来联姻，讨好徐州的主人……他买下我时，我已被改造，他不过是各取所需——我需要人血苟活，他需要一个傀儡！若联姻对象不佳，我便替“糜贞”去承受一切，反正我已经是个活不长的人……[voice:mizhen_yizhiwo]
 刘备: ...
 刘备: 确实，你身世悲惨，我同情你。但你嗜血成性，滥杀无辜，法不能饶！若你能悔改，随我回去认罪，我可将你关押，寻法医治你。[voice:liubei_xunfayizhini]
 血姬·糜贞: 医治我？来不及了..悔意？你让我怎么悔？我有什么错！都是他们逼我的！是他们让我变成这样的！既然你如此仁义，那就去死吧！我得吸你的血活下来！[voice:mizhen_laibujile]
@@ -404,11 +404,11 @@ do sideQuestReturnG(true)
 
 ~ 战斗失败_血姬
 do headRed()
-血姬: 我赢了……可我还是输了……将军你永远不会知道……陪你的糜贞，到底是不是我……嘻嘻……  [voice:mizhen_wowinlebutfail]
+血姬: 我赢了……可我还是输了……将军你永远不会知道……陪你的糜贞，到底是不是我……嘻嘻……[voice:mizhen_wowinlebutfail]
 do SoundManager.play_sound(sounds.xueji)
-（她挥出致命一击，刘备眼前一黑，昏迷倒地。）  
+（她挥出致命一击，刘备眼前一黑，昏迷倒地。）
 do battle_pane.hide()
-（刘备醒来时，已在郊外林间，豪宅踪迹全无，血姬消失无踪。）  
+（刘备醒来时，已在郊外林间，豪宅踪迹全无，血姬消失无踪。）
 刘备: (究竟为何，我得从糜竺那里得知真相！)[voice:liubei_wodeidezhizhenxiang]
 #改哪里为那
 do sideQuestReturnG(false)

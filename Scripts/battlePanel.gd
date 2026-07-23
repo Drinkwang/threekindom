@@ -616,31 +616,32 @@ func _refreshSlider():
 func initTask():
 	refreshTask(false)
 
+func get_selected_task_requirement_multiplier() -> float:
+	if battle_circle.selectgeneral==null:
+		return 1.0
+	var generalLevel=battle_circle.selectgeneral.level
+	var generalName=battle_circle.selectgeneral.name
+	var isBloodBattle=GameManager.sav.have_event["战斗袁术血战模式"]==true and GameManager.sav.have_event["血战袁术完成"]==false
+	var hasWeapon=false
+	if generalName=="关羽":
+		hasWeapon=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.青龙偃月刀)>0
+	elif generalName=="张飞":
+		if isBloodBattle:
+			generalLevel=10
+			hasWeapon=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.雌雄双股剑)>0
+		else:
+			hasWeapon=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.丈八蛇矛)>0
+	elif generalName=="无名":
+		hasWeapon=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.龙胆亮银枪)>0
+		if GameManager.sav.have_event["夏侯偷马"]==true:
+			generalLevel=10
+	return GameManager.get_battle_task_requirement_multiplier(generalLevel, hasWeapon)
+
 func refreshTask(checkSlider:bool=true):
 	if battle_circle.taskIndex<0 or GameManager.sav.battleTasks==null or GameManager.sav.battleTasks.size()<=0:
 		return
 
-	var levels=1
-
-	if battle_circle.selectgeneral!=null:
-		var generalLevel=battle_circle.selectgeneral.level
-		var generalName=battle_circle.selectgeneral.name
-		var isBloodBattle=GameManager.sav.have_event["战斗袁术血战模式"]==true and GameManager.sav.have_event["血战袁术完成"]==false
-		var hasWeapon=false
-		if generalName=="关羽":
-			hasWeapon=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.青龙偃月刀)>0
-		elif generalName=="张飞":
-			if isBloodBattle:
-				generalLevel=10
-				hasWeapon=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.雌雄双股剑)>0
-			else:
-				hasWeapon=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.丈八蛇矛)>0
-		elif generalName=="无名":
-			hasWeapon=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.龙胆亮银枪)>0
-
-		levels=1.05-(0.05*generalLevel)
-		if hasWeapon:
-			levels=levels*0.8
+	var levels=get_selected_task_requirement_multiplier()
 
 	var currence= GameManager.sav.battleTasks[battle_circle.taskIndex]
 	var context=tr("战术目标：")
@@ -712,7 +713,12 @@ func refreshTask(checkSlider:bool=true):
 		if not taskAdded:
 			continue
 		# 标记已达成
-		if checkSlider and isCompleted:
+		if _mode==bossMode.mi:
+			if checkSlider and isCompleted:
+				taskcontext+=tr("【已达成，胜率+{bonus}%】").format({"bonus":GameManager.MI_BOSS_RISK_WIN_RATE_BONUS_PERCENT})
+			else:
+				taskcontext+=tr("【达成后胜率+{bonus}%】").format({"bonus":GameManager.MI_BOSS_RISK_WIN_RATE_BONUS_PERCENT})
+		elif checkSlider and isCompleted:
 			taskcontext+=tr("【已达成，伤亡降低】")
 
 		context+=taskcontext
@@ -925,11 +931,31 @@ func enterBattleMi():
 	battle_circle.enemyName="糜贞"
 	point_group.hide()
 	var cha=load("res://Asset/人物/mizhen_battle.png")
-	
-	for  data in GameManager.sav.battleTasks.values():
-		data.task=[]	
+	_configure_mi_risk_tasks()
 	battle_circle.changeHead(cha)
 	initTask()
+
+func _configure_mi_risk_tasks():
+	var battle_coeff:=1.0
+	match GameManager.sav.gameDifficulty:
+		2: battle_coeff=1.2
+		3: battle_coeff=1.4
+	for data in GameManager.sav.battleTasks.values():
+		var coin_task={}
+		var fallback_symbol=GameManager.opcost.values()[randi_range(0,2)]
+		for task in data.task:
+			fallback_symbol=task.symbol
+			if task.res=="coin":
+				coin_task=task.duplicate(true)
+				break
+		if coin_task.is_empty():
+			coin_task={
+				"res":"coin",
+				"symbol":fallback_symbol,
+				"value":int(10*data.index*battle_coeff),
+				"reward":100
+			}
+		data.task=[coin_task]
 @onready var close_btn = $TextureButton
 
 func enterBattleTao():

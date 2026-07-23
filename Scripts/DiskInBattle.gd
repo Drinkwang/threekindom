@@ -172,6 +172,8 @@ func _juideCompeleteTask():
 		mustHave=rewardMax*(generalLevel+10)/32     #+generalLevel*rewardMax/20
 	#var mustHave=rewardMax/2
 	var targetGet=0
+	var is_mi_boss=GameManager.currenceScene!=null and GameManager.currenceScene.battle_pane._mode==SceneManager.bossMode.mi
+	var mi_risk_task_complete=false
 	#print("befoer"+str(targetGet))
 	#等级 （reward/100）*mustrewad
 	var btdatas
@@ -203,10 +205,7 @@ func _juideCompeleteTask():
 			hasWeapon=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.龙胆亮银枪)>0
 			if GameManager.sav.have_event["夏侯偷马"]==true:
 				generalLevel=10
-		levels=1.04-(0.04*generalLevel)
-		#武器检测：武将持有武器则降低任务目标值
-		if hasWeapon:
-			levels=levels*0.8
+		levels=GameManager.get_battle_task_requirement_multiplier(generalLevel, hasWeapon)
 		
 	for task in tasks:
 		var value=floor(task.value*levels)
@@ -229,7 +228,10 @@ func _juideCompeleteTask():
 			if(haveRes==value):
 				iscomplete=true
 		if iscomplete==true:
-			targetGet=targetGet+ ((task.reward/100.0)*mustHave)
+			if is_mi_boss:
+				mi_risk_task_complete=true
+			else:
+				targetGet=targetGet+ ((task.reward/100.0)*mustHave)
 			taskComplete=taskComplete+1
 
  	
@@ -263,21 +265,17 @@ func _juideCompeleteTask():
 	#当玩家的值大于basevalue时，每提升10% 会有5%的提升 上部封顶 但是最多玩家将会获得100%的和平区域 也就是最多为rewardMax
 	var levelup= int(floor(curCoin /(btdatas.index)))*2+int(floor(curSoilder/(btdatas.index)))*10+(generalLevel)
 	
-	buff_txt.text=""
+	var buff_lines:Array[String]=[]
 	if GameManager.sav.useItemInBattle==true:
 		var itemup=1.4
 		if  InventoryManager.has_item(InventoryManagerItem.迷魂木筒):
 			itemup=1.5
-			buff_txt.text="道具加持+50%" #未来要注销
+			buff_lines.append("道具加持+50%") #未来要注销
 		else:
-			buff_txt.text="道具加持+40%" #未来要注销
+			buff_lines.append("道具加持+40%") #未来要注销
 		levelup=levelup*itemup
-		
+
 		#if InventoryManager.has_item()
-		
-		buff_txt.show()
-	else:
-		buff_txt.hide()
 	var haveWeaponNum=0
 	var haveWeaponTxt=""
 	var weaponRate=0
@@ -315,17 +313,20 @@ func _juideCompeleteTask():
 
 	if haveWeaponNum>0:
 		levelup=levelup*(1+weaponRate)
-		buff_txt.text=buff_txt.text+"\n"+haveWeaponTxt
-		buff_txt.show()
+		buff_lines.append(haveWeaponTxt)
 		
 	if InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.雌雄双股剑)>0:
-		buff_txt.text=buff_txt.text+"\n"+"雌雄双股剑+1%"
+		buff_lines.append("雌雄双股剑+1%")
 		levelup=levelup*(1.01)
-		buff_txt.show()
 	#商城系统如果购买了武器，则取消这件装备继续卖出
 	#判断选中的武将1 有无装备
 	#判断选中的武将2 有无装备
 	#判断选中的武将3 有无装备
+	if is_mi_boss and mi_risk_task_complete:
+		levelup+=GameManager.MI_BOSS_RISK_WIN_RATE_BONUS_PERCENT
+		#buff_lines.append(tr("风险行动胜率+{bonus}%").format({"bonus":GameManager.MI_BOSS_RISK_WIN_RATE_BONUS_PERCENT}))
+	buff_txt.text="\n".join(buff_lines)
+	buff_txt.visible=not buff_lines.is_empty()
 	var success_degrees = min(max(levelup * 3.6, 0), 360)
 	GameManager.battleCircle[4].radian = success_degrees
 	#targetGet=targetGet+levelup

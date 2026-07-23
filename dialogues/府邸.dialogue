@@ -1495,11 +1495,11 @@ do mizhu.show()
 刘备: 糜竺，郊外豪宅一事，我已知晓。糜贞是血姬幻化而成、下人失踪，豪族以人血供养，你可否给个解释？[voice:liubei_mizhugeijieshi2]
 #空格
 
-糜竺: 主公何出此言？我从未听闻什么血姬！贞儿自幼长于府中，绝无替身！  [voice:mizhu_zhenerwutisheng]
+糜竺: 主公何出此言？我从未听闻什么血姬！贞儿自幼长于府中，绝无替身！[voice:mizhu_zhenerwutisheng]
 do jiaMizhenShow()
 （糜贞从内室走出，容貌如常，语气平静，但眼中似有复杂情绪。）  
 
-糜贞: 将军，兄长所言不虚，贞从未去过郊外豪宅。将军若不信，可查我行踪。将军，前日送去的药材，可还合用？  [voice:zhenmizhen]
+糜贞: 将军，兄长所言不虚，贞从未去过郊外豪宅。将军若不信，可查我行踪。将军，前日送去的药材，可还合用？[voice:zhenmizhen]
 刘备:  !!!，是我多疑了……[voice:liubei_shiwoduoyile]
 糜竺: 主公可能为政务操劳过度，精神疲惫，请好好休息吧。府中备下清茶，若需调养，随时唤我。[voice:mizhu_fushangqincha]
 if haveWaWa()

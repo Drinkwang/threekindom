@@ -671,6 +671,22 @@ func intBattleTask():
 		sav.battleTasks[battleTarget].sdType=sdType
 		#RspEnum.values()[sdType-1]
 
+const MI_BOSS_RISK_WIN_RATE_BONUS_PERCENT := 20
+const BATTLE_TASK_REQUIREMENT_BASE_MULTIPLIER := 1.04
+const BATTLE_TASK_REQUIREMENT_REDUCTION_PER_LEVEL := 0.04
+const BATTLE_TASK_MIN_REQUIREMENT_MULTIPLIER := 0.64
+const BATTLE_TASK_WEAPON_REQUIREMENT_MULTIPLIER := 0.8
+
+func get_battle_task_requirement_multiplier(general_level:int, has_weapon:bool) -> float:
+	var effective_level=clampi(general_level, 1, 10)
+	var multiplier=maxf(
+		BATTLE_TASK_MIN_REQUIREMENT_MULTIPLIER,
+		BATTLE_TASK_REQUIREMENT_BASE_MULTIPLIER-BATTLE_TASK_REQUIREMENT_REDUCTION_PER_LEVEL*effective_level
+	)
+	if has_weapon:
+		multiplier*=BATTLE_TASK_WEAPON_REQUIREMENT_MULTIPLIER
+	return multiplier
+
 #func _ready():
 	#var numbers = generate_random_numbers(100, 2, 3)
 	#print(numbers)

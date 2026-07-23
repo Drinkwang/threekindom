@@ -826,7 +826,7 @@ func extraTask():
 			GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.DARU]=tr("拜访郑玄，借名望安定徐州人心")
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大儒辩经1启动之前")
 			return
-		elif GameManager.sav.have_event["大儒支线2"]==false and num1>=1 and GameManager.sav.have_event["泰山诸将曹操消息"]==true:
+		elif GameManager.sav.have_event["大儒支线2"]==false and num1>=1 and (GameManager.sav.have_event["泰山诸将曹操消息"]==true or GameManager.sav.have_event["secondDisaster"]==true):
 			GameManager.sav.have_event["大儒支线2"]=true
 			GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.DARU]=tr("与郑玄论《礼记》，安抚徐州士人")
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大儒辩经2启动之前")

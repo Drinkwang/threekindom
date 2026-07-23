@@ -962,9 +962,10 @@ func showtutorial_back(num):
 		_tween2=get_tree().create_tween()
 		var tasks=btdatas.task
 		var ResSlider
+		var levels=battle_pane.get_selected_task_requirement_multiplier()
 		
 		for task in tasks:
-			var value=task.value
+			var value=floor(task.value*levels)
 			var minValue
 			if task.res=="coin":
 				ResSlider=battle_pane.coin_slider	
