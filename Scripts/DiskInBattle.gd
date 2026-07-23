@@ -174,6 +174,7 @@ func _juideCompeleteTask():
 	var targetGet=0
 	var is_mi_boss=GameManager.currenceScene!=null and GameManager.currenceScene.battle_pane._mode==SceneManager.bossMode.mi
 	var mi_risk_task_complete=false
+	var mi_counter_won=false
 	#print("befoer"+str(targetGet))
 	#等级 （reward/100）*mustrewad
 	var btdatas
@@ -254,6 +255,8 @@ func _juideCompeleteTask():
 		 #平局
 	else: 
 		targetGet=targetGet+  ((btdatas.reward/100.0)*mustHave)
+		if is_mi_boss:
+			mi_counter_won=true
 		taskComplete=taskComplete+1
 		#print("获胜")
 		#玩家获胜
@@ -326,6 +329,9 @@ func _juideCompeleteTask():
 	if is_mi_boss and mi_risk_task_complete:
 		levelup+=GameManager.MI_BOSS_RISK_WIN_RATE_BONUS_PERCENT
 		#buff_lines.append(tr("风险行动胜率+{bonus}%").format({"bonus":GameManager.MI_BOSS_RISK_WIN_RATE_BONUS_PERCENT}))
+	if is_mi_boss and mi_counter_won:
+		levelup+=GameManager.MI_BOSS_COUNTER_WIN_RATE_BONUS_PERCENT
+		buff_lines.append(tr("克制+{bonus}%").format({"bonus":GameManager.MI_BOSS_COUNTER_WIN_RATE_BONUS_PERCENT}))
 	buff_txt.text="\n".join(buff_lines)
 	buff_txt.visible=not buff_lines.is_empty()
 	var success_degrees = min(max(levelup * 3.6, 0), 360)
