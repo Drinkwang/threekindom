@@ -247,9 +247,13 @@ func changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()
 
 	if currencelanguage=="ru" or currencelanguage=="en":
+		win_label.add_theme_font_size_override("font_size",100)
+		lose_label.add_theme_font_size_override("font_size",100)
 		we_label.add_theme_font_size_override("font_size",50)
 		detail_txt.add_theme_font_size_override("font_size",_get_detail_default_font_size())
 	else:
+		win_label.add_theme_font_size_override("font_size",146)
+		lose_label.add_theme_font_size_override("font_size",146)
 		we_label.add_theme_font_size_override("font_size",72)
 		detail_txt.add_theme_font_size_override("font_size",_get_detail_default_font_size())
 

@@ -1360,7 +1360,10 @@ func danyangLawTest():
 		DialogueManager.show_example_dialogue_balloon(sys,"丹阳法律未通过")
 		GameManager.sav.WAIDIPAI.ChangeSupport(-10)
 	#GameManager.predemand()
-	allocationAllSettle()#test工资系统 加到另外的后面
+	if GameManager.sav.have_event["chaosEnd"]==false and GameManager.sav.have_event["secondDisaster"]==true and GameManager.sav.have_event["大儒支线2"]==false:
+		extraTask()
+	else:
+		allocationAllSettle()#test工资系统 加到另外的后面
 
 
 func generate_consumed_string(consumed: Dictionary) -> String:

@@ -37,11 +37,20 @@ func _on_inventory_changed(inv_uuid: String) -> void:
 	if inventory == inv_uuid:
 		_update_item()
 
+func _clear_item_display() -> void:
+	# Empty inventory stacks must clear the previously rendered item.
+	TooltipManager.unregister_tooltip(self)
+	_item = null
+	_item_db = null
+	texture = null
+	_quantity_ui.text = "0"
+
 func _update_item() -> void:
 	if show_quantity:
 		_quantity_ui.show()
 	else:
 		_quantity_ui.hide()
+	_clear_item_display()
 
 	if _inventoryManager and index >= 0:
 		var items = _inventoryManager.get_inventory_items(inventory)

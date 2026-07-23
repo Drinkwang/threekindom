@@ -671,3 +671,7 @@ func lunce():
 
 func LearnToStr(aclevel):
 	return tr(GameManager.academicLevelDesc[aclevel])
+
+
+func _JudgeTask():
+	pass

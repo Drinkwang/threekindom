@@ -271,6 +271,22 @@ func _judWin():
 func zhangbaQianlai():
 	#此处改臧霸头像
 	pass
+	
+	
+func cangxiFinalSurrender():
+	
+	var _reward:rewardPanel=PanelManager.new_reward()
+	var items={
+		"items": null,
+		"money": 0,
+		"population": 100
+	}	
+	_reward.showTitileReward(tr("恭喜你，昌豨诚心归顺并奉上麾下部曲，现已收纳士卒一百人"),items)		
+	#GameManager.sav.labor_force+=100
+	GameManager.sav.currenceValue+=1
+	GameManager.sav.Merit_points+=2
+	#DialogueManager.dialogBegin=false
+	
 @onready var lvbu: clickBlock = $"吕布"
 
 
@@ -1616,3 +1632,5 @@ func laibapai():
 	caobao.changeAllClick("来把仕诡牌")
 	caobaoshow()
 	caobao.showEX=false
+func _JudgeTask():
+	pass

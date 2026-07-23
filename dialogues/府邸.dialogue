@@ -917,7 +917,7 @@ do chenden.hide()
 	系统提示: 士族派支持度上升10，豪族派支持度下降10
 	do GameManager.sav.HAOZUPAI.ChangeSupport(-10)
 	do GameManager.sav.BENTUPAI.ChangeSupport(10)
-- 保持中立，不偏向任意一方 [highlight=true]
+- 保持中立，不偏向任意一方[highlight=true]
 	刘备: ...
 刘备: 我明白诸位的顾虑，然我意已决。曹豹负责边防，其看法或有独到之处，我愿一听。[voice:liubei_caobaobianfang]
 
