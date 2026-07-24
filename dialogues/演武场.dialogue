@@ -1615,6 +1615,27 @@ do danyangSoilder.showEX=false
 #do danyangSoilder.hide()
 => END!
 
+~ 丹阳基建
+#do danyangSoilder.showEX=false
+丹阳兵: 曹大人暂且外出不在此处，城防基建一应事务，由末将代为接手，主公尽可差遣。[voice:danyang_daili]
+- 修建基建【加固城墙】[costHp=20]
+	#if GameManager.sav.hp>=20
+		#曹豹: 主公，加固城墙，确实是巩固徐州的好办法，我愿祝你一臂之力[voice:caobao_zhuzhugongjijian]
+	do GameManager.selectPuzzleLevel()
+- 【常置调度栏】
+	系统提示: 设置军事行动资源分配输入框显示规则，隐藏状态下点击资源文字才会弹出，开启常驻后打开武将直接显示调配输入框。
+	- 常驻显示
+		丹阳兵: 末将遵命，即刻将调兵粮草簿常设版面之上，主公调度兵马粮草会更加便捷。[voice:danyang_diaobin]
+		do GameManager.set_always_show_military_input(true)
+	- 保持隐藏
+		丹阳兵: 谨遵往日规制，调配文簿平日收起，主公需要时点击物资条目方可调出。[voice:danyang_shouqidiaopei]
+		do GameManager.set_always_show_military_input(false)		
+- 取消
+#do danyangSoilder.changeAllClick("丹阳仕诡牌_进入")
+#do danyangSoilder.hide()
+=> END!
+
+
 
 ~ 丹阳仕诡牌_进入
 do danyangSoilder.showEX=false

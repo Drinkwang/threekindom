@@ -389,6 +389,18 @@ else
 do succussAfter()	
 => END!
 
+
+~ 基建铸塔成功2
+丹阳兵: 主公，加固工程已完工，徐州城防现已加固完毕。[voice:danyang_jiaguwanbi]
+#军事行动buff
+if GameManager.resideValue==0
+	系统提示: 恭喜完成基建，但因已拥有更高等级的同基建增益，无法同时获得本级（较低级）的奖励。
+else
+	系统提示: 【获得增益加持：军事行动胜率 +{{GameManager.resideValue}}%】挑战高级基建，可获更强增益(单项基建只留存最优属性增益)。
+do succussAfter()	
+=> END!
+
+
 ~ 基建铸塔失败
 do caobao.show()
 曹豹: 主公，城墙工程失手，物料尽耗……[voice:caobao_jijianshibai]

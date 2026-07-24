@@ -582,6 +582,7 @@ func _on_winAfter_button_down() -> void:
 		#无奖励
 		GameManager.resideValue=0
 	self.hide()
+	#if
 	DialogueManager.show_dialogue_balloon(GameManager.sys,"基建铸塔成功")
 
 
