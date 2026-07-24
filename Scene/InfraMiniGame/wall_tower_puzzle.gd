@@ -583,7 +583,10 @@ func _on_winAfter_button_down() -> void:
 		GameManager.resideValue=0
 	self.hide()
 	#if
-	DialogueManager.show_dialogue_balloon(GameManager.sys,"基建铸塔成功")
+	if GameManager.sav.have_event["boss战开始"]==false and GameManager.sav.caobaocardgame==4 and (GameManager.sav.mizhucardgame<5 or GameManager.sav.chendencardgame<=5):	
+		DialogueManager.show_dialogue_balloon(GameManager.sys,"基建铸塔成功2")
+	else:
+		DialogueManager.show_dialogue_balloon(GameManager.sys,"基建铸塔成功")
 
 
 func _on_lose_button_down() -> void:

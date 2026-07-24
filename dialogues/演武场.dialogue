@@ -1473,6 +1473,7 @@ do DialogueManager.gameover=true
 
 ~ 刘备的成长
 do caobao.hide()
+do danyangSoilder.hide()
 : 此项基建工程结束后，关羽向刘备反映一些情况
 do guanyu.show()
 关羽: 主公，糜竺、陈登等文官屡屡阻挠基建之事，动辄以民力、财用为由百般拖延。若非他们从中作梗，我等早已粮足兵强，何至如今步步艰难？主公为何不严加处置，甚至……除之而后快？[voice:guanyu_chuzhihoukuai]

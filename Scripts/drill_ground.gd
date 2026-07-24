@@ -583,8 +583,12 @@ func _initData():
 					caobaoshow()
 					caobao.showEX=true
 				elif GameManager.sav.have_event["boss战开始"]==false and GameManager.sav.caobaocardgame==4 and (GameManager.sav.mizhucardgame<5 or GameManager.sav.chendencardgame<=5):
+					
 					caobao.changeAllClick("")
 					caobao.hide()
+					danyangSoilder.show()
+					danyangSoilder.showEX=false
+					danyangSoilder.changeAllClick("丹阳基建")
 				else:
 					caobao.changeAllClick("来把仕诡牌")
 					caobaoshow()
