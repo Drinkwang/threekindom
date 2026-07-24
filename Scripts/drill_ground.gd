@@ -1544,9 +1544,10 @@ func loseTrain():
 func returnMain():
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"来把仕诡牌")	
 func succussAfter():
-	guanyu.show()
-	items_in_scene.show()
+
 	if GameManager.sav.have_event["刘备成长0"]==false:
+		guanyu.show()
+		items_in_scene.show()	
 		GameManager.sav.have_event["刘备成长0"]=true
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"刘备的成长")	
 
