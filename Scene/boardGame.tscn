@@ -741,6 +741,7 @@ theme_override_font_sizes/font_size = 146
 text = "你赢了"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="achiwin" type="Label" parent="CanvasLayer/winRect"]
 layout_mode = 1

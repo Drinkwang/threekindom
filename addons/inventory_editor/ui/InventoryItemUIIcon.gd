@@ -39,7 +39,6 @@ func _on_inventory_changed(inv_uuid: String) -> void:
 
 func _clear_item_display() -> void:
 	# Empty inventory stacks must clear the previously rendered item.
-	#
 	TooltipManager.unregister_tooltip(self)
 	_item = null
 	_item_db = null

@@ -555,7 +555,7 @@ do SoundManager.play_sound(sounds.LONGXIAO_2)
 盗宝匠人-李铁: 小人李铁，罪该万死！吾乃铸此石龙匠人之后裔。近日生意萧条，受城中大族蛊惑，说龙珠可换富贵。小人掘珠，忽闻龙吟，吓晕过去！[voice:litie_zuigaiwansijue]
 刘备: 那么此龙珠是什么？为什么城内大族对石珠感兴趣。[voice:liubei_namelongzhu]
 李铁: 大人容禀！我祖父百年前受地方官命，铸此石龙，非黄帝遗物。时值天灾，民信邪神，荒废生产。官为安民，命先祖以陨铁铸龙珠，嵌于石龙，伪称黄帝神器，提振信心。百姓果信，奋力抗灾，渡过难关。小人利令智昏，欲盗龙珠，辱没先祖！[voice:litie_darenrongbin]
-刘备: 尔祖为民心铸珠，尔却为利盗之，愧对先人！罪难可赦。等我战胜古龙后，将此人押回演武场交给曹豹！ [voice:liubei_erzhukuiduixianren]
+刘备: 尔祖为民心铸珠，尔却为利盗之，愧对先人！罪难可赦。等我战胜古龙后，将此人押回演武场交给曹豹！[voice:liubei_erzhukuiduixianren]
 
 
 => END!

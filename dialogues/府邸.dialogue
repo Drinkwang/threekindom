@@ -1866,6 +1866,7 @@ do mizhu.show()
 系统提示: 糜竺、陈登起初不愿停发俸禄，见主公态度强硬后即刻怂服！丹阳派、吕布亦慑于威势暂且臣服。全境派系尽数镇压，月例配给永久关闭；律法值低于3时，每日自动+1。
 do chenden.hide()
 do mizhu.hide()
+do finalSubmission()
 => END!
 
 ~ 法律已满

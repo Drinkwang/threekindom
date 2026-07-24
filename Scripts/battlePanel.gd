@@ -754,8 +754,8 @@ func _process(_delta):
 
 
 func _changeProgress():
-
-	battle_circle._processSuccussCircle(costcoin,costsoild)
+	if self.visible==true:
+		battle_circle._processSuccussCircle(costcoin,costsoild)
 	pass
 
 var costcoin:int
