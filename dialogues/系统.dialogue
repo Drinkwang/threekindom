@@ -398,7 +398,7 @@ do caobao.show()
 
 ~ 基建运粮成功
 
-糜竺: 主公，粮仓兴建告成！仓储充盈！ [voice:mizhu_liangcangchongyin]
+糜竺: 主公，粮仓兴建告成！仓储充盈！[voice:mizhu_liangcangchongyin]
 
 if GameManager.resideValue==0
 	系统提示: 恭喜完成基建，但因已拥有更高等级的同基建增益，无法同时获得本级（较低级）的奖励。

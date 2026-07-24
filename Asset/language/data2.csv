@@ -117,7 +117,7 @@ id,en,zh,lzh,ja,ru
 基础初始立法条目不会扣除派系支持度。除此之外其余律法：发起点亮立法时、最终表决立法通过时，两个阶段均扣除利益受损派系支持度。,"Basic starting legislation does not reduce faction support. Other laws reduce the support of affected factions at two stages: when the legislation node is activated, and when the final vote passes.",基础初始立法条目不会扣除派系支持度。除此之外其余律法：发起点亮立法时、最终表决立法通过时，两个阶段均扣除利益受损派系支持度。,基礎初始立法條目不會扣除派系支持度。除此之外其餘律法：發起點亮立法時、最終表決立法透過時，兩個階段均扣除利益受損派系支持度。,基礎初期立法項目は派系支持度を減少させません。それ以外の律法は、立法を点灯して開始する時と、最終表決で成立する時の二段階で、利益を損なわれる派系の支持度を減少させます。,"Базовые начальные статьи законодательства не снижают поддержку фракций. Все остальные законы снижают поддержку затронутых фракций на двух этапах: при запуске и подсветке закона, а также при окончательном голосовании за его принятие."
 基础初始律法不会扣除派系支持度。其余律法，发起立法时将扣除利益受损派系的支持度。,Basic starting laws do not reduce faction support. Other laws reduce affected faction support when legislation is initiated.,基础初始律法不会扣除派系支持度。其余律法，发起立法时将扣除利益受损派系的支持度。,基礎初始律法不會扣除派系支持度。其餘律法，發起立法時將扣除利益受損派系的支持度。,基礎初期律法は派系支持度を減少させません。その他の律法は、立法開始時に利益を損なわれる派系の支持度を減少させます。,"Базовые начальные законы не снижают поддержку фракций. Остальные законы при запуске законодательства снизят поддержку фракции, чьи интересы пострадают."
 我目前已经立下了一个法律，必须在议事厅通过后，才能立新的法律,I have already enacted one law. It must pass in the Council Hall before I can enact a new law.,我目前已经立下了一个法律，必须在议事厅通过后，才能立新的法律,我目前已經立下了一個法律，必須在議事廳透過後，才能立新的法律,現在すでに法律を一つ立案しています。議事庁で通過させなければ、新たな法律は立てられません。,"Сейчас я уже внёс один закон. Нужно провести его через зал совета, прежде чем вводить новый."
-召见{{GameManager.rTaishanName()}},Summon {{GameManager.rTaishanName()}},召见{{GameManager.rTaishanName()}},召見{{GameManager.rTaishanName()}},{{GameManager.rTaishanName()}}を召見,Призвать {{GameManager.rTaishanName()}}
+召见{{GameManager.rTaishanName()}}[costHp=50],Summon {{GameManager.rTaishanName()}}[costHp=50],召见{{GameManager.rTaishanName()}}[costHp=50],召見{{GameManager.rTaishanName()}}[costHp=50],{{GameManager.rTaishanName()}}を召見[costHp=50],Призвать {{GameManager.rTaishanName()}}[costHp=50]
 历经三次镇压，{{getFactionByIndex().getTr()}} 彻底归心，永世臣服。自此该派系好感度永久锁定为100，只要主公尚在人世，便绝无二心，忠诚度永不衰减。,"After three suppressions, {{getFactionByIndex().getTr()}} has fully submitted and will serve forever. This faction's Favor is permanently locked at 100. As long as my lord lives, they will never waver, and loyalty will no longer decay.",历经三次镇压，{{getFactionByIndex().getTr()}} 彻底归心，永世臣服。自此该派系好感度永久锁定为100，只要主公尚在人世，便绝无二心，忠诚度永不衰减。,歷經三次鎮壓，{{getFactionByIndex().getTr()}} 徹底歸心，永世臣服。自此該派系好感度永久鎖定為100，只要主公尚在人世，便絕無二心，忠誠度永不衰減。,三度の鎮圧を経て、{{getFactionByIndex().getTr()}} は完全に帰心し、永世臣服しました。以後、この派系の好感度は永久に100で固定され、主君が存命である限り二心を抱かず、忠誠度も減衰しません。,"После трёх подавлений {{getFactionByIndex().getTr()}} полностью подчинилась и навеки признала власть. Отныне расположение этой фракции навсегда зафиксировано на 100. Пока господин жив, она не проявит двоедушия, а верность не будет снижаться."
 当前派系已有一项法律[{{GameManager.sav.courtingLaws[getFactionByIndex()._name]}}]用于争取支持，请在{{GameManager.getCDByFaction(_faction)}}旬内完成该法律的制定，否则将损失派系好感度。,"This faction already has a promised law [{{GameManager.sav.courtingLaws[getFactionByIndex()._name]}}] to win support. Complete this law within {{GameManager.getCDByFaction(_faction)}} turns, or faction Favor will be lost.",当前派系已有一项法律[{{GameManager.sav.courtingLaws[getFactionByIndex()._name]}}]用于争取支持，请在{{GameManager.getCDByFaction(_faction)}}旬内完成该法律的制定，否则将损失派系好感度。,當前派系已有一項法律[{{GameManager.sav.courtingLaws[getFactionByIndex()._name]}}]用於爭取支持，請在{{GameManager.getCDByFaction(_faction)}}旬內完成該法律的制定，否則將損失派系好感度。,現在の派系には、支持獲得用の法律[{{GameManager.sav.courtingLaws[getFactionByIndex()._name]}}]があります。{{GameManager.getCDByFaction(_faction)}}旬以内にこの法律を制定してください。さもなくば派系好感度を失います。,"У текущей фракции уже есть закон [{{GameManager.sav.courtingLaws[getFactionByIndex()._name]}}] для привлечения поддержки. Завершите его принятие за {{GameManager.getCDByFaction(_faction)}} декад, иначе потеряете расположение фракции."
 你已成功为{{GameManager.rTaishanName()}}扩充实力，当前{{GameManager.rTaishanName()}}手下人数达到{{getFactionByIndex()._num_all}}人，吕布的势力正在你的支持下日益壮大！,"You have successfully strengthened {{GameManager.rTaishanName()}}. {{GameManager.rTaishanName()}} now has {{getFactionByIndex()._num_all}} personnel, and Lu Bu's power is growing with your support!",你已成功为{{GameManager.rTaishanName()}}扩充实力，当前{{GameManager.rTaishanName()}}手下人数达到{{getFactionByIndex()._num_all}}人，吕布的势力正在你的支持下日益壮大！,你已成功為{{GameManager.rTaishanName()}}擴充實力，當前{{GameManager.rTaishanName()}}手下人數達到{{getFactionByIndex()._num_all}}人，呂布的勢力正在你的支援下日益壯大！,{{GameManager.rTaishanName()}}の勢力拡充に成功しました。現在、{{GameManager.rTaishanName()}}の配下人数は{{getFactionByIndex()._num_all}}人に達し、呂布の勢力はあなたの支援のもと日増しに強大化しています！,Вы успешно усилили {{GameManager.rTaishanName()}}. Сейчас число людей под началом {{GameManager.rTaishanName()}} достигло {{getFactionByIndex()._num_all}}. Сила Люй Бу растёт благодаря вашей поддержке!
@@ -873,9 +873,9 @@ Insufficient resources. This project cannot begin.","基建将消耗以下资源
 跳回合+1，HP-1，游戏结束,"Skip Turn +1, HP -1, Game Over",跳回合+1，HP-1，游戏结束,跳回合+1，HP-1，遊戲結束,ターンスキップ+1、HP-1、ゲーム終了,"Пропуск хода+1, HP-1, игра окончена"
 跳回合+1，HP-1,"Skip Turn +1, HP -1",跳回合+1，HP-1,跳回合+1，HP-1,ターンスキップ+1、HP-1,"Пропуск хода+1, HP-1"
 暴击·民能载势！,Critical: The People Turn the Tide!,暴击·民能载势！,暴擊·民能載勢！,会心・民が戦局を動かす！,Крит: народ меняет ход битвы!
-+1步，弃1牌,"+1 step; discard 1 card",+1步，弃1牌,+1步，棄1牌,+1歩、1枚捨てる,"+1 ход; сбросить 1 карту"
++1步，弃1牌,+1 step; discard 1 card,+1步，弃1牌,+1步，棄1牌,+1歩、1枚捨てる,+1 ход; сбросить 1 карту
 暴击·谋士筹策！,Critical: The Strategist's Gambit!,暴击·谋士筹策！,暴擊·謀士籌策！,会心・軍師の妙策！,Крит: хитрый план стратега!
-抽1牌，步数-1,"Draw 1 card; -1 step",抽1牌，步数-1,抽1牌，步數-1,1枚引く、残り歩数-1,"Взять 1 карту; -1 ход"
+抽1牌，步数-1,Draw 1 card; -1 step,抽1牌，步数-1,抽1牌，步數-1,1枚引く、残り歩数-1,Взять 1 карту; -1 ход
 暴击·商贾囤货！,Critical: The Merchants' Stockpile!,暴击·商贾囤货！,暴擊·商賈囤貨！,会心・商人の備蓄！,Крит: запасы торговцев!
 补位发牌,Deal replacement cards,补位发牌,補位發牌,補充カードを配る,Раздать карты на замену
 暴击·士卒召列！,Critical: Soldiers Muster!,暴击·士卒召列！,暴擊·士卒召列！,会心・兵士集結！,Крит: сбор войск!
@@ -971,11 +971,24 @@ B-：6500 以下,B-: Below 6500,B-：6500 以下,B-：6500 以下,B-：6500 未�
 当前卡牌已经被使用了,This card has already been used.,当前卡牌已经被使用了,當前卡牌已經被使用了,このカードはすでに使用済みです,Эта карта уже использована
 请先离开府邸完成流程，否则无法休息。,"Please leave the manor and complete the process first, or you cannot rest.",请先离开府邸完成流程，否则无法休息。,請先離開府邸完成流程，否則無法休息。,先に府邸を離れて流程を完了してください。そうしないと休憩できません。,"Сначала покиньте резиденцию и завершите процесс, иначе отдых невозможен."
 请先与手下陈登和糜竺咨询情况，否则无法休息。,"Please consult your subordinates Chen Deng and Mi Zhu first, or you cannot rest.",请先与手下陈登和糜竺咨询情况，否则无法休息。,請先與手下陳登和糜竺諮詢情況，否則無法休息。,先に配下の陳登と糜竺に状況を相談してください。そうしないと休憩できません。,"Сначала посоветуйтесь с подчинёнными Чэнь Дэном и Ми Чжу, иначе отдых невозможен."
-目标粮食：{allnum},Target Grain: {allnum},目标粮食：{allnum},目標糧食：{allnum},目標食糧：{allnum},Цель зерна: {allnum}
-剩余粮车:{_num},Remaining Grain Carts:{_num},剩余粮车:{_num},剩餘糧車:{_num},残り運糧車:{_num},Осталось повозок:{_num}
-接下来运粮车：{s},Next Grain Cart: {s},接下来运粮车：{s},接下來運糧車：{s},次の運糧車：{s},Следующая повозка: {s}
-游戏提示：请选中左边粮车和未满的粮仓,Tip: Select the grain cart on the left and a granary that is not full.,游戏提示：请选中左边粮车和未满的粮仓,遊戲提示：請選中左邊糧車和未滿的糧倉,ゲームヒント：左の運糧車と満杯でない糧倉を選択してください,Подсказка: выберите слева повозку и неполное зернохранилище
-当前粮食：{s},Current Grain: {s},当前粮食：{s},當前糧食：{s},現在食糧：{s},Текущее зерно: {s}
+目标粮食：{allnum},Target: {allnum},目标：{allnum},目標：{allnum},目標：{allnum},Цель: {allnum}
+剩余粮车:{_num},Carts Left: {_num},粮车剩余：{_num},餘下糧車：{_num},残りの運搬車：{_num},Повозок: {_num}
+接下来运粮车：{s},Next Loads: {s},后续载粮：{s},後續載糧：{s},次の積載量：{s},Следующие грузы: {s}
+游戏提示：请选中左边粮车和未满的粮仓,"Tip: Pick a cart, then a granary with room.",提示：先选粮车，再选未满粮仓。,提示：先選糧車，再選未滿糧倉。,ヒント：運搬車を選び、空きのある糧倉を選択。,"Подсказка: выберите повозку, затем неполный амбар."
+当前粮食：{s},Grain: {s},当前粮食：{s},當前糧食：{s},食糧：{s},Зерно: {s}
+基建工程-兴建粮仓,Infrastructure: Build Granary,基建工程：兴建粮仓,基建工程：興建糧倉,基盤整備：糧倉建設,Инфраструктура: зернохранилище
+放弃基建,Abandon,放弃,放棄,中止,Отмена
+基建完成,Project Complete,基建完成,基建完成,基盤整備完了,Строительство завершено
+{num}号粮仓,Granary {num},第{num}号粮仓,第{num}號糧倉,第{num}糧倉,Амбар {num}
+目标{num}号,To Granary {num},目标{num}号,目標{num}號,第{num}糧倉へ,К амбару {num}
+(已报废),(Ruined),(已报废),(已報廢),(使用不能),(Списано)
+"没达到需求粮食
+基建失败","Insufficient Grain
+Project Failed","粮食不足
+基建失败","糧食不足
+基建失敗","食糧不足
+基盤整備失敗","Не хватает зерна
+Строительство не удалось"
 剩余时间:{s}秒,Time Left: {s}s,剩余时间:{s}秒,剩餘時間:{s}秒,残り時間:{s}秒,Осталось времени:{s} сек.
 暴击！,Critical!,暴击！,暴擊！,会心！,Крит!
 敌暴击！,Enemy Critical!,敌暴击！,敵暴擊！,敵会心！,Крит врага!

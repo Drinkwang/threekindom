@@ -4,6 +4,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	SignalManager.changeLanguage.connect(_on_language_changed)
 	currenceValue=0
 
 
@@ -26,7 +27,6 @@ func initData(index):
 	texture_rect_6.modulate=Color.WHITE
 	currenceValue=0
 	isOverFill=false
-	numGranary="{num}号粮仓".format({"num":index})
 	_index=index
 	if GameManager.selectPuzzleDiffcult==SceneManager.puzzlediffucult.easy:
 		maxValue=100
@@ -42,12 +42,17 @@ func initData(index):
 
 var isOverFill=false
 func refreshText():
+	numGranary=tr("{num}号粮仓").format({"num":_index})
 	if currenceValue<=maxValue:
 		detail.text=numGranary+"({num1}/{num2})".format({"num1":currenceValue,"num2":maxValue})
 	else:
 		isOverFill=true
-		detail.text=numGranary+"(已报废)"
+		detail.text=numGranary+tr("(已报废)")
 		texture_rect_6.modulate=Color.RED
+
+func _on_language_changed():
+	if _index != null:
+		refreshText()
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	#or GameManager.rewardPanel==true
 	if !(event is InputEventMouseButton) or DialogueManager.haveDialoge()==true or isOverFill==true:

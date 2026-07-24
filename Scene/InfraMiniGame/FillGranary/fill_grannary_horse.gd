@@ -41,7 +41,7 @@ func crateHorse(value):
 
 func updateDetail():
 	if targetValue!=-1:
-		label.text="目标{num}号".format({"num":targetValue})+"\n"+var_to_str(holdValue)
+		label.text=tr("目标{num}号").format({"num":targetValue})+"\n"+var_to_str(holdValue)
 	else:
 		label.text=var_to_str(holdValue)
 

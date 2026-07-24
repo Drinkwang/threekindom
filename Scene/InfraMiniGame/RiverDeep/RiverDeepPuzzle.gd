@@ -9,6 +9,8 @@ var conn_shader: Shader
 var conn_material: ShaderMaterial
 
 func _ready() -> void:
+	SignalManager.changeLanguage.connect(changeLanguage)
+	changeLanguage()
 	clearData()
 	board.connect("water_depth_changed", Callable(self, "_on_water_depth_changed"))
 	for child in farmland_panel.get_children():
@@ -65,9 +67,21 @@ void fragment(){
 	#switch_Difficult()
 	#_update_connector(-1)
 @onready var timer: Timer = $Timer
+@onready var win_label: Label = $winRect/Label
 
+@onready var lose_label: Label = $LoseRect/Label
 
+func changeLanguage():
+	var currencelanguage=TranslationServer.get_locale()
 
+	if currencelanguage=="ru" or  currencelanguage=="en":
+		win_label.add_theme_font_size_override("font_size",100)
+		lose_label.add_theme_font_size_override("font_size",100)
+
+		#currence_no_policy.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
+	else:
+		win_label.add_theme_font_size_override("font_size",146)
+		lose_label.add_theme_font_size_override("font_size",146)
 
 @onready var resideTimeLabel: Label = $PanelContainer/Label2
 

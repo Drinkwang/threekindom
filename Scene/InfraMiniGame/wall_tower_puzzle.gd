@@ -20,9 +20,24 @@ var original_positions: Array = []
 
 func _ready():
 	#initGame()
+	SignalManager.changeLanguage.connect(changeLanguage)
+	changeLanguage()
 	ShuffleButton.pressed.connect(_on_shuffle_button_pressed)
 	ResetButton.pressed.connect(_on_reset_button_pressed)
+@onready var win_label: Label = $winRect/Label
+@onready var lose_label: Label = $LoseRect/Label
 
+func changeLanguage():
+	var currencelanguage=TranslationServer.get_locale()
+
+	if currencelanguage=="ru" or  currencelanguage=="en":
+		win_label.add_theme_font_size_override("font_size",100)
+		lose_label.add_theme_font_size_override("font_size",100)
+
+		#currence_no_policy.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
+	else:
+		win_label.add_theme_font_size_override("font_size",146)
+		lose_label.add_theme_font_size_override("font_size",146)
 
 
 var isHigh=false

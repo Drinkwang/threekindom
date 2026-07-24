@@ -285,6 +285,8 @@ func _initData():
 
 	if(GameManager.sav.targetTxt!=null and GameManager.sav.targetTxt.length()>0):		
 		_JudgeTask()#这里必然进去
+	else:
+		deliverUncompleteTask()
 	#elif GameManager.sav.day==4:
 	#	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"府邸第一天")
 	

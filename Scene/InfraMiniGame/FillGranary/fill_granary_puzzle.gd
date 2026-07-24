@@ -4,8 +4,9 @@ var grandNum:int=100
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	SignalManager.changeLanguage.connect(changeLanguage)
 	GameManager.PuzzleScene=self
-
+	changeLanguage()
 #简单初始3 复杂初始5
 
 func initGame():
@@ -33,7 +34,29 @@ func initGame():
 @onready var granary_house_1: Node2D = $granarys/GranaryHouse1
 @onready var granary_house_5: Node2D = $granarys/GranaryHouse5
 
+@onready var lose_label: Label = $LoseRect/Label
+@onready var win_label: Label = $winRect/Label
 
+func changeLanguage():
+	var currencelanguage=TranslationServer.get_locale()
+
+	if currencelanguage=="ru" or  currencelanguage=="en":
+		win_label.add_theme_font_size_override("font_size",100)
+		lose_label.add_theme_font_size_override("font_size",100)
+		txt_detail.add_theme_font_size_override("font_size",38)
+		reside_car_label.add_theme_font_size_override("font_size",36)
+		currence_value_label.add_theme_font_size_override("font_size",36)
+		target_num_label.add_theme_font_size_override("font_size",36)
+		#currence_no_policy.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
+	else:
+		win_label.add_theme_font_size_override("font_size",146)
+		lose_label.add_theme_font_size_override("font_size",146)
+		txt_detail.add_theme_font_size_override("font_size",48)
+		reside_car_label.add_theme_font_size_override("font_size",48)
+		currence_value_label.add_theme_font_size_override("font_size",48)
+		target_num_label.add_theme_font_size_override("font_size",48)
+	if is_node_ready():
+		_updateMainContext()
 var trackNum=5
 var granarysArr:Array
 var horseArr:Array
@@ -166,7 +189,7 @@ func initTargetAndHourse():
 		resideHorse=15
 		targetValue=600
 		resideValue=800
-	target_num_label.text=tr("目标粮食：{allnum}").format({"allnum":targetValue})
+	_update_target_num_label()
 
 
 #场上的车
@@ -242,6 +265,10 @@ func _updateMainContext():
 	_updateFillGrannary()
 	_updateTxtDetail()
 	_update_reside_car_label()
+	_update_target_num_label()
+
+func _update_target_num_label():
+	target_num_label.text=tr("目标粮食：{allnum}").format({"allnum":targetValue})
 
 func _update_reside_car_label():
 	reside_car_label.text=tr("剩余粮车:{_num}").format({"_num":resideHorse})
@@ -249,8 +276,8 @@ func _update_reside_car_label():
 func _updateTxtDetail():
 	
 	if sideTrackCar.size()>0:
-		var str_comma = ",".join(sideTrackCar)
-		txt_detail.text=tr("接下来运粮车：{s}".format({"s":str_comma}))
+		var str_comma = ", ".join(sideTrackCar)
+		txt_detail.text=tr("接下来运粮车：{s}").format({"s":str_comma})
 	
 		txt_detail.text=txt_detail.text+"\n"+tr("游戏提示：请选中左边粮车和未满的粮仓")
 	else:

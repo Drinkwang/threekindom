@@ -73,7 +73,7 @@ _data = {
 "win": SubResource("Animation_ygt83")
 }
 
-[node name="Control" type="Control"]
+[node name="Control2" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -222,7 +222,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 8
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/line_spacing = 15
+theme_override_constants/line_spacing = 4
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 0
 theme_override_constants/outline_size = 13
@@ -235,6 +235,7 @@ text = "接下来的运粮车：1、2、3
 "
 horizontal_alignment = 1
 vertical_alignment = 2
+autowrap_mode = 2
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
