@@ -408,11 +408,11 @@ func _buttonListClick(item):
 		if(GameManager.sav.day>=4):
 			if (GameManager.sav.have_event["亲征对话结束"]==true and  GameManager.sav.have_event["关羽求援结束"]==false):
 				if GameManager.sav.gameDifficulty==2:
-					GameManager.resideValue=2000
-					GameManager.resideValue2=3000
+					GameManager.resideValue=3000
+					GameManager.resideValue2=2000
 				elif GameManager.sav.gameDifficulty==3:
-					GameManager.resideValue=1500
-					GameManager.resideValue2=2500
+					GameManager.resideValue=2500
+					GameManager.resideValue2=1500
 					
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"selectOutSide")
 			
