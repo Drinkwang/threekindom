@@ -1,5 +1,9 @@
 extends PanelContainer
 class_name factionalname
+const russian_font = preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf")
+const LABEL_PREFERRED_SIZE := 30
+const LABEL_MIN_SIZE := 20
+const LABEL_MAX_WIDTH := 410.0
 @onready var progress_bar = $MarginContainer/HBoxContainer/VBoxContainer/ProgressBar
 @onready var label:Label = $MarginContainer/HBoxContainer/VBoxContainer/Label
 var itemData:cldata
@@ -19,8 +23,7 @@ func changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()
 
 	if currencelanguage=="ru":
-
-		label.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
+		label.add_theme_font_override("font",russian_font)
 
 	else:
 		label.remove_theme_font_override("font")
@@ -41,6 +44,7 @@ func refreshData():
 	var statusTxt=""
 	var supportValue=itemData._support_rate
 	label .text=tr(itemData._name)+tr("-支持度：")
+	var fitted_text_width=_fit_label()
 	progress_bar.value=itemData._support_rate
 	if itemData.isSuppressed==true:
 		var sb = StyleBoxFlat.new()
@@ -95,10 +99,8 @@ func refreshData():
 	if itemData.supressNum>=3:
 		statusTxt=tr("【状态：彻底收服,派系已被完全驯化。因畏服权威，好感度永久锁定，不再受任何影响。】")
 
-	var font_size = label.get_theme_font_size("font_size")
-	var text_width = label.get_theme_font("font").get_string_size(label.text,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size).x
-	if GameManager.maxResPanelX<=text_width:
-		GameManager.maxResPanelX=text_width
+	if GameManager.maxResPanelX<=fitted_text_width:
+		GameManager.maxResPanelX=fitted_text_width
 
 	TooltipManager.register_tooltip(self,itemData.detail+statusTxt)
 	#【状态：镇压中，当前派系会不断消耗好感度，直到玩家采取讨好当前派系的手段】
@@ -108,7 +110,20 @@ func refreshData():
 
 
 func refreshSameX():
-	label.custom_minimum_size.x=GameManager.maxResPanelX
+	label.custom_minimum_size.x=min(GameManager.maxResPanelX,LABEL_MAX_WIDTH)
+
+
+func _fit_label()->float:
+	label.custom_minimum_size.x=0
+	label.add_theme_font_size_override("font_size",LABEL_PREFERRED_SIZE)
+	var font=label.get_theme_font("font")
+	var fitted_size=LABEL_PREFERRED_SIZE
+	var text_width=font.get_string_size(label.text,HORIZONTAL_ALIGNMENT_LEFT,-1,fitted_size).x
+	while fitted_size>LABEL_MIN_SIZE and text_width>LABEL_MAX_WIDTH:
+		fitted_size-=1
+		text_width=font.get_string_size(label.text,HORIZONTAL_ALIGNMENT_LEFT,-1,fitted_size).x
+	label.add_theme_font_size_override("font_size",fitted_size)
+	return min(ceil(text_width),LABEL_MAX_WIDTH)
 
 
 func _on_timer_timeout():

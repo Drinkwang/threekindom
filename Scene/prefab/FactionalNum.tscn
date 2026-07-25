@@ -9,7 +9,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2mory"]
 bg_color = Color(0.996078, 0.317647, 0.470588, 1)
 
-[node name="PanelContainer" type="PanelContainer"]
+[node name="PanelContainer2" type="PanelContainer"]
 self_modulate = Color(1, 1, 1, 0)
 offset_right = 384.0
 offset_bottom = 65.0
@@ -39,6 +39,7 @@ layout_mode = 2
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "外地派系(丹阳)-支持度："
+clip_text = true
 
 [node name="ProgressBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2

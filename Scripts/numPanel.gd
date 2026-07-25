@@ -17,6 +17,7 @@ func _ready():
 	_processList()
 	SignalManager.changeFraction.connect(refreshData)
 	SignalManager.changeSupport.connect(_processList)
+	SignalManager.changeLanguage.connect(refreshData)
 
 func _processList():
 	GameManager.maxResPanelX=0
@@ -38,9 +39,12 @@ func _processList():
 		c.refreshSameX()
 
 func refreshData():
-	var items=v_box_container.get_children()		
-	for item in items:
+	GameManager.maxResPanelX=0
+	var items=v_box_container.get_children()
+	for item:factionalname in items:
 		item.refreshData()
+	for item:factionalname in items:
+		item.refreshSameX()
 	
 	
 	
