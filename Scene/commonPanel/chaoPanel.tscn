@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://ccwfks8124pm0"]
+[gd_scene load_steps=6 format=3 uid="uid://ccwfks8124pm0"]
 
+[ext_resource type="Script" path="res://Scene/commonPanel/chao_panel.gd" id="1_chao"]
 [ext_resource type="FontFile" uid="uid://qv74ebpr4i31" path="res://Asset/Font/VonwaonBitmap-16px.ttf" id="3_d7782"]
 
 [sub_resource type="Animation" id="Animation_re4m5"]
@@ -64,6 +65,7 @@ _data = {
 }
 
 [node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_chao")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
