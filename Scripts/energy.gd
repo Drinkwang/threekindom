@@ -113,8 +113,12 @@ func showTargetLabel():
 					groupName=1
 				elif GameManager.sav.endPath==GameManager.endPath.xuzhou:
 					groupName=2
-				var currenv=GameManager.sav.finalPhaseValue			
-				target_label.text=target_label.text+"\n"+tr("城内形势:")+StageStateMgr.get_state_name(groupName,currenv)
+				var currenv=GameManager.sav.finalPhaseValue		
+				#if xxx	
+				if GameManager.sav.currenceValue<GameManager.sav.targetValue:
+					target_label.text=target_label.text+"\n"+tr("城内形势:")+StageStateMgr.get_state_name(groupName,currenv)
+				else:
+					target_label.text=target_label.text
 	for law in GameManager.sav.courtingLaws:
 
 		var cd
