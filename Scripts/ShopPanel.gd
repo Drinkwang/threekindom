@@ -7,8 +7,8 @@ var selectGoods:ShopItem
 @onready var hearsay = $HBoxContainer2/xiaodao
 @onready var buy_back_button = $backTxt/buyBackButton
 @onready var buy_back_button_2 = $backTxt/buyBackButton2
-@onready var merchant_buy_button = $backTxt/buyBackButton2/merchantBuyBtn
-@onready var self_buy_button = $backTxt/buyBackButton2/selfBuyButton
+#@onready var merchant_buy_button = $backTxt/buyBackButton2/merchantBuyBtn
+#@onready var self_buy_button = $backTxt/buyBackButton2/selfBuyButton
 @onready var self_sell_bg = $selfSellBg
 @onready var self_sell_panel = $selfSellPanel
 @onready var self_sell_total_label = $selfSellPanel/Content/Summary/TotalLabel
@@ -57,7 +57,7 @@ func _ready():
 	var haveNum=InventoryManager.canUseItemNum()
 	var canBuy = GameManager.sav.merMustBuy or GameManager.sav.randomIndex % 2 == 0
 	var can_merchant_buy = GameManager.sav.isSoldItem==false and haveNum>=1 and canBuy
-	var can_self_sell = GameManager.sav.shopSelfSell and GameManager.sav.isSoldItem==false
+	var can_self_sell = GameManager.sav.shopSelfSell and GameManager.sav.isSoldItem==false and canBuy
 	self_sell_bg.hide()
 	self_sell_panel.hide()
 	_reset_self_sell_counts()
@@ -306,21 +306,21 @@ func confireSold():
 func _hide_sell_buttons():
 	buy_back_button.hide()
 	buy_back_button_2.hide()
-	merchant_buy_button.hide()
-	self_buy_button.hide()
+	#merchant_buy_button.hide()
+	#self_buy_button.hide()
 	buy_back_button.disabled = false
-	merchant_buy_button.disabled = false
-	self_buy_button.disabled = false
+	#merchant_buy_button.disabled = false
+	#self_buy_button.disabled = false
 
 func _refresh_sell_buttons(can_merchant_buy:bool, can_self_sell:bool):
 	_hide_sell_buttons()
 	if GameManager.sav.shopSelfSell:
 		if can_merchant_buy or can_self_sell:
 			buy_back_button_2.show()
-		if can_merchant_buy:
-			merchant_buy_button.show()
-		if can_self_sell:
-			self_buy_button.show()
+		#if can_merchant_buy:
+		#	merchant_buy_button.show()
+		#if can_self_sell:
+		#	self_buy_button.show()
 	else:
 		if can_merchant_buy:
 			buy_back_button.show()
