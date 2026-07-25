@@ -7,12 +7,17 @@ extends Control
 
 @onready var _label = $PanelContainer/VBoxContainer/Label
 @onready var _label_2 = $PanelContainer/VBoxContainer/Label2
+@onready var _panel: PanelContainer = $PanelContainer
+var _panel_base_offset_top:float
+var _panel_base_offset_bottom:float
 
 #var _name:String
 #var _num_all:int
 #var _num_rt:int
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	_panel_base_offset_top=_panel.offset_top
+	_panel_base_offset_bottom=_panel.offset_bottom
 
 	datas.clear()
 	datas.append(GameManager.sav.BENTUPAI)
@@ -31,6 +36,9 @@ func _ready():
 
 func changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()
+	var panel_y_offset=-14.0 if currencelanguage=="ja" or currencelanguage=="lzh" else 0.0
+	_panel.offset_top=_panel_base_offset_top+panel_y_offset
+	_panel.offset_bottom=_panel_base_offset_bottom+panel_y_offset
 	#if currencelanguage=="ja":
 		#pass
 	if currencelanguage=="ru":
