@@ -2,6 +2,9 @@ extends Control
 const normalbtn = preload("res://Asset/ui/panel_Example1.png")
 const pressbtn =preload("res://Asset/ui/panel_Example2.png")
 const hoverbtn = preload("res://Asset/ui/panel_Example3.png")
+const russian_font = preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf")
+const BUTTON_TEXT_WIDTH := 360.0
+const BUTTON_TEXT_MIN_SIZE := 32
 @onready var node_2d = $Node2D
 
 signal buttonClick
@@ -35,7 +38,7 @@ func _processList(data):
 			continue
 		var btnContext=item.context
 		var richTxt:RichTextLabel =RichTextLabel.new()
-		richTxt.fit_content=true
+		richTxt.fit_content=false
 		richTxt.autowrap_mode=TextServer.AUTOWRAP_OFF
 		richTxt.set_text(btnContext)
 		#richTxt.set_size(Vector2(200,50))
@@ -47,30 +50,6 @@ func _processList(data):
 		richTxt.set_mouse_filter(Control.MOUSE_FILTER_IGNORE)
 		richTxt.set_size(Vector2(400,80))
 		richTxt.mouse_filter=Control.MOUSE_FILTER_PASS
-		#获取语言 并获取长度
-		#如果长度大于一个区间，可以将语言字体变小
-		var currencelanguage=TranslationServer.get_locale()
-		if currencelanguage=="ja":
-			if(tr(btnContext).length()>=6 and tr(btnContext).length()<8):
-				richTxt.add_theme_font_size_override("normal_font_size",48)
-			if(tr(btnContext).length()>=8):
-				richTxt.add_theme_font_size_override("normal_font_size",46)
-			else:
-				richTxt.add_theme_font_size_override("normal_font_size",50)
-		elif currencelanguage=="ru":
-			if(tr(btnContext).length()>=9):
-				richTxt.add_theme_font_size_override("normal_font_size",36)
-			else:
-				richTxt.add_theme_font_size_override("normal_font_size",40)
-			richTxt.add_theme_font_override("normal_font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
-			
-		else:
-			if(tr(btnContext).length()>=12 and tr(btnContext).length()<14):
-				richTxt.add_theme_font_size_override("normal_font_size",48)
-			if(tr(btnContext).length()>=14):
-				richTxt.add_theme_font_size_override("normal_font_size",46)
-			else:
-				richTxt.add_theme_font_size_override("normal_font_size",55)
 
 		richTxt.add_theme_color_override("font_outline_color",Color.DARK_RED)
 		richTxt.add_theme_constant_override("outline_size",0)
@@ -99,38 +78,36 @@ func _processList(data):
 		if item.has("tooltip"):
 			TooltipManager.register_tooltip(richTxt,tr(item.tooltip))	
 		index=index+1
-		$VBoxContainer.add_child(buttton)		
+		$VBoxContainer.add_child(buttton)
+		_update_button_text_style(richTxt)
 
 	#	richTxt.set_size(Vector2(buttton.size.x,50))
 
 func changeLanguage():
 	for e in $VBoxContainer.get_children():
-		var currencelanguage=TranslationServer.get_locale()
 		var richTxt:RichTextLabel=e.get_child(0)
-		var richLenth=tr(richTxt.text).length()
-		if currencelanguage=="ja":
-			if(richLenth>=6 and richLenth<8):
-				richTxt.add_theme_font_size_override("normal_font_size",48)
-			if(richLenth>=8):
-				richTxt.add_theme_font_size_override("normal_font_size",46)
-			else:
-				richTxt.add_theme_font_size_override("normal_font_size",55)
-			richTxt.remove_theme_font_override("normal_font")	
-		elif currencelanguage=="ru":
-			if(richLenth>=9):
-				richTxt.add_theme_font_size_override("normal_font_size",36)
-			else:
-				richTxt.add_theme_font_size_override("normal_font_size",40)
-			richTxt.add_theme_font_override("normal_font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
-			
-		else:
-			if(richLenth>=12 and richLenth<14):
-				richTxt.add_theme_font_size_override("normal_font_size",48)
-			if(richLenth>=14):
-				richTxt.add_theme_font_size_override("normal_font_size",46)
-			else:
-				richTxt.add_theme_font_size_override("normal_font_size",55)
-			richTxt.remove_theme_font_override("normal_font")	
+		_update_button_text_style(richTxt)
+
+
+func _update_button_text_style(rich_text:RichTextLabel):
+	var locale=TranslationServer.get_locale()
+	var translated_text=tr(rich_text.text)
+	var preferred_size=55
+	if locale=="ru":
+		preferred_size=36 if translated_text.length()>=9 else 40
+		rich_text.add_theme_font_override("normal_font",russian_font)
+	else:
+		rich_text.remove_theme_font_override("normal_font")
+		if locale=="en" and translated_text.length()>=14:
+			preferred_size=46
+		elif locale=="en" and translated_text.length()>=12:
+			preferred_size=48
+
+	var font=rich_text.get_theme_font("normal_font")
+	var fitted_size=preferred_size
+	while fitted_size>BUTTON_TEXT_MIN_SIZE and font.get_string_size(translated_text,HORIZONTAL_ALIGNMENT_LEFT,-1,fitted_size).x>BUTTON_TEXT_WIDTH:
+		fitted_size-=1
+	rich_text.add_theme_font_size_override("normal_font_size",fitted_size)
 @onready var animation_player = $"Node2D/5Yellow/AnimationPlayer"
 func _buttonHover(item):
 	if DialogueManager.haveDialoge()==true:

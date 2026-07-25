@@ -19,6 +19,7 @@ theme_override_constants/margin_bottom = 3
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "外地派系(丹阳)：5-2-0"
+clip_text = true
 
 [node name="TextureRect2" type="TextureRect" parent="MarginContainer/Label"]
 layout_mode = 0
