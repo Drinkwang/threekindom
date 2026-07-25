@@ -1,9 +1,5 @@
 extends PanelContainer
 class_name factionalname
-const russian_font = preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf")
-const LABEL_PREFERRED_SIZE := 30
-const LABEL_MIN_SIZE := 20
-const LABEL_WIDTH := 410.0
 @onready var progress_bar = $MarginContainer/HBoxContainer/VBoxContainer/ProgressBar
 @onready var label:Label = $MarginContainer/HBoxContainer/VBoxContainer/Label
 var itemData:cldata
@@ -23,7 +19,8 @@ func changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()
 
 	if currencelanguage=="ru":
-		label.add_theme_font_override("font",russian_font)
+
+		label.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
 
 	else:
 		label.remove_theme_font_override("font")
@@ -44,7 +41,6 @@ func refreshData():
 	var statusTxt=""
 	var supportValue=itemData._support_rate
 	label .text=tr(itemData._name)+tr("-支持度：")
-	_fit_label()
 	progress_bar.value=itemData._support_rate
 	if itemData.isSuppressed==true:
 		var sb = StyleBoxFlat.new()
@@ -99,6 +95,11 @@ func refreshData():
 	if itemData.supressNum>=3:
 		statusTxt=tr("【状态：彻底收服,派系已被完全驯化。因畏服权威，好感度永久锁定，不再受任何影响。】")
 
+	var font_size = label.get_theme_font_size("font_size")
+	var text_width = label.get_theme_font("font").get_string_size(label.text,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size).x
+	if GameManager.maxResPanelX<=text_width:
+		GameManager.maxResPanelX=text_width
+
 	TooltipManager.register_tooltip(self,itemData.detail+statusTxt)
 	#【状态：镇压中，当前派系会不断消耗好感度，直到玩家采取讨好当前派系的手段】
 	#【状态：已臣服，当前派系受到玩家多次镇压，已再无反抗之心，好感度将不再发生变化】
@@ -106,14 +107,8 @@ func refreshData():
 @onready var timer = $Timer
 
 
-func _fit_label():
-	label.custom_minimum_size.x=LABEL_WIDTH
-	label.add_theme_font_size_override("font_size",LABEL_PREFERRED_SIZE)
-	var font=label.get_theme_font("font")
-	var fitted_size=LABEL_PREFERRED_SIZE
-	while fitted_size>LABEL_MIN_SIZE and font.get_string_size(label.text,HORIZONTAL_ALIGNMENT_LEFT,-1,fitted_size).x>LABEL_WIDTH:
-		fitted_size-=1
-	label.add_theme_font_size_override("font_size",fitted_size)
+func refreshSameX():
+	label.custom_minimum_size.x=GameManager.maxResPanelX
 
 
 func _on_timer_timeout():

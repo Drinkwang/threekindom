@@ -36,11 +36,9 @@ stretch_mode = 4
 layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(410, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "外地派系(丹阳)-支持度："
-clip_text = true
 
 [node name="ProgressBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
