@@ -1,14 +1,22 @@
 extends Control
 class_name energe
 @onready var progress_bar = $TextureProgressBar
-
+const _1_SIM = preload("res://Asset/Font/1_sim.ttf")
 # Called when th$TextureProgressBare node enters the scene tree for the first time.
 func _ready():
 	GameManager._engerge=self
 	changerate(GameManager.sav.hp)
 	changeTargetLabel()
+	SignalManager.changeLanguage.connect(changeLanguage)
+	changeLanguage()
 
-
+func changeLanguage():
+	var currencelanguage=TranslationServer.get_locale()
+	if currencelanguage=="ru":
+		target_label.add_theme_font_override("font",_1_SIM)
+	elif currencelanguage=="en":
+		target_label.remove_theme_font_override("font")
+		
 func changeTargetLabel():
 	if(GameManager.sav.targetTxt==null || GameManager.sav.targetTxt.length()==0):
 		if GameManager.sav.TargetDestination!=null and GameManager.sav.TargetDestination.length()>0:
