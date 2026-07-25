@@ -128,8 +128,9 @@ func hearSayEnd():
 	GameManager.hearsayID=-1
 
 func finalSubmission():
+	
+	GameManager.sav.LVBU.ChangeSupport(100)
 	GameManager.sav.LVBU.supressNum=3
-	GameManager.sav.LVBU._support_rate=100
 	_judge_task()
 func _initData():
 	candoSub=true
@@ -999,8 +1000,9 @@ func deliverUncompleteTask():
 			
 			if GameManager.sav.endPath==GameManager.endPath.none or GameManager.sav.have_event["最终糜竺"]==true:
 			#0 小试牛刀开启 1小试牛刀通过 2 对局试炼开启 3对局试验通过 4 诡秘怪谈开启 5诡秘怪谈通过
-				if GameManager.sav.mizhucardgame>=0 or GameManager.sav.have_event["津贴系统开始"]==true:
+				if not GameManager.isLoadingSave and (GameManager.sav.mizhucardgame>=0 or GameManager.sav.have_event["津贴系统开始"]==true):
 					mizhu.changeAllClick("来把仕诡牌")
+		
 					mizhu.show()
 					mizhu.showEX=false
 			elif GameManager.sav.have_event["最终糜竺"]==false and GameManager.sav.BENTUPAI._support_rate>=80 and GameManager.sav.have_event["主簿的追随"]==true and zhubu.visible==false:

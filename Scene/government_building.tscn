@@ -244,11 +244,10 @@ dialogue_start = "点击陈登0"
 visible = false
 position = Vector2(-279, -3)
 showName = "糜竺"
-dialogue_doubleclick = "来把仕诡牌"
 txt2d = ExtResource("10_73x55")
 boardType = 1
 dialogue_resource = ExtResource("2_yngd1")
-dialogue_start = "点击糜竺"
+dialogue_start = ""
 
 [node name="zhangfei" parent="peoples" instance=ExtResource("6_ibudm")]
 visible = false
