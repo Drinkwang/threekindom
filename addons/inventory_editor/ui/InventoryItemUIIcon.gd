@@ -39,11 +39,15 @@ func _on_inventory_changed(inv_uuid: String) -> void:
 
 func _clear_item_display() -> void:
 	# Empty inventory stacks must clear the previously rendered item.
-	TooltipManager.unregister_tooltip(self)
+	_unregister_tooltip_if_available()
 	_item = null
 	_item_db = null
 	texture = null
 	_quantity_ui.text = "0"
+
+func _unregister_tooltip_if_available() -> void:
+	if is_instance_valid(TooltipManager) and TooltipManager.has_method("unregister_tooltip"):
+		TooltipManager.unregister_tooltip(self)
 
 func _update_item() -> void:
 	if show_quantity:
@@ -110,7 +114,7 @@ func _update_item() -> void:
 					else:
 						TooltipManager.register_tooltip(self,_context)
 				else:
-					TooltipManager.unregister_tooltip(self)
+					_unregister_tooltip_if_available()
 					_item = null
 					_item_db = null
 					texture = null
