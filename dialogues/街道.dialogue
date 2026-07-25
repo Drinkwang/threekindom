@@ -779,6 +779,7 @@ else #有护符但无三件道具
 #do openEyesToBlankBackground("玄阴内")
 do changeBlankBackground("玄阴内", 1.0)
 do zhenren.show()
+do SoundManager.stop_all_ambient_sounds()
 刘备推开玄阴秘境的冰封玉门，眼前豁然展开一座雾绕云锁的洞府，中央高台上一位青袍真人负手而立、目光如炬，仿佛早已洞悉天机，静候刘备多时...
 #do SoundManager.stop_all_ambient_sounds()
 
