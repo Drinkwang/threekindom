@@ -7,8 +7,7 @@ var selectGoods:ShopItem
 @onready var hearsay = $HBoxContainer2/xiaodao
 @onready var buy_back_button = $backTxt/buyBackButton
 @onready var buy_back_button_2 = $backTxt/buyBackButton2
-@onready var merchant_buy_button:Button = $backTxt/buyBackButton2/merchantBuyBtn
-@onready var self_buy_button:Button = $backTxt/buyBackButton2/selfBuyButton
+
 @onready var self_sell_bg = $selfSellBg
 @onready var self_sell_panel = $selfSellPanel
 @onready var self_sell_total_label = $selfSellPanel/Content/Summary/TotalLabel
@@ -49,17 +48,11 @@ var useItems
 const SELF_SELL_LIMIT := 5
 const SELF_SELL_BUTTON_ACTIVE := Color(1, 1, 1, 1)
 const SELF_SELL_BUTTON_INACTIVE := Color(0.72, 0.72, 0.72, 1)
-const SELL_ACTION_BUTTON_WIDTH := 207.0
-const SELL_ACTION_DEFAULT_FONT_SIZE := 26
-const SELL_ACTION_FOREIGN_FONT_SIZE := 24
-const SELL_ACTION_MIN_FONT_SIZE := 18
-const SELL_ACTION_CONTENT_MARGIN := 12.0
 var self_sell_counts := {}
 var self_sell_updating_input := false
 # Called when the node enters the scene tree for the first time.
 func initData2():
 	GameManager.shopPanel=self
-	call_deferred("_fit_sell_action_buttons")
 	var haveNum=InventoryManager.canUseItemNum()
 	var canBuy = GameManager.sav.merMustBuy or GameManager.sav.randomIndex % 2 == 0
 	var can_merchant_buy = GameManager.sav.isSoldItem==false and haveNum>=1 and canBuy
@@ -99,30 +92,6 @@ func initData2():
 		_refresh_sell_buttons(can_merchant_buy, can_self_sell)
 	else:
 		back_txt.hide()
-
-func _fit_sell_action_buttons():
-	var locale:=TranslationServer.get_locale()
-	var keep_default_size:=locale in ["zh", "zh_CN", "zh_HK", "zh_TW", "lzh"]
-	for button in [merchant_buy_button, self_buy_button]:
-		var max_font_size:=SELL_ACTION_DEFAULT_FONT_SIZE if keep_default_size else SELL_ACTION_FOREIGN_FONT_SIZE
-		button.clip_text=false
-		button.add_theme_font_size_override("font_size", max_font_size)
-		for style_name in ["normal", "hover", "pressed", "disabled"]:
-			button.remove_theme_stylebox_override(style_name)
-		if not keep_default_size:
-			for style_name in ["normal", "hover", "pressed", "disabled"]:
-				var style:StyleBox=button.get_theme_stylebox(style_name).duplicate()
-				style.content_margin_left=SELL_ACTION_CONTENT_MARGIN
-				style.content_margin_right=SELL_ACTION_CONTENT_MARGIN
-				button.add_theme_stylebox_override(style_name, style)
-			var font:Font=button.get_theme_font("font")
-			var available_text_width:=SELL_ACTION_BUTTON_WIDTH - SELL_ACTION_CONTENT_MARGIN * 2.0
-			for font_size in range(max_font_size, SELL_ACTION_MIN_FONT_SIZE - 1, -1):
-				button.add_theme_font_size_override("font_size", font_size)
-				if font.get_string_size(button.text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x <= available_text_width:
-					break
-			button.clip_text=true
-		button.size.x=SELL_ACTION_BUTTON_WIDTH
 	
 	var haveone=((InventoryManager.get_hidden_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.市井秘闻) )>0)	
 	var havetwo=((InventoryManager.get_hidden_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.市井秘闻_续) )>0)
