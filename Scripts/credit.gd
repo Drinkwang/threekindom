@@ -3,6 +3,7 @@ extends Node2D
 
 const __CREDIT__ = preload("res://Asset/other/常规credit曲子.MP3")
 @onready var zhugeliang: clickBlock = $"诸葛亮"
+@onready var _logo: Sprite2D = $"ColorRect/中文logo"
 
 const badaoxian = preload("res://Asset/other/霸道线曲子.mp3")
 # Called when the node enters the scene tree for the first time.
@@ -16,13 +17,22 @@ func _ready() -> void:
 	else:
 		SoundManager.play_music(__CREDIT__)
 	SoundManager.set_music_volume(1)
-
+	SignalManager.changeLanguage.connect(changeLanguage)
+	changeLanguage()
 	if GameManager.sav.endPath==GameManager.endPath.xuzhou:
 
 		credit_animation.play("credit_2")
 	else:
 		credit_animation.play("credit")
-	
+		
+const C_LOGO = preload("res://Asset/logo/中文logo.png")
+const E_LOGO = preload("res://Asset/logo/英文logo2.png")
+func changeLanguage():
+	var currencelanguage=TranslationServer.get_locale()
+	if currencelanguage=="en" or currencelanguage=="ru":
+		_logo.texture=E_LOGO
+	else:
+		_logo.texture=C_LOGO
 # Credits text is animated from Chinese source strings, so translate each line
 # after animation keyframes update the labels. Creator names remain unchanged
 # because they do not have translation entries.

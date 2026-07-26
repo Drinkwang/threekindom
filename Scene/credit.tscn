@@ -625,7 +625,7 @@ color = Color(0, 0, 0, 1)
 [node name="中文logo" type="Sprite2D" parent="ColorRect"]
 modulate = Color(0, 0, 0, 1)
 material = SubResource("CanvasItemMaterial_rmcpn")
-position = Vector2(1267, 693)
+position = Vector2(1297, 693)
 texture = ExtResource("10_15oj5")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect/中文logo"]
@@ -656,9 +656,9 @@ subtitle_label = NodePath("Label")
 
 [node name="Label" type="Label" parent="CanvasLayer/Control"]
 layout_mode = 0
-offset_left = -3.0
+offset_left = 352.0
 offset_top = 901.0
-offset_right = 1929.0
+offset_right = 1553.0
 offset_bottom = 974.0
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
@@ -668,6 +668,7 @@ theme_override_fonts/font = ExtResource("13_tqclm")
 theme_override_font_sizes/font_size = 36
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="final" type="ColorRect" parent="CanvasLayer"]
 visible = false
