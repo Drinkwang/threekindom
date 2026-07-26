@@ -157,12 +157,18 @@ func _update_subtitle() -> void:
 	# 匹配当前时间的字幕
 	for sub in subtitle_data:
 		if current_time >= sub.start and current_time <= sub.end:
-			show_text = sub.text
+			show_text = _translate_subtitle_text(sub.text)
 			break
 	
 	# 更新显示（空字幕则隐藏）
 	subtitle_label.text = show_text
 	subtitle_label.visible = show_text != ""
+
+func _translate_subtitle_text(source_text: String) -> String:
+	var localized_lines: PackedStringArray = []
+	for line in source_text.split("\n", true):
+		localized_lines.append(tr(line))
+	return "\n".join(localized_lines)
 
 # ===================== 新增：暂停/继续功能 =====================
 # 暂停字幕播放
@@ -201,7 +207,7 @@ func jump_to_time(sec: float) -> void:
 		var text = ""
 		for sub in subtitle_data:
 			if sec >= sub.start and sec <= sub.end:
-				text = sub.text
+				text = _translate_subtitle_text(sub.text)
 				break
 		subtitle_label.text = text
 		subtitle_label.visible = text != ""

@@ -23,9 +23,21 @@ func _ready() -> void:
 	else:
 		credit_animation.play("credit")
 	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+# Credits text is animated from Chinese source strings, so translate each line
+# after animation keyframes update the labels. Creator names remain unchanged
+# because they do not have translation entries.
+@onready var credit_art_label: Label = $creditAnimation/美术
+@onready var credit_producer_label: Label = $creditAnimation/制作人
+
+func _process(_delta: float) -> void:
+	_localize_credit_label(credit_producer_label)
+	_localize_credit_label(credit_art_label)
+
+func _localize_credit_label(label: Label) -> void:
+	var localized_lines: PackedStringArray = []
+	for line in label.text.split("\n", true):
+		localized_lines.append(tr(line))
+	label.text = "\n".join(localized_lines)
 
 
 
@@ -106,15 +118,15 @@ func settleGame():
 		if GameManager.sav.endPath==GameManager.endPath.xiaopei:
 			settle_bg.texture=normal_end
 			what_final.text=tr("【恭喜你，通关正史结局】")
-			finaldec=tr("集齐全部怪谈支线，即可解锁霸道结局，\n二周目线索，凭借獬豸圣像便可寻觅获知。")
+			finaldec=tr("集齐全部怪谈支线，即可解锁霸道结局，")+"\n"+tr("二周目线索，凭借獬豸圣像便可寻觅获知。")
 			
 			#finaldec=tr("完成所有怪谈支线，\n将解锁霸道结局线索。")
 		if GameManager.sav.endPath==GameManager.endPath.xuzhou:
 			settle_bg.texture=Badao_end
 			what_final.text=tr("【恭喜你，通关霸道结局】")
-			finaldec=tr("打破历史桎梏，驯服所有怪谈支线，\n你以霸主之姿，叩响复兴汉室的大门。")
+			finaldec=tr("打破历史桎梏，驯服所有怪谈支线，")+"\n"+tr("你以霸主之姿，叩响复兴汉室的大门。")
 		
-		finaldec=finaldec+"\n"+"【通关解锁快捷键功能：长按Ctrl可跳过全部对话。】"
+		finaldec=finaldec+"\n"+tr("【通关解锁快捷键功能：长按Ctrl可跳过全部对话。】")
 		var diffucultLevel=GameManager.sav.gameDifficulty	
 		var diffSrc=GameManager.get_difficulty_data(diffucultLevel)
 		
@@ -129,7 +141,7 @@ func settleGame():
 		TooltipManager.register_tooltip(rank_tooltip_area, _get_rank_tooltip_text())
 	else:
 		what_final.hide()
-		detial.text="恭喜你通关试玩版，请期待正式游戏"
+		detial.text=tr("恭喜你通关试玩版，请期待正式游戏")
 	
 	finalBG.show()
 	#修改finalBG

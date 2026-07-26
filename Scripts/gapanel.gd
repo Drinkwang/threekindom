@@ -164,7 +164,7 @@ func refreshContext():
 						elif GameManager.sav.endPath==GameManager.endPath.xuzhou:
 							groupName=2
 						var currenv=GameManager.sav.finalPhaseValue
-						policycontext=policycontext+"\n"+tr("城内形势:")+StageStateMgr.get_state_name(groupName,currenv)+""+tr("【处理军政、筹措军需及安抚民众，均可稳定城中局势】")
+						policycontext=policycontext+"\n"+tr("城内形势:")+StageStateMgr.get_state_name(groupName,currenv)+"\n"+tr("【处理军政、筹措军需及安抚民众，均可稳定城中局势】")
 				if GameManager.sav.targetResType==GameManager.ResType.govern:
 					if GameManager.dontHaveDominance():
 						policycontext=policycontext+"\n"+tr("安抚徐州各派系，将豪族派、士族派、丹阳派、吕布好感度均提升至80。")

@@ -500,7 +500,7 @@ Result:","人数：
 大丈夫当马革裹尸还。,"A true man should return wrapped in a horse's hide, ready to die on the battlefield with honor.",大丈夫当马革裹尸还。,大丈夫當馬革裹屍還。,大丈夫たる者は、戦場で馬の革に包まれて帰るべきだ。,"Настоящий мужчина должен вернуться завернутым в лошадиную шкуру, готовым умереть с честью на поле боя."
 勿以善小而不为，勿以恶小而为之。,"Do not ignore a small good deed just because it seems minor, and do not commit a small evil deed just because it seems insignificant.",勿以善小而不为，勿以恶小而为之。,勿以善小而不為，勿以惡小而為之。,小さな善行だからといって行わないことなく、小さな悪行だからといって行うことがあってはならない。,"Не пренебрегай малым добром только потому, что оно незначительно, и не совершай малого зла только потому, что оно кажется мелочью."
 了解并开始游戏,"Understood, start the game",了解并开始游戏,了解並開始遊戲,理解して、ゲームを始めます,"Понял, начать игру"
-当前还需要处理的政务：,Current affairs to be handled:,当前还需要处理的政务：,當前還需要處理的政務：,現在処理する必要がある政務：,"Текущие дела, которые нужно решить:"
+当前还需要处理的政务：,Pending Government Affairs:,当前还需要处理的政务：,尚待處理的政務：,未処理の政務：,Нерешённые государственные дела:
 宴会完美举办成功！,The banquet was successfully and perfectly held!,宴会完美举办成功！,宴會完美舉辦成功！,宴会は完璧に成功しました！,Пир был успешно и идеально проведён!
 _eatMore,"In the banquet you hosted, the loyalty of all major factions increased.","
 在您举办的饭局中，各大派系忠诚度都提高了","
@@ -1382,7 +1382,7 @@ Scene: Inside a tattered military tent, Liu Bei and three fellow-veteran soldier
 恭喜你，你获得-益气丸x2,"Congratulations, you have obtained - Qi Pill x2",恭喜你，你获得-益气丸x2,恭喜你，你獲得-益氣丸x2,おめでとうございます、-益気丸x2を獲得しました,"Поздравляем, вы получили - 2 Пилюли Ци"
 恭喜你，你获得-黄麻药囊,"Congratulations, you have obtained - Yellow Hemp Medicine Pouch",恭喜你，你获得-黄麻药囊,恭喜你，你獲得-黃麻藥囊,おめでとうございます、黄麻薬嚢を獲得しました,"Поздравляем, вы получили - Жёлтый мешочек с лекарством"
 当前暂无,Currently none,当前暂无,當前暫無,現在なし,В настоящее время нет
-主线任务:,Main Quest:,主线任务:,主線任務:,メインクエスト:,Основные задания:
+主线任务:,"Main Quest: ",主线任务:,主線任務：,メインクエスト：,"Основное задание: "
 当前任务：,Current Mission:,当前任务：,當前任務：,現在の任務：,Текущее задание:
 -支持度：,-Support:,-支持度：,-支持度：,-支持度：,-Поддержка:
 提示：成功通过拉拢{factions}需求的法律！\n({factions}好感度提升{point}点)\n(该派系摇摆人数减少),Hint: Successfully passed the {factions}'s requested law!\n({factions} Favor increased by {point} points)\n(Faction wavering members decreased),提示：成功通过拉拢{factions}需求的法律！\n({factions}好感度提升{point}点)\n(该派系摇摆人数减少),提示：成功通過拉攏{factions}需求的法律！\n({factions}好感度提升{point}點)\n(該派系搖擺人數減少),{factions}の要求する法律を可決しました！\n({factions}の好感度が{point}ポイント上昇)\n(該派閥の動揺人数が減少),"Подсказка: Успешно принят закон, удовлетворяющий требования фракции {factions}!\n(Репутация с {factions} повышена на {point} пунктов)\n(Количество колеблющихся членов фракции уменьшилось)"

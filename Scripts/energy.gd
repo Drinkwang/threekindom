@@ -115,7 +115,7 @@ func showTargetLabel():
 					groupName=2
 				var currenv=GameManager.sav.finalPhaseValue		
 				#if xxx	
-				if GameManager.sav.currenceValue<GameManager.sav.targetValue:
+				if GameManager.sav.currenceValue<GameManager.sav.targetValue and GameManager.sav.targetValue!=1:
 					target_label.text=target_label.text+"\n"+tr("城内形势:")+StageStateMgr.get_state_name(groupName,currenv)
 				else:
 					target_label.text=target_label.text
