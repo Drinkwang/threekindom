@@ -2435,11 +2435,11 @@ func _execute_crit_effect(suit: int) -> void:
 				turn_num_Txt.text = tr("回合数：{s}/5").format({"s": turn_num})
 				if turn_num >= 5:
 					if score > enemyscore:
-						winGame()
+						winGame(tr("你的积分大于对手\n你赢了"))
 					elif score == enemyscore:
 						winGame()
 					else:
-						loseGame()
+						loseGame(tr("你的积分小于对手\n你输了"))
 				desc = tr("跳回合+1，HP-1")
 				#_set_detail_text(tr("暴击·民能载势！") + desc)
 			1:
