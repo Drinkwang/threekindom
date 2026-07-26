@@ -2014,7 +2014,7 @@ func enterRewardStage(i:boardCard,j:boardCard):
 @onready var detail_txt: Label = $CanvasLayer/HBoxContainer/detailTxt
 var bepunishI:boardCard
 var bepusnishJ:boardCard
-const DETAIL_TEXT_RIGHT_LIMIT := 1918.0
+const DETAIL_TEXT_MAX_WIDTH := 980.0
 const DETAIL_TEXT_SIDE_PADDING := 24.0
 
 func _get_detail_default_font_size() -> int:
@@ -2027,14 +2027,13 @@ func _get_detail_text_max_width() -> float:
 	if detail_h_box_container == null:
 		return 0.0
 	var viewport_right := get_viewport_rect().size.x
-	var right_limit = min(DETAIL_TEXT_RIGHT_LIMIT, viewport_right)
-	var max_width = right_limit - detail_h_box_container.global_position.x - DETAIL_TEXT_SIDE_PADDING
+	var available_width = viewport_right - detail_h_box_container.global_position.x - DETAIL_TEXT_SIDE_PADDING
 	if punishimg != null:
-		max_width -= punishimg.get_combined_minimum_size().x
-		max_width -= detail_h_box_container.get_theme_constant("separation")
-	return max(180.0, max_width)
+		available_width -= punishimg.get_combined_minimum_size().x
+		available_width -= detail_h_box_container.get_theme_constant("separation")
+	return min(DETAIL_TEXT_MAX_WIDTH, max(0.0, available_width))
 
-func _fit_detail_text_to_width(min_font_size:int = 8) -> void:
+func _fit_detail_text_to_width() -> void:
 	if detail_txt == null or detail_h_box_container == null:
 		return
 	var font := detail_txt.get_theme_font("font")
@@ -2044,15 +2043,14 @@ func _fit_detail_text_to_width(min_font_size:int = 8) -> void:
 	if max_width <= 0.0:
 		return
 	var font_size := _get_detail_default_font_size()
-	while font_size > min_font_size:
-		var text_width := font.get_string_size(detail_txt.text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x + 16.0
+	while font_size > 1:
+		var text_width := font.get_string_size(detail_txt.text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x
 		if text_width <= max_width:
 			break
 		font_size -= 1
-	var final_width := font.get_string_size(detail_txt.text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x + 16.0
-	if final_width > max_width and final_width > 0.0:
-		font_size = max(1, floori(float(font_size) * max_width / final_width))
 	detail_txt.add_theme_font_size_override("font_size", font_size)
+	var fitted_width := font.get_string_size(detail_txt.text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x
+	detail_txt.custom_minimum_size.x = min(ceilf(fitted_width), max_width)
 
 func _set_detail_text(value:String) -> void:
 	if detail_txt == null:
