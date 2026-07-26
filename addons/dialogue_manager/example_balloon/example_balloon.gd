@@ -25,6 +25,8 @@ var will_hide_balloon: bool = false
 
 ## 通关后Ctrl快进时标记当前行是否已推进，防止一帧内多次推进
 var _fast_forward_current_line: bool = false
+const CTRL_FAST_FORWARD_DELAY := 0.4
+var _ctrl_hold_time := 0.0
 
 ## The current line
 var dialogue_line: DialogueLine:
@@ -91,10 +93,21 @@ func _ready() -> void:
 
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	# Ctrl快进：通关霸道线或常规线后，按住Ctrl可快速跳过对话
-	var can_fast_forward = Input.is_key_pressed(KEY_CTRL) and \
-		(GameManager._setting.is_clear_normal_line or GameManager._setting.is_clear_overlord_line)
+	var fast_forward_unlocked = GameManager._setting.is_clear_normal_line or GameManager._setting.is_clear_overlord_line
+	var ctrl_only_pressed = Input.is_key_pressed(KEY_CTRL) and not (
+		Input.is_key_pressed(KEY_SHIFT) or
+		Input.is_key_pressed(KEY_ALT) or
+		Input.is_key_pressed(KEY_META)
+	)
+
+	if fast_forward_unlocked and ctrl_only_pressed:
+		_ctrl_hold_time += delta
+	else:
+		_ctrl_hold_time = 0.0
+
+	var can_fast_forward = _ctrl_hold_time >= CTRL_FAST_FORWARD_DELAY
 
 	if not can_fast_forward:
 		return
