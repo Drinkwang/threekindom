@@ -1,9 +1,9 @@
 extends CanvasLayer
 
-@onready var control_1: ShopItem = $Control/Grid/Control1
-@onready var control_2: ShopItem = $Control/Grid/Control2
-@onready var control_3: ShopItem = $Control/Grid/Control3
-@onready var control_4: ShopItem = $Control/Grid/Control4
+@onready var control_1: ShopItem = $Control/PanelContainer/MarginContainer/VBoxContainer/CardArea/Grid/Control1
+@onready var control_2: ShopItem = $Control/PanelContainer/MarginContainer/VBoxContainer/CardArea/Grid/Control2
+@onready var control_3: ShopItem = $Control/PanelContainer/MarginContainer/VBoxContainer/CardArea/Grid/Control3
+@onready var control_4: ShopItem = $Control/PanelContainer/MarginContainer/VBoxContainer/CardArea/Grid/Control4
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -38,7 +38,7 @@ func _process(delta: float) -> void:
 func _on_control_1_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index==1:
 		control_gui_press(1)
-@onready var button: Button = $Control/VBoxContainer/HBoxContainer/Button
+@onready var button: Button = $Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Button
 			
 func control_gui_press(index):
 	
@@ -72,7 +72,7 @@ func _on_control_4_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index==1:
 		control_gui_press(4)
 var selectCard=-1
-@onready var detail_txt: Label = $Control/VBoxContainer/detail
+@onready var detail_txt: Label = $Control/PanelContainer/MarginContainer/VBoxContainer/detail
 
 func refreshSecretCardPanel(index):
 	if arrs[index-1]==true:
