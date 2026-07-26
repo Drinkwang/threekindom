@@ -612,9 +612,9 @@ do GameManager.oneDayidness()
 ~ 最终休息民心损失
 do SoundManager.play_sound(sounds.down)
 系统提示: 本旬局势未得到妥善处理，民心下降{{GameManager.PunishC}}点。
-if GameManager.sav.people_surrport>GameManager.PunishC
-	do GameManager.changePeopleSupport(0-GameManager.PunishC)
-	do GameManager._rest()	 
-else
-	do GameManager.changePeopleSupport(0-GameManager.PunishC)
+#if GameManager.sav.people_surrport>GameManager.PunishC
+do GameManager.changePeopleSupport(0-GameManager.PunishC)
+do GameManager._rest()	 
+
+#	do GameManager.changePeopleSupport(0-GameManager.PunishC)
 => END!

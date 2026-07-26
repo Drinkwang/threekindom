@@ -83,11 +83,10 @@ func changePeopleSupport(num):
 	elif sav.people_surrport<=0:
 		sav.people_surrport=0
 		_engerge.hide()
-		#DialogueManager.gameover=true
 		if GameManager.sav.have_event["战斗袁术血战模式"]==true and GameManager.sav.have_event["血战袁术完成"]==false:
-			DialogueManager.show_example_dialogue_balloon(sys,"军心溃散刘备力竭被俘")
+			DialogueManager.show_gameover_dialogue_balloon(sys,"军心溃散刘备力竭被俘")
 		else:
-			DialogueManager.show_example_dialogue_balloon(sys,"民乱四起")
+			DialogueManager.show_gameover_dialogue_balloon(sys,"民乱四起")
 		
 		PanelManager.new_ChaoView()
 		#展示gameover

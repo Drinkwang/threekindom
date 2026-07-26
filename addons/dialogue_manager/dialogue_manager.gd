@@ -90,6 +90,12 @@ func haveDialoge()->bool:
 			return true
 	return false
 
+func _is_dialogue_cancelled(extra_game_states: Array) -> bool:
+	for state in extra_game_states:
+		if state is Node and is_instance_valid(state) and state.has_meta(&"dialogue_cancelled"):
+			return true
+	return false
+
 func _on_dialogue_ended(ens):
 	dialogBegin=false
 
@@ -123,6 +129,8 @@ func _ready() -> void:
 
 ## Step through lines and run any mutations until we either hit some dialogue or the end of the conversation
 func get_next_dialogue_line(resource: DialogueResource, key: String = "", extra_game_states: Array = [], mutation_behaviour: MutationBehaviour = MutationBehaviour.Wait) -> DialogueLine:
+	if _is_dialogue_cancelled(extra_game_states):
+		return null
 	# You have to provide a valid dialogue resource
 	if resource == null:
 		assert(false, DialogueConstants.translate(&"runtime.no_resource"))
@@ -139,6 +147,8 @@ func get_next_dialogue_line(resource: DialogueResource, key: String = "", extra_
 
 	# Get the line data
 	var dialogue: DialogueLine = await get_line(resource, key, extra_game_states)
+	if _is_dialogue_cancelled(extra_game_states):
+		return null
 
 	# If our dialogue is nothing then we hit the end
 	if not is_valid(dialogue):
@@ -155,6 +165,8 @@ func get_next_dialogue_line(resource: DialogueResource, key: String = "", extra_
 				mutate(dialogue.mutation, extra_game_states)
 			MutationBehaviour.Skip:
 				pass
+		if _is_dialogue_cancelled(extra_game_states):
+			return null
 		if actual_next_id in [DialogueConstants.ID_END_CONVERSATION, DialogueConstants.ID_NULL, null]:
 			# End the conversation
 			(func(): dialogue_ended.emit(resource)).call_deferred()
@@ -304,6 +316,34 @@ func create_resource_from_text(text: String) -> Resource:
 	return resource
 
 var gameover=false
+
+func close_all_dialogue_balloons() -> void:
+	var current_scene = get_tree().current_scene
+	if not is_instance_valid(current_scene):
+		return
+	for child in current_scene.get_children():
+		if not child.get_script() or not child.get_script().resource_path.ends_with("example_balloon.gd"):
+			continue
+		child.set_meta(&"dialogue_cancelled", true)
+		child.process_mode = Node.PROCESS_MODE_DISABLED
+		var dialogue_surface := child.get_node_or_null("Balloon") as CanvasItem
+		if is_instance_valid(dialogue_surface):
+			dialogue_surface.hide()
+		child.queue_free()
+	dialogBegin=false
+
+func show_gameover_dialogue_balloon(resource: DialogueResource, title: String = "", extra_game_states: Array = []) -> void:
+	if gameover:
+		return
+	gameover=true
+	close_all_dialogue_balloons()
+	await get_tree().process_frame
+
+	var balloon: Node = load(_get_example_balloon_path()).instantiate()
+	dialogBegin=true
+	_begin_dialogue(resource)
+	get_current_scene.call().add_child(balloon)
+	balloon.start(resource, title, extra_game_states)
 
 func show_exaple_top_dialogue_balloon(resource: DialogueResource, title: String = "", extra_game_states: Array = []) -> CanvasLayer:
 	if gameover==true: 
