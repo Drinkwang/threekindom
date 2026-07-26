@@ -106,7 +106,7 @@ func settleGame():
 		if GameManager.sav.endPath==GameManager.endPath.xiaopei:
 			settle_bg.texture=normal_end
 			what_final.text=tr("【恭喜你，通关正史结局】")
-			finaldec=tr("集齐全部怪谈支线，\n即可解锁霸道结局前置线索。")
+			finaldec=tr("集齐全部怪谈支线，即可解锁霸道结局，\n二周目线索，凭借獬豸圣像便可寻觅获知。")
 			
 			#finaldec=tr("完成所有怪谈支线，\n将解锁霸道结局线索。")
 		if GameManager.sav.endPath==GameManager.endPath.xuzhou:
