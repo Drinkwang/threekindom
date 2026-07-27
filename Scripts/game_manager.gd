@@ -860,7 +860,7 @@ func improveFinalPhase(value: int = 1, is_military_action: bool = false) -> bool
 func improveFinalPhaseFromFactionClaim() -> bool:
 	if sav.endPath == endPath.none or sav.finalPhaseValue <= 1:
 		return false
-	if sav.factionClaimCountToday > 2:
+	if sav.factionClaimCountToday > GameManager.demandMaxRepair:
 		_showFinalPhaseClaimDeniedNotice.call_deferred()
 		return false
 	return improveFinalPhase()
@@ -2331,21 +2331,21 @@ func LoadingDiffucultValue():
 		minxinPoint=1
 		LAW_COST_POINT=2
 		maxLawNum=12
-		maxLawNum=3
+		demandMaxRepair=3
 		#2点法令点立一个法
 	elif GameManager.sav.gameDifficulty==2:
 		perLawCycle=5
 		minxinPoint=1
 		LAW_COST_POINT=3
 		maxLawNum=12
-		maxLawNum=2
+		demandMaxRepair=2
 		#3点法令点立一个法
 	elif GameManager.sav.gameDifficulty==3:
 		perLawCycle=4
 		minxinPoint=2
 		LAW_COST_POINT=4
 		maxLawNum=10
-		maxLawNum=1
+		demandMaxRepair=1
 		#4点法令点立一个法
 		#战斗难度
 		#一些惩罚增加
