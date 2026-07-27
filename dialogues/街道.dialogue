@@ -317,6 +317,7 @@ do getScholarReward3Before()
 => END!
 
 ~ 下次前来大儒辩经
+do openEyesToBlankBackground("学者之处")
 弟子: 刘大人，老师已于日前远行，临行前特意吩咐，若大人再来，便由我代为辩经。老师还留下一卷残稿，嘱我交予大人，望大人珍之。[voice:xuezhe_liudarencangao]
 do getScholarReward3()
 #治国箴言
