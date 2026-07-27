@@ -264,8 +264,7 @@ do SoundManager.play_sound(sounds.COLLECT_SMALL_JEWEL_3)
 
 
 do GameManager._imporveRelation(getFactionByIndex())
-do GameManager.improveFinalPhase()
-#do _JudgeTask()
+#do _JudgeTask(true)
 => END
 
 

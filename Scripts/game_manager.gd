@@ -1800,9 +1800,9 @@ func AutoSaveFile():
 	_engerge.endAutoSave()
 
 func _imporveRelation(data:cldata):
-	if data.isSuppressed==true:
+	if data.isSuppressed==true and data.supressNum<3:
 		data.rebellionUpdateNum+=2
-		resideValue=data._name
+		resideValue=tr(data._name)
 		var _num_defections=max(data._num_defections,6)
 		var remaining_rebellion_points = max(0, _num_defections - data.rebellionUpdateNum)
 		resideValue2=ceili(remaining_rebellion_points / 2.0)
@@ -1814,7 +1814,7 @@ func _imporveRelation(data:cldata):
 		else:
 			DialogueManager.show_example_dialogue_balloon(sys,"讨好叛乱2")
 	else:
-		currenceScene._JudgeTask()
+		currenceScene._JudgeTask(true)
 
 func play_music(file_path: String) -> AudioStreamPlayer:
 	var stream = load(file_path)
