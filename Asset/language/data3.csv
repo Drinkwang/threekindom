@@ -188,3 +188,4 @@ Project Complete","你灌溉了所有农田
 整备不足,Underprepared,整备不足,整備不足,整備不足,Недостаточная готовность
 防备松弛,Lax Defenses,防备松弛,防備鬆弛,防備弛緩,Ослабленная оборона
 军令未下,No Orders Issued,军令未下,軍令未下,軍令未発令,Приказы не отданы
+"最多索取{{GameManager.demandMaxRepair}}次资源调理城中局势，逾次招致派系反感，无益局势向好","You may requisition resources up to {{GameManager.demandMaxRepair}} times to stabilize the city. Further demands will alienate the faction and yield no improvement.","最多索取{{GameManager.demandMaxRepair}}次资源调理城中局势，逾次招致派系反感，无益局势向好","最多索取{{GameManager.demandMaxRepair}}次資源以調理城中局勢；逾次將招致派系反感，亦無益於局勢好轉。","城内情勢を立て直すため、資源を要求できるのは最大{{GameManager.demandMaxRepair}}回までです。上限を超える要求は対象派閥の反感を招き、情勢も改善しません。","Для стабилизации обстановки в городе ресурсы можно затребовать не более {{GameManager.demandMaxRepair}} раз. Дальнейшие требования вызовут недовольство фракции и не улучшат ситуацию."

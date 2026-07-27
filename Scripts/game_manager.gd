@@ -901,8 +901,8 @@ func _rest(value=true):
 func checkAndHandleLazy() -> bool:
 
 	if GameManager.sav.endPath==GameManager.endPath.xuzhou and GameManager.sav.have_event["主簿的追随"]==false:
-		GameManager.sav.have_event["主簿的追随"]=true	
-		return true
+		# 徐州线无需等待主簿归队；补齐状态后继续处理本次休息，不能静默吞掉第一次点击。
+		GameManager.sav.have_event["主簿的追随"]=true
 	if GameManager.sav.have_event["关羽求援结束"] ==true and GameManager.sav.have_event["主簿的追随"] ==false:
 		DialogueManager.show_example_dialogue_balloon(sys,"小沛最终不能休息")
 		return true
