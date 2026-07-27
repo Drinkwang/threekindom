@@ -534,7 +534,7 @@ do SoundManager.play_sound(sounds.fix)
 
 ~ 最终章局势改善不行
 do SoundManager.play_sound(sounds.down)
-系统提示: 最多索取2次资源调理城中局势，逾次招致派系反感，无益局势向好
+系统提示: 最多索取{{GameManager.demandMaxRepair}}次资源调理城中局势，逾次招致派系反感，无益局势向好
 => END!
 
 

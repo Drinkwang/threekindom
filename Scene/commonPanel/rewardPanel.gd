@@ -52,12 +52,18 @@ var _pending_labor := 0
 var _pending_hp_limit := 0
 var _is_collecting := false
 var _rewards_applied := false
+enum RewardTitleMode { NONE, CUSTOM, BATTLE_SUCCESS, BATTLE_SUCCESS_MA, BATTLE_FAIL }
+var _titleMode:=RewardTitleMode.NONE
+var _customTitleSource:=""
+var _customTitleAddAfter:=true
+var _customTitleBuilder:=Callable()
 
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	PanelManager.rewardNode=self
+	SignalManager.changeLanguage.connect(changeLanguage)
 	if(context!=null):
 		context.text=contextEX
 	if(title!=null):
@@ -68,6 +74,41 @@ func _ready():
 	#hide()
 	await get_tree().create_timer(0.25).timeout
 	canclick = true	
+
+func changeLanguage():
+	_refreshTitleLanguage()
+	for child in _grid_ui.get_children():
+		if child.has_method("changeLanguage"):
+			child.changeLanguage()
+
+func _refreshTitleLanguage():
+	match _titleMode:
+		RewardTitleMode.CUSTOM:
+			var titleContext=_customTitleBuilder.call() if _customTitleBuilder.is_valid() else tr(_customTitleSource)
+			if _customTitleAddAfter:
+				titleContext+=tr(",获得以下道具:")
+			title.text=titleContext
+		RewardTitleMode.BATTLE_SUCCESS, RewardTitleMode.BATTLE_SUCCESS_MA, RewardTitleMode.BATTLE_FAIL:
+			title.text=_getBattleResultTitle(_titleMode)
+
+func _getBattleResultTitle(mode:RewardTitleMode)->String:
+	var prefix=failContext if mode==RewardTitleMode.BATTLE_FAIL else sucuussContext
+	var result=tr(prefix)
+	if coinCost>0 and soilderCost>0:
+		result+=tr(TxtbothCost).format({"coin":str(coinCost),"soilder":str(soilderCost)})
+	elif coinCost>0:
+		result+=tr(TxtcoinCost).format({"coin":str(coinCost)})
+	elif soilderCost>0:
+		result+=tr(TxtSoiderCost).format({"soilder":str(soilderCost)})
+	else:
+		result+=tr(TxtNoCost)
+	if mode==RewardTitleMode.BATTLE_SUCCESS_MA:
+		result+=tr("【截获吕布购马队，战利品升级】")
+	elif mode==RewardTitleMode.BATTLE_SUCCESS and GameManager.sav.have_event["吕布之怒"]==false and GameManager.sav.have_event["夏侯偷马"]==true and GameManager.sav.endPath==GameManager.endPath.xiaopei:
+		result+=tr("【截获吕布购马队，战利品升级】")
+	if mode!=RewardTitleMode.BATTLE_FAIL:
+		result+=tr(",获得以下道具:")
+	return result
 	
 @export var canclick=false	
 	
@@ -75,10 +116,14 @@ func _ready():
 
 #@onready var grid = $Control/PanelContainer/MarginContainer/VBoxContainer/Margin/Grid
 
-func showTitileReward(context,item,addAfter=true):
+func showTitileReward(context,item,addAfter=true,titleBuilder:Callable=Callable()):
+	_titleMode=RewardTitleMode.CUSTOM
+	_customTitleSource=context
+	_customTitleAddAfter=addAfter
+	_customTitleBuilder=titleBuilder
 	imgTarget.texture=victoryPng
 	self.show()
-	var titleContext=context
+	var titleContext=titleBuilder.call() if titleBuilder.is_valid() else tr(context)
 	if addAfter==true:
 		titleContext=titleContext+tr(",获得以下道具:")
 	title.text=titleContext	
@@ -132,6 +177,7 @@ func getItemSound():
 	SoundManager.play_sound(sounds.GOOD_THING)
 
 func showReward(item):
+	_titleMode=RewardTitleMode.BATTLE_SUCCESS
 	imgTarget.texture=victoryPng
 	self.show()
 	getItemSound()
@@ -202,6 +248,7 @@ func showReward(item):
 
 
 func showRewardMa(item):
+	_titleMode=RewardTitleMode.BATTLE_SUCCESS_MA
 	AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_31")
 	imgTarget.texture=victoryPng
 	self.show()
@@ -294,6 +341,7 @@ var TxtNoCost="你没有损失"
 var failContext="这场战斗你输了,"
 var sucuussContext="这场战斗你赢了,"
 func fail():
+	_titleMode=RewardTitleMode.BATTLE_FAIL
 	imgTarget.texture=failPng
 	var titleContext=""
 	if(coinCost>0 and soilderCost>0):

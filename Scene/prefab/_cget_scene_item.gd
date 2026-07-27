@@ -172,5 +172,5 @@ func getSceneInItem():
 	
 		var _reward:rewardPanel=PanelManager.new_reward()
 		AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_5")
-		_reward.showTitileReward(tr("你发现了以下道具"),item)
+		_reward.showTitileReward("你发现了以下道具",item)
 	DialogueManager.show_example_dialogue_balloon(items_in_scene.dialogue_resource,"发现场景道具"+var_to_str(SceneID))

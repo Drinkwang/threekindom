@@ -142,6 +142,10 @@ func changeLanguage():
 	else:
 		var context="条件揭示：\n"+ tr(GameManager.sav.extranewDetail)
 		TooltipManager.register_tooltip(se_task_hbox,context)	
+	if enemyName.length()>0:
+		TooltipManager.register_tooltip(enemy.head,tr(enemyName)+"\n"+tr(GameManager.enemyDesc[enemyName]))
+	if _successRatePercent>=0 and suss_label.text.length()>0:
+		suss_label.text=tr("胜率:%d%%") % _successRatePercent
 func _set_legend_style(font:Font, font_size:int):
 	for legend_item in $VBoxContainer.get_children():
 		var legend_label = legend_item.get_node_or_null("Label")
@@ -156,6 +160,7 @@ func _set_legend_style(font:Font, font_size:int):
 
 
 var taskIndex:int=0
+var _successRatePercent:=-1
 
 var taskComplete=0
 @onready var buff_txt = $buffTxt
@@ -441,6 +446,7 @@ func _changeCircle(rewardGet):
 
 # 2. 转换为百分比并保留0位小数（如0.8 → 80%）
 	var success_rate_percent: int = min(int(success_rate * 100 + 0.5), 100)
+	_successRatePercent=success_rate_percent
 
 # 3. 拼接成目标文本格式（假设文本节点名为 "SuccessRateText"）
 	

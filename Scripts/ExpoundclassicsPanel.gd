@@ -17,6 +17,10 @@ func _ready():
 #	var itemname= InventoryManagerItem.item_by_enum(InventoryManagerItem.诸子百家论集)
 	db=InventoryManager.get_item_db(InventoryManagerItem.诸子百家论集)
 	#self.tooltip_text=db.name
+	SignalManager.changeLanguage.connect(changeLanguage)
+	changeLanguage()
+
+func changeLanguage():
 	refreshCount()
 	var currencelanguage=TranslationServer.get_locale()
 	if currencelanguage=="en":
@@ -85,6 +89,9 @@ func _ready():
 		_context=_context+tr("【已强化】")
 		
 	TooltipManager.register_tooltip(item_use,_context)
+	if isboot:
+		starttitle.text=tr("大儒辩经已开始")
+		title.text=tr("请点击图书并获得积分")
 
 func _expoundClass():
 	animation_player.play("click")
@@ -140,7 +147,7 @@ func over():
 	if score>=maxScore:
 		score=maxScore	
 	items=GameManager.ScoreToItem(score/10)
-	_reward.showTitileReward(tr("你从郑玄哪里受益良多"),items)
+	_reward.showTitileReward("你从郑玄哪里受益良多",items)
 	texture_button.show()
 	GameManager.sav.isVisitScholar=true
 	await  SignalManager.endReward

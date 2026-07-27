@@ -443,6 +443,7 @@ func changeLanguage():
 		var battleEnhance=GameManager.sav.battleEnhance
 		var EnhanceContext=tr("[法令提升了战利品收益{profit}%]").format({"profit":battleEnhance*25})
 		TooltipManager.register_tooltip(lauchBtn,EnhanceContext)
+	refreshTask(false)
 		
 		
 		

@@ -8,6 +8,11 @@ extends CanvasLayer
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	initSecretCard(arrs) # Replace with function body.
+	SignalManager.changeLanguage.connect(changeLanguage)
+
+func changeLanguage() -> void:
+	if selectCard!=-1:
+		control_gui_press(selectCard)
 
 
 

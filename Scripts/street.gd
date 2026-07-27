@@ -286,7 +286,7 @@ func _show_pending_hearsay_reward():
 		"hplimit": hp_limit_rewards[hearsay_reward_id]
 	}
 	var _reward:rewardPanel=PanelManager.new_reward()
-	_reward.showTitileReward(tr("洞悉各方内幕，坚定了你处置政务的决心，永久提升自身体力上限。"),items)
+	_reward.showTitileReward("洞悉各方内幕，坚定了你处置政务的决心，永久提升自身体力上限。",items)
 		
 @onready var merchant: Node2D = $CanvasLayer/blank/merchant
 
@@ -306,7 +306,7 @@ func getXuanYin():
 		"population": 0
 	}
 	GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.BADAO]=""
-	_reward.showTitileReward(tr("恭喜你，你从黑商手中获得-玄阴玉符"),items)	
+	_reward.showTitileReward("恭喜你，你从黑商手中获得-玄阴玉符",items)	
 	GameManager.sav.have_event["获得玄阴"]=true
 	
 func HuntdownKe():
@@ -317,7 +317,7 @@ func HuntdownKe():
 		"population": 0
 	}
 	#GameManager.ScoreToItem()
-	_reward.showTitileReward(tr("恭喜你，你获得-饥蛊骨签"),items)
+	_reward.showTitileReward("恭喜你，你获得-饥蛊骨签",items)
 	GameManager.sav.have_event["获得古棒"]=true
 	_initData()
 	#执行完返回府邸有新动画
@@ -584,7 +584,7 @@ func merchantSendGift():
 	var items=GameManager.ScoreToItem(1000)
 	items.money=0
 	items.population=0
-	_reward.showTitileReward(tr("你从商人那边获得如下道具"),items)
+	_reward.showTitileReward("你从商人那边获得如下道具",items)
 
 
 
@@ -656,7 +656,7 @@ func getScholarReward1():
 	}
 	GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.DARU]=""
 	#GameManager.ScoreToItem()
-	_reward.showTitileReward(tr("恭喜你，你获得-论语简注"),items)	
+	_reward.showTitileReward("恭喜你，你获得-论语简注",items)	
 func getScholarReward2():
 	var _reward:rewardPanel=PanelManager.new_reward()
 	var items={
@@ -666,7 +666,7 @@ func getScholarReward2():
 	}
 	GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.DARU]=""
 	#GameManager.ScoreToItem()
-	_reward.showTitileReward(tr("恭喜你，你获得-礼记笺疏"),items)	
+	_reward.showTitileReward("恭喜你，你获得-礼记笺疏",items)	
 	
 func getScholarReward3Before():
 	GameManager.sav.have_event["大儒辩经完成"]=true	
@@ -680,7 +680,7 @@ func getScholarReward3():
 		"population": 0
 	}
 	#GameManager.ScoreToItem()
-	_reward.showTitileReward(tr("恭喜你，你获得-治国箴言"),items)	
+	_reward.showTitileReward("恭喜你，你获得-治国箴言",items)	
 	await SignalManager.endReward
 	GameManager.sav.summonMaxNum=2
 	#GameManager.changePeopleSupport(10)
@@ -700,7 +700,7 @@ func holdWoolden():
 		"population": 0
 	}
 	#GameManager.ScoreToItem()
-	_reward.showTitileReward(tr("恭喜你，你获得-道具竹简"),items)	
+	_reward.showTitileReward("恭喜你，你获得-道具竹简",items)	
 	#reward获得
 func BurySheep():
 	GameManager.sav.Merit_points+=3
@@ -899,7 +899,7 @@ func getXueJiItem():
 	
 		bossBattleAfter=true
 		GameManager.sav.maxHP=GameManager.sav.maxHP+20
-		_reward.showTitileReward(tr("恭喜你，你获得-血姬傀儡"),items)	
+		_reward.showTitileReward("恭喜你，你获得-血姬傀儡",items)	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
 var bossBattleAfter=false
@@ -922,7 +922,7 @@ func getDaoQianItem():
 	#GameManager.ScoreToItem()
 	bossBattleAfter=true
 	GameManager.sav.have_event["获得血袖"]=true
-	_reward.showTitileReward(tr("恭喜你，你获得-陶谦血袖"),items)		
+	_reward.showTitileReward("恭喜你，你获得-陶谦血袖",items)		
 
 func _bossMode():
 	if bossBattleAfter==false:
@@ -1034,7 +1034,7 @@ func returnStreet():
 		"population": 0
 		}
 	
-		_reward.showTitileReward(tr("恭喜你，你捡到一个钱袋"),items)	
+		_reward.showTitileReward("恭喜你，你捡到一个钱袋",items)	
 
 
 
@@ -1047,7 +1047,7 @@ func getZhenrenItem():
 	}
 	#GameManager.ScoreToItem()
 	bossBattleAfter=true
-	_reward.showTitileReward(tr("恭喜你，修道真人陨落，他体内的气息转变为你的力量"),items)	
+	_reward.showTitileReward("恭喜你，修道真人陨落，他体内的气息转变为你的力量",items)	
 const ZHENREN = preload("res://Asset/vedio/zhenren.ogv")
 func playzhenren():
 	#var tao = load("res://Asset/vedio/GULONGTEST.ogv")

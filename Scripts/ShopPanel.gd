@@ -50,6 +50,8 @@ const SELF_SELL_BUTTON_ACTIVE := Color(1, 1, 1, 1)
 const SELF_SELL_BUTTON_INACTIVE := Color(0.72, 0.72, 0.72, 1)
 var self_sell_counts := {}
 var self_sell_updating_input := false
+var _detailMessageKey:=""
+var _detailMessageValues:={}
 # Called when the node enters the scene tree for the first time.
 func initData2():
 	GameManager.shopPanel=self
@@ -137,9 +139,11 @@ var price:int
 @onready var buy_button = $buyButton
 
 func initData():
+	if not SignalManager.changeLanguage.is_connected(changeLanguage):
+		SignalManager.changeLanguage.connect(changeLanguage)
 	self_sell_bg.hide()
 	self_sell_panel.hide()
-	detail.text=tr("点击商品获取详细信息")
+	_setDetailMessage("点击商品获取详细信息")
 	buy_button.disabled=true
 	selectGoods=null
 	refreshAlreadySoldWeapon()
@@ -152,17 +156,49 @@ func refreshPage(_price,_detail):
 		price=floor(price * 0.85)
 		discount_context=tr("【法令打折】")
 	detail.text=tr(_detail)+"\n\n"+tr("当前商品价格:{price}").format({"price":price})+discount_context
+	_detailMessageKey=""
 	# selectGoods.itemstype#通过这个获取价格
 	pass
 	
 func refreshAlreadySoldTxt(index):
 	buy_button.disabled=true
 	if index==1:
-		detail.text=tr("当前武器你已经持有了，无需再购买")
+		_setDetailMessage("当前武器你已经持有了，无需再购买")
 	elif index==2:
-		detail.text=tr("这个饰品你已经持有了，无需再购买")
+		_setDetailMessage("这个饰品你已经持有了，无需再购买")
 	else:
-		detail.text=tr("这个秘闻你已经知道了，请改日再来吧")
+		_setDetailMessage("这个秘闻你已经知道了，请改日再来吧")
+
+func _setDetailMessage(key:String, values:Dictionary={}):
+	_detailMessageKey=key
+	_detailMessageValues=values.duplicate()
+	detail.text=tr(key).format(_detailMessageValues)
+
+func changeLanguage():
+	if selectGoods!=null:
+		var itemname=InventoryManagerItem.item_by_enum(selectGoods.itemstype)
+		var properties:Array=InventoryManager.get_item_properties(itemname)
+		var detailItems=properties.filter(func(a):return a["name"]=="detail")
+		var priceItems=properties.filter(func(a):return a["name"]=="price")
+		if selectGoods.alreaysold.visible:
+			refreshAlreadySoldTxt(selectGoods.isspecial())
+		elif not detailItems.is_empty() and not priceItems.is_empty():
+			refreshPage(priceItems[0]["value"],detailItems[0]["value"])
+	elif _detailMessageKey.length()>0:
+		detail.text=tr(_detailMessageKey).format(_detailMessageValues)
+	if self_sell_panel.visible:
+		_refresh_self_sell_panel()
+	_refreshMerchantOfferText()
+
+func _refreshMerchantOfferText():
+	if useItems==null or not (useItems is Dictionary) or useItems.is_empty() or not back_txt.visible:
+		return
+	GameManager.SoldItemStr=generate_consumed_string(useItems)
+	var enhanceContext=""
+	if GameManager.sav.shopEnhance>0:
+		enhanceContext=tr("[法令提升了收购价{profit}%]").format({"profit":GameManager.sav.shopEnhance*15})
+	GameManager.SoldItemStr=tr("我将以%d金收购你手上的")%GameManager.SoldCoin+" ["+GameManager.SoldItemStr+"]"+enhanceContext
+	back_txt.text=GameManager.SoldItemStr
 
 func _get_selected_hearsay_id() -> int:
 	if selectGoods==null:
@@ -236,7 +272,7 @@ func _on_buy_button_down():
 	else:
 		selectGoods=null
 		price=0
-		detail.text=tr("你买不起物品")
+		_setDetailMessage("你买不起物品")
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"小本生意，请谅解")
 		print("你买不起物品")
 	pass # Replace with function body.
@@ -263,7 +299,7 @@ func _on_texture_button_2_button_down():
 func settleAfter():
 	
 	#if selectGoods.isspecial():
-	detail.text=tr("点击商品获取详细信息")
+	_setDetailMessage("点击商品获取详细信息")
 	buy_button.disabled=true
 	selectGoods=null
 	refreshAlreadySoldWeapon()
@@ -298,7 +334,7 @@ func confireSold():
 				InventoryManager._remove_item(GameManager.inventoryPackege,item_type,useItems[item_type])
 	useItems=[]
 	AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_7")
-	back_txt.text="当前商人没有需要从你手中收购商品的需要，请改日再来！"
+	back_txt.text=tr("当前商人没有需要从你手中收购商品的需要，请改日再来！")
 	_hide_sell_buttons()
 	self_sell_bg.hide()
 	self_sell_panel.hide()
@@ -400,11 +436,11 @@ func _refresh_self_sell_panel():
 
 func _on_self_buy_button_down():
 	if GameManager.sav.isSoldItem:
-		detail.text=tr("今日已经售卖过商品，请改日再来")
+		_setDetailMessage("今日已经售卖过商品，请改日再来")
 		return
 	_reset_self_sell_counts()
 	if !_has_self_sell_items():
-		detail.text=tr("没有可售卖商品")
+		_setDetailMessage("没有可售卖商品")
 		return
 	_refresh_self_sell_panel()
 	self_sell_bg.show()

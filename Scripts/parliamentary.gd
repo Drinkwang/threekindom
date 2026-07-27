@@ -8,13 +8,25 @@ extends Control
 @onready var button = $lawPanel/DetailPanel/Button
 
 var _isPass:bool=false
+var _hasResult:bool=false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	p_1.text="{NP}\n{RT}\n{SP}\n{OP}".format({"NP": "__", "RT":"__","SP":"__","OP":"__"})  #本土派
 	p_2.text="{NP}\n{RT}\n{SP}\n{OP}".format({"NP": "__", "RT":"__","SP":"__","OP":"__"})  #外来派
 	#enter()
 	refreshSysLanguageFont()
+	SignalManager.changeLanguage.connect(changeLanguage)
 	pass # Replace with function body.
+
+func changeLanguage():
+	refreshSysLanguageFont()
+	p_label.text=tr("士族派:外来派:豪族派") if GameManager.sav.have_event["Factionalization"] else tr("本土派:外来派")
+	if _hasResult:
+		var totalSp:int=GameManager.sav.BENTUPAI._num_sp+GameManager.sav.WAIDIPAI._num_sp+GameManager.sav.HAOZUPAI._num_sp
+		var totalOp:int=GameManager.sav.BENTUPAI._num_op+GameManager.sav.WAIDIPAI._num_op+GameManager.sav.HAOZUPAI._num_op
+		var totalNum:int=GameManager.sav.BENTUPAI._num_all+GameManager.sav.WAIDIPAI._num_all+GameManager.sav.HAOZUPAI._num_all
+		var totalrate=floor((totalSp*1.0/totalNum*1.0)*100.0)
+		o_1.text="{AS}\n{AP}\n{RATE}%\n{FINAL}".format({"AS":totalSp,"AP":totalOp,"RATE":totalrate,"FINAL":tr("通过" if _isPass else "未通过")})
 
 #在进入瞬间判断出结果，然后做一个动画
 const bgmxuanhua = preload("res://Asset/sound/议会喧哗声音.mp3")
@@ -99,6 +111,7 @@ func enter():
 		
 		#GameManager.
 	o_1.text="{AS}\n{AP}\n{RATE}%\n{FINAL}".format({"AS": totalSp, "AP":totalOp ,"RATE":totalrate,"FINAL":tr(isPass)})
+	_hasResult=true
 	SoundManager.stop_sound(bgmxuanhua)
 	button.show()
 	

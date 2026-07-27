@@ -63,10 +63,11 @@ func _changeLanguage():
 		#title.remove_theme_font_override("font")
 		#context.remove_theme_font_override("font")
 		context.add_theme_font_size_override("font_size", 48)
+	refreshContext()
 	
 func refreshContext():
 	if GameManager.sav.curGovAff.length()>0:
-		var display_text = GameManager.sav.curGovAff
+		var display_text = tr(GameManager.sav.curGovAff)
 		# 序章 day1-day3：标记已完成事项
 		var day = GameManager.sav.day
 		if day >= 1 and day <= 3:
@@ -87,8 +88,8 @@ func refreshContext():
 				elif day == 3:
 					if i == 0:
 						done = flags.get("firstBattleEnd", false)
-				if done and not lines[i].contains("已完成"):
-					lines[i] += "（已完成）"
+				if done and not lines[i].contains(tr("已完成")):
+					lines[i] += tr("（已完成）")
 			contextEX = "\n".join(lines)
 		else:
 			contextEX = display_text
@@ -179,7 +180,7 @@ func refreshContext():
 					#policycontext=policycontext+"\n"+tr("每旬至少完成{n}次军事行动").format({"n":dailyBattleCount})
 		else:
 			if GameManager.sav.TargetDestination.length()>0:
-				policycontext=GameManager.sav.TargetDestination	
+				policycontext=tr(GameManager.sav.TargetDestination)	
 			else:
 				if GameManager.sav.have_event["庆功宴结束"]==true:
 					policycontext=tr("新目标将与关键角色对话解锁")
@@ -197,7 +198,7 @@ func refreshContext():
 		if sideNum>0:
 			contextEX=contextEX+"\n\n"+tr("支线任务")+"：\n"
 			for i in range(0,sideNum):
-				contextEX=contextEX+var_to_str(i+1)+":"+questContexts[i]+"\n"
+				contextEX=contextEX+var_to_str(i+1)+":"+tr(questContexts[i])+"\n"
 	contextEX=append_prologue_hearsay_progress(contextEX)
 	if(context!=null):
 		context.text=contextEX

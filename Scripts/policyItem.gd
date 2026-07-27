@@ -54,11 +54,10 @@ func _changeLanguage():
 			
 	else:
 		$Panel/context.remove_theme_font_override("font")
+	if data!=null:
+		_refreshLocalizedData()
 
-var data
-func initDataByGroup(index,group):
-
-	data=PolicyManager.policy_Item.filter(func(ele): return ele.group == group-1 and ele.index==index)[0]
+func _refreshLocalizedData():
 	detail=data.detail
 	if data.group==3:
 		var paixi:cldata
@@ -69,7 +68,6 @@ func initDataByGroup(index,group):
 		elif data.index==3:
 			paixi=GameManager.sav.WAIDIPAI
 		detail=tr(data.detail)
-		# 替换消耗占位符为实际数值
 		if data.index==1:
 			detail=detail.format({"cost1":GameManager.getMinxinCost1()})
 		elif data.index==2:
@@ -80,24 +78,28 @@ func initDataByGroup(index,group):
 	else:
 		detail=tr(data.detail)
 	context=data.name
-	if GameManager.haveMirror():
-		#var paixi:cldata
-		if data.group==3:
-			if data.index==1:
-				#paixi=GameManager.sav.BENTUPAI
-				TooltipManager.register_tooltip(self,tr(data.tootip).format({"point1":GameManager.getMinxinValue1(),"cost1":GameManager.getMinxinCost1()}))
-			elif data.index==2:
-				#paixi=GameManager.sav.HAOZUPAI if GameManager.sav.HAOZUPAI.isshow else GameManager.sav.BENTUPAI
-				TooltipManager.register_tooltip(self,tr(data.tootip).format({"point2":GameManager.getMinxinValue2(),"cost2":GameManager.getMinxinCost2()}))
-			elif data.index==3:
-				#paixi=GameManager.sav.WAIDIPAI
-				TooltipManager.register_tooltip(self,tr(data.tootip).format({"point3":GameManager.getMinxinValue3(),"point4":GameManager.getMinxinValue4(),"cost3":GameManager.getMinxinCost3()}))
-				
-		else:
-			TooltipManager.register_tooltip(self,tr(data.tootip))
-	else:
+	_refreshTooltip()
+
+func _refreshTooltip():
+	if not GameManager.haveMirror():
 		TooltipManager.unregister_tooltip(self)
 		self.tooltip_text=""
+		return
+	if data.group==3:
+		if data.index==1:
+			TooltipManager.register_tooltip(self,tr(data.tootip).format({"point1":GameManager.getMinxinValue1(),"cost1":GameManager.getMinxinCost1()}))
+		elif data.index==2:
+			TooltipManager.register_tooltip(self,tr(data.tootip).format({"point2":GameManager.getMinxinValue2(),"cost2":GameManager.getMinxinCost2()}))
+		elif data.index==3:
+			TooltipManager.register_tooltip(self,tr(data.tootip).format({"point3":GameManager.getMinxinValue3(),"point4":GameManager.getMinxinValue4(),"cost3":GameManager.getMinxinCost3()}))
+	else:
+		TooltipManager.register_tooltip(self,tr(data.tootip))
+
+var data
+func initDataByGroup(index,group):
+
+	data=PolicyManager.policy_Item.filter(func(ele): return ele.group == group-1 and ele.index==index)[0]
+	_refreshLocalizedData()
 	if group==4:
 		heart.show()
 	else:

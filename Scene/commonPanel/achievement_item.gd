@@ -8,7 +8,15 @@ class_name achiClass
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	SignalManager.changeLanguage.connect(changeLanguage)
+
+func changeLanguage() -> void:
+	if _data!=null:
+		context.text=tr(_data.enemy)+"："+tr(_data.level)+"\n"+tr(_data.detail)
+	if lstate==lockState.lock:
+		TooltipManager.register_tooltip(color_rect,tr("该成就未解锁"))
+	elif lstate==lockState.close:
+		TooltipManager.register_tooltip(discard,tr("该成就未完成，请在指定模式按照要求完成成就"))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -138,7 +146,7 @@ func _on_nine_patch_rect_gui_input(event: InputEvent) -> void:
 			}
 			
 			_data.iscom=2
-			_reward.showTitileReward(tr("恭喜你完成了成就"),items)
+			_reward.showTitileReward("恭喜你完成了成就",items)
 			_set_card_collection_achievement_if_complete()
 			
 			
@@ -156,7 +164,7 @@ func _on_gui_input(event: InputEvent) -> void:
 			"population": _data.peopleGet
 			}
 			_data.iscom=2
-			_reward.showTitileReward(tr("恭喜你完成了成就"),items)
+			_reward.showTitileReward("恭喜你完成了成就",items)
 			_set_card_collection_achievement_if_complete()
 			
 			

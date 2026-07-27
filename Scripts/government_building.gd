@@ -327,7 +327,7 @@ func mizhenGift():
 	#GameManager.ScoreToItem()
 	
 	GameManager.sav.hp=GameManager.sav.hp+10
-	_reward.showTitileReward(tr("恭喜你，你获得-益气丸x2"),items)		
+	_reward.showTitileReward("恭喜你，你获得-益气丸x2",items)		
 
 func subHoldWoold():
 	GameManager.sav.have_event["支线触发完毕查出锦囊"]=true
@@ -1534,7 +1534,7 @@ func holdSac():
 	#GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.KESULU]=tr("携药囊见曹豹，调查张阎毒杀之谜")
 	GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.KESULU]=tr("下一旬携药囊见曹豹，调查张阎毒杀之谜")
 	#GameManager.ScoreToItem()
-	_reward.showTitileReward(tr("恭喜你，你获得-黄麻药囊"),items)	
+	_reward.showTitileReward("恭喜你，你获得-黄麻药囊",items)	
 	
 @onready var factionView= $CanvasLayer/faction
 @onready var support_panel: supportPanel = $CanvasLayer/supportPanel
@@ -1626,7 +1626,7 @@ func boardVictory():
 			"population": 0
 		}
 
-		_reward.showTitileReward(tr("你战胜了糜竺"),items)	
+		_reward.showTitileReward("你战胜了糜竺",items)	
 	elif GameManager._boardReward==boardType.boardRewardResult.card:
 		var _reward:rewardPanel=PanelManager.new_reward()
 	
@@ -1635,7 +1635,7 @@ func boardVictory():
 			"money": 0,
 			"population": 0
 		}
-		_reward.showTitileReward(tr("你战胜了糜竺"),items)	
+		_reward.showTitileReward("你战胜了糜竺",items)	
 	elif GameManager._boardReward==boardType.boardRewardResult.BreakFree:
 		pass
 	GameManager._boardReward=boardType.boardRewardResult.none

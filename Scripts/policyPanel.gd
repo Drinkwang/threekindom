@@ -158,11 +158,34 @@ func changeLanguage():
 		#currence_no_policy.remove_theme_font_override("font")
 	#point_label.text=tr("点数:%s")%GameManager.sav.Merit_points
 	refreshLawPoint()
+	_refreshCurrentDescription()
 	
 	if GameManager.sav.gameDifficulty==1:
 		TooltipManager.register_tooltip(ConfireButton,tr("立法收益仅在表决通过后生效。本难度下，仅点亮立法节点会扣除受损派系支持度，法案通过不再重复扣除。"))
 	else:
 		TooltipManager.register_tooltip(ConfireButton,tr("立法的好处仅表决通过后获得；点亮节点、立法通过均会扣除受损派系支持度。"))
+
+func _refreshCurrentDescription():
+	if selectLawPoint!=null:
+		law_label.text=_getLocalizedLawDetail(selectLawPoint)
+		changeexp_len()
+	elif GameManager.sav.curLawName.length()>0:
+		law_label.text=tr("当前【%s】法案已被立项，请先在议事厅通过该法案，才能立项其他法律。") % tr(GameManager.sav.curLawName)
+		changeexp_len()
+	elif index>=1 and index<=3:
+		var selected_item:policyItem=get("control_%d"%index)
+		label.text=tr(selected_item.context)+":"+selected_item.detail
+		canHideBlockShow()
+
+func _getLocalizedLawDetail(value:lawpoint)->String:
+	var context:String="{bg}({Txt})".format({"bg":tr(value.IncomeBg),"Txt":tr(value.IncomeTxt)})
+	if "[danyang]" in context:
+		context=context.replace("[danyang]",tr("丹阳派"))
+	if "[shizu]" in context:
+		context=context.replace("[shizu]",tr("士族派") if GameManager.sav.have_event["Factionalization"] else tr("本土派"))
+	if "[haozu]" in context:
+		context=context.replace("[haozu]",tr("豪族派") if GameManager.sav.have_event["Factionalization"] else tr("本土派"))
+	return context
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
@@ -350,19 +373,7 @@ func preLaw(value:lawpoint):
 	ConfireButton.show()
 	selectLawPoint=value
 	
-	var context:String=value.detail
-	if "[danyang]" in context:
-		context=context.replace("[danyang]",tr("丹阳派"))
-	if "[shizu]" in context:
-		if GameManager.sav.have_event["Factionalization"]==true:
-			context=context.replace("[shizu]",tr("士族派"))
-		else:
-			context=context.replace("[shizu]",tr("本土派"))
-	if "[haozu]" in context:
-		if GameManager.sav.have_event["Factionalization"]==true:
-			context=context.replace("[haozu]",tr("豪族派"))
-		else:
-			context=context.replace("[haozu]",tr("本土派"))			
+	var context:String=_getLocalizedLawDetail(value)
 	#if value.detail
 	
 	law_label.text=context

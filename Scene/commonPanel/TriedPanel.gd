@@ -8,6 +8,10 @@ class_name TiredPanel
 @onready var initrestBtn: Button = $Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Button2
 
 func _ready():
+	SignalManager.changeLanguage.connect(changeLanguage)
+	changeLanguage()
+
+func changeLanguage():
 	var count=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.益气丸)
 
 	if count>0:

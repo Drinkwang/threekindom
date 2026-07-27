@@ -126,8 +126,10 @@ func judgeAchive():
 			unlock=true
 		if unlock==true:
 			achiData.iscom=1
+			_achievementResultKey="已完成"
 			achiwin.text=tr("成就：")+tr(achiData.detail)+"\n"+tr("已完成")
 		else:
+			_achievementResultKey="已失败"
 			achiwin.text=tr("成就：")+tr(achiData.detail)+"\n"+tr("已失败")
 			#成就已完成
 		TooltipManager.register_tooltip(achiwin,tr("达成的成就奖励，请至「诡异杂项 - 诡异成就录」处具现领取"))
@@ -150,6 +152,7 @@ func judgeAchiveInPer():
 			unlock=false
 		if unlock==false:
 
+			_achievementResultKey="已失败"
 			achiwin.text=tr("成就：")+tr("已失败")
 			achi_label.self_modulate=Color.GRAY
 			#成就已完成
@@ -260,6 +263,36 @@ func changeLanguage():
 	_fit_detail_text_to_width()
 
 	_on_crit_indicator_Txt()
+	_refreshRuntimeLanguageText()
+
+func _refreshRuntimeLanguageText():
+	score_txt.text=tr("玩家得分：{s}").format({"s":score})
+	enemy_score_txt.text=tr("敌人得分：{s}").format({"s":enemyscore})
+	turn_num_Txt.text=tr("回合数：{s}/5").format({"s":turn_num})
+	if _resideStepValue>=0:
+		reside_num.text=tr("剩余步数：{s}").format({"s":_resideStepValue})
+	if _endButtonTextKey.length()>0:
+		end_button.text=tr(_endButtonTextKey)
+	var achiData=GameManager.sav.card_achives[achiIndex]
+	achi_label.text=tr("成就：")+tr(achiData.detail)
+	TooltipManager.register_tooltip(achi_label,tr("达成的成就奖励，请至「诡异杂项 - 诡异成就录」处具现领取"))
+	if _achievementResultKey.length()>0:
+		achiwin.text=tr("成就：")+tr(achiData.detail)+"\n"+tr(_achievementResultKey)
+		TooltipManager.register_tooltip(achiwin,tr("达成的成就奖励，请至「诡异杂项 - 诡异成就录」处具现领取"))
+	_update_crit_indicator(_lastCritSuit)
+
+var _resideStepValue:=-1
+var _endButtonTextKey:=""
+var _achievementResultKey:=""
+var _lastCritSuit:=-1
+
+func _setResideStepText(value:int):
+	_resideStepValue=value
+	reside_num.text=tr("剩余步数：{s}").format({"s":value})
+
+func _setEndButtonText(key:String):
+	_endButtonTextKey=key
+	end_button.text=tr(key)
 
 func post_transition():
 	if GameManager._boardMode==boardType.boardMode.high and GameManager.sav.caobaocardgame==4 and GameManager.selectBoardCharacter==boardType.boardCharacter.caobao:
@@ -634,7 +667,7 @@ func insertCard(group:groupType,value):
 			playerStage-=1
 		if playerStage<=0:
 			pass
-		reside_num.text=tr("剩余步数：{s}").format({"s":playerStage})
+		_setResideStepText(playerStage)
 	
 	if  _phaseName==phaseName.useCard:
 		if isPlayerTurn:
@@ -905,12 +938,12 @@ func enterNewPhase(stage:phaseName):
 			reset_crit_chain_state()
 			playerStage=maxUseCard
 			currentTurnUseCardNum=0
-			reside_num.text=tr("剩余步数：{s}").format({"s":playerStage})
+			_setResideStepText(playerStage)
 	
 			punishimg.texture=null
 			_set_detail_text(tr("出牌阶段，请使用你的卡牌"))
 			board_panel.hide()
-			end_button.text=tr("回合结束")
+			_setEndButtonText("回合结束")
 			reside_num.show()
 			if _crit_indicator != null and _crit_indicator.text != "":
 				_crit_indicator.show()
@@ -1121,7 +1154,7 @@ func checkCardStage(_groupType):
 							if turn_num<5:
 								#SoundManager.play_sound(payCostSound)
 								SoundManager.play_sound(sounds.deniedsound)
-							end_button.text=tr("拒付惩罚")
+							_setEndButtonText("拒付惩罚")
 							_set_detail_text(tr("请支付你所需的惩罚："))
 							punishStage=true
 							end_button.show()
@@ -1696,7 +1729,7 @@ func excuteSecret(groupobj:Array):
 						if isPlayerTurn:
 							drawOne(true)
 							playerStage+=1
-							reside_num.text=tr("剩余步数：{s}").format({"s":playerStage})
+							_setResideStepText(playerStage)
 							
 						else:
 							drawOne(false)
@@ -2164,6 +2197,7 @@ func insertCardRandom(group:groupType):
 		reshuffle()	
 
 func _update_crit_indicator(suit: int) -> void:
+	_lastCritSuit=suit
 	_crit_pending_suit = suit
 	if _crit_indicator == null:
 		return
@@ -2248,7 +2282,7 @@ func phaseEnd():
 		#先支付一张红桃
 		#如果没有红桃则扣hp-1
 		if haveHeart() and groupPunishTyp!=groupType.min and groupPunishTyp2!=groupType.min:
-			end_button.text=tr("拒付失去体力")
+			_setEndButtonText("拒付失去体力")
 			_set_detail_text(tr("是否支付民心替代惩罚："))
 			if isPlayerTurn==true:
 				#然后还要过度强度
@@ -2409,7 +2443,7 @@ func _execute_crit_effect(suit: int) -> void:
 				_set_detail_text(tr("暴击·民能载势！") + desc)
 			1:
 				playerStage = mini(playerStage + 1, maxUseCard + 1)
-				reside_num.text = tr("剩余步数：{s}").format({"s": playerStage})
+				_setResideStepText(playerStage)
 				var _h2 = myhand.get_children()
 				if _h2.size() > 0:
 					var _r2 = randi() % _h2.size()
@@ -2421,7 +2455,7 @@ func _execute_crit_effect(suit: int) -> void:
 				drawOne(true)
 				#drawOne(true)
 				playerStage = max(0, playerStage - 1)
-				reside_num.text = tr("剩余步数：{s}").format({"s": playerStage})
+				_setResideStepText(playerStage)
 				desc = tr("抽1牌，步数-1")
 				_set_detail_text(tr("暴击·商贾囤货！") + desc)
 			3:
@@ -2617,7 +2651,7 @@ func _start_tutorial_card_line(card:Control) -> void:
 func _tutorial_seed_basic_preview() -> void:
 	_reset_tutorial_preview()
 	reside_num.show()
-	reside_num.text=tr("剩余步数：{s}").format({"s":maxUseCard})
+	_setResideStepText(maxUseCard)
 	drawOneInTour(5)
 	drawOneInTour(13)
 	drawOneInTour(21)
@@ -2632,7 +2666,7 @@ func _tutorial_seed_basic_preview() -> void:
 
 func _tutorial_get_play_preview_card() -> boardCard:
 	reside_num.show()
-	reside_num.text=tr("剩余步数：{s}").format({"s":maxUseCard})
+	_setResideStepText(maxUseCard)
 	if shi_group.get_child_count() == 0:
 		insertCard(groupType.shi,14)
 	await get_tree().process_frame
@@ -2781,7 +2815,7 @@ func showtutorial(num,isshow):
 			if num==4 and isshow==true:
 				#var obj:Control=myhand.get_child(2)
 				#obj.queue_free()
-				reside_num.text=tr("剩余步数：{s}").format({"s":maxUseCard-1})
+				_setResideStepText(maxUseCard-1)
 				var arrs=shi_group.get_children()
 				for a in arrs:
 					a.queue_free()

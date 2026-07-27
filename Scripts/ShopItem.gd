@@ -10,6 +10,7 @@ const InventoryManagerName = "InventoryManager"
 @onready var context = $frame/context
 @onready var alreaysold = $frame/Alreaysold
 @onready var dif: Label = $DIF
+var _tooltipKind:=""
 
 
 
@@ -57,6 +58,7 @@ func set_dif(value: int):
 		else:
 			item_context.hide()
 func set_Data(key,value):
+	_tooltipKind="item"
 	if key==null:
 		key=itemstype
 	itemstype=key
@@ -88,6 +90,7 @@ const LABOR = preload("res://Asset/ui/战力.png")
 const COIN = preload("res://Asset/ui/钱财.png")
 const HP_LIMIT = preload("res://Asset/hplimit.png")
 func set_Money(_num):
+	_tooltipKind="money"
 	context.texture=COIN
 	TooltipManager.register_tooltip(self,tr("钱：持有的钱数量(可购买道具、军事行动的资金)"))
 
@@ -96,6 +99,7 @@ func set_Money(_num):
 @onready var txt_quantity = $frame/Quantity
 
 func set_Labor(_num):
+	_tooltipKind="labor"
 	context.texture=LABOR
 	TooltipManager.register_tooltip(self,tr("民力：拥有空闲民力(可转换为士兵)"))
 
@@ -103,6 +107,7 @@ func set_Labor(_num):
 	txt_quantity.text=var_to_str(_num)
 
 func set_HpLimit(_num):
+	_tooltipKind="hp_limit"
 	context.texture=HP_LIMIT
 	TooltipManager.register_tooltip(self,tr("体力上限，永久提升角色最大体力值"))
 
@@ -118,6 +123,7 @@ func _ready():
 	context.texture=img
 	if GameManager==null or GameManager.sav==null:
 		return
+	SignalManager.changeLanguage.connect(changeLanguage)
 	
 	var itemname= InventoryManagerItem.item_by_enum(itemstype)
 	if itemname.length()==0:
@@ -131,6 +137,7 @@ func _ready():
 	var detail=properties.filter(func(a):return a["name"]=="detail")[0]
 	
 	var _context=tr(db.name)+":"+tr(detail["value"])
+	_tooltipKind="item"
 
 	if TooltipManager and TooltipManager.has_method("register_tooltip"):
 		TooltipManager.register_tooltip(self,_context)
@@ -143,6 +150,26 @@ func _ready():
 		refreshSold()
 	#if get_tree().get_root().has_node(questManagerName):
 	#	questManager = get_tree().get_root().get_node(questManagerName)
+
+func changeLanguage():
+	match _tooltipKind:
+		"money":
+			TooltipManager.register_tooltip(self,tr("钱：持有的钱数量(可购买道具、军事行动的资金)"))
+		"labor":
+			TooltipManager.register_tooltip(self,tr("民力：拥有空闲民力(可转换为士兵)"))
+		"hp_limit":
+			TooltipManager.register_tooltip(self,tr("体力上限，永久提升角色最大体力值"))
+		"item":
+			var itemname=InventoryManagerItem.item_by_enum(itemstype)
+			if itemname.length()==0:
+				return
+			var db:InventoryItem=InventoryManager.get_item_db(itemname)
+			if db==null:
+				return
+			var details=db.properties.filter(func(a):return a["name"]=="detail")
+			if details.is_empty():
+				return
+			TooltipManager.register_tooltip(self,tr(db.name)+":"+tr(details[0]["value"]))
 
 func refreshSold():
 	var havedec=(itemstype==InventoryManagerItem.ItemEnum.洞察之镜 or itemstype==InventoryManagerItem.ItemEnum.獬豸圣像)

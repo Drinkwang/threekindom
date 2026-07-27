@@ -105,6 +105,10 @@ func _ready():
 const NOT_JAM_UI_CONDENSED_16 = preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf")
 func _changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()
+	if label!=null and showName.length()>0:
+		label.text=tr(showName)
+	if heart.visible and _heartValue!=null:
+		Heartlabel.text=tr("好感度:{s}").format({"s":_heartValue})
 
 	#if currencelanguage=="ru":
 	#	label.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
@@ -255,8 +259,10 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 
 @onready var Heartlabel = $Heart/Label
 @onready var heart_ani = $heartAni
+var _heartValue=null
 
 func showHeart(num):
+	_heartValue=num
 	heart.show()
 	Heartlabel.text=tr("好感度:{s}").format({"s":num})
 	heart_ani.play("heart")

@@ -22,6 +22,7 @@ func setup(data: Dictionary) -> void:
 
 func _ready() -> void:
 	layer = 128
+	SignalManager.changeLanguage.connect(_apply_data)
 	_apply_data()
 	play()
 

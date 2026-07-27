@@ -344,7 +344,7 @@ func cangxiFinalSurrender():
 		"money": 0,
 		"population": 100
 	}	
-	_reward.showTitileReward(tr("恭喜你，昌豨诚心归顺并奉上麾下部曲，现已收纳士卒一百人"),items)		
+	_reward.showTitileReward("恭喜你，昌豨诚心归顺并奉上麾下部曲，现已收纳士卒一百人",items)		
 	#GameManager.sav.labor_force+=100
 	GameManager.sav.currenceValue+=1
 	GameManager.sav.Merit_points+=2
@@ -517,7 +517,7 @@ func getLongdan():
 		"population": 0
 	}
 	#GameManager.ScoreToItem()
-	_reward.showTitileReward(tr("恭喜你，你获得-龙胆亮银枪"),items)	
+	_reward.showTitileReward("恭喜你，你获得-龙胆亮银枪",items)	
 	
 	
 var battleNum=0
@@ -764,7 +764,7 @@ func boardVictory():
 			"population": 40
 		}
 
-		_reward.showTitileReward(tr("你战胜了曹豹"),items)	
+		_reward.showTitileReward("你战胜了曹豹",items)	
 	elif GameManager._boardReward==boardType.boardRewardResult.card:
 		var _reward:rewardPanel=PanelManager.new_reward()
 	
@@ -773,7 +773,7 @@ func boardVictory():
 			"money": 0,
 			"population": 0
 		}
-		_reward.showTitileReward(tr("你战胜了曹豹"),items)	
+		_reward.showTitileReward("你战胜了曹豹",items)	
 	GameManager._boardReward=boardType.boardRewardResult.none
 func select2(issuccuss):
 	GameManager.sav.have_event["曹豹支线2"]=true
@@ -959,7 +959,7 @@ func caobaoLevelUpSoilder():
 		"population": 100
 	}
 
-	_reward.showTitileReward(tr("你获得了曹豹帮你训练的100士兵"),items,false)	
+	_reward.showTitileReward("你获得了曹豹帮你训练的100士兵",items,false)	
 
 func trainUseMoney():
 	res_panel.position.x=1564
@@ -1377,7 +1377,7 @@ func huangjinSurrender():
 		"money": 0,
 		"population": 100
 	}	
-	_reward.showTitileReward(tr("恭喜你，黄巾流民率众归降，已被你收纳"),items)		
+	_reward.showTitileReward("恭喜你，黄巾流民率众归降，已被你收纳",items)		
 	#GameManager.sav.labor_force+=100
 	GameManager.sav.currenceValue+=1
 	GameManager.sav.Merit_points+=2
@@ -1396,7 +1396,7 @@ func cangxiSurrender():
 		"population": 0
 	}
 	#GameManager.ScoreToItem()
-	_reward.showTitileReward(tr("恭喜你，你获得昌豨献上的财宝"),items)		
+	_reward.showTitileReward("恭喜你，你获得昌豨献上的财宝",items)		
 	GameManager.sav.currenceValue+=1
 	GameManager.sav.Merit_points+=2
 	pass
@@ -1552,11 +1552,14 @@ func winReward(isFirst,generalName):
 	if isFirst==true:
 		if isFinal==true:
 			items.hplimit=10
-			_reward.showTitileReward(_get_train_reward_title(tr("首次通过{name}的至高难度！你的最大体力值永久提升10点，并立即晋升该武将等级！").format({"name":tr(generalName),"modename":modename})),items)	
+			var titleBuilder=func():return _get_train_reward_title(tr("首次通过{name}的至高难度！你的最大体力值永久提升10点，并立即晋升该武将等级！").format({"name":tr(generalName),"modename":tr(modename)}))
+			_reward.showTitileReward(titleBuilder.call(),items,true,titleBuilder)	
 		else:
-			_reward.showTitileReward(_get_train_reward_title(tr("你与{name}在【{modename}】模式下，首次比武获胜了，提升武将等级").format({"name":tr(generalName),"modename":modename})),items)	
+			var titleBuilder=func():return _get_train_reward_title(tr("你与{name}在【{modename}】模式下，首次比武获胜了，提升武将等级").format({"name":tr(generalName),"modename":tr(modename)}))
+			_reward.showTitileReward(titleBuilder.call(),items,true,titleBuilder)	
 	else:
-		_reward.showTitileReward(_get_train_reward_title(tr("你与{name}在【{modename}】模式下，比武获胜了").format({"name":generalName,"modename":modename})),items)		
+		var titleBuilder=func():return _get_train_reward_title(tr("你与{name}在【{modename}】模式下，比武获胜了").format({"name":tr(generalName),"modename":tr(modename)}))
+		_reward.showTitileReward(titleBuilder.call(),items,true,titleBuilder)		
 	GameManager.trainResult=SceneManager.trainResult.none
 	GameManager.trainGeneral=""	
 

@@ -33,6 +33,8 @@ func changeLanguage():
 		_logo.texture=E_LOGO
 	else:
 		_logo.texture=C_LOGO
+	if finalBG.visible:
+		_refreshSettlementText()
 # Credits text is animated from Chinese source strings, so translate each line
 # after animation keyframes update the labels. Creator names remain unchanged
 # because they do not have translation entries.
@@ -122,6 +124,10 @@ const normal_end = preload("res://Asset/end2.png")
 func settleGame():
 	if GameManager.sav.day<10:
 		_on_button_button_down()
+	_refreshSettlementText()
+	finalBG.show()
+
+func _refreshSettlementText():
 	var finaldec=""
 	
 	if GameManager.sav.endPath!=GameManager.endPath.none:
@@ -153,7 +159,6 @@ func settleGame():
 		what_final.hide()
 		detial.text=tr("恭喜你通关试玩版，请期待正式游戏")
 	
-	finalBG.show()
 	#修改finalBG
 
 

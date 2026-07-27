@@ -16,11 +16,12 @@ func changeLanguage():
 		target_label.add_theme_font_override("font",_1_SIM)
 	elif currencelanguage=="en":
 		target_label.remove_theme_font_override("font")
+	showTargetLabel()
 		
 func changeTargetLabel():
 	if(GameManager.sav.targetTxt==null || GameManager.sav.targetTxt.length()==0):
 		if GameManager.sav.TargetDestination!=null and GameManager.sav.TargetDestination.length()>0:
-			target_label.text=GameManager.sav.TargetDestination
+			target_label.text=tr(GameManager.sav.TargetDestination)
 	
 
 @onready var rateLabel=$TextureProgressBar/Label

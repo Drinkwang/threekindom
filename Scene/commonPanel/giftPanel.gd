@@ -2,9 +2,16 @@ extends CanvasLayer
 
 @onready var title = $Control/PanelContainer/MarginContainer/VBoxContainer/title
 @onready var texture_button = $Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/TextureButton
+var _factionName:=""
+var _index:=0
+var _point:=0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	SignalManager.changeLanguage.connect(changeLanguage)
+	changeLanguage()
+
+func changeLanguage():
 	var _item_db=InventoryManager.get_item_db(InventoryManagerItem.珍品礼盒)
 	var properties:Array=_item_db.properties
 
@@ -20,16 +27,25 @@ func _ready():
 			TooltipManager.register_tooltip(self,_context+tr("【已强化】"))
 		
 	TooltipManager.register_tooltip(texture_button,_context)	
+	if _factionName.length()>0:
+		_refreshTitle()
+	refreshBag()
 
 func _initPanel(factionName,index,point):
+	_factionName=factionName
+	_index=index
+	_point=point
+	_refreshTitle()
+	refreshBag()
+
+func _refreshTitle():
 	var indexName
-	if index>=0:
+	if _index>=0:
 		indexName="支持度"
 	else:
 		indexName="好感"	
-	title.text=tr("_issendgift").format({"factionName":tr(factionName),"point":point,"indexName":tr(indexName)})
+	title.text=tr("_issendgift").format({"factionName":tr(_factionName),"point":_point,"indexName":tr(indexName)})
 	texture_button.tooltip_text=tr("珍品礼盒")
-	refreshBag()
 	#是否给徐州派赠送礼物,赠送可以增加15点支持度
 	#是否给吕布赠送礼物,赠送可以增加15点好感
 	#是否消耗200金给 {{getFactionByIndex()._name}} 让其在议会中的人数提升{{(3+GameManager.sav.randomIndex)}}人

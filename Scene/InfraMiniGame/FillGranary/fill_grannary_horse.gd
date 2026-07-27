@@ -4,6 +4,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	SignalManager.changeLanguage.connect(updateDetail)
 	orighinpos=self.position # Replace with function body.
 
 @onready var texture_rect_4: TextureRect = $TextureRect4

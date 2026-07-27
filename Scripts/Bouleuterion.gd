@@ -89,6 +89,7 @@ func changeLanguage():
 		#node_2d.position=Vector2(605,811)
 		faction.position=Vector2(5,728.545)
 		pass
+	_refreshClaimMessage()
 
 #@onready var faction = $CanvasBook/faction
 
@@ -268,7 +269,7 @@ func chendengWantUpLevel():
 		"population": 0
 	}
 
-	_reward.showTitileReward(tr("你获得了陈登捐助的200金"),items,false)	
+	_reward.showTitileReward("你获得了陈登捐助的200金",items,false)	
 	
 	
 @onready var zhubu: Node2D = $CanvasBook/zhubu
@@ -502,6 +503,14 @@ func SettleLawRevenue():
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"通过法案")
 	faction.refreshData()
 @onready var claimLabel = $CanvasBook/ColorRect/Label
+var _claimMessageKey:=""
+var _claimMessageValues:={}
+
+func _refreshClaimMessage():
+	if _claimMessageKey.length()>0:
+		var values=_claimMessageValues.duplicate()
+		values["factions"]=tr(values.get("factions",""))
+		claimLabel.text=tr(_claimMessageKey).format(values)
 
 	
 func GetLawClaimRevenue():
@@ -539,9 +548,11 @@ func GetLawClaimRevenue():
 					#GameManager.changePeopleSupport(5)
 					GameManager.sav.Merit_points+=3
 					#未翻译
-					claimLabel.text=tr("提示：成功通过拉拢{factions}需求的法律！\n({factions}好感度提升{point}点，额外获得3政策点)\n(该派系摇摆人数减少)").format({"factions":factions,"point":point})
+					_claimMessageKey="提示：成功通过拉拢{factions}需求的法律！\n({factions}好感度提升{point}点，额外获得3政策点)\n(该派系摇摆人数减少)"
 				else:
-					claimLabel.text=tr("提示：成功通过拉拢{factions}需求的法律！\n({factions}好感度提升{point}点)\n(该派系摇摆人数减少)").format({"factions":factions,"point":point})	
+					_claimMessageKey="提示：成功通过拉拢{factions}需求的法律！\n({factions}好感度提升{point}点)\n(该派系摇摆人数减少)"
+				_claimMessageValues={"factions":factions,"point":point}
+				_refreshClaimMessage()
 				var animation_player=$CanvasBook/ColorRect/AnimationPlayer
 				animation_player.speed_scale = 1.0
 				animation_player.play("colorUp")
@@ -574,7 +585,7 @@ func cancelLaw():
 	faction.refreshData()
 	var items=GameManager.ScoreToItem(500)
 	var _reward:rewardPanel=PanelManager.new_reward()
-	_reward.showTitileReward(tr("本次议事未耗尽的补给物资已收入库房"),items)
+	_reward.showTitileReward("本次议事未耗尽的补给物资已收入库房",items)
 
 @onready var control_2: supportPanel = $CanvasBook/Control2
 
@@ -611,7 +622,7 @@ func boardVictory():
 			"population": 0
 		}
 
-		_reward.showTitileReward(tr("你战胜了陈登"),items)	
+		_reward.showTitileReward("你战胜了陈登",items)	
 	elif GameManager._boardReward==boardType.boardRewardResult.card:
 		var _reward:rewardPanel=PanelManager.new_reward()
 	
@@ -620,7 +631,7 @@ func boardVictory():
 			"money": 0,
 			"population": 0
 		}
-		_reward.showTitileReward(tr("你战胜了陈登"),items)	
+		_reward.showTitileReward("你战胜了陈登",items)	
 	GameManager._boardReward=boardType.boardRewardResult.none
 
 func openBoardGame():
