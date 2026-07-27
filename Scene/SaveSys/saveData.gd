@@ -154,6 +154,7 @@ var number_bool_map: Dictionary = {
 @export var lazyValue=0
 @export var finalKeChoice=-1
 @export var finalPhaseValue=0
+@export var factionClaimCountToday:int=0
 @export var autoSave:bool=false
 @export var HAOZUPAI:cldata=preload("res://Asset/tres/haozupai.tres").duplicate()
 @export var BENTUPAI:cldata=preload("res://Asset/tres/bentupai.tres").duplicate()

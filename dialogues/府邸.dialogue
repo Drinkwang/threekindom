@@ -314,7 +314,7 @@ do GameManager.improveFinalPhase()
 => END
 ~ 索取完成
 你已成功从{{getFactionByIndex().getTr()}}手中获取资金{{ForValueGet}}，消耗{{ForValueCost}}点好感度
-do _JudgeTask(true)
+do _JudgeTask(true, true)
 => END
 
 ~ 扩充吕布实力

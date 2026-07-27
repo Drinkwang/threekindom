@@ -866,10 +866,13 @@ func chendenHide():
 func _process(_delta):
 	pass
 
-func _JudgeTask(should_improve_final_phase: bool = false):
+func _JudgeTask(should_improve_final_phase: bool = false, is_faction_claim: bool = false):
 	_judge_task()
 	if should_improve_final_phase:
-		GameManager.improveFinalPhase()
+		if is_faction_claim:
+			GameManager.improveFinalPhaseFromFactionClaim()
+		else:
+			GameManager.improveFinalPhase()
 
 func _judge_task():
 	var value=GameManager.getTaskCurrenceValue()
@@ -1486,6 +1489,7 @@ func CF_claim():
 	_c.summonNum+=1
 	#减去资金
 	GameManager.sav.coin=GameManager.sav.coin+ForValueGet
+	GameManager.sav.factionClaimCountToday+=1
 	AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_8")
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"索取完成")
 

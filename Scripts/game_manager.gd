@@ -473,6 +473,7 @@ func _enterDay(value=true):
 		sav.isMeet=false
 		sav.isGetCoin=false
 		sav.isVisitScholar=false
+		sav.factionClaimCountToday=0
 		sav.randomIndex=randi_range(0,3)
 		sav.alreadyHP=0	
 		if GameManager.sav.endPath==GameManager.endPath.xiaopei:
@@ -856,6 +857,14 @@ func improveFinalPhase(value: int = 1, is_military_action: bool = false) -> bool
 	_showFinalPhaseImproveNotice.call_deferred()
 	return true
 
+func improveFinalPhaseFromFactionClaim() -> bool:
+	if sav.endPath == endPath.none or sav.finalPhaseValue <= 1:
+		return false
+	if sav.factionClaimCountToday > 2:
+		_showFinalPhaseClaimDeniedNotice.call_deferred()
+		return false
+	return improveFinalPhase()
+
 func _showFinalPhaseImproveNotice() -> void:
 	# A mutation can open a new dialogue before its parent dialogue emits dialogue_ended.
 	# Wait until every overlapping balloon has closed so this notice cannot interrupt either one.
@@ -863,6 +872,12 @@ func _showFinalPhaseImproveNotice() -> void:
 		await DialogueManager.dialogue_ended
 		await get_tree().process_frame
 	DialogueManager.show_example_dialogue_balloon(sys, "最终章局势改善")
+
+func _showFinalPhaseClaimDeniedNotice() -> void:
+	while DialogueManager.haveDialoge():
+		await DialogueManager.dialogue_ended
+		await get_tree().process_frame
+	DialogueManager.show_example_dialogue_balloon(sys, "最终章局势改善不行")
 
 func _rest(value=true):
 	if GameManager.sav.have_event["进入青梅煮酒"]==false:
