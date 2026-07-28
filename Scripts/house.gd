@@ -1096,6 +1096,7 @@ func allocationAllSettle():
 var cnames:Array=[]
 var allcontext=""
 var pending_allocation_cycle_restart=false
+var _allocation_muliao_queued := false
 
 func finish_pending_allocation_cycle():
 	if not pending_allocation_cycle_restart:
@@ -1124,6 +1125,16 @@ func allocationSettle():
 	if allcontext!="" and allcontext!="\n":
 		DialogueManager.show_exaple_top_dialogue_balloon(dialogue_resource,"派系扣除好感")
 func allocationMuliao():
+	if _allocation_muliao_queued:
+		return
+	_allocation_muliao_queued = true
+	_show_allocation_muliao.call_deferred()
+
+func _show_allocation_muliao():
+	while DialogueManager.haveDialoge():
+		await DialogueManager.dialogue_ended
+		await get_tree().process_frame
+	_allocation_muliao_queued = false
 	if zhubu.visible==false:
 		if GameManager.sav.allocationDay==2 and GameManager.canDistributeAllowance():
 			zhubu.show()
@@ -1362,8 +1373,9 @@ func danyangLawTest():
 	#GameManager.predemand()
 	if GameManager.sav.have_event["chaosEnd"]==false and GameManager.sav.have_event["secondDisaster"]==true and GameManager.sav.have_event["大儒支线2"]==false:
 		extraTask()
-	else:
-		allocationAllSettle()#test工资系统 加到另外的后面
+		# 支线提示结束后再结算月例，避免与支线对话叠加。
+		await _wait_for_dialogue_chain()
+	allocationAllSettle()#test工资系统 加到另外的后面
 
 
 func generate_consumed_string(consumed: Dictionary) -> String:
@@ -1499,10 +1511,15 @@ func sheepGnawed():
 func settle_allocation_after_current_dialogue():
 	_settle_allocation_after_current_dialogue.call_deferred()
 
-func _settle_allocation_after_current_dialogue():
-	if DialogueManager.get_dialogue_balloon() != null:
+func _wait_for_dialogue_chain():
+	while DialogueManager.haveDialoge():
 		await DialogueManager.dialogue_ended
+		await get_tree().process_frame
+
+func _settle_allocation_after_current_dialogue():
+	await _wait_for_dialogue_chain()
 	allocationAllSettle()
+	allocationMuliao()
 func enterCredit():
 	GameManager.clearLevel(1)
 	SceneManager.changeScene(SceneManager.roomNode.Credit,2)

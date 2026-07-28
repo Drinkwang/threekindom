@@ -318,6 +318,9 @@ func _on_Sold_button_down():
 
 #var costhp=15
 func confireSold():
+	if useItems==null:
+		return
+		
 	if GameManager.sav.merMustBuy==true and GameManager.sav.merMaxLaw<6:
 		GameManager.resideValue4=true
 		
@@ -329,9 +332,9 @@ func confireSold():
 	GameManager.sav.coin=GameManager.sav.coin+int(GameManager.SoldCoin)
 	GameManager.sav.isSoldItem = true
 	for item_type in useItems:
-			if useItems[item_type] > 0:  # 只处理消耗数量大于 0 的道具
+		if useItems[item_type] > 0:  # 只处理消耗数量大于 0 的道具
 		
-				InventoryManager._remove_item(GameManager.inventoryPackege,item_type,useItems[item_type])
+			InventoryManager._remove_item(GameManager.inventoryPackege,item_type,useItems[item_type])
 	useItems=[]
 	AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_7")
 	back_txt.text=tr("当前商人没有需要从你手中收购商品的需要，请改日再来！")

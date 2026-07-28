@@ -1795,7 +1795,7 @@ do chenden.hide()
 刘备: 好。便依你二人所言，设立月例配给，今后按期施行。[voice:liubei_yuelipeiji]
 do zhubu.hide()
 系统提示: 可与糜竺对话开启月例配给管理面板，完成各派系交付任务，均可获得 1 点律法点数。
-do _initData()
+#do _initData()
 => END!
 ~ 津贴教程
 糜竺: 主公，月例配给已按您的吩咐落地施行，属下为您细说其中规矩：[voice:mizhu_xishuo]

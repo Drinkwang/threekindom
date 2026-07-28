@@ -543,7 +543,7 @@ func _enterDay(value=true):
 #		{"name":"高风险","initPos":0,"radian":90},
 
 
-const ALLOWANCE_PRESSURE_START_DAY := 10
+const ALLOWANCE_PRESSURE_START_DAY := 8
 const ALLOWANCE_PRESSURE_PER_DAY := 0.003
 const ALLOWANCE_MAX_PRESSURE := 0.15
 const MONTHLY_ALLOWANCE_MAX_ITEM_COUNT := 9

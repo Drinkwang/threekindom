@@ -184,6 +184,8 @@ func refreshContext():
 			else:
 				if GameManager.sav.have_event["庆功宴结束"]==true:
 					policycontext=tr("新目标将与关键角色对话解锁")
+				else:
+					policycontext=tr("当前任务：待发现")
 				#else:
 					
 		contextEX=tr("主线任务:")+policycontext
