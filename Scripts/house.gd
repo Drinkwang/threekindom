@@ -423,6 +423,9 @@ func post_transition():
 	var initCanContinue=_initData()
 	# _initData 已触发关羽归来等主线时，本次进场不再叠加法律、辕门射戟等自动对话。
 	if canMuliao==false or initCanContinue==false:
+		# 独占剧情结束后补显示月例提示；特殊 NPC/终局剧情主动屏蔽时仍不显示。
+		if canMuliao and not initCanContinue and not GameManager.CheckAllFactionsSubdued():
+			allocationMuliao()
 		return
 	canMuliao=initCanContinue
 
