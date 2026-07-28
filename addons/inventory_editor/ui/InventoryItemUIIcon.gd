@@ -46,6 +46,8 @@ func _clear_item_display() -> void:
 	_quantity_ui.text = "0"
 
 func _unregister_tooltip_if_available() -> void:
+	if Engine.is_editor_hint():
+		return
 	if is_instance_valid(TooltipManager) and TooltipManager.has_method("unregister_tooltip"):
 		TooltipManager.unregister_tooltip(self)
 
