@@ -393,7 +393,7 @@ func resumeBgm():
 
 	SoundManager.stop_all_ambient_sounds()
 	SoundManager.play_ambient_sound(daybgm)
-@onready var zhubu = $"文官"
+@onready var zhubu: clickBlock = $"文官"
 @onready var zhenren: clickBlock = $"修仙者"
 
 	#将政务面板更新 里面列举了一堆list
@@ -928,7 +928,9 @@ func _JudgeTask():
 	if hasSide==true:
 		extraTask()
 	else:
-		zhubu.hide()#后续改动逻辑，今日工作已经写完了
+		if zhubu.dialogue_start.length()<=0:
+		#if zhubu.dialogue_start==""
+			zhubu.hide()#后续改动逻辑，今日工作已经写完了
 
 func secondMissonStart():
 	GameManager.sav.targetValue=10
@@ -1099,7 +1101,7 @@ func allocationAllSettle():
 var cnames:Array=[]
 var allcontext=""
 var pending_allocation_cycle_restart=false
-var _allocation_muliao_queued := false
+#var _allocation_muliao_queued := false
 
 func finish_pending_allocation_cycle():
 	if not pending_allocation_cycle_restart:
@@ -1128,16 +1130,6 @@ func allocationSettle():
 	if allcontext!="" and allcontext!="\n":
 		DialogueManager.show_exaple_top_dialogue_balloon(dialogue_resource,"派系扣除好感")
 func allocationMuliao():
-	if _allocation_muliao_queued:
-		return
-	_allocation_muliao_queued = true
-	_show_allocation_muliao.call_deferred()
-
-func _show_allocation_muliao():
-	while DialogueManager.haveDialoge():
-		await DialogueManager.dialogue_ended
-		await get_tree().process_frame
-	_allocation_muliao_queued = false
 	if zhubu.visible==false:
 		if GameManager.sav.allocationDay==2 and GameManager.canDistributeAllowance():
 			zhubu.show()
@@ -1156,6 +1148,7 @@ func _show_allocation_muliao():
 			zhubu.show()
 			point_xiuzhen.show()
 			zhubu.changeAllClick("诡物手册")
+
 
 func settleDeterminValue():
 	if(determineType==GameManager.ResType.coin):

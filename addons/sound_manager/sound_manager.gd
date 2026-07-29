@@ -7,7 +7,7 @@ const MusicPlayer = preload("./music.gd")
 
 var sound_effects: SoundEffectsPlayer = SoundEffectsPlayer.new(["Sounds"], 4)
 var ui_sound_effects: SoundEffectsPlayer = SoundEffectsPlayer.new(["UI"], 4)
-var ambient_sounds: AmbientSoundsPlayer = AmbientSoundsPlayer.new(["SFX"], 2)
+var ambient_sounds: AmbientSoundsPlayer = AmbientSoundsPlayer.new(["Ambient"], 2)
 var music: MusicPlayer = MusicPlayer.new(["Music"], 2)
 
 var sound_process_mode: ProcessMode:

@@ -544,8 +544,6 @@ dialogue_resource = ExtResource("2_6rtve")
 [node name="文官" parent="." instance=ExtResource("7_7mriv")]
 visible = false
 position = Vector2(701, 631)
-showName = "主簿"
-dialogue_doubleclick = "second"
 txt2d = ExtResource("6_ys6bi")
 boardType = 1
 dialogue_resource = ExtResource("2_6rtve")

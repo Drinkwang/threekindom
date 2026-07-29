@@ -13,8 +13,10 @@ func _ready():
 func changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()
 	if currencelanguage=="ru":
+		target_label.add_theme_font_size_override("font_size",130)
 		target_label.add_theme_font_override("font",_1_SIM)
 	elif currencelanguage=="en":
+		target_label.add_theme_font_size_override("font_size",149)
 		target_label.remove_theme_font_override("font")
 	showTargetLabel()
 		
