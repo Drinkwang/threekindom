@@ -87,7 +87,6 @@ func changeLanguage():
 		#node_2d.position=Vector2(615,811)
 	elif currencelanguage=="ru":
 		#node_2d.position=Vector2(605,811)
-		faction.position=Vector2(5,728.545)
 		pass
 	_refreshClaimMessage()
 
@@ -568,7 +567,7 @@ func GetLawClaimRevenue():
 	GameManager.sav.curLawNum2=-1
 	SignalManager.changeSupport.emit()
 
-@onready var factionView = $CanvasBook/faction
+@onready var factionView: Control = $CanvasBook/faction
 
 func eatFishSound():
 	var EAT_2 =load("res://Asset/sound/eat2.mp3")
@@ -583,6 +582,7 @@ func cancelLaw():
 	GameManager.sav.curLawNum1=-1
 	GameManager.sav.curLawNum2=-1
 	faction.refreshData()
+	SignalManager.changeSupport.emit()
 	var items=GameManager.ScoreToItem(500)
 	var _reward:rewardPanel=PanelManager.new_reward()
 	_reward.showTitileReward("本次议事未耗尽的补给物资已收入库房",items)
@@ -592,16 +592,21 @@ func cancelLaw():
 
 func changePanelPos():
 	if GameManager.sav.have_event["canSummonLvbu"]==true:
-		factionView.position.y=590
-		control_2.position.y=902
+		_move_control_to_y(factionView,590)
+		_move_control_to_y(control_2,902)
 	elif GameManager.sav.have_event["Factionalization"]==true:
-		factionView.position.y=590
-		control_2.position.y=835
+		_move_control_to_y(factionView,590)
+		_move_control_to_y(control_2,835)
 	else:	
 	#f GameManager.sav.
-		factionView.position.y=520
-		control_2.position.y=815
+		_move_control_to_y(factionView,520)
+		_move_control_to_y(control_2,815)
 	pass
+
+func _move_control_to_y(control: Control,target_y:float):
+	var y_offset:=target_y-control.position.y
+	control.offset_top+=y_offset
+	control.offset_bottom+=y_offset
 	
 
 

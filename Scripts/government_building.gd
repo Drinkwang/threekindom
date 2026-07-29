@@ -1540,22 +1540,27 @@ func holdSac():
 	#GameManager.ScoreToItem()
 	_reward.showTitileReward("恭喜你，你获得-黄麻药囊",items)	
 	
-@onready var factionView= $CanvasLayer/faction
+@onready var factionView: Control = $CanvasLayer/faction
 @onready var support_panel: supportPanel = $CanvasLayer/supportPanel
 
 func changePanelPos():
 	if factionView==null:
 		return
 	if GameManager.sav.have_event["canSummonLvbu"]==true:
-		factionView.position.y=589#待修改
-		support_panel.position.y=742.3#待修改
+		_move_control_to_y(factionView,589)
+		_move_control_to_y(support_panel,742.3)
 	elif GameManager.sav.have_event["Factionalization"]==true:
-		factionView.position.y=589#待修改
-		support_panel.position.y=686#待修改
+		_move_control_to_y(factionView,589)
+		_move_control_to_y(support_panel,686)
 	else:	
 	#f GameManager.sav.
-		factionView.position.y=529
+		_move_control_to_y(factionView,529)
 	pass
+
+func _move_control_to_y(control: Control,target_y:float):
+	var y_offset:=target_y-control.position.y
+	control.offset_top+=y_offset
+	control.offset_bottom+=y_offset
 
 func JudFundTask():
 	#在府邸意外凑齐钱时会判断任务是否完成,这个会触发第一次赈灾，这是bug
