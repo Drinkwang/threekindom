@@ -12,7 +12,11 @@ func _ready():
 	datas.append(GameManager.sav.HAOZUPAI)
 	datas.append(GameManager.sav.WAIDIPAI)
 	datas.append(GameManager.sav.LVBU)
-	
+	var index=0
+	if  GameManager.sav.curLawName!=null and  GameManager.sav.curLawName.length()>0:
+		self.position.y=27
+	else:
+		self.position.y=0
 	#d.
 	_processList()
 	SignalManager.changeFraction.connect(refreshData)

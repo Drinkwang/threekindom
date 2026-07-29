@@ -37,6 +37,8 @@ func _ready():
 func changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()
 	var panel_y_offset=-14.0 if currencelanguage=="ja" or currencelanguage=="lzh" else 0.0
+	if  GameManager.sav.curLawName!=null and  GameManager.sav.curLawName.length()>0:
+		panel_y_offset+=30
 	_panel.offset_top=_panel_base_offset_top+panel_y_offset
 	_panel.offset_bottom=_panel_base_offset_bottom+panel_y_offset
 	#if currencelanguage=="ja":
