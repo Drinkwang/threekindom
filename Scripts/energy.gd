@@ -1,5 +1,9 @@
 extends Control
 class_name energe
+
+const TARGET_LABEL_MAX_HEIGHT := 916.0
+const TARGET_LABEL_MIN_FONT_SIZE := 1
+
 @onready var progress_bar = $TextureProgressBar
 const _1_SIM = preload("res://Asset/Font/1_sim.ttf")
 # Called when th$TextureProgressBare node enters the scene tree for the first time.
@@ -13,13 +17,13 @@ func _ready():
 func changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()
 	if currencelanguage=="ru":
-		target_label.add_theme_font_size_override("font_size",100)
+		#_target_label_default_font_size = 100
 		target_label.add_theme_font_override("font",_1_SIM)
 	elif currencelanguage=="en":
-		target_label.add_theme_font_size_override("font_size",120)
+		#_target_label_default_font_size = 120
 		target_label.remove_theme_font_override("font")
-	else:	
-		target_label.add_theme_font_size_override("font_size",149)
+	else:
+		#_target_label_default_font_size = 149
 		target_label.remove_theme_font_override("font")
 	showTargetLabel()
 		
@@ -27,6 +31,7 @@ func changeTargetLabel():
 	if(GameManager.sav.targetTxt==null || GameManager.sav.targetTxt.length()==0):
 		if GameManager.sav.TargetDestination!=null and GameManager.sav.TargetDestination.length()>0:
 			target_label.text=tr(GameManager.sav.TargetDestination)
+	_fit_target_label_font()
 	
 
 @onready var rateLabel=$TextureProgressBar/Label
@@ -35,6 +40,7 @@ func _process(delta):
 		showTargetLabel()
 	elif GameManager.sav.TargetDestination==null or GameManager.sav.TargetDestination.length()==0:
 		target_label.text=tr("当前任务：待发现")
+		_fit_target_label_font()
 @onready var flash_animation_player: AnimationPlayer = $TextureProgressBar/AnimationPlayer
 		
 var previewValue=0
@@ -49,6 +55,41 @@ func changerate(rate):
 		flash_animation_player.play("flash")
 		
 @onready var target_label = $TargetLabel
+var _target_label_default_font_size := 149
+var _last_target_label_text := ""
+var _last_target_label_size := Vector2.ZERO
+var _last_target_label_default_font_size := -1
+
+func _fit_target_label_font() -> void:
+	var available_height := minf(TARGET_LABEL_MAX_HEIGHT, target_label.size.y)
+	if available_height <= 0.0:
+		return
+	if target_label.text == _last_target_label_text \
+		and target_label.size == _last_target_label_size \
+		and _target_label_default_font_size == _last_target_label_default_font_size:
+		return
+
+	var font = target_label.get_theme_font("font")
+	if font == null:
+		return
+
+	var font_size := _target_label_default_font_size
+	while font_size > TARGET_LABEL_MIN_FONT_SIZE:
+		var text_height = font.get_multiline_string_size(
+			target_label.text,
+			target_label.horizontal_alignment,
+			target_label.size.x,
+			font_size
+		).y
+		var decoration_height = target_label.get_theme_constant("outline_size") * 2 + target_label.get_theme_constant("shadow_offset_y")
+		if text_height + decoration_height <= available_height:
+			break
+		font_size -= 1
+
+	target_label.add_theme_font_size_override("font_size", font_size)
+	_last_target_label_text = target_label.text
+	_last_target_label_size = target_label.size
+	_last_target_label_default_font_size = _target_label_default_font_size
 
 func startPreviewHp(costpreview):
 	previewValue=costpreview
@@ -141,6 +182,7 @@ func showTargetLabel():
 			target_label.text=target_label.text+"\n"
 			var context=tr("%s指定《%s》，7旬内通过，还剩%d旬！")%[tr(law),GameManager.sav.courtingLaws[law],cd]
 			target_label.text=target_label.text+context
+	_fit_target_label_font()
 	#target_label.text=target_label.text+
 @onready var animation_player = $TargetLabel/AnimationPlayer
 @onready var auto_label = $AutoLabel

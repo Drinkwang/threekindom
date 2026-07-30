@@ -380,12 +380,11 @@ texture = ExtResource("11_5ovkv")
 
 [node name="TargetLabel" type="Label" parent="."]
 modulate = Color(0.980392, 0.980392, 0.980392, 1)
-custom_minimum_size = Vector2(0, 1509)
 layout_mode = 0
 offset_left = 138.0
 offset_top = 2236.0
 offset_right = 2155.0
-offset_bottom = 2886.0
+offset_bottom = 3152.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0.494118, 0.419608, 0.341176, 1)
 theme_override_constants/line_spacing = 1
@@ -400,52 +399,11 @@ text = "当前任务：待发现
 1
 1
 1
-1
-1
-1
-1
 "
 horizontal_alignment = 2
 autowrap_mode = 3
-clip_text = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="TargetLabel"]
-libraries = {
-"": SubResource("AnimationLibrary_vsxmj")
-}
-
-[node name="TargetLabel2" type="Label" parent="."]
-modulate = Color(0.980392, 0.980392, 0.980392, 1)
-custom_minimum_size = Vector2(0, 1509)
-layout_mode = 0
-offset_left = 138.0
-offset_top = 2236.0
-offset_right = 2155.0
-offset_bottom = 2886.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0.494118, 0.419608, 0.341176, 1)
-theme_override_constants/line_spacing = 1
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 11
-theme_override_constants/outline_size = 46
-theme_override_constants/shadow_outline_size = 4
-theme_override_font_sizes/font_size = 149
-text = "当前任务：待发现
-1
-1
-1
-1
-1
-1
-1
-1
-1
-"
-horizontal_alignment = 2
-autowrap_mode = 3
-clip_text = true
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="TargetLabel2"]
 libraries = {
 "": SubResource("AnimationLibrary_vsxmj")
 }
