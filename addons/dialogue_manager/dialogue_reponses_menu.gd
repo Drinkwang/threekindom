@@ -15,6 +15,8 @@ signal response_selected(response)
 @export var next_action: StringName = &""
 
 # The list of dialogue responses.
+var _locale_font: Font
+
 var responses: Array = []:
 	set(value):
 		responses = value
@@ -178,6 +180,7 @@ var responses: Array = []:
 					item.text = response.text
 					
 				item.set_meta("response", response)
+				_apply_locale_font(item)
 
 				add_child(item)
 
@@ -220,6 +223,23 @@ func _ready() -> void:
 # This is deprecated.
 func set_responses(next_responses: Array) -> void:
 	self.responses = next_responses
+
+
+func set_locale_font(font: Font) -> void:
+	_locale_font = font
+	_apply_locale_font(response_template)
+	for item in get_children():
+		if item != response_template:
+			_apply_locale_font(item)
+
+
+func _apply_locale_font(item: Control) -> void:
+	if item == null:
+		return
+	if _locale_font:
+		item.add_theme_font_override("font", _locale_font)
+	else:
+		item.remove_theme_font_override("font")
 
 
 # Prepare the menu for keyboard and mouse navigation.

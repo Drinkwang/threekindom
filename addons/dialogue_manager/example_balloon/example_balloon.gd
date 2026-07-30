@@ -11,6 +11,15 @@ extends CanvasLayer
 @onready var dialogue_label: DialogueLabel = %DialogueLabel
 @onready var responses_menu: DialogueResponsesMenu = %ResponsesMenu
 
+const RUSSIAN_DIALOGUE_FONT = preload("res://Asset/Font/1_sim.ttf")
+const RICH_TEXT_FONT_KEYS: PackedStringArray = [
+	"normal_font",
+	"bold_font",
+	"italics_font",
+	"bold_italics_font",
+	"mono_font"
+]
+
 ## The dialogue resource
 var resource: DialogueResource
 
@@ -47,6 +56,7 @@ var dialogue_line: DialogueLine:
 			await ready
 
 		dialogue_line = next_dialogue_line
+		_apply_locale_font()
 
 		character_label.visible = not dialogue_line.character.is_empty()
 		character_label.text = tr(dialogue_line.character, "dialogue")
@@ -86,10 +96,26 @@ var dialogue_line: DialogueLine:
 func _ready() -> void:
 	balloon.hide()
 	Engine.get_singleton("DialogueManager").mutated.connect(_on_mutated)
+	_apply_locale_font()
 
 	# If the responses menu doesn't have a next action set, use this one
 	if responses_menu.next_action.is_empty():
 		responses_menu.next_action = next_action
+
+
+func _apply_locale_font() -> void:
+	var dialogue_font = RUSSIAN_DIALOGUE_FONT if TranslationServer.get_locale().begins_with("ru") else null
+	_apply_rich_text_font(character_label, dialogue_font)
+	_apply_rich_text_font(dialogue_label, dialogue_font)
+	responses_menu.set_locale_font(dialogue_font)
+
+
+func _apply_rich_text_font(label: RichTextLabel, font: Font) -> void:
+	for key in RICH_TEXT_FONT_KEYS:
+		if font:
+			label.add_theme_font_override(key, font)
+		else:
+			label.remove_theme_font_override(key)
 
 
 

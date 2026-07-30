@@ -60,7 +60,7 @@ do streetTwo()
 - 糜家的郊外秘宅 [if GameManager.sav.have_event["糜竺正确选择1"]==true and GameManager.sav.have_event["糜竺正确选择2"]==true and GameManager.sav.have_event["糜竺支线3"]==false and GameManager.sav.endPath!=GameManager.endPath.xiaopei]
 	do gotoMiMasion()
 
-- 黄帝的祀庙 [if GameManager.sav.have_event["曹豹正确选择1"]==true and GameManager.sav.have_event["曹豹正确选择2"]==true and GameManager.sav.have_event["曹豹支线3"]==false and GameManager.sav.endPath!=GameManager.endPath.xiaopei] 
+- 黄帝的祀庙 [if GameManager.sav.have_event["曹豹正确选择1"]==true and GameManager.sav.have_event["曹豹正确选择2"]==true and GameManager.sav.have_event["曹豹支线3"]==false and GameManager.sav.endPath!=GameManager.endPath.xiaopei and GameManager.sav.have_event["亲征对话结束"]==false] 
 	do gotoHuangDiMiao()	
 - 玄阴秘境 [if GameManager.sav.have_event["玄阴开放"]==true and GameManager.dontHaveDominance() and GameManager.sav.endPath!=GameManager.endPath.xiaopei]
 	do gotoXuanyin()				
