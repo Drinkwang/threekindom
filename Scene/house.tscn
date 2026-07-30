@@ -698,14 +698,16 @@ txt2d = ExtResource("26_uyq5p")
 boardType = 1
 
 [node name="Label" type="Label" parent="吕布"]
-offset_left = -72.0
+offset_left = -304.0
 offset_top = -101.0
-offset_right = 82.0
+offset_right = 322.0
 offset_bottom = -78.0
 theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("27_qfeow")
 theme_override_font_sizes/font_size = 22
 text = "是儿最叵信者！"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="dao" type="Sprite2D" parent="."]
 visible = false
