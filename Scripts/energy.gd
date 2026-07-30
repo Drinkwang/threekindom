@@ -13,9 +13,12 @@ func _ready():
 func changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()
 	if currencelanguage=="ru":
-		target_label.add_theme_font_size_override("font_size",130)
+		target_label.add_theme_font_size_override("font_size",100)
 		target_label.add_theme_font_override("font",_1_SIM)
 	elif currencelanguage=="en":
+		target_label.add_theme_font_size_override("font_size",120)
+		target_label.remove_theme_font_override("font")
+	else:	
 		target_label.add_theme_font_size_override("font_size",149)
 		target_label.remove_theme_font_override("font")
 	showTargetLabel()
@@ -104,9 +107,10 @@ func showTargetLabel():
 			if currenceValue[1]<3:
 				target_label.text=tr(GameManager.sav.targetTxt).format({"target":targetValue,"currence1":currenceValue[0],"currence2":currenceValue[1]})
 			else:
-				var strContext=tr("基建已完成，请征集民夫完成后前往府邸触发下一阶段剧情")	
-				strContext+=tr("征集民夫数量：{currence1}/{target}").format({"target":targetValue,"currence1":currenceValue[0]})
-				target_label.text=strContext
+				target_label.text = "%s\n%s" % [
+					tr("基建已完成，请征集民夫完成后前往府邸触发下一阶段剧情"),
+					tr("征集民夫数量：{currence1}/{target}").format({"target":targetValue,"currence1":currenceValue[0]}),
+				]
 		else:
 			
 			target_label.text=tr(GameManager.sav.targetTxt).format({"target":targetValue,"currence":currenceValue})
@@ -122,6 +126,7 @@ func showTargetLabel():
 					target_label.text=target_label.text+"\n"+tr("城内形势:")+StageStateMgr.get_state_name(groupName,currenv)
 				else:
 					target_label.text=target_label.text
+	# Display active legislative deadlines below the current objective.
 	for law in GameManager.sav.courtingLaws:
 
 		var cd
