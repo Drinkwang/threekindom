@@ -1631,6 +1631,7 @@ do mizhu.show()
 
 do boardVictory()
 do _initData()
+do _JudgeTask(true)
 => END!
 
 
@@ -1638,6 +1639,7 @@ do _initData()
 do mizhu.show()
 糜竺: 主公，手气不佳啊！但牌局如商场，我略胜一筹！[voice:mizhu_paijuwonueshen]
 do _initData()
+do _JudgeTask(true)
 
 => END!
 

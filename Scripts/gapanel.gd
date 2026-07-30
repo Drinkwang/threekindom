@@ -95,7 +95,7 @@ func refreshContext():
 			contextEX = display_text
 	else:
 
-		var policycontext
+		var policycontext=tr("待发现")
 		if (GameManager.sav.targetTxt != null and GameManager.sav.targetTxt.length() > 0) or \
 		GameManager.sav.TargetDestination=="rest" or \
 		GameManager.sav.TargetDestination=="自宅" or \
@@ -186,7 +186,7 @@ func refreshContext():
 				if GameManager.sav.have_event["庆功宴结束"]==true:
 					policycontext=tr("新目标将与关键角色对话解锁")
 				else:
-					policycontext=tr("当前任务：待发现")
+					policycontext=tr("待发现")
 				#else:
 					
 		contextEX=tr("主线任务:")+policycontext

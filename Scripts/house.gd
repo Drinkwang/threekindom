@@ -1366,6 +1366,7 @@ func danyangLawTest():
 		GameManager.sav.courtingLaws.erase(GameManager.sav.WAIDIPAI._name)
 		DialogueManager.show_example_dialogue_balloon(sys,"丹阳法律未通过")
 		GameManager.sav.WAIDIPAI.ChangeSupport(-10)
+		return
 	#GameManager.predemand()
 	if GameManager.sav.have_event["chaosEnd"]==false and GameManager.sav.have_event["secondDisaster"]==true and GameManager.sav.have_event["大儒支线2"]==false:
 		extraTask()

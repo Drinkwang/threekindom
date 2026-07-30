@@ -354,6 +354,7 @@ do GameManager.enterBoardGame()
 ~ 常规获胜
 陈登: 主公牌技超凡，我的谋略竟落了下风，佩服！[voice:chenden_peifu]
 do boardVictory()
+do _JudgeTask(true)
 #第一次获胜，获得reward
 #士族钱*80，商贾道具*1，曹豹士兵50
 #诡秘卡 按顺序
@@ -362,7 +363,7 @@ do boardVictory()
 
 ~ 常规失败
 陈登: 主公，牌局如棋局，我略占先机，再战如何？[voice:chenden_tawinshiguipai]
-
+do _JudgeTask(true)
 
 => END!
 
