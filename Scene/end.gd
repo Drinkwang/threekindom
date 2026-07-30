@@ -26,6 +26,11 @@ var original_mouse_mode: bool = false
 const finalmusic = preload("res://Asset/music/曹刘针锋相对.mp3")
 # Debug knob for the final Cao Cao encounter. Keep this at 3 for the shipped default.
 @export_range(1, 3, 1) var final_caocao_ai_difficulty: int = 3
+
+
+@onready var cao_label: Label = $CanvasInventory/CAOCAOBox/Control/Label
+@onready var liu_label: Label = $CanvasInventory/CAOCAOBox/Label
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	caocaoPos=caocao.position
@@ -37,8 +42,20 @@ func _ready():
 	initBattleRect()
 	Transitions.post_transition.connect(startGame)
 	set_mouse_speed_limit(5)
+	
+	SignalManager.changeLanguage.connect(changeLanguage)
+	changeLanguage()
 	# 初始化鼠标位置
 	#last_mouse_position = get_global_mouse_position()
+const _1_SIM = preload("res://Asset/Font/1_sim.ttf")	
+func changeLanguage():
+	var currencelanguage=TranslationServer.get_locale()
+	if currencelanguage=="ru":
+		cao_label.add_theme_font_override("font",_1_SIM)
+		liu_label.add_theme_font_override("font",_1_SIM)
+	else:
+		liu_label.remove_theme_font_override("font")
+	
 func post_transition():
 	initBattleRect()
 	

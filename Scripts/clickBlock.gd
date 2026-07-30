@@ -102,18 +102,23 @@ func _ready():
 	SignalManager.changeLanguage.connect(_changeLanguage)			
 	_changeLanguage()	
 @onready var label = $Panel/Label
-const NOT_JAM_UI_CONDENSED_16 = preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf")
+#@onready var label: Label = $Heart/Label
+
+#const _1_SIM = preload("res://Asset/Font/1_sim.ttf")
+
+const _1_BLOD = preload("res://Asset/Font/1_blod.ttf")
+
 func _changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()
 	if label!=null and showName.length()>0:
 		label.text=tr(showName)
 	if heart.visible and _heartValue!=null:
 		Heartlabel.text=tr("好感度:{s}").format({"s":_heartValue})
-
-	#if currencelanguage=="ru":
-	#	label.add_theme_font_override("font",NOT_JAM_UI_CONDENSED_16)
-	#else:
-	#	label.remove_theme_font_override("font")
+	
+	if currencelanguage=="ru":
+		Heartlabel.add_theme_font_override("font",_1_BLOD)
+	else:
+		Heartlabel.remove_theme_font_override("font")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
