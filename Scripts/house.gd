@@ -811,7 +811,11 @@ func extraTask():
 		if GameManager.sav.have_event["支线发现羊尸"]==false:
 			GameManager.sav.have_event["支线发现羊尸"]=true
 			GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.KESULU]=tr("探查城外羊尸，判断妖邪与否")
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"支线开始")
+			var balloon=DialogueManager.show_example_dialogue_balloon(dialogue_resource,"支线开始")
+			if is_instance_valid(balloon):
+				await balloon.tree_exited
+				if not is_inside_tree():
+					return
 		#将任务可检索设置成true
 		#如果任务为false  设置成true 并触发对话
 
@@ -1509,6 +1513,8 @@ func settle_allocation_after_current_dialogue():
 	_settle_allocation_after_current_dialogue.call_deferred()
 
 func _wait_for_dialogue_chain():
+	# 新气泡在调用后的下一帧才完成显示，先让出一帧，避免误判为没有对话。
+	await get_tree().process_frame
 	while DialogueManager.haveDialoge():
 		await DialogueManager.dialogue_ended
 		await get_tree().process_frame
