@@ -711,6 +711,7 @@ text = "游玩难度：xxx
 你以霸主之姿，叩响复兴汉室的大门。
 (通关解锁快捷键功能：长按Ctrl可跳过全部对话。)"
 horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="scoreTooltipArea" type="ColorRect" parent="CanvasLayer/final"]
 layout_mode = 0
