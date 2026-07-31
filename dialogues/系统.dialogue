@@ -183,18 +183,18 @@ do determineInternalUnrestMinxin()
 => END
 
 ~ 士族法律未通过
-提示: 你许诺{{GameManager.sav.BENTUPAI._name}}的法律没有通过，丧失10点支持度。
+提示: 你许诺{{GameManager.sav.BENTUPAI.getTr()}}的法律没有通过，丧失10点支持度。
 do haozuLawTest()
 => END
 
 
 ~ 豪族法律未通过
-提示: 你许诺{{GameManager.sav.HAOZUPAI._name}}的法律没有通过，丧失10点支持度。
+提示: 你许诺{{GameManager.sav.HAOZUPAI.getTr()}}的法律没有通过，丧失10点支持度。
 do danyangLawTest()
 => END
 
 ~ 丹阳法律未通过
-提示: 你许诺{{GameManager.sav.WAIDIPAI._name}}的法律没有通过，丧失10点支持度。
+提示: 你许诺{{GameManager.sav.WAIDIPAI.getTr()}}的法律没有通过，丧失10点支持度。
 do settle_allocation_after_current_dialogue()
 => END
 

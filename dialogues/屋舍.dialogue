@@ -200,7 +200,7 @@ else
 刘备: 看来我得想办法处理此事[voice:liubei_kanlaideixiangbanfa]
 #提示: 豪族派 对你的忠诚度下降{{GameManager.resideValue}}点
 
-提示: {{tr(GameManager.sav.HAOZUPAI._name)}}对你的忠诚度下降{{GameManager.resideValue}}点。
+提示: {{GameManager.sav.HAOZUPAI.getTr()}}对你的忠诚度下降{{GameManager.resideValue}}点。
 do yuanshuChaos(1)
 => END!
 
@@ -209,7 +209,7 @@ do yuanshuChaos(1)
 主簿: 另外，主公，内应的谣言让丹阳派士兵军心动摇。[voice:zhubo_neiyingrangdanyangpaijunxin]
 刘备: 看来我得想办法处理此事[voice:liubei_kanlaideixiangbanfa]
 #提示: 丹阳派 对你的忠诚度下降{{GameManager.resideValue}}点
-提示: 提示: {{tr(GameManager.sav.WAIDIPAI._name)}}对你的忠诚度下降{{GameManager.resideValue}}点。
+提示: 提示: {{GameManager.sav.WAIDIPAI.getTr()}}对你的忠诚度下降{{GameManager.resideValue}}点。
 do yuanshuChaos(2)
 => END!
 #1
@@ -218,7 +218,7 @@ do yuanshuChaos(2)
 刘备: 看来我得想办法处理此事[voice:liubei_kanlaideixiangbanfa]
 #提示: 徐州派 对你的忠诚度下降{{GameManager.resideValue}}点
 
-提示: {{tr(GameManager.sav.BENTUPAI._name)}}对你的忠诚度下降{{GameManager.resideValue}}点。
+提示: {{GameManager.sav.BENTUPAI.getTr()}}对你的忠诚度下降{{GameManager.resideValue}}点。
 do yuanshuChaos(3)
 => END!
 #2
@@ -793,5 +793,3 @@ do settle_allocation_after_current_dialogue()
 主簿: 大人若想知晓津贴发放时日、调整休憩提醒，均可交由在下处置。[voice:zhubu_ruoxiangzhi]
 系统提示: 可向主簿查询津贴发放进度，亦可设置休憩提醒，避免体力充沛时提前休息造成体力损耗。
 => END!
-
-
