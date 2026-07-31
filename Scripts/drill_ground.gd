@@ -190,14 +190,14 @@ func initFogAndRect():
 			color_rect.color.a=0.078+0.02*day
 		
 		#0.13+0.0
-		if GameManager.sav.currenceValue>=21:
+		if GameManager.sav.currenceValue>=GameManager.BLOOD_STARVATION_STORY:
 			fog.show()
 		if not SoundManager.is_music_playing(sounds.bloodmusic0) and not SoundManager.is_music_playing(sounds.bloodmusic1):
 			#要么音乐a
-			if GameManager.sav.currenceValue<21:
+			if GameManager.sav.currenceValue<GameManager.BLOOD_STARVATION_STORY:
 				#SoundManager.stop_music()
 				SoundManager.play_music(sounds.bloodmusic0)
-			elif GameManager.sav.currenceValue<26:
+			elif GameManager.sav.currenceValue<GameManager.BLOOD_CTHULHU_FIRST:
 				SoundManager.play_ambient_sound(WASTELAND_0)
 				
 			else:
@@ -255,8 +255,8 @@ func _queue_blood_task_completion() -> void:
 		return
 	_blood_completion_queued=true
 	var finish_blood_task=Callable(self,"_finish_blood_task_from_queue")
-	# 32 是既定的最终保险节点：无名剧情若尚未真正执行完，先补完再结算血战。
-	if GameManager.sav.currenceValue==32 and GameManager.sav.have_event["无名之死"]==false:
+	# 最终节点兜底：无名剧情若尚未真正执行完，先补完再结算血战。
+	if GameManager.sav.currenceValue==GameManager.BLOOD_BATTLE_TARGET and GameManager.sav.have_event["无名之死"]==false:
 		_queue_blood_story_dialogue("克苏鲁线3",finish_blood_task)
 	else:
 		_queue_blood_story_dialogue("",finish_blood_task)
@@ -312,7 +312,7 @@ func _judWin():
 					DialogueManager.show_example_dialogue_balloon(dialogue_resource,"曹操挟天子开始")
 
 
-		if GameManager.sav.currenceValue==24 and GameManager.sav.have_event["战斗袁术血战模式"]==true and GameManager.sav.have_event["血战袁术完成"]==false and GameManager.sav.have_event["关羽求援期间"]==false:
+		if GameManager.sav.currenceValue==GameManager.BLOOD_GUANYU_DEPARTURE and GameManager.sav.have_event["战斗袁术血战模式"]==true and GameManager.sav.have_event["血战袁术完成"]==false and GameManager.sav.have_event["关羽求援期间"]==false:
 			_queue_blood_story_dialogue("张飞杀曹豹")
 
 		if GameManager.sav.currenceValue>=GameManager.sav.targetValue:
@@ -527,9 +527,9 @@ func enterBattleMode():
 	GameManager.sav.have_event["战斗袁术血战模式"]=true
 	battle_pane.battle_circle.taskIndex=0
 	GameManager.sav.hp=GameManager.sav.maxHP
-	#任务开始，10天完成20次duel
+	# 压缩后的血战共 26 场，剧情节点统一由 GameManager 中的常量控制。
 	
-	GameManager.sav.targetValue=32
+	GameManager.sav.targetValue=GameManager.BLOOD_BATTLE_TARGET
 	GameManager.sav.currenceValue=0
 	GameManager.sav.targetResType=GameManager.ResType.stayFight
 	GameManager.initBattle()
@@ -695,16 +695,19 @@ func _initData():
 		res_panel.show()
 		initData[0].visible="false"
 		if  GameManager.sav.isGetCoin==false:
-			if GameManager.sav.currenceValue<15:
+			if GameManager.sav.currenceValue<GameManager.BLOOD_SUPPLY_STORY:
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"每日物质送来")
-			elif GameManager.sav.currenceValue==15 or GameManager.sav.currenceValue==18:
+			elif GameManager.sav.currenceValue==GameManager.BLOOD_SUPPLY_STORY:
+				GameManager.sav.isGetCoin=true
+				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"张飞鞭挞讨好士族")
+			elif GameManager.sav.currenceValue==GameManager.BLOOD_NO_SUPPLY_FIRST or GameManager.sav.currenceValue==GameManager.BLOOD_NO_SUPPLY_SECOND:
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"每日物质送不来")
-			elif GameManager.sav.currenceValue==21:
+			elif GameManager.sav.currenceValue==GameManager.BLOOD_STARVATION_STORY:
 				#进入克苏鲁
 				SoundManager.play_ambient_sound(WASTELAND_0)
 				SoundManager.stop_music()
 				_queue_blood_story_dialogue("克苏鲁线自相啖食0")
-			elif GameManager.sav.currenceValue==26:
+			elif GameManager.sav.currenceValue==GameManager.BLOOD_CTHULHU_FIRST:
 				#克苏鲁第一天
 				#SoundManager.stop_all_ambient_sounds()
 				SoundManager.stop_music()
@@ -712,11 +715,11 @@ func _initData():
 				_queue_blood_story_dialogue("克苏鲁线自相啖食")
 			
 				pass
-			elif GameManager.sav.currenceValue==28:
+			elif GameManager.sav.currenceValue==GameManager.BLOOD_CTHULHU_SECOND:
 				_queue_blood_story_dialogue("克苏鲁线2")
-			elif GameManager.sav.currenceValue==30:
+			elif GameManager.sav.currenceValue==GameManager.BLOOD_CTHULHU_THIRD:
 				_queue_blood_story_dialogue("克苏鲁线3")
-			elif GameManager.sav.currenceValue==32:
+			elif GameManager.sav.currenceValue==GameManager.BLOOD_BATTLE_TARGET:
 				if GameManager.sav.have_event["无名之死"]==false:
 					_queue_blood_story_dialogue("克苏鲁线3")
 
@@ -1339,15 +1342,12 @@ func _DayGet():
 	res_panel.showValue=true
 	
 	
-	if GameManager.sav.currenceValue==9:
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"张飞鞭挞讨好士族")
-		#==5张飞惩戒		
 	#GameManager._DayGet()
 	#if(GameManager.sav.targetTxt!=null and GameManager.sav.targetTxt.length()>0):	
 	#	_JudgeTask()
 func _dontGet():
 	
-	if GameManager.sav.currenceValue==24 and GameManager.sav.have_event["关羽求援期间"]==false:
+	if GameManager.sav.currenceValue==GameManager.BLOOD_GUANYU_DEPARTURE and GameManager.sav.have_event["关羽求援期间"]==false:
 		_queue_blood_story_dialogue("张飞杀曹豹")
 
 func openBoardGame():

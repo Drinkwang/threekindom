@@ -64,6 +64,16 @@ enum BattleResult{
 	
 }
 
+const BLOOD_BATTLE_TARGET := 26
+const BLOOD_SUPPLY_STORY := 6
+const BLOOD_NO_SUPPLY_FIRST := 9
+const BLOOD_NO_SUPPLY_SECOND := 12
+const BLOOD_STARVATION_STORY := 15
+const BLOOD_GUANYU_DEPARTURE := 18
+const BLOOD_CTHULHU_FIRST := 20
+const BLOOD_CTHULHU_SECOND := 22
+const BLOOD_CTHULHU_THIRD := 24
+
 #清理任务
 func clearTask():
 	sav.targetValue=1000000
@@ -2123,21 +2133,14 @@ func playDemand(item):
 
 
 func get_bloodmode_day():
-	var day
-	var num = floor(GameManager.sav.currenceValue / 3)
-	if num >=10:
-		if GameManager.sav.currenceValue==30:
-			day=11
-		elif GameManager.sav.currenceValue==31:
-			day=12
-		elif GameManager.sav.currenceValue==32:
-			day=13
-		elif num>=8:
-			day=8+floor((GameManager.sav.currenceValue-24)/2)
-		  # 假设 godot 是你要计算的数值，比如 godot=10，则 num=3.333...
-	else:
-		day=num
-	return day
+	var progress := GameManager.sav.currenceValue
+	if progress>=BLOOD_CTHULHU_THIRD:
+		# 无名离队后只剩一名可用武将，每场战斗推进一旬。
+		return 9+(progress-BLOOD_CTHULHU_THIRD)
+	if progress>=BLOOD_GUANYU_DEPARTURE:
+		# 关羽离队后每旬只能完成两场战斗。
+		return 6+floori(float(progress-BLOOD_GUANYU_DEPARTURE)/2.0)
+	return floori(float(progress)/3.0)
 #var bloodmusicid=-1
 
 # 恢复 Windows 原生样式
