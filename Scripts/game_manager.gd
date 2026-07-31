@@ -2328,7 +2328,15 @@ func GET_COST_LAW_POINT():
 		return LAW_COST_POINT
 
 func LoadingDiffucultValue():
-	
+	# Apply a pending difficulty selection before deriving any difficulty-dependent values.
+	# This also prevents a new game from inheriting LAW_COST_POINT from a previous save.
+	var has_pending_diff_change := GameManager.preSelectDiff != -1
+	var between := 0
+	if has_pending_diff_change:
+		between = GameManager.sav.gameDifficulty - GameManager.preSelectDiff
+		GameManager.sav.gameDifficulty = GameManager.preSelectDiff
+		GameManager.preSelectDiff = -1
+
 	if GameManager.sav.gameDifficulty==1:
 		perLawCycle=6
 		minxinPoint=1
@@ -2355,18 +2363,13 @@ func LoadingDiffucultValue():
 	if GameManager.sav.minxinReduceCost==true:
 		minxinPoint=minxinPoint-1
 		
-	if GameManager.preSelectDiff==-1:		
+	if not has_pending_diff_change:
 		return
-	var between=GameManager.sav.gameDifficulty-GameManager.preSelectDiff
-	GameManager.sav.gameDifficulty=GameManager.preSelectDiff
-
-
 	
 	if sav.day>=10 and between>0:
 		apply_difficulty_compensation(between)
 	else:
 		DialogueManager.show_example_dialogue_balloon(sys,"难度变更成功")
-	GameManager.preSelectDiff=-1
 
 const COMP_BASE_RATE = 300
 const COMP_MAX_TOTAL = 3000

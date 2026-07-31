@@ -16,6 +16,10 @@ const ARVOSTUS = preload("res://Asset/bgm/4- Arvostus.mp3")
 func _ready():
 	GameManager.sav=saveData.new()
 	GameManager.sav.day=0
+	# Main-menu scene creation starts a fresh save; reset all difficulty-derived
+	# globals so a previous loaded save cannot leak its law cost into the new game.
+	GameManager.preSelectDiff=-1
+	GameManager.LoadingDiffucultValue()
 	GameManager.refreshCallable()
 	GameManager.musicId=0
 	SoundManager.play_music(ARVOSTUS)
