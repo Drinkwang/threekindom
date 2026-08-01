@@ -690,4 +690,7 @@ func LearnToStr(aclevel):
 
 
 func _JudgeTask(data):
-	pass
+
+	if data:
+
+		GameManager.improveFinalPhase()

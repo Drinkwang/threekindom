@@ -1702,5 +1702,7 @@ func laibapai():
 	caobao.changeAllClick("来把仕诡牌")
 	caobaoshow()
 	caobao.showEX=false
-func _JudgeTask():
-	pass
+func _JudgeTask(data):
+	if data:
+
+		GameManager.improveFinalPhase()
