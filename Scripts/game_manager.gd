@@ -2330,7 +2330,7 @@ func GET_COST_LAW_POINT():
 func LoadingDiffucultValue():
 	# Apply a pending difficulty selection before deriving any difficulty-dependent values.
 	# This also prevents a new game from inheriting LAW_COST_POINT from a previous save.
-	var has_pending_diff_change := GameManager.preSelectDiff != -1
+	var has_pending_diff_change = GameManager.preSelectDiff != -1
 	var between := 0
 	if has_pending_diff_change:
 		between = GameManager.sav.gameDifficulty - GameManager.preSelectDiff
