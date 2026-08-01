@@ -41,7 +41,6 @@ signal finished_typing()
 
 ## Shrink text when translated lines would overflow the dialogue box.
 @export var auto_fit_text: bool = true
-@export_range(0.4, 1.0, 0.05) var auto_fit_min_font_scale: float = 0.75
 @export_range(1, 8, 1) var auto_fit_step: int = 1
 
 const RICH_TEXT_FONT_SIZE_KEYS: PackedStringArray = [
@@ -140,7 +139,7 @@ func fit_text_to_box() -> void:
 
 	_apply_rich_text_font_size(_base_font_size)
 
-	await get_tree().process_frame
+	#await get_tree().process_frame
 
 	var available_size := size
 	if available_size.x <= 0 or available_size.y <= 0:
@@ -150,17 +149,18 @@ func fit_text_to_box() -> void:
 	if available_size.x <= 0 or available_size.y <= 0:
 		return
 
-	var min_font_size: int = max(8, int(round(_base_font_size * auto_fit_min_font_scale)))
 	var step: int = max(1, auto_fit_step)
-	var chosen_size: int = min_font_size
+	var font_size: int = _base_font_size
 
-	for font_size in range(_base_font_size, min_font_size - 1, -step):
+	while true:
 		_apply_rich_text_font_size(font_size)
 		if get_content_height() <= available_size.y and get_content_width() <= available_size.x:
-			chosen_size = font_size
+			break
+		if font_size == 1:
 			break
 
-	_apply_rich_text_font_size(chosen_size)
+		# Always test size 1, even when the configured step would skip it.
+		font_size = max(1, font_size - step)
 
 
 func _apply_rich_text_font_size(font_size: int) -> void:
