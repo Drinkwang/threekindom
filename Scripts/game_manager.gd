@@ -704,17 +704,22 @@ func get_battle_task_requirement_multiplier(general_level:int, has_weapon:bool) 
 	#print(numbers)
 	#print("Sum: ", numbers.sum())
 func generate_random_numbers(total: int, count: int) -> Array:
+	if count <= 0:
+		return []
 	var numbers = []
-	
-	# Generate (count - 1) random numbers
+	var remaining := maxi(total, 0)
+	var min_reward := 10 if remaining >= count * 10 else 0
+
+	# Reserve the minimum amount for every entry that has not been generated yet.
 	for i in range(count - 1):
-		var num = randi() % (total - (count - i - 1)) + 1  # Ensure non-zero and space for remaining numbers
-		num = max(num, 10)  # Ensure the minimum value is 10
-		numbers.append(num)
-		total -= num
-	
-	# The last number is the remainder
-	numbers.append(total)
+		var remaining_count := count - i - 1
+		var max_reward := remaining - min_reward * remaining_count
+		var reward := randi_range(min_reward, max_reward)
+		numbers.append(reward)
+		remaining -= reward
+
+	# The final entry is the exact remainder, so the weights always keep their total.
+	numbers.append(remaining)
 	
 	# Shuffle the list to ensure randomness
 	numbers.shuffle()

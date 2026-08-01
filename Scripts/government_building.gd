@@ -1262,10 +1262,12 @@ func financialConfort():
 	#减去资金
 	GameManager.sav.coin=GameManager.sav.coin-200
 	_c.ChangeAllPeople(20+rindex)
+	_c.ChangeSupport(5)
 	SignalManager.changeFraction.emit()
 	if _c._num_all>=100:
 		AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_12")
 	GameManager.sav.hp-=costHp_SummonOne
+	
 	if _faction==cldata.factionIndex.lvbu:
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"扩充吕布实力")#显示对话
 	else:
