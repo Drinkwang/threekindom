@@ -620,6 +620,13 @@ func changeHoldEnegyPanel():
 
 var hasSecretCard=[true,true,true,true]
 var secretPanel
+const SECRET_CARD_VALUES: Array[int] = [11, 24, 37, 50]
+
+static func secret_card_value(card_id: int) -> int:
+	if card_id < 1 or card_id > SECRET_CARD_VALUES.size():
+		return -1
+	return SECRET_CARD_VALUES[card_id - 1]
+
 func showSecretCard():
 	if secretPanel==null:
 		secretPanel=PanelManager.new_SecretCardView()
@@ -628,6 +635,10 @@ func showSecretCard():
 		secretPanel.show()
 
 func getSecretCard(cardId,isplayer=true):
+	var card_value := secret_card_value(cardId)
+	if card_value == -1:
+		push_error("Invalid secret card id: %s" % cardId)
+		return
 	var cardone=BOARD_CARD.instantiate()
 	if isplayer==true:
 		playerEngergyHold.clear()
@@ -638,7 +649,7 @@ func getSecretCard(cardId,isplayer=true):
 		enemyhand.add_child(cardone)
 		cardone.holdType=cardHoldType.enemy	
 	#获得不同的
-	cardone._value=(cardId-1)*13+11 #获得q，然后我们的下一部操作是把
+	cardone._value=card_value
 	hasSecretCard[cardId-1]=false
 	changeHoldEnegyPanel()
 #这个最好是发动移到显眼处，然后有个动画

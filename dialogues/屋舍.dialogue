@@ -35,7 +35,7 @@ do GameManager.AutoSaveFile()
 主簿: 大人，外面有军情急报[voice:zhubo_waimianjunqing]
 刘备: 快请进[voice:liubei_kuaiqinjin]
 do caobao.show()
-曹豹: 将军，我的前同事 也就是杀害曹操他老爹的 如今遁入山林，并当土匪作乱、祸害百姓，陶大人令刘将军派人去协助处理此事[voice:caobao_shahaicaocao]
+曹豹: 将军，昔日与我同署共事之人，便是当年加害曹公家父之徒。此人如今逃窜深山，聚众劫掠沦为草寇，残害乡里百姓。陶公传令刘玄德将军，调拨兵马前往，一同平定祸乱。
 刘备: 好，我这就安排..[voice:liubei_hao_woanpai]
 do caobao.hide()
 教程: 前往演武场进行征伐任务

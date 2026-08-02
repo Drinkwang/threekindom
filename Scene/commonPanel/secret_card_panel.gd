@@ -5,6 +5,13 @@ extends CanvasLayer
 @onready var control_3: ShopItem = $Control/PanelContainer/MarginContainer/VBoxContainer/CardArea/Grid/Control3
 @onready var control_4: ShopItem = $Control/PanelContainer/MarginContainer/VBoxContainer/CardArea/Grid/Control4
 
+const SECRET_CARD_ID_BY_ITEM = {
+	InventoryManagerItem.ItemEnum.仕诡卡血姬: 1,
+	InventoryManagerItem.ItemEnum.仕诡卡骨龙: 2,
+	InventoryManagerItem.ItemEnum.仕诡卡尸皇: 3,
+	InventoryManagerItem.ItemEnum.仕诡卡黑商: 4,
+}
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	initSecretCard(arrs) # Replace with function body.
@@ -48,9 +55,14 @@ func _on_control_1_gui_input(event: InputEvent) -> void:
 func control_gui_press(index):
 	
 	if arrs[index-1]==true:
-		button.disabled=false
-		selectCard=index
 		var control=self["control_"+str(index)]
+		var card_id: int = SECRET_CARD_ID_BY_ITEM.get(control.itemstype, -1)
+		if card_id == -1:
+			button.disabled=true
+			selectCard=-1
+			return
+		button.disabled=false
+		selectCard=card_id
 		var itemname= InventoryManagerItem.item_by_enum(control.itemstype)
 		var properties:Array=InventoryManager.get_item_properties(itemname)
 		var item=properties.filter(func(a):return a["name"]=="detail")[0]
@@ -90,5 +102,4 @@ func refreshSecretCardPanel(index):
 func _on_button_button_down() -> void:
 	if selectCard!=-1:
 		GameManager.currenceScene.getSecretCard(selectCard)
-		GameManager.currenceScene.hasSecretCard=arrs
 		self.queue_free()

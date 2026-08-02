@@ -1514,7 +1514,7 @@ func winTrain():
 			if found_general["level"]>=10:
 				AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_28")
 			
-		if GameManager.sav.zhangfeiTrainNum>=3:
+		if GameManager.sav.zhaoyunTrainNum>=3:
 			AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_25")
 		winReward(isFirst,GameManager.trainGeneral)
 	
