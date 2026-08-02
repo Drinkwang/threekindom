@@ -509,7 +509,8 @@ func _refreshClaimMessage():
 	if _claimMessageKey.length()>0:
 		var values=_claimMessageValues.duplicate()
 		values["factions"]=tr(values.get("factions",""))
-		claimLabel.text=tr(_claimMessageKey).format(values)
+		var translation_key=_claimMessageKey.replace("\n","\\n")
+		claimLabel.text=tr(translation_key).replace("\\n","\n").format(values)
 
 	
 func GetLawClaimRevenue():
@@ -546,7 +547,6 @@ func GetLawClaimRevenue():
 				if GameManager.sav.enhancPolicy_coax==true:
 					#GameManager.changePeopleSupport(5)
 					GameManager.sav.Merit_points+=3
-					#未翻译
 					_claimMessageKey="提示：成功通过拉拢{factions}需求的法律！\n({factions}好感度提升{point}点，额外获得3政策点)\n(该派系摇摆人数减少)"
 				else:
 					_claimMessageKey="提示：成功通过拉拢{factions}需求的法律！\n({factions}好感度提升{point}点)\n(该派系摇摆人数减少)"

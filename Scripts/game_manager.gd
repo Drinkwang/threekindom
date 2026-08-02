@@ -2504,15 +2504,15 @@ func get_total_score() -> int:
 
 func get_score_rank() -> String:
 	var total_score = get_total_score()
-	if total_score >= 15800:
+	if total_score >= 13800:
 		return "S+"
-	elif total_score >= 11700:
+	elif total_score >= 9700:
 		return "S"
-	elif total_score >= 9600:
-		return "A"
 	elif total_score >= 7600:
+		return "A"
+	elif total_score >= 6600:
 		return "A-"
-	elif total_score >= 6500:
+	elif total_score >= 6100:
 		return "B"
 	return "B-"
 
