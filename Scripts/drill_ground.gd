@@ -669,7 +669,7 @@ func _initData():
 	{	
 		"id":"1",
 		"context":"军事行动", #前往小道通向议事厅 
-		"visible":"true"
+		"visible":"false"
 	},
 	{
 		"id":"2",
@@ -975,7 +975,7 @@ func trainUseMoney():
 	caobao.hide()
 
 func trainBegin():
-	control._show_button_5_yellow(1)	
+	control._show_button_5_yellow(0)
 	
 
 func endtrain0():
@@ -984,7 +984,7 @@ func endtrain0():
 	
 	
 func endtrain():
-	control._show_button_5_yellow(2)
+	control._show_button_5_yellow(1)
 
 func ConsultWithCaoBaoEnd():
 	_initData()
@@ -1491,8 +1491,7 @@ func winTrain():
 		if GameManager.sav.guanyuTrainNum<GameManager.trainLevel:			
 			GameManager.sav.guanyuTrainNum+=1
 			found_general["level"]=min(found_general["level"]+1,found_general["max_level"])
-			if found_general["level"]>=10:
-				AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_26")
+			AchievementManager.set_general_level_10_achievement(found_general)
 			isFirst=true
 		if GameManager.sav.guanyuTrainNum>=3:
 			AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_23")
@@ -1502,8 +1501,7 @@ func winTrain():
 			GameManager.sav.zhangfeiTrainNum+=1
 			found_general["level"]=min(found_general["level"]+1,found_general["max_level"])
 			isFirst=true
-			if found_general["level"]>=10:
-				AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_27")			
+			AchievementManager.set_general_level_10_achievement(found_general)
 		if GameManager.sav.zhangfeiTrainNum>=3:
 			AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_24")
 		winReward(isFirst,GameManager.trainGeneral)
@@ -1512,8 +1510,7 @@ func winTrain():
 			GameManager.sav.zhaoyunTrainNum+=1
 			found_general["level"]=min(found_general["level"]+1,found_general["max_level"])
 			isFirst=true
-			if found_general["level"]>=10:
-				AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_28")
+			AchievementManager.set_general_level_10_achievement(found_general)
 			
 		if GameManager.sav.zhaoyunTrainNum>=3:
 			AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_25")

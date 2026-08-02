@@ -21,6 +21,7 @@ func _ready():
 	#general3_button.connect("pressed", self, "_on_general3_button_pressed")
 	#upgrade_button.connect("pressed", self, "_on_upgrade_button_pressed")
 	update_ui()
+	AchievementManager.sync_general_level_10_achievements(GameManager.sav.generals)
 	SignalManager.changeLanguage.connect(changeLanguage)		
 	changeLanguage()
 # 更新界面
@@ -94,6 +95,7 @@ func _on_upgrade_button_pressed():
 	if GameManager.sav.coin >= upgrade_cost and selected_general["level"] < selected_general["max_level"]:
 		GameManager.sav.coin -= upgrade_cost
 		selected_general["level"] += 1
+		AchievementManager.set_general_level_10_achievement(selected_general)
 		lvbutton.disabled=true
 		GameManager.sav.isLevelUp=true
 		update_ui()

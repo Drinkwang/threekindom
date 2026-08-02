@@ -81,3 +81,19 @@ func set_achievement(achievement_id:String):
 			print("steam achivement %s is set"%achievement_id)
 		else:
 			print("steam achivement %s is Not set"%achievement_id)	
+
+func set_general_level_10_achievement(general: Dictionary) -> void:
+	if int(general.get("level", 0)) < int(general.get("max_level", 10)):
+		return
+
+	match general.get("name", ""):
+		"关羽":
+			set_achievement("NEW_ACHIEVEMENT_1_26")
+		"张飞":
+			set_achievement("NEW_ACHIEVEMENT_1_27")
+		"无名":
+			set_achievement("NEW_ACHIEVEMENT_1_28")
+
+func sync_general_level_10_achievements(generals: Dictionary) -> void:
+	for general in generals.values():
+		set_general_level_10_achievement(general)
