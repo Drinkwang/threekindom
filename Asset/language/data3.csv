@@ -203,3 +203,4 @@ Project Complete","你灌溉了所有农田
 "提示：成功通过拉拢{factions}需求的法律！\n({factions}好感度提升{point}点，额外获得3政策点)\n(该派系摇摆人数减少)","Hint: Successfully passed a law requested by {factions}!\n({factions} Favor +{point}; gained 3 bonus Decree Points)\n(Fewer swing voters in this faction)","提示：成功通过拉拢{factions}需求的法律！\n({factions}好感度提升{point}点，额外获得3政策点)\n(该派系摇摆人数减少)","提示：成功通過符合{factions}訴求的法律！\n({factions}好感度提升{point}點，額外獲得3點法令點數)\n(該派系的搖擺人數減少)","ヒント：{factions}の求める法律を可決しました！\n({factions}の好感度が{point}上昇、法令ポイントを追加で3獲得)\n(同派閥の浮動票が減少)","Подсказка: Принят закон, отвечающий требованиям фракции {factions}!\n(Благосклонность {factions} +{point}; дополнительно получено 3 очка указов)\n(Число колеблющихся членов этой фракции уменьшилось)"
 敌军战力,Enemy Strength,敌军战力,敵軍戰力,敵軍戦力,Боевая мощь врага
 吕布之怒,Lu Bu's Wrath,吕布之怒,呂布之怒,呂布の怒り,Гнев Люй Бу
+获取这张卡,Claim This Card,获取这张卡,獲取此卡,このカードを獲得,Получить эту карту
