@@ -668,7 +668,7 @@ func _initData():
 	var initData=[
 	{	
 		"id":"1",
-		"context":"离开此地", #前往小道通向议事厅 
+		"context":"军事行动", #前往小道通向议事厅 
 		"visible":"true"
 	},
 	{
@@ -678,22 +678,23 @@ func _initData():
 	},
 	{
 		"id":"3",
-		"context":"军事行动",#前往大街
+		"context":"休息",#前往大街
 		"visible":"false"
 	},
 	{
 		"id":"4",
-		"context":"休息",#前往大街
-		"visible":"false"
+		
+		"context":"离开此地",#前往大街
+		"visible":"true"
 	},
 
 	]
 
 	if GameManager.sav.have_event["战斗袁术血战模式"]==true and GameManager.sav.have_event["血战袁术完成"]==false:
 		GameManager._engerge.close_save.show()
-		initData[3].visible="true"
+		initData[2].visible="true"
 		res_panel.show()
-		initData[0].visible="false"
+		initData[3].visible="false"
 		if  GameManager.sav.isGetCoin==false:
 			if GameManager.sav.currenceValue<GameManager.BLOOD_SUPPLY_STORY:
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"每日物质送来")
@@ -725,9 +726,9 @@ func _initData():
 
 	else:
 		#initData[3].visible="false"
-		initData[0].visible="true"
+		initData[3].visible="true"
 	if(GameManager.sav.day>=3):
-		initData[2].visible="true"
+		initData[0].visible="true"
 		
 	items_in_scene.showItems()	
 	control._processList(initData)
@@ -983,7 +984,7 @@ func endtrain0():
 	
 	
 func endtrain():
-	control._show_button_5_yellow(0)
+	control._show_button_5_yellow(2)
 
 func ConsultWithCaoBaoEnd():
 	_initData()

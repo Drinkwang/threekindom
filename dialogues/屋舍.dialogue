@@ -35,7 +35,8 @@ do GameManager.AutoSaveFile()
 主簿: 大人，外面有军情急报[voice:zhubo_waimianjunqing]
 刘备: 快请进[voice:liubei_kuaiqinjin]
 do caobao.show()
-曹豹: 将军，昔日与我同署共事之人，便是当年加害曹公家父之徒。此人如今逃窜深山，聚众劫掠沦为草寇，残害乡里百姓。陶公传令刘玄德将军，调拨兵马前往，一同平定祸乱。
+#曹豹: 将军，我的前同事 也就是杀害曹操他老爹的 如今遁入山林，并当土匪作乱、祸害百姓，陶大人令刘将军派人去协助处理此事[voice:caobao_shahaicaocao]
+曹豹: 将军，昔日与我同署共事之人，便是当年加害曹公家父之徒。此人如今逃窜深山，聚众劫掠沦为草寇，残害乡里百姓。陶公传令刘玄德将军，调拨兵马前往，一同平定祸乱。[voice:caobao_shahaicaocao]
 刘备: 好，我这就安排..[voice:liubei_hao_woanpai]
 do caobao.hide()
 教程: 前往演武场进行征伐任务
@@ -353,7 +354,7 @@ do GameManager.getItemAction.call()
 # 
 ~ 休息教程
 刘备: (手头上的事都忙完了，正好休息一下，恢复点精力。)[voice:liubei_shoutoushangmangwanle]
-do control._show_button_5_yellow(3)
+do control._show_button_5_yellow(2)
 #系统提示: 玩家可通过休息恢复体力值；每次休息将使游戏时间推进一旬(10天)。
 系统提示: 休憩可恢复体力，每次休憩耗时一旬(10天)；各类剧情事件不受时间推进影响，所以不必体力耗尽再歇息，但妥善规划体力方能收获更多益处。
 => END!

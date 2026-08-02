@@ -212,22 +212,22 @@ func _get_control_init_data():
 	},
 	{
 		"id":"3",
-		"context":"外出",#前往大街
+		"context":"待办事项",#前往大街
 		"visible":"true"
 	},
 	{
 		"id":"4",
-		"context":"待办事项",#打开人物面板
+		"context":"属性面板",#打开人物面板
 		"visible":"true"
 	},
 	{
 		"id":"5",
-		"context":"属性面板",#打开属性ui
+		"context":"休息",#打开属性ui
 		"visible":"true"
 	},
 	{
 		"id":"6",
-		"context":"休息", #天数加1 进入过度
+		"context":"外出", #天数加1 进入过度
 		"visible":"true"
 	}
 	]
@@ -326,7 +326,7 @@ func _initData():
 	if GameManager.sav.day==2:
 		if GameManager.sav.have_event["dayTwoInit"]==false:
 			GameManager.sav.have_event["dayTwoInit"]=true
-			control._show_button_5_yellow(1)  #将这些逻辑放在
+			control._show_button_5_yellow(0)  #将这些逻辑放在
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新的一天")
 
 			GameManager.sav.curGovAff=tr("1.前往府邸会见各派系领袖\n2.前往议事厅通过昨日拟定的法令")
@@ -335,7 +335,7 @@ func _initData():
 		#设置des
 	elif GameManager.sav.day==3:
 		if GameManager.sav.have_event["dayThreeInit"]==false:
-			control._show_button_5_yellow(1)
+			control._show_button_5_yellow(0)
 			GameManager.sav.have_event["dayThreeInit"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第三天")
 			GameManager.sav.curGovAff=tr("1.前往城外军事驻地，讨伐土匪")
@@ -347,7 +347,7 @@ func _initData():
 		if GameManager.sav.have_event["firstVisitScholars"]==false:
 			GameManager.sav.have_event["firstVisitScholars"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"第四天")
-			control._show_button_5_yellow(1)
+			control._show_button_5_yellow(0)
 			GameManager.sav.curGovAff=tr("1.前往城外及军事驻地，选择拜见大儒郑玄")
 			#GameManager.changeTaskLabel("前往城外及军事驻地，选择拜见大儒郑玄")
 		if GameManager.sav.have_event["firstVisitScholarsEnd"]==true and GameManager.sav.day<=5:
@@ -372,7 +372,7 @@ func _initData():
 			control.hide()
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"新手关结束")
 	elif GameManager.sav.have_event["属性面板教程"]==false and GameManager.sav.have_event["initTaskPolicy"]==true:
-		control._show_button_5_yellow(2)
+		control._show_button_5_yellow(1)
 	return canMuliao
 	#判断以下，是首日获取 还是第二次获取
 
@@ -706,7 +706,7 @@ func _process(delta):
 func showFirstGuild():
 	control.show()
 	point.hide()
-	control._show_button_5_yellow(0)
+	control._show_button_5_yellow(3)
 	$"陈群".hide()
 	#这句代码没有作用，以防万一添加进行初始化
 	GameManager.sav.policyExcute=false
