@@ -54,7 +54,7 @@ func _ready():
 	#_add_version_label()#debug
 	#_test_deadline_check()#debug
 	if GameManager._setting.is_clear_normal_line or GameManager._setting.is_clear_overlord_line:
-		$credit.disabled = false
+		_credit.disabled = false
 	if not SignalManager.changeLanguage.is_connected(_on_global_language_changed):
 		SignalManager.changeLanguage.connect(_on_global_language_changed)
 
@@ -189,6 +189,10 @@ func MainContent():
 	
 	SoundManager.play_sound(sounds.COLLECT_SMALL_JEWEL_1)
 	SceneManager.changeScene(SceneManager.roomNode.GOVERNMENT_BUILDING,2)
+@onready var _continue: Button = $continue
+@onready var _begin: Button = $begin
+@onready var _credit: Button = $credit
+@onready var _exit: Button = $exit
 
 
 func _on_continue_button_down():
@@ -196,7 +200,13 @@ func _on_continue_button_down():
 	#	return
 	#DialogueManager.show_example_dialogue_balloon(sys,"当前功能demo不开放")
 	PanelManager.show_Save_panel()
+const _1_BLOD = preload("res://Asset/Font/1_blod.ttf")
 
+func removefont():
+	_begin.remove_theme_font_override("font")
+	_exit.remove_theme_font_override("font")
+	_credit.remove_theme_font_override("font")
+	_continue.remove_theme_font_override("font")
 
 func _on_option_button_item_selected(index):
 	var lan=""
@@ -205,30 +215,37 @@ func _on_option_button_item_selected(index):
 		
 		title.add_theme_font_size_override("normal_font_size",200)  
 		lan="zh"
-		
+		removefont()
 		_set_game_logo_mode(true)
 		title.text="[center][rainbow]阴[/rainbow][wave amp=50 frep=100]三国[/wave][rainbow]谋论[/rainbow]-[tornado][color=#ff0000]徐州篇[/color][/tornado][/center]"				
 
 	elif index==1:
 		title.add_theme_font_size_override("normal_font_size",200)  
 		lan="lzh"
-
+		removefont()
 		_set_game_logo_mode(true)
 		title.text="[center][rainbow]陰[/rainbow][wave amp=50 frep=100]三國[/wave][rainbow]謀論[/rainbow]-[tornado]徐州篇[/tornado][/center]"				
 	
 	elif index==2:
 		lan="en"
 		_set_game_logo_mode(true)
+		removefont()
 		title.add_theme_font_size_override("normal_font_size",130)
 		title.text="[center]The [rainbow]Three Kingdoms[/rainbow] of [wave amp=50 frep=100]Shadows[/wave]:[tornado]Xuzhou[/tornado][/center]"
 				
 	elif index==3:
 		lan="ja"
 		_set_game_logo_mode(true)
+		removefont()
 		title.text="[center][rainbow]陰[/rainbow][wave amp=50 frep=100]三国[/wave][rainbow]謀論[/rainbow]: [tornado]徐州編[/tornado][/center]"
 		title.add_theme_font_size_override("normal_font_size",200)  		
 	elif index==4:
 		lan="ru"
+		
+		_begin.add_theme_font_override("font",_1_BLOD)
+		_exit.add_theme_font_override("font",_1_BLOD)
+		_credit.add_theme_font_override("font",_1_BLOD)
+		_continue.add_theme_font_override("font",_1_BLOD)
 		_set_game_logo_mode(false)
 		title.text="[center][tornado]Тёмные [/tornado][wave amp=50 frep=100]интриги [/wave][rainbow]Троецарствия[/rainbow][/center]"			
 		title.add_theme_font_size_override("normal_font_size",130)  		
