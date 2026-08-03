@@ -101,7 +101,7 @@ func refreshData():
 	if itemData.supressNum>=3:
 		statusTxt=tr("【状态：彻底收服,派系已被完全驯化。因畏服权威，好感度永久锁定，不再受任何影响。】")
 
-	TooltipManager.register_tooltip(self,itemData.detail+statusTxt)
+	TooltipManager.register_tooltip(self,tr(itemData.detail)+statusTxt)
 	#【状态：镇压中，当前派系会不断消耗好感度，直到玩家采取讨好当前派系的手段】
 	#【状态：已臣服，当前派系受到玩家多次镇压，已再无反抗之心，好感度将不再发生变化】
 

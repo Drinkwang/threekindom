@@ -324,7 +324,7 @@ func _juideCompeleteTask():
 
 	if haveWeaponNum>0:
 		levelup=levelup*(1+weaponRate)
-		var weapon_buff_key="{weapon}+{bonus}%【法令已强化】" if GameManager.sav.isWeaponLevelUP else "{weapon}+{bonus}%"
+		var weapon_buff_key="{weapon}+{bonus}%" if GameManager.sav.isWeaponLevelUP else "{weapon}+{bonus}%"
 		buff_lines.append(tr(weapon_buff_key).format({
 			"weapon":tr(haveWeaponName),
 			"bonus":int(round(weaponRate*100))

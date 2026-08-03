@@ -36,7 +36,7 @@ func refreshData():
 	else:
 		label.text=tr(_data._name)+":%d"%_data._num_all+"(-:-:-)"
 	_fit_label()
-	TooltipManager.register_tooltip(self,_data.detail)
+	TooltipManager.register_tooltip(self,tr(_data.detail))
 
 
 func _fit_label():
