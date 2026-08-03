@@ -1751,6 +1751,27 @@ func haveUnicornIcon()->bool:
 	else:
 		return false	
 
+
+func is_highlight_unlimited() -> bool:
+	# Completing either ending unlocks unlimited statue guidance in later runs.
+	return _setting != null and (_setting.is_clear_normal_line or _setting.is_clear_overlord_line)
+
+
+func can_use_highlight() -> bool:
+	if not haveUnicornIcon():
+		return false
+	if is_highlight_unlimited():
+		return true
+	return sav != null and sav.highlight_uses_remaining > 0
+
+
+func consume_highlight_use() -> bool:
+	if not can_use_highlight():
+		return false
+	if not is_highlight_unlimited():
+		sav.highlight_uses_remaining = maxi(sav.highlight_uses_remaining - 1, 0)
+	return true
+
 func AutoSaveFile():
 	
 	

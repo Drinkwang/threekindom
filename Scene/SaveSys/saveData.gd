@@ -413,6 +413,9 @@ var number_bool_map: Dictionary = {
 @export var constructGrain=0
 @export var gameDifficulty=2
 
+# Saved per playthrough. Unlimited access is derived from the global ending state.
+@export var highlight_uses_remaining:int = 3
+
 @export var bloodCoin=0
 @export var bloodLabor=0
 func ensure_default_fields():

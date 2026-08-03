@@ -30,6 +30,8 @@ var responses: Array = []:
 
 		# Add new items
 		if responses.size() > 0:
+			var highlight_enabled_for_menu := GameManager.can_use_highlight()
+			var highlight_consumed_for_menu := false
 			for response in responses:
 				var item: Control
 				if is_instance_valid(response_template):
@@ -64,9 +66,10 @@ var responses: Array = []:
 					
 					if "[highlight=true]" in response.text:
 						response.text = response.text.replace("[highlight=true]", "")
-						var sxnum=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.獬豸圣像) 
-						if sxnum>0 and (GameManager._setting.is_clear_overlord_line==true or GameManager._setting.is_clear_normal_line==true):
+						if highlight_enabled_for_menu:
 							apply_highlight_effect(item)  # 应用高亮效果
+							if not highlight_consumed_for_menu:
+								highlight_consumed_for_menu = GameManager.consume_highlight_use()
 					var diff_regex = RegEx.new()
 					diff_regex.compile("\\[diff=(\\d+)\\]")
 					var diff_result = diff_regex.search(response.text)
