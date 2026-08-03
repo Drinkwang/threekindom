@@ -141,7 +141,7 @@ size_flags_horizontal = 10
 [node name="Button" type="Button" parent="Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "再撑一回"
+text = "再撑一会"
 
 [node name="Control4" type="Control" parent="Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2

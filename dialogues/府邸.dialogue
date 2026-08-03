@@ -172,7 +172,7 @@ do zhubu.hide()
 主簿: 主公，您想要召见哪个派系的手下呢？[voice:zhugongxiangzhaojianshui]
 #- 设宴
 #do meeting(cldate.factionIndex.bentupai)
-- 召见徐州派[costHp=50]
+- 召见本土派[costHp=50]
 	do SummonFaction(bentupai)
 - 召见丹阳派[costHp=50]
 	do SummonFaction(waidipai)
