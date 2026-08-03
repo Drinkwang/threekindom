@@ -267,7 +267,7 @@ do settle_allocation_after_current_dialogue()
 
 ~ 难度变更成功
 
-系统提示: 难度已变更【{{GameManager.resideValue.type}}：{{GameManager.resideValue.name}}】,{{GameManager.resideValue.desc}}】
+系统提示: 难度已变更为【{{tr(GameManager.resideValue.type)}}：{{tr(GameManager.resideValue.name)}}】，{{tr(GameManager.resideValue.desc)}}
 => END!
 
 
