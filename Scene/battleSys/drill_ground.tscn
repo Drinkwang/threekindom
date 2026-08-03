@@ -436,6 +436,7 @@ txt = ExtResource("8_phhxu")
 contextEX = "关羽、张飞、无名现在可以被你调用！
 (或许将军可以试试练兵功能来快速提升武将等级）"
 titleEX = "老兵饭局："
+show_task_summary = null
 dialogue_resource = ExtResource("2_j02vm")
 clickEvent = "饭局结束"
 
