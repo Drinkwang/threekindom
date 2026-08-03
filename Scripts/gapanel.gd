@@ -25,6 +25,9 @@ extends Control
 		titleEX=value
 		if(title!=null):
 			title.text=titleEX
+
+# Only the manor's pending-business panel should render the shared quest summary.
+@export var show_task_summary: bool = false
 		
 @onready var title = $PanelContainer/MarginContainer/VBoxContainer/title
 @onready var context = $PanelContainer/MarginContainer/VBoxContainer/context
@@ -63,7 +66,8 @@ func _changeLanguage():
 		#title.remove_theme_font_override("font")
 		#context.remove_theme_font_override("font")
 		context.add_theme_font_size_override("font_size", 48)
-	refreshContext()
+	if show_task_summary:
+		refreshContext()
 	
 func refreshContext():
 	if GameManager.sav.curGovAff.length()>0:

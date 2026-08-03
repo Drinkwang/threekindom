@@ -74,12 +74,13 @@ do caobao.show()
 刘备: 嗯，我会立刻派我的手下关羽、张飞、那位将军，协助你一起征伐[voice:liubei_wohuipaishouxia]
 曹豹: 好，就让我们二路分别进军，就看贼寇如何逃窜！[voice:caobao_haofenbiejinjun]
 教程: click_junshi_xingdong
+do control._show_button_5_yellow(2)
 do caobao.hide()
 => END
 
 #没有展示
 ~ 第一次军事行动教程
-
+do control._show_button_5_yellow(-1)
 
 教程: 欢迎将军开启征程！在三国战场，一场军事行动的胜负，离不开资源运筹与策略博弈。请跟随指引，掌握核心玩法：
 do showtutorial(1)

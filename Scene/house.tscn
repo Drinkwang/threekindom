@@ -513,6 +513,7 @@ clickEvent = ""
 
 [node name="政务面板" parent="CanvasLayer" instance=ExtResource("8_2ady6")]
 visible = false
+show_task_summary = true
 clickEvent = ""
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
