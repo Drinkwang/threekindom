@@ -246,7 +246,7 @@ do people.show()
 do SoundManager.stop_music()
 刘备: 陶氏乃陶公血脉，备誓保其周全！我绝不能让他们做诱饵，亲兵随我，冲上街去，擒张阎，平民怨！[voice:liubei_pinminyuan]
 
-（百姓见刘备不献陶氏，怒吼：“刺史护罪人！”张阎未现身，似提前得消息，骨头祭坛上的骨棒亦被人取走，蛊言仍在人群中流传。）  [voice:zhongren_cishihuzuiren]
+（百姓见刘备不献陶氏，怒吼：“刺史护罪人！”张阎未现身，似提前得消息，骨头祭坛上的骨棒亦被人取走，蛊言仍在人群中流传。）[voice:zhongren_cishihuzuiren]
 
 百姓: 饕餮饥渴，陶氏不死，徐州必亡！[voice:zhongren_xuzhoubiwang]
 刘备: 莫听妖言，速寻张阎，勿使其再惑众！[voice:liubei_motingyaoyan]

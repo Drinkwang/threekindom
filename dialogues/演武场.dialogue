@@ -74,7 +74,7 @@ do caobao.show()
 刘备: 嗯，我会立刻派我的手下关羽、张飞、那位将军，协助你一起征伐[voice:liubei_wohuipaishouxia]
 曹豹: 好，就让我们二路分别进军，就看贼寇如何逃窜！[voice:caobao_haofenbiejinjun]
 教程: click_junshi_xingdong
-do control._show_button_5_yellow(2)
+do control._show_button_5_yellow(0)
 do caobao.hide()
 => END
 

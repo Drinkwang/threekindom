@@ -93,7 +93,7 @@ func refreshContext():
 					if i == 0:
 						done = flags.get("firstBattleEnd", false)
 				if done and not lines[i].contains(tr("已完成")):
-					lines[i] += tr("（已完成）")
+					lines[i] += tr("(已完成)")
 			contextEX = "\n".join(lines)
 		else:
 			contextEX = display_text
