@@ -681,9 +681,9 @@ func refreshTask(checkSlider:bool=true):
 			elif task.symbol==GameManager.opcost.less:
 				isCompleted=haveRes<targetValue and haveRes>minValue
 				if _mode==bossMode.mi:
-					taskcontext+=tr(".商贾幻影:")+tr("(资金小于{targetValue} 但大于{targetValue2})").format({"targetValue": targetValue,"targetValue2":minValue})
+					taskcontext+=tr(".商贾幻影:")+tr("(资金大于{targetValue2} 但小于{targetValue})").format({"targetValue": targetValue,"targetValue2":minValue})
 				else:
-					taskcontext+=tr(".游击战:")+tr("(资金小于{targetValue} 但大于{targetValue2})").format({"targetValue": targetValue,"targetValue2":minValue})
+					taskcontext+=tr(".游击战:")+tr("(资金大于{targetValue2} 但小于{targetValue})").format({"targetValue": targetValue,"targetValue2":minValue})
 
 		# ——— 兵力类任务 ———
 		if task.res=="human" and _mode!=bossMode.mi:
@@ -707,9 +707,9 @@ func refreshTask(checkSlider:bool=true):
 			elif task.symbol==GameManager.opcost.less:
 				isCompleted=haveRes<targetValue and haveRes>minValue
 				if _mode==bossMode.tao:
-					taskcontext+=tr(".冥界壁垒:")+tr("(兵力小于{targetValue} 但大于{targetValue2})").format({"targetValue": targetValue,"targetValue2":minValue})
+					taskcontext+=tr(".冥界壁垒:")+tr("(兵力大于{targetValue2} 但小于{targetValue})").format({"targetValue": targetValue,"targetValue2":minValue})
 				else:
-					taskcontext+=tr(".防守战:")+tr("(兵力小于{targetValue} 但大于{targetValue2})").format({"targetValue": targetValue,"targetValue2":minValue})
+					taskcontext+=tr(".防守战:")+tr("(兵力大于{targetValue2} 但小于{targetValue})").format({"targetValue": targetValue,"targetValue2":minValue})
 
 		if not taskAdded:
 			continue

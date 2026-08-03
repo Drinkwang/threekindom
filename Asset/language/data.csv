@@ -400,10 +400,10 @@ Xiaopei:
 .遭遇战:,.Skirmish:,.遭遇戰：,.遭遇戦：,.遭遇戦：,.Столкновение:
 .奇兵任务:,.Surprise attack mission:,.奇兵任务:,.奇兵任務：,.奇襲任務：,.Задание для спецотряда:
 .防守战:,.Defensive battle:,.防守战:,. 防守戰：,. 防衛戦：,. Оборонительное сражение:
-(兵力小于{targetValue} 但大于{targetValue2}),(Troops less than {targetValue} but greater than {targetValue2}),(兵力小于{targetValue} 但大于{targetValue2}),(兵力小於{targetValue} 但大於{targetValue2}),(兵力が{targetValue}未満 ただし{targetValue2}より多い),"(Сила войск меньше {targetValue}, но больше {targetValue2})"
+(兵力大于{targetValue2} 但小于{targetValue}),(Troops greater than {targetValue2} but less than {targetValue}),(兵力大于{targetValue2} 但小于{targetValue}),(兵力大於{targetValue2} 但小於{targetValue}),(兵力が{targetValue2}より多く、{targetValue}未満),"(Сила войск больше {targetValue2}, но меньше {targetValue})"
 (兵力等于{targetValue}),(Troops equal to {targetValue}),(兵力等于{targetValue}),(兵力等於{targetValue}),(兵力が{targetValue}と等しい),(Сила войск равна {targetValue})
 (兵力超过{targetValue}),(Troops exceed {targetValue}),(兵力超过{targetValue}),(兵力超過{targetValue}),(兵力が{targetValue}を超える),(Сила войск больше {targetValue})
-(资金小于{targetValue} 但大于{targetValue2}),(Funds less than {targetValue} but greater than {targetValue2}),(资金小于{targetValue} 但大于{targetValue2}),(資金小於{targetValue} 但大於{targetValue2}),(資金が{targetValue}未満 ただし{targetValue2}より多い),"(Средств меньше {targetValue}, но больше {targetValue2})"
+(资金大于{targetValue2} 但小于{targetValue}),(Funds greater than {targetValue2} but less than {targetValue}),(资金大于{targetValue2} 但小于{targetValue}),(資金大於{targetValue2} 但小於{targetValue}),(資金が{targetValue2}より多く、{targetValue}未満),"(Средств больше {targetValue2}, но меньше {targetValue})"
 (资金等于{targetValue}),(Funds equal to {targetValue}),(资金等于{targetValue}),(資金等於{targetValue}),(資金が{targetValue}と等しい),(Средства равны {targetValue})
 (资金超过{targetValue}),(Funds exceed {targetValue}),(资金超过{targetValue}),(資金超過{targetValue}),(資金が{targetValue}を超える),(Средства больше {targetValue})
 开始议事,Start council,开始议事,開始議事,議事開始,Начать совет
