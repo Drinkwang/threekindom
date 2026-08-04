@@ -1447,12 +1447,13 @@ func suppress():
 	var _c=getFactionByIndex()
 	var suppressCoeff=1.0
 	match GameManager.sav.gameDifficulty:
-		1: suppressCoeff=0.4
-		2: suppressCoeff=0.45
-		3: suppressCoeff=0.5
-	
-	ForValueGet=int(sqrt(100-_c._support_rate)*60*(_c.supressNum+1)*suppressCoeff)
-	ForValueCost=int(sqrt(100-_c._support_rate)*110*(_c.supressNum+1)*suppressCoeff)
+		1: suppressCoeff=0.35
+		2: suppressCoeff=0.35
+		3: suppressCoeff=0.36
+	# 压缩有效镇压区间（好感 0～59）的成本差距：59 好感约为 0 好感成本的 84%。
+	var suppressionResistance=sqrt(100.0-_c._support_rate*0.5)
+	ForValueGet=int(suppressionResistance*60*(_c.supressNum+1)*suppressCoeff)
+	ForValueCost=int(suppressionResistance*110*(_c.supressNum+1)*suppressCoeff)
 	#这个可能还高，但是没办法了
 	if _c._support_rate>=60:
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"贸然镇压")#显示对话

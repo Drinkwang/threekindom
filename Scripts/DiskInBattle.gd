@@ -601,7 +601,7 @@ func settleGame(end,issuccess,general):
 			AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_2")
 		if resideCount<=0:
 			GameManager.sav.useItemInBattle=false
-			GameManager.currenceScene.battle_pane.check_box.toggle_mode=false
+			GameManager.currenceScene.battle_pane.check_box.button_pressed=false
 
 	var cost=10000
 	var percentage=0

@@ -386,8 +386,8 @@ func _buttonListClick(item):
 
 			#miniResScale()
 			if GameManager.sav.have_event["boss战开始"]==true and GameManager.sav.caobaocardgame==4:
-				if await GameManager.isTried(20):
-					return 		
+				#if await GameManager.isTried(20):
+				#	return 		
 				SoundManager.stop_music()
 				SoundManager.play_music(sounds._2__MENTAL_VORTEX)
 				

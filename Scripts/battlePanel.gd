@@ -544,6 +544,9 @@ func refreshUseItemPanel():
 	var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.胜战锦囊)
 
 	if num>0:
+		# The last pouch may have been consumed before the reward panel grants a new one.
+		# Always restore the checkbox's interactive mode when inventory becomes available.
+		check_box.toggle_mode=true
 		useItemPanel.show()
 		
 
@@ -552,10 +555,9 @@ func refreshUseItemPanel():
 		if InventoryManager.has_item(InventoryManagerItem.迷魂木筒):
 			context = context.replace("40", "50") 
 		label.text=context
-		if GameManager.sav.useItemInBattle:
-			check_box.button_pressed=true
+		check_box.button_pressed=GameManager.sav.useItemInBattle
 	else:
-	
+		check_box.button_pressed=false
 		useItemPanel.hide()
 		GameManager.sav.useItemInBattle=false
 
