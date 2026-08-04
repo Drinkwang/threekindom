@@ -2315,7 +2315,7 @@ As Liu Bei, do not wake too late.","身为陶商，便好好活下去；
 请选中你要调节的游戏难度，仅序章小沛、正篇首次离府前可上调难度，其余时段只能降难度。,"Please select the game difficulty you wish to adjust. Difficulty can only be increased during the prologue in Xiaopei and before leaving the residence for the first time in the main story; at other times, difficulty can only be decreased.",请选中你要调节的游戏难度，仅序章小沛、正篇首次离府前可上调难度，其余时段只能降难度。,請選中你要調節的遊戲難度，僅序章小沛、正篇首次離府前可上調難度，其餘時段只能降難度。,ゲーム難易度を選択してください。序章の小沛、正編で初めて家を出る前のみ難易度を上げることができ、それ以外の時間は難易度を下げることしかできません。,"Пожалуйста, выберите уровень сложности игры, который вы хотите отрегулировать. Сложность можно повысить только в прологе (Сяопэй) и перед первым выходом из дома в основной части, в остальное время сложность можно только понизить."
 仅序章小沛、正篇首次离府前（且正篇尚未立法的阶段）可上调难度，当前进度无法更改难度。,Difficulty can only be increased during the Xiaopei prologue or in the main story before your first departure from the residence and before any law is enacted. It cannot be changed at the current point in the story.,仅序章小沛、正篇首次离府前（且正篇尚未立法的阶段）可上调难度，当前进度无法更改难度。,僅序章小沛、正篇首次離府前（且正篇尚未立法的階段）可上調難度，當前進度無法更改難度。,難易度を上げられるのは、序章の小沛と、本編で初めて府邸を出る前かつ法令制定前のみです。現在の進行状況では変更できません。,"Повысить сложность можно только в прологе в Сяопэе и в основной части до первого выхода из резиденции, пока ещё не принят ни один закон. На текущем этапе изменить сложность нельзя."
 目前已是所选难度，无需重复更改,"The current difficulty is already selected, no need to change it again.",目前已是所选难度，无需重复更改,目前已是所選難度，無需重複更改,現在は選択された難易度です。重ねて変更する必要はありません。,"Текущая сложность уже выбрана, не нужно повторно менять."
-"难度已变更为【{{tr(GameManager.resideValue.type)}}：{{tr(GameManager.resideValue.name)}}】，{{tr(GameManager.resideValue.desc)}}","Difficulty changed to 【{{tr(GameManager.resideValue.type)}}: {{tr(GameManager.resideValue.name)}}】. {{tr(GameManager.resideValue.desc)}}","难度已变更为【{{tr(GameManager.resideValue.type)}}：{{tr(GameManager.resideValue.name)}}】，{{tr(GameManager.resideValue.desc)}}","難度已變更為【{{tr(GameManager.resideValue.type)}}：{{tr(GameManager.resideValue.name)}}】。{{tr(GameManager.resideValue.desc)}}",難易度を【{{tr(GameManager.resideValue.type)}}：{{tr(GameManager.resideValue.name)}}】に変更しました。{{tr(GameManager.resideValue.desc)}},"Установлена сложность: 【{{tr(GameManager.resideValue.type)}}: {{tr(GameManager.resideValue.name)}}】. {{tr(GameManager.resideValue.desc)}}"
+难度已变更为【{{tr(GameManager.resideValue.type)}}：{{tr(GameManager.resideValue.name)}}】，{{tr(GameManager.resideValue.desc)}},Difficulty changed to 【{{tr(GameManager.resideValue.type)}}: {{tr(GameManager.resideValue.name)}}】. {{tr(GameManager.resideValue.desc)}},难度已变更为【{{tr(GameManager.resideValue.type)}}：{{tr(GameManager.resideValue.name)}}】，{{tr(GameManager.resideValue.desc)}},難度已變更為【{{tr(GameManager.resideValue.type)}}：{{tr(GameManager.resideValue.name)}}】。{{tr(GameManager.resideValue.desc)}},難易度を【{{tr(GameManager.resideValue.type)}}：{{tr(GameManager.resideValue.name)}}】に変更しました。{{tr(GameManager.resideValue.desc)}},Установлена сложность: 【{{tr(GameManager.resideValue.type)}}: {{tr(GameManager.resideValue.name)}}】. {{tr(GameManager.resideValue.desc)}}
 已下调游戏难度，现为你发放补偿：获得钱{x}、民力{y}、道具若干，民心+{m}、各派系支持度+{f},"The game difficulty has been lowered. Compensation is now issued: Gold {x}, Labor {y}, various items, Popular Support +{m}, and Faction Support +{f}.",已下调游戏难度，现为你发放补偿：获得钱{x}、民力{y}、道具若干，民心+{m}、各派系支持度+{f},已下調遊戲難度，現為你發放補償：獲得錢{x}、民力{y}、道具若干，民心+{m}、各派系支持度+{f},ゲーム難易度を調整したため、補償を配布します：獲得金貨{x}、民力{y}、アイテム若干、民心+{m}、各派閥支持度+{f},"Сложность игры была снижена, в качестве компенсации вы получаете: Золото {x}, Рабочая сила {y}, несколько предметов, поддержка народа +{m}, поддержка фракций +{f}"
 【已达成，伤亡降低】,"【Objective Met, Casualties Reduced】",【已达成，伤亡降低】,【已達成，傷亡降低】 ,【条件達成、戦死損耗低下】,"【Условие выполнено, потери снижены】"
 法令点数可通过给派系派发月例获取。,Decree Points can be earned by issuing monthly stipends to factions.,法令点数可通过给派系派发月例获取。,法令點數可透過給派系派發月例獲取。,法令ポイントは、各派閥に月例支給を行うことで獲得できます。,"Очки указов можно получить, назначая фракциям ежемесячное довольствие."
@@ -2345,26 +2345,31 @@ I have petitioned the court to appoint you General Who Guards the East. Yuan Shu
 Since I received the Emperor and established the court at Xudu, the realm remains unsettled: the court must be restored and the Yellow Turban remnants put down. If I strip the rear of troops now, the Han itself is endangered. I cannot lead the relief army, but Yanzhou's generals already hold Yuan Shu's flank so he dare not send his full strength south. Rally Xuzhou beneath your new standard and stand fast. Grain and arms will follow at your word.
 Yuan Benchu is an old companion, and we both speak of restoring the Han. Yet he stood aside while the Emperor wandered; now that the court has found its footing, he seeks rank and presses others toward war. His strength is real, so avoid open conflict. In time, the realm will reveal each man's measure.
 Yuan Shu covets the throne and is the realm's common foe. Those who accept the Han's favor must also bear its burden. Hold Xuzhou and steady its people. When the hour comes, we shall sweep away the rebels and raise the Han anew.
+
 Cao Cao, respectfully","备弟足下：
 我已上表荐你为镇东将军。袁术挟僭越之心进逼徐州，你能独当危局，足见忠义胆略。
 我奉迎天子、定都许都后，朝廷百废待举，黄巾余党亦未尽平；此时若尽抽精兵南援，后方一动，汉室根基便要再受震荡。故我不能亲率大军，却已令兖州诸将严牵袁术侧翼，使他不敢悉兵南下。你当以镇东将军之名收拢徐州人心，坚守待机；所需粮秣军械，尽管开口，我必速遣。
 袁本初与我本为旧交，又同负扶汉之名。然天子流离时，他按兵不动；今朝廷初定，反争高位、屡催征伐，其志已非昔日可比。念其势盛，暂不与之争锋；待天下局势明朗，自有论断。
 袁术觊觎帝位，实为天下共敌。你我既受汉恩，当共担天下之任。守住徐州，稳住民心；待时机一至，我与你并肩扫清逆乱，重振汉室。
+
 曹操顿首","備弟足下：
 我已上表薦你為鎮東將軍。袁術挾僭越之心進逼徐州，你能獨當危局，足見忠義膽略。
 我奉迎天子、定都許都後，朝廷百廢待舉，黃巾餘黨亦未盡平；此時若盡抽精兵南援，後方一動，漢室根基便要再受震盪。故我不能親率大軍，卻已令兗州諸將嚴牽袁術側翼，使他不敢悉兵南下。你當以鎮東將軍之名收攏徐州人心，堅守待機；所需糧秣軍械，儘管開口，我必速遣。
 袁本初與我本為舊交，又同負扶漢之名。然天子流離時，他按兵不動；今朝廷初定，反爭高位、屢催征伐，其志已非昔日可比。念其勢盛，暫不與之爭鋒；待天下局勢明朗，自有論斷。
 袁術覬覦帝位，實為天下共敵。你我既受漢恩，當共擔天下之任。守住徐州，穩住民心；待時機一至，我與你並肩掃清逆亂，重振漢室。
+
 曹操 頓首","玄徳弟 足下
 貴殿を鎮東将軍に推挙した。僭越を企む袁術が徐州へ迫るなか、一身で危局を支える貴殿の忠義と胆力を、私は深く嘉する。
 天子を奉迎して許都を都とした今、朝廷は百廃待挙、黄巾の残党もなお平らげきれていない。ここで精兵をことごとく南へ向ければ、後方が揺らぎ、救うべき漢室の土台まで危うくなる。ゆえに私自ら援軍を率いることはできぬが、兗州の諸将には袁術の側面を厳しく牽制させている。奴も全軍を南下させるまい。鎮東将軍の名で徐州の人心をまとめ、時機を待って守り抜かれよ。兵糧や武具は、必要なだけ直ちに送る。
 袁本初は旧知の間柄で、ともに漢を支える名目もある。だが天子が流浪された折には動かず、今や朝廷が立ち直りかけると高位を求め、しきりに出兵を促している。勢力は侮れぬ。今は正面から争わず、天下の趨勢が定まる時を見よ。
 帝位を狙う袁術は天下の公敵である。漢の恩を受ける者は、その重荷も負わねばならぬ。徐州を守り、民心を安んじよ。時が来れば、貴殿と共に逆賊を掃い、漢室を再び立て直そう。
+
 曹操 拝","Достойному брату Сюаньдэ.
 Я ходатайствовал о твоём назначении полководцем, усмиряющим Восток. Юань Шу, помышляющий о престоле, идёт на Сюйчжоу. Противостоять ему в одиночку — знак твоей верности и отваги.
 После того как я принял государя и утвердил двор в Сюйду, многое ещё предстоит восстановить, а остатки Жёлтых повязок не усмирены. Если сейчас ослабить тыл, под угрозой окажется дом Хань. Я не могу лично повести подкрепление, но военачальники Яньчжоу уже сковывают фланг Юань Шу, не давая ему бросить все силы на юг. Опираясь на новое звание, сплоти Сюйчжоу и держись. Зерно и оружие пришлю по первому слову.
 Юань Бэньчу — давний соратник, и оба мы обязались поддерживать Хань. Но он бездействовал, когда государь скитался, а теперь требует высоких чинов и торопит других к войне. Его сила велика: пока не вступай с ним в открытую борьбу. Время покажет цену каждому.
 Юань Шу посягает на престол и потому враг всей Поднебесной. Пользуясь милостью Хань, мы должны нести и её бремя. Удержи Сюйчжоу, успокой народ. Когда придёт час, мы вместе сметём мятежников и возродим Хань.
+
 С почтением, Цао Цао"
 "备弟足下：
   久别重逢，感慨万千。当年你助陶谦对抗我军，而我也因吕布勾结兖州之事陷入困境。起初，我以为这是你逆借刀杀人的妙计，利用陶谦、吕布等人削弱我的势力。然而，你一向光明磊落，绝非此等人。幸而我已经解决了此事，往事已矣，我不再计较。
@@ -2378,6 +2383,7 @@ Our reunion after so long stirred many memories. You once aided Tao Qian against
 I still remember our first meeting in Luoyang and your help in recruiting troops. That friendship is not forgotten.
 I hear that Yellow Turban remnants still threaten your supply routes. I will send elite infantry to help finish them. Yuan Shao is powerful and an old acquaintance of mine; I believe he will accept your goodwill. If you need anything else, send word.
 May we soon join hands again in a great cause.
+
 Cao Cao, with deepest respect","备弟足下：
   久别重逢，感慨万千。当年你助陶谦对抗我军，而我也因吕布勾结兖州之事陷入困境。起初，我以为这是你逆借刀杀人的妙计，利用陶谦、吕布等人削弱我的势力。然而，你一向光明磊落，绝非此等人。幸而我已经解决了此事，往事已矣，我不再计较。
   犹记当年初遇于洛阳，共叙英雄之志，感怀至今。你曾助我招募军队，那份情谊我始终铭记于心。
@@ -2390,6 +2396,7 @@ Cao Cao, with deepest respect","备弟足下：
 猶記當年初遇洛陽，共敘英雄之志，至今難忘。你曾助我招募軍隊，那份情誼，我始終銘記於心。
 聞你正忙於清剿黃巾軍，雖已有所進展，仍有餘孽未除。我願遣一支精銳步兵相助，徹底剿滅黃巾，確保糧道暢通。袁紹勢力強盛，且與我有舊交，想必會接納你的誠意。望諸事順利，若有所需，隨時告知。
 惟願一切安好。期待日後再度攜手，共創大業。
+
 曹操 頓首","玄徳弟 足下
 久方ぶりの再会、感慨もひとしおである。かつて貴殿は陶謙を助けて我が軍と戦い、私は呂布が兗州で起こした変事によって窮地に陥った。当初は、陶謙と呂布を使って私を弱らせる貴殿の妙計かとも疑った。だが貴殿は常に公明正大、そのような策を弄する者ではない。幸い事は収まった。過ぎたことは、もはや問うまい。
 洛陽で初めて会い、英雄の志を語り合った日のことを今も覚えている。募兵を助けてくれた恩義も、決して忘れてはいない。
@@ -2401,6 +2408,7 @@ Cao Cao, with deepest respect","备弟足下：
 Я помню нашу первую встречу в Лояне и твою помощь в наборе войска. Этого я не забуду.
 Слышал, что остатки Жёлтых повязок ещё угрожают твоим путям снабжения. Я пошлю отборную пехоту, чтобы помочь покончить с ними. Юань Шао силён и давно знаком со мной; думаю, он оценит твою искренность. Если понадобится помощь, дай знать.
 Надеюсь, вскоре мы вновь объединим силы ради великого дела.
+
 С почтением, Цао Цао"
 "备弟足下：
 
@@ -2409,11 +2417,13 @@ Cao Cao, with deepest respect","备弟足下：
                                                                                                                             曹操敬上","To my worthy younger brother Xuande,
 I am pleased that you quelled the disorder. Reliable reports identify the spies as agents planted by the Taishan generals. Though once Xuzhou vassals, they were already semi-independent under Tao Qian and turned to Yuan Shu after his death. They now act on Yuan Shu's orders.
 Lead the campaign against them yourself. This will secure your rule and prove your resolve and ability to Yuan Shao's alliance, earning our trust and support.
+
 Cao Cao","备弟足下：
 
   闻你成功平息城中之乱，甚感欣慰。我这边得到准确消息来源，城中的奸细是来自于徐州旧的附庸，泰山诸将安排在城内军中的内应，他们是你的徐州的下属势力，但在陶谦时期就为半独立性质，陶谦死后和袁术有所来往，今在袁术受命下特来破坏，为巩固你的势力范围，我建议你亲自率兵讨伐他们，以显示你加入袁绍集团的决心和能力。此举不仅能稳固你的势力，还能赢得我们的信任和支持。
 
                                                                                                                             曹操敬上","備弟足下：
+
 聞你已平息城中之亂，甚感欣慰。據可靠消息，城中奸細乃泰山諸將安插於軍中的內應。彼等本為徐州舊附庸，名義上受徐州節制，然陶謙在世時便近乎半獨立；陶謙死後，又與袁術有所往來，如今奉其命前來作亂。
 為鞏固治下，我建議你親自率兵討伐，以彰顯加入袁紹陣營之決心與能力。此舉既可穩固勢力，亦能贏得我方信任與支持。
 
@@ -2426,6 +2436,7 @@ Cao Cao","备弟足下：
 曹操 拝","Достойному младшему брату Сюаньдэ.
 Рад, что ты подавил смуту. По надёжным сведениям, лазутчики в городском гарнизоне служат тайшаньским военачальникам. Формально те подчинялись Сюйчжоу, но ещё при Тао Цяне были почти независимы, а после его смерти связались с Юань Шу. Теперь они действуют по его приказу.
 Сам возглавь поход против них. Так ты укрепишь свою власть и покажешь лагерю Юань Шао решимость и воинское умение, заслужив наше доверие и поддержку.
+
 С почтением, Цао Цао"
 "玄德贤弟如晤：
   自陶谦邀弟入徐州，吾即暗中布局。
@@ -2441,6 +2452,7 @@ I first marked your worth when you rescued Kong Rong. Since then you have earned
 Xuzhou should be mine, yet Lu Bu's treachery threatens the greater plan. He must be removed. Short of cavalry, he has paid Zhang Yang for several hundred fine horses. Xiahou Dun is already moving to seize them. Send trusted men if you wish to share in the attack; even if you do not, a portion of the horses will still be yours.
 Once Lu Bu loses the horses, his army will waver. Then I will march south while you strike from within, and together we shall destroy him. Xuzhou will be ours to share.
 Xuande, Cao Cao will not betray you. See that you do not betray Cao Cao.
+
 Cao Cao, with deepest respect","玄德贤弟如晤：
   自陶谦邀弟入徐州，吾即暗中布局。
   曹嵩被害，不过借口；兴师徐州，不过试探；吕布入主，不过引狼入室；弟得徐州而复失，退居小沛，不过吾计划中事罢了，一切，皆为今日！弟自北海救孔融，吾已再留心眼；你素以仁义示人，远播四海；平衡糜竺、陈登、曹豹诸派，稳坐徐州根本；拒袁术僭号，拖延数年，耗其锐气；弟之成绩，智勇兼备，震慑群雄。
@@ -2472,6 +2484,7 @@ Cao Cao, with deepest respect","玄德贤弟如晤：
 Сюйчжоу уже был у меня в руках, однако вероломство Люй Бу мешает великому замыслу. Его нужно устранить. Нуждаясь в конях, он купил у Чжан Яна несколько сотен отличных лошадей. Сяхоу Дунь уже выдвинулся, чтобы перехватить табун. Можешь прислать доверенных людей и участвовать в захвате; даже без твоей помощи часть коней достанется тебе.
 Лишившись лошадей, войско Люй Бу дрогнет. Тогда я двинусь на юг, а ты ударишь изнутри. Вместе мы уничтожим его и разделим Сюйчжоу.
 Сюаньдэ, я тебя не подведу. Не подведи и ты меня.
+
 С почтением, Цао Цао"
 "备弟足下：
   你此前求任徐州牧，我实愿成人之美——自你到徐州以来，安抚百姓、安定边境、整顿秩序，你本就是治理徐州的最合适人选。
@@ -2484,6 +2497,7 @@ But Yuan Shu still holds part of the province and covets the rest. Until you def
 The Emperor is now safe at Xudu. I escorted His Majesty there and saw a ruined court and starving officials. Only loyal men can restore the Han. Yuan Shu relies on force, forgets his sovereign, and seizes territory like Dong Zhuo before him. He is Xuzhou's greatest threat.
 I will petition the court to appoint you General Who Guards the East and Marquis of Yicheng Village, strengthening your authority and reassuring the people. If you attack Yuan Shu, I will threaten his flank and rear. Once all Xuzhou is recovered, I will seek your formal appointment as Governor.
 Decide swiftly. Let us destroy the traitors and restore the Han together.
+
 Cao Cao, with deepest respect","备弟足下：
   你此前求任徐州牧，我实愿成人之美——自你到徐州以来，安抚百姓、安定边境、整顿秩序，你本就是治理徐州的最合适人选。
   只是有一件事，我必须坦白告诉你：如今徐州部分土地被袁术占据，他在那里觊觎整个徐州。如果不除掉这个祸害、收复失地，你即使得了徐州牧的名分，也名不副实，还是会引来非议。
@@ -2509,6 +2523,7 @@ Cao Cao, with deepest respect","备弟足下：
 Император теперь в безопасности в Сюйду. Сопровождая государя, я увидел разрушенный двор и голодных чиновников. Лишь верные мужи способны возродить Хань. Тот, кто полагается на войско и забывает государя, даже владея четырьмя областями, ничем не лучше Дун Чжо. Юань Шу — изменник того же рода и главная угроза Сюйчжоу.
 Я попрошу двор назначить тебя полководцем, усмиряющим Восток, и Ичэнским тин-хоу. Если ты выступишь против Юань Шу, я свяжу его силы с фланга и тыла. После возвращения всего Сюйчжоу добьюсь твоего назначения наместником области.
 Решай без промедления. Вместе уничтожим изменников и возродим Хань.
+
 С почтением, Цао Цао"
 "  议事，是徐州牧召集辖下僚属与各方代表共同议定事务的核心环节，法案能否顺利推行，取决于麾下各大派系的支持程度。
   议事中将众人划分为支持者、反对者、摇摆者三类。摇摆势力态度未定，能够被争取，是左右表决结果的关键。
