@@ -1472,6 +1472,8 @@ func confireSuppress():
 	GameManager.sav.hp-=costHp_SummonOne
 	var _c=getFactionByIndex()
 	_c.summonNum+=1
+	# 每次镇压都开启一轮新的怀柔进度，不能继承上一轮尚未完成的进度。
+	_c.rebellionUpdateNum=0
 	_c._support_rate=100
 	_c.isSuppressed=true
 	_c.supressNum+=1

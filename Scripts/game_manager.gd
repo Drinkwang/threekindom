@@ -1853,6 +1853,8 @@ func _imporveRelation(data:cldata):
 			DialogueManager.show_example_dialogue_balloon(sys,"讨好叛乱1")
 			data.rebellionUpdateNum=0
 			data.isSuppressed=false
+			# 怀柔结束敌对后立即刷新派系状态、颜色并停止好感衰减计时器。
+			SignalManager.changeFraction.emit()
 		else:
 			DialogueManager.show_example_dialogue_balloon(sys,"讨好叛乱2")
 	else:
