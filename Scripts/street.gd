@@ -414,11 +414,11 @@ func _buttonListClick(item):
 		if(GameManager.sav.day>=4):
 			if (GameManager.sav.have_event["亲征对话结束"]==true and  GameManager.sav.have_event["关羽求援结束"]==false):
 				if GameManager.sav.gameDifficulty==2:
-					GameManager.resideValue=2400
-					GameManager.resideValue2=1600
+					GameManager.resideValue2=2400
+					GameManager.resideValue=1600
 				elif GameManager.sav.gameDifficulty==3:
-					GameManager.resideValue=2000
-					GameManager.resideValue2=1200
+					GameManager.resideValue2=2000
+					GameManager.resideValue=1200
 					
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"selectOutSide")
 			
@@ -688,7 +688,7 @@ func getScholarReward3():
 	#GameManager.ScoreToItem()
 	_reward.showTitileReward("恭喜你，你获得-治国箴言",items)	
 	await SignalManager.endReward
-	GameManager.sav.summonMaxNum=2
+	GameManager.sav.summonMaxNum+=1
 	#GameManager.changePeopleSupport(10)
 	showbianji()
 
