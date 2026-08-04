@@ -252,9 +252,7 @@ func _initData():
 		_show_pending_hearsay_reward()
 	
 	if(GameManager.hearsayID>0):
-	
-		shop_panel.show()
-		miniResScale()
+		_restore_shop_panel()
 		#res_panel.position.x=1564
 		#res_panel.position.y=803
 		#res_panel.scale=Vector2(0.765,0.765)	
@@ -262,7 +260,7 @@ func _initData():
 	control._processList(initData)
 	items_in_scene.showItems()
 	if GameManager.hearsayBeforeNode==SceneManager.roomNode.Shop:
-		shop_panel.show()
+		_restore_shop_panel()
 		GameManager.hearsayBeforeNode=null
 
 func _show_pending_hearsay_reward():
@@ -336,6 +334,14 @@ func miniResScale():
 	res_panel.position.x=1564
 	res_panel.position.y=803
 	res_panel.scale=Vector2(0.765,0.765)	
+
+# Returning from a hearsay story creates a fresh street scene. Merely showing its
+# shop leaves GameManager.shopPanel pointing at the freed shop from the old scene,
+# so ShopItem clicks cannot select goods until the panel is closed and reopened.
+func _restore_shop_panel():
+	shop_panel.show()
+	shop_panel.initData()
+	miniResScale()
 
 #const BOULEUTERION = preload("res://Scene/Bouleuterion.tscn")
 func _buttonListClick(item):

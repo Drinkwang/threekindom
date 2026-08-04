@@ -14,8 +14,16 @@ signal response_selected(response)
 ## The action for accepting a response (is possibly overridden by parent dialogue balloon).
 @export var next_action: StringName = &""
 
+## Shrink long response text so each option stays inside the response panel.
+@export var auto_fit_text: bool = true
+@export_range(1, 8, 1) var auto_fit_step: int = 1
+
 # The list of dialogue responses.
 var _locale_font: Font
+var _response_fit_queued: bool = false
+var _response_area_initial_width: float = 0.0
+var _response_area_anchor_span: float = 0.0
+var _response_area_offset_span: float = 0.0
 
 var responses: Array = []:
 	set(value):
@@ -183,11 +191,13 @@ var responses: Array = []:
 					item.text = response.text
 					
 				item.set_meta("response", response)
-				_apply_locale_font(item)
-
 				add_child(item)
+				_apply_locale_font(item)
+				if item is Button:
+					item.set_meta("dialogue_response_base_font_size", item.get_theme_font_size("font_size"))
 
 			_configure_focus()
+			_queue_response_text_fit()
 
 
 
@@ -222,6 +232,16 @@ func _ready() -> void:
 	if is_instance_valid(response_template):
 		response_template.hide()
 
+	var response_area := get_parent_control()
+	if response_area:
+		_response_area_initial_width = response_area.size.x
+		_response_area_anchor_span = response_area.anchor_right - response_area.anchor_left
+		_response_area_offset_span = response_area.offset_right - response_area.offset_left
+
+	var viewport := get_viewport()
+	if viewport and not viewport.size_changed.is_connected(_queue_response_text_fit):
+		viewport.size_changed.connect(_queue_response_text_fit)
+
 
 # This is deprecated.
 func set_responses(next_responses: Array) -> void:
@@ -234,6 +254,7 @@ func set_locale_font(font: Font) -> void:
 	for item in get_children():
 		if item != response_template:
 			_apply_locale_font(item)
+	_queue_response_text_fit()
 
 
 func _apply_locale_font(item: Control) -> void:
@@ -243,6 +264,76 @@ func _apply_locale_font(item: Control) -> void:
 		item.add_theme_font_override("font", _locale_font)
 	else:
 		item.remove_theme_font_override("font")
+
+
+func _queue_response_text_fit() -> void:
+	if not auto_fit_text or _response_fit_queued or not is_inside_tree():
+		return
+	_response_fit_queued = true
+	call_deferred("_fit_response_texts")
+
+
+func _fit_response_texts() -> void:
+	# Containers finish resolving their width on the next frame. Measuring before
+	# that can accidentally use the long button's expanded minimum width.
+	await get_tree().process_frame
+	_response_fit_queued = false
+	if not is_inside_tree():
+		return
+
+	var available_width := _get_response_available_width()
+	if available_width <= 0:
+		return
+
+	for child in get_children():
+		if child != response_template and child is Button:
+			_fit_response_button_text(child, available_width)
+
+
+func _fit_response_button_text(button: Button, available_width: float) -> void:
+	var base_font_size: int = button.get_meta(
+		"dialogue_response_base_font_size",
+		button.get_theme_font_size("font_size")
+	)
+	var font_size := maxi(1, base_font_size)
+	button.add_theme_font_size_override("font_size", font_size)
+
+	var style_box := button.get_theme_stylebox("normal")
+	var horizontal_padding := style_box.get_content_margin(SIDE_LEFT) \
+		+ style_box.get_content_margin(SIDE_RIGHT)
+	var outline_width := button.get_theme_constant("outline_size") * 2.0
+	var text_width := maxf(1.0, available_width - horizontal_padding - outline_width)
+	var font := button.get_theme_font("font")
+	var translated_text := tr(button.text)
+	var step := maxi(1, auto_fit_step)
+
+	while font_size > 1 and font.get_string_size(
+		translated_text,
+		HORIZONTAL_ALIGNMENT_LEFT,
+		-1,
+		font_size
+	).x > text_width:
+		font_size = maxi(1, font_size - step)
+
+	button.add_theme_font_size_override("font_size", font_size)
+
+
+func _get_response_available_width() -> float:
+	var response_area := get_parent_control()
+	if response_area == null:
+		return size.x
+
+	# A Button's text contributes to its minimum size, so a long response can
+	# temporarily stretch the MarginContainer itself. Reconstruct the intended
+	# layout width instead of measuring that already-expanded rectangle.
+	var area_parent := response_area.get_parent_control()
+	if area_parent:
+		var layout_width := area_parent.size.x * _response_area_anchor_span \
+			+ _response_area_offset_span
+		if layout_width > 0:
+			return layout_width
+
+	return _response_area_initial_width if _response_area_initial_width > 0 else response_area.size.x
 
 
 # Prepare the menu for keyboard and mouse navigation.
