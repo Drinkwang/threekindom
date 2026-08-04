@@ -1054,6 +1054,9 @@ func getZhenrenItem():
 	#GameManager.ScoreToItem()
 	bossBattleAfter=true
 	_reward.showTitileReward("恭喜你，修道真人陨落，他体内的气息转变为你的力量",items)	
+	# 奖励确认后物品才真正进入背包；此时补查“先完成三派系镇压、后获得沉眠之息”的顺序。
+	await SignalManager.endReward
+	GameManager.awakenDominanceAfterSuppression()
 const ZHENREN = preload("res://Asset/vedio/zhenren.ogv")
 func playzhenren():
 	#var tao = load("res://Asset/vedio/GULONGTEST.ogv")
