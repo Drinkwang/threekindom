@@ -85,7 +85,7 @@ do ymlShowEnd()
 #该法案可以改成实际名字，视实际情况而定
 提示: 成功通过[{{tr(GameManager.sav.curLawName)}}]！{{GameManager.RewardLaw}}
 do GetLawClaimRevenue()
-do GameManager.improveFinalPhase()
+#do GameManager.improveFinalPhase()
 #徐州派好感度提升
 #每日钱收益增加
 #丹阳派好感度下降
