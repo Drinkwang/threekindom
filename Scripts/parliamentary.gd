@@ -7,6 +7,13 @@ extends Control
 @onready var label_2 = $Label2
 @onready var button = $lawPanel/DetailPanel/Button
 
+const TABLE_LINE_SPACING := 20
+const HEADER_WIDTH := 762.0
+const TWO_FACTION_HEADER_LEFT := 575.0
+const THREE_FACTION_HEADER_LEFT := 690.0
+const HEADER_BASE_FONT_SIZE := 51
+const HEADER_MIN_FONT_SIZE := 34
+
 var _isPass:bool=false
 var _hasResult:bool=false
 # Called when the node enters the scene tree for the first time.
@@ -20,7 +27,7 @@ func _ready():
 
 func changeLanguage():
 	refreshSysLanguageFont()
-	p_label.text=tr("士族派:外来派:豪族派") if GameManager.sav.have_event["Factionalization"] else tr("本土派:外来派")
+	refreshFactionHeader(GameManager.sav.have_event["Factionalization"])
 	if _hasResult:
 		var totalSp:int=GameManager.sav.BENTUPAI._num_sp+GameManager.sav.WAIDIPAI._num_sp+GameManager.sav.HAOZUPAI._num_sp
 		var totalOp:int=GameManager.sav.BENTUPAI._num_op+GameManager.sav.WAIDIPAI._num_op+GameManager.sav.HAOZUPAI._num_op
@@ -31,35 +38,31 @@ func changeLanguage():
 #在进入瞬间判断出结果，然后做一个动画
 const bgmxuanhua = preload("res://Asset/sound/议会喧哗声音.mp3")
 func refreshSysLanguageFont():
-	var currencelanguage=TranslationServer.get_locale()
-	if currencelanguage=="ja":
-		label_2.add_theme_constant_override("line_spacing",7)
-		
-	elif currencelanguage=="lzh":
-		label_2.add_theme_constant_override("line_spacing",4)	
-		p_label.position=Vector2(767,169)
-	elif currencelanguage=="ru":
-	#待测试...
-
-		label_2.add_theme_constant_override("line_spacing",5)	
-		label_2.position=Vector2(238,233)
-		p_label.position=Vector2(735,169)
-		#p_1.add_theme_font_overre("font",rufont)	
-		#p_2.add_theme_font_override("font",rufont)	
-		#p_3.add_theme_font_override("font",rufont)	
-		#o_1.add_theme_font_override("font",rufont)	
+	# Labels and values are separate multiline controls, so every column must use
+	# the same row pitch in every locale or the mismatch accumulates per row.
+	for table_label in [label_2, p_1, p_2, p_3, o_1]:
+		table_label.add_theme_constant_override("line_spacing", TABLE_LINE_SPACING)
 
 @onready var p_label = $Label
+
+func refreshFactionHeader(has_separatist_forces:bool):
+	p_label.text=tr("士族派:外来派:豪族派") if has_separatist_forces else tr("本土派:外来派")
+	p_label.position.x=THREE_FACTION_HEADER_LEFT if has_separatist_forces else TWO_FACTION_HEADER_LEFT
+	p_label.size.x=HEADER_WIDTH
+	var fitted_size:=HEADER_BASE_FONT_SIZE
+	var font:=p_label.get_theme_font("font")
+	while fitted_size>HEADER_MIN_FONT_SIZE and font.get_string_size(p_label.text,HORIZONTAL_ALIGNMENT_LEFT,-1,fitted_size).x>HEADER_WIDTH:
+		fitted_size-=1
+	p_label.add_theme_font_size_override("font_size",fitted_size)
 
 func enter():
 	var has_separatist_forces=GameManager.sav.have_event["Factionalization"]
 	
 	if has_separatist_forces:
-		p_label.text=tr("士族派:外来派:豪族派")
 		p_3.show()
 	else:
 		p_3.hide()
-		p_label.text=tr("本土派:外来派")
+	refreshFactionHeader(has_separatist_forces)
 	o_1.text="{AS}\n{AP}\n{RATE}\n{FINAL}".format({"AS": "__", "AP":"__" ,"RATE":"__","FINAL":"__"})
 	SoundManager.play_sound(bgmxuanhua)
 	button.hide()
