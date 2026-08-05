@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://n73q2fqj4htr"]
+[gd_scene load_steps=16 format=3 uid="uid://n73q2fqj4htr"]
 
 [ext_resource type="Theme" uid="uid://bklmr3xmk4m5u" path="res://global_theme.tres" id="1_q7yni"]
 [ext_resource type="Script" path="res://Scripts/policyPanel.gd" id="1_vilmr"]
@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://dic5yom1jx6pk" path="res://Asset/中策.png" id="5_ikicj"]
 [ext_resource type="PackedScene" uid="uid://dpw77mhy77404" path="res://Scene/prefab/lawpoint.tscn" id="6_0wkqx"]
 [ext_resource type="Texture2D" uid="uid://cyikut66dpmhv" path="res://Asset/下策.png" id="6_ebvwh"]
-[ext_resource type="FontFile" uid="uid://b46f8ie7tl4a6" path="res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf" id="7_c4b24"]
 [ext_resource type="Texture2D" uid="uid://dahuc8gb2blc" path="res://Asset/other/0_red.png" id="7_ogak8"]
 [ext_resource type="Texture2D" uid="uid://rmaibsw1yjqd" path="res://Asset/城镇建筑/5_yellow.png" id="11_2sala"]
 
@@ -153,13 +152,12 @@ theme_override_colors/font_shadow_color = Color(0.99558, 0.99558, 0.99558, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/outline_size = -1
-theme_override_fonts/font = ExtResource("7_c4b24")
+theme_override_fonts/font = ExtResource("3_rbdc1")
 theme_override_font_sizes/font_size = 31
 text = "请点击政策获取施政的详细信息"
 autowrap_mode = 3
 
 [node name="canHideBlock" type="Control" parent="PanelContainer/orderPanel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 119)
 layout_mode = 2
 size_flags_vertical = 6
 

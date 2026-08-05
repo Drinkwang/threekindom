@@ -408,7 +408,6 @@ func _buttonListClick(item):
 		if(GameManager.sav.day==1):
 			
 			policy_panel.show()
-			policy_panel.changeLanguage()
 			if(GameManager.sav.have_event["firstgovermentTip"]==false):
 				GameManager.sav.have_event["firstgovermentTip"]=true
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"enterpolicy")
@@ -421,7 +420,6 @@ func _buttonListClick(item):
 			if(GameManager.sav.have_event["initTask1"]==false and GameManager.sav.have_event["糜竺推荐陈登"]==true):
 
 				policy_panel.show()
-				policy_panel.changeLanguage()
 				policy_panel.tab_bar.current_tab=0
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"主线第一次指定政策")
 			elif GameManager.sav.have_event["糜竺推荐陈登"]==false:
@@ -429,7 +427,6 @@ func _buttonListClick(item):
 			else:
 	
 				policy_panel.show()
-				policy_panel.changeLanguage()
 		else:
 			if GameManager.sav.have_event["chaosBegin"]==true and GameManager.sav.have_event["chaoDialogEnd"]==false:
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"城中混乱状况")
@@ -443,7 +440,6 @@ func _buttonListClick(item):
 					DialogueManager.show_example_dialogue_balloon(GameManager.currenceScene.dialogue_resource,"民生政策")	
 				
 			policy_panel.show()
-			policy_panel.changeLanguage()
 	#50点	
 	elif item.context == "召见派系":
 		if await GameManager.isTried(costHp_SummonOne):
