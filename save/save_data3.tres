@@ -1,0 +1,757 @@
+[gd_resource type="Resource" script_class="saveData" load_steps=57 format=3]
+
+[ext_resource type="Script" path="res://clData.gd" id="1_jkcmo"]
+[ext_resource type="Script" path="res://addons/inventory_editor/InventoryManagerInventories.gd" id="2_srlw1"]
+[ext_resource type="Script" path="res://Scripts/Bouleuterion.gd" id="3_sqxu3"]
+[ext_resource type="Texture2D" path="res://Asset/光明/正常背景.png" id="5_m25ou"]
+[ext_resource type="Texture2D" path="res://Asset/ui/底色.png" id="6_e8pdx"]
+[ext_resource type="Texture2D" path="res://Asset/城镇建筑/会议室新.png" id="7_1gibc"]
+[ext_resource type="Texture2D" path="res://Asset/光明/议事厅-正常.png" id="9_jensk"]
+[ext_resource type="Texture2D" path="res://Asset/光明/装饰1-正常.png" id="9_v6q3y"]
+[ext_resource type="Texture2D" path="res://Asset/光明/装饰2-正常.png" id="10_8nsjm"]
+[ext_resource type="Texture2D" path="res://Asset/光明/装饰底板.png" id="11_pgkek"]
+[ext_resource type="PackedScene" path="res://Scene/prefab/clickBlock.tscn" id="12_pqrif"]
+[ext_resource type="Script" path="res://Scripts/clickBlock.gd" id="13_fm1qo"]
+[ext_resource type="PackedScene" path="res://addons/inventory_example/inventories/simple/InventoryUI.tscn" id="20_ngbu2"]
+[ext_resource type="Script" path="res://addons/inventory_example/inventories/simple/InventoryUI.gd" id="21_gakcn"]
+[ext_resource type="PackedScene" path="res://addons/inventory_example/inventories/simple/ItemUI.tscn" id="22_yla4q"]
+[ext_resource type="PackedScene" path="res://Scene/prefab/numPanel.tscn" id="23_ndvyq"]
+[ext_resource type="Script" path="res://Scripts/numPanel.gd" id="24_trfxx"]
+[ext_resource type="Texture2D" path="res://Asset/人物/糜竺眨眼.png" id="25_0x1kl"]
+[ext_resource type="Texture2D" path="res://Asset/人物/华佗.png" id="26_0xknk"]
+[ext_resource type="PackedScene" path="res://Scene/prefab/btnList.tscn" id="27_d40tq"]
+[ext_resource type="Texture2D" path="res://Asset/人物/陈登睁眼.png" id="27_y3agd"]
+[ext_resource type="Texture2D" path="res://Asset/人物/主簿close.png" id="28_krfmm"]
+[ext_resource type="Script" path="res://Scripts/btnList.gd" id="28_xxc3k"]
+[ext_resource type="PackedScene" path="res://Scene/prefab/propertyPanel.tscn" id="29_7m0jh"]
+[ext_resource type="Script" path="res://Scripts/propertyPanel.gd" id="30_ks7au"]
+[ext_resource type="PackedScene" path="res://Scene/prefab/energy.tscn" id="31_jwy2x"]
+[ext_resource type="PackedScene" path="res://Scene/prefab/fspanel.tscn" id="31_vvoub"]
+[ext_resource type="Script" path="res://Scripts/fspanel.gd" id="32_h52g4"]
+[ext_resource type="Script" path="res://Scripts/energy.gd" id="32_ukfxq"]
+[ext_resource type="PackedScene" path="res://Scene/prefab/parliamentary.tscn" id="35_vmtlv"]
+[ext_resource type="Script" path="res://Scripts/parliamentary.gd" id="36_3bky7"]
+[ext_resource type="PackedScene" path="res://Scene/prefab/RuleBook.tscn" id="37_gc7yp"]
+[ext_resource type="Script" path="res://Scripts/RuleBook.gd" id="38_iuh8v"]
+[ext_resource type="Resource" path="res://dialogues/灵堂.dialogue" id="39_5lh5g"]
+[ext_resource type="PackedScene" path="res://Scene/InfraMiniGame/RiverDeep/RiverDeepPuzzle.tscn" id="40_e7fgb"]
+[ext_resource type="Script" path="res://Scene/InfraMiniGame/RiverDeep/RiverDeepPuzzle.gd" id="41_3owtx"]
+[ext_resource type="PackedScene" path="res://Scene/prefab/gapanel.tscn" id="42_y5jfs"]
+[ext_resource type="Script" path="res://Scripts/gapanel.gd" id="43_mhlyu"]
+[ext_resource type="FontFile" path="res://Asset/Font/VonwaonBitmap-16px.ttf" id="44_ahe3w"]
+[ext_resource type="Texture2D" path="res://Asset/人物/曹豹open.png" id="45_jit5e"]
+[ext_resource type="Texture2D" path="res://Asset/人物/吕布.png" id="46_pv5fc"]
+[ext_resource type="Resource" path="res://dialogues/议会厅.dialogue" id="50_0n7vb"]
+[ext_resource type="Script" path="res://Scripts/items_in_scene_manager.gd" id="55_vcd48"]
+[ext_resource type="PackedScene" path="res://Scene/prefab/_CgetSceneItem.tscn" id="56_7i6go"]
+[ext_resource type="Script" path="res://Scene/prefab/_cget_scene_item.gd" id="57_n4lcy"]
+[ext_resource type="Texture2D" path="res://Asset/板子.png" id="59_s7v2w"]
+[ext_resource type="Script" path="res://Scene/SaveSys/saveData.gd" id="60_c1g62"]
+
+[sub_resource type="Resource" id="Resource_ycwhn"]
+script = ExtResource("1_jkcmo")
+_name = "本土派"
+_num_all = 10
+_num_rt = 1
+_num_sp = 7
+_num_op = 2
+_num_grain = 0
+_num_defections = 0
+rebellionUpdateNum = 0
+isAlertRisk = false
+isrebellion = false
+isSuppressed = false
+supressNum = 0
+_support_rate = 75
+isshow = true
+index = 1
+summonNum = 0
+detail = "徐州本土世族乡绅合集，为徐州本地根基势力，掌控地方民政、乡党与根基人脉，是刘备稳固徐州需重点笼络的核心力量。"
+allocationStatue = -1
+demand = {}
+isAutoAllocation = false
+
+[sub_resource type="Resource" id="Resource_73hp8"]
+script = ExtResource("1_jkcmo")
+_name = "豪族派"
+_num_all = 0
+_num_rt = 0
+_num_sp = 0
+_num_op = 0
+_num_grain = 0
+_num_defections = 0
+rebellionUpdateNum = 0
+isAlertRisk = false
+isrebellion = false
+isSuppressed = false
+supressNum = 0
+_support_rate = 100
+isshow = false
+index = 2
+summonNum = 0
+detail = "徐州巨富豪族势力，以糜竺为首，东海糜氏财雄一方，为徐州实权重臣，倾全族资助刘备军政，是其在徐州最坚实的财力与心腹支撑。"
+allocationStatue = -1
+demand = {}
+isAutoAllocation = false
+
+[sub_resource type="Resource" id="Resource_vauk8"]
+script = ExtResource("1_jkcmo")
+_name = "吕布势力"
+_num_all = 5
+_num_rt = 0
+_num_sp = 0
+_num_op = 0
+_num_grain = 0
+_num_defections = 0
+rebellionUpdateNum = 0
+isAlertRisk = false
+isrebellion = false
+isSuppressed = false
+supressNum = 0
+_support_rate = 100
+isshow = false
+index = 3
+summonNum = 0
+detail = "泰山群寇归降的半独立边军，以臧霸等人为首，名义隶属徐州，刘备令吕布节制，不预州内政务，需徐州供给粮饷，可作北疆屏障却难完全统御。"
+allocationStatue = -1
+demand = {}
+isAutoAllocation = false
+
+[sub_resource type="Resource" id="Resource_hrbeu"]
+script = ExtResource("1_jkcmo")
+_name = "丹阳派"
+_num_all = 5
+_num_rt = 0
+_num_sp = 5
+_num_op = 0
+_num_grain = 0
+_num_defections = 0
+rebellionUpdateNum = 0
+isAlertRisk = false
+isrebellion = false
+isSuppressed = false
+supressNum = 0
+_support_rate = 100
+isshow = true
+index = 0
+summonNum = 0
+detail = "陶谦旧部核心军力，为随陶谦迁任徐州的丹阳籍武将集团，以曹豹为首，掌徐州重兵，同乡抱团，对刘备归附之意淡薄。"
+allocationStatue = -1
+demand = {}
+isAutoAllocation = false
+
+[sub_resource type="Resource" id="Resource_xjojv"]
+script = ExtResource("2_srlw1")
+inventories = {
+"e4530fc7-c5d6-41af-9b6e-35249272186a": [{
+"item_uuid": "63015407-55c9-4729-887f-493fe2a624b7",
+"quantity": 1
+}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
+}
+
+[sub_resource type="Animation" id="Animation_vtpf1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 59)]
+}
+
+[sub_resource type="Animation" id="Animation_lqk0e"]
+resource_name = "colorUp"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 119), Vector2(0, 59)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_22t68"]
+_data = {
+"RESET": SubResource("Animation_vtpf1"),
+"colorUp": SubResource("Animation_lqk0e")
+}
+
+[sub_resource type="PackedScene" id="PackedScene_d87b5"]
+_bundled = {
+"conn_count": 1,
+"conns": PackedInt32Array(9, 0, 99, 98, 2, 0, 0),
+"editable_instances": [],
+"names": PackedStringArray("Node2D", "script", "dialogue_resource", "dialogue_start", "正常背景", "position", "scale", "texture", "Sprite2D", "底色", "visible", "flip_h", "内饰", "region_filter_clip_enabled", "板子", "标题", "左饰", "右饰", "底饰", "Timer", "wait_time", "one_shot", "ui", "CanvasLayer", "hpPanel", "layout_mode", "anchors_preset", "anchor_right", "anchor_bottom", "offset_left", "offset_top", "offset_right", "offset_bottom", "grow_horizontal", "grow_vertical", "mouse_filter", "Control", "resPanel", "bgs", "AudioStreamPlayer2D", "CanvasButton", "itemsInScene", "OccurInScene", "isKeyPoint", "SceneID", "Node2D_key", "Node2D3", "CanvasInventory", "InventoryAny", "anchor_left", "Item", "inventory", "metadata/_edit_use_anchors_", "CanvasBook", "糜竺", "showName", "dialogue_doubleclick", "showborder", "showEX", "txt2d", "boardType", "isHide", "metadata/_edit_vertical_guides_", "华佗", "陈登", "zhubu", "Control2", "datas", "law_y_offset", "faction", "size_flags_horizontal", "parliamentaryDetail", "ruleBook", "context", "lookdoneDialog", "pageDownDialog", "hasPage", "puzzleGame", "z_index", "yishimianban", "txt", "contextEX", "titleEX", "show_task_summary", "clickEvent", "ColorRect", "modulate", "color", "Label", "theme_override_fonts/font", "theme_override_font_sizes/font_size", "text", "horizontal_alignment", "vertical_alignment", "AnimationPlayer", "libraries", "曹豹", "吕布", "_on_timer_timeout", "timeout"),
+"node_count": 38,
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 0, 0, -1, 3, 1, 0, 2, 1, 3, 2, 0, 0, 0, 8, 4, -1, 3, 5, 3, 6, 4, 7, 5, 0, 0, 0, 8, 9, -1, 5, 10, 6, 5, 7, 6, 8, 7, 9, 11, 10, 0, 0, 0, 8, 12, -1, 4, 5, 11, 6, 4, 7, 12, 13, 10, 0, 0, 0, 8, 14, -1, 4, 10, 6, 5, 13, 6, 14, 7, 15, 0, 0, 0, 8, 15, -1, 3, 5, 16, 6, 4, 7, 17, 0, 0, 0, 8, 16, -1, 3, 5, 18, 6, 4, 7, 19, 0, 0, 0, 8, 17, -1, 3, 5, 20, 6, 4, 7, 21, 0, 0, 0, 8, 18, -1, 3, 5, 22, 6, 4, 7, 23, 0, 0, 0, 19, 19, -1, 2, 20, 24, 21, 10, 0, 0, 0, 23, 22, -1, 0, 0, 10, 0, 36, 24, 25, 13, 25, 26, 26, 27, 27, 28, 28, 28, 29, 29, 30, 30, 31, 29, 32, 30, 33, 31, 34, 31, 6, 32, 35, 33, 1, 34, 0, 10, 0, 36, 37, 35, 7, 25, 26, 26, 36, 29, 37, 30, 38, 31, 39, 32, 40, 1, 41, 0, 0, 0, 39, 38, -1, 2, 5, 42, 6, 43, 0, 0, 0, 23, 40, -1, 0, 0, 0, 0, 0, 41, -1, 4, 10, 6, 1, 44, 42, 26, 2, 1, 0, 15, 0, 0, 0, 45, 7, 10, 6, 5, 46, 1, 47, 43, 6, 44, 33, 2, 1, 3, 48, 0, 15, 0, 0, 45, 45, 7, 10, 6, 5, 49, 1, 47, 43, 10, 44, 31, 2, 1, 3, 48, 0, 15, 0, 0, 46, 45, 6, 5, 50, 1, 47, 43, 6, 44, 26, 2, 1, 3, 48, 0, 0, 0, 23, 47, -1, 0, 0, 19, 0, 36, 48, 51, 13, 10, 6, 25, 26, 26, 33, 49, 28, 27, 28, 29, 52, 30, 53, 32, 54, 33, 36, 1, 55, 50, 56, 51, 57, 52, 10, 0, 0, 0, 23, 53, -1, 0, 0, 21, 0, 0, 54, 58, 14, 10, 6, 5, 59, 6, 60, 1, 61, 55, 62, 56, 63, 57, 10, 58, 6, 59, 64, 60, 33, 61, 65, 2, 1, 3, 66, 62, 67, 0, 21, 0, 0, 63, 58, 13, 10, 6, 5, 68, 1, 61, 55, 69, 56, 63, 57, 10, 58, 6, 59, 70, 60, 33, 61, 65, 2, 1, 3, 69, 62, 67, 0, 21, 0, 0, 64, 58, 13, 5, 71, 6, 60, 1, 61, 55, 72, 56, 73, 57, 10, 58, 10, 59, 74, 60, 33, 61, 65, 2, 1, 3, 73, 62, 67, 0, 21, 0, 0, 65, 58, 13, 10, 6, 5, 75, 1, 61, 55, 76, 56, 63, 57, 10, 58, 6, 59, 77, 60, 33, 61, 65, 2, 1, 3, 66, 62, 67, 0, 21, 0, 36, 66, 78, 13, 25, 26, 26, 27, 27, 28, 28, 28, 29, 79, 30, 80, 31, 81, 32, 82, 33, 31, 34, 31, 1, 83, 67, 84, 68, 85, 0, 21, 0, 36, 69, 86, 13, 25, 26, 26, 27, 27, 28, 28, 28, 29, 87, 30, 88, 31, 89, 32, 90, 33, 31, 34, 31, 70, 91, 1, 92, 67, 84, 0, 21, 0, 36, 36, 93, 8, 25, 26, 26, 36, 29, 94, 30, 95, 31, 96, 32, 97, 1, 98, 52, 10, 0, 21, 0, 36, 71, 99, 12, 10, 6, 25, 26, 26, 27, 27, 28, 28, 28, 29, 94, 30, 100, 31, 94, 32, 100, 33, 31, 34, 31, 1, 101, 0, 21, 0, 36, 72, 102, 12, 10, 6, 25, 26, 26, 36, 31, 103, 32, 103, 70, 91, 1, 104, 73, 105, 74, 69, 75, 69, 2, 106, 76, 6, 0, 21, 0, 36, 77, 107, 14, 10, 6, 78, 108, 25, 26, 26, 27, 27, 28, 28, 28, 29, 109, 30, 110, 31, 109, 32, 110, 33, 31, 34, 31, 35, 33, 1, 111, 0, 21, 0, 36, 79, 112, 18, 10, 6, 25, 26, 26, 27, 27, 28, 28, 28, 29, 113, 30, 114, 31, 113, 32, 114, 33, 31, 34, 31, 1, 115, 80, 65, 81, 116, 82, 117, 83, 6, 2, 65, 84, 69, 0, 21, 0, 85, 85, -1, 6, 86, 118, 30, 119, 31, 120, 32, 121, 35, 31, 87, 122, 0, 33, 0, 88, 88, -1, 9, 25, 36, 30, 123, 31, 124, 32, 125, 89, 126, 90, 127, 91, 128, 92, 33, 93, 33, 0, 33, 0, 94, 94, -1, 1, 95, 129, 0, 21, 0, 0, 96, 58, 13, 10, 6, 5, 130, 1, 61, 55, 131, 56, 63, 57, 10, 58, 6, 59, 132, 60, 33, 61, 65, 2, 1, 3, 69, 62, 67, 0, 21, 0, 0, 97, 58, 14, 10, 6, 5, 133, 6, 134, 1, 61, 55, 135, 56, 63, 57, 10, 58, 6, 59, 136, 60, 33, 61, 65, 2, 1, 3, 69, 62, 67, 0),
+"variants": [ExtResource("3_sqxu3"), ExtResource("50_0n7vb"), "第一次开始议事", Vector2(959, 540), Vector2(2.23, 2.23), ExtResource("5_m25ou"), false, Vector2(968, 544), Vector2(2.25, 2.25), ExtResource("6_e8pdx"), true, Vector2(960, 537), ExtResource("7_1gibc"), Vector2(959, 533.5), Vector2(2.21138, 2.19628), ExtResource("59_s7v2w"), Vector2(961, 538), ExtResource("9_jensk"), Vector2(340, 538), ExtResource("9_v6q3y"), Vector2(1664, 538), ExtResource("10_8nsjm"), Vector2(960, 533), ExtResource("11_pgkek"), 1.5, ExtResource("31_jwy2x"), 3, 15, 1.0, 1395.0, 20.0, 2, Vector2(0.2, 0.2), 1, ExtResource("32_ukfxq"), ExtResource("29_7m0jh"), 0, 1401.0, 614.0, 1856.0, 957.0, ExtResource("30_ks7au"), Vector2(895, 333), Vector2(1.6384, 1.6384), ExtResource("55_vcd48"), ExtResource("56_7i6go"), Vector2(815, 478), ExtResource("57_n4lcy"), "发现诡秘怪谈", Vector2(596, 341), Vector2(1048, 229), ExtResource("20_ngbu2"), -300.0, 100.0, 400.0, ExtResource("21_gakcn"), ExtResource("22_yla4q"), "e4530fc7-c5d6-41af-9b6e-35249272186a", ExtResource("12_pqrif"), Vector2(679, 583), Vector2(1.2, 1.2), ExtResource("13_fm1qo"), "糜竺", "second", ExtResource("25_0x1kl"), null, "点击陈群", [-329.0], Vector2(1382, 546), "", ExtResource("26_0xknk"), Vector2(1217, 585), "陈登", "陈登爱吃鱼1", ExtResource("27_y3agd"), Vector2(696, 614), "主簿", ExtResource("28_krfmm"), ExtResource("23_ndvyq"), 82.0, 815.0, -1496.0, -91.0, ExtResource("24_trfxx"), Array[ExtResource("1_jkcmo")]([SubResource("Resource_ycwhn"), SubResource("Resource_73hp8"), SubResource("Resource_hrbeu"), SubResource("Resource_vauk8")]), 27.0, ExtResource("31_vvoub"), 55.0, 520.0, -1534.0, -397.0, 4, ExtResource("32_h52g4"), ExtResource("27_d40tq"), -1.0, -3.0, 39.0, 37.0, ExtResource("28_xxc3k"), ExtResource("35_vmtlv"), -7.0, ExtResource("36_3bky7"), ExtResource("37_gc7yp"), 40.0, ExtResource("38_iuh8v"), "士族生存法则
+1.士族必须和控制家乡的军阀合作,士族如果对军阀感到不满，有可能会让军阀“自然”死亡...
+
+2.士族和军阀合作的目的是为了得到更多政治资源
+
+3.士族个体虽然很弱小，但是士族的族的范围很广大，他有强大的包容性，不限于跟军阀和达官显贵联姻，将他们变成我们
+
+4.士族会跟学阀进行合作，掌控一个地区的商业资源
+5.士族只有牢牢把控资源才能得到他人的信任
+6.如果一个地方存在本地/士族，本地士族如果吞并不成就会将外来士族干掉，士族对外论派，对内论系，当士族解决掉外部矛盾时，自身会因为内部矛盾分成多股势力", ExtResource("39_5lh5g"), ExtResource("40_e7fgb"), 4096, -2.0, -14.0, ExtResource("41_3owtx"), ExtResource("42_y5jfs"), 9.0, 5.0, ExtResource("43_mhlyu"), "  议事，是徐州牧召集辖下僚属与各方代表共同议定事务的核心环节，法案能否顺利推行，取决于麾下各大派系的支持程度。
+  议事中将众人划分为支持者、反对者、摇摆者三类。摇摆势力态度未定，能够被争取，是左右表决结果的关键。
+  身为一州州牧，主公虽握有州内最高权力，名义上能够自行决断，但政令想要顺利落地、不遭遇内部阻碍，不能仅凭个人命令。在正式下达政令之前，需要在内部反复商议，争取多数派系认同；一旦得不到派系支持，麾下各方势力就会消极抵制，政令难以执行。
+  主公可以在府邸私见各派，谈判游说，提高法案通过概率。经过斡旋，原本强硬抵制法案的派系会权衡利害，转为中立观望，成为能够争取的摇摆力量。", "议事面板说明:", Color(1, 1, 1, 0), 59.0, 1925.0, 293.0, Color(0.109804, 0.109804, 0.109804, 0.698039), -4.0, 1919.0, 239.0, ExtResource("44_ahe3w"), 56, "提示：成功通过拉拢徐州派需求的法律！
+(徐州派好感度提升15点)
+(该派系摇摆人数减少)", {
+"": SubResource("AnimationLibrary_22t68")
+}, Vector2(1206, 590), "曹豹", ExtResource("45_jit5e"), Vector2(751, 577), Vector2(1.05, 1.05), "吕布", ExtResource("46_pv5fc")],
+"version": 3
+}
+
+[resource]
+script = ExtResource("60_c1g62")
+saveScene = SubResource("PackedScene_d87b5")
+day = 6
+XuanyinDay = 0
+chendenfav = 70
+mizhufav = 70
+caobaofav = 70
+people_surrport = 100
+coin = 340
+daruValue = 8000
+shopEnhance = 0
+battleEnhance = 0
+coin_DayGet = 40
+labor_force = 110
+labor_DayGet = 10
+destination = ""
+isLevelUp = false
+isMeet = false
+haveLaw = false
+current_datetime = "2026/8/5
+/22/24"
+cLaw = -1
+UseGeneral = []
+sideValue = -1
+tempsavbattleResults = Array[int]([])
+battleResults = Array[int]([0, 0, 0])
+Merit_points = 0
+battleTasks = {
+0: {
+"index": 1,
+"reward": 89,
+"sdType": 2,
+"task": [{
+"res": "human",
+"reward": 11,
+"symbol": 0,
+"value": 21
+}]
+},
+1: {
+"index": 2,
+"reward": 11,
+"sdType": 2,
+"task": [{
+"res": "coin",
+"reward": 70,
+"symbol": 2,
+"value": 24
+}, {
+"res": "human",
+"reward": 19,
+"symbol": 1,
+"value": 43
+}]
+},
+2: {
+"index": 3,
+"reward": 29,
+"sdType": 2,
+"task": [{
+"res": "human",
+"reward": 71,
+"symbol": 0,
+"value": 64
+}]
+}
+}
+completeTask = 0
+lvbuFinalBattleStartTask = -1
+currenceTask = 0
+curGovAff = ""
+TargetDestinationBefore = ""
+TargetDestination = "府邸"
+currenceValue = 0
+currenceDay = 3
+isGetCoin = true
+isVisitScholar = false
+haveGuild = true
+jumpmain = false
+targetTxt = "凑齐资金：{currence}/{target}"
+targetValue = 1000
+targetResType = 1
+endPath = 0
+policy_Item_index = 1
+policyExcute = false
+isAlertRisk = false
+maxHP = 100
+isSoldItem = false
+_data = SubResource("Resource_xjojv")
+GrainIndex = 0
+laws = [[], [], [1, 2]]
+courtingLaws = {}
+ctLoseBattle = 0
+ctLoseBattleRate = 0
+allocationDay = -1
+SIDEQUEST_MAP = {
+0: "",
+1: "",
+2: "",
+3: "",
+4: "",
+5: ""
+}
+RewardLaw = "Random Items x3, Loot Rewards +25%, [haozu] Support -20"
+xuzhouCD = -1
+haozuCD = -1
+danyangCD = -1
+lvbuCD = -1
+_num_defections = 0
+randomIndex = 3
+curLawName = "战备法"
+curLawNum1 = 2
+curLawNum2 = 2
+item_stacksize_map = {}
+useItemInBattle = false
+hp = 100
+alreadyHP = 0
+lazydays = 0
+lazyValue = 0
+finalKeChoice = -1
+finalPhaseValue = 0
+factionClaimCountToday = 0
+autoSave = false
+HAOZUPAI = SubResource("Resource_73hp8")
+BENTUPAI = SubResource("Resource_ycwhn")
+WAIDIPAI = SubResource("Resource_hrbeu")
+LVBU = SubResource("Resource_vauk8")
+todayCanFindItems = [{
+"alreadyGet": false,
+"id": 3,
+"name": "item3InBouleuterion",
+"scene": 3
+}]
+have_event = {
+"AllFactionsSubdued": false,
+"CaoBaointervene": false,
+"DemoFinish": true,
+"Factionalization": false,
+"LiuBeiSucceed": false,
+"battleTaiShan": false,
+"boss战开始": false,
+"canSummonLvbu": false,
+"chaoChenDenPolicyExcute": false,
+"chaoChendengEnd": false,
+"chaoDialogEnd": false,
+"chaoMizhuEnd": false,
+"chaosBegin": false,
+"chaosEnd": false,
+"completeTask1": false,
+"completeTask2": false,
+"completebattleTaiShan": false,
+"dayThreeEnterBattle": true,
+"dayThreeInit": true,
+"dayTwoInit": true,
+"deliverTask2": false,
+"deliverYuanShu": false,
+"discussLvbu": false,
+"findLvbu": false,
+"firstBattle": true,
+"firstBattleEnd": true,
+"firstBattleTutorial": true,
+"firstDisaster": false,
+"firstEnterBattle": true,
+"firstLawExecute": true,
+"firstMeetCaoCao": false,
+"firstMeetingEnd": true,
+"firstNewEnd": true,
+"firstParliamentary": true,
+"firstPolicyCorrect": true,
+"firstPolicyOpShow": true,
+"firstTabLaw": true,
+"firstTrain": true,
+"firstTraining": true,
+"firstVisitScholars": true,
+"firstVisitScholarsEnd": true,
+"firstWar": true,
+"firstgovermentTip": true,
+"firstgovernment": true,
+"firsthouse": true,
+"firstmeetchenqun": true,
+"firststreet": true,
+"initTask1": true,
+"initTask2": false,
+"initTaskPolicy": true,
+"initXuzhou": true,
+"lvBuFinalDiscuss": false,
+"lvbuDiscussInCaoBao": false,
+"lvbuJoin": false,
+"secondDisaster": false,
+"secondStreet": true,
+"streetBeginBouleuterion": true,
+"thirdDisaster": false,
+"threeStree": true,
+"三基建完成": false,
+"主簿的追随": false,
+"亲征对话结束": false,
+"亲征跟糜竺对话": false,
+"亲征跟陈登对话": false,
+"休息教程": false,
+"休憩第一次提示": false,
+"关押曹豹": false,
+"关羽求援期间": false,
+"关羽求援结束": false,
+"军事行动大败": false,
+"军事行动大败提示": false,
+"刘备成长0": false,
+"刘备成长1": false,
+"刘备成长2": false,
+"卡牌中级教程": false,
+"卡牌新手教程": false,
+"卡牌高级教程": false,
+"吕布之怒": false,
+"吕布怒气_演武场": false,
+"回忆无名": false,
+"基建修塔教程": false,
+"基建运河教程": false,
+"基建运粮教程": false,
+"基建项目开启": false,
+"夏侯偷马": false,
+"大儒支线1": false,
+"大儒支线2": false,
+"大儒支线3": false,
+"大儒辩经启动词1": false,
+"大儒辩经启动词2": false,
+"大儒辩经启动词3": false,
+"大儒辩经完成": false,
+"小沛再见商人": false,
+"小沛第一次见商人": false,
+"属性面板教程": false,
+"庆功宴是否举办": false,
+"庆功宴结束": false,
+"开启比武训练": false,
+"征询曹将军意见": false,
+"待办事项教程": false,
+"徐州第一次见商人": false,
+"成就解锁": false,
+"战斗袁术任务完成": false,
+"战斗袁术开始": false,
+"战斗袁术血战模式": false,
+"拾荒老人剧情": false,
+"挖河中级完成": false,
+"挖河初级完成": false,
+"挖河高级完成": false,
+"支线发现羊尸": false,
+"支线终府邸线索获取完成": false,
+"支线触发完毕查出锦囊": false,
+"支线触发完毕查出锦囊休息": false,
+"支线触发完毕获得锦囊之前": false,
+"支线触发完毕获得骨杖": false,
+"支线触发完毕调查过竹简": false,
+"新剧情_基建开始": false,
+"无名之死": false,
+"昌豨求饶": false,
+"昌豨求饶2": false,
+"曹操协天子以令诸侯": false,
+"曹操没法来援助": false,
+"曹豹和吕布勾连0": false,
+"曹豹和吕布勾连1": false,
+"曹豹和吕布勾连2": false,
+"曹豹支线1": false,
+"曹豹支线2": false,
+"曹豹支线3": false,
+"曹豹正确选择1": false,
+"曹豹正确选择2": false,
+"曹豹牌局无人": false,
+"曹豹诡秘乱局启动": false,
+"曹豹资助": false,
+"最终丹阳": false,
+"最终比武结束": false,
+"最终泰山": false,
+"最终糜竺": false,
+"最终陈登": false,
+"查出药囊后休息前": false,
+"比武训练教程": false,
+"法律健全": false,
+"泰山诸将曹操消息": false,
+"泰山预备": false,
+"津贴系统开始": false,
+"派系安稳任务触发": false,
+"派系安稳完成": false,
+"温侯降伏臧霸": false,
+"玄阴开放": false,
+"玄阴首次": false,
+"玄阴首次遇宝": false,
+"竹简幻觉剧情": false,
+"第一次售卖教程": false,
+"第一次民心政策": false,
+"第一次津贴教程": false,
+"筑塔中级完成": false,
+"筑塔初级完成": false,
+"筑塔高级完成": false,
+"糜竺推荐陈登": true,
+"糜竺支线1": false,
+"糜竺支线2": false,
+"糜竺支线3": false,
+"糜竺正确选择1": false,
+"糜竺正确选择2": false,
+"糜贞送药": false,
+"臧霸首战": false,
+"臧霸首战之前": false,
+"获得亮银": false,
+"获得古棒": false,
+"获得娃娃": false,
+"获得玄阴": false,
+"获得血袖": false,
+"获得过木桶标记": false,
+"获得锦囊": false,
+"血战袁术完成": false,
+"袁术也进军": false,
+"袁术来使": false,
+"袁术首次击败": false,
+"解锁高级成就": false,
+"触发诡物手册": false,
+"诡物手册": false,
+"赢过黑商": false,
+"辕门射戟": false,
+"辕门射戟结束": false,
+"运粮中级完成": false,
+"运粮初级完成": false,
+"运粮高级完成": false,
+"进入曹府": false,
+"进入青梅煮酒": false,
+"遇见黑商": false,
+"错失亮银": false,
+"错失古棒": false,
+"错失娃娃": false,
+"错失木桶": false,
+"错失血袖": false,
+"错失锦囊": false,
+"锦囊咨询丹阳派": false,
+"陈登支线1": false,
+"陈登支线2": false,
+"陈登支线3": false,
+"陈登正确选择1": false,
+"陈登正确选择2": false,
+"陈登论策解锁": false,
+"陈登送礼": false,
+"非霸道线完成": false,
+"预获得龙胆枪": false,
+"预获得龙胆枪休息": false,
+"首次叛乱预警_丹阳": false,
+"首次叛乱预警_士族": false,
+"首次叛乱预警_豪族": false,
+"首次吕布风险预警": false
+}
+taishanWait = 0
+caobaocardgame = -1
+mizhucardgame = -1
+chendencardgame = -1
+guanyuTrainNum = 0
+zhaoyunTrainNum = 0
+zhangfeiTrainNum = 0
+highScore = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+mizhuSideWait = -1
+chendenSideWait = -1
+caobaoSideWait = -1
+middledemoPlay = false
+constructRiver = 0
+constructTower = 0
+constructGrain = 0
+gameDifficulty = 2
+highlight_uses_remaining = 3
+bloodCoin = 0
+bloodLabor = 0
+generals = {
+0: {
+"isBattle": false,
+"level": 1,
+"max_level": 10,
+"name": "无名",
+"randominit": 94
+},
+1: {
+"isBattle": false,
+"level": 1,
+"max_level": 10,
+"name": "关羽",
+"randominit": 350
+},
+2: {
+"isBattle": false,
+"level": 1,
+"max_level": 10,
+"name": "张飞",
+"randominit": 210
+}
+}
+acdemicLevel = 0
+learnFormChenden = false
+card_achives = [{
+"MaxUsecard": -1,
+"Mustkill": false,
+"ScoreNum": -1,
+"coinGet": 20,
+"detail": "不能让自己手牌低于3张",
+"enemy": "曹豹",
+"holdcard": 3,
+"index": 0,
+"iscom": 0,
+"level": "小试牛刀",
+"peopleGet": 80
+}, {
+"MaxUsecard": 2,
+"Mustkill": false,
+"ScoreNum": -1,
+"coinGet": 50,
+"detail": "每回合最多只能使用2张卡牌",
+"enemy": "陈登",
+"holdcard": -1,
+"index": 1,
+"iscom": 0,
+"level": "小试牛刀",
+"peopleGet": 50
+}, {
+"MaxUsecard": 3,
+"Mustkill": false,
+"ScoreNum": -1,
+"coinGet": 100,
+"detail": "每回合最多只能用3张牌且不能自己手牌小于2张",
+"enemy": "糜竺",
+"holdcard": 2,
+"index": 2,
+"iscom": 0,
+"level": "小试牛刀",
+"peopleGet": 0
+}, {
+"MaxUsecard": -1,
+"Mustkill": false,
+"ScoreNum": 350,
+"coinGet": 0,
+"detail": "游戏结束时取得350分",
+"enemy": "曹豹",
+"holdcard": -1,
+"index": 3,
+"iscom": 0,
+"level": "对局试炼",
+"peopleGet": 150
+}, {
+"MaxUsecard": 3,
+"Mustkill": false,
+"ScoreNum": -1,
+"coinGet": 50,
+"detail": "每回合你保证至少有一张手牌且最多只能用三张牌",
+"enemy": "陈登",
+"holdcard": 1,
+"index": 4,
+"iscom": 0,
+"level": "对局试炼",
+"peopleGet": 100
+}, {
+"MaxUsecard": -1,
+"Mustkill": true,
+"ScoreNum": -1,
+"coinGet": 150,
+"detail": "以将对手生命值归0的方式取得胜利",
+"enemy": "糜竺",
+"holdcard": -1,
+"index": 5,
+"iscom": 0,
+"level": "对局试炼",
+"peopleGet": 0
+}, {
+"MaxUsecard": -1,
+"Mustkill": false,
+"ScoreNum": 360,
+"coinGet": 0,
+"detail": "游戏结束时取得360分",
+"enemy": "黑商/曹豹",
+"holdcard": -1,
+"index": 6,
+"iscom": 0,
+"level": "诡秘乱局",
+"peopleGet": 200
+}, {
+"MaxUsecard": -1,
+"Mustkill": true,
+"ScoreNum": -1,
+"coinGet": 100,
+"detail": "以将对手生命值归0的方式取得胜利",
+"enemy": "陈登",
+"holdcard": -1,
+"index": 7,
+"iscom": 0,
+"level": "诡秘乱局",
+"peopleGet": 100
+}, {
+"MaxUsecard": 2,
+"Mustkill": false,
+"ScoreNum": -1,
+"coinGet": 200,
+"detail": "每回合最多只能用2张牌且不能让手牌低于2张",
+"enemy": "糜竺",
+"holdcard": 2,
+"index": 8,
+"iscom": 0,
+"level": "诡秘乱局",
+"peopleGet": 0
+}]
+extraBattleTaskBootNum = -1
+extraBattleTaskTargetNum = -1
+extraBattleTaskEnum = 0
+extraCureenTaskCNum = 0
+extraBattleDialogContext = ""
+extranewDetail = ""
+remaining_seconds = 900
+summonMaxNum = 1
+yuanshu_chaos_count = 0
+enhancPolicy_coax = false
+minxinReduceCost = false
+merMustBuy = false
+merMaxLaw = 0
+isGoodsDiscount = false
+shopSelfSell = false
+isInformation = false
+isWeaponLevelUP = false
+isTrainLevelUP = false
