@@ -50,7 +50,7 @@ func refreshFactionHeader(has_separatist_forces:bool):
 	p_label.position.x=THREE_FACTION_HEADER_LEFT if has_separatist_forces else TWO_FACTION_HEADER_LEFT
 	p_label.size.x=HEADER_WIDTH
 	var fitted_size:=HEADER_BASE_FONT_SIZE
-	var font:=p_label.get_theme_font("font")
+	var font=p_label.get_theme_font("font")
 	while fitted_size>HEADER_MIN_FONT_SIZE and font.get_string_size(p_label.text,HORIZONTAL_ALIGNMENT_LEFT,-1,fitted_size).x>HEADER_WIDTH:
 		fitted_size-=1
 	p_label.add_theme_font_size_override("font_size",fitted_size)
