@@ -9,8 +9,19 @@ class_name policyPanel
 @onready var law_label = $lawPanel/DetailPanel/Label2
 @onready var exp_len = $PanelContainer/orderPanel2/VBoxContainer/expLen
 @onready var tourPoint: Node2D = $Node2D
+@onready var policy_panel_container: PanelContainer = $PanelContainer
 
 const LAW_TAB_INDEX := 1
+const POLICY_DETAIL_BASE_FONT_SIZE := 31
+const POLICY_PANEL_BASE_OFFSET_BOTTOM := 411.0
+
+@export_range(10.0, 20.0, 1.0) var policy_detail_bottom_spacing := 15.0
+@export_range(10, 31, 1) var policy_detail_min_font_size := 18
+@export_range(0.0, 250.0, 1.0) var policy_panel_max_extra_height := 124.0
+@export_range(10.0, 40.0, 1.0) var policy_panel_viewport_bottom_margin := 20.0
+
+var _is_fitting_policy_detail := false
+var _policy_detail_fit_generation := 0
 
 var tab_bar_emphasis_panel: Panel
 var tab_bar_emphasis_tween: Tween
@@ -95,6 +106,8 @@ var costhp=35
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	SignalManager.changeLanguage.connect(changeLanguage)
+	#if not resized.is_connected(_queue_policy_detail_font_fit):
+		#resized.connect(_queue_policy_detail_font_fit)
 	if GameManager.sav.hp<costhp:
 	
 		button.disabled=true
@@ -103,11 +116,13 @@ func _ready():
 		
 	pass
 	#initControls()
-	changeLanguage()
+	#changeLanguage()
+	#_queue_policy_detail_font_fit()
 	 # Replace with function body.
 
 
 func initControls():
+	_reset_policy_selection()
 
 	var group=GameManager.getPolicyGroup()
 		#GameManager.currenceScene.selectPolicy(self["control_"+index].data)
@@ -126,6 +141,8 @@ func initControls():
 		control_1.initDataByGroup(1,group)
 		control_2.initDataByGroup(2,group)
 		control_3.initDataByGroup(3,group)
+	await get_tree().process_frame
+	changeLanguage()	
 var expLenWidth=1240		
 
 @onready var ConfireButton = $lawPanel/DetailPanel/Button
@@ -159,6 +176,7 @@ func changeLanguage():
 	#point_label.text=tr("点数:%s")%GameManager.sav.Merit_points
 	refreshLawPoint()
 	_refreshCurrentDescription()
+	_queue_policy_detail_font_fit()
 	
 	if GameManager.sav.gameDifficulty==1:
 		TooltipManager.register_tooltip(ConfireButton,tr("立法收益仅在表决通过后生效。本难度下，仅点亮立法节点会扣除受损派系支持度，法案通过不再重复扣除。"))
@@ -207,8 +225,7 @@ func _initData():
 		#detail_panel.custom_minimum_size = new_size
 	
 	refreshLawPoint()
-
-
+	
 # This is the default text while a bill awaits approval. Read-only law nodes may temporarily replace it.
 func show_current_law_pending_message() -> void:
 	selectLawPoint = null
@@ -249,7 +266,9 @@ func _on_tab_bar_tab_changed(tab):
 		$lawPanel.hide()
 		LawPanelBoard.hide()
 		$PanelContainer/orderPanel.show()
+		_queue_policy_detail_font_fit()
 	else:
+		policy_panel_container.offset_bottom = POLICY_PANEL_BASE_OFFSET_BOTTOM
 		$lawPanel.show()
 		LawPanelBoard.show()
 		changeexp_len()
@@ -324,6 +343,7 @@ func _on_control_3_gui_input(event):
 		SoundManager.play_sound(sounds.CLICKHERO)
 		index=3
 		button.disabled=false
+		
 		control_1.check_box.button_pressed=false
 		control_2.check_box.button_pressed=false
 		control_3.check_box.button_pressed=true
@@ -331,13 +351,132 @@ func _on_control_3_gui_input(event):
 		canHideBlockShow()
 		
 func canHideBlockShow():		
-	var lines = label.get_line_count()
+	label.add_theme_font_size_override("font_size", POLICY_DETAIL_BASE_FONT_SIZE)
+	var lines = _get_policy_detail_line_count(POLICY_DETAIL_BASE_FONT_SIZE)
 	if lines >= 5:
 		can_hide_block.hide()
 	else:
 		can_hide_block.show()	
-		
+	_queue_policy_detail_font_fit()
 	previewCostView()	
+
+func _reset_policy_selection() -> void:
+	index = 0
+	button.disabled = true
+	control_1.check_box.button_pressed = false
+	control_2.check_box.button_pressed = false
+	control_3.check_box.button_pressed = false
+	label.text = tr("请点击政策获取施政的详细信息")
+	label.add_theme_font_size_override("font_size", POLICY_DETAIL_BASE_FONT_SIZE)
+	can_hide_block.show()
+	policy_panel_container.offset_bottom = POLICY_PANEL_BASE_OFFSET_BOTTOM
+	_queue_policy_detail_font_fit()
+
+func _queue_policy_detail_font_fit() -> void:
+	if not is_node_ready():
+		return
+	_policy_detail_fit_generation += 1
+	_fit_policy_detail_font(_policy_detail_fit_generation)
+	#call_deferred("_fit_policy_detail_font", _policy_detail_fit_generation)
+
+func _fit_policy_detail_font(generation: int) -> void:
+	if generation != _policy_detail_fit_generation or label.size.x <= 0.0 or tab_bar.current_tab != 0:
+		return
+	#if _is_fitting_policy_detail:
+		#call_deferred("_fit_policy_detail_font", generation)
+		#return
+
+	_is_fitting_policy_detail = true
+	label.add_theme_font_size_override("font_size", POLICY_DETAIL_BASE_FONT_SIZE)
+	var required_height: float = _measure_policy_detail_height(POLICY_DETAIL_BASE_FONT_SIZE)
+	var base_available_height: float = _get_policy_detail_base_available_height()
+	var allowed_extra_height: float = _get_policy_panel_allowed_extra_height()
+	var extra_height: float = clampf(required_height - base_available_height, 0.0, allowed_extra_height)
+	var available_height: float = base_available_height + extra_height
+	var font_size: int = POLICY_DETAIL_BASE_FONT_SIZE
+	while font_size > policy_detail_min_font_size:
+		if _measure_policy_detail_height(font_size) <= available_height:
+			break
+		font_size -= 1
+
+	label.add_theme_font_size_override("font_size", font_size)
+	policy_panel_container.offset_bottom = POLICY_PANEL_BASE_OFFSET_BOTTOM + extra_height
+	await get_tree().process_frame
+	if generation != _policy_detail_fit_generation or tab_bar.current_tab != 0:
+		policy_panel_container.offset_bottom = POLICY_PANEL_BASE_OFFSET_BOTTOM
+		_is_fitting_policy_detail = false
+		return
+
+	var viewport_limit: float = get_viewport().get_visible_rect().end.y - policy_panel_viewport_bottom_margin
+	while font_size > policy_detail_min_font_size and _get_policy_panel_actual_bottom() > viewport_limit:
+		font_size -= 1
+		label.add_theme_font_size_override("font_size", font_size)
+		await get_tree().process_frame
+		if generation != _policy_detail_fit_generation or tab_bar.current_tab != 0:
+			policy_panel_container.offset_bottom = POLICY_PANEL_BASE_OFFSET_BOTTOM
+			_is_fitting_policy_detail = false
+			return
+
+	label.add_theme_font_size_override("font_size", font_size)
+	_is_fitting_policy_detail = false
+
+func _get_policy_panel_allowed_extra_height() -> float:
+	var parent_control: Control = policy_panel_container.get_parent_control()
+	var intended_top: float = policy_panel_container.global_position.y
+	if parent_control != null:
+		intended_top = parent_control.global_position.y \
+			+ parent_control.size.y * policy_panel_container.anchor_top \
+			+ policy_panel_container.offset_top
+	var base_height: float = POLICY_PANEL_BASE_OFFSET_BOTTOM - policy_panel_container.offset_top
+	var viewport_bottom: float = get_viewport().get_visible_rect().end.y
+	var viewport_room: float = viewport_bottom - policy_panel_viewport_bottom_margin - intended_top - base_height
+	return clampf(viewport_room, 0.0, policy_panel_max_extra_height)
+
+func _get_policy_detail_base_available_height() -> float:
+	var vbox: VBoxContainer = label.get_parent()
+	var button_row: HBoxContainer = button.get_parent()
+	var reserved_height: float = button_row.get_combined_minimum_size().y
+	if can_hide_block.visible:
+		reserved_height += can_hide_block.get_combined_minimum_size().y
+	var separation: int = vbox.get_theme_constant("separation")
+	var visible_rows_after_label: int = 1 + int(can_hide_block.visible)
+	reserved_height += separation * visible_rows_after_label
+	var base_height: float = POLICY_PANEL_BASE_OFFSET_BOTTOM - policy_panel_container.offset_top
+	var label_top_in_panel: float = label.global_position.y - policy_panel_container.global_position.y
+	return maxf(1.0, base_height - label_top_in_panel - reserved_height - policy_detail_bottom_spacing)
+
+func _get_policy_panel_actual_bottom() -> float:
+	return policy_panel_container.global_position.y + policy_panel_container.size.y
+
+func _measure_policy_detail_height(font_size: int) -> float:
+	var font: Font = label.get_theme_font("font")
+	if font == null:
+		return 0.0
+	var text_height: float = font.get_multiline_string_size(
+		label.text,
+		label.horizontal_alignment,
+		label.size.x,
+		font_size,
+		-1,
+		TextServer.BREAK_MANDATORY | TextServer.BREAK_WORD_BOUND | TextServer.BREAK_ADAPTIVE
+	).y
+	var line_height: float = font.get_height(font_size)
+	var line_count := maxi(1, ceili(text_height / line_height))
+	return text_height + max(0, line_count - 1) * label.get_theme_constant("line_spacing")
+
+func _get_policy_detail_line_count(font_size: int) -> int:
+	var font: Font = label.get_theme_font("font")
+	if font == null or label.size.x <= 0.0:
+		return label.get_line_count()
+	var text_height: float = font.get_multiline_string_size(
+		label.text,
+		label.horizontal_alignment,
+		label.size.x,
+		font_size,
+		-1,
+		TextServer.BREAK_MANDATORY | TextServer.BREAK_WORD_BOUND | TextServer.BREAK_ADAPTIVE
+	).y
+	return maxi(1, ceili(text_height / font.get_height(font_size)))
 func bancontrol(_index,status):
 	#get("ban%d"%index)=boolvalue
 	#set("ban%d"%index,boolvalue)
