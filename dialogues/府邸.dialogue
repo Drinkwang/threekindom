@@ -328,7 +328,7 @@ do _JudgeTask(true)
 => END
 
 ~ 选项吕布
-if GameManager.sav.endpath==GameManager.endPath.none
+if GameManager.sav.endPath==GameManager.endPath.none
 	主簿: 大人，你想对吕布做什么呢？[voice:zhubu_duilvbu]
 else
 	主簿: 大人，你想对泰山派做什么呢？[voice:zhubu_duilvbu2]
@@ -962,7 +962,7 @@ do lvbuJoin()
 糜竺: 主公，袁术虽暂时受挫，但他的威胁并未完全解除。更重要的是，我们需要稳定徐州内部，确保粮食供应和民心安定。[voice:mizhu_quebaoliangshi]
 
 陈登: 确实如此。目前最重要的是安稳好徐州。另外，情报显示吕布与袁术有信件往来，但我们暂时不必过多关注此事。毕竟，我们的兵源支持很大程度上依赖吕布的并州骑兵，我们不能轻易与他撕破脸。[voice:chenden_queshiruci]
-刘备: 我明白。现在最重要的确实是稳定内部。以及关于论功行赏一事[voice:liubei_buruyijunshizhenshe.mp3]
+刘备: 我明白。现在最重要的确实是稳定内部。以及关于论功行赏一事[voice:liubei_lungongxingshang]
 系统提示: 是否立即论功行赏？
 - 是 [highlight=true]
 	刘备: 既然如此，立即准备论功行赏，表彰这次行动中的有功之士。这不仅是对他们努力的认可，也能鼓舞士气。[voice:liubei_likelungongxingshang]
