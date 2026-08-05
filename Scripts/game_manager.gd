@@ -456,8 +456,16 @@ func initPaixiFloor(data:cldata):
 	data._num_rt=initRt
 	data._num_sp=max(0, data._num_all-data._num_op-data._num_rt)
 	
-	var is_courting_law = GameManager.sav.courtingLaws.has(data._name) and \
-	GameManager.sav.courtingLaws[data._name] == GameManager.sav.curLawName
+	var is_courting_law = false
+	if GameManager.sav.courtingLaws.has(data._name):
+		var courting_law = GameManager.sav.courtingLaws[data._name]
+		var is_same_law_name = courting_law == GameManager.sav.curLawName or \
+			courting_law == tr(GameManager.sav.curLawName)
+		# Older localized saves stored a translated name. The negative law entry is
+		# the stable indication that this faction requested the current law.
+		var is_marked_courting_law = paixiindex == sav.curLawNum1 and \
+			sav.laws[paixiindex].has(-sav.curLawNum2)
+		is_courting_law = is_same_law_name or is_marked_courting_law
 
 	if is_courting_law:	
 		data._num_rt += data._num_op

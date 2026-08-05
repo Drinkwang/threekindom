@@ -1389,7 +1389,7 @@ func policyCo_opt():
 		var policyIndex=unUseArr[pick]
 		lawName=policy_panel.getPolicyName(lawIndex,policyIndex) #12
 		lalongPolicy=-policyIndex
-		GameManager.sav.courtingLaws[getFactionByIndex()._name]=lawName
+		GameManager.sav.courtingLaws[getFactionByIndex()._name]=policy_panel.getPolicyKey(lawIndex,policyIndex)
 		#GameManager.sav.laws[lawIndex].append(-policyIndex)
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"政策拉拢")#显示对话	
 	

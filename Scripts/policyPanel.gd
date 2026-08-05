@@ -575,6 +575,10 @@ func getPolicyName(lawIndex,policyIndex)->String:
 	var lawPoint:lawpoint=law_panel.get_node("Control"+var_to_str(lawIndex+1)+"-"+var_to_str(policyIndex))
 	return tr(lawPoint.context)
 
+func getPolicyKey(lawIndex,policyIndex)->String:
+	var lawPoint:lawpoint=law_panel.get_node("Control"+var_to_str(lawIndex+1)+"-"+var_to_str(policyIndex))
+	return lawPoint.context
+
 @onready var currence_no_policy = $PanelContainer/orderPanel/currenceNoPolicy
 
 func _on_exit_button_button_down():
