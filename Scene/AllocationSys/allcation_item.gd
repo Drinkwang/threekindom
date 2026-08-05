@@ -173,7 +173,10 @@ func showReward(item):
 		item_ui.set_Data(key,_count)
 		var item_name=InventoryManagerItem.item_by_enum(key)
 		var owned_count=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,item_name)
-		item_ui.set_dif(owned_count-_count)
+		if data.allocationStatue==0:
+			item_ui.set_dif(owned_count-_count)
+		else:
+			item_ui.set_dif(0)
 		#需要修改方法道具 不获得道具,已修改，不知道 有无bug
 
 	if item.money>0:
@@ -181,7 +184,10 @@ func showReward(item):
 		itemMoney_ui.isShop=false
 		grid.add_child(itemMoney_ui)
 		itemMoney_ui.set_Money(item.money)
-		itemMoney_ui.set_dif(GameManager.sav.coin-item.money)
+		if data.allocationStatue==0:
+			itemMoney_ui.set_dif(GameManager.sav.coin-item.money)
+		else:
+			itemMoney_ui.set_dif(0)
 
 		
 	if item.population>0:
@@ -189,7 +195,10 @@ func showReward(item):
 		itempop_ui.isShop=false
 		grid.add_child(itempop_ui)
 		itempop_ui.set_Labor(item.population)
-		itempop_ui.set_dif(GameManager.sav.labor_force-item.population)
+		if data.allocationStatue==0:
+			itempop_ui.set_dif(GameManager.sav.labor_force-item.population)
+		else:
+			itempop_ui.set_dif(0)
 
 	pass
 var _num=0
