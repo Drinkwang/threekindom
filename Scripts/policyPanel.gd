@@ -20,7 +20,6 @@ const POLICY_PANEL_BASE_OFFSET_BOTTOM := 411.0
 @export_range(0.0, 250.0, 1.0) var policy_panel_max_extra_height := 124.0
 @export_range(10.0, 40.0, 1.0) var policy_panel_viewport_bottom_margin := 20.0
 
-var _is_fitting_policy_detail := false
 var _policy_detail_fit_generation := 0
 
 var tab_bar_emphasis_panel: Panel
@@ -106,6 +105,8 @@ var costhp=35
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	SignalManager.changeLanguage.connect(changeLanguage)
+	if not visibility_changed.is_connected(_on_policy_panel_visibility_changed):
+		visibility_changed.connect(_on_policy_panel_visibility_changed)
 	#if not resized.is_connected(_queue_policy_detail_font_fit):
 		#resized.connect(_queue_policy_detail_font_fit)
 	if GameManager.sav.hp<costhp:
@@ -141,8 +142,7 @@ func initControls():
 		control_1.initDataByGroup(1,group)
 		control_2.initDataByGroup(2,group)
 		control_3.initDataByGroup(3,group)
-	await get_tree().process_frame
-	changeLanguage()	
+
 var expLenWidth=1240		
 
 @onready var ConfireButton = $lawPanel/DetailPanel/Button
@@ -379,14 +379,18 @@ func _queue_policy_detail_font_fit() -> void:
 	_fit_policy_detail_font(_policy_detail_fit_generation)
 	#call_deferred("_fit_policy_detail_font", _policy_detail_fit_generation)
 
+func _on_policy_panel_visibility_changed() -> void:
+	await get_tree().process_frame
+	changeLanguage()
+
 func _fit_policy_detail_font(generation: int) -> void:
-	if generation != _policy_detail_fit_generation or label.size.x <= 0.0 or tab_bar.current_tab != 0:
+	if generation != _policy_detail_fit_generation or not is_visible_in_tree():
 		return
 	#if _is_fitting_policy_detail:
 		#call_deferred("_fit_policy_detail_font", generation)
 		#return
 
-	_is_fitting_policy_detail = true
+
 	label.add_theme_font_size_override("font_size", POLICY_DETAIL_BASE_FONT_SIZE)
 	var required_height: float = _measure_policy_detail_height(POLICY_DETAIL_BASE_FONT_SIZE)
 	var base_available_height: float = _get_policy_detail_base_available_height()
@@ -404,7 +408,7 @@ func _fit_policy_detail_font(generation: int) -> void:
 	await get_tree().process_frame
 	if generation != _policy_detail_fit_generation or tab_bar.current_tab != 0:
 		policy_panel_container.offset_bottom = POLICY_PANEL_BASE_OFFSET_BOTTOM
-		_is_fitting_policy_detail = false
+
 		return
 
 	var viewport_limit: float = get_viewport().get_visible_rect().end.y - policy_panel_viewport_bottom_margin
@@ -414,11 +418,11 @@ func _fit_policy_detail_font(generation: int) -> void:
 		await get_tree().process_frame
 		if generation != _policy_detail_fit_generation or tab_bar.current_tab != 0:
 			policy_panel_container.offset_bottom = POLICY_PANEL_BASE_OFFSET_BOTTOM
-			_is_fitting_policy_detail = false
+
 			return
 
 	label.add_theme_font_size_override("font_size", font_size)
-	_is_fitting_policy_detail = false
+
 
 func _get_policy_panel_allowed_extra_height() -> float:
 	var parent_control: Control = policy_panel_container.get_parent_control()
