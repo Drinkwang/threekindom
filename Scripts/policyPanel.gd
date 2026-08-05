@@ -107,8 +107,7 @@ var costhp=35
 func _ready():
 	if not SignalManager.changeLanguage.is_connected(changeLanguage):
 		SignalManager.changeLanguage.connect(changeLanguage)
-	if not visibility_changed.is_connected(_on_policy_panel_visibility_changed):
-		visibility_changed.connect(_on_policy_panel_visibility_changed)
+
 	if GameManager.sav.hp<costhp:
 		button.disabled=true
 	changeLanguage()
@@ -360,14 +359,7 @@ func _queue_policy_detail_font_fit() -> void:
 	_policy_detail_fit_queued = true
 	_fit_policy_detail_font_next_frame()
 
-func _on_policy_panel_visibility_changed() -> void:
-	if not is_visible_in_tree():
-		label.add_theme_font_size_override("font_size", POLICY_DETAIL_BASE_FONT_SIZE)
-		policy_panel_container.offset_top = POLICY_PANEL_BASE_OFFSET_TOP
-		policy_panel_container.offset_bottom = POLICY_PANEL_BASE_OFFSET_BOTTOM
-		return
-	if index != 0:
-		_queue_policy_detail_font_fit()
+
 
 func _fit_policy_detail_font_next_frame() -> void:
 	await get_tree().process_frame
