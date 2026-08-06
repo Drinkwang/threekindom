@@ -843,7 +843,7 @@ func extraTask():
 			GameManager.sav.SIDEQUEST_MAP[SceneManager.sideQuest.DARU]=tr("前往郑玄隐居处，听学《周礼》")
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"大儒辩经3启动之前")
 			return
-		elif GameManager.sav.have_event["泰山预备"]==true and GameManager.sav.have_event["最终泰山"]==false and GameManager.sav.taishanWait>=2 and GameManager.sav.have_event["夏侯偷马"]==false:
+		elif GameManager.sav.have_event["泰山预备"]==true and GameManager.sav.LVBU._support_rate>=80 and GameManager.sav.have_event["最终泰山"]==false and GameManager.sav.taishanWait>=2 and GameManager.sav.have_event["夏侯偷马"]==false:
 			GameManager.sav.taishanWait=50
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"泰山诸将任务完成")
 			GameManager.sav.have_event["最终泰山"]=true

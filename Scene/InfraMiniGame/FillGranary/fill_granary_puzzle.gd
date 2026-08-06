@@ -50,15 +50,20 @@ func changeLanguage():
 		#currence_no_policy.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
 	else:
 		if currencelanguage=="ja":
+			reside_car_label.add_theme_font_size_override("font_size",46)
+			currence_value_label.add_theme_font_size_override("font_size",46)
+			target_num_label.add_theme_font_size_override("font_size",46)
 			txt_detail.add_theme_font_size_override("font_size",42)
 		else:
 			txt_detail.add_theme_font_size_override("font_size",48)
+			reside_car_label.add_theme_font_size_override("font_size",48)
+			currence_value_label.add_theme_font_size_override("font_size",48)
+			target_num_label.add_theme_font_size_override("font_size",48)
+
 		win_label.add_theme_font_size_override("font_size",146)
 		lose_label.add_theme_font_size_override("font_size",146)
 	
-		reside_car_label.add_theme_font_size_override("font_size",48)
-		currence_value_label.add_theme_font_size_override("font_size",48)
-		target_num_label.add_theme_font_size_override("font_size",48)
+
 	if is_node_ready():
 		_updateMainContext()
 var trackNum=5

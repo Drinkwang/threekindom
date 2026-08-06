@@ -520,8 +520,9 @@ func GetLawClaimRevenue():
 		#播放获取钱的声音	
 	else:
 		print("错误：未定义行动")
-	
+
 	var _date=GameManager.getcldateByindex(GameManager.sav.curLawNum1)
+	GameManager._imporveRelation(_date)
 	var point
 	for i in GameManager.sav.laws[GameManager.sav.curLawNum1]:
 		if i<0:
@@ -555,7 +556,7 @@ func GetLawClaimRevenue():
 				var animation_player=$CanvasBook/ColorRect/AnimationPlayer
 				animation_player.speed_scale = 1.0
 				animation_player.play("colorUp")
-				GameManager._imporveRelation(_date)
+				
 				await get_tree().create_timer(4.25).timeout
 				animation_player.play_backwards("colorUp")
 
