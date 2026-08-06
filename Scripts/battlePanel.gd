@@ -44,7 +44,7 @@ const USE_ITEM_BUTTON_SIZE := Vector2(500, 82)
 const USE_ITEM_CHECK_BOX_RECT := Rect2(454, 23, 36, 36)
 const USE_ITEM_LABEL_RECT := Rect2(-370, -14, 356, 64)
 const USE_ITEM_LABEL_FONT_SIZE := 17
-const TASK_LABEL_RECT := Rect2(1041, 768, 469, 168)
+const TASK_LABEL_RECT := Rect2(1041, 675, 549, 247)
 const TASK_LABEL_FONT_SIZE := 28
 
 const DEFAULT_COST_HP := 30
@@ -443,7 +443,7 @@ func changeLanguage():
 		var battleEnhance=GameManager.sav.battleEnhance
 		var EnhanceContext=tr("[法令提升了战利品收益{profit}%]").format({"profit":battleEnhance*25})
 		TooltipManager.register_tooltip(lauchBtn,EnhanceContext)
-	refreshTask(false)
+	refreshTask(true)
 		
 		
 		

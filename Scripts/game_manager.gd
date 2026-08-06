@@ -1845,19 +1845,21 @@ func AutoSaveFile():
 
 func _imporveRelation(data:cldata):
 	if data.isSuppressed==true and data.supressNum<3:
-		data.rebellionUpdateNum+=2
+		data.rebellionUpdateNum+=1
 		resideValue=tr(data._name)
-		# 叛乱次数越少，需要的怀柔次数越少；即使没有叛乱记录，也至少需要怀柔 1 次。
-		var rebellion_based_actions = maxi(1,ceili(data._num_defections / 2.0))
-		# 第一次镇压最多怀柔 2 次，第二次镇压最多怀柔 3 次。
-		var reconciliation_action_cap = mini(data.supressNum + 1,3)
-		var required_reconciliation_actions = mini(rebellion_based_actions,reconciliation_action_cap)
-		# 每次怀柔增加 2 点进度，因此所需点数为对应次数的 2 倍。
-		var required_reconciliation_points = required_reconciliation_actions * 2
-		var remaining_rebellion_points = max(0, required_reconciliation_points - data.rebellionUpdateNum)
-		resideValue2=ceili(remaining_rebellion_points / 2.0)
+		var needCount:int
+		if data.supressNum<=1:
+			needCount=1
+
+			if data._num_defections>=2:
+				needCount=2
+		else:
+			needCount=2
+			if data._num_defections>=4:
+				needCount=3
+		resideValue2=maxi(0,needCount-data.rebellionUpdateNum)
 		
-		if data.rebellionUpdateNum>=required_reconciliation_points:
+		if data.rebellionUpdateNum>=needCount:
 			DialogueManager.show_example_dialogue_balloon(sys,"讨好叛乱1")
 			data.rebellionUpdateNum=0
 			data.isSuppressed=false
