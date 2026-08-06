@@ -441,7 +441,7 @@ func post_transition():
 	elif GameManager.sav.have_event["辕门射戟"]==true and GameManager.sav.have_event["辕门射戟结束"]==false:
 		GameManager.sav.have_event["辕门射戟结束"]=true
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"辕门射戟完成")
-	elif GameManager.LawNum()>=GameManager.maxLawNum and GameManager.sav.have_event["法律健全"]==false:
+	elif GameManager.PassedLawNum()>=GameManager.maxLawNum and GameManager.sav.have_event["法律健全"]==false:
 		GameManager.sav.have_event["法律健全"]=true
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"法律够了")
 

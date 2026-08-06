@@ -1476,6 +1476,21 @@ func LawNum():
 				seen.append(v)
 				count += 1
 	return count
+
+func PassedLawNum()->int:
+	var count=0
+	var has_pending_law=getCurLawExist()
+	for law_index in range(GameManager.sav.laws.size()):
+		var seen=[]
+		for law_id in GameManager.sav.laws[law_index]:
+			if law_id<=0 or law_id in seen:
+				continue
+			seen.append(law_id)
+			if has_pending_law and law_index==GameManager.sav.curLawNum1 and law_id==GameManager.sav.curLawNum2:
+				continue
+			count+=1
+	return count
+
 func excuteLaw():
 	# 只有 laws 里还没有才追加，避免重复
 	if not sav.curLawNum2 in sav.laws[sav.curLawNum1]:

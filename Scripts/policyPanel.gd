@@ -235,7 +235,7 @@ func refreshLawPoint():
 	else:
 		ConfireButton.disabled=false
 	point_label.text=tr("点数:%s")%GameManager.sav.Merit_points
-	#+"\n"+"上限:{x}/{max}".format({"x":GameManager.LawNum(),"max":GameManager.maxLawNum})
+
 	var tabcontext=" {x}/{max}".format({"x":GameManager.LawNum(),"max":GameManager.maxLawNum})
 	tab_bar.set_tab_title(1,tr("法律法规")+tabcontext)
 @onready var LawPanelBoard = $PanelContainer/orderPanel2
@@ -498,7 +498,7 @@ func excuteLaw(value:lawpoint):
 	if value==null:
 		return
 		
-	if GameManager.sav.have_event["法律健全"]==false and GameManager.LawNum()>=GameManager.maxLawNum:
+	if GameManager.sav.have_event["法律健全"]==false and GameManager.PassedLawNum()>=GameManager.maxLawNum:
 		DialogueManager.show_example_dialogue_balloon(GameManager.currenceScene.dialogue_resource,"法律已满")
 		return 
 	#GameManager.hp=GameManager.hp-costhp
