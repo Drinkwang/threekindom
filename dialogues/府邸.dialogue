@@ -285,7 +285,7 @@ else
 	赠送资金已顺利完成！{{getFactionByIndex().getTr()}}在你的支持下已达到上限100人。
 do SignalManager.changeSupport.emit()
 do GameManager._imporveRelation(getFactionByIndex())	
-do GameManager.improveFinalPhase()
+
 
 #该派系人数上升完成
 => END
@@ -319,7 +319,7 @@ do _JudgeTask(true, true)
 ~ 扩充吕布实力
 你已成功为{{GameManager.rTaishanName()}}扩充实力，当前{{GameManager.rTaishanName()}}手下人数达到{{getFactionByIndex()._num_all}}人，吕布的势力正在你的支持下日益壮大！
 do GameManager._imporveRelation(getFactionByIndex())
-do GameManager.improveFinalPhase()
+
 => END!
 
 ~ 调用士兵完成

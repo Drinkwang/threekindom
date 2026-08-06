@@ -1445,9 +1445,9 @@ func suppress():
 	var _c=getFactionByIndex()
 	var suppressCoeff=1.0
 	match GameManager.sav.gameDifficulty:
-		1: suppressCoeff=0.35
-		2: suppressCoeff=0.35
-		3: suppressCoeff=0.36
+		1: suppressCoeff=0.36
+		2: suppressCoeff=0.38
+		3: suppressCoeff=0.4
 	# 压缩有效镇压区间（好感 0～59）的成本差距：59 好感约为 0 好感成本的 84%。
 	var suppressionResistance=sqrt(100.0-_c._support_rate*0.5)
 	ForValueGet=int(suppressionResistance*60*(_c.supressNum+1)*suppressCoeff)
