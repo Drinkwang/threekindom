@@ -44,8 +44,9 @@ const USE_ITEM_BUTTON_SIZE := Vector2(500, 82)
 const USE_ITEM_CHECK_BOX_RECT := Rect2(454, 23, 36, 36)
 const USE_ITEM_LABEL_RECT := Rect2(-370, -14, 356, 64)
 const USE_ITEM_LABEL_FONT_SIZE := 17
-const TASK_LABEL_RECT := Rect2(1041, 675, 549, 247)
+const TASK_LABEL_RECT := Rect2(1041, 681, 549, 241)
 const TASK_LABEL_FONT_SIZE := 28
+const TASK_HIGHLIGHT_MARGIN := Vector2(8, 8)
 
 const DEFAULT_COST_HP := 30
 const BOSS_COST_HP := 0
@@ -485,6 +486,14 @@ func _apply_battle_layout():
 	task_label.add_theme_font_size_override("font_size", TASK_LABEL_FONT_SIZE)
 	task_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	task_label.clip_text = true
+	_sync_tactical_task_highlight()
+
+func _sync_tactical_task_highlight():
+	# The tutorial highlight follows the target text instead of a stale fixed rectangle.
+	if rect_2 == null or task_label == null:
+		return
+	rect_2.position = task_label.position - TASK_HIGHLIGHT_MARGIN
+	rect_2.size = task_label.size + TASK_HIGHLIGHT_MARGIN * 2.0
 
 		
 func initData():

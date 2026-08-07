@@ -509,7 +509,7 @@ size_flags_horizontal = 10
 [node name="TaskLabel" type="Label" parent="."]
 layout_mode = 0
 offset_left = 1041.0
-offset_top = 675.0
+offset_top = 681.0
 offset_right = 1590.0
 offset_bottom = 922.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -689,10 +689,10 @@ color = Color(1, 0, 0.078, 0)
 [node name="fengxianRect" type="ColorRect" parent="."]
 visible = false
 layout_mode = 0
-offset_left = 1035.0
-offset_top = 750.0
-offset_right = 1592.0
-offset_bottom = 927.0
+offset_left = 1033.0
+offset_top = 667.0
+offset_right = 1598.0
+offset_bottom = 930.0
 mouse_filter = 2
 color = Color(1, 0, 0.078, 0)
 

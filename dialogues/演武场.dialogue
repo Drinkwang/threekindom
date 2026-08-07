@@ -323,7 +323,7 @@ do SoundManager.play_sound(sounds.IRONCHAIN)
 刘备: 昌将军为兄弟部属与百姓考量，此情义令人敬佩。我愿以东海盐井一成利权，作你归顺之赏，望你好生安顿部众。[voice:liubei_yiyiquanjiaohuan]
 昌豨: 久闻刘使君仁义无双，今日得见，果然名不虚传！末将感激涕零！今后大人若有用我之处，末将愿誓死效忠，肝脑涂地！[voice:cangxi_gannaotudi]
 任务提示: 昌豨愿暗中为我方效力，其部曲一部可供调用，获得士兵100人。
-
+do cangxiFinalSurrender()
 => END!
 
 #攻击8次
