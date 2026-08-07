@@ -388,7 +388,7 @@ do DialogueManager.gameover=true
 if GameManager.resideValue==0
 	系统提示: 恭喜完成基建，但因已拥有更高等级的同基建增益，无法同时获得本级（较低级）的奖励。
 else
-	系统提示: 【获得增益加持：军事行动胜率 +{{GameManager.resideValue}}%】挑战高级基建，可获更强增益(单项基建只留存最优属性增益)。
+	系统提示: 【获得增益加持：军事行动胜率 +{{GameManager.resideValue}}%】挑战高级基建，可获更强增益(单项基建只留存最优属性增益)。该挑战并非主线，若要推进主线，可寻访城内其他角色完成其余基建。
 do succussAfter()	
 => END!
 
