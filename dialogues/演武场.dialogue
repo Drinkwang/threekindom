@@ -614,7 +614,7 @@ do _DayGet()
 
 ~ 血战模式无法提前休息
 刘备: (众人甲未解，我岂能安枕？？)[voice:liubei_zhongrenjiaweijie]
-提示: 必须将三场军事行动进行完毕才能休息进入下一旬。
+提示: 必须将{{GameManager.get_blood_battle_action_requirement()}}场军事行动进行完毕才能休息进入下一旬。
 #必须将军事行动进行完毕才能休息进入下一旬。
 => END!
 

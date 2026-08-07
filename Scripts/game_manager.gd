@@ -2200,6 +2200,14 @@ func get_bloodmode_day():
 		# 关羽离队后每旬只能完成两场战斗。
 		return 6+floori(float(progress-BLOOD_GUANYU_DEPARTURE)/2.0)
 	return floori(float(progress)/3.0)
+
+func get_blood_battle_action_requirement() -> int:
+	# 无名死亡的优先级高于关羽离队，血战阶段只剩一名可用武将。
+	if sav.have_event["无名之死"]:
+		return 1
+	if sav.have_event["关羽求援期间"] and not sav.have_event["关羽求援结束"]:
+		return 2
+	return 3
 #var bloodmusicid=-1
 
 # 恢复 Windows 原生样式

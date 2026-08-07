@@ -867,40 +867,8 @@ func _buttonListClick(item):
 		#if(GameManager.sav.have_event["firstBattleTutorial"]==true)：
 		#暂时不能发动军事行动
 	elif item.context=="休息":
-		if(GameManager.sav.currenceDay>=3):
-			if GameManager.sav.currenceValue>=9:
-				#if 全胜 不会反 end1
-				#if 小败 看丹阳忠诚 end 2守 end3
-				# 败北数达到一半 克苏鲁
-				#放在战斗里面，如果3天内 完成9场则触发吕布造反，
-				#3场
-				#6场
-				#8场 胜利消息 n天就无援助  3场，每个角色限1 
-				#10场 胜利消息
-				#歼灭   
-				#如何判断有无歼灭呢
-				#歼灭袁术，和没歼灭，没歼灭继续触发克苏鲁剧情 损失钱 在转小沛，不然直接转小沛
-				#转小沛判断 三种 陈登 糜竺 丹阳是否都高，如果都高 直接触发统治徐州，如果有一方低，则会导致迎接吕布剧情，需要平定吕布和袁术合盟
-				# 糜竺 陈登 
-				#可让张飞通过压榨丹阳派提供更多物质，保证一定进入丹阳线
-				#也可令张飞不可欺压士族
-				# 最低一方 将会叛变 迎合吕布，最终判断有无雪中送炭剧情 
-				# 陈登和糜竺的支持度，仅限于提供再起支持（高于80），而丹阳则决定徐州归属，如果丹阳高，并且陈登和糜竺有一方低，则血战模式触发 张飞 通过压榨 曹豹给陈登和糜竺平衡，献出物资  吕布一定作乱，如果三方忠诚度都高于60进入徐州可保，如果有一方低于80   
-				#糜竺是送亲 送兵 送钱
-				#陈登是送道具 
-				#无论小沛还是下邳，曹操都会送援助和封官		
-				#最终小沛或者下邳，在坚持20天 游戏结束 进入青梅煮酒
-				pass
-			else:
-				pass
-				#没歼灭
-				#没歼灭
-			#血战结束
-			#判断3天取得9次胜利没有 如果取得
-		#得修改，只要当日决斗为3即可，没必要非得10，否则有bug
-		if (GameManager.sav.UseGeneral.size()<3 and GameManager.sav.have_event["关羽求援期间"]==false) \
-		or(GameManager.sav.UseGeneral.size()<2 and GameManager.sav.have_event["关羽求援期间"]==true and GameManager.sav.have_event["关羽求援结束"]==false and GameManager.sav.have_event["无名之死"]==false) \
-		or(GameManager.sav.UseGeneral.size()==0 and GameManager.sav.have_event["无名之死"]==true and GameManager.sav.have_event["关羽求援结束"]==false):
+		
+		if GameManager.sav.UseGeneral.size()<GameManager.get_blood_battle_action_requirement():
 			DialogueManager.show_dialogue_balloon(dialogue_resource,"血战模式无法提前休息")
 			return
 		#暂时不用rest文本来修改，未来可能会用，把代码移动到这里更直观	
