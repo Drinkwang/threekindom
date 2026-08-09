@@ -143,18 +143,18 @@ func changeLanguage():
 	
 	if currencelanguage=="ru":
 		expLenWidth=1325
-		tourPoint.position.x=-130
+		tourPoint.position.x=-310
 		currence_no_policy.add_theme_font_size_override("font_size",45)
 		ConfireButton.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
 		tab_bar.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
 		law_label.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))	
 	else:
 		if currencelanguage=="en":
-			tourPoint.position.x=-405
+			tourPoint.position.x=-375
 		elif currencelanguage=="ja":
-			tourPoint.position.x=-250
+			tourPoint.position.x=-220
 		else:
-			tourPoint.position.x=-344
+			tourPoint.position.x=-300
 		currence_no_policy.add_theme_font_size_override("font_size",66)
 		expLenWidth=1240
 		ConfireButton.remove_theme_font_override("font")

@@ -225,8 +225,9 @@ tab_1/title = "法律法规"
 
 [node name="Node2D" type="Node2D" parent="."]
 visible = false
-position = Vector2(-344, -487)
+position = Vector2(-344, -497)
 rotation = -1.5708
+scale = Vector2(0.8, 0.8)
 
 [node name="5Yellow" type="Sprite2D" parent="Node2D"]
 position = Vector2(0, -283.11)
