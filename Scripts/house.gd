@@ -406,6 +406,31 @@ const nightbgm = preload("res://Asset/bgm/夜晚在家.wav")
 @onready var point_xiuzhen: Node2D = $"文官/pointXiuzhen"
 
 func post_transition():
+	refreshEnter()
+	
+func refreshEnter():
+	if GameManager.sav.have_event["进入曹府"]==true and GameManager.sav.have_event["最终比武结束"]==false:
+		AchievementManager.set_achievement("NEW_ACHIEVEMENT_2_0")
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"最终章节")
+		hidecanvas()
+		return
+	elif GameManager.sav.have_event["最终比武结束"]==true:
+		SoundManager.stop_music()
+		SoundManager.play_music(caoliu2)
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"最终章节2")
+		hidecanvas()
+		return
+	elif GameManager.sav.have_event["辕门射戟"]==true and GameManager.sav.have_event["辕门射戟结束"]==false:
+		GameManager.sav.have_event["辕门射戟结束"]=true
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"辕门射戟完成")
+		#return
+	elif GameManager.PassedLawNum()>=GameManager.maxLawNum and GameManager.sav.have_event["法律健全"]==false:
+		GameManager.sav.have_event["法律健全"]=true
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"法律够了")
+		return
+
+			
+	
 	var canMuliao=true
 	GameManager.CanClickUI=true
 	SoundManager.stop_all_ambient_sounds()
@@ -432,31 +457,31 @@ func post_transition():
 		return
 	canMuliao=initCanContinue
 
-	if GameManager.sav.have_event["进入曹府"]==true and GameManager.sav.have_event["最终比武结束"]==false:
-		AchievementManager.set_achievement("NEW_ACHIEVEMENT_2_0")
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"最终章节")
-		hidecanvas()
-	elif GameManager.sav.have_event["最终比武结束"]==true:
-		SoundManager.stop_music()
-		SoundManager.play_music(caoliu2)
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"最终章节2")
-		hidecanvas()
-	elif GameManager.sav.have_event["辕门射戟"]==true and GameManager.sav.have_event["辕门射戟结束"]==false:
-		GameManager.sav.have_event["辕门射戟结束"]=true
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"辕门射戟完成")
-	elif GameManager.PassedLawNum()>=GameManager.maxLawNum and GameManager.sav.have_event["法律健全"]==false:
-		GameManager.sav.have_event["法律健全"]=true
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"法律够了")
+	#if GameManager.sav.have_event["进入曹府"]==true and GameManager.sav.have_event["最终比武结束"]==false:
+		#AchievementManager.set_achievement("NEW_ACHIEVEMENT_2_0")
+		#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"最终章节")
+		#hidecanvas()
+	#elif GameManager.sav.have_event["最终比武结束"]==true:
+		#SoundManager.stop_music()
+		#SoundManager.play_music(caoliu2)
+		#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"最终章节2")
+		#hidecanvas()
+	#elif GameManager.sav.have_event["辕门射戟"]==true and GameManager.sav.have_event["辕门射戟结束"]==false:
+		#GameManager.sav.have_event["辕门射戟结束"]=true
+		#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"辕门射戟完成")
+	#elif GameManager.PassedLawNum()>=GameManager.maxLawNum and GameManager.sav.have_event["法律健全"]==false:
+		#GameManager.sav.have_event["法律健全"]=true
+		#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"c")
 
-	else:
+	#else:
 		
-		if entered_from_street and GameManager.sav.have_event["休憩第一次提示"]==false and GameManager.sav.allocationDay>=0:
-			GameManager.sav.have_event["休憩第一次提示"]=true
-			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"休憩提醒前置")		
-		elif canMuliao==true and !GameManager.CheckAllFactionsSubdued():
+	if entered_from_street and GameManager.sav.have_event["休憩第一次提示"]==false and GameManager.sav.allocationDay>=0:
+		GameManager.sav.have_event["休憩第一次提示"]=true
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"休憩提醒前置")		
+	elif canMuliao==true and !GameManager.CheckAllFactionsSubdued():
 
-			if GameManager.sav.endPath==GameManager.endPath.none or (GameManager.sav.endPath!=GameManager.endPath.none and GameManager.sav.have_event["主簿的追随"]==true):
-				allocationMuliao()
+		if GameManager.sav.endPath==GameManager.endPath.none or (GameManager.sav.endPath!=GameManager.endPath.none and GameManager.sav.have_event["主簿的追随"]==true):
+			allocationMuliao()
 		#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"终局")
 		#hidecanvas()
 @onready var taishanSoilder: Node2D = $"泰山军官"
@@ -1138,15 +1163,15 @@ func allocationSettle():
 		DialogueManager.show_exaple_top_dialogue_balloon(dialogue_resource,"派系扣除好感")
 func allocationMuliao():
 	if zhubu.visible==false:
-		if GameManager.sav.allocationDay==2 and GameManager.canDistributeAllowance():
+		if GameManager.sav.allocationDay==2 and GameManager.canDistributeAllowance() and GameManager.sav.have_event["休憩第一次提示"]==true:
 			zhubu.show()
 			zhubu.changeAllClick("月例发放日")
 
 
-		elif GameManager.sav.allocationDay==3 and GameManager.canDistributeAllowance():
+		elif GameManager.sav.allocationDay==3 and GameManager.canDistributeAllowance() and GameManager.sav.have_event["休憩第一次提示"]==true:
 			zhubu.show()
 			zhubu.changeAllClick("最后支给日")
-		elif GameManager.sav.allocationDay==1:
+		elif GameManager.sav.allocationDay==1 and GameManager.canDistributeAllowance() and GameManager.sav.have_event["休憩第一次提示"]==true:
 			zhubu.show()
 			zhubu.changeAllClick("月例预期日")
 			#allocationAllSettle

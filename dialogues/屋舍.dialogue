@@ -751,7 +751,8 @@ do zhubu.show()
 
 do zhubu.hide()
 
-do _initData()
+do refreshEnter()
+
 => END!
 
 
