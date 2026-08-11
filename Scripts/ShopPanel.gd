@@ -77,11 +77,11 @@ func initData2():
 				var item=properties.filter(func(a):return a["name"]=="price")[0]
 				var price=int(item["value"])
 				var shopEnhance=GameManager.sav.shopEnhance
-				var shopEnum=shopEnhance*0.15
+				var shopEnum=shopEnhance*0.25
 				
 				if shopEnhance>0:
-					shopEnhanceContext=tr("[法令提升了收购价{profit}%]").format({"profit":shopEnhance*15})
-				price=floor(price*(0.6+shopEnum))
+					shopEnhanceContext=tr("[法令提升了收购价{profit}%]").format({"profit":shopEnhance*25})
+				price=floor(price*(0.35+shopEnum))
 				GameManager.SoldCoin=GameManager.SoldCoin+(price*useItems[item_type])
 		GameManager.SoldItemStr=tr("我将以%d金收购你手上的")%GameManager.SoldCoin+" ["+GameManager.SoldItemStr+"]"+shopEnhanceContext
 		back_txt.show()
