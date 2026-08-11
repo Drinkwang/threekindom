@@ -1512,7 +1512,7 @@ _disaterPanelDetail,Pleased: {happy} (Greatly increases support when satisfied)\
 镇压{{getFactionByIndex().getTr()}}需要消耗民力{{ForValueGet}}和钱{{ForValueCost}}，你确定用武力镇压么?,Suppressing {{getFactionByIndex().getTr()}} requires {{ForValueGet}} Labor and {{ForValueCost}} coins. Are you sure you want to use force?,镇压{{getFactionByIndex().getTr()}}需要消耗民力{{ForValueGet}}和钱{{ForValueCost}}，你确定用武力镇压么?,鎮壓{{getFactionByIndex().getTr()}}需要消耗民力{{ForValueGet}}和錢{{ForValueCost}}，你確定用武力鎮壓麼?,{{getFactionByIndex().getTr()}}を鎮圧するには民力{{ForValueGet}}と銭{{ForValueCost}}が必要ですが、武力で鎮圧しますか？,"Для подавления {{getFactionByIndex().getTr()}} потребуется {{ForValueGet}} рабочих единиц и {{ForValueCost}} монет. Вы уверены, что хотите применить силу?"
 陶谦,Tao Qian,陶谦,陶謙,陶謙,Тао Цянь
 尸皇-“陶谦”,"Corpse Emperor - ""Tao Qian""",尸皇-“陶谦”,屍皇-「陶謙」,屍皇-「陶謙」,"Зомби-император - ""Тао Цянь"""
-"""陶谦""","""Tao Qian""","""陶谦""","""""""陶謙""""""",“陶謙”,"""Тао Цянь"""
+"""陶谦""","""Tao Qian""","""陶谦""",“陶謙”,“陶謙”,"""Тао Цянь"""
 征讨次数：{currence}/{target},Conquest Count: {currence}/{target},征讨次数：{currence}/{target},征討次數：{currence}/{target} ,征討回数：{currence}/{target},Количество походов: {currence}/{target}
 陶商,Tao Shang,陶商,陶商,陶商,Тао Шан
 陶应,Tao Ying,陶应,陶應,陶応,Тао Ин
