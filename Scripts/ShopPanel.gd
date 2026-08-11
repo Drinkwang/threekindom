@@ -64,7 +64,8 @@ func initData2():
 	_reset_self_sell_counts()
 	if can_merchant_buy:
 		var backNum=randi_range(1,haveNum)
-		backNum=min(backNum,5)
+		var minMax = min(GameManager.sav.day / 10 + 1, 5)
+		backNum=min(backNum,minMax)
 		useItems=InventoryManager.costItemRandom(backNum)
 		GameManager.SoldItemStr=generate_consumed_string(useItems)
 		GameManager.SoldCoin=0
@@ -196,7 +197,7 @@ func _refreshMerchantOfferText():
 	GameManager.SoldItemStr=generate_consumed_string(useItems)
 	var enhanceContext=""
 	if GameManager.sav.shopEnhance>0:
-		enhanceContext=tr("[法令提升了收购价{profit}%]").format({"profit":GameManager.sav.shopEnhance*15})
+		enhanceContext=tr("[法令提升了收购价{profit}%]").format({"profit":GameManager.sav.shopEnhance*25})
 	GameManager.SoldItemStr=tr("我将以%d金收购你手上的")%GameManager.SoldCoin+" ["+GameManager.SoldItemStr+"]"+enhanceContext
 	back_txt.text=GameManager.SoldItemStr
 
@@ -388,7 +389,7 @@ func _get_self_sell_price(item_type:String) -> int:
 		return 0
 	var price=int(price_items[0]["value"])
 	var shop_enhance=GameManager.sav.shopEnhance
-	return floor(price * (0.6 + shop_enhance * 0.15))
+	return floor(price * (0.35 + shop_enhance * 0.25))
 
 func _get_self_sell_total_count() -> int:
 	var total=0
@@ -405,7 +406,7 @@ func _get_self_sell_total_coin() -> int:
 func _get_self_sell_enhance_context() -> String:
 	if GameManager.sav.shopEnhance <= 0:
 		return ""
-	return "（"+tr("法令收购价")+"+%d%%）" % (GameManager.sav.shopEnhance * 15)
+	return "（"+tr("法令收购价")+"+%d%%）" % (GameManager.sav.shopEnhance * 25)
 
 func _change_self_sell_quantity(item_type:String, delta:int):
 	if delta > 0 and _get_self_sell_total_count() >= SELF_SELL_LIMIT:
