@@ -1147,6 +1147,7 @@ func _finish_allocation_cycle():
 	GameManager.initDemand()
 
 func allocationSettle():
+	cnames=[]
 	for index in range(0,4):
 		alldata=GameManager.getcldateByindex(index)
 
