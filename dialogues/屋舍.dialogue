@@ -402,6 +402,7 @@ do settle_allocation_after_current_dialogue()
 #如果参与偷马 给与一些奖励
 
 ~ 终局
+do zhubu.hide()
 do changeToFinalScene(0)
 
 刘备: 曹操并未食言，在我军即将溃败之际，他的援军终于抵达，我也得以全身而退，撤出小沛。[voice:liubei_chequxiaopei]

@@ -409,16 +409,19 @@ func post_transition():
 	refreshEnter()
 	
 func refreshEnter():
+	var canMuliao=true
 	if GameManager.sav.have_event["进入曹府"]==true and GameManager.sav.have_event["最终比武结束"]==false:
 		AchievementManager.set_achievement("NEW_ACHIEVEMENT_2_0")
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"最终章节")
 		hidecanvas()
+		canMuliao=false
 		return
 	elif GameManager.sav.have_event["最终比武结束"]==true:
 		SoundManager.stop_music()
 		SoundManager.play_music(caoliu2)
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"最终章节2")
 		hidecanvas()
+		canMuliao=false
 		return
 	elif GameManager.sav.have_event["辕门射戟"]==true and GameManager.sav.have_event["辕门射戟结束"]==false:
 		GameManager.sav.have_event["辕门射戟结束"]=true
@@ -431,7 +434,7 @@ func refreshEnter():
 
 			
 	
-	var canMuliao=true
+	
 	GameManager.CanClickUI=true
 	SoundManager.stop_all_ambient_sounds()
 	if GameManager.sav.alreadyHP>=80:
@@ -934,7 +937,9 @@ func _JudgeTask():
 				#屏蔽三个地方
 				hasSide=false
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"终局")
+				
 				canvas_layer.hide()
+				return
 			elif value>=GameManager.sav.targetValue and GameManager.sav.endPath==GameManager.endPath.xuzhou:
 				hasSide=false
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"最终霸道任务")
