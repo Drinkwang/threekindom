@@ -258,6 +258,7 @@ func _is_same_find_item_position(item, other_item)->bool:
 
 
 var currenceScene
+var entering_house_from_street=false
 var restFadeScene
 
 

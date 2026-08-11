@@ -1,6 +1,7 @@
 extends baseComponent
 
 var _last_recommendation: String = ""
+var entered_from_street=false
 
 @onready var res_panel = $CanvasLayer/resPanel
 
@@ -117,6 +118,8 @@ func enterFinalBiwu():
 	SceneManager.changeScene(SceneManager.roomNode.TrainBattle,2)
 func _ready():
 	preload("res://Asset/tres/bentupai.tres")#没用但必须有，让资源提前单例加载
+	entered_from_street=GameManager.entering_house_from_street
+	GameManager.entering_house_from_street=false
 
 	var loaded_from_save=GameManager.isLoadingSave
 	Transitions.post_transition.connect(post_transition)
@@ -447,10 +450,10 @@ func post_transition():
 
 	else:
 		
-		if GameManager.sav.have_event["休憩第一次提示"]==false and GameManager.sav.allocationDay>=0:
+		if entered_from_street and GameManager.sav.have_event["休憩第一次提示"]==false and GameManager.sav.allocationDay>=0:
 			GameManager.sav.have_event["休憩第一次提示"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"休憩提醒前置")		
-		if canMuliao==true and !GameManager.CheckAllFactionsSubdued():
+		elif canMuliao==true and !GameManager.CheckAllFactionsSubdued():
 
 			if GameManager.sav.endPath==GameManager.endPath.none or (GameManager.sav.endPath!=GameManager.endPath.none and GameManager.sav.have_event["主簿的追随"]==true):
 				allocationMuliao()

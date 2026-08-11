@@ -368,6 +368,7 @@ func _buttonListClick(item):
 	if item.context == "府邸":
 		SceneManager.changeScene(SceneManager.roomNode.GOVERNMENT_BUILDING,2)
 	elif item.context == "自宅":
+		GameManager.entering_house_from_street=true
 		SceneManager.changeScene(SceneManager.roomNode.HOUSE,2)
 		#scene=HOUSE
 	elif item.context == "议事厅":

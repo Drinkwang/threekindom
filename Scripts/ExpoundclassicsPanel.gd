@@ -31,7 +31,7 @@ func changeLanguage():
 		button.add_theme_font_size_override("font_size", 60)
 		#if(starttitle.size()>)
 	elif currencelanguage=="lzh":
-		itemuseLabel.add_theme_constant_override("line_spacing",-5)#/line_spacing
+		itemuseLabel.add_theme_constant_override("line_spacing",0)#/line_spacing
 	elif currencelanguage=="zh":
 		itemuseLabel.add_theme_constant_override("line_spacing",0)
 		starttitle.add_theme_font_size_override("font_size", 81)
