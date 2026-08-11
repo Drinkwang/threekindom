@@ -239,7 +239,8 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 	if !(event is InputEventMouseButton):
 		return
 		
-	if (DialogueManager.haveDialoge()==true and DialogueManager.get_dialogue_balloon() != null) or GameManager.isLoadingSave==true or PanelManager.isOpenSetting==true and (PanelManager.rewardNode!=null and PanelManager.rewardNode.visible):
+	# 对话执行异步命令时会暂时隐藏气泡，但节点仍存在，此时禁止点击场景人物。
+	if DialogueManager.get_dialogue_balloon() != null or GameManager.isLoadingSave==true or PanelManager.isOpenSetting==true and (PanelManager.rewardNode!=null and PanelManager.rewardNode.visible):
 		return
 	if not event.pressed:
 		return
