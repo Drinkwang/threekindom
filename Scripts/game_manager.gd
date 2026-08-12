@@ -2421,7 +2421,7 @@ func LoadingDiffucultValue():
 		#3点法令点立一个法
 	elif GameManager.sav.gameDifficulty==3:
 		perLawCycle=4
-		minxinPoint=2
+		minxinPoint=1
 		LAW_COST_POINT=4
 		maxLawNum=10
 		demandMaxRepair=3
