@@ -70,12 +70,21 @@ var dialogue_line: DialogueLine:
 		# Show our balloon
 		balloon.show()
 		will_hide_balloon = false
-		
+
+		# Keep the full line in the layout for measurement, but never expose its
+		# unfitted base font size to the player.
+		dialogue_label.self_modulate.a = 0.0
 		dialogue_label.show()
-		dialogue_label.fit_text_to_box()
+		await get_tree().process_frame
+		await dialogue_label.fit_text_to_box()
 		if not dialogue_line.text.is_empty():
+			dialogue_label.visible_characters = 0
+			dialogue_label.visible_ratio = 0.0
+			dialogue_label.self_modulate.a = 1.0
 			dialogue_label.type_out()
 			await dialogue_label.finished_typing
+		else:
+			dialogue_label.self_modulate.a = 1.0
 
 		# Wait for input
 		if dialogue_line.responses.size() > 0:

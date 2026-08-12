@@ -18,6 +18,9 @@ signal skipped_typing()
 ## Emitted when typing finishes.
 signal finished_typing()
 
+## Emitted after the latest queued text fit has completed.
+signal text_fit_completed()
+
 
 # The action to press to skip typing.
 @export var skip_action: StringName = &"ui_cancel"
@@ -52,6 +55,9 @@ const RICH_TEXT_FONT_SIZE_KEYS: PackedStringArray = [
 ]
 
 var _base_font_size: int = 0
+var _is_fitting_text: bool = false
+var _fit_requested: bool = false
+var _queued_fit_restore_alpha: float = -1.0
 
 
 ## The current line of dialogue.
@@ -124,11 +130,22 @@ var _is_awaiting_mutation: bool = false
 
 func _ready() -> void:
 	_base_font_size = get_theme_font_size("normal_font_size")
+	if not resized.is_connected(_queue_text_fit):
+		resized.connect(_queue_text_fit)
 
 
 func fit_text_to_box() -> void:
 	if not auto_fit_text:
 		return
+	if _is_fitting_text:
+		_fit_requested = true
+		await text_fit_completed
+		return
+
+	# This fit supersedes any idle deferred request. A resize that happens
+	# during the fit will set the flag again and trigger one final pass.
+	_fit_requested = false
+	_is_fitting_text = true
 
 	autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	scroll_active = false
@@ -139,14 +156,19 @@ func fit_text_to_box() -> void:
 
 	_apply_rich_text_font_size(_base_font_size)
 
-	#await get_tree().process_frame
-
 	var available_size := size
 	if available_size.x <= 0 or available_size.y <= 0:
 		await get_tree().process_frame
 		available_size = size
 
 	if available_size.x <= 0 or available_size.y <= 0:
+		_is_fitting_text = false
+		if _fit_requested:
+			_fit_requested = false
+			_queue_text_fit()
+			await text_fit_completed
+		else:
+			_complete_text_fit()
 		return
 
 	var step: int = max(1, auto_fit_step)
@@ -161,6 +183,45 @@ func fit_text_to_box() -> void:
 
 		# Always test size 1, even when the configured step would skip it.
 		font_size = max(1, font_size - step)
+
+	_is_fitting_text = false
+	if _fit_requested:
+		_fit_requested = false
+		_queue_text_fit()
+		await text_fit_completed
+	else:
+		_complete_text_fit()
+
+
+func _queue_text_fit() -> void:
+	if not auto_fit_text or not is_inside_tree():
+		return
+	if _is_fitting_text:
+		_fit_requested = true
+		return
+	if _fit_requested:
+		return
+
+	if self_modulate.a > 0.0:
+		_queued_fit_restore_alpha = self_modulate.a
+		self_modulate.a = 0.0
+	_fit_requested = true
+	call_deferred("_run_queued_text_fit")
+
+
+func _run_queued_text_fit() -> void:
+	if not _fit_requested or not is_inside_tree():
+		return
+
+	_fit_requested = false
+	await fit_text_to_box()
+
+
+func _complete_text_fit() -> void:
+	if _queued_fit_restore_alpha >= 0.0:
+		self_modulate.a = _queued_fit_restore_alpha
+		_queued_fit_restore_alpha = -1.0
+	text_fit_completed.emit()
 
 
 func _apply_rich_text_font_size(font_size: int) -> void:
