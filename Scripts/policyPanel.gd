@@ -15,6 +15,12 @@ const LAW_TAB_INDEX := 1
 const POLICY_DETAIL_BASE_FONT_SIZE := 31
 const POLICY_PANEL_BASE_OFFSET_TOP := -411.0
 const POLICY_PANEL_BASE_OFFSET_BOTTOM := 411.0
+const LAW_DETAIL_BASE_WIDTH := 1295.0
+const LAW_DETAIL_BASE_HEIGHT := 96.0
+const LAW_DETAIL_TOP := 322.0
+const LAW_DETAIL_BASE_FONT_SIZE := 30
+const LAW_DETAIL_VERTICAL_PADDING := 16.0
+const LAW_PANEL_BOTTOM_GUARD := 31.0
 
 @export_range(10.0, 20.0, 1.0) var policy_detail_bottom_spacing := 15.0
 @export_range(10, 31, 1) var policy_detail_min_font_size := 18
@@ -22,6 +28,7 @@ const POLICY_PANEL_BASE_OFFSET_BOTTOM := 411.0
 @export_range(10.0, 40.0, 1.0) var policy_panel_viewport_bottom_margin := 20.0
 
 var _policy_detail_fit_queued := false
+var _law_detail_fit_queued := false
 
 var tab_bar_emphasis_panel: Panel
 var tab_bar_emphasis_tween: Tween
@@ -182,7 +189,7 @@ func _refreshCurrentDescription():
 		canHideBlockShow()
 
 func _getLocalizedLawDetail(value:lawpoint)->String:
-	var context:String="{bg}({Txt})".format({"bg":tr(value.IncomeBg),"Txt":tr(value.IncomeTxt)})
+	var context:String="{bg}\n{Txt}".format({"bg":tr(value.IncomeBg),"Txt":tr(value.IncomeTxt)})
 	if "[danyang]" in context:
 		context=context.replace("[danyang]",tr("丹阳派"))
 	if "[shizu]" in context:
@@ -217,15 +224,51 @@ func show_current_law_pending_message() -> void:
 		GameManager._engerge.stopPreviewHP()
 	changeexp_len()
 
-func changeexp_len():
+func changeexp_len() -> void:
+	if _law_detail_fit_queued or not is_inside_tree():
+		return
+	_law_detail_fit_queued = true
+	_fit_law_detail_panel_next_frame()
 
-	var label_height = 81
-	var label_line_count = law_label.get_line_count()  # 获取行数（可选）
-	var padding = 20  # 可根据需要调整
-	var new_size = Vector2(1295+expLenWidth-1240, label_height +label_line_count* padding)
-	exp_len.custom_minimum_size=Vector2(expLenWidth,new_size.y-81)
-		# 应用到 Panel
-	detail_panel.custom_minimum_size = new_size
+
+func _fit_law_detail_panel_next_frame() -> void:
+	var panel_width: float = LAW_DETAIL_BASE_WIDTH + float(expLenWidth) - 1240.0
+	detail_panel.position.y = LAW_DETAIL_TOP
+	detail_panel.custom_minimum_size = Vector2(panel_width, LAW_DETAIL_BASE_HEIGHT)
+	detail_panel.size = Vector2(panel_width, LAW_DETAIL_BASE_HEIGHT)
+	law_label.add_theme_font_size_override("font_size", LAW_DETAIL_BASE_FONT_SIZE)
+	await get_tree().process_frame
+
+	var required_text_height := _get_rendered_law_detail_height()
+	var panel_height := maxf(
+		LAW_DETAIL_BASE_HEIGHT,
+		ceilf(required_text_height + LAW_DETAIL_VERTICAL_PADDING)
+	)
+	detail_panel.custom_minimum_size = Vector2(panel_width, panel_height)
+	detail_panel.size = Vector2(panel_width, panel_height)
+	detail_panel.position.y = LAW_DETAIL_TOP
+	exp_len.custom_minimum_size = Vector2(expLenWidth, panel_height - LAW_DETAIL_BASE_HEIGHT)
+	await get_tree().process_frame
+	await _ensure_law_detail_inside_policy_panel()
+	_law_detail_fit_queued = false
+
+
+func _get_rendered_law_detail_height() -> float:
+	var line_count := maxi(1, law_label.get_line_count())
+	return float(line_count * law_label.get_line_height())
+
+
+func _ensure_law_detail_inside_policy_panel() -> void:
+	for _attempt in range(3):
+		var detail_bottom: float = detail_panel.global_position.y + detail_panel.size.y
+		var policy_bottom: float = policy_panel_container.global_position.y + policy_panel_container.size.y
+		var missing_height: float = detail_bottom + LAW_PANEL_BOTTOM_GUARD - policy_bottom
+		if missing_height <= 0.0:
+			return
+		exp_len.custom_minimum_size.y += ceilf(missing_height)
+		await get_tree().process_frame
+
+
 func refreshLawPoint():
 	#if tab==0:
 	#	return 

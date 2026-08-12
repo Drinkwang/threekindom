@@ -213,9 +213,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -643.0
-offset_top = -434.0
+offset_top = -438.0
 offset_right = 530.0
-offset_bottom = -378.0
+offset_bottom = -382.0
 grow_horizontal = 2
 grow_vertical = 2
 current_tab = 0
@@ -1210,32 +1210,41 @@ text = "政策点数:1"
 autowrap_mode = 2
 
 [node name="DetailPanel" type="Panel" parent="lawPanel"]
-custom_minimum_size = Vector2(1295, 0)
+clip_contents = true
+custom_minimum_size = Vector2(1295, 96)
 layout_mode = 0
 offset_left = -613.0
 offset_top = 322.0
 offset_right = 682.0
-offset_bottom = 403.0
+offset_bottom = 418.0
 
 [node name="Label2" type="Label" parent="lawPanel/DetailPanel"]
-layout_mode = 0
-offset_left = 13.0
-offset_top = 12.0
-offset_right = 1111.0
-offset_bottom = 74.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 4.0
+offset_right = -220.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_font_sizes/font_size = 30
-autowrap_mode = 1
+autowrap_mode = 3
 
 [node name="Button" type="Button" parent="lawPanel/DetailPanel"]
 layout_mode = 1
-anchors_preset = 1
+anchors_preset = 6
 anchor_left = 1.0
+anchor_top = 0.5
 anchor_right = 1.0
+anchor_bottom = 0.5
 offset_left = -160.0
-offset_top = -11.0
+offset_top = -53.5
 offset_right = 4.0
-offset_bottom = 96.0
+offset_bottom = 53.5
 grow_horizontal = 0
+grow_vertical = 2
 theme_override_font_sizes/font_size = 22
 text = "确认"
 
