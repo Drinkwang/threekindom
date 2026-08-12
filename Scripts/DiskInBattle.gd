@@ -178,9 +178,9 @@ func _juideCompeleteTask():
 		generalLevel=0
 	var mustHave	
 	if  GameManager.sav.gameDifficulty==3:
-		mustHave=rewardMax*(generalLevel+10)/34
+		mustHave=rewardMax*(generalLevel+10)/36
 	else:
-		mustHave=rewardMax*(generalLevel+10)/32     #+generalLevel*rewardMax/20
+		mustHave=rewardMax*(generalLevel+10)/34     #+generalLevel*rewardMax/20
 	#var mustHave=rewardMax/2
 	var targetGet=0
 	var is_mi_boss=GameManager.currenceScene!=null and GameManager.currenceScene.battle_pane._mode==SceneManager.bossMode.mi
