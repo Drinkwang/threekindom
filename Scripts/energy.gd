@@ -180,7 +180,7 @@ func showTargetLabel():
 		
 		if(cd>0):	
 			target_label.text=target_label.text+"\n"
-			var context=tr("%s指定《%s》，7旬内通过，还剩%d旬！")%[tr(law),GameManager.sav.courtingLaws[law],cd]
+			var context=tr("%s指定《%s》，7旬内通过，还剩%d旬！")%[tr(law),tr(GameManager.sav.courtingLaws[law]),cd]
 			target_label.text=target_label.text+context
 	_fit_target_label_font()
 	#target_label.text=target_label.text+

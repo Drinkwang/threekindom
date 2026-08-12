@@ -284,6 +284,8 @@ func _on_timer_timeout():
 
 
 func _on_area_2d_mouse_entered_board() -> void:
+	if DialogueManager.get_dialogue_balloon() != null:
+		return
 	if GameManager.currenceScene!=null and GameManager.currenceScene is board_game:
 		if GameManager.currenceScene.mouseline.visible==true:
 			showEX=true
@@ -291,6 +293,8 @@ func _on_area_2d_mouse_entered_board() -> void:
 			showEX=false
 
 func _on_area_2d_mouse_exited_board() -> void:
+	if DialogueManager.get_dialogue_balloon() != null:
+		return	
 	if GameManager.currenceScene!=null and GameManager.currenceScene is board_game:
 		if GameManager.currenceScene:
 			showEX=false
