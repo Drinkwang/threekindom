@@ -10,14 +10,14 @@ var is_owned=false
 var steam_id:int
 var steam_username:String
 func _ready() -> void:
-
+	#pass
 	#if Engine.has_singleton("Steam"):
 	#	steam = Engine.get_singleton("Steam")
 	#else:
 	#	push_warning("Steam singleton not found.")
 	#	return
 	init_steam()
-	set_achievement("ACH_WIN_ONE_GAME")
+	#set_achievement("ACH_WIN_ONE_GAME")
 func init_steam():
 	if Engine.has_singleton(("Steam")) and APP_ID>0:
 		var init_response:Dictionary=Steam.steamInitEx(APP_ID)
