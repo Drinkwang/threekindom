@@ -566,7 +566,7 @@ const ALLOWANCE_PRESSURE_START_DAY := 8
 const ALLOWANCE_PRESSURE_PER_DAY := 0.003
 const ALLOWANCE_MAX_PRESSURE := 0.15
 const MONTHLY_ALLOWANCE_MAX_ITEM_COUNT := 9
-const MONTHLY_ALLOWANCE_ITEM_COST_MULTIPLIER := 0.58
+const MONTHLY_ALLOWANCE_ITEM_COST_MULTIPLIER := 0.57
 
 func get_allowance_pressure_multiplier(day: int) -> float:
 	var pressure_days := maxi(day - ALLOWANCE_PRESSURE_START_DAY, 0)
@@ -578,7 +578,7 @@ func initDemand():
 	var allowanceCoeff=1.0
 	match GameManager.sav.gameDifficulty:
 		1: allowanceCoeff=1
-		2: allowanceCoeff=1
+		2: allowanceCoeff=1.1
 		3: allowanceCoeff=1.2
 	point=int(point*allowanceCoeff*get_allowance_pressure_multiplier(GameManager.sav.day))
 	sav.HAOZUPAI.allocationStatue=-1
