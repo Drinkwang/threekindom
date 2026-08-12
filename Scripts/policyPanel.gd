@@ -276,7 +276,7 @@ func refreshLawPoint():
 	if GameManager.sav.curLawName.length()>0 or GameManager.sav.curLawNum1!=-1 or GameManager.sav.curLawNum2!=-1:
 		ConfireButton.disabled=true
 	else:
-		ConfireButton.disabled=false
+		ConfireButton.disabled=selectLawPoint==null
 	point_label.text=tr("点数:%s")%GameManager.sav.Merit_points
 
 	var tabcontext=" {x}/{max}".format({"x":GameManager.LawNum(),"max":GameManager.maxLawNum})
