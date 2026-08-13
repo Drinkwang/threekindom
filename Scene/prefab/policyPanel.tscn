@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://n73q2fqj4htr"]
+[gd_scene load_steps=16 format=3 uid="uid://n73q2fqj4htr"]
 
 [ext_resource type="Theme" uid="uid://bklmr3xmk4m5u" path="res://global_theme.tres" id="1_q7yni"]
 [ext_resource type="Script" path="res://Scripts/policyPanel.gd" id="1_vilmr"]
@@ -50,72 +50,6 @@ _data = {
 }
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4sj3t"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_law_button_focus"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_law_button_disabled"]
-content_margin_left = 14.0
-content_margin_top = 8.0
-content_margin_right = 14.0
-content_margin_bottom = 8.0
-bg_color = Color(0.105, 0.105, 0.1, 0.72)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.3, 0.29, 0.27, 0.72)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_law_button_hover"]
-content_margin_left = 14.0
-content_margin_top = 8.0
-content_margin_right = 14.0
-content_margin_bottom = 8.0
-bg_color = Color(0.32, 0.27, 0.19, 0.92)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.82, 0.69, 0.45, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_law_button_pressed"]
-content_margin_left = 14.0
-content_margin_top = 9.0
-content_margin_right = 14.0
-content_margin_bottom = 7.0
-bg_color = Color(0.15, 0.13, 0.1, 0.96)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.52, 0.43, 0.29, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_law_button_normal"]
-content_margin_left = 14.0
-content_margin_top = 8.0
-content_margin_right = 14.0
-content_margin_bottom = 8.0
-bg_color = Color(0.22, 0.19, 0.14, 0.82)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.644, 0.518, 0.19, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
 
 [node name="Control2" type="Control"]
 layout_mode = 3
@@ -1311,16 +1245,7 @@ offset_right = -20.0
 offset_bottom = 30.0
 grow_horizontal = 0
 grow_vertical = 2
-theme_override_colors/font_disabled_color = Color(0.46, 0.45, 0.42, 0.78)
-theme_override_colors/font_hover_color = Color(1, 0.94, 0.78, 1)
-theme_override_colors/font_pressed_color = Color(0.86, 0.8, 0.69, 1)
-theme_override_colors/font_color = Color(0.94, 0.9, 0.81, 1)
 theme_override_font_sizes/font_size = 22
-theme_override_styles/focus = SubResource("StyleBoxEmpty_law_button_focus")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_law_button_disabled")
-theme_override_styles/hover = SubResource("StyleBoxFlat_law_button_hover")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_law_button_pressed")
-theme_override_styles/normal = SubResource("StyleBoxFlat_law_button_normal")
 text = "确认"
 
 [node name="TextureButton" type="TextureButton" parent="."]

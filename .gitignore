@@ -1,3 +1,13 @@
 # Godot 4+ specific ignores
 .godot/
 android
+
+# Local caches, logs, and interrupted editor imports
+__pycache__/
+*.py[cod]
+logs/
+*.tmp
+*.TMP
+*.import*.tmp
+*~RF*.TMP
+/addons/panku_console/modules/general_settings/*.uid
