@@ -503,6 +503,7 @@ func _on_button_button_down():
 	pass # Replace with function body.
 
 var selectLawPoint:lawpoint
+var beforeContext
 func preLaw(value:lawpoint):
 	# Enacted laws are read-only: their effect is always viewable, even while another bill is pending.
 	if value.isUnlock == false and await GameManager.isTried(costhp):
@@ -512,7 +513,7 @@ func preLaw(value:lawpoint):
 	
 	var context:String=_getLocalizedLawDetail(value)
 	#if value.detail
-	
+
 	law_label.text=context
 	
 	ConfireButton.disabled=false
@@ -523,7 +524,9 @@ func preLaw(value:lawpoint):
 		ConfireButton.disabled=true	
 	if ConfireButton.disabled==false:
 		previewCostView()
-	changeexp_len()
+	if beforeContext!=context:
+		beforeContext=context		
+		changeexp_len()
 	#var label_height = 81
 	#var label_line_count = law_label.get_line_count()  # 获取行数（可选）
 	#var padding = 20  # 可根据需要调整
