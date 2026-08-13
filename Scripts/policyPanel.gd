@@ -178,11 +178,9 @@ func changeLanguage():
 
 func _refreshCurrentDescription():
 	if selectLawPoint!=null:
-		law_label.text=_getLocalizedLawDetail(selectLawPoint)
-		changeexp_len()
+		_set_law_detail_context(_getLocalizedLawDetail(selectLawPoint))
 	elif GameManager.sav.curLawName.length()>0:
-		law_label.text=tr("当前【%s】法案已被立项，请先在议事厅通过该法案，才能立项其他法律。") % tr(GameManager.sav.curLawName)
-		changeexp_len()
+		_set_law_detail_context(_get_current_law_pending_message())
 	elif index>=1 and index<=3:
 		var selected_item:policyItem=get("control_%d"%index)
 		label.text=tr(selected_item.context)+":"+tr(selected_item.detail)
@@ -219,9 +217,20 @@ func _initData():
 func show_current_law_pending_message() -> void:
 	selectLawPoint = null
 	ConfireButton.disabled = true
-	law_label.text = tr("当前【%s】法案已被立项，请先在议事厅通过该法案，才能立项其他法律。") % tr(GameManager.sav.curLawName)
+	_set_law_detail_context(_get_current_law_pending_message())
 	if is_instance_valid(GameManager._engerge):
 		GameManager._engerge.stopPreviewHP()
+
+
+func _get_current_law_pending_message() -> String:
+	return tr("当前【%s】法案已被立项，请先在议事厅通过该法案，才能立项其他法律。") % tr(GameManager.sav.curLawName)
+
+
+func _set_law_detail_context(context: String) -> void:
+	if beforeContext == context:
+		return
+	beforeContext = context
+	law_label.text = context
 	changeexp_len()
 
 func changeexp_len() -> void:
@@ -297,7 +306,7 @@ func _on_tab_bar_tab_changed(tab):
 		policy_panel_container.offset_bottom = POLICY_PANEL_BASE_OFFSET_BOTTOM
 		$lawPanel.show()
 		LawPanelBoard.show()
-		changeexp_len()
+		_set_law_detail_context(law_label.text)
 		$PanelContainer/orderPanel.hide()
 		if GameManager.sav.have_event["firstTabLaw"]==false:
 			GameManager.sav.have_event["firstTabLaw"]=true
@@ -514,7 +523,7 @@ func preLaw(value:lawpoint):
 	var context:String=_getLocalizedLawDetail(value)
 	#if value.detail
 
-	law_label.text=context
+	_set_law_detail_context(context)
 	
 	ConfireButton.disabled=false
 	if value.lawpoins.size()>0:
@@ -524,9 +533,6 @@ func preLaw(value:lawpoint):
 		ConfireButton.disabled=true	
 	if ConfireButton.disabled==false:
 		previewCostView()
-	if beforeContext!=context:
-		beforeContext=context		
-		changeexp_len()
 	#var label_height = 81
 	#var label_line_count = law_label.get_line_count()  # 获取行数（可选）
 	#var padding = 20  # 可根据需要调整
