@@ -915,6 +915,10 @@ func _rest(value=true):
 	if DialogueManager.gameover==true:
 		return
 
+	# 沉眠的霸道之息只在玩家真正休息、推进新旬时尝试转化。
+	if value:
+		awakenDominanceAfterSuppression()
+
 	if GameManager.sav.have_event["预获得龙胆枪"]==true:
 		GameManager.sav.have_event["预获得龙胆枪休息"]=true
 	_enterDay(value)
