@@ -297,6 +297,9 @@ func _on_tab_bar_tab_changed(tab):
 	tourPoint.hide()
 	hideLawTabEmphasis()
 	if tab==0:
+		if GameManager.sav.have_event["firstLawExecute"]==false and GameManager.sav.have_event["firstPolicyCorrect"]==true:
+			DialogueManager.show_example_dialogue_balloon(GameManager.currenceScene.dialogue_resource,"律法引导")
+			
 		$lawPanel.hide()
 		LawPanelBoard.hide()
 		$PanelContainer/orderPanel.show()

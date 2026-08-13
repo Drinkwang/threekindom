@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dpw77mhy77404"]
+[gd_scene load_steps=9 format=3 uid="uid://dpw77mhy77404"]
 
 [ext_resource type="Theme" uid="uid://bklmr3xmk4m5u" path="res://global_theme.tres" id="1_3g5oo"]
 [ext_resource type="Texture2D" uid="uid://c5r4mlgrv40u8" path="res://Scene/prefab/8_white.png" id="1_f371e"]
 [ext_resource type="Script" path="res://Scripts/lawpoint.gd" id="1_itafg"]
 [ext_resource type="Texture2D" uid="uid://dtoxi05wcq0xa" path="res://Scene/prefab/9_black.png" id="2_dx1ki"]
+[ext_resource type="FontFile" uid="uid://b8le0fd0ujbqx" path="res://Asset/Font/1_blod.ttf" id="3_e3ebr"]
 
 [sub_resource type="Animation" id="Animation_0piqj"]
 length = 0.001
@@ -75,6 +76,7 @@ theme_override_constants/margin_left = 20
 
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_e3ebr")
 
 [node name="TextureRect2" type="TextureRect" parent="."]
 layout_mode = 0
@@ -100,3 +102,4 @@ libraries = {
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="gui_input" from="PanelContainer" to="." method="_on_gui_input"]

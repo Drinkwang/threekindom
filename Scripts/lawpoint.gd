@@ -63,11 +63,12 @@ func _changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()
 
 	if currencelanguage=="ru":
-
-		$PanelContainer/MarginContainer/Label.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
+		pass
+		#$PanelContainer/MarginContainer/Label.add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
 			
 	else:
-		$PanelContainer/MarginContainer/Label.remove_theme_font_override("font")
+		pass
+		#$PanelContainer/MarginContainer/Label.remove_theme_font_override("font")
 	detail="{bg}({Txt})".format({"bg":tr(IncomeBg),"Txt":tr(IncomeTxt)})
 @onready var texture_rect = $TextureRect2/TextureRect
 @onready var animation_player = $AnimationPlayer

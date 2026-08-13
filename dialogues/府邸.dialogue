@@ -88,6 +88,11 @@ else
 => END
 
 
+~ 律法引导
+do policy_panel.showTourPoint()
+主簿: 大人，您需前往法令面板选定律法条目，再点右下角确认，方能将律法纳入议程。完成此事，才算了结今日公务。[voice:zhubo_tuijianfalv]
+=> END
+
 #优先级中，体力优先级最低
 ~ 你的政策点不够
  : 我必须有{{GameManager.GET_COST_LAW_POINT()}}点政策点数才能立法
