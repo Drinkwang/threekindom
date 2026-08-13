@@ -602,13 +602,15 @@ func visitDrill():
 	else:
 		if (GameManager.sav.have_event["亲征对话结束"]==true and  GameManager.sav.have_event["关羽求援结束"]==false):
 			
-			if GameManager.sav.coin>GameManager.resideValue2:
-				GameManager.sav.bloodCoin=GameManager.sav.coin-GameManager.resideValue2
-				GameManager.sav.coin=GameManager.resideValue2	
+			if GameManager.sav.gameDifficulty!=1:
+			
+				if GameManager.sav.coin>GameManager.resideValue2:
+					GameManager.sav.bloodCoin=GameManager.sav.coin-GameManager.resideValue2
+					GameManager.sav.coin=GameManager.resideValue2	
 				
-			if GameManager.sav.labor_force>GameManager.resideValue:
-				GameManager.sav.bloodLabor=GameManager.sav.labor_force-GameManager.resideValue
-				GameManager.sav.labor_force=GameManager.resideValue
+				if GameManager.sav.labor_force>GameManager.resideValue:
+					GameManager.sav.bloodLabor=GameManager.sav.labor_force-GameManager.resideValue
+					GameManager.sav.labor_force=GameManager.resideValue
 
 			
 		SceneManager.changeScene(SceneManager.roomNode.DRILL_GROUND,2)
