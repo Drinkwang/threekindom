@@ -691,8 +691,8 @@ func getrecommendStr(index):
 		recommend_list.append(tr("可以购买增益类道具在军事行动中取得更大的优势。"))
 	elif index==3:#基建
 		recommend_list.append(tr("完成演武场、府邸、议事厅的高阶基建，可获取更强属性增益"))
-
-		recommend_list.append(tr("任意难度下，完成3类不同基建即可达成基建计划"))
+		#募集民夫任务，可向吕布及泰山诸将势力索取完成
+		recommend_list.append(tr("募集民夫任务，可向吕布及泰山诸将势力索取完成。"))
 
 	elif index==4:#派系相关
 		if GameManager.dontHaveDominance():
