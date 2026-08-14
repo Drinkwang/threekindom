@@ -153,6 +153,7 @@ func refreshContext():
 					#var targetValue=GameManager.sav.targetValue
 					if currenceValue[1]<3:
 						policycontext=tr(GameManager.sav.targetTxt).format({"target":targetValue,"currence1":currenceValue[0],"currence2":currenceValue[1]})
+						policycontext=policycontext+ tr("（深挖护城河、加固城墙、兴建粮仓）")
 					else:
 						policycontext = "%s\n%s" % [
 							tr("基建已完成，请征集民夫完成后前往府邸触发下一阶段剧情"),

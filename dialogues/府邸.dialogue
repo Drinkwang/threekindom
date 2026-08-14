@@ -1059,7 +1059,7 @@ do chenden.show()
 
 陈登: 主公的仁德传遍四方，臧霸他们又是敬畏又是服气，才痛快归降。眼下徐州总算太平了。[voice:chenden_zangbafuqi]
 
-刘备: （徐州终于稳下来了，现在正是难得的太平日子。从今天开始，可以放开手脚干了，安抚百姓、练兵屯粮、修城建仓，好好经营一番，徐州一定能越来越强。)[voice:liubei_xuzhouyidingnengyuelaiyueqiang]
+刘备: （徐州终于稳下来了，现在正是难得的太平日子。从今天开始，可以放开手脚干了，安抚百姓、练兵屯粮、修城建仓，好好经营一番，徐州一定能越来越强。）[voice:liubei_xuzhouyidingnengyuelaiyueqiang]
 
 #系统提示: 新目标将后续解锁显现，主公请运筹帷幄，早日铸就不朽基业！
 系统提示: 新目标将后续解锁显现，主公请运筹帷幄，早日铸就不朽基业！
@@ -1510,7 +1510,7 @@ do jiaMizhenShow()
 刘备:  !!!，是我多疑了……[voice:liubei_shiwoduoyile]
 糜竺: 主公可能为政务操劳过度，精神疲惫，请好好休息吧。府中备下清茶，若需调养，随时唤我。[voice:mizhu_fushangqincha]
 if haveWaWa()
-	(: 她……或许无辜，但你永远是我一个人的……嘻嘻……)[voice:mizhen_wugu]
+	（她……或许无辜，但你永远是我一个人的……嘻嘻……）[voice:mizhen_wugu]
 do mizhu.hide()
 do mizhen.hide()
 游戏提示: 支线任务-血姬已完成
