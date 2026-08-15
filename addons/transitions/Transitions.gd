@@ -8,6 +8,7 @@ const FadeScene = preload("res://addons/transitions/FadeScene.gd")
 var _root:Window
 var scene_container:Node: set = _set_scene_container
 var _current_scene:Node = null
+var _is_transitioning := false
 
 enum FadeType {
 	Instant, # immediately change
@@ -40,23 +41,50 @@ func _get_current_scene():
 	push_error("Couldn't ascertain current scene")
 	return null
 
-func change_scene_to_instance(new_scene, fade_type, fade_time_seconds:float = 1.0, shader_image:CompressedTexture2D = null) -> void:
+func change_scene_to_instance(new_scene:Node, fade_type, fade_time_seconds:float = 1.0, shader_image:CompressedTexture2D = null) -> void:
 	if new_scene == null:
 		push_error("Can't change scene to null scene!")
-	elif not is_instance_valid(new_scene):
+		return
+	if not is_instance_valid(new_scene):
 		push_error("Can't change to scene that's freed!")
+		return
+	if _is_transitioning:
+		push_warning("Ignoring scene change while another transition is running.")
+		_free_unattached_scene(new_scene)
+		return
+	if fade_type != FadeType.Instant and fade_type != FadeType.CrossFade and fade_type != FadeType.Blend:
+		push_error("Unknown fade type: %s" % fade_type)
+		_free_unattached_scene(new_scene)
+		return
 	
 	if fade_type == FadeType.Blend and shader_image == null:
 		push_error("You need to specify a shader image for blending!")
-	
+		_free_unattached_scene(new_scene)
+		return
+	if not is_instance_valid(scene_container):
+		push_error("Can't change scene without a valid scene container!")
+		_free_unattached_scene(new_scene)
+		return
+	var previous_scene:Node = _get_current_scene() if (_current_scene == null) else _current_scene
+	if not is_instance_valid(previous_scene) or previous_scene.is_queued_for_deletion():
+		push_error("Can't change scene because the previous scene is no longer valid!")
+		_free_unattached_scene(new_scene)
+		return
+
+	_is_transitioning = true
 	var data = _common_pre_fade(fade_type, fade_time_seconds, shader_image)
-	_set_scene(new_scene)
+	_set_scene(new_scene, previous_scene)
 	emit_signal("pre_transition")
 	
 	await _common_wait_for_fade(data, fade_type, fade_time_seconds)
 	
 	_common_post_fade(data, new_scene)
+	_is_transitioning = false
 	emit_signal("post_transition")
+
+func _free_unattached_scene(scene: Node) -> void:
+	if is_instance_valid(scene) and scene.get_parent() == null and not scene.is_queued_for_deletion():
+		scene.queue_free()
 
 func _common_pre_fade(fade_type, fade_time_seconds:float, shader_image:CompressedTexture2D = null) -> Array:
 	# NB: Remember spending 8 hours fruitlessly fixing that extra frame in dissolve
@@ -145,15 +173,14 @@ func _common_wait_for_fade(data:Array, fade_type, fade_seconds:float) -> void:
 	else:
 		push_error("Missing implementation in _common_wait_for_fade for fade-type %s" % fade_type)
 
-# new_scene is either Node2D or PackedScene. #herp #derp
-func _common_post_fade(data:Array, new_scene) -> void:
-	var fade_scene = data[1]
-	if fade_scene in _root.get_children():
-		_root.remove_child(fade_scene)
+# new_scene is an instantiated scene node.
+func _common_post_fade(data:Array, _new_scene) -> void:
+	var fade_scene:Node = data[1]
+	if is_instance_valid(fade_scene) and not fade_scene.is_queued_for_deletion():
+		fade_scene.queue_free()
 
-func _set_scene(new_scene:Node):
+func _set_scene(new_scene:Node, previous_scene:Node) -> void:
 	# Dispose old scene so we don't get any camera jitters or wierdness.
-	var previous_scene = _get_current_scene() if (_current_scene == null) else _current_scene
 	previous_scene.queue_free()
 	#scene_container.remove_child(previous_scene)
 	#new_scene.request_ready()
