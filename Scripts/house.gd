@@ -772,7 +772,7 @@ func demoFinish():
 	$"陈群".hide()
 	$"文官".hide()
 
-
+	GameManager.clearPrologue()
 
 	GameManager.restLabel=tr("公元194年末，刘备入主徐州，同时他将州治迁往下邳，一场新的权力的游戏开始了！")
 

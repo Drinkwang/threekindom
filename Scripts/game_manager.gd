@@ -2647,6 +2647,13 @@ func clearLevel(index):
 	#SignalManager.changeLanguage.emit()
 	
 
+func clearPrologue():
+	if GameManager._setting.is_clear_prologue:
+		return
+	GameManager._setting.is_clear_prologue=true
+	ResourceSaver.save(GameManager._setting,"user://ysg_data_setting.tres")
+
+
 func enterCredit(index):
 	GameManager.sav.day=0
 	if (GameManager._setting.is_clear_normal_line==false and index==1) or (GameManager._setting.is_clear_overlord_line==false and index==2):

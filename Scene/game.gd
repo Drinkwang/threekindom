@@ -177,12 +177,17 @@ func NormalStartGame():
 	
 	
 func JumpStartGame():
-	
-	DialogueManager.show_example_dialogue_balloon(sys,"小沛内容介绍")
+	if GameManager._setting.is_clear_prologue:
+		DialogueManager.show_example_dialogue_balloon(sys,"你已经通关过一次小沛了进入徐州")
+	else:
+		DialogueManager.show_example_dialogue_balloon(sys,"小沛内容介绍")
 
-func MainContent():
+func MainContent(with_event_book:bool=false):
 	SoundManager.stop_music()
 	GameManager.SkipPrologue()
+	if with_event_book:
+		GameManager.sav.coin-=100
+		GameManager.sav.have_event["诡物手册"]=true
 	
 	SoundManager.play_sound(sounds.confiresound)
 	
