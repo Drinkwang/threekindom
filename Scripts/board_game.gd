@@ -708,6 +708,9 @@ func stopClick():
 	border.hide()
 	selectCard=null
 	mouseline.hide()
+	for recti in rects:
+		if recti is clickBlock:
+			recti.showEX=false
 
 func SettlePunish():
 	punishStage=false
