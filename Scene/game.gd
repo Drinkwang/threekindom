@@ -150,7 +150,7 @@ const sys = preload("res://dialogues/系统.dialogue")
 @onready var readyInitData=null
 func _on_begin_button_down():
 	
-	DialogueManager.show_example_dialogue_balloon(sys,"开始游戏选项")
+	DialogueManager.show_example_dialogue_balloon(sys,"开始游戏选项2")
 	
 	#SoundManager.play_sound(sounds.confiresound)
 	
