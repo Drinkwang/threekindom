@@ -25,7 +25,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	var is_dialog = DialogueManager.dialogBegin
+	var is_dialog = DialogueManager.haveDialoge()
 	for child in $VBoxContainer.get_children():
 		child.disabled = is_dialog
 

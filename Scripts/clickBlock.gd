@@ -249,18 +249,18 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 	#大概率是后面二项导致的	
 
 
-	if(event is InputEventMouseButton and event.button_index==1 and dialogue_start.length()>0):
-		SoundManager.play_sound(sounds.SFX_FAST_UI_CLICK)
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_start)
-		if isHide==true:
-			self.hide()
-	#等待2秒，如果2秒还为单击，则为单击
-	if(event is InputEventMouseButton and event.double_click==true and dialogue_doubleclick.length()>0):
-		SoundManager.play_sound(sounds.SFX_FAST_UI_CLICK)
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_doubleclick)
-		if isHide==true:
-			self.hide()
+	if event.button_index != MOUSE_BUTTON_LEFT:
+		return
+	var dialogue_title := dialogue_doubleclick if event.double_click and dialogue_doubleclick.length()>0 else dialogue_start
+	if dialogue_title.length()>0:
+		_open_click_dialogue(dialogue_title)
 	pass
+
+func _open_click_dialogue(dialogue_title: String) -> void:
+	SoundManager.play_sound(sounds.SFX_FAST_UI_CLICK)
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,dialogue_title)
+	if isHide==true:
+		self.hide()
 @onready var heart = $Heart
 
 @onready var Heartlabel = $Heart/Label
