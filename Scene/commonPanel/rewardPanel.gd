@@ -107,7 +107,7 @@ func _getBattleResultTitle(mode:RewardTitleMode)->String:
 	elif mode==RewardTitleMode.BATTLE_SUCCESS and GameManager.sav.have_event["吕布之怒"]==false and GameManager.sav.have_event["夏侯偷马"]==true and GameManager.sav.endPath==GameManager.endPath.xiaopei:
 		result+=tr("【截获吕布购马队，战利品升级】")
 	if mode!=RewardTitleMode.BATTLE_FAIL:
-		result+=tr(",获得以下道具:")
+		result+=tr("_battleRewardAfterLoss")
 	return result
 	
 @export var canclick=false	
@@ -195,7 +195,7 @@ func showReward(item):
 	var goumaStr=""
 	if GameManager.sav.have_event["吕布之怒"]==false and GameManager.sav.have_event["夏侯偷马"]==true and GameManager.sav.endPath==GameManager.endPath.xiaopei:
 		goumaStr=tr("【截获吕布购马队，战利品升级】")
-	titleContext=titleContext+goumaStr+tr(",获得以下道具:")
+	titleContext=titleContext+goumaStr+tr("_battleRewardAfterLoss")
 	#通过item增加并实际获得之
 	_clear_view()
 	
@@ -268,7 +268,7 @@ func showRewardMa(item):
 	var goumaStr=""
 	#if GameManager.sav.have_event["吕布之怒"]==false and GameManager.sav.have_event["夏侯偷马"]==true and GameManager.sav.endPath==GameManager.endPath.xiaopei:
 	goumaStr=tr("【截获吕布购马队，战利品升级】")
-	titleContext=titleContext+goumaStr+tr(",获得以下道具:")
+	titleContext=titleContext+goumaStr+tr("_battleRewardAfterLoss")
 	#通过item增加并实际获得之
 	_clear_view()
 	

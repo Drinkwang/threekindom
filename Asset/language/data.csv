@@ -463,13 +463,14 @@ Result:","人数：
 通过,Pass,通过,通過,通過,Принято
 未通过,Failed,未通过,未通過,未通過,Не принято
 没过多久，刘备也收到了来自徐州的密信,"Soon after, Liu Bei received a secret letter from Xuzhou.",没过多久，刘备也收到了来自徐州的密信。,不久後，劉備也收到了來自徐州的密信。,すぐに、劉備も徐州からの密書を受け取った。,Вскоре Лю Бэй получил секретное письмо из Сюйчжоу.
-"这场战斗你输了,","You lost this battle,",这场战斗你输了，,這場戰鬥你輸了，,この戦いであなたは負けました、,Ты проиграл этот бой.
-"这场战斗你赢了,","You won this battle,",这场战斗你赢了，,這場戰鬥你贏了，,この戦いであなたは勝ちました、,"Ты выиграл этот бой,"
-你没有损失,You had no losses,你没有损失,你沒有損失,あなたは損失がなかった,Ты не понес убытков
-你损失了{soilder}个士兵,You lost {soilder} soldiers,你损失了{soilder}个士兵,你損失了{soilder}個士兵,あなたは{soilder}人の兵士を失った,Ты потерял {soilder} солдат
-你损失了{coin}金,You lost {coin} coins,你损失了{coin}金,你損失了{coin}錢,あなたは{coin}の銭を失った,Ты потерял {coin} монет
-你损失了{coin}金和{soilder}个士兵,You lost {coin} coins and {soilder} soldiers,你损失了{coin}金和{soilder}个士兵,你損失了{coin}錢和{soilder}個士兵,あなたは{coin}の銭と{soilder}人の兵士を失った,Ты потерял {coin} монет и {soilder} солдат
-",获得以下道具:",",You obtained the following items:",，获得以下道具:,，獲得以下道具：,，以下のアイテムを獲得しました：,", Ты получил следующие предметы:"
+"这场战斗你输了,","You lost this battle. ",这场战斗你输了，,這場戰鬥你輸了，,この戦いに敗北しました。,"Ты проиграл этот бой. "
+"这场战斗你赢了,","You won this battle. ",这场战斗你赢了，,這場戰鬥你贏了，,この戦いに勝利しました。,"Ты выиграл этот бой. "
+你没有损失,You had no losses,你没有损失,你沒有損失,損失はありませんでした,Ты не понес убытков
+你损失了{soilder}个士兵,You lost {soilder} soldiers,你损失了{soilder}个士兵,你損失了{soilder}個士兵,{soilder}人の兵士を失いました,Ты потерял {soilder} солдат
+你损失了{coin}金,You lost {coin} coins,你损失了{coin}金,你損失了{coin}錢,銭を{coin}失いました,Ты потерял {coin} монет
+你损失了{coin}金和{soilder}个士兵,You lost {coin} coins and {soilder} soldiers,你损失了{coin}金和{soilder}个士兵,你損失了{coin}錢和{soilder}個士兵,銭を{coin}、{soilder}人の兵士を失いました,Ты потерял {coin} монет и {soilder} солдат
+",获得以下道具:",", you obtained the following items:",，获得以下道具：,，獲得以下道具：,、以下のアイテムを獲得しました：,", ты получил следующие предметы:"
+_battleRewardAfterLoss,. You obtained the following items:,，获得以下道具：,，獲得以下道具：,。以下のアイテムを獲得しました：,. Ты получил следующие предметы:
 你从郑玄哪里受益良多,You gained much from Zheng Xuan,你从郑玄那里受益良多,你從鄭玄那裡受益良多,あなたは鄭玄から多くの利益を得ました,Ты многое получил от Чжэн Сюаня
 郑玄,Zheng Xuan,郑玄,鄭玄,鄭玄,Чжэн Сюань
 大儒辩论启动中...,Great Scholars' Debate is starting...,大儒辩论启动中……,大儒辯論啟動中……,大儒の討論が始まります……,Начинается дебаты великих учёных…
