@@ -1725,16 +1725,16 @@ func excuteSecret(groupobj:Array):
 					elif _secretsuit==2:
 						if isPlayerTurn:
 							var cards=enemyhand.get_children()
-							var _index=randi_range(0,cards.size()-1)
-							cards[_index].queue_free()
+							if not cards.is_empty():
+								var _index=randi_range(0,cards.size()-1)
+								cards[_index].queue_free()
 							
 							#拆一张牌
 							pass
 						else:
 							var cards=myhand.get_children()
-							var _index=randi_range(0,cards.size()-1)
-							
-							if cards.size()>0:
+							if not cards.is_empty():
+								var _index=randi_range(0,cards.size()-1)
 								cards[_index].queue_free()
 					elif _secretsuit==3:
 						if isPlayerTurn:

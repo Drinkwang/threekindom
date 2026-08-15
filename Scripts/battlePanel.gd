@@ -449,19 +449,6 @@ func changeLanguage():
 		
 		
 
-	var _item_db=InventoryManager.get_item_db(InventoryManagerItem.胜战锦囊)
-	var properties:Array=_item_db.properties
-
-		
-	var detail=properties.filter(func(a):return a["name"]=="detail")[0]
-	#var _context
-	#if tr(detail["value"]).length()>0:
-					
-	#	_context=tr(_item_db.name)+":"+tr(detail["value"])
-
-					
-
-					
 	await get_tree().process_frame
 	if GameManager.currenceScene!=null:
 		GameManager.currenceScene.refreshBattlePanePos()
