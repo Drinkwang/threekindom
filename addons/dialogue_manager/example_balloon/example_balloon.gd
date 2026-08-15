@@ -32,6 +32,9 @@ var is_waiting_for_input: bool = false
 ## See if we are running a long mutation and should hide the balloon
 var will_hide_balloon: bool = false
 
+## Remains true while this balloon owns an active dialogue, including while a mutation hides it.
+var _dialogue_active: bool = false
+
 ## 通关后Ctrl快进时标记当前行是否已推进，防止一帧内多次推进
 var _fast_forward_current_line: bool = false
 const CTRL_FAST_FORWARD_DELAY := 0.4
@@ -47,6 +50,7 @@ var dialogue_line: DialogueLine:
 
 		# The dialogue has finished so close the balloon
 		if not next_dialogue_line:
+			_dialogue_active = false
 			DialogueManager.dialogBegin = false
 			queue_free()
 			return
@@ -165,10 +169,15 @@ func _unhandled_input(_event: InputEvent) -> void:
 
 ## Start some dialogue
 func start(dialogue_resource: DialogueResource, title: String, extra_game_states: Array = []) -> void:
+	_dialogue_active = true
 	temporary_game_states =  [self] + extra_game_states
 	is_waiting_for_input = false
 	resource = dialogue_resource
 	self.dialogue_line = await resource.get_next_dialogue_line(title, temporary_game_states)
+
+
+func is_dialogue_active() -> bool:
+	return _dialogue_active and not is_queued_for_deletion()
 
 
 ## Go to the next line

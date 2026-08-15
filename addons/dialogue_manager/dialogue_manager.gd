@@ -78,17 +78,7 @@ var _node_properties: Array = []
 var dialogBegin=false
 
 func haveDialoge()->bool:
-	var current_scene = get_tree().current_scene
-	if not is_instance_valid(current_scene):
-		return false
-	for balloon in current_scene.get_children():
-		if not balloon.get_script() or not balloon.get_script().resource_path.ends_with("example_balloon.gd"):
-			continue
-		# Multiple balloons can briefly coexist when a dialogue mutation opens another dialogue.
-		var dialogue_surface := balloon.get_node_or_null("Balloon") as CanvasItem
-		if is_instance_valid(dialogue_surface) and dialogue_surface.is_visible_in_tree():
-			return true
-	return false
+	return get_dialogue_balloon() != null
 
 func _is_dialogue_cancelled(extra_game_states: Array) -> bool:
 	for state in extra_game_states:
@@ -106,7 +96,7 @@ func _ready() -> void:
 	for property in temp_node.get_property_list():
 		_node_properties.append(property.name)
 	temp_node.free()
-	DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
+	dialogue_ended.connect(_on_dialogue_ended)
 	# Make the dialogue manager available as a singleton
 	if Engine.has_singleton("DialogueManager"):
 		Engine.unregister_singleton("DialogueManager")
@@ -372,8 +362,21 @@ func show_example_dialogue_balloon(resource: DialogueResource, title: String = "
 
 func get_dialogue_balloon():
 	var current_scene = get_tree().current_scene
+	if not is_instance_valid(current_scene):
+		return null
 	for child in current_scene.get_children():
-		if child.get_script() and child.get_script().resource_path.ends_with("example_balloon.gd"):
+		if not child.get_script() or not child.get_script().resource_path.ends_with("example_balloon.gd"):
+			continue
+		if child.is_queued_for_deletion():
+			continue
+		# Mutations temporarily hide active balloons. Completed balloons can remain in the
+		# scene until the end of the frame and must not keep scene characters locked.
+		if child.has_method("is_dialogue_active"):
+			if child.is_dialogue_active():
+				return child
+			continue
+		var dialogue_surface := child.get_node_or_null("Balloon") as CanvasItem
+		if is_instance_valid(dialogue_surface) and dialogue_surface.is_visible_in_tree():
 			return child
 	return null
 
