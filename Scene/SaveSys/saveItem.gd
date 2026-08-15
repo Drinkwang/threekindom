@@ -38,11 +38,7 @@ func update_close_button_position() -> void:
 	
 	
 func confiredelete():
-	var path="user://save_data{index}.tres".format({"index":index+1})
-
-	if FileAccess.file_exists(path):
-		DirAccess.remove_absolute(path)
-
+	if GameManager.delete_save_file(index+1)==OK:
 		save_panel.savs[index] = null
 		color_rect.hide()
 		close_button.hide()

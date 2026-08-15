@@ -79,8 +79,7 @@ func _set_game_logo_mode(enabled:bool):
 func initLoadContinus():
 	var showContinus=false
 	for i in range(1,4):
-		var path="user://save_data{index}.tres".format({"index":i})
-		if(FileAccess.file_exists(path)):	
+		if GameManager.load_save_file(i)!=null:
 			showContinus=true
 			break
 	if	showContinus==true:
@@ -254,7 +253,7 @@ func _on_option_button_item_selected(index):
 		GameManager._setting.language=lan
 		if not _language_syncing:
 			SignalManager.changeLanguage.emit()
-			ResourceSaver.save(GameManager._setting,"user://ysg_data_setting.tres")
+			GameManager.save_settings_file(GameManager._setting)
 
 const NEWTITLE = preload("res://Asset/newtitle.png")
 const ENTITLE = preload("res://Asset/entitle.png")

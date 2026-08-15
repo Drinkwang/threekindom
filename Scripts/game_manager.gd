@@ -1697,16 +1697,124 @@ func SkipPrologue():
 
 var _setting:SettingsResource
 
+const SETTINGS_FILE_PATH := "user://ysg_data_setting.tres"
+const SAVE_SLOT_COUNT := 3
+
+func _resource_sidecar_path(path:String,suffix:String) -> String:
+	return "%s.%s.tres" % [path.get_basename(),suffix]
+
+func _remove_file_if_exists(path:String) -> Error:
+	if not FileAccess.file_exists(path):
+		return OK
+	return DirAccess.remove_absolute(ProjectSettings.globalize_path(path))
+
+func _rename_file(from_path:String,to_path:String) -> Error:
+	return DirAccess.rename_absolute(
+		ProjectSettings.globalize_path(from_path),
+		ProjectSettings.globalize_path(to_path)
+	)
+
+func _load_resource_uncached(path:String) -> Resource:
+	if not FileAccess.file_exists(path):
+		return null
+	return ResourceLoader.load(path,"",ResourceLoader.CACHE_MODE_IGNORE)
+
+func _load_resource_safely(path:String,validator:Callable) -> Resource:
+	var temp_path:=_resource_sidecar_path(path,"tmp")
+	var loaded:=_load_resource_uncached(path)
+	if loaded!=null and bool(validator.call(loaded)):
+		_remove_file_if_exists(temp_path)
+		return loaded
+	if FileAccess.file_exists(path):
+		var remove_error:=_remove_file_if_exists(path)
+		if remove_error!=OK:
+			push_error("Failed to remove invalid resource %s: %s" % [path,error_string(remove_error)])
+
+	loaded=_load_resource_uncached(temp_path)
+	if loaded!=null and bool(validator.call(loaded)):
+		if not FileAccess.file_exists(path):
+			var restore_error:=_rename_file(temp_path,path)
+			if restore_error!=OK:
+				push_error("Failed to restore %s from temporary file: %s" % [path,error_string(restore_error)])
+		return loaded
+	_remove_file_if_exists(temp_path)
+	return null
+
+func _save_resource_atomic(resource:Resource,path:String,validator:Callable) -> Error:
+	if resource==null or not bool(validator.call(resource)):
+		return ERR_INVALID_DATA
+	var temp_path:=_resource_sidecar_path(path,"tmp")
+	var error:=_remove_file_if_exists(temp_path)
+	if error!=OK:
+		return error
+	error=ResourceSaver.save(resource,temp_path)
+	if error!=OK:
+		_remove_file_if_exists(temp_path)
+		return error
+	var verified:=_load_resource_uncached(temp_path)
+	if verified==null or not bool(validator.call(verified)):
+		_remove_file_if_exists(temp_path)
+		return ERR_FILE_CORRUPT
+	verified=null
+
+	if FileAccess.file_exists(path):
+		error=_remove_file_if_exists(path)
+		if error!=OK:
+			return error
+	error=_rename_file(temp_path,path)
+	return error
+
+func _is_settings_resource(resource:Variant) -> bool:
+	return resource is SettingsResource
+
+func _is_save_data_resource(resource:Variant) -> bool:
+	return resource is saveData
+
+func save_settings_file(settings:SettingsResource) -> Error:
+	var error:=_save_resource_atomic(settings,SETTINGS_FILE_PATH,_is_settings_resource)
+	if error!=OK:
+		push_error("Failed to save settings: %s" % error_string(error))
+	return error
+
+func load_settings_file() -> SettingsResource:
+	return _load_resource_safely(SETTINGS_FILE_PATH,_is_settings_resource) as SettingsResource
+
+func get_save_file_path(slot:int) -> String:
+	if slot<1 or slot>SAVE_SLOT_COUNT:
+		return ""
+	return "user://save_data%d.tres" % slot
+
+func save_save_file(data:saveData,slot:int) -> Error:
+	var path:=get_save_file_path(slot)
+	if path.is_empty():
+		return ERR_INVALID_PARAMETER
+	var error:=_save_resource_atomic(data,path,_is_save_data_resource)
+	if error!=OK:
+		push_error("Failed to save slot %d: %s" % [slot,error_string(error)])
+	return error
+
+func load_save_file(slot:int) -> saveData:
+	var path:=get_save_file_path(slot)
+	if path.is_empty():
+		return null
+	return _load_resource_safely(path,_is_save_data_resource) as saveData
+
+func delete_save_file(slot:int) -> Error:
+	var path:=get_save_file_path(slot)
+	if path.is_empty():
+		return ERR_INVALID_PARAMETER
+	for target_path in [path,_resource_sidecar_path(path,"tmp")]:
+		var error:=_remove_file_if_exists(target_path)
+		if error!=OK:
+			return error
+	return OK
+
 func OpenGuiyiBook():
 	PanelManager.new_guiyiBook()	
 
 func initSetting():
-	var path="user://ysg_data_setting.tres"
-	if(FileAccess.file_exists(path)):
-		_setting=load(path)
-
-		_load_settings()#把语言系统设置，然后应用分辨率 应用全屏，引用音效、没了
-	else:
+	_setting=load_settings_file()
+	if _setting==null:
 		_setting = SettingsResource.new()
 		# 可选：自定义默认值（如果不想用类里的默认值）
 		# _setting.peopleVlan = "zh"
@@ -1715,9 +1823,9 @@ func initSetting():
 		# _setting.sound_volume = 0.8
 		
 		# 保存默认配置到文件（避免下次启动重复创建）
-		ResourceSaver.save(GameManager._setting,"user://ysg_data_setting.tres")
-		# 首次启动：立即应用默认音量（0.25等），否则AudioServer总线保持 Godot 默认值
-		_load_settings()
+		save_settings_file(_setting)
+	# 首次启动：立即应用默认音量（0.25等），否则AudioServer总线保持 Godot 默认值
+	_load_settings()
 
 func _load_settings():
 	
@@ -1735,9 +1843,12 @@ func _load_settings():
 		TranslationServer.set_locale("lzh")
 		#option_button.select(1)
 	
-	var res =_setting.resolution.split("x")
-	var width = int(res[0])
-	var height = int(res[1])
+	var res:=_setting.resolution.split("x")
+	if res.size()!=2 or not res[0].is_valid_int() or not res[1].is_valid_int():
+		_setting.resolution="1920x1080"
+		res=_setting.resolution.split("x")
+	var width:=maxi(int(res[0]),640)
+	var height:=maxi(int(res[1]),360)
 	
 	if not _setting.fullscreen:
 		DisplayServer.window_set_size(Vector2i(width, height))
@@ -1813,20 +1924,23 @@ func AutoSaveFile():
 	sav.current_datetime="{year}/{month}/{day}/{hour}/{minute}".format({"year":DateTime.year,"month":DateTime.month,"day":DateTime.day,"hour":DateTime.hour,"minute":DateTime.minute})
 	
 	if(currenceScene!=null):
-		sav.saveScene.pack(currenceScene)
+		var pack_error:=sav.saveScene.pack(currenceScene)
+		if pack_error!=OK:
+			push_error("Failed to pack scene for autosave: %s" % error_string(pack_error))
+			_engerge.endAutoSave()
+			return
 
 	for i in range(1,4):
-		var path="user://save_data{index}.tres".format({"index":i})
-		if(FileAccess.file_exists(path)):
-			tempSavs[i-1]=load(path)
+		tempSavs[i-1]=load_save_file(i)
+		if tempSavs[i-1]!=null:
 			if tempSavs[i-1].autoSave==true:
-				ResourceSaver.save(sav,"user://save_data{index}.tres".format({"index":str(i)}))
+				save_save_file(sav,i)
 				_engerge.endAutoSave()
 				return
 				
 	for i in range(1,4):
 		if tempSavs[i-1]==null:
-			ResourceSaver.save(sav,"user://save_data{index}.tres".format({"index":str(i)}))
+			save_save_file(sav,i)
 			_engerge.endAutoSave()
 			return
 	#获取tempSavs时间最小的 进行存档
@@ -1859,7 +1973,7 @@ func AutoSaveFile():
 
 	# Save to the slot with the earliest time
 	if earliest_slot != -1:
-		ResourceSaver.save(sav, "user://save_data{index}.tres".format({"index": str(earliest_slot)}))
+		save_save_file(sav,earliest_slot)
 	#await 2
 	_engerge.endAutoSave()
 
@@ -2639,11 +2753,11 @@ func clearLevel(index):
 	if index==1:
 		if GameManager._setting.is_clear_normal_line == false:
 			GameManager._setting.is_clear_normal_line=true
-			ResourceSaver.save(GameManager._setting,"user://ysg_data_setting.tres")	
+			save_settings_file(GameManager._setting)
 	elif index==2:
 		if GameManager._setting.is_clear_overlord_line == false:		
 			GameManager._setting.is_clear_overlord_line=true
-			ResourceSaver.save(GameManager._setting,"user://ysg_data_setting.tres")	
+			save_settings_file(GameManager._setting)
 	#SignalManager.changeLanguage.emit()
 	
 
@@ -2651,7 +2765,7 @@ func clearPrologue():
 	if GameManager._setting.is_clear_prologue:
 		return
 	GameManager._setting.is_clear_prologue=true
-	ResourceSaver.save(GameManager._setting,"user://ysg_data_setting.tres")
+	save_settings_file(GameManager._setting)
 
 
 func enterCredit(index):
@@ -2669,11 +2783,11 @@ func enterCredit(index):
 
 func set_enable_rest_remind(_p):
 	GameManager._setting.enable_rest_remind=_p
-	ResourceSaver.save(GameManager._setting,"user://ysg_data_setting.tres")
+	save_settings_file(GameManager._setting)
 
 func set_always_show_military_input(_input):
 	GameManager._setting.showMilitartInput=_input
-	ResourceSaver.save(GameManager._setting,"user://ysg_data_setting.tres")
+	save_settings_file(GameManager._setting)
 
 
 func compeleteTaskAndChangeDestination(des):

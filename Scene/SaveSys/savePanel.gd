@@ -66,21 +66,22 @@ func confireSaveFile():
 	#print( formatted_time)
 	GameManager.sav.current_datetime=strTime
 	if(GameManager.currenceScene!=null):
-		GameManager.sav.saveScene.pack(GameManager.currenceScene)
-		pass
+		var pack_error:=GameManager.sav.saveScene.pack(GameManager.currenceScene)
+		if pack_error!=OK:
+			push_error("Failed to pack scene for manual save: %s" % error_string(pack_error))
+			return
 	GameManager.sav.autoSave=false
 	# 格式化DateTime对象为字符串
 	#var formatted_time = GameManager.sav.current_datetime.format_datetime("%Y-%m-%d %H:%M:%S")
 	#print("Formatted date and time:", current_datetime)
-	ResourceSaver.save(GameManager.sav,"user://save_data{index}.tres".format({"index":str(index)}))
+	if GameManager.save_save_file(GameManager.sav,index)!=OK:
+		return
 	savs[index-1]=GameManager.sav
 	refresh()	
 	
 func initLoad():
 	for i in range(1,4):
-		var path="user://save_data{index}.tres".format({"index":i})
-		if(FileAccess.file_exists(path)):
-			savs[i-1]=load(path)
+		savs[i-1]=GameManager.load_save_file(i)
 	refresh()
 	
 	
@@ -88,6 +89,9 @@ func initLoad():
 var _GrainNum=0
 func loadFile():
 	if(savs[index-1]!=null):
+		if savs[index-1].saveScene==null or not savs[index-1].saveScene.can_instantiate():
+			push_error("Save slot %d does not contain a valid scene." % index)
+			return
 		InventoryManager.reset_data()
 		#InventoryManager._db = InventoryData.new()
 		SoundManager.stop_music()
@@ -110,7 +114,10 @@ func loadFile():
 		GameManager.extraValue=0
 		# Loading replaces the scene directly, so no transition callback will release this transient input lock.
 		GameManager.CanClickUI=true
-		get_tree().change_scene_to_packed(savs[index-1].saveScene)
+		var scene_error:=get_tree().change_scene_to_packed(savs[index-1].saveScene)
+		if scene_error!=OK:
+			push_error("Failed to load scene from slot %d: %s" % [index,error_string(scene_error)])
+			return
 		GameManager.loadLaw()
 		GameManager.refreshCallable()
 		GameManager.LoadingDiffucultValue()
