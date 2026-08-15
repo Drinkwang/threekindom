@@ -176,12 +176,6 @@ func NormalStartGame():
 	SceneManager.changeScene(SceneManager.roomNode.PRE_SCENE,2)
 	
 	
-func JumpStartGame():
-	if GameManager._setting.is_clear_prologue:
-		DialogueManager.show_example_dialogue_balloon(sys,"你已经通关过一次小沛了进入徐州")
-	else:
-		DialogueManager.show_example_dialogue_balloon(sys,"小沛内容介绍")
-
 func MainContent(with_event_book:bool=false):
 	SoundManager.stop_music()
 	GameManager.SkipPrologue()

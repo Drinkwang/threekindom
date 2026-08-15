@@ -246,9 +246,11 @@ func create_puzzle():
 	movetoDeck()
 # 每当你设置拼图块的 z_index 时，同时同步到它的 Area2D
 func set_piece_z_index(piece: Node2D, z: int):
+	if not is_instance_valid(piece):
+		return
 	piece.z_index = z
-	var area = piece.get_node("Area2D")  # 确保名字一致
-	if area:
+	var area := piece.get_node_or_null("Area2D") as Area2D
+	if is_instance_valid(area):
 		area.priority = z * 10           # 放大一点防止冲突，比如 z=1 → priority=10
 var selectPiece=null
 # 处理拼图块输入事件 - Godot 4 参数顺序变化
