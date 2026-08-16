@@ -142,7 +142,7 @@ func dialogEnd():
 func _request_training_skip_or_start() -> void:
 	var has_item := GameManager.has_minigame_skip_item(InventoryManagerItem.淆武幽帖)
 	var skip_cost := GameManager.get_training_skip_cost()
-	if has_item and GameManager.sav.coin >= skip_cost:
+	if GameManager.sav.training_skip_enabled and has_item and GameManager.sav.coin >= skip_cost:
 		_show_mouse_after_battle()
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource, "使用淆武幽帖")
 	else:
@@ -166,7 +166,7 @@ func begin_training_battle() -> void:
 
 
 func confirm_training_skip() -> void:
-	if not GameManager.has_minigame_skip_item(InventoryManagerItem.淆武幽帖):
+	if not GameManager.sav.training_skip_enabled or not GameManager.has_minigame_skip_item(InventoryManagerItem.淆武幽帖):
 		begin_training_battle()
 		return
 	if not GameManager.try_spend_minigame_skip_cost(GameManager.get_training_skip_cost()):

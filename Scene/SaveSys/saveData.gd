@@ -412,6 +412,7 @@ var number_bool_map: Dictionary = {
 @export var constructTower=0
 @export var constructGrain=0
 @export var gameDifficulty=2
+@export var training_skip_enabled:bool=true
 
 # Saved per playthrough. Unlimited access is derived from the global ending state.
 @export var highlight_uses_remaining:int = 3

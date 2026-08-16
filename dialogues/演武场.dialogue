@@ -1357,7 +1357,7 @@ do refreshData()
 	do GameManager.sav.have_event["比武训练教程"]=false
 	系统提示: 教程已重置
 	=> 比武练兵选项	
-
+- 淆武幽帖【开】
 - 取消
 
 => END!
