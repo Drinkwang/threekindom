@@ -24,7 +24,7 @@ func _ready():
 	changeLanguage()
 	ShuffleButton.pressed.connect(_on_shuffle_button_pressed)
 	ResetButton.pressed.connect(_on_reset_button_pressed)
-	_refresh_cheat_button()
+	#_refresh_cheat_button()
 @onready var win_label: Label = $winRect/Label
 @onready var lose_label: Label = $LoseRect/Label
 
@@ -59,6 +59,7 @@ func switchDiffucult():
 		pass
 	elif difficult==SceneManager.puzzlediffucult.high:
 		isHigh=true
+	_refresh_cheat_button()	
 	setHighRotateButton()
 @onready var rotate_button: TextureButton = $RotateButton
 @onready var rotate_label: Label = $Label2
@@ -537,7 +538,7 @@ func initGame():
 	win_rect.hide()
 	lose_rect.hide()
 	isVictory=false
-	_refresh_cheat_button()
+	#_refresh_cheat_button()
 	giveup_confirmation_paused = false
 	selectPiece=null
 	canclick=true
@@ -606,7 +607,10 @@ func _on_lose_button_down() -> void:
 
 func _refresh_cheat_button() -> void:
 	cheat_btn.visible = GameManager.has_minigame_skip_item(InventoryManagerItem.匠役私令)
-
+	if isHigh==true:
+		cheat_btn.position=Vector2(1371,482)
+	else:
+		cheat_btn.position=Vector2(1376,704)	
 
 func _on_cheat_btn_button_down() -> void:
 	GameManager.request_construction_skip()

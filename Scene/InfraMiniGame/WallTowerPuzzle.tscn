@@ -197,10 +197,10 @@ theme_override_font_sizes/font_size = 48
 
 [node name="cheatBtn" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 1464.0
-offset_top = 172.0
-offset_right = 1564.0
-offset_bottom = 272.0
+offset_left = 1376.0
+offset_top = 704.0
+offset_right = 1476.0
+offset_bottom = 804.0
 tooltip_text = "使用匠役私令跳过本局"
 texture_normal = ExtResource("46_cheat")
 ignore_texture_size = true
