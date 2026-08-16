@@ -278,13 +278,16 @@ func _on_buy_button_down():
 		print("你买不起物品")
 	pass # Replace with function body.
 
-
+#$GridContainer
 func refreshAlreadySoldWeapon():
-	$HBoxContainer/Control1.refreshSold()
-	$HBoxContainer/Control2.refreshSold()
-	$HBoxContainer/Control3.refreshSold()
-	$HBoxContainer/Control4.refreshSold()
-	$HBoxContainer/Control5.refreshSold()
+	$GridContainer/Control1.refreshSold()
+	$GridContainer/Control2.refreshSold()
+	$GridContainer/Control3.refreshSold()
+	$GridContainer/Control4.refreshSold()
+	$GridContainer/Control5.refreshSold()
+	$GridContainer/Control6.refreshSold()
+	$GridContainer/Control7.refreshSold()
+	$GridContainer/Control8.refreshSold()
 func _on_texture_button_2_button_down():
 	self_sell_bg.hide()
 	GameManager.currenceScene.res_panel.position.x=1404

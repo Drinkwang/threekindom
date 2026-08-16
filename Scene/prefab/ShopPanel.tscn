@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cy140f6kxm5ev"]
+[gd_scene load_steps=25 format=3 uid="uid://cy140f6kxm5ev"]
 
 [ext_resource type="Script" path="res://Scripts/ShopPanel.gd" id="1_ngsol"]
 [ext_resource type="Theme" uid="uid://bklmr3xmk4m5u" path="res://global_theme.tres" id="2_0of21"]
@@ -18,6 +18,9 @@
 [ext_resource type="Texture2D" uid="uid://cmmqirxfkg16m" path="res://Asset/items/獬豸.png" id="14_bvea7"]
 [ext_resource type="Texture2D" uid="uid://dbkvahmqpu36o" path="res://Asset/items/洞察之镜.png" id="15_ptsft"]
 [ext_resource type="FontFile" uid="uid://to00njkwmxts" path="res://Asset/Font/1_sim.ttf" id="17_w8f0i"]
+[ext_resource type="Texture2D" uid="uid://dx2li8js02ebj" path="res://Asset/items/512上身.png" id="18_5lxsj"]
+[ext_resource type="Texture2D" uid="uid://dm5ldeq2xknqg" path="res://Asset/items/512代替竹筒.png" id="19_a7j1h"]
+[ext_resource type="Texture2D" uid="uid://cdjpwj81xqd2" path="res://Asset/items/128令.png" id="20_rwq66"]
 
 [sub_resource type="Animation" id="Animation_g5rj7"]
 length = 0.001
@@ -288,47 +291,70 @@ img = ExtResource("7_2m2sr")
 itemContext = "1"
 itemstype = 8
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 352.0
-offset_top = 308.0
-offset_right = 624.0
-offset_bottom = 396.0
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 2
+offset_left = 353.0
+offset_top = 305.0
+offset_right = 809.0
+offset_bottom = 485.0
+theme_override_constants/v_separation = -7
+columns = 5
 
-[node name="Control1" parent="HBoxContainer" instance=ExtResource("4_iwehk")]
+[node name="Control5" parent="GridContainer" instance=ExtResource("4_iwehk")]
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
 to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
-img = ExtResource("11_ysr0e")
-itemstype = 20
+img = ExtResource("15_ptsft")
+itemstype = 24
 
-[node name="Control2" parent="HBoxContainer" instance=ExtResource("4_iwehk")]
-custom_minimum_size = Vector2(88, 88)
-layout_mode = 2
-to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
-img = ExtResource("12_g3hr8")
-itemstype = 21
-
-[node name="Control3" parent="HBoxContainer" instance=ExtResource("4_iwehk")]
-custom_minimum_size = Vector2(88, 88)
-layout_mode = 2
-to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
-img = ExtResource("13_xnv0q")
-itemstype = 22
-
-[node name="Control4" parent="HBoxContainer" instance=ExtResource("4_iwehk")]
+[node name="Control4" parent="GridContainer" instance=ExtResource("4_iwehk")]
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
 to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
 img = ExtResource("14_bvea7")
 itemstype = 25
 
-[node name="Control5" parent="HBoxContainer" instance=ExtResource("4_iwehk")]
+[node name="Control6" parent="GridContainer" instance=ExtResource("4_iwehk")]
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
 to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
-img = ExtResource("15_ptsft")
-itemstype = 24
+img = ExtResource("18_5lxsj")
+itemstype = 29
+
+[node name="Control7" parent="GridContainer" instance=ExtResource("4_iwehk")]
+custom_minimum_size = Vector2(88, 88)
+layout_mode = 2
+to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
+img = ExtResource("19_a7j1h")
+itemstype = 30
+
+[node name="Control8" parent="GridContainer" instance=ExtResource("4_iwehk")]
+custom_minimum_size = Vector2(88, 88)
+layout_mode = 2
+to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
+img = ExtResource("20_rwq66")
+itemstype = 31
+
+[node name="Control1" parent="GridContainer" instance=ExtResource("4_iwehk")]
+custom_minimum_size = Vector2(88, 88)
+layout_mode = 2
+to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
+img = ExtResource("11_ysr0e")
+itemstype = 20
+
+[node name="Control2" parent="GridContainer" instance=ExtResource("4_iwehk")]
+custom_minimum_size = Vector2(88, 88)
+layout_mode = 2
+to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
+img = ExtResource("12_g3hr8")
+itemstype = 21
+
+[node name="Control3" parent="GridContainer" instance=ExtResource("4_iwehk")]
+custom_minimum_size = Vector2(88, 88)
+layout_mode = 2
+to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
+img = ExtResource("13_xnv0q")
+itemstype = 22
 
 [node name="Label2" type="Label" parent="."]
 visible = false
