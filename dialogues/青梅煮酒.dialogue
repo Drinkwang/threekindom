@@ -64,6 +64,15 @@ do dialogEnd()
 => END!
 
 
+~ 使用淆武幽帖
+系统提示: 是否花费{{GameManager.get_training_skip_cost()}}钱，使用【淆武幽帖】跳过本场比武？
+- 不使用
+	do begin_training_battle()
+- 使用
+	do confirm_training_skip()
+=> END!
+
+
 ~ 游戏成功
 
 

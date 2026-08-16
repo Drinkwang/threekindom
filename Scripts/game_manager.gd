@@ -1661,6 +1661,100 @@ func changeTaskLabel(_value:String):
 var trainGeneral=""
 var trainLevel=0
 var trainResult:SceneManager.trainResult=SceneManager.trainResult.none
+
+func has_minigame_skip_item(item_id:String) -> bool:
+	return InventoryManager.inventory_item_quantity(inventoryPackege, item_id) > 0
+
+
+func get_training_skip_cost() -> int:
+	match trainLevel:
+		1:
+			return 100
+		2:
+			return 200
+		3:
+			return 300
+	return 0
+
+
+func get_board_skip_cost() -> int:
+	match _boardMode:
+		boardType.boardMode.new:
+			return 200
+		boardType.boardMode.middle:
+			return 400
+		boardType.boardMode.high:
+			return 600
+	return 0
+
+
+func get_construction_skip_cost() -> int:
+	match selectPuzzleDiffcult:
+		SceneManager.puzzlediffucult.easy:
+			return 300
+		SceneManager.puzzlediffucult.middle:
+			return 400
+		SceneManager.puzzlediffucult.high:
+			return 500
+	return 0
+
+
+func try_spend_minigame_skip_cost(cost:int) -> bool:
+	if cost <= 0 or sav.coin < cost:
+		return false
+	sav.coin -= cost
+	if is_instance_valid(_propertyPanel):
+		_propertyPanel.GetValue(0, 0, 0)
+	return true
+
+
+func show_minigame_skip_money_insufficient() -> void:
+	DialogueManager.show_example_dialogue_balloon(sys, "跳过游戏钱币不足")
+
+
+func get_current_construction_puzzle():
+	if currenceScene == null:
+		return null
+	return currenceScene.get("puzzle_game")
+
+
+func request_construction_skip() -> void:
+	var puzzle = get_current_construction_puzzle()
+	if puzzle == null:
+		return
+	if not has_minigame_skip_item(InventoryManagerItem.匠役私令):
+		var cheat_button = puzzle.get_node_or_null("cheatBtn")
+		if cheat_button != null:
+			cheat_button.hide()
+		return
+	if puzzle.has_method("pause_for_giveup_confirmation"):
+		puzzle.pause_for_giveup_confirmation()
+	if sav.coin < get_construction_skip_cost():
+		DialogueManager.show_example_dialogue_balloon(sys, "基建跳过钱币不足")
+		return
+	DialogueManager.show_example_dialogue_balloon(sys, "使用匠役私令")
+
+
+func cancel_construction_skip() -> void:
+	var puzzle = get_current_construction_puzzle()
+	if puzzle != null and puzzle.has_method("resume_after_giveup_cancel"):
+		puzzle.resume_after_giveup_cancel()
+
+
+func confirm_construction_skip() -> void:
+	var puzzle = get_current_construction_puzzle()
+	if puzzle == null:
+		return
+	if not has_minigame_skip_item(InventoryManagerItem.匠役私令):
+		cancel_construction_skip()
+		return
+	if not try_spend_minigame_skip_cost(get_construction_skip_cost()):
+		cancel_construction_skip()
+		show_minigame_skip_money_insufficient()
+		return
+	if puzzle.has_method("confirm_skip_with_item"):
+		puzzle.confirm_skip_with_item()
+
 func changeChendenHeart(addValue):
 	sav.chendenfav+=addValue
 
@@ -2208,17 +2302,13 @@ func cancelContructtion():
 
 
 func pause_construction_minigame() -> void:
-	if currenceScene == null:
-		return
-	var puzzle = currenceScene.get("puzzleGame")
+	var puzzle = get_current_construction_puzzle()
 	if puzzle != null and puzzle.has_method("pause_for_giveup_confirmation"):
 		puzzle.pause_for_giveup_confirmation()
 
 
 func resume_construction_minigame() -> void:
-	if currenceScene == null:
-		return
-	var puzzle = currenceScene.get("puzzleGame")
+	var puzzle = get_current_construction_puzzle()
 	if puzzle != null and puzzle.has_method("resume_after_giveup_cancel"):
 		puzzle.resume_after_giveup_cancel()
 

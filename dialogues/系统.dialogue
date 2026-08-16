@@ -409,6 +409,26 @@ do DialogueManager.gameover=true
 => END!
 
 
+~ 跳过游戏钱币不足
+系统提示: 钱币不足，无法使用道具跳过本局游戏。
+=> END!
+
+
+~ 基建跳过钱币不足
+系统提示: 钱币不足，无法使用【匠役私令】跳过本局基建。
+do GameManager.cancel_construction_skip()
+=> END!
+
+
+~ 使用匠役私令
+系统提示: 是否花费{{GameManager.get_construction_skip_cost()}}钱，使用【匠役私令】跳过本局基建？
+- 不使用
+	do GameManager.cancel_construction_skip()
+- 使用
+	do GameManager.confirm_construction_skip()
+=> END!
+
+
 
 ~ 基建铸塔成功
 曹豹: 主公，城墙加固完毕！丹阳高垒巍峨耸立，敌寇难近寸步，徐州防务更固若金汤！[voice:caobao_jijianchenggong]

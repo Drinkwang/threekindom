@@ -5,6 +5,7 @@ extends Node2D
 const dialogue_resource = preload("res://dialogues/青梅煮酒.dialogue")
 var caocaoPos:Vector2
 var liubeiPos:Vector2
+var _battle_has_started := false
 
 # 鼠标移动限制相关变量
 var mouse_speed_limit: float = 0.0 # 0表示无限制
@@ -132,6 +133,24 @@ func changeColor(color,label):
 	enemy_label.add_theme_color_override("font_color",color)
 	enemy_label.text=label
 func dialogEnd():
+	if GameManager.trainGeneral.length() > 0 and not _battle_has_started:
+		_request_training_skip_or_start()
+		return
+	begin_training_battle()
+
+
+func _request_training_skip_or_start() -> void:
+	var has_item := GameManager.has_minigame_skip_item(InventoryManagerItem.淆武幽帖)
+	var skip_cost := GameManager.get_training_skip_cost()
+	if has_item and GameManager.sav.coin >= skip_cost:
+		_show_mouse_after_battle()
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource, "使用淆武幽帖")
+	else:
+		begin_training_battle()
+
+
+func begin_training_battle() -> void:
+	_battle_has_started = true
 	caocao.isdead=false
 	liubei.isdead=false
 	
@@ -144,6 +163,27 @@ func dialogEnd():
 	Input.warp_mouse(liubeiPos)
 	last_mouse_position = liubeiPos
 	print("鼠标位置已设置为刘备位置: ", liubei.global_position)
+
+
+func confirm_training_skip() -> void:
+	if not GameManager.has_minigame_skip_item(InventoryManagerItem.淆武幽帖):
+		begin_training_battle()
+		return
+	if not GameManager.try_spend_minigame_skip_cost(GameManager.get_training_skip_cost()):
+		GameManager.show_minigame_skip_money_insufficient()
+		begin_training_battle()
+		return
+	_battle_has_started = true
+	GameManager.swordManGameState = GameManager.gameState.pause
+	_show_mouse_after_battle()
+	blink_rect.show()
+	blink_animation_player.play("win")
+	win_rect.show()
+	var finishfunc=func(_aniname):
+		blink_rect.hide()
+	blink_animation_player.animation_finished.connect(finishfunc, CONNECT_ONE_SHOT)
+	SoundManager.stop_music()
+	SoundManager.play_sound(sounds.GOOD_THING)
 	
 	
 func _on_player_hit(_who: swordMan):

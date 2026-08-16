@@ -10,6 +10,7 @@ var conn_material: ShaderMaterial
 
 func _ready() -> void:
 	SignalManager.changeLanguage.connect(changeLanguage)
+	_refresh_cheat_button()
 	changeLanguage()
 	clearData()
 	board.connect("water_depth_changed", Callable(self, "_on_water_depth_changed"))
@@ -117,6 +118,7 @@ func clearData():
 func initGame(start_timer_immediately: bool = true):
 	self.show()
 	isvictory=false
+	_refresh_cheat_button()
 	giveup_confirmation_paused = false
 	win_rect.hide()
 	lose_rect.hide()
@@ -301,3 +303,18 @@ func _on_lose_button_down() -> void:
 func _on_giveup_button_down() -> void:
 	GameManager.pause_construction_minigame()
 	DialogueManager.show_dialogue_balloon(GameManager.sys,"放弃基建")
+
+
+@onready var cheat_btn: TextureButton = $cheatBtn
+
+func _refresh_cheat_button() -> void:
+	cheat_btn.visible = GameManager.has_minigame_skip_item(InventoryManagerItem.匠役私令)
+
+
+func _on_cheat_btn_button_down() -> void:
+	GameManager.request_construction_skip()
+
+
+func confirm_skip_with_item() -> void:
+	giveup_confirmation_paused=false
+	_show_victory()

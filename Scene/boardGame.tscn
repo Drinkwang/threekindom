@@ -813,12 +813,13 @@ libraries = {
 "": SubResource("AnimationLibrary_qe0qn")
 }
 
-[node name="TextureButton" type="TextureButton" parent="CanvasLayer"]
-z_index = 100
+[node name="cheatButton" type="TextureButton" parent="CanvasLayer"]
+visible = false
 offset_left = 128.0
 offset_top = 773.0
 offset_right = 256.0
 offset_bottom = 901.0
+tooltip_text = "使用代弈竹筒跳过本局"
 texture_normal = ExtResource("61_4ak6i")
 ignore_texture_size = true
 stretch_mode = 4
@@ -1103,5 +1104,6 @@ offset_bottom = 1081.0
 [connection signal="focus_exited" from="CanvasLayer/ExitButton" to="." method="_on_exit_button_focus_exited"]
 [connection signal="button_down" from="CanvasLayer/Button" to="." method="phaseEnd"]
 [connection signal="button_down" from="CanvasLayer/winRect/Button" to="." method="_on_win_button_down"]
+[connection signal="button_down" from="CanvasLayer/cheatButton" to="." method="_on_cheat_button_down"]
 [connection signal="button_down" from="CanvasLayer/LoseRect/Button2" to="." method="_on_button_restart"]
 [connection signal="button_down" from="CanvasLayer/LoseRect/Button" to="." method="_on_exitGame"]

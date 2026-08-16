@@ -172,7 +172,7 @@ func changeLanguage():
 			TooltipManager.register_tooltip(self,tr(db.name)+":"+tr(details[0]["value"]))
 
 func refreshSold():
-	var havedec=(itemstype==InventoryManagerItem.ItemEnum.洞察之镜 or itemstype==InventoryManagerItem.ItemEnum.獬豸圣像)
+	var havedec=(itemstype==InventoryManagerItem.ItemEnum.洞察之镜 or itemstype==InventoryManagerItem.ItemEnum.獬豸圣像 or itemstype==InventoryManagerItem.ItemEnum.淆武幽帖 or itemstype==InventoryManagerItem.ItemEnum.代弈竹筒 or itemstype==InventoryManagerItem.ItemEnum.匠役私令)
 	var havesecret=(itemstype==InventoryManagerItem.ItemEnum.市井秘闻 or itemstype==InventoryManagerItem.ItemEnum.市井秘闻_续 or itemstype==InventoryManagerItem.ItemEnum.市井秘闻_终)
 	var havewea=(itemstype==InventoryManagerItem.ItemEnum.雌雄双股剑 or itemstype==InventoryManagerItem.ItemEnum.青龙偃月刀 or itemstype==InventoryManagerItem.ItemEnum.丈八蛇矛)
 	if havedec or havesecret or havewea: 
@@ -225,7 +225,7 @@ func _on_gui_input(event):
 		var detail=item["value"]
 		
 		var index=0
-		var havedec=(itemstype==InventoryManagerItem.ItemEnum.洞察之镜 or itemstype==InventoryManagerItem.ItemEnum.獬豸圣像)
+		var havedec=(itemstype==InventoryManagerItem.ItemEnum.洞察之镜 or itemstype==InventoryManagerItem.ItemEnum.獬豸圣像 or itemstype==InventoryManagerItem.ItemEnum.淆武幽帖 or itemstype==InventoryManagerItem.ItemEnum.代弈竹筒 or itemstype==InventoryManagerItem.ItemEnum.匠役私令)
 		var havesecret=(itemstype==InventoryManagerItem.ItemEnum.市井秘闻 or itemstype==InventoryManagerItem.ItemEnum.市井秘闻_续 or itemstype==InventoryManagerItem.ItemEnum.市井秘闻_终)
 		var havewea=(itemstype==InventoryManagerItem.ItemEnum.雌雄双股剑 or itemstype==InventoryManagerItem.ItemEnum.青龙偃月刀 or itemstype==InventoryManagerItem.ItemEnum.丈八蛇矛)
 		if havedec==true:
@@ -243,7 +243,7 @@ func _on_gui_input(event):
 	#pass # Replace with function body.
 func isspecial():
 	var index=0
-	var havedec=(itemstype==InventoryManagerItem.ItemEnum.洞察之镜 or itemstype==InventoryManagerItem.ItemEnum.獬豸圣像)
+	var havedec=(itemstype==InventoryManagerItem.ItemEnum.洞察之镜 or itemstype==InventoryManagerItem.ItemEnum.獬豸圣像 or itemstype==InventoryManagerItem.ItemEnum.淆武幽帖 or itemstype==InventoryManagerItem.ItemEnum.代弈竹筒 or itemstype==InventoryManagerItem.ItemEnum.匠役私令)
 	var havesecret=(itemstype==InventoryManagerItem.ItemEnum.市井秘闻 or itemstype==InventoryManagerItem.ItemEnum.市井秘闻_续 or itemstype==InventoryManagerItem.ItemEnum.市井秘闻_终)
 	var havewea=(itemstype==InventoryManagerItem.ItemEnum.雌雄双股剑 or itemstype==InventoryManagerItem.ItemEnum.青龙偃月刀 or itemstype==InventoryManagerItem.ItemEnum.丈八蛇矛)
 	if havedec==true:

@@ -61,17 +61,22 @@ var currentTurnUseCardNum=0
 #回合结束手牌比这个小 就改成这个
 
 @onready var win_label: Label = $CanvasLayer/winRect/Label
+@onready var cheat_button: TextureButton = $CanvasLayer/cheatButton
 
 
-func winGame(_str:String=""):
+func winGame(_str:String="", complete_board_achievement:bool=true):
 	if is_match_finished():
 		return
-	judgeAchive()
+	if complete_board_achievement:
+		judgeAchive()
+	else:
+		_mark_board_achievement_skipped()
 	GameManager._boardGameWin=true
 	if _str.length()>0:
 		win_label.text=_str
 	blink_rect.show()
 	animation_player_BLINK.play("win")
+	cheat_button.hide()
 	#SoundManager.play_sound(youwinsound)
 	var finishfunc=func(aniname):
 		blink_rect.hide()
@@ -94,6 +99,14 @@ func winGame(_str:String=""):
 	win_rect.show()
 	SoundManager.stop_music()
 	SoundManager.play_sound(sounds.GOOD_THING)
+
+
+func _mark_board_achievement_skipped() -> void:
+	var achiData=GameManager.sav.card_achives[achiIndex]
+	detail_txt.hide()
+	_achievementResultKey="已失败"
+	achiwin.text=tr("成就：")+tr(achiData.detail)+"\n"+tr("已失败")
+	achi_label.self_modulate=Color.GRAY
 
 func is_match_finished() -> bool:
 	return win_rect.visible or lose_rect.visible
@@ -242,6 +255,7 @@ func _ready() -> void:
 
 
 	SignalManager.changeLanguage.connect(changeLanguage)
+	
 
 	#initControls()
 	changeLanguage()	
@@ -831,6 +845,7 @@ func startGame(cardnum,issole,enemyExtraCard):
 	_is_first_draw=true
 	_issole=issole
 	heart_group.show()
+	_refresh_cheat_button()
 	if _issole==false:
 		enemy_score_txt.show()
 		heart_group_enemy.show()
@@ -2703,6 +2718,8 @@ func _tutorial_target_center(node:Node) -> Vector2:
 	return Vector2.ZERO
 
 func reset_runtime_state():
+	_achievementResultKey=""
+	achiwin.text=""
 	killenemy=false
 	isPlayerTurn=true
 	_phaseName=phaseName.none
@@ -2726,6 +2743,34 @@ func reset_runtime_state():
 	damage_color.material.set_shader_parameter("vignette_intensity", 0)
 	heart_color.material.set_shader_parameter("vignette_intensity", 0)
 	reset_crit_chain_state()
+
+
+func _refresh_cheat_button() -> void:
+	cheat_button.visible = GameManager.has_minigame_skip_item(InventoryManagerItem.代弈竹筒)
+
+
+func _on_cheat_button_down() -> void:
+	if is_match_finished():
+		return
+	if not GameManager.has_minigame_skip_item(InventoryManagerItem.代弈竹筒):
+		cheat_button.hide()
+		return
+	if GameManager.sav.coin < GameManager.get_board_skip_cost():
+		GameManager.show_minigame_skip_money_insufficient()
+		return
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource, "使用代弈竹筒")
+
+
+func confirm_board_skip() -> void:
+	if is_match_finished():
+		return
+	if not GameManager.has_minigame_skip_item(InventoryManagerItem.代弈竹筒):
+		cheat_button.hide()
+		return
+	if not GameManager.try_spend_minigame_skip_cost(GameManager.get_board_skip_cost()):
+		GameManager.show_minigame_skip_money_insufficient()
+		return
+	winGame("", false)
 
 func clearTCard():
 	cancel_tutorial_state()

@@ -6,11 +6,14 @@ var grandNum:int=100
 func _ready() -> void:
 	SignalManager.changeLanguage.connect(changeLanguage)
 	GameManager.PuzzleScene=self
+	_refresh_cheat_button()
 	changeLanguage()
 #简单初始3 复杂初始5
 
 func initGame():
 	self.show()
+	_skip_confirmation_paused=false
+	_refresh_cheat_button()
 	win_rect.hide()
 	lose_rect.hide()
 	sideTrackCar.clear()
@@ -96,7 +99,7 @@ func initGranary():
 var selecthourse=null
 func _on_piece_input_event(viewport: Node, event: InputEvent, shape_idx: int, hourse):
 	#print("haveClickEvent")
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT and not _skip_confirmation_paused:
 		#try_move_piece(piece)#选中图块，跟手，tick阶段判断拼图和场上块接近么接近，发挥效果，并拼上
 		if selecthourse!=null:
 			selecthourse.stop_flash()
@@ -109,7 +112,7 @@ func _on_piece_input_event(viewport: Node, event: InputEvent, shape_idx: int, ho
 
 
 func selectGrannary(select):
-	if selecthourse == null:
+	if selecthourse == null or _skip_confirmation_paused:
 		return
 	selecthourse.stop_flash()
 	selecthourse.selectGrannary(select)
@@ -238,6 +241,7 @@ func updatehourse():
 @onready var blink_animation_player: AnimationPlayer = $winRect/blinkRect/AnimationPlayer
 
 var isVictory=false
+var _skip_confirmation_paused := false
 #这个等于true 无法操作
 func winGame():
 	print("拼图完成!")
@@ -350,3 +354,26 @@ func _on_winAfter_button_down() -> void:
 
 func _on_giveup_button_down() -> void:
 	DialogueManager.show_dialogue_balloon(GameManager.sys,"放弃基建")
+
+
+@onready var cheat_btn: TextureButton = $cheatBtn
+
+func _refresh_cheat_button() -> void:
+	cheat_btn.visible = GameManager.has_minigame_skip_item(InventoryManagerItem.匠役私令)
+
+
+func _on_cheat_btn_button_down() -> void:
+	GameManager.request_construction_skip()
+
+
+func pause_for_giveup_confirmation() -> void:
+	_skip_confirmation_paused=true
+
+
+func resume_after_giveup_cancel() -> void:
+	_skip_confirmation_paused=false
+
+
+func confirm_skip_with_item() -> void:
+	_skip_confirmation_paused=false
+	winGame()

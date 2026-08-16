@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://qr7a32uptncc"]
+[gd_scene load_steps=53 format=3 uid="uid://qr7a32uptncc"]
 
 [ext_resource type="Script" path="res://Scene/InfraMiniGame/wall_tower_puzzle.gd" id="1_uopbu"]
 [ext_resource type="Texture2D" uid="uid://coekrh8wj6iwp" path="res://Asset/城镇建筑/puzzleGameScene.png" id="2_7knxp"]
@@ -45,6 +45,7 @@
 [ext_resource type="Texture2D" uid="uid://cct0spp0q00mp" path="res://Asset/particle/2/vnbvx_27.png" id="43_dhr45"]
 [ext_resource type="Texture2D" uid="uid://de5u8jbrtr8nk" path="res://Asset/particle/2/vnbvx_28.png" id="44_onsr3"]
 [ext_resource type="Texture2D" uid="uid://0o5hddxuvape" path="res://Asset/particle/2/vnbvx_29.png" id="45_8kgdm"]
+[ext_resource type="Texture2D" uid="uid://cdjpwj81xqd2" path="res://Asset/items/128令.png" id="46_cheat"]
 
 [sub_resource type="Animation" id="Animation_2p14g"]
 length = 0.001
@@ -193,6 +194,17 @@ theme_override_constants/outline_size = 0
 theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/font = ExtResource("4_vpfxr")
 theme_override_font_sizes/font_size = 48
+
+[node name="cheatBtn" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 1464.0
+offset_top = 172.0
+offset_right = 1564.0
+offset_bottom = 272.0
+tooltip_text = "使用匠役私令跳过本局"
+texture_normal = ExtResource("46_cheat")
+ignore_texture_size = true
+stretch_mode = 6
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
@@ -428,6 +440,7 @@ offset_right = 1158.0
 offset_bottom = 733.0
 text = "放弃基建"
 
+[connection signal="button_down" from="cheatBtn" to="." method="_on_cheat_btn_button_down"]
 [connection signal="button_down" from="RotateButton" to="." method="_on_rotate_button_button_down"]
 [connection signal="button_down" from="SettleButton" to="." method="_on_giveup_button_down"]
 [connection signal="button_down" from="winRect/Button" to="." method="_on_winAfter_button_down"]

@@ -404,12 +404,13 @@ libraries = {
 "": SubResource("AnimationLibrary_qe0qn")
 }
 
-[node name="TextureButton" type="TextureButton" parent="."]
+[node name="cheatBtn" type="TextureButton" parent="."]
 layout_mode = 0
 offset_left = 1464.0
 offset_top = 172.0
 offset_right = 1564.0
 offset_bottom = 272.0
+tooltip_text = "使用匠役私令跳过本局"
 texture_normal = ExtResource("37_q0kjo")
 ignore_texture_size = true
 stretch_mode = 6
@@ -454,4 +455,5 @@ text = "放弃基建"
 [connection signal="mouse_entered" from="SettleButton" to="." method="_on_giveup_button_mouse_entered"]
 [connection signal="mouse_exited" from="SettleButton" to="." method="_on_giveup_button_mouse_exited"]
 [connection signal="button_down" from="winRect/Button" to="." method="_on_winAfter_button_down"]
+[connection signal="button_down" from="cheatBtn" to="." method="_on_cheat_btn_button_down"]
 [connection signal="button_down" from="LoseRect/Button" to="." method="loseGameBtn"]
