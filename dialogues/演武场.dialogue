@@ -1357,7 +1357,14 @@ do refreshData()
 	do GameManager.sav.have_event["比武训练教程"]=false
 	系统提示: 教程已重置
 	=> 比武练兵选项	
-- 淆武幽帖【开】
+- 淆武幽帖【关闭】 [if GameManager.has_minigame_skip_item("993ec57f-f4e8-4faa-bcf4-0430966f4107") and GameManager.sav.training_skip_enabled]
+	do GameManager.sav.training_skip_enabled=false
+	系统提示: 淆武幽帖已关闭，无法耗费钱财跳过比武小游戏。
+	=> 比武练兵选项
+- 淆武幽帖【启用】 [if GameManager.has_minigame_skip_item("993ec57f-f4e8-4faa-bcf4-0430966f4107") and not GameManager.sav.training_skip_enabled]
+	do GameManager.sav.training_skip_enabled=true
+	系统提示: 淆武幽帖已启用，可耗费钱财借旁门捷径跳过比武。
+	=> 比武练兵选项
 - 取消
 
 => END!
