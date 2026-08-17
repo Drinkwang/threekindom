@@ -1,11 +1,6 @@
 extends Node
 
 
-func _ready() -> void:
-	# saveData setters reference other autoloads while the resource is being validated.
-	AchievementManager.synchronize_save_files()
-
-
 const STATE_NAMES := {
 	1: {
 		1: "安定",

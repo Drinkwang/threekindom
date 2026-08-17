@@ -267,7 +267,7 @@ var moupos=null#get_viewport().get_mouse_position()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
-	AchievementManager.synchronize_settings_file()
+
 	sav=saveData.new()
 	_enterDay()
 	SkipPrologue()
@@ -1868,8 +1868,6 @@ func save_settings_file(settings:SettingsResource) -> Error:
 	var error:=_save_resource_atomic(settings,SETTINGS_FILE_PATH,_is_settings_resource)
 	if error!=OK:
 		push_error("Failed to save settings: %s" % error_string(error))
-	else:
-		AchievementManager.upload_cloud_file(SETTINGS_FILE_PATH)
 	return error
 
 func load_settings_file() -> SettingsResource:
@@ -1887,8 +1885,6 @@ func save_save_file(data:saveData,slot:int) -> Error:
 	var error:=_save_resource_atomic(data,path,_is_save_data_resource)
 	if error!=OK:
 		push_error("Failed to save slot %d: %s" % [slot,error_string(error)])
-	else:
-		AchievementManager.upload_cloud_file(path)
 	return error
 
 func load_save_file(slot:int) -> saveData:
@@ -1905,7 +1901,6 @@ func delete_save_file(slot:int) -> Error:
 		var error:=_remove_file_if_exists(target_path)
 		if error!=OK:
 			return error
-	AchievementManager.delete_cloud_file(path)
 	return OK
 
 func OpenGuiyiBook():
