@@ -517,7 +517,6 @@ func gotoHuangDiMiao():
 
 	
 func PlayMizhen():
-	var lady = load("res://Asset/vedio/bloodLady.ogv")
 	#不能这样写，因为boss战
 	var _func=func():
 
@@ -526,6 +525,10 @@ func PlayMizhen():
 		battle_pane.enterBattleMi()
 		battle_pane.show()
 		AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_16")
+	if _is_horror_filter_enabled():
+		_finish_boss_animation(_func)
+		return
+	var lady = load("res://Asset/vedio/bloodLady.ogv")
 	playBossAni(lady,_func)
 
 
@@ -536,7 +539,6 @@ func PlayMizhen():
 
 func PlayTaoQian():
 	SoundManager.stop_music()
-	var tao = load("res://Asset/vedio/bloodTao.ogv")
 	var _func=func():
 
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"动画播完_陶谦")
@@ -544,6 +546,10 @@ func PlayTaoQian():
 		battle_pane.enterBattleTao()
 		battle_pane.show()
 		AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_18")
+	if _is_horror_filter_enabled():
+		_finish_boss_animation(_func)
+		return
+	var tao = load("res://Asset/vedio/bloodTao.ogv")
 	playBossAni(tao,_func)
 
 
@@ -568,15 +574,19 @@ func playBossAni(value,lambda:Callable):
 	res_panel.hide()
 	bit_player.stream=value
 	bit_player.play()
-	bit_player.finished.connect(func():
-		res_panel.show()
-		res_panel.position.x=1564
-		res_panel.position.y=803
-		res_panel.scale=Vector2(0.765,0.765)
-		_on_video_player_finished()
-		if lambda.is_valid():  # 检查 lambda 是否有效
-			lambda.call()
-		)
+	bit_player.finished.connect(_finish_boss_animation.bind(lambda),CONNECT_ONE_SHOT)
+
+func _is_horror_filter_enabled() -> bool:
+	return GameManager._setting!=null and GameManager._setting.is_horror_filter_enabled()
+
+func _finish_boss_animation(lambda:Callable) -> void:
+	res_panel.show()
+	res_panel.position.x=1564
+	res_panel.position.y=803
+	res_panel.scale=Vector2(0.765,0.765)
+	_on_video_player_finished()
+	if lambda.is_valid():
+		lambda.call()
 func showFirstGuild():
 	control.show()
 	control._show_button_5_yellow(0)

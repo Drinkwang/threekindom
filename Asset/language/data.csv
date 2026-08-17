@@ -548,9 +548,9 @@ _battleUseItem,Check to use the Victory Kit\nIncreases win rate by 40%\n【Remai
 分辨率：,Resolution:,分辨率：,解析度：,解像度：,Разрешение:
 是否全屏,Fullscreen,是否全屏,是否全螢幕,フルスクリーン,Полноэкранный режим
 音乐音量,Music volume,音乐音量,音樂音量,音楽の音量,Громкость музыки
-语言系统：,Language system:,语言系统：,語言系統：,言語システム：,Языковая система:
+语言系统：,Language:,语言：,語言：,言語：,Язык:
 音效音量,Sound effects volume,音效音量,音效音量,効果音の音量,Громкость звуковых эффектов
-确认设置,Confirm settings,确认设置,確認設置,設定を確定,Подтвердить настройки
+确认设置,Apply,确认设置,確認設定,適用,Применить
 成功通过[{{tr(GameManager.sav.curLawName)}}]！{{GameManager.RewardLaw}},Successfully passed [{{tr(GameManager.sav.curLawName)}}]! {{GameManager.RewardLaw}},成功通过[{{tr(GameManager.sav.curLawName)}}]！{{GameManager.RewardLaw}},成功通過[{{tr(GameManager.sav.curLawName)}}]！{{GameManager.RewardLaw}},[{{tr(GameManager.sav.curLawName)}}]を無事に通過しました！{{GameManager.RewardLaw}},Успешно принято 【{{tr(GameManager.sav.curLawName)}}】! {{GameManager.RewardLaw}}
 当前功能demo不开放,The current feature demo is not available.,当前功能demo不开放。,當前功能demo不開放。,現在の機能デモは開放されていません。,Текущая демонстрация функции недоступна.
 提示,Hint,提示,提示,ヒント,Подсказка
@@ -1786,11 +1786,16 @@ _havegift,Number of Gift Boxes: {_num},拥有礼盒数量：{_num},擁有禮盒�
 支线任务,Side Quest,支线任务,支線任務,サブクエスト,Побочные задания
 查看玩家持有的道具和装备,View player's held items and equipment,查看玩家持有的道具和装备,查看玩家持有的道具和裝備,プレイヤーが所持しているアイテムと装備を確認する,"Просмотр предметов и снаряжения, имеющихся у игрока"
 用于游戏存档/读档,For game save/load,用于游戏存档/读档,用於遊戲存檔/讀檔,ゲームのセーブ/ロードに使用,Для сохранения/загрузки игры
-配音语言设置：,Voice Language Settings:,配音语言设置：,配音語言設置：,ボイス言語設定：,Настройки языка озвучки:
-无配音,No Voiceover,无配音,無配音,ボイスなし,Без озвучки
-中文配音,Chinese Voiceover,中文配音,中文配音,中国語音声,Китайская озвучка
+配音语言设置：,Voice Language:,配音语言：,配音語言：,音声言語：,Язык озвучки:
+无配音,No Voice,无配音,無配音,音声なし,Без озвучки
+中文配音,Chinese Voice,中文配音,中文配音,中国語音声,Китайская озвучка
 配音音量,Voice Volume,配音音量,配音音量,ボイス音量,Громкость озвучки
 环境音量,Environment Volume,环境音量,環境音量,環境音量,Громкость окружения
+叙事氛围设置：,Story Tone:,叙事氛围：,敘事氛圍：,物語の雰囲気：,Атмосфера:
+标准模式（推荐）,Standard Mode,标准（推荐）,標準（推薦）,標準（推奨）,Стандартный
+惊悚过滤模式,Horror Filter,惊悚过滤,驚悚過濾,ホラー軽減,Фильтр ужасов
+场景转场过渡时长：,Transition Time:,转场时长：,轉場時長：,切替時間：,Время перехода:
+{duration} 秒,{duration} s,{duration} 秒,{duration} 秒,{duration} 秒,{duration} с
 规则指引,Rules Guide,规则指引,規則指引,ルールガイド,Руководство по правилам
 成就：,Achievements:,成就：,成就：,実績：,Достижения:
 已完成,Completed,已完成,已完成,完了,Выполнено

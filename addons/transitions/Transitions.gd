@@ -65,6 +65,8 @@ func change_scene_to_instance(new_scene:Node, fade_type, fade_time_seconds:float
 		push_error("Can't change scene without a valid scene container!")
 		_free_unattached_scene(new_scene)
 		return
+	if fade_type != FadeType.Instant:
+		fade_time_seconds = _get_configured_fade_time(fade_time_seconds)
 	var previous_scene:Node = _get_current_scene() if (_current_scene == null) else _current_scene
 	if not is_instance_valid(previous_scene) or previous_scene.is_queued_for_deletion():
 		push_error("Can't change scene because the previous scene is no longer valid!")
@@ -81,6 +83,11 @@ func change_scene_to_instance(new_scene:Node, fade_type, fade_time_seconds:float
 	_common_post_fade(data, new_scene)
 	_is_transitioning = false
 	emit_signal("post_transition")
+
+func _get_configured_fade_time(requested_seconds:float) -> float:
+	if GameManager._setting==null:
+		return maxf(requested_seconds,0.0)
+	return GameManager._setting.resolve_scene_transition_duration(requested_seconds)
 
 func _free_unattached_scene(scene: Node) -> void:
 	if is_instance_valid(scene) and scene.get_parent() == null and not scene.is_queued_for_deletion():

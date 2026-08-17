@@ -15,6 +15,9 @@ class_name SettingMenu
 
 @onready var option_button = $VBoxContainer/lanSysCon/OptionButton2
 @onready var lansound_option_button: OptionButton = $VBoxContainer/lanSysCon2/lansoundOptionButton
+@onready var narrative_atmosphere_option: OptionButton = $VBoxContainer/narrativeAtmosphereCon/OptionButton
+@onready var transition_duration_slider: HSlider = $VBoxContainer/transitionDurationCon/HSlider
+@onready var transition_duration_value: Label = $VBoxContainer/transitionDurationCon/Value
 @onready var open_save_button: Button = $"VBoxContainer/isAutoSave/是否自动存档/Button"
 @onready var open_save_txt: Label = $"VBoxContainer/isAutoSave/是否自动存档"
 
@@ -98,6 +101,13 @@ func _ready():
 		SoundManager.set_sound_ui_volume(GameManager._setting.people_volume)
 		fullscreen_check.button_pressed=GameManager._setting.fullscreen
 		AutoSavecheck.button_pressed=GameManager._setting.isAutoSave
+	_sync_narrative_atmosphere_option()
+	transition_duration_slider.value=clampf(
+		GameManager._setting.scene_transition_duration,
+		transition_duration_slider.min_value,
+		transition_duration_slider.max_value
+	)
+	_update_transition_duration_value(transition_duration_slider.value)
 	_sync_people_voice_option()
 	resolution_option.select(current_resolution_index)
 	# 延迟应用分辨率，避免在 _ready() 中立即改窗口大小导致 UI 异常
@@ -242,6 +252,26 @@ func _on_bgs_slider_value_changed(value: float):
 func _on_people_slider_value_changed(value: float):
 	SoundManager.set_sound_ui_volume(value)
 	GameManager._setting.people_volume=value	
+
+func _on_narrative_atmosphere_item_selected(index: int) -> void:
+	if index == 1:
+		GameManager._setting.narrative_atmosphere=SettingsResource.NARRATIVE_MODE_HORROR_FILTERED
+	else:
+		GameManager._setting.narrative_atmosphere=SettingsResource.NARRATIVE_MODE_STANDARD
+
+func _sync_narrative_atmosphere_option() -> void:
+	if GameManager._setting.narrative_atmosphere == SettingsResource.NARRATIVE_MODE_HORROR_FILTERED:
+		narrative_atmosphere_option.select(1)
+	else:
+		GameManager._setting.narrative_atmosphere=SettingsResource.NARRATIVE_MODE_STANDARD
+		narrative_atmosphere_option.select(0)
+
+func _on_transition_duration_value_changed(value: float) -> void:
+	GameManager._setting.scene_transition_duration=value
+	_update_transition_duration_value(value)
+
+func _update_transition_duration_value(value: float) -> void:
+	transition_duration_value.text=tr("{duration} 秒").format({"duration": "%.1f" % value})
 
 func _on_button_button_down():
 	#保存

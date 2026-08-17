@@ -50,9 +50,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -606.0
-offset_top = -370.0
+offset_top = -400.0
 offset_right = 604.0
-offset_bottom = 318.0
+offset_bottom = 400.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(630.615, 267.699)
@@ -78,10 +78,10 @@ text = "设置菜单"
 autowrap_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-offset_left = 681.0
-offset_top = 297.0
-offset_right = 1520.0
-offset_bottom = 776.0
+offset_left = 604.0
+offset_top = 275.0
+offset_right = 1443.0
+offset_bottom = 875.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
 
@@ -142,6 +142,66 @@ popup/item_1/text = "中文配音"
 popup/item_1/id = 1
 
 [node name="Control" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+
+[node name="narrativeAtmosphereCon" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="叙事氛围设置" type="Label" parent="VBoxContainer/narrativeAtmosphereCon"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_lalch")
+theme_override_font_sizes/font_size = 36
+text = "叙事氛围设置："
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/narrativeAtmosphereCon"]
+layout_mode = 2
+theme = ExtResource("4_wlupd")
+theme_override_font_sizes/font_size = 31
+selected = 0
+fit_to_longest_item = false
+item_count = 2
+popup/item_0/text = "标准模式（推荐）"
+popup/item_1/text = "惊悚过滤模式"
+popup/item_1/id = 1
+
+[node name="ControlNarrative" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+
+[node name="transitionDurationCon" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="场景转场过渡时长" type="Label" parent="VBoxContainer/transitionDurationCon"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_lalch")
+theme_override_font_sizes/font_size = 36
+text = "场景转场过渡时长："
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/transitionDurationCon"]
+custom_minimum_size = Vector2(300, 45)
+layout_mode = 2
+theme_override_icons/grabber = ExtResource("2_3w1gj")
+min_value = 0.5
+max_value = 2.0
+step = 0.1
+value = 2.0
+
+[node name="Value" type="Label" parent="VBoxContainer/transitionDurationCon"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_lalch")
+theme_override_font_sizes/font_size = 30
+text = "2.0 秒"
+vertical_alignment = 1
+
+[node name="ControlTransition" type="Control" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 2)
 layout_mode = 2
 
@@ -306,10 +366,10 @@ step = 0.1
 value = 1.0
 
 [node name="confire" type="HBoxContainer" parent="."]
-offset_left = 681.0
-offset_top = 743.0
-offset_right = 1520.0
-offset_bottom = 850.0
+offset_left = 673.0
+offset_top = 815.0
+offset_right = 1512.0
+offset_bottom = 922.0
 size_flags_vertical = 8
 
 [node name="Control5" type="Control" parent="confire"]
@@ -337,6 +397,8 @@ size_flags_horizontal = 3
 
 [connection signal="item_selected" from="VBoxContainer/lanSysCon/OptionButton2" to="." method="_on_option_button_item_selected"]
 [connection signal="item_selected" from="VBoxContainer/lanSysCon2/lansoundOptionButton" to="." method="_on_lansound_option_button_item_selected"]
+[connection signal="item_selected" from="VBoxContainer/narrativeAtmosphereCon/OptionButton" to="." method="_on_narrative_atmosphere_item_selected"]
+[connection signal="value_changed" from="VBoxContainer/transitionDurationCon/HSlider" to="." method="_on_transition_duration_value_changed"]
 [connection signal="item_selected" from="VBoxContainer/resolotionCon/OptionButton" to="." method="_on_resolution_selected"]
 [connection signal="toggled" from="VBoxContainer/fullsysCon/CheckBox" to="." method="_on_fullscreen_toggled"]
 [connection signal="button_down" from="VBoxContainer/isAutoSave/是否自动存档/Button" to="." method="_on_openSaveDir_down"]
