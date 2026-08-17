@@ -315,6 +315,7 @@ img = ExtResource("14_bvea7")
 itemstype = 25
 
 [node name="Control6" parent="GridContainer" instance=ExtResource("4_iwehk")]
+visible = false
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
 to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
@@ -322,6 +323,7 @@ img = ExtResource("18_5lxsj")
 itemstype = 29
 
 [node name="Control7" parent="GridContainer" instance=ExtResource("4_iwehk")]
+visible = false
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
 to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
@@ -329,6 +331,7 @@ img = ExtResource("19_a7j1h")
 itemstype = 30
 
 [node name="Control8" parent="GridContainer" instance=ExtResource("4_iwehk")]
+visible = false
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
 to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"

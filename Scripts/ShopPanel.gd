@@ -149,6 +149,12 @@ func initData():
 	selectGoods=null
 	refreshAlreadySoldWeapon()
 	initData2()
+	if GameManager.sav.have_event["开启比武训练"]==true:
+		youwuitem.show()
+	if GameManager.sav.caobaocardgame>=0:
+		daiyiitem.show()
+	if GameManager.sav.have_event["新剧情_基建开始"]==true:
+		jiangyiitem.show()
 func refreshPage(_price,_detail):
 	buy_button.disabled=false
 	price=_price.to_int()
@@ -277,6 +283,9 @@ func _on_buy_button_down():
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"小本生意，请谅解")
 		print("你买不起物品")
 	pass # Replace with function body.
+@onready var youwuitem: ShopItem = $GridContainer/Control6
+@onready var daiyiitem: ShopItem = $GridContainer/Control7
+@onready var jiangyiitem: ShopItem = $GridContainer/Control8
 
 #$GridContainer
 func refreshAlreadySoldWeapon():

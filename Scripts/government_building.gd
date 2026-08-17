@@ -896,7 +896,8 @@ func _judge_task():
 			policy_panel.hide()
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"收集资金任务完成")#显示对话
 			return
-		elif(GameManager.sav.have_event["三基建完成"]==true and GameManager.sav.have_event["曹操协天子以令诸侯"]==false):
+		elif(GameManager.sav.have_event["基建项目开启"]==true and GameManager.getConstructValue()>=3 and GameManager.sav.have_event["曹操协天子以令诸侯"]==false):
+			GameManager.sav.have_event["三基建完成"]=true
 			GameManager.sav.have_event["曹操协天子以令诸侯"]=true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"曹操的信_击败袁术才有委任状")#显示对话
 			GameManager.clearTask()
@@ -1686,7 +1687,7 @@ func returnMain():
 
 
 func succussAfter():
-	pass
+	_judge_task()
 	
 	
 func lvbuhave_seat():
