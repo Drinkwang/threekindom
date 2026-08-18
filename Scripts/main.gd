@@ -195,16 +195,22 @@ const _10__TIME_WHISTLE = preload("res://Asset/bgm/10- Time Whistle.mp3")
 
 const ROBOTIC_GROAN_3 = preload("res://Asset/sound/robotic_groan_3.wav")
 func final():
-	atman.show()
+	if _is_horror_filter_enabled():
+		monster.show()
+	
+	else:	
+		atman.show()
+	SoundManager.play_sound(ROBOTIC_GROAN_3)
 	$CanvasBook.hide()
 
 	$BackBufferCopy/blank.show()
 	$BackBufferCopy/mask2.hide()	
-	SoundManager.play_sound(ROBOTIC_GROAN_3)
+	
 	#播放恐怖音效
 	pass
 @onready var atman: Sprite2D = $atman
-
+func _is_horror_filter_enabled() -> bool:
+	return GameManager._setting!=null and GameManager._setting.is_horror_filter_enabled()
 func whyDao():
 	
 	atman.hide()
