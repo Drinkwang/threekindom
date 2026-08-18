@@ -35,9 +35,9 @@ do setTuLabel("教程：请点击陶谦的牌位")
 do getBook()
 do setTuLabel("")
  : 有什么东西被打开了[voice:ts_yousmbeidakaile]
- : 这是...书？[voice:ts_zheshishu]
+ : 这是...父亲的信？[voice:ts_zheshishu]
 do showBook()
- : 士族存活规则怪谈，内容看不清，这到底是什么？
+# : 士族存活规则怪谈，内容看不清，这到底是什么？
 => END
 
 ~ third
