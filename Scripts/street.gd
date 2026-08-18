@@ -525,10 +525,8 @@ func PlayMizhen():
 		battle_pane.enterBattleMi()
 		battle_pane.show()
 		AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_16")
-	if _is_horror_filter_enabled():
-		_finish_boss_animation(_func)
-		return
-	var lady = load("res://Asset/vedio/bloodLady.ogv")
+	var lady_video_path := "res://Asset/vedio/bloodLady2.ogv" if _is_horror_filter_enabled() else "res://Asset/vedio/bloodLady.ogv"
+	var lady = load(lady_video_path)
 	playBossAni(lady,_func)
 
 
@@ -546,23 +544,22 @@ func PlayTaoQian():
 		battle_pane.enterBattleTao()
 		battle_pane.show()
 		AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_18")
-	if _is_horror_filter_enabled():
-		_finish_boss_animation(_func)
-		return
-	var tao = load("res://Asset/vedio/bloodTao.ogv")
+	var tao_video_path := "res://Asset/vedio/bloodTao2.ogv" if _is_horror_filter_enabled() else "res://Asset/vedio/bloodTao.ogv"
+	var tao = load(tao_video_path)
 	playBossAni(tao,_func)
 
 
 
 func PlayGulong():
-	var tao = load("res://Asset/vedio/GULONGTEST.ogv")
+	var gulong_video_path := "res://Asset/vedio/GULONGTEST.ogv" if _is_horror_filter_enabled() else "res://Asset/vedio/GULONGTEST2.ogv"
+	var gulong_video = load(gulong_video_path)
 	var _func=func():
 		AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_17")
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"动画播完_镇魂龙")
 		refreshBattlePanePos()
 		battle_pane.enterBattleHuang()
 		battle_pane.show()
-	playBossAni(tao,_func)
+	playBossAni(gulong_video,_func)
 
 
 func _on_video_player_finished():
