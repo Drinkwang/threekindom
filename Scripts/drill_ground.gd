@@ -589,7 +589,7 @@ func _initData():
 			GameManager.selectBoardCharacter=boardType.boardCharacter.none 
 			GameManager._boardMode=boardType.boardMode.none 
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"常规失败")	
-		elif GameManager.sav.have_event["曹豹牌局无人"] ==false and GameManager.sav.caobaocardgame==4 and (GameManager.sav.mizhucardgame<5 or GameManager.sav.chendencardgame<=5):
+		elif GameManager.sav.have_event["曹豹牌局无人"] ==false and GameManager.sav.caobaocardgame==4 and (GameManager.sav.mizhucardgame<5 or GameManager.sav.chendencardgame<5):
 			caobao.hide()
 			GameManager.sav.have_event["曹豹牌局无人"] =true
 			DialogueManager.show_example_dialogue_balloon(dialogue_resource,"牌局无人")
