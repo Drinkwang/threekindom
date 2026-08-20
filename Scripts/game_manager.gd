@@ -2159,7 +2159,7 @@ func play_BoardBGM(speed=1):
 func play_FinalBoardBGM():
 	
 	SoundManager.stop_music()
-	var music_file = "res://Asset/music/.wav"
+	var music_file = "res://Asset/music/xiaopei5.mp3"
 	play_music(music_file)	
 
 func clearTutorial():
