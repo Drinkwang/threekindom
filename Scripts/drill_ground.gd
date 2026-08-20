@@ -228,7 +228,7 @@ func _drain_blood_story_queue() -> void:
 		return
 	_blood_story_queue_running=true
 	while not _blood_story_queue.is_empty():
-		while DialogueManager.haveDialoge():
+		while DialogueManager.has_active_dialogue():
 			await DialogueManager.dialogue_ended
 			await get_tree().process_frame
 			if not is_inside_tree():

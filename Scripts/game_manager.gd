@@ -892,13 +892,13 @@ func improveFinalPhaseFromFactionClaim() -> bool:
 func _showFinalPhaseImproveNotice() -> void:
 	# A mutation can open a new dialogue before its parent dialogue emits dialogue_ended.
 	# Wait until every overlapping balloon has closed so this notice cannot interrupt either one.
-	while DialogueManager.haveDialoge():
+	while DialogueManager.has_active_dialogue():
 		await DialogueManager.dialogue_ended
 		await get_tree().process_frame
 	DialogueManager.show_example_dialogue_balloon(sys, "最终章局势改善")
 
 func _showFinalPhaseClaimDeniedNotice() -> void:
-	while DialogueManager.haveDialoge():
+	while DialogueManager.has_active_dialogue():
 		await DialogueManager.dialogue_ended
 		await get_tree().process_frame
 	DialogueManager.show_example_dialogue_balloon(sys, "最终章局势改善不行")

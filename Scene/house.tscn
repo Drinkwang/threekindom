@@ -584,7 +584,7 @@ dialogue_start = ""
 
 [node name="泰山军官" parent="." instance=ExtResource("7_7mriv")]
 visible = false
-position = Vector2(723, 681)
+position = Vector2(723, 654)
 showName = "泰山军官"
 showEX = true
 txt2d = ExtResource("25_xyni8")

@@ -1549,7 +1549,7 @@ func settle_allocation_after_current_dialogue():
 func _wait_for_dialogue_chain():
 	# 新气泡在调用后的下一帧才完成显示，先让出一帧，避免误判为没有对话。
 	await get_tree().process_frame
-	while DialogueManager.haveDialoge():
+	while DialogueManager.has_active_dialogue():
 		await DialogueManager.dialogue_ended
 		await get_tree().process_frame
 

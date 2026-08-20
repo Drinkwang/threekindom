@@ -78,7 +78,29 @@ var _node_properties: Array = []
 var dialogBegin=false
 
 func haveDialoge()->bool:
+	# Input guards only lock while the dialogue surface is visible. A mutation may
+	# keep a balloon alive while hiding it, but an invisible dialogue must not disable
+	# the player's UI, scene clicks, or Esc.
 	return get_dialogue_balloon() != null
+
+func has_active_dialogue() -> bool:
+	# Used by internal dialogue queues that must wait through hidden mutations.
+	var current_scene = get_tree().current_scene
+	if not is_instance_valid(current_scene):
+		return false
+	for child in current_scene.get_children():
+		if not child.get_script() or not child.get_script().resource_path.ends_with("example_balloon.gd"):
+			continue
+		if child.is_queued_for_deletion():
+			continue
+		if child.has_method("is_dialogue_active"):
+			if child.is_dialogue_active():
+				return true
+			continue
+		var dialogue_surface := child.get_node_or_null("Balloon") as CanvasItem
+		if is_instance_valid(dialogue_surface) and dialogue_surface.is_visible_in_tree():
+			return true
+	return false
 
 func _is_dialogue_cancelled(extra_game_states: Array) -> bool:
 	for state in extra_game_states:
@@ -369,10 +391,13 @@ func get_dialogue_balloon():
 			continue
 		if child.is_queued_for_deletion():
 			continue
-		# Mutations temporarily hide active balloons. Completed balloons can remain in the
-		# scene until the end of the frame and must not keep scene characters locked.
+		# A hidden active balloon belongs to an asynchronous mutation. It is intentionally
+		# excluded here so player input is not locked by an invisible dialogue.
 		if child.has_method("is_dialogue_active"):
-			if child.is_dialogue_active():
+			if not child.is_dialogue_active():
+				continue
+			var active_surface := child.get_node_or_null("Balloon") as CanvasItem
+			if is_instance_valid(active_surface) and active_surface.is_visible_in_tree():
 				return child
 			continue
 		var dialogue_surface := child.get_node_or_null("Balloon") as CanvasItem
