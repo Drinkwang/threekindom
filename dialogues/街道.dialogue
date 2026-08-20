@@ -656,7 +656,7 @@ do merchant.show()
 黑商: 刺史大人…我卖的诡异牌只择强者，乱象非我意，只因人心贪婪。买些道具助你？或…来盘仕诡牌?[voice:shangren_laipanshiguipai]
 
 
-- 好，摆牌吧，让我来破你的诡秘乱局！  
+- 好，摆牌吧，让我来破你的诡秘乱局！[costHp=20]
 	do finalBoardGame() 
 - 先看看你的货物！
 	do cancelBlankMerchant()
@@ -670,7 +670,7 @@ do merchant.show()
 do openEyesToBlankBackground("商人诅咒")
 do merchant.show()
 黑商: 刺史大人…我卖的诡异牌只择强者，乱象非我意，只因人心贪婪。买些道具助你？或…来盘仕诡牌?[voice:shangren_laipanshiguipai]
-- 好，摆牌吧，让我来破你的诡秘乱局！  
+- 好，摆牌吧，让我来破你的诡秘乱局！[costHp=20] 
 	do finalBoardGame() 
 - 先看看你的货物！
 	do cancelBlankMerchant()

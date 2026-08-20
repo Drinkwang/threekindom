@@ -453,6 +453,10 @@ func showPanelPage():
 		shop_panel.initData()
 
 func finalBoardGame():
+	if await GameManager.isTried(20):
+		cancelBlankMerchant()
+		return
+	GameManager.sav.hp-=20
 	GameManager._boardMode=boardType.boardMode.high
 	GameManager.selectBoardCharacter=boardType.boardCharacter.caobao
 	SceneManager.changeScene(SceneManager.roomNode.BoardGame,2)
