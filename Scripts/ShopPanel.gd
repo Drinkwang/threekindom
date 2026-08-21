@@ -341,7 +341,7 @@ func confireSold():
 		GameManager.sav.Merit_points+=1
 		GameManager.resideValue3=6-GameManager.sav.merMaxLaw
 	else:
-		GameManager.resideValue4=true
+		GameManager.resideValue4=false
 	GameManager.sav.coin=GameManager.sav.coin+int(GameManager.SoldCoin)
 	GameManager.sav.isSoldItem = true
 	for item_type in useItems:

@@ -632,8 +632,21 @@ func intBattleTask():
 	var nums={}
 	var battleCoeff=1.0
 	var isLvbuFinalBattle:bool=sav.have_event.get("吕布之怒",false)
+	var specialBattleIndexBase:int=-1
+	# 臧霸、袁术军沿用吕布终局的任务生成方式：
+	# 40 * 50 = 2000，60 * 50 = 3000，之后随任务继续递增。
+	if sav.have_event.get("臧霸首战",false) and not sav.have_event.get("completebattleTaiShan",false):
+		isLvbuFinalBattle=true
+		specialBattleIndexBase=40
+	elif sav.have_event.get("战斗袁术开始",false) and not sav.have_event.get("袁术首次击败",false):
+		isLvbuFinalBattle=true
+		specialBattleIndexBase=60
 	if GameManager.sav.endPath==GameManager.endPath.xuzhou:
 		isLvbuFinalBattle=true
+		specialBattleIndexBase=-1
+	elif GameManager.sav.endPath==GameManager.endPath.xiaopei and isLvbuFinalBattle:
+		# 终局吕布逻辑优先于仍未清理的袁术剧情标记。
+		specialBattleIndexBase=-1
 	if isLvbuFinalBattle and sav.lvbuFinalBattleStartTask<0:
 		sav.lvbuFinalBattleStartTask=sav.currenceTask
 	match GameManager.sav.gameDifficulty:
@@ -646,7 +659,9 @@ func intBattleTask():
 	for battleTarget in range(3):
 		sav.battleTasks[battleTarget]={}
 		if isLvbuFinalBattle:
-			if GameManager.sav.endPath==GameManager.endPath.xiaopei:
+			if specialBattleIndexBase>0:
+				sav.battleTasks[battleTarget].index=specialBattleIndexBase+(sav.currenceTask-sav.lvbuFinalBattleStartTask)+battleTarget
+			elif GameManager.sav.endPath==GameManager.endPath.xiaopei:
 				sav.battleTasks[battleTarget].index=200+(sav.currenceTask-sav.lvbuFinalBattleStartTask)+battleTarget
 			else:
 				#if sav.currenceTask+battleTarget+1<100+(sav.currenceTask-sav.lvbuFinalBattleStartTask)+battleTarget:

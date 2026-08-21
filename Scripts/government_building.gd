@@ -530,6 +530,8 @@ func victoryPartyEnd():
 	
 func oldvictoryPartyEnd():
 	GameManager.sav.have_event["战斗袁术开始"]=true
+	GameManager.sav.lvbuFinalBattleStartTask=GameManager.sav.currenceTask
+	GameManager.intBattleTask()
 	GameManager.sav.targetValue=12
 	GameManager.sav.currenceValue=0
 	GameManager.sav.targetResType=GameManager.ResType.battle

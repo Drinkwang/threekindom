@@ -333,6 +333,9 @@ func _judWin():
 
 func zhangbaQianlai():
 	#此处改臧霸头像
+	# 复用吕布终局的任务生成逻辑，从下一轮军事行动开始提高任务 index。
+	GameManager.sav.lvbuFinalBattleStartTask=GameManager.sav.currenceTask
+	GameManager.intBattleTask()
 	pass
 	
 	
@@ -1281,6 +1284,9 @@ func wuminBan():
 	
 func yuanshuComplete():
 	GameManager.sav.TargetDestination="府邸"
+	# 复用吕布终局的任务生成逻辑，从下一轮军事行动开始提高任务 index。
+	GameManager.sav.lvbuFinalBattleStartTask=GameManager.sav.currenceTask
+	GameManager.intBattleTask()
 	GameManager.removeSecretBattleContext()
 	pass
 	
