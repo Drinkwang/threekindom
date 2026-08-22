@@ -948,7 +948,7 @@ func _bossMode():
 		print("陶谦任务取消发动")
 		return
 	#挑战完boss后触发，可能没触发
-	bossBattleAfter=true
+	bossBattleAfter=false
 	var to_inventory_xue= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.血姬傀儡)
 	var to_inventory_tao= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.陶谦血袖)
 	var xue_quantity=InventoryManager.has_item_quantity(to_inventory_xue)
@@ -962,7 +962,13 @@ func _bossMode():
 	elif battle_pane._mode==SceneManager.bossMode.tao:
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"战斗胜利_陶谦结算")
 	elif battle_pane._mode==SceneManager.bossMode.zhenren:
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"战斗胜利_真人结算")
+		_show_zhenren_settlement.call_deferred()
+
+func _show_zhenren_settlement():
+	await get_tree().process_frame
+	if not is_inside_tree() or GameManager.currenceScene!=self:
+		return
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"战斗胜利_真人结算")
 
 func _process(delta):
 	pass
@@ -1089,9 +1095,8 @@ func enterBattleZhenren():
 
 
 func zhenrenFinish():
-	blank.hide()
+	clearBlankBackground()
 	bossBattleAfter=false
-	resetResPanel()
 	GameManager.endtempRestoreGeneral()
 
 
