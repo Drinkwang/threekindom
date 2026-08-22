@@ -3,20 +3,15 @@ extends Node2D
 @onready var liubei:CharacterBody2D  = $liubei
 @onready var caocao:CharacterBody2D = $caocao
 const dialogue_resource = preload("res://dialogues/青梅煮酒.dialogue")
-const PlayerMovementLimiter = preload("res://Scene/SwordMan/player_movement_limiter.gd")
 var caocaoPos:Vector2
 var liubeiPos:Vector2
 var _battle_has_started := false
 
-const PLAYER_ARENA_MARGIN := 55.0
-const MAX_MOUSE_INPUT_BUFFER_SECONDS := 0.25
-const DEFAULT_PLAYER_MOVE_SPEED := 450.0
-const DUAL_SWORD_PLAYER_MOVE_SPEED := 550.0
-@export_range(100.0, 600.0, 10.0) var player_move_speed := DEFAULT_PLAYER_MOVE_SPEED
-var player_target_position := Vector2.ZERO
-var active_touch_index: int = -1
-var pending_mouse_motion := Vector2.ZERO
-var using_touch_input := false
+# 鼠标移动限制相关变量
+var mouse_speed_limit: float = 0.0 # 0表示无限制
+var last_mouse_position: Vector2
+var is_mouse_limited: bool = false
+var original_mouse_mode: bool = false
 
 @onready var ai_controller: AIController = $AIController
 
@@ -47,10 +42,12 @@ func _ready():
 	liubei.hit_body.connect(_on_player_hit)
 	initBattleRect()
 	Transitions.post_transition.connect(startGame)
-	player_target_position = liubeiPos
+	set_mouse_speed_limit(5)
 	
 	SignalManager.changeLanguage.connect(changeLanguage)
 	changeLanguage()
+	# 初始化鼠标位置
+	#last_mouse_position = get_global_mouse_position()
 const _1_SIM = preload("res://Asset/Font/1_sim.ttf")	
 func changeLanguage():
 	var currencelanguage=TranslationServer.get_locale()
@@ -84,10 +81,8 @@ func initBattleRect():
 	#判断有无武器
 	if num>=1:
 		liubei.hp=3
-		player_move_speed=DUAL_SWORD_PLAYER_MOVE_SPEED
 	else:
 		liubei.hp=2
-		player_move_speed=DEFAULT_PLAYER_MOVE_SPEED
 	if GameManager.trainLevel==3:
 		caocao.hp=3
 	elif GameManager.trainLevel==2:
@@ -163,7 +158,10 @@ func begin_training_battle() -> void:
 	liubei.sword.show()
 	GameManager.swordManGameState=GameManager.gameState.start
 	_hide_mouse_for_battle()
-	_reset_player_control()
+	
+	# 将鼠标位置设置为刘备当前位置
+	Input.warp_mouse(liubeiPos)
+	last_mouse_position = liubeiPos
 	print("鼠标位置已设置为刘备位置: ", liubei.global_position)
 
 
@@ -192,7 +190,6 @@ func _on_player_hit(_who: swordMan):
 
 	await 0.5
 	GameManager.swordManGameState=GameManager.gameState.pause
-	_show_mouse_after_battle()
 	# 玩家被击中时，AI进入撤退状态
 	_who.hp-=1
 	if _who._name==_who.type_name.CaoCao:
@@ -251,77 +248,79 @@ func _on_player_hit(_who: swordMan):
 	_who.animation_player.seek(0, true)
 	#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"SaveFile")
 func _input(event):
+	
+	
+
+
+
 	# 暂停状态直接返回
 	if GameManager.swordManGameState == GameManager.gameState.pause:
-		return
-
-	if event is InputEventMouseButton and event.pressed:
-		if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
-			_hide_mouse_for_battle()
-		return
-	elif event is InputEventMouseMotion and active_touch_index < 0:
-		using_touch_input = false
-		pending_mouse_motion = PlayerMovementLimiter.buffer_input_delta(
-			pending_mouse_motion,
-			event.relative,
-			player_move_speed,
-			get_process_delta_time(),
-			1.0 / Engine.physics_ticks_per_second,
-			MAX_MOUSE_INPUT_BUFFER_SECONDS
-		)
-	elif event is InputEventScreenTouch:
-		if event.pressed:
-			if active_touch_index < 0:
-				using_touch_input = true
-				active_touch_index = event.index
-				_set_player_target(_screen_to_world(event.position))
-		elif event.index == active_touch_index:
-			active_touch_index = -1
-	elif event is InputEventScreenDrag and event.index == active_touch_index:
-		_set_player_target(_screen_to_world(event.position))
-
-
-func _physics_process(delta: float) -> void:
-	if GameManager.swordManGameState != GameManager.gameState.start or liubei.isdead:
-		pending_mouse_motion = Vector2.ZERO
-		return
-	var arena := get_viewport().get_visible_rect()
-	if using_touch_input:
-		liubei.global_position = PlayerMovementLimiter.calculate_position(
-			liubei.global_position,
-			player_target_position,
-			player_move_speed,
-			delta,
-			arena,
-			PLAYER_ARENA_MARGIN
-		)
-	else:
-		var consumed_mouse_motion := PlayerMovementLimiter.limit_delta(
-			pending_mouse_motion,
-			player_move_speed,
-			delta
-		)
-		liubei.global_position = PlayerMovementLimiter.calculate_delta_position(
-			liubei.global_position,
-			consumed_mouse_motion,
-			player_move_speed,
-			delta,
-			arena,
-			PLAYER_ARENA_MARGIN
-		)
-		pending_mouse_motion -= consumed_mouse_motion
+		return 
+	
+	# 仅处理鼠标移动事件
+	if event is InputEventMouseMotion:
+		if is_mouse_limited and mouse_speed_limit > 0:
+			# 关键修改1：使用视口坐标（游戏内）而非系统全局坐标
+			var current_mouse_pos = get_global_mouse_position()
+			var mouse_movement = current_mouse_pos - last_mouse_position
+			var movement_distance = mouse_movement.length()
+			
+			if movement_distance > mouse_speed_limit:
+				var limited_movement = mouse_movement.normalized() * mouse_speed_limit
+				var limited_position = last_mouse_position + limited_movement
+				
+				# 更新角色/节点位置
+				liubei.position = limited_position
+				last_mouse_position = limited_position
+				
+				# 关键：转换为系统屏幕坐标（Godot 4专属写法）
+				# get_viewport().get_window().position 获取游戏窗口在系统屏幕的位置
+				var screen_pos =Vector2(get_viewport().get_window().position) + limited_position
+				# 限制坐标在屏幕范围内，防止超出边界导致跳左上角
+				var screen_size = DisplayServer.screen_get_size()
+				screen_pos.x = clamp(screen_pos.x, 0, screen_size.x - 1)
+				screen_pos.y = clamp(screen_pos.y, 0, screen_size.y - 1)
+				
+				# Godot 4中强制设置鼠标位置的函数是warp_mouse_position
+				get_viewport().warp_mouse(limited_position)
+			else:
+				liubei.position = current_mouse_pos
+				last_mouse_position = current_mouse_pos
+		else:
+			# 无限制模式也统一使用视口坐标
+			var current_mouse_pos = get_global_mouse_position()
+			liubei.position = current_mouse_pos
+			last_mouse_position = current_mouse_pos
 
 
-func _set_player_target(target: Vector2) -> void:
-	player_target_position = PlayerMovementLimiter.clamp_to_arena(
-		target,
-		get_viewport().get_visible_rect(),
-		PLAYER_ARENA_MARGIN
-	)
-
-
-func _screen_to_world(screen_position: Vector2) -> Vector2:
-	return get_canvas_transform().affine_inverse() * screen_position
+	
+	
+	
+	
+	#if GameManager.swordManGameState==GameManager.gameState.pause:
+		#return 
+	#if event is InputEventMouseMotion:
+		#if is_mouse_limited and mouse_speed_limit > 0:
+			## 限制鼠标移动速度
+			#var current_mouse_pos = event.global_position
+			#var mouse_movement = current_mouse_pos - last_mouse_position
+			#var movement_distance = mouse_movement.length()
+			#
+			## 如果移动距离超过限制，则限制移动
+			#if movement_distance > mouse_speed_limit:
+				#var limited_movement = mouse_movement.normalized() * mouse_speed_limit
+				#var limited_position = last_mouse_position + limited_movement
+				#liubei.position = limited_position
+				#last_mouse_position = limited_position
+				## 将鼠标位置强制设置到限制位置
+				#Input.warp_mouse(limited_position)
+			#else:
+				#liubei.position = current_mouse_pos
+				#last_mouse_position = current_mouse_pos
+		#else:
+			## 无限制模式
+			#liubei.position = event.global_position
+			#last_mouse_position = event.global_position
 
 func finalEndReturn():
 	GameManager.sav.have_event["最终比武结束"]=true
@@ -330,10 +329,12 @@ func finalEndReturn():
 
 func winGame():
 	_show_mouse_after_battle()
+	restore_mouse_movement() # 恢复鼠标移动
 	GameManager.trainResult=SceneManager.trainResult.win
 	SceneManager.changeScene(SceneManager.roomNode.DRILL_GROUND,2)
 func loseGame():
 	_show_mouse_after_battle()
+	restore_mouse_movement() # 恢复鼠标移动
 	GameManager.trainResult=SceneManager.trainResult.fail
 	SceneManager.changeScene(SceneManager.roomNode.DRILL_GROUND,2)
 	
@@ -341,20 +342,38 @@ func loseGame():
 func retryGame():
 	lose_rect.hide()
 	initBattleRect()
+	set_mouse_speed_limit(5)
 	dialogEnd()
 func enterNewTurn():
+	var target_position = Vector2(100, 100)  # 移动到 (100, 100) 像素
+	Input.warp_mouse(liubeiPos)
 	caocao.position=caocaoPos
-	_reset_player_control()
+	liubei.position=liubeiPos
+	print("鼠标已移动到：", target_position)
 
-func _reset_player_control() -> void:
-	liubei.position = liubeiPos
-	player_target_position = liubei.global_position
-	active_touch_index = -1
-	pending_mouse_motion = Vector2.ZERO
-	using_touch_input = false
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+# 设置鼠标移动速度限制
+func set_mouse_speed_limit(limit: float):
+	mouse_speed_limit = limit
+	is_mouse_limited = limit > 0
+	print("鼠标移动速度限制设置为: ", limit)
+
+# 移除鼠标移动速度限制
+func remove_mouse_speed_limit():
+	mouse_speed_limit = 0.0
+	is_mouse_limited = false
+	print("鼠标移动速度限制已移除")
+
+# 游戏结束时恢复鼠标移动
+func restore_mouse_movement():
+	remove_mouse_speed_limit()
+	print("游戏结束，鼠标移动已恢复正常")
 
 func _hide_mouse_for_battle():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 func _show_mouse_after_battle():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
