@@ -555,16 +555,16 @@ func PlayTaoQian():
 
 
 func PlayGulong():
-	var tao = load("res://Asset/vedio/GULONGTEST.ogv")
+	var gulong_video_path := "res://Asset/vedio/GULONGTEST.ogv" if _is_horror_filter_enabled() else "res://Asset/vedio/GULONGTEST2.ogv"
+	var gulong_video = load(gulong_video_path)
 	var _func=func():
 		AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_17")
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"动画播完_镇魂龙")
 		refreshBattlePanePos()
 		battle_pane.enterBattleHuang()
 		battle_pane.show()
-	playBossAni(tao,_func)
 
-
+	playBossAni(gulong_video,_func)
 func _on_video_player_finished():
 	bit_player.hide()
 

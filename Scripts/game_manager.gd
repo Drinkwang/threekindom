@@ -2194,11 +2194,11 @@ func get_board_victory_reward_score(mode:int=-1)->int:
 	var resolved_mode:int=_boardRewardMode if mode==-1 else mode
 	match resolved_mode:
 		boardType.boardMode.middle:
-			return 150
+			return 20
 		boardType.boardMode.high:
-			return 200
+			return 30
 		_:
-			return 100
+			return 10
 
 func selectBoardMode(mode:boardType.boardMode):
 	if await GameManager.isTried(20):
