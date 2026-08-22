@@ -94,6 +94,7 @@ func _on_timer_timeout():
 @onready var areasword = $Sword9/sword
 @export var _spark:PackedScene
 var isdead:bool=false
+var controlled_velocity := Vector2.ZERO
 func _on_GetHit_area_entered(area):
 
 	if area!=areabody and area!=areasword and isdead==false:

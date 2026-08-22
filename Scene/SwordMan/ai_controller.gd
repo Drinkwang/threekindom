@@ -77,6 +77,21 @@ func _ready():
 		last_player_position = player_swordman.global_position
 		last_player_sword_position = _get_sword_tip(player_swordman)
 		configure_master(master_difficulty)
+		reset_player_tracking()
+
+
+func reset_player_tracking() -> void:
+	player_velocity = Vector2.ZERO
+	player_sword_velocity = Vector2.ZERO
+	current_state = AIState.IDLE
+	player_position_history.clear()
+	history_timestamps.clear()
+	master_state = MasterState.PROBE
+	master_state_time = 0.0
+	master_reaction_timer = 0.0
+	if player_swordman:
+		last_player_position = player_swordman.global_position
+		last_player_sword_position = _get_sword_tip(player_swordman)
 		
 func _physics_process(delta):
 	if not ai_swordman or not player_swordman or ai_swordman.isdead or player_swordman.isdead or GameManager.swordManGameState==GameManager.gameState.pause:
@@ -126,7 +141,7 @@ func _master_ai_behavior(delta: float) -> void:
 	var player_pos = player_swordman.areabody.global_position
 	var ai_pos = ai_swordman.areabody.global_position
 	var sword_pos = _get_sword_tip(player_swordman)
-	var new_player_velocity = (player_pos - last_player_position) / maxf(delta, 0.001)
+	var new_player_velocity = player_swordman.controlled_velocity
 	var new_sword_velocity = (sword_pos - last_player_sword_position) / maxf(delta, 0.001)
 	player_velocity = player_velocity.lerp(new_player_velocity, 0.35)
 	player_sword_velocity = player_sword_velocity.lerp(new_sword_velocity, 0.45)
@@ -350,10 +365,9 @@ func _basic_ai_behavior(delta):
 func _advanced_ai_behavior(delta):
 	var current_player_pos = player_swordman.global_position
 	
-	# 计算玩家速度和加速度
-	var new_velocity = (current_player_pos - last_player_position) / delta
-	var acceleration = (new_velocity - player_velocity) / delta
-	player_velocity = new_velocity
+	var previous_velocity := player_velocity
+	player_velocity = player_swordman.controlled_velocity
+	var acceleration = (player_velocity - previous_velocity) / maxf(delta, 0.001)
 	last_player_position = current_player_pos
 	
 	# 分析玩家行为模式
