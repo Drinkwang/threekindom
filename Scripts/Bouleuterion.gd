@@ -639,7 +639,14 @@ func boardVictory():
 			"population": 0
 		}
 		_reward.showTitileReward("你战胜了陈登",items)	
+	elif GameManager._boardReward==boardType.boardRewardResult.BreakFree:
+		pass
+	else:
+		var _reward:rewardPanel=PanelManager.new_reward()
+		var items=GameManager.ScoreToItem(GameManager.get_board_victory_reward_score())
+		_reward.showTitileReward("你战胜了陈登",items)
 	GameManager._boardReward=boardType.boardRewardResult.none
+	GameManager._boardRewardMode=boardType.boardMode.none
 
 func openBoardGame():
 	GameManager.selectBoardCharacter=boardType.boardCharacter.chenden

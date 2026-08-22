@@ -35,6 +35,7 @@ func loseGame(_str:String=""):
 	if is_match_finished():
 		return
 	GameManager._boardGameWin=false
+	GameManager._boardRewardMode=boardType.boardMode.none
 	#SoundManager.play_sound(youlosesound)
 	if _str.length()>0:
 		lose_label.text=_str	
@@ -72,6 +73,7 @@ func winGame(_str:String="", complete_board_achievement:bool=true):
 	else:
 		_mark_board_achievement_skipped()
 	GameManager._boardGameWin=true
+	GameManager._boardRewardMode=GameManager._boardMode
 	if _str.length()>0:
 		win_label.text=_str
 	blink_rect.show()
@@ -837,6 +839,7 @@ func startGame(cardnum,issole,enemyExtraCard):
 	# Reset them here so a previous victory/reward cannot leak into this match.
 	GameManager._boardGameWin=false
 	GameManager._boardReward=boardType.boardRewardResult.none
+	GameManager._boardRewardMode=boardType.boardMode.none
 	score=0
 	hp=3
 	enemy_hp=3
@@ -3000,6 +3003,7 @@ func _on_exitGameBtn_down() -> void:
 func surrenderGame() -> void:
 	GameManager._boardGameWin=false
 	GameManager._boardReward=boardType.boardRewardResult.none
+	GameManager._boardRewardMode=boardType.boardMode.none
 
 
 func _on_win_button_down() -> void:

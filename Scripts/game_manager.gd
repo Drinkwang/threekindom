@@ -2186,7 +2186,20 @@ var selectBoardCharacter:boardType.boardCharacter=boardType.boardCharacter.none
 var _boardMode:boardType.boardMode=boardType.boardMode.none
 #初始
 var _boardReward:boardType.boardRewardResult=boardType.boardRewardResult.none
+# 返回原场景时会提前清空 _boardMode，奖励结算需单独保留本局模式。
+var _boardRewardMode:boardType.boardMode=boardType.boardMode.none
 var _boardGameWin:bool=false
+
+func get_board_victory_reward_score(mode:int=-1)->int:
+	var resolved_mode:int=_boardRewardMode if mode==-1 else mode
+	match resolved_mode:
+		boardType.boardMode.middle:
+			return 150
+		boardType.boardMode.high:
+			return 200
+		_:
+			return 100
+
 func selectBoardMode(mode:boardType.boardMode):
 	if await GameManager.isTried(20):
 		return
