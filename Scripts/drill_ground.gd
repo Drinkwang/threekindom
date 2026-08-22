@@ -438,7 +438,21 @@ func post_transition():
 	SoundManager.stop_all_ambient_sounds()
 	SoundManager.play_ambient_sound(bgm)
 	print("fadedone")
-		#移出ready
+	if GameManager.bossmode==scenemanager.bossMode.huang and GameManager.sav.have_event["曹豹支线3"]==false:
+		GameManager.sav.hp=0
+		GameManager.bossmode=scenemanager.bossMode.none
+		caobaoshow()
+
+		if GameManager.bossmoderesult==true:
+			GameManager.sav.have_event["预获得龙胆枪"]=true
+			print("可以拿到龙胆枪")
+			#赢了，第二天获得龙胆影月枪
+		GameManager.sav.have_event["曹豹支线3"]=true #第二天可以获得新道具
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"曹豹结尾")
+		AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_13")
+
+		return
+	#移出ready
 	if GameManager.sav.have_event["discussLvbu"]==true and GameManager.sav.have_event["征询曹将军意见"]==false:
 		#可改成显示曹将军立绘
 		caobaoshow()
@@ -479,22 +493,6 @@ func post_transition():
 			caobao.showEX=true
 			caobao.changeAllClick("获得龙胆枪")
 	
-		
-	if GameManager.bossmode==scenemanager.bossMode.huang and GameManager.sav.have_event["曹豹支线3"]==false:
-		GameManager.sav.hp=0
-		GameManager.bossmode=scenemanager.bossMode.none
-		caobaoshow()
-		
-		if GameManager.bossmoderesult==true:
-			GameManager.sav.have_event["预获得龙胆枪"]=true
-			print("可以拿到龙胆枪")
-			#赢了，第二天获得龙胆影月枪
-		GameManager.sav.have_event["曹豹支线3"]=true #第二天可以获得新道具
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"曹豹结尾")
-		AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_13")
-		
-		return 
-		
 	if GameManager.sav.have_event["最终泰山"]==true and GameManager.sav.have_event["辕门射戟"]==false:# 吕布辕门射戟
 		GameManager.sav.have_event["辕门射戟"]=true
 		AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_30")
