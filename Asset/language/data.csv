@@ -1794,7 +1794,7 @@ _havegift,Number of Gift Boxes: {_num},拥有礼盒数量：{_num},擁有禮盒�
 叙事氛围设置：,Story Tone:,叙事氛围：,敘事氛圍：,物語の雰囲気：,Атмосфера:
 标准模式（推荐）,Standard Mode,标准（推荐）,標準（推薦）,標準（推奨）,Стандартный
 惊悚过滤模式,Horror Filter,惊悚过滤,驚悚過濾,ホラー軽減,Фильтр ужасов
-场景转场过渡时长：,Transition Time:,转场时长：,轉場時長：,切替時間：,Время перехода:
+场景转场过渡时长：,Scene Transition Duration:,场景切换时长：,場景切換時長：,シーン切り替え時間：,Длительность смены сцены:
 {duration} 秒,{duration} s,{duration} 秒,{duration} 秒,{duration} 秒,{duration} с
 规则指引,Rules Guide,规则指引,規則指引,ルールガイド,Руководство по правилам
 成就：,Achievements:,成就：,成就：,実績：,Достижения:

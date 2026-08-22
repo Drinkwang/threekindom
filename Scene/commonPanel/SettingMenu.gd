@@ -314,6 +314,8 @@ func refreshLanguage(lan):
 	#	$"VBoxContainer/sfxCon/音效音量".add_theme_font_override("font",preload("res://addons/inventory_editor/default/fonts/Not Jam UI Condensed 16.ttf"))
 
 		v_box_container.position.x=681-150
+	elif (lan=="en"):
+		v_box_container.position.x=681-150
 	else:
 	#	$"VBoxContainer/lanSysCon/语言系统".remove_theme_font_override("font")
 	#	$"VBoxContainer/resolotionCon/分辨率".remove_theme_font_override("font")
