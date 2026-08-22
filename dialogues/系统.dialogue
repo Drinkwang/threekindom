@@ -133,27 +133,27 @@ do shizuLawTest()
 #商人
 ~ 士族叛乱1
 主簿: 主公,叛乱的士族诬陷你的私德，民众对你的信任度下降了！[voice:zhubo_feiyiside]
-提示: 民心-{{determineValue1}}，需本土派好感度至60或镇压
+提示: 民心-{{determineValue1}}，需{{GameManager.sav.BENTUPAI.getTr()}}好感度至60或镇压
 do determineInternalUnrestHaozu()
 => END
 
 #豪族
 ~ 士族叛乱2
 主簿: 主公,叛乱的士族散播谣言，充当民力的民众纷纷逃亡！[voice:zhubo_sanboyaoyan]
-提示: 民力 -{{determineValue1}}，需本土派好感度至60或镇压
+提示: 民力-{{determineValue1}}，需{{GameManager.sav.BENTUPAI.getTr()}}好感度至60或镇压
 do determineInternalUnrestHaozu()
 => END
 
 
 ~ 豪族叛乱1
 主簿: 主公,叛乱的豪族组织商会和私人武装囤积居奇，物价暴涨，民心将失！[voice:zhubo_haozujuqi]
-提示: 民心-{{determineValue1}}，需豪族派好感度至60或镇压
+提示: 民心-{{determineValue1}}，需{{GameManager.sav.HAOZUPAI.getTr()}}好感度至60或镇压
 do determineInternalUnrestDanyang()
 => END
 
 ~ 豪族叛乱2
 主簿: 主公,不满的豪族导致府库的财政出现亏空，账面上已有得资金出现损失！[voice:zhubo_haozuzhangmian]
-提示: 资金-{{determineValue1}}，需豪族派好感度至60或镇压
+提示: 资金-{{determineValue1}}，需{{GameManager.sav.HAOZUPAI.getTr()}}好感度至60或镇压
 do determineInternalUnrestDanyang()
 => END
 
@@ -165,14 +165,14 @@ do determineInternalUnrestDanyang()
 
 主簿: 主公，叛乱的丹阳士兵劫掠府库，珍宝尽失！[voice:zhubo_danyang1]
 
-提示: {{determineDetail}}，需丹阳派好感度至60或镇压
+提示: {{determineDetail}}，需{{GameManager.sav.WAIDIPAI.getTr()}}好感度至60或镇压
 do determineInternalUnrestLvbu()
 => END
 
 ~ 丹阳叛乱2
 
 主簿: 主公，叛乱的丹阳士兵劫掠百姓，徐州民心将失！[voice:zhubo_jienuebaixin]
-提示: 民心下降{{determineValue1}}。需将丹阳派好感度提升至60或镇压叛乱。
+提示: 民心下降{{determineValue1}}。需将{{GameManager.sav.WAIDIPAI.getTr()}}好感度提升至60或镇压叛乱。
 do determineInternalUnrestLvbu()
 => END
 
