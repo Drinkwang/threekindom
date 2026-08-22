@@ -630,7 +630,7 @@ func settleGame(end,issuccess,general):
 	_rewardPanel.soilderCost=cost
 	if GameManager.sav.targetResType==GameManager.ResType.stayFight and GameManager.currenceScene.battle_pane._mode==SceneManager.bossMode.none:
 			GameManager.sav.currenceValue=GameManager.sav.currenceValue+1
-			GameManager.sav.targetTxt="血战坚持旬数："+str(GameManager.get_bloodmode_day())+"/11"
+			GameManager.sav.targetTxt=tr("血战坚持旬数：")+str(GameManager.get_bloodmode_day())+"/11"
 			
 			#if GameManager.sav.currenceValue==22:
 			#	DialogueManager.show_example_dialogue_balloon(yanwuchang,"破解克苏鲁")	#这个会被拦截，如果触发了这个就不能触发失去民心，或者把这个丢到battle里
