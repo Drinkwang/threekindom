@@ -261,7 +261,7 @@ tracks/6/keys = {
 
 [sub_resource type="Animation" id="Animation_f3yso"]
 resource_name = "credit"
-length = 115.0
+length = 115.1
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true

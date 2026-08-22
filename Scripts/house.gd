@@ -893,6 +893,8 @@ func extraTask():
 func switchGatepost():
 	SceneManager.changeScene(SceneManager.roomNode.DRILL_GROUND,2)
 
+
+var finalEnd=false
 func _JudgeTask():
 	var hasSide=true
 	var value=0
@@ -936,6 +938,7 @@ func _JudgeTask():
 			elif value>=GameManager.sav.targetValue and GameManager.sav.endPath==GameManager.endPath.xiaopei:
 				#屏蔽三个地方
 				hasSide=false
+				finalEnd=true
 				DialogueManager.show_example_dialogue_balloon(dialogue_resource,"终局")
 				
 				canvas_layer.hide()
@@ -1168,6 +1171,11 @@ func allocationSettle():
 	if allcontext!="" and allcontext!="\n":
 		DialogueManager.show_exaple_top_dialogue_balloon(dialogue_resource,"派系扣除好感")
 func allocationMuliao():
+	if finalEnd==true:
+		zhubu.hide()
+		return
+	
+	
 	if zhubu.visible==false:
 		if GameManager.sav.allocationDay==2 and GameManager.canDistributeAllowance() and GameManager.sav.have_event["休憩第一次提示"]==true:
 			zhubu.show()
