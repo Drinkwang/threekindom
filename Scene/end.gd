@@ -68,6 +68,8 @@ func post_transition():
 	
 func initBattleRect():
 
+	SoundManager.stop_music()
+	SoundManager.play_music(finalmusic)
 	if GameManager.trainGeneral=="张飞":
 		changeColor(Color.DARK_RED,tr(GameManager.trainGeneral))
 		caocao.changeWaitTime(0.0065)
@@ -79,8 +81,8 @@ func initBattleRect():
 		caocao.changeWaitTime(0.0055)
 	else:
 		_configure_final_caocao_ai()
-		SoundManager.stop_music()
-		SoundManager.play_music(finalmusic)
+		#SoundManager.stop_music()
+		#SoundManager.play_music(finalmusic)
 		# Final Cao Cao uses the fastest sword rotation allowed by the scene.
 		caocao.changeWaitTime(0.0001)
 	var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.雌雄双股剑)	
