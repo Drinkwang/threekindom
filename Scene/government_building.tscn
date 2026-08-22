@@ -251,7 +251,7 @@ dialogue_start = ""
 
 [node name="zhangfei" parent="peoples" instance=ExtResource("6_ibudm")]
 visible = false
-position = Vector2(-9, 51)
+position = Vector2(10, 51)
 showName = "张飞"
 txt2d = ExtResource("41_gh0g6")
 boardType = 1
