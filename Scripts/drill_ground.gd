@@ -333,10 +333,19 @@ func _judWin():
 
 func zhangbaQianlai():
 	#此处改臧霸头像
-	# 复用吕布终局的任务生成逻辑，从下一轮军事行动开始提高任务 index。
+	_refresh_special_battle_tasks()
+	pass
+
+
+func _refresh_special_battle_tasks() -> void:
+	# 剧情会在奖励结算刷新之后切换敌军，因此重建任务后要主动同步当前面板。
 	GameManager.sav.lvbuFinalBattleStartTask=GameManager.sav.currenceTask
 	GameManager.intBattleTask()
-	pass
+	if is_instance_valid(battle_pane):
+		# 新阶段的基础战力必须落在当前待打槽位，而不是固定落在第一个槽位。
+		GameManager.alignBattleTasksToCurrentSlot(battle_pane.battle_circle.taskIndex)
+		battle_pane.refreshData()
+		battle_pane.refreshHead()
 	
 	
 func cangxiFinalSurrender():
@@ -1291,10 +1300,8 @@ func wuminBan():
 	
 func yuanshuComplete():
 	GameManager.sav.TargetDestination="府邸"
-	# 复用吕布终局的任务生成逻辑，从下一轮军事行动开始提高任务 index。
-	GameManager.sav.lvbuFinalBattleStartTask=GameManager.sav.currenceTask
-	GameManager.intBattleTask()
 	GameManager.removeSecretBattleContext()
+	_refresh_special_battle_tasks()
 	pass
 	
 func tempLockCaoBao():

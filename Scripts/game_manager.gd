@@ -706,6 +706,17 @@ func intBattleTask():
 		sav.battleTasks[battleTarget].sdType=sdType
 		#RspEnum.values()[sdType-1]
 
+func alignBattleTasksToCurrentSlot(currentSlot:int) -> void:
+	var taskCount:int=sav.battleTasks.size()
+	if currentSlot<=0 or currentSlot>=taskCount:
+		return
+	var generatedTasks:Array=[]
+	for battleTarget in range(taskCount):
+		generatedTasks.append(sav.battleTasks[battleTarget].duplicate(true))
+	for offset in range(taskCount-currentSlot):
+		var targetSlot:int=currentSlot+offset
+		sav.battleTasks[targetSlot]=generatedTasks[offset]
+
 const MI_BOSS_RISK_WIN_RATE_BONUS_PERCENT := 28
 const MI_BOSS_COUNTER_WIN_RATE_BONUS_PERCENT := 22
 const BATTLE_TASK_REQUIREMENT_BASE_MULTIPLIER := 1.04
