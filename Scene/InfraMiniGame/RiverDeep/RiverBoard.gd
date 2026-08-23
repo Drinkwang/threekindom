@@ -41,6 +41,8 @@ func _ready() -> void:
 
 @export var isset=false
 func initData():
+	selected = Vector2i(-1, -1)
+	is_animating = false
 	randomize()
 	var img := Image.create(1, 1, false, Image.FORMAT_RGBA8)
 	img.fill(Color(1, 1, 1, 1))
@@ -111,6 +113,8 @@ void fragment(){
 	set_process_input(true)
 	isset=true
 func clearData():
+	selected = Vector2i(-1, -1)
+	is_animating = false
 	for child in get_children():
 		child.queue_free()
 	isset=false
@@ -214,8 +218,11 @@ func _on_cell_clicked(cell: Vector2i) -> void:
 				selected = Vector2i(-1, -1)
 				_rebuild_visuals()
 			else:
-				selected = selected
+				# Treat the second click as the start of the next attempt. Keeping the
+				# old cell selected makes an adjacent new starting cell look rejected.
+				selected = cell
 				SoundManager.play_sound(sounds.deniedsound)
+				_rebuild_visuals()
 		else:
 			selected = cell
 			_rebuild_visuals()
@@ -237,17 +244,20 @@ func _try_swap(a: Vector2i, b: Vector2i) -> bool:
 func _would_swap_create_match(a: Vector2i, b: Vector2i) -> bool:
 	var va: int = int(grid[a.x][a.y])
 	var vb: int = int(grid[b.x][b.y])
-	grid[a.x][a.y] = vb
-	grid[b.x][b.y] = va
-	var matches := _find_matches()
-	var success := false
-	for v in matches:
-		if v == a or v == b:
-			success = true
-			break
-	grid[a.x][a.y] = va
-	grid[b.x][b.y] = vb
+	if va < 0 or vb < 0 or va == vb:
+		return false
+
+	_swap_cells(a, b)
+	var success := _cell_has_match(a) or _cell_has_match(b)
+	_swap_cells(a, b)
 	return success
+
+func _cell_has_match(cell: Vector2i) -> bool:
+	var val: int = int(grid[cell.x][cell.y])
+	if val < 0:
+		return false
+	return _has_match_in_row_after_set(cell.x, cell.y, val) \
+		or _has_match_in_col_after_set(cell.x, cell.y, val)
 
 func _has_match_in_row_after_set(r: int, c: int, val: int) -> bool:
 	var count: int = 1
