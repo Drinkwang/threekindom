@@ -9,7 +9,8 @@ var caocaoPos:Vector2
 var liubeiPos:Vector2
 var _battle_has_started := false
 
-const PLAYER_REFERENCE_SPEED := 300.0
+const PLAYER_DEFAULT_SPEED := 300.0
+const PLAYER_DUAL_SWORD_SPEED := 350.0
 const PLAYER_ARENA_MARGIN := 55.0
 const REFERENCE_INPUT_INTERVAL_SECONDS := 1.0 / 60.0
 const MIN_INPUT_INTERVAL_SECONDS := 1.0 / 1000.0
@@ -21,6 +22,8 @@ var last_mouse_sample_usec := 0
 var input_velocity_expires_usec := 0
 var ignore_warp_motion := false
 var last_warp_screen_position := Vector2.ZERO
+var player_reference_speed := PLAYER_DEFAULT_SPEED
+var player_has_double_sword := false
 
 @onready var ai_controller: AIController = $AIController
 
@@ -43,10 +46,13 @@ const finalmusic = preload("res://Asset/music/曹刘针锋相对.mp3")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	GameManager.swordManGameState = GameManager.gameState.pause
+	caocao.isdead = true
+	liubei.isdead = true
 	caocaoPos=caocao.position
 	liubeiPos=liubei.position
-	caocao.sword.hide()
-	liubei.sword.hide()
+	caocao.set_weapon_enabled(false)
+	liubei.set_weapon_enabled(false)
 	caocao.hit_body.connect(_on_player_hit)
 	liubei.hit_body.connect(_on_player_hit)
 	initBattleRect()
@@ -86,11 +92,15 @@ func initBattleRect():
 		# Final Cao Cao uses the fastest sword rotation allowed by the scene.
 		caocao.changeWaitTime(0.0001)
 	var num=InventoryManager.inventory_item_quantity(GameManager.inventoryPackege,InventoryManagerItem.雌雄双股剑)	
+	player_has_double_sword = num >= 1
+	liubei.set_double_sword_equipped(player_has_double_sword)
 	#判断有无武器
-	if num>=1:
+	if player_has_double_sword:
 		liubei.hp=3
+		player_reference_speed=PLAYER_DUAL_SWORD_SPEED
 	else:
 		liubei.hp=2
+		player_reference_speed=PLAYER_DEFAULT_SPEED
 	if GameManager.trainLevel==3:
 		caocao.hp=3
 	elif GameManager.trainLevel==2:
@@ -162,13 +172,12 @@ func begin_training_battle() -> void:
 	caocao.isdead=false
 	liubei.isdead=false
 	
-	caocao.sword.show()
-	liubei.sword.show()
+	caocao.set_weapon_enabled(true)
+	liubei.set_weapon_enabled(true)
 	GameManager.swordManGameState=GameManager.gameState.start
 	_hide_mouse_for_battle()
 	_reset_player_control()
 	print("鼠标位置已设置为刘备位置: ", liubei.global_position)
-
 
 func confirm_training_skip() -> void:
 	if not GameManager.sav.training_skip_enabled or not GameManager.has_minigame_skip_item(InventoryManagerItem.淆武幽帖):
@@ -279,7 +288,7 @@ func _update_mouse_velocity(event: InputEventMouseMotion) -> void:
 	player_input_velocity = PlayerInputNormalizer.calculate_velocity(
 		sample_position - last_mouse_sample_position,
 		sample_interval,
-		PLAYER_REFERENCE_SPEED
+		player_reference_speed
 	)
 	last_mouse_sample_usec = now_usec
 	input_velocity_expires_usec = now_usec + INPUT_VELOCITY_HOLD_USEC
@@ -297,7 +306,7 @@ func _physics_process(delta: float) -> void:
 	liubei.global_position = PlayerMovementLimiter.calculate_delta_position(
 		old_position,
 		player_input_velocity * delta,
-		PLAYER_REFERENCE_SPEED,
+		player_reference_speed,
 		delta,
 		get_viewport().get_visible_rect(),
 		PLAYER_ARENA_MARGIN

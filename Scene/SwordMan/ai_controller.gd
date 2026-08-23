@@ -322,9 +322,10 @@ func _move_master_toward(target: Vector2, tactical_speed: float, delta: float) -
 	ai_swordman.global_position = new_position
 
 func _get_sword_tip(who: swordMan) -> Vector2:
-	if who.collision_shape_2d:
-		return who.collision_shape_2d.global_position
-	return who.sword.global_position
+	var active_collision := who.get_active_sword_collision()
+	if active_collision:
+		return active_collision.global_position
+	return who.get_active_sword().global_position
 
 # 基础AI行为（原有逻辑）
 func _basic_ai_behavior(delta):
@@ -381,10 +382,10 @@ func _advanced_ai_behavior(delta):
 	attack_pattern_timer += delta
 	
 	# 获取关键碰撞体位置
-	var player_sword_pos = player_swordman.sword.global_position
+	var player_sword_pos = player_swordman.get_active_sword().global_position
 	var player_body_pos = player_swordman.areabody.global_position
 	var ai_body_pos = ai_swordman.areabody.global_position
-	var ai_sword_pos = ai_swordman.sword.global_position
+	var ai_sword_pos = ai_swordman.get_active_sword().global_position
 	
 	# 检测剑的威胁并躲避
 	var sword_distance = ai_body_pos.distance_to(player_sword_pos)
