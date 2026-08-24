@@ -10,7 +10,7 @@ var liubeiPos:Vector2
 var _battle_has_started := false
 
 const PLAYER_DEFAULT_SPEED := 300.0
-const PLAYER_DUAL_SWORD_SPEED := 350.0
+const PLAYER_DUAL_SWORD_SPEED := 420
 const PLAYER_ARENA_MARGIN := 55.0
 const REFERENCE_INPUT_INTERVAL_SECONDS := 1.0 / 60.0
 const MIN_INPUT_INTERVAL_SECONDS := 1.0 / 1000.0
