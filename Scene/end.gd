@@ -10,18 +10,14 @@ var liubeiPos:Vector2
 var _battle_has_started := false
 
 const PLAYER_DEFAULT_SPEED := 360.0
-const PLAYER_DUAL_SWORD_SPEED := 420
+const PLAYER_DUAL_SWORD_SPEED := 460
 const PLAYER_ARENA_MARGIN := 55.0
 const REFERENCE_INPUT_INTERVAL_SECONDS := 1.0 / 60.0
 const MIN_INPUT_INTERVAL_SECONDS := 1.0 / 1000.0
 const INPUT_VELOCITY_HOLD_USEC := 50000
-const WARP_EVENT_TOLERANCE := 1.0
 var player_input_velocity := Vector2.ZERO
-var last_mouse_sample_position := Vector2.ZERO
 var last_mouse_sample_usec := 0
 var input_velocity_expires_usec := 0
-var ignore_warp_motion := false
-var last_warp_screen_position := Vector2.ZERO
 var player_reference_speed := PLAYER_DEFAULT_SPEED
 var player_has_double_sword := false
 
@@ -265,7 +261,7 @@ func _input(event):
 	if GameManager.swordManGameState == GameManager.gameState.pause:
 		return
 	if event is InputEventMouseButton and event.pressed:
-		if Input.mouse_mode != Input.MOUSE_MODE_CONFINED_HIDDEN:
+		if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 			_hide_mouse_for_battle()
 			_reset_mouse_sampling()
 		return
@@ -275,24 +271,17 @@ func _input(event):
 
 func _update_mouse_velocity(event: InputEventMouseMotion) -> void:
 	var now_usec := Time.get_ticks_usec()
-	if ignore_warp_motion and event.position.distance_to(last_warp_screen_position) <= WARP_EVENT_TOLERANCE:
-		ignore_warp_motion = false
-		return
-	ignore_warp_motion = false
-
-	var sample_position := _screen_to_world(event.position)
 	var sample_interval := REFERENCE_INPUT_INTERVAL_SECONDS
 	if last_mouse_sample_usec > 0:
 		var elapsed_seconds := float(now_usec - last_mouse_sample_usec) / 1000000.0
 		sample_interval = maxf(elapsed_seconds, MIN_INPUT_INTERVAL_SECONDS)
 	player_input_velocity = PlayerInputNormalizer.calculate_velocity(
-		sample_position - last_mouse_sample_position,
+		event.screen_relative,
 		sample_interval,
 		player_reference_speed
 	)
 	last_mouse_sample_usec = now_usec
 	input_velocity_expires_usec = now_usec + INPUT_VELOCITY_HOLD_USEC
-	_warp_mouse_to_player()
 
 
 func _physics_process(delta: float) -> void:
@@ -315,9 +304,6 @@ func _physics_process(delta: float) -> void:
 		(liubei.global_position - old_position) / maxf(delta, 0.001)
 	)
 
-
-func _screen_to_world(screen_position: Vector2) -> Vector2:
-	return get_canvas_transform().affine_inverse() * screen_position
 
 func finalEndReturn():
 	GameManager.sav.have_event["最终比武结束"]=true
@@ -354,17 +340,9 @@ func _reset_player_control() -> void:
 
 func _reset_mouse_sampling() -> void:
 	last_mouse_sample_usec = 0
-	_warp_mouse_to_player()
-
-
-func _warp_mouse_to_player() -> void:
-	last_mouse_sample_position = liubei.global_position
-	last_warp_screen_position = get_canvas_transform() * liubei.global_position
-	ignore_warp_motion = true
-	get_viewport().warp_mouse(last_warp_screen_position)
 
 func _hide_mouse_for_battle():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _show_mouse_after_battle():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
