@@ -1632,7 +1632,7 @@ do danyangSoilder.showEX=false
 ~ 丹阳基建
 #do danyangSoilder.showEX=false
 丹阳兵: 曹大人暂且外出不在此处，城防基建一应事务，由末将代为接手，主公尽可差遣。[voice:danyang_daili]
-- 修建基建【加固城墙】[costHp=20]
+- 修建基建【加固城墙】[costHp=20] [if GameManager.sav.have_event["基建项目开启"]==true and GameManager.sav.endPath==GameManager.endPath.none]
 	#if GameManager.sav.hp>=20
 		#曹豹: 主公，加固城墙，确实是巩固徐州的好办法，我愿祝你一臂之力[voice:caobao_zhuzhugongjijian]
 	do GameManager.selectPuzzleLevel()

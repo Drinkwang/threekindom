@@ -1591,7 +1591,12 @@ func loseGame():
 func loseTrain():
 	pass
 func returnMain():
-	DialogueManager.show_example_dialogue_balloon(dialogue_resource,"来把仕诡牌")	
+	
+	if GameManager.sav.have_event["boss战开始"]==false and GameManager.sav.caobaocardgame==4 and (GameManager.sav.mizhucardgame<5 or GameManager.sav.chendencardgame<=5):
+	
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"丹阳基建")	
+	else:
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"来把仕诡牌")	
 func succussAfter():
 
 	if GameManager.sav.have_event["刘备成长0"]==false:
