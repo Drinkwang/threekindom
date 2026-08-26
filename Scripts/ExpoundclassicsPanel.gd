@@ -14,6 +14,9 @@ func refreshCount():
 	else:
 		item_use.context.modulate = Color(1.0, 1.0, 1.0, 1.0)
 func _ready():
+	
+	if GameManager.sav.day<5:
+		texture_button.hide()
 #	var itemname= InventoryManagerItem.item_by_enum(InventoryManagerItem.诸子百家论集)
 	db=InventoryManager.get_item_db(InventoryManagerItem.诸子百家论集)
 	#self.tooltip_text=db.name
@@ -202,6 +205,7 @@ func _input(event):
 @onready var item_use = $itemUse
 
 func _on_button_button_down():
+	texture_button.hide()
 	yourscore.visible=true
 	button.hide()
 	isboot=true
@@ -218,6 +222,9 @@ func _on_timer_timeout():
 	pass # Replace with function body.
 const STREET = preload("res://Asset/bgm/street.wav")
 const MINISTREET = preload("res://Asset/bgm/ministreet.wav")
+
+
+
 func _on_exit_button_button_down():
 	self.hide()
 	$"../..".clearBlankBackground()

@@ -366,7 +366,6 @@ theme_override_font_sizes/font_size = 81
 text = "大儒辩论启动中..."
 
 [node name="TextureButton" type="TextureButton" parent="."]
-visible = false
 layout_mode = 1
 offset_left = 1597.0
 offset_top = 85.0
