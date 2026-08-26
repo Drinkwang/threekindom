@@ -637,10 +637,10 @@ func intBattleTask():
 	# 40 * 50 = 2000，60 * 50 = 3000，之后随任务继续递增。
 	if sav.have_event.get("臧霸首战",false) and not sav.have_event.get("completebattleTaiShan",false):
 		isLvbuFinalBattle=true
-		specialBattleIndexBase=40
+		specialBattleIndexBase=50
 	elif sav.have_event.get("战斗袁术开始",false) and not sav.have_event.get("袁术首次击败",false):
 		isLvbuFinalBattle=true
-		specialBattleIndexBase=60
+		specialBattleIndexBase=65
 	if GameManager.sav.endPath==GameManager.endPath.xuzhou:
 		isLvbuFinalBattle=true
 		specialBattleIndexBase=-1
