@@ -1522,7 +1522,7 @@ do _initData()
 ~ 得知吕布和曹豹勾连
 刘备正亲临营中视察将士备战袁术的情况，查看着军备粮草与布防细节，忽有一密探快步闯入营中。
 密探: 主公，属下奉您之命监视下邳城内的动静，昨夜，吕布于议事厅设宴款待曹豹将军，似有要事相商，特此前来传回消息。[voice:mitan_zhugong]
-刘备: 温侯与豹将军深夜私宴，我倒要看看是何缘由。[voice:liubei_wenhousiyan]
+刘备: 温侯与曹豹将军深夜私宴，我倒要看看是何缘由。[voice:liubei_wenhousiyan]
 do SceneManager.changeScene(SceneManager.roomNode.BOULEUTERION,2)
 => END!
 
