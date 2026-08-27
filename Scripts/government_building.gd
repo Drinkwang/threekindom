@@ -1416,7 +1416,7 @@ func consent():
 			GameManager.sav.lvbuCD=7
 		var data=getFactionByIndex()
 		data.summonNum+=1
-		data.ChangeSupport(15)
+		data.ChangeSupport(10)
 		GameManager.sav.laws[lawIndex].append(lalongPolicy)
 		GameManager.initPaixiFloor(data)
 		#initPaixi
