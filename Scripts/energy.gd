@@ -40,6 +40,7 @@ func _process(delta):
 		showTargetLabel()
 	elif GameManager.sav.TargetDestination==null or GameManager.sav.TargetDestination.length()==0:
 		target_label.text=tr("当前任务：待发现")
+		_append_courting_laws()
 		_fit_target_label_font()
 @onready var flash_animation_player: AnimationPlayer = $TextureProgressBar/AnimationPlayer
 		
@@ -167,10 +168,14 @@ func showTargetLabel():
 					target_label.text=target_label.text+"\n"+tr("城内形势:")+StageStateMgr.get_state_name(groupName,currenv)
 				else:
 					target_label.text=target_label.text
-	# Display active legislative deadlines below the current objective.
-	for law in GameManager.sav.courtingLaws:
+	_append_courting_laws()
+	_fit_target_label_font()
+	#target_label.text=target_label.text+
 
-		var cd
+# Display active legislative deadlines below the current objective.
+func _append_courting_laws() -> void:
+	for law in GameManager.sav.courtingLaws:
+		var cd := -1
 		if law=="本土派"||law=="士族派":
 			cd=GameManager.sav.xuzhouCD
 		elif law=="豪族派":
@@ -182,8 +187,6 @@ func showTargetLabel():
 			target_label.text=target_label.text+"\n"
 			var context=tr("%s指定《%s》，7旬内通过，还剩%d旬！")%[tr(law),tr(GameManager.sav.courtingLaws[law]),cd]
 			target_label.text=target_label.text+context
-	_fit_target_label_font()
-	#target_label.text=target_label.text+
 @onready var animation_player = $TargetLabel/AnimationPlayer
 @onready var auto_label = $AutoLabel
 @onready var auto_player = $AutoLabel/AutoPlayer

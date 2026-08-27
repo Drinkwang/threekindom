@@ -556,9 +556,11 @@ func GetLawClaimRevenue():
 				var animation_player=$CanvasBook/ColorRect/AnimationPlayer
 				animation_player.speed_scale = 1.0
 				animation_player.play("colorUp")
-				
-				await get_tree().create_timer(4.25).timeout
-				animation_player.play_backwards("colorUp")
+				var finish := func(animation_name: StringName):
+					if animation_name == &"colorUp":
+						animation_player.play_backwards(&"colorUp")
+				animation_player.animation_finished.connect(finish, CONNECT_ONE_SHOT)
+				#await get_tree().create_timer(4.25).timeout
 
 	
 			
