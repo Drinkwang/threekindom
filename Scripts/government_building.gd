@@ -1263,7 +1263,7 @@ func financialConfort():
 	#减去资金
 	GameManager.sav.coin=GameManager.sav.coin-200
 	_c.ChangeAllPeople(20+rindex)
-	_c.ChangeSupport(5)
+	_c.ChangeSupport(15)
 	SignalManager.changeFraction.emit()
 	if _c._num_all>=100:
 		AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_12")
@@ -1416,9 +1416,12 @@ func consent():
 			GameManager.sav.lvbuCD=7
 		var data=getFactionByIndex()
 		data.summonNum+=1
+		data.ChangeSupport(15)
 		GameManager.sav.laws[lawIndex].append(lalongPolicy)
 		GameManager.initPaixiFloor(data)
 		#initPaixi
+
+
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"成功拉拢")#显示对话	
 		GameManager.sav.hp-=costHp_SummonOne
 	else:
