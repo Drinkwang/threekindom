@@ -1695,33 +1695,33 @@ func has_minigame_skip_item(item_id:String) -> bool:
 func get_training_skip_cost() -> int:
 	match trainLevel:
 		1:
-			return 100
-		2:
 			return 200
+		2:
+			return 400
 		3:
-			return 300
+			return 600
 	return 0
 
 
 func get_board_skip_cost() -> int:
 	match _boardMode:
 		boardType.boardMode.new:
-			return 200
+			return 300
 		boardType.boardMode.middle:
-			return 400
-		boardType.boardMode.high:
 			return 600
+		boardType.boardMode.high:
+			return 900
 	return 0
 
 
 func get_construction_skip_cost() -> int:
 	match selectPuzzleDiffcult:
 		SceneManager.puzzlediffucult.easy:
-			return 300
-		SceneManager.puzzlediffucult.middle:
 			return 400
+		SceneManager.puzzlediffucult.middle:
+			return 700
 		SceneManager.puzzlediffucult.high:
-			return 500
+			return 1200
 	return 0
 
 
