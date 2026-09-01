@@ -280,8 +280,12 @@ func refreshLawPoint():
 	else:
 		ConfireButton.disabled=selectLawPoint==null
 	point_label.text=tr("点数:%s")%GameManager.sav.Merit_points
+	var tabcontext
+	if GameManager.sav.have_event["法律健全"]==false:
 
-	var tabcontext=" {x}/{max}".format({"x":GameManager.LawNum(),"max":GameManager.maxLawNum})
+		tabcontext=" {x}/{max}".format({"x":GameManager.LawNum(),"max":GameManager.maxLawNum})
+	else:
+		tabcontext=" {x}/{max}".format({"x":GameManager.LawNum(),"max":"∞"})	
 	tab_bar.set_tab_title(1,tr("法律法规")+tabcontext)
 @onready var LawPanelBoard = $PanelContainer/orderPanel2
 

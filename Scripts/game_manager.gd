@@ -526,7 +526,7 @@ func _enterDay(value=true):
 			
 			
 		if GameManager.sav.have_event["AllFactionsSubdued"]==true:
-			if GameManager.sav.Merit_points<3:
+			if GameManager.sav.Merit_points<GameManager.GET_COST_LAW_POINT():
 				GameManager.sav.Merit_points+=1
 #@export var mizhuSideWait=-1
 #@export var chendenSideWait=-1
@@ -1122,8 +1122,8 @@ func loadLaw():
 		#RewardLaw="每日收入+50，徐州好感度+10，#一次性收入+200" #收入每日增加 徐州派好感度上升
 		
 		lawAction= func():
-			sav.coin_DayGet+=40
-			sav.labor_DayGet+=0
+			sav.coin_DayGet+=25
+			sav.labor_DayGet+=5
 			# basic money-only law; keep its political effect clear
 			#sav.coin=sav.coin+200
 			#徐州好感度+10
@@ -1133,8 +1133,8 @@ func loadLaw():
 	elif sav.curLawName=="兴办教育":#只有buff
 		
 		lawAction= func():
-			sav.labor_DayGet+=25
-			sav.coin_DayGet+=0
+			sav.labor_DayGet+=10
+			sav.coin_DayGet+=10
 			#获得诸子百家
 			sav.daruValue+=2000
 #			sav.WAIDIPAI.ChangeSupport(-20)
@@ -1142,16 +1142,16 @@ func loadLaw():
 	elif sav.curLawName=="显绩法":#只有buff
 		#RewardLaw="一次性民力+100，徐州好感度+10，群众支持度+5 " #民力一次性增加 徐州派好感上升
 		lawAction= func():
-			sav.coin_DayGet+=0
-			sav.labor_DayGet+=0
+			sav.coin_DayGet+=10
+			sav.labor_DayGet+=5
 			sav.enhancPolicy_coax=true
 
 			print("整治街容done")			
 	elif sav.curLawName=="重农抑商":
 		#RewardLaw="收益：每旬民力+50，大儒辩经上限+2000；冲突：豪族支持度-30"
 		lawAction= func():
-			sav.labor_DayGet+=60
-			sav.coin_DayGet+=0
+			sav.labor_DayGet+=30
+			sav.coin_DayGet+=15
 			#sav.HAOZUPAI.ChangeSupport(-30)
 			sav.daruValue+=2000			
 			print("重农抑商done")	
@@ -1161,14 +1161,14 @@ func loadLaw():
 			sav.daruValue+=2000
 			#sav.BENTUPAI.ChangeSupport(-15)
 			#sav.WAIDIPAI.ChangeSupport(-15)
-			sav.coin_DayGet+=0
-			sav.labor_DayGet+=35
+			sav.coin_DayGet+=20
+			sav.labor_DayGet+=25
 			sav.labor_force+=300
 			print("士族优先done")
 	elif sav.curLawName=="肃民明制":
 		#RewardLaw="收益：每日收入+100，群众支持度+10 冲突：豪族好感度-30 "
 		lawAction= func():
-			sav.coin_DayGet+=40
+			sav.coin_DayGet+=25
 			sav.labor_DayGet+=10
 
 			sav.minxinReduceCost=true
@@ -1179,8 +1179,8 @@ func loadLaw():
 		#RewardLaw="收益：每旬民力+100，每旬钱+80，一次性民力+150"
 		#冲突：丹阳派支持度-20，豪族支持度-20
 		lawAction= func():
-			sav.labor_DayGet+=70
-			sav.coin_DayGet+=80
+			sav.labor_DayGet+=45
+			sav.coin_DayGet+=45
 			sav.labor_force+=150
 			#sav.WAIDIPAI.ChangeSupport(-20)
 			#sav.HAOZUPAI.ChangeSupport(-20)			
@@ -1188,8 +1188,8 @@ func loadLaw():
 	elif sav.curLawName=="府兵制":
 		#RewardLaw="收益：每旬钱+180，获得道具“胜战锦囊”x3；冲突：丹阳派支持度-20，民心-10"
 		lawAction= func():
-			sav.coin_DayGet+=110
-			sav.labor_DayGet+=0
+			sav.coin_DayGet+=65
+			sav.labor_DayGet+=20
 			var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.胜战锦囊)
 			#sav.WAIDIPAI.ChangeSupport(-20)
 			changePeopleSupport(-10)
@@ -1199,16 +1199,16 @@ func loadLaw():
 		#RewardLaw="收益：每旬民力+70，召见派系次数+1；冲突：豪族支持度-20，丹阳派支持度-20"
 		lawAction= func():
 
-			sav.labor_DayGet+=30
-			sav.coin_DayGet+=30
+			sav.labor_DayGet+=20
+			sav.coin_DayGet+=25
 			sav.summonMaxNum=sav.summonMaxNum+1
 			print("品级制done")			
 #豪族		
 	elif sav.curLawName=="促进商贸":#只有buff 收入每日增加 获得一笔钱财
 		#RewardLaw="每日收入+10，徐州好感度+5，一次性收入+100，随机道具x1 "
 		lawAction= func():
-			sav.coin_DayGet+=35
-			sav.labor_DayGet+=10
+			sav.coin_DayGet+=45
+			sav.labor_DayGet+=5
 			sav.HAOZUPAI.ChangeSupport(5)
 			sav.coin+=300
 			var items:Array=[InventoryManagerItem.ItemEnum.珍品礼盒,InventoryManagerItem.ItemEnum.益气丸, InventoryManagerItem.ItemEnum.胜战锦囊, InventoryManagerItem.ItemEnum.诸子百家论集]
@@ -1224,8 +1224,8 @@ func loadLaw():
 			#sav.WAIDIPAI.ChangeSupport(-20)
 			sav.shopEnhance+=1
 			changePeopleSupport(5)
-			sav.labor_DayGet+=9
-			sav.coin_DayGet+=35
+			sav.labor_DayGet+=5
+			sav.coin_DayGet+=40
 			sav.labor_force+=80
 			print("诚信经营done")
 	elif sav.curLawName=="通商惠利":#只有buff 所有派系好感度随机上升
@@ -1233,8 +1233,8 @@ func loadLaw():
 		lawAction= func():
 			#sav.BENTUPAI.ChangeSupport(-20)
 			sav.coin_DayGet+=25
-			sav.labor_DayGet+=8
-			sav.coin+=400
+			sav.labor_DayGet+=0
+			sav.coin+=250
 			
 			#sav. todo
 			var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.珍品礼盒)
@@ -1244,16 +1244,16 @@ func loadLaw():
 	elif sav.curLawName=="禁止军商":
 		#RewardLaw="收益：每日收入+50，豪族好感度+15，一次性收入+600 冲突：丹阳派好感度-25  "
 		lawAction= func():
-			sav.coin_DayGet+=55
-			sav.labor_DayGet+=12
-			sav.coin+=600
+			sav.coin_DayGet+=70
+			sav.labor_DayGet+=5
+			sav.coin+=400
 			#sav.WAIDIPAI.ChangeSupport(-25)
 			print("禁止军商done")			
 	elif sav.curLawName=="宽商减赋法":
 		#RewardLaw="收益：每日收入+80，获得道具“益气丸”x2，一次性收入+800  冲突：徐州好感度-20"
 		lawAction= func():
-			sav.coin_DayGet+=70
-			sav.labor_DayGet+=15
+			sav.coin_DayGet+=95
+			sav.labor_DayGet+=5
 			sav.isGoodsDiscount=true
 			#sav.BENTUPAI.ChangeSupport(-20)
 		
@@ -1261,8 +1261,8 @@ func loadLaw():
 		#RewardLaw="收益：每日收入+100，群众支持度+10 冲突：丹阳派好感度-30 "
 		lawAction= func():
 			sav.shopEnhance+=1
-			sav.coin_DayGet+=65
-			sav.labor_DayGet+=14
+			sav.coin_DayGet+=55
+			sav.labor_DayGet+=0
 			changePeopleSupport(10)
 			#sav.WAIDIPAI.ChangeSupport(-30)	
 			sav.daruValue+=500	
@@ -1271,8 +1271,8 @@ func loadLaw():
 		#RewardLaw="收益：每日收入+120，豪族好感度+20，一次性收入+1000 冲突：徐州好感度-25，丹阳派好感度-15"
 		lawAction= func():
 			print("商业竞争法done")			
-			sav.coin_DayGet+=90
-			sav.labor_DayGet+=20
+			sav.coin_DayGet+=85
+			sav.labor_DayGet+=5
 			sav.shopSelfSell=true
 
 	elif sav.curLawName=="商品流通法":
@@ -1281,7 +1281,7 @@ func loadLaw():
 			sav.coin_DayGet+=110
 			sav.shopEnhance+=1
 			#sav.dailyGetRandomItem=true
-			sav.labor_DayGet+=20
+			sav.labor_DayGet+=15
 			#sav.BENTUPAI.ChangeSupport(-20)
 			changePeopleSupport(-10)
 			#每日随机道具											
@@ -1290,8 +1290,8 @@ func loadLaw():
 		lawAction= func():
 			var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.珍品礼盒)
 			var remainder = InventoryManager.add_item(inventoryPackege, itemid, 3, false)
-			sav.coin_DayGet+=115
-			sav.labor_DayGet+=26
+			sav.coin_DayGet+=125
+			sav.labor_DayGet+=15
 			#sav.coin=sav.coin+1500
 			#sav.BENTUPAI.ChangeSupport(-20)
 			#sav.WAIDIPAI.ChangeSupport(-20)
@@ -1300,7 +1300,7 @@ func loadLaw():
 		#RewardLaw="所有派系好感度+15，获得道具“胜战锦囊”x1 "
 		lawAction= func():
 			sav.labor_DayGet+=18
-			sav.coin_DayGet+=10
+			sav.coin_DayGet+=0
 			sav.BENTUPAI.ChangeSupport(15)
 			sav.WAIDIPAI.ChangeSupport(15)
 			sav.HAOZUPAI.ChangeSupport(15)
@@ -1312,8 +1312,8 @@ func loadLaw():
 		
 		#RewardLaw="随机获得3个道具，一次性民力+100"
 		lawAction= func():
-			sav.labor_DayGet+=20
-			sav.coin_DayGet+=10
+			sav.labor_DayGet+=22
+			sav.coin_DayGet+=0
 			var itemid= InventoryManagerItem.item_by_enum(InventoryManagerItem.ItemEnum.益气丸)
 			var remainder = InventoryManager.add_item(inventoryPackege, itemid, 1, false)
 			
@@ -1330,7 +1330,7 @@ func loadLaw():
 		#RewardLaw="一次性民力+100，丹阳派好感度+5，群众支持度+5，一次性收入+400  "
 		lawAction= func():
 			sav.labor_DayGet+=15
-			sav.coin_DayGet+=8
+			sav.coin_DayGet+=0
 			sav.labor_force+=300
 			#sav.BENTUPAI.ChangeSupport(-20)
 			sav.isInformation=true
@@ -1340,7 +1340,7 @@ func loadLaw():
 	elif sav.curLawName=="军事训诂":
 		#RewardLaw="收益：丹阳派好感度+20，获得道具“胜战锦囊”x2，一次性民力+150 冲突：徐州好感度-15  "
 		lawAction= func():
-			sav.coin_DayGet+=22
+			sav.coin_DayGet+=5
 			#print("军事训诂")	
 			#sav.BENTUPAI.ChangeSupport(-25)
 			sav.labor_DayGet+=8
@@ -1349,8 +1349,8 @@ func loadLaw():
 	elif sav.curLawName=="军事装备法":
 		#RewardLaw="收益：每日收入+50，获得道具“益气丸”x2 冲突：豪族好感度-20 "
 		lawAction= func():
-			sav.coin_DayGet+=18
-			sav.labor_DayGet+=24
+			sav.coin_DayGet+=5
+			sav.labor_DayGet+=22
 			sav.isWeaponLevelUP=true
 			
 			#print("军事装备法")	
@@ -1360,14 +1360,14 @@ func loadLaw():
 			print("军事训练法")	
 			#sav.BENTUPAI.ChangeSupport(-30)
 			sav.battleEnhance+=1
-			sav.labor_DayGet+=40
-			sav.coin_DayGet+=25
+			sav.labor_DayGet+=38
+			sav.coin_DayGet+=10
 			
 	elif sav.curLawName=="军事优拔法":
 		#RewardLaw="收益：丹阳派好感度+40，获得道具“胜战锦囊”x3，一次性收入+800 冲突：豪族好感度-30，群众支持度-10  "									
 		lawAction= func():
-			sav.labor_DayGet+=50
-			sav.coin_DayGet+=30
+			sav.labor_DayGet+=48
+			sav.coin_DayGet+=15
 
 			#sav.HAOZUPAI.ChangeSupport(-30)
 			changePeopleSupport(-10)
@@ -1380,8 +1380,8 @@ func loadLaw():
 		#RewardLaw="收益：每旬民力+60，比武训练产出300%，一次性民力+150；冲突：士族支持度-20，豪族支持度-20"
 		lawAction= func():
 
-			sav.labor_DayGet+=45
-			sav.coin_DayGet+=30
+			sav.labor_DayGet+=38
+			sav.coin_DayGet+=10
 			sav.labor_force+=150
 			sav.isTrainLevelUP=true
 			#sav.BENTUPAI.ChangeSupport(-20)
@@ -1390,8 +1390,8 @@ func loadLaw():
 	elif sav.curLawName=="国防策略法":
 		#RewardLaw="民心+50，每日民力+50，获得道具“胜战锦囊”x4，一次性收入+1200  ，徐州好感度-50，豪族好感度-40  "		
 		lawAction= func():
-			sav.labor_DayGet+=60
-			sav.coin_DayGet+=55
+			sav.labor_DayGet+=55
+			sav.coin_DayGet+=25
 			changePeopleSupport(20)
 			#sav.HAOZUPAI.ChangeSupport(-20)
 			#sav.BENTUPAI.ChangeSupport(-20)
