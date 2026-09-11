@@ -9,8 +9,8 @@ var caocaoPos:Vector2
 var liubeiPos:Vector2
 var _battle_has_started := false
 
-const PLAYER_DEFAULT_SPEED := 360.0
-const PLAYER_DUAL_SWORD_SPEED := 460
+const PLAYER_DEFAULT_SPEED := 400.0
+const PLAYER_DUAL_SWORD_SPEED := 500
 const PLAYER_ARENA_MARGIN := 55.0
 const REFERENCE_INPUT_INTERVAL_SECONDS := 1.0 / 60.0
 const MIN_INPUT_INTERVAL_SECONDS := 1.0 / 1000.0
