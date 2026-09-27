@@ -733,20 +733,30 @@ offset_right = 1176.0
 offset_bottom = 584.0
 color = Color(1, 1, 1, 0)
 
-[node name="Button" type="Button" parent="CanvasLayer/final"]
+[node name="buttonBox" type="HBoxContainer" parent="CanvasLayer/final"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -135.5
-offset_top = 308.5
-offset_right = 85.5
-offset_bottom = 439.5
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 860.0
+offset_right = -47.0
+offset_bottom = 991.0
 grow_horizontal = 2
-grow_vertical = 2
-text = "返回主菜单"
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/final/buttonBox"]
+custom_minimum_size = Vector2(300, 131)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "▸ 返回主菜单"
+
+[node name="steamButton" type="Button" parent="CanvasLayer/final/buttonBox"]
+custom_minimum_size = Vector2(300, 131)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "▸ 前往Steam页面"
 
 [node name="creditAnimation" type="AnimationPlayer" parent="."]
 libraries = {
@@ -828,4 +838,5 @@ boardType = 1
 dialogue_resource = ExtResource("29_vclfe")
 dialogue_start = ""
 
-[connection signal="button_down" from="CanvasLayer/final/Button" to="." method="_on_button_button_down"]
+[connection signal="button_down" from="CanvasLayer/final/buttonBox/Button" to="." method="_on_button_button_down"]
+[connection signal="button_down" from="CanvasLayer/final/buttonBox/steamButton" to="." method="_on_steam_button_down"]

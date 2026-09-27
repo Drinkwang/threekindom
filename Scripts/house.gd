@@ -256,10 +256,11 @@ func _initData():
 	#记得demo注销
 	if GameManager.sav.have_event["chaoMizhuEnd"]==true and GameManager.sav.isGetCoin==false and GameManager.sav.currenceValue>1 and GameManager.sav.have_event["battleTaiShan"]==false:
 
-		#demo结束
-		#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"playtest结束")
-		#return
-		pass
+		#demo结束：走「playtest结束」对话，对白末尾的 playtestEnd() 会把流程接进制作名单。
+		#canMuliao=false 让调用方本帧不再叠加月例提示等自动对话（正式版请把整块注销）。
+		canMuliao=false
+		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"playtest结束")
+		return canMuliao
 
 	if control.visible==true:
 		items_in_scene.showItems()
@@ -382,15 +383,18 @@ func _initData():
 const siku2 = preload("res://Asset/sound/似哭似笑2.mp3")
 
 func playtestEnd():
-
+	# 试玩版体验结束：显示标题板当过场，然后进入制作名单。
+	# 这时 endPath 仍是 none，所以 credit.gd 走常规名单 + 试玩版结算分支
+	# （「恭喜你完成试玩版全部内容！/ 本次试玩存档可直接继承至正式版。」
+	#   + ▸ 前往Steam页面 / ▸ 返回主菜单 两个按钮）。
 	title.show()
-	demo_end.show()
 	hp_panel.hide()
 	res_panel.hide()
 	support_panel.hide()
 	SoundManager.stop_all_ambient_sounds()
 	SoundManager.stop_music()
-		#return
+	GameManager.enterCredit()
+	#return
 func resumeBgm():
 	GameManager.play_BGM()
 

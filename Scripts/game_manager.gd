@@ -301,6 +301,8 @@ func openSetting():
 		DialogueManager.show_example_dialogue_balloon(sys,"ESC按钮")
 	elif currenceScene is credit:
 		currenceScene.pauseCredit()
+		
+		
 		DialogueManager.show_example_dialogue_balloon(sys,"退出名单")
 		
 		print("test")
@@ -2897,17 +2899,30 @@ func clearPrologue():
 	save_settings_file(GameManager._setting)
 
 
-func enterCredit(index):
+# true = 本次制作名单是从主菜单「鸣谢阅览」进入的。
+# 这条入口没有本局存档数据（enterCredit 会把 day 清零），所以跳过后直接回主菜单，
+# 不展示结算页；通关剧情 / 试玩版结束时进入则为 false，名单播完正常展示结算。
+var creditFromMenu=false
+
+# 进入制作名单
+# - 不传参数（剧情里的 do enterCredit()）或传 0：按当前 endPath 自动播放对应名单。
+#   endPath==none 即试玩版结束，照样播放常规名单，播完展示「试玩版通关」结算。
+# - 传 1 / 2：主菜单「鸣谢阅览」入口（常规线 / 霸道线，需已解锁）。
+func enterCredit(index: int = -1):
+	if index==-1 or index==0:
+		creditFromMenu=false
+		SceneManager.changeScene(SceneManager.roomNode.Credit,2)
+		return
+	creditFromMenu=true
 	GameManager.sav.day=0
 	if (GameManager._setting.is_clear_normal_line==false and index==1) or (GameManager._setting.is_clear_overlord_line==false and index==2):
 		DialogueManager.show_example_dialogue_balloon(sys,"credit未解锁")
 		return
 	if index==1:
 		GameManager.sav.endPath=GameManager.endPath.xiaopei
-		SceneManager.changeScene(SceneManager.roomNode.Credit,2)
 	elif index==2:
 		GameManager.sav.endPath=GameManager.endPath.xuzhou
-		SceneManager.changeScene(SceneManager.roomNode.Credit,2)
+	SceneManager.changeScene(SceneManager.roomNode.Credit,2)
 
 
 func set_enable_rest_remind(_p):

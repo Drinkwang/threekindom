@@ -730,7 +730,7 @@ do GameManager.enterCrazy()
 #    do GameManager.enterNormal()
 
 真人: …… 可惜了。此番时间线已然错乱，此世不可再续。[voice:zhenren_kexishijianxian]
-do playmusic()
+#do playmusic()
 刘备: …… 时间线？[voice:liubei_shijianxian]
 
 真人: 本次试炼，便到此为止。[voice:zhenren_bencishiyan]

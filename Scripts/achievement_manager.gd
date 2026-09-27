@@ -102,3 +102,20 @@ func set_general_level_10_achievement(general: Dictionary) -> void:
 func sync_general_level_10_achievements(generals: Dictionary) -> void:
 	for general in generals.values():
 		set_general_level_10_achievement(general)
+
+
+# ── Steam 商店页 ──────────────────────────────────────────────────────────
+const STORE_URL="https://store.steampowered.com/app/3155310/The_Three_Kingdoms_of_Shadows_Xuzhou/"
+# Steam 的 EActivateGameOverlayToWebPageMode：0 = Default（用 Steam 内置浏览器打开）
+const OVERLAY_TO_WEB_PAGE_MODE_DEFAULT=0
+
+# 打开本作 Steam 商店页。
+# 优先走 Steam 内置浏览器 overlay；下面这些情况退回系统默认浏览器：
+#   - 编辑器里运行（GodotSteam 已知限制，Vulkan 下编辑器不显示 overlay）
+#   - 没装 / 没登录 Steam，或玩家在 Steam 设置里关掉了 overlay
+func open_store_page(url:String=STORE_URL):
+	if not OS.has_feature("editor") and _can_use_steam() and bool(steam.call("isOverlayEnabled")):
+		steam.call("activateGameOverlayToWebPage",url,OVERLAY_TO_WEB_PAGE_MODE_DEFAULT)
+		return
+	OS.shell_open(url)
+

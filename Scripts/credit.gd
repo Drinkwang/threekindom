@@ -104,6 +104,7 @@ func eggFunc():
 @onready var detial: Label = $CanvasLayer/final/detial
 @onready var score_tooltip_area: ColorRect = $CanvasLayer/final/scoreTooltipArea
 @onready var rank_tooltip_area: ColorRect = $CanvasLayer/final/rankTooltipArea
+@onready var steam_button: Button = $CanvasLayer/final/buttonBox/steamButton
 
 
 
@@ -122,8 +123,11 @@ func eggFunc():
 const Badao_end = preload("res://Asset/end1.png")
 const normal_end = preload("res://Asset/end2.png")
 func settleGame():
-	if GameManager.sav.day<10:
+	# 主菜单「鸣谢阅览」进入的名单没有本局数据（day 已被 enterCredit 清零），
+	# 这里直接回主菜单；通关 / 试玩版结束进入时才有结算数据可展示。
+	if GameManager.creditFromMenu and GameManager.sav.day<10:
 		_on_button_button_down()
+		return
 	_refreshSettlementText()
 	finalBG.show()
 
@@ -155,9 +159,12 @@ func _refreshSettlementText():
 		detial.text=line1+"\n"+line2+"\n"+line3+"\n"+line4+"\n"+line5+"\n"+finaldec
 		TooltipManager.register_tooltip(score_tooltip_area, _get_score_tooltip_text())
 		TooltipManager.register_tooltip(rank_tooltip_area, _get_rank_tooltip_text())
+		steam_button.hide()
 	else:
 		what_final.hide()
-		detial.text=tr("恭喜你通关试玩版，请期待正式游戏")
+		# 试玩版结算：给玩家一个去 Steam 加愿望单/关注的入口
+		steam_button.show()
+		detial.text=tr("恭喜你完成试玩版全部内容！")+"\n"+tr("本次试玩存档可直接继承至正式版。")
 	
 	#修改finalBG
 
@@ -191,6 +198,10 @@ func _on_button_button_down() -> void:
 	GameManager.sav.endPath=GameManager.endPath.none
 	SoundManager.set_music_volume(GameManager._setting.music_volume)
 	GameManager.ReturnMenu()
+
+#「前往 Steam 页面」：Steam 内置浏览器优先，其余情况退回系统浏览器
+func _on_steam_button_down() -> void:
+	AchievementManager.open_store_page()
 
 var paused_animation_time 
 #= animation_player.current_animation_position
