@@ -1263,7 +1263,7 @@ func financialConfort():
 	#减去资金
 	GameManager.sav.coin=GameManager.sav.coin-200
 	_c.ChangeAllPeople(20+rindex)
-	_c.ChangeSupport(15)
+	_c.ChangeSupport(5)
 	SignalManager.changeFraction.emit()
 	if _c._num_all>=100:
 		AchievementManager.set_achievement("NEW_ACHIEVEMENT_1_12")
