@@ -261,7 +261,7 @@ func _initData():
 		#canMuliao=false
 		#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"playtest结束")
 		#return canMuliao
-		pass
+
 	if control.visible==true:
 		items_in_scene.showItems()
 	else:
