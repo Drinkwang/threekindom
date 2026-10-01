@@ -255,7 +255,7 @@ func _initData():
 
 	#记得demo注销
 	if GameManager.sav.have_event["chaoMizhuEnd"]==true and GameManager.sav.isGetCoin==false and GameManager.sav.currenceValue>1 and GameManager.sav.have_event["battleTaiShan"]==false:
-
+		pass
 		#demo结束：走「playtest结束」对话，对白末尾的 playtestEnd() 会把流程接进制作名单。
 		#canMuliao=false 让调用方本帧不再叠加月例提示等自动对话（正式版请把整块注销）。
 		#canMuliao=false
