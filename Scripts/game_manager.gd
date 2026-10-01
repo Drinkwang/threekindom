@@ -565,8 +565,8 @@ func _enterDay(value=true):
 
 
 const ALLOWANCE_PRESSURE_START_DAY := 8
-const ALLOWANCE_PRESSURE_PER_DAY := 0.003
-const ALLOWANCE_MAX_PRESSURE := 0.15
+const ALLOWANCE_PRESSURE_PER_DAY := 0.0075
+const ALLOWANCE_MAX_PRESSURE := 0.50
 const MONTHLY_ALLOWANCE_MAX_ITEM_COUNT := 9
 const MONTHLY_ALLOWANCE_ITEM_COST_MULTIPLIER := 0.58
 
@@ -2643,6 +2643,37 @@ func GET_COST_LAW_POINT():
 		return LAW_COST_POINT+2
 	else:
 		return LAW_COST_POINT
+
+# ===== 世道日艰：中后期难度曲线 =====
+# 前 8 旬维持现状（保留前期压力感）→ 第 8~45 旬线性加压 → 45 旬后封顶，不再增长。
+# 返回 0.00 ~ 0.45 的加成比例；简单档减半，困难档与标准档一致。
+#
+# ⚠️ 本曲线**只挂在战斗与月例需求上，不参与资源收入**。
+#    收入端打折会造成「属性面板显示 40、实际到账 34」的账目不符，被判定为 bug 感，已否决。
+#    要再加资源端压力，请用「需求端」的手法（月例额度 / 频率），不要动入账数值。
+const TIDE_PRE := 0.08
+const TIDE_RAMP_START_DAY := 8
+const TIDE_FULL_DAY := 45
+const TIDE_MAX := 0.45
+const TIDE_DIFF_SCALE := {1: 0.5, 2: 1.0, 3: 1.0}
+
+func get_tide() -> float:
+	var raw := clampf(
+		float(sav.day - TIDE_RAMP_START_DAY) / float(TIDE_FULL_DAY - TIDE_RAMP_START_DAY),
+		0.0, 1.0)
+	var scale: float = float(TIDE_DIFF_SCALE.get(sav.gameDifficulty, 1.0))
+	return (TIDE_PRE + (TIDE_MAX - TIDE_PRE) * raw) * scale
+
+# 民力对胜率的权重。旧版为固定 10.0，战斗因此变成「按需求量投兵即必胜」。
+# 这里让它在曲线满值时降到 3.0：前期手感不变，中后期想推满成功率必须投入成倍的兵。
+const TIDE_SOILDER_WEIGHT_EARLY := 10.0
+const TIDE_SOILDER_WEIGHT_LATE := 3.0
+
+func get_soilder_winrate_weight() -> float:
+	# TIDE_MAX 被调成 0（一键关闭曲线）时避免除零，直接回落到旧版权重。
+	if TIDE_MAX <= 0.0:
+		return TIDE_SOILDER_WEIGHT_EARLY
+	return lerpf(TIDE_SOILDER_WEIGHT_EARLY, TIDE_SOILDER_WEIGHT_LATE, get_tide() / TIDE_MAX)
 
 func LoadingDiffucultValue():
 	# Apply a pending difficulty selection before deriving any difficulty-dependent values.

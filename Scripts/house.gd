@@ -258,10 +258,10 @@ func _initData():
 
 		#demo结束：走「playtest结束」对话，对白末尾的 playtestEnd() 会把流程接进制作名单。
 		#canMuliao=false 让调用方本帧不再叠加月例提示等自动对话（正式版请把整块注销）。
-		canMuliao=false
-		DialogueManager.show_example_dialogue_balloon(dialogue_resource,"playtest结束")
-		return canMuliao
-
+		#canMuliao=false
+		#DialogueManager.show_example_dialogue_balloon(dialogue_resource,"playtest结束")
+		#return canMuliao
+		pass
 	if control.visible==true:
 		items_in_scene.showItems()
 	else:

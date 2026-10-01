@@ -277,7 +277,9 @@ func _juideCompeleteTask():
 		
 	#可加入每次完成任务，成功率提升10%
 	#当玩家的值大于basevalue时，每提升10% 会有5%的提升 上部封顶 但是最多玩家将会获得100%的和平区域 也就是最多为rewardMax
-	var levelup= int(floor(curCoin /(btdatas.index)))*2+int(floor(curSoilder/(btdatas.index)))*10+(generalLevel)
+	#世道日艰：中后期民力换胜率的效率下降，想推满成功率要投入成倍的兵
+	var _soilder_weight := GameManager.get_soilder_winrate_weight()
+	var levelup= int(floor(curCoin /(btdatas.index))*2)+int(floor(curSoilder/(btdatas.index))*_soilder_weight)+(generalLevel)
 	
 	var buff_lines:Array[String]=[]
 	if GameManager.sav.useItemInBattle==true:
