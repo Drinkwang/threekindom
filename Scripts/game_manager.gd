@@ -1950,13 +1950,8 @@ func initSetting():
 	_load_settings()
 
 func _load_settings():
-	
-
-
-	if _setting.fullscreen:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-	else:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	# macOS starts windowed; request native fullscreen after the main window is ready.
+	call_deferred("apply_window_settings")
 	
 	
 	var system_locale = _setting.language
@@ -1964,23 +1959,6 @@ func _load_settings():
 	if system_locale=="zh_HK" or system_locale=="zh_TW":
 		TranslationServer.set_locale("lzh")
 		#option_button.select(1)
-	
-	var res:=_setting.resolution.split("x")
-	if res.size()!=2 or not res[0].is_valid_int() or not res[1].is_valid_int():
-		_setting.resolution="1920x1080"
-		res=_setting.resolution.split("x")
-	var width:=maxi(int(res[0]),640)
-	var height:=maxi(int(res[1]),360)
-	
-	if not _setting.fullscreen:
-		DisplayServer.window_set_size(Vector2i(width, height))
-		var current_screen_idx = DisplayServer.window_get_current_screen()
-		var screen_size = DisplayServer.screen_get_size(current_screen_idx)
-		var screen_pos = DisplayServer.screen_get_position(current_screen_idx)
-		var window_pos = screen_pos + (screen_size - Vector2i(width, height)) / 2
-		window_pos.x = clamp(window_pos.x, screen_pos.x, screen_pos.x + screen_size.x - width)
-		window_pos.y = clamp(window_pos.y, screen_pos.y, screen_pos.y + screen_size.y - height)
-		DisplayServer.window_set_position(window_pos, current_screen_idx)
 	
 	SoundManager.set_sound_volume(GameManager._setting.sfx_volume)
 	#await get_tree().create_timer(0.1).timeout
@@ -1990,6 +1968,59 @@ func _load_settings():
 	#await get_tree().create_timer(0.1).timeout
 	SoundManager.set_ambient_sound_volume(GameManager._setting.bgs_volume)
 	SoundManager.set_sound_ui_volume(GameManager._setting.people_volume)
+
+
+var _window_settings_revision := 0
+var _applying_window_settings := false
+
+# All display changes go through one worker. Cocoa fullscreen transitions are
+# asynchronous; rapid toggles must not resize a window while it is transitioning.
+func apply_window_settings() -> void:
+	_window_settings_revision += 1
+	if _applying_window_settings or _setting == null or DisplayServer.get_name() == "headless":
+		return
+	_applying_window_settings = true
+	await get_tree().process_frame
+	await get_tree().process_frame
+	while true:
+		var revision := _window_settings_revision
+		var fullscreen := _setting.fullscreen
+		var mode := DisplayServer.WINDOW_MODE_FULLSCREEN if fullscreen else DisplayServer.WINDOW_MODE_WINDOWED
+		# Keep the native macOS window resizable, including during fullscreen animation.
+		DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_RESIZE_DISABLED, false)
+		if DisplayServer.window_get_mode() != mode:
+			DisplayServer.window_set_mode(mode)
+			if OS.get_name() == "macOS":
+				await get_tree().create_timer(1.0, true, false, true).timeout
+			else:
+				await get_tree().process_frame
+		if revision != _window_settings_revision:
+			continue
+		if not fullscreen:
+			if OS.get_name() != "macOS":
+				DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_RESIZE_DISABLED, true)
+				await get_tree().process_frame
+			if revision != _window_settings_revision:
+				continue
+			_apply_windowed_resolution()
+		break
+	_applying_window_settings = false
+
+
+func _apply_windowed_resolution() -> void:
+	var res := _setting.resolution.split("x")
+	if res.size() != 2 or not res[0].is_valid_int() or not res[1].is_valid_int():
+		_setting.resolution = "1920x1080"
+		res = _setting.resolution.split("x")
+	var requested_size := Vector2i(maxi(int(res[0]), 640), maxi(int(res[1]), 360))
+	var screen := DisplayServer.window_get_current_screen()
+	var usable_rect := DisplayServer.screen_get_usable_rect(screen)
+	# Saved desktop resolutions can exceed a laptop's usable area (or Retina scale).
+	var decorations := DisplayServer.window_get_size_with_decorations() - DisplayServer.window_get_size()
+	var window_size := requested_size.min((usable_rect.size - decorations).max(Vector2i.ONE))
+	DisplayServer.window_set_size(window_size)
+	DisplayServer.window_set_position(usable_rect.position + (usable_rect.size - window_size - decorations) / 2)
+
 func clear_children(parent: Node) -> void:
 	for child in parent.get_children():
 		if !(child is Label):

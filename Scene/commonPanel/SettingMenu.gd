@@ -71,13 +71,13 @@ func _ready():
 		system_locale= OS.get_locale_language()
 		current_resolution_index = find_closest_resolution(max_width, max_height)
 		
-		fullscreen_check.button_pressed=true
+		GameManager._setting=SettingsResource.new()
+		fullscreen_check.set_pressed_no_signal(true)
 		music_slider.value=0.25
 		sfx_slider.value=1
 		people_slider.value=1
 		bgs_slider.value=0.5
 		AutoSavecheck.button_pressed=true
-		GameManager._setting=SettingsResource.new()
 		GameManager._setting.language=system_locale
 		GameManager._setting.resolution=resolutions[current_resolution_index]
 		_sync_people_voice_option()
@@ -99,7 +99,7 @@ func _ready():
 		SoundManager.set_sound_volume(GameManager._setting.sfx_volume)
 		SoundManager.set_ambient_sound_volume(GameManager._setting.bgs_volume)
 		SoundManager.set_sound_ui_volume(GameManager._setting.people_volume)
-		fullscreen_check.button_pressed=GameManager._setting.fullscreen
+		fullscreen_check.set_pressed_no_signal(GameManager._setting.fullscreen)
 		AutoSavecheck.button_pressed=GameManager._setting.isAutoSave
 	_sync_narrative_atmosphere_option()
 	transition_duration_slider.value=clampf(
@@ -114,7 +114,6 @@ func _ready():
 	call_deferred("apply_resolution", current_resolution_index)
 	TranslationServer.set_locale(system_locale)
 	# 连接信号（弹出菜单 index_pressed 比 item_selected 更可靠）
-	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_RESIZE_DISABLED, true)
 	resolution_option.get_popup().index_pressed.connect(_on_resolution_selected)
 	#如果设置存了别的
 	var lan
@@ -170,34 +169,8 @@ func find_res(resolution):
 func apply_resolution(index: int):
 	if index < 0 or index >= resolutions.size():
 		return ""
-	if fullscreen_check.button_pressed:
-		return resolutions[index]
-	var res = resolutions[index].split("x")
-	var width = int(res[0])
-	var height = int(res[1])
-	
-	
-	var current_screen_idx = DisplayServer.window_get_current_screen()
-	
-	# 2. 获取该屏幕的实际尺寸
-	var screen_size = DisplayServer.screen_get_size(current_screen_idx)
-	var screen_pos = DisplayServer.screen_get_position(current_screen_idx)
-	
-	DisplayServer.window_set_size(Vector2i(width, height))
-	# 居中窗口
-	#var screen_size = DisplayServer.screen_get_size()
-	var window_pos = screen_pos + (screen_size - Vector2i(width, height)) / 2
-	
-	#防止超出屏幕边界
-	window_pos.x = max(window_pos.x, screen_pos.x)
-	window_pos.y = max(window_pos.y, screen_pos.y)
-	# 确保位置不超过屏幕边界（防止右下侧出屏）
-	window_pos.x = min(window_pos.x, screen_pos.x + screen_size.x - width)
-	window_pos.y = min(window_pos.y, screen_pos.y + screen_size.y - height)
-		
-	
-	
-	DisplayServer.window_set_position(window_pos,current_screen_idx)
+	# Read the latest settings in the shared worker, not a stale deferred index.
+	GameManager.apply_window_settings()
 	return resolutions[index]	
 
 
@@ -214,14 +187,8 @@ func _on_resolution_selected(index: int):
 	
 # 全屏模式切换
 func _on_fullscreen_toggled(toggled: bool):
-	if toggled:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-	else:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-		call_deferred("apply_resolution", current_resolution_index)
-		
-		#DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	GameManager._setting.fullscreen=toggled
+	GameManager.apply_window_settings()
 # 确认按钮
 
 # 恢复默认按钮
@@ -230,9 +197,9 @@ func _on_reset_pressed():
 	var screen_size = DisplayServer.screen_get_size()
 	current_resolution_index = find_closest_resolution(screen_size.x, screen_size.y)
 	resolution_option.select(current_resolution_index)
-	call_deferred("apply_resolution", current_resolution_index)
-	fullscreen_check.button_pressed = false
-	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	GameManager._setting.resolution = resolutions[current_resolution_index]
+	fullscreen_check.set_pressed_no_signal(false)
+	_on_fullscreen_toggled(false)
 
 # 音量滑块（示例）
 func _on_music_slider_value_changed(value: float):
